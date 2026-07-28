@@ -3,21 +3,24 @@
 
   class CubeDragController {
     constructor(options){
-      const required=['element','hitTestCube','canRotateCube','applyWholeCubeMove','getCamera','setCamera','setPreview','clearPreview','logEvent'];
+      const required=['element','pickSticker','resolveStickerDrag','canTurnFace','applyFaceMove','getCamera','setCamera','setPreview','clearPreview','logEvent'];
       for(const key of required){if(typeof options[key] === 'undefined')throw new Error('CubeDragController missing option: '+key);}
       this.element=options.element;
-      this.hitTestCube=options.hitTestCube;
-      this.canRotateCube=options.canRotateCube;
-      this.applyWholeCubeMove=options.applyWholeCubeMove;
+      this.pickSticker=options.pickSticker;
+      this.resolveStickerDrag=options.resolveStickerDrag;
+      this.canTurnFace=options.canTurnFace;
+      this.applyFaceMove=options.applyFaceMove;
       this.getCamera=options.getCamera;
       this.setCamera=options.setCamera;
       this.setPreview=options.setPreview;
       this.clearPreview=options.clearPreview;
       this.logEvent=options.logEvent;
       this.onCameraGestureStart=options.onCameraGestureStart||(()=>{});
-      this.onCubeGestureCommitted=options.onCubeGestureCommitted||(()=>{});
-      this.thresholdPx=Number(options.thresholdPx)||34;
-      this.previewQuarterTurnPx=Number(options.previewQuarterTurnPx)||110;
+      this.onStickerGestureCommitted=options.onStickerGestureCommitted||(()=>{});
+      this.thresholdPx=Math.max(24,Number(options.thresholdPx)||42);
+      this.minDirectionScore=Math.max(0.5,Math.min(0.99,Number(options.minDirectionScore)||0.72));
+      this.minScoreMargin=Math.max(0,Math.min(0.5,Number(options.minScoreMargin)||0.08));
+      this.minStraightness=Math.max(0.25,Math.min(1,Number(options.minStraightness)||0.55));
       this.pitchLimit=Number(options.pitchLimit)||1.35;
       this.cameraSensitivity=Number(options.cameraSensitivity)||0.008;
       this.active=null;
@@ -57,28 +60,35 @@
     onPointerDown(e){
       if(e.button!==0||e.isPrimary===false)return;
       const p=this.point(e);
-      const overCube=!!this.hitTestCube(p.x,p.y);
-      const cubeGesture=overCube&&this.canRotateCube();
+      const sticker=this.canTurnFace()?this.pickSticker(p.x,p.y):null;
       const camera=this.getCamera();
       this.active={
         id:e.pointerId,
-        mode:cubeGesture?'cube':'camera',
+        mode:sticker?'sticker':'camera',
+        sticker,
         start:p,
         last:p,
+        previous:p,
         startedAt:performance.now(),
         cameraStart:{...camera},
         sampleCount:1,
+        pathLength:0,
         maxDistance:0,
-        pointerType:e.pointerType||'mouse',modifiers:{shiftKey:e.shiftKey,altKey:e.altKey,ctrlKey:e.ctrlKey,metaKey:e.metaKey}
+        lastResolution:null,
+        pointerType:e.pointerType||'mouse',
+        modifiers:{shiftKey:e.shiftKey,altKey:e.altKey,ctrlKey:e.ctrlKey,metaKey:e.metaKey}
       };
       this.element.setPointerCapture?.(e.pointerId);
-      if(cubeGesture){
-        this.element.style.cursor='grabbing';
-        this.logEvent('cube_drag_start',{x:+p.x.toFixed(2),y:+p.y.toFixed(2),input_method:'pointer',pointer_type:this.active.pointerType,gesture_threshold_px:this.thresholdPx});
+      this.element.style.cursor='grabbing';
+      if(sticker){
+        this.logEvent('sticker_drag_start',{
+          x:+p.x.toFixed(2),y:+p.y.toFixed(2),pointer_type:this.active.pointerType,
+          sticker_face:sticker.face,sticker_cell:sticker.cell,cubie_pos:sticker.pos,
+          gesture_threshold_px:this.thresholdPx,turn_policy:'single_quarter_turn_only'
+        });
       }else{
         this.onCameraGestureStart();
-        this.element.style.cursor='grabbing';
-        this.logEvent('camera_drag_start',{yaw:camera.yaw,pitch:camera.pitch,x:+p.x.toFixed(2),y:+p.y.toFixed(2),started_over_cube:overCube,cube_rotation_available:!!this.canRotateCube()});
+        this.logEvent('camera_drag_start',{yaw:camera.yaw,pitch:camera.pitch,x:+p.x.toFixed(2),y:+p.y.toFixed(2),started_on_sticker:false});
       }
       e.preventDefault();
     }
@@ -86,11 +96,13 @@
     onPointerMove(e){
       const p=this.point(e);
       if(!this.active||this.active.id!==e.pointerId){
-        this.element.style.cursor=this.hitTestCube(p.x,p.y)&&this.canRotateCube()?'all-scroll':'grab';
+        const sticker=this.canTurnFace()?this.pickSticker(p.x,p.y):null;
+        this.element.style.cursor=sticker?'grab':'grab';
         return;
       }
       const a=this.active;
-      a.last=p;a.sampleCount++;
+      a.pathLength+=Math.hypot(p.x-a.previous.x,p.y-a.previous.y);
+      a.previous=p;a.last=p;a.sampleCount++;
       const dx=p.x-a.start.x,dy=p.y-a.start.y;
       a.maxDistance=Math.max(a.maxDistance,Math.hypot(dx,dy));
       if(a.mode==='camera'){
@@ -100,44 +112,56 @@
           zoom:a.cameraStart.zoom
         });
       }else{
-        const horizontal=Math.abs(dx)>=Math.abs(dy);
-        const axis=horizontal?'y':'x';
-        const rawAngle=horizontal?dx*(Math.PI/2/this.previewQuarterTurnPx):dy*(Math.PI/2/this.previewQuarterTurnPx);
-        const angle=Math.max(-Math.PI/2,Math.min(Math.PI/2,rawAngle));
-        this.setPreview({axis,angle,dx,dy});
+        const resolution=this.resolveStickerDrag(a.sticker,dx,dy,{commit:false,thresholdPx:this.thresholdPx});
+        a.lastResolution=resolution;
+        if(resolution?.preview)this.setPreview(resolution.preview);else this.clearPreview();
       }
       e.preventDefault();
     }
 
-    classifyMove(dx,dy){
-      if(Math.hypot(dx,dy)<this.thresholdPx)return null;
-      if(Math.abs(dx)>=Math.abs(dy))return dx>0?"y'":'y';
-      return dy>0?"x'":'x';
+    evaluateGesture(a,p){
+      const dx=p.x-a.start.x,dy=p.y-a.start.y;
+      const distance=Math.hypot(dx,dy);
+      const straightness=a.pathLength>0?Math.min(1,distance/a.pathLength):1;
+      const resolution=this.resolveStickerDrag(a.sticker,dx,dy,{commit:true,thresholdPx:this.thresholdPx});
+      const score=Number(resolution?.score||0);
+      const margin=Number(resolution?.scoreMargin||0);
+      const accepted=!!resolution?.token&&distance>=this.thresholdPx&&score>=this.minDirectionScore&&margin>=this.minScoreMargin&&straightness>=this.minStraightness;
+      return {dx,dy,distance,straightness,resolution,accepted};
     }
 
     finishActive(e,cancelled){
       const a=this.active;if(!a)return;
       const p=e?this.point(e):a.last;
-      const dx=p.x-a.start.x,dy=p.y-a.start.y;
       const duration=performance.now()-a.startedAt;
       if(a.mode==='camera'){
-        const camera=this.getCamera();
+        const dx=p.x-a.start.x,dy=p.y-a.start.y,camera=this.getCamera();
         this.logEvent(cancelled?'camera_drag_cancelled':'camera_drag_end',{
           yaw:camera.yaw,pitch:camera.pitch,duration_ms:+duration.toFixed(3),distance_px:+Math.hypot(dx,dy).toFixed(2),sample_count:a.sampleCount
         });
       }else{
         this.clearPreview();
-        const move=cancelled?null:this.classifyMove(dx,dy);
-        const payload={dx:+dx.toFixed(2),dy:+dy.toFixed(2),distance_px:+Math.hypot(dx,dy).toFixed(2),duration_ms:+duration.toFixed(3),sample_count:a.sampleCount,recognized_move:move,committed:false};
-        if(move&&this.canRotateCube()){
-          payload.committed=!!this.applyWholeCubeMove(move,'cube_drag');
-          if(payload.committed)this.onCubeGestureCommitted(move,duration);
+        const result=this.evaluateGesture(a,p);
+        let committed=false;
+        if(!cancelled&&result.accepted&&this.canTurnFace()){
+          committed=!!this.applyFaceMove(result.resolution.token,'sticker_drag');
+          if(committed)this.onStickerGestureCommitted(result.resolution.token,duration);
         }
-        this.logEvent(cancelled?'cube_drag_cancelled':'cube_drag_end',payload);
+        const r=result.resolution||{};
+        this.logEvent(cancelled?'sticker_drag_cancelled':'sticker_drag_end',{
+          sticker_face:a.sticker.face,sticker_cell:a.sticker.cell,cubie_pos:a.sticker.pos,
+          dx:+result.dx.toFixed(2),dy:+result.dy.toFixed(2),distance_px:+result.distance.toFixed(2),path_length_px:+a.pathLength.toFixed(2),
+          straightness:+result.straightness.toFixed(4),duration_ms:+duration.toFixed(3),sample_count:a.sampleCount,
+          candidate_face:r.face||null,recognized_move:result.accepted?r.token:null,direction_score:r.score==null?null:+r.score.toFixed(4),
+          score_margin:r.scoreMargin==null?null:+r.scoreMargin.toFixed(4),committed,
+          rejection_reason:cancelled?'pointer_cancelled':result.accepted?null:(result.distance<this.thresholdPx?'too_short':result.straightness<this.minStraightness?'path_not_straight':(r.score||0)<this.minDirectionScore?'direction_unclear':(r.scoreMargin||0)<this.minScoreMargin?'axis_ambiguous':'unresolved'),
+          turn_policy:'single_quarter_turn_only',double_turn_generated:false
+        });
       }
       this.active=null;
       try{if(this.element.hasPointerCapture?.(a.id))this.element.releasePointerCapture(a.id);}catch(_){ }
-      this.element.style.cursor=this.hitTestCube(p.x,p.y)&&this.canRotateCube()?'all-scroll':'grab';
+      const sticker=this.canTurnFace()?this.pickSticker(p.x,p.y):null;
+      this.element.style.cursor=sticker?'grab':'grab';
     }
 
     onPointerUp(e){if(this.active&&this.active.id===e.pointerId){this.finishActive(e,false);e.preventDefault();}}

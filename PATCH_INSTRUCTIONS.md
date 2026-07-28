@@ -1,47 +1,41 @@
-# CUBE-REV 0.6.11 Hotfix 적용 방법
+# CUBE-REV 0.6.11 면 회전 드래그 패치
 
-이 ZIP에는 이번 수정에서 바뀐 파일만 들어 있습니다. Google Apps Script 수집기는 이미 정상 작동하므로 수정하지 않습니다.
+이 패치는 기존 CUBE-REV 0.6.11 GitHub Pages 저장소에 덮어쓰는 수정본입니다. 버전 번호는 `0.6.11`로 유지됩니다.
 
-## GitHub에 덮어쓸 파일
-
-저장소 최상단에 다음 파일을 덮어씁니다.
-
-- `index.html`
-- `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`
-- `collector-config.js`
-
-`js` 폴더 안에서는 다음 두 파일을 덮어씁니다.
-
-- `js/cube-drag-controller.js`
-- `js/collector-client.js`
-
-## 반드시 확인할 것
-
-1. 저장소 최상단의 `index.html`이 새 파일인지 확인합니다.
-2. 예전 `CUBE-REV_0.6.10_GitHub_Pages_Pilot.html`이 남아 있다면 삭제합니다.
-3. GitHub Pages 재배포가 끝난 뒤 `Ctrl + Shift + R`로 강력 새로고침합니다.
-4. 시작 화면에 `자동 제출 연결됨`이 표시되는지 확인합니다.
-5. 짧은 세션을 끝낸 뒤 자동 제출 성공 문구를 확인합니다.
-6. 내려받은 JSON에서 다음 값을 확인합니다.
-
-```json
-{
-  "version": "0.6.11",
-  "build_id": "0.6.11-hotfix-2"
-}
-```
-
-## 큐브 드래그 확인
-
-- 큐브 스티커 또는 큐브 내부의 빈 틈에서 가로로 드래그하면 `y` 또는 `y'`가 적용됩니다.
-- 세로로 드래그하면 `x` 또는 `x'`가 적용됩니다.
-- 큐브 바깥 배경을 드래그하면 카메라 시점만 이동합니다.
-- 드래그 거리가 너무 짧으면 회전하지 않습니다.
-
-## 수집기
-
-Apps Script의 `Code.gs`와 웹 앱 배포는 그대로 둡니다. 실험 페이지는 다음 수집기에 직접 연결되어 있습니다.
+## 덮어쓸 파일
 
 ```text
-https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec
+index.html
+CUBE-REV_0.6.11_GitHub_Pages_Pilot.html
+js/cube-drag-controller.js
+js/collector-client.js
 ```
+
+Google Apps Script의 `Code.gs`와 수집기 배포는 수정하지 않아도 됩니다.
+
+## 적용 순서
+
+1. ZIP의 압축을 풉니다.
+2. 위 네 파일을 GitHub 저장소의 같은 위치에 덮어씁니다.
+3. `js` 폴더 안의 두 파일도 반드시 함께 교체합니다.
+4. GitHub Pages 재배포가 끝날 때까지 기다립니다.
+5. 실험 페이지에서 `Ctrl + Shift + R`로 강력 새로고침합니다.
+6. 시작 화면에 `자동 제출 연결됨`이 표시되는지 확인합니다.
+7. 스티커를 잡아 한 방향으로 끌어 면 회전이 한 번만 일어나는지 확인합니다.
+
+## 드래그 조작
+
+- 보이는 스티커 위에서 드래그: 해당 스티커가 속한 층을 90° 회전
+- 빈 배경에서 드래그: 카메라 시점 이동
+- 짧은 드래그: 취소
+- 대각선으로 모호한 드래그: 취소
+- 한 번의 드래그는 항상 90° 한 번만 적용
+- `R2`, `U2` 같은 180° 회전은 드래그 한 번으로 생성하지 않음
+
+## 자동 제출 표시
+
+제출 준비와 전송 중에는 작은 회전 표시가 나타납니다. Google Apps Script는 다른 출처에 있으므로 브라우저가 응답 내용을 직접 읽지 못할 수 있습니다. 이번 패치는 전송 요청 자체가 정상적으로 끝났다면 이를 실패로 오판하지 않습니다.
+
+## 시간 상한
+
+한 시행이 30분을 넘겨도 다음 시행으로 자동 이동하지 않습니다. 상대 시간 측정만 멈추고 이후 시행 상대 시간은 `"max"`로 기록됩니다. 큐브 조작과 원시 사건 기록은 계속됩니다.

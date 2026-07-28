@@ -1,22 +1,31 @@
 {
   "project": "CUBE-REV",
   "version": "0.6.11",
-  "build_id": "0.6.11-hotfix-2",
+  "build_id": "0.6.11-face-drag-1",
   "validated_at": "2026-07-28",
   "checks": {
     "external_javascript_syntax": "passed",
     "inline_javascript_syntax": "passed",
-    "drag_controller_horizontal_gesture": "passed: y' committed once",
-    "drag_controller_duplicate_lost_capture": "passed: one cube_drag_end event",
-    "collector_endpoint_embedded": "passed",
-    "collector_external_override_removed": "passed",
-    "export_version_forced": "passed",
-    "old_0_6_10_strings_in_patch": "none",
-    "keymap_help_modal_present": "passed",
-    "whole_cube_hit_region": "all projected sticker polygons plus 16 px padding"
+    "index_and_standalone_identical": "passed",
+    "controller_single_quarter_turn_unit_test": "passed",
+    "no_0_6_10_string_in_patch": "passed",
+    "collector_endpoint_preserved": "passed",
+    "automatic_timeout_advance_removed": "passed",
+    "spinner_css_and_pending_status": "passed"
   },
-  "limitations": [
-    "The managed Chromium installation in the build environment blocks local HTTP and file pages, so a complete automated browser pointer test could not be run there.",
-    "The drag controller itself was tested with synthetic pointer events and committed the expected whole-cube move exactly once."
-  ]
+  "gesture_policy": {
+    "sticker_drag": "single 90-degree face turn",
+    "background_drag": "camera movement",
+    "double_turn_from_single_drag": false,
+    "minimum_drag_px": 42,
+    "minimum_direction_score": 0.72,
+    "minimum_score_margin": 0.08,
+    "minimum_path_straightness": 0.55
+  },
+  "timing_policy": {
+    "cap_ms": 1800000,
+    "auto_advance_at_cap": false,
+    "relative_time_after_cap": "max"
+  },
+  "browser_automation_note": "The managed Chromium environment blocked local HTTP navigation, so full pointer interaction could not be replayed end-to-end in a real browser. JavaScript syntax, controller behavior with synthetic pointer data, mapping mathematics, and source-level invariants were checked."
 }
