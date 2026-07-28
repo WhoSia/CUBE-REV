@@ -1,0 +1,30 @@
+{
+  "project": "CUBE-REV",
+  "version": "0.6.10",
+  "all_passed": true,
+  "checks": {
+    "index_exists": true,
+    "version_title": true,
+    "version_constant": true,
+    "manifest_version": true,
+    "no_old_version_in_html": true,
+    "no_cr065": true,
+    "no_target_distance": true,
+    "proposal_distance_present": true,
+    "exact_generator_present": true,
+    "session_id_pattern_present": true,
+    "collector_config_loaded": true,
+    "collector_submission_present": true,
+    "requested_notice_removed": true,
+    "requested_footer_removed": true,
+    "standalone_copy_matches": true,
+    "apps_script_exists": true,
+    "docs_present": true,
+    "html_inline_js_syntax": true,
+    "html_inline_js_syntax_detail": "",
+    "collector_js_syntax": true,
+    "collector_js_syntax_detail": "",
+    "appsscript_manifest_json": true,
+    "collector_ack_html_closes_script": true
+  }
+}

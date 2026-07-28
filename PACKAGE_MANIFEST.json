@@ -1,0 +1,108 @@
+{
+  "project": "CUBE-REV",
+  "version": "0.6.10",
+  "package_type": "github_pages_with_optional_google_apps_script_collector",
+  "file_count": 20,
+  "files": [
+    {
+      "path": ".nojekyll",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "AUTO_COLLECTION_SETUP.md",
+      "size_bytes": 4165,
+      "sha256": "5b9701e462b8dec4c8248ef6cf637fa0c8ad428bc79a81b787c9323f9b320ac0"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "size_bytes": 1148,
+      "sha256": "183b49b0e058dce49410deaa93db83cc69fa05bca9a770ff0fb86e2433cacbbc"
+    },
+    {
+      "path": "CUBE-REV_0.6.10_GitHub_Pages_Pilot.html",
+      "size_bytes": 2549059,
+      "sha256": "fd81ef887d3b7013dbd235f0de574baa573063e0c2243485af76b43aa4494208"
+    },
+    {
+      "path": "DATA_DICTIONARY.md",
+      "size_bytes": 4243,
+      "sha256": "1c35170743fe3469d99a4391f572eec0817e5b18c8688598761841a877e86928"
+    },
+    {
+      "path": "DEPLOYMENT_GITHUB_PAGES.md",
+      "size_bytes": 2117,
+      "sha256": "d5bcd0623c27af47cfd43ca18ae10f1891377bf0cd7a593f44a49ed4be90df1f"
+    },
+    {
+      "path": "LICENSE",
+      "size_bytes": 1073,
+      "sha256": "9af7817f5bf1043badf53c04c7810cdec3edf00d04061b624999ce5e80ca24da"
+    },
+    {
+      "path": "PARTICIPANT_GUIDE.md",
+      "size_bytes": 1539,
+      "sha256": "c670ec4f8d94c5487f7f9cfd73ffd90432cf92e87a9105505732038286f953d5"
+    },
+    {
+      "path": "PRIVACY_NOTICE_TEMPLATE.md",
+      "size_bytes": 1923,
+      "sha256": "27a08d3a0aa027c083848ee8bdbf7c4d1cafef80a0539109a8ada80b28c17dbc"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 3763,
+      "sha256": "923777165552b431a8cdb95b9035fc2e4be3fe31f410105209434ef68b042031"
+    },
+    {
+      "path": "RESEARCHER_CHECKLIST.md",
+      "size_bytes": 1766,
+      "sha256": "16350e5388701abdea2747ee9e830a23ba26e5a1864bae0bb38ae8ab58646bb2"
+    },
+    {
+      "path": "SECURITY.md",
+      "size_bytes": 1554,
+      "sha256": "2f739f77dafc4b8225ea360767c549a7cb02342cb89bbe4a4c806957557e0738"
+    },
+    {
+      "path": "VALIDATION.json",
+      "size_bytes": 890,
+      "sha256": "1a2ba89d0d2f8c7b22c98d6d73e04202dd6874052c7042814d9d4e80b7d751bd"
+    },
+    {
+      "path": "VERSION.txt",
+      "size_bytes": 7,
+      "sha256": "bed2b130eec69d461c5f69ba218c386c442ccf2319f3c3476e4faff1d76147e8"
+    },
+    {
+      "path": "collector/google-apps-script/Code.gs",
+      "size_bytes": 5219,
+      "sha256": "791b5028898478681e55db884c88a2552783357cee5702ebc48e5c06a9b46c68"
+    },
+    {
+      "path": "collector/google-apps-script/README.md",
+      "size_bytes": 862,
+      "sha256": "8ee396144fbefdfaf8d29deb12a78787a181311a147141d8dc66f0b5737087d6"
+    },
+    {
+      "path": "collector/google-apps-script/appsscript.json",
+      "size_bytes": 236,
+      "sha256": "891e466d7280c9a8654a03b7e56d3e9a0ac925eb87d4c522b2b3228f028eb7bc"
+    },
+    {
+      "path": "collector-config.js",
+      "size_bytes": 467,
+      "sha256": "bb08dae1e2cd808d40f9123aa6416c9dc9d038e3a368ffd10c66908204ddabdc"
+    },
+    {
+      "path": "index.html",
+      "size_bytes": 2549059,
+      "sha256": "fd81ef887d3b7013dbd235f0de574baa573063e0c2243485af76b43aa4494208"
+    },
+    {
+      "path": "robots.txt",
+      "size_bytes": 26,
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1"
+    }
+  ]
+}
