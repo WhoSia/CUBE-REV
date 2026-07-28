@@ -1,73 +1,236 @@
-# CUBE-REV 0.6.10
+# CUBE-REV
 
-2×2 가상 큐브의 최종 상태만 보고 직접 복원하는 행동 실험 도구입니다. 큐브 조작, 카메라 이동, 전체 회전, 시행 시간, 되돌리기와 초기화 사용, 성공·포기·시간초과 상태를 JSON 세션 파일에 기록합니다.
+**CUBE-REV**는 2×2 루빅스 큐브의 최종 상태를 본 사람이 그 상태를 얼마나 빠르고 정확하게 되돌릴 수 있는지 조사하기 위한 웹 기반 실험 도구입니다.
 
-## 바로 실행
+참가자에게 섞이는 과정이나 스크램블 기호를 보여주지 않습니다. 화면에는 완성 상태에서 변형된 **최종 큐브 상태만** 나타나며, 참가자는 가상 큐브를 직접 돌려 원래 상태로 복원합니다. 프로그램은 성공 여부뿐 아니라 첫 반응까지 걸린 시간, 회전 순서, 시점 변경, 되돌아간 경로, 멈춤과 재시도 같은 행동 과정을 함께 기록합니다.
 
-GitHub Pages에 배포할 때 저장소 루트의 `index.html`이 실험 페이지가 됩니다.
+현재 공개 버전은 **0.6.10**입니다.
 
-- 온라인 실행: GitHub Pages URL
-- 오프라인 실행: `CUBE-REV_0.6.10_GitHub_Pages_Pilot.html`을 내려받아 브라우저에서 열기
-- 결과 저장: 로컬 JSON 다운로드는 항상 가능
-- 선택 기능: Google Apps Script 수집기를 연결하면 세션 종료 시 비공개 Google Drive 폴더로 자동 제출
+---
 
-## 중요한 구조
+## 연구 질문
 
-GitHub Pages는 정적 호스팅 서비스이므로 HTML·CSS·JavaScript를 제공할 수 있지만, 참가자 JSON을 GitHub Pages 자체에 저장할 수는 없습니다. 자동 수집을 사용하려면 별도 수집 엔드포인트가 필요합니다.
+CUBE-REV가 다루는 질문은 단순히 “몇 수짜리 큐브를 풀 수 있는가?”에 그치지 않습니다.
 
-이 배포 묶음은 다음 두 방식 모두를 지원합니다.
+- 최종 상태만 보고도 짧은 역경로를 곧바로 알아볼 수 있는가?
+- 상태의 최단거리와 사람이 느끼는 어려움은 어떻게 다른가?
+- 참가자는 언제부터 바로 복원하지 못하고 탐색, 되돌리기, 시점 전환을 시작하는가?
+- 같은 거리의 상태에서도 어떤 구조가 더 많은 망설임과 오류를 만드는가?
+- 큐브 경험이 첫 반응시간, 경로 효율, 시점 사용 방식에 어떤 차이를 만드는가?
 
-1. **로컬 제출 방식**: 참가자가 JSON을 내려받아 연구자에게 전달
-2. **자동 제출 방식**: 포함된 Google Apps Script 수집기가 JSON을 연구자의 Google Drive에 저장
+이 도구는 이러한 질문을 다루기 위해 큐브 상태의 군론적 구조와 사람의 실제 조작 로그를 연결합니다.
 
-GitHub Pages 공식 설명: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
+---
 
-## 빠른 배포
+## 실험은 어떻게 진행되는가
 
-1. 새 GitHub 저장소를 만듭니다.
-2. 이 폴더의 파일을 저장소 루트에 올립니다.
-3. GitHub 저장소에서 `Settings → Pages`로 이동합니다.
-4. 배포 원본을 `Deploy from a branch`, 브랜치를 `main`, 폴더를 `/ (root)`로 설정합니다.
-5. 표시된 Pages URL을 엽니다.
+1. 참가자가 실행 모드와 키맵을 선택합니다.
+2. 프로그램이 지정된 난이도 범위에서 2×2 큐브 상태를 생성합니다.
+3. 참가자에게는 최종 상태만 제시됩니다.
+4. 참가자는 키보드, 화면 버튼, 카메라 회전 기능을 이용해 큐브를 복원합니다.
+5. 큐브가 완성되면 시행이 자동으로 종료되고 다음 상태가 제시됩니다.
+6. 세션이 끝나면 결과가 JSON 파일로 저장됩니다. 자동 수집기가 연결된 배포본에서는 같은 자료를 연구자 수집 공간으로 제출할 수도 있습니다.
 
-상세 절차는 [DEPLOYMENT_GITHUB_PAGES.md](DEPLOYMENT_GITHUB_PAGES.md)를 참고합니다.
+큐브는 응답이 끝날 때까지 계속 표시됩니다. 짧게 보여 준 뒤 기억만으로 답하게 하는 과제가 아닙니다.
 
-## 자동 수집 설정
+---
 
-자동 수집은 기본적으로 꺼져 있습니다. 설정 절차:
+## 실행 모드
 
-1. `collector/google-apps-script/Code.gs`를 Google Apps Script에 배포합니다.
-2. `setupCollector()`를 한 번 실행합니다.
-3. 배포 URL과 생성된 study token을 `collector-config.js`에 입력합니다.
-4. `enabled: true`로 바꿉니다.
+### 내부 랜덤 생성 세션
 
-상세 절차는 [AUTO_COLLECTION_SETUP.md](AUTO_COLLECTION_SETUP.md)를 참고합니다.
+최소·최대 exact distance를 정하면 프로그램이 해당 범위의 상태를 계속 생성합니다. 시행 수를 비워 두면 참가자가 세션을 종료할 때까지 이어집니다.
 
-## 0.6.10의 주요 수정
+### 무작위화 파일럿 48시행
 
-- 세션 ID: `CR-YYYYMMDDhhmmss-12hex`
-- 버전 문자열 전체 통일: `0.6.10`
-- 생성기 메타데이터: `proposal_distance`, `actual_distance`
-- exact-depth outward walk 생성기로 제안 거리와 실제 거리를 일치시킴
-- 자동 제출 상태와 영수증 메타데이터 추가
-- 수집기 미설정·실패 시 로컬 JSON 다운로드 유지
-- 시작 화면의 선택값은 브라우저에 보존하되 동의 체크는 매 세션 다시 요구
+미리 구성된 48개 시행을 참가자마다 다른 순서로 제시합니다. 일정한 자극 세트를 여러 참가자에게 반복해 보여 주고 비교할 때 사용합니다.
+
+### 자유 테스트
+
+연구자나 개발자가 원하는 스크램블을 직접 입력해 렌더링, 조작, 기록 기능을 시험할 수 있습니다.
+
+---
+
+## 기록되는 자료
+
+CUBE-REV는 세션, 시행, 개별 입력의 세 수준에서 자료를 남깁니다.
+
+### 세션 수준
+
+- CUBE-REV 버전과 세션 ID
+- 실행 모드와 키맵
+- 참가자의 연령대·큐브 경험·선택적 최고 기록
+- 브라우저, 화면 크기, viewport, device pixel ratio
+- 세션 시작·종료 시각과 활성 시간
+- 자극 생성 범위와 무작위화 seed
+
+### 시행 수준
+
+- 제시된 상태의 exact distance
+- 상태 제시, 입력 허용, 첫 상호작용, 첫 면 회전, 해결 시각
+- 전체 해결 시간과 첫 회전 이후 실행 시간
+- 성공, 포기, 시간초과 여부
+- 회전 수, 시점 전환 수, 되돌리기·초기화 횟수
+- 초기화로 나뉜 분석 epoch
+
+### 입력 수준
+
+- 키를 누르고 뗀 시각
+- 실제 적용된 회전과 입력 방식
+- 각 회전 전후의 큐브 상태와 exact distance
+- 카메라 드래그와 전체 큐브 방향 전환
+- 되돌리기가 어느 입력을 취소했는지에 대한 연결 정보
+
+원시 입력은 그대로 보존됩니다. 같은 면을 여러 번 돌린 행동, 잘못 돌렸다가 되돌린 행동, 시점을 바꾼 행동도 분석 전에 사라지지 않습니다.
+
+`x`, `y`, `z` 전체 회전은 큐브를 다시 잡는 행동으로 기록되며, 해법의 최단거리 비용에는 포함하지 않는 것을 원칙으로 합니다. 이후 면 회전은 현재 좌표계를 고려해 후처리해야 합니다.
+
+자세한 필드 정의는 [DATA_DICTIONARY.md](DATA_DICTIONARY.md)에 정리되어 있습니다.
+
+---
+
+## 상태 생성과 난이도
+
+0.6.10의 내부 생성기는 먼저 제안 거리 `proposal_distance`를 선택한 뒤, 실제 상태가 그 거리와 일치하도록 exact-depth outward walk를 수행합니다.
+
+생성된 각 시행에는 다음 값이 함께 기록됩니다.
+
+```json
+{
+  "proposal_distance": 4,
+  "actual_distance": 4,
+  "expected_distance": 4
+}
+```
+
+분석에서 난이도의 기준으로 사용해야 하는 값은 `expected_distance`입니다.
+
+현재 2×2 상태의 거리는 half-turn metric을 사용합니다. 한 면의 90°, 180°, 역방향 회전을 각각 한 번의 move로 셉니다.
+
+---
+
+## 가상 큐브 조작
+
+두 가지 키맵을 제공합니다.
+
+- **양손 virtual-cube 배열**: 양손을 키보드에 둔 채 빠르게 조작하기 위한 배열
+- **문자 표기 배열**: `U`, `R`, `F`, `D`, `L`, `B`와 `x`, `y`, `z`를 문자 그대로 입력하는 배열
+
+문자 표기 배열에서는 `Shift`로 역회전, `Alt` 또는 숫자 `2`를 먼저 눌러 180° 회전을 입력할 수 있습니다.
+
+화면 버튼으로도 모든 면 회전과 전체 방향 전환을 실행할 수 있습니다. 마우스로 카메라를 움직일 수 있으며, 현재 조작축은 우하단의 방위 표시에서 확인할 수 있습니다.
+
+---
+
+## 바로 실행하기
+
+### GitHub Pages
+
+저장소를 GitHub Pages로 배포하면 `index.html`이 실험 페이지가 됩니다.
+
+배포 절차는 [DEPLOYMENT_GITHUB_PAGES.md](DEPLOYMENT_GITHUB_PAGES.md)를 참고하십시오.
+
+### 로컬 실행
+
+`CUBE-REV_0.6.10_GitHub_Pages_Pilot.html`을 내려받아 최신 Chrome 또는 Edge에서 열면 됩니다. 자동 수집 없이도 세션 JSON을 로컬에 저장할 수 있습니다.
+
+모바일 브라우저에서도 페이지가 열릴 수 있지만, 화면 크기와 물리 키보드 조건이 달라집니다. 현재 연구 설계에서는 PC 환경을 권장합니다.
+
+---
+
+## 결과 수집
+
+GitHub Pages는 정적 사이트이므로 참가자 JSON을 저장소나 Pages 서버에 직접 보관하지 않습니다.
+
+이 저장소는 두 가지 수집 방식을 지원합니다.
+
+1. 참가자가 세션 JSON을 내려받아 연구자에게 전달하는 방식
+2. Google Apps Script 수집기를 연결해 연구자의 비공개 Google Drive로 자동 제출하는 방식
+
+자동 수집은 기본적으로 꺼져 있습니다. 설정 방법은 [AUTO_COLLECTION_SETUP.md](AUTO_COLLECTION_SETUP.md)에 설명되어 있습니다. 제출이 실패하더라도 로컬 JSON 다운로드 기능은 유지됩니다.
+
+---
+
+## 저장소 구성
+
+```text
+.
+├── index.html                         # GitHub Pages 진입점
+├── CUBE-REV_0.6.10_GitHub_Pages_Pilot.html
+├── collector-config.js               # 자동 수집 설정
+├── collector/
+│   └── google-apps-script/            # 선택형 Google Drive 수집기
+├── DATA_DICTIONARY.md                 # JSON 필드 정의
+├── PARTICIPANT_GUIDE.md               # 참가자 안내
+├── DEPLOYMENT_GITHUB_PAGES.md         # 배포 방법
+├── AUTO_COLLECTION_SETUP.md           # 자동 수집 설정
+├── RESEARCHER_CHECKLIST.md            # 배포 전 점검표
+├── PRIVACY_NOTICE_TEMPLATE.md         # 연구·개인정보 안내문 초안
+├── SECURITY.md                        # 수집 구조와 보안상 한계
+├── CHANGELOG.md                       # 버전별 변경 사항
+└── VALIDATION.json                    # 배포본 검증 결과
+```
+
+---
+
+## 현재 연구 상태
+
+CUBE-REV 0.6.10은 **engineering pilot과 소규모 calibration pilot을 위한 연구용 프로토타입**입니다.
+
+현재 구현된 항목은 다음과 같습니다.
+
+- 2×2 큐브 상태 생성과 exact distance 확인
+- 최종 상태만 제시하는 복원 과제
+- 가상 큐브의 면 회전과 전체 방향 전환
+- 원시 키 이벤트와 상태 궤적 기록
+- 시점 이동, 해결 시간, 되돌리기, 초기화 기록
+- JSON 다운로드와 선택형 자동 수집
+- GitHub Pages 배포 구조
+
+아직 확정되지 않은 항목도 있습니다.
+
+- 사람의 지각적 난이도를 설명하는 최종 모형
+- `x`, `y`, `z` 이후의 해법열을 표준 좌표계로 변환하는 완성된 분석기
+- 다양한 기기와 브라우저에서의 정밀 타이밍 동등성
+- 대규모 인간 자료를 통한 신뢰도와 타당도 검증
+- 정식 사전등록과 기관 연구윤리 승인
+
+따라서 현재 버전의 결과를 일반적인 인간 인지 한계나 임상적·교육적 능력으로 곧바로 해석해서는 안 됩니다.
+
+---
+
+## 개인정보와 연구윤리
+
+세션 JSON에는 정밀한 행동 시각, 큐브 경험, 연령대, 브라우저와 화면 정보가 포함될 수 있습니다. 참가자 코드에는 이름, 학번, 전화번호처럼 개인을 직접 알아볼 수 있는 정보를 입력하지 않는 것이 좋습니다.
+
+공식 연구 자료를 수집하기 전에는 다음 사항을 별도로 정해야 합니다.
+
+- 연구 목적과 자료 이용 범위
+- 보관 기간과 폐기 방법
+- 참여 철회 방법
+- 미성년자 참여 절차
+- 소속기관의 연구윤리 심의 필요 여부
+
+안내문 작성의 출발점으로 [PRIVACY_NOTICE_TEMPLATE.md](PRIVACY_NOTICE_TEMPLATE.md)를 사용할 수 있습니다.
+
+---
 
 ## 문서
 
-- [DEPLOYMENT_GITHUB_PAGES.md](DEPLOYMENT_GITHUB_PAGES.md): GitHub Pages 배포
-- [AUTO_COLLECTION_SETUP.md](AUTO_COLLECTION_SETUP.md): Google Apps Script 자동 수집
-- [PARTICIPANT_GUIDE.md](PARTICIPANT_GUIDE.md): 참가자 안내문
-- [RESEARCHER_CHECKLIST.md](RESEARCHER_CHECKLIST.md): 배포 전 점검표
-- [DATA_DICTIONARY.md](DATA_DICTIONARY.md): JSON 필드 설명
-- [PRIVACY_NOTICE_TEMPLATE.md](PRIVACY_NOTICE_TEMPLATE.md): 개인정보·연구 안내문 초안
-- [SECURITY.md](SECURITY.md): 수집 엔드포인트의 한계와 보호 조치
-- [CHANGELOG.md](CHANGELOG.md): 변경 이력
+- [참가자 안내](PARTICIPANT_GUIDE.md)
+- [GitHub Pages 배포](DEPLOYMENT_GITHUB_PAGES.md)
+- [자동 결과 수집 설정](AUTO_COLLECTION_SETUP.md)
+- [연구자 점검표](RESEARCHER_CHECKLIST.md)
+- [데이터 사전](DATA_DICTIONARY.md)
+- [개인정보 안내문 초안](PRIVACY_NOTICE_TEMPLATE.md)
+- [보안과 운영상 한계](SECURITY.md)
+- [변경 이력](CHANGELOG.md)
+- [검증 결과](VALIDATION.json)
 
-## 브라우저
+---
 
-PC용 최신 Chrome 또는 Edge를 권장합니다. 모바일은 화면과 키보드 조건이 달라지므로 본 실험에서는 별도 조건으로 다루는 편이 안전합니다.
+## 기여와 문제 제보
 
-## 라이선스
+오류 재현 방법, 브라우저 환경, 사용한 버전, 문제가 발생한 시행의 로그 일부를 함께 남기면 원인을 찾는 데 도움이 됩니다. 참가자 로그를 공개 이슈에 첨부할 때는 참가자 코드와 개인 식별 가능 정보가 포함되지 않았는지 먼저 확인해야 합니다.
 
-코드는 [MIT License](LICENSE)로 배포합니다. 연구 자료·논문·실험 프로토콜의 사용 조건은 연구자가 별도로 명시할 수 있습니다.
+연구 설계, 큐브 상태 표현, 인터페이스, 분석 지표에 대한 제안도 환영합니다.
