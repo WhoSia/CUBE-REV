@@ -1,4 +1,4 @@
-// CUBE-REV 0.6.11 collector configuration.
+// CUBE-REV 0.6.11 collector configuration (hotfix-2).
 // This public GitHub Pages build is connected to the study's Google Apps Script collector.
 window.CUBE_REV_COLLECTOR_CONFIG = {
   enabled: true,

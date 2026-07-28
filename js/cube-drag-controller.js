@@ -55,7 +55,7 @@
     }
 
     onPointerDown(e){
-      if(e.button!==0)return;
+      if(e.button!==0||e.isPrimary===false)return;
       const p=this.point(e);
       const overCube=!!this.hitTestCube(p.x,p.y);
       const cubeGesture=overCube&&this.canRotateCube();
@@ -69,12 +69,12 @@
         cameraStart:{...camera},
         sampleCount:1,
         maxDistance:0,
-        modifiers:{shiftKey:e.shiftKey,altKey:e.altKey,ctrlKey:e.ctrlKey,metaKey:e.metaKey}
+        pointerType:e.pointerType||'mouse',modifiers:{shiftKey:e.shiftKey,altKey:e.altKey,ctrlKey:e.ctrlKey,metaKey:e.metaKey}
       };
       this.element.setPointerCapture?.(e.pointerId);
       if(cubeGesture){
         this.element.style.cursor='grabbing';
-        this.logEvent('cube_drag_start',{x:+p.x.toFixed(2),y:+p.y.toFixed(2),input_method:'pointer',gesture_threshold_px:this.thresholdPx});
+        this.logEvent('cube_drag_start',{x:+p.x.toFixed(2),y:+p.y.toFixed(2),input_method:'pointer',pointer_type:this.active.pointerType,gesture_threshold_px:this.thresholdPx});
       }else{
         this.onCameraGestureStart();
         this.element.style.cursor='grabbing';
@@ -135,8 +135,8 @@
         }
         this.logEvent(cancelled?'cube_drag_cancelled':'cube_drag_end',payload);
       }
-      try{this.element.releasePointerCapture?.(a.id);}catch(_){ }
       this.active=null;
+      try{if(this.element.hasPointerCapture?.(a.id))this.element.releasePointerCapture(a.id);}catch(_){ }
       this.element.style.cursor=this.hitTestCube(p.x,p.y)&&this.canRotateCube()?'all-scroll':'grab';
     }
 

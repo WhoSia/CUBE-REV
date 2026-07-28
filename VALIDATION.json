@@ -1,37 +1,22 @@
 {
   "project": "CUBE-REV",
   "version": "0.6.11",
-  "all_passed": true,
+  "build_id": "0.6.11-hotfix-2",
+  "validated_at": "2026-07-28",
   "checks": {
-    "index_exists": true,
-    "version_title": true,
-    "version_constant": true,
-    "manifest_version": true,
-    "no_old_version_in_html": true,
-    "reset_warning_copy_removed": true,
-    "background_cube_drag_copy": true,
-    "cube_drag_controller_loaded": true,
-    "collector_client_loaded": true,
-    "cube_hit_test_present": true,
-    "cube_drag_logging": true,
-    "collector_enabled": true,
-    "manual_portal_configured": true,
-    "manual_portal_server": true,
-    "automatic_submission_server": true,
-    "standalone_copy_matches": true,
-    "old_standalone_removed": true,
-    "docs_present": true,
-    "cube_drag_js_syntax": true,
-    "collector_client_js_syntax": true,
-    "apps_script_syntax": true,
-    "html_inline_js_syntax": true,
-    "controller_unit_checks": true
+    "external_javascript_syntax": "passed",
+    "inline_javascript_syntax": "passed",
+    "drag_controller_horizontal_gesture": "passed: y' committed once",
+    "drag_controller_duplicate_lost_capture": "passed: one cube_drag_end event",
+    "collector_endpoint_embedded": "passed",
+    "collector_external_override_removed": "passed",
+    "export_version_forced": "passed",
+    "old_0_6_10_strings_in_patch": "none",
+    "keymap_help_modal_present": "passed",
+    "whole_cube_hit_region": "all projected sticker polygons plus 16 px padding"
   },
-  "details": {
-    "cube_drag_js": "",
-    "collector_client_js": "",
-    "apps_script_js": "",
-    "inline_js": "",
-    "browser_runtime": "Not executed in the sandbox because local/file navigation is blocked by the managed Chromium policy. Static syntax and controller unit checks were completed."
-  }
+  "limitations": [
+    "The managed Chromium installation in the build environment blocks local HTTP and file pages, so a complete automated browser pointer test could not be run there.",
+    "The drag controller itself was tested with synthetic pointer events and committed the expected whole-cube move exactly once."
+  ]
 }

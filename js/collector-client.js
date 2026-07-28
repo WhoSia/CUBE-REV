@@ -81,7 +81,7 @@
     async submit({manual=false}={}){
       const session=this.getSession();
       if(!session)throw new Error('제출할 세션이 없습니다.');
-      if(!this.isAutomaticConfigured())throw new Error('자동 제출 수집기가 설정되지 않았습니다.');
+      if(!this.isAutomaticConfigured())throw new Error('자동 제출 연결 정보를 불러오지 못했습니다. 페이지를 강력 새로고침한 뒤 다시 시도해 주세요.');
       if(this.inFlight)return this.inFlight;
       this.inFlight=(async()=>{
         const startedAt=new Date().toISOString();

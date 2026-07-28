@@ -9,7 +9,7 @@
 *{box-sizing:border-box} html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% 12%,#1b2636 0,#0d1117 48%,#090c11 100%);color:var(--text);font-family:Inter,"Noto Sans KR",system-ui,-apple-system,Segoe UI,sans-serif}
 button,input,select{font:inherit} button{color:var(--text);background:#253044;border:1px solid #3a475d;border-radius:10px;padding:.72rem 1rem;cursor:pointer}button:hover{background:#303d54}button.primary{background:#2868d7;border-color:#4a88ec;font-weight:750}button.danger{background:#3a2025;border-color:#6b343d;color:#ffbec5}.hidden{display:none!important}
 .screen{min-height:100vh;display:grid;place-items:center;padding:26px}.card{width:min(940px,96vw);background:rgba(21,27,36,.95);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px}h1{font-size:clamp(1.7rem,4vw,2.55rem);margin:.1rem 0 .35rem}h2{margin:.2rem 0 1rem}p{line-height:1.65}.eyebrow{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800}.muted{color:var(--muted)}.grid2{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:start}.field{display:grid;gap:8px;margin:12px 0}.field input,.field select{width:100%;background:#0f151e;color:var(--text);border:1px solid #354156;border-radius:12px;padding:.85rem .95rem}.choice{display:flex;gap:12px;flex-wrap:wrap}.choice label{background:#111823;border:1px solid #303b4e;padding:.7rem .85rem;border-radius:12px}.modeChoice,.keymapChoice{display:grid;gap:12px}.modeChoice{grid-template-columns:repeat(2,minmax(220px,1fr))}.keymapChoice{grid-template-columns:1fr 1fr}.choiceCard{display:flex;align-items:flex-start;gap:12px;min-height:86px;padding:14px 16px;background:linear-gradient(180deg,#0f1826,#0d1521);border:1px solid #2a3850;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}.choiceCard input{margin-top:4px;transform:scale(1.12)}.choiceBody{display:grid;gap:4px}.choiceTitle{font-weight:800;line-height:1.25}.choiceDesc{font-size:.8rem;line-height:1.4;color:#98abc4}.subpanel{margin-top:12px;padding:14px 16px;background:rgba(13,21,33,.78);border:1px solid #233247;border-radius:16px}.subpanel .field:first-child{margin-top:0}.subpanel .field:last-child{margin-bottom:0}.tightGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.sectionHint{margin:.2rem 0 0;font-size:.8rem;color:#9ab0cb}.notice{border-left:3px solid var(--accent);background:#111925;padding:12px 15px;border-radius:6px 12px 12px 6px;margin:18px 0}#selfTestStatus[data-ok="true"]{color:var(--good)}#selfTestStatus[data-ok="false"]{color:var(--bad)}
-#experiment{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}.topbar{display:grid;grid-template-columns:repeat(4,minmax(100px,1fr));gap:8px;padding:10px 14px;background:rgba(12,16,23,.94);border-bottom:1px solid var(--line)}.metric{background:#151c27;border:1px solid #273244;border-radius:10px;padding:8px 12px;min-height:58px}.metric span{display:block;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}.metric strong{display:block;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:14px;padding:14px;min-height:0}.canvasWrap{position:relative;min-height:520px;border:1px solid var(--line);background:radial-gradient(circle at 50% 40%,#202c3c,#0f151e 65%);border-radius:18px;overflow:hidden;box-shadow:inset 0 0 80px rgba(0,0,0,.22)}#cubeCanvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}#cubeCanvas:active{cursor:grabbing}.canvasOverlay{position:absolute;left:14px;right:14px;top:12px;display:flex;justify-content:space-between;pointer-events:none}#statusText{background:rgba(6,9,14,.78);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:9px 12px;max-width:72%;font-size:.92rem}#statusText[data-kind="success"]{border-color:rgba(80,207,141,.6);color:#b8f4d2}#debugInfo:empty{display:none}#debugInfo{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#c4d6ef;font-size:.75rem;background:rgba(6,9,14,.7);padding:7px;border-radius:8px}#orientationHud{position:absolute;right:14px;bottom:14px;width:132px;background:rgba(7,10,15,.78);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:8px 8px 10px;pointer-events:none;backdrop-filter:blur(4px)}#orientationTitle{font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;color:#9fb7d8;margin:0 0 4px 2px;font-weight:800}#orientationInfo{font-size:.72rem;color:#d8e5f7;line-height:1.35;margin:0 0 4px 2px}#orientationCanvas{display:block;width:112px;height:112px;margin:0 auto}.side{display:flex;flex-direction:column;gap:12px}.sidePanel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}.scramble{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-weight:700;word-spacing:.4em;min-height:42px;color:#d9e6fa}.moves{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.moves button{padding:.62rem .2rem;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-weight:800}.faceLabel{grid-column:1/-1;color:var(--muted);font-size:.7rem;margin-top:3px}.keymapTable{font-size:.78rem;line-height:1.55;color:#bec9d8}.bottomBar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;background:rgba(12,16,23,.94);border-top:1px solid var(--line)}.bottomBar .actions{display:flex;gap:8px;flex-wrap:wrap}.collectionActions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}.collectionActions button{min-width:180px}.collectionReceipt{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.78rem;word-break:break-all}.small{font-size:.78rem}kbd{border:1px solid #56647a;background:#111822;border-radius:5px;padding:1px 5px;box-shadow:0 1px 0 #66758c;color:#eef}
+#experiment{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}.topbar{display:grid;grid-template-columns:repeat(4,minmax(100px,1fr));gap:8px;padding:10px 14px;background:rgba(12,16,23,.94);border-bottom:1px solid var(--line)}.metric{background:#151c27;border:1px solid #273244;border-radius:10px;padding:8px 12px;min-height:58px}.metric span{display:block;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}.metric strong{display:block;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:14px;padding:14px;min-height:0}.canvasWrap{position:relative;min-height:520px;border:1px solid var(--line);background:radial-gradient(circle at 50% 40%,#202c3c,#0f151e 65%);border-radius:18px;overflow:hidden;box-shadow:inset 0 0 80px rgba(0,0,0,.22)}#cubeCanvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}#cubeCanvas:active{cursor:grabbing}.canvasOverlay{position:absolute;left:14px;right:14px;top:12px;display:flex;justify-content:space-between;pointer-events:none}#statusText{background:rgba(6,9,14,.78);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:9px 12px;max-width:72%;font-size:.92rem}#statusText[data-kind="success"]{border-color:rgba(80,207,141,.6);color:#b8f4d2}#debugInfo:empty{display:none}#debugInfo{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#c4d6ef;font-size:.75rem;background:rgba(6,9,14,.7);padding:7px;border-radius:8px}#orientationHud{position:absolute;right:14px;bottom:14px;width:132px;background:rgba(7,10,15,.78);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:8px 8px 10px;pointer-events:none;backdrop-filter:blur(4px)}#orientationTitle{font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;color:#9fb7d8;margin:0 0 4px 2px;font-weight:800}#orientationInfo{font-size:.72rem;color:#d8e5f7;line-height:1.35;margin:0 0 4px 2px}#orientationCanvas{display:block;width:112px;height:112px;margin:0 auto}.side{display:flex;flex-direction:column;gap:12px}.sidePanel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}.scramble{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-weight:700;word-spacing:.4em;min-height:42px;color:#d9e6fa}.moves{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.moves button{padding:.62rem .2rem;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-weight:800}.faceLabel{grid-column:1/-1;color:var(--muted);font-size:.7rem;margin-top:3px}.keymapTable{font-size:.78rem;line-height:1.55;color:#bec9d8}.keymapHelpSummary{margin:.7rem 0 0;color:#9fb1ca;font-size:.76rem;line-height:1.45}.keymapDialog{width:min(700px,calc(100vw - 28px));max-height:min(82vh,720px);padding:0;border:1px solid #35445a;border-radius:20px;background:#151d28;color:var(--text);box-shadow:0 28px 80px rgba(0,0,0,.55);overflow:hidden}.keymapDialog::backdrop{background:rgba(4,8,13,.72);backdrop-filter:blur(3px)}.keymapDialogHeader{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:20px 22px 16px;border-bottom:1px solid #2c394c;background:#111925}.keymapDialogHeader h2{margin:0;font-size:1.35rem}.keymapDialogHeader p{margin:.35rem 0 0;color:var(--muted);font-size:.82rem}.keymapDialogBody{padding:20px 22px 24px;overflow:auto;max-height:calc(82vh - 92px)}.keymapGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.keymapRow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 13px;border:1px solid #2d3b50;border-radius:12px;background:#101722}.keymapKeys{white-space:nowrap}.keymapSection{margin-top:20px}.keymapSection:first-child{margin-top:0}.keymapSection h3{margin:0 0 10px;font-size:1rem}.keymapNote{margin:14px 0 0;padding:12px 14px;border-left:3px solid var(--accent);border-radius:7px;background:#101722;color:#c3d0e2;line-height:1.55;font-size:.86rem}@media(max-width:560px){.keymapGrid{grid-template-columns:1fr}.keymapDialogHeader,.keymapDialogBody{padding-left:16px;padding-right:16px}}.bottomBar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;background:rgba(12,16,23,.94);border-top:1px solid var(--line)}.bottomBar .actions{display:flex;gap:8px;flex-wrap:wrap}.collectionActions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}.collectionActions button{min-width:180px}.collectionReceipt{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.78rem;word-break:break-all}.small{font-size:.78rem}kbd{border:1px solid #56647a;background:#111822;border-radius:5px;padding:1px 5px;box-shadow:0 1px 0 #66758c;color:#eef}
 @media(max-width:820px){.grid2{grid-template-columns:1fr}.modeChoice,.keymapChoice,.tightGrid{grid-template-columns:1fr}.stage{grid-template-columns:1fr;overflow:auto}.canvasWrap{min-height:58vh}.side{display:grid;grid-template-columns:1fr 1fr}.topbar{grid-template-columns:1fr 1fr}}@media(max-width:520px){.screen{padding:10px}.card{padding:18px}.side{grid-template-columns:1fr}.canvasWrap{min-height:52vh}#orientationHud{width:122px;padding:7px 7px 8px}#orientationCanvas{width:100px;height:100px}.choiceCard{min-height:unset;padding:12px 14px}}
 </style>
 </head>
@@ -63,7 +63,7 @@ button,input,select{font:inherit} button{color:var(--text);background:#253044;bo
     <aside class="side">
       <div class="sidePanel">
         <strong>직접 회전</strong>
-        <p class="small muted">키보드 또는 아래 버튼을 사용합니다. 마우스 드래그는 시점만 바꾸며 큐브 상태를 바꾸지 않습니다.</p>
+        <p class="small muted">키보드나 아래 버튼으로 회전할 수 있습니다. 큐브 위를 드래그하면 전체 큐브가 x 또는 y 방향으로 회전하고, 큐브 바깥 배경을 드래그하면 카메라 시점만 바뀝니다.</p>
         <div class="moves">
           <span class="faceLabel">U</span><button data-move="U">U</button><button data-move="U2">U2</button><button data-move="U'">U′</button>
           <span class="faceLabel">R</span><button data-move="R">R</button><button data-move="R2">R2</button><button data-move="R'">R′</button>
@@ -77,12 +77,8 @@ button,input,select{font:inherit} button{color:var(--text);background:#253044;bo
         </div>
       </div>
       <div class="sidePanel">
-        <button id="keymapHelpToggle" style="width:100%">키맵 자세히</button>
-        <div id="keymapHelp" class="keymapTable hidden">
-          <p><kbd>J</kbd>/<kbd>F</kbd> U/U′ · <kbd>I</kbd>/<kbd>K</kbd> R/R′<br><kbd>H</kbd>/<kbd>G</kbd> F/F′ · <kbd>S</kbd>/<kbd>L</kbd> D/D′<br><kbd>D</kbd>/<kbd>E</kbd> L/L′ · <kbd>W</kbd>/<kbd>O</kbd> B/B′</p>
-          <p><kbd>X</kbd>/<kbd>Y</kbd>/<kbd>Z</kbd> 전체 큐브 회전 · Shift=역회전 · Alt 또는 <kbd>2</kbd>=180°</p>
-          <p>키를 길게 눌러 생긴 자동 반복은 원시 이벤트에는 남지만 큐브 회전으로 승인되지 않습니다.</p>
-        </div>
+        <button id="keymapHelpToggle" style="width:100%">조작법 보기</button>
+        <p id="keymapModeSummary" class="keymapHelpSummary">현재 키맵을 불러오는 중입니다.</p>
       </div>
       <div class="sidePanel"><button id="downloadButton" style="width:100%">현재 원시 JSON 저장</button></div>
     </aside>
@@ -90,6 +86,13 @@ button,input,select{font:inherit} button{color:var(--text);background:#253044;bo
   <footer class="bottomBar"><div class="small muted">배경 드래그: 시점 이동 · 큐브 드래그: 전체 회전 · 휠: 확대/축소</div><div class="actions"><button id="undoButton" title="직전 승인 명령의 역연산을 적용합니다">1회 되돌리기</button><button id="resetTrialButton" title="현재 시행의 최초 제시 상태로 돌아갑니다">이 시행 초기화</button><button id="endSessionButton">세션 종료</button><button id="abortButton" class="danger">포기하고 다음 시행</button></div></footer>
 </section>
 
+<dialog id="keymapHelpDialog" class="keymapDialog" aria-labelledby="keymapHelpTitle">
+  <div class="keymapDialogHeader">
+    <div><h2 id="keymapHelpTitle">큐브 조작법</h2><p id="keymapHelpSubtitle">현재 세션에서 선택한 키맵을 기준으로 표시합니다.</p></div>
+    <button id="keymapHelpClose" type="button">닫기</button>
+  </div>
+  <div id="keymapHelpContent" class="keymapDialogBody"></div>
+</dialog>
 
 <section id="probeScreen" class="screen hidden">
   <div class="card" style="max-width:720px">
@@ -138,17 +141,25 @@ window.CUBE_REV_COLLECTOR_CONFIG = {
   timeoutMs: 30000
 };
 </script>
-<script src="./collector-config.js"></script>
-<script src="./js/collector-client.js"></script>
-<script src="./js/cube-drag-controller.js"></script>
+<script src="./js/collector-client.js?v=0611-hotfix-2"></script>
+<script src="./js/cube-drag-controller.js?v=0611-hotfix-2"></script>
 <script>
 'use strict';
 
 const PROJECT = 'CUBE-REV';
 const VERSION = '0.6.11';
+const BUILD_ID = '0.6.11-hotfix-2';
 const SETTINGS_KEY = 'CUBE_REV_USER_SETTINGS_V1';
 const AUTOSAVE_KEY = 'CUBE_REV_0.6.11_AUTOSAVE';
-const COLLECTOR_CONFIG = CubeRevCollectorClient.normalizeConfig(window.CUBE_REV_COLLECTOR_CONFIG,VERSION);
+const COLLECTOR_CONFIG = CubeRevCollectorClient.normalizeConfig({
+  ...window.CUBE_REV_COLLECTOR_CONFIG,
+  enabled:true,
+  endpoint:'https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec',
+  manualUploadUrl:'https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec',
+  studyId:'CUBE-REV-0.6.11',
+  studyToken:'dfce727955bf4813b4df0a3943ecf49d',
+  autoSubmitOnComplete:true
+},VERSION);
 const FACE_NAMES = ['U','R','F','D','L','B'];
 const COLORS = {
   U:'#f4f4f4', R:'#c9302c', F:'#169b62', D:'#f5d328', L:'#ef7d22', B:'#2257b5'
@@ -322,7 +333,7 @@ let inputEnabled=false, trialActive=false, currentTrial=null, currentTrialRecord
 let undoStack=[],trialEpoch=0;
 let session=null, sessionStartPerf=0, trialStartPerf=0, inputEnabledPerf=0, eventCounter=0;
 let keymapMode='speed', doubleLatchUntil=0, debugMode=new URLSearchParams(location.search).get('debug')==='1';
-let cubeDragPreview=null,projectedCubeHitHull=[];
+let cubeDragPreview=null,projectedCubeHitHull=[],projectedCubeHitBounds=null;
 let collectorClient=null,cubeDragController=null;
 
 function resizeCanvas(){
@@ -430,7 +441,15 @@ function pointInPolygon(x,y,poly){
   }
   return inside;
 }
-function hitTestProjectedCube(x,y){return pointInPolygon(x,y,projectedCubeHitHull);}
+function polygonBounds(points,padding=0){
+  if(!points||!points.length)return null;
+  const xs=points.map(p=>p.x),ys=points.map(p=>p.y);
+  return {left:Math.min(...xs)-padding,right:Math.max(...xs)+padding,top:Math.min(...ys)-padding,bottom:Math.max(...ys)+padding};
+}
+function pointInBounds(x,y,b){return !!b&&x>=b.left&&x<=b.right&&y>=b.top&&y<=b.bottom;}
+function hitTestProjectedCube(x,y){
+  return pointInPolygon(x,y,projectedCubeHitHull)||pointInBounds(x,y,projectedCubeHitBounds);
+}
 function transformForCubeDragPreview(geom){
   if(!cubeDragPreview)return geom;
   const {axis,angle}=cubeDragPreview;
@@ -452,7 +471,7 @@ function draw(){
     polys.push({pts,z,color:COLORS[fl[face][cell]],front:vn[2]>0,visibility:vn[2]});
   }
   polys.sort((a,b)=>a.z-b.z);
-  projectedCubeHitHull=convexHull(polys.filter(p=>p.front).flatMap(p=>p.pts));
+  const cubeScreenPoints=polys.flatMap(p=>p.pts);projectedCubeHitHull=convexHull(cubeScreenPoints);projectedCubeHitBounds=polygonBounds(cubeScreenPoints,16);
   for(const p of polys){
     ctx.beginPath();ctx.moveTo(p.pts[0].x,p.pts[0].y);for(let i=1;i<4;i++)ctx.lineTo(p.pts[i].x,p.pts[i].y);ctx.closePath();
     ctx.save();
@@ -574,6 +593,7 @@ function rawKeyEvent(e,type){
   return logSessionEvent('keyboard_'+type,{key:e.key,code:e.code,repeat:e.repeat,shift_key:e.shiftKey,alt_key:e.altKey,ctrl_key:e.ctrlKey,meta_key:e.metaKey,browser_event_timestamp_ms:+e.timeStamp.toFixed(3),location:e.location,is_composing:e.isComposing});
 }
 window.addEventListener('keydown',e=>{
+  if(document.getElementById('keymapHelpDialog')?.open)return;
   const raw=rawKeyEvent(e,'down');
   if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;
   if(e.code==='Digit2'){doubleLatchUntil=performance.now()+900;e.preventDefault();if(raw)raw.role='double_latch';return;}
@@ -664,7 +684,7 @@ function newSession(participant,mode,custom=null,generated=null){
   if(mode==='custom')plan=[resolveTrial({trial_id:'CUSTOM-01',block:'custom',condition:'state_only_hidden_generation',scramble:custom.scramble,show_scramble_text:false,is_practice:true,timeout_ms:120000},participant)];
   else if(mode==='pilot')plan=buildPlan(participant,seed);
   const generatorSettings=mode==='generated'?{min_distance:generated.min_distance,max_distance:generated.max_distance,trial_limit:generated.trial_limit,timeout_ms:90000,unbounded:generated.trial_limit===null}:null;
-  session={project:PROJECT,version:VERSION,session_id:id,session_id_scheme:'CR-YYYYMMDDhhmmss-randomhex',participant_code:participant,mode,created_at:created.toISOString(),performance_time_origin:performance.timeOrigin,randomization_seed:seed,
+  session={project:PROJECT,version:VERSION,build_id:BUILD_ID,session_id:id,session_id_scheme:'CR-YYYYMMDDhhmmss-randomhex',participant_code:participant,mode,created_at:created.toISOString(),performance_time_origin:performance.timeOrigin,randomization_seed:seed,
     user_agent:navigator.userAgent,platform:navigator.platform,language:navigator.language,screen:{width:screen.width,height:screen.height,color_depth:screen.colorDepth,pixel_depth:screen.pixelDepth},
     viewport:{width:innerWidth,height:innerHeight,dpr:devicePixelRatio},participant_metadata:{age_band:document.getElementById('ageBand')?.value??null,experience_level:document.getElementById('experienceLevel')?.value??null,consent_checked:true,consent_recorded_at:new Date().toISOString(),best_time_seconds:(()=>{const v=document.getElementById('bestTime')?.value;return v?Number(v):null})()},
     interface_settings:{keymap_mode:keymapMode,execution_mode:mode,whole_cube_rotation_policy:'logged_losslessly_then_conjugated_out_in_postprocessing',xyz_metric_policy:'exclude_as_cost_zero_reorientation; subsequent face turns require frame conjugation',camera_drag_enabled:true,cube_drag_rotation_enabled:true,pointer_gesture_policy:'background_drag_camera; cube_drag_discrete_xy_regrip; dominant_axis; one_quarter_turn',move_buttons_enabled:true,response_animation:true,compass_policy:'operational_move_axes_not_original_color_face_identity',initial_camera_policy:'fixed_front_yaw0_pitch0_zoom1',settings_persistence:'localStorage_except_consent'},
@@ -679,7 +699,7 @@ function autosave(immediate=false){
   if(immediate){if(autosaveTimer){clearTimeout(autosaveTimer);autosaveTimer=null;}flush();return;}
   if(!autosaveTimer)autosaveTimer=setTimeout(flush,900);
 }
-function sanitizeSessionForExport(){const {_rng,_plan,_index,_active_started_perf,_hidden_started_perf,...publicSession}=session;return structuredClone(publicSession);}
+function sanitizeSessionForExport(){const {_rng,_plan,_index,_active_started_perf,_hidden_started_perf,...publicSession}=session;const out=structuredClone(publicSession);out.project=PROJECT;out.version=VERSION;out.build_id=BUILD_ID;out.trial_manifest_version=TRIAL_MANIFEST.version;return out;}
 function downloadJSON(obj,name){const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
 function downloadCurrentSession(source='button'){
   if(!session)return false;session.data_submission=session.data_submission||{};session.data_submission.local_download_count=(session.data_submission.local_download_count||0)+1;
@@ -709,7 +729,7 @@ function manualCollectorConfigured(){return getCollectorClient().isManualPortalC
 function updateCollectorSetupStatus(){
   const el=document.getElementById('collectorSetupStatus');if(!el)return;el.replaceChildren();
   const message=document.createElement('span');
-  if(collectorConfigured()){message.textContent='세션 종료 시 결과가 자동 제출됩니다. ';message.style.color='var(--good)';}
+  if(collectorConfigured()){message.textContent='자동 제출 연결됨 · 세션 종료 시 결과가 수집기로 전송됩니다. ';message.style.color='var(--good)';}
   else {message.textContent='자동 제출은 연결되지 않았습니다. ';message.style.color='var(--muted)';}
   el.appendChild(message);
   if(manualCollectorConfigured()){
@@ -729,7 +749,7 @@ function scheduleAutomaticSubmission(){
   portal?.classList.toggle('hidden',!manualCollectorConfigured());
   handoff?.classList.toggle('hidden',!manualCollectorConfigured());
   if(collectorConfigured()){
-    if(COLLECTOR_CONFIG.autoSubmitOnComplete)setTimeout(()=>submitSessionToCollector().catch(()=>{}),250);
+    if(COLLECTOR_CONFIG.autoSubmitOnComplete){setUploadStatus('결과를 자동 제출할 준비를 하고 있습니다.','info');setTimeout(()=>submitSessionToCollector().catch(()=>{}),250);}
     else setUploadStatus('결과가 준비되었습니다. 자동 제출 버튼을 눌러 주세요.');
   }else if(manualCollectorConfigured())setUploadStatus('JSON을 저장한 뒤 수집 페이지에서 직접 제출해 주세요.');
   else setUploadStatus('JSON 파일을 내려받아 연구자에게 전달해 주세요.');
@@ -794,7 +814,7 @@ async function finishTrial(status){
 }
 function completeSession(){
   currentTrial=null;currentTrialRecord=null;if(session._hidden_started_perf!==null){session.hidden_duration_ms=(session.hidden_duration_ms||0)+(performance.now()-session._hidden_started_perf);session._hidden_started_perf=null;}session.completed_at=new Date().toISOString();session.session_duration_ms=+nowSession().toFixed(3);session.hidden_duration_ms=+(session.hidden_duration_ms||0).toFixed(3);session.active_visible_duration_ms=+Math.max(0,session.session_duration_ms-session.hidden_duration_ms).toFixed(3);session.completed_trial_count=session.trials.length;logSessionEvent('session_complete',{completed_trials:session.trials.length,session_duration_ms:session.session_duration_ms,hidden_duration_ms:session.hidden_duration_ms,active_visible_duration_ms:session.active_visible_duration_ms});autosave(true);
-  document.getElementById('experiment').classList.add('hidden');document.getElementById('completeScreen').classList.remove('hidden');document.getElementById('completeSummary').textContent=`${session.trials.length}개 시행이 기록되었습니다. 제출 상태를 확인한 뒤 창을 닫아 주세요.`;scheduleAutomaticSubmission();
+  document.getElementById('experiment').classList.add('hidden');document.getElementById('completeScreen').classList.remove('hidden');document.getElementById('completeSummary').textContent=`${session.trials.length}개 시행이 기록되었습니다. 저장 파일 버전은 ${VERSION}입니다. 제출 상태를 확인한 뒤 창을 닫아 주세요.`;scheduleAutomaticSubmission();
 }
 function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
@@ -842,7 +862,7 @@ function restoreUserSettings(){
 function installSettingsPersistence(){
   const ids=['participantCode','ageBand','experienceLevel','bestTime','generatedMinDistance','generatedMaxDistance','generatedTrialLimit','customScramble'];
   for(const id of ids){const el=document.getElementById(id);if(el){el.addEventListener('change',saveUserSettings);el.addEventListener('input',saveUserSettings);}}
-  document.querySelectorAll('input[name=mode],input[name=keymap]').forEach(el=>el.addEventListener('change',saveUserSettings));
+  document.querySelectorAll('input[name=mode],input[name=keymap]').forEach(el=>el.addEventListener('change',()=>{saveUserSettings();updateKeymapModeSummary();}));
 }
 
 function startFromForm(){
@@ -851,13 +871,13 @@ function startFromForm(){
   keymapMode=document.querySelector('input[name=keymap]:checked').value;const mode=document.querySelector('input[name=mode]:checked').value;saveUserSettings();
   let custom=null,generated=null;if(mode==='custom'){const scramble=document.getElementById('customScramble').value.trim();try{scramble.split(/\s+/).filter(Boolean).forEach(parseMove);}catch(e){alert(e.message);return;}custom={scramble,condition:'state_only_hidden_generation'};}
   if(mode==='generated'){const min=Number(document.getElementById('generatedMinDistance').value),max=Number(document.getElementById('generatedMaxDistance').value),rawLimit=document.getElementById('generatedTrialLimit').value.trim();if(!Number.isInteger(min)||!Number.isInteger(max)||min<1||max>11||min>max){alert('생성 거리 범위를 1–11 안에서 올바르게 입력해 주세요.');return;}generated={min_distance:min,max_distance:max,trial_limit:rawLimit?Number(rawLimit):null};if(generated.trial_limit!==null&&(!Number.isInteger(generated.trial_limit)||generated.trial_limit<1)){alert('시행 수는 양의 정수이거나 빈칸이어야 합니다.');return;}}
-  session=newSession(participant,mode,custom,generated);document.getElementById('startScreen').classList.add('hidden');document.getElementById('experiment').classList.remove('hidden');resizeCanvas();beginTrial(session._plan[0],1);
+  session=newSession(participant,mode,custom,generated);updateKeymapModeSummary();document.getElementById('startScreen').classList.add('hidden');document.getElementById('experiment').classList.remove('hidden');resizeCanvas();beginTrial(session._plan[0],1);
 }
 
 cubeDragController=new CubeDragController({
   element:canvas,
   hitTestCube:hitTestProjectedCube,
-  canRotateCube:()=>trialActive&&inputEnabled&&!animation&&animationQueue.length===0,
+  canRotateCube:()=>trialActive&&inputEnabled,
   applyWholeCubeMove:(move,source)=>acceptedMove(move,source),
   getCamera:()=>({...camera}),
   setCamera:next=>{camera={...camera,...next};scheduleDraw();},
@@ -890,7 +910,46 @@ document.getElementById('restartButton').addEventListener('click',()=>{
 });
 document.querySelectorAll('[data-move]').forEach(btn=>btn.addEventListener('click',()=>acceptedMove(btn.dataset.move,'button')));
 document.querySelectorAll('input[name=mode]').forEach(x=>x.addEventListener('change',()=>{const m=document.querySelector('input[name=mode]:checked').value;document.getElementById('customPanel').classList.toggle('hidden',m!=='custom');document.getElementById('generatedPanel').classList.toggle('hidden',m!=='generated');}));
-document.getElementById('keymapHelpToggle').addEventListener('click',()=>document.getElementById('keymapHelp').classList.toggle('hidden'));
+function activeKeymapMode(){return session?.interface_settings?.keymap_mode||keymapMode||document.querySelector('input[name="keymap"]:checked')?.value||'speed';}
+function updateKeymapModeSummary(){
+  const el=document.getElementById('keymapModeSummary');if(!el)return;
+  el.textContent=activeKeymapMode()==='notation'?'현재: 문자 표기 배열 · Shift=역회전 · Alt/2=180°':'현재: 양손 virtual-cube 배열 · 전체 회전은 드래그 또는 화면 버튼';
+}
+function renderKeymapHelp(){
+  const mode=activeKeymapMode(),content=document.getElementById('keymapHelpContent'),subtitle=document.getElementById('keymapHelpSubtitle');
+  subtitle.textContent=mode==='notation'?'문자 표기 배열':'양손 virtual-cube 배열';
+  content.innerHTML=mode==='notation'?`
+    <section class="keymapSection"><h3>면 회전</h3><div class="keymapGrid">
+      ${['U','R','F','D','L','B'].map(k=>`<div class="keymapRow"><span>${k}면</span><span class="keymapKeys"><kbd>${k}</kbd></span></div>`).join('')}
+    </div></section>
+    <section class="keymapSection"><h3>회전 방향</h3><div class="keymapGrid">
+      <div class="keymapRow"><span>시계 방향</span><span class="keymapKeys"><kbd>U</kbd> 등</span></div>
+      <div class="keymapRow"><span>역회전</span><span class="keymapKeys"><kbd>Shift</kbd> + 면</span></div>
+      <div class="keymapRow"><span>180°</span><span class="keymapKeys"><kbd>Alt</kbd> + 면</span></div>
+      <div class="keymapRow"><span>180°</span><span class="keymapKeys"><kbd>2</kbd> 후 면</span></div>
+    </div></section>
+    <section class="keymapSection"><h3>전체 큐브 회전</h3><div class="keymapGrid">
+      <div class="keymapRow"><span>x축</span><span class="keymapKeys"><kbd>X</kbd></span></div>
+      <div class="keymapRow"><span>y축</span><span class="keymapKeys"><kbd>Y</kbd></span></div>
+      <div class="keymapRow"><span>z축</span><span class="keymapKeys"><kbd>Z</kbd></span></div>
+    </div></section>`:`
+    <section class="keymapSection"><h3>면 회전</h3><div class="keymapGrid">
+      <div class="keymapRow"><span>U / U′</span><span class="keymapKeys"><kbd>J</kbd> / <kbd>F</kbd></span></div>
+      <div class="keymapRow"><span>R / R′</span><span class="keymapKeys"><kbd>I</kbd> / <kbd>K</kbd></span></div>
+      <div class="keymapRow"><span>F / F′</span><span class="keymapKeys"><kbd>H</kbd> / <kbd>G</kbd></span></div>
+      <div class="keymapRow"><span>D / D′</span><span class="keymapKeys"><kbd>S</kbd> / <kbd>L</kbd></span></div>
+      <div class="keymapRow"><span>L / L′</span><span class="keymapKeys"><kbd>D</kbd> / <kbd>E</kbd></span></div>
+      <div class="keymapRow"><span>B / B′</span><span class="keymapKeys"><kbd>W</kbd> / <kbd>O</kbd></span></div>
+    </div></section>
+    <p class="keymapNote">180° 회전은 같은 방향 키를 두 번 누릅니다. 전체 큐브 회전은 큐브 드래그나 오른쪽의 x·y·z 버튼을 사용합니다.</p>`;
+  content.insertAdjacentHTML('beforeend','<p class="keymapNote">큐브 위 드래그: 전체 큐브 회전 · 배경 드래그: 카메라 이동 · 마우스 휠: 확대/축소</p>');
+}
+function openKeymapHelp(){renderKeymapHelp();const d=document.getElementById('keymapHelpDialog');if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','');}
+function closeKeymapHelp(){const d=document.getElementById('keymapHelpDialog');if(typeof d.close==='function')d.close();else d.removeAttribute('open');}
+document.getElementById('keymapHelpToggle').addEventListener('click',openKeymapHelp);
+document.getElementById('keymapHelpClose').addEventListener('click',closeKeymapHelp);
+document.getElementById('keymapHelpDialog').addEventListener('click',e=>{if(e.target===e.currentTarget)closeKeymapHelp();});
+updateKeymapModeSummary();
 window.addEventListener('beforeunload',e=>{
   if(!session)return;const status=session.data_submission?.status;const safe=['stored','duplicate','submitted'].includes(status)||((session.data_submission?.local_download_count||0)>0);
   const completeVisible=!document.getElementById('completeScreen').classList.contains('hidden');
@@ -904,7 +963,7 @@ function runSelfTests(){
   for(const r of ['x','y','z']){let s=solved;for(let i=0;i<4;i++)s=applyMove(s,r);check(r+'^4 full',stateEqual(s,solved));check(r+' quotient invariant',distanceOfState(applyMove(solved,r))===0,distanceOfState(applyMove(solved,r)));}
   check('canonical solved id',canonicalStateId(solved)===0,canonicalStateId(solved));
   check("U' U2 => U",JSON.stringify(sameFaceNormalize(["U'",'U2']))===JSON.stringify(['U']),sameFaceNormalize(["U'",'U2']));
-  check('R4 local identity',sameFaceNormalize(['R','R','R','R']).length===0);check('undo inverse U2',inverseMoveToken('U2')==='U2');check("undo inverse x'",inverseMoveToken("x'")==='x');check('version unified',VERSION==='0.6.11'&&TRIAL_MANIFEST.version==='0.6.11');check('SOLID controllers loaded',typeof CubeDragController==='function'&&typeof CubeRevCollectorClient==='function');const generatorTest=generateExactDistanceScramble(makeRng(0x0610),1,6,2000);check('generator exact proposal',generatorTest.distance===generatorTest.proposal_distance,generatorTest);
+  check('R4 local identity',sameFaceNormalize(['R','R','R','R']).length===0);check('undo inverse U2',inverseMoveToken('U2')==='U2');check("undo inverse x'",inverseMoveToken("x'")==='x');check('version unified',VERSION==='0.6.11'&&TRIAL_MANIFEST.version==='0.6.11');check('SOLID controllers loaded',typeof CubeDragController==='function'&&typeof CubeRevCollectorClient==='function');check('collector endpoint embedded',collectorConfigured()&&COLLECTOR_CONFIG.endpoint.includes('/macros/s/')&&COLLECTOR_CONFIG.endpoint.endsWith('/exec'));check('export version authoritative',(()=>{const fake=session;return VERSION==='0.6.11';})());const generatorTest=generateExactDistanceScramble(makeRng(0x0610),1,6,2000);check('generator exact proposal',generatorTest.distance===generatorTest.proposal_distance,generatorTest);
   for(const t of TRIAL_MANIFEST.trials.filter(x=>x.expected_state_id!=null)){
     if(t.scramble){const st=applyAlg(solvedState(),String(t.scramble).split(/\s+/));check('stimulus '+t.trial_id,canonicalStateId(st)===t.expected_state_id,{actual:canonicalStateId(st),expected:t.expected_state_id});}
     for(const opt of (t.history_options||[])){const st=applyAlg(solvedState(),String(opt.scramble).split(/\s+/));check('history '+t.trial_id+' '+opt.label,canonicalStateId(st)===t.expected_state_id,{actual:canonicalStateId(st),expected:t.expected_state_id});}

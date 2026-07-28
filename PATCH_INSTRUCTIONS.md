@@ -1,39 +1,47 @@
-# 0.6.11 업데이트 적용 순서
+# CUBE-REV 0.6.11 Hotfix 적용 방법
 
-이 ZIP에는 0.6.10 저장소에서 바뀐 파일만 들어 있습니다. 압축을 푼 뒤 같은 경로에 덮어쓰면 됩니다.
+이 ZIP에는 이번 수정에서 바뀐 파일만 들어 있습니다. Google Apps Script 수집기는 이미 정상 작동하므로 수정하지 않습니다.
 
-## 1. Apps Script 먼저 갱신
+## GitHub에 덮어쓸 파일
 
-`collector/google-apps-script/Code.gs`를 Apps Script 프로젝트에 붙여넣고 기존 웹 앱을 새 버전으로 다시 배포합니다.
+저장소 최상단에 다음 파일을 덮어씁니다.
 
-웹 앱 주소를 열었을 때 `CUBE-REV 결과 제출` 화면이 나타나야 합니다.
+- `index.html`
+- `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`
+- `collector-config.js`
 
-## 2. GitHub 파일 교체
+`js` 폴더 안에서는 다음 두 파일을 덮어씁니다.
 
-ZIP 안의 파일과 폴더를 저장소 최상단에 업로드합니다. 같은 이름의 파일은 교체합니다.
+- `js/cube-drag-controller.js`
+- `js/collector-client.js`
 
-새 `js` 폴더를 빠뜨리지 마세요.
+## 반드시 확인할 것
 
-```text
-js/
-├── collector-client.js
-└── cube-drag-controller.js
+1. 저장소 최상단의 `index.html`이 새 파일인지 확인합니다.
+2. 예전 `CUBE-REV_0.6.10_GitHub_Pages_Pilot.html`이 남아 있다면 삭제합니다.
+3. GitHub Pages 재배포가 끝난 뒤 `Ctrl + Shift + R`로 강력 새로고침합니다.
+4. 시작 화면에 `자동 제출 연결됨`이 표시되는지 확인합니다.
+5. 짧은 세션을 끝낸 뒤 자동 제출 성공 문구를 확인합니다.
+6. 내려받은 JSON에서 다음 값을 확인합니다.
+
+```json
+{
+  "version": "0.6.11",
+  "build_id": "0.6.11-hotfix-2"
+}
 ```
 
-커밋 메시지 예시:
+## 큐브 드래그 확인
+
+- 큐브 스티커 또는 큐브 내부의 빈 틈에서 가로로 드래그하면 `y` 또는 `y'`가 적용됩니다.
+- 세로로 드래그하면 `x` 또는 `x'`가 적용됩니다.
+- 큐브 바깥 배경을 드래그하면 카메라 시점만 이동합니다.
+- 드래그 거리가 너무 짧으면 회전하지 않습니다.
+
+## 수집기
+
+Apps Script의 `Code.gs`와 웹 앱 배포는 그대로 둡니다. 실험 페이지는 다음 수집기에 직접 연결되어 있습니다.
 
 ```text
-Update CUBE-REV to 0.6.11
+https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec
 ```
-
-## 3. 예전 보조 HTML 정리
-
-저장소의 `CUBE-REV_0.6.10_GitHub_Pages_Pilot.html`은 삭제하고, 새 `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`을 올립니다. 실제 GitHub Pages 진입점은 계속 `index.html`입니다.
-
-## 4. 배포 확인
-
-1. 화면에 `0.6.11`이 표시되는지 확인합니다.
-2. 배경 드래그로 카메라가 움직이는지 확인합니다.
-3. 큐브 드래그로 전체 회전이 적용되는지 확인합니다.
-4. 짧은 세션의 자동 제출을 확인합니다.
-5. 수집기 주소에서 JSON 수동 업로드도 확인합니다.
