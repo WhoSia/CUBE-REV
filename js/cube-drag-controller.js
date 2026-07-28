@@ -55,12 +55,29 @@
       this.active=null;
     }
 
+    cancelActive(reason='external_cancel'){
+      if(!this.active)return false;
+      const a=this.active;
+      this.clearPreview();
+      this.logEvent(a.mode==='sticker'?'sticker_drag_cancelled':'camera_drag_cancelled',{
+        reason,
+        pointer_type:a.pointerType,
+        duration_ms:+(performance.now()-a.startedAt).toFixed(3),
+        sample_count:a.sampleCount
+      });
+      this.active=null;
+      try{if(this.element.hasPointerCapture?.(a.id))this.element.releasePointerCapture(a.id);}catch(_){ }
+      this.element.style.cursor='grab';
+      return true;
+    }
+
     point(e){
       const rect=this.element.getBoundingClientRect();
       return {x:e.clientX-rect.left,y:e.clientY-rect.top,clientX:e.clientX,clientY:e.clientY};
     }
 
     onPointerDown(e){
+      if(this.element.dataset.pinchZoom==='true')return;
       if(e.button!==0||e.isPrimary===false)return;
       const p=this.point(e);
       const sticker=this.canTurnFace()?this.pickSticker(p.x,p.y):null;
@@ -98,6 +115,7 @@
     }
 
     onPointerMove(e){
+      if(this.element.dataset.pinchZoom==='true'){if(this.active)this.cancelActive('pinch_zoom_active');return;}
       const p=this.point(e);
       if(!this.active||this.active.id!==e.pointerId){
         const sticker=this.canTurnFace()?this.pickSticker(p.x,p.y):null;

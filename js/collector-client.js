@@ -41,6 +41,7 @@
       this.setStatus=options.setStatus||(()=>{});
       this.randomHex=options.randomHex;
       this.hashString=options.hashString;
+      this.t=options.translate||((key,vars={})=>String(key).replace(/\{(\w+)\}/g,(_,name)=>vars[name]??''));
       this.inFlight=null;
     }
 
@@ -155,17 +156,17 @@
           settled=true;cleanup();
           if(error)reject(error);else resolve(payload);
         };
-        const timer=setTimeout(()=>finish(new Error('수집기 연결 확인 시간이 초과되었습니다. Apps Script가 최신 버전으로 배포되었는지 확인해 주세요.')),this.config.healthCheckTimeoutMs);
+        const timer=setTimeout(()=>finish(new Error(this.t('collectorClient.healthTimeout'))),this.config.healthCheckTimeoutMs);
         global[callbackName]=(payload)=>{
-          if(!payload||payload.ok!==true)return finish(new Error(payload?.error||'수집기 상태 확인에 실패했습니다.'));
-          if(String(payload.collector_id||'')!==this.config.collectorId)return finish(new Error('연결된 주소가 CUBE-REV의 지정 수집기가 아닙니다. GitHub 파일과 Apps Script 배포를 같은 패치로 갱신해 주세요.'));
-          if(String(payload.protocol_version||'')!==this.config.protocolVersion)return finish(new Error(`수집기 통신 규격은 ${payload.protocol_version||'알 수 없음'}이고 실험 페이지는 ${this.config.protocolVersion}을 요구합니다.`));
-          if(String(payload.expected_version||'')!==this.version)return finish(new Error(`수집기 버전은 ${payload.expected_version||'알 수 없음'}이고 실험 파일은 ${this.version}입니다.`));
+          if(!payload||payload.ok!==true)return finish(new Error(payload?.error||this.t('collectorClient.healthFailed')));
+          if(String(payload.collector_id||'')!==this.config.collectorId)return finish(new Error(this.t('collectorClient.wrongCollector')));
+          if(String(payload.protocol_version||'')!==this.config.protocolVersion)return finish(new Error(this.t('collectorClient.protocolMismatch')));
+          if(String(payload.expected_version||'')!==this.version)return finish(new Error(this.t('collectorClient.versionMismatch')));
           finish(null,payload);
         };
         script.async=true;
         script.src=this.healthUrl(callbackName);
-        script.onerror=()=>finish(new Error('수집기 상태 확인 요청을 불러오지 못했습니다. 네트워크 연결과 Apps Script 공개 범위를 확인해 주세요.'));
+        script.onerror=()=>finish(new Error(this.t('collectorClient.healthLoadFailed')));
         document.head.appendChild(script);
       });
     }
@@ -280,7 +281,7 @@
         global.addEventListener('message',onMessage);
         document.body.appendChild(iframe);
         timeoutTimer=setTimeout(()=>{
-          finish(new Error('수집기의 저장 확인 응답을 받지 못했습니다. Drive에 파일이 생겼는지 확인하거나 자동 제출을 다시 시도해 주세요.'));
+          finish(new Error(this.t('collectorClient.receiptTimeout')));
         },this.config.timeoutMs);
 
         try{
@@ -294,8 +295,8 @@
 
     async submit({manual=false}={}){
       const session=this.getSession();
-      if(!session)throw new Error('제출할 세션이 없습니다.');
-      if(!this.isAutomaticConfigured())throw new Error('자동 제출 연결 정보를 불러오지 못했습니다. 페이지를 강력 새로고침한 뒤 다시 시도해 주세요.');
+      if(!session)throw new Error(this.t('collectorClient.noSession'));
+      if(!this.isAutomaticConfigured())throw new Error(this.t('collectorClient.notConfigured'));
       if(this.inFlight)return this.inFlight;
 
       this.inFlight=(async()=>{
@@ -314,7 +315,7 @@
         });
         this.persist();
         session.data_submission.status='checking_collector';
-        this.setStatus('수집기 연결 상태를 확인하고 있습니다.','info',{pending:true});
+        this.setStatus(this.t('collectorClient.checking'),'info',{pending:true});
         const health=await this.checkHealth();
         session.data_submission.collector_health={
           checked_at:new Date().toISOString(),
@@ -326,7 +327,7 @@
         };
         this.logEvent('collector_health_confirmed',session.data_submission.collector_health);
         this.persist();
-        this.setStatus('결과 파일을 준비하고 있습니다.','info',{pending:true});
+        this.setStatus(this.t('collectorClient.preparingFile'),'info',{pending:true});
 
         const jsonText=JSON.stringify(this.exportSession());
         const encoded=await this.encodePayload(jsonText);
@@ -342,7 +343,7 @@
           confirmation_protocol:'post_then_jsonp_receipt_v2'
         });
         this.persist();
-        this.setStatus('수집기로 전송한 뒤 저장 확인을 기다리고 있습니다.','info',{pending:true});
+        this.setStatus(this.t('collectorClient.sending'),'info',{pending:true});
 
         try{
           const receipt=await this.postWithConfirmedReceipt({
@@ -381,8 +382,8 @@
           });
           this.persist();
           const message=collectorStatus==='duplicate'
-            ?'수신 완료. 같은 세션의 결과가 이미 수집기에 저장되어 있음을 확인했습니다. 이 창을 닫아도 됩니다.'
-            :`수신 완료. 수집기가 ${session.data_submission.file_name} 파일의 저장을 확인했습니다. 이 창을 닫아도 됩니다.`;
+            ?this.t('collectorClient.receivedDuplicate')
+            :this.t('collectorClient.receivedStored',{file:session.data_submission.file_name});
           this.setStatus(message,'success',{pending:false,confirmed:true,receipt_code:session.data_submission.receipt_code});
           return receipt;
         }catch(error){
@@ -395,7 +396,7 @@
             receipt_confirmed:false
           });
           this.persist();
-          this.setStatus(`수신을 확인하지 못했습니다. 자동 제출을 다시 시도하거나 JSON을 저장해 직접 제출해 주세요. (${session.data_submission.last_error})`,'error',{pending:false,failed:true});
+          this.setStatus(this.t('collectorClient.failed',{error:session.data_submission.last_error}),'error',{pending:false,failed:true});
           throw error;
         }finally{
           this.inFlight=null;

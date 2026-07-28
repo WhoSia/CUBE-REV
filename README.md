@@ -1,177 +1,293 @@
 # CUBE-REV
 
-**CUBE-REV**는 2×2 루빅스 큐브의 최종 상태만 보고 원래 상태를 복원하는 과정을 기록하는 웹 실험 도구입니다.
+CUBE-REV is an interactive research tool for studying how people recover a scrambled 2×2 Rubik’s Cube from the visible final state.
 
-참가자에게 스크램블 과정이나 회전 기호를 보여 주지 않습니다. 화면에 나타난 큐브를 직접 돌려 완성하며, 프로그램은 성공 여부뿐 아니라 첫 반응까지 걸린 시간, 회전 순서, 시점 변경, 재그립, 되돌리기와 재시도 과정을 함께 저장합니다.
+The experiment does not require participants to watch the scrambling process. A trial begins with a generated or preselected cube state, and the participant attempts to restore the cube. The system records the solution path, timing, camera movement, sticker-drag gestures, resets, undo operations, device environment, interface language, and submission status.
 
-현재 배포 버전은 **0.6.11**입니다.
+**Current public version: 0.6.11**
+
+## Research question
+
+CUBE-REV asks how far a person can mentally reverse a cube state when the generating path is not shown. It is designed to separate several factors that are often mixed together:
+
+- the exact distance of a state from the solved cube;
+- the number and order of moves actually attempted by the participant;
+- visual inspection and camera movement before the first face turn;
+- correction behaviour, including undo and trial reset;
+- whole-cube reorientation versus metric face turns;
+- interaction method, device type, viewport, and interface language.
+
+The current build is a pilot instrument rather than a completed scientific result. Human data collected with it still requires careful sampling, ethical review where applicable, quality control, and preregistered analysis.
+
+## What participants do
+
+1. Select an age group, cube-experience level, session mode, and optional best time.
+2. View a scrambled 2×2 cube state.
+3. Restore it using sticker drags, on-screen buttons, or a desktop keyboard.
+4. Continue for the selected number of trials or end the session manually.
+5. Wait for the collector to display **Received**, or save the JSON locally.
+
+No name, email address, or participant-code field is requested by the experiment page. Each session receives a random identifier such as:
+
+```text
+CR-20260728171127-ceb02c08b4b4
+```
+
+## Controls
+
+### Mouse, trackpad, and touch
+
+- Drag a visible sticker: turn one layer by exactly 90°.
+- Drag empty background: rotate the camera.
+- Mouse wheel or two-finger trackpad scroll: zoom in or out.
+- Two-finger pinch on a touch screen: zoom in or out.
+- A single sticker drag never produces a double turn such as `R2`.
+
+### On-screen controls
+
+The control panel provides face turns, whole-cube rotations, undo, trial reset, trial abandonment, and session termination. On phones, the larger control panel opens as a bottom sheet so that the cube remains visible.
+
+### Desktop keyboard
+
+Desktop users may choose either the two-hand virtual-cube layout or direct notation input. Keyboard selection is hidden on phones and touch-oriented tablets, where drag and button controls are the primary interface.
+
+## Session modes
+
+- **Generated session:** creates new states within a selected exact-distance range.
+- **Randomized 48-trial pilot:** runs the fixed pilot set in randomized order.
+- **Free test:** accepts a custom scramble.
+
+The generated-session metadata distinguishes the proposed generation depth from the exact verified distance. Analysis should use the recorded exact distance.
+
+## Timing policy
+
+A trial does not automatically advance merely because a long time has passed. When the relative-time cap is reached, the participant may continue solving. Later trial-relative timing fields are recorded as `max`, while interaction events continue to be preserved.
+
+## Data and collection
+
+The browser creates a JSON record for each session. Automatic submission follows a confirmed-receipt protocol:
+
+```text
+browser submission
+→ Apps Script validation
+→ Google Drive storage
+→ receipt creation
+→ browser receipt check
+→ “Received” status
+```
+
+The completion screen treats the submission as successful only after the collector confirms that the file was stored or already existed. Local JSON saving remains available as a fallback.
+
+The collector implementation is included under:
+
+```text
+collector/google-apps-script/Code.gs
+```
+
+That file is source code for the separately deployed Google Apps Script web app. GitHub Pages does not execute it.
+
+## Languages
+
+The interface currently supports:
+
+- Korean
+- English
+- Simplified Chinese
+- Traditional Chinese
+- Japanese
+- Spanish
+- French
+- German
+- Portuguese
+- Indonesian
+
+The selected interface language and the language-selection source are recorded in the session JSON. A language can also be selected through a URL parameter, for example `?lang=en` or `?lang=zh-Hant`.
+
+## Repository structure
+
+```text
+cube-rev/
+├─ .nojekyll
+├─ index.html
+├─ CUBE-REV_0.6.11_GitHub_Pages_Pilot.html
+├─ README.md
+├─ js/
+│  ├─ camera-zoom-controller.js
+│  ├─ collector-client.js
+│  ├─ cube-drag-controller.js
+│  ├─ i18n-controller.js
+│  └─ responsive-layout-controller.js
+└─ collector/
+   └─ google-apps-script/
+      └─ Code.gs
+```
+
+`index.html` is the GitHub Pages entry point. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html` is intentionally retained as a versioned standalone copy for direct download, archival reference, and release attachments. The two HTML files should remain identical within version 0.6.11.
+
+## Deployment
+
+Upload the repository contents so that `index.html` is at the repository root. In GitHub Pages settings, deploy from the `main` branch and the root folder.
+
+After replacing `Code.gs`, update the existing Apps Script web-app deployment to a new version rather than creating a new deployment. This preserves the configured `/exec` endpoint.
+
+## Privacy and research use
+
+The tool records detailed behavioural data, including precise interaction times, browser and screen information, cube moves, camera actions, gestures, and submission receipts. Researchers should:
+
+- avoid asking participants to enter names or other direct identifiers;
+- explain the purpose, storage period, access policy, and withdrawal procedure;
+- comply with institutional and guardian-consent requirements for minors;
+- keep the Drive collection folder private;
+- verify the collector and exported schema before formal data collection.
+
+## Technical note
+
+The interface is separated into focused controllers for gesture recognition, camera zoom, responsive layout, internationalization, and collection transport. This keeps input handling, rendering, data submission, and presentation concerns from being coupled unnecessarily.
+
+---
+
+# CUBE-REV
+
+CUBE-REV는 참가자가 **생성 경로를 보지 않은 채**, 화면에 제시된 2×2 루빅스 큐브의 최종 상태를 얼마나 복원할 수 있는지 연구하기 위한 인터랙티브 실험 도구입니다.
+
+각 시행은 생성되었거나 미리 정해진 큐브 상태에서 시작합니다. 참가자는 큐브를 직접 맞추며, 시스템은 풀이 경로, 시간, 카메라 움직임, 스티커 드래그, 초기화와 되돌리기, 장치 환경, 인터페이스 언어, 제출 상태를 기록합니다.
+
+**현재 공개 버전: 0.6.11**
 
 ## 연구 질문
 
-- 최종 상태만 보고 짧은 역경로를 얼마나 빠르게 알아볼 수 있는가?
-- 군론적 최단거리와 사람이 느끼는 난이도는 어떻게 다른가?
-- 참가자는 언제 직접 복원에서 탐색·재그립·수정 행동으로 넘어가는가?
-- 같은 거리의 상태에서도 어떤 구조가 더 많은 망설임과 오류를 만드는가?
-- 큐브 경험은 첫 반응시간, 경로 효율, 시점 사용에 어떤 차이를 만드는가?
+CUBE-REV는 생성 과정을 보여 주지 않았을 때 사람이 큐브 상태를 어느 정도까지 정신적으로 역추적할 수 있는지 묻습니다. 기존의 단순 성공·실패 기록에서 섞이기 쉬운 요소를 다음처럼 분리해 관찰하도록 설계되었습니다.
+
+- 완성 상태까지의 정확한 거리
+- 참가자가 실제로 수행한 회전의 수와 순서
+- 첫 면 회전 전의 시각적 탐색과 카메라 이동
+- 되돌리기와 시행 초기화를 포함한 오류 수정 행동
+- 전체 큐브 재정향과 거리 계산에 포함되는 면 회전의 구분
+- 입력 방식, 장치 종류, 화면 크기, 인터페이스 언어
+
+현재 빌드는 완성된 연구 결과가 아니라 인간 자료를 수집하기 위한 파일럿 도구입니다. 공식 연구에 사용하려면 표본 설계, 연구윤리 검토, 자료 품질 관리, 분석 계획이 별도로 필요합니다.
 
 ## 참가자가 하는 일
 
-1. 실행 모드와 조작 방식을 선택합니다.
-2. 완성 상태에서 변형된 2×2 큐브가 나타납니다.
-3. 참가자는 키보드, 화면 버튼 또는 마우스 드래그로 큐브를 복원합니다.
-4. 큐브가 완성되면 시행이 자동으로 끝나고 다음 상태가 제시됩니다.
-5. 세션이 끝나면 결과가 자동 수집기로 제출됩니다. 필요할 때는 JSON 사본도 내려받을 수 있습니다.
+1. 연령대, 큐브 경험, 실행 모드, 선택 사항인 최고 기록을 입력합니다.
+2. 화면에 제시된 2×2 큐브 상태를 관찰합니다.
+3. 스티커 드래그, 화면 버튼 또는 데스크탑 키보드로 큐브를 맞춥니다.
+4. 정해진 시행 수를 완료하거나 직접 세션을 종료합니다.
+5. 수집 상태가 **수신 완료**로 바뀔 때까지 기다리거나 JSON을 로컬에 저장합니다.
 
-큐브는 응답이 끝날 때까지 계속 표시됩니다. 잠깐 본 뒤 기억만으로 답하는 과제는 아닙니다.
+실험 화면은 이름, 이메일, 참가자 코드를 요구하지 않습니다. 각 세션에는 다음과 같은 무작위 식별자가 부여됩니다.
 
-## 마우스 조작
+```text
+CR-20260728171127-ceb02c08b4b4
+```
 
-마우스 드래그는 시작 위치에 따라 역할이 달라집니다.
+## 조작법
 
-- **큐브 바깥 배경 드래그**: 카메라 시점을 부드럽게 변경
-- **큐브 위에서 가로 드래그**: `y` 또는 `y'` 전체 회전
-- **큐브 위에서 세로 드래그**: `x` 또는 `x'` 전체 회전
-- **휠**: 확대·축소
+### 마우스·터치패드·터치 화면
 
-큐브 위 드래그는 한 번의 전체 큐브 재그립으로 처리됩니다. 드래그하는 동안 회전 방향을 미리 보여 주고, 충분한 거리만큼 움직였을 때 손을 놓으면 회전이 확정됩니다. 짧은 드래그는 취소됩니다.
+- 보이는 스티커 드래그: 해당 층을 정확히 90° 한 번 회전
+- 빈 배경 드래그: 카메라 시점 이동
+- 마우스 휠 또는 터치패드 두 손가락 스크롤: 확대·축소
+- 터치 화면 두 손가락 핀치: 확대·축소
+- 한 번의 스티커 드래그에서 `R2`와 같은 2회전은 발생하지 않음
 
-키보드의 `x`, `y`, `z`와 마우스 재그립은 기록되지만 해법의 최단거리 비용에는 포함되지 않습니다.
+### 화면 버튼
+
+조작 패널에는 면 회전, 전체 큐브 회전, 되돌리기, 시행 초기화, 시행 포기, 세션 종료 기능이 있습니다. 휴대폰에서는 큐브 영역을 확보하기 위해 큰 조작 패널을 하단 시트로 엽니다.
+
+### 데스크탑 키보드
+
+데스크탑에서는 양손 virtual-cube 배열과 문자 표기 배열 중 하나를 선택할 수 있습니다. 휴대폰과 터치 중심 태블릿에서는 키맵 선택란을 숨기고 드래그와 화면 버튼을 기본 조작으로 사용합니다.
 
 ## 실행 모드
 
-### 내부 랜덤 생성 세션
+- **내부 랜덤 생성 세션:** 선택한 exact-distance 범위에서 새로운 상태를 생성합니다.
+- **무작위화 파일럿 48시행:** 고정 파일럿 세트를 무작위 순서로 실행합니다.
+- **자유 테스트:** 사용자가 입력한 스크램블을 사용합니다.
 
-최소·최대 exact distance를 정하면 그 범위 안에서 새로운 상태를 계속 만듭니다. 시행 수를 비워 두면 참가자가 세션을 종료할 때까지 이어집니다.
+생성 세션은 제안된 생성 깊이와 실제로 검증된 exact distance를 구분해 기록합니다. 난이도 분석에는 검증된 실제 거리를 사용해야 합니다.
 
-### 무작위화 파일럿 48시행
+## 시간 측정 정책
 
-미리 구성된 48개 시행을 참가자마다 다른 순서로 제시합니다. 같은 자극 세트를 여러 참가자에게 반복해 비교할 때 사용합니다.
+시간이 오래 지났다는 이유로 시행이 자동으로 넘어가지 않습니다. 상대 시간 측정 상한에 도달해도 참가자는 계속 풀 수 있습니다. 이후 시행 상대 시간은 `max`로 기록되지만, 입력 행동 기록은 계속 보존됩니다.
 
-### 자유 테스트
+## 자료와 자동 수집
 
-원하는 스크램블을 직접 입력해 렌더링과 기록 기능을 확인할 수 있습니다.
-
-## 기록되는 자료
-
-### 세션 수준
-
-- 버전과 세션 ID
-- 실행 모드와 키맵
-- 연령대, 큐브 경험, 선택적 최고 기록
-- 브라우저, 화면 크기, viewport, device pixel ratio
-- 세션 시작·종료 시각과 활성 시간
-- 자동 제출 상태, 제출 시도 횟수, 수동 제출 페이지 연결 여부
-
-### 시행 수준
-
-- 제시 상태의 exact distance
-- 상태 제시, 입력 허용, 첫 상호작용, 첫 면 회전, 해결 시각
-- 첫 카메라 이동과 첫 큐브 드래그 재그립 시각
-- 성공, 포기, 시간초과 여부
-- 면 회전 수, 전체 회전 수, 되돌리기와 초기화 횟수
-
-### 입력 수준
-
-- 키보드·버튼·마우스 입력 방식
-- 각 회전 전후의 상태와 exact distance
-- 배경 드래그의 시작·종료 시점과 카메라 각도
-- 큐브 드래그의 거리, 방향, 지속시간, 확정된 전체 회전
-- JSON 다운로드와 수동 제출 페이지 이동 기록
-
-필드 정의는 [DATA_DICTIONARY.md](DATA_DICTIONARY.md)에 정리되어 있습니다.
-
-## 상태 생성과 난이도
-
-내부 생성기는 먼저 제안 거리 `proposal_distance`를 정하고, 실제 exact distance가 그 값과 일치하는 상태만 사용합니다.
-
-```json
-{
-  "proposal_distance": 4,
-  "actual_distance": 4,
-  "expected_distance": 4
-}
-```
-
-분석에서 난이도 기준으로 사용하는 값은 `expected_distance`입니다. 현재 거리는 half-turn metric을 사용하며 한 면의 90°, 180°, 역방향 회전을 각각 한 번의 move로 셉니다.
-
-## 결과 수집
-
-0.6.11 배포본은 자동 제출과 직접 제출을 함께 제공합니다.
-
-### 자동 제출
-
-세션이 끝나면 Google Apps Script 수집기로 JSON 제출을 자동 시도합니다. 성공하면 완료 화면에 제출 완료 메시지가 표시되고, 같은 세션을 다시 제출해도 중복 파일은 생기지 않습니다.
-
-### 직접 제출
-
-자동 제출이 실패했거나 이미 내려받은 JSON을 전달받은 경우에는 수집기 주소를 직접 열어 파일을 올릴 수 있습니다.
-
-완료 화면의 **JSON 저장 후 직접 제출** 버튼은 세션 JSON을 저장한 뒤 수동 제출 페이지를 새 탭으로 엽니다. 수집기 링크만 전달받은 사람도 해당 페이지에서 JSON 파일을 선택해 제출할 수 있습니다.
-
-수집 구조와 재배포 방법은 [AUTO_COLLECTION_SETUP.md](AUTO_COLLECTION_SETUP.md)를 참고하십시오.
-
-## 실행과 배포
-
-GitHub Pages에서는 저장소 최상단의 `index.html`이 실험 페이지가 됩니다. 이 버전은 외부 JavaScript 파일을 사용하므로 다음 파일과 폴더를 함께 배포해야 합니다.
+브라우저는 세션마다 JSON 자료를 만듭니다. 자동 제출은 다음과 같은 수신 확인 절차를 사용합니다.
 
 ```text
-index.html
-collector-config.js
-js/
-  collector-client.js
-  cube-drag-controller.js
+브라우저 제출
+→ Apps Script 검증
+→ Google Drive 저장
+→ 영수증 생성
+→ 브라우저의 영수증 확인
+→ “수신 완료” 표시
 ```
 
-GitHub Pages 설정은 [DEPLOYMENT_GITHUB_PAGES.md](DEPLOYMENT_GITHUB_PAGES.md)에 설명되어 있습니다.
+완료 화면은 수집기가 실제 저장 또는 기존 동일 파일의 존재를 확인한 뒤에만 제출 성공으로 처리합니다. 문제가 생기면 JSON을 직접 저장해 제출할 수 있습니다.
 
-## 코드 구조
+수집기 코드는 다음 위치에 포함되어 있습니다.
 
-0.6.11에서 새 입력·수집 기능은 역할에 따라 분리했습니다.
+```text
+collector/google-apps-script/Code.gs
+```
 
-- `cube-drag-controller.js`: 포인터 위치 판별, 배경 카메라 이동, 큐브 재그립 제스처
-- `collector-client.js`: 자동 제출, 압축, 수집기 응답, 수동 제출 페이지 연결
-- `collector-config.js`: 배포 환경별 수집기 주소와 설정
-- `index.html`: 큐브 상태·렌더링·시행 흐름과 구성요소 연결
-- `Code.gs`: Apps Script의 검증, 저장, 수동 업로드 화면
+이 파일은 별도로 배포하는 Google Apps Script 웹 앱의 소스 코드입니다. GitHub Pages가 이 코드를 실행하는 것은 아닙니다.
 
-각 구성요소는 필요한 기능을 콜백으로 전달받아 동작합니다. 입력 방식이나 수집 백엔드를 바꿀 때 큐브 상태 계산부를 함께 수정하지 않도록 한 구조입니다.
+## 지원 언어
 
-## 현재 연구 상태
+현재 인터페이스는 다음 언어를 지원합니다.
 
-CUBE-REV 0.6.11은 engineering pilot과 소규모 calibration pilot을 위한 연구용 프로토타입입니다.
+- 한국어
+- 영어
+- 중국어 간체
+- 중국어 번체
+- 일본어
+- 스페인어
+- 프랑스어
+- 독일어
+- 포르투갈어
+- 인도네시아어
 
-현재 구현된 범위:
+선택한 인터페이스 언어와 선택 경로는 세션 JSON에 기록됩니다. `?lang=en`, `?lang=zh-Hant`처럼 URL 매개변수로 언어를 지정할 수도 있습니다.
 
-- 2×2 상태 생성과 exact distance 확인
-- 최종 상태만 제시하는 복원 과제
-- 키보드·버튼·마우스 큐브 조작
-- 배경 카메라 이동과 큐브 드래그 재그립 분리
-- 원시 입력과 상태 궤적 기록
-- 자동 제출, 수동 업로드 페이지, JSON 다운로드
-- GitHub Pages 배포
+## 저장소 구조
 
-아직 확정되지 않은 범위:
+```text
+cube-rev/
+├─ .nojekyll
+├─ index.html
+├─ CUBE-REV_0.6.11_GitHub_Pages_Pilot.html
+├─ README.md
+├─ js/
+│  ├─ camera-zoom-controller.js
+│  ├─ collector-client.js
+│  ├─ cube-drag-controller.js
+│  ├─ i18n-controller.js
+│  └─ responsive-layout-controller.js
+└─ collector/
+   └─ google-apps-script/
+      └─ Code.gs
+```
 
-- 인간의 지각적 난이도를 설명하는 최종 모형
-- `x`, `y`, `z` 이후 해법열의 완성된 좌표 정규화 분석기
-- 기기·브라우저 간 정밀 타이밍 동등성
-- 대규모 인간 자료를 통한 신뢰도와 타당도
-- 정식 사전등록과 기관 연구윤리 승인
+`index.html`은 GitHub Pages가 여는 진입 파일입니다. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`은 직접 다운로드, 버전별 보관, GitHub Release 첨부를 위한 이름 있는 독립 실행 사본이므로 의도적으로 남깁니다. 0.6.11 안에서는 두 HTML의 내용이 같아야 합니다.
 
-## 개인정보와 연구윤리
+## 배포
 
-세션 JSON에는 정밀한 행동 시각, 큐브 경험, 연령대, 브라우저와 화면 정보가 포함될 수 있습니다. 참가자 코드에는 이름, 학번, 전화번호처럼 개인을 직접 알아볼 수 있는 정보를 입력하지 않는 것이 좋습니다.
+`index.html`이 저장소 최상단에 오도록 위 파일을 업로드합니다. GitHub Pages에서는 `main` 브랜치의 루트 폴더를 배포 대상으로 설정합니다.
 
-공식 연구 자료를 모으기 전에는 연구 목적, 보관 기간, 철회 방법, 미성년자 참여 절차와 소속기관의 연구윤리 요건을 별도로 정해야 합니다.
+`Code.gs`를 교체한 뒤에는 새로운 웹 앱 주소를 만들기보다 기존 Apps Script 배포를 **새 버전으로 업데이트**해야 합니다. 그래야 설정된 `/exec` 주소가 유지됩니다.
 
-## 관련 문서
+## 개인정보와 연구 이용
 
-- [참가자 안내](PARTICIPANT_GUIDE.md)
-- [자동 결과 수집 설정](AUTO_COLLECTION_SETUP.md)
-- [GitHub Pages 배포](DEPLOYMENT_GITHUB_PAGES.md)
-- [데이터 사전](DATA_DICTIONARY.md)
-- [연구자 점검표](RESEARCHER_CHECKLIST.md)
-- [개인정보 안내문 초안](PRIVACY_NOTICE_TEMPLATE.md)
-- [보안과 운영상 한계](SECURITY.md)
-- [변경 이력](CHANGELOG.md)
-- [결과 JSON 직접 제출](RESULT_SUBMISSION.md)
+이 도구는 정밀한 행동 시각, 브라우저와 화면 정보, 큐브 회전, 카메라 조작, 제스처, 제출 영수증을 기록합니다. 연구자는 다음 사항을 지켜야 합니다.
+
+- 이름과 같은 직접 식별자를 입력하도록 요구하지 않기
+- 연구 목적, 보관 기간, 접근 범위, 철회 절차를 설명하기
+- 미성년자 연구에 필요한 기관 승인과 보호자 동의 요건 확인하기
+- 수집용 Google Drive 폴더를 비공개로 유지하기
+- 공식 수집 전 수집기와 JSON 스키마를 다시 검증하기
+
+## 기술 구조
+
+제스처 판정, 카메라 확대·축소, 반응형 레이아웃, 다국어 처리, 자료 전송을 각각 독립된 컨트롤러로 분리했습니다. 입력 처리, 렌더링, 제출, 화면 표시가 한 파일에 불필요하게 얽히지 않도록 구성한 것입니다.
