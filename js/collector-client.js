@@ -8,7 +8,8 @@
         endpoint:'',
         manualUploadUrl:'',
         studyId:`CUBE-REV-${version}`,
-        studyToken:'',
+        collectorId:'CUBE-REV-0611-MAIN',
+        protocolVersion:'receipt-v2',
         autoSubmitOnComplete:true,
         gzipWhenAvailable:true,
         timeoutMs:90000,
@@ -20,7 +21,8 @@
       merged.endpoint=String(merged.endpoint||'').trim();
       merged.manualUploadUrl=String(merged.manualUploadUrl||merged.endpoint||'').trim();
       merged.studyId=String(merged.studyId||defaults.studyId).trim();
-      merged.studyToken=String(merged.studyToken||'');
+      merged.collectorId=String(merged.collectorId||defaults.collectorId).trim();
+      merged.protocolVersion=String(merged.protocolVersion||defaults.protocolVersion).trim();
       merged.autoSubmitOnComplete=merged.autoSubmitOnComplete!==false;
       merged.gzipWhenAvailable=merged.gzipWhenAvailable!==false;
       merged.timeoutMs=Math.max(30000,Number(merged.timeoutMs)||90000);
@@ -119,7 +121,9 @@
       url.searchParams.set('action','receipt');
       url.searchParams.set('submission_nonce',nonce);
       url.searchParams.set('session_id',sessionId);
-      url.searchParams.set('study_token',this.config.studyToken);
+      url.searchParams.set('collector_id',this.config.collectorId);
+      url.searchParams.set('protocol_version',this.config.protocolVersion);
+      url.searchParams.set('version',this.version);
       url.searchParams.set('callback',callbackName);
       url.searchParams.set('_',String(Date.now()));
       return url.toString();
@@ -128,7 +132,8 @@
     healthUrl(callbackName){
       const url=new URL(this.config.endpoint);
       url.searchParams.set('action','health');
-      url.searchParams.set('study_token',this.config.studyToken);
+      url.searchParams.set('collector_id',this.config.collectorId);
+      url.searchParams.set('protocol_version',this.config.protocolVersion);
       url.searchParams.set('version',this.version);
       url.searchParams.set('callback',callbackName);
       url.searchParams.set('_',String(Date.now()));
@@ -153,7 +158,8 @@
         const timer=setTimeout(()=>finish(new Error('수집기 연결 확인 시간이 초과되었습니다. Apps Script가 최신 버전으로 배포되었는지 확인해 주세요.')),this.config.healthCheckTimeoutMs);
         global[callbackName]=(payload)=>{
           if(!payload||payload.ok!==true)return finish(new Error(payload?.error||'수집기 상태 확인에 실패했습니다.'));
-          if(payload.token_valid!==true)return finish(new Error('수집기 인증 정보가 일치하지 않습니다. Apps Script의 setupCollector() 결과와 페이지 설정을 확인해 주세요.'));
+          if(String(payload.collector_id||'')!==this.config.collectorId)return finish(new Error('연결된 주소가 CUBE-REV의 지정 수집기가 아닙니다. GitHub 파일과 Apps Script 배포를 같은 패치로 갱신해 주세요.'));
+          if(String(payload.protocol_version||'')!==this.config.protocolVersion)return finish(new Error(`수집기 통신 규격은 ${payload.protocol_version||'알 수 없음'}이고 실험 페이지는 ${this.config.protocolVersion}을 요구합니다.`));
           if(String(payload.expected_version||'')!==this.version)return finish(new Error(`수집기 버전은 ${payload.expected_version||'알 수 없음'}이고 실험 파일은 ${this.version}입니다.`));
           finish(null,payload);
         };
@@ -210,7 +216,13 @@
           if(!receipt)return false;
           if(receipt.status==='pending')return true;
           if(receipt.ok===true&&(receipt.status==='stored'||receipt.status==='duplicate')){
-            finish(null,{...receipt,transport,response_verified:true,received_at:receipt.received_at||new Date().toISOString()});
+            const expectedChecksum=String(fields.checksum_fnv1a32||'').toLowerCase();
+            const receivedChecksum=String(receipt.checksum_fnv1a32||'').toLowerCase();
+            if(!receivedChecksum||receivedChecksum!==expectedChecksum){
+              finish(new Error('수집기가 저장한 파일의 무결성 확인값이 일치하지 않습니다.'));
+              return true;
+            }
+            finish(null,{...receipt,transport,response_verified:true,checksum_verified:true,received_at:receipt.received_at||new Date().toISOString()});
             return true;
           }
           if(receipt.ok===false||receipt.status==='error'){
@@ -298,7 +310,7 @@
           attempt_count:session.data_submission.attempt_count,
           study_id:this.config.studyId,
           manual:!!manual,
-          confirmation_protocol:'post_then_receipt'
+          confirmation_protocol:'post_then_receipt_v2'
         });
         this.persist();
         session.data_submission.status='checking_collector';
@@ -308,7 +320,9 @@
           checked_at:new Date().toISOString(),
           expected_version:health.expected_version,
           receipt_confirmation_available:health.receipt_confirmation_available===true,
-          deployment_id:health.deployment_id||null
+          deployment_id:health.deployment_id||null,
+          collector_id:health.collector_id||null,
+          protocol_version:health.protocol_version||null
         };
         this.logEvent('collector_health_confirmed',session.data_submission.collector_health);
         this.persist();
@@ -325,7 +339,7 @@
           transmitted_bytes:encoded.transmitted_bytes,
           checksum_fnv1a32:checksum,
           submission_nonce:nonce,
-          confirmation_protocol:'post_then_iframe_or_jsonp_receipt'
+          confirmation_protocol:'post_then_jsonp_receipt_v2'
         });
         this.persist();
         this.setStatus('수집기로 전송한 뒤 저장 확인을 기다리고 있습니다.','info',{pending:true});
@@ -335,7 +349,8 @@
             payload:encoded.payload,
             encoding:encoded.encoding,
             study_id:this.config.studyId,
-            study_token:this.config.studyToken,
+            collector_id:this.config.collectorId,
+            protocol_version:this.config.protocolVersion,
             session_id:session.session_id,
             version:this.version,
             checksum_fnv1a32:checksum,
@@ -352,7 +367,8 @@
             file_name:receipt.file_name||session.session_id+'.json',
             last_error:null,
             transport:receipt.transport,
-            response_verification:'collector_receipt'
+            response_verification:'collector_receipt',
+            checksum_verified:receipt.checksum_verified===true
           });
           this.logEvent('submission_receipt_confirmed',{
             collector_status:collectorStatus,
@@ -360,7 +376,8 @@
             receipt_code:session.data_submission.receipt_code,
             submission_method:manual?'manual_retry':'automatic',
             transport:receipt.transport,
-            response_verified:true
+            response_verified:true,
+            checksum_verified:receipt.checksum_verified===true
           });
           this.persist();
           const message=collectorStatus==='duplicate'
