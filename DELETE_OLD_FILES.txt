@@ -1,5 +1,0 @@
-GitHub 저장소에서 다음 파일을 삭제하세요:
-
-CUBE-REV_0.6.10_GitHub_Pages_Pilot.html
-
-GitHub Pages 진입점인 index.html은 삭제하지 말고 새 파일로 교체합니다.
