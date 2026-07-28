@@ -1,10 +1,11 @@
-// CUBE-REV 0.6.10 collector configuration.
-// Keep enabled=false until the Google Apps Script collector is deployed.
+// CUBE-REV 0.6.11 collector configuration.
+// This public GitHub Pages build is connected to the study's Google Apps Script collector.
 window.CUBE_REV_COLLECTOR_CONFIG = {
-  enabled: false,
-  endpoint: '', // Example: https://script.google.com/macros/s/DEPLOYMENT_ID/exec
-  studyId: 'CUBE-REV-0.6.10',
-  studyToken: '', // Paste the token printed by setupCollector(). This is an intake key, not a secret.
+  enabled: true,
+  endpoint: 'https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec',
+  manualUploadUrl: 'https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec',
+  studyId: 'CUBE-REV-0.6.11',
+  studyToken: 'dfce727955bf4813b4df0a3943ecf49d',
   autoSubmitOnComplete: true,
   gzipWhenAvailable: true,
   timeoutMs: 30000

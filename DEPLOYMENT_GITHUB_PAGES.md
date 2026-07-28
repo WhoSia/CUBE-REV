@@ -14,8 +14,8 @@
 ```text
 index.html
 collector-config.js
-.nojekyll
-robots.txt
+js/collector-client.js
+js/cube-drag-controller.js
 ```
 
 문서와 수집기 코드는 저장소에 함께 보관하는 것을 권장합니다.
@@ -34,12 +34,14 @@ GitHub 공식 절차: https://docs.github.com/en/pages/getting-started-with-gith
 
 Pages URL에서 다음을 점검합니다.
 
-- 시작 화면에 `CUBE-REV 0.6.10`이 표시되는가
+- 시작 화면에 `CUBE-REV 0.6.11`이 표시되는가
 - 내부 검증이 모두 통과하는가
 - 내부 랜덤 생성 세션이 기본 선택인가
 - 세션 ID가 `CR-날짜-임의값` 형식인가
-- 세션 종료 후 JSON 다운로드가 되는가
-- 자동 수집기를 연결했다면 Drive에 파일이 생성되는가
+- 배경 드래그와 큐브 드래그가 서로 다른 기능으로 작동하는가
+- 세션 종료 후 자동 제출 상태가 표시되는가
+- 수집기 주소를 직접 열면 JSON 업로드 화면이 나타나는가
+- Drive와 Sheets에 자동/수동 제출이 기록되는가
 
 ## 5. 업데이트
 

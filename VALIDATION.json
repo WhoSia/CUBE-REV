@@ -1,6 +1,6 @@
 {
   "project": "CUBE-REV",
-  "version": "0.6.10",
+  "version": "0.6.11",
   "all_passed": true,
   "checks": {
     "index_exists": true,
@@ -8,23 +8,30 @@
     "version_constant": true,
     "manifest_version": true,
     "no_old_version_in_html": true,
-    "no_cr065": true,
-    "no_target_distance": true,
-    "proposal_distance_present": true,
-    "exact_generator_present": true,
-    "session_id_pattern_present": true,
-    "collector_config_loaded": true,
-    "collector_submission_present": true,
-    "requested_notice_removed": true,
-    "requested_footer_removed": true,
+    "reset_warning_copy_removed": true,
+    "background_cube_drag_copy": true,
+    "cube_drag_controller_loaded": true,
+    "collector_client_loaded": true,
+    "cube_hit_test_present": true,
+    "cube_drag_logging": true,
+    "collector_enabled": true,
+    "manual_portal_configured": true,
+    "manual_portal_server": true,
+    "automatic_submission_server": true,
     "standalone_copy_matches": true,
-    "apps_script_exists": true,
+    "old_standalone_removed": true,
     "docs_present": true,
+    "cube_drag_js_syntax": true,
+    "collector_client_js_syntax": true,
+    "apps_script_syntax": true,
     "html_inline_js_syntax": true,
-    "html_inline_js_syntax_detail": "",
-    "collector_js_syntax": true,
-    "collector_js_syntax_detail": "",
-    "appsscript_manifest_json": true,
-    "collector_ack_html_closes_script": true
+    "controller_unit_checks": true
+  },
+  "details": {
+    "cube_drag_js": "",
+    "collector_client_js": "",
+    "apps_script_js": "",
+    "inline_js": "",
+    "browser_runtime": "Not executed in the sandbox because local/file navigation is blocked by the managed Chromium policy. Static syntax and controller unit checks were completed."
   }
 }

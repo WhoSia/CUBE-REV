@@ -2,7 +2,7 @@
 
 ## 코드와 버전
 
-- [ ] 시작 화면, HTML title, JSON `version`, manifest가 모두 `0.6.10`
+- [ ] 시작 화면, HTML title, JSON `version`, manifest가 모두 `0.6.11`
 - [ ] session ID가 `CR-YYYYMMDDhhmmss-12hex`
 - [ ] `target_distance` 필드가 존재하지 않음
 - [ ] 생성 자극의 `proposal_distance`와 `actual_distance`가 일치함
@@ -44,3 +44,15 @@
 - [ ] 파일럿 자료와 본 연구 자료를 구분
 - [ ] 분석 전 preregistration 여부 결정
 - [ ] 버전이 다른 세션을 병합할 때 변경점을 검토
+
+## 0.6.11 추가 확인
+
+- [ ] 저장소에 `js/collector-client.js`와 `js/cube-drag-controller.js`가 있다.
+- [ ] 배경을 드래그하면 카메라만 움직인다.
+- [ ] 큐브를 좌우로 드래그하면 y축 전체 회전이 한 번 적용된다.
+- [ ] 큐브를 위아래로 드래그하면 x축 전체 회전이 한 번 적용된다.
+- [ ] 짧은 큐브 드래그는 회전으로 승인되지 않는다.
+- [ ] 자동 제출 성공 뒤 Drive와 Sheets를 확인했다.
+- [ ] Apps Script 주소를 직접 열면 JSON 파일 선택 화면이 나타난다.
+- [ ] 자동 제출 실패 상황에서 `JSON 저장 후 직접 제출` 흐름을 시험했다.
+- [ ] Sheets의 `submission_method`가 자동/수동 제출을 구분한다.

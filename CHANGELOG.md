@@ -1,30 +1,23 @@
 # 변경 이력
 
-## 0.6.10 — GitHub Pages Distribution & Optional Automatic Collection
+## 0.6.11
 
-- 모든 버전 표시를 `0.6.10`으로 통일
-- 세션 ID를 버전 중립 형식 `CR-YYYYMMDDhhmmss-12hex`로 변경
-- 참가자 코드 hash를 session ID에서 제거
-- 내부 생성기를 `exact_depth_outward_walk_v1`로 교체
-- `target_distance` 제거
-- `proposal_distance`, `actual_distance`, `generation_attempts` 추가
-- 생성 제안 거리와 실제 exact distance 일치 self-test 추가
-- 선택형 Google Apps Script 자동 제출 기능 추가
-- gzip 가능한 브라우저에서 제출 payload 압축
-- 제출 성공·중복·실패 상태와 receipt metadata 기록
-- 자동 제출 미설정 또는 실패 시 로컬 JSON 다운로드 유지
-- 사용자 설정 저장 key를 버전 중립 형식으로 변경
-- 시작 화면과 하단 안내 문구 정리
-- GitHub Pages 배포 문서, 수집기, 데이터 사전, 개인정보 안내문 추가
+- 큐브 바깥 드래그와 큐브 위 드래그를 분리했습니다.
+- 큐브 위 가로 드래그는 `y/y'`, 세로 드래그는 `x/x'` 전체 회전으로 처리합니다.
+- 드래그 중 회전 미리보기와 짧은 제스처 취소를 추가했습니다.
+- 큐브 드래그 시작·종료·거리·지속시간·확정 회전을 로그에 추가했습니다.
+- 자동 제출 기능을 `collector-client.js`로 분리했습니다.
+- 포인터 입력 기능을 `cube-drag-controller.js`로 분리했습니다.
+- 세션 완료 화면에 자동 제출 재시도, JSON 저장 후 직접 제출, 수집 페이지 열기 기능을 추가했습니다.
+- 자동 제출 응답을 확인하지 못하면 한 번 더 전송하고, 미제출 상태에서 새 세션을 시작하거나 창을 닫을 때 확인하도록 했습니다.
+- Apps Script 수집기 주소 자체를 JSON 수동 업로드 페이지로 바꿨습니다.
+- 자동 제출과 수동 업로드가 같은 검증·저장 함수를 사용하도록 수집기를 정리했습니다.
+- Sheets 색인에 `submission_method` 열을 추가했습니다.
+- 시행 초기화 확인창에서 로그 기록에 관한 문구를 제거했습니다.
+- 버전을 0.6.11로 통일했습니다.
 
-## 0.6.9
+## 0.6.10
 
-- 초기 카메라 정면 고정
-- 사용자 선택 옵션 localStorage 복원
-- 버전 표기 정리
-
-## 0.6.8
-
-- 한 단계 되돌리기
-- 시행 초기화
-- analysis epoch 도입
+- 세션 ID를 버전과 분리된 `CR-날짜-임의값` 형식으로 변경했습니다.
+- 생성 거리 필드를 `proposal_distance`, `actual_distance`, `expected_distance`로 정리했습니다.
+- GitHub Pages 배포와 Google Apps Script 자동 수집 구조를 추가했습니다.

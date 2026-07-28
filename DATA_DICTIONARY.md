@@ -1,11 +1,11 @@
-# CUBE-REV 0.6.10 JSON 데이터 사전
+# CUBE-REV 0.6.11 JSON 데이터 사전
 
 ## 세션 최상위
 
 | 필드 | 의미 |
 |---|---|
 | `project` | `CUBE-REV` |
-| `version` | 실험 도구 버전. 이번 배포는 `0.6.10` |
+| `version` | 실험 도구 버전. 이번 배포는 `0.6.11` |
 | `session_id` | `CR-YYYYMMDDhhmmss-12hex` 형식의 세션 식별자 |
 | `session_id_scheme` | 식별자 형식 설명 |
 | `participant_code` | 참가자가 입력한 가명 코드 |
@@ -29,7 +29,7 @@
 | `generation_attempts` | exact-depth 경로를 찾기 위해 시도한 횟수 |
 | `expected_distance` | 시행 분석에 사용하는 최종 난이도 값 |
 
-0.6.10의 내부 랜덤 생성에서는 다음이 성립하도록 검사합니다.
+0.6.11의 내부 랜덤 생성에서는 다음이 성립하도록 검사합니다.
 
 ```text
 proposal_distance = actual_distance = expected_distance
@@ -87,10 +87,41 @@ x·y·z는 관찰·재그립 명령으로 별도 기록되며 metric cost는 0�
 |---|---|
 | `collector_configured` | 수집 엔드포인트 연결 여부 |
 | `status` | `not_attempted`, `preparing`, `uploading`, `stored`, `duplicate`, `failed` |
-| `attempt_count` | 제출 시도 횟수 |
+| `attempt_count` | 사용자가 시작한 제출 작업 횟수 |
+| `transport_attempt_count` | 자동 재시도를 포함한 실제 전송 횟수 |
 | `encoding` | `gzip-base64` 또는 `json` |
 | `receipt_id` | 수집기가 반환한 Drive file ID |
 | `file_name` | Drive에 저장된 JSON 파일명 |
 | `last_error` | 제출 실패 메시지 |
 
 연구 분석용 데이터에는 Apps Script endpoint나 study token을 저장하지 않습니다.
+
+## 0.6.11 포인터 제스처 사건
+
+| 사건·필드 | 의미 |
+|---|---|
+| `cube_drag_start` | 큐브 위에서 전체 회전 제스처를 시작함 |
+| `cube_drag_end` | 제스처 종료와 확정 여부 |
+| `cube_drag_cancelled` | pointer cancel 또는 capture 상실로 취소됨 |
+| `dx`, `dy` | 드래그 시작점부터의 화면상 이동량(px) |
+| `distance_px` | 전체 드래그 거리 |
+| `duration_ms` | 드래그 지속시간 |
+| `sample_count` | 처리한 pointermove 표본 수 |
+| `recognized_move` | `x`, `x'`, `y`, `y'` 또는 `null` |
+| `committed` | 실제 전체 회전이 적용됐는지 여부 |
+| `source: cube_drag` | `accepted_moves`에서 마우스 제스처로 만들어진 회전 |
+| `first_cube_drag_latency_ms` | 입력 허용 후 첫 확정 큐브 드래그까지 시간 |
+
+큐브 드래그로 만들어진 전체 회전은 `move_kind: view_rotation`, `metric_included: false`로 기록됩니다.
+
+## 0.6.11 수집 관련 사건
+
+| 사건·필드 | 의미 |
+|---|---|
+| `local_json_downloaded` | JSON 사본을 브라우저에서 내려받음 |
+| `collection_portal_opened` | 수동 제출 페이지를 새 탭으로 열려고 시도함 |
+| `manual_collection_handoff_requested` | 완료 화면에서 직접 제출 흐름을 시작함 |
+| `manual_portal_configured` | 수동 업로드 페이지가 설정됐는지 여부 |
+| `local_download_count` | 현재 세션의 JSON 다운로드 횟수 |
+| `manual_portal_open_count` | 수동 제출 페이지 이동 횟수 |
+| `submission_method` | 서버 색인에서 `automatic_form_post` 또는 `manual_upload_portal` |
