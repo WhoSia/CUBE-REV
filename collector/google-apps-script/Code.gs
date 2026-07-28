@@ -1,8 +1,10 @@
 /**
  * CUBE-REV 0.6.11 result collector.
  *
- * Responsibilities are separated into request handling, validation, storage,
- * and response rendering so that each part can be changed independently.
+ * Automatic submission uses a two-stage confirmation protocol:
+ * 1. doPost stores or deduplicates the JSON file.
+ * 2. The collector returns an acknowledgement and exposes a short-lived
+ *    receipt endpoint so the experiment can verify that storage completed.
  */
 const EXPECTED_PROJECT = 'CUBE-REV';
 const EXPECTED_VERSION = '0.6.11';
@@ -10,7 +12,20 @@ const MAX_JSON_BYTES = 20 * 1024 * 1024;
 const PROP_FOLDER_ID = 'CUBE_REV_FOLDER_ID';
 const PROP_SHEET_ID = 'CUBE_REV_SHEET_ID';
 const PROP_STUDY_TOKEN = 'CUBE_REV_STUDY_TOKEN';
-const SUBMISSION_HEADERS = ['received_at', 'session_id', 'participant_code', 'version', 'mode', 'trial_count', 'json_bytes', 'drive_file_id', 'status', 'submission_method'];
+const RECEIPT_CACHE_PREFIX = 'CUBE_REV_RECEIPT_';
+const RECEIPT_CACHE_SECONDS = 10 * 60;
+const SUBMISSION_HEADERS = [
+  'received_at',
+  'session_id',
+  'participant_code',
+  'version',
+  'mode',
+  'trial_count',
+  'json_bytes',
+  'drive_file_id',
+  'status',
+  'submission_method'
+];
 
 function setupCollector() {
   const resources = ensureCollectorResources_();
@@ -19,7 +34,8 @@ function setupCollector() {
     sheetId: resources.book.getId(),
     studyToken: resources.studyToken,
     expectedVersion: EXPECTED_VERSION,
-    manualUploadUrl: ScriptApp.getService().getUrl() || 'Deploy the script as a web app first.'
+    manualUploadUrl: ScriptApp.getService().getUrl() || 'Deploy the script as a web app first.',
+    receiptProtocol: 'post_then_iframe_or_jsonp_receipt'
   };
   console.log(JSON.stringify(result, null, 2));
   return result;
@@ -27,37 +43,80 @@ function setupCollector() {
 
 function doGet(e) {
   const params = (e && e.parameter) || {};
+  const action = String(params.action || '').toLowerCase();
+
+  if (action === 'health') {
+    return handleHealthRequest_(params);
+  }
+
+  if (action === 'receipt') {
+    return handleReceiptRequest_(params);
+  }
+
   if (String(params.format || '').toLowerCase() === 'json') {
     return ContentService.createTextOutput(JSON.stringify({
       ok: true,
       service: 'CUBE-REV collector',
       expected_version: EXPECTED_VERSION,
       manual_upload_available: true,
+      receipt_confirmation_available: true,
       server_time: new Date().toISOString()
     })).setMimeType(ContentService.MimeType.JSON);
   }
+
   return HtmlService.createHtmlOutput(buildManualUploadPage_(String(params.expected_file || '')))
     .setTitle('CUBE-REV 결과 제출')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 function doPost(e) {
-  const nonce = String((e && e.parameter && e.parameter.submission_nonce) || '');
+  const params = (e && e.parameter) || {};
+  const nonce = String(params.submission_nonce || '');
+  const claimedSessionId = String(params.session_id || '');
+
   try {
+    validateAutomaticRequestIdentity_(nonce, claimedSessionId);
+
     const props = PropertiesService.getScriptProperties();
     const configuredToken = props.getProperty(PROP_STUDY_TOKEN);
-    if (!configuredToken) throw new Error('Collector has not been initialized. Run setupCollector() first.');
-    if (String((e && e.parameter && e.parameter.study_token) || '') !== configuredToken) throw new Error('Study token mismatch.');
+    if (!configuredToken) {
+      throw new Error('Collector has not been initialized. Run setupCollector() first.');
+    }
+    if (String(params.study_token || '') !== configuredToken) {
+      throw new Error('Study token mismatch.');
+    }
 
-    const encoding = String(e.parameter.encoding || 'json');
-    const transmittedPayload = String(e.parameter.payload || '');
+    const encoding = String(params.encoding || 'json');
+    const transmittedPayload = String(params.payload || '');
     if (!transmittedPayload) throw new Error('Empty payload.');
+
     const jsonText = decodePayload_(transmittedPayload, encoding);
-    const stored = storeJson_(jsonText, 'automatic_form_post', String(e.parameter.session_id || ''));
-    return ackHtml_({ ok: true, nonce: nonce, ...stored });
+    const stored = storeJson_(jsonText, 'automatic_form_post', claimedSessionId);
+    const receipt = makePublicReceipt_({
+      ok: true,
+      nonce: nonce,
+      sessionId: stored.session_id,
+      status: stored.status,
+      fileName: stored.file_name,
+      receivedAt: stored.received_at,
+      confirmationSource: 'doPost_store_complete'
+    });
+    saveReceipt_(receipt);
+    return ackHtml_(receipt);
   } catch (error) {
     console.error(error && error.stack ? error.stack : error);
-    return ackHtml_({ ok: false, status: 'error', nonce: nonce, error: String(error && error.message ? error.message : error) });
+    const receipt = makePublicReceipt_({
+      ok: false,
+      nonce: nonce,
+      sessionId: claimedSessionId,
+      status: 'error',
+      error: String(error && error.message ? error.message : error),
+      confirmationSource: 'doPost_error'
+    });
+    if (isValidNonce_(nonce) && isValidSessionId_(claimedSessionId)) {
+      saveReceipt_(receipt);
+    }
+    return ackHtml_(receipt);
   }
 }
 
@@ -69,6 +128,174 @@ function submitManualJson(jsonText) {
     console.error(error && error.stack ? error.stack : error);
     throw new Error(String(error && error.message ? error.message : error));
   }
+}
+
+function validateAutomaticRequestIdentity_(nonce, sessionId) {
+  if (!isValidNonce_(nonce)) throw new Error('Invalid submission nonce.');
+  if (!isValidSessionId_(sessionId)) throw new Error('Invalid CUBE-REV session ID.');
+}
+
+function isValidNonce_(nonce) {
+  return /^[0-9a-f]{24}$/i.test(String(nonce || ''));
+}
+
+function isValidSessionId_(sessionId) {
+  return /^CR-\d{14}-[0-9a-f]{12}$/i.test(String(sessionId || ''));
+}
+
+function makePublicReceipt_(options) {
+  const receivedAt = options.receivedAt || new Date().toISOString();
+  return {
+    type: 'CUBE_REV_COLLECTOR_ACK',
+    ok: options.ok === true,
+    status: String(options.status || (options.ok ? 'stored' : 'error')),
+    submission_nonce: String(options.nonce || ''),
+    session_id: String(options.sessionId || ''),
+    file_name: options.fileName ? String(options.fileName) : null,
+    received_at: receivedAt,
+    receipt_code: options.ok ? makeReceiptCode_(String(options.sessionId || ''), receivedAt) : null,
+    confirmation_source: String(options.confirmationSource || ''),
+    error: options.error ? String(options.error) : null
+  };
+}
+
+function makeReceiptCode_(sessionId, receivedAt) {
+  const bytes = Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256,
+    sessionId + '|' + receivedAt,
+    Utilities.Charset.UTF_8
+  );
+  return Utilities.base64EncodeWebSafe(bytes).replace(/=+$/g, '').slice(0, 12).toUpperCase();
+}
+
+function receiptCacheKey_(nonce) {
+  return RECEIPT_CACHE_PREFIX + nonce;
+}
+
+function saveReceipt_(receipt) {
+  CacheService.getScriptCache().put(
+    receiptCacheKey_(receipt.submission_nonce),
+    JSON.stringify(receipt),
+    RECEIPT_CACHE_SECONDS
+  );
+}
+
+function readReceipt_(nonce) {
+  const raw = CacheService.getScriptCache().get(receiptCacheKey_(nonce));
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch (_) {
+    return null;
+  }
+}
+
+function handleHealthRequest_(params) {
+  const callback = validateJsonpCallback_(String(params.callback || ''));
+  const configuredToken = PropertiesService.getScriptProperties().getProperty(PROP_STUDY_TOKEN) || '';
+  const requestedVersion = String(params.version || '');
+  const serviceUrl = ScriptApp.getService().getUrl() || '';
+  const deploymentMatch = serviceUrl.match(/\/s\/([^/]+)\/exec$/);
+  const payload = {
+    type: 'CUBE_REV_COLLECTOR_HEALTH',
+    ok: true,
+    service: 'CUBE-REV collector',
+    expected_version: EXPECTED_VERSION,
+    requested_version: requestedVersion || null,
+    version_match: requestedVersion ? requestedVersion === EXPECTED_VERSION : null,
+    token_valid: !!configuredToken && String(params.study_token || '') === configuredToken,
+    receipt_confirmation_available: true,
+    manual_upload_available: true,
+    deployment_id: deploymentMatch ? deploymentMatch[1].slice(0, 16) : null,
+    server_time: new Date().toISOString()
+  };
+  return jsonpOutput_(callback, payload);
+}
+
+function handleReceiptRequest_(params) {
+  const callback = validateJsonpCallback_(String(params.callback || ''));
+  const nonce = String(params.submission_nonce || '');
+  const sessionId = String(params.session_id || '');
+
+  let payload;
+  try {
+    validateAutomaticRequestIdentity_(nonce, sessionId);
+    const configuredToken = PropertiesService.getScriptProperties().getProperty(PROP_STUDY_TOKEN);
+    if (!configuredToken || String(params.study_token || '') !== configuredToken) {
+      throw new Error('Study token mismatch.');
+    }
+
+    const cached = readReceipt_(nonce);
+    if (cached && cached.session_id === sessionId) {
+      payload = cached;
+    } else {
+      const stored = findStoredSession_(sessionId);
+      payload = stored
+        ? makePublicReceipt_({
+            ok: true,
+            nonce: nonce,
+            sessionId: sessionId,
+            status: 'stored',
+            fileName: stored.file_name,
+            receivedAt: stored.received_at,
+            confirmationSource: 'drive_lookup'
+          })
+        : {
+            type: 'CUBE_REV_COLLECTOR_ACK',
+            ok: true,
+            status: 'pending',
+            submission_nonce: nonce,
+            session_id: sessionId,
+            file_name: null,
+            received_at: null,
+            receipt_code: null,
+            confirmation_source: 'receipt_poll',
+            error: null
+          };
+    }
+  } catch (error) {
+    payload = {
+      type: 'CUBE_REV_COLLECTOR_ACK',
+      ok: false,
+      status: 'error',
+      submission_nonce: nonce,
+      session_id: sessionId,
+      file_name: null,
+      received_at: new Date().toISOString(),
+      receipt_code: null,
+      confirmation_source: 'receipt_request_error',
+      error: String(error && error.message ? error.message : error)
+    };
+  }
+
+  return jsonpOutput_(callback, payload);
+}
+
+function validateJsonpCallback_(callback) {
+  if (!/^[A-Za-z_$][0-9A-Za-z_$]{0,120}$/.test(callback)) {
+    throw new Error('Invalid JSONP callback.');
+  }
+  return callback;
+}
+
+function jsonpOutput_(callback, payload) {
+  const safeJson = JSON.stringify(payload).replace(/</g, '\\u003c');
+  return ContentService
+    .createTextOutput(callback + '(' + safeJson + ');')
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+}
+
+function findStoredSession_(sessionId) {
+  if (!isValidSessionId_(sessionId)) return null;
+  const resources = ensureCollectorResources_();
+  const fileName = safeFileName_(sessionId + '.json');
+  const files = resources.folder.getFilesByName(fileName);
+  if (!files.hasNext()) return null;
+  const file = files.next();
+  return {
+    file_name: fileName,
+    received_at: file.getDateCreated().toISOString()
+  };
 }
 
 function ensureCollectorResources_() {
@@ -117,7 +344,11 @@ function storeJson_(jsonText, submissionMethod, claimedSessionId) {
   if (jsonBytes > MAX_JSON_BYTES) throw new Error('The JSON file exceeds the 20 MB collector limit.');
 
   let record;
-  try { record = JSON.parse(jsonText); } catch (_) { throw new Error('The selected file is not valid JSON.'); }
+  try {
+    record = JSON.parse(jsonText);
+  } catch (_) {
+    throw new Error('The selected file is not valid JSON.');
+  }
   validateRecord_(record, claimedSessionId);
 
   const resources = ensureCollectorResources_();
@@ -128,9 +359,19 @@ function storeJson_(jsonText, submissionMethod, claimedSessionId) {
     const existing = resources.folder.getFilesByName(fileName);
     if (existing.hasNext()) {
       const file = existing.next();
-      return { status: 'duplicate', receipt_id: file.getId(), file_name: fileName, received_at: new Date().toISOString(), submission_method: submissionMethod };
+      return {
+        status: 'duplicate',
+        session_id: record.session_id,
+        drive_file_id: file.getId(),
+        file_name: fileName,
+        received_at: file.getDateCreated().toISOString(),
+        submission_method: submissionMethod
+      };
     }
-    const file = resources.folder.createFile(Utilities.newBlob(jsonText, 'application/json', fileName));
+
+    const file = resources.folder.createFile(
+      Utilities.newBlob(jsonText, 'application/json', fileName)
+    );
     const receivedAt = new Date().toISOString();
     resources.sheet.appendRow([
       receivedAt,
@@ -144,7 +385,16 @@ function storeJson_(jsonText, submissionMethod, claimedSessionId) {
       'stored',
       submissionMethod
     ]);
-    return { status: 'stored', receipt_id: file.getId(), file_name: fileName, received_at: receivedAt, submission_method: submissionMethod };
+    SpreadsheetApp.flush();
+
+    return {
+      status: 'stored',
+      session_id: record.session_id,
+      drive_file_id: file.getId(),
+      file_name: fileName,
+      received_at: receivedAt,
+      submission_method: submissionMethod
+    };
   } finally {
     lock.releaseLock();
   }
@@ -153,8 +403,10 @@ function storeJson_(jsonText, submissionMethod, claimedSessionId) {
 function validateRecord_(record, claimedSessionId) {
   if (!record || typeof record !== 'object') throw new Error('JSON root must be an object.');
   if (record.project !== EXPECTED_PROJECT) throw new Error('This is not a CUBE-REV result file.');
-  if (record.version !== EXPECTED_VERSION) throw new Error('Expected version ' + EXPECTED_VERSION + ', but received ' + record.version + '.');
-  if (!/^CR-\d{14}-[0-9a-f]{12}$/i.test(String(record.session_id || ''))) throw new Error('Invalid CUBE-REV session ID.');
+  if (record.version !== EXPECTED_VERSION) {
+    throw new Error('Expected version ' + EXPECTED_VERSION + ', but received ' + record.version + '.');
+  }
+  if (!isValidSessionId_(record.session_id)) throw new Error('Invalid CUBE-REV session ID.');
   if (claimedSessionId && claimedSessionId !== record.session_id) throw new Error('Session ID mismatch.');
   if (!Array.isArray(record.trials)) throw new Error('The result file does not contain a trials array.');
 }
@@ -162,7 +414,10 @@ function validateRecord_(record, claimedSessionId) {
 function decodePayload_(payload, encoding) {
   if (encoding === 'json') return payload;
   if (encoding === 'gzip-base64') {
-    const compressed = Utilities.newBlob(Utilities.base64Decode(payload), 'application/gzip');
+    const compressed = Utilities.newBlob(
+      Utilities.base64Decode(payload),
+      'application/gzip'
+    );
     return Utilities.ungzip(compressed).getDataAsString('UTF-8');
   }
   throw new Error('Unsupported payload encoding: ' + encoding);
@@ -173,8 +428,22 @@ function safeFileName_(name) {
 }
 
 function ackHtml_(payload) {
-  const safeJson = JSON.stringify({ type: 'CUBE_REV_COLLECTOR_ACK', ...payload }).replace(/</g, '\\u003c');
-  return HtmlService.createHtmlOutput('<!doctype html><meta charset="utf-8"><script>window.parent.postMessage(' + safeJson + ', "*");<\/script>');
+  const safeJson = JSON.stringify(payload).replace(/</g, '\u003c');
+  const successText = payload.ok ? '수신 완료' : '수신 실패';
+  const escapeText_ = function(value) {
+    return String(value || '').replace(/[<>&]/g, '');
+  };
+  const detail = payload.ok
+    ? '<p>파일: <strong>' + escapeText_(payload.file_name) + '</strong></p><p>확인 코드: <strong>' + escapeText_(payload.receipt_code) + '</strong></p>'
+    : '<p>' + escapeText_(payload.error) + '</p>';
+  const html = '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + successText + '</title></head>' +
+    '<body><main><h1>' + successText + '</h1>' + detail + '</main><script>' +
+    'const receipt=' + safeJson + ';' +
+    'try{window.parent.postMessage(receipt,"*");}catch(_){ }' +
+    '<\/script></body></html>';
+  return HtmlService.createHtmlOutput(html)
+    .setTitle(successText)
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 function buildManualUploadPage_(expectedFile) {
@@ -214,7 +483,7 @@ drop.addEventListener('drop',e=>{if(e.dataTransfer.files.length){selectedFile=e.
 input.addEventListener('change',()=>{selectedFile=input.files[0]||null;updateFile();});
 function updateFile(){const f=selectedFile;fileName.textContent=f?f.name+' · '+Math.ceil(f.size/1024).toLocaleString()+' KB':'선택된 파일 없음';submit.disabled=!f;status.className='status';status.textContent='';}
 function show(message,kind){status.textContent=message;status.className='status '+kind;}
-submit.onclick=async()=>{const file=selectedFile;if(!file)return;submit.disabled=true;show('파일을 확인하고 제출하고 있습니다.','info');try{const text=await file.text();const parsed=JSON.parse(text);if(parsed.project!=='CUBE-REV')throw new Error('CUBE-REV 결과 파일이 아닙니다.');if(parsed.version!=='${EXPECTED_VERSION}')throw new Error('이 수집기는 ${EXPECTED_VERSION} 파일만 받습니다. 현재 파일: '+parsed.version);google.script.run.withSuccessHandler(result=>{submit.disabled=false;show(result.status==='duplicate'?'이미 제출된 세션입니다. 추가 작업은 필요하지 않습니다.':'제출이 완료되었습니다. 이 창을 닫아도 됩니다.','good');}).withFailureHandler(error=>{submit.disabled=false;show('제출하지 못했습니다: '+(error.message||error),'bad');}).submitManualJson(text);}catch(error){submit.disabled=false;show(error.message||String(error),'bad');}};
+submit.onclick=async()=>{const file=selectedFile;if(!file)return;submit.disabled=true;show('파일을 확인하고 제출하고 있습니다.','info');try{const text=await file.text();const parsed=JSON.parse(text);if(parsed.project!=='CUBE-REV')throw new Error('CUBE-REV 결과 파일이 아닙니다.');if(parsed.version!=='${EXPECTED_VERSION}')throw new Error('이 수집기는 ${EXPECTED_VERSION} 파일만 받습니다. 현재 파일: '+parsed.version);google.script.run.withSuccessHandler(result=>{submit.disabled=false;show(result.status==='duplicate'?'수신 완료. 이미 저장된 세션입니다. 추가 작업은 필요하지 않습니다.':'수신 완료. 결과 파일이 저장되었습니다. 이 창을 닫아도 됩니다.','good');}).withFailureHandler(error=>{submit.disabled=false;show('제출하지 못했습니다: '+(error.message||error),'bad');}).submitManualJson(text);}catch(error){submit.disabled=false;show(error.message||String(error),'bad');}};
 <\/script>
 </body>
 </html>`;

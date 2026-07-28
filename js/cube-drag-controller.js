@@ -18,11 +18,14 @@
       this.onCameraGestureStart=options.onCameraGestureStart||(()=>{});
       this.onStickerGestureCommitted=options.onStickerGestureCommitted||(()=>{});
       this.thresholdPx=Math.max(24,Number(options.thresholdPx)||42);
+      this.thresholdTouchPx=Math.max(24,Number(options.thresholdTouchPx)||34);
+      this.thresholdPenPx=Math.max(24,Number(options.thresholdPenPx)||36);
       this.minDirectionScore=Math.max(0.5,Math.min(0.99,Number(options.minDirectionScore)||0.72));
       this.minScoreMargin=Math.max(0,Math.min(0.5,Number(options.minScoreMargin)||0.08));
       this.minStraightness=Math.max(0.25,Math.min(1,Number(options.minStraightness)||0.55));
       this.pitchLimit=Number(options.pitchLimit)||1.35;
       this.cameraSensitivity=Number(options.cameraSensitivity)||0.008;
+      this.cameraSensitivityTouch=Number(options.cameraSensitivityTouch)||0.0065;
       this.active=null;
       this.bound={
         down:e=>this.onPointerDown(e),
@@ -76,6 +79,7 @@
         maxDistance:0,
         lastResolution:null,
         pointerType:e.pointerType||'mouse',
+        thresholdPx:(e.pointerType==='touch'?this.thresholdTouchPx:e.pointerType==='pen'?this.thresholdPenPx:this.thresholdPx),
         modifiers:{shiftKey:e.shiftKey,altKey:e.altKey,ctrlKey:e.ctrlKey,metaKey:e.metaKey}
       };
       this.element.setPointerCapture?.(e.pointerId);
@@ -84,7 +88,7 @@
         this.logEvent('sticker_drag_start',{
           x:+p.x.toFixed(2),y:+p.y.toFixed(2),pointer_type:this.active.pointerType,
           sticker_face:sticker.face,sticker_cell:sticker.cell,cubie_pos:sticker.pos,
-          gesture_threshold_px:this.thresholdPx,turn_policy:'single_quarter_turn_only'
+          gesture_threshold_px:this.active.thresholdPx,turn_policy:'single_quarter_turn_only'
         });
       }else{
         this.onCameraGestureStart();
@@ -107,12 +111,12 @@
       a.maxDistance=Math.max(a.maxDistance,Math.hypot(dx,dy));
       if(a.mode==='camera'){
         this.setCamera({
-          yaw:a.cameraStart.yaw+dx*this.cameraSensitivity,
-          pitch:Math.max(-this.pitchLimit,Math.min(this.pitchLimit,a.cameraStart.pitch+dy*this.cameraSensitivity)),
+          yaw:a.cameraStart.yaw+dx*(a.pointerType==='touch'?this.cameraSensitivityTouch:this.cameraSensitivity),
+          pitch:Math.max(-this.pitchLimit,Math.min(this.pitchLimit,a.cameraStart.pitch+dy*(a.pointerType==='touch'?this.cameraSensitivityTouch:this.cameraSensitivity))),
           zoom:a.cameraStart.zoom
         });
       }else{
-        const resolution=this.resolveStickerDrag(a.sticker,dx,dy,{commit:false,thresholdPx:this.thresholdPx});
+        const resolution=this.resolveStickerDrag(a.sticker,dx,dy,{commit:false,thresholdPx:a.thresholdPx,pointerType:a.pointerType});
         a.lastResolution=resolution;
         if(resolution?.preview)this.setPreview(resolution.preview);else this.clearPreview();
       }
@@ -123,10 +127,10 @@
       const dx=p.x-a.start.x,dy=p.y-a.start.y;
       const distance=Math.hypot(dx,dy);
       const straightness=a.pathLength>0?Math.min(1,distance/a.pathLength):1;
-      const resolution=this.resolveStickerDrag(a.sticker,dx,dy,{commit:true,thresholdPx:this.thresholdPx});
+      const resolution=this.resolveStickerDrag(a.sticker,dx,dy,{commit:true,thresholdPx:a.thresholdPx,pointerType:a.pointerType});
       const score=Number(resolution?.score||0);
       const margin=Number(resolution?.scoreMargin||0);
-      const accepted=!!resolution?.token&&distance>=this.thresholdPx&&score>=this.minDirectionScore&&margin>=this.minScoreMargin&&straightness>=this.minStraightness;
+      const accepted=!!resolution?.token&&distance>=a.thresholdPx&&score>=this.minDirectionScore&&margin>=this.minScoreMargin&&straightness>=this.minStraightness;
       return {dx,dy,distance,straightness,resolution,accepted};
     }
 
@@ -149,12 +153,12 @@
         }
         const r=result.resolution||{};
         this.logEvent(cancelled?'sticker_drag_cancelled':'sticker_drag_end',{
-          sticker_face:a.sticker.face,sticker_cell:a.sticker.cell,cubie_pos:a.sticker.pos,
+          sticker_face:a.sticker.face,sticker_cell:a.sticker.cell,cubie_pos:a.sticker.pos,pointer_type:a.pointerType,gesture_threshold_px:a.thresholdPx,
           dx:+result.dx.toFixed(2),dy:+result.dy.toFixed(2),distance_px:+result.distance.toFixed(2),path_length_px:+a.pathLength.toFixed(2),
           straightness:+result.straightness.toFixed(4),duration_ms:+duration.toFixed(3),sample_count:a.sampleCount,
           candidate_face:r.face||null,recognized_move:result.accepted?r.token:null,direction_score:r.score==null?null:+r.score.toFixed(4),
           score_margin:r.scoreMargin==null?null:+r.scoreMargin.toFixed(4),committed,
-          rejection_reason:cancelled?'pointer_cancelled':result.accepted?null:(result.distance<this.thresholdPx?'too_short':result.straightness<this.minStraightness?'path_not_straight':(r.score||0)<this.minDirectionScore?'direction_unclear':(r.scoreMargin||0)<this.minScoreMargin?'axis_ambiguous':'unresolved'),
+          rejection_reason:cancelled?'pointer_cancelled':result.accepted?null:(result.distance<a.thresholdPx?'too_short':result.straightness<this.minStraightness?'path_not_straight':(r.score||0)<this.minDirectionScore?'direction_unclear':(r.scoreMargin||0)<this.minScoreMargin?'axis_ambiguous':'unresolved'),
           turn_policy:'single_quarter_turn_only',double_turn_generated:false
         });
       }

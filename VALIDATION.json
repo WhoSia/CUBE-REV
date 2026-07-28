@@ -1,31 +1,169 @@
 {
   "project": "CUBE-REV",
   "version": "0.6.11",
-  "build_id": "0.6.11-face-drag-1",
-  "validated_at": "2026-07-28",
-  "checks": {
-    "external_javascript_syntax": "passed",
-    "inline_javascript_syntax": "passed",
-    "index_and_standalone_identical": "passed",
-    "controller_single_quarter_turn_unit_test": "passed",
-    "no_0_6_10_string_in_patch": "passed",
-    "collector_endpoint_preserved": "passed",
-    "automatic_timeout_advance_removed": "passed",
-    "spinner_css_and_pending_status": "passed"
-  },
-  "gesture_policy": {
-    "sticker_drag": "single 90-degree face turn",
-    "background_drag": "camera movement",
-    "double_turn_from_single_drag": false,
-    "minimum_drag_px": 42,
-    "minimum_direction_score": 0.72,
-    "minimum_score_margin": 0.08,
-    "minimum_path_straightness": 0.55
-  },
-  "timing_policy": {
-    "cap_ms": 1800000,
-    "auto_advance_at_cap": false,
-    "relative_time_after_cap": "max"
-  },
-  "browser_automation_note": "The managed Chromium environment blocked local HTTP navigation, so full pointer interaction could not be replayed end-to-end in a real browser. JavaScript syntax, controller behavior with synthetic pointer data, mapping mathematics, and source-level invariants were checked."
+  "build_id": "0.6.11-responsive-receipt-1",
+  "validated_at": "2026-07-28T15:33:40Z",
+  "passed": true,
+  "check_count": 17,
+  "checks": [
+    {
+      "name": "embedded self-tests",
+      "passed": true,
+      "detail": 92
+    },
+    {
+      "name": "phone classification",
+      "passed": true,
+      "detail": "phone"
+    },
+    {
+      "name": "phone no horizontal overflow",
+      "passed": true,
+      "detail": {
+        "scroll_width": 390,
+        "inner_width": 390
+      }
+    },
+    {
+      "name": "phone canvas visible",
+      "passed": true,
+      "detail": {
+        "canvas_height": 649,
+        "viewport_height": 844
+      }
+    },
+    {
+      "name": "phone action bar inside viewport",
+      "passed": true,
+      "detail": {
+        "bar_bottom": 844,
+        "viewport_height": 844
+      }
+    },
+    {
+      "name": "mobile controls sheet",
+      "passed": true,
+      "detail": {
+        "open": true,
+        "aria": "false"
+      }
+    },
+    {
+      "name": "touch sticker drag commits one move",
+      "passed": true,
+      "detail": {
+        "before": 0,
+        "after": 1,
+        "move": "L",
+        "source": "sticker_drag",
+        "double": false
+      }
+    },
+    {
+      "name": "touch drag never generates double turn",
+      "passed": true,
+      "detail": {
+        "before": 0,
+        "after": 1,
+        "move": "L",
+        "source": "sticker_drag",
+        "double": false
+      }
+    },
+    {
+      "name": "tablet classification",
+      "passed": true,
+      "detail": {
+        "form_factor": "tablet",
+        "scroll_width": 820,
+        "inner_width": 820,
+        "stage_overflow": "auto",
+        "side_grid": "512.766px 265.219px"
+      }
+    },
+    {
+      "name": "tablet no horizontal overflow",
+      "passed": true,
+      "detail": {
+        "form_factor": "tablet",
+        "scroll_width": 820,
+        "inner_width": 820,
+        "stage_overflow": "auto",
+        "side_grid": "512.766px 265.219px"
+      }
+    },
+    {
+      "name": "tablet stage scrollable",
+      "passed": true,
+      "detail": {
+        "form_factor": "tablet",
+        "scroll_width": 820,
+        "inner_width": 820,
+        "stage_overflow": "auto",
+        "side_grid": "512.766px 265.219px"
+      }
+    },
+    {
+      "name": "desktop classification",
+      "passed": true,
+      "detail": {
+        "form_factor": "desktop",
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "stage_bottom": 831,
+        "side_overflow": "auto"
+      }
+    },
+    {
+      "name": "desktop no horizontal overflow",
+      "passed": true,
+      "detail": {
+        "form_factor": "desktop",
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "stage_bottom": 831,
+        "side_overflow": "auto"
+      }
+    },
+    {
+      "name": "desktop viewport-contained stage",
+      "passed": true,
+      "detail": {
+        "form_factor": "desktop",
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "stage_bottom": 831,
+        "side_overflow": "auto"
+      }
+    },
+    {
+      "name": "desktop side independently scrollable",
+      "passed": true,
+      "detail": {
+        "form_factor": "desktop",
+        "scroll_width": 1440,
+        "inner_width": 1440,
+        "stage_bottom": 831,
+        "side_overflow": "auto"
+      }
+    },
+    {
+      "name": "confirmed receipt changes status to received",
+      "passed": true,
+      "detail": {
+        "status": "received",
+        "confirmed": true,
+        "code": "VALIDATION01",
+        "text": "수신 완료. 수집기가 CR-20260728153338-85b1926d96af.json 파일의 저장을 확인했습니다. 이 창을 닫아도 됩니다.수신 확인 코드: VALIDATION01"
+      }
+    },
+    {
+      "name": "receipt UI says 수신 완료",
+      "passed": true,
+      "detail": "수신 완료. 수집기가 CR-20260728153338-85b1926d96af.json 파일의 저장을 확인했습니다. 이 창을 닫아도 됩니다.수신 확인 코드: VALIDATION01"
+    }
+  ],
+  "notes": [
+    "Google Apps Script production storage was not modified during browser validation. The receipt handshake was validated with a deterministic mock; Code.gs syntax and protocol fields are checked separately."
+  ]
 }
