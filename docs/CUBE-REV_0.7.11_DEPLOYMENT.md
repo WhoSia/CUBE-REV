@@ -6,7 +6,7 @@
 - Default and deployed branch: `main`
 - GitHub Pages source: repository root (`source: .`)
 - Verified baseline commit: `58619a909a9343ff0f50e945ee2d2cf443c585d7`
-- Baseline SHA-256: `19b946c1ded8e16eee34187602c921b007040c378c44c71c3f3e959e0d1a1469`
+- Canonical LF baseline SHA-256: `ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31`
 - `index.html` and `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html` are byte-identical.
 
 Pages run `30479133015` checks out `main`, builds from `.` into `_site`, and

@@ -7,12 +7,12 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sourcePath = path.join(root, "index.html");
 const outputDir = path.join(root, "calibration");
 const outputPath = path.join(outputDir, "index.html");
-const expectedBaseline = "19b946c1ded8e16eee34187602c921b007040c378c44c71c3f3e959e0d1a1469";
+const expectedBaseline = "ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31";
 const sourceText = fs.readFileSync(sourcePath, "utf8");
 let html = sourceText.replace(/\r\n/g, "\n");
 const sha256 = (value) => crypto.createHash("sha256").update(value).digest("hex");
 
-if (sha256(sourceText) !== expectedBaseline) {
+if (sha256(html) !== expectedBaseline) {
   throw new Error("Baseline index.html does not match the verified 0.6.11 source.");
 }
 function once(search, replacement, label) {

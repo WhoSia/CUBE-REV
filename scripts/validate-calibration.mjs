@@ -12,8 +12,8 @@ const host = await read("calibration/index.html");
 
 assert.equal(baseline, archive, "0.6.11 baseline files changed or diverged");
 assert.equal(
-  hash(baseline),
-  "19b946c1ded8e16eee34187602c921b007040c378c44c71c3f3e959e0d1a1469",
+  hash(baseline.replace(/\r\n/g, "\n")),
+  "ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31",
   "0.6.11 baseline is not the verified source"
 );
 assert.match(host, /CUBE-REV 0\.7\.11 Calibration/);
