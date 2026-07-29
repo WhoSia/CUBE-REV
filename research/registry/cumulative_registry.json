@@ -1,0 +1,16 @@
+{
+  "schema_version": "CR07-CUMULATIVE-REGISTRY-1",
+  "project": "CUBE-REV",
+  "protocol_version": "0.7.11",
+  "clock": {
+    "state": "NOT_STARTED",
+    "activated_at": null,
+    "authorization_id": null
+  },
+  "privacy": {
+    "raw_payloads_stored": false,
+    "direct_identifiers_allowed": false
+  },
+  "batches": [],
+  "sessions": {}
+}
