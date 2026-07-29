@@ -1,8 +1,8 @@
-name: Validate CUBE-REV 0.6.11
+name: Validate CUBE-REV baseline and calibration
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'agent/**']
   pull_request:
 
 permissions:
@@ -18,3 +18,10 @@ jobs:
           node-version: 22
       - name: Check release identity and static assets
         run: node scripts/validate-static.mjs
+      - name: Build and validate source-bound calibration host
+        run: |
+          node scripts/build-calibration-host.mjs
+          node scripts/validate-calibration.mjs
+          node tests/calibration.test.cjs
+          node tests/collector-receipt.integration.cjs
+          python -m unittest tests/test_registry_and_annotation.py

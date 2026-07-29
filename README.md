@@ -297,3 +297,15 @@ cube-rev/
 ## 기술 구조
 
 제스처 판정, 카메라 확대·축소, 반응형 레이아웃, 다국어 처리, 자료 전송을 각각 독립된 컨트롤러로 분리했습니다. 입력 처리, 렌더링, 제출, 화면 표시가 한 파일에 불필요하게 얽히지 않도록 구성한 것입니다.
+
+## 0.7.11 calibration
+
+검증된 0.6.11 공개 baseline은 그대로 유지합니다. Source-bound 0.7.11
+run-in host, 고정 probe policy, memory factorial, two-pass annotation packet,
+eligibility clock gate, 누적 CR07-BATCH registry는
+[`docs/CUBE-REV_0.7.11_DEPLOYMENT.md`](docs/CUBE-REV_0.7.11_DEPLOYMENT.md)에
+정리되어 있습니다.
+
+Calibration route는 의도적으로 수집이 잠겨 있습니다. Governance,
+collector receipt, linkage, clock authorization gate가 모두 통과하기
+전에는 prospective human data에 사용하면 안 됩니다.
