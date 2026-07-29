@@ -38,7 +38,7 @@ CR-20260728171127-ceb02c08b4b4
 ### Mouse, trackpad, and touch
 
 - Drag a visible sticker: turn one layer by exactly 90°.
-- Drag empty background: rotate the camera.
+- Drag empty background: freely orbit the camera, including complete vertical rotations past the U and D views.
 - Mouse wheel or two-finger trackpad scroll: zoom in or out.
 - Two-finger pinch on a touch screen: zoom in or out.
 - A single sticker drag never produces a double turn such as `R2`.
@@ -78,13 +78,13 @@ browser submission
 
 The completion screen treats the submission as successful only after the collector confirms that the file was stored or already existed. Local JSON saving remains available as a fallback.
 
-The collector implementation is included under:
+The public page is connected to the deployed collector through:
 
 ```text
-collector/google-apps-script/Code.gs
+collector-config.js
 ```
 
-That file is source code for the separately deployed Google Apps Script web app. GitHub Pages does not execute it.
+The separately deployed Google Apps Script server source is managed outside this public GitHub Pages repository. GitHub Pages only serves the browser client.
 
 ## Languages
 
@@ -107,28 +107,31 @@ The selected interface language and the language-selection source are recorded i
 
 ```text
 cube-rev/
-├─ .nojekyll
+├─ .github/workflows/validate-static.yml
 ├─ index.html
 ├─ CUBE-REV_0.6.11_GitHub_Pages_Pilot.html
+├─ collector-config.js
 ├─ README.md
+├─ robots.txt
 ├─ js/
 │  ├─ camera-zoom-controller.js
 │  ├─ collector-client.js
 │  ├─ cube-drag-controller.js
 │  ├─ i18n-controller.js
 │  └─ responsive-layout-controller.js
-└─ collector/
-   └─ google-apps-script/
-      └─ Code.gs
+└─ scripts/
+   └─ validate-static.mjs
 ```
 
 `index.html` is the GitHub Pages entry point. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html` is intentionally retained as a versioned standalone copy for direct download, archival reference, and release attachments. The two HTML files should remain identical within version 0.6.11.
+
+The static validator and GitHub Actions workflow prevent version drift, missing controller files, cache-key mismatches, divergence between the two HTML copies, and regression of the unrestricted camera orbit.
 
 ## Deployment
 
 Upload the repository contents so that `index.html` is at the repository root. In GitHub Pages settings, deploy from the `main` branch and the root folder.
 
-After replacing `Code.gs`, update the existing Apps Script web-app deployment to a new version rather than creating a new deployment. This preserves the configured `/exec` endpoint.
+Collector server changes are deployed separately by updating the existing Apps Script web-app version rather than creating a new deployment. This preserves the configured `/exec` endpoint.
 
 ## Privacy and research use
 
@@ -186,7 +189,7 @@ CR-20260728171127-ceb02c08b4b4
 ### 마우스·터치패드·터치 화면
 
 - 보이는 스티커 드래그: 해당 층을 정확히 90° 한 번 회전
-- 빈 배경 드래그: 카메라 시점 이동
+- 빈 배경 드래그: U·D 시점을 넘어 수직으로 한 바퀴 도는 동작까지 제한 없이 카메라 회전
 - 마우스 휠 또는 터치패드 두 손가락 스크롤: 확대·축소
 - 터치 화면 두 손가락 핀치: 확대·축소
 - 한 번의 스티커 드래그에서 `R2`와 같은 2회전은 발생하지 않음
@@ -226,13 +229,13 @@ CR-20260728171127-ceb02c08b4b4
 
 완료 화면은 수집기가 실제 저장 또는 기존 동일 파일의 존재를 확인한 뒤에만 제출 성공으로 처리합니다. 문제가 생기면 JSON을 직접 저장해 제출할 수 있습니다.
 
-수집기 코드는 다음 위치에 포함되어 있습니다.
+공개 페이지는 다음 설정 파일을 통해 배포된 수집기에 연결됩니다.
 
 ```text
-collector/google-apps-script/Code.gs
+collector-config.js
 ```
 
-이 파일은 별도로 배포하는 Google Apps Script 웹 앱의 소스 코드입니다. GitHub Pages가 이 코드를 실행하는 것은 아닙니다.
+별도로 배포된 Google Apps Script 서버 소스는 이 공개 GitHub Pages 저장소 밖에서 관리합니다. GitHub Pages는 브라우저 클라이언트만 제공합니다.
 
 ## 지원 언어
 
@@ -255,28 +258,31 @@ collector/google-apps-script/Code.gs
 
 ```text
 cube-rev/
-├─ .nojekyll
+├─ .github/workflows/validate-static.yml
 ├─ index.html
 ├─ CUBE-REV_0.6.11_GitHub_Pages_Pilot.html
+├─ collector-config.js
 ├─ README.md
+├─ robots.txt
 ├─ js/
 │  ├─ camera-zoom-controller.js
 │  ├─ collector-client.js
 │  ├─ cube-drag-controller.js
 │  ├─ i18n-controller.js
 │  └─ responsive-layout-controller.js
-└─ collector/
-   └─ google-apps-script/
-      └─ Code.gs
+└─ scripts/
+   └─ validate-static.mjs
 ```
 
 `index.html`은 GitHub Pages가 여는 진입 파일입니다. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`은 직접 다운로드, 버전별 보관, GitHub Release 첨부를 위한 이름 있는 독립 실행 사본이므로 의도적으로 남깁니다. 0.6.11 안에서는 두 HTML의 내용이 같아야 합니다.
+
+정적 검증기와 GitHub Actions는 버전 표류, 누락된 컨트롤러 파일, 캐시 키 불일치, 두 HTML 사본의 내용 차이, 자유 카메라 회전의 회귀를 자동으로 막습니다.
 
 ## 배포
 
 `index.html`이 저장소 최상단에 오도록 위 파일을 업로드합니다. GitHub Pages에서는 `main` 브랜치의 루트 폴더를 배포 대상으로 설정합니다.
 
-`Code.gs`를 교체한 뒤에는 새로운 웹 앱 주소를 만들기보다 기존 Apps Script 배포를 **새 버전으로 업데이트**해야 합니다. 그래야 설정된 `/exec` 주소가 유지됩니다.
+수집기 서버를 바꿀 때는 새로운 웹 앱 주소를 만들기보다 기존 Apps Script 배포를 **새 버전으로 업데이트**해야 합니다. 그래야 설정된 `/exec` 주소가 유지됩니다.
 
 ## 개인정보와 연구 이용
 

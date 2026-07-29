@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080d15">
+<meta name="color-scheme" content="dark">
 <title>CUBE-REV 0.6.11 Hidden-scramble State Recovery Pilot</title>
 <style>
 :root{--bg:#0d1117;--panel:#151b24;--panel2:#1c2430;--line:#2b3544;--text:#e8edf5;--muted:#9ca9ba;--accent:#79a8ff;--good:#50cf8d;--bad:#ff7676;--shadow:0 18px 50px rgba(0,0,0,.32)}
@@ -49,6 +51,28 @@ html[data-form-factor="phone"] #keymapSetup,html[data-pointer-mode="coarse"][dat
 
 @media(max-width:720px){.modeChoice{grid-template-columns:repeat(3,minmax(0,1fr))}.modeChoice .choiceCard{flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:5px}.modeChoice .choiceTitle{font-size:.71rem;line-height:1.2}.modeChoice .choiceDesc{display:none}.modeChoice .choiceCard input[type="radio"]{margin:0}.modeField>.sectionHint{margin-top:4px}}
 html[data-form-factor="tablet"] #keymapSetup{display:none}
+
+/* 0.6.11 orbit + interface polish. Keeps the experiment visually neutral. */
+:root{--bg:#080d15;--panel:#111925;--panel2:#162131;--line:rgba(151,177,214,.19);--text:#edf3fb;--muted:#9aaac0;--accent:#82adff;--accent-strong:#4f82eb;--focus:#a8c8ff;--good:#5dd69b;--bad:#ff7e88;--shadow:0 28px 90px rgba(0,0,0,.42)}
+html,body{color-scheme:dark;background:radial-gradient(circle at 18% -8%,rgba(66,111,190,.23),transparent 36%),radial-gradient(circle at 92% 14%,rgba(53,173,175,.11),transparent 28%),linear-gradient(145deg,#080d15 0%,#0b111b 48%,#070b11 100%);background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.014) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.5),transparent 72%)}
+.screen{isolation:isolate}.card{width:min(980px,96vw);background:linear-gradient(155deg,rgba(19,29,43,.97),rgba(13,21,32,.95));border-color:rgba(160,185,224,.2);box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.035);backdrop-filter:blur(18px)}
+.startCard{position:relative;overflow:hidden}.startCard::after{content:"";position:absolute;right:-90px;top:-120px;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle,rgba(87,133,222,.13),transparent 68%);pointer-events:none}
+h1,h2{letter-spacing:-.035em;text-wrap:balance}.startCard h1{max-width:790px;line-height:1.1}.startSubtitle{max-width:760px}.eyebrow{color:#9fc0ff;letter-spacing:.16em}
+button{border-color:rgba(151,177,214,.24);background:linear-gradient(180deg,#263348,#202b3d);box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 5px 14px rgba(0,0,0,.13);transition:transform .16s ease,border-color .16s ease,background .16s ease,box-shadow .16s ease}
+button:hover{background:linear-gradient(180deg,#31415b,#28364c);border-color:rgba(157,190,242,.42);transform:translateY(-1px)}button:active{transform:translateY(0)}
+button.primary{background:linear-gradient(135deg,#5b8ff5,#356fdc);border-color:#77a3fa;box-shadow:0 10px 26px rgba(49,105,214,.27),inset 0 1px 0 rgba(255,255,255,.2)}button.primary:hover{background:linear-gradient(135deg,#6a9cf8,#447be3)}
+button.danger{background:linear-gradient(180deg,#42262d,#352027);border-color:rgba(255,126,136,.34)}
+button:focus-visible,input:focus-visible,select:focus-visible,.choiceCard:focus-within{outline:3px solid rgba(168,200,255,.38);outline-offset:2px}
+.field input:not([type="radio"]):not([type="checkbox"]),.field select{background:rgba(7,13,22,.74);border-color:rgba(151,177,214,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.025);transition:border-color .16s ease,box-shadow .16s ease,background .16s ease}.field input:hover,.field select:hover{border-color:rgba(151,185,238,.4)}.field input:focus,.field select:focus{border-color:#78a6fb;background:#0b1421;box-shadow:0 0 0 3px rgba(103,151,237,.13)}
+.choiceCard{position:relative;background:linear-gradient(155deg,rgba(17,27,42,.92),rgba(12,20,32,.92));border-color:rgba(151,177,214,.19);transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease}.choiceCard:hover{transform:translateY(-2px);border-color:rgba(127,171,243,.46);background:linear-gradient(155deg,rgba(23,36,56,.96),rgba(14,24,38,.96));box-shadow:0 12px 28px rgba(0,0,0,.18)}.choiceCard:has(input:checked){border-color:rgba(117,164,244,.8);background:linear-gradient(145deg,rgba(40,67,108,.54),rgba(15,28,45,.96));box-shadow:inset 0 0 0 1px rgba(130,176,255,.15),0 10px 28px rgba(37,80,154,.16)}.choiceCard:has(input:checked) .choiceTitle{color:#f4f8ff}.choiceCard input[type="radio"]{accent-color:#6fa4ff}
+.subpanel{background:linear-gradient(145deg,rgba(9,17,28,.82),rgba(12,23,37,.7));border-color:rgba(151,177,214,.17);box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}.notice{background:rgba(13,24,39,.78);border-left-color:#75a8ff}.consentNotice{border:1px solid rgba(151,177,214,.16);border-left:3px solid #75a8ff}
+.startSystemStatus{padding:10px 12px;border-radius:12px;background:rgba(8,16,27,.48);border:1px solid rgba(151,177,214,.12)}.startSystemStatus p{margin:.24rem 0}
+.languageDock{background:rgba(8,14,23,.9);border-color:rgba(151,177,214,.22);box-shadow:0 14px 34px rgba(0,0,0,.31),inset 0 1px 0 rgba(255,255,255,.035)}
+.topbar,.bottomBar{background:rgba(8,13,21,.88);backdrop-filter:blur(16px);border-color:rgba(151,177,214,.16)}.metric{background:linear-gradient(145deg,rgba(21,31,46,.94),rgba(14,23,36,.94));border-color:rgba(151,177,214,.16)}.metric span{color:#91a5c0}.metric strong{color:#f0f5fc}
+.canvasWrap{background:radial-gradient(circle at 50% 38%,#26364b 0%,#111a27 58%,#0a1019 100%);border-color:rgba(151,177,214,.22);box-shadow:inset 0 0 110px rgba(0,0,0,.28),0 18px 42px rgba(0,0,0,.2)}#statusText,#orientationHud{background:rgba(6,11,18,.72);border-color:rgba(170,195,231,.16);backdrop-filter:blur(10px)}
+.sidePanel{background:linear-gradient(145deg,rgba(18,28,42,.96),rgba(13,21,33,.96));border-color:rgba(151,177,214,.17);box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}.moves button{background:linear-gradient(180deg,#243249,#1d293b)}.moves button:hover{background:linear-gradient(180deg,#30425f,#26354d)}
+@media(max-width:720px){body::before{background-size:36px 36px}.card{backdrop-filter:blur(12px)}.startCard::after{width:220px;height:220px;right:-100px;top:-100px}.startSystemStatus{padding:8px 9px}.choiceCard:hover{transform:none}.bottomBar{box-shadow:0 -16px 38px rgba(0,0,0,.24)}}
 
 </style>
 </head>
@@ -135,17 +159,17 @@ window.CUBE_REV_COLLECTOR_CONFIG = {
   timeoutMs: 45000
 };
 </script>
-<script src="./js/i18n-controller.js?v=0611-final-1"></script>
-<script src="./js/collector-client.js?v=0611-final-1"></script>
-<script src="./js/cube-drag-controller.js?v=0611-final-1"></script>
-<script src="./js/camera-zoom-controller.js?v=0611-final-1"></script>
-<script src="./js/responsive-layout-controller.js?v=0611-final-1"></script>
+<script src="./js/i18n-controller.js?v=0611-orbit-ui-1"></script>
+<script src="./js/collector-client.js?v=0611-orbit-ui-1"></script>
+<script src="./js/cube-drag-controller.js?v=0611-orbit-ui-1"></script>
+<script src="./js/camera-zoom-controller.js?v=0611-orbit-ui-1"></script>
+<script src="./js/responsive-layout-controller.js?v=0611-orbit-ui-1"></script>
 <script>
 'use strict';
 
 const PROJECT = 'CUBE-REV';
 const VERSION = '0.6.11';
-const BUILD_ID = '0.6.11-final-multilingual-ui-1';
+const BUILD_ID = '0.6.11-orbit-ui-1';
 const SETTINGS_KEY = 'CUBE_REV_USER_SETTINGS_V1';
 const AUTOSAVE_KEY = 'CUBE_REV_0.6.11_AUTOSAVE';
 const COLLECTOR_CONFIG = CubeRevCollectorClient.normalizeConfig({
@@ -726,7 +750,7 @@ function newSession(mode,custom=null,generated=null){
   session={project:PROJECT,version:VERSION,build_id:BUILD_ID,session_id:id,session_id_scheme:'CR-YYYYMMDDhhmmss-randomhex',anonymous_session:true,mode,created_at:created.toISOString(),performance_time_origin:performance.timeOrigin,randomization_seed:seed,
     user_agent:navigator.userAgent,platform:navigator.platform,language:i18nController.locale,browser_language:navigator.language,screen:{width:screen.width,height:screen.height,color_depth:screen.colorDepth,pixel_depth:screen.pixelDepth},
     viewport:{width:innerWidth,height:innerHeight,dpr:devicePixelRatio},participant_metadata:{age_band:document.getElementById('ageBand')?.value??null,experience_level:document.getElementById('experienceLevel')?.value??null,consent_checked:true,consent_recorded_at:new Date().toISOString(),best_time_seconds:(()=>{const v=document.getElementById('bestTime')?.value;return v?Number(v):null})()},
-    interface_settings:{keymap_mode:keymapMode,interface_language:i18nController.locale,language_selection_source:i18nController.source,execution_mode:mode,whole_cube_rotation_policy:'logged_losslessly_then_conjugated_out_in_postprocessing',xyz_metric_policy:'exclude_as_cost_zero_reorientation; subsequent face turns require frame conjugation',camera_drag_enabled:true,sticker_drag_face_turn_enabled:true,cube_drag_rotation_enabled:false,pointer_gesture_policy:'background_drag_camera; sticker_drag_single_quarter_face_turn; endpoint_direction_resolver_v1',move_buttons_enabled:true,response_animation:true,compass_policy:'operational_move_axes_not_original_color_face_identity',initial_camera_policy:'fixed_front_yaw0_pitch0_zoom1',settings_persistence:'localStorage_except_consent',responsive_layout_policy:'adaptive_desktop_tablet_phone_v1',ui_environment:responsiveLayoutController?.snapshot?.()||null,touch_input_supported:(navigator.maxTouchPoints||0)>0},
+    interface_settings:{keymap_mode:keymapMode,interface_language:i18nController.locale,language_selection_source:i18nController.source,execution_mode:mode,whole_cube_rotation_policy:'logged_losslessly_then_conjugated_out_in_postprocessing',xyz_metric_policy:'exclude_as_cost_zero_reorientation; subsequent face turns require frame conjugation',camera_drag_enabled:true,camera_orbit_policy:'unbounded_yaw_pitch_full_vertical_orbit_v1',sticker_drag_face_turn_enabled:true,cube_drag_rotation_enabled:false,pointer_gesture_policy:'background_drag_camera; sticker_drag_single_quarter_face_turn; endpoint_direction_resolver_v1',move_buttons_enabled:true,response_animation:true,compass_policy:'operational_move_axes_not_original_color_face_identity',initial_camera_policy:'fixed_front_yaw0_pitch0_zoom1',settings_persistence:'localStorage_except_consent',responsive_layout_policy:'adaptive_desktop_tablet_phone_v1',ui_environment:responsiveLayoutController?.snapshot?.()||null,touch_input_supported:(navigator.maxTouchPoints||0)>0},
     generator_settings:generatorSettings,data_submission:{collector_configured:collectorConfigured(),manual_portal_configured:manualCollectorConfigured(),study_id:COLLECTOR_CONFIG.studyId,auto_submit_on_complete:COLLECTOR_CONFIG.autoSubmitOnComplete,status:'not_attempted',attempt_count:0,local_download_count:0,manual_portal_open_count:0},hidden_duration_ms:0,presentation_policy:{mode:'terminal_state_only',generating_path_hidden:true,scramble_animation_shown:false,scramble_text_shown:false},planned_trial_count:mode==='generated'?(generatorSettings.trial_limit??null):plan.length,trial_plan:plan,trials:[],events:[],self_test:window.__CUBEREV_SELFTEST__};
   sessionStartPerf=performance.now();eventCounter=0;session._plan=plan;session._index=0;session._rng=makeRng(seed);session._active_started_perf=sessionStartPerf;session._hidden_started_perf=null;
   if(mode==='generated')session._plan.push(generatedTrial(session,0));
@@ -1037,7 +1061,13 @@ function runSelfTests(){
   for(const r of ['x','y','z']){let s=solved;for(let i=0;i<4;i++)s=applyMove(s,r);check(r+'^4 full',stateEqual(s,solved));check(r+' quotient invariant',distanceOfState(applyMove(solved,r))===0,distanceOfState(applyMove(solved,r)));}
   check('canonical solved id',canonicalStateId(solved)===0,canonicalStateId(solved));
   check("U' U2 => U",JSON.stringify(sameFaceNormalize(["U'",'U2']))===JSON.stringify(['U']),sameFaceNormalize(["U'",'U2']));
-  check('R4 local identity',sameFaceNormalize(['R','R','R','R']).length===0);check('undo inverse U2',inverseMoveToken('U2')==='U2');check("undo inverse x'",inverseMoveToken("x'")==='x');check('version unified',VERSION==='0.6.11'&&TRIAL_MANIFEST.version==='0.6.11');check('SOLID controllers loaded',typeof CubeDragController==='function'&&typeof CameraZoomController==='function'&&typeof CubeRevCollectorClient==='function'&&typeof CubeRevI18nController==='function'&&typeof ResponsiveLayoutController==='function');check('trial timeout does not auto-advance',String(enableInput).includes('capTrialTiming')&&!String(enableInput).includes("finishTrial('timed_out')"));check('confirmed receipt protocol',typeof getCollectorClient().checkHealth==='function'&&String(CubeRevCollectorClient).includes('postWithConfirmedReceipt'));check('collector endpoint embedded',collectorConfigured()&&COLLECTOR_CONFIG.endpoint.includes('/macros/s/')&&COLLECTOR_CONFIG.endpoint.endsWith('/exec'));check('export version authoritative',(()=>{const fake=session;return VERSION==='0.6.11';})());const generatorTest=generateExactDistanceScramble(makeRng(0x0610),1,6,2000);check('generator exact proposal',generatorTest.distance===generatorTest.proposal_distance,generatorTest);
+  check('R4 local identity',sameFaceNormalize(['R','R','R','R']).length===0);check('undo inverse U2',inverseMoveToken('U2')==='U2');check("undo inverse x'",inverseMoveToken("x'")==='x');
+  const releaseScripts=[...document.querySelectorAll('script[src^="./js/"]')].map(el=>el.getAttribute('src')||'');
+  check('version unified',VERSION==='0.6.11'&&TRIAL_MANIFEST.version===VERSION&&COLLECTOR_CONFIG.studyId===`CUBE-REV-${VERSION}`&&BUILD_ID.startsWith(VERSION+'-'));
+  check('release cache key unified',releaseScripts.length===5&&releaseScripts.every(src=>src.endsWith('?v=0611-orbit-ui-1')),releaseScripts);
+  check('document version unified',document.title.includes(VERSION)&&document.querySelector('.eyebrow')?.textContent?.includes(VERSION));
+  check('full vertical camera orbit',!String(CubeDragController).includes('pitchLimit')&&!String(CubeDragController).includes('Math.max(-this.pitchLimit'));
+  check('SOLID controllers loaded',typeof CubeDragController==='function'&&typeof CameraZoomController==='function'&&typeof CubeRevCollectorClient==='function'&&typeof CubeRevI18nController==='function'&&typeof ResponsiveLayoutController==='function');check('trial timeout does not auto-advance',String(enableInput).includes('capTrialTiming')&&!String(enableInput).includes("finishTrial('timed_out')"));check('confirmed receipt protocol',typeof getCollectorClient().checkHealth==='function'&&String(CubeRevCollectorClient).includes('postWithConfirmedReceipt'));check('collector endpoint embedded',collectorConfigured()&&COLLECTOR_CONFIG.endpoint.includes('/macros/s/')&&COLLECTOR_CONFIG.endpoint.endsWith('/exec'));check('export version authoritative',(()=>{const fake=session;return VERSION==='0.6.11';})());const generatorTest=generateExactDistanceScramble(makeRng(0x0610),1,6,2000);check('generator exact proposal',generatorTest.distance===generatorTest.proposal_distance,generatorTest);
   for(const t of TRIAL_MANIFEST.trials.filter(x=>x.expected_state_id!=null)){
     if(t.scramble){const st=applyAlg(solvedState(),String(t.scramble).split(/\s+/));check('stimulus '+t.trial_id,canonicalStateId(st)===t.expected_state_id,{actual:canonicalStateId(st),expected:t.expected_state_id});}
     for(const opt of (t.history_options||[])){const st=applyAlg(solvedState(),String(opt.scramble).split(/\s+/));check('history '+t.trial_id+' '+opt.label,canonicalStateId(st)===t.expected_state_id,{actual:canonicalStateId(st),expected:t.expected_state_id});}

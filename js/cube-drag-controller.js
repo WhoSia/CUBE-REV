@@ -23,7 +23,6 @@
       this.minDirectionScore=Math.max(0.5,Math.min(0.99,Number(options.minDirectionScore)||0.72));
       this.minScoreMargin=Math.max(0,Math.min(0.5,Number(options.minScoreMargin)||0.08));
       this.minStraightness=Math.max(0.25,Math.min(1,Number(options.minStraightness)||0.55));
-      this.pitchLimit=Number(options.pitchLimit)||1.35;
       this.cameraSensitivity=Number(options.cameraSensitivity)||0.008;
       this.cameraSensitivityTouch=Number(options.cameraSensitivityTouch)||0.0065;
       this.active=null;
@@ -128,9 +127,10 @@
       const dx=p.x-a.start.x,dy=p.y-a.start.y;
       a.maxDistance=Math.max(a.maxDistance,Math.hypot(dx,dy));
       if(a.mode==='camera'){
+        const sensitivity=a.pointerType==='touch'?this.cameraSensitivityTouch:this.cameraSensitivity;
         this.setCamera({
-          yaw:a.cameraStart.yaw+dx*(a.pointerType==='touch'?this.cameraSensitivityTouch:this.cameraSensitivity),
-          pitch:Math.max(-this.pitchLimit,Math.min(this.pitchLimit,a.cameraStart.pitch+dy*(a.pointerType==='touch'?this.cameraSensitivityTouch:this.cameraSensitivity))),
+          yaw:a.cameraStart.yaw+dx*sensitivity,
+          pitch:a.cameraStart.pitch+dy*sensitivity,
           zoom:a.cameraStart.zoom
         });
       }else{
