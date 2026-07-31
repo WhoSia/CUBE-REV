@@ -1,13 +1,15 @@
-// CUBE-REV 0.7.12 governance-locked collector configuration.
-// A receipt-v2 endpoint will be bound only during the separate 0.7.13 dry run.
+// CUBE-REV 0.7.12 verified receipt-v2 collector configuration.
+// Enabled after health, synthetic storage, checksum, receipt, and deduplication checks.
 window.CUBE_REV_COLLECTOR_CONFIG = {
-  enabled: false,
-  endpoint: '',
-  manualUploadUrl: '',
+  enabled: true,
+  endpoint: 'https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec',
+  manualUploadUrl: 'https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec',
   studyId: 'CUBE-REV-0.7.12',
-  collectorId: 'CUBE-REV-0712-RUN-IN-LOCKED',
+  collectorId: 'CUBE-REV-0712-MAIN',
   protocolVersion: 'receipt-v2',
-  autoSubmitOnComplete: false,
+  autoSubmitOnComplete: true,
   gzipWhenAvailable: true,
-  timeoutMs: 30000
+  timeoutMs: 90000,
+  receiptPollIntervalMs: 1500,
+  healthCheckTimeoutMs: 12000
 };

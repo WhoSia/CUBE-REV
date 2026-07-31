@@ -17,7 +17,7 @@ CUBE-REV asks how far a person can mentally reverse a cube state when the genera
 - whole-cube reorientation versus metric face turns;
 - interaction method, device type, viewport, and interface language.
 
-The current public build is a governance-locked run-in. Do not use it for prospective human data collection; the collector and eligibility clock remain disabled until the later receipt and governance gates pass.
+The current public build uses the verified 0.7.12 receipt-v2 collector. Health identity, synthetic storage, checksum confirmation, receipt lookup, and duplicate handling were certified before activation. The prospective eligibility clock remains `NOT_STARTED` until it is separately authorized.
 
 ## What participants do
 
@@ -25,7 +25,7 @@ The current public build is a governance-locked run-in. Do not use it for prospe
 2. View a scrambled 2×2 cube state.
 3. Restore it using sticker drags, on-screen buttons, or a desktop keyboard.
 4. Continue for the selected number of trials or end the session manually.
-5. Save the run-in JSON locally. Automatic collection is intentionally disabled.
+5. Complete the session. The JSON is submitted through the verified receipt-v2 collector, and it can also be saved locally.
 
 No name, email address, or participant-code field is requested by the experiment page. Each session receives a random identifier such as:
 
