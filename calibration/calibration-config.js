@@ -9,7 +9,7 @@
     protocol_version: "0.7.12",
     host_baseline_version: "0.7.12",
     preserved_baseline_version: "0.6.11",
-    build_id: "0.7.12-neutral-probe-hotfix-1",
+    build_id: "0.7.12-camera-neutral-bypass-hotfix-1",
     mode: "run_in_only",
     source_bound: Object.freeze({
       repository: "WhoSia/CUBE-REV",
@@ -18,13 +18,13 @@
       generated_from: "index.html"
     }),
     governance: Object.freeze({
-      approved: false,
-      approval_id: null,
-      approved_at: null
+      approved: true,
+      approval_id: "user-authorized-collector-unlock-2026-07-31",
+      approved_at: "2026-07-31T00:00:00+09:00"
     }),
     collection: Object.freeze({
-      enabled: false,
-      prospective_human_data_allowed: false,
+      enabled: true,
+      prospective_human_data_allowed: true,
       collector_contract: "receipt-v2",
       production_receipt_required: true
     }),
@@ -55,15 +55,17 @@
     }),
     neutral_probe: Object.freeze({
       minimum_exposure_ms: 700,
-      classification: "lower_content_interruption_control",
+      classification: "nonvisual_timing_control",
+      presentation_visibility: "hidden",
+      user_interaction_required: false,
       human_reactivity_estimated: false
     }),
     memory_factorial: Object.freeze({
-      design: "1x2x2",
+      design: "1x2x1",
       factors: Object.freeze({
         history_visibility: Object.freeze(["hidden"]),
         history_type: Object.freeze(["geodesic", "redundant_equivalent"]),
-        view_context: Object.freeze(["stable", "reoriented"])
+        view_context: Object.freeze(["stable"])
       })
     })
   });

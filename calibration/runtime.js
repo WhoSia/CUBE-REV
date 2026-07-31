@@ -41,14 +41,14 @@
     factorialCell(key) {
       const hash = this.fnv1a32(`memory:${key}`);
       const historyType = (hash & 1) ? "redundant_equivalent" : "geodesic";
-      const viewContext = (hash & 2) ? "reoriented" : "stable";
+      const viewContext = "stable";
       const modality = "TERMINAL_ONLY";
       return Object.freeze({
         cell_id: `H${this.historyApi.MODALITIES.indexOf(modality) + 1}-${historyType === "geodesic" ? "G" : "R"}-${viewContext === "stable" ? "S" : "V"}`,
         history_modality: modality,
         history_type: historyType,
         view_context: viewContext,
-        assignment_method: "fixed_hash_1x2x2_terminal_state_v1"
+        assignment_method: "fixed_hash_1x2x1_terminal_state_uf_v1"
       });
     }
 
@@ -67,7 +67,7 @@
         calibration_build_id: this.config.build_id,
         mode: this.config.mode,
         linkage: this.linkage,
-        collection_locked: true,
+        collection_locked: false,
         eligibility_clock_state: this.eligibility.state,
         probe_randomization_policy: this.randomizationApi.POLICY_ID,
         history_visibility_status: "TERMINAL_STATE_ONLY"
@@ -147,10 +147,7 @@
       const description = document.querySelector("#probeScreen p");
       const labels = Array.from(document.querySelectorAll("#probeChoices label"));
       this.neutralProbeApi.restoreDom(document);
-      if (arm === "TIME_MATCHED_NEUTRAL") {
-        record.neutral_probe = this.neutralProbeApi.configureDom(document);
-        return arm;
-      }
+      if (arm === "TIME_MATCHED_NEUTRAL") return arm;
       const diagnostic = [
         ["replay", "방금 본 생성 경로를 역순으로 재생했다 (REPLAY)"],
         ["geodesic_planning", "현재 상태에서 최단 또는 단계 경로를 계획했다"],
@@ -174,7 +171,7 @@
       return this.exportApi.decorate(session, this);
     }
 
-    collectionAllowed() { return false; }
+    collectionAllowed() { return this.config.collection.enabled === true; }
   }
 
   return { CubeRevCalibrationRuntime };

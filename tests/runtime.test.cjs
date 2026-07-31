@@ -21,10 +21,10 @@ const { CubeRevCalibrationRuntime } = require("../calibration/runtime.js");
 assert.equal(config.protocol_version, "0.7.12");
 assert.equal(config.host_baseline_version, "0.7.12");
 assert.equal(config.preserved_baseline_version, "0.6.11");
-assert.equal(config.collection.enabled, false);
+assert.equal(config.collection.enabled, true);
 assert.deepEqual(config.history_presentation.modalities, ["TERMINAL_ONLY"]);
 assert.equal(config.history_presentation.generation_motion_visible, false);
-assert.equal(config.memory_factorial.design, "1x2x2");
+assert.equal(config.memory_factorial.design, "1x2x1");
 assert.equal(config.eligibility_clock.activation_enabled, false);
 assert.equal(clock.evaluate(config).state, "NOT_STARTED");
 assert.throws(() => clock.activate(), /governance-controlled/);
@@ -37,7 +37,7 @@ const storage = {
 const runtime = new CubeRevCalibrationRuntime({ storage });
 const modalities = new Set(Array.from({length:512},(_,i)=>runtime.factorialCell(`cell-${i}`).history_modality));
 assert.deepEqual(modalities, new Set(history.MODALITIES));
-assert.equal(runtime.collectionAllowed(), false);
+assert.equal(runtime.collectionAllowed(), true);
 assert.equal(runtime.eligibility.state, "NOT_STARTED");
 
 const trial = runtime.resolveTrial({

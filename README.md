@@ -172,7 +172,7 @@ CUBE-REV는 생성 과정을 보여 주지 않았을 때 사람이 큐브 상태
 - 전체 큐브 재정향과 거리 계산에 포함되는 면 회전의 구분
 - 입력 방식, 장치 종류, 화면 크기, 인터페이스 언어
 
-현재 공개 빌드는 governance가 잠긴 run-in입니다. 후속 receipt·governance gate가 통과하기 전에는 인간 자료를 전향적으로 수집하지 않으며 수집기와 eligibility clock도 비활성 상태입니다.
+현재 공개 빌드는 사용자 승인 후 receipt-v2 수집기 `CUBE-REV-0712-MAIN`에 연결되어 있습니다. eligibility clock은 별도이며 계속 `NOT_STARTED` 상태입니다.
 
 ## 참가자가 하는 일
 

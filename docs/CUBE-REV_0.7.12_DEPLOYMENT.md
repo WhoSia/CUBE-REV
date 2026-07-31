@@ -3,13 +3,13 @@
 ## Release boundary
 
 - Public host version: `0.7.12`
-- Build: `0.7.12-neutral-probe-hotfix-1`
+- Build: `0.7.12-camera-neutral-bypass-hotfix-1`
 - GitHub Pages source: `main` / repository root
 - Preserved baseline: `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`
-- Collector: disabled and unbound
-- Receipt contract: `receipt-v2`, dry run pending
+- Collector: `CUBE-REV-0712-MAIN`, active after user authorization
+- Receipt contract: `receipt-v2`
 - Eligibility clock: `NOT_STARTED`
-- Prospective human collection: prohibited
+- Prospective human collection: authorized; eligibility clock remains inactive
 
 `index.html` and `CUBE-REV_0.7.12_GitHub_Pages_Pilot.html` must remain
 byte-identical. The verified 0.6.11 archive remains unchanged and its normalized
@@ -32,8 +32,10 @@ ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31
 7. Generation motion and path-notation text are never shown to participants.
 8. Hidden generator histories remain apparatus metadata and cannot support
    replay inference.
-9. The neutral interruption contains no strategy, comfort, outcome, difficulty,
-   or confidence question and enforces a 700 ms floor.
+9. The neutral timing control is completely nonvisual, requires no participant
+   interaction, and enforces a 700 ms floor in the background.
+10. Every trial starts from the standardized camera orientation Top U / Front F
+    / Right R; the previous reoriented-view cell is no longer assigned.
 
 ## Interface release changes
 
@@ -54,13 +56,9 @@ ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31
 - 10,023 hidden-history visibility traces
 - nominal 2,400 ms scheduling contract
 - neutral-probe content isolation and 700 ms floor
-- version, archive, cache-key, and governance-lock consistency
+- version, archive, cache-key, collector binding, and eligibility-clock consistency
 - mocked receipt-v2 client integration
 
-## Explicitly deferred to 0.7.13
-
-- live synthetic receipt against a separate calibration collector
-- any Google Apps Script modification or deployment
-
-Human recruitment and prospective clock activation remain out of scope until
-governance and eligibility gates are satisfied.
+The production collector was enabled only after the user completed the verified
+receipt-v2 deployment and explicitly authorized collection. Prospective clock
+activation remains out of scope and stays `NOT_STARTED`.

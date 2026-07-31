@@ -39,7 +39,7 @@
       setTimeout(() => { submit.disabled = false; }, remaining);
     }
     return {
-      probe_type: "lower_content_interruption_control",
+      probe_type: "nonvisual_timing_control",
       minimum_exposure_ms: MINIMUM_EXPOSURE_MS,
       started_at_perf_ms: startedAt,
       forbidden_content: FORBIDDEN_CONTENT

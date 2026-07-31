@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sourcePath = path.join(root, "index.html");
 const outputPath = path.join(root, "calibration", "index.html");
-const EXPECTED_SOURCE_SHA256 = "bd8e6d68bf7b50dda2297a849b39e8cb5ba2b484d37d64bf81e94b491c982a1c";
+const EXPECTED_SOURCE_SHA256 = "e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf";
 const sha256 = value => crypto.createHash("sha256").update(value).digest("hex");
 
 const source = fs.readFileSync(sourcePath, "utf8").replace(/\r\n/g, "\n");
@@ -24,7 +24,7 @@ const requiredAnchors = [
   '<script src="./collector-config.js',
   '<script src="./js/camera-orbit.js',
   "const VERSION = '0.7.12';",
-  "const BUILD_ID = '0.7.12-neutral-probe-hotfix-1';"
+  "const BUILD_ID = '0.7.12-camera-neutral-bypass-hotfix-1';"
 ];
 for (const anchor of requiredAnchors) {
   if (!host.includes(anchor)) throw new Error(`Source-bound anchor missing: ${anchor}`);
