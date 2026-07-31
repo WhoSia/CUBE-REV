@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sourcePath = path.join(root, "index.html");
 const outputPath = path.join(root, "calibration", "index.html");
-const EXPECTED_SOURCE_SHA256 = "2573d0a3aa6fb54b4bd597a5891fb67304876e3c93f4917d4cc88a266daec1b7";
+const EXPECTED_SOURCE_SHA256 = "bd8e6d68bf7b50dda2297a849b39e8cb5ba2b484d37d64bf81e94b491c982a1c";
 const sha256 = value => crypto.createHash("sha256").update(value).digest("hex");
 
 const source = fs.readFileSync(sourcePath, "utf8").replace(/\r\n/g, "\n");
@@ -21,15 +21,17 @@ const requiredAnchors = [
   '<script src="./calibration/randomization.js',
   '<script src="./calibration/history-presentation.js',
   '<script src="./calibration/neutral-probe.js',
+  '<script src="./collector-config.js',
   '<script src="./js/camera-orbit.js',
   "const VERSION = '0.7.12';",
-  "const BUILD_ID = '0.7.12-terminal-state-hotfix-1';"
+  "const BUILD_ID = '0.7.12-neutral-probe-hotfix-1';"
 ];
 for (const anchor of requiredAnchors) {
   if (!host.includes(anchor)) throw new Error(`Source-bound anchor missing: ${anchor}`);
 }
 
 host = host
+  .replaceAll('src="./collector-config.js', 'src="../collector-config.js')
   .replaceAll('src="./calibration/', 'src="./')
   .replaceAll('src="./js/', 'src="../js/');
 

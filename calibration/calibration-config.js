@@ -9,7 +9,7 @@
     protocol_version: "0.7.12",
     host_baseline_version: "0.7.12",
     preserved_baseline_version: "0.6.11",
-    build_id: "0.7.12-terminal-state-hotfix-1",
+    build_id: "0.7.12-neutral-probe-hotfix-1",
     mode: "run_in_only",
     source_bound: Object.freeze({
       repository: "WhoSia/CUBE-REV",

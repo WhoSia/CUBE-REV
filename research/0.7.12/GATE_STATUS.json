@@ -1,7 +1,7 @@
 {
   "project": "CUBE-REV",
   "protocol_version": "0.7.12",
-  "build_id": "0.7.12-terminal-state-hotfix-1",
+  "build_id": "0.7.12-neutral-probe-hotfix-1",
   "release_status": "ENGINEERING_FIDELITY_CERTIFIED",
   "source_bound_patch": {
     "status": "PASS",

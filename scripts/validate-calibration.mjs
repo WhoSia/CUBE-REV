@@ -11,6 +11,7 @@ const archive = await read("CUBE-REV_0.7.12_GitHub_Pages_Pilot.html");
 const baseline = await read("CUBE-REV_0.6.11_GitHub_Pages_Pilot.html");
 const host = await read("calibration/index.html");
 const expectedHost = index.replace(/\r\n/g, "\n")
+  .replaceAll('src="./collector-config.js', 'src="../collector-config.js')
   .replaceAll('src="./calibration/', 'src="./')
   .replaceAll('src="./js/', 'src="../js/');
 
@@ -23,7 +24,7 @@ assert.equal(
 assert.equal(host, expectedHost, "source-bound calibration host was not built from index.html");
 assert.match(host, /CUBE-REV 0\.7\.12/);
 assert.match(host, /const VERSION = '0\.7\.12'/);
-assert.match(host, /const BUILD_ID = '0\.7\.12-terminal-state-hotfix-1'/);
+assert.match(host, /const BUILD_ID = '0\.7\.12-neutral-probe-hotfix-1'/);
 assert.match(host, /enabled: false/);
 assert.match(host, /endpoint: ''/);
 assert.match(host, /autoSubmitOnComplete: false/);
@@ -32,7 +33,7 @@ assert.match(host, /calibrationRuntime\.decorateExport/);
 assert.match(host, /calibrationRuntime\.presentAssignedHistory/);
 assert.match(host, /calibrationRuntime\.decideProbe/);
 assert.match(host, /screen_relative_matrix_360_orbit_v1/);
-assert.match(host, /COLLECTION LOCKED/);
+assert.match(host, /COLLECTION ACTIVE/);
 assert.match(host, /NOT_STARTED/);
 assert.match(host, /modalities:\['TERMINAL_ONLY'\]/);
 assert.doesNotMatch(host, /history_presentation'\)/);

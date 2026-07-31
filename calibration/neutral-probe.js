@@ -20,21 +20,18 @@
     const now = options.now || (() => performance.now());
     const title = document.querySelector("#probeScreen h2");
     const description = document.querySelector("#probeScreen p");
+    const choices = document.getElementById("probeChoices");
     const labels = Array.from(document.querySelectorAll("#probeChoices label"));
     const confidence = document.getElementById("probeConfidence")?.closest(".field");
     const submit = document.getElementById("probeSubmit");
     const startedAt = now();
     if (title) title.textContent = "●";
     if (description) description.textContent = "표시를 확인한 뒤 계속하세요.";
-    labels.forEach((label, index) => {
-      label.classList.toggle("hidden", index !== 0);
-      const input = label.querySelector("input");
-      const text = label.querySelector("span");
-      if (index === 0) {
-        if (input) input.value = "neutral_acknowledged";
-        if (text) text.textContent = "확인";
-      }
-    });
+    // This is a passive, time-matched interruption. It must not require a
+    // response through a radio control that is intentionally not shown.
+    choices?.classList.add("hidden");
+    choices?.setAttribute?.("aria-hidden", "true");
+    labels.forEach(label => label.classList.add("hidden"));
     confidence?.classList.add("hidden");
     if (submit) {
       submit.disabled = true;
@@ -50,6 +47,11 @@
   }
 
   function restoreDom(document) {
+    const choices = document.getElementById("probeChoices");
+    choices?.classList.remove("hidden");
+    choices?.removeAttribute?.("aria-hidden");
+    Array.from(document.querySelectorAll("#probeChoices label"))
+      .forEach(label => label.classList.remove("hidden"));
     document.getElementById("probeConfidence")?.closest(".field")?.classList.remove("hidden");
     const submit = document.getElementById("probeSubmit");
     if (submit) submit.disabled = false;

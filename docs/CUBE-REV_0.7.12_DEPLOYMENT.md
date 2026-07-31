@@ -3,7 +3,7 @@
 ## Release boundary
 
 - Public host version: `0.7.12`
-- Build: `0.7.12-terminal-state-hotfix-1`
+- Build: `0.7.12-neutral-probe-hotfix-1`
 - GitHub Pages source: `main` / repository root
 - Preserved baseline: `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`
 - Collector: disabled and unbound

@@ -7,8 +7,8 @@ import vm from "node:vm";
 const root = resolve(import.meta.dirname, "..");
 const release = Object.freeze({
   version: "0.7.12",
-  buildId: "0.7.12-terminal-state-hotfix-1",
-  cacheKey: "0712-terminal-state-hotfix-1",
+  buildId: "0.7.12-neutral-probe-hotfix-1",
+  cacheKey: "0712-neutral-probe-hotfix-1",
   archiveHtml: "CUBE-REV_0.7.12_GitHub_Pages_Pilot.html",
   preservedBaselineHtml: "CUBE-REV_0.6.11_GitHub_Pages_Pilot.html",
   preservedBaselineSha256: "ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31"
@@ -37,7 +37,7 @@ const scripts = [
 assert.equal(index, archive, "index.html and the versioned 0.7.12 HTML must be byte-identical");
 assert.equal(hash(baseline), release.preservedBaselineSha256, "preserved 0.6.11 baseline changed");
 assert.match(index, /const VERSION = '0\.7\.12'/);
-assert.match(index, /const BUILD_ID = '0\.7\.12-terminal-state-hotfix-1'/);
+assert.match(index, /const BUILD_ID = '0\.7\.12-neutral-probe-hotfix-1'/);
 assert.match(index, /"version":"0\.7\.12"/);
 assert.doesNotMatch(index, /0\.6\.11/);
 assert.match(index, /studyId: 'CUBE-REV-0\.7\.12'/);
@@ -125,7 +125,9 @@ assert.match(index, /camera_orbit_policy:'screen_relative_matrix_360_orbit_v1'/)
 assert.match(index, /KeyT:'x'.*KeyB:"x'"/s);
 assert.match(index, /Semicolon:'y'.*KeyQ:"z'"/s);
 assert.match(index, /id="cameraResetButton"/);
-assert.match(index, /COLLECTION LOCKED/);
+assert.match(index, /COLLECTION ACTIVE/);
+assert.match(index, /src="\.\/collector-config\.js\?v=0712-neutral-probe-hotfix-1"/);
+assert.match(index, /CUBE_REV_COLLECTOR_CONFIG = window\.CUBE_REV_COLLECTOR_CONFIG \|\|/);
 assert.match(index, /presentation_policy:\{modalities:\['TERMINAL_ONLY'\]/);
 assert.doesNotMatch(index, /animateMove:\(token,duration\)=>enqueueAnimation\(token,duration,'history_presentation'\)/);
 assert.doesNotMatch(historyPresentation, /animateMove|TEXT_HISTORY|ANIMATED_HISTORY/);
