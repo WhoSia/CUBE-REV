@@ -2,7 +2,7 @@ name: Validate CUBE-REV baseline and calibration
 
 on:
   push:
-    branches: [main, 'agent/**']
+    branches: [main, 'agent/**', 'cube-rev-*']
   pull_request:
 
 permissions:
@@ -22,6 +22,10 @@ jobs:
         run: |
           node scripts/build-calibration-host.mjs
           node scripts/validate-calibration.mjs
-          node tests/calibration.test.cjs
+          node tests/randomization.test.cjs
+          node tests/history-fidelity.test.cjs
+          node tests/neutral-probe.test.cjs
+          node tests/runtime.test.cjs
+          node tests/camera-orbit.test.cjs
           node tests/collector-receipt.integration.cjs
           python -m unittest tests/test_registry_and_annotation.py

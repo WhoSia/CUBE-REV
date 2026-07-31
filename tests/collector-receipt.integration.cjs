@@ -52,8 +52,8 @@ global.document = {
       queueMicrotask(() => fakeWindow[callback]({
         type: "CUBE_REV_COLLECTOR_HEALTH",
         ok: true,
-        expected_version: "0.6.11",
-        collector_id: "CUBE-REV-0611-MAIN",
+        expected_version: "0.7.12",
+        collector_id: "CUBE-REV-0712-DRY-RUN",
         protocol_version: "receipt-v2",
         receipt_confirmation_available: true,
         deployment_id: "integration-test"
@@ -64,7 +64,7 @@ global.document = {
 
 require("../js/collector-client.js");
 const Client = fakeWindow.CubeRevCollectorClient;
-const session = { project: "CUBE-REV", version: "0.6.11", session_id: "CR-INTEGRATION", data_submission: {} };
+const session = { project: "CUBE-REV", version: "0.7.12", session_id: "CR-INTEGRATION", data_submission: {} };
 const events = [];
 const statuses = [];
 const hashString = (text) => {
@@ -79,17 +79,17 @@ const config = Client.normalizeConfig({
   enabled: true,
   endpoint: "https://script.google.com/macros/s/TEST/exec",
   manualUploadUrl: "https://script.google.com/macros/s/TEST/exec",
-  studyId: "CUBE-REV-0.6.11",
-  collectorId: "CUBE-REV-0611-MAIN",
+  studyId: "CUBE-REV-0.7.12",
+  collectorId: "CUBE-REV-0712-DRY-RUN",
   protocolVersion: "receipt-v2",
   gzipWhenAvailable: false,
   timeoutMs: 30000,
   receiptPollIntervalMs: 700,
   healthCheckTimeoutMs: 5000
-}, "0.6.11");
+}, "0.7.12");
 const client = new Client({
   config,
-  version: "0.6.11",
+  version: "0.7.12",
   getSession: () => session,
   exportSession: () => session,
   logEvent: (type, extra) => events.push({ type, ...extra }),
@@ -102,7 +102,7 @@ const client = new Client({
 
 (async () => {
   const health = await client.checkHealth();
-  assert.equal(health.expected_version, "0.6.11");
+  assert.equal(health.expected_version, "0.7.12");
   const receipt = await client.submit();
   assert.equal(receipt.status, "stored");
   assert.equal(receipt.checksum_verified, true);
@@ -113,7 +113,7 @@ const client = new Client({
   assert.ok(events.some((event) => event.type === "submission_receipt_confirmed"));
   assert.ok(statuses.some((status) => status.kind === "success" && status.options.confirmed === true));
 
-  const locked = Client.normalizeConfig({ enabled: false, endpoint: "" }, "0.6.11");
+  const locked = Client.normalizeConfig({ enabled: false, endpoint: "" }, "0.7.12");
   const lockedClient = new Client({ ...client, config: locked });
   assert.equal(lockedClient.isAutomaticConfigured(), false);
   console.log("CUBE-REV collector receipt integration test passed.");

@@ -1,4 +1,4 @@
-# CUBE-REV 0.7.11 two-pass annotation
+# CUBE-REV 0.7.12 two-pass annotation
 
 Pass A contains the event trace but removes participant linkage, experimental
 condition, history visibility, and probe answers. Annotators mark episode

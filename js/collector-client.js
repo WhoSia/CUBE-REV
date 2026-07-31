@@ -8,7 +8,7 @@
         endpoint:'',
         manualUploadUrl:'',
         studyId:`CUBE-REV-${version}`,
-        collectorId:'CUBE-REV-0611-MAIN',
+        collectorId:`CUBE-REV-${String(version||'').replaceAll('.','')}-UNBOUND`,
         protocolVersion:'receipt-v2',
         autoSubmitOnComplete:true,
         gzipWhenAvailable:true,

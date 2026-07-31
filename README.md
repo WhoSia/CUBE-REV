@@ -4,7 +4,7 @@ CUBE-REV is an interactive research tool for studying how people recover a scram
 
 The experiment does not require participants to watch the scrambling process. A trial begins with a generated or preselected cube state, and the participant attempts to restore the cube. The system records the solution path, timing, camera movement, sticker-drag gestures, resets, undo operations, device environment, interface language, and submission status.
 
-**Current public version: 0.6.11**
+**Current public version: 0.7.12**
 
 ## Research question
 
@@ -17,7 +17,7 @@ CUBE-REV asks how far a person can mentally reverse a cube state when the genera
 - whole-cube reorientation versus metric face turns;
 - interaction method, device type, viewport, and interface language.
 
-The current build is a pilot instrument rather than a completed scientific result. Human data collected with it still requires careful sampling, ethical review where applicable, quality control, and preregistered analysis.
+The current public build is a governance-locked run-in. Do not use it for prospective human data collection; the collector and eligibility clock remain disabled until the later receipt and governance gates pass.
 
 ## What participants do
 
@@ -25,7 +25,7 @@ The current build is a pilot instrument rather than a completed scientific resul
 2. View a scrambled 2×2 cube state.
 3. Restore it using sticker drags, on-screen buttons, or a desktop keyboard.
 4. Continue for the selected number of trials or end the session manually.
-5. Wait for the collector to display **Received**, or save the JSON locally.
+5. Save the run-in JSON locally. Automatic collection is intentionally disabled.
 
 No name, email address, or participant-code field is requested by the experiment page. Each session receives a random identifier such as:
 
@@ -39,6 +39,8 @@ CR-20260728171127-ceb02c08b4b4
 
 - Drag a visible sticker: turn one layer by exactly 90°.
 - Drag empty background: freely orbit the camera, including complete vertical rotations past the U and D views.
+- Background dragging is screen-relative, so horizontal and vertical directions remain stable after crossing 180°.
+- Use the small compass icon to align the camera to the default view.
 - Mouse wheel or two-finger trackpad scroll: zoom in or out.
 - Two-finger pinch on a touch screen: zoom in or out.
 - A single sticker drag never produces a double turn such as `R2`.
@@ -109,12 +111,14 @@ The selected interface language and the language-selection source are recorded i
 cube-rev/
 ├─ .github/workflows/validate-static.yml
 ├─ index.html
+├─ CUBE-REV_0.7.12_GitHub_Pages_Pilot.html
 ├─ CUBE-REV_0.6.11_GitHub_Pages_Pilot.html
 ├─ collector-config.js
 ├─ README.md
 ├─ robots.txt
 ├─ js/
 │  ├─ camera-zoom-controller.js
+│  ├─ camera-orbit.js
 │  ├─ collector-client.js
 │  ├─ cube-drag-controller.js
 │  ├─ i18n-controller.js
@@ -123,7 +127,7 @@ cube-rev/
    └─ validate-static.mjs
 ```
 
-`index.html` is the GitHub Pages entry point. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html` is intentionally retained as a versioned standalone copy for direct download, archival reference, and release attachments. The two HTML files should remain identical within version 0.6.11.
+`index.html` is the GitHub Pages entry point and is byte-identical to `CUBE-REV_0.7.12_GitHub_Pages_Pilot.html`. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html` remains frozen as the verified baseline archive.
 
 The static validator and GitHub Actions workflow prevent version drift, missing controller files, cache-key mismatches, divergence between the two HTML copies, and regression of the unrestricted camera orbit.
 
@@ -155,7 +159,7 @@ CUBE-REV는 참가자가 **생성 경로를 보지 않은 채**, 화면에 제�
 
 각 시행은 생성되었거나 미리 정해진 큐브 상태에서 시작합니다. 참가자는 큐브를 직접 맞추며, 시스템은 풀이 경로, 시간, 카메라 움직임, 스티커 드래그, 초기화와 되돌리기, 장치 환경, 인터페이스 언어, 제출 상태를 기록합니다.
 
-**현재 공개 버전: 0.6.11**
+**현재 공개 버전: 0.7.12**
 
 ## 연구 질문
 
@@ -168,7 +172,7 @@ CUBE-REV는 생성 과정을 보여 주지 않았을 때 사람이 큐브 상태
 - 전체 큐브 재정향과 거리 계산에 포함되는 면 회전의 구분
 - 입력 방식, 장치 종류, 화면 크기, 인터페이스 언어
 
-현재 빌드는 완성된 연구 결과가 아니라 인간 자료를 수집하기 위한 파일럿 도구입니다. 공식 연구에 사용하려면 표본 설계, 연구윤리 검토, 자료 품질 관리, 분석 계획이 별도로 필요합니다.
+현재 공개 빌드는 governance가 잠긴 run-in입니다. 후속 receipt·governance gate가 통과하기 전에는 인간 자료를 전향적으로 수집하지 않으며 수집기와 eligibility clock도 비활성 상태입니다.
 
 ## 참가자가 하는 일
 
@@ -176,7 +180,7 @@ CUBE-REV는 생성 과정을 보여 주지 않았을 때 사람이 큐브 상태
 2. 화면에 제시된 2×2 큐브 상태를 관찰합니다.
 3. 스티커 드래그, 화면 버튼 또는 데스크탑 키보드로 큐브를 맞춥니다.
 4. 정해진 시행 수를 완료하거나 직접 세션을 종료합니다.
-5. 수집 상태가 **수신 완료**로 바뀔 때까지 기다리거나 JSON을 로컬에 저장합니다.
+5. run-in JSON을 로컬에 저장합니다. 자동 수집은 의도적으로 꺼져 있습니다.
 
 실험 화면은 이름, 이메일, 참가자 코드를 요구하지 않습니다. 각 세션에는 다음과 같은 무작위 식별자가 부여됩니다.
 
@@ -260,12 +264,14 @@ collector-config.js
 cube-rev/
 ├─ .github/workflows/validate-static.yml
 ├─ index.html
+├─ CUBE-REV_0.7.12_GitHub_Pages_Pilot.html
 ├─ CUBE-REV_0.6.11_GitHub_Pages_Pilot.html
 ├─ collector-config.js
 ├─ README.md
 ├─ robots.txt
 ├─ js/
 │  ├─ camera-zoom-controller.js
+│  ├─ camera-orbit.js
 │  ├─ collector-client.js
 │  ├─ cube-drag-controller.js
 │  ├─ i18n-controller.js
@@ -274,7 +280,7 @@ cube-rev/
    └─ validate-static.mjs
 ```
 
-`index.html`은 GitHub Pages가 여는 진입 파일입니다. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`은 직접 다운로드, 버전별 보관, GitHub Release 첨부를 위한 이름 있는 독립 실행 사본이므로 의도적으로 남깁니다. 0.6.11 안에서는 두 HTML의 내용이 같아야 합니다.
+`index.html`은 GitHub Pages가 여는 진입 파일이며 `CUBE-REV_0.7.12_GitHub_Pages_Pilot.html`과 바이트 단위로 같습니다. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`은 검증된 baseline 보관본으로 동결합니다.
 
 정적 검증기와 GitHub Actions는 버전 표류, 누락된 컨트롤러 파일, 캐시 키 불일치, 두 HTML 사본의 내용 차이, 자유 카메라 회전의 회귀를 자동으로 막습니다.
 
@@ -298,7 +304,18 @@ cube-rev/
 
 제스처 판정, 카메라 확대·축소, 반응형 레이아웃, 다국어 처리, 자료 전송을 각각 독립된 컨트롤러로 분리했습니다. 입력 처리, 렌더링, 제출, 화면 표시가 한 파일에 불필요하게 얽히지 않도록 구성한 것입니다.
 
-## 0.7.11 calibration
+## 0.7.12 browser run-in
+
+0.7.12는 decision point에서 Web Crypto exact-bucket 60/20/20 배정을 사용하고,
+`TERMINAL_ONLY`, `TEXT_HISTORY`, `ANIMATED_HISTORY`에 같은 nominal 2,400 ms
+노출 예산을 적용합니다. `TIME_MATCHED_NEUTRAL`은 중립 기호와 700 ms 최소
+노출만 사용합니다. csTimer 양손 키맵에는 x·y·z 회전이 포함되며, 카메라는
+180° 이후에도 방향이 유지되는 screen-relative matrix orbit을 사용합니다.
+
+Collection은 잠겨 있고 eligibility clock은 `NOT_STARTED`입니다. 실제 브라우저
+wall-clock과 별도 collector의 synthetic receipt는 0.7.13 검증 범위입니다.
+
+## 0.7.11 calibration history
 
 검증된 0.6.11 공개 baseline은 그대로 유지합니다. Source-bound 0.7.11
 run-in host, 고정 probe policy, memory factorial, two-pass annotation packet,

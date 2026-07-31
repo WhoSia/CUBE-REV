@@ -6,14 +6,15 @@
   "use strict";
 
   return Object.freeze({
-    protocol_version: "0.7.11",
-    host_baseline_version: "0.6.11",
-    build_id: "0.7.11-source-bound-calibration-1",
+    protocol_version: "0.7.12",
+    host_baseline_version: "0.7.12",
+    preserved_baseline_version: "0.6.11",
+    build_id: "0.7.12-browser-run-in-1",
     mode: "run_in_only",
     source_bound: Object.freeze({
       repository: "WhoSia/CUBE-REV",
-      baseline_commit: "58619a909a9343ff0f50e945ee2d2cf443c585d7",
-      baseline_sha256: "ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31",
+      baseline_commit: "4d14f88d4f3c9508dffec7e632f62c742ca10598",
+      preserved_0611_sha256: "ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31",
       generated_from: "index.html"
     }),
     governance: Object.freeze({
@@ -33,14 +34,28 @@
       activated_at: null
     }),
     probe_policy: Object.freeze({
-      policy_id: "fixed-balanced-hash-v1",
+      policy_id: "crypto_exact_bucket_60_20_20_decision_point_v1",
       adaptive: false,
-      arms: Object.freeze(["no_probe", "sham_probe", "diagnostic_probe"]),
+      minimum_completed_trials: 1,
+      cooldown_trials: 2,
+      burden_cap: 3,
+      arms: Object.freeze(["NO_PROBE", "TIME_MATCHED_NEUTRAL", "STRATEGY_DIAGNOSTIC"]),
       assignment_probabilities: Object.freeze({
-        no_probe: 1 / 3,
-        sham_probe: 1 / 3,
-        diagnostic_probe: 1 / 3
+        NO_PROBE: 0.60,
+        TIME_MATCHED_NEUTRAL: 0.20,
+        STRATEGY_DIAGNOSTIC: 0.20
       })
+    }),
+    history_presentation: Object.freeze({
+      modalities: Object.freeze(["TERMINAL_ONLY", "TEXT_HISTORY", "ANIMATED_HISTORY"]),
+      nominal_exposure_ms: 2400,
+      minimum_animated_move_ms: 55,
+      browser_wall_clock_certified: false
+    }),
+    neutral_probe: Object.freeze({
+      minimum_exposure_ms: 700,
+      classification: "lower_content_interruption_control",
+      human_reactivity_estimated: false
     }),
     memory_factorial: Object.freeze({
       design: "2x2x2",

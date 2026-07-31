@@ -15,6 +15,8 @@
       this.setPreview=options.setPreview;
       this.clearPreview=options.clearPreview;
       this.logEvent=options.logEvent;
+      this.cameraOrbit=options.cameraOrbit||global.CubeRevCameraOrbit;
+      if(!this.cameraOrbit?.screenRelativeOrbit)throw new Error('CubeDragController requires CubeRevCameraOrbit');
       this.onCameraGestureStart=options.onCameraGestureStart||(()=>{});
       this.onStickerGestureCommitted=options.onStickerGestureCommitted||(()=>{});
       this.thresholdPx=Math.max(24,Number(options.thresholdPx)||42);
@@ -108,7 +110,7 @@
         });
       }else{
         this.onCameraGestureStart();
-        this.logEvent('camera_drag_start',{yaw:camera.yaw,pitch:camera.pitch,x:+p.x.toFixed(2),y:+p.y.toFixed(2),started_on_sticker:false});
+        this.logEvent('camera_drag_start',{yaw:camera.yaw,pitch:camera.pitch,view_matrix:this.cameraOrbit.matrixForCamera(camera),orbit_model:'screen_relative_matrix_v1',x:+p.x.toFixed(2),y:+p.y.toFixed(2),started_on_sticker:false});
       }
       e.preventDefault();
     }
@@ -128,11 +130,7 @@
       a.maxDistance=Math.max(a.maxDistance,Math.hypot(dx,dy));
       if(a.mode==='camera'){
         const sensitivity=a.pointerType==='touch'?this.cameraSensitivityTouch:this.cameraSensitivity;
-        this.setCamera({
-          yaw:a.cameraStart.yaw+dx*sensitivity,
-          pitch:a.cameraStart.pitch+dy*sensitivity,
-          zoom:a.cameraStart.zoom
-        });
+        this.setCamera(this.cameraOrbit.screenRelativeOrbit(a.cameraStart,dx,dy,sensitivity));
       }else{
         const resolution=this.resolveStickerDrag(a.sticker,dx,dy,{commit:false,thresholdPx:a.thresholdPx,pointerType:a.pointerType});
         a.lastResolution=resolution;
@@ -159,7 +157,7 @@
       if(a.mode==='camera'){
         const dx=p.x-a.start.x,dy=p.y-a.start.y,camera=this.getCamera();
         this.logEvent(cancelled?'camera_drag_cancelled':'camera_drag_end',{
-          yaw:camera.yaw,pitch:camera.pitch,duration_ms:+duration.toFixed(3),distance_px:+Math.hypot(dx,dy).toFixed(2),sample_count:a.sampleCount
+          yaw:camera.yaw,pitch:camera.pitch,view_matrix:this.cameraOrbit.matrixForCamera(camera),orbit_model:'screen_relative_matrix_v1',duration_ms:+duration.toFixed(3),distance_px:+Math.hypot(dx,dy).toFixed(2),sample_count:a.sampleCount
         });
       }else{
         this.clearPreview();

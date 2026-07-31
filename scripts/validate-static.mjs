@@ -1,46 +1,61 @@
-import assert from 'node:assert/strict';
-import { readFile, access } from 'node:fs/promises';
-import { resolve } from 'node:path';
-import vm from 'node:vm';
+import assert from "node:assert/strict";
+import crypto from "node:crypto";
+import { readFile, access } from "node:fs/promises";
+import { resolve } from "node:path";
+import vm from "node:vm";
 
-const root = resolve(import.meta.dirname, '..');
+const root = resolve(import.meta.dirname, "..");
 const release = Object.freeze({
-  version: '0.6.11',
-  versionDigits: '0611',
-  buildId: '0.6.11-orbit-ui-1',
-  cacheKey: '0611-orbit-ui-1',
-  archiveHtml: 'CUBE-REV_0.6.11_GitHub_Pages_Pilot.html'
+  version: "0.7.12",
+  buildId: "0.7.12-browser-run-in-1",
+  cacheKey: "0712-browser-run-in-1",
+  archiveHtml: "CUBE-REV_0.7.12_GitHub_Pages_Pilot.html",
+  preservedBaselineHtml: "CUBE-REV_0.6.11_GitHub_Pages_Pilot.html",
+  preservedBaselineSha256: "ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31"
 });
+const read = path => readFile(resolve(root, path), "utf8");
+const hash = text => crypto.createHash("sha256").update(text.replace(/\r\n/g, "\n")).digest("hex");
 
-const read = path => readFile(resolve(root, path), 'utf8');
-const index = await read('index.html');
+const index = await read("index.html");
 const archive = await read(release.archiveHtml);
-const config = await read('collector-config.js');
-const dragController = await read('js/cube-drag-controller.js');
-const readme = await read('README.md');
+const baseline = await read(release.preservedBaselineHtml);
+const config = await read("collector-config.js");
+const dragController = await read("js/cube-drag-controller.js");
+const cameraOrbit = await read("js/camera-orbit.js");
+const readme = await read("README.md");
 const scripts = [
-  'js/i18n-controller.js',
-  'js/collector-client.js',
-  'js/cube-drag-controller.js',
-  'js/camera-zoom-controller.js',
-  'js/responsive-layout-controller.js'
+  "js/i18n-controller.js",
+  "js/collector-client.js",
+  "js/camera-orbit.js",
+  "js/cube-drag-controller.js",
+  "js/camera-zoom-controller.js",
+  "js/responsive-layout-controller.js"
 ];
 
-assert.equal(index, archive, 'index.html and the versioned 0.6.11 HTML must be byte-identical');
-assert.match(index, new RegExp(`const VERSION = '${release.version.replaceAll('.', '\\.')}'`));
-assert.match(index, new RegExp(`const BUILD_ID = '${release.buildId.replaceAll('.', '\\.')}'`));
-assert.match(index, new RegExp(`CUBE-REV-${release.version.replaceAll('.', '\\.')}`));
-assert.match(config, new RegExp(`studyId: 'CUBE-REV-${release.version.replaceAll('.', '\\.')}'`));
-assert.match(config, new RegExp(`CUBE-REV ${release.version.replaceAll('.', '\\.')}`));
+assert.equal(index, archive, "index.html and the versioned 0.7.12 HTML must be byte-identical");
+assert.equal(hash(baseline), release.preservedBaselineSha256, "preserved 0.6.11 baseline changed");
+assert.match(index, /const VERSION = '0\.7\.12'/);
+assert.match(index, /const BUILD_ID = '0\.7\.12-browser-run-in-1'/);
+assert.match(index, /"version":"0\.7\.12"/);
+assert.doesNotMatch(index, /0\.6\.11/);
+assert.match(index, /studyId: 'CUBE-REV-0\.7\.12'/);
+assert.match(config, /enabled: false/);
+assert.match(config, /studyId: 'CUBE-REV-0\.7\.12'/);
+assert.doesNotMatch(config, /script\.google\.com|studyToken/);
 assert.ok(readme.includes(`Current public version: ${release.version}`));
 assert.ok(readme.includes(`현재 공개 버전: ${release.version}`));
-assert.ok(!readme.includes('collector/google-apps-script/Code.gs'), 'README must describe the current public repository');
-assert.ok(!dragController.includes('pitchLimit'), 'camera pitch must remain unrestricted');
+assert.ok(!dragController.includes("pitchLimit"), "camera pitch must remain unrestricted");
 
-const controllerWindow = {};
-vm.runInNewContext(dragController, { window: controllerWindow });
-let cameraProbe = { yaw: 0, pitch: 0, zoom: 1 };
-const controller = new controllerWindow.CubeDragController({
+const context = {
+  console,
+  performance: { now: () => 0 },
+  module: undefined
+};
+context.window = context;
+vm.runInNewContext(cameraOrbit, context);
+vm.runInNewContext(dragController, context);
+let cameraProbe = context.CubeRevCameraOrbit.resetCamera(1);
+const controller = new context.CubeDragController({
   element: {
     dataset: {},
     style: {},
@@ -58,12 +73,12 @@ const controller = new controllerWindow.CubeDragController({
 });
 controller.active = {
   id: 1,
-  mode: 'camera',
+  mode: "camera",
   start: { x: 0, y: 0 },
   last: { x: 0, y: 0 },
   previous: { x: 0, y: 0 },
   cameraStart: { ...cameraProbe },
-  pointerType: 'mouse',
+  pointerType: "mouse",
   pathLength: 0,
   sampleCount: 1,
   maxDistance: 0
@@ -74,21 +89,37 @@ controller.onPointerMove({
   clientY: 500,
   preventDefault: () => {}
 });
-assert.ok(cameraProbe.pitch > Math.PI, 'a vertical drag must pass the former U/D pitch limit');
+assert.ok(cameraProbe.pitch > Math.PI, "a vertical drag must pass 180 degrees");
+assert.equal(cameraProbe.orbit_model, "screen_relative_matrix_v1");
+assert.equal(cameraProbe.view_matrix.length, 9);
+const afterUpsideHorizontal = context.CubeRevCameraOrbit.screenRelativeOrbit(cameraProbe, 100, 0, 0.008);
+const expectedScreenAxis = context.CubeRevCameraOrbit.multiply(
+  context.CubeRevCameraOrbit.rotationY(0.8),
+  cameraProbe.view_matrix
+);
+for (let i = 0; i < 9; i++) {
+  assert.ok(Math.abs(afterUpsideHorizontal.view_matrix[i] - expectedScreenAxis[i]) < 1e-12);
+}
 
 for (const path of scripts) {
   await access(resolve(root, path));
-  assert.ok(
-    index.includes(`./${path}?v=${release.cacheKey}`),
-    `${path} must use the shared ${release.cacheKey} cache key`
-  );
-  const source = await read(path);
-  new Function(source);
+  assert.ok(index.includes(`./${path}?v=${release.cacheKey}`), `${path} must use the shared cache key`);
+  new Function(await read(path));
+}
+for (const path of [
+  "calibration/randomization.js",
+  "calibration/history-presentation.js",
+  "calibration/neutral-probe.js",
+  "calibration/runtime.js"
+]) {
+  await access(resolve(root, path));
+  new Function(await read(path));
 }
 
-for (const html of [index, archive]) {
-  assert.ok(html.includes(`<meta name="theme-color" content="#080d15">`));
-  assert.ok(html.includes(`camera_orbit_policy:'unbounded_yaw_pitch_full_vertical_orbit_v1'`));
-}
+assert.match(index, /camera_orbit_policy:'screen_relative_matrix_360_orbit_v1'/);
+assert.match(index, /KeyT:'x'.*KeyB:"x'"/s);
+assert.match(index, /Semicolon:'y'.*KeyQ:"z'"/s);
+assert.match(index, /id="cameraResetButton"/);
+assert.match(index, /COLLECTION LOCKED/);
 
 console.log(`CUBE-REV ${release.version} static validation passed.`);

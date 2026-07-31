@@ -1,12 +1,13 @@
-// CUBE-REV 0.6.11 collector configuration (hotfix-2).
-// This public GitHub Pages build is connected to the study's Google Apps Script collector.
+// CUBE-REV 0.7.12 governance-locked collector configuration.
+// A receipt-v2 endpoint will be bound only during the separate 0.7.13 dry run.
 window.CUBE_REV_COLLECTOR_CONFIG = {
-  enabled: true,
-  endpoint: 'https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec',
-  manualUploadUrl: 'https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec',
-  studyId: 'CUBE-REV-0.6.11',
-  studyToken: 'dfce727955bf4813b4df0a3943ecf49d',
-  autoSubmitOnComplete: true,
+  enabled: false,
+  endpoint: '',
+  manualUploadUrl: '',
+  studyId: 'CUBE-REV-0.7.12',
+  collectorId: 'CUBE-REV-0712-RUN-IN-LOCKED',
+  protocolVersion: 'receipt-v2',
+  autoSubmitOnComplete: false,
   gzipWhenAvailable: true,
   timeoutMs: 30000
 };

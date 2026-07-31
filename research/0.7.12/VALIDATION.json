@@ -1,0 +1,28 @@
+{
+  "project": "CUBE-REV",
+  "protocol_version": "0.7.12",
+  "validation_profile": "source_bound_local_release",
+  "checks": {
+    "release_identity_and_static_assets": "PASS",
+    "source_bound_calibration_host": "PASS",
+    "randomization_unit": "PASS",
+    "history_fidelity_traces": {
+      "status": "PASS",
+      "passed": 10023,
+      "total": 10023
+    },
+    "neutral_probe_unit": "PASS",
+    "runtime_integration": "PASS",
+    "camera_orbit_unit": "PASS",
+    "receipt_v2_mock_integration": "PASS",
+    "registry_and_annotation": "PASS",
+    "local_browser_smoke": "PASS"
+  },
+  "explicit_non_certifications": [
+    "public GitHub Pages wall-clock history-modality fidelity",
+    "background-tab timing behavior",
+    "live receipt-v2 collector boundary",
+    "human reactivity",
+    "prospective eligibility"
+  ]
+}

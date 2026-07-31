@@ -11,7 +11,7 @@ from tools.cr07_batch_registry import inspect_batch
 BASE_REGISTRY = {
     "schema_version": "CR07-CUMULATIVE-REGISTRY-1",
     "project": "CUBE-REV",
-    "protocol_version": "0.7.11",
+    "protocol_version": "0.7.12",
     "clock": {"state": "NOT_STARTED", "activated_at": None, "authorization_id": None},
     "batches": [],
     "sessions": {},

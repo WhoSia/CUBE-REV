@@ -1,0 +1,38 @@
+{
+  "project": "CUBE-REV",
+  "protocol_version": "0.7.12",
+  "build_id": "0.7.12-browser-run-in-1",
+  "release_status": "ENGINEERING_FIDELITY_CERTIFIED",
+  "source_bound_patch": {
+    "status": "PASS",
+    "baseline_commit": "4d14f88d4f3c9508dffec7e632f62c742ca10598",
+    "preserved_baseline_version": "0.6.11",
+    "preserved_baseline_sha256": "ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31"
+  },
+  "browser_smoke": {
+    "status": "PASS_LOCAL",
+    "desktop_viewport": true,
+    "mobile_viewport_390x844": true,
+    "cstimer_xyz_input": true,
+    "screen_relative_camera_orbit": true,
+    "camera_alignment_control": true,
+    "console_errors": 0
+  },
+  "browser_timing": {
+    "status": "PENDING_0.7.13",
+    "wall_clock_certified": false,
+    "background_tab_throttling_certified": false
+  },
+  "collector": {
+    "status": "LOCKED_UNBOUND",
+    "contract": "receipt-v2",
+    "apps_script_modified": false,
+    "live_synthetic_receipt": "PENDING_0.7.13"
+  },
+  "governance": {
+    "approved": false,
+    "prospective_human_collection_allowed": false,
+    "eligibility_clock": "NOT_STARTED"
+  },
+  "human_causal_claim": "NONE"
+}

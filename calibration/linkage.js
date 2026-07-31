@@ -5,7 +5,8 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  const KEY = "CUBE_REV_0711_INSTALLATION_ID";
+  const KEY = "CUBE_REV_INSTALLATION_ID_V1";
+  const LEGACY_KEYS = Object.freeze(["CUBE_REV_0711_INSTALLATION_ID"]);
   const hex = (bytes) => Array.from(bytes, (x) => x.toString(16).padStart(2, "0")).join("");
   function randomId() {
     const bytes = new Uint8Array(16);
@@ -15,9 +16,19 @@
   }
   function getInstallationId(storage) {
     let id = null;
-    try { id = storage?.getItem(KEY) || null; } catch (_) {}
+    try {
+      id = storage?.getItem(KEY) || null;
+      if (!id) {
+        for (const legacyKey of LEGACY_KEYS) {
+          id = storage?.getItem(legacyKey) || null;
+          if (id) break;
+        }
+      }
+    } catch (_) {}
     if (!/^CRI-[0-9a-f]{32}$/.test(String(id || ""))) {
       id = randomId();
+      try { storage?.setItem(KEY, id); } catch (_) {}
+    } else {
       try { storage?.setItem(KEY, id); } catch (_) {}
     }
     return id;
