@@ -6,7 +6,7 @@
     "release_identity_and_static_assets": "PASS",
     "source_bound_calibration_host": "PASS",
     "randomization_unit": "PASS",
-    "history_fidelity_traces": {
+    "hidden_history_visibility_traces": {
       "status": "PASS",
       "passed": 10023,
       "total": 10023
@@ -19,8 +19,6 @@
     "local_browser_smoke": "PASS"
   },
   "explicit_non_certifications": [
-    "public GitHub Pages wall-clock history-modality fidelity",
-    "background-tab timing behavior",
     "live receipt-v2 collector boundary",
     "human reactivity",
     "prospective eligibility"

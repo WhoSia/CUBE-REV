@@ -23,7 +23,7 @@ assert.equal(
 assert.equal(host, expectedHost, "source-bound calibration host was not built from index.html");
 assert.match(host, /CUBE-REV 0\.7\.12/);
 assert.match(host, /const VERSION = '0\.7\.12'/);
-assert.match(host, /const BUILD_ID = '0\.7\.12-browser-run-in-1'/);
+assert.match(host, /const BUILD_ID = '0\.7\.12-terminal-state-hotfix-1'/);
 assert.match(host, /enabled: false/);
 assert.match(host, /endpoint: ''/);
 assert.match(host, /autoSubmitOnComplete: false/);
@@ -34,5 +34,7 @@ assert.match(host, /calibrationRuntime\.decideProbe/);
 assert.match(host, /screen_relative_matrix_360_orbit_v1/);
 assert.match(host, /COLLECTION LOCKED/);
 assert.match(host, /NOT_STARTED/);
+assert.match(host, /modalities:\['TERMINAL_ONLY'\]/);
+assert.doesNotMatch(host, /history_presentation'\)/);
 
 console.log("CUBE-REV 0.7.12 source-bound host validation passed.");

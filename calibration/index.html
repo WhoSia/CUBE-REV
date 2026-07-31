@@ -161,26 +161,26 @@ window.CUBE_REV_COLLECTOR_CONFIG = {
   timeoutMs: 45000
 };
 </script>
-<script src="./calibration-config.js?v=0712-browser-run-in-1"></script>
-<script src="./linkage.js?v=0712-browser-run-in-1"></script>
-<script src="./randomization.js?v=0712-browser-run-in-1"></script>
-<script src="./history-presentation.js?v=0712-browser-run-in-1"></script>
-<script src="./neutral-probe.js?v=0712-browser-run-in-1"></script>
-<script src="./eligibility-clock.js?v=0712-browser-run-in-1"></script>
-<script src="./export-decoration.js?v=0712-browser-run-in-1"></script>
-<script src="./runtime.js?v=0712-browser-run-in-1"></script>
-<script src="../js/i18n-controller.js?v=0712-browser-run-in-1"></script>
-<script src="../js/collector-client.js?v=0712-browser-run-in-1"></script>
-<script src="../js/camera-orbit.js?v=0712-browser-run-in-1"></script>
-<script src="../js/cube-drag-controller.js?v=0712-browser-run-in-1"></script>
-<script src="../js/camera-zoom-controller.js?v=0712-browser-run-in-1"></script>
-<script src="../js/responsive-layout-controller.js?v=0712-browser-run-in-1"></script>
+<script src="./calibration-config.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="./linkage.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="./randomization.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="./history-presentation.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="./neutral-probe.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="./eligibility-clock.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="./export-decoration.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="./runtime.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="../js/i18n-controller.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="../js/collector-client.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="../js/camera-orbit.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="../js/cube-drag-controller.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="../js/camera-zoom-controller.js?v=0712-terminal-state-hotfix-1"></script>
+<script src="../js/responsive-layout-controller.js?v=0712-terminal-state-hotfix-1"></script>
 <script>
 'use strict';
 
 const PROJECT = 'CUBE-REV';
 const VERSION = '0.7.12';
-const BUILD_ID = '0.7.12-browser-run-in-1';
+const BUILD_ID = '0.7.12-terminal-state-hotfix-1';
 const calibrationRuntime = new CubeRevCalibrationRuntime();
 const SETTINGS_KEY = 'CUBE_REV_USER_SETTINGS_V1';
 const AUTOSAVE_KEY = 'CUBE_REV_0.7.12_AUTOSAVE';
@@ -773,7 +773,7 @@ function newSession(mode,custom=null,generated=null){
     user_agent:navigator.userAgent,platform:navigator.platform,language:i18nController.locale,browser_language:navigator.language,screen:{width:screen.width,height:screen.height,color_depth:screen.colorDepth,pixel_depth:screen.pixelDepth},
     viewport:{width:innerWidth,height:innerHeight,dpr:devicePixelRatio},participant_metadata:{age_band:document.getElementById('ageBand')?.value??null,experience_level:document.getElementById('experienceLevel')?.value??null,consent_checked:true,consent_recorded_at:new Date().toISOString(),best_time_seconds:(()=>{const v=document.getElementById('bestTime')?.value;return v?Number(v):null})()},
     interface_settings:{keymap_mode:keymapMode,interface_language:i18nController.locale,language_selection_source:i18nController.source,execution_mode:mode,whole_cube_rotation_policy:'logged_losslessly_then_conjugated_out_in_postprocessing',xyz_metric_policy:'exclude_as_cost_zero_reorientation; subsequent face turns require frame conjugation',camera_drag_enabled:true,camera_orbit_policy:'screen_relative_matrix_360_orbit_v1',sticker_drag_face_turn_enabled:true,cube_drag_rotation_enabled:false,pointer_gesture_policy:'background_drag_screen_relative_matrix_camera; sticker_drag_single_quarter_face_turn; endpoint_direction_resolver_v1',move_buttons_enabled:true,response_animation:true,compass_policy:'operational_move_axes_not_original_color_face_identity',initial_camera_policy:'aligned_screen_relative_identity_v1',settings_persistence:'localStorage_except_consent',responsive_layout_policy:'adaptive_desktop_tablet_phone_v1',ui_environment:responsiveLayoutController?.snapshot?.()||null,touch_input_supported:(navigator.maxTouchPoints||0)>0},
-    generator_settings:generatorSettings,data_submission:{collector_configured:collectorConfigured(),manual_portal_configured:manualCollectorConfigured(),study_id:COLLECTOR_CONFIG.studyId,auto_submit_on_complete:COLLECTOR_CONFIG.autoSubmitOnComplete,status:'governance_locked',attempt_count:0,local_download_count:0,manual_portal_open_count:0},hidden_duration_ms:0,presentation_policy:{modalities:['TERMINAL_ONLY','TEXT_HISTORY','ANIMATED_HISTORY'],nominal_exposure_ms:2400,browser_wall_clock_certified:false},planned_trial_count:mode==='generated'?(generatorSettings.trial_limit??null):plan.length,trial_plan:plan,trials:[],events:[],self_test:window.__CUBEREV_SELFTEST__};calibrationRuntime.decorateSession(session);
+    generator_settings:generatorSettings,data_submission:{collector_configured:collectorConfigured(),manual_portal_configured:manualCollectorConfigured(),study_id:COLLECTOR_CONFIG.studyId,auto_submit_on_complete:COLLECTOR_CONFIG.autoSubmitOnComplete,status:'governance_locked',attempt_count:0,local_download_count:0,manual_portal_open_count:0},hidden_duration_ms:0,presentation_policy:{modalities:['TERMINAL_ONLY'],nominal_exposure_ms:2400,generation_motion_visible:false,path_text_visible:false,browser_wall_clock_certified:false},planned_trial_count:mode==='generated'?(generatorSettings.trial_limit??null):plan.length,trial_plan:plan,trials:[],events:[],self_test:window.__CUBEREV_SELFTEST__};calibrationRuntime.decorateSession(session);
   sessionStartPerf=performance.now();eventCounter=0;session._plan=plan;session._index=0;session._rng=makeRng(seed);session._active_started_perf=sessionStartPerf;session._hidden_started_perf=null;
   if(mode==='generated')session._plan.push(generatedTrial(session,0));
   logSessionEvent('session_start',{mode,keymap_mode:keymapMode,interface_language:i18nController.locale,language_selection_source:i18nController.source,randomization_seed:seed,generator_settings:generatorSettings,interface_settings:session.interface_settings});return session;
@@ -886,8 +886,6 @@ async function beginTrial(trial,ordinal){
       camera={yaw,pitch,zoom:1,view_matrix:CubeRevCameraOrbit.fromEuler(yaw,pitch),orbit_model:'screen_relative_matrix_v1'};scheduleDraw();
     },
     setCubeVisible:visible=>{canvas.style.visibility=visible?'visible':'hidden';},
-    animateMove:(token,duration)=>enqueueAnimation(token,duration,'history_presentation'),
-    waitVisualIdle,
     sleep,
     now:()=>performance.now(),
     log:logSessionEvent
@@ -1111,11 +1109,12 @@ function runSelfTests(){
   check('R4 local identity',sameFaceNormalize(['R','R','R','R']).length===0);check('undo inverse U2',inverseMoveToken('U2')==='U2');check("undo inverse x'",inverseMoveToken("x'")==='x');
   const releaseScripts=[...document.querySelectorAll('script[src^="./js/"]')].map(el=>el.getAttribute('src')||'');
   check('version unified',VERSION==='0.7.12'&&TRIAL_MANIFEST.version===VERSION&&COLLECTOR_CONFIG.studyId===`CUBE-REV-${VERSION}`&&BUILD_ID.startsWith(VERSION+'-'));
-  check('release cache key unified',releaseScripts.length===6&&releaseScripts.every(src=>src.endsWith('?v=0712-browser-run-in-1')),releaseScripts);
+  check('release cache key unified',releaseScripts.length===6&&releaseScripts.every(src=>src.endsWith('?v=0712-terminal-state-hotfix-1')),releaseScripts);
   check('document version unified',document.title.includes(VERSION)&&document.querySelector('.eyebrow')?.textContent?.includes(VERSION));
   check('screen-relative 360 camera orbit',typeof CubeRevCameraOrbit?.screenRelativeOrbit==='function'&&String(CubeDragController).includes('screenRelativeOrbit'));
   check('csTimer xyz keymap',SPEED_KEYMAP.KeyT==='x'&&SPEED_KEYMAP.KeyB==="x'"&&SPEED_KEYMAP.Semicolon==='y'&&SPEED_KEYMAP.KeyA==="y'"&&SPEED_KEYMAP.KeyP==='z'&&SPEED_KEYMAP.KeyQ==="z'");
   check('run-in governance lock',!collectorConfigured()&&!COLLECTOR_CONFIG.enabled&&!COLLECTOR_CONFIG.endpoint&&calibrationRuntime.collectionAllowed()===false&&calibrationRuntime.eligibility.state==='NOT_STARTED');
+  check('hidden generation enforced',CubeRevHistoryPresentation.MODALITIES.length===1&&CubeRevHistoryPresentation.MODALITIES[0]==='TERMINAL_ONLY'&&!String(CubeRevHistoryPresentation.present).includes('animateMove'));
   check('SOLID controllers loaded',typeof CubeDragController==='function'&&typeof CubeRevCameraOrbit?.screenRelativeOrbit==='function'&&typeof CameraZoomController==='function'&&typeof CubeRevCollectorClient==='function'&&typeof CubeRevI18nController==='function'&&typeof ResponsiveLayoutController==='function'&&typeof CubeRevDecisionRandomization?.decide==='function'&&typeof CubeRevHistoryPresentation?.present==='function');check('trial timeout does not auto-advance',String(enableInput).includes('capTrialTiming')&&!String(enableInput).includes("finishTrial('timed_out')"));check('confirmed receipt protocol',typeof getCollectorClient().checkHealth==='function'&&String(CubeRevCollectorClient).includes('postWithConfirmedReceipt'));check('collector receipt pending by design',COLLECTOR_CONFIG.protocolVersion==='receipt-v2'&&!collectorConfigured());check('export version authoritative',VERSION==='0.7.12');const generatorTest=generateExactDistanceScramble(makeRng(0x0712),1,6,2000);check('generator exact proposal',generatorTest.distance===generatorTest.proposal_distance,generatorTest);
   for(const t of TRIAL_MANIFEST.trials.filter(x=>x.expected_state_id!=null)){
     if(t.scramble){const st=applyAlg(solvedState(),String(t.scramble).split(/\s+/));check('stimulus '+t.trial_id,canonicalStateId(st)===t.expected_state_id,{actual:canonicalStateId(st),expected:t.expected_state_id});}

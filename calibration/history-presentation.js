@@ -5,87 +5,50 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  const MODALITIES = Object.freeze([
-    "TERMINAL_ONLY",
-    "TEXT_HISTORY",
-    "ANIMATED_HISTORY"
-  ]);
+  const MODALITIES = Object.freeze(["TERMINAL_ONLY"]);
   const EXPOSURE_MS = 2400;
-  const MIN_ANIMATED_MOVE_MS = 55;
 
   function plan(modality, tokens, options = {}) {
     if (!MODALITIES.includes(modality)) {
-      throw new Error(`Unknown history modality: ${modality}`);
-    }
-    const sequence = Array.from(tokens || []);
-    const exposureMs = Number(options.exposure_ms) || EXPOSURE_MS;
-    const minimumMoveMs = Number(options.minimum_move_ms) || MIN_ANIMATED_MOVE_MS;
-    const moveDurationMs = modality === "ANIMATED_HISTORY"
-      ? exposureMs / Math.max(1, sequence.length)
-      : null;
-    if (modality === "ANIMATED_HISTORY" && sequence.length &&
-        moveDurationMs < minimumMoveMs) {
-      const error = new Error("ANIMATION_BUDGET_INFEASIBLE");
-      error.code = "ANIMATION_BUDGET_INFEASIBLE";
-      error.move_count = sequence.length;
-      error.move_duration_ms = moveDurationMs;
-      throw error;
+      throw new Error(`Visible generation history is disabled: ${modality}`);
     }
     return Object.freeze({
-      modality,
-      tokens: Object.freeze(sequence),
-      exposure_ms: exposureMs,
-      move_duration_ms: moveDurationMs,
-      minimum_move_ms: minimumMoveMs,
-      replay_inference_allowed: modality !== "TERMINAL_ONLY"
+      modality: "TERMINAL_ONLY",
+      tokens: Object.freeze(Array.from(tokens || [])),
+      exposure_ms: Number(options.exposure_ms) || EXPOSURE_MS,
+      move_duration_ms: null,
+      replay_inference_allowed: false,
+      generation_motion_visible: false,
+      path_text_visible: false
     });
   }
 
   async function present(presentation, helpers) {
-    const started = helpers.now?.() ?? 0;
-    helpers.setCubeVisible?.(presentation.modality === "ANIMATED_HISTORY");
-    if (presentation.modality === "TERMINAL_ONLY") {
-      helpers.setText?.("●");
-      await helpers.sleep(presentation.exposure_ms);
-    } else if (presentation.modality === "TEXT_HISTORY") {
-      helpers.setText?.(presentation.tokens.join(" "));
-      await helpers.sleep(presentation.exposure_ms);
-    } else {
-      helpers.setText?.(helpers.privateLabel?.() || "");
-      for (let index = 0; index < presentation.tokens.length; index++) {
-        const token = presentation.tokens[index];
-        helpers.log?.("history_animation_move_started", {
-          display_index: index + 1,
-          move: token,
-          nominal_duration_ms: presentation.move_duration_ms
-        });
-        helpers.animateMove(token, presentation.move_duration_ms);
-        await helpers.waitVisualIdle();
-        helpers.log?.("history_animation_move_settled", {
-          display_index: index + 1,
-          move: token
-        });
-      }
-      const spent = (helpers.now?.() ?? started) - started;
-      if (spent < presentation.exposure_ms) {
-        await helpers.sleep(presentation.exposure_ms - spent);
-      }
-    }
+    helpers.setCubeVisible?.(false);
+    helpers.setText?.(helpers.privateLabel?.() || "");
+    helpers.log?.("hidden_generation_visibility_enforced", {
+      generation_motion_visible: false,
+      path_text_visible: false,
+      displayed_move_count: 0
+    });
+    await helpers.sleep(presentation.exposure_ms);
     helpers.setText?.(helpers.privateLabel?.() || "");
     helpers.setCubeVisible?.(true);
     return {
-      modality: presentation.modality,
+      modality: "TERMINAL_ONLY",
       nominal_exposure_ms: presentation.exposure_ms,
-      nominal_move_duration_ms: presentation.move_duration_ms,
-      move_count: presentation.tokens.length,
-      replay_inference_allowed: presentation.replay_inference_allowed
+      nominal_move_duration_ms: null,
+      hidden_generation_move_count: presentation.tokens.length,
+      displayed_move_count: 0,
+      generation_motion_visible: false,
+      path_text_visible: false,
+      replay_inference_allowed: false
     };
   }
 
   return {
     MODALITIES,
     EXPOSURE_MS,
-    MIN_ANIMATED_MOVE_MS,
     plan,
     present
   };

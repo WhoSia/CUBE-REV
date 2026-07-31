@@ -1,11 +1,11 @@
 {
   "project": "CUBE-REV",
   "protocol_version": "0.7.12",
-  "build_id": "0.7.12-browser-run-in-1",
+  "build_id": "0.7.12-terminal-state-hotfix-1",
   "release_status": "ENGINEERING_FIDELITY_CERTIFIED",
   "source_bound_patch": {
     "status": "PASS",
-    "baseline_commit": "4d14f88d4f3c9508dffec7e632f62c742ca10598",
+    "baseline_commit": "f0779a583c2a9919d0171b0ca819718c0e3b6ac5",
     "preserved_baseline_version": "0.6.11",
     "preserved_baseline_sha256": "ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31"
   },
@@ -19,9 +19,15 @@
     "console_errors": 0
   },
   "browser_timing": {
-    "status": "PENDING_0.7.13",
+    "status": "NOT_APPLICABLE_NO_GENERATION_MOTION",
     "wall_clock_certified": false,
     "background_tab_throttling_certified": false
+  },
+  "history_visibility": {
+    "status": "TERMINAL_STATE_ONLY",
+    "generation_motion_visible": false,
+    "path_text_visible": false,
+    "replay_inference_allowed": false
   },
   "collector": {
     "status": "LOCKED_UNBOUND",

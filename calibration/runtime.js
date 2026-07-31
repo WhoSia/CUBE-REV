@@ -42,13 +42,13 @@
       const hash = this.fnv1a32(`memory:${key}`);
       const historyType = (hash & 1) ? "redundant_equivalent" : "geodesic";
       const viewContext = (hash & 2) ? "reoriented" : "stable";
-      const modality = this.historyApi.MODALITIES[Math.floor(hash / 4) % this.historyApi.MODALITIES.length];
+      const modality = "TERMINAL_ONLY";
       return Object.freeze({
         cell_id: `H${this.historyApi.MODALITIES.indexOf(modality) + 1}-${historyType === "geodesic" ? "G" : "R"}-${viewContext === "stable" ? "S" : "V"}`,
         history_modality: modality,
         history_type: historyType,
         view_context: viewContext,
-        assignment_method: "fixed_hash_3x2x2_v1"
+        assignment_method: "fixed_hash_1x2x2_terminal_state_v1"
       });
     }
 
@@ -70,7 +70,7 @@
         collection_locked: true,
         eligibility_clock_state: this.eligibility.state,
         probe_randomization_policy: this.randomizationApi.POLICY_ID,
-        browser_timing_status: "BROWSER_TIMING_PENDING"
+        history_visibility_status: "TERMINAL_STATE_ONLY"
       };
       return session;
     }
@@ -90,20 +90,23 @@
         }
       }
       trial.probe_after = false;
-      trial.presentation_mode = cell.history_modality;
+      trial.presentation_mode = "TERMINAL_ONLY";
+      trial.show_scramble_text = false;
+      trial.scramble_animation_shown = false;
+      trial.scramble_text_shown = false;
+      delete trial.scramble_animation_ms_per_quarter;
       return trial;
     }
 
     decorateTrial(record, trial) {
       record.calibration_assignment = structuredClone(trial.calibration_assignment);
       record.assigned_history_label = trial.assigned_history_label ?? null;
-      const modality = trial.calibration_assignment?.memory?.history_modality || "TERMINAL_ONLY";
-      record.presentation_mode = modality;
-      record.generating_path_hidden = modality === "TERMINAL_ONLY";
-      record.scramble_text_shown = modality === "TEXT_HISTORY";
-      record.scramble_animation_shown = modality === "ANIMATED_HISTORY";
-      record.visibility_supports_replay_inference = modality !== "TERMINAL_ONLY";
-      record.replay_inference_allowed = modality !== "TERMINAL_ONLY";
+      record.presentation_mode = "TERMINAL_ONLY";
+      record.generating_path_hidden = true;
+      record.scramble_text_shown = false;
+      record.scramble_animation_shown = false;
+      record.visibility_supports_replay_inference = false;
+      record.replay_inference_allowed = false;
       return record;
     }
 
@@ -112,11 +115,10 @@
       helpers.setView?.(memory.view_context || "stable");
       helpers.log("calibration_view_context_applied", { view_context: memory.view_context || "stable" });
       const presentation = this.historyApi.plan(
-        memory.history_modality || "TERMINAL_ONLY",
+        "TERMINAL_ONLY",
         trial.scramble_tokens,
         {
-          exposure_ms: this.config.history_presentation.nominal_exposure_ms,
-          minimum_move_ms: this.config.history_presentation.minimum_animated_move_ms
+          exposure_ms: this.config.history_presentation.nominal_exposure_ms
         }
       );
       helpers.log("history_presentation_started", presentation);

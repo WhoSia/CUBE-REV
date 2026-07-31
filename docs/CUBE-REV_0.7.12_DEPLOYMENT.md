@@ -3,7 +3,7 @@
 ## Release boundary
 
 - Public host version: `0.7.12`
-- Build: `0.7.12-browser-run-in-1`
+- Build: `0.7.12-terminal-state-hotfix-1`
 - GitHub Pages source: `main` / repository root
 - Preserved baseline: `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`
 - Collector: disabled and unbound
@@ -27,11 +27,11 @@ ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31
    20% `STRATEGY_DIAGNOSTIC`.
 4. Missing Web Crypto fails closed and removes causal run-in eligibility.
 5. Probe cooldown is two intervening trials and the burden cap is three.
-6. `TERMINAL_ONLY`, `TEXT_HISTORY`, and `ANIMATED_HISTORY` use a nominal
-   2,400 ms pre-input budget.
-7. Animated history enqueues one move and waits for visual idle before the next.
-8. Fewer than 55 ms per displayed move fails with
-   `ANIMATION_BUDGET_INFEASIBLE`.
+6. Every deployed trial is `TERMINAL_ONLY` with a nominal 2,400 ms hidden
+   pre-input interval.
+7. Generation motion and path-notation text are never shown to participants.
+8. Hidden generator histories remain apparatus metadata and cannot support
+   replay inference.
 9. The neutral interruption contains no strategy, comfort, outcome, difficulty,
    or confidence question and enforces a 700 ms floor.
 
@@ -51,7 +51,7 @@ ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31
 - source syntax and source-bound anchors
 - exact-bucket mechanics and fail-closed behavior
 - cooldown and burden-cap transitions
-- 10,023 history terminal-state traces
+- 10,023 hidden-history visibility traces
 - nominal 2,400 ms scheduling contract
 - neutral-probe content isolation and 700 ms floor
 - version, archive, cache-key, and governance-lock consistency
@@ -59,10 +59,6 @@ ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31
 
 ## Explicitly deferred to 0.7.13
 
-- deployed-browser wall-clock timing under `requestAnimationFrame`
-- background-tab throttling measurements
-- desktop/mobile viewport timing comparison
-- DOM-level modality trace certification on the public URL
 - live synthetic receipt against a separate calibration collector
 - any Google Apps Script modification or deployment
 

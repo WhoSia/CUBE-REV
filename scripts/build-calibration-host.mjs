@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sourcePath = path.join(root, "index.html");
 const outputPath = path.join(root, "calibration", "index.html");
-const EXPECTED_SOURCE_SHA256 = "7fe218f8bce7ceb8e3f890446a74880b330a045c71d0bc8039ee176cbec53396";
+const EXPECTED_SOURCE_SHA256 = "2573d0a3aa6fb54b4bd597a5891fb67304876e3c93f4917d4cc88a266daec1b7";
 const sha256 = value => crypto.createHash("sha256").update(value).digest("hex");
 
 const source = fs.readFileSync(sourcePath, "utf8").replace(/\r\n/g, "\n");
@@ -23,7 +23,7 @@ const requiredAnchors = [
   '<script src="./calibration/neutral-probe.js',
   '<script src="./js/camera-orbit.js',
   "const VERSION = '0.7.12';",
-  "const BUILD_ID = '0.7.12-browser-run-in-1';"
+  "const BUILD_ID = '0.7.12-terminal-state-hotfix-1';"
 ];
 for (const anchor of requiredAnchors) {
   if (!host.includes(anchor)) throw new Error(`Source-bound anchor missing: ${anchor}`);

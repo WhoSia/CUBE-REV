@@ -306,14 +306,15 @@ cube-rev/
 
 ## 0.7.12 browser run-in
 
-0.7.12는 decision point에서 Web Crypto exact-bucket 60/20/20 배정을 사용하고,
-`TERMINAL_ONLY`, `TEXT_HISTORY`, `ANIMATED_HISTORY`에 같은 nominal 2,400 ms
-노출 예산을 적용합니다. `TIME_MATCHED_NEUTRAL`은 중립 기호와 700 ms 최소
+0.7.12는 decision point에서 Web Crypto exact-bucket 60/20/20 배정을 사용합니다.
+배포 호스트의 모든 시행은 `TERMINAL_ONLY`이며, 생성 경로의 회전 모션과
+회전 기호 텍스트를 참가자에게 노출하지 않습니다. 고정된 2,400 ms 비노출 구간
+뒤에 최종 상태만 제시합니다. `TIME_MATCHED_NEUTRAL`은 중립 기호와 700 ms 최소
 노출만 사용합니다. csTimer 양손 키맵에는 x·y·z 회전이 포함되며, 카메라는
 180° 이후에도 방향이 유지되는 screen-relative matrix orbit을 사용합니다.
 
-Collection은 잠겨 있고 eligibility clock은 `NOT_STARTED`입니다. 실제 브라우저
-wall-clock과 별도 collector의 synthetic receipt는 0.7.13 검증 범위입니다.
+Collection은 잠겨 있고 eligibility clock은 `NOT_STARTED`입니다. 별도 collector의
+synthetic receipt는 이후 검증 범위이며, 생성 history 모션 조건은 사용하지 않습니다.
 
 ## 0.7.11 calibration history
 

@@ -9,11 +9,11 @@
     protocol_version: "0.7.12",
     host_baseline_version: "0.7.12",
     preserved_baseline_version: "0.6.11",
-    build_id: "0.7.12-browser-run-in-1",
+    build_id: "0.7.12-terminal-state-hotfix-1",
     mode: "run_in_only",
     source_bound: Object.freeze({
       repository: "WhoSia/CUBE-REV",
-      baseline_commit: "4d14f88d4f3c9508dffec7e632f62c742ca10598",
+      baseline_commit: "f0779a583c2a9919d0171b0ca819718c0e3b6ac5",
       preserved_0611_sha256: "ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31",
       generated_from: "index.html"
     }),
@@ -47,9 +47,10 @@
       })
     }),
     history_presentation: Object.freeze({
-      modalities: Object.freeze(["TERMINAL_ONLY", "TEXT_HISTORY", "ANIMATED_HISTORY"]),
+      modalities: Object.freeze(["TERMINAL_ONLY"]),
       nominal_exposure_ms: 2400,
-      minimum_animated_move_ms: 55,
+      generation_motion_visible: false,
+      path_text_visible: false,
       browser_wall_clock_certified: false
     }),
     neutral_probe: Object.freeze({
@@ -58,9 +59,9 @@
       human_reactivity_estimated: false
     }),
     memory_factorial: Object.freeze({
-      design: "2x2x2",
+      design: "1x2x2",
       factors: Object.freeze({
-        history_visibility: Object.freeze(["hidden", "shown"]),
+        history_visibility: Object.freeze(["hidden"]),
         history_type: Object.freeze(["geodesic", "redundant_equivalent"]),
         view_context: Object.freeze(["stable", "reoriented"])
       })
