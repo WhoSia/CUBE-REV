@@ -94,7 +94,7 @@ jobs:
           assert r['stm_conformance']['exact_match_count']==10
           print('CR0817_COMMITTED_SNAPSHOT_OUTPUTS_PASS')
           PY
-      - name: Seal complete self-excluding evidence inventory
+      - name: Seal portable self-excluding evidence inventory
         shell: bash
         run: |
           cp research/CUBE_REV_0.8.17_EXTERNAL_TRAJECTORY_FIXTURE_PACK.json artifacts/0.8.17/
@@ -104,11 +104,14 @@ jobs:
           cp research/CUBE_REV_0.8.17_VALIDATION_REPORT.md artifacts/0.8.17/
           cp research/CUBE_REV_0.8.17_DECISION_PACKET.json artifacts/0.8.17/
           cp research/CUBE_REV_0.8.17_RUNBOOK.md artifacts/0.8.17/
-          find artifacts/0.8.17 -type f ! -name ARTIFACT_SHA256SUMS.txt -print0 \
-            | sort -z \
-            | xargs -0 sha256sum > /tmp/CR0817_ARTIFACT_SHA256SUMS.txt
-          mv /tmp/CR0817_ARTIFACT_SHA256SUMS.txt artifacts/0.8.17/ARTIFACT_SHA256SUMS.txt
-          sha256sum -c artifacts/0.8.17/ARTIFACT_SHA256SUMS.txt
+          (
+            cd artifacts/0.8.17
+            find . -type f ! -name ARTIFACT_SHA256SUMS.txt -print0 \
+              | sort -z \
+              | xargs -0 sha256sum > /tmp/CR0817_ARTIFACT_SHA256SUMS.txt
+            mv /tmp/CR0817_ARTIFACT_SHA256SUMS.txt ARTIFACT_SHA256SUMS.txt
+            sha256sum -c ARTIFACT_SHA256SUMS.txt
+          )
           echo 'CR0817_EXTERNAL_TRAJECTORY_CI_PASS'
       - uses: actions/upload-artifact@v4
         if: always()
