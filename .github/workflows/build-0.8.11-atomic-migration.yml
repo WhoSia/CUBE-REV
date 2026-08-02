@@ -75,3 +75,21 @@ jobs:
             echo 'Frozen collector file changed.' >&2
             exit 1
           fi
+
+      - name: Package verified generated assets
+        shell: bash
+        run: |
+          mkdir -p /tmp/cube-rev-0811-assets/cognitive /tmp/cube-rev-0811-assets/research /tmp/cube-rev-0811-assets/js
+          cp cognitive/PARTICIPANT_STIMULUS_BANK_0.8.11.json /tmp/cube-rev-0811-assets/cognitive/
+          cp cognitive/COGNITIVE_MODE_CONFIG_0.8.11.json /tmp/cube-rev-0811-assets/cognitive/
+          cp research/CUBE_REV_0.8.11_ASSET_MANIFEST.json /tmp/cube-rev-0811-assets/research/
+          cp js/asset-pins-0.8.11.js /tmp/cube-rev-0811-assets/js/
+          sha256sum /tmp/cube-rev-0811-assets/cognitive/* /tmp/cube-rev-0811-assets/research/* /tmp/cube-rev-0811-assets/js/* > /tmp/cube-rev-0811-assets/SHA256SUMS.txt
+
+      - name: Upload verified generated assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-0.8.11-verified-assets
+          path: /tmp/cube-rev-0811-assets
+          if-no-files-found: error
+          retention-days: 7
