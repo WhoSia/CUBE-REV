@@ -1,0 +1,94 @@
+{
+  "project": "CUBE-REV",
+  "version": "0.8.10",
+  "title": "Cross-version Resume Migration, Assignment Continuity & Public-asset Hash-pinning Certification",
+  "branch": "cube-rev-0.8.10-cross-version-migration",
+  "parent_branch": "cube-rev-0.8.9-public-bank-minimization",
+  "pull_request": 9,
+  "decision": [
+    "PASS_CROSS_VERSION_MIGRATION",
+    "PASS_ASSIGNMENT_CONTINUITY",
+    "PASS_PUBLIC_ASSET_HASH_PINNING",
+    "PASS_SOURCE_PRESERVATION",
+    "PASS_SEALED_LEGACY_NONREWRITE",
+    "HOLD_MULTI_TAB_ATOMICITY",
+    "HOLD_LIVE_COLLECTOR",
+    "HOLD_LIVE_FACTORY",
+    "DEFAULT_CUTOVER_NO_GO"
+  ],
+  "executed_ci": {
+    "migration_workflow_run": 30740724909,
+    "migration_job": 91477556949,
+    "baseline_workflow_run": 30740724897,
+    "conclusion": "success",
+    "node_version": "22.23.1",
+    "markers": [
+      "CR0810_ASSET_BUILD_PASS stimuli=28 choices=504",
+      "CR0810_MIGRATION_HASH_PIN_PASS 13/13",
+      "CR0809_PUBLIC_BANK_CERT_PASS 8/8",
+      "CR0808_IMMUTABLE_SNAPSHOT_PASS 8/8"
+    ]
+  },
+  "asset_binding": {
+    "canonicalization": "JSON_STRINGIFY_PARSED_OBJECT_V1",
+    "hash_algorithm": "SHA-256",
+    "manifest_sha256": "7961e5b36320c303b1784f5f35fa915042c13e25a3fc716242f4e70ccb97df81",
+    "public_bank_sha256": "38b706b0dbf6735ac6cefb34289aa6fe36dcf8252552ed22ee9c7be4af55ed89",
+    "public_config_sha256": "040ded0ea10cbdd794e924b35ac09be9e4c25dbf707727be03e38929db5ab54d",
+    "parent_manifest_sha256": "00b9c255dd050638020e9436fb01911d8e50f886595d4dd14bc529ded906813a",
+    "private_crosswalk_sha256": "90c54b51052fc27c436d8701797e5b2aa95e19ec28a7f63bbd50db41192748f0",
+    "materialization_commit": "900dbbb509329ea0da8c99968dd95e7b2945c8c1"
+  },
+  "migration_contract": {
+    "source_versions": [
+      "CUBE-REV 0.8.8",
+      "CUBE-REV 0.8.9"
+    ],
+    "eligible_unsealed_statuses": [
+      "IN_PROGRESS",
+      "POST_TASK",
+      "READY_TO_SUBMIT"
+    ],
+    "sealed_policy": "LEGACY_VERSION_RETRY_ONLY",
+    "source_deleted": false,
+    "source_mutated": false,
+    "exact_source_archive": true,
+    "journal_states": [
+      "PREPARED",
+      "COMMITTED",
+      "ROLLED_BACK"
+    ],
+    "assignment_fields_preserved": [
+      "participant_token",
+      "session_id",
+      "sequence_id",
+      "schedule",
+      "cursor"
+    ],
+    "response_fields_preserved": [
+      "stimulus_id",
+      "choice_display",
+      "latency_ms",
+      "position",
+      "recorded_at"
+    ],
+    "response_encoding": "OPAQUE_CHOICE_CODE_V1",
+    "legacy_internal_fields_copied": false
+  },
+  "collector_contract": {
+    "version": "0.7.12",
+    "collector_config_modified": false,
+    "collector_client_modified": false
+  },
+  "test_gate_count": 13,
+  "limitations": [
+    "multi_tab_migration_atomicity_not_certified",
+    "all_crash_interleavings_not_reconciled",
+    "hash_pinning_is_not_full_origin_authentication",
+    "no_live_collector_execution",
+    "no_live_factory_execution",
+    "no_owner_browser_device_walkthrough",
+    "no_production_default_entry_cutover"
+  ],
+  "next_boundary": "atomic_migration_journal_multi_tab_upgrade_arbitration_and_downgrade_safe_rollback"
+}
