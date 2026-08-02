@@ -1,0 +1,47 @@
+name: Materialize CUBE-REV 0.8.13 implementation bundle
+on:
+  push:
+    branches: [cube-rev-0.8.13-native-browser-live-factory]
+    paths: ['.github/workflows/materialize-0.8.13-bundle.yml']
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.13-native-browser-live-factory
+          fetch-depth: 0
+      - name: Verify and extract staged archive
+        shell: bash
+        run: |
+          cat .staging/0.8.13/chunk_*.b64 > /tmp/cr0813-remaining.b64
+          echo '7612efa3c1b772af898375719dfa864768afdf80ccb3e6b61a589cd4fc2b64f6  /tmp/cr0813-remaining.b64' | sha256sum -c -
+          base64 -d /tmp/cr0813-remaining.b64 > /tmp/cr0813-remaining.tgz
+          echo '56b25bd5ffdd67a22040fa69f607bc047c327bb33182d36ee808a92a73407535  /tmp/cr0813-remaining.tgz' | sha256sum -c -
+          tar -xzf /tmp/cr0813-remaining.tgz
+          cat > /tmp/cr0813-blob-identities.txt <<'EOF'
+          1b92cb18eb18365138072f0c1fd14bc4b093fe09 participant-cognitive-mode-0.8.13.html
+          f0890efa3fa8521e3eda6fc4986950c410231eea tests/native_multi_window_0.8.13.spec.js
+          3c8dd30075aa9740f304c8a1645bd75ade04fbb0 factory/cognitive_snapshot_adapter_0_8_13.py
+          104965f3488f7c97d5d3db9f07de34daa68804d5 scripts/make_synthetic_snapshot_0_8_13.js
+          3af036ef232508f5343f4e1d1208bfdb419c622a scripts/live_collector_probe_0_8_13.mjs
+          3cf48a54113eecb0e8356806b4f79e3d0db97919 tests/factory_reconstruction_0.8.13.py
+          e5f441861560976743300dba04fb26a8337046a8 .github/workflows/build-0.8.13-native-browser-live-factory.yml
+          b741f94c1e32f288eeda74801e18410f8a5c5ebc .github/workflows/live-0.8.13-once.yml
+          EOF
+          while read -r expected path; do
+            actual=$(git hash-object "$path")
+            test "$actual" = "$expected" || { echo "BLOB_IDENTITY_MISMATCH $path $actual $expected" >&2; exit 1; }
+          done < /tmp/cr0813-blob-identities.txt
+          echo 'CR0813_STAGED_BUNDLE_VERIFIED'
+      - name: Commit exact materialized files and remove staging transport
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add participant-cognitive-mode-0.8.13.html tests/native_multi_window_0.8.13.spec.js factory/cognitive_snapshot_adapter_0_8_13.py scripts/make_synthetic_snapshot_0_8_13.js scripts/live_collector_probe_0_8_13.mjs tests/factory_reconstruction_0.8.13.py .github/workflows/build-0.8.13-native-browser-live-factory.yml .github/workflows/live-0.8.13-once.yml
+          git rm -r .staging/0.8.13 .github/workflows/materialize-0.8.13-bundle.yml
+          git commit -m 'feat(0.8.13): materialize native browser, live Collector and Factory harness'
+          git push origin HEAD:cube-rev-0.8.13-native-browser-live-factory
