@@ -19,6 +19,7 @@ jobs:
           node-version: '22'
       - name: Build exact synthetic live-cert snapshot
         run: |
+          # execution nonce: 2026-08-02T20:44+09:00
           node scripts/build_0_8_13_assets.js
           node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.13/live_synthetic_snapshot.json
       - name: Submit same snapshot twice with different nonces
