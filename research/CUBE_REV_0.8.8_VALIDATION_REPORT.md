@@ -21,7 +21,7 @@ The participant application remains versioned as `CUBE-REV 0.8.8`, while collect
 
 ## Executed validation gates
 
-The executable Node contract suite now covers eight gates:
+The executable Node contract suite covers eight gates:
 
 1. pre-completion snapshot sealing is rejected;
 2. repeated sealing is idempotent and post-seal telemetry cannot mutate the payload;
@@ -38,11 +38,11 @@ Expected terminal marker:
 CR0808_IMMUTABLE_SNAPSHOT_PASS 8/8
 ```
 
-An independent reconstruction of the branch runtime and shadow collector contract reproduced the pass marker before this report was committed.
+Before this report was committed, the exact 0.8.8 runtime and 0.8.7 shadow collector code were reconstructed in an isolated Node environment. The contract path reproduced the earlier immutable-snapshot pass. The expanded eight-gate suite is committed as the authoritative rerun target; repository CI or an owner-side Node rerun remains the durable execution artifact still required before production promotion.
 
 ## Evidence boundary
 
-### Certified
+### Certified at the executable contract level
 
 - retry-stable scientific serialization within the 0.8.8 client runtime;
 - stable FNV-1a collector checksum across receipt-loss retry when the collector returns the checksum of the stored payload;
@@ -62,7 +62,7 @@ The current FNV-based integrity fields are contract and corruption detectors, no
 
 ## File-level safety result
 
-CUBE-REV 0.8.8 adds only cognitive-mode configuration, participant stimulus data, participant runtime/page, telemetry schema, and contract tests on top of the 0.8.7 branch. It does not modify:
+CUBE-REV 0.8.8 adds only cognitive-mode configuration, participant stimulus data, participant runtime/page, telemetry schema, contract tests, and research decision material on top of the 0.8.7 branch. It does not modify:
 
 - `collector-config.js`
 - `js/collector-client.js`
