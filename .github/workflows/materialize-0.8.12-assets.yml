@@ -1,0 +1,39 @@
+name: Materialize CUBE-REV 0.8.12 verified assets
+
+on:
+  push:
+    branches:
+      - cube-rev-0.8.12-active-session-cas
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.12-active-session-cas
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build deterministic assets
+        run: node scripts/build_0_8_12_assets.js
+      - name: Commit generated assets only when changed
+        shell: bash
+        run: |
+          git add cognitive/PARTICIPANT_STIMULUS_BANK_0.8.12.json \
+                  cognitive/COGNITIVE_MODE_CONFIG_0.8.12.json \
+                  research/CUBE_REV_0.8.12_ASSET_MANIFEST.json \
+                  js/asset-pins-0.8.12.js
+          if git diff --cached --quiet; then
+            echo 'Generated assets already materialized.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'build(0.8.12): materialize verified generated assets'
+          git push origin HEAD:cube-rev-0.8.12-active-session-cas
