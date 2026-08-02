@@ -1,7 +1,7 @@
 {
   "schema_version": "CR0813-LIVE-COLLECTOR-EVIDENCE-1",
-  "started_at": "2026-08-02T12:10:06.823Z",
-  "completed_at": "2026-08-02T12:10:26.416Z",
+  "started_at": "2026-08-02T12:13:14.930Z",
+  "completed_at": "2026-08-02T12:13:54.174Z",
   "endpoint_origin": "https://script.google.com",
   "endpoint_sha256": "f0af3748ba82a53fdf55578c06efa1b13eab155bcc65afcafc1c7eeac9b5b9b8",
   "health": {
@@ -46,8 +46,8 @@
     }
   ],
   "result": "PASS_LIVE_COLLECTOR_TWO_NONCE_DEDUP",
-  "trigger_sha": "70e68aa2a768972d31882e0f1c2a483cfd9ca9bc",
-  "workflow_run": 30747246961,
+  "trigger_sha": "54ce82e9aec92428d08ad6262086d372a5c6f5b9",
+  "workflow_run": 30747362641,
   "synthetic_exclusion": {
     "exclude_from_human_cohort": true,
     "participant_token_marker": "DO-NOT-ANALYZE",
