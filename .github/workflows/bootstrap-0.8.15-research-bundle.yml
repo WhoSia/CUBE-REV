@@ -6,6 +6,7 @@ on:
       - '.github/workflows/bootstrap-0.8.15-research-bundle.yml'
       - 'scripts/bootstrap_0_8_15_bundle.py'
       - 'scripts/.cr0815_payload_*.txt'
+      - 'research/.cr0815_bootstrap_trigger'
 permissions:
   contents: write
 jobs:
@@ -40,6 +41,7 @@ jobs:
           git add .github/workflows/build-0.8.15-cognitive-mechanism-lattice.yml
           git rm --ignore-unmatch scripts/bootstrap_0_8_15_bundle.py
           git rm --ignore-unmatch scripts/.cr0815_payload_01.txt scripts/.cr0815_payload_02.txt scripts/.cr0815_payload_03.txt scripts/.cr0815_payload_04.txt
+          git rm --ignore-unmatch research/.cr0815_bootstrap_trigger
           git rm --ignore-unmatch .github/workflows/bootstrap-0.8.15-research-bundle.yml
           git diff --cached --check
           git commit -m 'feat(0.8.15): install cognitive mechanism lattice research wave'
