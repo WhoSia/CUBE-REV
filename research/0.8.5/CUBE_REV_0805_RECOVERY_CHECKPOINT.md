@@ -7,7 +7,7 @@
 ## Recovery verdict
 
 - Durable research completion currently ends at **CUBE-REV 0.8.4**.
-- The participant-facing repository baseline on `main` remains **v0.7.22**.
+- The active participant-facing documentation on `main` still identifies **v0.7.12**, while the latest repository merge adds a separately stored immutable **v0.7.22 snapshot**. No 0.8.x participant UI is present on `main`.
 - The 0.8.5 title, objectives, and operating constraints were specified, but no durable 0.8.5 implementation/certification artifact was found before the interrupted response.
 - Therefore 0.8.5 is resumed from **RECOVERED-SCOPE / IMPLEMENTATION-NOT-YET-CERTIFIED**, not from a claimed completed state.
 
@@ -130,7 +130,7 @@ Collector/transport versioning is independently frozen and must not be cosmetica
 0.8.5 may be marked complete only when all of the following exist:
 
 - exact cognitive-mode catalog and allocation rule recovered and frozen;
-- implementation diff against v0.7.22;
+- implementation diff against the active participant UI baseline;
 - machine-readable schema and migration policy;
 - automated certification report with zero resume-identity violations;
 - proof that Collector configuration and transport files are unchanged;
