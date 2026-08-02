@@ -1,0 +1,49 @@
+name: Materialize CUBE-REV 0.8.13 verified assets
+on:
+  push:
+    branches: [cube-rev-0.8.13-native-browser-live-factory]
+    paths: ['.github/workflows/materialize-0.8.13-assets.yml']
+permissions:
+  contents: write
+jobs:
+  materialize-assets:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.13-native-browser-live-factory
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and verify exact generated identities
+        shell: bash
+        run: |
+          output=$(node scripts/build_0_8_13_assets.js)
+          echo "$output"
+          echo "$output" | grep -F 'CR0813_ASSET_BUILD_PASS stimuli=28 choices=504 manifest=810847fe11ffcb6c17cb7a87b6951579ada128035f3f4ffc8a281478b3ece506'
+          node - <<'NODE'
+          const fs=require('fs'),crypto=require('crypto');
+          const canonical=p=>JSON.stringify(JSON.parse(fs.readFileSync(p,'utf8')));
+          const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
+          const manifest='research/CUBE_REV_0.8.13_ASSET_MANIFEST.json';
+          const bank='cognitive/PARTICIPANT_STIMULUS_BANK_0.8.13.json';
+          const config='cognitive/COGNITIVE_MODE_CONFIG_0.8.13.json';
+          const m=JSON.parse(fs.readFileSync(manifest,'utf8'));
+          const identities={manifest:sha(canonical(manifest)),bank:sha(canonical(bank)),config:sha(canonical(config))};
+          if(identities.manifest!=='810847fe11ffcb6c17cb7a87b6951579ada128035f3f4ffc8a281478b3ece506')throw new Error('MANIFEST_IDENTITY_MISMATCH');
+          if(m.public_bank_sha256!==identities.bank)throw new Error('BANK_IDENTITY_MISMATCH');
+          if(m.public_config_sha256!==identities.config)throw new Error('CONFIG_IDENTITY_MISMATCH');
+          fs.mkdirSync('artifacts/0.8.13',{recursive:true});
+          fs.writeFileSync('artifacts/0.8.13/materialized_asset_identities.json',JSON.stringify(identities,null,2));
+          console.log(`CR0813_ASSET_IDENTITIES_VERIFIED manifest=${identities.manifest} bank=${identities.bank} config=${identities.config}`);
+          NODE
+      - name: Commit generated assets only
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cognitive/PARTICIPANT_STIMULUS_BANK_0.8.13.json cognitive/COGNITIVE_MODE_CONFIG_0.8.13.json research/CUBE_REV_0.8.13_ASSET_MANIFEST.json js/asset-pins-0.8.13.js
+          git diff --cached --quiet && { echo 'CR0813_ASSETS_ALREADY_MATERIALIZED'; exit 0; }
+          git commit -m 'build(0.8.13): materialize verified generated assets'
+          git push origin HEAD:cube-rev-0.8.13-native-browser-live-factory
