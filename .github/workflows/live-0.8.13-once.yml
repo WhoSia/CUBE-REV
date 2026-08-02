@@ -1,0 +1,45 @@
+name: CUBE-REV 0.8.13 one-time live Collector certification
+on:
+  push:
+    branches: [cube-rev-0.8.13-native-browser-live-factory]
+    paths: ['.github/workflows/live-0.8.13-once.yml']
+permissions:
+  contents: write
+jobs:
+  live-collector:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.13-native-browser-live-factory
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build exact synthetic live-cert snapshot
+        run: |
+          node scripts/build_0_8_13_assets.js
+          node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.13/live_synthetic_snapshot.json
+      - name: Submit same snapshot twice with different nonces
+        env:
+          CUBE_REV_COLLECTOR_ENDPOINT: https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec
+          CUBE_REV_COLLECTOR_ID: CUBE-REV-0712-MAIN
+          CUBE_REV_COLLECTOR_CONTRACT: '0.7.12'
+          CUBE_REV_COLLECTOR_PROTOCOL: receipt-v2
+        run: node scripts/live_collector_probe_0_8_13.mjs artifacts/0.8.13/live_synthetic_snapshot.json artifacts/0.8.13/live_collector_evidence.json
+      - name: Commit live evidence after successful receipt convergence
+        shell: bash
+        run: |
+          cp artifacts/0.8.13/live_collector_evidence.json research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json
+          git commit -m 'evidence(0.8.13): record live Collector receipt convergence'
+          git push origin HEAD:cube-rev-0.8.13-native-browser-live-factory
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-0.8.13-live-collector-evidence
+          path: artifacts/0.8.13
+          retention-days: 14
+          if-no-files-found: error
