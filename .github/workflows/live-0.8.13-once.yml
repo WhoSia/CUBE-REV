@@ -19,10 +19,11 @@ jobs:
           node-version: '22'
       - name: Build and preflight exact synthetic live-cert snapshot
         run: |
-          # execution nonce: 2026-08-02T21:02+09:00
+          # execution nonce: 2026-08-02T21:08+09:00
           node scripts/build_0_8_13_assets.js
           node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.13/live_synthetic_snapshot.json
           node -e "const s=require('./artifacts/0.8.13/live_synthetic_snapshot.json');if(!/^CR-[0-9]{14}-[0-9a-f]{12}$/.test(s.session_id))throw Error('SESSION_ID_PREFLIGHT');if(!String(s.participant_token||'').includes('DO-NOT-ANALYZE'))throw Error('PARTICIPANT_EXCLUSION_MARKER');if(!s.telemetry.some(e=>e&&e.data&&e.data.exclude_from_human_cohort===true))throw Error('COHORT_EXCLUSION_MARKER');if(!String(s.post_task&&s.post_task.technical_notes||'').includes('DO NOT INCLUDE IN HUMAN COHORT'))throw Error('POST_TASK_EXCLUSION_MARKER');console.log('CR0813_LIVE_PREFLIGHT_PASS session='+s.session_id+' excluded_from_human_cohort=true');"
+          grep -F "collector_compatibility_schema:'CR0813-COLLECTOR-COMPATIBILITY-ENVELOPE-1'" scripts/live_collector_probe_0_8_13.mjs
       - name: Probe live receipt-v2 Collector
         id: probe
         shell: bash
