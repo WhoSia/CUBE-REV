@@ -1,0 +1,203 @@
+{
+  "schema_version": "CR0814-DECISION-PACKET-1",
+  "project": "CUBE-REV",
+  "version": "0.8.14",
+  "title": "Stored-raw Custody Replay, Cross-device Browser Matrix & Controlled Staging Cutover Gate",
+  "branch": "cube-rev-0.8.14-custody-device-staging",
+  "parent_branch": "cube-rev-0.8.13-native-browser-live-factory",
+  "pull_request": 13,
+  "decision": [
+    "PASS_ARCHIVAL_LIVE_SUBMITTED_BYTE_RECONSTRUCTION",
+    "PASS_0_8_13_EVIDENCE_LINEAGE_ERRATUM",
+    "PASS_PROVENANCE_PRESERVING_ARCHIVAL_FACTORY_BRIDGE",
+    "PASS_CHROMIUM_ONLY_CONTROLLED_STAGING_POLICY",
+    "PASS_FIREFOX_WEBKIT_FAIL_CLOSED",
+    "PASS_DETERMINISTIC_STAGING_CANDIDATE",
+    "PASS_INHERITED_CONTRACTS",
+    "HOLD_EXACT_STORED_RAW_CUSTODY_REPLAY",
+    "HOLD_PHYSICAL_DEVICE_WALKTHROUGH",
+    "HOLD_OWNER_ACCEPTANCE",
+    "DEFAULT_CUTOVER_NO_GO"
+  ],
+  "certification": {
+    "executable_head": "b5712e1d30f2e0b0cc0b411fdca811d4c6158992",
+    "workflow_run": 30753219920,
+    "job": 91510832942,
+    "baseline_workflow_run": 30753219950,
+    "conclusion": "success",
+    "workflow_permissions": "contents_read_only",
+    "evidence_artifact": {
+      "artifact_id": 8835133893,
+      "zip_sha256": "96e188a9e25c36481a8c442787b3ed2b7f2803f4308d1ceea09929df1f8a4932",
+      "compressed_bytes": 195385,
+      "retention_until": "2026-08-16"
+    }
+  },
+  "custody": {
+    "expected_file_name": "CR-20260802110000-0813a0b0c0d0.json",
+    "exact_stored_raw_retrieved": false,
+    "exact_stored_raw_factory_replay": false,
+    "reason": "connected Drive identity cannot read the Collector-owned stored file",
+    "collector_deduplication_interpretation": "duplicate receipt proves convergence to a session-derived file identity, not equality between newly submitted bytes and pre-existing stored bytes",
+    "candidate_identities": {
+      "archival_live_submission": {
+        "bytes": 16217,
+        "sha256": "6aa9d1e3ebeb403d9e9d9fcfe520867201b815bbcd3f02979012ad371ddd70b9",
+        "checksum_fnv1a32": "c8cda746"
+      },
+      "final_0_8_13_runtime_observation": {
+        "bytes": 16503,
+        "sha256": "9763af8e0c6e9de29728d5fedd4290c8bf3b8bb086bb14d014ea482d0397447a",
+        "checksum_fnv1a32": "771bf949"
+      },
+      "withdrawn_0_8_13_ledger_claim": {
+        "bytes": 21227,
+        "sha256": "6aa9d1e38c88786f1962a5878f87377a4a5fe1e99222a1b9e8c9c285111118e3",
+        "checksum_fnv1a32": "f795cd8e"
+      }
+    },
+    "result": "HOLD_DIRECT_STORED_RAW_UNAVAILABLE_THREE_IDENTITY_CANDIDATES_RECORDED"
+  },
+  "archival_live_evidence": {
+    "workflow_run": 30747246961,
+    "head_sha": "70e68aa2a768972d31882e0f1c2a483cfd9ca9bc",
+    "artifact_id": 8833272340,
+    "artifact_zip_sha256": "c046f432a4eaa075fbc8c2e7ffafd4b363f3aa5ef79d204a0a5544472f920575",
+    "snapshot": {
+      "bytes": 6481,
+      "sha256": "5fbf313d1a81bc7d94820da42a588e94cccba5aa14c287316cf548175ef82f83",
+      "response_count": 28
+    },
+    "submitted_envelope": {
+      "bytes": 16217,
+      "sha256": "6aa9d1e3ebeb403d9e9d9fcfe520867201b815bbcd3f02979012ad371ddd70b9",
+      "checksum_fnv1a32": "c8cda746",
+      "trial_count": 28
+    },
+    "preserved_receipt_codes": [
+      "BZLWG-S8PJCN",
+      "BZLWG-S8PJCN"
+    ],
+    "preserved_terminal_statuses": [
+      "duplicate",
+      "duplicate"
+    ],
+    "exact_reconstruction": true
+  },
+  "evidence_lineage": {
+    "committed_0_8_13_live_identity_matches_archival_workflow": false,
+    "committed_0_8_13_live_identity_matches_final_0_8_13_head": false,
+    "committed_0_8_13_receipts_match_preserved_artifact": false,
+    "erratum_path": "research/CUBE_REV_0.8.13_ERRATUM_FROM_0.8.14.md",
+    "erratum_governs_staging_candidate": true,
+    "retained_live_claims": [
+      "live_endpoint_health",
+      "valid_posts_reached_receipt_v2",
+      "two_duplicate_receipts_reference_same_session_filename",
+      "engineering_record_excluded_from_human_cohort"
+    ],
+    "withdrawn_or_unproven_live_claims": [
+      "committed_0_8_13_envelope_was_the_preserved_live_submission",
+      "stored_raw_equals_any_reconstructed_candidate",
+      "committed_0_8_13_receipt_codes_are_proven_by_preserved_artifact",
+      "exact_stored_raw_factory_replay"
+    ],
+    "result": "PASS_DETECTED_AND_DOCUMENTED_0_8_13_LIVE_EVIDENCE_LINEAGE_INCONSISTENCY"
+  },
+  "archival_factory_bridge": {
+    "source_sha256": "6aa9d1e3ebeb403d9e9d9fcfe520867201b815bbcd3f02979012ad371ddd70b9",
+    "source_bytes": 16217,
+    "derived_sha256": "5627d14d7ca654f99b91cefcbeb6f6f31a8588a9809b819653fb69c437e9d0c0",
+    "derived_bytes": 16503,
+    "scientific_snapshot_sha256": "5fbf313d1a81bc7d94820da42a588e94cccba5aa14c287316cf548175ef82f83",
+    "scientific_snapshot_unchanged": true,
+    "bridge_policy": "ADD_EXPLICIT_IDENTITY_SESSION_METADATA_WITHOUT_SCIENTIFIC_MUTATION",
+    "factory_response_rows": 28,
+    "factory_blocking_qc": 0,
+    "result": "PASS_PINNED_ARCHIVAL_LIVE_FACTORY_BRIDGE"
+  },
+  "browser_policy": {
+    "matrix_result": "PASS_CONTROLLED_STAGING_BROWSER_POLICY_MATRIX",
+    "matrix_cells_passed": 6,
+    "matrix_cells_failed": 0,
+    "active_profiles": [
+      "chromium-desktop",
+      "chromium-android-emulation"
+    ],
+    "fail_closed_profiles": [
+      "firefox-desktop",
+      "firefox-compact-viewport",
+      "webkit-desktop",
+      "webkit-iphone-emulation",
+      "unknown-engines"
+    ],
+    "active_race_iterations": 8,
+    "active_race_iterations_passed": 8,
+    "parent_diagnostics": {
+      "firefox": {
+        "iterations": 6,
+        "dual_response_applied": 5,
+        "one_winner_conflict": 1,
+        "native_web_lock_probe_serialized": true,
+        "final_incoherence": 0
+      },
+      "webkit_desktop": {
+        "iterations": 6,
+        "dual_response_applied": 1,
+        "one_winner_conflict": 5,
+        "native_web_lock_probe_serialized": true,
+        "final_incoherence": 0
+      },
+      "webkit_iphone_emulation": {
+        "iterations": 6,
+        "dual_response_applied": 2,
+        "one_winner_conflict": 4,
+        "native_web_lock_probe_serialized": true,
+        "final_incoherence": 0
+      }
+    },
+    "fail_closed_before_session_boot": true,
+    "fail_closed_storage_mutations": 0,
+    "physical_device_certified": false
+  },
+  "staging_candidate": {
+    "candidate_release_version": "CUBE-REV 0.8.14",
+    "scientific_runtime_version": "CUBE-REV 0.8.13",
+    "file_count": 21,
+    "fingerprint_sha256": "254b6d327c3d4713d0b2b923fc2bcdaebe4a0c5b1ffbb7407de9cabecb4e2c59",
+    "zip_sha256": "0dba4a7f5b36a93084e327fc4b462cbfb760b14fed64d65b5093e7c6d42980bc",
+    "zip_bytes": 66618,
+    "production_index_modified": false,
+    "collector_config_modified": false,
+    "collector_client_modified": false,
+    "automatic_deployment_authorized": false,
+    "rollback_target_commit": "6c127f86704b29ed4d884acc19a28407578753c2",
+    "result": "PASS_DETERMINISTIC_STAGING_CANDIDATE_BUILD"
+  },
+  "inherited_contracts": {
+    "cr0813_native_multi_window": "PASS",
+    "cr0813_lease_expiry_ambiguity": "PASS",
+    "cr0812_active_session_cas": "28/28 PASS",
+    "cr0811_atomic_migration": "23/23 PASS",
+    "cr0810_migration_hash_pin": "13/13 PASS",
+    "cr0809_public_bank": "8/8 PASS",
+    "cr0808_immutable_snapshot": "8/8 PASS"
+  },
+  "cutover_gate": {
+    "staging_candidate_available": true,
+    "blocking_gates": [
+      "exact_stored_raw_custody_replay",
+      "physical_device_walkthrough",
+      "owner_acceptance_walkthrough"
+    ],
+    "production_cutover": "NO_GO",
+    "automatic_merge_authorized": false,
+    "result": "CONTROLLED_STAGING_CANDIDATE_PASS_PRODUCTION_CUTOVER_NO_GO"
+  },
+  "human_data_impact": {
+    "live_probe_was_synthetic": true,
+    "excluded_from_human_cohort": true,
+    "human_estimate_changed": false
+  },
+  "next_boundary": "owner_authorized_stored_raw_export_physical_chromium_device_walkthrough_and_staging_deployment_ceremony"
+}
