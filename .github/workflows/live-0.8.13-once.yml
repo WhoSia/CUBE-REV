@@ -17,11 +17,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Build exact synthetic live-cert snapshot
+      - name: Build and preflight exact synthetic live-cert snapshot
         run: |
-          # execution nonce: 2026-08-02T20:58+09:00
+          # execution nonce: 2026-08-02T21:02+09:00
           node scripts/build_0_8_13_assets.js
           node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.13/live_synthetic_snapshot.json
+          node -e "const s=require('./artifacts/0.8.13/live_synthetic_snapshot.json');if(!/^CR-[0-9]{14}-[0-9a-f]{12}$/.test(s.session_id))throw Error('SESSION_ID_PREFLIGHT');if(!String(s.participant_token||'').includes('DO-NOT-ANALYZE'))throw Error('PARTICIPANT_EXCLUSION_MARKER');if(!s.telemetry.some(e=>e&&e.data&&e.data.exclude_from_human_cohort===true))throw Error('COHORT_EXCLUSION_MARKER');if(!String(s.post_task&&s.post_task.technical_notes||'').includes('DO NOT INCLUDE IN HUMAN COHORT'))throw Error('POST_TASK_EXCLUSION_MARKER');console.log('CR0813_LIVE_PREFLIGHT_PASS session='+s.session_id+' excluded_from_human_cohort=true');"
       - name: Probe live receipt-v2 Collector
         id: probe
         shell: bash
@@ -47,7 +48,7 @@ jobs:
           RUN_ID: ${{ github.run_id }}
         run: |
           if [ "$PROBE_STATUS" = "0" ] && [ -f artifacts/0.8.13/live_collector_evidence.json ]; then
-            node -e "const fs=require('fs');const p='artifacts/0.8.13/live_collector_evidence.json';const e=JSON.parse(fs.readFileSync(p,'utf8'));e.trigger_sha=process.env.TRIGGER_SHA;e.workflow_run=Number(process.env.RUN_ID);fs.writeFileSync(p,JSON.stringify(e,null,2));"
+            node -e "const fs=require('fs');const p='artifacts/0.8.13/live_collector_evidence.json';const e=JSON.parse(fs.readFileSync(p,'utf8'));e.trigger_sha=process.env.TRIGGER_SHA;e.workflow_run=Number(process.env.RUN_ID);e.synthetic_exclusion={exclude_from_human_cohort:true,participant_token_marker:'DO-NOT-ANALYZE',telemetry_marker:true};fs.writeFileSync(p,JSON.stringify(e,null,2));"
             cp artifacts/0.8.13/live_collector_evidence.json research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json
             rm -f research/CUBE_REV_0.8.13_LIVE_COLLECTOR_FAILURE.json
             message='evidence(0.8.13): record live Collector receipt convergence'
