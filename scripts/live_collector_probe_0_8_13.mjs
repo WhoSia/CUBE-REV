@@ -30,6 +30,7 @@ async function health(){
   return p;
 }
 async function post(nonce){
+  if(!/^[0-9a-f]{24}$/.test(nonce))throw new Error(`NONCE_FORMAT:${nonce}`);
   const checksum=fnv1a(snapshotText).toString(16).padStart(8,'0');
   const fields={payload:snapshotText,encoding:'json',study_id:'CUBE-REV-0.7.12',collector_id:'CUBE-REV-0712-MAIN',protocol_version:'receipt-v2',session_id:snapshot.session_id,version:'0.7.12',checksum_fnv1a32:checksum,original_bytes:Buffer.byteLength(snapshotText),submission_nonce:nonce};
   const r=await fetch(endpoint,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded;charset=UTF-8'},body:new URLSearchParams(fields),redirect:'follow',signal:AbortSignal.timeout(30000)});
@@ -51,7 +52,7 @@ async function receipt(nonce,checksum){
 
 const startedAt=new Date().toISOString();
 const h=await health();
-const nonceA='CR0813-LIVE-NONCE-A-0001',nonceB='CR0813-LIVE-NONCE-B-0001';
+const nonceA='0813a0000000000000000001',nonceB='0813b0000000000000000002';
 const a=await post(nonceA),ra=await receipt(nonceA,a.fields.checksum_fnv1a32);
 const b=await post(nonceB),rb=await receipt(nonceB,b.fields.checksum_fnv1a32);
 if(a.fields.checksum_fnv1a32!==b.fields.checksum_fnv1a32)throw new Error('CHECKSUM_DIVERGENCE');
