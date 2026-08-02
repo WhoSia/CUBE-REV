@@ -1,0 +1,40 @@
+{
+  "project": "CUBE-REV",
+  "version": "0.8.8",
+  "title": "Immutable Submission Snapshot Sealing, Receipt-loss Retry Identity & Tamper-quarantine Certification",
+  "parent_branch": "cube-rev-0.8.7-collector-shadow-gate",
+  "branch": "cube-rev-0.8.8-immutable-submission-snapshot",
+  "decision": [
+    "PASS_IMMUTABLE_SNAPSHOT",
+    "PASS_RETRY_IDENTITY",
+    "PASS_LOCAL_QUARANTINE",
+    "HOLD_LIVE_COLLECTOR",
+    "DEFAULT_CUTOVER_NO_GO"
+  ],
+  "collector_contract": {
+    "version": "0.7.12",
+    "collector_config_modified": false,
+    "collector_client_modified": false
+  },
+  "application_payload_version": "CUBE-REV 0.8.8",
+  "certified_test_marker": "CR0808_IMMUTABLE_SNAPSHOT_PASS 8/8",
+  "certified_properties": [
+    "snapshot_sealed_only_after_ready_to_submit",
+    "snapshot_sealing_idempotent",
+    "post_seal_transport_events_excluded_from_scientific_payload",
+    "receipt_loss_retry_checksum_identity",
+    "single_client_concurrent_submit_collapse",
+    "checksum_mismatch_not_promoted",
+    "corrupt_state_quarantined",
+    "snapshot_hash_disagreement_quarantined",
+    "sequence_drift_quarantined"
+  ],
+  "limitations": [
+    "not_a_cryptographic_signature",
+    "no_live_collector_execution",
+    "no_production_default_entry_cutover",
+    "no_live_factory_ingestion_certification",
+    "no_full_browser_device_matrix"
+  ],
+  "next_boundary": "public_stimulus_identifier_minimization_and_private_crosswalk_reconstruction"
+}
