@@ -32,22 +32,22 @@ def main()->None:
         dst=OUT/target_rel;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(src,dst)
         data=dst.read_bytes();files.append({'source_path':rel,'staging_path':target_rel,'bytes':len(data),'sha256':sha(data)})
     provenance={
-      'schema_version':'CR0814-CONTROLLED-STAGING-PROVENANCE-3','project':'CUBE-REV','research_version':'0.8.14',
+      'schema_version':'CR0814-CONTROLLED-STAGING-PROVENANCE-4','project':'CUBE-REV','research_version':'0.8.14',
       'source_branch':'cube-rev-0.8.14-custody-device-staging','parent_certified_commit':BASE_COMMIT,
       'production_default_entry_modified':False,'collector_config_modified':False,'collector_client_modified':False,
       'candidate_entry':'index.html','candidate_release_version':'CUBE-REV 0.8.14','candidate_scientific_runtime_version':'CUBE-REV 0.8.13',
       'governing_erratum':'research/CUBE_REV_0.8.13_ERRATUM_FROM_0.8.14.md',
       'browser_policy':{
         'chromium_desktop_and_android_emulation':'ACTIVE_CERTIFIED_AUTOMATED',
-        'ios_webkit_emulation':'ACTIVE_CERTIFIED_AUTOMATED',
-        'firefox':'FAIL_CLOSED_PENDING_CROSS_TAB_STORAGE_COHERENCE',
-        'desktop_webkit':'FAIL_CLOSED_PENDING_CROSS_TAB_STORAGE_COHERENCE'
+        'firefox_all_profiles':'FAIL_CLOSED_PENDING_CROSS_TAB_STORAGE_COHERENCE',
+        'webkit_all_profiles':'FAIL_CLOSED_PENDING_CROSS_TAB_STORAGE_COHERENCE',
+        'unknown_engines':'FAIL_CLOSED_UNCERTIFIED'
       },
       'physical_device_certified':False,'deployment_authorized':False,'rollback_target':BASE_COMMIT,'files':sorted(files,key=lambda x:x['staging_path'])
     }
     core=dict(provenance);provenance['candidate_fingerprint_sha256']=sha(canonical(core).encode())
     (OUT/'STAGING_PROVENANCE.json').write_text(json.dumps(provenance,ensure_ascii=False,indent=2),encoding='utf-8')
-    rollback={'schema_version':'CR0814-STAGING-ROLLBACK-PLAN-3','rollback_target_commit':BASE_COMMIT,'rollback_action':'remove_staging_route_or_restore_parent_branch_bytes','production_index_untouched':True,'collector_untouched':True,'automatic_cutover_forbidden':True,'fail_closed_route':'unsupported-browser-0.8.14.html','fail_closed_engines':['firefox','desktop_webkit']}
+    rollback={'schema_version':'CR0814-STAGING-ROLLBACK-PLAN-4','rollback_target_commit':BASE_COMMIT,'rollback_action':'remove_staging_route_or_restore_parent_branch_bytes','production_index_untouched':True,'collector_untouched':True,'automatic_cutover_forbidden':True,'fail_closed_route':'unsupported-browser-0.8.14.html','fail_closed_engines':['firefox','webkit','unknown']}
     (OUT/'ROLLBACK_PLAN.json').write_text(json.dumps(rollback,indent=2),encoding='utf-8')
     ZIP.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(ZIP,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
@@ -55,7 +55,7 @@ def main()->None:
             if not p.is_file():continue
             info=zipfile.ZipInfo(p.relative_to(OUT).as_posix(),date_time=(2026,8,2,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;info.external_attr=0o644<<16
             z.writestr(info,p.read_bytes())
-    result={'schema_version':'CR0814-STAGING-BUILD-RESULT-3','candidate_fingerprint_sha256':provenance['candidate_fingerprint_sha256'],'zip_sha256':sha(ZIP.read_bytes()),'zip_bytes':ZIP.stat().st_size,'file_count':len([p for p in OUT.rglob('*') if p.is_file()]),'production_default_entry_modified':False,'collector_modified':False,'active_policy':['chromium_desktop_and_android_emulation','ios_webkit_emulation'],'fail_closed_policy':['firefox','desktop_webkit'],'physical_device_certified':False,'result':'PASS_DETERMINISTIC_STAGING_CANDIDATE_BUILD'}
+    result={'schema_version':'CR0814-STAGING-BUILD-RESULT-4','candidate_fingerprint_sha256':provenance['candidate_fingerprint_sha256'],'zip_sha256':sha(ZIP.read_bytes()),'zip_bytes':ZIP.stat().st_size,'file_count':len([p for p in OUT.rglob('*') if p.is_file()]),'production_default_entry_modified':False,'collector_modified':False,'active_policy':['chromium_desktop_and_android_emulation'],'fail_closed_policy':['firefox_all_profiles','webkit_all_profiles','unknown_engines'],'physical_device_certified':False,'result':'PASS_DETERMINISTIC_STAGING_CANDIDATE_BUILD'}
     (ROOT/'artifacts/0.8.14/staging_build_result.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
-    print(f"CR0814_STAGING_BUILD_PASS files={result['file_count']} zip_sha256={result['zip_sha256']} fingerprint={result['candidate_fingerprint_sha256']} firefox=FAIL_CLOSED desktop_webkit=FAIL_CLOSED")
+    print(f"CR0814_STAGING_BUILD_PASS files={result['file_count']} zip_sha256={result['zip_sha256']} fingerprint={result['candidate_fingerprint_sha256']} active=CHROMIUM_ONLY firefox=FAIL_CLOSED webkit=FAIL_CLOSED")
 if __name__=='__main__':main()
