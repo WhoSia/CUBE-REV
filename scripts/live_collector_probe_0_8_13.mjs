@@ -1,8 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import {createRequire} from 'node:module';
 
 const ROOT=path.resolve(path.dirname(new URL(import.meta.url).pathname),'..');
+const require=createRequire(import.meta.url);
+const M=require('../js/participant-cognitive-mode-0.8.13.js');
 const configText=fs.readFileSync(path.join(ROOT,'collector-config.js'),'utf8');
 const endpoint=(configText.match(/endpoint:\s*'([^']+)'/)||[])[1];
 if(!endpoint)throw new Error('COLLECTOR_ENDPOINT_NOT_FOUND');
@@ -11,37 +14,14 @@ const evidencePath=process.argv[3]||path.join(ROOT,'artifacts/0.8.13/live_collec
 const snapshotText=fs.readFileSync(snapshotPath,'utf8');
 const snapshot=JSON.parse(snapshotText);
 if(snapshot.version!=='CUBE-REV 0.8.13'||snapshot.schema_version!=='CR0813-COLLECTOR-PAYLOAD-1')throw new Error('SNAPSHOT_IDENTITY');
-if(!/^CR-[0-9]{14}-[0-9a-f]{12}$/.test(snapshot.session_id))throw new Error('SESSION_IDENTITY');
-if(!Array.isArray(snapshot.responses)||snapshot.responses.length!==28)throw new Error('RESPONSE_CARDINALITY');
 const snapshotSha256=crypto.createHash('sha256').update(snapshotText).digest('hex');
-const compatibilityTrials=snapshot.responses.map(r=>({
-  trial_index:r.position,
-  trial_id:`CR0813-COMPAT-${String(r.position).padStart(2,'0')}`,
-  condition_id:snapshot.mode_id,
-  stimulus_id:r.stimulus_id,
-  response:{choice_display:r.choice_display,choice_code:r.choice_code,latency_ms:r.latency_ms,recorded_at:r.recorded_at},
-  status:'completed',
-  source_schema:snapshot.schema_version,
-  scientific_revision:snapshot.scientific_revision
-}));
-const collectorEnvelope={
-  project:'CUBE-REV',
-  version:'0.7.12',
-  session_id:snapshot.session_id,
+const collectorEnvelope=M.collectorEnvelopeFromSnapshot(snapshot,{
   generated_at:'2026-08-02T11:00:30.000Z',
-  trials:compatibilityTrials,
-  data_submission:{
-    status:'engineering_synthetic_live_cert',
-    synthetic_live_cert:true,
-    exclude_from_human_cohort:true,
-    app_payload_version:snapshot.version,
-    app_payload_schema:snapshot.schema_version,
-    collector_compatibility_schema:'CR0813-COLLECTOR-COMPATIBILITY-ENVELOPE-1',
-    compatibility_trial_policy:'LOSSLESS_OPAQUE_RESPONSE_PROJECTION_V1',
-    immutable_snapshot_sha256:snapshotSha256
-  },
-  cognitive_snapshot:snapshot
-};
+  status:'engineering_synthetic_live_cert',
+  synthetic_live_cert:true,
+  exclude_from_human_cohort:true,
+  immutable_snapshot_sha256:snapshotSha256
+});
 const collectorPayloadText=JSON.stringify(collectorEnvelope);
 const collectorPayloadSha256=crypto.createHash('sha256').update(collectorPayloadText).digest('hex');
 
