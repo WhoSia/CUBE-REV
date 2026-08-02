@@ -32,7 +32,7 @@ jobs:
 
       - name: Run atomic migration and inherited contracts
         run: |
-          node tests/atomic_migration_arbitration_0.8.11.test.js
+          node -r ./js/atomic-migration-commit-authority-0.8.11.js tests/atomic_migration_arbitration_0.8.11.test.js
           node tests/cross_version_resume_hash_pin_0.8.10.test.js
           node tests/public_bank_minimization_0.8.9.test.js
           node tests/immutable_snapshot_contract_0.8.8.test.js
@@ -44,12 +44,14 @@ jobs:
           node --check js/public-asset-verifier-0.8.11.js
           node --check js/participant-cognitive-mode-0.8.11.js
           node --check js/atomic-migration-0.8.11.js
+          node --check js/atomic-migration-commit-authority-0.8.11.js
           node --check tests/atomic_migration_arbitration_0.8.11.test.js
           node - <<'NODE'
           const fs=require('fs');
           const html=fs.readFileSync('participant-cognitive-mode-0.8.11.html','utf8');
           const blocks=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(x=>x[1]).filter(x=>x.trim());
           if(blocks.length!==1)throw new Error(`INLINE_SCRIPT_COUNT:${blocks.length}`);
+          if(!html.includes('atomic-migration-commit-authority-0.8.11.js'))throw new Error('COMMIT_AUTHORITY_POLICY_NOT_LOADED');
           fs.writeFileSync('/tmp/cube-rev-0811-inline.js',blocks[0]);
           NODE
           node --check /tmp/cube-rev-0811-inline.js
