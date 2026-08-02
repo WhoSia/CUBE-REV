@@ -6,97 +6,127 @@
 
 ## Official decision
 
-> **PASS-ARCHIVAL-LIVE-SUBMITTED-BYTE-RECONSTRUCTION / PASS-0.8.13-EVIDENCE-LINEAGE-ERRATUM / PASS-PROVENANCE-PRESERVING-ARCHIVAL-FACTORY-BRIDGE / PASS-CHROMIUM-ONLY-CONTROLLED-STAGING-POLICY / PASS-FIREFOX-WEBKIT-FAIL-CLOSED / PASS-DETERMINISTIC-STAGING-CANDIDATE / PASS-INHERITED-CONTRACTS / HOLD-EXACT-STORED-RAW-CUSTODY-REPLAY / HOLD-PHYSICAL-DEVICE-WALKTHROUGH / HOLD-OWNER-ACCEPTANCE / DEFAULT-CUTOVER-NO_GO**
+> **PASS-ARCHIVAL-LIVE-SUBMITTED-BYTE-RECONSTRUCTION / PASS-0.8.13-EVIDENCE-LINEAGE-ERRATUM / PASS-PROVENANCE-PRESERVING-ARCHIVAL-FACTORY-BRIDGE / PASS-CHROMIUM-ONLY-CONTROLLED-STAGING-POLICY / PASS-FIREFOX-WEBKIT-FAIL-CLOSED / PASS-DYNAMIC-PERSISTED-LEASE-EXPIRY-TAKEOVER / PASS-DETERMINISTIC-STAGING-CANDIDATE / PASS-INHERITED-CONTRACTS / HOLD-EXACT-STORED-RAW-CUSTODY-REPLAY / HOLD-PHYSICAL-DEVICE-WALKTHROUGH / HOLD-OWNER-ACCEPTANCE / DEFAULT-CUTOVER-NO_GO**
 
 ## Executive finding
 
-CUBE-REV 0.8.14 did not merely extend 0.8.13. It audited whether 0.8.13's live-Collector evidence could support a custody-complete staging decision and found two promotion-blocking facts.
+CUBE-REV 0.8.14 completed the automated research and controlled-staging work that could be performed without owner-only Drive access or physical-device interaction. It also found two material promotion blockers that were not visible in the original 0.8.13 seal.
 
-First, the preserved GitHub Actions artifact from the actual live workflow does not match the payload identities later committed into the 0.8.13 evidence ledger. The exact archival live submission was independently reconstructed, the mismatch was documented in a formal erratum, and the unexplained later identity was withdrawn as evidence of that live execution.
+First, the preserved GitHub Actions artifact from the actual live Collector workflow does not match the payload identities later committed into the 0.8.13 evidence ledger. The exact archival submission was reconstructed from the preserved snapshot and historical construction code, the discrepancy was documented in a formal erratum, and the unsupported later identity was withdrawn as evidence of that live execution.
 
-Second, the 0.8.13 active-session implementation did not preserve its one-winner plus conflict-evidence contract consistently in repeated Firefox and WebKit two-page races. Native Web Locks serialized an explicit lock probe, and the final pages converged, but both callers sometimes returned `RESPONSE_APPLIED`. Final convergence alone is insufficient because the losing choice and its conflict evidence can be lost. The controlled staging route therefore activates only Chromium-family profiles and fails closed before session boot on Firefox, WebKit, and unrecognized engines.
+Second, repeated two-page races showed that the 0.8.13 one-winner plus conflict-evidence contract was not consistently preserved in Firefox or WebKit. Native Web Locks serialized an explicit lock probe and final pages converged, but both callers sometimes returned `RESPONSE_APPLIED`, which can erase the losing response and its conflict evidence. The generated 0.8.14 staging route therefore activates only Chromium-family profiles and fails closed before scientific runtime boot on Firefox, WebKit, and unrecognized engines.
 
-A deterministic staging candidate was built without changing production `index.html`, `collector-config.js`, or `js/collector-client.js`. Exact Drive-stored raw replay, physical-device walkthrough, and owner acceptance remain blocking gates, so production cutover is `NO_GO`.
+A third issue appeared during final sealing: the inherited 0.8.13 lease-expiry test depended on a fixed 1,400ms delay and an already-open second tab. One cleanup-head execution observed only the first POST, while an identical rerun passed. The rerun was not accepted as sufficient evidence. The final 0.8.14 Gate reads the persisted `lease_expires_at`, waits until that exact timestamp plus 250ms, opens a fresh second page, and repeats takeover four times.
+
+The deterministic staging candidate is complete and production files remain untouched. Exact Drive-stored raw replay, physical-device walkthrough, and owner acceptance remain blocking gates, so production cutover is **NO_GO**.
+
+## Final executable certification
+
+The final executable evidence was produced at:
+
+```text
+certified executable head
+25371c6479e074d3c7d0ad3501beffeb08f28cfb
+
+0.8.14 workflow run
+30754439979 — SUCCESS
+
+certification job
+91514086682 — SUCCESS
+
+baseline/calibration workflow
+30754439978 — SUCCESS
+```
+
+Final evidence artifact:
+
+```text
+artifact ID    8835501173
+ZIP SHA-256    c81b46125916aadb9be55085a68bedf70a3bfbfbb5991e85d54096061660e093
+compressed     202501 bytes
+retention      through 2026-08-16
+```
+
+The workflow operated with repository contents read-only. No live synthetic submission was sent by 0.8.14.
 
 ## RAVEL closure
 
 ### Discover
 
-The version began with three intended boundaries:
+The intended boundaries were:
 
-1. retrieve the exact Collector-stored raw file and replay it through Factory;
+1. retrieve and Factory-replay the exact Collector-stored raw file;
 2. execute a cross-engine desktop/mobile browser matrix;
-3. construct a controlled staging candidate and evaluate cutover readiness.
+3. build and evaluate a controlled staging candidate.
 
-The connected Drive search could not read the Collector-owned folder or locate the exact file `CR-20260802110000-0813a0b0c0d0.json`. Rather than infer the stored bytes from a duplicate receipt, the audit recovered the preserved live-workflow artifact and separated submitted-byte evidence from stored-byte custody.
+The connected Drive identity could not read the Collector-owned file `CR-20260802110000-0813a0b0c0d0.json`. Rather than infer stored bytes from duplicate receipts, the audit recovered the preserved live-workflow artifact and separated submitted-byte evidence from stored-byte custody.
 
 ### Plan
 
-The work was divided into four independent gates:
+The version was divided into independent Gates:
 
 - archival submission reconstruction and evidence-lineage audit;
 - provenance-preserving Factory conversion;
-- native engine/device-emulation policy matrix;
-- deterministic staging packaging and explicit cutover evaluation.
+- repeated native browser policy matrix;
+- persisted-expiry lease takeover certification;
+- deterministic staging packaging and cutover evaluation.
 
-A failure in one gate was not allowed to be converted into a pass by weakening another gate.
+A failure in one Gate could not be converted into a pass by weakening another.
 
 ### Execute
 
 The branch `cube-rev-0.8.14-custody-device-staging` added:
 
-- runtime-pinned live-envelope reconstruction;
-- exact archival workflow evidence preservation;
-- an evidence-lineage auditor and 0.8.13 erratum;
+- runtime-pinned archival live-envelope reconstruction;
+- archival workflow evidence preservation;
+- a lineage auditor and 0.8.13 erratum;
 - an optional exact stored-raw replay path;
-- a pinned archival-to-final-Factory bridge that preserves source bytes and scientific snapshot bytes;
+- a pinned archival-to-final-Factory bridge;
 - a deterministic 0.8.14 participant staging route;
 - repeated Chromium, Firefox, and WebKit two-page diagnostics;
 - fail-closed unsupported-engine routing;
+- a persisted-expiry lease test without fixed sleeps;
 - deterministic staging ZIP construction and rollback metadata;
-- a machine-evaluated production cutover gate.
+- a machine-evaluated production cutover Gate.
 
 ### Verify
 
-The final executable head was:
+The final workflow passed:
 
-```text
-b5712e1d30f2e0b0cc0b411fdca811d4c6158992
-```
-
-Final successful executions:
-
-| Execution | Identifier | Result |
-|---|---:|---|
-| 0.8.14 custody/device/staging workflow | `30753219920` | SUCCESS |
-| certification job | `91510832942` | SUCCESS |
-| baseline/calibration workflow | `30753219950` | SUCCESS |
-| evidence artifact | `8835133893` | uploaded |
-
-The evidence artifact had:
-
-```text
-ZIP SHA-256  96e188a9e25c36481a8c442787b3ed2b7f2803f4308d1ceea09929df1f8a4932
-size          195385 bytes
-retention     through 2026-08-16
-```
+- exact archival submitted-byte reconstruction;
+- 0.8.13 evidence-lineage inconsistency detection;
+- archival Factory bridge and 28-row Factory reconstruction;
+- six-cell browser policy matrix;
+- eight repeated active Chromium races;
+- four fail-closed profile checks;
+- four persisted-expiry takeover iterations with eight POSTs;
+- inherited 0.8.8–0.8.12 contracts;
+- deterministic 22-file staging candidate build;
+- protected-file and baseline checks.
 
 ### Iterate
 
-The browser policy was narrowed repeatedly as counterexamples appeared:
+The browser policy was narrowed as counterexamples appeared:
 
-- initial all-engine active hypothesis: rejected;
-- Firefox active: rejected after repeated dual-apply;
-- desktop WebKit active: rejected after intermittent dual-apply;
-- iOS WebKit emulation active: rejected after repeated testing exposed dual-apply;
-- final policy: Chromium-only active, all Firefox/WebKit profiles fail closed.
+- all-engine active hypothesis: rejected;
+- Firefox active: rejected;
+- desktop WebKit active: rejected;
+- iOS WebKit emulation active: rejected;
+- final policy: Chromium-only active, Firefox/WebKit/unknown engines fail closed.
 
 The custody claim was also narrowed:
 
 - exact stored raw replay: not established;
 - exact archival submitted-byte reconstruction: established;
 - later 0.8.13 payload identity: unexplained and withdrawn as live evidence;
-- archival submitted envelope converted through a separately hashed provenance bridge: established.
+- provenance-preserving archival Factory conversion: established.
+
+The lease Gate was strengthened:
+
+- fixed 1,400ms wait: removed from the 0.8.14 promotion Gate;
+- persisted expiry timestamp plus 250ms: adopted;
+- already-open retry tab: replaced by a fresh second page;
+- single pass: replaced by four fresh-context repetitions.
 
 ## Track A — Stored-raw custody and evidence lineage
 
@@ -111,9 +141,9 @@ The preserved live workflow was:
 | artifact ID | `8833272340` |
 | artifact ZIP SHA-256 | `c046f432a4eaa075fbc8c2e7ffafd4b363f3aa5ef79d204a0a5544472f920575` |
 | session/file identity | `CR-20260802110000-0813a0b0c0d0` |
-| response/trial count | 28 |
+| responses/trials | 28 |
 
-The exact archival live-envelope construction was independently replayed from the preserved fixed snapshot and the live-probe construction code.
+Exact preserved identities:
 
 ```text
 snapshot bytes      6481
@@ -124,7 +154,7 @@ envelope SHA-256    6aa9d1e3ebeb403d9e9d9fcfe520867201b815bbcd3f02979012ad371ddd
 envelope FNV-1a32   c8cda746
 ```
 
-The replay matched all archival identities exactly and emitted:
+Independent replay reproduced all three envelope identities exactly:
 
 ```text
 PASS_ARCHIVAL_LIVE_SUBMITTED_BYTE_RECONSTRUCTION
@@ -132,7 +162,7 @@ PASS_ARCHIVAL_LIVE_SUBMITTED_BYTE_RECONSTRUCTION
 
 ### Evidence-lineage discrepancy
 
-The committed 0.8.13 live ledger had instead claimed:
+The committed 0.8.13 ledger instead claimed:
 
 ```text
 envelope bytes      21227
@@ -141,7 +171,7 @@ envelope FNV-1a32   f795cd8e
 snapshot SHA-256    446ab20ec570140f810bcbe91660b089585f1416db5b29852f7bf6946881e2ba
 ```
 
-Executing the final 0.8.13 runtime against the same fixed snapshot produced a third identity:
+The final 0.8.13 runtime against the same fixed snapshot produced a third identity:
 
 ```text
 envelope bytes      16503
@@ -149,13 +179,13 @@ envelope SHA-256    9763af8e0c6e9de29728d5fedd4290c8bf3b8bb086bb14d014ea482d0397
 envelope FNV-1a32   771bf949
 ```
 
-Therefore, the committed 21,227-byte identity was reproduced by neither the actual live-workflow commit nor the final 0.8.13 head. Its receipt codes also differed from the preserved artifact. The lineage auditor returned:
+Thus the 21,227-byte identity was reproduced by neither the historical live commit nor the final 0.8.13 head. The committed receipt codes also differed from the preserved artifact. The audit returned:
 
 ```text
 PASS_DETECTED_0_8_13_LIVE_EVIDENCE_LINEAGE_INCONSISTENCY_REQUIRES_ERRATUM
 ```
 
-The formal correction is stored at:
+The governing correction is:
 
 ```text
 research/CUBE_REV_0.8.13_ERRATUM_FROM_0.8.14.md
@@ -165,30 +195,30 @@ research/CUBE_REV_0.8.13_ERRATUM_FROM_0.8.14.md
 
 Retained:
 
-- the production Apps Script endpoint exposed the expected receipt-v2 contract;
-- valid engineering-only synthetic POSTs reached the endpoint;
+- the production endpoint exposed the expected receipt-v2 contract;
+- valid engineering-only synthetic POSTs reached it;
 - two distinct nonces received terminal `duplicate` receipts;
 - both preserved receipts referenced the same session-derived filename;
 - the record was excluded from human-cohort analysis.
 
 Not established:
 
-- which earlier request created the file;
+- which historical request created the file;
 - equality between any submitted candidate and the stored Drive bytes;
 - the stored file's byte count, SHA-256, or FNV checksum;
 - Factory replay of the exact stored file.
 
-A duplicate receipt is a file-identity convergence result, not a stored-byte equality proof.
+A `duplicate` receipt proves convergence to an existing file identity, not equality with the pre-existing stored bytes.
 
 ### Exact stored raw status
 
-The connected Drive account could not retrieve the Collector-owned raw file. The custody report therefore records three candidate identities without selecting one as the stored identity:
+The connected Drive account could not retrieve the raw file. The custody report therefore records three candidates without selecting one as the stored identity:
 
 1. archival live submission: 16,217 bytes / `6aa9d1e3…` / `c8cda746`;
-2. final 0.8.13 runtime observation: 16,503 bytes / `9763af8e…` / `771bf949`;
-3. withdrawn 0.8.13 ledger claim: 21,227 bytes / `6aa9d1e38…` / `f795cd8e`.
+2. final runtime observation: 16,503 bytes / `9763af8e…` / `771bf949`;
+3. withdrawn ledger claim: 21,227 bytes / `6aa9d1e38…` / `f795cd8e`.
 
-Official custody result:
+Official result:
 
 ```text
 HOLD_DIRECT_STORED_RAW_UNAVAILABLE_THREE_IDENTITY_CANDIDATES_RECORDED
@@ -196,34 +226,34 @@ HOLD_DIRECT_STORED_RAW_UNAVAILABLE_THREE_IDENTITY_CANDIDATES_RECORDED
 
 ## Track B — Provenance-preserving archival Factory bridge
 
-The archival live envelope predates the explicit identity-session fields required by the final 0.8.13 Factory adapter. Altering the raw source in place would have destroyed custody evidence. The 0.8.14 bridge instead performs the following sequence:
+The archival live envelope predates explicit transport-identity fields required by the final 0.8.13 Factory. The source was not edited in place. The bridge:
 
 1. accepts only the exact archival source fingerprint;
 2. preserves the 16,217-byte source unchanged;
 3. creates a separately hashed derived compatibility copy;
-4. adds only explicit identity-session metadata that was already semantically implied by identical outer and inner session IDs;
-5. verifies the scientific snapshot bytes are unchanged;
+4. adds only explicit identity-session metadata already implied by equal outer and inner session IDs;
+5. verifies that the scientific snapshot is unchanged;
 6. runs the final Factory on the derived copy.
 
 | Artifact | SHA-256 | Bytes |
 |---|---|---:|
 | archival source | `6aa9d1e3ebeb403d9e9d9fcfe520867201b815bbcd3f02979012ad371ddd70b9` | 16,217 |
 | derived Factory input | `5627d14d7ca654f99b91cefcbeb6f6f31a8588a9809b819653fb69c437e9d0c0` | 16,503 |
-| scientific snapshot before and after | `5fbf313d1a81bc7d94820da42a588e94cccba5aa14c287316cf548175ef82f83` | unchanged |
+| scientific snapshot before/after | `5fbf313d1a81bc7d94820da42a588e94cccba5aa14c287316cf548175ef82f83` | unchanged |
 
-The bridge returned:
+Result:
 
 ```text
 PASS_PINNED_ARCHIVAL_LIVE_FACTORY_BRIDGE
 ```
 
-Both the bridged archival envelope and the independently observed final-runtime envelope reconstructed 28 response rows through the final Factory with no blocking QC finding. This proves compatibility of the known candidate bytes, not identity with the unavailable Drive-stored raw file.
+Both the bridged archival envelope and the final-runtime observation reconstructed 28 response rows with zero blocking QC findings. This proves compatibility of the known candidate bytes, not identity with the unavailable Drive raw.
 
-## Track C — Cross-engine and device-emulation matrix
+## Track C — Browser engine and device-emulation policy
 
-### Scientific contract under test
+### Contract
 
-For two same-origin pages racing to answer the same position, the required result is:
+For two same-origin pages racing on the same position, the required result is:
 
 ```text
 one caller: RESPONSE_APPLIED
@@ -233,52 +263,46 @@ one conflict-evidence record
 both pages converge
 ```
 
-A final converged state is not enough when both callers return `RESPONSE_APPLIED`, because the losing answer and the fact of conflict may disappear from the research record.
+Final convergence alone is insufficient when both callers return `RESPONSE_APPLIED`, because the losing response and the fact of conflict may disappear from the scientific record.
 
-### Parent-route diagnostic
+### Parent-route diagnostics
 
-The original 0.8.13 participant route was tested in six fresh browser contexts per non-Chromium engine profile.
+The original 0.8.13 route was tested six times per non-Chromium profile.
 
-| Engine profile | Dual `RESPONSE_APPLIED` | Correct one-winner/conflict | Final incoherence | Explicit lock probe serialized |
+| Engine profile | Dual applied | Correct winner/conflict | Final incoherence | Explicit lock probe serialized |
 |---|---:|---:|---:|---|
 | Firefox desktop | 5/6 | 1/6 | 0/6 | yes |
 | WebKit desktop | 1/6 | 5/6 | 0/6 | yes |
 | WebKit iPhone emulation | 2/6 | 4/6 | 0/6 | yes |
 
-Earlier independent runs had already observed dual-apply in each family. The final repetition confirmed that it was not a single lucky or unlucky execution.
+The lock probe serialized, but the read/write protocol did not consistently provide fresh one-winner semantics across those engines.
 
-The explicit lock probe serialized in all three profiles. The evidence therefore does not support the claim that native Web Locks were entirely absent. It shows that the current 0.8.13 read/write protocol did not consistently provide fresh one-winner semantics across these engines despite lock serialization.
-
-### Final controlled-staging policy
-
-The generated route `participant-cognitive-mode-0.8.14.html` applies a browser gate before scientific runtime boot.
+### Final policy
 
 Active automated profiles:
 
 - Chromium desktop;
-- Chromium Pixel 7 emulation.
+- Chromium Pixel 7/Android emulation.
 
-Fail-closed profiles:
+Fail-closed before runtime boot:
 
 - Firefox desktop;
 - Firefox compact/mobile viewport;
 - WebKit desktop;
-- WebKit iPhone 14 emulation;
+- WebKit iPhone emulation;
 - unrecognized engines.
 
-Fail-closed verification required all of the following:
+Each blocked profile was required to show:
 
-- redirect to `unsupported-browser-0.8.14.html`;
-- no scientific runtime test hook;
+- redirect to the unsupported-browser route;
+- no scientific runtime hook;
 - no begin control;
-- no `cube-rev*` local-storage key;
+- zero `cube-rev*` local-storage keys;
 - `state_mutation_authorized=false`.
 
-### Active Chromium repetition
+### Active repetition
 
-Each active profile executed four fresh-context same-position races and pagehide checks.
-
-| Profile | Race repetitions | One-winner/conflict | Final page convergence | Pagehide response bytes preserved |
+| Profile | Fresh races | Correct winner/conflict | Page convergence | Pagehide response preserved |
 |---|---:|---:|---:|---:|
 | Chromium desktop | 4 | 4 | 4 | 4 |
 | Chromium Pixel 7 emulation | 4 | 4 | 4 | 4 |
@@ -293,39 +317,83 @@ matrix cells          6/6 PASS
 physical devices      not certified
 ```
 
-Matrix result:
+Result:
 
 ```text
 PASS_CONTROLLED_STAGING_BROWSER_POLICY_MATRIX
 ```
 
-This is an automated engine/device-emulation policy certification, not a claim about real Android, iPhone, iPad, or desktop hardware.
+## Track D — Persisted-expiry lease takeover certification
 
-## Track D — Controlled staging candidate
+### Why the inherited fixed-delay test was replaced
 
-The deterministic staging builder packages the generated 0.8.14 route as `index.html` inside an artifact-only candidate. It does not change the repository's production `index.html`.
+The original 0.8.13 delayed-receipt test waited a fixed 1,400ms and reused a second page that had already been open while page A was sending. On the 0.8.14 cleanup head, one execution observed only the first POST within the assertion window. An identical rerun passed, showing that retry alone could hide timing ambiguity.
 
-Staging identities:
+The final 0.8.14 Gate uses persisted state as the clock authority:
+
+1. page A completes 28 responses and seals one snapshot;
+2. page A obtains generation 1 and sends;
+3. the test reads `submission_control.lease_expires_at` from stored state;
+4. it waits until that timestamp plus 250ms;
+5. it opens a fresh page B;
+6. page B obtains generation 2 and sends the same snapshot with another nonce;
+7. page B confirms `duplicate` and reaches `SUBMITTED`;
+8. the delayed generation-1 owner is fenced by `STALE_SUBMISSION_LEASE` when it later confirms.
+
+Four fresh contexts were executed:
+
+| Iteration | Margin after expiry | POSTs | Pair identity | Final generation | State |
+|---:|---:|---:|---|---:|---|
+| 1 | 252ms | 2 | identical | 2 | `SUBMITTED` |
+| 2 | 252ms | 2 | identical | 2 | `SUBMITTED` |
+| 3 | 252ms | 2 | identical | 2 | `SUBMITTED` |
+| 4 | 253ms | 2 | identical | 2 | `SUBMITTED` |
+
+Aggregate:
+
+```text
+iterations                         4/4 PASS
+total POSTs                        8
+fixed sleep used                   false
+payload pairs identical            true
+all final lease generations        2
+terminal receipts per iteration    duplicate + stored
+responses per snapshot             28
+```
+
+Different iterations had different session-specific hashes, as expected. Within each iteration the two deliveries were byte-, SHA-256-, checksum-, and session-identical and used distinct nonces.
+
+Final marker:
+
+```text
+CR0814_DYNAMIC_LEASE_EXPIRY_PASS iterations=4/4 posts=8 fixed_sleep=false
+```
+
+This is the 0.8.14 promotion Gate. The earlier fixed-delay 0.8.13 result remains historical evidence but is not the final cutover authority.
+
+## Track E — Controlled staging candidate
+
+The builder packages the generated 0.8.14 route as `index.html` inside an artifact-only candidate. It does not change repository production `index.html`.
 
 | Field | Value |
 |---|---|
 | candidate files | 22 |
-| candidate fingerprint SHA-256 | `0b8ae0679a6033b8cd4862ef6de81fe2f1ee8fde8b7bfd1ff3dee7616722fc32` |
-| staging ZIP SHA-256 | `80db6740754297b51b87c6542a4ef6d5f3958f5da2c0e4ce65989a1768c78520` |
-| staging ZIP bytes | 68,054 |
-| production default entry modified | no |
+| fingerprint SHA-256 | `0b8ae0679a6033b8cd4862ef6de81fe2f1ee8fde8b7bfd1ff3dee7616722fc32` |
+| ZIP SHA-256 | `80db6740754297b51b87c6542a4ef6d5f3958f5da2c0e4ce65989a1768c78520` |
+| ZIP bytes | 68,054 |
+| production entry modified | no |
 | Collector config/client modified | no |
 | automatic deployment authorized | no |
 
-The candidate includes:
+The candidate contains:
 
-- the 0.8.14 gated staging entry;
-- the fail-closed unsupported-browser page;
-- the frozen Collector files;
-- the 0.8.13 scientific runtime and pinned assets;
-- the archival Factory bridge;
-- the 0.8.13 erratum and archival evidence record;
-- the governing 0.8.14 Chromium-only browser support policy;
+- the 0.8.14 gated entry;
+- the unsupported-browser page;
+- frozen Collector files;
+- 0.8.13 scientific runtime and pinned assets;
+- archival Factory bridge;
+- 0.8.13 erratum and archival evidence;
+- governing 0.8.14 browser policy;
 - staging provenance and rollback plan.
 
 Result:
@@ -334,13 +402,13 @@ Result:
 PASS_DETERMINISTIC_STAGING_CANDIDATE_BUILD
 ```
 
-## Track E — Inherited contracts
+## Track F — Inherited contracts
 
-The final workflow re-executed the parent native Chromium suite and all inherited contracts:
+The final workflow ran the parent Chromium serialization scenario, the dynamic persisted-expiry suite, and inherited state/migration contracts:
 
 ```text
 CR0813_NATIVE_MULTI_WINDOW_PASS
-CR0813_LEASE_EXPIRY_AMBIGUITY_PASS
+CR0814_DYNAMIC_LEASE_EXPIRY_PASS iterations=4/4 posts=8 fixed_sleep=false
 CR0812_ACTIVE_SESSION_CAS_PASS 28/28
 CR0811_ATOMIC_MIGRATION_PASS 23/23
 CR0810_MIGRATION_HASH_PIN_PASS 13/13
@@ -348,25 +416,23 @@ CR0809_PUBLIC_BANK_CERT_PASS 8/8
 CR0808_IMMUTABLE_SNAPSHOT_PASS 8/8
 ```
 
-The baseline/calibration workflow also completed successfully on the same head.
+The fixed-delay second scenario in the parent 0.8.13 test file is no longer an 0.8.14 Gate. The baseline/calibration workflow also passed on the same executable head.
 
-## Cutover gate
+## Cutover Gate
 
-Machine-evaluated pass gates:
+Automated pass gates:
 
-- archival live submitted-byte reconstruction;
+- archival submitted-byte reconstruction;
 - final-runtime observation;
-- evidence-lineage discrepancy detection;
-- published 0.8.13 erratum;
-- provenance-preserving archival Factory bridge;
-- Chromium active-execution policy;
-- Firefox fail-closed policy;
-- WebKit fail-closed policy;
-- eight repeated active-profile races;
+- evidence-lineage discrepancy detection and erratum;
+- archival Factory bridge;
+- Chromium-only browser policy matrix;
+- eight repeated active Chromium races;
 - four fail-closed profile checks;
+- four dynamic persisted-expiry takeovers with eight POSTs;
 - deterministic staging bundle;
-- production entry untouched;
-- Collector untouched.
+- protected production entry and Collector files unchanged;
+- inherited contracts and baseline.
 
 Blocking gates:
 
@@ -384,42 +450,34 @@ CONTROLLED_STAGING_CANDIDATE_PASS_PRODUCTION_CUTOVER_NO_GO
 
 ## Internal review committee
 
-### Implementer
+**Implementer:** Produced a deterministic staging candidate and reproducible automated suite without changing production or Collector sources.
 
-The version produced a deployable-in-principle staging candidate while leaving production and Collector files untouched. It also built a deterministic restart path for every automated gate.
+**Skeptical reviewer:** Rejected three unsupported shortcuts: duplicate receipt as byte proof, later prose as stronger than preserved artifacts, and one successful non-Chromium run as engine certification.
 
-### Skeptical reviewer
+**Evidence auditor:** Preserved the archival artifact as authoritative, published an erratum, and retained exact custody as HOLD.
 
-The version rejected three initially attractive but unsupported conclusions: that a duplicate receipt proves byte equality, that the 0.8.13 committed live hash came from the preserved live run, and that WebKit mobile emulation could remain active after one successful pass.
+**Browser-contract auditor:** Refused final-state convergence as a substitute for one-winner return semantics and conflict evidence.
 
-### Evidence auditor
+**Timing auditor:** Replaced a fixed wait and lucky rerun with persisted-expiry timing and four fresh-context repetitions.
 
-The preserved workflow artifact was treated as stronger evidence than later prose. The discrepancy was not hidden or overwritten; it was promoted into a formal erratum and a blocking custody boundary.
-
-### Browser-contract auditor
-
-Final-state convergence was not accepted as a substitute for one-winner return semantics and conflict preservation. Firefox and WebKit were blocked before state creation rather than allowed with a warning after the fact.
-
-### Authority auditor
-
-No production route, Collector client, or Collector configuration was changed. No PR was merged. The staging candidate is an artifact and draft-PR object only.
+**Authority auditor:** No PR was merged, no staging artifact deployed, and no production route or Collector source changed.
 
 ## Limitations
 
-Not certified in 0.8.14:
+Not certified:
 
 - exact bytes of the Collector-owned Drive file;
-- Factory execution on that exact stored file;
+- Factory execution on that exact file;
 - real Chrome/Edge desktop hardware;
-- real Android Chrome/Edge hardware;
-- real Safari/iOS or Firefox execution;
-- browser background suspension, OS kill, storage eviction, or device power loss on physical devices;
+- real Android Chromium hardware;
+- real Safari/WebKit or Firefox execution;
+- browser suspension, OS kill, storage eviction, or power loss on physical devices;
 - participant walkthrough;
 - owner acceptance;
-- production deployment or rollback rehearsal against a public staging URL.
+- deployment or rollback against a public staging URL.
 
 ## Promotion boundary
 
-CUBE-REV 0.8.14 is complete as an automated research, evidence-reconciliation, browser-policy, and staging-candidate version. It is not a production release.
+CUBE-REV 0.8.14 is complete as an automated research, evidence-reconciliation, browser-policy, lease-takeover, and staging-candidate version. It is not a production release.
 
-The next promotion attempt must not treat the staging ZIP as self-authorizing. It requires exact stored-raw export or owner-authorized retrieval, physical Chromium-family walkthroughs, owner acceptance, and an explicit deployment ceremony with rollback verification.
+Promotion requires exact stored-raw export or owner-authorized retrieval, physical Chromium-family walkthroughs, explicit owner acceptance, and a separately authorized staging deployment ceremony with rollback verification.
