@@ -150,8 +150,13 @@ function transportSessionIdentity(snapshot){
   const suffix=(checksumText(`${seed}|A`)+checksumText(`${seed}|B`)).slice(0,12);
   return {session_id:`CR-${stamp}-${suffix}`,original_scientific_session_id:snapshot.session_id,transport_session_policy:'DETERMINISTIC_LEGACY_SESSION_BRIDGE_V1'};
 }
+function deepFreeze(value){
+  if(!value||typeof value!=='object'||Object.isFrozen(value))return value;
+  for(const child of Object.values(value))deepFreeze(child);
+  return Object.freeze(value);
+}
 function collectorEnvelopeFromSnapshot(snapshot,options={}){
-  const trials=compatibilityTrials(snapshot),identity=transportSessionIdentity(snapshot);
+  const identity=transportSessionIdentity(snapshot),trials=compatibilityTrials(snapshot);
   const dataSubmission={
     status:String(options.status||'sealed_scientific_snapshot'),
     synthetic_live_cert:options.synthetic_live_cert===true,
@@ -166,13 +171,17 @@ function collectorEnvelopeFromSnapshot(snapshot,options={}){
   };
   if(typeof options.immutable_snapshot_sha256==='string')dataSubmission.immutable_snapshot_sha256=options.immutable_snapshot_sha256;
   if(typeof options.immutable_snapshot_integrity_fnv1a32==='string')dataSubmission.immutable_snapshot_integrity_fnv1a32=options.immutable_snapshot_integrity_fnv1a32;
-  return {
+  const envelope={
     project:'CUBE-REV',version:'0.7.12',session_id:identity.session_id,
     original_scientific_session_id:identity.original_scientific_session_id,
     transport_session_policy:identity.transport_session_policy,
     generated_at:String(options.generated_at||snapshot.scientific_completed_at||snapshot.started_at),
     trials,data_submission:dataSubmission,cognitive_snapshot:snapshot
   };
+  if(envelope.session_id!==dataSubmission.transport_session_id)throw new Error('TRANSPORT_SESSION_INTERNAL_DIVERGENCE');
+  if(envelope.original_scientific_session_id!==snapshot.session_id||dataSubmission.original_scientific_session_id!==snapshot.session_id)throw new Error('SCIENTIFIC_SESSION_INTERNAL_DIVERGENCE');
+  if(envelope.transport_session_policy!==dataSubmission.transport_session_policy)throw new Error('TRANSPORT_POLICY_INTERNAL_DIVERGENCE');
+  return deepFreeze(envelope);
 }
 function exportSnapshot(x){
   const snapshot=scientificSnapshot(x);
@@ -203,7 +212,7 @@ function from0812(c,d,x){
   return y;
 }
 
-const api={VERSION,SCHEMA,STORAGE_KEY,QUARANTINE_KEY,DISPLAY_RE,CODE_RE,COLLECTOR_SESSION_RE,BINDING_KEYS,fnv1a,checksumText,checksum,seal,sequenceId,validBinding,validResponse,sanitizeInput,sanitizePostTask,stateShapeValid,provenanceValid,mutationHistoryValid,submissionControlValid,snapshotValid,valid,scientificEnvelope,scientificSnapshot,compatibilityTrials,utcStamp14,transportSessionIdentity,collectorEnvelopeFromSnapshot,exportSnapshot,emptySubmissionControl,from0812};
+const api={VERSION,SCHEMA,STORAGE_KEY,QUARANTINE_KEY,DISPLAY_RE,CODE_RE,COLLECTOR_SESSION_RE,BINDING_KEYS,fnv1a,checksumText,checksum,seal,sequenceId,validBinding,validResponse,sanitizeInput,sanitizePostTask,stateShapeValid,provenanceValid,mutationHistoryValid,submissionControlValid,snapshotValid,valid,scientificEnvelope,scientificSnapshot,compatibilityTrials,utcStamp14,transportSessionIdentity,deepFreeze,collectorEnvelopeFromSnapshot,exportSnapshot,emptySubmissionControl,from0812};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 global.CUBE_REV_COGNITIVE_MODE_0813=api;
 })(typeof window!=='undefined'?window:globalThis);
