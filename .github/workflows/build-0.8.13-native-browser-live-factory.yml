@@ -100,3 +100,4 @@ jobs:
           path: artifacts/0.8.13
           retention-days: 14
           if-no-files-found: warn
+# certification_nonce: 20260802T2210+0900
