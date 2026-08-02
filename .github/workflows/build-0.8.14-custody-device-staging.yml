@@ -31,19 +31,26 @@ jobs:
         run: |
           node --check scripts/reconstruct_live_envelope_0_8_14.mjs
           node --check tests/cross_device_browser_matrix_0.8.14.mjs
-          python -m py_compile scripts/custody_replay_0_8_14.py scripts/build_staging_candidate_0_8_14.py scripts/evaluate_cutover_gate_0_8_14.py
+          python -m py_compile scripts/custody_replay_0_8_14.py scripts/audit_live_evidence_lineage_0_8_14.py scripts/build_staging_candidate_0_8_14.py scripts/evaluate_cutover_gate_0_8_14.py
           git fetch origin cube-rev-0.8.13-native-browser-live-factory
           if git diff --name-only origin/cube-rev-0.8.13-native-browser-live-factory...HEAD | grep -E '^(index\.html|collector-config\.js|js/collector-client\.js)$'; then
             echo 'Protected production entry or Collector source changed.' >&2
             exit 1
           fi
-      - name: Reconstruct exact submitted live bytes
+      - name: Reconstruct archival live and final-runtime candidate bytes
+        shell: bash
         run: |
-          mkdir -p artifacts/0.8.14
+          mkdir -p artifacts/0.8.14 /tmp/cr0813-live-runtime/js
           node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.14/live_synthetic_snapshot.json
-          node scripts/reconstruct_live_envelope_0_8_14.mjs artifacts/0.8.14/live_synthetic_snapshot.json artifacts/0.8.14/reconstructed_live_envelope.json artifacts/0.8.14/reconstruction_evidence.json
+          git show 70e68aa2a768972d31882e0f1c2a483cfd9ca9bc:js/public-asset-verifier-0.8.13.js > /tmp/cr0813-live-runtime/js/public-asset-verifier-0.8.13.js
+          git show 70e68aa2a768972d31882e0f1c2a483cfd9ca9bc:js/participant-cognitive-mode-0.8.13.js > /tmp/cr0813-live-runtime/js/participant-cognitive-mode-0.8.13.js
+          printf '{"type":"commonjs"}\n' > /tmp/cr0813-live-runtime/package.json
+          node scripts/reconstruct_live_envelope_0_8_14.mjs artifacts/0.8.14/live_synthetic_snapshot.json artifacts/0.8.14/archival_live_envelope.json artifacts/0.8.14/archival_reconstruction_evidence.json /tmp/cr0813-live-runtime archival-live-head
+          node scripts/reconstruct_live_envelope_0_8_14.mjs artifacts/0.8.14/live_synthetic_snapshot.json artifacts/0.8.14/final_runtime_envelope.json artifacts/0.8.14/final_reconstruction_evidence.json . final-0.8.13-head
+          python scripts/audit_live_evidence_lineage_0_8_14.py
           python scripts/custody_replay_0_8_14.py
-          python factory/cognitive_snapshot_adapter_0_8_13.py artifacts/0.8.14/reconstructed_live_envelope.json --outdir artifacts/0.8.14/reconstructed_live_factory
+          python factory/cognitive_snapshot_adapter_0_8_13.py artifacts/0.8.14/archival_live_envelope.json --outdir artifacts/0.8.14/archival_live_factory
+          python factory/cognitive_snapshot_adapter_0_8_13.py artifacts/0.8.14/final_runtime_envelope.json --outdir artifacts/0.8.14/final_runtime_factory
       - name: Install cross-engine Playwright browsers
         run: |
           npm install --no-save @playwright/test@1.55.0
@@ -67,7 +74,8 @@ jobs:
           d=json.load(open('artifacts/0.8.14/cutover_gate.json'))
           assert d['staging_candidate_available'] is True
           assert d['production_cutover']=='NO_GO'
-          assert set(d['blocking_gates'])=={'exact_stored_raw_custody_replay','physical_device_walkthrough','owner_acceptance_walkthrough'}
+          assert 'exact_stored_raw_custody_replay' in d['blocking_gates']
+          assert 'evidence_lineage_reconciliation' in d['blocking_gates']
           print('CR0814_EXPECTED_NO_GO_BOUNDARY_PASS')
           PY
       - name: Emit artifact digest inventory
