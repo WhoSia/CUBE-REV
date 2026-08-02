@@ -1,8 +1,8 @@
 {
   "schema_version": "CR0813-LIVE-COLLECTOR-FAILURE-1",
-  "trigger_sha": "f60b4bf301b255bd3ef6511a31c296c2b1f3de52",
-  "workflow_run": 30747384953,
-  "failed_at": "2026-08-02T12:13:59.499Z",
+  "trigger_sha": "615c9d43585f2bec9b2a5d720c12d5db7ca98145",
+  "workflow_run": 30747426669,
+  "failed_at": "2026-08-02T12:15:06.797Z",
   "probe_status": -1,
   "endpoint_sha256": "f0af3748ba82a53fdf55578c06efa1b13eab155bcc65afcafc1c7eeac9b5b9b8",
   "log_tail": ""
