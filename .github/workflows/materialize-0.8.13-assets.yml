@@ -3,6 +3,9 @@ on:
   push:
     branches: [cube-rev-0.8.13-native-browser-live-factory]
     paths: ['.github/workflows/materialize-0.8.13-assets.yml']
+  pull_request:
+    branches: [cube-rev-0.8.12-active-session-cas]
+    paths: ['.github/workflows/materialize-0.8.13-assets.yml']
 permissions:
   contents: write
 jobs:
@@ -19,7 +22,7 @@ jobs:
       - name: Build and verify exact generated identities
         shell: bash
         run: |
-          # execution nonce: 2026-08-02T20:38+09:00
+          # execution nonce: 2026-08-02T20:41+09:00
           output=$(node scripts/build_0_8_13_assets.js)
           echo "$output"
           echo "$output" | grep -F 'CR0813_ASSET_BUILD_PASS stimuli=28 choices=504 manifest=810847fe11ffcb6c17cb7a87b6951579ada128035f3f4ffc8a281478b3ece506'
