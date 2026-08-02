@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import base64, hashlib, io, json, tarfile
+import base64, hashlib, io, tarfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-PARTS=[ROOT / p for p in ['scripts/.cr0816_payload_00.txt', 'scripts/.cr0816_payload_01.txt', 'scripts/.cr0816_payload_02.txt', 'scripts/.cr0816_payload_03.txt', 'scripts/.cr0816_payload_04.txt', 'scripts/.cr0816_payload_05.txt', 'scripts/.cr0816_payload_06.txt']]
+PARTS=[ROOT / p for p in [
+  'scripts/.cr0816_payload_00a.txt',
+  'scripts/.cr0816_payload_00b.txt',
+  'scripts/.cr0816_payload_01.txt',
+  'scripts/.cr0816_payload_02.txt',
+  'scripts/.cr0816_payload_03.txt',
+  'scripts/.cr0816_payload_04.txt',
+  'scripts/.cr0816_payload_05.txt',
+  'scripts/.cr0816_payload_06.txt',
+]]
 ARCHIVE_SHA256='195aa92219048ab342a10cb737c7fb9297bf5890608db5fdcd22518174b3b351'
 EXPECTED={
   "analysis/minimal_trajectory_probes_0_8_16.py": "7753a86491adee1eb1fc98622b60a074070b8832b15d684bdb466153075aea48",
