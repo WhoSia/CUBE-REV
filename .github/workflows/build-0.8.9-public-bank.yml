@@ -15,6 +15,19 @@ on:
       - tests/public_bank_minimization_0.8.9.test.js
       - cognitive/PARTICIPANT_STIMULUS_BANK_0.8.8.json
       - cognitive/COGNITIVE_MODE_CONFIG_0.8.8.json
+  pull_request:
+    branches:
+      - cube-rev-0.8.8-immutable-submission-snapshot
+    paths:
+      - .github/workflows/build-0.8.9-public-bank.yml
+      - .gitignore
+      - scripts/build_0_8_9_public_bank.js
+      - scripts/reconstruct_0_8_9_factory.js
+      - js/participant-cognitive-mode-0.8.9.js
+      - participant-cognitive-mode-0.8.9.html
+      - tests/public_bank_minimization_0.8.9.test.js
+      - cognitive/PARTICIPANT_STIMULUS_BANK_0.8.8.json
+      - cognitive/COGNITIVE_MODE_CONFIG_0.8.8.json
 
 permissions:
   contents: write
@@ -63,7 +76,8 @@ jobs:
           grep -F '"version":"CUBE-REV 0.8.9"' cognitive/PARTICIPANT_STIMULUS_BANK_0.8.9.json
           grep -F '"version":"CUBE-REV 0.8.9"' cognitive/COGNITIVE_MODE_CONFIG_0.8.9.json
 
-      - name: Commit generated public artifacts only
+      - name: Commit generated public artifacts only on push runs
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
