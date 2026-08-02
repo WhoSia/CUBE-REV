@@ -22,11 +22,10 @@ def main():
       'exact_stored_raw_custody_replay':str(custody.get('result','')).startswith('PASS_EXACT_STORED_RAW_CUSTODY_REPLAY'),
       'controlled_staging_browser_policy_matrix':matrix.get('result')=='PASS_CONTROLLED_STAGING_BROWSER_POLICY_MATRIX',
       'chromium_active_execution_automated':matrix.get('chromium_active_execution_certified_automated') is True,
-      'ios_webkit_emulation_active_execution_automated':matrix.get('ios_webkit_emulation_active_execution_certified_automated') is True,
       'firefox_fail_closed_policy':matrix.get('firefox_active_execution_certified') is False,
-      'desktop_webkit_fail_closed_policy':matrix.get('desktop_webkit_active_execution_certified') is False,
-      'active_profile_race_repetition':matrix.get('active_execution_passed_cells')==3 and matrix.get('active_race_iterations_passed')==12,
-      'fail_closed_profile_count':matrix.get('fail_closed_passed_cells')==3,
+      'webkit_fail_closed_policy':matrix.get('webkit_active_execution_certified') is False,
+      'active_profile_race_repetition':matrix.get('active_execution_passed_cells')==2 and matrix.get('active_race_iterations_passed')==8,
+      'fail_closed_profile_count':matrix.get('fail_closed_passed_cells')==4,
       'physical_device_walkthrough':False,
       'owner_acceptance_walkthrough':False,
       'deterministic_staging_bundle':staging.get('result')=='PASS_DETERMINISTIC_STAGING_CANDIDATE_BUILD',
@@ -35,6 +34,6 @@ def main():
     }
     blocking_names=['evidence_lineage_reconciliation','exact_stored_raw_custody_replay','controlled_staging_browser_policy_matrix','physical_device_walkthrough','owner_acceptance_walkthrough']
     blocking=[k for k in blocking_names if not gates[k]];nonblocking=[k for k,v in gates.items() if not v and k not in blocking];cutover='GO' if not blocking and all(gates.values()) else 'NO_GO'
-    report={'schema_version':'CR0814-CONTROLLED-STAGING-CUTOVER-GATE-5','gates':gates,'blocking_gates':blocking,'nonblocking_failures':nonblocking,'staging_candidate_available':gates['deterministic_staging_bundle'],'supported_active_profiles':['chromium-desktop','chromium-android-emulation','ios-webkit-emulation'],'fail_closed_profiles':['firefox-desktop','firefox-compact-viewport','desktop-webkit'],'physical_device_certified':False,'production_cutover':cutover,'automatic_merge_authorized':False,'result':f'CONTROLLED_STAGING_CANDIDATE_PASS_PRODUCTION_CUTOVER_{cutover}'}
+    report={'schema_version':'CR0814-CONTROLLED-STAGING-CUTOVER-GATE-6','gates':gates,'blocking_gates':blocking,'nonblocking_failures':nonblocking,'staging_candidate_available':gates['deterministic_staging_bundle'],'supported_active_profiles':['chromium-desktop','chromium-android-emulation'],'fail_closed_profiles':['firefox-desktop','firefox-compact-viewport','webkit-desktop','webkit-iphone-emulation','unknown-engines'],'physical_device_certified':False,'production_cutover':cutover,'automatic_merge_authorized':False,'result':f'CONTROLLED_STAGING_CANDIDATE_PASS_PRODUCTION_CUTOVER_{cutover}'}
     (ART/'cutover_gate.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print(f"CR0814_CUTOVER_GATE staging_candidate={str(gates['deterministic_staging_bundle']).lower()} production_cutover={cutover} blocking={','.join(blocking)}")
 if __name__=='__main__':main()
