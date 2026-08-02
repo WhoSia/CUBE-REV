@@ -1,2 +1,9 @@
 __pycache__/
 *.py[cod]
+
+# CUBE-REV participant builds may generate analysis-only identity crosswalks.
+# These files contain state/rotation/canonical mappings and must never be
+# published with the participant-facing GitHub Pages branch.
+.cube-rev-private/
+research-private/
+*PRIVATE_CROSSWALK*.json
