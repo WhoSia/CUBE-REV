@@ -23,35 +23,68 @@ jobs:
           node-version: '22'
       - name: Build exact synthetic live-cert snapshot
         run: |
-          # execution nonce: 2026-08-02T20:49+09:00
+          # execution nonce: 2026-08-02T20:52+09:00
           node scripts/build_0_8_13_assets.js
           node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.13/live_synthetic_snapshot.json
-      - name: Submit same snapshot twice with different nonces
+      - name: Probe live receipt-v2 Collector
+        id: probe
+        shell: bash
         env:
           CUBE_REV_COLLECTOR_ENDPOINT: https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec
           CUBE_REV_COLLECTOR_ID: CUBE-REV-0712-MAIN
           CUBE_REV_COLLECTOR_CONTRACT: '0.7.12'
           CUBE_REV_COLLECTOR_PROTOCOL: receipt-v2
-        run: node scripts/live_collector_probe_0_8_13.mjs artifacts/0.8.13/live_synthetic_snapshot.json artifacts/0.8.13/live_collector_evidence.json
-      - name: Commit live evidence after successful receipt convergence
-        shell: bash
         run: |
-          cp artifacts/0.8.13/live_collector_evidence.json research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json
+          set +e
+          node scripts/live_collector_probe_0_8_13.mjs artifacts/0.8.13/live_synthetic_snapshot.json artifacts/0.8.13/live_collector_evidence.json > artifacts/0.8.13/live_probe.log 2>&1
+          status=$?
+          set -e
+          cat artifacts/0.8.13/live_probe.log
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Commit live success or failure evidence
+        if: always()
+        shell: bash
+        env:
+          PROBE_STATUS: ${{ steps.probe.outputs.status }}
+          TRIGGER_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          if [ "$PROBE_STATUS" = "0" ] && [ -f artifacts/0.8.13/live_collector_evidence.json ]; then
+            node -e "const fs=require('fs');const p='artifacts/0.8.13/live_collector_evidence.json';const e=JSON.parse(fs.readFileSync(p,'utf8'));e.trigger_sha=process.env.TRIGGER_SHA;e.workflow_run=Number(process.env.RUN_ID);fs.writeFileSync(p,JSON.stringify(e,null,2));"
+            cp artifacts/0.8.13/live_collector_evidence.json research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json
+            rm -f research/CUBE_REV_0.8.13_LIVE_COLLECTOR_FAILURE.json
+            target=research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json
+            message='evidence(0.8.13): record live Collector receipt convergence'
+          else
+            node -e "const fs=require('fs'),crypto=require('crypto');const log=fs.existsSync('artifacts/0.8.13/live_probe.log')?fs.readFileSync('artifacts/0.8.13/live_probe.log','utf8'):'';const e={schema_version:'CR0813-LIVE-COLLECTOR-FAILURE-1',trigger_sha:process.env.TRIGGER_SHA,workflow_run:Number(process.env.RUN_ID),failed_at:new Date().toISOString(),probe_status:Number(process.env.PROBE_STATUS||-1),endpoint_sha256:crypto.createHash('sha256').update('https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec').digest('hex'),log_tail:log.slice(-4000)};fs.writeFileSync('research/CUBE_REV_0.8.13_LIVE_COLLECTOR_FAILURE.json',JSON.stringify(e,null,2));"
+            rm -f research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json
+            target=research/CUBE_REV_0.8.13_LIVE_COLLECTOR_FAILURE.json
+            message='evidence(0.8.13): record live Collector probe failure'
+          fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json
-          if git diff --cached --quiet; then
-            echo 'CR0813_LIVE_EVIDENCE_ALREADY_COMMITTED'
-          else
-            git commit -m 'evidence(0.8.13): record live Collector receipt convergence'
+          git add -A research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json research/CUBE_REV_0.8.13_LIVE_COLLECTOR_FAILURE.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "$message"
+            git fetch origin cube-rev-0.8.13-native-browser-live-factory
+            git rebase origin/cube-rev-0.8.13-native-browser-live-factory
             git push origin HEAD:cube-rev-0.8.13-native-browser-live-factory
           fi
+          echo "CR0813_LIVE_RESULT_FILE=$target"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: cube-rev-0.8.13-live-collector-evidence
           path: artifacts/0.8.13
           retention-days: 14
           if-no-files-found: error
+      - name: Enforce live probe success
+        if: always()
+        shell: bash
+        env:
+          PROBE_STATUS: ${{ steps.probe.outputs.status }}
+        run: test "$PROBE_STATUS" = "0"
   observe-live-evidence:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
@@ -63,16 +96,28 @@ jobs:
         with:
           ref: cube-rev-0.8.13-native-browser-live-factory
           fetch-depth: 0
-      - name: Wait for and verify committed live evidence
+      - name: Wait for and verify committed live result
         shell: bash
+        env:
+          EXPECTED_TRIGGER_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           for attempt in $(seq 1 120); do
             git fetch origin cube-rev-0.8.13-native-browser-live-factory --quiet
             if git show origin/cube-rev-0.8.13-native-browser-live-factory:research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json > /tmp/live-evidence.json 2>/dev/null; then
-              node -e "const fs=require('fs');const e=JSON.parse(fs.readFileSync('/tmp/live-evidence.json','utf8'));if(e.schema_version!=='CR0813-LIVE-COLLECTOR-EVIDENCE-1')throw Error('LIVE_EVIDENCE_SCHEMA');if(e.result!=='PASS_LIVE_COLLECTOR_TWO_NONCE_DEDUP')throw Error('LIVE_EVIDENCE_RESULT');if(e.snapshot.session_id!=='CR0813-LIVE-CERT-SYNTHETIC-DO-NOT-ANALYZE-001')throw Error('LIVE_SESSION_IDENTITY');if(e.snapshot.response_count!==28)throw Error('LIVE_RESPONSE_COUNT');if(!Array.isArray(e.deliveries)||e.deliveries.length!==2)throw Error('LIVE_DELIVERY_COUNT');if(!['stored','duplicate'].includes(e.deliveries[0].status))throw Error('FIRST_RECEIPT_STATUS');if(e.deliveries[1].status!=='duplicate')throw Error('SECOND_RECEIPT_STATUS');console.log('CR0813_LIVE_EVIDENCE_OBSERVED first='+e.deliveries[0].status+' second='+e.deliveries[1].status+' file='+(e.deliveries[1].file_name||e.deliveries[0].file_name));"
-              exit 0
+              matched=$(node -e "const e=require('/tmp/live-evidence.json');process.stdout.write(e.trigger_sha===process.env.EXPECTED_TRIGGER_SHA?'yes':'no')")
+              if [ "$matched" = yes ]; then
+                node -e "const e=require('/tmp/live-evidence.json');if(e.schema_version!=='CR0813-LIVE-COLLECTOR-EVIDENCE-1')throw Error('LIVE_EVIDENCE_SCHEMA');if(e.result!=='PASS_LIVE_COLLECTOR_TWO_NONCE_DEDUP')throw Error('LIVE_EVIDENCE_RESULT');if(e.snapshot.session_id!=='CR0813-LIVE-CERT-SYNTHETIC-DO-NOT-ANALYZE-001')throw Error('LIVE_SESSION_IDENTITY');if(e.snapshot.response_count!==28)throw Error('LIVE_RESPONSE_COUNT');if(!Array.isArray(e.deliveries)||e.deliveries.length!==2)throw Error('LIVE_DELIVERY_COUNT');if(!['stored','duplicate'].includes(e.deliveries[0].status))throw Error('FIRST_RECEIPT_STATUS');if(e.deliveries[1].status!=='duplicate')throw Error('SECOND_RECEIPT_STATUS');console.log('CR0813_LIVE_EVIDENCE_OBSERVED first='+e.deliveries[0].status+' second='+e.deliveries[1].status+' file='+(e.deliveries[1].file_name||e.deliveries[0].file_name));"
+                exit 0
+              fi
+            fi
+            if git show origin/cube-rev-0.8.13-native-browser-live-factory:research/CUBE_REV_0.8.13_LIVE_COLLECTOR_FAILURE.json > /tmp/live-failure.json 2>/dev/null; then
+              matched=$(node -e "const e=require('/tmp/live-failure.json');process.stdout.write(e.trigger_sha===process.env.EXPECTED_TRIGGER_SHA?'yes':'no')")
+              if [ "$matched" = yes ]; then
+                cat /tmp/live-failure.json
+                exit 1
+              fi
             fi
             sleep 2
           done
-          echo 'LIVE_EVIDENCE_TIMEOUT' >&2
+          echo 'LIVE_RESULT_TIMEOUT' >&2
           exit 1
