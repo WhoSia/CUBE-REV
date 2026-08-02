@@ -19,7 +19,7 @@ jobs:
       - name: Verify and extract staged archive
         shell: bash
         run: |
-          # execution nonce: 2026-08-02T19:56+09:00
+          # execution nonce: 2026-08-02T20:00+09:00
           cat .staging/0.8.13/chunk_*.b64 > /tmp/cr0813-remaining.b64
           echo '7612efa3c1b772af898375719dfa864768afdf80ccb3e6b61a589cd4fc2b64f6  /tmp/cr0813-remaining.b64' | sha256sum -c -
           base64 -d /tmp/cr0813-remaining.b64 > /tmp/cr0813-remaining.tgz
@@ -40,12 +40,13 @@ jobs:
             test "$actual" = "$expected" || { echo "BLOB_IDENTITY_MISMATCH $path $actual $expected" >&2; exit 1; }
           done < /tmp/cr0813-blob-identities.txt
           echo 'CR0813_STAGED_BUNDLE_VERIFIED'
-      - name: Commit exact materialized files and remove staging transport
+      - name: Commit exact non-workflow files and remove staging transport
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add participant-cognitive-mode-0.8.13.html tests/native_multi_window_0.8.13.spec.js factory/cognitive_snapshot_adapter_0_8_13.py scripts/make_synthetic_snapshot_0_8_13.js scripts/live_collector_probe_0_8_13.mjs tests/factory_reconstruction_0.8.13.py .github/workflows/build-0.8.13-native-browser-live-factory.yml .github/workflows/live-0.8.13-once.yml
-          git rm -r .staging/0.8.13 .github/workflows/materialize-0.8.13-bundle.yml
-          git commit -m 'feat(0.8.13): materialize native browser, live Collector and Factory harness'
+          rm -f .github/workflows/build-0.8.13-native-browser-live-factory.yml .github/workflows/live-0.8.13-once.yml
+          git add participant-cognitive-mode-0.8.13.html tests/native_multi_window_0.8.13.spec.js factory/cognitive_snapshot_adapter_0_8_13.py scripts/make_synthetic_snapshot_0_8_13.js scripts/live_collector_probe_0_8_13.mjs tests/factory_reconstruction_0.8.13.py
+          git rm -r .staging/0.8.13
+          git commit -m 'feat(0.8.13): materialize native browser and Factory harness'
           git push origin HEAD:cube-rev-0.8.13-native-browser-live-factory
