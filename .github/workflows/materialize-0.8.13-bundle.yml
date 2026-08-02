@@ -16,6 +16,7 @@ jobs:
       - name: Verify and extract staged archive
         shell: bash
         run: |
+          # execution nonce: 2026-08-02T19:54+09:00
           cat .staging/0.8.13/chunk_*.b64 > /tmp/cr0813-remaining.b64
           echo '7612efa3c1b772af898375719dfa864768afdf80ccb3e6b61a589cd4fc2b64f6  /tmp/cr0813-remaining.b64' | sha256sum -c -
           base64 -d /tmp/cr0813-remaining.b64 > /tmp/cr0813-remaining.tgz
