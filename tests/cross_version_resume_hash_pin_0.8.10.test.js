@@ -7,7 +7,6 @@ const M088=require('../js/participant-cognitive-mode-0.8.8.js');
 const M089=require('../js/participant-cognitive-mode-0.8.9.js');
 const M10=require('../js/participant-cognitive-mode-0.8.10.js');
 const Mig=require('../js/cross-version-migration-0.8.10.js');
-const bank088=require('../cognitive/PARTICIPANT_STIMULUS_BANK_0.8.8.json');
 const config088=require('../cognitive/COGNITIVE_MODE_CONFIG_0.8.8.json');
 const bank089=require('../cognitive/PARTICIPANT_STIMULUS_BANK_0.8.9.json');
 const config089=require('../cognitive/COGNITIVE_MODE_CONFIG_0.8.9.json');
@@ -127,12 +126,20 @@ function create089(storage,out,count,{ready=false,sealed=false}={}){
   }
 
   {
+    const storage=new Storage();create088(storage,out,2);const impossible=JSON.parse(storage.getItem(Mig.SOURCE_088));
+    impossible.status='POST_TASK';impossible.integrity=M088.checksum({...impossible,integrity:undefined});storage.setItem(Mig.SOURCE_088,JSON.stringify(impossible));
+    assert.equal(M088.valid(impossible,config088),true);
+    const now=clock('2026-08-02T20:30:');const r=Mig.loadOrMigrate(dep(storage,out,now,{binding:bundle.binding}));
+    assert.equal(r.action,'SOURCE_INVALID');const q=JSON.parse(storage.getItem(Mig.MIGRATION_QUARANTINE_KEY));assert.equal(q.entries[0].failure,'STATE_MACHINE_SHAPE');assert.equal(storage.getItem(M10.STORAGE_KEY),null);passed++;
+  }
+
+  {
     const storage=new Storage();const now=clock('2026-08-02T21:00:');let s=M10.loadOrCreate(out.publicConfig,{storage,cryptoObj,now,binding:bundle.binding}).state;
     const forged={...bundle.binding,public_bank_sha256:'0'.repeat(64)};assert.equal(M10.valid(s,out.publicConfig,forged),false);
     const raw=JSON.parse(storage.getItem(M10.STORAGE_KEY));raw.asset_binding.public_bank_sha256='0'.repeat(64);raw.integrity=M10.checksum({...raw,integrity:undefined});storage.setItem(M10.STORAGE_KEY,JSON.stringify(raw));
     const recovered=M10.loadExisting(out.publicConfig,{storage,now,binding:bundle.binding});assert.equal(recovered.state,null);assert.equal(recovered.invalid,true);assert.ok(storage.getItem(M10.QUARANTINE_KEY));passed++;
   }
 
-  assert.equal(passed,12);
-  console.log(`CR0810_MIGRATION_HASH_PIN_PASS ${passed}/12`);
+  assert.equal(passed,13);
+  console.log(`CR0810_MIGRATION_HASH_PIN_PASS ${passed}/13`);
 })().catch(e=>{console.error(e);process.exit(1)});
