@@ -75,13 +75,17 @@ jobs:
           assert d['instrument_conclusions']['recovery_monitoring']=='NOT_IDENTIFIABLE_NO_POST_ERROR_TRAJECTORY'
           print('CR0815_STATIC_RESEARCH_OUTPUTS_PASS')
           PY
-      - name: Emit evidence digest inventory
+      - name: Emit self-excluding evidence digest inventory
         shell: bash
         run: |
-          find artifacts/0.8.15 -type f -print0 | sort -z | xargs -0 sha256sum > artifacts/0.8.15/ARTIFACT_SHA256SUMS.txt
           cp research/CUBE_REV_0.8.15_VALIDATION_REPORT.md artifacts/0.8.15/
           cp research/CUBE_REV_0.8.15_DECISION_PACKET.json artifacts/0.8.15/
           cp research/CUBE_REV_0.8.15_LITERATURE_ANCHORS.md artifacts/0.8.15/
+          find artifacts/0.8.15 -type f ! -name ARTIFACT_SHA256SUMS.txt -print0 \
+            | sort -z \
+            | xargs -0 sha256sum > /tmp/CR0815_ARTIFACT_SHA256SUMS.txt
+          mv /tmp/CR0815_ARTIFACT_SHA256SUMS.txt artifacts/0.8.15/ARTIFACT_SHA256SUMS.txt
+          sha256sum -c artifacts/0.8.15/ARTIFACT_SHA256SUMS.txt
           echo 'CR0815_COGNITIVE_MECHANISM_LATTICE_CI_PASS'
       - uses: actions/upload-artifact@v4
         if: always()
