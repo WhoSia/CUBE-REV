@@ -1,0 +1,46 @@
+name: Bootstrap CUBE-REV 0.8.15 research bundle
+on:
+  push:
+    branches: [cube-rev-0.8.15-cognitive-mechanism-lattice]
+    paths:
+      - '.github/workflows/bootstrap-0.8.15-research-bundle.yml'
+      - 'scripts/bootstrap_0_8_15_bundle.py'
+      - 'scripts/.cr0815_payload_*.txt'
+permissions:
+  contents: write
+jobs:
+  install-and-clean:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.15-cognitive-mechanism-lattice
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify and install exact research bundle
+        run: |
+          python scripts/bootstrap_0_8_15_bundle.py
+          python -m py_compile analysis/cognitive_mechanism_lattice_0_8_15.py
+          python -m py_compile tests/mechanism_lattice_0.8.15.test.py
+      - name: Replace bootstrap with readable research sources
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/cognitive_mechanism_lattice_0_8_15.py
+          git add tests/mechanism_lattice_0.8.15.test.py
+          git add research/CUBE_REV_0.8.15_MECHANISM_AXIS_REGISTRY.json
+          git add research/CUBE_REV_0.8.15_LITERATURE_ANCHORS.md
+          git add research/CUBE_REV_0.8.15_VALIDATION_REPORT.md
+          git add research/CUBE_REV_0.8.15_DECISION_PACKET.json
+          git add research/CUBE_REV_0.8.15_RUNBOOK.md
+          git add .github/workflows/build-0.8.15-cognitive-mechanism-lattice.yml
+          git rm --ignore-unmatch scripts/bootstrap_0_8_15_bundle.py
+          git rm --ignore-unmatch scripts/.cr0815_payload_01.txt scripts/.cr0815_payload_02.txt scripts/.cr0815_payload_03.txt scripts/.cr0815_payload_04.txt
+          git rm --ignore-unmatch .github/workflows/bootstrap-0.8.15-research-bundle.yml
+          git diff --cached --check
+          git commit -m 'feat(0.8.15): install cognitive mechanism lattice research wave'
+          git push origin HEAD:cube-rev-0.8.15-cognitive-mechanism-lattice
