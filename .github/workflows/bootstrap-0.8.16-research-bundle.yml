@@ -44,7 +44,7 @@ jobs:
           git add tests/minimal_trajectory_probes_0.8.16.test.py
           git add research/CUBE_REV_0.8.16_*
           git rm --ignore-unmatch scripts/bootstrap_0_8_16_bundle.py
-          git rm --ignore-unmatch scripts/.cr0816_payload_00.txt scripts/.cr0816_payload_01.txt scripts/.cr0816_payload_02.txt scripts/.cr0816_payload_03.txt scripts/.cr0816_payload_04.txt scripts/.cr0816_payload_05.txt scripts/.cr0816_payload_06.txt
+          git rm --ignore-unmatch scripts/.cr0816_payload_00.txt scripts/.cr0816_payload_00a.txt scripts/.cr0816_payload_00b.txt scripts/.cr0816_payload_01.txt scripts/.cr0816_payload_02.txt scripts/.cr0816_payload_03.txt scripts/.cr0816_payload_04.txt scripts/.cr0816_payload_05.txt scripts/.cr0816_payload_06.txt
           git rm --ignore-unmatch research/.cr0816_bootstrap_trigger
           git diff --cached --check
           git commit -m 'feat(0.8.16): install minimal trajectory probe research wave'
