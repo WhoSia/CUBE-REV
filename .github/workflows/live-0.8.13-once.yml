@@ -19,7 +19,7 @@ jobs:
           node-version: '22'
       - name: Build exact synthetic live-cert snapshot
         run: |
-          # execution nonce: 2026-08-02T20:55+09:00
+          # execution nonce: 2026-08-02T20:58+09:00
           node scripts/build_0_8_13_assets.js
           node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.13/live_synthetic_snapshot.json
       - name: Probe live receipt-v2 Collector
@@ -58,7 +58,7 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json research/CUBE_REV_0.8.13_LIVE_COLLECTOR_FAILURE.json 2>/dev/null || true
+          git add -A research
           if ! git diff --cached --quiet; then
             git commit -m "$message"
             git fetch origin cube-rev-0.8.13-native-browser-live-factory
