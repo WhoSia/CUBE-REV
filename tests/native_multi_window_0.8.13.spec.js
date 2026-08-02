@@ -3,6 +3,8 @@ const {test,expect,chromium}=require('@playwright/test');
 const {spawn}=require('child_process');
 const fs=require('fs');
 const path=require('path');
+const zlib=require('zlib');
+const crypto=require('crypto');
 
 const PORT=8130;
 const BASE=`http://127.0.0.1:${PORT}/participant-cognitive-mode-0.8.13.html?test_mode=1`;
@@ -30,7 +32,12 @@ function opFrom(page,display,tag,latency=11){
     return {type:'RESPONSE',mutation_id:`CR0813-${tag}`,expected_revision:s.revision,expected_position:p.position,response:p.response};
   },{display,tag,latency});
 }
-
+function decodeCollectorPayload(fields){
+  const text=fields.encoding==='gzip-base64'
+    ?zlib.gunzipSync(Buffer.from(fields.payload||'','base64')).toString('utf8')
+    :String(fields.payload||'');
+  return {text,value:JSON.parse(text),sha256:crypto.createHash('sha256').update(text).digest('hex')};
+}
 function installCollectorEmulator(context,evidence){
   const receipts=new Map();
   return context.route(/https:\/\/script\.google\.com\/macros\/s\//,async route=>{
@@ -41,8 +48,17 @@ function installCollectorEmulator(context,evidence){
     }
     if(req.method()==='POST'){
       const fields=Object.fromEntries(new URLSearchParams(req.postData()||''));
+      const decoded=decodeCollectorPayload(fields),envelope=decoded.value,snapshot=envelope.cognitive_snapshot||{};
       const index=evidence.posts.length;
-      const record={index,session_id:fields.session_id,nonce:fields.submission_nonce,checksum:fields.checksum_fnv1a32,received_at:new Date().toISOString(),payload_bytes:Buffer.byteLength(fields.payload||'')};
+      const record={
+        index,session_id:fields.session_id,nonce:fields.submission_nonce,checksum:fields.checksum_fnv1a32,
+        received_at:new Date().toISOString(),payload_bytes:Buffer.byteLength(decoded.text),payload_sha256:decoded.sha256,
+        envelope_session_id:envelope.session_id,scientific_session_id:snapshot.session_id,
+        original_scientific_session_id:envelope.original_scientific_session_id,
+        transport_session_policy:envelope.transport_session_policy,
+        trial_count:Array.isArray(envelope.trials)?envelope.trials.length:null,
+        response_count:Array.isArray(snapshot.responses)?snapshot.responses.length:null
+      };
       evidence.posts.push(record);
       receipts.set(record.nonce,{...record,status:index===0?'stored':'duplicate',readyAt:Date.now()+(index===0?5000:250)});
       return route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><title>accepted</title>'});
@@ -126,6 +142,10 @@ test('lease expiry allows a second owner while receipt-v2 converges two deliveri
   await expect.poll(()=>evidence.posts.length,{timeout:10000}).toBe(1);
   const sealed1=await a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.getStoredState());
   expect(sealed1.submission_snapshot).toBeTruthy();
+  const identity=await a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.transportIdentity());
+  expect(identity.transport_session_id).toMatch(/^CR-[0-9]{14}-[0-9a-f]{12}$/);
+  expect(identity.scientific_session_id).toBe(sealed1.submission_snapshot.session_id);
+  if(identity.transport_session_id!==identity.scientific_session_id)expect(identity.transport_session_policy).toBe('DETERMINISTIC_LEGACY_SESSION_BRIDGE_V1');
   const snapshotHash=sealed1.submission_snapshot_hash,retryId=sealed1.submission_control.retry_id;
   await a.waitForTimeout(1400);
   await a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.send());
@@ -137,15 +157,22 @@ test('lease expiry allows a second owner while receipt-v2 converges two deliveri
   expect(finalState.submission_control.retry_id).toBe(retryId);
   expect(finalState.submission_control.lease_generation).toBe(2);
   expect(finalState.responses).toHaveLength(28);
+  expect(evidence.posts[0].session_id).toBe(identity.transport_session_id);
   expect(evidence.posts[0].session_id).toBe(evidence.posts[1].session_id);
+  expect(evidence.posts[0].envelope_session_id).toBe(identity.transport_session_id);
+  expect(evidence.posts[0].scientific_session_id).toBe(identity.scientific_session_id);
+  expect(evidence.posts[0].original_scientific_session_id).toBe(identity.scientific_session_id);
+  expect(evidence.posts[0].transport_session_policy).toBe(identity.transport_session_policy);
+  expect(evidence.posts[0].trial_count).toBe(28);expect(evidence.posts[0].response_count).toBe(28);
   expect(evidence.posts[0].checksum).toBe(evidence.posts[1].checksum);
+  expect(evidence.posts[0].payload_sha256).toBe(evidence.posts[1].payload_sha256);
   expect(evidence.posts[0].nonce).not.toBe(evidence.posts[1].nonce);
   const terminalStatuses=new Set(evidence.polls.filter(x=>x.status!=='pending').map(x=>x.status));
   expect(terminalStatuses.has('duplicate')).toBe(true);
-  const snapshot=await a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.exportSnapshot());
+  const envelope=await a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.exportSnapshot());
   fs.mkdirSync('artifacts/0.8.13',{recursive:true});
-  fs.writeFileSync('artifacts/0.8.13/native_snapshot.json',JSON.stringify(snapshot));
-  fs.writeFileSync('artifacts/0.8.13/delayed_receipt_evidence.json',JSON.stringify({schema_version:'CR0813-DELAYED-RECEIPT-EVIDENCE-1',lease_timeout_ms:1000,post_count:evidence.posts.length,posts:evidence.posts,polls:evidence.polls,final:{status:finalState.status,lease_generation:finalState.submission_control.lease_generation,snapshot_hash:snapshotHash,retry_id:retryId,response_count:finalState.responses.length},result:'PASS_TWO_DELIVERIES_ONE_SNAPSHOT_LOCAL_RECEIPT_V2'},null,2));
-  console.log(`CR0813_LEASE_EXPIRY_AMBIGUITY_PASS posts=${evidence.posts.length} generation=${finalState.submission_control.lease_generation} status=${finalState.status}`);
+  fs.writeFileSync('artifacts/0.8.13/native_snapshot.json',JSON.stringify(envelope));
+  fs.writeFileSync('artifacts/0.8.13/delayed_receipt_evidence.json',JSON.stringify({schema_version:'CR0813-DELAYED-RECEIPT-EVIDENCE-2',lease_timeout_ms:1000,post_count:evidence.posts.length,posts:evidence.posts,polls:evidence.polls,session_bridge:identity,final:{status:finalState.status,lease_generation:finalState.submission_control.lease_generation,snapshot_hash:snapshotHash,retry_id:retryId,response_count:finalState.responses.length},result:'PASS_TWO_DELIVERIES_ONE_SNAPSHOT_TRANSPORT_BRIDGE_LOCAL_RECEIPT_V2'},null,2));
+  console.log(`CR0813_LEASE_EXPIRY_AMBIGUITY_PASS posts=${evidence.posts.length} generation=${finalState.submission_control.lease_generation} status=${finalState.status} bridge=${identity.transport_session_policy}`);
   await browser.close();
 });
