@@ -1,0 +1,44 @@
+{
+  "schema_version": "CR0816-NONREACTIVE-TRAJECTORY-DESIGN-1",
+  "version": "CUBE-REV 0.8.16",
+  "participant_instruction": "Continue naturally for up to three moves; no accuracy or strategy feedback is shown.",
+  "trial_contract": {
+    "maximum_actions": 3,
+    "stop_if_solved": true,
+    "intermediate_state_visible": true,
+    "record": [
+      "move display",
+      "opaque move code",
+      "action onset",
+      "action confirmation",
+      "inter-move latency",
+      "intermediate state hash"
+    ],
+    "do_not_record": [
+      "trialwise confidence",
+      "strategy label",
+      "error admission",
+      "planning-depth self-report"
+    ],
+    "feedback": "NONE"
+  },
+  "nonreactivity_firewall": [
+    "do not call any first move an error in participant-facing text",
+    "do not reveal rotational family membership",
+    "do not show expected continuation or recovery category",
+    "retain only post-task global demand capture",
+    "analyze recovery only when the observed first move creates a preregistered opportunity"
+  ],
+  "analysis_classes": [
+    "chunk_continuation_signature",
+    "closed_loop_replanning_signature",
+    "exact_undo_recovery",
+    "nonundo_subgoal_reset",
+    "persistence_after_deterioration",
+    "rotation_equivariance"
+  ],
+  "probe_count": 36,
+  "family_count": 6,
+  "synthetic_result": "PASS_MINIMAL_TRAJECTORY_IDENTIFIABILITY",
+  "deployment": "NO_GO_RESEARCH_ASSET_ONLY"
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "CR0816-EXTERNAL-RECONSTRUCTION-FIXTURE-PACK-1",
+  "retrieved": "2026-08-03",
+  "fixtures": [
+    {
+      "solve_id": 12564,
+      "source": "https://reco.nz/solve/12564",
+      "puzzle": "3x3",
+      "result_seconds": 2.76,
+      "scramble": "L B R2 B' R2 U2 F D R2 U R2 F2 D2 R U B L2",
+      "stages": [
+        {
+          "label": "xxxcross",
+          "moves": "r' U F U' r U' r' U2 r' U r"
+        },
+        {
+          "label": "4th pair",
+          "moves": "R U2' R2' U' R U R U2' R'"
+        },
+        {
+          "label": "ZBLL",
+          "moves": "U' F' r U R' U' r' F R"
+        }
+      ],
+      "reported_stm": 29,
+      "reported_tps": 10.51,
+      "role": "STAGE_BOUNDARY_AND_NOTATION_FIXTURE"
+    },
+    {
+      "solve_id": 9269,
+      "source": "https://reco.nz/solve/9269",
+      "puzzle": "3x3",
+      "result_seconds": 4.54,
+      "scramble": "D2 U' R2 B2 L2 B2 D B2 L2 D2 B' U' R' U2 F2 D' B F D B' R",
+      "solver_label": "PUBLIC_SOURCE_ATTRIBUTION_ONLY",
+      "stages": [
+        {
+          "label": "xcross",
+          "moves": "U' U' R2 D R' U' R' u'"
+        },
+        {
+          "label": "2nd pair",
+          "moves": "R' U' R L' U L"
+        },
+        {
+          "label": "3rd pair",
+          "moves": "y R' U' R U' R' U R"
+        },
+        {
+          "label": "4th pair",
+          "moves": "U' R U R' U' F' U' F"
+        },
+        {
+          "label": "ZBLL",
+          "moves": "R U' U' R D R' U U R D' R2' U"
+        }
+      ],
+      "reported_stm": 41,
+      "role": "MATCHED_SCRAMBLE_ROUTE_A"
+    },
+    {
+      "solve_id": 9274,
+      "source": "https://reco.nz/solve/9274",
+      "puzzle": "3x3",
+      "result_seconds": 4.54,
+      "scramble": "D2 U' R2 B2 L2 B2 D B2 L2 D2 B' U' R' U2 F2 D' B F D B' R",
+      "solver_label": "PUBLIC_SOURCE_ATTRIBUTION_ONLY",
+      "stages": [
+        {
+          "label": "xcross",
+          "moves": "U2 R2 D R' U' R' u'"
+        },
+        {
+          "label": "2nd pair",
+          "moves": "R' U' R L' U L"
+        },
+        {
+          "label": "3rd/4th pairs",
+          "moves": "y U R' U' R D' U2 y' R' U2 R U' R' U R D"
+        },
+        {
+          "label": "OLL",
+          "moves": "R' U' R' F R F' U R"
+        },
+        {
+          "label": "PLL",
+          "moves": "x R2' D2 R U R' D2 R U' R x' U2"
+        }
+      ],
+      "reported_stm": 45,
+      "role": "MATCHED_SCRAMBLE_ROUTE_B"
+    }
+  ],
+  "matched_scramble_hypothesis": "THE_SAME_OFFICIAL_STATE_AND_SAME_TOTAL_TIME_CAN_SUPPORT_DISTINCT_OBSERVED_TRAJECTORIES",
+  "allowed_inference": "trajectory nonuniqueness and motif priors",
+  "prohibited_inference": "named-solver cognitive trait or unobserved thought process"
+}
