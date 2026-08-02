@@ -155,6 +155,11 @@ function deepFreeze(value){
   for(const child of Object.values(value))deepFreeze(child);
   return Object.freeze(value);
 }
+function deepFreeze(value){
+  if(!value||typeof value!=='object'||Object.isFrozen(value))return value;
+  for(const child of Object.values(value))deepFreeze(child);
+  return Object.freeze(value);
+}
 function collectorEnvelopeFromSnapshot(snapshot,options={}){
   const identity=transportSessionIdentity(snapshot),trials=compatibilityTrials(snapshot);
   const dataSubmission={
