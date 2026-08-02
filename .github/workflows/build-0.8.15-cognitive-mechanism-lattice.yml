@@ -52,6 +52,7 @@ jobs:
             --sessions-per-mechanism 240 \
             --seed 8152026
           diff -ru /tmp/cr0815-a /tmp/cr0815-b
+          mkdir -p artifacts
           mv /tmp/cr0815-a artifacts/0.8.15
       - name: Validate positive and negative controls
         run: python tests/mechanism_lattice_0.8.15.test.py
