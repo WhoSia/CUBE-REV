@@ -1,0 +1,50 @@
+{
+  "adjudication": {
+    "ambiguous_multiple": "PRESERVE_CANDIDATE_SET",
+    "exact_unique": "ALLOW_WITH_PROVENANCE",
+    "unlinked": "DO_NOT_LINK"
+  },
+  "prohibitions": [
+    "NO_BULK_RECONSTRUCTION_INGESTION_WITHOUT_TERMS_ROBOTS_CUSTODY_REVIEW",
+    "NO_PRIVATE_TIMER_ACCOUNT_ACCESS",
+    "NO_NAMED_PERSON_LATENT_TRAIT_INFERENCE"
+  ],
+  "schema_version": "CR0817-EXTERNAL-SOURCE-REGISTRY-1",
+  "snapshot_date": "2026-08-03",
+  "sources": [
+    {
+      "executed_moves_available": false,
+      "full_archive_materialized": false,
+      "observed_export_date": "2026-08-02T16:15:23+00:00",
+      "observed_export_format_version": "2.0.2",
+      "observed_tsv_filename": "WCA_export_v2_214_20260802T000025Z.tsv.zip",
+      "per_move_timestamps_available": false,
+      "role": "OFFICIAL_ATTEMPT_RESULT_AND_SCRAMBLE_ANCHOR",
+      "source_id": "WCA-RESULTS-EXPORT",
+      "url": "https://www.worldcubeassociation.org/export/results"
+    },
+    {
+      "about_url": "https://reco.nz/about",
+      "faq_url": "https://reco.nz/faq",
+      "population_representative": false,
+      "raw_html_materialized": false,
+      "role": "PUBLIC_RECONSTRUCTION_ROUTE_AND_STAGE_FIXTURE",
+      "route_count_materialized": 11,
+      "source_id": "RECO-NZ",
+      "transcription_review": "VISIBLE_FIELDS_ONLY",
+      "url": "https://reco.nz"
+    },
+    {
+      "access_rule": "EXPLICIT_OWNER_EXPORT_OR_INTENTIONALLY_SHARED_LINK_ONLY",
+      "examples": [
+        "csTimer",
+        "Cubeast",
+        "Solved"
+      ],
+      "materialized": false,
+      "role": "CONSENTED_PER_MOVE_TIMESTAMP_SOURCE",
+      "source_id": "SMART-CUBE-OWNER-EXPORT"
+    }
+  ],
+  "version": "CUBE-REV 0.8.17"
+}

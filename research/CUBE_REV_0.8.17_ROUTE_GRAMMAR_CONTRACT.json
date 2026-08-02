@@ -1,0 +1,104 @@
+{
+  "analysis_unit": "NORMALIZED_EXECUTED_MOVE_TOKEN_WITH_ROTATIONS_SEPARATED",
+  "cross_puzzle_policy": "3X3_TO_2X2_ONLY_ROTATION_INVARIANT_LOCAL_RELATION_GRAMMAR; NO_DIRECT_COGNITIVE_TRANSFER",
+  "decision_rule": {
+    "cognitive_mechanism_transfer": "NO_GO without calibrated human trajectory data",
+    "distributional_alignment": "PASS only if both JSD <=0.25",
+    "local_motif_support": "PASS if weighted bigram >=0.80 and weighted trigram >=0.60",
+    "timing_transfer": "HOLD without consented per-move timestamps"
+  },
+  "estimands": [
+    {
+      "definition": "parsed nonrotation token count equals source-reported STM when reported",
+      "id": "E-STM-CONFORMANCE"
+    },
+    {
+      "definition": "weighted coverage of 0.8.16 relation bigrams and trigrams in frozen public routes",
+      "id": "E-LOCAL-MOTIF-SUPPORT",
+      "pass_thresholds": {
+        "bigram": 0.8,
+        "trigram": 0.6
+      }
+    },
+    {
+      "definition": "Jensen-Shannon divergence between probe and external relation grammar distributions",
+      "id": "E-DISTRIBUTIONAL-ALIGNMENT",
+      "pass_threshold_max": 0.25
+    },
+    {
+      "definition": "same scramble and total time can map to distinct executed routes",
+      "id": "E-MATCHED-SCRAMBLE-NONUNIQUENESS"
+    },
+    {
+      "definition": "relation n-grams calculated without crossing source-annotated stage boundaries",
+      "id": "E-STAGE-LOCAL-GRAMMAR"
+    },
+    {
+      "definition": "requires actual per-move timestamps; stage totals or total time are not imputed",
+      "id": "E-TIMING-TRANSFER"
+    }
+  ],
+  "identity_policy": {
+    "method_label_role": "SOURCE_DESCRIPTION_ONLY_NOT_OUTCOME",
+    "named_identity_in_aggregate_rows": false,
+    "named_person_trait_inference": "PROHIBITED",
+    "source_attribution_retained_in_fixture": true
+  },
+  "notation": {
+    "accepted_bases": [
+      "U",
+      "R",
+      "F",
+      "D",
+      "L",
+      "B",
+      "M",
+      "E",
+      "S",
+      "x",
+      "y",
+      "z",
+      "u",
+      "r",
+      "f",
+      "d",
+      "l",
+      "b",
+      "Uw",
+      "Rw",
+      "Fw",
+      "Dw",
+      "Lw",
+      "Bw"
+    ],
+    "accepted_suffixes": [
+      "",
+      "'",
+      "2",
+      "2'",
+      "3",
+      "3'"
+    ],
+    "canonicalization": [
+      "wide Xw -> lowercase x",
+      "quarter-turn power 3 -> inverse quarter turn",
+      "half-turn prime removed",
+      "curly apostrophe -> ASCII apostrophe"
+    ],
+    "unsupported_token_policy": "FAIL_CLOSED"
+  },
+  "relation_alphabet": [
+    "START",
+    "SAME",
+    "OPPOSITE",
+    "ADJACENT"
+  ],
+  "schema_version": "CR0817-ROUTE-GRAMMAR-CONTRACT-1",
+  "token_classes": [
+    "FACE",
+    "WIDE",
+    "SLICE",
+    "ROTATION"
+  ],
+  "version": "CUBE-REV 0.8.17"
+}
