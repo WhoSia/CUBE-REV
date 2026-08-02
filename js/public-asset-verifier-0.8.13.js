@@ -3,6 +3,7 @@
 
 const VERSION='CUBE-REV 0.8.13';
 const HEX64=/^[0-9a-f]{64}$/;
+const TRANSPORT_SESSION_RE=/^CR-[0-9]{14}-[0-9a-f]{12}$/;
 const FORBIDDEN=new Set(['state_id','rotation_id','face_map','choice_canonical','canonical_move','pair_id','member_id','probe_name','diagnostic_class','branch_count','branch_level','decision_class','distance']);
 function canonicalText(text){return JSON.stringify(JSON.parse(text))}
 function hex(bytes){return Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('')}
@@ -66,7 +67,76 @@ async function verifyBundle(o){
   const codeCount=countCodes(bank);if(codeCount!==504||manifest.choice_code_count!==504)throw new Error('CHOICE_CODE_CARDINALITY');
   return {manifest,bank,config,binding:{manifest_sha256:manifestHash,public_bank_sha256:bankHash,public_config_sha256:configHash,private_crosswalk_sha256:pins.private_crosswalk_sha256},parent0812Binding:{...config.active_session.parent_asset_binding}};
 }
-const api={VERSION,FORBIDDEN,canonicalText,sha256Text,assertNoForbidden,countCodes,assertSchedules,assertActiveConfig,verifyBundle};
+
+function transportTimestamp(snapshot){
+  const source=String(snapshot&&snapshot.started_at||snapshot&&snapshot.scientific_completed_at||'');
+  const digits=source.replace(/\D/g,'').slice(0,14);
+  if(!/^[0-9]{14}$/.test(digits))throw new Error('TRANSPORT_TIMESTAMP_UNAVAILABLE');
+  return digits;
+}
+function collectorTransportSessionId(snapshot,m){
+  const scientific=String(snapshot&&snapshot.session_id||'');
+  if(TRANSPORT_SESSION_RE.test(scientific))return scientific;
+  if(!scientific)throw new Error('SCIENTIFIC_SESSION_ID_REQUIRED');
+  const h1=m.checksumText(`CR0813-TRANSPORT-A:${scientific}`);
+  const h2=m.checksumText(`CR0813-TRANSPORT-B:${scientific}`);
+  return `CR-${transportTimestamp(snapshot)}-${h1}${h2.slice(0,4)}`;
+}
+function augmentCognitiveApi(m){
+  if(!m||m.__collector_transport_bridge_0813===true)return m;
+  const baseEnvelope=m.collectorEnvelopeFromSnapshot;
+  if(typeof baseEnvelope!=='function'||typeof m.scientificSnapshot!=='function'||typeof m.checksumText!=='function')return m;
+  m.collectorTransportSessionId=snapshot=>collectorTransportSessionId(snapshot,m);
+  m.collectorEnvelopeFromSnapshot=function(snapshot,options={}){
+    const envelope=baseEnvelope(snapshot,options);
+    const scientificSessionId=String(snapshot.session_id||'');
+    const transportSessionId=collectorTransportSessionId(snapshot,m);
+    envelope.session_id=transportSessionId;
+    envelope.data_submission={
+      ...(envelope.data_submission||{}),
+      original_scientific_session_id:scientificSessionId,
+      transport_session_policy:transportSessionId===scientificSessionId?'IDENTITY_SESSION_V1':'DETERMINISTIC_LEGACY_SESSION_BRIDGE_V1'
+    };
+    return envelope;
+  };
+  m.exportSnapshot=function(state){
+    const snapshot=m.scientificSnapshot(state);
+    return m.collectorEnvelopeFromSnapshot(snapshot,{immutable_snapshot_integrity_fnv1a32:state.submission_snapshot_hash});
+  };
+  m.__collector_transport_bridge_0813=true;
+
+  const Base=global.CubeRevCollectorClient;
+  if(typeof Base==='function'&&Base.__cr0813_transport_bridge!==true){
+    class CubeRevCollectorClient0813 extends Base{
+      constructor(options){
+        const originalGetSession=options.getSession;
+        const originalExportSession=options.exportSession;
+        super({...options,
+          getSession:()=>{
+            const session=originalGetSession();
+            if(!session)return session;
+            const exported=originalExportSession();
+            if(!exported||!TRANSPORT_SESSION_RE.test(String(exported.session_id||'')))throw new Error('COLLECTOR_TRANSPORT_SESSION_INVALID');
+            return {...session,session_id:exported.session_id};
+          },
+          exportSession:originalExportSession
+        });
+      }
+    }
+    CubeRevCollectorClient0813.__cr0813_transport_bridge=true;
+    global.CubeRevCollectorClient=CubeRevCollectorClient0813;
+  }
+  return m;
+}
+function installCognitiveBridge(){
+  const key='CUBE_REV_COGNITIVE_MODE_0813';
+  if(global[key]){augmentCognitiveApi(global[key]);return}
+  let value;
+  Object.defineProperty(global,key,{configurable:true,enumerable:true,get(){return value},set(v){value=augmentCognitiveApi(v)}});
+}
+installCognitiveBridge();
+
+const api={VERSION,FORBIDDEN,TRANSPORT_SESSION_RE,canonicalText,sha256Text,assertNoForbidden,countCodes,assertSchedules,assertActiveConfig,verifyBundle,transportTimestamp,collectorTransportSessionId,augmentCognitiveApi};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 global.CUBE_REV_PUBLIC_ASSET_VERIFIER_0813=api;
 })(typeof window!=='undefined'?window:globalThis);
