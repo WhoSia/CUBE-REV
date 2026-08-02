@@ -2,12 +2,17 @@ from __future__ import annotations
 import csv
 import importlib.util
 import json
+import sys
 import tempfile
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 SPEC=importlib.util.spec_from_file_location('cr0813_factory',ROOT/'factory/cognitive_snapshot_adapter_0_8_13.py')
-MOD=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(MOD)
+if SPEC is None or SPEC.loader is None:
+    raise SystemExit('FACTORY_MODULE_SPEC_UNAVAILABLE')
+MOD=importlib.util.module_from_spec(SPEC)
+sys.modules[SPEC.name]=MOD
+SPEC.loader.exec_module(MOD)
 source=ROOT/'artifacts/0.8.13/live_synthetic_snapshot.json'
 if not source.exists():
     raise SystemExit('SYNTHETIC_SNAPSHOT_MISSING')
