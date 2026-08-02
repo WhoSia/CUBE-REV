@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""CUBE-REV 0.8.13 cognitive-snapshot compatibility adapter.
+"""CUBE-REV 0.8.13 cognitive-snapshot Factory compatibility adapter.
 
-This adapter does not mutate the source JSON. It validates the opaque 28-response
-scientific snapshot, writes analysis-ready tables plus a QC trail, and records
-SHA-256 identities for every output in the same provenance-first spirit as the
-CUBE-REV 0.7 Factory.
+The adapter never mutates the supplied JSON. It supports either the inner
+CR0813 scientific snapshot or the exact 0.7.12 Collector compatibility
+envelope that contains it. Raw bytes, canonical identities, projection QC,
+analysis tables, and a provenance manifest are emitted separately.
 """
 from __future__ import annotations
 
@@ -13,10 +13,9 @@ import csv
 import hashlib
 import json
 import re
-import shutil
 import sys
 import zipfile
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
@@ -24,9 +23,14 @@ from typing import Any, Iterable
 VERSION = "CUBE-REV 0.8.13"
 SCHEMA = "CR0813-COLLECTOR-PAYLOAD-1"
 ADAPTER = "CR0813_COGNITIVE_SNAPSHOT_FACTORY_ADAPTER_V1"
+COLLECTOR_PROJECT = "CUBE-REV"
+COLLECTOR_VERSION = "0.7.12"
+COMPAT_SCHEMA = "CR0813-COLLECTOR-COMPATIBILITY-ENVELOPE-1"
+TRIAL_POLICY = "LOSSLESS_OPAQUE_RESPONSE_PROJECTION_V1"
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 CHOICE = re.compile(r"^CR9C-[0-9a-f]{16}$")
 MOVE = re.compile(r"^[URFDLB](?:2|')?$")
+SESSION = re.compile(r"^CR-[0-9]{14}-[0-9a-f]{12}$")
 FORBIDDEN = {"state_id", "rotation_id", "face_map", "choice_canonical", "canonical_move"}
 
 
@@ -71,16 +75,83 @@ def walk_forbidden(value: Any, trail: str = "$") -> list[str]:
     return found
 
 
-def validate(snapshot: dict[str, Any]) -> list[QC]:
+def check_projection(trials: Any, snapshot: dict[str, Any]) -> list[QC]:
+    qc: list[QC] = []
+    responses = snapshot.get("responses") if isinstance(snapshot.get("responses"), list) else []
+    qc.append(QC("COMPAT_TRIAL_ARRAY", "ERROR", isinstance(trials, list), type(trials).__name__))
+    if not isinstance(trials, list):
+        return qc
+    qc.append(QC("COMPAT_TRIAL_COUNT", "ERROR", len(trials) == 28, str(len(trials))))
+    exact = len(trials) == len(responses) == 28
+    for i, (trial, response) in enumerate(zip(trials, responses), 1):
+        if not isinstance(trial, dict) or not isinstance(response, dict):
+            exact = False
+            continue
+        projected = trial.get("response") if isinstance(trial.get("response"), dict) else {}
+        exact = exact and trial.get("trial_index") == i
+        exact = exact and trial.get("stimulus_id") == response.get("stimulus_id")
+        exact = exact and projected.get("choice_display") == response.get("choice_display")
+        exact = exact and projected.get("choice_code") == response.get("choice_code")
+        exact = exact and projected.get("latency_ms") == response.get("latency_ms")
+        exact = exact and projected.get("recorded_at") == response.get("recorded_at")
+        exact = exact and trial.get("source_schema") == snapshot.get("schema_version")
+        exact = exact and trial.get("scientific_revision") == snapshot.get("scientific_revision")
+    qc.append(QC("COMPAT_TRIAL_EXACT_PROJECTION", "ERROR", exact, "28 opaque responses projected without semantic change"))
+    return qc
+
+
+def unwrap_root(root: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | None, list[QC]]:
+    if root.get("schema_version") == SCHEMA and root.get("version") == VERSION:
+        return root, None, [QC("ROOT_KIND", "INFO", True, "inner_scientific_snapshot")]
+
+    snapshot = root.get("cognitive_snapshot")
+    data_submission = root.get("data_submission")
+    qc = [
+        QC("ROOT_KIND", "INFO", True, "collector_compatibility_envelope"),
+        QC("COLLECTOR_PROJECT", "ERROR", root.get("project") == COLLECTOR_PROJECT, str(root.get("project"))),
+        QC("COLLECTOR_VERSION", "ERROR", root.get("version") == COLLECTOR_VERSION, str(root.get("version"))),
+        QC("COLLECTOR_SESSION_ID", "ERROR", isinstance(root.get("session_id"), str) and bool(SESSION.fullmatch(root.get("session_id", ""))), str(root.get("session_id"))),
+        QC("COLLECTOR_DATA_SUBMISSION", "ERROR", isinstance(data_submission, dict), type(data_submission).__name__),
+        QC("COLLECTOR_INNER_SNAPSHOT", "ERROR", isinstance(snapshot, dict), type(snapshot).__name__),
+    ]
+    if not isinstance(snapshot, dict):
+        raise FactoryError("COLLECTOR_ENVELOPE_WITHOUT_COGNITIVE_SNAPSHOT")
+    qc.append(QC("ENVELOPE_SESSION_MATCH", "ERROR", root.get("session_id") == snapshot.get("session_id"), f"outer={root.get('session_id')} inner={snapshot.get('session_id')}"))
+    if isinstance(data_submission, dict):
+        qc.extend([
+            QC("COMPATIBILITY_SCHEMA", "ERROR", data_submission.get("collector_compatibility_schema") == COMPAT_SCHEMA, str(data_submission.get("collector_compatibility_schema"))),
+            QC("COMPATIBILITY_TRIAL_POLICY", "ERROR", data_submission.get("compatibility_trial_policy") == TRIAL_POLICY, str(data_submission.get("compatibility_trial_policy"))),
+            QC("APP_PAYLOAD_VERSION", "ERROR", data_submission.get("app_payload_version") == snapshot.get("version"), str(data_submission.get("app_payload_version"))),
+            QC("APP_PAYLOAD_SCHEMA", "ERROR", data_submission.get("app_payload_schema") == snapshot.get("schema_version"), str(data_submission.get("app_payload_schema"))),
+        ])
+        expected_sha = data_submission.get("immutable_snapshot_sha256")
+        if expected_sha is not None:
+            actual_sha = sha256_bytes(canonical_bytes(snapshot))
+            qc.append(QC("IMMUTABLE_SNAPSHOT_SHA256", "ERROR", expected_sha == actual_sha, f"expected={expected_sha} actual={actual_sha}"))
+    qc.extend(check_projection(root.get("trials"), snapshot))
+    envelope_info = {
+        "project": root.get("project"),
+        "version": root.get("version"),
+        "session_id": root.get("session_id"),
+        "generated_at": root.get("generated_at"),
+        "trial_count": len(root.get("trials", [])) if isinstance(root.get("trials"), list) else None,
+        "compatibility_schema": data_submission.get("collector_compatibility_schema") if isinstance(data_submission, dict) else None,
+        "synthetic_live_cert": data_submission.get("synthetic_live_cert") if isinstance(data_submission, dict) else None,
+        "exclude_from_human_cohort": data_submission.get("exclude_from_human_cohort") if isinstance(data_submission, dict) else None,
+    }
+    return snapshot, envelope_info, qc
+
+
+def validate_snapshot(snapshot: dict[str, Any]) -> list[QC]:
     qc: list[QC] = []
 
     def check(code: str, condition: bool, detail: str, severity: str = "ERROR") -> None:
-        qc.append(QC(code=code, severity=severity, passed=bool(condition), detail=detail))
+        qc.append(QC(code, severity, bool(condition), detail))
 
     check("SCHEMA_IDENTITY", snapshot.get("schema_version") == SCHEMA, str(snapshot.get("schema_version")))
     check("VERSION_IDENTITY", snapshot.get("version") == VERSION, str(snapshot.get("version")))
     check("RESPONSE_ENCODING", snapshot.get("response_encoding") == "OPAQUE_CHOICE_CODE_V1", str(snapshot.get("response_encoding")))
-    check("SESSION_ID", isinstance(snapshot.get("session_id"), str) and bool(snapshot.get("session_id")), str(snapshot.get("session_id")))
+    check("SESSION_ID", isinstance(snapshot.get("session_id"), str) and bool(SESSION.fullmatch(snapshot.get("session_id", ""))), str(snapshot.get("session_id")))
     check("PARTICIPANT_TOKEN", isinstance(snapshot.get("participant_token"), str) and bool(snapshot.get("participant_token")), "present" if snapshot.get("participant_token") else "missing")
     check("SEQUENCE_ID", str(snapshot.get("sequence_id", "")) in {str(i) for i in range(1, 25)}, str(snapshot.get("sequence_id")))
     check("SCIENTIFIC_REVISION", isinstance(snapshot.get("scientific_revision"), int) and snapshot.get("scientific_revision", 0) >= 1, str(snapshot.get("scientific_revision")))
@@ -90,10 +161,8 @@ def validate(snapshot: dict[str, Any]) -> list[QC]:
     if not isinstance(responses, list):
         responses = []
     check("RESPONSE_COUNT", len(responses) == 28, str(len(responses)))
-
     positions: list[int] = []
     stimuli: list[str] = []
-    codes: list[str] = []
     row_valid = True
     for i, response in enumerate(responses, 1):
         if not isinstance(response, dict):
@@ -101,17 +170,15 @@ def validate(snapshot: dict[str, Any]) -> list[QC]:
             continue
         positions.append(response.get("position"))
         stimuli.append(response.get("stimulus_id"))
-        codes.append(response.get("choice_code"))
         row_valid = row_valid and response.get("position") == i
         row_valid = row_valid and isinstance(response.get("stimulus_id"), str) and bool(response.get("stimulus_id"))
-        row_valid = row_valid and isinstance(response.get("choice_display"), str) and bool(MOVE.fullmatch(response["choice_display"]))
-        row_valid = row_valid and isinstance(response.get("choice_code"), str) and bool(CHOICE.fullmatch(response["choice_code"]))
-        row_valid = row_valid and isinstance(response.get("latency_ms"), (int, float)) and response["latency_ms"] >= 0
+        row_valid = row_valid and isinstance(response.get("choice_display"), str) and bool(MOVE.fullmatch(response.get("choice_display", "")))
+        row_valid = row_valid and isinstance(response.get("choice_code"), str) and bool(CHOICE.fullmatch(response.get("choice_code", "")))
+        row_valid = row_valid and isinstance(response.get("latency_ms"), (int, float)) and response.get("latency_ms", -1) >= 0
         row_valid = row_valid and isinstance(response.get("recorded_at"), str) and bool(response.get("recorded_at"))
     check("RESPONSE_ROWS", row_valid, "all rows structurally valid")
     check("POSITION_ORDER", positions == list(range(1, 29)), json.dumps(positions))
     check("STIMULUS_UNIQUENESS", len(stimuli) == 28 and len(set(stimuli)) == 28, f"unique={len(set(stimuli))}")
-    check("CHOICE_CODE_UNIQUENESS_WITHIN_SESSION", len(codes) == 28 and len(set(codes)) == 28, f"unique={len(set(codes))}", severity="WARN")
 
     telemetry = snapshot.get("telemetry")
     check("TELEMETRY_ARRAY", isinstance(telemetry, list), type(telemetry).__name__)
@@ -141,13 +208,14 @@ def write_csv(path: Path, fieldnames: list[str], rows: Iterable[dict[str, Any]])
 def adapt(input_path: Path, outdir: Path) -> dict[str, Any]:
     raw = input_path.read_bytes()
     try:
-        snapshot = json.loads(raw.decode("utf-8-sig"))
+        root = json.loads(raw.decode("utf-8-sig"))
     except Exception as exc:
         raise FactoryError(f"INVALID_JSON:{exc}") from exc
-    if not isinstance(snapshot, dict):
+    if not isinstance(root, dict):
         raise FactoryError("ROOT_NOT_OBJECT")
 
-    qc = validate(snapshot)
+    snapshot, envelope_info, envelope_qc = unwrap_root(root)
+    qc = envelope_qc + validate_snapshot(snapshot)
     blocking = [q for q in qc if q.severity == "ERROR" and not q.passed]
     outdir.mkdir(parents=True, exist_ok=True)
     rawdir = outdir / "raw"
@@ -161,7 +229,6 @@ def adapt(input_path: Path, outdir: Path) -> dict[str, Any]:
     responses = snapshot.get("responses") if isinstance(snapshot.get("responses"), list) else []
     telemetry = snapshot.get("telemetry") if isinstance(snapshot.get("telemetry"), list) else []
     post = snapshot.get("post_task") if isinstance(snapshot.get("post_task"), dict) else {}
-
     session_row = {
         "session_id": session_id,
         "version": snapshot.get("version"),
@@ -181,6 +248,11 @@ def adapt(input_path: Path, outdir: Path) -> dict[str, Any]:
         "technical_notes": post.get("technical_notes"),
         "snapshot_sha256": sha256_bytes(canonical_bytes(snapshot)),
         "raw_file_sha256": sha256_bytes(raw),
+        "root_kind": "collector_compatibility_envelope" if envelope_info else "inner_scientific_snapshot",
+        "collector_project": envelope_info.get("project") if envelope_info else None,
+        "collector_version": envelope_info.get("version") if envelope_info else None,
+        "collector_trial_count": envelope_info.get("trial_count") if envelope_info else None,
+        "exclude_from_human_cohort": envelope_info.get("exclude_from_human_cohort") if envelope_info else None,
         "factory_adapter": ADAPTER,
         "qc_blocking_count": len(blocking),
         "analysis_eligible": len(blocking) == 0,
@@ -217,21 +289,28 @@ def adapt(input_path: Path, outdir: Path) -> dict[str, Any]:
             "event_data_json": json.dumps(event.get("data"), ensure_ascii=False, separators=(",", ":")),
         })
     write_csv(outdir / "telemetry_table.csv", ["session_id", "event_index", "event_id", "event_type", "event_at", "event_data_json"], telemetry_rows)
-
     write_csv(outdir / "qc_report.csv", ["code", "severity", "passed", "detail"], [asdict(q) for q in qc])
-    (outdir / "interpreted_sessions.jsonl").write_text(json.dumps({"session": session_row, "responses": trial_rows, "telemetry": telemetry_rows, "qc": [asdict(q) for q in qc]}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    (outdir / "interpreted_sessions.jsonl").write_text(json.dumps({"session": session_row, "responses": trial_rows, "telemetry": telemetry_rows, "envelope": envelope_info, "qc": [asdict(q) for q in qc]}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
 
     created = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    manifest = {
+    output_names = ["session_table.csv", "trial_table.csv", "telemetry_table.csv", "qc_report.csv", "interpreted_sessions.jsonl"]
+    manifest: dict[str, Any] = {
         "schema_version": "CR0813-FACTORY-MANIFEST-1",
         "factory_adapter": ADAPTER,
         "created_at": datetime.now(timezone.utc).isoformat(),
-        "source": {"path": input_path.name, "raw_sha256": sha256_bytes(raw), "canonical_snapshot_sha256": sha256_bytes(canonical_bytes(snapshot)), "raw_copy_path": str(raw_copy.relative_to(outdir))},
+        "source": {
+            "path": input_path.name,
+            "root_kind": "collector_compatibility_envelope" if envelope_info else "inner_scientific_snapshot",
+            "raw_sha256": sha256_bytes(raw),
+            "canonical_root_sha256": sha256_bytes(canonical_bytes(root)),
+            "canonical_snapshot_sha256": sha256_bytes(canonical_bytes(snapshot)),
+            "raw_copy_path": str(raw_copy.relative_to(outdir)),
+            "collector_envelope": envelope_info,
+        },
         "blocking_qc_count": len(blocking),
         "analysis_eligible": len(blocking) == 0,
         "outputs": {},
     }
-    output_names = ["session_table.csv", "trial_table.csv", "telemetry_table.csv", "qc_report.csv", "interpreted_sessions.jsonl"]
     for name in output_names:
         p = outdir / name
         manifest["outputs"][name] = {"sha256": sha256_file(p), "bytes": p.stat().st_size}
@@ -240,7 +319,7 @@ def adapt(input_path: Path, outdir: Path) -> dict[str, Any]:
 
     zip_path = outdir / f"CUBE-REV_0.8.13_COGNITIVE_ANALYSIS_READY_{created}.zip"
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
-        for p in [raw_copy, *(outdir / n for n in output_names), manifest_path]:
+        for p in [raw_copy, *(outdir / name for name in output_names), manifest_path]:
             zf.write(p, p.relative_to(outdir))
     manifest["bundle"] = {"path": zip_path.name, "sha256": sha256_file(zip_path), "bytes": zip_path.stat().st_size}
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -260,7 +339,7 @@ def main(argv: list[str] | None = None) -> int:
     except FactoryError as exc:
         print(f"CR0813_FACTORY_RECONSTRUCTION_FAIL {exc}", file=sys.stderr)
         return 2
-    print(f"CR0813_FACTORY_RECONSTRUCTION_PASS responses=28 outputs={len(manifest['outputs'])} bundle={manifest['bundle']['path']}")
+    print(f"CR0813_FACTORY_RECONSTRUCTION_PASS responses=28 root={manifest['source']['root_kind']} outputs={len(manifest['outputs'])} bundle={manifest['bundle']['path']}")
     return 0
 
 
