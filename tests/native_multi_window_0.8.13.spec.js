@@ -139,6 +139,7 @@ test('lease expiry allows a second owner while receipt-v2 converges two deliveri
   await a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.completeResponses('U'));
   await expect.poll(()=>a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.getStoredState().cursor)).toBe(28);
   await a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.savePostTask('lease-expiry-network-ambiguity'));
+  await b.evaluate(()=>{CUBE_REV_0813_TEST_HOOKS.send();return true});
   await expect.poll(()=>evidence.posts.length,{timeout:10000}).toBe(1);
   const sealed1=await a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.getStoredState());
   expect(sealed1.submission_snapshot).toBeTruthy();
