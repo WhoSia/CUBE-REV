@@ -72,8 +72,8 @@ function applyLocked(o,op){
 
   switch(op.type){
     case 'RESPONSE':{
-      const clean=o.m12.sanitizeInput(op.response);
       if(current.submission_snapshot)return reject('SNAPSHOT_ALREADY_SEALED',current);
+      const clean=o.m12.sanitizeInput(op.response);
       if(!Number.isInteger(op.expected_position)||op.expected_position<0)return reject('EXPECTED_POSITION_REQUIRED',current);
       if(!expectedMatch(current,op)){
         if(op.expected_position<current.cursor){
@@ -104,8 +104,8 @@ function applyLocked(o,op){
       },merged?'TELEMETRY_MERGED_ON_LATEST':'TELEMETRY_APPLIED');
     }
     case 'POST_TASK':{
-      const clean=o.m12.sanitizePostTask(op.post_task);
       if(current.submission_snapshot)return reject('SNAPSHOT_ALREADY_SEALED',current);
+      const clean=o.m12.sanitizePostTask(op.post_task);
       if(!expectedMatch(current,op)){
         if(current.post_task&&JSON.stringify(current.post_task)===JSON.stringify(clean))return {ok:true,action:'POST_TASK_ALREADY_APPLIED',state:current,mutated:false};
         return reject('STALE_REVISION',current,{current_revision:current.revision});
