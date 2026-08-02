@@ -142,6 +142,6 @@ async function op(o,state,type,extra={},id='op'){
     const r=await CAS.applyOperation(q.o,{type:'CLAIM_SUBMISSION',mutation_id:'E-CLAIM-2',session_id:x.session_id,expected_revision:x.revision,lease_token:'E-LEASE-2',lease_owner:'TAB-2'});
     assert.equal(r.action,'SUBMISSION_LEASE_CLAIMED');assert.equal(r.state.submission_control.lease_token,'E-LEASE-2');assert.equal(r.state.submission_control.lease_generation,2);passed++}
 
-  assert.equal(passed,26);
-  console.log(`CR0812_ACTIVE_SESSION_CAS_PASS ${passed}/26`);
+  assert.equal(passed,28);
+  console.log(`CR0812_ACTIVE_SESSION_CAS_PASS ${passed}/28`);
 })().catch(e=>{console.error(e);process.exit(1)});
