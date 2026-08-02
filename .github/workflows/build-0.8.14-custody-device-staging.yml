@@ -32,16 +32,27 @@ jobs:
         run: |
           node --check scripts/reconstruct_live_envelope_0_8_14.mjs
           node --check tests/cross_device_browser_matrix_0.8.14.mjs
-          python -m py_compile factory/archival_live_bridge_0_8_14.py scripts/custody_replay_0_8_14.py scripts/audit_live_evidence_lineage_0_8_14.py scripts/build_staging_candidate_0_8_14.py scripts/evaluate_cutover_gate_0_8_14.py
+          python -m py_compile factory/archival_live_bridge_0_8_14.py scripts/build_participant_route_0_8_14.py scripts/custody_replay_0_8_14.py scripts/audit_live_evidence_lineage_0_8_14.py scripts/build_staging_candidate_0_8_14.py scripts/evaluate_cutover_gate_0_8_14.py
           git fetch origin cube-rev-0.8.13-native-browser-live-factory
           if git diff --name-only origin/cube-rev-0.8.13-native-browser-live-factory...HEAD | grep -E '^(index\.html|collector-config\.js|js/collector-client\.js)$'; then
             echo 'Protected production entry or Collector source changed.' >&2
             exit 1
           fi
+      - name: Build deterministic 0.8.14 participant staging route
+        shell: bash
+        run: |
+          mkdir -p artifacts/0.8.14 /tmp/cr0814-route
+          python scripts/build_participant_route_0_8_14.py
+          cp participant-cognitive-mode-0.8.14.html unsupported-browser-0.8.14.html artifacts/0.8.14/participant_route_build_manifest.json /tmp/cr0814-route/
+          python scripts/build_participant_route_0_8_14.py
+          cmp /tmp/cr0814-route/participant-cognitive-mode-0.8.14.html participant-cognitive-mode-0.8.14.html
+          cmp /tmp/cr0814-route/unsupported-browser-0.8.14.html unsupported-browser-0.8.14.html
+          cmp /tmp/cr0814-route/participant_route_build_manifest.json artifacts/0.8.14/participant_route_build_manifest.json
+          grep -F 'CUBE-REV 0.8.14' participant-cognitive-mode-0.8.14.html
+          grep -F 'FIREFOX_CROSS_TAB_STORAGE_COHERENCE_UNCERTIFIED' unsupported-browser-0.8.14.html
       - name: Reconstruct archival live and final-runtime candidate bytes
         shell: bash
         run: |
-          mkdir -p artifacts/0.8.14
           node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.14/live_synthetic_snapshot.json
           node scripts/reconstruct_live_envelope_0_8_14.mjs artifacts/0.8.14/live_synthetic_snapshot.json artifacts/0.8.14/archival_live_envelope.json artifacts/0.8.14/archival_reconstruction_evidence.json . archival-live-head
           node scripts/reconstruct_live_envelope_0_8_14.mjs artifacts/0.8.14/live_synthetic_snapshot.json artifacts/0.8.14/final_runtime_envelope.json artifacts/0.8.14/final_reconstruction_evidence.json . final-0.8.13-head
@@ -54,7 +65,7 @@ jobs:
         run: |
           npm install --no-save @playwright/test@1.55.0
           npx playwright install --with-deps chromium firefox webkit
-      - name: Execute automated cross-device browser matrix
+      - name: Execute automated cross-device browser policy matrix
         run: node tests/cross_device_browser_matrix_0.8.14.mjs
       - name: Re-run full parent native and inherited contracts
         run: |
@@ -73,8 +84,9 @@ jobs:
           d=json.load(open('artifacts/0.8.14/cutover_gate.json'))
           assert d['staging_candidate_available'] is True
           assert d['production_cutover']=='NO_GO'
-          assert 'exact_stored_raw_custody_replay' in d['blocking_gates']
-          assert 'evidence_lineage_reconciliation' in d['blocking_gates']
+          assert d['gates']['evidence_lineage_reconciliation'] is True
+          assert d['gates']['firefox_fail_closed_policy'] is True
+          assert set(d['blocking_gates'])=={'exact_stored_raw_custody_replay','physical_device_walkthrough','owner_acceptance_walkthrough'}
           print('CR0814_EXPECTED_NO_GO_BOUNDARY_PASS')
           PY
       - name: Emit artifact digest inventory
