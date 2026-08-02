@@ -1,5 +1,5 @@
 {
-  "schema_version": "CR0814-DECISION-PACKET-1",
+  "schema_version": "CR0814-DECISION-PACKET-2",
   "project": "CUBE-REV",
   "version": "0.8.14",
   "title": "Stored-raw Custody Replay, Cross-device Browser Matrix & Controlled Staging Cutover Gate",
@@ -12,6 +12,7 @@
     "PASS_PROVENANCE_PRESERVING_ARCHIVAL_FACTORY_BRIDGE",
     "PASS_CHROMIUM_ONLY_CONTROLLED_STAGING_POLICY",
     "PASS_FIREFOX_WEBKIT_FAIL_CLOSED",
+    "PASS_DYNAMIC_PERSISTED_LEASE_EXPIRY_TAKEOVER",
     "PASS_DETERMINISTIC_STAGING_CANDIDATE",
     "PASS_INHERITED_CONTRACTS",
     "HOLD_EXACT_STORED_RAW_CUSTODY_REPLAY",
@@ -20,16 +21,16 @@
     "DEFAULT_CUTOVER_NO_GO"
   ],
   "certification": {
-    "executable_head": "b5712e1d30f2e0b0cc0b411fdca811d4c6158992",
-    "workflow_run": 30753219920,
-    "job": 91510832942,
-    "baseline_workflow_run": 30753219950,
+    "executable_head": "25371c6479e074d3c7d0ad3501beffeb08f28cfb",
+    "workflow_run": 30754439979,
+    "job": 91514086682,
+    "baseline_workflow_run": 30754439978,
     "conclusion": "success",
     "workflow_permissions": "contents_read_only",
     "evidence_artifact": {
-      "artifact_id": 8835133893,
-      "zip_sha256": "96e188a9e25c36481a8c442787b3ed2b7f2803f4308d1ceea09929df1f8a4932",
-      "compressed_bytes": 195385,
+      "artifact_id": 8835501173,
+      "zip_sha256": "c81b46125916aadb9be55085a68bedf70a3bfbfbb5991e85d54096061660e093",
+      "compressed_bytes": 202501,
       "retention_until": "2026-08-16"
     }
   },
@@ -160,6 +161,31 @@
     "fail_closed_storage_mutations": 0,
     "physical_device_certified": false
   },
+  "lease_expiry_certification": {
+    "schema_version": "CR0814-DYNAMIC-LEASE-EXPIRY-EVIDENCE-1",
+    "timing_policy": "READ_PERSISTED_LEASE_EXPIRES_AT_THEN_OPEN_SECOND_PAGE_AFTER_250MS_MARGIN",
+    "fixed_sleep_used": false,
+    "iteration_count": 4,
+    "passed_iterations": 4,
+    "total_posts": 8,
+    "expiry_margins_ms": [
+      252,
+      252,
+      252,
+      253
+    ],
+    "all_payload_pairs_identical": true,
+    "all_final_generations_two": true,
+    "all_final_states": "SUBMITTED",
+    "response_count_per_snapshot": 28,
+    "terminal_receipts_per_iteration": [
+      "duplicate",
+      "stored"
+    ],
+    "stale_generation_one_confirmation": "REJECTED_WITH_STALE_SUBMISSION_LEASE",
+    "marker": "CR0814_DYNAMIC_LEASE_EXPIRY_PASS iterations=4/4 posts=8 fixed_sleep=false",
+    "result": "PASS_DYNAMIC_PERSISTED_LEASE_EXPIRY_REPEATED"
+  },
   "staging_candidate": {
     "candidate_release_version": "CUBE-REV 0.8.14",
     "scientific_runtime_version": "CUBE-REV 0.8.13",
@@ -175,8 +201,9 @@
     "result": "PASS_DETERMINISTIC_STAGING_CANDIDATE_BUILD"
   },
   "inherited_contracts": {
-    "cr0813_native_multi_window": "PASS",
-    "cr0813_lease_expiry_ambiguity": "PASS",
+    "cr0813_native_multi_window_serialization": "PASS",
+    "cr0813_fixed_delay_lease_expiry": "HISTORICAL_PASS_NOT_USED_AS_0_8_14_FINAL_GATE",
+    "cr0814_dynamic_persisted_lease_expiry": "4/4 PASS; 8 POSTS; FIXED_SLEEP_FALSE",
     "cr0812_active_session_cas": "28/28 PASS",
     "cr0811_atomic_migration": "23/23 PASS",
     "cr0810_migration_hash_pin": "13/13 PASS",
@@ -185,6 +212,7 @@
   },
   "cutover_gate": {
     "staging_candidate_available": true,
+    "dynamic_persisted_lease_expiry_repetition": true,
     "blocking_gates": [
       "exact_stored_raw_custody_replay",
       "physical_device_walkthrough",
