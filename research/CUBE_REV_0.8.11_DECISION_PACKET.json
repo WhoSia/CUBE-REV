@@ -1,0 +1,114 @@
+{
+  "project": "CUBE-REV",
+  "version": "0.8.11",
+  "title": "Atomic Migration Journal, Multi-tab Upgrade Arbitration & Downgrade-safe Rollback Certification",
+  "branch": "cube-rev-0.8.11-atomic-migration-arbitration",
+  "parent_branch": "cube-rev-0.8.10-cross-version-migration",
+  "pull_request": 10,
+  "decision": [
+    "PASS_ATOMIC_MIGRATION_JOURNAL",
+    "PASS_MULTI_TAB_UPGRADE_ARBITRATION_SIMULATION",
+    "PASS_MONOTONIC_FENCING_EPOCH",
+    "PASS_CRASH_RECONCILIATION",
+    "PASS_DOWNGRADE_MUTATION_QUARANTINE",
+    "PASS_DOWNGRADE_SAFE_ROLLBACK",
+    "HOLD_LIVE_MULTI_WINDOW_BROWSER",
+    "HOLD_ACTIVE_SESSION_WRITE_SERIALIZATION",
+    "HOLD_LIVE_COLLECTOR",
+    "HOLD_LIVE_FACTORY",
+    "DEFAULT_CUTOVER_NO_GO"
+  ],
+  "final_materialized_head": "e20b320cd69694fe37026a67c798647af9dd1ef5",
+  "executed_ci": {
+    "atomic_workflow_run": 30742046107,
+    "atomic_job": 91481063097,
+    "baseline_workflow_run": 30742046089,
+    "conclusion": "success",
+    "runner_os": "Ubuntu 24.04",
+    "node_version": "22.23.1",
+    "repository_permission": "contents_read",
+    "markers": [
+      "CR0811_ASSET_BUILD_PASS stimuli=28 choices=504",
+      "CR0811_ATOMIC_MIGRATION_PASS 23/23",
+      "CR0810_MIGRATION_HASH_PIN_PASS 13/13",
+      "CR0809_PUBLIC_BANK_CERT_PASS 8/8",
+      "CR0808_IMMUTABLE_SNAPSHOT_PASS 8/8"
+    ]
+  },
+  "adversarial_iteration": {
+    "initial_failed_run": 30741534848,
+    "initial_failed_job": 91479742853,
+    "failure": "committed_target_compared_to_initial_integrity_after_valid_resume_telemetry",
+    "correction": "committed_target_identity_uses_current_validity_epoch_provenance_source_identity_and_session_identity",
+    "retested": true
+  },
+  "asset_binding": {
+    "canonicalization": "JSON_STRINGIFY_PARSED_OBJECT_V1",
+    "hash_algorithm": "SHA-256",
+    "manifest_sha256": "ef6a767d079fcf63c24f9cab4032ae2175beac3345ce91f89dc72d01b6155d7f",
+    "public_bank_sha256": "77df943d6f5bb039ff2ed0761fa28866915bd1110dab1b27d6524a63cbea43e8",
+    "public_config_sha256": "89c1aa968637a7e6431c8d765729349c53e6af97178e93bdaceeef9433f22adf",
+    "parent_manifest_sha256": "7961e5b36320c303b1784f5f35fa915042c13e25a3fc716242f4e70ccb97df81",
+    "private_crosswalk_sha256": "90c54b51052fc27c436d8701797e5b2aa95e19ec28a7f63bbd50db41192748f0",
+    "public_bank_git_blob_sha": "85f7407eb2535dbc2a44a9b20108a3d86b3cb793"
+  },
+  "raw_artifact_file_sha256": {
+    "cognitive_mode_config": "05f04c51ae617cfd3b650f9ead6f90c60ddc5b912bdb31bc1bffe98d09d54a69",
+    "participant_stimulus_bank": "c95e777152ef4d333b245d61242ab627a4ab60f8fc078c4ea0dbb1d10a79b679",
+    "asset_pins_module": "562e8a66abc187ea24f9d1705d3f76ab8f0f0c48eca1aa07adce603e187a14bc",
+    "asset_manifest": "dd48ee71f3b337bacff4f4c8ced77bef5012763f4ff332dc5041a04230e7975e"
+  },
+  "workflow_artifact": {
+    "run": 30742046107,
+    "artifact_id": 8831602344,
+    "name": "cube-rev-0.8.11-verified-assets",
+    "zip_sha256": "9c977c39e5a38b7b1776a1736aa75f949449a2620cdc895119cfce6223422341",
+    "retention_days": 7
+  },
+  "atomic_contract": {
+    "lock_name": "cube-rev-migration-0811-exclusive-v1",
+    "lock_policy": "WEB_LOCKS_FAIL_CLOSED_V1",
+    "fencing_policy": "MONOTONIC_EPOCH_OWNER_TOKEN_V1",
+    "authority_boundary": "FENCE_WRITTEN",
+    "journal_phases": [
+      "PREPARED",
+      "TARGET_WRITTEN",
+      "ARCHIVE_WRITTEN",
+      "FENCE_WRITTEN",
+      "COMMITTED",
+      "ROLLED_BACK",
+      "ROLLED_BACK_TO_LEGACY"
+    ],
+    "migration_sources": [
+      "CUBE-REV 0.8.8",
+      "CUBE-REV 0.8.9",
+      "CUBE-REV 0.8.10"
+    ],
+    "ancestry_proof_required_for_coexisting_sources": true,
+    "sealed_legacy_reversioned": false,
+    "source_deleted": false,
+    "source_mutated_by_migration": false,
+    "exact_source_archive": true,
+    "pre_fence_divergence_policy": "REMOVE_TARGET_AND_ROLL_BACK_OR_QUARANTINE",
+    "post_fence_divergence_policy": "QUARANTINE_SOURCE_MUTATION_KEEP_VALID_TARGET",
+    "target_loss_exact_source_archive_policy": "ROLL_BACK_TO_ORIGINAL_LEGACY_ROUTE",
+    "target_loss_with_source_divergence_policy": "BLOCK_AND_QUARANTINE"
+  },
+  "test_gate_count": 23,
+  "collector_contract": {
+    "version": "0.7.12",
+    "collector_config_modified": false,
+    "collector_client_modified": false
+  },
+  "limitations": [
+    "native_web_locks_multi_window_owner_walkthrough_not_executed",
+    "all_browser_and_os_suspension_eviction_crash_semantics_not_certified",
+    "post_initialization_scientific_writes_not_serialized_or_revision_cas_protected",
+    "already_open_legacy_tabs_are_detected_after_their_write_not_synchronously_stopped",
+    "hash_pinning_is_not_full_origin_authentication",
+    "no_live_collector_execution",
+    "no_live_factory_execution",
+    "no_production_default_entry_cutover"
+  ],
+  "next_boundary": "active_session_multi_tab_write_serialization_revision_cas_and_response_loss_prevention"
+}
