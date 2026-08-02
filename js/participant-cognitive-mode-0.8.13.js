@@ -187,6 +187,21 @@ function exportSnapshot(x){
   const snapshot=scientificSnapshot(x);
   return collectorEnvelopeFromSnapshot(snapshot,{immutable_snapshot_integrity_fnv1a32:x.submission_snapshot_hash});
 }
+function collectorWorkingCopy(x){
+  const canonical=exportSnapshot(x);
+  const copy=JSON.parse(JSON.stringify(canonical));
+  const same=copy.session_id===canonical.session_id&&
+    copy.original_scientific_session_id===canonical.original_scientific_session_id&&
+    copy.transport_session_policy===canonical.transport_session_policy&&
+    copy.data_submission&&canonical.data_submission&&
+    copy.data_submission.transport_session_id===canonical.data_submission.transport_session_id&&
+    copy.data_submission.original_scientific_session_id===canonical.data_submission.original_scientific_session_id&&
+    copy.cognitive_snapshot&&canonical.cognitive_snapshot&&
+    copy.cognitive_snapshot.session_id===canonical.cognitive_snapshot.session_id;
+  if(!same)throw new Error('COLLECTOR_WORKING_COPY_IDENTITY');
+  if(Object.isFrozen(copy))throw new Error('COLLECTOR_WORKING_COPY_FROZEN');
+  return copy;
+}
 function emptySubmissionControl(){
   return {retry_id:null,lease_generation:0,lease_token:null,lease_owner:null,lease_expires_at:null,attempt_count:0,last_attempt_at:null,last_error:null,collector_meta:null,collector_events:[],receipt:null};
 }
@@ -212,7 +227,7 @@ function from0812(c,d,x){
   return y;
 }
 
-const api={VERSION,SCHEMA,STORAGE_KEY,QUARANTINE_KEY,DISPLAY_RE,CODE_RE,COLLECTOR_SESSION_RE,BINDING_KEYS,fnv1a,checksumText,checksum,seal,sequenceId,validBinding,validResponse,sanitizeInput,sanitizePostTask,stateShapeValid,provenanceValid,mutationHistoryValid,submissionControlValid,snapshotValid,valid,scientificEnvelope,scientificSnapshot,compatibilityTrials,utcStamp14,transportSessionIdentity,deepFreeze,collectorEnvelopeFromSnapshot,exportSnapshot,emptySubmissionControl,from0812};
+const api={VERSION,SCHEMA,STORAGE_KEY,QUARANTINE_KEY,DISPLAY_RE,CODE_RE,COLLECTOR_SESSION_RE,BINDING_KEYS,fnv1a,checksumText,checksum,seal,sequenceId,validBinding,validResponse,sanitizeInput,sanitizePostTask,stateShapeValid,provenanceValid,mutationHistoryValid,submissionControlValid,snapshotValid,valid,scientificEnvelope,scientificSnapshot,compatibilityTrials,utcStamp14,transportSessionIdentity,deepFreeze,collectorEnvelopeFromSnapshot,exportSnapshot,collectorWorkingCopy,emptySubmissionControl,from0812};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 global.CUBE_REV_COGNITIVE_MODE_0813=api;
 })(typeof window!=='undefined'?window:globalThis);

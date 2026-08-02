@@ -146,6 +146,15 @@ test('lease expiry allows a second owner while receipt-v2 converges two deliveri
   expect(identity.transport_session_id).toMatch(/^CR-[0-9]{14}-[0-9a-f]{12}$/);
   expect(identity.scientific_session_id).toBe(sealed1.submission_snapshot.session_id);
   if(identity.transport_session_id!==identity.scientific_session_id)expect(identity.transport_session_policy).toBe('DETERMINISTIC_LEGACY_SESSION_BRIDGE_V1');
+  const copyIsolation=await a.evaluate(()=>{
+    const h=CUBE_REV_0813_TEST_HOOKS,canonical=h.exportSnapshot(),working=h.collectorWorkingCopy();
+    const before=canonical.session_id;
+    working.session_id='CR-20000101000000-000000000000';
+    return {canonical_frozen:Object.isFrozen(canonical),working_frozen:Object.isFrozen(working),canonical_session_id:canonical.session_id,before};
+  });
+  expect(copyIsolation.canonical_frozen).toBe(true);
+  expect(copyIsolation.working_frozen).toBe(false);
+  expect(copyIsolation.canonical_session_id).toBe(copyIsolation.before);
   const snapshotHash=sealed1.submission_snapshot_hash,retryId=sealed1.submission_control.retry_id;
   await a.waitForTimeout(1400);
   await a.evaluate(()=>CUBE_REV_0813_TEST_HOOKS.send());
