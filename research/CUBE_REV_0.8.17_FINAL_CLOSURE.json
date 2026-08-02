@@ -1,0 +1,136 @@
+{
+  "schema_version": "CR0817-FINAL-CLOSURE-1",
+  "project": "CUBE-REV",
+  "version": "0.8.17",
+  "title": "Versioned External Trajectory Snapshot, Route-grammar Estimands & Ecological Probe-transfer Certification",
+  "closure_kind": "VERSIONED_SMALL_EXTERNAL_SNAPSHOT_AND_PARTIAL_ECOLOGICAL_TRANSFER_CLOSURE",
+  "certified_implementation_head": "b9b043777782c67490c5bb532887bae7211e43ed",
+  "certification": {
+    "workflow_run": 30772370014,
+    "job": 91561633359,
+    "baseline_workflow_run": 30772370009,
+    "workflow_conclusion": "success",
+    "baseline_conclusion": "success",
+    "runner": "ubuntu-24.04",
+    "evidence_artifact": {
+      "artifact_id": 8840939100,
+      "artifact_digest_sha256": "0b8e93dbac4ff57b126e11cd63175046da41eb14199f23953d6333d6cdec9eb9",
+      "compressed_bytes": 16558,
+      "expires_at": "2026-08-16T23:30:39Z"
+    },
+    "portable_artifact_inventory": {
+      "archive_file_count": 11,
+      "self_excluding_inventory_entries": 10,
+      "independent_post_download_sha256sum_check": "PASS"
+    },
+    "markers": [
+      "CR0817_EXTERNAL_TRAJECTORY_SNAPSHOT_PASS 22/22",
+      "CR0817_COMMITTED_SNAPSHOT_OUTPUTS_PASS",
+      "CR0816_MINIMAL_TRAJECTORY_PASS 18/18",
+      "CR0815_MECHANISM_LATTICE_TEST_PASS deterministic=true positive_controls=2 negative_controls=2 stimuli=28 schedules=24",
+      "CR0817_EXTERNAL_TRAJECTORY_CI_PASS"
+    ]
+  },
+  "snapshot": {
+    "grade": "VERSIONED_SMALL_PUBLIC_RECONSTRUCTION_FIXTURE_NOT_POPULATION_SAMPLE",
+    "route_count": 11,
+    "official_route_count": 10,
+    "unofficial_route_count": 1,
+    "date_range": ["1982-06-05", "2026-04-26"],
+    "nonrotation_action_token_count": 466,
+    "all_token_count": 492,
+    "source_stage_count": 61,
+    "rotation_token_count": 26,
+    "wide_move_count": 42,
+    "slice_move_count": 14,
+    "reported_stm_exact_match_count": 10,
+    "reported_stm_checked_count": 10,
+    "raw_reconstruction_html_custodied": false,
+    "fixture_canonical_sha256": "37de3da04670e102c0e9f6497bc71863637b7636def56d0d441088c64e416a33"
+  },
+  "wca_anchor": {
+    "role": "OFFICIAL_VERSION_DATE_SCHEMA_AND_ATTEMPT_SCRAMBLE_ANCHOR_ONLY",
+    "format_version": "2.0.2",
+    "observed_export_date": "2026-08-02T16:15:23+00:00",
+    "observed_tsv_filename": "WCA_export_v2_214_20260802T000025Z.tsv.zip",
+    "observed_size_mb": 352,
+    "full_archive_materialized": false,
+    "does_not_supply": [
+      "executed_move_sequence",
+      "per_move_timestamp",
+      "cognitive_annotation"
+    ]
+  },
+  "route_grammar": {
+    "normalization_examples": {
+      "U2_prime": "U2",
+      "R3": "R'",
+      "Rw": "r"
+    },
+    "move_classes": ["FACE", "WIDE", "SLICE", "ROTATION"],
+    "relation_alphabet": ["START", "SAME", "OPPOSITE", "ADJACENT"],
+    "unsupported_token_policy": "FAIL_CLOSED",
+    "method_labels": "SOURCE_DESCRIPTIVE_ONLY_NOT_FORCED_ESTIMAND"
+  },
+  "ecological_probe_transfer": {
+    "weighted_relation_bigram_coverage": 0.976190,
+    "unique_relation_bigram_coverage": 0.833333,
+    "missing_relation_bigram": "OPPOSITE|OPPOSITE",
+    "weighted_relation_trigram_coverage": 0.916667,
+    "unique_relation_trigram_coverage": 0.666667,
+    "missing_relation_trigram": "START|OPPOSITE|OPPOSITE",
+    "relation_bigram_jensen_shannon_divergence": 0.501325,
+    "relation_trigram_jensen_shannon_divergence": 0.927702,
+    "local_motif_support": "PASS",
+    "distributional_ecological_alignment": "HOLD",
+    "overall_transfer": "PARTIAL_LOCAL_SUPPORT_ONLY"
+  },
+  "matched_scramble_counterexample": {
+    "source_solve_ids": [9269, 9274],
+    "reported_result_seconds": [4.54, 4.54],
+    "reported_stm": [41, 45],
+    "normalized_token_edit_distance": 0.466667,
+    "longest_common_subsequence_ratio": 0.6,
+    "relation_edit_distance": 0.155556,
+    "conclusion": "SAME_SCRAMBLE_AND_TOTAL_TIME_DO_NOT_IDENTIFY_A_UNIQUE_ROUTE"
+  },
+  "evidence_boundaries": {
+    "fixture_population_representative": false,
+    "three_by_three_elite_routes_directly_represent_two_by_two_cognition": false,
+    "per_move_timestamps_available": false,
+    "stage_time_used_as_per_move_time": false,
+    "named_person_trait_inference": "PROHIBITED",
+    "planning_depth_inference_from_route_or_total_time": "PROHIBITED",
+    "smart_cube_data_access": "EXPLICIT_OWNER_EXPORT_OR_INTENTIONALLY_SHARED_LINK_ONLY",
+    "cognitive_mechanism_transfer": "NO_GO_WITHOUT_CALIBRATED_HUMAN_TRAJECTORIES"
+  },
+  "protected_scope": {
+    "participant_page_changed": false,
+    "stimulus_bank_changed": false,
+    "cognitive_config_changed": false,
+    "collector_changed": false,
+    "factory_changed": false,
+    "production_entry_changed": false,
+    "human_data_generated": false,
+    "bulk_external_site_mirror_created": false
+  },
+  "decision": [
+    "PASS_VERSIONED_SMALL_EXTERNAL_SNAPSHOT",
+    "PASS_ROUTE_GRAMMAR_NORMALIZATION",
+    "PASS_LOCAL_MOTIF_SUPPORT",
+    "PASS_MATCHED_SCRAMBLE_ROUTE_NONUNIQUENESS",
+    "HOLD_DISTRIBUTIONAL_ECOLOGICAL_ALIGNMENT",
+    "HOLD_PER_MOVE_TIMING_TRANSFER",
+    "HOLD_WCA_BULK_MATERIALIZATION",
+    "HOLD_PUBLIC_RECONSTRUCTION_BULK_INGESTION",
+    "HOLD_SMART_CUBE_CONSENTED_COHORT",
+    "NO_GO_COGNITIVE_MECHANISM_TRANSFER",
+    "NO_PARTICIPANT_DEPLOYMENT"
+  ],
+  "research_version_status": "CLOSED_AUTOMATED_SCOPE",
+  "participant_deployment": "NO_GO",
+  "human_recruitment": "NO_GO",
+  "automatic_merge_authorized": false,
+  "next_boundary": "consented_per_move_timestamp_fixture_domain_gap_calibration_and_route_grammar_reweighting",
+  "result": "PASS_0_8_17_VERSIONED_SNAPSHOT_WITH_PARTIAL_LOCAL_SUPPORT_AND_EXPLICIT_TRANSFER_HOLDS"
+}
