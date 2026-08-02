@@ -32,6 +32,7 @@ jobs:
         run: |
           node --check scripts/reconstruct_live_envelope_0_8_14.mjs
           node --check tests/cross_device_browser_matrix_0.8.14.mjs
+          node --check tests/lease_expiry_dynamic_0.8.14.spec.js
           python -m py_compile factory/archival_live_bridge_0_8_14.py scripts/build_participant_route_0_8_14.py scripts/custody_replay_0_8_14.py scripts/audit_live_evidence_lineage_0_8_14.py scripts/build_staging_candidate_0_8_14.py scripts/evaluate_cutover_gate_0_8_14.py
           git fetch origin cube-rev-0.8.13-native-browser-live-factory
           if git diff --name-only origin/cube-rev-0.8.13-native-browser-live-factory...HEAD | grep -E '^(index\.html|collector-config\.js|js/collector-client\.js)$'; then
@@ -67,10 +68,19 @@ jobs:
           npm install --no-save @playwright/test@1.55.0
           npx playwright install --with-deps chromium firefox webkit
       - name: Execute automated cross-device browser policy matrix
-        run: node tests/cross_device_browser_matrix_0.8.14.mjs
-      - name: Re-run full parent native and inherited contracts
+        shell: bash
         run: |
-          npx playwright test tests/native_multi_window_0.8.13.spec.js --workers=1 --reporter=line
+          set -o pipefail
+          node tests/cross_device_browser_matrix_0.8.14.mjs | tee artifacts/0.8.14/browser_policy_matrix.log
+          grep -F 'CR0814_CROSS_DEVICE_POLICY_MATRIX_PASS' artifacts/0.8.14/browser_policy_matrix.log
+      - name: Re-run parent Chromium serialization and certify persisted-expiry lease takeover
+        shell: bash
+        run: |
+          set -o pipefail
+          npx playwright test tests/native_multi_window_0.8.13.spec.js --grep 'native Chromium Web Locks serialize two pages without response loss' --workers=1 --reporter=line | tee artifacts/0.8.14/parent_native_serialization.log
+          grep -F 'CR0813_NATIVE_MULTI_WINDOW_PASS' artifacts/0.8.14/parent_native_serialization.log
+          npx playwright test tests/lease_expiry_dynamic_0.8.14.spec.js --workers=1 --reporter=line | tee artifacts/0.8.14/dynamic_lease_expiry.log
+          grep -F 'CR0814_DYNAMIC_LEASE_EXPIRY_PASS iterations=4/4 posts=8 fixed_sleep=false' artifacts/0.8.14/dynamic_lease_expiry.log
           node tests/active_session_cas_0.8.12.test.js
           node -r ./js/atomic-migration-commit-authority-0.8.11.js tests/atomic_migration_arbitration_0.8.11.test.js
           node tests/cross_version_resume_hash_pin_0.8.10.test.js
@@ -91,6 +101,7 @@ jobs:
           assert d['gates']['webkit_fail_closed_policy'] is True
           assert d['gates']['active_profile_race_repetition'] is True
           assert d['gates']['fail_closed_profile_count'] is True
+          assert d['gates']['dynamic_persisted_lease_expiry_repetition'] is True
           assert set(d['blocking_gates'])=={'exact_stored_raw_custody_replay','physical_device_walkthrough','owner_acceptance_walkthrough'}
           print('CR0814_EXPECTED_NO_GO_BOUNDARY_PASS')
           PY
