@@ -27,10 +27,13 @@ COLLECTOR_PROJECT = "CUBE-REV"
 COLLECTOR_VERSION = "0.7.12"
 COMPAT_SCHEMA = "CR0813-COLLECTOR-COMPATIBILITY-ENVELOPE-1"
 TRIAL_POLICY = "LOSSLESS_OPAQUE_RESPONSE_PROJECTION_V1"
+IDENTITY_POLICY = "IDENTITY_SESSION_V1"
+BRIDGE_POLICY = "DETERMINISTIC_LEGACY_SESSION_BRIDGE_V1"
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 CHOICE = re.compile(r"^CR9C-[0-9a-f]{16}$")
 MOVE = re.compile(r"^[URFDLB](?:2|')?$")
 SESSION = re.compile(r"^CR-[0-9]{14}-[0-9a-f]{12}$")
+SCIENTIFIC_SESSION = re.compile(r"^CR[A-Za-z0-9-]{5,127}$")
 FORBIDDEN = {"state_id", "rotation_id", "face_map", "choice_canonical", "canonical_move"}
 
 
@@ -60,6 +63,48 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def fnv1a32(text: str) -> int:
+    value = 0x811C9DC5
+    for char in text:
+        value ^= ord(char)
+        value = (value * 0x01000193) & 0xFFFFFFFF
+    return value
+
+
+def checksum_text(text: str) -> str:
+    return f"{fnv1a32(text):08x}"
+
+
+def utc_stamp14(value: Any) -> str:
+    if not isinstance(value, str) or not value:
+        raise FactoryError("TRANSPORT_TIMESTAMP_INVALID")
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(timezone.utc)
+    except Exception as exc:
+        raise FactoryError("TRANSPORT_TIMESTAMP_INVALID") from exc
+    return parsed.strftime("%Y%m%d%H%M%S")
+
+
+def transport_identity(snapshot: dict[str, Any]) -> dict[str, str]:
+    scientific = snapshot.get("session_id")
+    if not isinstance(scientific, str) or not scientific:
+        raise FactoryError("SCIENTIFIC_SESSION_IDENTITY")
+    if SESSION.fullmatch(scientific):
+        return {
+            "session_id": scientific,
+            "original_scientific_session_id": scientific,
+            "transport_session_policy": IDENTITY_POLICY,
+        }
+    stamp = utc_stamp14(snapshot.get("started_at") or snapshot.get("scientific_completed_at"))
+    seed = f"{scientific}|{snapshot.get('participant_token') or ''}|{snapshot.get('sequence_id') or ''}"
+    suffix = (checksum_text(f"{seed}|A") + checksum_text(f"{seed}|B"))[:12]
+    return {
+        "session_id": f"CR-{stamp}-{suffix}",
+        "original_scientific_session_id": scientific,
+        "transport_session_policy": BRIDGE_POLICY,
+    }
 
 
 def walk_forbidden(value: Any, trail: str = "$") -> list[str]:
@@ -116,13 +161,23 @@ def unwrap_root(root: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | 
     ]
     if not isinstance(snapshot, dict):
         raise FactoryError("COLLECTOR_ENVELOPE_WITHOUT_COGNITIVE_SNAPSHOT")
-    qc.append(QC("ENVELOPE_SESSION_MATCH", "ERROR", root.get("session_id") == snapshot.get("session_id"), f"outer={root.get('session_id')} inner={snapshot.get('session_id')}"))
+    expected_identity = transport_identity(snapshot)
+    root_original = root.get("original_scientific_session_id")
+    root_policy = root.get("transport_session_policy")
+    qc.extend([
+        QC("TRANSPORT_SESSION_DETERMINISM", "ERROR", root.get("session_id") == expected_identity["session_id"], f"expected={expected_identity['session_id']} actual={root.get('session_id')}"),
+        QC("ORIGINAL_SCIENTIFIC_SESSION", "ERROR", root_original == snapshot.get("session_id") == expected_identity["original_scientific_session_id"], f"outer_original={root_original} inner={snapshot.get('session_id')}"),
+        QC("TRANSPORT_SESSION_POLICY", "ERROR", root_policy == expected_identity["transport_session_policy"], f"expected={expected_identity['transport_session_policy']} actual={root_policy}"),
+    ])
     if isinstance(data_submission, dict):
         qc.extend([
             QC("COMPATIBILITY_SCHEMA", "ERROR", data_submission.get("collector_compatibility_schema") == COMPAT_SCHEMA, str(data_submission.get("collector_compatibility_schema"))),
             QC("COMPATIBILITY_TRIAL_POLICY", "ERROR", data_submission.get("compatibility_trial_policy") == TRIAL_POLICY, str(data_submission.get("compatibility_trial_policy"))),
             QC("APP_PAYLOAD_VERSION", "ERROR", data_submission.get("app_payload_version") == snapshot.get("version"), str(data_submission.get("app_payload_version"))),
             QC("APP_PAYLOAD_SCHEMA", "ERROR", data_submission.get("app_payload_schema") == snapshot.get("schema_version"), str(data_submission.get("app_payload_schema"))),
+            QC("DATA_SUBMISSION_ORIGINAL_SESSION", "ERROR", data_submission.get("original_scientific_session_id") == expected_identity["original_scientific_session_id"], str(data_submission.get("original_scientific_session_id"))),
+            QC("DATA_SUBMISSION_TRANSPORT_SESSION", "ERROR", data_submission.get("transport_session_id") == expected_identity["session_id"], str(data_submission.get("transport_session_id"))),
+            QC("DATA_SUBMISSION_TRANSPORT_POLICY", "ERROR", data_submission.get("transport_session_policy") == expected_identity["transport_session_policy"], str(data_submission.get("transport_session_policy"))),
         ])
         expected_sha = data_submission.get("immutable_snapshot_sha256")
         if expected_sha is not None:
@@ -133,6 +188,8 @@ def unwrap_root(root: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | 
         "project": root.get("project"),
         "version": root.get("version"),
         "session_id": root.get("session_id"),
+        "scientific_session_id": snapshot.get("session_id"),
+        "transport_session_policy": root_policy,
         "generated_at": root.get("generated_at"),
         "trial_count": len(root.get("trials", [])) if isinstance(root.get("trials"), list) else None,
         "compatibility_schema": data_submission.get("collector_compatibility_schema") if isinstance(data_submission, dict) else None,
@@ -151,7 +208,7 @@ def validate_snapshot(snapshot: dict[str, Any]) -> list[QC]:
     check("SCHEMA_IDENTITY", snapshot.get("schema_version") == SCHEMA, str(snapshot.get("schema_version")))
     check("VERSION_IDENTITY", snapshot.get("version") == VERSION, str(snapshot.get("version")))
     check("RESPONSE_ENCODING", snapshot.get("response_encoding") == "OPAQUE_CHOICE_CODE_V1", str(snapshot.get("response_encoding")))
-    check("SESSION_ID", isinstance(snapshot.get("session_id"), str) and bool(SESSION.fullmatch(snapshot.get("session_id", ""))), str(snapshot.get("session_id")))
+    check("SCIENTIFIC_SESSION_ID", isinstance(snapshot.get("session_id"), str) and bool(SCIENTIFIC_SESSION.fullmatch(snapshot.get("session_id", ""))), str(snapshot.get("session_id")))
     check("PARTICIPANT_TOKEN", isinstance(snapshot.get("participant_token"), str) and bool(snapshot.get("participant_token")), "present" if snapshot.get("participant_token") else "missing")
     check("SEQUENCE_ID", str(snapshot.get("sequence_id", "")) in {str(i) for i in range(1, 25)}, str(snapshot.get("sequence_id")))
     check("SCIENTIFIC_REVISION", isinstance(snapshot.get("scientific_revision"), int) and snapshot.get("scientific_revision", 0) >= 1, str(snapshot.get("scientific_revision")))
@@ -231,6 +288,9 @@ def adapt(input_path: Path, outdir: Path) -> dict[str, Any]:
     post = snapshot.get("post_task") if isinstance(snapshot.get("post_task"), dict) else {}
     session_row = {
         "session_id": session_id,
+        "scientific_session_id": session_id,
+        "transport_session_id": envelope_info.get("session_id") if envelope_info else session_id,
+        "transport_session_policy": envelope_info.get("transport_session_policy") if envelope_info else IDENTITY_POLICY,
         "version": snapshot.get("version"),
         "schema_version": snapshot.get("schema_version"),
         "mode_id": snapshot.get("mode_id"),
