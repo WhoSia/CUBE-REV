@@ -7,6 +7,13 @@ on:
       - 'scripts/bootstrap_0_8_15_bundle.py'
       - 'scripts/.cr0815_payload_*.txt'
       - 'research/.cr0815_bootstrap_trigger'
+  pull_request:
+    branches: [cube-rev-0.8.14-custody-device-staging]
+    paths:
+      - '.github/workflows/bootstrap-0.8.15-research-bundle.yml'
+      - 'scripts/bootstrap_0_8_15_bundle.py'
+      - 'scripts/.cr0815_payload_*.txt'
+      - 'research/.cr0815_bootstrap_trigger'
 permissions:
   contents: write
 jobs:
