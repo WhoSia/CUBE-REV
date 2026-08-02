@@ -1,7 +1,7 @@
 {
   "schema_version": "CR0813-LIVE-COLLECTOR-EVIDENCE-1",
-  "started_at": "2026-08-02T12:09:21.738Z",
-  "completed_at": "2026-08-02T12:09:33.257Z",
+  "started_at": "2026-08-02T12:10:06.823Z",
+  "completed_at": "2026-08-02T12:10:26.416Z",
   "endpoint_origin": "https://script.google.com",
   "endpoint_sha256": "f0af3748ba82a53fdf55578c06efa1b13eab155bcc65afcafc1c7eeac9b5b9b8",
   "health": {
@@ -32,8 +32,8 @@
   "deliveries": [
     {
       "nonce": "0813a0000000000000000001",
-      "status": "stored",
-      "receipt_code": "FS0IGA1K-RR0",
+      "status": "duplicate",
+      "receipt_code": "BZLWG-S8PJCN",
       "file_name": "CR-20260802110000-0813a0b0c0d0.json",
       "polls": 1
     },
@@ -46,8 +46,8 @@
     }
   ],
   "result": "PASS_LIVE_COLLECTOR_TWO_NONCE_DEDUP",
-  "trigger_sha": "38fb47cdc282854bde9d8d8b6779c0be981e606f",
-  "workflow_run": 30747223098,
+  "trigger_sha": "70e68aa2a768972d31882e0f1c2a483cfd9ca9bc",
+  "workflow_run": 30747246961,
   "synthetic_exclusion": {
     "exclude_from_human_cohort": true,
     "participant_token_marker": "DO-NOT-ANALYZE",
