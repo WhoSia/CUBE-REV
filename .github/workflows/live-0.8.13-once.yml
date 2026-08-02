@@ -23,7 +23,7 @@ jobs:
           node-version: '22'
       - name: Build exact synthetic live-cert snapshot
         run: |
-          # execution nonce: 2026-08-02T20:47+09:00
+          # execution nonce: 2026-08-02T20:49+09:00
           node scripts/build_0_8_13_assets.js
           node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.13/live_synthetic_snapshot.json
       - name: Submit same snapshot twice with different nonces
@@ -69,18 +69,7 @@ jobs:
           for attempt in $(seq 1 120); do
             git fetch origin cube-rev-0.8.13-native-browser-live-factory --quiet
             if git show origin/cube-rev-0.8.13-native-browser-live-factory:research/CUBE_REV_0.8.13_LIVE_COLLECTOR_EVIDENCE.json > /tmp/live-evidence.json 2>/dev/null; then
-              node - <<'NODE'
-              const fs=require('fs');
-              const e=JSON.parse(fs.readFileSync('/tmp/live-evidence.json','utf8'));
-              if(e.schema_version!=='CR0813-LIVE-COLLECTOR-EVIDENCE-1')throw new Error('LIVE_EVIDENCE_SCHEMA');
-              if(e.result!=='PASS_LIVE_COLLECTOR_TWO_NONCE_DEDUP')throw new Error('LIVE_EVIDENCE_RESULT');
-              if(e.snapshot.session_id!=='CR0813-LIVE-CERT-SYNTHETIC-DO-NOT-ANALYZE-001')throw new Error('LIVE_SESSION_IDENTITY');
-              if(e.snapshot.response_count!==28)throw new Error('LIVE_RESPONSE_COUNT');
-              if(!Array.isArray(e.deliveries)||e.deliveries.length!==2)throw new Error('LIVE_DELIVERY_COUNT');
-              if(!['stored','duplicate'].includes(e.deliveries[0].status))throw new Error('FIRST_RECEIPT_STATUS');
-              if(e.deliveries[1].status!=='duplicate')throw new Error('SECOND_RECEIPT_STATUS');
-              console.log(`CR0813_LIVE_EVIDENCE_OBSERVED first=${e.deliveries[0].status} second=${e.deliveries[1].status} file=${e.deliveries[1].file_name||e.deliveries[0].file_name}`);
-              NODE
+              node -e "const fs=require('fs');const e=JSON.parse(fs.readFileSync('/tmp/live-evidence.json','utf8'));if(e.schema_version!=='CR0813-LIVE-COLLECTOR-EVIDENCE-1')throw Error('LIVE_EVIDENCE_SCHEMA');if(e.result!=='PASS_LIVE_COLLECTOR_TWO_NONCE_DEDUP')throw Error('LIVE_EVIDENCE_RESULT');if(e.snapshot.session_id!=='CR0813-LIVE-CERT-SYNTHETIC-DO-NOT-ANALYZE-001')throw Error('LIVE_SESSION_IDENTITY');if(e.snapshot.response_count!==28)throw Error('LIVE_RESPONSE_COUNT');if(!Array.isArray(e.deliveries)||e.deliveries.length!==2)throw Error('LIVE_DELIVERY_COUNT');if(!['stored','duplicate'].includes(e.deliveries[0].status))throw Error('FIRST_RECEIPT_STATUS');if(e.deliveries[1].status!=='duplicate')throw Error('SECOND_RECEIPT_STATUS');console.log('CR0813_LIVE_EVIDENCE_OBSERVED first='+e.deliveries[0].status+' second='+e.deliveries[1].status+' file='+(e.deliveries[1].file_name||e.deliveries[0].file_name));"
               exit 0
             fi
             sleep 2
