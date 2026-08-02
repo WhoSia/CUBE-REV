@@ -16,6 +16,20 @@ on:
       - cognitive/PARTICIPANT_STIMULUS_BANK_0.8.9.json
       - cognitive/COGNITIVE_MODE_CONFIG_0.8.9.json
       - research/CUBE_REV_0.8.9_BUILD_MANIFEST.json
+  pull_request:
+    branches:
+      - cube-rev-0.8.9-public-bank-minimization
+    paths:
+      - .github/workflows/build-0.8.10-migration.yml
+      - scripts/build_0_8_10_assets.js
+      - js/public-asset-verifier-0.8.10.js
+      - js/participant-cognitive-mode-0.8.10.js
+      - js/cross-version-migration-0.8.10.js
+      - participant-cognitive-mode-0.8.10.html
+      - tests/cross_version_resume_hash_pin_0.8.10.test.js
+      - cognitive/PARTICIPANT_STIMULUS_BANK_0.8.9.json
+      - cognitive/COGNITIVE_MODE_CONFIG_0.8.9.json
+      - research/CUBE_REV_0.8.9_BUILD_MANIFEST.json
 
 permissions:
   contents: write
