@@ -5,6 +5,11 @@ on:
     paths:
       - '.github/workflows/materialize-0.8.13-working-copy.yml'
       - 'scripts/patch_0_8_13_collector_working_copy.py'
+  pull_request:
+    branches: [cube-rev-0.8.12-active-session-cas]
+    paths:
+      - '.github/workflows/materialize-0.8.13-working-copy.yml'
+      - 'scripts/patch_0_8_13_collector_working_copy.py'
 permissions:
   contents: write
 jobs:
@@ -42,4 +47,4 @@ jobs:
             git commit -m 'fix(0.8.13): isolate mutable Collector working copy [skip ci]'
             git push origin HEAD:cube-rev-0.8.13-native-browser-live-factory
           fi
-# execution_nonce: 20260802T2222+0900
+# execution_nonce: 20260802T2225+0900
