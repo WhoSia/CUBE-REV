@@ -1,0 +1,48 @@
+{
+  "project": "CUBE-REV",
+  "version": "0.8.5",
+  "title": "Participant-facing Cognitive Mode Integration, Legacy Fixed-set Retirement & Resume-safe UX Certification",
+  "checkpoint_status": "RECOVERED_SCOPE_HOLD_IMPLEMENTATION",
+  "deployment_status": "NOT_CERTIFIED",
+  "recovered_parent": {
+    "research_version": "0.8.4",
+    "participant_ui_version": "0.7.22",
+    "public_main_baseline_commit": "fd639a511285806595ced2b4dc2a27f5725729c5"
+  },
+  "evidence_boundary": {
+    "durable_0_8_4_artifacts_found": true,
+    "durable_0_8_5_implementation_found": false,
+    "durable_0_8_5_certification_found": false,
+    "interruption_recovery_is_inference": true
+  },
+  "frozen_components": [
+    "collector-config.js",
+    "collector endpoint semantics",
+    "js/collector-client.js transport and queue semantics"
+  ],
+  "required_invariants": [
+    "additive payload evolution only",
+    "explicit Factory-safe research condition identity",
+    "one assignment per stable session",
+    "no rerandomization on resume",
+    "no new entry into the legacy fixed-set path",
+    "legacy provenance remains explicit",
+    "all participant UI/runtime/payload/persistence version labels agree on 0.8.5",
+    "Collector versioning remains untouched"
+  ],
+  "blocking_unknowns": [
+    "exact cognitive-mode catalog",
+    "exact allocation weights or block rule",
+    "final legacy migration rule",
+    "final research field names from CUBE_REV_0805_DECISION_PACKET_v01.md"
+  ],
+  "next_actions": [
+    "recover CUBE_REV_0805_DECISION_PACKET_v01.md",
+    "freeze catalog and allocation schema",
+    "implement cognitive-mode assignment module",
+    "implement resume contract and legacy migration module",
+    "integrate participant UI and additive payload fields",
+    "run certification matrix",
+    "issue PASS, HOLD, or FAIL decision packet"
+  ]
+}
