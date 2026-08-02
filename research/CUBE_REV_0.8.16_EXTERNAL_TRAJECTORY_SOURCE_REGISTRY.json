@@ -1,0 +1,110 @@
+{
+  "schema_version": "CR0816-EXTERNAL-TRAJECTORY-SOURCE-REGISTRY-1",
+  "version": "CUBE-REV 0.8.16",
+  "retrieval_date": "2026-08-03",
+  "sources": [
+    {
+      "source_id": "WCA-RESULTS-EXPORT-V2",
+      "authority": "World Cube Association",
+      "url": "https://www.worldcubeassociation.org/export/results",
+      "access": "PUBLIC_VERSIONED_EXPORT",
+      "observed_export": {
+        "format_version": "2.0.2",
+        "export_date": "2026-08-02T16:15:23+00:00",
+        "tsv_filename": "WCA_export_v2_214_20260802T000025Z.tsv.zip",
+        "reported_tsv_size_mb": 352,
+        "materialization": "METADATA_SNAPSHOT_ONLY_BULK_ARCHIVE_NOT_STORED_IN_REPOSITORY"
+      },
+      "contains": [
+        "competition metadata",
+        "individual attempt times",
+        "official scrambles",
+        "competitor WCA IDs"
+      ],
+      "does_not_contain": [
+        "solution move sequence",
+        "per-move timestamp",
+        "cognitive annotation"
+      ],
+      "allowed_role": "official-result and scramble linkage",
+      "attribution_required": true
+    },
+    {
+      "source_id": "RECO-NZ-RECONSTRUCTION-DATABASE",
+      "authority": "community reconstruction project",
+      "url": "https://reco.nz",
+      "access": "PUBLIC_WEB_DATABASE",
+      "observed_index_scale": "solve IDs above 13400 as of 2026-08-03",
+      "contains": [
+        "scramble",
+        "full move sequence",
+        "method-stage comments",
+        "total and stage times",
+        "movecount",
+        "TPS",
+        "official/unofficial flag",
+        "solver",
+        "competition",
+        "reconstructor"
+      ],
+      "does_not_contain": [
+        "reliable per-move timestamp for ordinary video reconstructions",
+        "direct thought-process report"
+      ],
+      "allowed_role": "trajectory motif prior, notation parser validation, elite-solve comparison",
+      "prohibited_role": "direct inference of 2x2 thought process",
+      "site_stated_purpose": "individual and large-scale solve analysis",
+      "site_caution": "site FAQ states short one-look 2x2 solutions do not reveal what is behind the solution without solver explanation"
+    },
+    {
+      "source_id": "CSTIMER-SMART-CUBE-EXPORT",
+      "authority": "user-owned timer export",
+      "url": "https://www.cstimer.net/new/",
+      "access": "USER_CONSENT_EXPORT_ONLY",
+      "contains": [
+        "scramble",
+        "solve time",
+        "detailed move sequence for supported smart cubes",
+        "reconstruction when available"
+      ],
+      "does_not_contain": [
+        "public bulk cohort"
+      ],
+      "allowed_role": "consented per-move trajectory and timing validation",
+      "prohibited_role": "server-side scraping or unconsented account access"
+    },
+    {
+      "source_id": "CUBEAST-SHARED-SOLVE",
+      "authority": "user-shared smart-cube analysis",
+      "url": "https://www.cubeast.com/",
+      "access": "EXPLICITLY_SHARED_LINK_OR_OWNER_EXPORT",
+      "contains": [
+        "move-level solution",
+        "solve analysis",
+        "shareable solve link"
+      ],
+      "allowed_role": "consented high-resolution timing prior",
+      "prohibited_role": "bulk profile scraping"
+    },
+    {
+      "source_id": "SOLVED-NO-RECONSTRUCTOR",
+      "authority": "user-created shared reconstruction",
+      "url": "https://www.solved.no/reconstructor",
+      "access": "PUBLIC_SHARE_LINK_OR_OWNER_EXPORT",
+      "contains": [
+        "scramble",
+        "move sequence",
+        "shareable reconstruction"
+      ],
+      "allowed_role": "notation and trajectory fixture",
+      "prohibited_role": "private saved-solve access"
+    }
+  ],
+  "linkage_design": {
+    "official_anchor": "WCA competition, event, round, attempt, time and scramble",
+    "trajectory_anchor": "reco.nz solve ID or explicitly shared smart-cube solve",
+    "join_status": "REQUIRES_SOURCE_SNAPSHOT_AND_LINKAGE_AUDIT",
+    "identity_policy": "retain public source attribution but model trajectories without inferring latent traits of named individuals"
+  },
+  "external_data_decision": "PASS_SOURCE_DISCOVERY_HOLD_BULK_INGESTION_UNTIL_SNAPSHOT_CUSTODY"
+}

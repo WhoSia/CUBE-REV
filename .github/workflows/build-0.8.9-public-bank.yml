@@ -1,0 +1,93 @@
+name: CUBE-REV 0.8.9 public-bank certification
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - cube-rev-0.8.9-public-bank-minimization
+    paths:
+      - .github/workflows/build-0.8.9-public-bank.yml
+      - .gitignore
+      - scripts/build_0_8_9_public_bank.js
+      - scripts/reconstruct_0_8_9_factory.js
+      - js/participant-cognitive-mode-0.8.9.js
+      - participant-cognitive-mode-0.8.9.html
+      - tests/public_bank_minimization_0.8.9.test.js
+      - cognitive/PARTICIPANT_STIMULUS_BANK_0.8.8.json
+      - cognitive/COGNITIVE_MODE_CONFIG_0.8.8.json
+  pull_request:
+    branches:
+      - cube-rev-0.8.8-immutable-submission-snapshot
+    paths:
+      - .github/workflows/build-0.8.9-public-bank.yml
+      - .gitignore
+      - scripts/build_0_8_9_public_bank.js
+      - scripts/reconstruct_0_8_9_factory.js
+      - js/participant-cognitive-mode-0.8.9.js
+      - participant-cognitive-mode-0.8.9.html
+      - tests/public_bank_minimization_0.8.9.test.js
+      - cognitive/PARTICIPANT_STIMULUS_BANK_0.8.8.json
+      - cognitive/COGNITIVE_MODE_CONFIG_0.8.8.json
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-certify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.9-public-bank-minimization
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build public and private artifacts
+        run: node scripts/build_0_8_9_public_bank.js
+
+      - name: Verify private crosswalk is ignored and untracked
+        shell: bash
+        run: |
+          test -s .cube-rev-private/PRIVATE_CROSSWALK_0.8.9.json
+          git check-ignore .cube-rev-private/PRIVATE_CROSSWALK_0.8.9.json
+          if git ls-files | grep -E 'PRIVATE_CROSSWALK|\.cube-rev-private|research-private'; then
+            echo 'Private crosswalk material is tracked.' >&2
+            exit 1
+          fi
+
+      - name: Run contract and syntax checks
+        run: |
+          node tests/public_bank_minimization_0.8.9.test.js
+          node tests/immutable_snapshot_contract_0.8.8.test.js
+          node --check scripts/build_0_8_9_public_bank.js
+          node --check scripts/reconstruct_0_8_9_factory.js
+          node --check js/participant-cognitive-mode-0.8.9.js
+          node --check tests/public_bank_minimization_0.8.9.test.js
+
+      - name: Verify generated participant assets contain no forbidden keys
+        shell: bash
+        run: |
+          ! grep -E '"(state_id|rotation_id|face_map|choice_canonical|canonical_move|pair_id|member_id|probe_name|diagnostic_class|branch_count|branch_level|decision_class|distance)"[[:space:]]*:' cognitive/PARTICIPANT_STIMULUS_BANK_0.8.9.json
+          grep -F '"version":"CUBE-REV 0.8.9"' cognitive/PARTICIPANT_STIMULUS_BANK_0.8.9.json
+          grep -F '"version":"CUBE-REV 0.8.9"' cognitive/COGNITIVE_MODE_CONFIG_0.8.9.json
+
+      - name: Commit generated public artifacts only on push runs
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cognitive/PARTICIPANT_STIMULUS_BANK_0.8.9.json \
+                  cognitive/COGNITIVE_MODE_CONFIG_0.8.9.json \
+                  research/CUBE_REV_0.8.9_BUILD_MANIFEST.json
+          if git diff --cached --quiet; then
+            echo 'Generated public artifacts already current.'
+          else
+            git commit -m 'build(0.8.9): materialize minimized public assets [skip ci]'
+            git push origin HEAD:cube-rev-0.8.9-public-bank-minimization
+          fi

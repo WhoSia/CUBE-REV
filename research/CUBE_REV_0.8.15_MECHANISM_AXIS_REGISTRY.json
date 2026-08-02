@@ -1,0 +1,132 @@
+{
+  "schema_version": "CR0815-COGNITIVE-MECHANISM-AXIS-REGISTRY-1",
+  "version": "CUBE-REV 0.8.15",
+  "title": "Cognitive Mechanism-axis Lattice, Strategy-transition Signatures & Identifiability-constrained Hypothesis Registry",
+  "epistemic_rule": "BEHAVIORAL_SIGNATURE_FIRST_PSYCHOLOGICAL_LABEL_SECOND",
+  "measurement_rule": "NO_TRIALWISE_SELF_REPORT_ADDED_IN_0_8_15",
+  "axes": [
+    {
+      "axis_id": "AX-PLANNING-HORIZON",
+      "candidate_mechanisms": [
+        "local_greedy",
+        "two_step_lookahead",
+        "three_step_lookahead"
+      ],
+      "observable_now": [
+        "first_action",
+        "latency_ms",
+        "stimulus_specific_horizon_value"
+      ],
+      "falsifier": "choices do not preferentially match the depth-specific optimum on horizon-discriminating stimuli",
+      "status": "SYNTHETIC_IDENTIFIABILITY_TESTED"
+    },
+    {
+      "axis_id": "AX-STRATEGY-ARBITRATION",
+      "candidate_mechanisms": [
+        "stationary_policy",
+        "h1_to_h3_change_point",
+        "perseverative_interference"
+      ],
+      "observable_now": [
+        "schedule_position",
+        "first_action",
+        "latency_ms",
+        "previous_action"
+      ],
+      "falsifier": "change-point signatures vanish under counterbalanced schedules or are reproduced by item order alone",
+      "status": "SYNTHETIC_IDENTIFIABILITY_TESTED"
+    },
+    {
+      "axis_id": "AX-ORIENTATION-EQUIVARIANCE",
+      "candidate_mechanisms": [
+        "object_centered_mapping",
+        "viewer_centered_alias"
+      ],
+      "observable_now": [
+        "first_action",
+        "rotationally_paired_stimuli"
+      ],
+      "falsifier": "no rotational stimulus pairs exist or transformed actions are not recoverable",
+      "status": "BANK_SUPPORT_AUDITED"
+    },
+    {
+      "axis_id": "AX-CHUNK-RETRIEVAL-AND-SWITCHING",
+      "candidate_mechanisms": [
+        "perceptual_chunk_retrieval",
+        "sequence_chunk_switch_cost"
+      ],
+      "observable_now": [
+        "motif_repetition",
+        "latency_ms",
+        "action_consistency"
+      ],
+      "falsifier": "single-action trials lack within-chunk boundary timing and repeated motifs",
+      "status": "PARTIAL_OR_NOT_IDENTIFIABLE"
+    },
+    {
+      "axis_id": "AX-OPEN-VS-CLOSED-LOOP-CONTROL",
+      "candidate_mechanisms": [
+        "open_loop_chunk",
+        "closed_loop_re_evaluation"
+      ],
+      "observable_now": [
+        "first_action_only"
+      ],
+      "required_extension": [
+        "intermediate_state",
+        "subsequent_action_timestamps",
+        "correction_events"
+      ],
+      "falsifier": "two mechanisms generate identical current observables",
+      "status": "NEGATIVE_CONTROL_EXPECTED_NON_IDENTIFIABLE"
+    },
+    {
+      "axis_id": "AX-RECOVERY-MONITORING",
+      "candidate_mechanisms": [
+        "last_move_undo",
+        "subgoal_reset",
+        "continue_despite_error"
+      ],
+      "observable_now": [],
+      "required_extension": [
+        "multi_action_trajectory",
+        "error_opportunity",
+        "recovery_path"
+      ],
+      "status": "NOT_IDENTIFIABLE_CURRENT_INSTRUMENT"
+    },
+    {
+      "axis_id": "AX-VISUOSPATIAL-CAPACITY",
+      "candidate_mechanisms": [
+        "capacity_limit",
+        "compensatory_policy"
+      ],
+      "observable_now": [
+        "first_action",
+        "latency_ms"
+      ],
+      "falsifier": "different capacity states can implement the same observable policy",
+      "status": "DO_NOT_INFER_AS_TRAIT_FROM_CURRENT_TRACE"
+    },
+    {
+      "axis_id": "AX-METACOGNITIVE-MONITORING",
+      "candidate_mechanisms": [
+        "confidence_calibration",
+        "performance_oriented_conservatism"
+      ],
+      "observable_now": [
+        "post_task_global_confidence",
+        "post_task_guess"
+      ],
+      "measurement_hazard": "trialwise confidence can alter strategy and task performance",
+      "status": "POST_TASK_ONLY_NON_REACTIVE_BOUNDARY"
+    }
+  ],
+  "forbidden_claims": [
+    "infer working-memory capacity from first-action trace alone",
+    "infer conscious planning from latency alone",
+    "infer chunking without repeated structural motifs or within-sequence timing",
+    "infer recovery strategy without observing an error and subsequent actions",
+    "treat trialwise confidence as a passive measurement"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "CR0807-CUTOVER-GATE-1",
+  "version": "CUBE-REV 0.8.7",
+  "gates": {
+    "participant_route_implemented": true,
+    "collector_source_unchanged": true,
+    "collector_contract_pinned_0_7_12": true,
+    "shadow_stored_and_duplicate_current_checksum": true,
+    "shadow_checksum_mismatch_rejected": true,
+    "response_loss_original_checksum_policy_resolved": false,
+    "live_browser_collector_smoke": false,
+    "exact_production_index_source_available": false,
+    "default_entry_patch_reviewed": false
+  },
+  "decision": "NO_GO",
+  "reason": "Receipt-loss recovery depends on duplicate checksum semantics, and the exact production default entry has not been safely patched or browser-smoke-tested."
+}

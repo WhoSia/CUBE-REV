@@ -1,0 +1,16 @@
+{
+  "schema_version": "CR0807-SHADOW-RESULTS-1",
+  "version": "CUBE-REV 0.8.7",
+  "execution": "NODE_MODEL_EXECUTED",
+  "results": {
+    "stored_current_checksum": "PASS",
+    "duplicate_current_checksum": "PASS",
+    "checksum_mismatch_rejected": "PASS",
+    "health_wrong_collector_prevents_post": "PASS",
+    "receipt_loss_duplicate_current_checksum": "PASS",
+    "receipt_loss_duplicate_original_checksum": "FAILS_BY_DESIGN_DEPENDENCY",
+    "inflight_single_post_two_callers": "PASS"
+  },
+  "browser_harness": "PROVIDED_NOT_LIVE_EXECUTED",
+  "collector_files_modified": false
+}

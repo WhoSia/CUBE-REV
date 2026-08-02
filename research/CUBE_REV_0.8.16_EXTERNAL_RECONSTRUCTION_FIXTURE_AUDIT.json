@@ -1,0 +1,13 @@
+{
+  "fixture_count": 3,
+  "stage_boundary_fixture_count": 3,
+  "matched_scramble_pair_count": 1,
+  "matched_pair_same_scramble": true,
+  "matched_pair_same_result_time": true,
+  "matched_pair_distinct_move_routes": true,
+  "matched_pair_reported_stm": [
+    41,
+    45
+  ],
+  "result": "PASS_EXTERNAL_TRAJECTORY_FIXTURE_PACK"
+}

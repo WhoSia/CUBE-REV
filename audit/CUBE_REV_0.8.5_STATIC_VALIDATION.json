@@ -1,0 +1,16 @@
+{
+  "version_consistent": true,
+  "collector_files_absent_from_package": true,
+  "existing_collector_loaded_not_reimplemented": true,
+  "legacy_selector_absent": true,
+  "sample_size_absent": true,
+  "diagnostic_terms_absent": true,
+  "bank_analysis_labels_stripped": true,
+  "balanced_sequences": true,
+  "resume_and_quarantine": true,
+  "duplicate_submit_blocked": true,
+  "collector_class_api_used": true,
+  "collector_contract_version_pinned": true,
+  "app_payload_version_0805": true,
+  "all_pass": true
+}

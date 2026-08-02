@@ -1,0 +1,155 @@
+{
+  "project": "CUBE-REV",
+  "version": "0.8.13",
+  "title": "Native Multi-window Browser Execution, Lease-expiry Network Ambiguity & Live Collector–Factory Reconstruction Certification",
+  "branch": "cube-rev-0.8.13-native-browser-live-factory",
+  "parent_branch": "cube-rev-0.8.12-active-session-cas",
+  "pull_request": 12,
+  "decision": [
+    "PASS_NATIVE_MULTI_WINDOW_BROWSER",
+    "PASS_ACTIVE_SESSION_WEB_LOCKS_CAS",
+    "PASS_LEASE_EXPIRY_TWO_DELIVERY_CONVERGENCE",
+    "PASS_DETERMINISTIC_SCIENTIFIC_TO_TRANSPORT_SESSION_BRIDGE",
+    "PASS_LIVE_COLLECTOR_RECEIPT_V2_DEDUP",
+    "PASS_COLLECTOR_FACTORY_COMPATIBILITY_CONTRACT",
+    "PASS_FACTORY_RECONSTRUCTION",
+    "PASS_FACTORY_TAMPER_REJECTION",
+    "PASS_INHERITED_CONTRACTS",
+    "HOLD_LIVE_STORED_RAW_FACTORY_RETRIEVAL",
+    "HOLD_PAGEHIDE_DURABILITY",
+    "DEFAULT_CUTOVER_NO_GO"
+  ],
+  "final_ci": {
+    "certified_head": "96df4e1e870b1fa41126c5b8b0299d06e43bd517",
+    "certification_workflow_run": 30750150463,
+    "certification_job": 91502629004,
+    "baseline_workflow_run": 30750150466,
+    "conclusion": "success",
+    "runner": "ubuntu-24.04.4",
+    "node_version": "22.23.1",
+    "python_version": "3.11.15",
+    "chromium_version": "140.0.7339.16",
+    "markers": [
+      "CR0813_ASSET_BUILD_PASS stimuli=28 choices=504 manifest=810847fe11ffcb6c17cb7a87b6951579ada128035f3f4ffc8a281478b3ece506",
+      "CR0813_NATIVE_MULTI_WINDOW_PASS cursor=2 conflict_count=1 pagehide_persisted=true",
+      "CR0813_LEASE_EXPIRY_AMBIGUITY_PASS posts=2 generation=2 status=SUBMITTED bridge=DETERMINISTIC_LEGACY_SESSION_BRIDGE_V1",
+      "CR0813_TRANSPORT_BRIDGE_PARITY passed=true",
+      "CR0813_FACTORY_RECONSTRUCTION_PASS responses=28 root=collector_compatibility_envelope outputs=5",
+      "CR0813_FACTORY_RECONSTRUCTION_PASS responses=28 root=inner_scientific_snapshot outputs=5",
+      "CR0813_FACTORY_ADAPTER_TEST_PASS inner_rows=28 wrapper_rows=28 tamper_cases=5 bridge=IDENTITY_SESSION_V1",
+      "CR0812_ACTIVE_SESSION_CAS_PASS 28/28",
+      "CR0811_ATOMIC_MIGRATION_PASS 23/23",
+      "CR0810_MIGRATION_HASH_PIN_PASS 13/13",
+      "CR0809_PUBLIC_BANK_CERT_PASS 8/8",
+      "CR0808_IMMUTABLE_SNAPSHOT_PASS 8/8",
+      "CR0813_NATIVE_FACTORY_CI_PASS"
+    ]
+  },
+  "native_browser": {
+    "browser": "chromium-playwright",
+    "same_origin": true,
+    "native_web_locks": true,
+    "storage_events": true,
+    "response_conflict_winner_count": 1,
+    "response_conflict_loser_evidence_count": 1,
+    "response_telemetry_race_preserved": true,
+    "pagehide_event_observed": true,
+    "pagehide_response_bytes_preserved": true,
+    "pagehide_completion_guaranteed": false
+  },
+  "lease_expiry_evidence": {
+    "lease_timeout_ms": 1000,
+    "delivery_count": 2,
+    "transport_session_id": "CR-20260802133308-9dcf2acb9ecf",
+    "scientific_session_id": "CR0811-20260802133308-5460d2f9",
+    "transport_session_policy": "DETERMINISTIC_LEGACY_SESSION_BRIDGE_V1",
+    "payload_bytes": 21731,
+    "payload_sha256": "57a959fd5d746e615f4e072c580d9d620b37999deaf470265e62af7edf03b40e",
+    "collector_checksum_fnv1a32": "42c10379",
+    "nonce_a": "8aaacf2731adcaa9de33d396",
+    "nonce_b": "5fa9ed6128bae71d42b27021",
+    "receipt_a_terminal": "stored",
+    "receipt_b_terminal": "duplicate",
+    "final_lease_generation": 2,
+    "final_status": "SUBMITTED",
+    "response_count": 28
+  },
+  "live_collector": {
+    "collector_id": "CUBE-REV-0712-MAIN",
+    "protocol_version": "receipt-v2",
+    "expected_version": "0.7.12",
+    "workflow_run": 30747246961,
+    "synthetic_live_cert": true,
+    "exclude_from_human_cohort": true,
+    "session_id": "CR-20260802110000-0813a0b0c0d0",
+    "file_name": "CR-20260802110000-0813a0b0c0d0.json",
+    "envelope_sha256": "6aa9d1e38c88786f1962a5878f87377a4a5fe1e99222a1b9e8c9c285111118e3",
+    "envelope_checksum_fnv1a32": "f795cd8e",
+    "envelope_bytes": 21227,
+    "inner_snapshot_sha256": "446ab20ec570140f810bcbe91660b089585f1416db5b29852f7bf6946881e2ba",
+    "receipt_codes": [
+      "CR0712-RCP-1C74B563",
+      "CR0712-RCP-953ECF13"
+    ],
+    "terminal_statuses": [
+      "duplicate",
+      "duplicate"
+    ],
+    "same_file_identity": true,
+    "first_stored_request_attribution_isolated": false
+  },
+  "factory": {
+    "adapter": "CR0813_COGNITIVE_SNAPSHOT_FACTORY_ADAPTER_V1",
+    "accepted_root_kinds": [
+      "collector_compatibility_envelope",
+      "inner_scientific_snapshot"
+    ],
+    "native_wrapper": {
+      "raw_sha256": "57a959fd5d746e615f4e072c580d9d620b37999deaf470265e62af7edf03b40e",
+      "canonical_snapshot_sha256": "3601b323d98d8570af7bf9bf58a35611c9519607145e789108b1f2c8f15dbde6",
+      "response_rows": 28,
+      "blocking_qc_count": 0,
+      "analysis_eligible": true,
+      "analysis_bundle_sha256": "42ace938ea1b4ca265240304ef4fe9e2fe68ec2f0db5acb85a459e3b6b0050d6"
+    },
+    "tamper_rejections": [
+      "inner_response_position",
+      "compatibility_choice_code",
+      "outer_transport_session",
+      "original_scientific_session",
+      "transport_policy"
+    ],
+    "live_stored_raw_retrieved": false,
+    "live_stored_raw_search_result": "no exact filename or suffix result through connected Drive search"
+  },
+  "evidence_artifact": {
+    "artifact_id": 8834172208,
+    "zip_sha256": "e2ac90081b0136221526e48cef4ed4b10c30bdda16af550252c079863fc37d25",
+    "compressed_bytes": 48977,
+    "retention_until": "2026-08-16"
+  },
+  "asset_identities": {
+    "public_bank_raw_sha256": "c6b522d3060105401feb4773a2860d70853ab8cdf2edba75b72bb5b52bb6d510",
+    "public_config_raw_sha256": "44aa314b85d6eacb84d7b0fb02b866c9fb3970824e3c3de54f371dbea92bdeff",
+    "asset_manifest_raw_sha256": "810847fe11ffcb6c17cb7a87b6951579ada128035f3f4ffc8a281478b3ece506",
+    "asset_pins_raw_sha256": "966642169e0af785ef0a9e2ebb047615b941d636affd03bb08e0c85f0c1a0644",
+    "stimulus_count": 28,
+    "sequence_count": 24,
+    "opaque_choice_code_count": 504,
+    "deterministic_rebuild": true
+  },
+  "collector_contract": {
+    "version": "0.7.12",
+    "collector_config_modified": false,
+    "collector_client_modified": false
+  },
+  "limitations": [
+    "exact_live_stored_raw_file_not_retrieved_through_connected_drive",
+    "pagehide_async_completion_not_guaranteed",
+    "cross_browser_equivalence_not_certified",
+    "mobile_suspension_storage_eviction_and_device_power_loss_not_certified",
+    "no_human_participant_walkthrough",
+    "no_production_default_entry_cutover"
+  ],
+  "next_boundary": "stored_raw_custody_replay_device_matrix_and_controlled_staging_cutover_gate"
+}

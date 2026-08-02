@@ -1,0 +1,62 @@
+{
+  "project": "CUBE-REV",
+  "version": "0.8.9",
+  "title": "Public-bank Identifier Minimization, Opaque Choice-code Encoding & Private-crosswalk Factory Reconstruction Certification",
+  "parent_branch": "cube-rev-0.8.8-immutable-submission-snapshot",
+  "branch": "cube-rev-0.8.9-public-bank-minimization",
+  "decision": [
+    "PASS_PUBLIC_BANK_MINIMIZATION",
+    "PASS_OPAQUE_CHOICE_ENCODING",
+    "PASS_PRIVATE_OUTPUT_EXCLUSION",
+    "PASS_FACTORY_RECONSTRUCTION_CONTRACT",
+    "HOLD_LIVE_FACTORY",
+    "HOLD_LIVE_COLLECTOR",
+    "DEFAULT_CUTOVER_NO_GO"
+  ],
+  "ci": {
+    "public_bank_workflow_run_id": 30739631049,
+    "public_bank_workflow_conclusion": "success",
+    "baseline_workflow_run_id": 30739631035,
+    "baseline_workflow_conclusion": "success",
+    "test_marker": "CR0809_PUBLIC_BANK_CERT_PASS 8/8",
+    "parent_test_marker": "CR0808_IMMUTABLE_SNAPSHOT_PASS 8/8"
+  },
+  "manifest": {
+    "public_bank_sha256": "34922293b675c2b6b3e042dfeed18aca8687847771bbd52a26c5e6ba317dda1d",
+    "public_config_sha256": "7e0a8c8e4a5f128ab481a13126e57e819bd10bc7c1779ded1a0fe83b7a436304",
+    "private_crosswalk_sha256": "90c54b51052fc27c436d8701797e5b2aa95e19ec28a7f63bbd50db41192748f0",
+    "stimulus_count": 28,
+    "sequence_count": 24,
+    "choice_code_count": 504
+  },
+  "collector_contract": {
+    "version": "0.7.12",
+    "collector_config_modified": false,
+    "collector_client_modified": false
+  },
+  "application_payload_version": "CUBE-REV 0.8.9",
+  "public_forbidden_fields": [
+    "state_id",
+    "rotation_id",
+    "face_map",
+    "choice_canonical",
+    "canonical_move",
+    "pair_id",
+    "member_id",
+    "probe_name",
+    "diagnostic_class",
+    "branch_count",
+    "branch_level",
+    "decision_class",
+    "distance"
+  ],
+  "limitations": [
+    "visible_sticker_state_is_inherently_observable",
+    "private_crosswalk_custody_not_yet_operationally_certified",
+    "no_live_factory_ingestion",
+    "no_live_collector_submission",
+    "no_production_default_entry_cutover",
+    "no_full_browser_device_matrix"
+  ],
+  "next_boundary": "cross_version_resume_migration_assignment_continuity_and_public_asset_hash_pinning"
+}

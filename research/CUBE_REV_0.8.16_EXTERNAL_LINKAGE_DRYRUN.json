@@ -1,0 +1,46 @@
+{
+  "schema_version": "CR0816-EXTERNAL-TRAJECTORY-LINKAGE-DRYRUN-1",
+  "version": "CUBE-REV 0.8.16",
+  "required_exact_fields": [
+    "event",
+    "result_centiseconds",
+    "scramble_sha256",
+    "date"
+  ],
+  "recommended_disambiguators": [
+    "competition_id",
+    "round_type_id",
+    "attempt_number",
+    "public_person_key"
+  ],
+  "exact_case": {
+    "source_id": "reco.nz/solve/9269",
+    "status": "EXACT_UNIQUE",
+    "candidate_count": 1,
+    "attempt_anchor": {
+      "competition_id": "WC2023",
+      "event_id": "333",
+      "round_type_id": "f",
+      "attempt_number": 4,
+      "result_centiseconds": 454,
+      "scramble_sha256": "b3681a79f80a97563b9936c2d5c7a74988a83de144f1de35d598eb1a471100d9",
+      "date": "2023-08-19"
+    },
+    "identity_use": "PUBLIC_ATTRIBUTION_AND_LINKAGE_ONLY",
+    "cognitive_trait_inference": "PROHIBITED"
+  },
+  "ambiguous_case": {
+    "source_id": "reco.nz/solve/9269",
+    "status": "AMBIGUOUS_MULTIPLE",
+    "candidate_count": 2,
+    "cognitive_trait_inference": "PROHIBITED"
+  },
+  "negative_case": {
+    "source_id": "negative/wrong-scramble",
+    "status": "UNLINKED",
+    "candidate_count": 0,
+    "cognitive_trait_inference": "PROHIBITED"
+  },
+  "bulk_execution": "HOLD_WCA_ARCHIVE_NOT_MATERIALIZED",
+  "result": "PASS_LINKAGE_ADJUDICATION_CONTRACT"
+}

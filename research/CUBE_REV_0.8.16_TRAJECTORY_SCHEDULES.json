@@ -1,0 +1,1177 @@
+{
+  "schema_version": "CR0816-TRAJECTORY-SCHEDULES-1",
+  "version": "CUBE-REV 0.8.16",
+  "schedule_count": 12,
+  "trials_per_schedule": 12,
+  "families_per_schedule": 6,
+  "exposures_per_family_per_schedule": 2,
+  "minimum_family_spacing": 6,
+  "orientation_exposures_per_family_across_schedules": 4,
+  "schedules": [
+    {
+      "schedule_id": "CR0816-SCH-01",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-F",
+          "target_planned_face": "F"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F01": 6,
+        "CR0816-F02": 6,
+        "CR0816-F03": 6,
+        "CR0816-F04": 6,
+        "CR0816-F05": 6,
+        "CR0816-F06": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-02",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-F",
+          "target_planned_face": "F"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F06": 6,
+        "CR0816-F01": 6,
+        "CR0816-F02": 6,
+        "CR0816-F03": 6,
+        "CR0816-F04": 6,
+        "CR0816-F05": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-03",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-F",
+          "target_planned_face": "F"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F05": 6,
+        "CR0816-F06": 6,
+        "CR0816-F01": 6,
+        "CR0816-F02": 6,
+        "CR0816-F03": 6,
+        "CR0816-F04": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-04",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-F",
+          "target_planned_face": "F"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F04": 6,
+        "CR0816-F05": 6,
+        "CR0816-F06": 6,
+        "CR0816-F01": 6,
+        "CR0816-F02": 6,
+        "CR0816-F03": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-05",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-F",
+          "target_planned_face": "F"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F03": 6,
+        "CR0816-F04": 6,
+        "CR0816-F05": 6,
+        "CR0816-F06": 6,
+        "CR0816-F01": 6,
+        "CR0816-F02": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-06",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-F",
+          "target_planned_face": "F"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F02": 6,
+        "CR0816-F03": 6,
+        "CR0816-F04": 6,
+        "CR0816-F05": 6,
+        "CR0816-F06": 6,
+        "CR0816-F01": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-07",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-D",
+          "target_planned_face": "D"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F01": 6,
+        "CR0816-F02": 6,
+        "CR0816-F03": 6,
+        "CR0816-F04": 6,
+        "CR0816-F05": 6,
+        "CR0816-F06": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-08",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-D",
+          "target_planned_face": "D"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F06": 6,
+        "CR0816-F01": 6,
+        "CR0816-F02": 6,
+        "CR0816-F03": 6,
+        "CR0816-F04": 6,
+        "CR0816-F05": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-09",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-D",
+          "target_planned_face": "D"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F05": 6,
+        "CR0816-F06": 6,
+        "CR0816-F01": 6,
+        "CR0816-F02": 6,
+        "CR0816-F03": 6,
+        "CR0816-F04": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-10",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-D",
+          "target_planned_face": "D"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F04": 6,
+        "CR0816-F05": 6,
+        "CR0816-F06": 6,
+        "CR0816-F01": 6,
+        "CR0816-F02": 6,
+        "CR0816-F03": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-11",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-D",
+          "target_planned_face": "D"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F03": 6,
+        "CR0816-F04": 6,
+        "CR0816-F05": 6,
+        "CR0816-F06": 6,
+        "CR0816-F01": 6,
+        "CR0816-F02": 6
+      }
+    },
+    {
+      "schedule_id": "CR0816-SCH-12",
+      "entries": [
+        {
+          "position": 1,
+          "half": 1,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 2,
+          "half": 1,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 3,
+          "half": 1,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 4,
+          "half": 1,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-D",
+          "target_planned_face": "D"
+        },
+        {
+          "position": 5,
+          "half": 1,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 6,
+          "half": 1,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 7,
+          "half": 2,
+          "family_id": "CR0816-F02",
+          "probe_id": "CR0816-F02-L",
+          "target_planned_face": "L"
+        },
+        {
+          "position": 8,
+          "half": 2,
+          "family_id": "CR0816-F03",
+          "probe_id": "CR0816-F03-B",
+          "target_planned_face": "B"
+        },
+        {
+          "position": 9,
+          "half": 2,
+          "family_id": "CR0816-F04",
+          "probe_id": "CR0816-F04-U",
+          "target_planned_face": "U"
+        },
+        {
+          "position": 10,
+          "half": 2,
+          "family_id": "CR0816-F05",
+          "probe_id": "CR0816-F05-R",
+          "target_planned_face": "R"
+        },
+        {
+          "position": 11,
+          "half": 2,
+          "family_id": "CR0816-F06",
+          "probe_id": "CR0816-F06-F",
+          "target_planned_face": "F"
+        },
+        {
+          "position": 12,
+          "half": 2,
+          "family_id": "CR0816-F01",
+          "probe_id": "CR0816-F01-D",
+          "target_planned_face": "D"
+        }
+      ],
+      "family_separations": {
+        "CR0816-F02": 6,
+        "CR0816-F03": 6,
+        "CR0816-F04": 6,
+        "CR0816-F05": 6,
+        "CR0816-F06": 6,
+        "CR0816-F01": 6
+      }
+    }
+  ],
+  "result": "PASS_BALANCED_MINIMAL_TRAJECTORY_SCHEDULES"
+}
