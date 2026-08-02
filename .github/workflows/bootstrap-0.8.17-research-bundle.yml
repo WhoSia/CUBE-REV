@@ -1,0 +1,56 @@
+name: Bootstrap CUBE-REV 0.8.17 research bundle
+on:
+  push:
+    branches: [cube-rev-0.8.17-versioned-external-trajectory]
+    paths:
+      - '.github/workflows/bootstrap-0.8.17-research-bundle.yml'
+      - 'scripts/bootstrap_0_8_17_bundle.py'
+      - 'scripts/.cr0817_payload_*.txt'
+      - 'research/.cr0817_bootstrap_trigger'
+permissions:
+  contents: write
+jobs:
+  install-readable-sources:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.17-versioned-external-trajectory
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify and materialize exact bundle
+        run: |
+          python scripts/bootstrap_0_8_17_bundle.py
+          python -m py_compile analysis/external_trajectory_snapshot_0_8_17.py
+          python -m py_compile tests/external_trajectory_snapshot_0.8.17.test.py
+          python tests/external_trajectory_snapshot_0.8.17.test.py \
+            --analysis analysis/external_trajectory_snapshot_0_8_17.py \
+            --artifact-dir research \
+            --fixtures research/CUBE_REV_0.8.17_EXTERNAL_TRAJECTORY_FIXTURE_PACK.json \
+            --probe-registry research/CUBE_REV_0.8.16_TRAJECTORY_PROBE_REGISTRY.json
+      - name: Commit readable sources and remove transport material
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/external_trajectory_snapshot_0_8_17.py
+          git add tests/external_trajectory_snapshot_0.8.17.test.py
+          git add research/CUBE_REV_0.8.17_EXTERNAL_TRAJECTORY_FIXTURE_PACK.json
+          git add research/CUBE_REV_0.8.17_EXTERNAL_SOURCE_REGISTRY.json
+          git add research/CUBE_REV_0.8.17_ROUTE_GRAMMAR_CONTRACT.json
+          git add research/CUBE_REV_0.8.17_ECOLOGICAL_PROBE_TRANSFER_RESULT.json
+          git add research/CUBE_REV_0.8.17_ROUTE_GRAMMAR_ROWS.jsonl
+          git add research/CUBE_REV_0.8.17_EXTERNAL_SNAPSHOT_MANIFEST.json
+          git add research/CUBE_REV_0.8.17_VALIDATION_REPORT.md
+          git add research/CUBE_REV_0.8.17_DECISION_PACKET.json
+          git add research/CUBE_REV_0.8.17_RUNBOOK.md
+          git rm --ignore-unmatch scripts/bootstrap_0_8_17_bundle.py
+          git rm --ignore-unmatch scripts/.cr0817_payload_01.txt scripts/.cr0817_payload_02.txt scripts/.cr0817_payload_03.txt scripts/.cr0817_payload_04.txt
+          git rm --ignore-unmatch research/.cr0817_bootstrap_trigger
+          git diff --cached --check
+          git commit -m 'feat(0.8.17): install versioned external trajectory snapshot'
+          git push origin HEAD:cube-rev-0.8.17-versioned-external-trajectory
