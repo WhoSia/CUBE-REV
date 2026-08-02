@@ -120,9 +120,45 @@ function scientificEnvelope(x){
     factory_contract:{adapter:'CR0813_COGNITIVE_SNAPSHOT_FACTORY_ADAPTER_V1',raw_snapshot_immutable:true,response_order:'POSITION_1_TO_28'}
   };
 }
-function exportSnapshot(x){
+function scientificSnapshot(x){
   if(!x.submission_snapshot||!snapshotValid(x))throw new Error('SUBMISSION_SNAPSHOT_INVALID');
   return x.submission_snapshot;
+}
+function compatibilityTrials(snapshot){
+  if(!snapshot||snapshot.schema_version!=='CR0813-COLLECTOR-PAYLOAD-1'||snapshot.version!==VERSION)throw new Error('SNAPSHOT_IDENTITY');
+  if(!Array.isArray(snapshot.responses)||snapshot.responses.length!==28)throw new Error('RESPONSE_CARDINALITY');
+  return snapshot.responses.map(r=>({
+    trial_index:r.position,
+    trial_id:`CR0813-COMPAT-${String(r.position).padStart(2,'0')}`,
+    condition_id:snapshot.mode_id,
+    stimulus_id:r.stimulus_id,
+    response:{choice_display:r.choice_display,choice_code:r.choice_code,latency_ms:r.latency_ms,recorded_at:r.recorded_at},
+    status:'completed',source_schema:snapshot.schema_version,scientific_revision:snapshot.scientific_revision
+  }));
+}
+function collectorEnvelopeFromSnapshot(snapshot,options={}){
+  const trials=compatibilityTrials(snapshot);
+  if(typeof snapshot.session_id!=='string'||!/^CR-[0-9]{14}-[0-9a-f]{12}$/.test(snapshot.session_id))throw new Error('SESSION_IDENTITY');
+  const dataSubmission={
+    status:String(options.status||'sealed_scientific_snapshot'),
+    synthetic_live_cert:options.synthetic_live_cert===true,
+    exclude_from_human_cohort:options.exclude_from_human_cohort===true,
+    app_payload_version:snapshot.version,
+    app_payload_schema:snapshot.schema_version,
+    collector_compatibility_schema:'CR0813-COLLECTOR-COMPATIBILITY-ENVELOPE-1',
+    compatibility_trial_policy:'LOSSLESS_OPAQUE_RESPONSE_PROJECTION_V1'
+  };
+  if(typeof options.immutable_snapshot_sha256==='string')dataSubmission.immutable_snapshot_sha256=options.immutable_snapshot_sha256;
+  if(typeof options.immutable_snapshot_integrity_fnv1a32==='string')dataSubmission.immutable_snapshot_integrity_fnv1a32=options.immutable_snapshot_integrity_fnv1a32;
+  return {
+    project:'CUBE-REV',version:'0.7.12',session_id:snapshot.session_id,
+    generated_at:String(options.generated_at||snapshot.scientific_completed_at||snapshot.started_at),
+    trials,data_submission:dataSubmission,cognitive_snapshot:snapshot
+  };
+}
+function exportSnapshot(x){
+  const snapshot=scientificSnapshot(x);
+  return collectorEnvelopeFromSnapshot(snapshot,{immutable_snapshot_integrity_fnv1a32:x.submission_snapshot_hash});
 }
 function emptySubmissionControl(){
   return {retry_id:null,lease_generation:0,lease_token:null,lease_owner:null,lease_expires_at:null,attempt_count:0,last_attempt_at:null,last_error:null,collector_meta:null,collector_events:[],receipt:null};
@@ -149,7 +185,7 @@ function from0812(c,d,x){
   return y;
 }
 
-const api={VERSION,SCHEMA,STORAGE_KEY,QUARANTINE_KEY,DISPLAY_RE,CODE_RE,BINDING_KEYS,fnv1a,checksumText,checksum,seal,sequenceId,validBinding,validResponse,sanitizeInput,sanitizePostTask,stateShapeValid,provenanceValid,mutationHistoryValid,submissionControlValid,snapshotValid,valid,scientificEnvelope,exportSnapshot,emptySubmissionControl,from0812};
+const api={VERSION,SCHEMA,STORAGE_KEY,QUARANTINE_KEY,DISPLAY_RE,CODE_RE,BINDING_KEYS,fnv1a,checksumText,checksum,seal,sequenceId,validBinding,validResponse,sanitizeInput,sanitizePostTask,stateShapeValid,provenanceValid,mutationHistoryValid,submissionControlValid,snapshotValid,valid,scientificEnvelope,scientificSnapshot,compatibilityTrials,collectorEnvelopeFromSnapshot,exportSnapshot,emptySubmissionControl,from0812};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 global.CUBE_REV_COGNITIVE_MODE_0813=api;
 })(typeof window!=='undefined'?window:globalThis);
