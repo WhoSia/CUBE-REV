@@ -68,36 +68,26 @@ async function verifyBundle(o){
   return {manifest,bank,config,binding:{manifest_sha256:manifestHash,public_bank_sha256:bankHash,public_config_sha256:configHash,private_crosswalk_sha256:pins.private_crosswalk_sha256},parent0812Binding:{...config.active_session.parent_asset_binding}};
 }
 
-function transportTimestamp(snapshot){
-  const source=String(snapshot&&snapshot.started_at||snapshot&&snapshot.scientific_completed_at||'');
-  const digits=source.replace(/\D/g,'').slice(0,14);
-  if(!/^[0-9]{14}$/.test(digits))throw new Error('TRANSPORT_TIMESTAMP_UNAVAILABLE');
-  return digits;
-}
-function collectorTransportSessionId(snapshot,m){
-  const scientific=String(snapshot&&snapshot.session_id||'');
-  if(TRANSPORT_SESSION_RE.test(scientific))return scientific;
-  if(!scientific)throw new Error('SCIENTIFIC_SESSION_ID_REQUIRED');
-  const h1=m.checksumText(`CR0813-TRANSPORT-A:${scientific}`);
-  const h2=m.checksumText(`CR0813-TRANSPORT-B:${scientific}`);
-  return `CR-${transportTimestamp(snapshot)}-${h1}${h2.slice(0,4)}`;
+function assertTransportEnvelope(envelope,snapshot,m){
+  if(!envelope||typeof envelope!=='object')throw new Error('COLLECTOR_ENVELOPE_REQUIRED');
+  if(!snapshot||typeof snapshot!=='object')throw new Error('SCIENTIFIC_SNAPSHOT_REQUIRED');
+  if(typeof m.transportSessionIdentity!=='function')throw new Error('TRANSPORT_IDENTITY_API_MISSING');
+  const expected=m.transportSessionIdentity(snapshot),data=envelope.data_submission||{};
+  if(!TRANSPORT_SESSION_RE.test(String(envelope.session_id||'')))throw new Error('COLLECTOR_TRANSPORT_SESSION_INVALID');
+  if(envelope.session_id!==expected.session_id)throw new Error('COLLECTOR_TRANSPORT_SESSION_MISMATCH');
+  if(envelope.original_scientific_session_id!==snapshot.session_id||data.original_scientific_session_id!==snapshot.session_id)throw new Error('COLLECTOR_SCIENTIFIC_SESSION_MISMATCH');
+  if(envelope.transport_session_policy!==expected.transport_session_policy||data.transport_session_policy!==expected.transport_session_policy)throw new Error('COLLECTOR_TRANSPORT_POLICY_MISMATCH');
+  if(data.transport_session_id!==expected.session_id)throw new Error('COLLECTOR_DATA_TRANSPORT_SESSION_MISMATCH');
+  if(envelope.cognitive_snapshot!==snapshot&&JSON.stringify(envelope.cognitive_snapshot)!==JSON.stringify(snapshot))throw new Error('COLLECTOR_SNAPSHOT_IDENTITY_MISMATCH');
+  return envelope;
 }
 function augmentCognitiveApi(m){
   if(!m||m.__collector_transport_bridge_0813===true)return m;
   const baseEnvelope=m.collectorEnvelopeFromSnapshot;
-  if(typeof baseEnvelope!=='function'||typeof m.scientificSnapshot!=='function'||typeof m.checksumText!=='function')return m;
-  m.collectorTransportSessionId=snapshot=>collectorTransportSessionId(snapshot,m);
+  if(typeof baseEnvelope!=='function'||typeof m.scientificSnapshot!=='function'||typeof m.transportSessionIdentity!=='function')return m;
+  m.assertTransportEnvelope=(envelope,snapshot)=>assertTransportEnvelope(envelope,snapshot,m);
   m.collectorEnvelopeFromSnapshot=function(snapshot,options={}){
-    const envelope=baseEnvelope(snapshot,options);
-    const scientificSessionId=String(snapshot.session_id||'');
-    const transportSessionId=collectorTransportSessionId(snapshot,m);
-    envelope.session_id=transportSessionId;
-    envelope.data_submission={
-      ...(envelope.data_submission||{}),
-      original_scientific_session_id:scientificSessionId,
-      transport_session_policy:transportSessionId===scientificSessionId?'IDENTITY_SESSION_V1':'DETERMINISTIC_LEGACY_SESSION_BRIDGE_V1'
-    };
-    return envelope;
+    return assertTransportEnvelope(baseEnvelope(snapshot,options),snapshot,m);
   };
   m.exportSnapshot=function(state){
     const snapshot=m.scientificSnapshot(state);
@@ -114,12 +104,15 @@ function augmentCognitiveApi(m){
         super({...options,
           getSession:()=>{
             const session=originalGetSession();
-            if(!session)return session;
+            if(session&&!TRANSPORT_SESSION_RE.test(String(session.session_id||'')))throw new Error('COLLECTOR_SESSION_VIEW_INVALID');
+            return session;
+          },
+          exportSession:()=>{
             const exported=originalExportSession();
             if(!exported||!TRANSPORT_SESSION_RE.test(String(exported.session_id||'')))throw new Error('COLLECTOR_TRANSPORT_SESSION_INVALID');
-            return {...session,session_id:exported.session_id};
-          },
-          exportSession:originalExportSession
+            const snapshot=exported.cognitive_snapshot;
+            return assertTransportEnvelope(exported,snapshot,m);
+          }
         });
       }
     }
@@ -136,7 +129,7 @@ function installCognitiveBridge(){
 }
 installCognitiveBridge();
 
-const api={VERSION,FORBIDDEN,TRANSPORT_SESSION_RE,canonicalText,sha256Text,assertNoForbidden,countCodes,assertSchedules,assertActiveConfig,verifyBundle,transportTimestamp,collectorTransportSessionId,augmentCognitiveApi};
+const api={VERSION,FORBIDDEN,TRANSPORT_SESSION_RE,canonicalText,sha256Text,assertNoForbidden,countCodes,assertSchedules,assertActiveConfig,verifyBundle,assertTransportEnvelope,augmentCognitiveApi};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 global.CUBE_REV_PUBLIC_ASSET_VERIFIER_0813=api;
 })(typeof window!=='undefined'?window:globalThis);
