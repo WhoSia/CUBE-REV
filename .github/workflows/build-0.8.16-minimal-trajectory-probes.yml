@@ -1,0 +1,105 @@
+name: CUBE-REV 0.8.16 minimal trajectory probes
+on:
+  push:
+    branches: [cube-rev-0.8.16-minimal-trajectory-probes]
+  pull_request:
+    branches: [cube-rev-0.8.15-cognitive-mechanism-lattice]
+    paths:
+      - '.github/workflows/build-0.8.16-minimal-trajectory-probes.yml'
+      - 'analysis/minimal_trajectory_probes_0_8_16.py'
+      - 'analysis/external_trajectory_linkage_0_8_16.py'
+      - 'tests/minimal_trajectory_probes_0.8.16.test.py'
+      - 'research/CUBE_REV_0.8.16*'
+permissions:
+  contents: read
+jobs:
+  trajectory-probe-court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.16-minimal-trajectory-probes
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Syntax and protected-scope checks
+        shell: bash
+        run: |
+          python -m py_compile analysis/minimal_trajectory_probes_0_8_16.py
+          python -m py_compile analysis/external_trajectory_linkage_0_8_16.py
+          python -m py_compile tests/minimal_trajectory_probes_0.8.16.test.py
+          git fetch origin cube-rev-0.8.15-cognitive-mechanism-lattice
+          changed="$(git diff --name-only origin/cube-rev-0.8.15-cognitive-mechanism-lattice...HEAD)"
+          protected='^(index\.html|collector-config\.js|js/collector-client\.js|participant-cognitive-mode-.*\.html|cognitive/PARTICIPANT_STIMULUS_BANK_0\.8\.13\.json|cognitive/COGNITIVE_MODE_CONFIG_0\.8\.13\.json|factory/)'
+          if printf '%s\n' "$changed" | grep -E "$protected"; then
+            echo 'Protected participant, Collector, Factory, bank, config, or production file changed.' >&2
+            exit 1
+          fi
+          if printf '%s\n' "$changed" | grep -E '(^|/)\.cr0816_payload_|bootstrap_0_8_16|bootstrap-0\.8\.16'; then
+            echo 'Temporary bootstrap material remains in the research branch.' >&2
+            exit 1
+          fi
+      - name: Execute deterministic trajectory court twice
+        shell: bash
+        run: |
+          rm -rf /tmp/cr0816-a /tmp/cr0816-b artifacts/0.8.16
+          python analysis/minimal_trajectory_probes_0_8_16.py \
+            --bank cognitive/PARTICIPANT_STIMULUS_BANK_0.8.13.json \
+            --outdir /tmp/cr0816-a \
+            --family-count 6 \
+            --sessions-per-mechanism 360 \
+            --seed 8162026
+          python analysis/minimal_trajectory_probes_0_8_16.py \
+            --bank cognitive/PARTICIPANT_STIMULUS_BANK_0.8.13.json \
+            --outdir /tmp/cr0816-b \
+            --family-count 6 \
+            --sessions-per-mechanism 360 \
+            --seed 8162026
+          diff -ru /tmp/cr0816-a /tmp/cr0816-b
+          mkdir -p artifacts
+          mv /tmp/cr0816-a artifacts/0.8.16
+      - name: Execute external trajectory linkage court
+        run: |
+          python analysis/external_trajectory_linkage_0_8_16.py \
+            --out artifacts/0.8.16/CUBE_REV_0.8.16_EXTERNAL_LINKAGE_DRYRUN.json
+      - name: Run 0.8.16 and inherited 0.8.15 contracts
+        shell: bash
+        run: |
+          python tests/minimal_trajectory_probes_0.8.16.test.py \
+            --artifact-dir artifacts/0.8.16 \
+            --bank cognitive/PARTICIPANT_STIMULUS_BANK_0.8.13.json
+          python tests/mechanism_lattice_0.8.15.test.py
+      - name: Verify committed research contracts
+        shell: bash
+        run: |
+          cmp artifacts/0.8.16/CUBE_REV_0.8.16_TRAJECTORY_PROBE_REGISTRY.json research/CUBE_REV_0.8.16_TRAJECTORY_PROBE_REGISTRY.json
+          cmp artifacts/0.8.16/CUBE_REV_0.8.16_TRAJECTORY_SCHEDULES.json research/CUBE_REV_0.8.16_TRAJECTORY_SCHEDULES.json
+          cmp artifacts/0.8.16/CUBE_REV_0.8.16_CERTIFICATION_RESULT.json research/CUBE_REV_0.8.16_CERTIFICATION_RESULT.json
+          cmp artifacts/0.8.16/CUBE_REV_0.8.16_NONREACTIVE_TRAJECTORY_DESIGN.json research/CUBE_REV_0.8.16_NONREACTIVE_TRAJECTORY_DESIGN.json
+          cmp artifacts/0.8.16/CUBE_REV_0.8.16_EXTERNAL_TRAJECTORY_SOURCE_REGISTRY.json research/CUBE_REV_0.8.16_EXTERNAL_TRAJECTORY_SOURCE_REGISTRY.json
+          cmp artifacts/0.8.16/CUBE_REV_0.8.16_EXTERNAL_RECONSTRUCTION_FIXTURE_PACK.json research/CUBE_REV_0.8.16_EXTERNAL_RECONSTRUCTION_FIXTURE_PACK.json
+          cmp artifacts/0.8.16/CUBE_REV_0.8.16_EXTERNAL_RECONSTRUCTION_FIXTURE_AUDIT.json research/CUBE_REV_0.8.16_EXTERNAL_RECONSTRUCTION_FIXTURE_AUDIT.json
+          cmp artifacts/0.8.16/CUBE_REV_0.8.16_EXTERNAL_LINKAGE_DRYRUN.json research/CUBE_REV_0.8.16_EXTERNAL_LINKAGE_DRYRUN.json
+      - name: Seal complete self-excluding evidence inventory
+        shell: bash
+        run: |
+          cp research/CUBE_REV_0.8.16_VALIDATION_REPORT.md artifacts/0.8.16/
+          cp research/CUBE_REV_0.8.16_DECISION_PACKET.json artifacts/0.8.16/
+          cp research/CUBE_REV_0.8.16_EXTERNAL_DATA_NOTE.md artifacts/0.8.16/
+          cp research/CUBE_REV_0.8.16_EXTERNAL_TRAJECTORY_LINKAGE_CONTRACT.json artifacts/0.8.16/
+          cp research/CUBE_REV_0.8.16_RUNBOOK.md artifacts/0.8.16/
+          find artifacts/0.8.16 -type f ! -name ARTIFACT_SHA256SUMS.txt -print0 \
+            | sort -z \
+            | xargs -0 sha256sum > /tmp/CR0816_ARTIFACT_SHA256SUMS.txt
+          mv /tmp/CR0816_ARTIFACT_SHA256SUMS.txt artifacts/0.8.16/ARTIFACT_SHA256SUMS.txt
+          sha256sum -c artifacts/0.8.16/ARTIFACT_SHA256SUMS.txt
+          echo 'CR0816_MINIMAL_TRAJECTORY_CI_PASS'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cube-rev-0.8.16-minimal-trajectory-evidence
+          path: artifacts/0.8.16
+          retention-days: 14
+          if-no-files-found: error
