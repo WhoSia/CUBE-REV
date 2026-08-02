@@ -6,8 +6,10 @@
   "deployment_status": "NOT_CERTIFIED",
   "recovered_parent": {
     "research_version": "0.8.4",
-    "participant_ui_version": "0.7.22",
-    "public_main_baseline_commit": "fd639a511285806595ced2b4dc2a27f5725729c5"
+    "active_participant_ui_documented_version": "0.7.12",
+    "latest_immutable_snapshot_label": "0.7.22",
+    "public_main_baseline_commit": "fd639a511285806595ced2b4dc2a27f5725729c5",
+    "participant_0_8_x_on_main": false
   },
   "evidence_boundary": {
     "durable_0_8_4_artifacts_found": true,
