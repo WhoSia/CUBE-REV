@@ -1,0 +1,134 @@
+{
+  "project": "CUBE-REV",
+  "version": "0.8.12",
+  "title": "Active-session Multi-tab Write Serialization, Revision CAS & Response-loss Prevention Certification",
+  "branch": "cube-rev-0.8.12-active-session-cas",
+  "parent_branch": "cube-rev-0.8.11-atomic-migration-arbitration",
+  "pull_request": 11,
+  "decision": [
+    "PASS_ACTIVE_SESSION_REVISION_CAS",
+    "PASS_MULTI_TAB_RESPONSE_SERIALIZATION_SIMULATION",
+    "PASS_STALE_SCIENTIFIC_WRITE_REJECTION",
+    "PASS_TELEMETRY_MERGE_ON_LATEST",
+    "PASS_RESPONSE_CONFLICT_EVIDENCE",
+    "PASS_IMMUTABLE_SNAPSHOT_CONTINUITY",
+    "PASS_SUBMISSION_LEASE_ARBITRATION_SIMULATION",
+    "PASS_RESPONSE_LOSS_PREVENTION_MATRIX",
+    "HOLD_NATIVE_MULTI_WINDOW_BROWSER",
+    "HOLD_PAGEHIDE_DURABILITY",
+    "HOLD_LEASE_EXPIRY_NETWORK_AMBIGUITY",
+    "HOLD_LIVE_COLLECTOR",
+    "HOLD_LIVE_FACTORY",
+    "DEFAULT_CUTOVER_NO_GO"
+  ],
+  "final_materialized_head_before_report_seal": "1d308b4c7038e9af2ffcf0928cc94df44a45237b",
+  "executed_ci": {
+    "active_session_workflow_run": 30744215283,
+    "active_session_job": 91486924237,
+    "baseline_workflow_run": 30744215295,
+    "conclusion": "success",
+    "runner_os": "Ubuntu 24.04",
+    "node_version": "22.23.1",
+    "repository_permission": "contents_read",
+    "markers": [
+      "CR0812_ASSET_BUILD_PASS stimuli=28 choices=504",
+      "CR0812_ACTIVE_SESSION_CAS_PASS 28/28",
+      "CR0811_ATOMIC_MIGRATION_PASS 23/23",
+      "CR0810_MIGRATION_HASH_PIN_PASS 13/13",
+      "CR0809_PUBLIC_BANK_CERT_PASS 8/8",
+      "CR0808_IMMUTABLE_SNAPSHOT_PASS 8/8"
+    ]
+  },
+  "adversarial_iterations": [
+    {
+      "failed_workflow_run": 30743885314,
+      "failed_job": 91486012680,
+      "failure": "post_snapshot_response_input_was_sanitized_before_snapshot_authority_check",
+      "observed_error": "UNKNOWN_RESPONSE_FIELD:position",
+      "correction": "snapshot_authority_is_checked_before_response_or_post_task_input_parsing",
+      "retested": true
+    },
+    {
+      "failed_workflow_run": 30743944178,
+      "failed_job": 91486178687,
+      "failure": "test_accounting_expected_26_after_two_independent_gates_were_added",
+      "correction": "retain_both_gates_and_certify_28_of_28",
+      "retested": true
+    }
+  ],
+  "asset_binding": {
+    "canonicalization": "JSON_STRINGIFY_PARSED_OBJECT_V1",
+    "hash_algorithm": "SHA-256",
+    "manifest_sha256": "c9abbf5c1057bb0e02795fc0d3ab1095c9ce115943b1f89cb825ac8a9ed35af6",
+    "public_bank_sha256": "fc76841350cd8937e576c701995ff64bcfbc02f6f7b50977b8946f8299a712a8",
+    "public_config_sha256": "1d04467c3ad2390f2e9784973bd026c1b77b8a72919fedd09070ff048b6d0701",
+    "parent_manifest_sha256": "ef6a767d079fcf63c24f9cab4032ae2175beac3345ce91f89dc72d01b6155d7f",
+    "parent_public_bank_sha256": "77df943d6f5bb039ff2ed0761fa28866915bd1110dab1b27d6524a63cbea43e8",
+    "parent_public_config_sha256": "89c1aa968637a7e6431c8d765729349c53e6af97178e93bdaceeef9433f22adf",
+    "private_crosswalk_sha256": "90c54b51052fc27c436d8701797e5b2aa95e19ec28a7f63bbd50db41192748f0",
+    "public_bank_git_blob_sha": "e75d62cf98fc148bd2b8f1485e1731149e144f69"
+  },
+  "raw_generated_file_sha256": {
+    "cognitive_mode_config": "86a4cd5c3bb6c261ee9b27957521aaa43b56858f9a59ae5502533e2b863beac2",
+    "participant_stimulus_bank": "4ade0ebc0e2b197ad32bbe908fd9eed5af3dd1b7e0b980d89e6e9478d57d2d3",
+    "asset_pins_module": "325ea5c22388d60aca2d967ae0d275c62764e77f00d15f541b8af1809f21954f",
+    "asset_manifest": "accbb491d1556584ed72e9768d73535159c709695411c9ae33db7d83a4769a37"
+  },
+  "workflow_artifact": {
+    "run": 30744215283,
+    "artifact_id": 8832320785,
+    "name": "cube-rev-0.8.12-verified-assets",
+    "zip_sha256": "e610874e978c8955f1fa3d169943f4792bcd29168e5eca754cad400b2324f2dd",
+    "size_bytes": 12368,
+    "retention_days": 7
+  },
+  "active_session_contract": {
+    "state_schema": "CR0812-RESUME-STATE-1",
+    "storage_key": "cube-rev-cognitive-mode-0812-v1",
+    "lock_name": "cube-rev-session-write-0812-exclusive-v1",
+    "dispatcher": "REVISION_CAS_OPERATION_DISPATCHER_V1",
+    "revision_policy": "STRICT_MONOTONIC_INCREMENT_BY_ONE_V1",
+    "scientific_write_policy": "EXPECTED_REVISION_REQUIRED_V1",
+    "stale_write_policy": "REJECT_WITHOUT_STATE_MUTATION_V1",
+    "response_conflict_policy": "ONE_WINNER_QUARANTINE_LOSER_EVIDENCE_V1",
+    "telemetry_policy": "LOCKED_APPEND_MERGE_ON_LATEST_REVISION_V1",
+    "snapshot_policy": "IMMUTABLE_SCIENTIFIC_ENVELOPE_RETRY_STABLE_V2",
+    "submission_policy": "LEASE_TOKEN_SINGLE_NETWORK_OWNER_V1",
+    "collector_metadata_policy": "LEASE_AUTHORIZED_AUXILIARY_MERGE_V1",
+    "lease_timeout_ms": 120000,
+    "mutation_idempotency": true,
+    "exact_revision_increment": 1,
+    "source_0811_preserved": true,
+    "sealed_0811_reversioned": false,
+    "conflict_evidence_separate_from_scientific_state": true
+  },
+  "operation_types": [
+    "RESPONSE",
+    "TELEMETRY",
+    "POST_TASK",
+    "SEAL_SNAPSHOT",
+    "CLAIM_SUBMISSION",
+    "SUBMISSION_META",
+    "RELEASE_SUBMISSION",
+    "CONFIRM_SUBMISSION",
+    "REFRESH"
+  ],
+  "test_gate_count": 28,
+  "collector_contract": {
+    "version": "0.7.12",
+    "collector_config_modified": false,
+    "collector_client_modified": false
+  },
+  "limitations": [
+    "native_web_locks_multi_window_owner_walkthrough_not_executed",
+    "all_browser_suspension_private_mode_storage_eviction_and_process_kill_semantics_not_certified",
+    "pagehide_async_cas_completion_not_guaranteed_before_page_termination",
+    "expired_lease_cannot_cancel_an_already_issued_remote_request",
+    "duplicate_remote_delivery_after_lease_takeover_not_live_certified",
+    "hash_pinning_is_not_full_origin_authentication",
+    "no_live_collector_execution",
+    "no_live_factory_execution",
+    "no_production_default_entry_cutover"
+  ],
+  "next_boundary": "native_multi_window_browser_execution_lease_expiry_network_ambiguity_and_live_collector_factory_reconstruction"
+}

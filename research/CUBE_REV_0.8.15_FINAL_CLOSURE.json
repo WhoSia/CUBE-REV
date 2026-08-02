@@ -1,0 +1,86 @@
+{
+  "schema_version": "CR0815-FINAL-CLOSURE-1",
+  "project": "CUBE-REV",
+  "version": "0.8.15",
+  "title": "Cognitive Mechanism-axis Lattice, Strategy-transition Signatures & Identifiability-constrained Hypothesis Registry",
+  "closure_kind": "OFFLINE_COGNITIVE_MECHANISM_IDENTIFIABILITY_RESEARCH_CLOSURE",
+  "certified_implementation_head": "402e5cc7aca9180dcd51a3082f01a7093c6e3ca6",
+  "certification": {
+    "workflow_run": 30756837928,
+    "job": 91520342450,
+    "baseline_workflow_runs": [30756837638, 30756837916],
+    "workflow_conclusion": "success",
+    "baseline_conclusion": "success",
+    "evidence_artifact": {
+      "artifact_id": 8836194884,
+      "artifact_digest_sha256": "9790daf9ab31458cd8cf9bf6ca0f7fcf94db58cce2532f3985009786429a5178",
+      "compressed_bytes": 174707,
+      "retention_until": "2026-08-16"
+    },
+    "artifact_inventory": {
+      "self_excluding": true,
+      "listed_file_count": 9,
+      "independent_sha256sum_check": "PASS"
+    }
+  },
+  "execution": {
+    "seed": 8152026,
+    "stimulus_count": 28,
+    "schedule_count": 24,
+    "mechanism_count": 11,
+    "sessions_per_mechanism": 240,
+    "simulated_session_count": 2640,
+    "pairwise_split_repeats": 31,
+    "full_execution_repeated_byte_identically": true
+  },
+  "positive_controls": {
+    "greedy_h1_vs_lookahead_h3": {
+      "mean_balanced_accuracy": 1.0,
+      "classification": "IDENTIFIABLE"
+    },
+    "stationary_h1_vs_h1_to_h3_switch": {
+      "mean_balanced_accuracy": 1.0,
+      "classification": "IDENTIFIABLE"
+    }
+  },
+  "negative_controls": {
+    "open_loop_vs_closed_loop_identical_current_observables": {
+      "mean_balanced_accuracy": 0.5148,
+      "classification": "NON_IDENTIFIABLE"
+    },
+    "high_vs_low_capacity_identical_compensated_policy": {
+      "mean_balanced_accuracy": 0.5108,
+      "classification": "NON_IDENTIFIABLE"
+    }
+  },
+  "instrument_boundaries": {
+    "planning_horizon": "ELIGIBLE_FOR_LATER_HUMAN_ESTIMAND_DESIGN_NOT_A_HUMAN_FINDING",
+    "strategy_transition": "ELIGIBLE_ONLY_WITH_STATE_CONDITIONING_AND_ITEM_MIXTURE_CONTROLS",
+    "orientation_equivariance": "HOLD_SINGLE_ROTATIONAL_PAIR",
+    "chunk_boundary": "HOLD_MULTI_ACTION_TIMING_REQUIRED",
+    "recovery_monitoring": "HOLD_ERROR_AND_RECOVERY_TRAJECTORY_REQUIRED",
+    "visuospatial_capacity_trait": "PROHIBITED_FROM_CURRENT_FIRST_ACTION_TRACE",
+    "open_vs_closed_loop": "NON_IDENTIFIABLE_WITHOUT_INTERMEDIATE_TRAJECTORY",
+    "trialwise_confidence": "WITHHELD_MEASUREMENT_REACTIVITY_RISK"
+  },
+  "epistemic_rules": [
+    "BEHAVIORAL_SIGNATURE_FIRST_PSYCHOLOGICAL_LABEL_SECOND",
+    "SYNTHETIC_IDENTIFIABILITY_IS_NOT_HUMAN_MECHANISM_EVIDENCE",
+    "NEGATIVE_CONTROLS_MUST_REMAIN_NON_IDENTIFIABLE",
+    "NO_TRIALWISE_SELF_REPORT_ADDED_IN_0_8_15"
+  ],
+  "protected_scope": {
+    "participant_page_changed": false,
+    "stimulus_bank_changed": false,
+    "schedule_changed": false,
+    "collector_changed": false,
+    "production_entry_changed": false,
+    "human_data_generated": false
+  },
+  "research_version_status": "CLOSED_AUTOMATED_SCOPE",
+  "human_mechanism_inference": "NO_GO",
+  "participant_instrument_extension": "NO_GO_IN_0_8_15",
+  "automatic_merge_authorized": false,
+  "next_boundary": "minimal_nonreactive_multi_action_trajectory_rotational_family_and_recovery_opportunity_design",
+  "result": "PASS_0_8_15_IDENTIFIABILITY_LATTICE_CLOSED_WITH_HUMAN_INFERENCE_PROHIBITIONS"
+}
