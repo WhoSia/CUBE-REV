@@ -1,9 +1,9 @@
 {
   "schema_version": "CR0813-LIVE-COLLECTOR-FAILURE-1",
-  "trigger_sha": "906a1f8d2ab0f9100846a4a208c11f8ec1594dfd",
-  "workflow_run": 30746822986,
-  "failed_at": "2026-08-02T11:58:12.932Z",
+  "trigger_sha": "72597c2d8ddb5272f8f2a117d84f18cab018ac70",
+  "workflow_run": 30747094900,
+  "failed_at": "2026-08-02T12:05:37.199Z",
   "probe_status": 1,
   "endpoint_sha256": "f0af3748ba82a53fdf55578c06efa1b13eab155bcc65afcafc1c7eeac9b5b9b8",
-  "log_tail": "file:///home/runner/work/CUBE-REV/CUBE-REV/scripts/live_collector_probe_0_8_13.mjs:48\n    throw new Error(`RECEIPT_CONTRACT:${JSON.stringify(p)}`);\n          ^\n\nError: RECEIPT_CONTRACT:{\"type\":\"CUBE_REV_COLLECTOR_ACK\",\"ok\":false,\"status\":\"error\",\"submission_nonce\":\"0813a0000000000000000001\",\"session_id\":\"CR-20260802110000-0813a0b0c0d0\",\"file_name\":null,\"received_at\":\"2026-08-02T11:58:11.731Z\",\"receipt_code\":null,\"confirmation_source\":\"doPost_error\",\"checksum_fnv1a32\":null,\"error\":\"This is not a CUBE-REV result file.\"}\n    at receipt (file:///home/runner/work/CUBE-REV/CUBE-REV/scripts/live_collector_probe_0_8_13.mjs:48:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///home/runner/work/CUBE-REV/CUBE-REV/scripts/live_collector_probe_0_8_13.mjs:56:31\n\nNode.js v22.23.1\n"
+  "log_tail": "file:///home/runner/work/CUBE-REV/CUBE-REV/scripts/live_collector_probe_0_8_13.mjs:68\n    throw new Error(`RECEIPT_CONTRACT:${JSON.stringify(p)}`);\n          ^\n\nError: RECEIPT_CONTRACT:{\"type\":\"CUBE_REV_COLLECTOR_ACK\",\"ok\":false,\"status\":\"error\",\"submission_nonce\":\"0813a0000000000000000001\",\"session_id\":\"CR-20260802110000-0813a0b0c0d0\",\"file_name\":null,\"received_at\":\"2026-08-02T12:05:36.157Z\",\"receipt_code\":null,\"confirmation_source\":\"doPost_error\",\"checksum_fnv1a32\":null,\"error\":\"The result file does not contain a trials array.\"}\n    at receipt (file:///home/runner/work/CUBE-REV/CUBE-REV/scripts/live_collector_probe_0_8_13.mjs:68:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///home/runner/work/CUBE-REV/CUBE-REV/scripts/live_collector_probe_0_8_13.mjs:76:31\n\nNode.js v22.23.1\n"
 }
