@@ -1,11 +1,12 @@
 import {chromium,firefox,webkit,devices} from 'playwright';
 import {spawn} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT=path.resolve(path.dirname(new URL(import.meta.url).pathname),'..');
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const PORT=8140;
-const URL=`http://127.0.0.1:${PORT}/participant-cognitive-mode-0.8.13.html?test_mode=1&staging=0814`;
+const ROUTE_URL=`http://127.0.0.1:${PORT}/participant-cognitive-mode-0.8.13.html?test_mode=1&staging=0814`;
 const engines={chromium,firefox,webkit};
 const cells=[
   {id:'chromium-desktop',engine:'chromium',context:{viewport:{width:1365,height:900},locale:'ko-KR'}},
@@ -27,7 +28,7 @@ async function runCell(cell){
   const [a,b]=await Promise.all([context.newPage(),context.newPage()]);
   for(const [label,p] of [['a',a],['b',b]]){p.on('pageerror',e=>errors.push({label,type:'pageerror',text:String(e.message||e)}));p.on('console',m=>{if(m.type()==='error')errors.push({label,type:'console',text:m.text()})})}
   try{
-    await Promise.all([a.goto(URL,{waitUntil:'domcontentloaded'}),b.goto(URL,{waitUntil:'domcontentloaded'})]);
+    await Promise.all([a.goto(ROUTE_URL,{waitUntil:'domcontentloaded'}),b.goto(ROUTE_URL,{waitUntil:'domcontentloaded'})]);
     await Promise.all([a.click('#begin'),b.click('#begin')]);
     await Promise.all([a.waitForFunction(()=>!!window.CUBE_REV_0813_TEST_HOOKS),b.waitForFunction(()=>!!window.CUBE_REV_0813_TEST_HOOKS)]);
     const capabilities=await a.evaluate(()=>({
