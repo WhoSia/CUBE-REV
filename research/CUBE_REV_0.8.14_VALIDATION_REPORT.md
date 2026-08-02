@@ -309,10 +309,10 @@ Staging identities:
 
 | Field | Value |
 |---|---|
-| candidate files | 21 |
-| candidate fingerprint SHA-256 | `254b6d327c3d4713d0b2b923fc2bcdaebe4a0c5b1ffbb7407de9cabecb4e2c59` |
-| staging ZIP SHA-256 | `0dba4a7f5b36a93084e327fc4b462cbfb760b14fed64d65b5093e7c6d42980bc` |
-| staging ZIP bytes | 66,618 |
+| candidate files | 22 |
+| candidate fingerprint SHA-256 | `0b8ae0679a6033b8cd4862ef6de81fe2f1ee8fde8b7bfd1ff3dee7616722fc32` |
+| staging ZIP SHA-256 | `80db6740754297b51b87c6542a4ef6d5f3958f5da2c0e4ce65989a1768c78520` |
+| staging ZIP bytes | 68,054 |
 | production default entry modified | no |
 | Collector config/client modified | no |
 | automatic deployment authorized | no |
@@ -325,6 +325,7 @@ The candidate includes:
 - the 0.8.13 scientific runtime and pinned assets;
 - the archival Factory bridge;
 - the 0.8.13 erratum and archival evidence record;
+- the governing 0.8.14 Chromium-only browser support policy;
 - staging provenance and rollback plan.
 
 Result:

@@ -296,10 +296,10 @@ python scripts/build_staging_candidate_0_8_14.py
 Certified candidate:
 
 ```text
-file count        21
-fingerprint       254b6d327c3d4713d0b2b923fc2bcdaebe4a0c5b1ffbb7407de9cabecb4e2c59
-ZIP SHA-256       0dba4a7f5b36a93084e327fc4b462cbfb760b14fed64d65b5093e7c6d42980bc
-ZIP bytes         66618
+file count        22
+fingerprint       0b8ae0679a6033b8cd4862ef6de81fe2f1ee8fde8b7bfd1ff3dee7616722fc32
+ZIP SHA-256       80db6740754297b51b87c6542a4ef6d5f3958f5da2c0e4ce65989a1768c78520
+ZIP bytes         68054
 ```
 
 The ZIP packages the generated staging route as its internal `index.html`; it does not modify the repository production entry.
