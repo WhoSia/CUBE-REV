@@ -1,0 +1,134 @@
+{
+  "automatic_merge_authorized": false,
+  "decision": {
+    "cognitive_mechanism_transfer": "NO_GO",
+    "distributional_ecological_alignment": "HOLD",
+    "external_snapshot_grade": "VERSIONED_SMALL_FIXTURE",
+    "local_motif_support": "PASS",
+    "overall_ecological_probe_transfer": "PARTIAL_LOCAL_SUPPORT_ONLY",
+    "timing_transfer": "HOLD"
+  },
+  "matched_scramble_audits": [
+    {
+      "action_token_lengths": [
+        41,
+        45
+      ],
+      "normalized_token_edit_distance": 0.466667,
+      "relation_edit_distance": 0.155556,
+      "route_a": "R002",
+      "route_b": "R003",
+      "route_nonunique": true,
+      "same_reported_time": true,
+      "scramble_sha256": "b3681a79f80a97563b9936c2d5c7a74988a83de144f1de35d598eb1a471100d9",
+      "stage_counts": [
+        5,
+        5
+      ],
+      "token_lcs_ratio": 0.6
+    }
+  ],
+  "official_decision": [
+    "PASS_VERSIONED_SMALL_EXTERNAL_SNAPSHOT",
+    "PASS_ROUTE_GRAMMAR_NORMALIZATION",
+    "PASS_LOCAL_MOTIF_SUPPORT",
+    "PASS_MATCHED_SCRAMBLE_ROUTE_NONUNIQUENESS",
+    "HOLD_DISTRIBUTIONAL_ECOLOGICAL_ALIGNMENT",
+    "HOLD_PER_MOVE_TIMING_TRANSFER",
+    "HOLD_WCA_BULK_MATERIALIZATION",
+    "HOLD_PUBLIC_RECONSTRUCTION_BULK_INGESTION",
+    "HOLD_SMART_CUBE_CONSENTED_COHORT",
+    "NO_GO_COGNITIVE_MECHANISM_TRANSFER",
+    "NO_PARTICIPANT_DEPLOYMENT"
+  ],
+  "probe_transfer": {
+    "js_divergence_bigram": 0.501325,
+    "js_divergence_trigram": 0.927702,
+    "latency_transfer": "NOT_ESTIMABLE_PUBLIC_RECONSTRUCTIONS_LACK_PER_MOVE_TIMESTAMPS",
+    "puzzle_transfer": "LOCAL_ROTATION_INVARIANT_MOVE_GRAMMAR_ONLY_3X3_TO_2X2",
+    "relation_bigram_coverage_all_windows": {
+      "missing": [
+        "OPPOSITE|OPPOSITE"
+      ],
+      "unique_coverage": 0.833333,
+      "unique_observed": 5,
+      "unique_total": 6,
+      "weighted_coverage": 0.97619
+    },
+    "relation_bigram_coverage_within_stage": {
+      "missing": [
+        "OPPOSITE|OPPOSITE"
+      ],
+      "unique_coverage": 0.833333,
+      "unique_observed": 5,
+      "unique_total": 6,
+      "weighted_coverage": 0.97619
+    },
+    "relation_trigram_coverage_all_windows": {
+      "missing": [
+        "START|OPPOSITE|OPPOSITE"
+      ],
+      "unique_coverage": 0.666667,
+      "unique_observed": 2,
+      "unique_total": 3,
+      "weighted_coverage": 0.916667
+    },
+    "relation_trigram_coverage_within_stage": {
+      "missing": [
+        "START|OPPOSITE|OPPOSITE"
+      ],
+      "unique_coverage": 0.666667,
+      "unique_observed": 2,
+      "unique_total": 3,
+      "weighted_coverage": 0.916667
+    }
+  },
+  "protected_scope": {
+    "collector_changed": false,
+    "factory_changed": false,
+    "human_data_generated": false,
+    "participant_page_changed": false,
+    "production_entry_changed": false,
+    "stimulus_bank_changed": false
+  },
+  "route_accounting": {
+    "action_token_count": 466,
+    "all_token_count": 492,
+    "in_solve_rotation_count": 26,
+    "slice_move_count": 14,
+    "stage_count": 61,
+    "wide_move_count": 42
+  },
+  "schema_version": "CR0817-DECISION-PACKET-1",
+  "snapshot": {
+    "date_range": [
+      "1982-06-05",
+      "2026-04-26"
+    ],
+    "fixture_sha256": "37de3da04670e102c0e9f6497bc71863637b7636def56d0d441088c64e416a33",
+    "method_labels_source_only": {
+      "CFOP": 7,
+      "Corners-first": 1,
+      "ZB": 3
+    },
+    "official_route_count": 10,
+    "route_count": 11,
+    "wca_export_pin": {
+      "export_date": "2026-08-02T16:15:23+00:00",
+      "export_format_version": "2.0.2",
+      "full_archive_materialized": false,
+      "reported_size_mb": 352,
+      "role": "REMOTE_VERSION_PIN_AND_OFFICIAL_RESULT_SCRAMBLE_SCHEMA_ANCHOR",
+      "source": "https://www.worldcubeassociation.org/export/results",
+      "tsv_filename": "WCA_export_v2_214_20260802T000025Z.tsv.zip"
+    }
+  },
+  "stm_conformance": {
+    "conclusion": "PASS_EXACT_REPORTED_STM_CONFORMANCE",
+    "exact_match_count": 10,
+    "mismatch_route_ids": [],
+    "reported_route_count": 10
+  },
+  "title": "Versioned External Trajectory Snapshot, Route-grammar Estimands & Ecological Probe-transfer Certification",
+  "version": "CUBE-REV 0.8.17"
+}
