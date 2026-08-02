@@ -1,0 +1,65 @@
+{
+  "schema_version": "CR0816-EXTERNAL-TRAJECTORY-LINKAGE-CONTRACT-1",
+  "version": "CUBE-REV 0.8.16",
+  "units": {
+    "wca_attempt": [
+      "competition_id",
+      "event_id",
+      "round_type_id",
+      "attempt_number",
+      "result_centiseconds",
+      "scramble",
+      "date",
+      "public_person_key"
+    ],
+    "public_reconstruction": [
+      "source_id",
+      "puzzle",
+      "result_centiseconds",
+      "scramble",
+      "date",
+      "competition_label",
+      "public_solver_label",
+      "stage_labels",
+      "move_tokens"
+    ],
+    "smart_cube_solve": [
+      "owner_export_id",
+      "scramble",
+      "result_ms",
+      "move_tokens",
+      "move_timestamps_ms",
+      "device_metadata",
+      "consent_receipt"
+    ]
+  },
+  "exact_linkage_key": [
+    "event_id",
+    "result_centiseconds",
+    "normalized_scramble_sha256",
+    "date"
+  ],
+  "adjudication": {
+    "one_candidate": "EXACT_UNIQUE",
+    "multiple_candidates": "AMBIGUOUS_MULTIPLE",
+    "zero_candidates": "UNLINKED"
+  },
+  "custody_requirements": [
+    "versioned source snapshot",
+    "retrieval timestamp",
+    "raw SHA-256",
+    "parser version",
+    "source attribution",
+    "immutable raw copy",
+    "derived-table manifest"
+  ],
+  "identity_policy": "PUBLIC_IDENTITY_FOR_ATTRIBUTION_AND_LINKAGE_ONLY",
+  "forbidden_inferences": [
+    "named-solver working-memory capacity",
+    "named-solver conscious planning depth",
+    "named-solver metacognitive confidence",
+    "named-solver cognitive superiority from solve time or route alone"
+  ],
+  "bulk_ingestion": "HOLD",
+  "result": "PASS_SCHEMA_CONTRACT_ONLY"
+}
