@@ -50,6 +50,7 @@ jobs:
           cmp /tmp/cr0814-route/participant_route_build_manifest.json artifacts/0.8.14/participant_route_build_manifest.json
           grep -F 'CUBE-REV 0.8.14' participant-cognitive-mode-0.8.14.html
           grep -F 'FIREFOX_CROSS_TAB_STORAGE_COHERENCE_UNCERTIFIED' unsupported-browser-0.8.14.html
+          grep -F 'DESKTOP_WEBKIT_CROSS_TAB_STORAGE_COHERENCE_UNCERTIFIED' unsupported-browser-0.8.14.html
       - name: Reconstruct archival live and final-runtime candidate bytes
         shell: bash
         run: |
@@ -85,7 +86,11 @@ jobs:
           assert d['staging_candidate_available'] is True
           assert d['production_cutover']=='NO_GO'
           assert d['gates']['evidence_lineage_reconciliation'] is True
+          assert d['gates']['chromium_active_execution_automated'] is True
+          assert d['gates']['ios_webkit_emulation_active_execution_automated'] is True
           assert d['gates']['firefox_fail_closed_policy'] is True
+          assert d['gates']['desktop_webkit_fail_closed_policy'] is True
+          assert d['gates']['active_profile_race_repetition'] is True
           assert set(d['blocking_gates'])=={'exact_stored_raw_custody_replay','physical_device_walkthrough','owner_acceptance_walkthrough'}
           print('CR0814_EXPECTED_NO_GO_BOUNDARY_PASS')
           PY
