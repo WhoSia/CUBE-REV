@@ -42,7 +42,7 @@ jobs:
           node --check js/participant-cognitive-mode-0.8.13.js
           node --check js/active-session-cas-0.8.13.js
           node --check tests/native_multi_window_0.8.13.spec.js
-          python -m py_compile factory/cognitive_snapshot_adapter_0_8_13.py tests/factory_reconstruction_0.8.13.py
+          python -m py_compile factory/cognitive_snapshot_adapter_0_8_13.py tests/factory_reconstruction_0.8.13.py tests/transport_session_bridge_0.8.13.py
           node - <<'NODE'
           const fs=require('fs');
           const html=fs.readFileSync('participant-cognitive-mode-0.8.13.html','utf8');
@@ -66,6 +66,7 @@ jobs:
       - name: Execute Factory reconstruction
         run: |
           node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.13/live_synthetic_snapshot.json
+          python tests/transport_session_bridge_0.8.13.py
           python factory/cognitive_snapshot_adapter_0_8_13.py artifacts/0.8.13/native_snapshot.json --outdir artifacts/0.8.13/native_factory
           python factory/cognitive_snapshot_adapter_0_8_13.py artifacts/0.8.13/live_synthetic_snapshot.json --outdir artifacts/0.8.13/synthetic_factory
           python tests/factory_reconstruction_0.8.13.py
@@ -93,8 +94,9 @@ jobs:
           sha256sum cognitive/PARTICIPANT_STIMULUS_BANK_0.8.13.json cognitive/COGNITIVE_MODE_CONFIG_0.8.13.json research/CUBE_REV_0.8.13_ASSET_MANIFEST.json js/asset-pins-0.8.13.js > artifacts/0.8.13/GENERATED_SHA256SUMS.txt
           echo 'CR0813_NATIVE_FACTORY_CI_PASS'
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: cube-rev-0.8.13-native-browser-factory-evidence
           path: artifacts/0.8.13
           retention-days: 14
-          if-no-files-found: error
+          if-no-files-found: warn
