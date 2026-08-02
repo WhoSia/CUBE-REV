@@ -1,0 +1,57 @@
+{
+  "schema_version": "CR0813-LIVE-COLLECTOR-EVIDENCE-1",
+  "started_at": "2026-08-02T12:11:49.192Z",
+  "completed_at": "2026-08-02T12:11:50.771Z",
+  "endpoint_origin": "https://script.google.com",
+  "endpoint_sha256": "f0af3748ba82a53fdf55578c06efa1b13eab155bcc65afcafc1c7eeac9b5b9b8",
+  "health": {
+    "ok": true,
+    "collector_id": "CUBE-REV-0712-MAIN",
+    "protocol_version": "receipt-v2",
+    "expected_version": "0.7.12",
+    "deployment_id": null,
+    "receipt_confirmation_available": true
+  },
+  "collector_envelope": {
+    "schema_version": "CR0813-COLLECTOR-COMPATIBILITY-ENVELOPE-1",
+    "project": "CUBE-REV",
+    "version": "0.7.12",
+    "session_id": "CR-20260802110000-0813a0b0c0d0",
+    "trial_count": 28,
+    "sha256": "6aa9d1e38c88786f1962a5878f87377a4a5fe1e99222a1b9e8c9c285111118e3",
+    "checksum_fnv1a32": "f795cd8e",
+    "bytes": 21227
+  },
+  "snapshot": {
+    "session_id": "CR-20260802110000-0813a0b0c0d0",
+    "schema_version": "CR0813-COLLECTOR-PAYLOAD-1",
+    "version": "CUBE-REV 0.8.13",
+    "response_count": 28,
+    "sha256": "446ab20ec570140f810bcbe91660b089585f1416db5b29852f7bf6946881e2ba"
+  },
+  "deliveries": [
+    {
+      "nonce": "0813a0000000000000000001",
+      "status": "duplicate",
+      "receipt_code": "CR0712-RCP-1C74B563",
+      "file_name": "CR-20260802110000-0813a0b0c0d0.json",
+      "polls": 1
+    },
+    {
+      "nonce": "0813b0000000000000000002",
+      "status": "duplicate",
+      "receipt_code": "CR0712-RCP-953ECF13",
+      "file_name": "CR-20260802110000-0813a0b0c0d0.json",
+      "polls": 1
+    }
+  ],
+  "result": "PASS_LIVE_COLLECTOR_TWO_NONCE_DEDUP",
+  "trigger_sha": "70e68aa2a768972d31882e0f1c2a483cfd9ca9bc",
+  "workflow_run": 30747246961,
+  "synthetic_exclusion": {
+    "exclude_from_human_cohort": true,
+    "participant_token_marker": "DO-NOT-ANALYZE",
+    "telemetry_marker": true
+  },
+  "custody_note": "Restored byte-for-byte from the successful workflow evidence captured before an unintended PR-wide workflow retrigger replaced it with an orchestration-only empty failure record."
+}
