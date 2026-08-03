@@ -107,7 +107,7 @@ jobs:
           assert cert['all_conditions_pass'] is True
           assert cert['decision']['public_licensed_timestamp_fixture']=='PASS'
           assert cert['decision']['research_consented_human_fixture']=='HOLD'
-          assert cert['decision']['cognitive_mechanism_transfer']=='NO_GO'
+          assert cert['decision']['human_cognitive_mechanism_transfer']=='NO_GO'
           assert gap['support_gap_conclusion']=='FULL_ALIGNMENT_IMPOSSIBLE_BY_REWEIGHTING_ONLY'
           assert rw['latency_js_after'] < rw['latency_js_before']
           assert rw['full_alignment'].startswith('HOLD_')
