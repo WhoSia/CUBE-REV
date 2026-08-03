@@ -1,0 +1,28 @@
+{
+  "all_conditions_pass": true,
+  "conditions": {
+    "all_fixture_timestamps_qc": true,
+    "bounded_reweighting_reduces_js": true,
+    "domain_gap_detected": true,
+    "full_alignment_not_overclaimed": true,
+    "negative_control_court": true,
+    "packet_loss_not_overclaimed": true,
+    "software_license_not_misrepresented_as_research_consent": true,
+    "support_gap_explicit": true,
+    "three_public_fixture_streams": true
+  },
+  "decision": {
+    "constrained_reweighting": "PASS",
+    "full_temporal_ecological_alignment": "HOLD",
+    "human_cognitive_mechanism_transfer": "NO_GO",
+    "packet_loss_certification": "HOLD",
+    "participant_deployment": "NO_GO",
+    "public_licensed_timestamp_fixture": "PASS",
+    "research_consented_human_fixture": "HOLD",
+    "temporal_domain_gap_detection": "PASS",
+    "timestamp_qc_and_corruption_court": "PASS"
+  },
+  "result": "PASS_AUTOMATED_TEMPORAL_CALIBRATION_WITH_CONSENT_AND_ALIGNMENT_HOLDS",
+  "schema_version": "CR0818-CERTIFICATION-RESULT-1",
+  "version": "CUBE-REV 0.8.18"
+}

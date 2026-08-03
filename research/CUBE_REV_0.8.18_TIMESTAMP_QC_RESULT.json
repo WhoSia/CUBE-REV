@@ -1,0 +1,254 @@
+{
+  "derived_logical_turn_count": 143,
+  "evidence_grade": "PUBLICLY_LICENSED_SOFTWARE_TEST_FIXTURE_NOT_RESEARCH_CONSENT",
+  "fixture_audits": [
+    {
+      "audit": {
+        "duplicate_same_timestamp_move_count": 0,
+        "errors": [],
+        "event_count": 66,
+        "intermove_count": 65,
+        "pause_candidate_gt1000ms_count": 0,
+        "sequence_counter_checked": false,
+        "status": "PASS",
+        "strict_timestamp_monotonicity": true,
+        "very_fast_lt20ms_count": 0,
+        "warnings": []
+      },
+      "derived_logical_turn_count": 61,
+      "device_family": "Rubiks Connected",
+      "double_turn_compression_is_derived_not_raw_rewrite": true,
+      "duration_ms": 14362.0,
+      "first_move_latency_ms": 531.0,
+      "fixture_id": "PUB-STIF-RC-3X3-001",
+      "intermove_summary_ms": {
+        "maximum": 810.0,
+        "mean": 212.7846153846154,
+        "median": 151.0,
+        "minimum": 42.0,
+        "p10": 67.0,
+        "p25": 92.0,
+        "p75": 270.0,
+        "p90": 499.40000000000003
+      },
+      "puzzle": "3x3x3",
+      "raw_event_count": 66,
+      "upstream_adaptive_compression_window_ms": 217.6060606060606
+    },
+    {
+      "audit": {
+        "duplicate_same_timestamp_move_count": 0,
+        "errors": [],
+        "event_count": 29,
+        "intermove_count": 28,
+        "pause_candidate_gt1000ms_count": 1,
+        "sequence_counter_checked": false,
+        "status": "PASS",
+        "strict_timestamp_monotonicity": true,
+        "very_fast_lt20ms_count": 0,
+        "warnings": [
+          "PAUSE_CANDIDATE_GT1000MS:14"
+        ]
+      },
+      "derived_logical_turn_count": 22,
+      "device_family": "Particula",
+      "double_turn_compression_is_derived_not_raw_rewrite": true,
+      "duration_ms": 7217.0,
+      "first_move_latency_ms": 196.0,
+      "fixture_id": "PUB-STIF-PARTICULA-2X2-001",
+      "intermove_summary_ms": {
+        "maximum": 1440.0,
+        "mean": 250.75,
+        "median": 143.5,
+        "minimum": 30.0,
+        "p10": 57.8,
+        "p25": 92.5,
+        "p75": 240.75,
+        "p90": 577.0
+      },
+      "puzzle": "2x2x2",
+      "raw_event_count": 29,
+      "upstream_adaptive_compression_window_ms": 248.86206896551724
+    },
+    {
+      "audit": {
+        "duplicate_same_timestamp_move_count": 0,
+        "errors": [],
+        "event_count": 69,
+        "intermove_count": 68,
+        "pause_candidate_gt1000ms_count": 0,
+        "sequence_counter_checked": false,
+        "status": "PASS",
+        "strict_timestamp_monotonicity": true,
+        "very_fast_lt20ms_count": 0,
+        "warnings": []
+      },
+      "derived_logical_turn_count": 60,
+      "device_family": "Particula",
+      "double_turn_compression_is_derived_not_raw_rewrite": true,
+      "duration_ms": 11653.0,
+      "first_move_latency_ms": 298.0,
+      "fixture_id": "PUB-STIF-PARTICULA-3X3-001",
+      "intermove_summary_ms": {
+        "maximum": 809.0,
+        "mean": 166.98529411764707,
+        "median": 117.0,
+        "minimum": 30.0,
+        "p10": 54.8,
+        "p25": 82.5,
+        "p75": 169.0,
+        "p90": 283.9000000000002
+      },
+      "puzzle": "3x3x3",
+      "raw_event_count": 69,
+      "upstream_adaptive_compression_window_ms": 168.8840579710145
+    }
+  ],
+  "fixture_count": 3,
+  "negative_control_court": {
+    "cases": {
+      "clock_regression": {
+        "audit": {
+          "duplicate_same_timestamp_move_count": 0,
+          "errors": [
+            "NON_MONOTONIC_TIMESTAMP:10"
+          ],
+          "event_count": 29,
+          "intermove_count": 28,
+          "pause_candidate_gt1000ms_count": 1,
+          "sequence_counter_checked": false,
+          "status": "FAIL",
+          "strict_timestamp_monotonicity": false,
+          "very_fast_lt20ms_count": 1,
+          "warnings": [
+            "IMPLAUSIBLE_BURST_LT20MS:10",
+            "PAUSE_CANDIDATE_GT1000MS:14"
+          ]
+        },
+        "expected": "FAIL"
+      },
+      "dropped_event_with_counter": {
+        "audit": {
+          "duplicate_same_timestamp_move_count": 0,
+          "errors": [
+            "SEQUENCE_GAP:6->8"
+          ],
+          "event_count": 28,
+          "intermove_count": 27,
+          "pause_candidate_gt1000ms_count": 1,
+          "sequence_counter_checked": true,
+          "status": "FAIL",
+          "strict_timestamp_monotonicity": true,
+          "very_fast_lt20ms_count": 0,
+          "warnings": [
+            "PAUSE_CANDIDATE_GT1000MS:13"
+          ]
+        },
+        "expected": "FAIL"
+      },
+      "dropped_event_without_counter": {
+        "audit": {
+          "duplicate_same_timestamp_move_count": 0,
+          "errors": [],
+          "event_count": 28,
+          "intermove_count": 27,
+          "pause_candidate_gt1000ms_count": 1,
+          "sequence_counter_checked": false,
+          "status": "PASS",
+          "strict_timestamp_monotonicity": true,
+          "very_fast_lt20ms_count": 0,
+          "warnings": [
+            "PAUSE_CANDIDATE_GT1000MS:13"
+          ]
+        },
+        "conclusion": "PASSING_STRUCTURE_DOES_NOT_PROVE_NO_PACKET_LOSS",
+        "expected": "UNDETECTABLE"
+      },
+      "implausible_sub20ms_burst": {
+        "audit": {
+          "duplicate_same_timestamp_move_count": 0,
+          "errors": [],
+          "event_count": 29,
+          "intermove_count": 28,
+          "pause_candidate_gt1000ms_count": 1,
+          "sequence_counter_checked": false,
+          "status": "PASS",
+          "strict_timestamp_monotonicity": true,
+          "very_fast_lt20ms_count": 1,
+          "warnings": [
+            "IMPLAUSIBLE_BURST_LT20MS:4",
+            "PAUSE_CANDIDATE_GT1000MS:14"
+          ]
+        },
+        "expected": "PASS_WITH_WARNING"
+      },
+      "reordered_events": {
+        "audit": {
+          "duplicate_same_timestamp_move_count": 0,
+          "errors": [
+            "NON_MONOTONIC_TIMESTAMP:6"
+          ],
+          "event_count": 29,
+          "intermove_count": 28,
+          "pause_candidate_gt1000ms_count": 1,
+          "sequence_counter_checked": false,
+          "status": "FAIL",
+          "strict_timestamp_monotonicity": false,
+          "very_fast_lt20ms_count": 1,
+          "warnings": [
+            "IMPLAUSIBLE_BURST_LT20MS:6",
+            "PAUSE_CANDIDATE_GT1000MS:14"
+          ]
+        },
+        "expected": "FAIL"
+      },
+      "unsupported_move": {
+        "audit": {
+          "duplicate_same_timestamp_move_count": 0,
+          "errors": [
+            "UNSUPPORTED_MOVE:Q"
+          ],
+          "event_count": 29,
+          "intermove_count": 28,
+          "pause_candidate_gt1000ms_count": 1,
+          "sequence_counter_checked": false,
+          "status": "FAIL",
+          "strict_timestamp_monotonicity": true,
+          "very_fast_lt20ms_count": 0,
+          "warnings": [
+            "PAUSE_CANDIDATE_GT1000MS:14"
+          ]
+        },
+        "expected": "FAIL"
+      },
+      "zero_delta": {
+        "audit": {
+          "duplicate_same_timestamp_move_count": 0,
+          "errors": [
+            "NON_MONOTONIC_TIMESTAMP:10"
+          ],
+          "event_count": 29,
+          "intermove_count": 28,
+          "pause_candidate_gt1000ms_count": 1,
+          "sequence_counter_checked": false,
+          "status": "FAIL",
+          "strict_timestamp_monotonicity": false,
+          "very_fast_lt20ms_count": 1,
+          "warnings": [
+            "IMPLAUSIBLE_BURST_LT20MS:10",
+            "PAUSE_CANDIDATE_GT1000MS:14"
+          ]
+        },
+        "expected": "FAIL"
+      }
+    },
+    "result": "PASS_NEGATIVE_CONTROL_COURT"
+  },
+  "packet_loss_certification": "HOLD_PUBLIC_REPLAY_HAS_NO_DEVICE_SEQUENCE_COUNTER",
+  "raw_event_count": 164,
+  "research_consent": "HOLD_SOFTWARE_LICENSE_IS_NOT_RESEARCH_CONSENT",
+  "result": "PASS_PUBLIC_LICENSED_TIMESTAMP_FIXTURE_QC_WITH_CONSENT_AND_PACKET_LOSS_HOLDS",
+  "schema_version": "CR0818-TIMESTAMP-QC-RESULT-1",
+  "state_continuity_certification": "HOLD_PUBLIC_REPLAY_HAS_NO_INITIAL_STATE_OR_RAW_PACKET_STREAM",
+  "version": "CUBE-REV 0.8.18"
+}

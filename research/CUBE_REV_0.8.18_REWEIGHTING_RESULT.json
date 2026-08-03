@@ -1,0 +1,125 @@
+{
+  "algorithm": {
+    "iterations": 50,
+    "per_mechanism_total_preserved": true,
+    "target": "PRIMARY_2X2_INTERMOVE_HISTOGRAM",
+    "type": "BOUNDED_ITERATIVE_RAKING",
+    "weight_bounds": [
+      0.2,
+      5.0
+    ]
+  },
+  "full_alignment": "HOLD_SUPPORT_GAP_AND_SINGLE_PUBLIC_2X2_FIXTURE",
+  "latency_js_after": 0.2543315080057306,
+  "latency_js_before": 0.2926737239063117,
+  "mechanism_weight_audit": [
+    {
+      "effective_sample_size": 119.21379879292358,
+      "ess_fraction": 0.3311494410914544,
+      "maximum_weight": 5.0,
+      "mechanism": "closed_loop_replan",
+      "minimum_weight": 0.2,
+      "row_count": 360,
+      "weight_sum": 360.0
+    },
+    {
+      "effective_sample_size": 224.7180190932266,
+      "ess_fraction": 0.6242167197034072,
+      "maximum_weight": 5.0,
+      "mechanism": "latent_open_a",
+      "minimum_weight": 0.2,
+      "row_count": 360,
+      "weight_sum": 360.00000000000006
+    },
+    {
+      "effective_sample_size": 224.33779993998718,
+      "ess_fraction": 0.6231605553888533,
+      "maximum_weight": 2.4377485153195146,
+      "mechanism": "latent_open_b",
+      "minimum_weight": 0.22274392131354664,
+      "row_count": 360,
+      "weight_sum": 360.0
+    },
+    {
+      "effective_sample_size": 209.56925129397,
+      "ess_fraction": 0.5821368091499167,
+      "maximum_weight": 5.0,
+      "mechanism": "open_loop_chunk",
+      "minimum_weight": 0.22607024973798218,
+      "row_count": 360,
+      "weight_sum": 360.00000000000006
+    },
+    {
+      "effective_sample_size": 122.81316064609165,
+      "ess_fraction": 0.3411476684613657,
+      "maximum_weight": 5.0,
+      "mechanism": "persist_after_error",
+      "minimum_weight": 0.22838591631924102,
+      "row_count": 360,
+      "weight_sum": 360.0
+    },
+    {
+      "effective_sample_size": 149.32289687747368,
+      "ess_fraction": 0.41478582465964914,
+      "maximum_weight": 5.0,
+      "mechanism": "reset_recovery",
+      "minimum_weight": 0.2,
+      "row_count": 360,
+      "weight_sum": 360.0
+    },
+    {
+      "effective_sample_size": 112.2569447008796,
+      "ess_fraction": 0.31182484639133223,
+      "maximum_weight": 5.0,
+      "mechanism": "same_actions_boundary_pause",
+      "minimum_weight": 0.2,
+      "row_count": 360,
+      "weight_sum": 360.0
+    },
+    {
+      "effective_sample_size": 229.0514680745209,
+      "ess_fraction": 0.6362540779847803,
+      "maximum_weight": 5.0,
+      "mechanism": "same_actions_chunk_fast",
+      "minimum_weight": 0.20000866297379277,
+      "row_count": 360,
+      "weight_sum": 360.0
+    },
+    {
+      "effective_sample_size": 302.8318401999865,
+      "ess_fraction": 0.8411995561110737,
+      "maximum_weight": 4.9306097152094095,
+      "mechanism": "undo_recovery",
+      "minimum_weight": 0.5515452571009433,
+      "row_count": 360,
+      "weight_sum": 360.0
+    },
+    {
+      "effective_sample_size": 308.26910499880114,
+      "ess_fraction": 0.8563030694411142,
+      "maximum_weight": 1.409417651422224,
+      "mechanism": "viewer_centered_alias",
+      "minimum_weight": 0.2,
+      "row_count": 360,
+      "weight_sum": 360.0
+    }
+  ],
+  "relative_js_reduction": 0.1310066902789499,
+  "research_consent": "HOLD_NO_RESEARCH_CONSENTED_HUMAN_FIXTURE",
+  "reweighting_certification": "PASS_CONSTRAINED_DOMAIN_GAP_REDUCTION",
+  "schema_version": "CR0818-DOMAIN-GAP-REWEIGHTING-RESULT-1",
+  "temporal_route_grammar_js_after": 0.1808742066971886,
+  "temporal_route_grammar_js_before": 0.1867328943239836,
+  "version": "CUBE-REV 0.8.18",
+  "weighted_histogram": [
+    0.0,
+    0.0,
+    0.002777777777777762,
+    0.35217266603902864,
+    0.1776928458015236,
+    0.13741438037409603,
+    0.21853099995748654,
+    0.08921515713802232,
+    0.022196172912065035
+  ]
+}

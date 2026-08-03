@@ -1,0 +1,92 @@
+{
+  "histogram_bins_ms": [
+    0.0,
+    50.0,
+    80.0,
+    120.0,
+    180.0,
+    250.0,
+    400.0,
+    700.0,
+    1200.0,
+    1000000000000.0
+  ],
+  "latency_class_thresholds_ms": {
+    "burst_max_p25": 89.0,
+    "flow_max_p75": 221.0
+  },
+  "latency_js_divergence_before": 0.2926737239063117,
+  "log10_wasserstein_before": 0.28833918113470597,
+  "pooled_public_intermove_count": 161,
+  "primary_2x2_summary_ms": {
+    "maximum": 1440.0,
+    "mean": 250.75,
+    "median": 143.5,
+    "minimum": 30.0,
+    "p10": 57.8,
+    "p25": 92.5,
+    "p75": 240.75,
+    "p90": 577.0
+  },
+  "primary_calibration_domain": "PUBLIC_LICENSED_PARTICULA_2X2_TEST_FIXTURE",
+  "primary_event_count": 29,
+  "primary_histogram": [
+    0.07142857142857142,
+    0.07142857142857142,
+    0.2857142857142857,
+    0.21428571428571427,
+    0.10714285714285714,
+    0.07142857142857142,
+    0.10714285714285714,
+    0.03571428571428571,
+    0.03571428571428571
+  ],
+  "primary_intermove_count": 28,
+  "result": "PASS_DOMAIN_GAP_DETECTED_FULL_TEMPORAL_ALIGNMENT_HOLD",
+  "schema_version": "CR0818-TEMPORAL-DOMAIN-GAP-RESULT-1",
+  "support_gap_conclusion": "FULL_ALIGNMENT_IMPOSSIBLE_BY_REWEIGHTING_ONLY",
+  "synthetic_histogram": [
+    0.0,
+    0.0,
+    0.0005555555555555556,
+    0.2841666666666667,
+    0.23180555555555554,
+    0.13111111111111112,
+    0.16277777777777777,
+    0.18513888888888888,
+    0.0044444444444444444
+  ],
+  "synthetic_late_latency_count": 7200,
+  "synthetic_late_summary_ms": {
+    "maximum": 1529.244,
+    "mean": 384.50342555555557,
+    "median": 240.317,
+    "minimum": 118.096,
+    "p10": 155.8339,
+    "p25": 175.15425,
+    "p75": 542.572,
+    "p90": 826.0765999999999
+  },
+  "temporal_route_grammar": {
+    "js_before": 0.1867328943239836,
+    "public_distribution": {
+      "ADJACENT|BURST": 0.19875776397515527,
+      "ADJACENT|FLOW": 0.40993788819875776,
+      "ADJACENT|PAUSE": 0.19875776397515527,
+      "OPPOSITE|BURST": 0.006211180124223602,
+      "OPPOSITE|PAUSE": 0.031055900621118012,
+      "SAME|BURST": 0.049689440993788817,
+      "SAME|FLOW": 0.08695652173913043,
+      "SAME|PAUSE": 0.018633540372670808
+    },
+    "synthetic_distribution": {
+      "ADJACENT|FLOW": 0.42791666666666667,
+      "ADJACENT|PAUSE": 0.43180555555555555,
+      "OPPOSITE|PAUSE": 0.03194444444444444,
+      "SAME|FLOW": 0.026805555555555555,
+      "SAME|PAUSE": 0.08152777777777778
+    }
+  },
+  "unreachable_primary_mass_below_synthetic_minimum": 0.39285714285714285,
+  "version": "CUBE-REV 0.8.18"
+}
