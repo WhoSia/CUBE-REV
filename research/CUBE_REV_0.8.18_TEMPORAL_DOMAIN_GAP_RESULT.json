@@ -16,7 +16,7 @@
     "flow_max_p75": 221.0
   },
   "latency_js_divergence_before": 0.2926737239063117,
-  "log10_wasserstein_before": 0.28833918113470597,
+  "log10_wasserstein_before": 0.28833918113470625,
   "pooled_public_intermove_count": 161,
   "primary_2x2_summary_ms": {
     "maximum": 1440.0,
@@ -59,7 +59,7 @@
   "synthetic_late_latency_count": 7200,
   "synthetic_late_summary_ms": {
     "maximum": 1529.244,
-    "mean": 384.50342555555557,
+    "mean": 384.5034255555569,
     "median": 240.317,
     "minimum": 118.096,
     "p10": 155.8339,
