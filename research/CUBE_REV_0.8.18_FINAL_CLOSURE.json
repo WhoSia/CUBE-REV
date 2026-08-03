@@ -1,0 +1,156 @@
+{
+  "schema_version": "CR0818-FINAL-CLOSURE-1",
+  "project": "CUBE-REV",
+  "version": "0.8.18",
+  "title": "Consented Per-move Timestamp Fixture, Temporal Route-grammar Calibration & Domain-gap Reweighting Certification",
+  "closure_kind": "PUBLIC_LICENSED_TIMESTAMP_CALIBRATION_WITH_RESEARCH_CONSENT_AND_FULL_ALIGNMENT_HOLDS",
+  "certified_implementation_head": "83796766fab8be3b4a6e61ad6c0785a5dbfa49f6",
+  "certification": {
+    "workflow_run": 30781056314,
+    "job": 91585618843,
+    "baseline_workflow_run": 30781056325,
+    "workflow_conclusion": "success",
+    "baseline_conclusion": "success",
+    "runner": "ubuntu-24.04",
+    "python_version": "3.11.15",
+    "evidence_artifact": {
+      "artifact_id": 8843664604,
+      "artifact_digest_sha256": "d4a5c7345b237b9634ccc50c43b5e492db3be4dea0ec025741d0c37ff549e4ab",
+      "compressed_bytes": 74787,
+      "expires_at": "2026-08-17T03:10:27Z"
+    },
+    "portable_artifact_inventory": {
+      "archive_file_count": 16,
+      "self_excluding_inventory_entries": 15,
+      "independent_post_download_sha256sum_check": "PASS"
+    },
+    "markers": [
+      "CR0818_TEMPORAL_CALIBRATION_PASS fixtures=3 events=164 trajectories=3600 js_before=0.292674 js_after=0.254332 consent=HOLD",
+      "CR0818_TEMPORAL_ROUTE_CALIBRATION_PASS 28/28",
+      "CR0818_COMMITTED_CALIBRATION_OUTPUTS_PASS",
+      "CR0817_EXTERNAL_TRAJECTORY_SNAPSHOT_PASS 22/22",
+      "CR0816_MINIMAL_TRAJECTORY_PASS 18/18",
+      "CR0815_MECHANISM_LATTICE_TEST_PASS deterministic=true positive_controls=2 negative_controls=2 stimuli=28 schedules=24",
+      "CR0818_TEMPORAL_ROUTE_CALIBRATION_CI_PASS"
+    ]
+  },
+  "timestamp_fixture": {
+    "evidence_grade": "PUBLICLY_LICENSED_SOFTWARE_TEST_FIXTURE_NOT_RESEARCH_CONSENT",
+    "source_repository": "SpeedcuberOSS/speedcuber-timer",
+    "source_commit": "7c9d9a798b0396d35d635c929051041f18c84687",
+    "license": "MPL-2.0",
+    "fixture_count": 3,
+    "raw_timestamped_event_count": 164,
+    "derived_logical_turn_count": 143,
+    "puzzles": ["2x2x2", "3x3x3"],
+    "device_families": ["Particula", "Rubiks Connected"],
+    "research_consented_human_fixture": false,
+    "owner_export_capsule_present": false,
+    "software_license_is_research_consent": false
+  },
+  "timestamp_qc": {
+    "all_source_fixtures_strictly_monotonic": true,
+    "unsupported_move_rejected": true,
+    "reordered_timestamp_rejected": true,
+    "clock_regression_rejected": true,
+    "zero_delta_rejected": true,
+    "sub20ms_burst": "PASS_WITH_WARNING",
+    "sequence_counter_gap": "DETECTED_WHEN_COUNTER_PRESENT",
+    "dropped_event_without_counter": "STRUCTURALLY_UNDETECTABLE",
+    "packet_loss_certification": "HOLD",
+    "state_continuity_certification": "HOLD_NO_INITIAL_STATE_OR_RAW_DEVICE_PACKETS",
+    "double_turn_compression": "DERIVED_VIEW_ONLY_RAW_EVENTS_PRESERVED"
+  },
+  "primary_temporal_domain": {
+    "fixture": "PUBLIC_LICENSED_PARTICULA_2X2_TEST_FIXTURE",
+    "event_count": 29,
+    "intermove_count": 28,
+    "minimum_ms": 30.0,
+    "p10_ms": 57.8,
+    "p25_ms": 92.5,
+    "median_ms": 143.5,
+    "p75_ms": 240.75,
+    "p90_ms": 577.0,
+    "maximum_ms": 1440.0,
+    "mean_ms": 250.75,
+    "pause_candidate_gt1000ms_count": 1
+  },
+  "synthetic_temporal_domain": {
+    "source": "CUBE_REV_0.8.16_SYNTHETIC_TRAJECTORIES",
+    "trajectory_count": 3600,
+    "late_latency_count": 7200,
+    "minimum_ms": 118.096,
+    "p10_ms": 155.8339,
+    "p25_ms": 175.15425,
+    "median_ms": 240.317,
+    "p75_ms": 542.572,
+    "p90_ms": 826.0766,
+    "maximum_ms": 1529.244,
+    "mean_ms": 384.5034255555569
+  },
+  "domain_gap": {
+    "latency_jensen_shannon_before": 0.2926737239063117,
+    "log10_wasserstein_before": 0.28833918113470625,
+    "temporal_route_grammar_jensen_shannon_before": 0.1867328943239836,
+    "observed_2x2_mass_below_synthetic_minimum": 0.39285714285714285,
+    "support_gap_conclusion": "FULL_ALIGNMENT_IMPOSSIBLE_BY_REWEIGHTING_ONLY",
+    "domain_gap_detection": "PASS"
+  },
+  "bounded_reweighting": {
+    "algorithm": "50_ITERATION_BOUNDED_ITERATIVE_RAKING",
+    "weight_bounds": [0.2, 5.0],
+    "per_mechanism_total_preserved": true,
+    "latency_jensen_shannon_after": 0.2543315080057307,
+    "relative_latency_js_reduction": 0.1310066902789497,
+    "temporal_route_grammar_jensen_shannon_after": 0.18087420669718862,
+    "minimum_effective_sample_size_fraction": 0.31182484639133234,
+    "constrained_domain_gap_reduction": "PASS",
+    "full_temporal_ecological_alignment": "HOLD_SUPPORT_GAP_AND_SINGLE_PUBLIC_2X2_FIXTURE"
+  },
+  "consent_and_custody": {
+    "current_decision": "HOLD_NO_RESEARCH_CONSENTED_OWNER_EXPORT",
+    "future_source_access": "EXPLICIT_OWNER_EXPORT_OR_INTENTIONALLY_SHARED_LINK_ONLY",
+    "private_timer_account_access": "PROHIBITED",
+    "wca_identity_join": "PROHIBITED_WITHOUT_SEPARATE_AUTHORIZATION",
+    "device_account_and_private_session_identifiers": "DO_NOT_PUBLISH",
+    "minimum_future_owner_export_capsule_required": true
+  },
+  "epistemic_boundaries": {
+    "public_software_fixture_is_population_representative": false,
+    "public_software_fixture_is_human_research_participation": false,
+    "parser_and_qc_certification_is_human_cognitive_evidence": false,
+    "reweighted_synthetic_latency_is_observed_human_latency": false,
+    "named_person_cognitive_inference": "PROHIBITED",
+    "human_cognitive_mechanism_transfer": "NO_GO",
+    "participant_deployment": "NO_GO"
+  },
+  "protected_scope": {
+    "participant_page_changed": false,
+    "stimulus_bank_changed": false,
+    "cognitive_config_changed": false,
+    "collector_changed": false,
+    "factory_changed": false,
+    "production_entry_changed": false,
+    "parent_0_8_17_research_changed": false,
+    "human_data_generated": false,
+    "private_account_accessed": false
+  },
+  "decision": [
+    "PASS_PUBLIC_LICENSED_PER_MOVE_TIMESTAMP_FIXTURE",
+    "PASS_TIMESTAMP_QC_AND_CORRUPTION_COURT",
+    "PASS_TEMPORAL_DOMAIN_GAP_DETECTION",
+    "PASS_CONSTRAINED_DOMAIN_GAP_REWEIGHTING",
+    "HOLD_RESEARCH_CONSENTED_HUMAN_FIXTURE",
+    "HOLD_PACKET_LOSS_CERTIFICATION",
+    "HOLD_STATE_CONTINUITY_CERTIFICATION",
+    "HOLD_FULL_TEMPORAL_ECOLOGICAL_ALIGNMENT",
+    "NO_GO_HUMAN_COGNITIVE_MECHANISM_TRANSFER",
+    "NO_PARTICIPANT_DEPLOYMENT"
+  ],
+  "research_version_status": "CLOSED_AUTOMATED_SCOPE",
+  "human_recruitment": "NO_GO_IN_0_8_18",
+  "participant_deployment": "NO_GO",
+  "automatic_merge_authorized": false,
+  "next_boundary": "owner_export_consent_capsule_sequence_counter_integrity_and_small_human_temporal_pilot_readiness",
+  "result": "PASS_0_8_18_AUTOMATED_TEMPORAL_CALIBRATION_WITH_CONSENT_PACKET_LOSS_STATE_CONTINUITY_AND_FULL_ALIGNMENT_HOLDS"
+}

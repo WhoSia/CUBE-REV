@@ -1,0 +1,49 @@
+{
+  "result": "PASS_SOURCE_ROLE_SEPARATION",
+  "schema_version": "CR0818-EXTERNAL-TIMESTAMP-SOURCE-REGISTRY-1",
+  "sources": [
+    {
+      "allowed_claims": [
+        "timestamp parser/format behavior",
+        "public fixture latency summaries",
+        "algorithmic domain-gap calibration"
+      ],
+      "commit": "7c9d9a798b0396d35d635c929051041f18c84687",
+      "fixtures": [
+        "rubiks_connected_solve_replay.json",
+        "particula_2x2x2_solve_replay.json",
+        "particula_3x3x3_solve_replay.json"
+      ],
+      "license": "MPL-2.0",
+      "prohibited_claims": [
+        "human research participation",
+        "population representativeness",
+        "named-person cognitive inference"
+      ],
+      "repository": "SpeedcuberOSS/speedcuber-timer",
+      "research_consent": "NOT_ESTABLISHED",
+      "role": "PUBLIC_LICENSED_TIMESTAMP_FORMAT_AND_CALIBRATION_FIXTURE",
+      "source_id": "SPEEDCUBER-TIMER-STIF-PUBLIC-FIXTURES",
+      "timestamp_semantics": "elapsed milliseconds relative to timer start after parser adjustment"
+    },
+    {
+      "access": "EXPLICIT_OWNER_EXPORT_OR_INTENTIONALLY_SHARED_LINK_ONLY",
+      "materialized": false,
+      "notes": [
+        "detailed solution support does not itself grant access to private sessions",
+        "device protocols may expose move counters and multiple clock domains"
+      ],
+      "research_consent": "REQUIRED_SEPARATELY",
+      "role": "FUTURE_OWNER_EXPORT_SOURCE",
+      "source_id": "CSTIMER-BLUETOOTH-SMART-CUBE"
+    },
+    {
+      "human_data": false,
+      "role": "SYNTHETIC_SOURCE_DOMAIN",
+      "row_count": 3600,
+      "sha256": "a84cc0cba298ed892571a77a12b27d2df3f6a83ad3d386498b9cc51f55e86d6f",
+      "source_id": "CUBE-REV-0.8.16-SYNTHETIC-TRAJECTORIES"
+    }
+  ],
+  "version": "CUBE-REV 0.8.18"
+}

@@ -1,0 +1,48 @@
+{
+  "automatic_merge_authorized": false,
+  "decision": [
+    "PASS_PUBLIC_LICENSED_PER_MOVE_TIMESTAMP_FIXTURE",
+    "PASS_TIMESTAMP_QC_AND_CORRUPTION_COURT",
+    "PASS_TEMPORAL_DOMAIN_GAP_DETECTION",
+    "PASS_CONSTRAINED_DOMAIN_GAP_REWEIGHTING",
+    "HOLD_RESEARCH_CONSENTED_HUMAN_FIXTURE",
+    "HOLD_PACKET_LOSS_CERTIFICATION",
+    "HOLD_STATE_CONTINUITY_CERTIFICATION",
+    "HOLD_FULL_TEMPORAL_ECOLOGICAL_ALIGNMENT",
+    "NO_GO_HUMAN_COGNITIVE_MECHANISM_TRANSFER",
+    "NO_PARTICIPANT_DEPLOYMENT"
+  ],
+  "execution": {
+    "contract_gates": 28,
+    "derived_logical_turn_count": 143,
+    "public_fixture_count": 3,
+    "raw_event_count": 164,
+    "synthetic_latency_count": 7200,
+    "synthetic_trajectory_count": 3600
+  },
+  "metrics": {
+    "latency_js_after": 0.2543315080057306,
+    "latency_js_before": 0.2926737239063117,
+    "minimum_ess_fraction": 0.31182484639133223,
+    "observed_mass_below_synthetic_minimum": 0.39285714285714285,
+    "primary_2x2_intermove_count": 28,
+    "public_2x2_median_ms": 143.5,
+    "relative_js_reduction": 0.1310066902789499,
+    "synthetic_median_ms": 240.317,
+    "temporal_grammar_js_after": 0.1808742066971886,
+    "temporal_grammar_js_before": 0.1867328943239836
+  },
+  "project": "CUBE-REV",
+  "protected_scope": {
+    "collector_changed": false,
+    "factory_changed": false,
+    "human_research_data_generated": false,
+    "participant_page_changed": false,
+    "production_entry_changed": false,
+    "stimulus_bank_changed": false
+  },
+  "result": "PASS_AUTOMATED_TEMPORAL_CALIBRATION_WITH_CONSENT_AND_ALIGNMENT_HOLDS",
+  "schema_version": "CR0818-DECISION-PACKET-1",
+  "title": "Consented Per-move Timestamp Fixture, Temporal Route-grammar Calibration & Domain-gap Reweighting Certification",
+  "version": "0.8.18"
+}

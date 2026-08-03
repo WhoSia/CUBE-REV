@@ -1,0 +1,32 @@
+{
+  "current_decision": "HOLD_NO_RESEARCH_CONSENTED_OWNER_EXPORT",
+  "current_fixture": {
+    "grade": "PUBLICLY_LICENSED_SOFTWARE_TEST_FIXTURE_NOT_RESEARCH_CONSENT",
+    "owner_export_capsule_present": false,
+    "research_consented_human_fixture": "HOLD"
+  },
+  "custody_rules": [
+    "retain raw export unchanged outside participant-facing assets",
+    "derive deidentified analysis rows with a reproducible transform",
+    "never join to WCA identity without separate authorization",
+    "do not publish device identifiers, account identifiers or private session labels",
+    "withdrawal removes future use but does not falsify already published aggregate provenance"
+  ],
+  "minimum_future_owner_export_capsule_fields": [
+    "capsule_version",
+    "export_owner_pseudonym",
+    "source_application",
+    "source_format_version",
+    "puzzle_type",
+    "export_timestamp_utc",
+    "permitted_research_scope",
+    "retention_policy",
+    "withdrawal_contact_or_procedure",
+    "raw_file_sha256",
+    "derived_file_sha256",
+    "consent_statement"
+  ],
+  "schema_version": "CR0818-CONSENT-CUSTODY-CONTRACT-1",
+  "software_license_is_research_consent": false,
+  "version": "CUBE-REV 0.8.18"
+}
