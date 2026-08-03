@@ -1,0 +1,74 @@
+name: Bootstrap CUBE-REV 0.8.18 research bundle
+on:
+  push:
+    branches: [cube-rev-0.8.18-temporal-route-calibration]
+    paths:
+      - '.github/workflows/bootstrap-0.8.18-research-bundle.yml'
+      - 'scripts/bootstrap_0_8_18_bundle.py'
+      - 'scripts/.cr0818_payload_*.txt'
+      - 'research/.cr0818_bootstrap_trigger'
+permissions:
+  contents: write
+jobs:
+  install-readable-sources:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.18-temporal-route-calibration
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify and materialize exact bundle
+        run: |
+          python scripts/bootstrap_0_8_18_bundle.py
+          python -m py_compile analysis/temporal_route_calibration_0_8_18.py
+          python -m py_compile tests/temporal_route_calibration_0.8.18.test.py
+      - name: Rebuild inherited synthetic trajectories and test bundle
+        shell: bash
+        run: |
+          rm -rf /tmp/cr0816-bootstrap /tmp/cr0818-bootstrap
+          python analysis/minimal_trajectory_probes_0_8_16.py \
+            --bank cognitive/PARTICIPANT_STIMULUS_BANK_0.8.13.json \
+            --outdir /tmp/cr0816-bootstrap \
+            --family-count 6 \
+            --sessions-per-mechanism 360 \
+            --seed 8162026
+          python analysis/temporal_route_calibration_0_8_18.py \
+            --fixtures research/CUBE_REV_0.8.18_PUBLIC_TIMESTAMP_FIXTURE_PACK.json \
+            --synthetic-trajectories /tmp/cr0816-bootstrap/simulated_trajectories.jsonl \
+            --outdir /tmp/cr0818-bootstrap
+          python tests/temporal_route_calibration_0.8.18.test.py \
+            --analysis analysis/temporal_route_calibration_0_8_18.py \
+            --fixtures research/CUBE_REV_0.8.18_PUBLIC_TIMESTAMP_FIXTURE_PACK.json \
+            --synthetic-trajectories /tmp/cr0816-bootstrap/simulated_trajectories.jsonl \
+            --artifact-dir /tmp/cr0818-bootstrap
+      - name: Commit readable sources and remove transport material
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/temporal_route_calibration_0_8_18.py
+          git add tests/temporal_route_calibration_0.8.18.test.py
+          git add research/CUBE_REV_0.8.18_CERTIFICATION_RESULT.json
+          git add research/CUBE_REV_0.8.18_CONSENT_AND_CUSTODY_CONTRACT.json
+          git add research/CUBE_REV_0.8.18_DECISION_PACKET.json
+          git add research/CUBE_REV_0.8.18_EXTERNAL_TIMESTAMP_SOURCE_REGISTRY.json
+          git add research/CUBE_REV_0.8.18_PUBLIC_TIMESTAMP_FIXTURE_PACK.json
+          git add research/CUBE_REV_0.8.18_REWEIGHTING_RESULT.json
+          git add research/CUBE_REV_0.8.18_RUNBOOK.md
+          git add research/CUBE_REV_0.8.18_SCOPE_CHECKPOINT.md
+          git add research/CUBE_REV_0.8.18_SNAPSHOT_MANIFEST.json
+          git add research/CUBE_REV_0.8.18_TEMPORAL_DOMAIN_GAP_RESULT.json
+          git add research/CUBE_REV_0.8.18_THIRD_PARTY_NOTICE.md
+          git add research/CUBE_REV_0.8.18_TIMESTAMP_QC_RESULT.json
+          git add research/CUBE_REV_0.8.18_VALIDATION_REPORT.md
+          git rm --ignore-unmatch scripts/bootstrap_0_8_18_bundle.py
+          git rm --ignore-unmatch scripts/.cr0818_payload_01.txt scripts/.cr0818_payload_02.txt scripts/.cr0818_payload_03.txt scripts/.cr0818_payload_04.txt scripts/.cr0818_payload_05.txt scripts/.cr0818_payload_06.txt scripts/.cr0818_payload_07.txt
+          git rm --ignore-unmatch research/.cr0818_bootstrap_trigger
+          git diff --cached --check
+          git commit -m 'feat(0.8.18): install temporal route calibration research wave'
+          git push origin HEAD:cube-rev-0.8.18-temporal-route-calibration
