@@ -1,0 +1,142 @@
+name: CUBE-REV 0.8.18 temporal route calibration
+on:
+  push:
+    branches: [cube-rev-0.8.18-temporal-route-calibration]
+  pull_request:
+    branches: [cube-rev-0.8.17-versioned-external-trajectory]
+    paths:
+      - '.github/workflows/build-0.8.18-temporal-route-calibration.yml'
+      - 'analysis/temporal_route_calibration_0_8_18.py'
+      - 'tests/temporal_route_calibration_0.8.18.test.py'
+      - 'research/CUBE_REV_0.8.18*'
+permissions:
+  contents: read
+jobs:
+  temporal-route-court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.18-temporal-route-calibration
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Syntax and protected-scope checks
+        shell: bash
+        run: |
+          python -m py_compile analysis/temporal_route_calibration_0_8_18.py
+          python -m py_compile tests/temporal_route_calibration_0.8.18.test.py
+          git fetch origin cube-rev-0.8.17-versioned-external-trajectory
+          changed="$(git diff --name-only origin/cube-rev-0.8.17-versioned-external-trajectory...HEAD)"
+          protected='^(index\.html|collector-config\.js|js/collector-client\.js|participant-cognitive-mode-.*\.html|unsupported-browser-.*\.html|cognitive/|factory/|analysis/(minimal_trajectory_probes_0_8_16|external_trajectory_snapshot_0_8_17)\.py|tests/(minimal_trajectory_probes_0\.8\.16|external_trajectory_snapshot_0\.8\.17)\.test\.py|research/CUBE_REV_0\.8\.1[67])'
+          if printf '%s\n' "$changed" | grep -E "$protected"; then
+            echo 'Protected participant, parent research, Collector, Factory, bank, config, or production file changed.' >&2
+            exit 1
+          fi
+          if printf '%s\n' "$changed" | grep -E '(^|/)\.cr0818_|bootstrap_0_8_18|bootstrap-0\.8\.18'; then
+            echo 'Temporary bootstrap material remains in the research branch.' >&2
+            exit 1
+          fi
+      - name: Rebuild inherited 0.8.16 trajectory population
+        shell: bash
+        run: |
+          rm -rf /tmp/cr0816-for-0818
+          python analysis/minimal_trajectory_probes_0_8_16.py \
+            --bank cognitive/PARTICIPANT_STIMULUS_BANK_0.8.13.json \
+            --outdir /tmp/cr0816-for-0818 \
+            --family-count 6 \
+            --sessions-per-mechanism 360 \
+            --seed 8162026
+      - name: Execute deterministic temporal calibration twice
+        shell: bash
+        run: |
+          rm -rf /tmp/cr0818-a /tmp/cr0818-b artifacts/0.8.18
+          python analysis/temporal_route_calibration_0_8_18.py \
+            --fixtures research/CUBE_REV_0.8.18_PUBLIC_TIMESTAMP_FIXTURE_PACK.json \
+            --synthetic-trajectories /tmp/cr0816-for-0818/simulated_trajectories.jsonl \
+            --outdir /tmp/cr0818-a
+          python analysis/temporal_route_calibration_0_8_18.py \
+            --fixtures research/CUBE_REV_0.8.18_PUBLIC_TIMESTAMP_FIXTURE_PACK.json \
+            --synthetic-trajectories /tmp/cr0816-for-0818/simulated_trajectories.jsonl \
+            --outdir /tmp/cr0818-b
+          diff -ru /tmp/cr0818-a /tmp/cr0818-b
+          mkdir -p artifacts
+          mv /tmp/cr0818-a artifacts/0.8.18
+      - name: Run 0.8.18 contract court
+        run: |
+          python tests/temporal_route_calibration_0.8.18.test.py \
+            --analysis analysis/temporal_route_calibration_0_8_18.py \
+            --fixtures research/CUBE_REV_0.8.18_PUBLIC_TIMESTAMP_FIXTURE_PACK.json \
+            --synthetic-trajectories /tmp/cr0816-for-0818/simulated_trajectories.jsonl \
+            --artifact-dir artifacts/0.8.18
+      - name: Run inherited 0.8.17, 0.8.16 and 0.8.15 courts
+        shell: bash
+        run: |
+          rm -rf /tmp/cr0817-inherited
+          python analysis/external_trajectory_snapshot_0_8_17.py \
+            --fixtures research/CUBE_REV_0.8.17_EXTERNAL_TRAJECTORY_FIXTURE_PACK.json \
+            --probe-registry research/CUBE_REV_0.8.16_TRAJECTORY_PROBE_REGISTRY.json \
+            --outdir /tmp/cr0817-inherited
+          python tests/external_trajectory_snapshot_0.8.17.test.py \
+            --analysis analysis/external_trajectory_snapshot_0_8_17.py \
+            --artifact-dir /tmp/cr0817-inherited \
+            --fixtures research/CUBE_REV_0.8.17_EXTERNAL_TRAJECTORY_FIXTURE_PACK.json \
+            --probe-registry research/CUBE_REV_0.8.16_TRAJECTORY_PROBE_REGISTRY.json
+          python analysis/external_trajectory_linkage_0_8_16.py \
+            --out /tmp/cr0816-for-0818/CUBE_REV_0.8.16_EXTERNAL_LINKAGE_DRYRUN.json
+          python tests/minimal_trajectory_probes_0.8.16.test.py \
+            --artifact-dir /tmp/cr0816-for-0818 \
+            --bank cognitive/PARTICIPANT_STIMULUS_BANK_0.8.13.json
+          python tests/mechanism_lattice_0.8.15.test.py
+      - name: Verify committed calibration outputs
+        shell: bash
+        run: |
+          cmp artifacts/0.8.18/CUBE_REV_0.8.18_CERTIFICATION_RESULT.json research/CUBE_REV_0.8.18_CERTIFICATION_RESULT.json
+          cmp artifacts/0.8.18/CUBE_REV_0.8.18_REWEIGHTING_RESULT.json research/CUBE_REV_0.8.18_REWEIGHTING_RESULT.json
+          cmp artifacts/0.8.18/CUBE_REV_0.8.18_SNAPSHOT_MANIFEST.json research/CUBE_REV_0.8.18_SNAPSHOT_MANIFEST.json
+          cmp artifacts/0.8.18/CUBE_REV_0.8.18_TEMPORAL_DOMAIN_GAP_RESULT.json research/CUBE_REV_0.8.18_TEMPORAL_DOMAIN_GAP_RESULT.json
+          cmp artifacts/0.8.18/CUBE_REV_0.8.18_TIMESTAMP_QC_RESULT.json research/CUBE_REV_0.8.18_TIMESTAMP_QC_RESULT.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          cert=json.loads(Path('artifacts/0.8.18/CUBE_REV_0.8.18_CERTIFICATION_RESULT.json').read_text())
+          gap=json.loads(Path('artifacts/0.8.18/CUBE_REV_0.8.18_TEMPORAL_DOMAIN_GAP_RESULT.json').read_text())
+          rw=json.loads(Path('artifacts/0.8.18/CUBE_REV_0.8.18_REWEIGHTING_RESULT.json').read_text())
+          assert cert['all_conditions_pass'] is True
+          assert cert['decision']['public_licensed_timestamp_fixture']=='PASS'
+          assert cert['decision']['research_consented_human_fixture']=='HOLD'
+          assert cert['decision']['cognitive_mechanism_transfer']=='NO_GO'
+          assert gap['support_gap_conclusion']=='FULL_ALIGNMENT_IMPOSSIBLE_BY_REWEIGHTING_ONLY'
+          assert rw['latency_js_after'] < rw['latency_js_before']
+          assert rw['full_alignment'].startswith('HOLD_')
+          print('CR0818_COMMITTED_CALIBRATION_OUTPUTS_PASS')
+          PY
+      - name: Seal portable self-excluding evidence inventory
+        shell: bash
+        run: |
+          cp research/CUBE_REV_0.8.18_PUBLIC_TIMESTAMP_FIXTURE_PACK.json artifacts/0.8.18/
+          cp research/CUBE_REV_0.8.18_EXTERNAL_TIMESTAMP_SOURCE_REGISTRY.json artifacts/0.8.18/
+          cp research/CUBE_REV_0.8.18_CONSENT_AND_CUSTODY_CONTRACT.json artifacts/0.8.18/
+          cp research/CUBE_REV_0.8.18_SCOPE_CHECKPOINT.md artifacts/0.8.18/
+          cp research/CUBE_REV_0.8.18_VALIDATION_REPORT.md artifacts/0.8.18/
+          cp research/CUBE_REV_0.8.18_DECISION_PACKET.json artifacts/0.8.18/
+          cp research/CUBE_REV_0.8.18_THIRD_PARTY_NOTICE.md artifacts/0.8.18/
+          cp research/CUBE_REV_0.8.18_RUNBOOK.md artifacts/0.8.18/
+          (
+            cd artifacts/0.8.18
+            find . -type f ! -name ARTIFACT_SHA256SUMS.txt -print0 \
+              | sort -z \
+              | xargs -0 sha256sum > /tmp/CR0818_ARTIFACT_SHA256SUMS.txt
+            mv /tmp/CR0818_ARTIFACT_SHA256SUMS.txt ARTIFACT_SHA256SUMS.txt
+            sha256sum -c ARTIFACT_SHA256SUMS.txt
+          )
+          echo 'CR0818_TEMPORAL_ROUTE_CALIBRATION_CI_PASS'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cube-rev-0.8.18-temporal-route-evidence
+          path: artifacts/0.8.18
+          retention-days: 14
+          if-no-files-found: error
