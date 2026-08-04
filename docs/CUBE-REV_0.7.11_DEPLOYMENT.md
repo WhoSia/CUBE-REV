@@ -1,5 +1,11 @@
 # CUBE-REV 0.7.11 — Verified Source-Bound Calibration Deployment
 
+> **Historical record — not a current execution guide.** This document records
+> the 0.7.11 branch boundary. On the current `main` branch,
+> `scripts/build-calibration-host.mjs` is bound to the 0.7.12 `index.html` host.
+> Use the validation sequence in `CUBE-REV_0.7.12_DEPLOYMENT.md` for current
+> commands.
+
 ## Verified source boundary
 
 - Repository: `WhoSia/CUBE-REV`

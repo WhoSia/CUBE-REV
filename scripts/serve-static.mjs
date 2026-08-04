@@ -3,7 +3,34 @@ import { readFile, stat } from "node:fs/promises";
 import { extname, join, normalize, resolve, sep } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
-const port = Number(process.argv[2]) || 4173;
+const args = process.argv.slice(2);
+
+function printUsage(stream = process.stdout) {
+  stream.write([
+    "Usage: node scripts/serve-static.mjs [port]",
+    "",
+    "Serve the repository root on 127.0.0.1 (default port: 4173).",
+    ""
+  ].join("\n"));
+}
+
+if (args.includes("--help") || args.includes("-h")) {
+  printUsage();
+  process.exit(0);
+}
+
+if (args.length > 1 || (args.length === 1 && !/^\d+$/.test(args[0]))) {
+  printUsage(process.stderr);
+  process.stderr.write("error: port must be one integer between 1 and 65535\n");
+  process.exit(2);
+}
+
+const port = args.length === 0 ? 4173 : Number(args[0]);
+if (!Number.isInteger(port) || port < 1 || port > 65535) {
+  printUsage(process.stderr);
+  process.stderr.write("error: port must be one integer between 1 and 65535\n");
+  process.exit(2);
+}
 const types = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",

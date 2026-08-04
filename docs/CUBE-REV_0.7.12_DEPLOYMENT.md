@@ -59,6 +59,33 @@ ced1836b372e407b328d0863b0bc968cd7d89359d5edfa91da9313989444bb31
 - version, archive, cache-key, collector binding, and eligibility-clock consistency
 - mocked receipt-v2 client integration
 
+## Reproduce the current validation
+
+Run these commands from the repository root with Node.js 22 and Python 3.
+This block is the command contract for `.github/workflows/validate-static.yml`;
+the documentation test fails if the workflow and guide diverge.
+
+<!-- validation-cli:start -->
+```shell
+node scripts/validate-static.mjs
+node scripts/build-calibration-host.mjs
+node scripts/validate-calibration.mjs
+node tests/randomization.test.cjs
+node tests/history-fidelity.test.cjs
+node tests/neutral-probe.test.cjs
+node tests/runtime.test.cjs
+node tests/camera-orbit.test.cjs
+node tests/collector-receipt.integration.cjs
+python -m unittest tests/test_registry_and_annotation.py
+node tests/documented-cli.test.cjs
+```
+<!-- validation-cli:end -->
+
+For a local browser preview, run `node scripts/serve-static.mjs [port]`; the
+port defaults to `4173`. Run `node scripts/serve-static.mjs --help` for the
+accepted syntax. This server is only a preview host and does not deploy Pages
+or alter the collector.
+
 The production collector was enabled only after the user completed the verified
 receipt-v2 deployment and explicitly authorized collection. Prospective clock
 activation remains out of scope and stays `NOT_STARTED`.

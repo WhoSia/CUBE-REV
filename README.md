@@ -123,13 +123,35 @@ cube-rev/
 │  ├─ cube-drag-controller.js
 │  ├─ i18n-controller.js
 │  └─ responsive-layout-controller.js
-└─ scripts/
-   └─ validate-static.mjs
+├─ scripts/
+│  ├─ build-calibration-host.mjs
+│  ├─ serve-static.mjs
+│  ├─ sync-release-identity.mjs
+│  ├─ validate-calibration.mjs
+│  └─ validate-static.mjs
+├─ annotation/
+│  └─ prepare_packets.py
+├─ tools/
+│  └─ cr07_batch_registry.py
+└─ tests/
+   └─ documented-cli.test.cjs
 ```
 
 `index.html` is the GitHub Pages entry point and is byte-identical to `CUBE-REV_0.7.12_GitHub_Pages_Pilot.html`. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html` remains frozen as the verified baseline archive.
 
 The static validator and GitHub Actions workflow prevent version drift, missing controller files, cache-key mismatches, divergence between the two HTML copies, and regression of the unrestricted camera orbit.
+
+## Local development commands
+
+Run `node scripts/serve-static.mjs [port]` from the repository root to preview
+the public host at `http://127.0.0.1:4173` by default. Run
+`node scripts/serve-static.mjs --help` to print the accepted syntax without
+starting a server.
+
+The complete release-validation command sequence is maintained in
+`docs/CUBE-REV_0.7.12_DEPLOYMENT.md` and is checked against GitHub Actions by
+`tests/documented-cli.test.cjs`. `scripts/sync-release-identity.mjs` is a
+one-time release migration helper, not part of routine validation.
 
 ## Deployment
 
@@ -276,13 +298,35 @@ cube-rev/
 │  ├─ cube-drag-controller.js
 │  ├─ i18n-controller.js
 │  └─ responsive-layout-controller.js
-└─ scripts/
-   └─ validate-static.mjs
+├─ scripts/
+│  ├─ build-calibration-host.mjs
+│  ├─ serve-static.mjs
+│  ├─ sync-release-identity.mjs
+│  ├─ validate-calibration.mjs
+│  └─ validate-static.mjs
+├─ annotation/
+│  └─ prepare_packets.py
+├─ tools/
+│  └─ cr07_batch_registry.py
+└─ tests/
+   └─ documented-cli.test.cjs
 ```
 
 `index.html`은 GitHub Pages가 여는 진입 파일이며 `CUBE-REV_0.7.12_GitHub_Pages_Pilot.html`과 바이트 단위로 같습니다. `CUBE-REV_0.6.11_GitHub_Pages_Pilot.html`은 검증된 baseline 보관본으로 동결합니다.
 
 정적 검증기와 GitHub Actions는 버전 표류, 누락된 컨트롤러 파일, 캐시 키 불일치, 두 HTML 사본의 내용 차이, 자유 카메라 회전의 회귀를 자동으로 막습니다.
+
+## 로컬 개발 명령
+
+저장소 최상단에서 `node scripts/serve-static.mjs [port]`를 실행하면 기본
+주소 `http://127.0.0.1:4173`에서 공개 호스트를 미리 볼 수 있습니다. 서버를
+실행하지 않고 사용법만 보려면 `node scripts/serve-static.mjs --help`를
+실행합니다.
+
+전체 릴리스 검증 명령은 `docs/CUBE-REV_0.7.12_DEPLOYMENT.md`에 있으며,
+`tests/documented-cli.test.cjs`가 GitHub Actions의 실제 명령과 문서가 같은지
+검사합니다. `scripts/sync-release-identity.mjs`는 일회성 릴리스 이전 도구이며
+일상적인 검증 명령이 아닙니다.
 
 ## 배포
 

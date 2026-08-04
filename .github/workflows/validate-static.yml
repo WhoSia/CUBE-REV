@@ -29,3 +29,4 @@ jobs:
           node tests/camera-orbit.test.cjs
           node tests/collector-receipt.integration.cjs
           python -m unittest tests/test_registry_and_annotation.py
+          node tests/documented-cli.test.cjs
