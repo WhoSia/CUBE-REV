@@ -1,0 +1,119 @@
+name: CUBE-REV 0.8.14 custody device and staging certification
+on:
+  push:
+    branches: [cube-rev-0.8.14-custody-device-staging]
+  pull_request:
+    branches: [cube-rev-0.8.13-native-browser-live-factory]
+    paths:
+      - '.github/workflows/build-0.8.14-custody-device-staging.yml'
+      - 'factory/*0_8_14*'
+      - 'scripts/*0_8_14*'
+      - 'tests/*0.8.14*'
+      - 'research/*0.8.14*'
+permissions:
+  contents: read
+jobs:
+  custody-device-staging:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.14-custody-device-staging
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Syntax and protected-source checks
+        shell: bash
+        run: |
+          node --check scripts/reconstruct_live_envelope_0_8_14.mjs
+          node --check tests/cross_device_browser_matrix_0.8.14.mjs
+          node --check tests/lease_expiry_dynamic_0.8.14.spec.js
+          python -m py_compile factory/archival_live_bridge_0_8_14.py scripts/build_participant_route_0_8_14.py scripts/custody_replay_0_8_14.py scripts/audit_live_evidence_lineage_0_8_14.py scripts/build_staging_candidate_0_8_14.py scripts/evaluate_cutover_gate_0_8_14.py
+          git fetch origin cube-rev-0.8.13-native-browser-live-factory
+          if git diff --name-only origin/cube-rev-0.8.13-native-browser-live-factory...HEAD | grep -E '^(index\.html|collector-config\.js|js/collector-client\.js)$'; then
+            echo 'Protected production entry or Collector source changed.' >&2
+            exit 1
+          fi
+      - name: Build deterministic 0.8.14 participant staging route
+        shell: bash
+        run: |
+          mkdir -p artifacts/0.8.14 /tmp/cr0814-route
+          python scripts/build_participant_route_0_8_14.py
+          cp participant-cognitive-mode-0.8.14.html unsupported-browser-0.8.14.html artifacts/0.8.14/participant_route_build_manifest.json /tmp/cr0814-route/
+          python scripts/build_participant_route_0_8_14.py
+          cmp /tmp/cr0814-route/participant-cognitive-mode-0.8.14.html participant-cognitive-mode-0.8.14.html
+          cmp /tmp/cr0814-route/unsupported-browser-0.8.14.html unsupported-browser-0.8.14.html
+          cmp /tmp/cr0814-route/participant_route_build_manifest.json artifacts/0.8.14/participant_route_build_manifest.json
+          grep -F 'CUBE-REV 0.8.14' participant-cognitive-mode-0.8.14.html
+          grep -F 'FIREFOX_CROSS_TAB_STORAGE_COHERENCE_UNCERTIFIED' unsupported-browser-0.8.14.html
+          grep -F 'WEBKIT_CROSS_TAB_STORAGE_COHERENCE_UNCERTIFIED' unsupported-browser-0.8.14.html
+      - name: Reconstruct archival live and final-runtime candidate bytes
+        shell: bash
+        run: |
+          node scripts/make_synthetic_snapshot_0_8_13.js artifacts/0.8.14/live_synthetic_snapshot.json
+          node scripts/reconstruct_live_envelope_0_8_14.mjs artifacts/0.8.14/live_synthetic_snapshot.json artifacts/0.8.14/archival_live_envelope.json artifacts/0.8.14/archival_reconstruction_evidence.json . archival-live-head
+          node scripts/reconstruct_live_envelope_0_8_14.mjs artifacts/0.8.14/live_synthetic_snapshot.json artifacts/0.8.14/final_runtime_envelope.json artifacts/0.8.14/final_reconstruction_evidence.json . final-0.8.13-head
+          python scripts/audit_live_evidence_lineage_0_8_14.py
+          python scripts/custody_replay_0_8_14.py
+          python factory/archival_live_bridge_0_8_14.py artifacts/0.8.14/archival_live_envelope.json --derived artifacts/0.8.14/archival_live_factory_input.json --report artifacts/0.8.14/archival_live_factory_bridge.json
+          python factory/cognitive_snapshot_adapter_0_8_13.py artifacts/0.8.14/archival_live_factory_input.json --outdir artifacts/0.8.14/archival_live_factory
+          python factory/cognitive_snapshot_adapter_0_8_13.py artifacts/0.8.14/final_runtime_envelope.json --outdir artifacts/0.8.14/final_runtime_factory
+      - name: Install cross-engine Playwright browsers
+        run: |
+          npm install --no-save @playwright/test@1.55.0
+          npx playwright install --with-deps chromium firefox webkit
+      - name: Execute automated cross-device browser policy matrix
+        shell: bash
+        run: |
+          set -o pipefail
+          node tests/cross_device_browser_matrix_0.8.14.mjs | tee artifacts/0.8.14/browser_policy_matrix.log
+          grep -F 'CR0814_CROSS_DEVICE_POLICY_MATRIX_PASS' artifacts/0.8.14/browser_policy_matrix.log
+      - name: Re-run parent Chromium serialization and certify persisted-expiry lease takeover
+        shell: bash
+        run: |
+          set -o pipefail
+          npx playwright test tests/native_multi_window_0.8.13.spec.js --grep 'native Chromium Web Locks serialize two pages without response loss' --workers=1 --reporter=line | tee artifacts/0.8.14/parent_native_serialization.log
+          grep -F 'CR0813_NATIVE_MULTI_WINDOW_PASS' artifacts/0.8.14/parent_native_serialization.log
+          npx playwright test tests/lease_expiry_dynamic_0.8.14.spec.js --workers=1 --reporter=line | tee artifacts/0.8.14/dynamic_lease_expiry.log
+          grep -F 'CR0814_DYNAMIC_LEASE_EXPIRY_PASS iterations=4/4 posts=8 fixed_sleep=false' artifacts/0.8.14/dynamic_lease_expiry.log
+          node tests/active_session_cas_0.8.12.test.js
+          node -r ./js/atomic-migration-commit-authority-0.8.11.js tests/atomic_migration_arbitration_0.8.11.test.js
+          node tests/cross_version_resume_hash_pin_0.8.10.test.js
+          node tests/public_bank_minimization_0.8.9.test.js
+          node tests/immutable_snapshot_contract_0.8.8.test.js
+      - name: Build deterministic controlled staging candidate
+        run: |
+          python scripts/build_staging_candidate_0_8_14.py
+          python scripts/evaluate_cutover_gate_0_8_14.py
+          python - <<'PY'
+          import json
+          d=json.load(open('artifacts/0.8.14/cutover_gate.json'))
+          assert d['staging_candidate_available'] is True
+          assert d['production_cutover']=='NO_GO'
+          assert d['gates']['evidence_lineage_reconciliation'] is True
+          assert d['gates']['chromium_active_execution_automated'] is True
+          assert d['gates']['firefox_fail_closed_policy'] is True
+          assert d['gates']['webkit_fail_closed_policy'] is True
+          assert d['gates']['active_profile_race_repetition'] is True
+          assert d['gates']['fail_closed_profile_count'] is True
+          assert d['gates']['dynamic_persisted_lease_expiry_repetition'] is True
+          assert set(d['blocking_gates'])=={'exact_stored_raw_custody_replay','physical_device_walkthrough','owner_acceptance_walkthrough'}
+          print('CR0814_EXPECTED_NO_GO_BOUNDARY_PASS')
+          PY
+      - name: Emit artifact digest inventory
+        shell: bash
+        run: |
+          find artifacts/0.8.14 -type f -print0 | sort -z | xargs -0 sha256sum > artifacts/0.8.14/ARTIFACT_SHA256SUMS.txt
+          echo 'CR0814_CUSTODY_DEVICE_STAGING_CI_PASS'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cube-rev-0.8.14-custody-device-staging-evidence
+          path: artifacts/0.8.14
+          retention-days: 14
+          if-no-files-found: warn

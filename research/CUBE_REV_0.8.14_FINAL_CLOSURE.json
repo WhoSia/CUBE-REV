@@ -1,0 +1,56 @@
+{
+  "schema_version": "CR0814-FINAL-CLOSURE-1",
+  "project": "CUBE-REV",
+  "version": "0.8.14",
+  "title": "Stored-raw Custody Replay, Cross-device Browser Matrix & Controlled Staging Cutover Gate",
+  "closure_kind": "AUTOMATED_RESEARCH_AND_CONTROLLED_STAGING_CLOSURE_WITH_EXTERNAL_PROMOTION_HOLDS",
+  "certified_implementation_head": "cd1270b4baa9094152d2fad26324abba5b50e5d0",
+  "certification": {
+    "workflow_run": 30754974840,
+    "job": 91515487804,
+    "baseline_workflow_run": 30754974846,
+    "workflow_conclusion": "success",
+    "baseline_conclusion": "success",
+    "evidence_artifact": {
+      "artifact_id": 8835662626,
+      "artifact_digest_sha256": "99e8ece14224ac97a78fff6e9157d92a54c5f43fcab690e7d4d7ce9a202d013f",
+      "compressed_bytes": 202497,
+      "retention_until": "2026-08-16"
+    }
+  },
+  "staging_candidate": {
+    "file_count": 22,
+    "fingerprint_sha256": "0b8ae0679a6033b8cd4862ef6de81fe2f1ee8fde8b7bfd1ff3dee7616722fc32",
+    "zip_sha256": "80db6740754297b51b87c6542a4ef6d5f3958f5da2c0e4ce65989a1768c78520",
+    "zip_bytes": 68054,
+    "production_entry_untouched": true,
+    "collector_untouched": true
+  },
+  "passed_gates": [
+    "archival_live_submitted_byte_reconstruction",
+    "evidence_lineage_reconciliation_and_erratum",
+    "provenance_preserving_archival_factory_bridge",
+    "chromium_only_controlled_staging_policy",
+    "firefox_and_webkit_fail_closed",
+    "eight_of_eight_active_chromium_races",
+    "four_of_four_dynamic_persisted_lease_expiry_takeovers",
+    "deterministic_staging_candidate",
+    "inherited_contracts",
+    "baseline_and_protected_source_checks"
+  ],
+  "promotion_holds": [
+    "exact_stored_raw_custody_replay",
+    "physical_chromium_device_walkthrough",
+    "owner_acceptance_walkthrough"
+  ],
+  "production_cutover": "NO_GO",
+  "automatic_merge_authorized": false,
+  "research_version_status": "CLOSED_AUTOMATED_SCOPE",
+  "supersedes_certification_identity_blocks_in": [
+    "research/CUBE_REV_0.8.14_VALIDATION_REPORT.md",
+    "research/CUBE_REV_0.8.14_DECISION_PACKET.json",
+    "research/CUBE_REV_0.8.14_RUNBOOK.md"
+  ],
+  "supersession_scope": "EXECUTABLE_HEAD_WORKFLOW_JOB_BASELINE_AND_EVIDENCE_ARTIFACT_IDENTITIES_ONLY",
+  "result": "PASS_0_8_14_AUTOMATED_SCOPE_CLOSED_EXTERNAL_PROMOTION_GATES_HELD"
+}
