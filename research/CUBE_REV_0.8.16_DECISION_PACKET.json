@@ -1,0 +1,96 @@
+{
+  "schema_version": "CR0816-DECISION-PACKET-1",
+  "project": "CUBE-REV",
+  "version": "0.8.16",
+  "title": "Minimal Nonreactive Multi-action Trajectory Probes, Rotational-equivalence Families & Recovery-opportunity Certification",
+  "decision": [
+    "PASS_MINIMAL_MULTI_ACTION_TRAJECTORY",
+    "PASS_ROTATIONAL_EQUIVALENCE_FAMILIES",
+    "PASS_RECOVERY_OPPORTUNITY_DENSITY",
+    "PASS_SECOND_ACTION_PLUS_LATENCY_MINIMALITY",
+    "PASS_ROBUST_NOISE",
+    "PASS_EXTERNAL_TRAJECTORY_SOURCE_DISCOVERY",
+    "PASS_MATCHED_SCRAMBLE_ROUTE_NONUNIQUENESS",
+    "HOLD_WCA_BULK_MATERIALIZATION",
+    "HOLD_SMART_CUBE_CONSENTED_COHORT",
+    "NO_HUMAN_MECHANISM_CLAIM",
+    "NO_PARTICIPANT_DEPLOYMENT"
+  ],
+  "design": {
+    "family_count": 6,
+    "probe_count": 36,
+    "members_per_family": 6,
+    "trajectory_length": 3,
+    "schedule_count": 12,
+    "trials_per_schedule": 12,
+    "selected_parent_count": 5,
+    "minimum_recovery_opportunities_per_family": 6,
+    "mean_recovery_opportunities_per_family": 8.5,
+    "planned_face_count_each": 6,
+    "recovery_error_face_count_each": 6
+  },
+  "execution": {
+    "seed": 8162026,
+    "mechanism_count": 10,
+    "sessions_per_mechanism": 360,
+    "simulated_trajectory_count": 3600,
+    "split_repeats": 31,
+    "action_slip_rate": 0.08,
+    "latency_log_sigma": 0.25
+  },
+  "full_trajectory_balanced_accuracy": {
+    "open_vs_closed": 1.0,
+    "undo_vs_reset": 1.0,
+    "reset_vs_persist": 1.0,
+    "boundary_pause_same_actions": 1.0,
+    "object_vs_viewer_frame": 0.9587,
+    "latent_same_trajectory": 0.4976
+  },
+  "minimality_balanced_accuracy": {
+    "first_action_open_vs_closed": 0.426,
+    "first_action_undo_vs_reset": 0.4421,
+    "two_actions_no_latency_open_vs_closed": 0.7444,
+    "two_actions_no_latency_undo_vs_reset": 0.5403,
+    "two_actions_with_latency_open_vs_closed": 0.9626,
+    "two_actions_with_latency_undo_vs_reset": 0.9903,
+    "two_actions_with_latency_boundary_pause": 0.9991
+  },
+  "robust_minimal_balanced_accuracy": {
+    "open_vs_closed": 0.9205,
+    "undo_vs_reset": 0.9086,
+    "reset_vs_persist": 0.9488,
+    "boundary_pause": 0.9365,
+    "object_vs_viewer": 0.8477,
+    "latent_negative": 0.425
+  },
+  "external_sources": {
+    "wca": {
+      "export_format_version": "2.0.2",
+      "export_date": "2026-08-02T16:15:23+00:00",
+      "tsv_filename": "WCA_export_v2_214_20260802T000025Z.tsv.zip",
+      "role": "OFFICIAL_ATTEMPT_RESULT_AND_SCRAMBLE_ANCHOR",
+      "bulk_materialized": false
+    },
+    "reco_nz": {
+      "role": "PUBLIC_RECONSTRUCTED_TRAJECTORY_AND_STAGE_BOUNDARY",
+      "matched_scramble_fixture": [9269, 9274],
+      "matched_result_seconds": 4.54,
+      "reported_stm": [41, 45],
+      "direct_cognitive_inference": false
+    },
+    "smart_cube": {
+      "sources": ["csTimer", "Cubeast", "Solved"],
+      "access": "EXPLICIT_OWNER_EXPORT_OR_SHARED_LINK_ONLY"
+    }
+  },
+  "protected_scope": {
+    "participant_page_changed": false,
+    "stimulus_bank_changed": false,
+    "schedule_changed": false,
+    "collector_changed": false,
+    "production_entry_changed": false,
+    "human_data_generated": false
+  },
+  "next_boundary": "offline_executable_trajectory_route_estimand_noninterference_and_external_snapshot_ingestion",
+  "result": "PASS_0_8_16_RESEARCH_ASSET_CERTIFICATION_NO_DEPLOYMENT"
+}

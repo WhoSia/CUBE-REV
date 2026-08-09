@@ -1,0 +1,398 @@
+{
+  "schema_version": "CR0816-TRAJECTORY-IDENTIFIABILITY-RESULT-1",
+  "version": "CUBE-REV 0.8.16",
+  "seed": 8162026,
+  "sessions_per_mechanism": 360,
+  "mechanism_count": 10,
+  "simulated_trajectory_count": 3600,
+  "contrasts": {
+    "open_vs_closed": {
+      "mean": 1.0,
+      "sd": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "repeats": 31,
+      "classification": "IDENTIFIABLE"
+    },
+    "undo_vs_reset": {
+      "mean": 1.0,
+      "sd": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "repeats": 31,
+      "classification": "IDENTIFIABLE"
+    },
+    "reset_vs_persist": {
+      "mean": 1.0,
+      "sd": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "repeats": 31,
+      "classification": "IDENTIFIABLE"
+    },
+    "latent_same_trajectory": {
+      "mean": 0.4976,
+      "sd": 0.0233,
+      "min": 0.4405,
+      "max": 0.5397,
+      "repeats": 31,
+      "classification": "NON_IDENTIFIABLE"
+    },
+    "boundary_pause_same_actions": {
+      "mean": 1.0,
+      "sd": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "repeats": 31,
+      "classification": "IDENTIFIABLE"
+    },
+    "object_vs_viewer_frame": {
+      "mean": 0.9587,
+      "sd": 0.0101,
+      "min": 0.9325,
+      "max": 0.9762,
+      "repeats": 31,
+      "classification": "IDENTIFIABLE"
+    }
+  },
+  "feature_view_audit": {
+    "first_action_only": {
+      "open_vs_closed": {
+        "mean": 0.4296,
+        "sd": 0.014,
+        "min": 0.3968,
+        "max": 0.4524,
+        "repeats": 31
+      },
+      "undo_vs_reset": {
+        "mean": 0.4386,
+        "sd": 0.0239,
+        "min": 0.3968,
+        "max": 0.4841,
+        "repeats": 31
+      },
+      "reset_vs_persist": {
+        "mean": 0.4434,
+        "sd": 0.0215,
+        "min": 0.3929,
+        "max": 0.4921,
+        "repeats": 31
+      },
+      "latent_same_trajectory": {
+        "mean": 0.4657,
+        "sd": 0.024,
+        "min": 0.4008,
+        "max": 0.5119,
+        "repeats": 31
+      },
+      "boundary_pause_same_actions": {
+        "mean": 0.4287,
+        "sd": 0.0199,
+        "min": 0.3968,
+        "max": 0.4762,
+        "repeats": 31
+      },
+      "object_vs_viewer_frame": {
+        "mean": 0.8267,
+        "sd": 0.0182,
+        "min": 0.7976,
+        "max": 0.8571,
+        "repeats": 31
+      }
+    },
+    "two_actions_no_latency": {
+      "open_vs_closed": {
+        "mean": 0.7444,
+        "sd": 0.0245,
+        "min": 0.6944,
+        "max": 0.8254,
+        "repeats": 31
+      },
+      "undo_vs_reset": {
+        "mean": 0.5403,
+        "sd": 0.0529,
+        "min": 0.4127,
+        "max": 0.6508,
+        "repeats": 31
+      },
+      "reset_vs_persist": {
+        "mean": 0.8552,
+        "sd": 0.0312,
+        "min": 0.7857,
+        "max": 0.9246,
+        "repeats": 31
+      },
+      "latent_same_trajectory": {
+        "mean": 0.4149,
+        "sd": 0.0162,
+        "min": 0.3849,
+        "max": 0.4484,
+        "repeats": 31
+      },
+      "boundary_pause_same_actions": {
+        "mean": 0.4127,
+        "sd": 0.0155,
+        "min": 0.3849,
+        "max": 0.4444,
+        "repeats": 31
+      },
+      "object_vs_viewer_frame": {
+        "mean": 0.8831,
+        "sd": 0.0216,
+        "min": 0.8413,
+        "max": 0.9325,
+        "repeats": 31
+      }
+    },
+    "two_actions_with_latency": {
+      "open_vs_closed": {
+        "mean": 0.9626,
+        "sd": 0.0202,
+        "min": 0.9206,
+        "max": 0.996,
+        "repeats": 31
+      },
+      "undo_vs_reset": {
+        "mean": 0.9903,
+        "sd": 0.0081,
+        "min": 0.9683,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "reset_vs_persist": {
+        "mean": 0.9986,
+        "sd": 0.0029,
+        "min": 0.9881,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "latent_same_trajectory": {
+        "mean": 0.4323,
+        "sd": 0.025,
+        "min": 0.373,
+        "max": 0.4841,
+        "repeats": 31
+      },
+      "boundary_pause_same_actions": {
+        "mean": 0.9991,
+        "sd": 0.0017,
+        "min": 0.996,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "object_vs_viewer_frame": {
+        "mean": 0.957,
+        "sd": 0.0121,
+        "min": 0.9246,
+        "max": 0.9762,
+        "repeats": 31
+      }
+    },
+    "three_actions_with_latency": {
+      "open_vs_closed": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "undo_vs_reset": {
+        "mean": 0.9977,
+        "sd": 0.0033,
+        "min": 0.9881,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "reset_vs_persist": {
+        "mean": 0.9996,
+        "sd": 0.0015,
+        "min": 0.9921,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "latent_same_trajectory": {
+        "mean": 0.4194,
+        "sd": 0.0214,
+        "min": 0.377,
+        "max": 0.4683,
+        "repeats": 31
+      },
+      "boundary_pause_same_actions": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "object_vs_viewer_frame": {
+        "mean": 0.9827,
+        "sd": 0.0072,
+        "min": 0.9603,
+        "max": 0.9921,
+        "repeats": 31
+      }
+    },
+    "latency_only": {
+      "open_vs_closed": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "undo_vs_reset": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "reset_vs_persist": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "latent_same_trajectory": {
+        "mean": 0.523,
+        "sd": 0.0209,
+        "min": 0.4881,
+        "max": 0.5714,
+        "repeats": 31
+      },
+      "boundary_pause_same_actions": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "object_vs_viewer_frame": {
+        "mean": 0.9871,
+        "sd": 0.0058,
+        "min": 0.9722,
+        "max": 0.996,
+        "repeats": 31
+      }
+    }
+  },
+  "robust_noise_audit": {
+    "action_slip_rate": 0.08,
+    "latency_log_sigma": 0.25,
+    "full_trajectory": {
+      "open_vs_closed": {
+        "mean": 0.9978,
+        "sd": 0.0024,
+        "min": 0.9921,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "undo_vs_reset": {
+        "mean": 0.9912,
+        "sd": 0.0042,
+        "min": 0.9802,
+        "max": 1.0,
+        "repeats": 31
+      },
+      "reset_vs_persist": {
+        "mean": 0.9907,
+        "sd": 0.0042,
+        "min": 0.9802,
+        "max": 0.996,
+        "repeats": 31
+      },
+      "latent_same_trajectory": {
+        "mean": 0.4963,
+        "sd": 0.0325,
+        "min": 0.4405,
+        "max": 0.5595,
+        "repeats": 31
+      },
+      "boundary_pause_same_actions": {
+        "mean": 0.982,
+        "sd": 0.0087,
+        "min": 0.9643,
+        "max": 0.996,
+        "repeats": 31
+      },
+      "object_vs_viewer_frame": {
+        "mean": 0.9151,
+        "sd": 0.0125,
+        "min": 0.8889,
+        "max": 0.9405,
+        "repeats": 31
+      }
+    },
+    "two_actions_with_latency": {
+      "open_vs_closed": {
+        "mean": 0.9205,
+        "sd": 0.019,
+        "min": 0.873,
+        "max": 0.9524,
+        "repeats": 31
+      },
+      "undo_vs_reset": {
+        "mean": 0.9086,
+        "sd": 0.0204,
+        "min": 0.8611,
+        "max": 0.9524,
+        "repeats": 31
+      },
+      "reset_vs_persist": {
+        "mean": 0.9488,
+        "sd": 0.0127,
+        "min": 0.9127,
+        "max": 0.9683,
+        "repeats": 31
+      },
+      "latent_same_trajectory": {
+        "mean": 0.425,
+        "sd": 0.0219,
+        "min": 0.3651,
+        "max": 0.4722,
+        "repeats": 31
+      },
+      "boundary_pause_same_actions": {
+        "mean": 0.9365,
+        "sd": 0.0161,
+        "min": 0.8968,
+        "max": 0.9683,
+        "repeats": 31
+      },
+      "object_vs_viewer_frame": {
+        "mean": 0.8477,
+        "sd": 0.0207,
+        "min": 0.8135,
+        "max": 0.9087,
+        "repeats": 31
+      }
+    },
+    "conditions": {
+      "open_closed_minimal": true,
+      "undo_reset_minimal": true,
+      "reset_persist_minimal": true,
+      "boundary_pause_minimal": true,
+      "object_viewer_full": true,
+      "latent_negative_stays_nonidentifiable": true
+    }
+  },
+  "minimality_conditions": {
+    "first_action_open_closed_nonidentifiable": true,
+    "two_actions_open_closed_without_latency_not_robustly_identifiable": true,
+    "two_actions_open_closed_identifiable_with_latency": true,
+    "first_action_recovery_nonidentifiable": true,
+    "two_actions_recovery_without_latency_not_robustly_identifiable": true,
+    "two_actions_recovery_identifiable_with_latency": true,
+    "boundary_pause_requires_latency": true
+  },
+  "success_conditions": {
+    "open_vs_closed": true,
+    "undo_vs_reset": true,
+    "reset_vs_persist": true,
+    "latent_same_trajectory_remains_nonidentifiable": true,
+    "boundary_pause_same_actions": true,
+    "object_vs_viewer_frame": true
+  },
+  "result": "PASS_MINIMAL_TRAJECTORY_IDENTIFIABILITY"
+}

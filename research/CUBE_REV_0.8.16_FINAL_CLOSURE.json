@@ -1,0 +1,159 @@
+{
+  "schema_version": "CR0816-FINAL-CLOSURE-1",
+  "project": "CUBE-REV",
+  "version": "0.8.16",
+  "title": "Minimal Nonreactive Multi-action Trajectory Probes, Rotational-equivalence Families & Recovery-opportunity Certification",
+  "closure_kind": "OFFLINE_MINIMAL_TRAJECTORY_IDENTIFIABILITY_AND_EXTERNAL_SOURCE_CONTRACT_CLOSURE",
+  "certified_implementation_head": "efacf58d1cfd689d31d19bba3b1007bc598b38f4",
+  "certification": {
+    "workflow_run": 30760143595,
+    "job": 91529076223,
+    "baseline_workflow_runs": [30760143598, 30760143753],
+    "workflow_conclusion": "success",
+    "baseline_conclusion": "success",
+    "runner": "ubuntu-24.04",
+    "python_version": "3.11.15",
+    "evidence_artifact": {
+      "artifact_id": 8837211892,
+      "artifact_digest_sha256": "8eb4b6396d82fb6b8c4078aebc77b4c21915744ca8bd4903add51abdc9c48917",
+      "compressed_bytes": 260155,
+      "expires_at": "2026-08-16T18:03:16Z"
+    },
+    "artifact_inventory": {
+      "total_file_count": 18,
+      "self_excluding_inventory_entries": 17,
+      "independent_inventory_check": "PASS"
+    },
+    "markers": [
+      "CR0816_TRAJECTORY_PROBE_PASS families=6 probes=36 trajectories=3600 open_closed=IDENTIFIABLE recovery=IDENTIFIABLE negative=NON_IDENTIFIABLE",
+      "CR0816_EXTERNAL_LINKAGE_PASS status=PASS_LINKAGE_ADJUDICATION_CONTRACT",
+      "CR0816_MINIMAL_TRAJECTORY_PASS 18/18",
+      "CR0815_MECHANISM_LATTICE_TEST_PASS deterministic=true positive_controls=2 negative_controls=2 stimuli=28 schedules=24",
+      "CR0816_MINIMAL_TRAJECTORY_CI_PASS"
+    ]
+  },
+  "probe_design": {
+    "family_count": 6,
+    "distinct_parent_count": 5,
+    "probe_count": 36,
+    "orientations_per_family": 6,
+    "schedule_count": 12,
+    "trials_per_schedule": 12,
+    "maximum_actions_per_trial": 3,
+    "minimum_family_spacing": 6,
+    "minimum_recovery_opportunities_per_family": 6,
+    "mean_recovery_opportunities_per_family": 8.5,
+    "maximum_recovery_opportunities_per_family": 10,
+    "planned_first_face_count_each": 6,
+    "recovery_error_face_count_each": 6,
+    "exact_rotation_move_conjugation": "PASS_24_ROTATIONS_X_18_MOVES"
+  },
+  "execution": {
+    "seed": 8162026,
+    "mechanism_count": 10,
+    "sessions_per_mechanism": 360,
+    "simulated_trajectory_count": 3600,
+    "pairwise_split_repeats": 31,
+    "full_execution_repeated_byte_identically": true,
+    "action_slip_rate": 0.08,
+    "latency_log_sigma": 0.25
+  },
+  "full_trajectory_balanced_accuracy": {
+    "open_vs_closed": 1.0,
+    "undo_vs_reset": 1.0,
+    "reset_vs_persist": 1.0,
+    "boundary_pause_same_actions": 1.0,
+    "object_vs_viewer_frame": 0.9587,
+    "latent_same_trajectory_negative": 0.4976
+  },
+  "minimality_balanced_accuracy": {
+    "first_action_open_vs_closed": 0.426,
+    "first_action_undo_vs_reset": 0.4421,
+    "first_action_boundary_pause": 0.4279,
+    "two_actions_without_latency_open_vs_closed": 0.7444,
+    "two_actions_without_latency_undo_vs_reset": 0.5403,
+    "two_actions_without_latency_boundary_pause": 0.4127,
+    "two_actions_with_latency_open_vs_closed": 0.9626,
+    "two_actions_with_latency_undo_vs_reset": 0.9903,
+    "two_actions_with_latency_boundary_pause": 0.9991
+  },
+  "robust_two_action_latency_balanced_accuracy": {
+    "open_vs_closed": 0.9205,
+    "undo_vs_reset": 0.9086,
+    "reset_vs_persist": 0.9488,
+    "boundary_pause": 0.9365,
+    "object_vs_viewer": 0.8477,
+    "latent_negative": 0.425
+  },
+  "external_data_contract": {
+    "wca_results_export": {
+      "role": "OFFICIAL_ATTEMPT_RESULT_AND_SCRAMBLE_ANCHOR",
+      "format_version": "2.0.2",
+      "observed_tsv_filename": "WCA_export_v2_214_20260802T000025Z.tsv.zip",
+      "bulk_materialized": false,
+      "does_not_supply": [
+        "executed_move_sequence",
+        "per_move_timestamp",
+        "cognitive_annotation"
+      ]
+    },
+    "public_reconstructions": {
+      "role": "MOVE_ROUTE_STAGE_AND_MOTIF_FIXTURE",
+      "matched_scramble_solve_ids": [9269, 9274],
+      "matched_result_seconds": 4.54,
+      "reported_stm": [41, 45],
+      "route_nonuniqueness": "PASS",
+      "bulk_ingestion": "HOLD_TERMS_ROBOTS_AND_CUSTODY_REVIEW"
+    },
+    "smart_cube_and_timer": {
+      "role": "CONSENTED_PER_MOVE_TIMESTAMP_SOURCE",
+      "sources": ["csTimer", "Cubeast", "Solved"],
+      "access": "EXPLICIT_OWNER_EXPORT_OR_INTENTIONALLY_SHARED_LINK_ONLY",
+      "cohort_materialized": false
+    },
+    "linkage_adjudication": {
+      "exact_unique": "PASS",
+      "ambiguous_multiple": "PASS",
+      "unlinked": "PASS"
+    },
+    "named_person_latent_trait_inference": "PROHIBITED"
+  },
+  "epistemic_boundary": {
+    "synthetic_identifiability_is_human_mechanism_evidence": false,
+    "ecological_validity_of_synthetic_latency_certified": false,
+    "trialwise_confidence_added": false,
+    "strategy_label_requested": false,
+    "error_admission_requested": false,
+    "correctness_feedback_added": false,
+    "minimum_extension_supported": "SECOND_ACTION_PLUS_INTER_MOVE_LATENCY_UNDER_THIS_SYNTHETIC_PROBE_DESIGN_NOT_A_UNIVERSAL_LAW"
+  },
+  "protected_scope": {
+    "participant_page_changed": false,
+    "stimulus_bank_changed": false,
+    "cognitive_config_changed": false,
+    "collector_changed": false,
+    "factory_changed": false,
+    "production_entry_changed": false,
+    "human_data_generated": false
+  },
+  "decision": [
+    "PASS_MINIMAL_MULTI_ACTION_TRAJECTORY",
+    "PASS_ROTATIONAL_EQUIVALENCE_FAMILIES",
+    "PASS_RECOVERY_OPPORTUNITY_DENSITY",
+    "PASS_SECOND_ACTION_PLUS_LATENCY_MINIMALITY",
+    "PASS_ROBUST_NOISE",
+    "PASS_EXTERNAL_TRAJECTORY_SOURCE_DISCOVERY",
+    "PASS_MATCHED_SCRAMBLE_ROUTE_NONUNIQUENESS",
+    "HOLD_WCA_BULK_MATERIALIZATION",
+    "HOLD_PUBLIC_RECONSTRUCTION_BULK_INGESTION",
+    "HOLD_SMART_CUBE_CONSENTED_COHORT",
+    "NO_HUMAN_MECHANISM_CLAIM",
+    "NO_PARTICIPANT_DEPLOYMENT"
+  ],
+  "research_version_status": "CLOSED_AUTOMATED_SCOPE",
+  "participant_deployment": "NO_GO",
+  "human_recruitment": "NO_GO",
+  "automatic_merge_authorized": false,
+  "next_boundary": "offline_executable_trajectory_route_estimand_noninterference_and_versioned_external_snapshot_ingestion",
+  "result": "PASS_0_8_16_RESEARCH_ASSET_CERTIFICATION_NO_DEPLOYMENT"
+}

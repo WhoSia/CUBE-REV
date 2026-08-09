@@ -1,0 +1,100 @@
+name: CUBE-REV 0.8.12 active-session CAS certification
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - cube-rev-0.8.12-active-session-cas
+  pull_request:
+    branches:
+      - cube-rev-0.8.11-atomic-migration-arbitration
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-certify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: cube-rev-0.8.12-active-session-cas
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build pinned 0.8.12 asset bundle
+        run: node scripts/build_0_8_12_assets.js
+
+      - name: Run active-session CAS and inherited contracts
+        run: |
+          node tests/active_session_cas_0.8.12.test.js
+          node -r ./js/atomic-migration-commit-authority-0.8.11.js tests/atomic_migration_arbitration_0.8.11.test.js
+          node tests/cross_version_resume_hash_pin_0.8.10.test.js
+          node tests/public_bank_minimization_0.8.9.test.js
+          node tests/immutable_snapshot_contract_0.8.8.test.js
+
+      - name: Run syntax and participant-page parse checks
+        shell: bash
+        run: |
+          node --check scripts/build_0_8_12_assets.js
+          node --check js/public-asset-verifier-0.8.12.js
+          node --check js/participant-cognitive-mode-0.8.12.js
+          node --check js/active-session-cas-0.8.12.js
+          node --check tests/active_session_cas_0.8.12.test.js
+          node - <<'NODE'
+          const fs=require('fs');
+          const html=fs.readFileSync('participant-cognitive-mode-0.8.12.html','utf8');
+          const blocks=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(x=>x[1]).filter(x=>x.trim());
+          if(blocks.length!==1)throw new Error(`INLINE_SCRIPT_COUNT:${blocks.length}`);
+          for(const required of [
+            'active-session-cas-0.8.12.js',
+            'participant-cognitive-mode-0.8.12.js',
+            'atomic-migration-commit-authority-0.8.11.js'
+          ])if(!html.includes(required))throw new Error(`REQUIRED_SCRIPT_MISSING:${required}`);
+          fs.writeFileSync('/tmp/cube-rev-0812-inline.js',blocks[0]);
+          NODE
+          node --check /tmp/cube-rev-0812-inline.js
+
+      - name: Verify generated identities and active-session policies
+        shell: bash
+        run: |
+          grep -F '"version":"CUBE-REV 0.8.12"' cognitive/PARTICIPANT_STIMULUS_BANK_0.8.12.json
+          grep -F '"version":"CUBE-REV 0.8.12"' cognitive/COGNITIVE_MODE_CONFIG_0.8.12.json
+          grep -F '"version":"CUBE-REV 0.8.12"' research/CUBE_REV_0.8.12_ASSET_MANIFEST.json
+          grep -F 'CUBE_REV_ASSET_PINS_0812' js/asset-pins-0.8.12.js
+          grep -F '"active_write_lock_required":true' cognitive/COGNITIVE_MODE_CONFIG_0.8.12.json
+          grep -F '"revision_policy":"STRICT_MONOTONIC_INCREMENT_BY_ONE_V1"' cognitive/COGNITIVE_MODE_CONFIG_0.8.12.json
+          grep -F '"submission_policy":"LEASE_TOKEN_SINGLE_NETWORK_OWNER_V1"' cognitive/COGNITIVE_MODE_CONFIG_0.8.12.json
+          ! grep -E '"(state_id|rotation_id|face_map|choice_canonical|canonical_move|pair_id|member_id|probe_name|diagnostic_class|branch_count|branch_level|decision_class|distance)"[[:space:]]*:' cognitive/PARTICIPANT_STIMULUS_BANK_0.8.12.json
+
+      - name: Verify collector files remain outside the version diff
+        shell: bash
+        run: |
+          git fetch origin cube-rev-0.8.11-atomic-migration-arbitration
+          if git diff --name-only origin/cube-rev-0.8.11-atomic-migration-arbitration...HEAD | grep -E '^(collector-config\.js|js/collector-client\.js)$'; then
+            echo 'Frozen collector file changed.' >&2
+            exit 1
+          fi
+
+      - name: Package verified generated assets
+        shell: bash
+        run: |
+          mkdir -p /tmp/cube-rev-0812-assets/cognitive /tmp/cube-rev-0812-assets/research /tmp/cube-rev-0812-assets/js
+          cp cognitive/PARTICIPANT_STIMULUS_BANK_0.8.12.json /tmp/cube-rev-0812-assets/cognitive/
+          cp cognitive/COGNITIVE_MODE_CONFIG_0.8.12.json /tmp/cube-rev-0812-assets/cognitive/
+          cp research/CUBE_REV_0.8.12_ASSET_MANIFEST.json /tmp/cube-rev-0812-assets/research/
+          cp js/asset-pins-0.8.12.js /tmp/cube-rev-0812-assets/js/
+          sha256sum /tmp/cube-rev-0812-assets/cognitive/* /tmp/cube-rev-0812-assets/research/* /tmp/cube-rev-0812-assets/js/* > /tmp/cube-rev-0812-assets/SHA256SUMS.txt
+
+      - name: Upload verified generated assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-0.8.12-verified-assets
+          path: /tmp/cube-rev-0812-assets
+          if-no-files-found: error
+          retention-days: 7

@@ -1,0 +1,65 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CUBE-REV 0.8.11</title><style>:root{--bg:#f5f7fa;--card:#fff;--ink:#17191d;--muted:#68707b;--line:#d9dee7;--accent:#195bd7;--warn:#8a4b00}*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color:var(--ink)}main{max-width:860px;margin:auto;padding:24px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px}.hidden{display:none!important}button,input,textarea{font:inherit}button,.button{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px;cursor:pointer;text-decoration:none;color:inherit}.primary{background:var(--accent);color:#fff}.faces{display:flex;gap:16px;justify-content:center;margin:24px 0}.face{display:grid;grid-template-columns:repeat(2,64px);gap:4px;background:#111;padding:5px;border-radius:8px}.st{height:64px;border-radius:4px}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.selected{outline:3px solid var(--accent)}.progress{height:8px;background:#e7eaf0;border-radius:8px;overflow:hidden}.progress div{height:100%;background:var(--accent)}.small{font-size:13px;color:var(--muted)}.warning{color:var(--warn)}textarea{width:100%;min-height:90px}@media(max-width:620px){.face{grid-template-columns:repeat(2,42px)}.st{height:42px}.faces{gap:7px}}</style></head><body><main>
+<section id="intro" class="card"><h1>큐브 첫 행동 선택 과제</h1><p id="introMessage">각 상태에서 자연스럽게 가장 먼저 할 회전을 선택하세요.</p><p class="small">여러 창이 동시에 열려 있어도 저장 상태를 한 번만 안전하게 확인한 뒤 이어집니다.</p><button id="begin" class="primary">시작 또는 이어하기</button><p class="small">CUBE-REV 0.8.11</p></section>
+<section id="blocked" class="card hidden"><h2>저장 상태 확인이 필요합니다</h2><p id="blockedText" class="warning"></p><a id="legacyLink" class="button primary hidden" href="#">기존 버전에서 계속하기</a><button id="retryBoot" class="primary hidden">다시 확인</button><p class="small">기존 응답을 자동으로 삭제하거나 새 세션으로 덮어쓰지 않았습니다.</p></section>
+<section id="task" class="card hidden"><div class="progress"><div id="bar"></div></div><p id="count" class="small"></p><div id="faces" class="faces"></div><p>회전할 면</p><div id="faceChoices" class="choices"></div><p>회전 방향</p><div id="turnChoices" class="choices"></div><button id="confirm" class="primary" disabled>선택 확정</button></section>
+<section id="post" class="card hidden"><h2>과제 후 확인</h2><label>이 과제가 무엇을 비교한다고 생각했나요?<textarea id="guess"></textarea></label><label>추측 확신도 (0–100)<input id="confidence" type="number" min="0" max="100" value="0"></label><p><label><input id="deliberate" type="checkbox"> 과제 목적을 추측해 일부러 선택 방식을 바꿨습니다</label></p><label>기술적 문제 또는 참고사항<textarea id="tech"></textarea></label><button id="finish" class="primary">응답 제출</button></section>
+<section id="done" class="card hidden"><h2>완료되었습니다</h2><p id="doneText">응답을 안전하게 전송하고 있습니다.</p><button id="retry" class="primary hidden">다시 전송</button><p class="small">CUBE-REV 0.8.11</p></section></main>
+<script src="collector-config.js"></script><script src="js/collector-client.js"></script>
+<script src="js/participant-cognitive-mode-0.8.8.js"></script><script src="js/participant-cognitive-mode-0.8.9.js"></script><script src="js/participant-cognitive-mode-0.8.10.js"></script>
+<script src="js/asset-pins-0.8.11.js"></script><script src="js/public-asset-verifier-0.8.11.js"></script><script src="js/participant-cognitive-mode-0.8.11.js"></script><script src="js/atomic-migration-0.8.11.js"></script><script src="js/atomic-migration-commit-authority-0.8.11.js"></script><script>
+'use strict';
+let C,binding,parent0810Binding,bank={},state,face,turn,shown=0,sending=false,booting=false;
+const $=s=>document.querySelector(s),colors={U:'#f5f5f5',D:'#ffd500',F:'#00a651',B:'#0051ba',R:'#c41e3a',L:'#ff5800'},now=()=>new Date().toISOString();
+async function fetchText(path,label){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(`${label}_MISSING`);return r.text()}
+async function assets(){
+  const [manifestText,bankText,configText]=await Promise.all([
+    fetchText('research/CUBE_REV_0.8.11_ASSET_MANIFEST.json','MANIFEST'),
+    fetchText('cognitive/PARTICIPANT_STIMULUS_BANK_0.8.11.json','PUBLIC_BANK'),
+    fetchText('cognitive/COGNITIVE_MODE_CONFIG_0.8.11.json','CONFIG')
+  ]);
+  const v=await CUBE_REV_PUBLIC_ASSET_VERIFIER_0811.verifyBundle({manifestText,bankText,configText,pins:CUBE_REV_ASSET_PINS_0811,cryptoObj:crypto});
+  C=v.config;binding=v.binding;parent0810Binding=v.parent0810Binding;bank=Object.fromEntries(v.bank.stimuli.map(x=>[x.stimulus_id,x]));
+}
+function hideAll(){['intro','blocked','task','post','done'].forEach(x=>$('#'+x).classList.add('hidden'))}
+function block(message,{legacyRoute=null,retry=false}={}){hideAll();$('#blocked').classList.remove('hidden');$('#blockedText').textContent=message;$('#legacyLink').classList.toggle('hidden',!legacyRoute);if(legacyRoute)$('#legacyLink').href=legacyRoute;$('#retryBoot').classList.toggle('hidden',!retry)}
+function blockingMessage(action){
+  const map={
+    LOCK_UNAVAILABLE:'이 브라우저에서는 여러 창 사이의 안전한 저장 잠금을 사용할 수 없습니다. 응답을 변경하지 않았습니다. 최신 Chrome 또는 Edge에서 다시 열어 주세요.',
+    INVALID_HIGHER_SOURCE:'상위 버전 저장 상태의 무결성을 확인하지 못했습니다. 하위 상태로 임의 복귀하지 않았습니다.',
+    INVALID_SOURCE:'기존 저장 상태의 무결성을 확인하지 못했습니다.',
+    SOURCE_CONFLICT:'서로 다른 두 이전 세션이 발견되어 자동으로 하나를 선택하지 않았습니다.',
+    ANCESTRY_CONFLICT:'상위 저장 상태와 보존된 이전 원본의 계보가 일치하지 않습니다.',
+    PRE_FENCE_SOURCE_DIVERGENCE:'업그레이드 확인 중 기존 버전에서 새 변경이 감지되어 자동 전환을 중단했습니다.',
+    TARGET_LOSS_WITH_SOURCE_DIVERGENCE:'새 저장 상태의 손실과 기존 상태 변경이 함께 발견되어 자동 복구하지 않았습니다.',
+    COMMITTED_ARCHIVE_INTEGRITY_HOLD:'복구용 원본 보관본의 무결성을 확인하지 못해 진행을 중단했습니다.',
+    ORPHAN_FENCE_WITHOUT_JOURNAL:'업그레이드 기록 일부가 불완전하여 자동 복구하지 않았습니다.',
+    UNJOURNALED_TARGET_INVALID:'현재 버전 저장 상태의 무결성을 확인하지 못했습니다.'
+  };return map[action]||'저장 상태를 안전하게 확정하지 못했습니다. 기존 응답은 보존했습니다.';
+}
+async function boot(){
+  if(booting)return;booting=true;$('#begin').disabled=true;$('#retryBoot').disabled=true;
+  try{
+    await assets();
+    const result=await CUBE_REV_ATOMIC_MIGRATION_0811.loadOrInitializeAtomic({storage:localStorage,lockManager:navigator.locks,bank11:{stimuli:Object.values(bank)},config11:C,config088:C,config089:C,config10:C,parent0810Binding,binding,m088:CUBE_REV_COGNITIVE_MODE_0808,m089:CUBE_REV_COGNITIVE_MODE_0809,m10:CUBE_REV_COGNITIVE_MODE_0810,m11:CUBE_REV_COGNITIVE_MODE_0811,cryptoObj:crypto,now});
+    if(result.action==='LEGACY_SEALED_RETRY'||result.action==='ROLLED_BACK_TO_LEGACY'){block(result.action==='LEGACY_SEALED_RETRY'?'이 응답은 기존 버전에서 이미 제출용으로 봉인되어 변환하지 않았습니다. 원래 버전에서 같은 봉인본을 다시 전송하세요.':'새 버전 상태를 안전하게 복구할 수 없어, 변경되지 않은 원본 버전으로 되돌렸습니다.',{legacyRoute:result.legacy_route});return}
+    if(result.blocking){block(blockingMessage(result.action),{retry:result.action!=='LOCK_UNAVAILABLE'});return}
+    state=result.state;
+    if(!state)throw new Error(`STATE_MISSING_AFTER_${result.action}`);
+    route();
+  }catch(e){block('과제 자산 또는 저장 상태를 검증하지 못했습니다. 응답은 변경하지 않았습니다.',{retry:true});console.error(e)}finally{booting=false;$('#begin').disabled=false;$('#retryBoot').disabled=false}
+}
+function route(){hideAll();if(state.status==='SUBMITTED'){showDone('이미 안전하게 제출되었습니다.');return}if(state.status==='POST_TASK'||state.status==='READY_TO_SUBMIT'){if(state.status==='READY_TO_SUBMIT'){send();return}$('#post').classList.remove('hidden');return}$('#task').classList.remove('hidden');render()}
+function grid(l,a){return `<div><b>${l}</b><div class="face">${a.flat().map(c=>`<div class="st" style="background:${colors[c]}"></div>`).join('')}</div></div>`}
+function render(){const t=bank[state.schedule[state.cursor]];if(!t)throw new Error('STIMULUS_NOT_FOUND');$('#count').textContent=`${state.cursor+1} / 28`;$('#bar').style.width=`${100*state.cursor/28}%`;$('#faces').innerHTML=grid('U',t.stickers.U)+grid('F',t.stickers.F)+grid('R',t.stickers.R);face=turn=null;$('#confirm').disabled=true;document.querySelectorAll('.selected').forEach(x=>x.classList.remove('selected'));shown=performance.now()}
+function sel(g,v,e){g==='f'?face=v:turn=v;e.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));e.classList.add('selected');$('#confirm').disabled=face==null||turn==null}
+for(const f of 'URFDLB'){const b=document.createElement('button');b.textContent=f;b.onclick=()=>sel('f',f,b);$('#faceChoices').appendChild(b)}
+for(const [v,l] of [['','시계 90°'],['2','180°'],["'",'반시계 90°']]){const b=document.createElement('button');b.textContent=l;b.onclick=()=>sel('t',v,b);$('#turnChoices').appendChild(b)}
+$('#begin').onclick=boot;$('#retryBoot').onclick=boot;
+$('#confirm').onclick=()=>{const t=bank[state.schedule[state.cursor]],display=face+turn,code=t.choice_codes&&t.choice_codes[display];if(!code)throw new Error('OPAQUE_CHOICE_CODE_MISSING');state=CUBE_REV_COGNITIVE_MODE_0811.record(localStorage,state,{stimulus_id:t.stimulus_id,choice_display:display,choice_code:code,latency_ms:Math.round(performance.now()-shown)},now);route()};
+$('#finish').onclick=()=>{state=CUBE_REV_COGNITIVE_MODE_0811.savePostTask(localStorage,state,{hypothesis_guess:$('#guess').value,confidence:$('#confidence').value,deliberate_strategy_change:$('#deliberate').checked,technical_notes:$('#tech').value},now);send()};
+document.addEventListener('visibilitychange',()=>{if(state)state=CUBE_REV_COGNITIVE_MODE_0811.event(localStorage,state,document.hidden?'VISIBILITY_HIDDEN':'VISIBILITY_VISIBLE',{},now)});
+addEventListener('pagehide',()=>{if(state)state=CUBE_REV_COGNITIVE_MODE_0811.event(localStorage,state,'PAGEHIDE',{cursor:state.cursor},now)});
+async function send(){if(sending)return;sending=true;hideAll();$('#done').classList.remove('hidden');if(state.status==='SUBMITTED'){showDone('이미 안전하게 제출되었습니다.');sending=false;return}try{state=CUBE_REV_COGNITIVE_MODE_0811.prepareSubmissionSnapshot(localStorage,state,now);state=CUBE_REV_COGNITIVE_MODE_0811.event(localStorage,state,'SUBMISSION_ATTEMPT',{snapshot_hash:state.submission_snapshot_hash,asset_manifest:binding.manifest_sha256,upgrade_epoch:state.upgrade_epoch},now);const cv='0.7.12',cfg=CubeRevCollectorClient.normalizeConfig(window.CUBE_REV_COLLECTOR_CONFIG,cv),ref={get:()=>state,sync:()=>{state=CUBE_REV_COGNITIVE_MODE_0811.saveExternalMutation(localStorage,state,now)}};const client=new CubeRevCollectorClient({config:cfg,version:cv,getSession:ref.get,exportSession:()=>CUBE_REV_COGNITIVE_MODE_0811.exportSnapshot(state),logEvent:()=>{},persist:ref.sync,setStatus:m=>$('#doneText').textContent=m,randomHex:n=>Array.from(crypto.getRandomValues(new Uint8Array(n)),x=>x.toString(16).padStart(2,'0')).join(''),hashString:CUBE_REV_COGNITIVE_MODE_0811.fnv1a,translate:k=>k});const receipt=await client.submit();state=JSON.parse(localStorage.getItem(CUBE_REV_COGNITIVE_MODE_0811.STORAGE_KEY));state=CUBE_REV_COGNITIVE_MODE_0811.markSubmitted(localStorage,state,receipt,now);showDone('응답이 안전하게 제출되었습니다.')}catch(e){const raw=localStorage.getItem(CUBE_REV_COGNITIVE_MODE_0811.STORAGE_KEY);if(raw)state=JSON.parse(raw);if(state)state=CUBE_REV_COGNITIVE_MODE_0811.event(localStorage,state,'SUBMISSION_FAILED',{message:String(e&&e.message||e).slice(0,300),snapshot_hash:state.submission_snapshot_hash||null},now);$('#doneText').textContent='응답은 이 기기에 보존되었습니다. 연결 후 다시 전송하세요.';$('#retry').classList.remove('hidden')}finally{sending=false}}
+function showDone(x){$('#done').classList.remove('hidden');$('#doneText').textContent=x;$('#retry').classList.add('hidden')}
+$('#retry').onclick=send;
+</script></body></html>

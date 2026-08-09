@@ -1,0 +1,94 @@
+{
+  "schema_version": "CR0814-BROWSER-SUPPORT-POLICY-1",
+  "project": "CUBE-REV",
+  "version": "0.8.14",
+  "policy_scope": "controlled_staging_only",
+  "scientific_runtime_version": "CUBE-REV 0.8.13",
+  "production_default_entry_modified": false,
+  "active_profiles": [
+    {
+      "profile": "chromium-desktop",
+      "status": "ACTIVE_AUTOMATED_CERTIFIED",
+      "evidence": {
+        "race_iterations": 4,
+        "one_winner_conflict_iterations": 4,
+        "pagehide_response_bytes_preserved_iterations": 4
+      }
+    },
+    {
+      "profile": "chromium-android-emulation",
+      "status": "ACTIVE_AUTOMATED_CERTIFIED",
+      "evidence": {
+        "device_profile": "Pixel 7",
+        "race_iterations": 4,
+        "one_winner_conflict_iterations": 4,
+        "pagehide_response_bytes_preserved_iterations": 4
+      }
+    }
+  ],
+  "fail_closed_profiles": [
+    {
+      "profile": "firefox-desktop",
+      "reason": "FIREFOX_CROSS_TAB_STORAGE_COHERENCE_UNCERTIFIED",
+      "parent_route_diagnostic": {
+        "iterations": 6,
+        "dual_response_applied": 5,
+        "one_winner_conflict": 1,
+        "final_incoherence": 0,
+        "native_web_lock_serialized": true
+      }
+    },
+    {
+      "profile": "firefox-compact-viewport",
+      "reason": "FIREFOX_CROSS_TAB_STORAGE_COHERENCE_UNCERTIFIED"
+    },
+    {
+      "profile": "webkit-desktop",
+      "reason": "WEBKIT_CROSS_TAB_STORAGE_COHERENCE_UNCERTIFIED",
+      "parent_route_diagnostic": {
+        "iterations": 6,
+        "dual_response_applied": 1,
+        "one_winner_conflict": 5,
+        "final_incoherence": 0,
+        "native_web_lock_serialized": true
+      }
+    },
+    {
+      "profile": "webkit-iphone-emulation",
+      "reason": "WEBKIT_CROSS_TAB_STORAGE_COHERENCE_UNCERTIFIED",
+      "parent_route_diagnostic": {
+        "iterations": 6,
+        "dual_response_applied": 2,
+        "one_winner_conflict": 4,
+        "final_incoherence": 0,
+        "native_web_lock_serialized": true
+      }
+    },
+    {
+      "profile": "unknown-engine",
+      "reason": "UNSUPPORTED_BROWSER_POLICY"
+    }
+  ],
+  "fail_closed_contract": {
+    "redirect_before_session_boot": true,
+    "scientific_runtime_loaded": false,
+    "test_hooks_present": false,
+    "begin_control_present": false,
+    "cube_rev_storage_keys_created": 0,
+    "state_mutation_authorized": false
+  },
+  "interpretation": "Native Web Locks serialized the explicit lock probe in Firefox and WebKit, but repeated parent-route races sometimes returned RESPONSE_APPLIED to both callers and omitted the one-winner conflict evidence. Final state convergence alone is insufficient for the scientific write contract. Non-Chromium engines therefore fail closed in 0.8.14 controlled staging.",
+  "physical_device_certified": false,
+  "automated_matrix": {
+    "workflow_run": 30753219920,
+    "head_sha": "b5712e1d30f2e0b0cc0b411fdca811d4c6158992",
+    "passed_cells": 6,
+    "failed_cells": 0,
+    "active_cells": 2,
+    "fail_closed_cells": 4,
+    "active_race_iterations": 8,
+    "result": "PASS_CONTROLLED_STAGING_BROWSER_POLICY_MATRIX"
+  },
+  "promotion_rule": "Do not broaden active browser support without repeated native two-page one-winner/conflict certification on the target engine and physical-device confirmation.",
+  "result": "PASS_CHROMIUM_ONLY_ACTIVE_FAIL_CLOSED_FIREFOX_WEBKIT_CONTROLLED_STAGING_POLICY"
+}

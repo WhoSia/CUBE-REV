@@ -1,0 +1,112 @@
+{
+  "schema_version": "CR0815-DECISION-PACKET-1",
+  "project": "CUBE-REV",
+  "version": "0.8.15",
+  "title": "Cognitive Mechanism-axis Lattice, Strategy-transition Signatures & Identifiability-constrained Hypothesis Registry",
+  "branch": "cube-rev-0.8.15-cognitive-mechanism-lattice",
+  "parent_branch": "cube-rev-0.8.14-custody-device-staging",
+  "decision": [
+    "PASS_MECHANISM_AXIS_LATTICE",
+    "PASS_PLANNING_HORIZON_POSITIVE_CONTROL",
+    "PASS_STRATEGY_TRANSITION_POSITIVE_CONTROL",
+    "PASS_OPEN_CLOSED_LOOP_NEGATIVE_CONTROL",
+    "PASS_CAPACITY_TRAIT_NEGATIVE_CONTROL",
+    "HOLD_ORIENTATION_EQUIVARIANCE_SINGLE_PAIR",
+    "HOLD_CHUNK_BOUNDARY",
+    "HOLD_RECOVERY_TRAJECTORY",
+    "NO_PARTICIPANT_INSTRUMENT_CHANGE",
+    "NO_HUMAN_MECHANISM_CLAIM"
+  ],
+  "epistemic_rules": [
+    "BEHAVIORAL_SIGNATURE_FIRST_PSYCHOLOGICAL_LABEL_SECOND",
+    "PROMOTE_ONLY_AXES_WITH_DISTINCT_CURRENT_OBSERVABLES_OR_EXPLICIT_NEW_INSTRUMENT_REQUIREMENTS",
+    "NEGATIVE_CONTROLS_MUST_REMAIN_NON_IDENTIFIABLE",
+    "SYNTHETIC_IDENTIFIABILITY_IS_NOT_HUMAN_MECHANISM_EVIDENCE",
+    "NO_TRIALWISE_SELF_REPORT_ADDED_IN_0_8_15"
+  ],
+  "execution": {
+    "seed": 8152026,
+    "mechanism_count": 11,
+    "sessions_per_mechanism": 240,
+    "simulated_sessions": 2640,
+    "stimulus_count": 28,
+    "schedule_count": 24,
+    "pairwise_split_repeats": 31,
+    "classifier": "STANDARDIZED_NEAREST_CENTROID",
+    "heuristic": "SOLVED_STICKER_SCORE_HORIZONS_1_2_3",
+    "heuristic_claim_boundary": "TRANSPARENT_SYNTHETIC_DISCRIMINATOR_NOT_ASSERTED_PARTICIPANT_OBJECTIVE"
+  },
+  "predeclared_controls": {
+    "greedy_h1_vs_lookahead_h3": {
+      "balanced_accuracy_mean": 1.0,
+      "sd": 0.0,
+      "classification": "IDENTIFIABLE",
+      "role": "POSITIVE_CONTROL"
+    },
+    "stationary_h1_vs_h1_to_h3_switch": {
+      "balanced_accuracy_mean": 1.0,
+      "sd": 0.0,
+      "classification": "IDENTIFIABLE",
+      "role": "POSITIVE_CONTROL"
+    },
+    "open_loop_vs_closed_loop_identical_first_action": {
+      "balanced_accuracy_mean": 0.5148,
+      "sd": 0.0312,
+      "min": 0.4583,
+      "max": 0.5893,
+      "classification": "NON_IDENTIFIABLE",
+      "role": "NEGATIVE_CONTROL"
+    },
+    "high_vs_low_capacity_identical_compensated_policy": {
+      "balanced_accuracy_mean": 0.5108,
+      "sd": 0.0335,
+      "min": 0.4524,
+      "max": 0.5714,
+      "classification": "NON_IDENTIFIABLE",
+      "role": "NEGATIVE_CONTROL"
+    }
+  },
+  "bank_audit": {
+    "h1_vs_h2_disjoint": 9,
+    "h2_vs_h3_disjoint": 8,
+    "h1_vs_h3_disjoint": 13,
+    "h1_vs_h2_different": 23,
+    "h2_vs_h3_different": 19,
+    "all_horizons_same": 3,
+    "rotation_orbits": 27,
+    "repeated_rotation_orbits": 1,
+    "repeated_pair": ["CR086-S002", "CR086-S003"],
+    "orientation_result": "PARTIAL_SINGLE_ROTATIONAL_PAIR"
+  },
+  "schedule_audit": {
+    "mean_second_minus_first_horizon_discrimination": 0.0,
+    "mean_absolute_difference": 0.0714,
+    "max_absolute_difference": 0.0714,
+    "interpretation": "AVERAGE_BALANCE_DOES_NOT_REMOVE_WITHIN_SCHEDULE_ITEM_MIXTURE"
+  },
+  "axis_decisions": {
+    "planning_horizon": "IDENTIFIABLE_SYNTHETIC_POSITIVE_CONTROL_ONLY",
+    "strategy_transition": "IDENTIFIABLE_SYNTHETIC_POSITIVE_CONTROL_STATE_CONDITIONING_REQUIRED",
+    "orientation_equivariance": "HOLD_BANK_EXPANSION_REQUIRED",
+    "chunk_boundary_cost": "HOLD_MULTI_ACTION_TIMING_REQUIRED",
+    "open_vs_closed_loop": "NON_IDENTIFIABLE_INTERMEDIATE_TRAJECTORY_REQUIRED",
+    "recovery_monitoring": "NON_IDENTIFIABLE_ERROR_AND_RECOVERY_TRAJECTORY_REQUIRED",
+    "visuospatial_capacity_trait": "PROHIBITED_FROM_CURRENT_FIRST_ACTION_TRACE",
+    "metacognitive_monitoring": "POST_TASK_ONLY_TRIALWISE_REACTIVITY_UNRESOLVED"
+  },
+  "protected_scope": {
+    "participant_page_changed": false,
+    "stimulus_bank_changed": false,
+    "schedule_changed": false,
+    "collector_changed": false,
+    "production_entry_changed": false,
+    "human_data_generated": false
+  },
+  "promotion": {
+    "research_layer": "PASS",
+    "human_mechanism_inference": "NO_GO",
+    "participant_instrument_extension": "NO_GO_UNTIL_MINIMAL_EXTENSION_DESIGN",
+    "result": "PASS_IDENTIFIABILITY_LATTICE_WITH_NEGATIVE_CONTROLS"
+  },
+  "next_boundary": "minimal_nonreactive_trajectory_instrument_and_rotational_family_design"
+}
