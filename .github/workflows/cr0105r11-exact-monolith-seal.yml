@@ -11,11 +11,9 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
-        with:
-          node-version: 22
+        with: {node-version: 22}
       - name: Prove source ancestry and pristine exact index
         shell: bash
         run: |
@@ -27,9 +25,7 @@ jobs:
           test "$(wc -c < index.html)" = 2588604
           test "$(sha256sum index.html | cut -d' ' -f1)" = e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf
       - name: Baseline repository validation before patch
-        shell: bash
         run: |
-          set -euxo pipefail
           node scripts/validate-static.mjs
           node scripts/build-calibration-host.mjs
           node scripts/validate-calibration.mjs
@@ -50,10 +46,11 @@ jobs:
       - name: Apply source-bound exact patch
         env: {PYTHONUNBUFFERED: '1'}
         run: python scripts/cr0105r11_exact_seal.py --root . --artifact-dir cr0105r11-artifact
+      - name: Browser boot diagnostic
+        env: {CR0105R11_ARTIFACT_DIR: cr0105r11-artifact, PYTHONUNBUFFERED: '1'}
+        run: python tests/cr0105r11_boot_diag.py
       - name: Exact monolith browser court
-        env:
-          CR0105R11_ARTIFACT_DIR: cr0105r11-artifact
-          PYTHONUNBUFFERED: '1'
+        env: {CR0105R11_ARTIFACT_DIR: cr0105r11-artifact, PYTHONUNBUFFERED: '1'}
         run: python tests/cr0105r11_exact_monolith_court.py
       - name: Provenance after browser court
         if: always()
