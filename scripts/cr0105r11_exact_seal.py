@@ -7,9 +7,10 @@ EXPECTED_BYTES=2588604
 EXPECTED_SHA256='e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf'
 EXPECTED_BLOB='344faeb45d0046a52b24fad91a5bcbcb46784b71'
 EXPECTED_VERSION="const VERSION = '0.7.12';"
-ZOOM_ANCHOR='<script src="./js/camera-zoom-controller.js?v=0712-camera-neutral-bypass-hotfix-1"></script>'
+CACHE_KEY='0712-camera-neutral-bypass-hotfix-1'
+ZOOM_ANCHOR=f'<script src="./js/camera-zoom-controller.js?v={CACHE_KEY}"></script>'
 MARKER='CR0105R1-NATURALISTIC-TELEMETRY-INTEGRATION'
-SCRIPT='<script src="./js/naturalistic-telemetry-v0105-r1.js?v=0105r1"></script><!-- '+MARKER+' -->'
+SCRIPT=f'<script src="./js/naturalistic-telemetry-v0105-r1.js?v={CACHE_KEY}"></script><!-- {MARKER} -->'
 LOG_ANCHOR="function logSessionEvent(type,extra={}){\n  if(!session)return null;"
 LOG_HOOK="function logSessionEvent(type,extra={}){\n  // CR0105R1 additive telemetry decorator; no puzzle/camera mutation.\n  if(String(type).startsWith('camera_')&&globalThis.CubeRevNaturalisticTelemetry0105R1){\n    extra=globalThis.CubeRevNaturalisticTelemetry0105R1.decorateCameraPayload(type,extra,()=>camera,CubeRevCameraOrbit);\n  }\n  if(!session)return null;"
 
@@ -40,17 +41,20 @@ def main():
     if reread!=patched: fail('post-write byte mismatch')
     ptxt=reread.decode('utf-8')
     if ptxt.count(MARKER)!=1 or ptxt.count('CubeRevNaturalisticTelemetry0105R1.decorateCameraPayload')!=1: fail('patch markers not singleton')
+    if ptxt.count(f'?v={CACHE_KEY}') < 1 or '?v=0105r1' in ptxt: fail('cache-key parity violation')
     receipt={
-      'schema_version':'CR0105R11-EXACT-SOURCE-PATCH-1','status':'PASS',
+      'schema_version':'CR0105R11-EXACT-SOURCE-PATCH-2','status':'PASS',
       'source_expected':{'bytes':EXPECTED_BYTES,'sha256':EXPECTED_SHA256,'git_blob_sha1':EXPECTED_BLOB},
       'source_observed':source,
       'telemetry':{'bytes':len(tel),'sha256':sha256(tel),'git_blob_sha1':git_blob(tel)},
       'patched':{'bytes':len(reread),'sha256':sha256(reread),'git_blob_sha1':git_blob(reread),'additive_bytes':len(reread)-len(src)},
+      'cache_key':CACHE_KEY,
       'checks':{
         'source_exact_byte_length':True,'source_exact_sha256':True,'source_exact_git_blob':True,
         'source_version_anchor':True,'zoom_anchor_singleton':True,'logger_anchor_singleton':True,
         'source_unpatched_before_execution':True,'post_write_byte_identity':True,'patch_marker_singleton':True,
-        'logger_hook_singleton':True,'source_backup_exact':(art/'index.source.html').read_bytes()==src
+        'logger_hook_singleton':True,'source_backup_exact':(art/'index.source.html').read_bytes()==src,
+        'release_cache_key_preserved':True
       },
       'human_observations':0,'production_mutated':False
     }
