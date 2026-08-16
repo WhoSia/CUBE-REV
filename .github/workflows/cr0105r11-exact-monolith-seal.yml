@@ -13,10 +13,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - name: Prove source ancestry and pristine exact index
         shell: bash
         run: |
           set -euxo pipefail
+          mkdir -p cr0105r11-artifact
           git merge-base --is-ancestor 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1 HEAD
           test "$(git rev-parse 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1:index.html)" = 344faeb45d0046a52b24fad91a5bcbcb46784b71
           test "$(git hash-object index.html)" = 344faeb45d0046a52b24fad91a5bcbcb46784b71
@@ -26,14 +30,17 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
-          node scripts/build-calibration-host.mjs
           node scripts/validate-static.mjs
+          node scripts/build-calibration-host.mjs
           node scripts/validate-calibration.mjs
-          node tests/calibration.test.cjs
+          node tests/randomization.test.cjs
+          node tests/history-fidelity.test.cjs
+          node tests/neutral-probe.test.cjs
+          node tests/runtime.test.cjs
+          node tests/camera-orbit.test.cjs
           node tests/collector-receipt.integration.cjs
-          node tests/interaction-semantics.test.cjs
-          node tests/calibration-replay.test.cjs
-          node tests/multi-tab-arbitration.test.cjs
+          python -m unittest tests/test_registry_and_annotation.py
+          node tests/documented-cli.test.cjs
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - name: Install Chromium court runtime
@@ -52,6 +59,7 @@ jobs:
         if: always()
         shell: bash
         run: |
+          mkdir -p cr0105r11-artifact
           {
             echo "head=$(git rev-parse HEAD)"
             echo "base_index_blob=$(git rev-parse 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1:index.html)"
