@@ -14,8 +14,12 @@ for i,line in enumerate(src):
 if not reader_patched: raise RuntimeError('R16_READER_PATCH_ANCHOR_NOT_FOUND')
 if not version_patched: raise RuntimeError('R16_VERSION_PATCH_ANCHOR_NOT_FOUND')
 code='\n'.join(src)+'\n'
-# DuckDB 1.3 treats VALUE as a reserved keyword. Preserve the WCA source field a.value,
-# but rename the analytical alias/references to attempt_value throughout generated SQL.
+# Exact schema repairs from sealed WCA v2.0.2 metadata/TSV headers (2026-08-18 vintage).
+code=code.replace(', a.regional_single_record\n FROM {A}', '\n FROM {A}')
+code=code.replace('c.country_iso2,', 'c.country_id,')
+code=code.replace('p.country_iso2 FROM {P}', 'p.country_id FROM {P}')
+# DuckDB 1.3 treats VALUE as a reserved keyword. Preserve the WCA source a.value,
+# rename only the analytical alias/references to attempt_value.
 code=code.replace('a.value','a.__R16_SOURCE_VALUE__')
 code=re.sub(r'\bvalue\b','attempt_value',code)
 code=code.replace('a.__R16_SOURCE_VALUE__','a.value')
