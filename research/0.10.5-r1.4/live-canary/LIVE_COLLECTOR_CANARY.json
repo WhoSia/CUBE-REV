@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R14-LIVE-COLLECTOR-CANARY-1",
+  "status": "FAIL",
+  "verdict": "FAIL_CANARY_INFRASTRUCTURE",
+  "human_observations": 0,
+  "human_launch_gate": "HOLD",
+  "human_launch_reason": "live canary did not produce a complete evidence record",
+  "workflow_step_outcome": "failure",
+  "checks": {}
+}

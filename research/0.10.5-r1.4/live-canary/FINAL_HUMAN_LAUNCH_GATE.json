@@ -1,0 +1,18 @@
+{
+  "schema_version": "CR0105R14-FINAL-HUMAN-LAUNCH-GATE-2",
+  "stage": "CUBE-REV 0.10.5-R1.4 — Live Collector Receipt Canary, Public-session End-to-end Provenance & Blinded Human-launch Gate",
+  "status": "HOLD",
+  "verdict": "HOLD_HUMAN_LAUNCH_COLLECTOR_PROVENANCE_NOT_EXACT",
+  "main_commit": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+  "public_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+  "canary_session_id": null,
+  "canary_status": "FAIL",
+  "canary_verdict": "FAIL_CANARY_INFRASTRUCTURE",
+  "collector_deployment_id": null,
+  "checks": {},
+  "human_observations": 0,
+  "synthetic_production_records_written": 0,
+  "human_launch": false,
+  "gate": "HOLD_HUMAN_LAUNCH",
+  "hold_reason": "live canary did not produce a complete evidence record"
+}
