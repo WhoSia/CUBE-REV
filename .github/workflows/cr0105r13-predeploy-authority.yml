@@ -1,0 +1,114 @@
+name: CR0105R13 Predeploy Authority Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.3-deployment-authority]
+    paths: ['cr0105r13/RUN_STAGE']
+permissions:
+  contents: write
+jobs:
+  predeploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Build exact main-staging commit under fail-closed authority gate
+        shell: bash
+        env:
+          BASE_MAIN: 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1
+          BASE_BYTES: '2588604'
+          BASE_SHA256: e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf
+          BASE_BLOB: 344faeb45d0046a52b24fad91a5bcbcb46784b71
+          V2_BINDING_COMMIT: 8ecb8b142b4a8856475cc83a451b49242ecbcf16
+          CAND_BYTES: '2591526'
+          CAND_SHA256: 98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180
+          CAND_BLOB: ce5b5608767083a696cf57982edd979a21b3ba22
+          RESEARCH_BRANCH: cube-rev-0.10.5-r1.3-deployment-authority
+          STAGING_BRANCH: cube-rev-0.10.5-r1.3-main-staging
+          CAND_PATH: release-candidates/0.10.5-r1.2/98e6431c72c7b32f/index.html
+        run: |
+          set -euo pipefail
+          ART=cr0105r13-artifact
+          EVID=research/0.10.5-r1.3/predeploy
+          mkdir -p "$ART" "$EVID"
+          main_sha=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+          staging_sha=$(git ls-remote origin refs/heads/${STAGING_BRANCH} | awk '{print $1}')
+          test "$main_sha" = "$BASE_MAIN"
+          test "$staging_sha" = "$BASE_MAIN"
+          git merge-base --is-ancestor "$V2_BINDING_COMMIT" HEAD
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          v=json.loads(Path('research/0.10.5-r1.2/prelaunch-seal/V2_TAG_BINDING.json').read_text())
+          f=json.loads(Path('research/0.10.5-r1.2/prelaunch-seal/FINAL_PRELAUNCH_GATE.json').read_text())
+          assert v['status']=='PASS' and v['sealed_candidate_sha256']=='98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180'
+          assert v['v2_tag']=='cube-rev-0.10.5-r1.2-prelaunch-seal-v2' and v['original_prelaunch_tag_preserved'] is True
+          assert f['status']=='PASS' and f['gate']=='READY_FOR_EXPLICIT_DEPLOYMENT_AUTHORITY_COURT'
+          assert all(f['checks'].values())
+          PY
+          test "$(wc -c < "$CAND_PATH")" = "$CAND_BYTES"
+          test "$(sha256sum "$CAND_PATH" | cut -d' ' -f1)" = "$CAND_SHA256"
+          test "$(git hash-object "$CAND_PATH")" = "$CAND_BLOB"
+          curl -fsSL -H 'Cache-Control: no-cache' -o "$ART/predeploy-public.html" "https://whosia.github.io/CUBE-REV/?cr0105r13-pre=${GITHUB_RUN_ID}"
+          test "$(wc -c < "$ART/predeploy-public.html")" = "$BASE_BYTES"
+          test "$(sha256sum "$ART/predeploy-public.html" | cut -d' ' -f1)" = "$BASE_SHA256"
+          cp "$CAND_PATH" "$RUNNER_TEMP/cr0105r13-candidate.html"
+          WT="$RUNNER_TEMP/cr0105r13-main-stage"
+          git worktree add --detach "$WT" "$BASE_MAIN"
+          cp "$RUNNER_TEMP/cr0105r13-candidate.html" "$WT/index.html"
+          cd "$WT"
+          test "$(git diff --name-only | tr -d '\r')" = 'index.html'
+          test "$(wc -c < index.html)" = "$CAND_BYTES"
+          test "$(sha256sum index.html | cut -d' ' -f1)" = "$CAND_SHA256"
+          test "$(git hash-object index.html)" = "$CAND_BLOB"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html
+          git commit -m 'Deploy CUBE-REV 0.10.5-R1.3 sealed candidate'
+          deploy_commit=$(git rev-parse HEAD)
+          parent=$(git rev-parse HEAD^)
+          test "$parent" = "$BASE_MAIN"
+          test "$(git diff-tree --no-commit-id --name-only -r HEAD | tr -d '\r')" = 'index.html'
+          test "$(git rev-parse HEAD:index.html)" = "$CAND_BLOB"
+          remote_main_now=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+          remote_stage_now=$(git ls-remote origin refs/heads/${STAGING_BRANCH} | awk '{print $1}')
+          test "$remote_main_now" = "$BASE_MAIN"
+          test "$remote_stage_now" = "$BASE_MAIN"
+          git push origin "$deploy_commit:refs/heads/${STAGING_BRANCH}"
+          cd "$GITHUB_WORKSPACE"
+          DEPLOY_COMMIT="$deploy_commit" MAIN_SHA="$main_sha" python - <<'PY'
+          import json,os,hashlib
+          from pathlib import Path
+          p=Path('cr0105r13-artifact/predeploy-public.html'); b=p.read_bytes()
+          out={
+            'schema_version':'CR0105R13-PREDEPLOY-AUTHORITY-1',
+            'stage':'CUBE-REV 0.10.5-R1.3 — Explicit Deployment Authority Court, Mainline Candidate Injection & Post-deploy Public-byte Identity Seal',
+            'status':'PASS','verdict':'PASS_EXPLICIT_DEPLOYMENT_AUTHORITY_STAGED_EXACT_SINGLE_FILE_COMMIT',
+            'authority_basis':'USER_EXPLICIT_REQUEST_2026-08-18_CURRENT_TURN',
+            'base_main_commit':os.environ['MAIN_SHA'],'deployment_commit':os.environ['DEPLOY_COMMIT'],
+            'staging_branch':'cube-rev-0.10.5-r1.3-main-staging','main_written':False,
+            'candidate':{'bytes':2591526,'sha256':'98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180','git_blob_sha1':'ce5b5608767083a696cf57982edd979a21b3ba22'},
+            'predeploy_public':{'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()},
+            'checks':{'v2_binding_pass':True,'final_prelaunch_gate_pass':True,'main_cas_base_exact':True,'staging_cas_base_exact':True,'candidate_exact':True,'predeploy_public_baseline_exact':True,'deployment_commit_parent_exact':True,'deployment_diff_only_index_html':True,'deployment_blob_exact':True},
+            'gate':'READY_FOR_MAIN_FAST_FORWARD'
+          }
+          Path('research/0.10.5-r1.3/predeploy/PREDEPLOY_AUTHORITY.json').write_text(json.dumps(out,indent=2),encoding='utf-8')
+          Path('cr0105r13-artifact/PREDEPLOY_AUTHORITY.json').write_text(json.dumps(out,indent=2),encoding='utf-8')
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "$EVID/PREDEPLOY_AUTHORITY.json"
+          git commit -m "Seal CUBE-REV 0.10.5-R1.3 predeploy authority ${GITHUB_RUN_ID}"
+          git push origin HEAD:${RESEARCH_BRANCH}
+          seal_commit=$(git rev-parse HEAD)
+          tag='cube-rev-0.10.5-r1.3-deployment-authority-ready'
+          if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then exit 91; fi
+          git tag "$tag" "$seal_commit"
+          git push origin "refs/tags/${tag}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R13-predeploy-authority
+          path: cr0105r13-artifact
+          if-no-files-found: error
+          retention-days: 30
