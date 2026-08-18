@@ -31,5 +31,8 @@ code=code.replace('GROUP BY year,attempt_status ORDER BY year,attempt_status', '
 code=code.replace('cast(a.value as INTEGER)', 'cast(a.__R16_SOURCE_VALUE__ as INTEGER)')
 code=re.sub(r'\bvalue\b','attempt_value',code)
 code=code.replace('a.__R16_SOURCE_VALUE__','a.value')
+# Repair original two-CTE syntax.
+code=code.replace('FROM attempt_spine s), z AS SELECT *,', 'FROM attempt_spine s), z AS (SELECT *,')
+code=code.replace(' FROM b SELECT * FROM z', ' FROM b) SELECT * FROM z')
 compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec')
 exec(compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec'),{'__name__':'__main__','__file__':str(Path(__file__).with_name('r16_ingest.py'))})
