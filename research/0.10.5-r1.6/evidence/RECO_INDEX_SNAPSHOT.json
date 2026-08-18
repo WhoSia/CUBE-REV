@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R16-RECO-INDEX-1",
+  "status": "PASS",
+  "retrieved_url": "https://reco.nz/",
+  "html_bytes": 79492,
+  "html_sha256": "31449cb1023795f7c74dfb812307c825ab8731f382cea84f40b0cc6c85f65526",
+  "all_parsed_3x3_rows": 43,
+  "max_reco_id": 14051,
+  "community_driven": true
+}

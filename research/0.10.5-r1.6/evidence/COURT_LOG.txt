@@ -1,6 +1,7 @@
 Traceback (most recent call last):
   File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest_v2.py", line 38, in <module>
     exec(compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec'),{'__name__':'__main__','__file__':str(Path(__file__).with_name('r16_ingest.py'))})
-  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest.py", line 219, in <module>
-    con.create_function('r16_norm',norm,[str],str)
-duckdb.duckdb.InvalidInputException: Invalid Input Error: 'numpy' is required for this operation, but it wasn't installed
+  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest.py", line 322, in <module>
+    con.execute("COPY (SELECT year,attempt_status,count(*) n FROM attempt_spine GROUP BY year,attempt_status ORDER BY year,attempt_status) TO ? (HEADER,DELIMITER ',')",[str(OUT/'WCA_333_YEAR_STATUS_COUNTS.csv')])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.ParserException: Parser Error: syntax error at or near "?"
