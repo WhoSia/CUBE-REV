@@ -1,0 +1,10 @@
+{
+  "http_status": 200,
+  "html_url": "https://whosia.github.io/CUBE-REV/",
+  "source": {
+    "branch": "main",
+    "path": "/"
+  },
+  "build_type": "legacy",
+  "raw_status": "built"
+}
