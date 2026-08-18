@@ -25,7 +25,7 @@ code=code.replace('c.year,c.month,c.day,', 'c.comp_year,c.comp_month,c.comp_day,
 code=code.replace('select year,count(*)', 'select comp_year,count(*)')
 code=code.replace('group by year order by year', 'group by comp_year order by comp_year')
 code=code.replace('select year,count(*) filter(where shock_slow)', 'select comp_year,count(*) filter(where shock_slow)')
-code=code.replace('SELECT year,attempt_status,count(*) n', 'SELECT comp_year AS "year",attempt_status,count(*) n')
+code=code.replace('SELECT year,attempt_status,count(*) n', 'SELECT comp_year,attempt_status,count(*) n')
 code=code.replace('GROUP BY year,attempt_status ORDER BY year,attempt_status', 'GROUP BY comp_year,attempt_status ORDER BY comp_year,attempt_status')
 # VALUE is reserved. Preserve WCA source a.value; rename analytical alias/references only.
 code=code.replace('a.value','a.__R16_SOURCE_VALUE__')
