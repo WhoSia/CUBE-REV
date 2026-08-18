@@ -1,0 +1,102 @@
+name: CR0105R14 Live Collector Receipt Canary
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.4-live-collector-canary]
+    paths: [cr0105r14/RUN]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r14-live-canary
+  cancel-in-progress: false
+jobs:
+  live-canary:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Pre-write public release and authority court
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p cr0105r14-artifact research/0.10.5-r1.4/live-canary
+          main_sha=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+          test "$main_sha" = "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd"
+          curl -fsSL --retry 3 "https://whosia.github.io/CUBE-REV/?cr0105r14-preflight=${GITHUB_RUN_ID}" -o cr0105r14-artifact/public-preflight.html
+          bytes=$(wc -c < cr0105r14-artifact/public-preflight.html)
+          sha=$(sha256sum cr0105r14-artifact/public-preflight.html | cut -d' ' -f1)
+          test "$bytes" = "2591526"
+          test "$sha" = "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180"
+          grep -q "CUBE-REV-0712-MAIN" collector-config.js
+          grep -q "receipt-v2" collector-config.js
+          MAIN_SHA="$main_sha" PUBLIC_BYTES="$bytes" PUBLIC_SHA="$sha" python - <<'PY'
+          import json,os
+          open('cr0105r14-artifact/PREWRITE_AUTHORITY.json','w').write(json.dumps({
+            'schema_version':'CR0105R14-PREWRITE-AUTHORITY-1','status':'PASS',
+            'main_sha':os.environ['MAIN_SHA'],'public_bytes':int(os.environ['PUBLIC_BYTES']),
+            'public_sha256':os.environ['PUBLIC_SHA'],'production_write_authorized':'SYNTHETIC_CANARY_ONLY',
+            'human_observations':0
+          },indent=2))
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Chromium court runtime
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install chromium
+      - name: Execute public-host live collector canary and adversarial receipt court
+        env:
+          CR0105R14_ARTIFACT_DIR: cr0105r14-artifact
+        run: python tests/cr0105r14_live_collector_canary.py
+      - name: Build blinded human-launch gate
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=Path('cr0105r14-artifact')
+          can=json.loads((a/'LIVE_COLLECTOR_CANARY.json').read_text())
+          pre=json.loads((a/'PREWRITE_AUTHORITY.json').read_text())
+          status='PASS' if pre.get('status')=='PASS' and can.get('status')=='PASS' and can.get('human_launch_gate')=='ELIGIBLE' else 'HOLD'
+          verdict='PASS_LIVE_RECEIPT_CANARY_PUBLIC_SESSION_PROVENANCE_HUMAN_LAUNCH_GATE' if status=='PASS' else 'HOLD_HUMAN_LAUNCH_COLLECTOR_PROVENANCE_NOT_EXACT'
+          out={
+            'schema_version':'CR0105R14-FINAL-HUMAN-LAUNCH-GATE-1',
+            'stage':'CUBE-REV 0.10.5-R1.4 — Live Collector Receipt Canary, Public-session End-to-end Provenance & Blinded Human-launch Gate',
+            'status':status,'verdict':verdict,
+            'main_commit':'19f7b83aceba3a3d0cec94a3c10b1b80af85fafd',
+            'public_sha256':'98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180',
+            'canary_session_id':can.get('session_id'),
+            'canary_status':can.get('status'),
+            'canary_verdict':can.get('verdict'),
+            'collector_deployment_id':(can.get('independent_health') or {}).get('payload',{}).get('deployment_id'),
+            'checks':can.get('checks',{}),
+            'human_observations':0,
+            'synthetic_production_records_written':1,
+            'human_launch':False,
+            'gate':'READY_FOR_HUMAN_LAUNCH_AUTHORITY' if status=='PASS' else 'HOLD_HUMAN_LAUNCH',
+            'hold_reason':can.get('human_launch_reason') if status=='HOLD' else None
+          }
+          (a/'FINAL_HUMAN_LAUNCH_GATE.json').write_text(json.dumps(out,indent=2,ensure_ascii=False))
+          print(json.dumps(out,indent=2,ensure_ascii=False))
+          PY
+      - name: Persist compact RAVEL evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp cr0105r14-artifact/PREWRITE_AUTHORITY.json research/0.10.5-r1.4/live-canary/
+          cp cr0105r14-artifact/LIVE_COLLECTOR_CANARY.json research/0.10.5-r1.4/live-canary/
+          cp cr0105r14-artifact/FINAL_HUMAN_LAUNCH_GATE.json research/0.10.5-r1.4/live-canary/
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add research/0.10.5-r1.4/live-canary
+          git commit -m "Record CUBE-REV 0.10.5-R1.4 live collector canary ${GITHUB_RUN_ID}" || true
+          git push origin HEAD:cube-rev-0.10.5-r1.4-live-collector-canary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R14-live-collector-canary
+          path: cr0105r14-artifact
+          retention-days: 30
