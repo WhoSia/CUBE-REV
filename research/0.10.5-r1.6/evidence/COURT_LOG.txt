@@ -1,0 +1,4 @@
+  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest.py", line 40
+    return f"read_csv('{esc(p)}', delim='\\t', header=true, quote='\\"', escape='\\"', all_varchar=true, sample_size=-1, null_padding=true)"
+                                                                                  ^
+SyntaxError: unexpected character after line continuation character
