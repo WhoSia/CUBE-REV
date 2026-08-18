@@ -27,9 +27,11 @@ code=code.replace('group by year order by year', 'group by comp_year order by co
 code=code.replace('select year,count(*) filter(where shock_slow)', 'select comp_year,count(*) filter(where shock_slow)')
 code=code.replace('SELECT year,attempt_status,count(*) n', 'SELECT comp_year,attempt_status,count(*) n')
 code=code.replace('GROUP BY year,attempt_status ORDER BY year,attempt_status', 'GROUP BY comp_year,attempt_status ORDER BY comp_year,attempt_status')
-# VALUE is reserved. Preserve WCA source a.value; rename analytical alias/references only.
+# VALUE is reserved. Preserve the WCA source field only in the raw result_attempts read.
 code=code.replace('a.value','a.__R16_SOURCE_VALUE__')
 code=re.sub(r'\bvalue\b','attempt_value',code)
 code=code.replace('a.__R16_SOURCE_VALUE__','a.value')
+# Once attempts_333 exists, its column is attempt_value rather than the raw WCA field name.
+code=code.replace('r.format_id,a.attempt_number,a.value,', 'r.format_id,a.attempt_number,a.attempt_value,')
 compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec')
 exec(compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec'),{'__name__':'__main__','__file__':str(Path(__file__).with_name('r16_ingest.py'))})
