@@ -1,6 +1,6 @@
 Traceback (most recent call last):
-  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest_v2.py", line 14, in <module>
+  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest_v2.py", line 19, in <module>
     exec(compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec'),{'__name__':'__main__','__file__':str(Path(__file__).with_name('r16_ingest.py'))})
-  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest.py", line 128, in <module>
-    raise RuntimeError(f"UNSUPPORTED_WCA_EXPORT_FORMAT {metadata}")
-RuntimeError: UNSUPPORTED_WCA_EXPORT_FORMAT {'export_format_version': 'v2.0.2', 'version_label': 'current', 'end_of_life_date': None, 'export_date': '2026-08-18 00:00:35 UTC'}
+  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest.py", line 148, in <module>
+    con.execute(f"""CREATE TABLE attempts_333 AS SELECT cast(a.result_id as BIGINT) result_id,
+duckdb.duckdb.ParserException: Parser Error: syntax error at or near "value"
