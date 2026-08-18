@@ -1,0 +1,15 @@
+{
+  "schema_version": "CR0105R12-V2-TAG-BINDING-1",
+  "status": "PASS",
+  "court_evidence_commit": "2dcf9c9fbc58dc442259cba2325b5a68aa924a03",
+  "court_workflow_run_id": "32089610807",
+  "sealed_candidate_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+  "base_main_commit": "52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1",
+  "original_prelaunch_tag": "cube-rev-0.10.5-r1.2-prelaunch-seal",
+  "original_prelaunch_tag_preserved": true,
+  "v2_tag": "cube-rev-0.10.5-r1.2-prelaunch-seal-v2",
+  "main_written": false,
+  "deployment_triggered": false,
+  "public_host_still_baseline": true,
+  "binding_run_id": "32089836847"
+}
