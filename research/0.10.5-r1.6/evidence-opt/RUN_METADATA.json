@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R16-OPT-RUN-META-1",
+  "workflow_run_id": "32096715110",
+  "head_sha": "7284caf412fb14eed1a9a2533d2887dc7184cfc0",
+  "court_exit_code": 0,
+  "linkage_engine": "DISTINCT_NAME_NORMALIZATION_PLUS_DUCKDB_NATIVE_EQUALITY",
+  "human_observations": 0,
+  "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN",
+  "generated_at_utc": "2026-08-18T03:48:55.873506+00:00"
+}

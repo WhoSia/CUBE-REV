@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "counts": {
+    "results_333": 1835235,
+    "attempts_333": 9159748,
+    "valid_attempts": 8968473,
+    "dnf_attempts": 187290,
+    "dns_attempts": 3985,
+    "competitions": 15154,
+    "persons": 282898,
+    "scrambles_333": 730812,
+    "dnf_rate": 0.020447069067838983,
+    "dns_rate": 0.0004350556369018012
+  },
+  "linkage_tiers": {
+    "B_NORMALIZED_UNIQUE": 901,
+    "U_UNMATCHED": 6831,
+    "A_EXACT_UNIQUE": 2663,
+    "C_AMBIGUOUS": 201
+  },
+  "detail": {
+    "detail_pages_ok": 200,
+    "detail_pages_failed": 0,
+    "scramble_exact_unique": 127,
+    "any_adjacent_same_face_compressible": 132,
+    "any_adjacent_exact_cancellation": 80,
+    "any_adjacent_repeated_bigram": 99
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "CR0105R16-CLAIM-SCOPE-1",
+  "status": "PASS",
+  "allowed": [
+    "WCA 3x3 official attempt population summaries for the sealed export vintage",
+    "descriptive within-round outcome disruption/recovery proxy rates",
+    "reco.nz selection/linkage rates under explicit deterministic tiers",
+    "conservative move-notation anomaly prevalence within the selected linked reconstruction pilot"
+  ],
+  "prohibited": [
+    "claiming WCA export alone identifies each competitor attempt scramble",
+    "interpreting a slow WCA attempt as proven move-level recovery behavior",
+    "using reco.nz as an unbiased population sample",
+    "interpreting local move redundancy as cognitive error without counterfactual/phase validation",
+    "treating solver-generated routes as human observations"
+  ],
+  "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+}
