@@ -1,10 +1,9 @@
 {
-  "authority": "success",
-  "baseline": "success",
-  "chromium": "success",
-  "materialize": "success",
-  "browser": "success",
-  "restore": "success",
-  "pages": "success",
-  "publichost": "success"
+  "step_authority": "PASS",
+  "step_baseline": "0",
+  "step_chromium": "0",
+  "step_material": "0",
+  "step_browser": "0",
+  "step_restore": "0",
+  "step_final": "0"
 }

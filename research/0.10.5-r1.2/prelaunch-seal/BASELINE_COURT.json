@@ -1,1 +1,4 @@
-{"status":"PASS"}
+{
+  "status": "PASS",
+  "returncode": 0
+}

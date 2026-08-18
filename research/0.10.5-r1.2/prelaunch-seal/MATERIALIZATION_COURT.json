@@ -1,1 +1,5 @@
-{"status":"PASS","candidate_sha256":"98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180"}
+{
+  "status": "PASS",
+  "returncode": 0,
+  "candidate_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180"
+}

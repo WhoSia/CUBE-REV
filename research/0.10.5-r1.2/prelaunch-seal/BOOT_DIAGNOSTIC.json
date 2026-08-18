@@ -8,73 +8,73 @@
   "pageerror": [],
   "requestfailed": [
     {
-      "url": "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=health&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=__cubeRevHealth_9a7b5584070bdf4f&_=1787017630062",
+      "url": "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=health&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=__cubeRevHealth_05337e7d8a78a506&_=1787017816358",
       "failure": "net::ERR_FAILED"
     }
   ],
   "responses": [
     {
-      "url": "http://127.0.0.1:34979/index.html?debug=1",
+      "url": "http://127.0.0.1:56695/index.html?debug=1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/collector-config.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/collector-config.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/calibration/linkage.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/calibration/calibration-config.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/calibration/randomization.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/calibration/linkage.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/calibration/history-presentation.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/calibration/randomization.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/calibration/calibration-config.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/calibration/history-presentation.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/calibration/neutral-probe.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/calibration/neutral-probe.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/calibration/eligibility-clock.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/calibration/export-decoration.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/calibration/export-decoration.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/js/i18n-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/calibration/runtime.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/calibration/eligibility-clock.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/js/collector-client.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/calibration/runtime.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/js/i18n-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/js/collector-client.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/js/camera-orbit.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/js/camera-orbit.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/js/cube-drag-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/js/cube-drag-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/js/responsive-layout-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/js/camera-zoom-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     },
     {
-      "url": "http://127.0.0.1:34979/js/camera-zoom-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "url": "http://127.0.0.1:56695/js/responsive-layout-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
       "status": 200
     }
   ],
