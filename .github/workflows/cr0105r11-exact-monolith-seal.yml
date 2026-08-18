@@ -4,11 +4,11 @@ on:
     branches: [cube-rev-0.10.5-r1.1-exact-monolith-seal]
     paths: ['cr0105r11/RUN']
 permissions:
-  contents: read
+  contents: write
 jobs:
   exact-seal:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
@@ -25,7 +25,9 @@ jobs:
           test "$(wc -c < index.html)" = 2588604
           test "$(sha256sum index.html | cut -d' ' -f1)" = e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf
       - name: Baseline repository validation before patch
+        shell: bash
         run: |
+          set -euxo pipefail
           node scripts/validate-static.mjs
           node scripts/build-calibration-host.mjs
           node scripts/validate-calibration.mjs
@@ -37,6 +39,7 @@ jobs:
           node tests/collector-receipt.integration.cjs
           python -m unittest tests/test_registry_and_annotation.py
           node tests/documented-cli.test.cjs
+          printf '%s\n' '{"schema_version":"CR0105R11-BASELINE-1","status":"PASS"}' > cr0105r11-artifact/BASELINE_VALIDATION.json
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - name: Install Chromium court runtime
@@ -46,6 +49,31 @@ jobs:
       - name: Apply source-bound exact patch
         env: {PYTHONUNBUFFERED: '1'}
         run: python scripts/cr0105r11_exact_seal.py --root . --artifact-dir cr0105r11-artifact
+      - name: Prove independent binary-identical rematerialization
+        shell: bash
+        env: {PYTHONUNBUFFERED: '1'}
+        run: |
+          set -euxo pipefail
+          cp cr0105r11-artifact/index.patched.html cr0105r11-artifact/index.patched.first.html
+          cp cr0105r11-artifact/index.source.html index.html
+          python scripts/cr0105r11_exact_seal.py --root . --artifact-dir cr0105r11-artifact/rebuild2
+          cmp -s cr0105r11-artifact/index.patched.first.html cr0105r11-artifact/rebuild2/index.patched.html
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          a=Path('cr0105r11-artifact/index.patched.first.html').read_bytes()
+          b=Path('cr0105r11-artifact/rebuild2/index.patched.html').read_bytes()
+          out={
+            'schema_version':'CR0105R11-DETERMINISTIC-REBUILD-1',
+            'status':'PASS' if a==b else 'FAIL',
+            'byte_identical':a==b,
+            'first_bytes':len(a),'second_bytes':len(b),
+            'first_sha256':hashlib.sha256(a).hexdigest(),
+            'second_sha256':hashlib.sha256(b).hexdigest(),
+          }
+          Path('cr0105r11-artifact/DETERMINISTIC_REBUILD.json').write_text(json.dumps(out,indent=2),encoding='utf-8')
+          if a!=b: raise SystemExit(2)
+          PY
       - name: Browser boot diagnostic
         env: {CR0105R11_ARTIFACT_DIR: cr0105r11-artifact, PYTHONUNBUFFERED: '1'}
         run: python tests/cr0105r11_boot_diag.py
@@ -60,10 +88,34 @@ jobs:
           {
             echo "head=$(git rev-parse HEAD)"
             echo "base_index_blob=$(git rev-parse 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1:index.html)"
-            echo "working_index_blob=$(git hash-object index.html)"
+            echo "working_index_blob=$(git hash-object index.html 2>/dev/null || true)"
             echo "source_backup_blob=$(git hash-object cr0105r11-artifact/index.source.html 2>/dev/null || true)"
             echo "source_backup_sha256=$(sha256sum cr0105r11-artifact/index.source.html 2>/dev/null | cut -d' ' -f1 || true)"
+            echo "first_patch_sha256=$(sha256sum cr0105r11-artifact/index.patched.first.html 2>/dev/null | cut -d' ' -f1 || true)"
+            echo "second_patch_sha256=$(sha256sum cr0105r11-artifact/rebuild2/index.patched.html 2>/dev/null | cut -d' ' -f1 || true)"
+            echo "workflow_run_id=${GITHUB_RUN_ID}"
           } > cr0105r11-artifact/GITHUB_ACTION_PROVENANCE.txt
+      - name: Build fail-closed final seal
+        if: always()
+        env:
+          CR0105R11_ARTIFACT_DIR: cr0105r11-artifact
+          CR0105R11_EVIDENCE_DIR: research/0.10.5-r1.1/action-seal
+          PYTHONUNBUFFERED: '1'
+        run: python scripts/cr0105r11_finalize.py
+      - name: Persist compact court evidence on research branch
+        if: always()
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add research/0.10.5-r1.1/action-seal
+          if git diff --cached --quiet; then
+            echo 'No compact evidence delta to commit.'
+          else
+            git commit -m "Record CR0105R11 exact-monolith court evidence run ${GITHUB_RUN_ID}"
+            git push origin HEAD:cube-rev-0.10.5-r1.1-exact-monolith-seal
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
