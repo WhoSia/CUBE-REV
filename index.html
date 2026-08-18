@@ -177,6 +177,53 @@ window.CUBE_REV_COLLECTOR_CONFIG = window.CUBE_REV_COLLECTOR_CONFIG || {
 <script src="./js/camera-zoom-controller.js?v=0712-camera-neutral-bypass-hotfix-1"></script>
 <script src="./js/responsive-layout-controller.js?v=0712-camera-neutral-bypass-hotfix-1"></script>
 <script>
+/* CR0105R1-NATURALISTIC-TELEMETRY-INTEGRATION; integration_mode=INLINE_MONOLITH_HELPER */
+(function(root,factory){
+  const api=factory();
+  if(typeof module==="object"&&module.exports)module.exports=api;
+  root.CubeRevNaturalisticTelemetry0105R1=api;
+})(typeof globalThis!=="undefined"?globalThis:this,function(){
+  "use strict";
+  const TELEMETRY_VERSION="CR0105R1-NATURALISTIC-TELEMETRY-1";
+  const CAMERA_MODEL_VERSION="CR0105-CAMERA-STATE-1";
+  function finite(v){return Number.isFinite(Number(v));}
+  function matrix(camera,orbit){
+    if(orbit&&typeof orbit.matrixForCamera==="function")return orbit.matrixForCamera(camera||{});
+    const m=camera&&camera.view_matrix;
+    return Array.isArray(m)&&m.length===9?m.slice():null;
+  }
+  function cameraSnapshot(camera,orbit,inputSource){
+    camera=camera||{};
+    return {yaw:finite(camera.yaw)?Number(camera.yaw):0,pitch:finite(camera.pitch)?Number(camera.pitch):0,
+      zoom:finite(camera.zoom)?Number(camera.zoom):1,view_matrix:matrix(camera,orbit),
+      orbit_model:camera.orbit_model||"screen_relative_matrix_v1",input_source:inputSource||"camera_control",
+      camera_model_version:CAMERA_MODEL_VERSION};
+  }
+  function defaultSource(type,payload){
+    if(payload&&payload.source)return String(payload.source);
+    if(type.startsWith("camera_drag"))return "pointer_camera_drag";
+    if(type.startsWith("camera_zoom"))return "camera_zoom_control";
+    if(type==="camera_reset")return "camera_reset_control";
+    return "camera_control";
+  }
+  function decorateCameraPayload(type,payload,getCamera,orbit){
+    const p=Object.assign({},payload||{});
+    if(!String(type).startsWith("camera_"))return p;
+    const snap=cameraSnapshot(typeof getCamera==="function"?getCamera():{},orbit,defaultSource(type,p));
+    for(const [k,v] of Object.entries(snap)){if(p[k]===undefined||p[k]===null)p[k]=v;}
+    p.camera_state=Object.assign({},snap);
+    p.telemetry_version=TELEMETRY_VERSION;
+    return p;
+  }
+  function wrapLogEvent(baseLogEvent,getCamera,orbit){
+    if(typeof baseLogEvent!=="function")throw new Error("baseLogEvent required");
+    return function(type,payload){return baseLogEvent(type,decorateCameraPayload(type,payload,getCamera,orbit));};
+  }
+  function prospectiveCameraComplete(payload){return payload&&finite(payload.yaw)&&finite(payload.pitch)&&finite(payload.zoom)&&Array.isArray(payload.view_matrix)&&payload.view_matrix.length===9&&payload.input_source&&payload.camera_model_version===CAMERA_MODEL_VERSION;}
+  return {TELEMETRY_VERSION,CAMERA_MODEL_VERSION,cameraSnapshot,decorateCameraPayload,wrapLogEvent,prospectiveCameraComplete};
+});
+</script>
+<script>
 'use strict';
 
 const PROJECT = 'CUBE-REV';
@@ -578,6 +625,10 @@ function waitVisualIdle(){return (!animation&&animationQueue.length===0)?Promise
 
 function nowSession(){return performance.now()-sessionStartPerf;}
 function logSessionEvent(type,extra={}){
+  // CR0105R1 additive telemetry decorator; no puzzle/camera mutation.
+  if(String(type).startsWith('camera_')&&globalThis.CubeRevNaturalisticTelemetry0105R1){
+    extra=globalThis.CubeRevNaturalisticTelemetry0105R1.decorateCameraPayload(type,extra,()=>camera,CubeRevCameraOrbit);
+  }
   if(!session)return null; const ev={event_id:++eventCounter,type,session_t_ms:+nowSession().toFixed(3),trial_id:currentTrialRecord?.trial_id??null,...extra};
   session.events.push(ev); if(currentTrialRecord)currentTrialRecord.events.push(ev); autosave(); return ev;
 }
