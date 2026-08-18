@@ -1,7 +1,11 @@
 Traceback (most recent call last):
-  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest_v2.py", line 34, in <module>
-    compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec')
-  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest.py", line 322
-    con.execute("COPY (SELECT year,attempt_status,count(*) n FROM attempt_spine GROUP BY year,attempt_status ORDER BY year,attempt_status) TO ? (HEADER,DELIMITER ',')",[str(OUT/'WCA_333_YEAR_STATUS_COUNTS.csv')])
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-SyntaxError: invalid syntax. Perhaps you forgot a comma?
+  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest_v2.py", line 35, in <module>
+    exec(compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec'),{'__name__':'__main__','__file__':str(Path(__file__).with_name('r16_ingest.py'))})
+  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest.py", line 162, in <module>
+    con.execute("""CREATE TABLE attempt_spine AS SELECT r.result_id,r.competition_id,c.competition_name,c.year,c.month,c.day,
+duckdb.duckdb.BinderException: Binder Error: Table "a" does not have a column named "value"
+
+Candidate bindings: : "attempt_value"
+
+LINE 2: ...,r.person_name,r.round_type_id,r.format_id,a.attempt_number,a.value,
+                                                                       ^
