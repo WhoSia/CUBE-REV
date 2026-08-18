@@ -6,5 +6,6 @@
     "path": "/"
   },
   "build_type": "legacy",
-  "raw_status": "built"
+  "raw_status": "built",
+  "message": null
 }

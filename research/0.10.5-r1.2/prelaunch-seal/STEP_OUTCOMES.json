@@ -1,0 +1,10 @@
+{
+  "authority": "success",
+  "baseline": "success",
+  "chromium": "success",
+  "materialize": "success",
+  "browser": "success",
+  "restore": "success",
+  "pages": "success",
+  "publichost": "success"
+}

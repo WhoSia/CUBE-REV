@@ -7,8 +7,8 @@
   "research_branch": "cube-rev-0.10.5-r1.2-release-identity",
   "base_main_commit": "52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1",
   "r11_evidence_commit": "d949b9638d7db3661b62bc9913fa3439a83f3194",
-  "workflow_head_sha": "4e60e35b62aad939bcb0159f16fff37315e625f9",
-  "workflow_run_id": "32089283255",
+  "workflow_head_sha": "f3e80dab335e8f69eb56f74192ecf85e1fc1beed",
+  "workflow_run_id": "32089431143",
   "release_identity": {
     "candidate_path": "release-candidates/0.10.5-r1.2/98e6431c72c7b32f/index.html",
     "bytes": 2591526,
@@ -45,7 +45,7 @@
   "public_host_fetch": {
     "http_status": 200,
     "canonical_url": "https://whosia.github.io/CUBE-REV/",
-    "fetch_url": "https://whosia.github.io/CUBE-REV/?cr0105r12=32089283255",
+    "fetch_url": "https://whosia.github.io/CUBE-REV/?cr0105r12=32089431143",
     "bytes": 2588604
   },
   "browser_check_count": 22,

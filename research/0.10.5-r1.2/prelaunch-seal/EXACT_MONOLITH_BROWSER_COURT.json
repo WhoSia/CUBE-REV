@@ -56,7 +56,7 @@
       "detail": {
         "event_id": 34,
         "type": "move_accepted",
-        "session_t_ms": 4992.7,
+        "session_t_ms": 5004.7,
         "trial_id": "CUSTOM-01",
         "move_index": 3,
         "move": "x",
@@ -67,8 +67,8 @@
         "action_role": "participant_move",
         "analysis_epoch": 0,
         "undoes_move_index": null,
-        "t_ms": 2203.5,
-        "trial_t_ms": 4955.8,
+        "t_ms": 2213.5,
+        "trial_t_ms": 4965.6,
         "state_before_id": 3265191,
         "state_after_id": 3265191,
         "distance_before": 1,
@@ -157,7 +157,7 @@
     {
       "name": "local_json_export",
       "pass": true,
-      "detail": 120874
+      "detail": 120890
     },
     {
       "name": "camera_telemetry_exact_logger",
@@ -173,8 +173,8 @@
       "detail": {
         "remote_requests_aborted": 2,
         "sample": [
-          "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=health&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=__cubeRevHealth_1db98da30bbb97b7&_=1787017499122",
-          "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=health&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=__cubeRevHealth_5f6443fbe165ee97&_=1787017505611"
+          "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=health&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=__cubeRevHealth_beaa9ef9ba3e1af2&_=1787017642093",
+          "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=health&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=__cubeRevHealth_ee84c1dea511296e&_=1787017648499"
         ]
       }
     },
