@@ -1,9 +1,9 @@
 {
   "schema_version": "CR0105R16-RUN-META-2",
-  "workflow_run_id": "32095482265",
-  "head_sha": "95620c7ce0559f2ca4de00bf22c58c0f04680331",
+  "workflow_run_id": "32095622896",
+  "head_sha": "ddff2ef5773903b1779179a3bf441c21164bbe7d",
   "court_exit_code": 1,
   "human_observations": 0,
   "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN",
-  "generated_at_utc": "2026-08-18T03:27:40.369334+00:00"
+  "generated_at_utc": "2026-08-18T03:30:03.225117+00:00"
 }

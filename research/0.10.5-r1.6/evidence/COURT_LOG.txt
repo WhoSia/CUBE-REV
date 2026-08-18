@@ -1,11 +1,6 @@
 Traceback (most recent call last):
-  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest_v2.py", line 37, in <module>
+  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest_v2.py", line 35, in <module>
     exec(compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec'),{'__name__':'__main__','__file__':str(Path(__file__).with_name('r16_ingest.py'))})
-  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest.py", line 162, in <module>
-    con.execute("""CREATE TABLE attempt_spine AS SELECT r.result_id,r.competition_id,c.competition_name,c.year,c.month,c.day,
-duckdb.duckdb.BinderException: Binder Error: Table "a" does not have a column named "value"
-
-Candidate bindings: : "attempt_value"
-
-LINE 3:  CASE WHEN a.value=-1 THEN 'DNF' WHEN a.value=-2 THEN 'DNS' WHEN a...
-                   ^
+  File "/home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.6/r16_ingest.py", line 186, in <module>
+    con.execute("""CREATE TABLE phenotype_attempts AS WITH b AS (
+duckdb.duckdb.ParserException: Parser Error: syntax error at or near "SELECT"
