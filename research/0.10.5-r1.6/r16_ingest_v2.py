@@ -34,5 +34,13 @@ code=code.replace('a.__R16_SOURCE_VALUE__','a.value')
 # Repair original two-CTE syntax.
 code=code.replace('FROM attempt_spine s), z AS SELECT *,', 'FROM attempt_spine s), z AS (SELECT *,')
 code=code.replace(' FROM b SELECT * FROM z', ' FROM b) SELECT * FROM z')
+# The public reconstruction index is /solve/, not the site root.
+code=code.replace("sess.get('https://reco.nz/',timeout=45)","sess.get('https://reco.nz/solve/',timeout=45)")
+code=code.replace("'retrieved_url':'https://reco.nz/'","'retrieved_url':'https://reco.nz/solve/'")
+# DuckDB COPY cannot parameterize the target filename; quote the controlled local output path explicitly.
+old="con.execute(\"COPY (SELECT comp_year,attempt_status,count(*) n FROM attempt_spine GROUP BY comp_year,attempt_status ORDER BY comp_year,attempt_status) TO ? (HEADER,DELIMITER ',')\",[str(OUT/'WCA_333_YEAR_STATUS_COUNTS.csv')])"
+new="csv_out=str(OUT/'WCA_333_YEAR_STATUS_COUNTS.csv').replace(\"'\",\"''\")\ncon.execute(\"COPY (SELECT comp_year,attempt_status,count(*) n FROM attempt_spine GROUP BY comp_year,attempt_status ORDER BY comp_year,attempt_status) TO '\"+csv_out+\"' (HEADER,DELIMITER ',')\")"
+if old not in code: raise RuntimeError('R16_COPY_PATCH_ANCHOR_NOT_FOUND')
+code=code.replace(old,new)
 compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec')
 exec(compile(code,str(Path(__file__).with_name('r16_ingest.py')),'exec'),{'__name__':'__main__','__file__':str(Path(__file__).with_name('r16_ingest.py'))})
