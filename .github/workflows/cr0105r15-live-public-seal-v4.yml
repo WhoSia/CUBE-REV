@@ -1,0 +1,75 @@
+name: CR0105R15 Live Public Seal V4 Valid-session
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/cr0105r15-live-public-seal-v4.yml]
+permissions:
+  contents: write
+jobs:
+  court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Exact public client smoke
+        run: |
+          set -euo pipefail; mkdir -p /tmp/r15v4
+          test "$(git hash-object js/collector-client.js)" = "163e5114ef6ce725c2dfa06a6fe38d8e814190b0"
+          curl -fsSL -H 'Cache-Control: no-cache' "https://whosia.github.io/CUBE-REV/js/collector-client.js?v=0712-camera-neutral-bypass-hotfix-1&r15v4=${GITHUB_RUN_ID}" -o /tmp/r15v4/public-client.js
+          test "$(sha256sum /tmp/r15v4/public-client.js | cut -d' ' -f1)" = "a155b2fb532c4fdcd20eaa2feb1c9c84b647b627c278a61c2dd44fbaa46f90f6"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install Chromium
+        run: python -m pip install --disable-pip-version-check playwright && python -m playwright install chromium
+      - name: Execute valid-session live court
+        id: live
+        continue-on-error: true
+        shell: bash
+        run: |
+          cat > /tmp/r15v4/live.py <<'PY'
+          import asyncio,json,secrets,traceback
+          from datetime import datetime,timezone
+          from pathlib import Path
+          from playwright.async_api import async_playwright
+          ROOT=Path('/tmp/r15v4');PUBLIC='https://whosia.github.io/CUBE-REV/'
+          def sid(): return 'CR-'+datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')+'-'+secrets.token_hex(6)
+          JS=r'''async ({sid,tag,version})=>{const C=window.CubeRevCollectorClient;if(!C)return {fatal:'CLIENT_MISSING'};const marker=C.R15_RECEIPT_RACE_CLOSURE,cfg=window.CUBE_REV_COLLECTOR_CONFIG,events=[];const hash=t=>{let h=0x811c9dc5;for(const ch of t){h^=ch.charCodeAt(0);h=Math.imul(h,0x01000193)>>>0;}return h>>>0;},rnd=n=>{const b=new Uint8Array(n);crypto.getRandomValues(b);return [...b].map(x=>x.toString(16).padStart(2,'0')).join('');};const s={project:'CUBE-REV',version,session_id:sid,participant_code:'SYNTHETIC-NONHUMAN-R15',mode:'SYNTHETIC_CANARY_R15',source_class:'ENGINEERING_LIVE_CANARY',human_observation:false,synthetic_canary:true,research_stage:'CUBE-REV 0.10.5-R1.5',payload_tag:tag,trials:[],data_submission:{}};const c=new C({config:C.normalizeConfig({...cfg,gzipWhenAvailable:false},version),version,getSession:()=>s,exportSession:()=>s,logEvent:(t,x)=>events.push({type:t,...(x||{})}),persist:()=>{},setStatus:()=>{},randomHex:rnd,hashString:hash,translate:k=>k});if(version!=='0.7.12'){try{const h=await c.checkHealth();return {marker,staleRejected:false,health:h};}catch(e){return {marker,staleRejected:true,error:String(e?.message||e)};}}let health=null,receipt=null,error=null;try{health=await c.checkHealth();receipt=await c.submit();}catch(e){error=String(e?.message||e);}return {marker,health,session:s,receipt,error,events};}'''
+          async def one(ctx,s,t,v='0.7.12'):
+            p=await ctx.new_page();errs=[];p.on('pageerror',lambda e:errs.append(str(e)));await p.goto(PUBLIC+'?r15v4='+secrets.token_hex(6),wait_until='domcontentloaded',timeout=60000);await p.wait_for_timeout(800);r=await p.evaluate(JS,{'sid':s,'tag':t,'version':v});await p.close();return r,errs
+          def rec(x): return ((x or {}).get('receipt') or {})
+          def ses(x): return ((x or {}).get('session') or {})
+          def sub(x): return (ses(x).get('data_submission') or {})
+          async def main():
+            out={'schema_version':'CR0105R15-LIVE-PUBLIC-CANARY-4','status':'FAIL','human_observations':0,'human_launch':False,'human_recruitment_design':'DEFERRED_BY_RESEARCH_DESIGN'};raw={}
+            try:
+              async with async_playwright() as pw:
+                br=await pw.chromium.launch(headless=True,args=['--no-sandbox']);ctx=await br.new_context()
+                m=sid();raw['A'],raw['A_errors']=await one(ctx,m,'ORIGINAL-A');raw['B'],raw['B_errors']=await one(ctx,m,'MUTATED-B')
+                q=sid();raw['C'],raw['C_errors']=await one(ctx,q,'IDENTICAL-C');raw['D'],raw['D_errors']=await one(ctx,q,'IDENTICAL-C')
+                raw['STALE'],raw['STALE_errors']=await one(ctx,sid(),'STALE','0.7.11');await br.close()
+              raw['mismatch_session_id']=m;raw['samebyte_session_id']=q;(ROOT/'RAW_CASES.json').write_text(json.dumps(raw,indent=2,ensure_ascii=False),encoding='utf-8')
+              a,b,c,d,st=raw['A'],raw['B'],raw['C'],raw['D'],raw['STALE']
+              checks={'marker_exact':all((x or {}).get('marker')=='0.10.5-R1.5' for x in [a,b,c,d,st]),'health_exact':((a or {}).get('health') or {}).get('expected_version')=='0.7.12' and ((a or {}).get('health') or {}).get('collector_id')=='CUBE-REV-0712-MAIN' and ((a or {}).get('health') or {}).get('protocol_version')=='receipt-v2','A_stored':rec(a).get('status')=='stored','B_mutated_rejected':not rec(b) and 'DUPLICATE_STORED_BYTE_CHECKSUM_MISMATCH' in str((b or {}).get('error')) and sub(b).get('receipt_confirmed') is False,'C_stored':rec(c).get('status')=='stored','D_duplicate_reverified':rec(d).get('status')=='duplicate' and rec(d).get('stored_byte_reverified') is True and rec(d).get('stored_confirmation_source')=='drive_lookup' and 'fresh_drive_lookup' in str(rec(d).get('transport')),'D_session_confirmed_after_reverify':sub(d).get('receipt_confirmed') is True and sub(d).get('stored_byte_reverified') is True,'stale_fail_closed':(st or {}).get('staleRejected') is True,'synthetic_only':all(ses(x).get('source_class')=='ENGINEERING_LIVE_CANARY' and ses(x).get('human_observation') is False for x in [a,b,c,d]),'no_page_errors':not any(raw[k] for k in ['A_errors','B_errors','C_errors','D_errors','STALE_errors'])}
+              out.update({'status':'PASS' if all(checks.values()) else 'HOLD','verdict':'PASS_LIVE_PUBLIC_IMMUTABLE_SNAPSHOT_DUPLICATE_STORED_BYTE_REVERIFICATION_RACE_CLOSURE' if all(checks.values()) else 'HOLD_R15_LIVE_BEHAVIOR_NOT_EXACT','checks':checks,'mismatch_session_id':m,'samebyte_session_id':q,'case_errors':{k:(raw[k] or {}).get('error') for k in ['A','B','C','D','STALE']},'case_receipt_status':{k:rec(raw[k]).get('status') for k in ['A','B','C','D']},'receipts':{k:rec(raw[k]) for k in ['A','B','C','D']}})
+            except Exception as e:
+              (ROOT/'RAW_CASES.json').write_text(json.dumps(raw,indent=2,ensure_ascii=False),encoding='utf-8');out.update({'verdict':'FAIL_R15_V4_INFRASTRUCTURE','exception':str(e),'traceback':traceback.format_exc()})
+            (ROOT/'LIVE_PUBLIC_CANARY.json').write_text(json.dumps(out,indent=2,ensure_ascii=False),encoding='utf-8');print(json.dumps(out,indent=2,ensure_ascii=False));raise SystemExit(0 if out.get('status')=='PASS' else 2)
+          asyncio.run(main())
+          PY
+          python /tmp/r15v4/live.py
+      - name: Ensure and persist V4 evidence
+        if: always()
+        shell: bash
+        run: |
+          test -f /tmp/r15v4/LIVE_PUBLIC_CANARY.json || printf '%s\n' '{"schema_version":"CR0105R15-LIVE-PUBLIC-CANARY-4","status":"FAIL","verdict":"MISSING_EVIDENCE","human_observations":0,"human_launch":false}' > /tmp/r15v4/LIVE_PUBLIC_CANARY.json
+          test -f /tmp/r15v4/RAW_CASES.json || printf '%s\n' '{}' > /tmp/r15v4/RAW_CASES.json
+          git fetch origin cube-rev-0.10.5-r1.5-receipt-race-closure;git worktree add /tmp/r15-research origin/cube-rev-0.10.5-r1.5-receipt-race-closure
+          mkdir -p /tmp/r15-research/research/0.10.5-r1.5/live-public-v4;cp /tmp/r15v4/LIVE_PUBLIC_CANARY.json /tmp/r15-research/research/0.10.5-r1.5/live-public-v4/;cp /tmp/r15v4/RAW_CASES.json /tmp/r15-research/research/0.10.5-r1.5/live-public-v4/
+          cd /tmp/r15-research;git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com;git add research/0.10.5-r1.5/live-public-v4;git commit -m "Record CUBE-REV 0.10.5-R1.5 valid-session live seal ${GITHUB_RUN_ID}" || true;git push origin HEAD:cube-rev-0.10.5-r1.5-receipt-race-closure
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: CR0105R15-live-public-seal-v4, path: /tmp/r15v4, retention-days: 30}
+      - name: Enforce closure
+        if: always()
+        run: python -c "import json; x=json.load(open('/tmp/r15v4/LIVE_PUBLIC_CANARY.json')); print(x.get('status'),x.get('verdict')); raise SystemExit(0 if x.get('status')=='PASS' else 2)"
