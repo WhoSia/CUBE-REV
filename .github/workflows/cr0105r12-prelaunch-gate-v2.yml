@@ -1,0 +1,181 @@
+name: CR0105R12 Prelaunch Gate V2
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.2-release-identity]
+    paths: ['cr0105r12/RUNV2']
+permissions:
+  contents: write
+jobs:
+  prelaunch-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Execute fail-observable prelaunch court
+        shell: bash
+        env:
+          CR0105R12_ARTIFACT_DIR: cr0105r12-artifact
+          PYTHONUNBUFFERED: '1'
+        run: |
+          set +e
+          mkdir -p cr0105r12-artifact research/0.10.5-r1.2/prelaunch-seal
+
+          main_sha=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+          authority_status=PASS
+          test "$main_sha" = 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1 || authority_status=FAIL
+          git merge-base --is-ancestor d949b9638d7db3661b62bc9913fa3439a83f3194 HEAD || authority_status=FAIL
+          test "$(git hash-object index.html)" = 344faeb45d0046a52b24fad91a5bcbcb46784b71 || authority_status=FAIL
+          test "$(sha256sum index.html | cut -d' ' -f1)" = e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf || authority_status=FAIL
+          AUTHORITY_STATUS="$authority_status" MAIN_SHA="$main_sha" python - <<'PY'
+          import json,os
+          open('cr0105r12-artifact/AUTHORITY_COURT.json','w').write(json.dumps({'status':os.environ['AUTHORITY_STATUS'],'main_sha':os.environ['MAIN_SHA']},indent=2))
+          PY
+
+          (
+            set -e
+            node scripts/validate-static.mjs
+            node scripts/build-calibration-host.mjs
+            node scripts/validate-calibration.mjs
+            node tests/randomization.test.cjs
+            node tests/history-fidelity.test.cjs
+            node tests/neutral-probe.test.cjs
+            node tests/runtime.test.cjs
+            node tests/camera-orbit.test.cjs
+            node tests/collector-receipt.integration.cjs
+            python -m unittest tests/test_registry_and_annotation.py
+            node tests/documented-cli.test.cjs
+          )
+          baseline_rc=$?
+          BASELINE_RC="$baseline_rc" python - <<'PY'
+          import json,os
+          rc=int(os.environ['BASELINE_RC']);open('cr0105r12-artifact/BASELINE_COURT.json','w').write(json.dumps({'status':'PASS' if rc==0 else 'FAIL','returncode':rc},indent=2))
+          PY
+
+          python -m pip install --disable-pip-version-check playwright
+          pip_rc=$?
+          if test "$pip_rc" -eq 0; then python -m playwright install chromium; chromium_rc=$?; else chromium_rc=$pip_rc; fi
+
+          python scripts/cr0105r11_exact_seal.py --root . --artifact-dir cr0105r12-artifact
+          material_rc=$?
+          if test "$material_rc" -eq 0; then
+            test "$(wc -c < index.html)" = 2591526 || material_rc=10
+            test "$(sha256sum index.html | cut -d' ' -f1)" = 98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180 || material_rc=11
+            test "$(git hash-object index.html)" = ce5b5608767083a696cf57982edd979a21b3ba22 || material_rc=12
+          fi
+          target='release-candidates/0.10.5-r1.2/98e6431c72c7b32f/index.html'
+          if test "$material_rc" -eq 0; then
+            mkdir -p "$(dirname "$target")"
+            if test -f "$target"; then
+              test "$(sha256sum "$target" | cut -d' ' -f1)" = 98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180 || material_rc=13
+            else
+              cp index.html "$target"
+            fi
+            cmp -s index.html "$target" || material_rc=14
+          fi
+          MATERIAL_RC="$material_rc" python - <<'PY'
+          import json,os
+          rc=int(os.environ['MATERIAL_RC']);open('cr0105r12-artifact/MATERIALIZATION_COURT.json','w').write(json.dumps({'status':'PASS' if rc==0 else 'FAIL','returncode':rc,'candidate_sha256':'98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180' if rc==0 else None},indent=2))
+          PY
+
+          browser_rc=99
+          if test "$material_rc" -eq 0 -a "$chromium_rc" -eq 0; then
+            CR0105R11_ARTIFACT_DIR=cr0105r12-artifact python tests/cr0105r11_boot_diag.py
+            boot_rc=$?
+            CR0105R11_ARTIFACT_DIR=cr0105r12-artifact python tests/cr0105r11_exact_monolith_court.py
+            browser_rc=$?
+            test "$boot_rc" -eq 0 || browser_rc=98
+          fi
+
+          if test -f cr0105r12-artifact/index.source.html; then cp cr0105r12-artifact/index.source.html index.html; else git checkout 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1 -- index.html; fi
+          restore_rc=0
+          test "$(git hash-object index.html)" = 344faeb45d0046a52b24fad91a5bcbcb46784b71 || restore_rc=1
+
+          pages_code=$(curl -sS -o cr0105r12-artifact/pages.raw.json -w '%{http_code}' -H 'Accept: application/vnd.github+json' https://api.github.com/repos/WhoSia/CUBE-REV/pages || true)
+          PAGES_HTTP_STATUS="$pages_code" python - <<'PY'
+          import json,os
+          from pathlib import Path
+          try: raw=json.loads(Path('cr0105r12-artifact/pages.raw.json').read_text())
+          except Exception: raw={}
+          out={'http_status':int(os.environ.get('PAGES_HTTP_STATUS') or 0),'html_url':raw.get('html_url'),'source':raw.get('source'),'build_type':raw.get('build_type'),'message':raw.get('message')}
+          Path('cr0105r12-artifact/PAGES_METADATA.json').write_text(json.dumps(out,indent=2))
+          PY
+
+          public_url=$(python - <<'PY'
+          import json
+          try:x=json.load(open('cr0105r12-artifact/PAGES_METADATA.json'))
+          except Exception:x={}
+          print(x.get('html_url') or 'https://whosia.github.io/CUBE-REV/')
+          PY
+          )
+          case "$public_url" in */) ;; *) public_url="$public_url/" ;; esac
+          fetch_url="${public_url}?cr0105r12=${GITHUB_RUN_ID}"
+          public_code=$(curl -sS -L -o cr0105r12-artifact/public-host-index.html -w '%{http_code}' "$fetch_url" || true)
+          PUBLIC_HTTP_STATUS="$public_code" PUBLIC_URL="$public_url" FETCH_URL="$fetch_url" python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('cr0105r12-artifact/public-host-index.html')
+          Path('cr0105r12-artifact/PUBLIC_HOST_FETCH.json').write_text(json.dumps({'http_status':int(os.environ.get('PUBLIC_HTTP_STATUS') or 0),'canonical_url':os.environ.get('PUBLIC_URL'),'fetch_url':os.environ.get('FETCH_URL'),'bytes':p.stat().st_size if p.exists() else None},indent=2))
+          PY
+
+          CR0105R12_ARTIFACT_DIR=cr0105r12-artifact python scripts/cr0105r12_release_identity.py
+          final_rc=$?
+
+          for f in AUTHORITY_COURT.json BASELINE_COURT.json MATERIALIZATION_COURT.json PATCH_EXECUTION_RECEIPT.json EXACT_SOURCE_BINDING.json BOOT_DIAGNOSTIC.json EXACT_MONOLITH_BROWSER_COURT.json PAGES_METADATA.json PUBLIC_HOST_FETCH.json FINAL_PRELAUNCH_GATE.json; do
+            test -f "cr0105r12-artifact/$f" && cp -f "cr0105r12-artifact/$f" "research/0.10.5-r1.2/prelaunch-seal/$f"
+          done
+          if test -f "$target" -a -f research/0.10.5-r1.2/prelaunch-seal/FINAL_PRELAUNCH_GATE.json; then
+            cp research/0.10.5-r1.2/prelaunch-seal/FINAL_PRELAUNCH_GATE.json release-candidates/0.10.5-r1.2/98e6431c72c7b32f/RELEASE_IDENTITY.json
+          fi
+
+          STEP_AUTHORITY="$authority_status" STEP_BASELINE="$baseline_rc" STEP_CHROMIUM="$chromium_rc" STEP_MATERIAL="$material_rc" STEP_BROWSER="$browser_rc" STEP_RESTORE="$restore_rc" STEP_FINAL="$final_rc" python - <<'PY'
+          import json,os
+          x={k.lower():os.environ[k] for k in ['STEP_AUTHORITY','STEP_BASELINE','STEP_CHROMIUM','STEP_MATERIAL','STEP_BROWSER','STEP_RESTORE','STEP_FINAL']}
+          open('research/0.10.5-r1.2/prelaunch-seal/STEP_OUTCOMES.json','w').write(json.dumps(x,indent=2))
+          PY
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add release-candidates/0.10.5-r1.2 research/0.10.5-r1.2/prelaunch-seal
+          if ! git diff --cached --quiet; then
+            git commit -m "Record CUBE-REV 0.10.5-R1.2 V2 prelaunch court run ${GITHUB_RUN_ID}"
+            git push origin HEAD:cube-rev-0.10.5-r1.2-release-identity
+          fi
+          evidence_commit=$(git rev-parse HEAD)
+
+          final_status=$(python - <<'PY'
+          import json
+          try: print(json.load(open('cr0105r12-artifact/FINAL_PRELAUNCH_GATE.json')).get('status','HOLD'))
+          except Exception: print('HOLD')
+          PY
+          )
+          if test "$final_status" = PASS; then
+            tag='cube-rev-0.10.5-r1.2-prelaunch-seal'
+            if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then
+              remote=$(git ls-remote --tags origin "refs/tags/${tag}" | awk '{print $1}')
+              test "$remote" = "$evidence_commit" || exit 91
+            else
+              git tag "$tag" "$evidence_commit"
+              git push origin "refs/tags/${tag}" || exit 92
+            fi
+          fi
+
+          test "$authority_status" = PASS || exit 31
+          test "$baseline_rc" -eq 0 || exit 32
+          test "$chromium_rc" -eq 0 || exit 33
+          test "$material_rc" -eq 0 || exit 34
+          test "$browser_rc" -eq 0 || exit 35
+          test "$restore_rc" -eq 0 || exit 36
+          test "$final_rc" -eq 0 || exit 37
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R12-prelaunch-v2-artifact
+          path: cr0105r12-artifact
+          if-no-files-found: error
+          retention-days: 30
