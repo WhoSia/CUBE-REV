@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R17-NONCOMMUTING-R5-RUN-1",
+  "workflow_run_id": "32326635363",
+  "head_sha": "2c19c7ffeab4c212ef5d31affbe78db5d4b75581",
+  "route_exit_code": 0,
+  "status": "PASS",
+  "new_web_fetches": 0,
+  "role": "POSTHOC_ADVERSARIAL_SENSITIVITY",
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T03:00:15.518239+00:00"
+}
