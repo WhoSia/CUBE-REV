@@ -1,0 +1,93 @@
+name: CR0105R17 State Engine Smoke
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-state-engine-smoke]
+    paths: [cr0105r17/RUN_STATE_SMOKE]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: cr0105r17-state-engine-smoke
+  cancel-in-progress: false
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify frozen parent
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.7/evidence-parent/PARENT_ARTIFACT_PROBE.json'))
+          assert x['status']=='PASS'
+          assert x['db_sha256']=='a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'
+          print('R17_PARENT_PASS')
+          PY
+      - name: Restore frozen R1.6 analytical DB
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r17smoke
+          gh api -H 'Accept: application/vnd.github+json' repos/${GITHUB_REPOSITORY}/actions/artifacts/9310311696/zip > /tmp/r17smoke/r16.zip
+          unzip -q /tmp/r17smoke/r16.zip -d /tmp/r17smoke/unpacked
+          DB="$(find /tmp/r17smoke/unpacked -type f -name 'wca333.duckdb' -print -quit)"
+          test -n "$DB"
+          test "$(sha256sum "$DB" | awk '{print $1}')" = 'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'
+          echo "R17_PARENT_DB=$DB" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install analytical runtimes
+        run: |
+          python -m pip install --disable-pip-version-check duckdb==1.3.2 requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+          npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Prepare exact WCA-linked reconstruction inputs
+        run: |
+          set -euo pipefail
+          export R17_SMOKE_ROOT=/tmp/r17smoke
+          python research/0.10.5-r1.7/r17_prepare_state_smoke.py | tee /tmp/r17smoke/prepare.log
+      - name: Execute cubing.js transformation court
+        run: |
+          set -euo pipefail
+          export R17_SMOKE_INPUT=/tmp/r17smoke/STATE_SMOKE_INPUT.json
+          export R17_SMOKE_OUTPUT=/tmp/r17smoke/STATE_ENGINE_SMOKE.json
+          node research/0.10.5-r1.7/r17_state_smoke.mjs | tee /tmp/r17smoke/state.log
+      - name: Persist smoke evidence
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/evidence-state-smoke
+          cp /tmp/r17smoke/STATE_SMOKE_INPUT.json research/0.10.5-r1.7/evidence-state-smoke/
+          cp /tmp/r17smoke/STATE_ENGINE_SMOKE.json research/0.10.5-r1.7/evidence-state-smoke/
+          cp /tmp/r17smoke/prepare.log /tmp/r17smoke/state.log research/0.10.5-r1.7/evidence-state-smoke/
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          p=pathlib.Path('research/0.10.5-r1.7/evidence-state-smoke/RUN_METADATA.json')
+          p.write_text(json.dumps({'schema_version':'CR0105R17-STATE-SMOKE-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'parent_artifact_id':9310311696,'cubing_npm_version':'0.63.3','generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'human_observations':0},indent=2)+'\n')
+          PY
+      - name: Commit smoke evidence
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-state-smoke
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 state engine smoke ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-state-engine-smoke
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CR0105R17-state-engine-smoke
+          retention-days: 30
+          path: research/0.10.5-r1.7/evidence-state-smoke/
+      - name: Enforce smoke closure
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.7/evidence-state-smoke/STATE_ENGINE_SMOKE.json'))
+          assert x['status']=='PASS',x
+          assert x['orientation_group_size']==24
+          assert x['human_observations']==0
+          print('CR0105R17_STATE_SMOKE_PASS')
+          PY
