@@ -1,0 +1,45 @@
+{
+  "schema_version": "CR0105R17-RAW-ROUTE-PREFLIGHT-1",
+  "status": "PASS",
+  "records": [
+    {
+      "url": "https://reco.nz/solve/12564",
+      "http": 200,
+      "html_sha256": "49844a6e7eba921548e78e07123e6edbd49c866f3bf91567a4fceedacee79f57",
+      "candidates": [
+        {
+          "href": "https://alg.cubing.net/?setup=L+B+R2+B%27+R2+U2+F+D+R2+U+R2+F2+D2+R+U+B+L2&alg=x%27+%2F%2F+inspection%0Ar%27+U+F+U%27+r+U%27+r%27+U2+r%27+U+r+%2F%2F+xxxcross%0AR+U2%27+R2%27+U%27+R+U+R+U2%27+R%27+%2F%2F+4th+pair%0AU%27+F%27+r+U+R%27+U%27+r%27+F+R+%2F%2F+ZBLL",
+          "alg": "x' // inspection\nr' U F U' r U' r' U2 r' U r // xxxcross\nR U2' R2' U' R U R U2' R' // 4th pair\nU' F' r U R' U' r' F R // ZBLL",
+          "setup": "L B R2 B' R2 U2 F D R2 U R2 F2 D2 R U B L2",
+          "type": ""
+        }
+      ],
+      "chosen": {
+        "href": "https://alg.cubing.net/?setup=L+B+R2+B%27+R2+U2+F+D+R2+U+R2+F2+D2+R+U+B+L2&alg=x%27+%2F%2F+inspection%0Ar%27+U+F+U%27+r+U%27+r%27+U2+r%27+U+r+%2F%2F+xxxcross%0AR+U2%27+R2%27+U%27+R+U+R+U2%27+R%27+%2F%2F+4th+pair%0AU%27+F%27+r+U+R%27+U%27+r%27+F+R+%2F%2F+ZBLL",
+        "alg": "x' // inspection\nr' U F U' r U' r' U2 r' U r // xxxcross\nR U2' R2' U' R U R U2' R' // 4th pair\nU' F' r U R' U' r' F R // ZBLL",
+        "setup": "L B R2 B' R2 U2 F D R2 U R2 F2 D2 R U B L2",
+        "type": ""
+      }
+    },
+    {
+      "url": "https://reco.nz/solve/11919",
+      "http": 200,
+      "html_sha256": "dd052ae6c95fd9c77d29c3f287c0b7fa9031b8db62c467028bbd152c85754c79",
+      "candidates": [
+        {
+          "href": "https://alg.cubing.net/?setup=D2+F2+R+F2+L+F2+R%27+B2+L2+U%27+L2+R2+B2+D+L+R+B%27+R2+B2&alg=B%27+U+L2%27+%2F%2F+cross%0AR%27+U%27+R+%2F%2F+1st+pair%0AD+L%27+U%27+L+D%27+%2F%2F+2nd+pair%0AU%27+L%27+U+L+%2F%2F+3rd+pair%0AU+R+U%27+R%27+%2F%2F+4th+pair%0AU2%27+r+U+R%27+U+R+U2%27+r2%27+F%27+r+U%27+r%27+F2+r+%2F%2F+1LLL",
+          "alg": "B' U L2' // cross\nR' U' R // 1st pair\nD L' U' L D' // 2nd pair\nU' L' U L // 3rd pair\nU R U' R' // 4th pair\nU2' r U R' U R U2' r2' F' r U' r' F2 r // 1LLL",
+          "setup": "D2 F2 R F2 L F2 R' B2 L2 U' L2 R2 B2 D L R B' R2 B2",
+          "type": ""
+        }
+      ],
+      "chosen": {
+        "href": "https://alg.cubing.net/?setup=D2+F2+R+F2+L+F2+R%27+B2+L2+U%27+L2+R2+B2+D+L+R+B%27+R2+B2&alg=B%27+U+L2%27+%2F%2F+cross%0AR%27+U%27+R+%2F%2F+1st+pair%0AD+L%27+U%27+L+D%27+%2F%2F+2nd+pair%0AU%27+L%27+U+L+%2F%2F+3rd+pair%0AU+R+U%27+R%27+%2F%2F+4th+pair%0AU2%27+r+U+R%27+U+R+U2%27+r2%27+F%27+r+U%27+r%27+F2+r+%2F%2F+1LLL",
+        "alg": "B' U L2' // cross\nR' U' R // 1st pair\nD L' U' L D' // 2nd pair\nU' L' U L // 3rd pair\nU R U' R' // 4th pair\nU2' r U R' U R U2' r2' F' r U' r' F2 r // 1LLL",
+        "setup": "D2 F2 R F2 L F2 R' B2 L2 U' L2 R2 B2 D L R B' R2 B2",
+        "type": ""
+      }
+    }
+  ],
+  "human_observations": 0
+}
