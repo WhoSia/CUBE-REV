@@ -1,0 +1,13 @@
+{
+  "schema_version": "CR0105R17-STATE-SMOKE-RUN-2",
+  "workflow_run_id": "32323616682",
+  "head_sha": "f7e7d72e90ecd995ac2dd7f34ba256ade978d0fe",
+  "parent_artifact_id": 9310311696,
+  "parent_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+  "cubing_npm_version": "0.63.3",
+  "prepare_exit_code": 0,
+  "state_exit_code": 2,
+  "status": "HOLD",
+  "generated_at_utc": "2026-08-20T02:38:10.217621+00:00",
+  "human_observations": 0
+}
