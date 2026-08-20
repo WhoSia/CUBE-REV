@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "linked_unique_frame_rows": 3604,
+  "probe_ok": 125,
+  "records_with_rotation": 122,
+  "records_with_slice": 57,
+  "records_with_wide": 105,
+  "phase_comment_hits": {
+    "OLL": 42,
+    "PLL": 74,
+    "F2L": 281,
+    "CROSS": 77,
+    "ROUX": 41
+  }
+}
