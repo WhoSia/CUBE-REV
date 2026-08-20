@@ -42,3 +42,10 @@ console.log(JSON.stringify({
   source_sha256: actual,
   output_sha256: sha256(host)
 }, null, 2));
+
+// Non-main R1.11 diagnostic-only court. It is active only on the execution PR branch.
+if (fs.existsSync(path.join(root, "cr0105r111", "PR_EXECUTE"))) {
+  console.log("CR0105R111_SB_DIAGNOSTIC_BEGIN");
+  await import(path.join(root, "research", "0.10.5-r1.11", "r111_sb_failure_localization.mjs"));
+  console.log("CR0105R111_SB_DIAGNOSTIC_END");
+}
