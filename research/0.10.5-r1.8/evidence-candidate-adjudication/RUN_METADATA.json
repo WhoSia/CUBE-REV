@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R18-CANDIDATE-ADJUDICATION-RUN-1",
+  "workflow_run_id": "32343036278",
+  "head_sha": "fe2092682f651d23dc42601caca4346543b6bc0c",
+  "exit_code": 0,
+  "status": "PASS",
+  "role": "POSTHOC_CANDIDATE_AUDIT",
+  "prospective_primary_changed": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T07:13:51.823852+00:00"
+}
