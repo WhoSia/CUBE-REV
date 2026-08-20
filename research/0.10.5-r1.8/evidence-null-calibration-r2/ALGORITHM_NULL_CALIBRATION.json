@@ -1,0 +1,175 @@
+{
+  "schema_version": "CR0105R18-ALGORITHM-NULL-CALIBRATION-1",
+  "status": "PASS",
+  "calibration_source": "R1.7 frozen 900-attempt route manifest; no R1.8 holdout route outcomes read",
+  "r17_manifest_sha256": "ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe",
+  "state_certified_routes": 874,
+  "route_parse_or_expansion_failures": 6,
+  "route_state_failures": 20,
+  "eligible_phase_segments": 5515,
+  "observed_actual_candidate_reversal_segments": 3526,
+  "representation": {
+    "generated": 910,
+    "exact_transformation_accepted": 910
+  },
+  "solver": {
+    "attempted": 5515,
+    "worker_initialized": true,
+    "exact_transformation_accepted": 1712,
+    "physical_only_not_primary": 1692,
+    "errors": 2111
+  },
+  "null_aggregation": "one envelope observation per phase segment = max observed/accepted exact-transformation null realization",
+  "global": {
+    "n": 5515,
+    "p50": 0.4375,
+    "p90": 0.8125000000000001,
+    "p95": 0.9166666666666669,
+    "p99": 1.0833333333333333,
+    "p995": 1.0833333333333333,
+    "max": 1.1666666666666665
+  },
+  "thresholds": {
+    "CFOP|CROSS": {
+      "method": "CFOP",
+      "phase": "CROSS",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 777,
+      "threshold": 0.6458333333333333,
+      "method_phase_n": 777,
+      "phase_n": 817
+    },
+    "CFOP|F2L": {
+      "method": "CFOP",
+      "phase": "F2L",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 2824,
+      "threshold": 0.7291666666666665,
+      "method_phase_n": 2824,
+      "phase_n": 2958
+    },
+    "CFOP|LL_ONELOOK": {
+      "method": "CFOP",
+      "phase": "LL_ONELOOK",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 74,
+      "threshold": 1.1666666666666665,
+      "method_phase_n": 74,
+      "phase_n": 113
+    },
+    "CFOP|LL_ORIENT": {
+      "method": "CFOP",
+      "phase": "LL_ORIENT",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 663,
+      "threshold": 0.9583333333333335,
+      "method_phase_n": 663,
+      "phase_n": 664
+    },
+    "CFOP|LL_PERMUTE": {
+      "method": "CFOP",
+      "phase": "LL_PERMUTE",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 651,
+      "threshold": 1.1041666666666665,
+      "method_phase_n": 651,
+      "phase_n": 652
+    },
+    "Roux|ROUX_CMLL": {
+      "method": "Roux",
+      "phase": "ROUX_CMLL",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 52,
+      "threshold": 0.9375,
+      "method_phase_n": 52,
+      "phase_n": 52
+    },
+    "Roux|ROUX_FB": {
+      "method": "Roux",
+      "phase": "ROUX_FB",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 54,
+      "threshold": 0.6458333333333333,
+      "method_phase_n": 54,
+      "phase_n": 54
+    },
+    "Roux|ROUX_LSE": {
+      "method": "Roux",
+      "phase": "ROUX_LSE",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 97,
+      "threshold": 0.9166666666666665,
+      "method_phase_n": 97,
+      "phase_n": 97
+    },
+    "Roux|ROUX_SB": {
+      "method": "Roux",
+      "phase": "ROUX_SB",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 108,
+      "threshold": 0.9166666666666665,
+      "method_phase_n": 108,
+      "phase_n": 108
+    },
+    "ZB|CROSS": {
+      "method": "ZB",
+      "phase": "CROSS",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 40,
+      "threshold": 0.5625,
+      "method_phase_n": 40,
+      "phase_n": 817
+    },
+    "ZB|F2L": {
+      "method": "ZB",
+      "phase": "F2L",
+      "level": "METHOD_PHASE_99",
+      "q": 0.99,
+      "n": 134,
+      "threshold": 0.6666666666666667,
+      "method_phase_n": 134,
+      "phase_n": 2958
+    },
+    "ZB|LL_ONELOOK": {
+      "method": "ZB",
+      "phase": "LL_ONELOOK",
+      "level": "PHASE_99",
+      "q": 0.99,
+      "n": 113,
+      "threshold": 1.0416666666666667,
+      "method_phase_n": 39,
+      "phase_n": 113
+    },
+    "ZB|LL_ORIENT": {
+      "method": "ZB",
+      "phase": "LL_ORIENT",
+      "level": "PHASE_99",
+      "q": 0.99,
+      "n": 664,
+      "threshold": 0.9583333333333335,
+      "method_phase_n": 1,
+      "phase_n": 664
+    },
+    "ZB|LL_PERMUTE": {
+      "method": "ZB",
+      "phase": "LL_PERMUTE",
+      "level": "PHASE_99",
+      "q": 0.99,
+      "n": 652,
+      "threshold": 1.1041666666666665,
+      "method_phase_n": 1,
+      "phase_n": 652
+    }
+  },
+  "human_observations": 0
+}
