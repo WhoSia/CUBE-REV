@@ -1,0 +1,71 @@
+{
+  "schema_version": "CR0105R17-UNSOLVED-RAW-COMPARE-1",
+  "status": "PASS_DIAGNOSTIC",
+  "n": 8,
+  "raw_solved": 0,
+  "parsed_solved": 0,
+  "setup_transform_equal": 0,
+  "alg_transform_equal": 0,
+  "raw_solved_parsed_unsolved": [],
+  "raw_unsolved": [],
+  "parser_loss_confirmed": false,
+  "results": [
+    {
+      "reco_id": 12906,
+      "method": "ZB",
+      "attempt_value": 854,
+      "alg_link_count": 0,
+      "error": "Error: ALG_LINK_MISSING\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.7/r17_unsolved_raw_compare.mjs:13:20"
+    },
+    {
+      "reco_id": 12808,
+      "method": "Roux",
+      "attempt_value": 649,
+      "alg_link_count": 0,
+      "error": "Error: ALG_LINK_MISSING\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.7/r17_unsolved_raw_compare.mjs:13:20"
+    },
+    {
+      "reco_id": 12805,
+      "method": "Roux",
+      "attempt_value": 624,
+      "alg_link_count": 0,
+      "error": "Error: ALG_LINK_MISSING\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.7/r17_unsolved_raw_compare.mjs:13:20"
+    },
+    {
+      "reco_id": 12795,
+      "method": "Roux",
+      "attempt_value": 902,
+      "alg_link_count": 0,
+      "error": "Error: ALG_LINK_MISSING\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.7/r17_unsolved_raw_compare.mjs:13:20"
+    },
+    {
+      "reco_id": 12078,
+      "method": "ZB",
+      "attempt_value": 812,
+      "alg_link_count": 0,
+      "error": "Error: ALG_LINK_MISSING\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.7/r17_unsolved_raw_compare.mjs:13:20"
+    },
+    {
+      "reco_id": 11024,
+      "method": "CFOP",
+      "attempt_value": 1012,
+      "alg_link_count": 0,
+      "error": "Error: ALG_LINK_MISSING\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.7/r17_unsolved_raw_compare.mjs:13:20"
+    },
+    {
+      "reco_id": 9758,
+      "method": "CFOP",
+      "attempt_value": 1100,
+      "alg_link_count": 0,
+      "error": "Error: ALG_LINK_MISSING\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.7/r17_unsolved_raw_compare.mjs:13:20"
+    },
+    {
+      "reco_id": 7759,
+      "method": "CFOP",
+      "attempt_value": 1261,
+      "alg_link_count": 0,
+      "error": "Error: ALG_LINK_MISSING\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.7/r17_unsolved_raw_compare.mjs:13:20"
+    }
+  ],
+  "human_observations": 0
+}

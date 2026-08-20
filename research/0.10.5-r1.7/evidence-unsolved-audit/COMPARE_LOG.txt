@@ -1,0 +1,13 @@
+{
+  "schema_version": "CR0105R17-UNSOLVED-RAW-COMPARE-1",
+  "status": "PASS_DIAGNOSTIC",
+  "n": 8,
+  "raw_solved": 0,
+  "parsed_solved": 0,
+  "setup_transform_equal": 0,
+  "alg_transform_equal": 0,
+  "raw_solved_parsed_unsolved": [],
+  "raw_unsolved": [],
+  "parser_loss_confirmed": false,
+  "human_observations": 0
+}
