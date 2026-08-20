@@ -1,0 +1,74 @@
+name: CR0105R19 Nested Exact Prereg Gate Repair
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.9-quotient-familywise-readiness]
+    paths: [cr0105r19/RUN_NESTED_GATE_REPAIR]
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify R2 scientific health passed and only support-gate enforcement held
+        run: |
+          python3 - <<'PY'
+          import json
+          a=json.load(open('research/0.10.5-r1.9/evidence-nested-no-leak/NESTED_NO_LEAK_AUDIT.json'))
+          n=json.load(open('research/0.10.5-r1.9/NAPKIN_INTENT_AND_PREREGISTRATION.json'))
+          assert a['status']=='HOLD_NESTED_CALIBRATION'
+          assert a['checks']['primary_health_band'] and a['checks']['watch_health_band']
+          assert not a['checks']['min_family_reference_n_ge_1000']
+          assert n['attempt_level_familywise_null']['minimum_supported_conditioning_n']==300
+          assert n['attempt_level_familywise_null']['minimum_global_attempt_reference_n']==1000
+          print('R19_NESTED_GATE_REPAIR_PRECHECK_PASS')
+          PY
+      - name: Apply exact frozen preregistered support gates
+        id: repair
+        shell: bash
+        run: |
+          set +e
+          python research/0.10.5-r1.9/r19_nested_gate_repair.py 2>&1 | tee /tmp/r19nestedr3.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist R3 seal before fresh read
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.9/evidence-nested-gate-repair
+          test -f /tmp/r19nestedr3/NESTED_EXACT_PREREG_GATE_REPAIR.json && cp /tmp/r19nestedr3/NESTED_EXACT_PREREG_GATE_REPAIR.json research/0.10.5-r1.9/evidence-nested-gate-repair/ || true
+          test -f /tmp/r19nestedr3/ATTEMPT_FAMILYWISE_NULL_PREREG_SEAL_R3.json && cp /tmp/r19nestedr3/ATTEMPT_FAMILYWISE_NULL_PREREG_SEAL_R3.json research/0.10.5-r1.9/evidence-nested-gate-repair/ || true
+          cp /tmp/r19nestedr3.log research/0.10.5-r1.9/evidence-nested-gate-repair/REPAIR_LOG.txt || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          c=int('${{ steps.repair.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R19-NESTED-GATE-REPAIR-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':c,'status':'PASS' if c==0 else 'HOLD_OR_FAIL','scientific_definition_changed':False,'fresh_vintage_read':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.9/evidence-nested-gate-repair/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit R3 readiness seal
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.9/evidence-nested-gate-repair
+          git diff --cached --quiet || git commit -m "Seal CUBE-REV 0.10.5-R1.9 nested exact-prereg null ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.9-quotient-familywise-readiness
+      - name: Enforce R3 readiness seal
+        if: always()
+        run: |
+          test '${{ steps.repair.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          r=json.load(open('research/0.10.5-r1.9/evidence-nested-gate-repair/NESTED_EXACT_PREREG_GATE_REPAIR.json'))
+          s=json.load(open('research/0.10.5-r1.9/evidence-nested-gate-repair/ATTEMPT_FAMILYWISE_NULL_PREREG_SEAL_R3.json'))
+          assert r['status']=='PASS_NESTED_NO_LEAK_READINESS_EXACT_PREREG_GATE',r
+          assert s['status']=='SEALED_FOR_FUTURE_FRESH_VINTAGE_R3_NESTED_EXACT_PREREG_GATE',s
+          assert s['future_fresh_outcomes_seen'] is False
+          print('CR0105R19_NESTED_R3_SEAL_PASS')
+          PY
