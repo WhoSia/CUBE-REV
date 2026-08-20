@@ -1,0 +1,72 @@
+name: CR0105R19 Scale Failure Diagnostic
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.9-quotient-familywise-readiness]
+    paths: [cr0105r19/RUN_SCALE_FAILURE_DIAGNOSTIC]
+permissions:
+  contents: write
+jobs:
+  diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify failed compatibility gate remains failed and fresh data are zero
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.9/evidence-future-scale-audit/FUTURE_SCORE_SCALE_COMPATIBILITY.json'))
+          f=json.load(open('research/0.10.5-r1.9/evidence-fresh-readiness/FRESH_VINTAGE_READINESS.json'))
+          assert x['status']=='HOLD_FUTURE_SCALE_COMPATIBILITY'
+          assert x['checks']['crossfit_loo_stat_correlation_ge_0_95'] is False
+          assert f['fresh']['new_reco_id_rows']==0
+          print('R19_SCALE_FAILURE_DIAG_PRECHECK_PASS')
+          PY
+      - name: Install pinned cubing runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Materialize diagnostic-only runtime
+        run: python research/0.10.5-r1.9/r19_scale_failure_diagnostic_patch.py
+      - name: Recompute diagnostic decomposition without altering gate
+        id: diag
+        shell: bash
+        env:
+          R19_SCALE_ROOT: /tmp/r19scalediag
+        run: |
+          set +e
+          node ./r19_scale_failure_diagnostic_runtime.mjs 2>&1 | tee /tmp/r19scalediag/diagnostic.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist diagnostic evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.9/evidence-scale-failure-diagnostic
+          for f in DIAGNOSTIC_PATCH.json FUTURE_SCORE_SCALE_FAILURE_DIAGNOSTIC.json diagnostic.log; do
+            test -f "/tmp/r19scalediag/$f" && cp "/tmp/r19scalediag/$f" research/0.10.5-r1.9/evidence-scale-failure-diagnostic/ || true
+          done
+          rm -f ./r19_scale_failure_diagnostic_runtime.mjs
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          c=int('${{ steps.diag.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R19-SCALE-FAILURE-DIAGNOSTIC-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':c,'status':'PASS_DIAGNOSTIC' if c==0 else 'FAIL','failed_gate_changed':False,'fresh_rows':0,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.9/evidence-scale-failure-diagnostic/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit diagnostic evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.9/evidence-scale-failure-diagnostic
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.9 scale failure diagnostic ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.9-quotient-familywise-readiness
+      - name: Enforce diagnostic completion only
+        if: always()
+        run: |
+          test '${{ steps.diag.outputs.exit_code }}' = '0'
