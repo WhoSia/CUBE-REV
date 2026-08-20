@@ -1,8 +1,11 @@
 {
-  "schema_version": "CR0105R17-SELECTION-RUN-1",
-  "workflow_run_id": "32323285984",
-  "head_sha": "0af5154811ecd98baea63ea3b85689a4bb542ef4",
+  "schema_version": "CR0105R17-SELECTION-RUN-2",
+  "workflow_run_id": "32323654544",
+  "head_sha": "b6f65335359add9acf1f471286313136f7f01692",
   "parent_artifact_id": 9310311696,
-  "generated_at_utc": "2026-08-20T02:04:23.651387+00:00",
+  "parent_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+  "court_exit_code": 0,
+  "status": "PASS",
+  "generated_at_utc": "2026-08-20T02:10:28.966385+00:00",
   "human_observations": 0
 }
