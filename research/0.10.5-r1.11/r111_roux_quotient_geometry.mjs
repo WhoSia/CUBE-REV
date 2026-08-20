@@ -79,7 +79,8 @@ const rates={unique_transform_rate:rate(C.unique_transform,C.fb_line),fb_acquisi
 const checks={
   standard_first_block_3e2c:FIRST.edges.length===3&&FIRST.corners.length===2,
   standard_second_block_3e2c:SECOND.edges.length===3&&SECOND.corners.length===2,
-  block_masks_disjoint:[...FIRST.edges,...FIRST.corners].every(x=>![...SECOND.edges,...SECOND.corners].includes(x)),
+  block_edge_masks_disjoint:FIRST.edges.every(x=>!SECOND.edges.includes(x)),
+  block_corner_masks_disjoint:FIRST.corners.every(x=>!SECOND.corners.includes(x)),
   orientation_group_24:ORIENT.length===24,
   state_certified_ge_80:C.state_certified>=80,
   fb_line_ge_80:C.fb_line>=80,
