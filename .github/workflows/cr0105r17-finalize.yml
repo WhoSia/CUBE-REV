@@ -1,0 +1,128 @@
+name: CR0105R17 Finalize Signal-collapse Seal
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-full-court]
+    paths: [cr0105r17/RUN_FINALIZE]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r17-finalize
+  cancel-in-progress: false
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Freeze external authority and sibling research lineage
+        run: |
+          set -euo pipefail
+          git fetch origin main cube-rev-0.10.5-r1.7-counterfactual-route cube-rev-0.10.5-r1.7-selection-court
+          MAIN_SHA="$(git rev-parse origin/main)"
+          test "$MAIN_SHA" = '13bb9f4ef855bf89988c5e36cc4b0d344879ef68'
+          git show dc7586d0ce5a0e92e0677fbc88626a575fe3054f:research/0.10.5-r1.7/evidence-phase-taxonomy/PHASE_TAXONOMY_COURT.json > /tmp/r17_phase.json
+          git show 16f8ac7117ae060086787d7ed742e1edb0edcc07:research/0.10.5-r1.7/evidence-selection-target/TARGET_SELECTION_ADJUDICATION.json > /tmp/r17_target.json
+          echo "R17_MAIN_SHA=$MAIN_SHA" >> "$GITHUB_ENV"
+      - name: RAVEL final adjudication and seal
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/final
+          python3 - <<'PY'
+          import json,os,pathlib,hashlib,datetime
+          def load(p): return json.load(open(p,encoding='utf-8'))
+          phase=load('/tmp/r17_phase.json')
+          target=load('/tmp/r17_target.json')
+          r2=load('research/0.10.5-r1.7/evidence-full-route-r2/FULL_ROUTE_COURT.json')
+          r2gate=load('research/0.10.5-r1.7/evidence-full-route-r2/ROUTE_ADMISSION_GATE.json')
+          repair=load('research/0.10.5-r1.7/evidence-full-route-r2/R2_GATE_REPAIR.json')
+          r3=load('research/0.10.5-r1.7/evidence-full-route-r3/FULL_ROUTE_COURT.json')
+          r4=load('research/0.10.5-r1.7/evidence-full-route-r4/FULL_ROUTE_COURT.json')
+          r4meta=load('research/0.10.5-r1.7/evidence-full-route-r4/RUN_METADATA.json')
+          irred=load('research/0.10.5-r1.7/evidence-irred-audit/IRREDUCIBLE_CANDIDATE_AUDIT.json')
+          r5=load('research/0.10.5-r1.7/evidence-full-route-r5/FULL_ROUTE_COURT.json')
+          r5meta=load('research/0.10.5-r1.7/evidence-full-route-r5/RUN_METADATA.json')
+          sample=load('research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json')
+          validator=load('research/0.10.5-r1.7/evidence-pattern-solved/KPATTERN_SOLVED_FIXTURE.json')
+          rawpf=load('research/0.10.5-r1.7/evidence-raw-route-preflight/RAW_ROUTE_KPATTERN.json') if pathlib.Path('research/0.10.5-r1.7/evidence-raw-route-preflight/RAW_ROUTE_KPATTERN.json').exists() else None
+          # Lineage / authority / pre-outcome gate reconciliation.
+          assert phase['status']=='PASS' and phase['post_inspection_classification_rate']>0.98 and phase['records_with_annotation_order_regression']==0
+          u10=next(x for x in target['results'] if x['name']=='UNDER10_SPEED_X_ERA')
+          assert u10['status']=='PASS_INTERNAL_WEIGHT_GATE' and u10['gate']['ess_min']==200
+          assert target['estimand_decision']['full_wca_population']=='PROHIBITED_ZERO_OVERLAP'
+          assert repair['r1_full_route_court_materialized'] is False and repair['outcome_seen_before_repair'] is False and repair['prior_declared_ess_min']==200
+          assert r2gate['status']=='PASS' and all(r2gate['checks'].values())
+          assert validator['predicate_discrepancy_count']==3 and validator['decision']=='REPLACE_HANDROLLED_ORIENTATION_HASH_WITH_KPATTERN_SOLVED'
+          if rawpf is not None: assert rawpf['status']=='PASS'
+          for x in [r2,r3,r4,r5]:
+              assert x['status']=='PASS' and x['human_observations']==0
+              assert x['parent_wca_export_sha256']=='35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad'
+              assert x['parent_db_sha256']=='a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'
+          assert sample['sample_n']==900 and sample['human_observations']==0
+          assert r2gate['state_certified_n']==874 and r2gate['state_certification_rate']>0.97
+          assert r2gate['target_population_coverage']>0.999
+          assert r2gate['weight_ess']>=200 and r2gate['stabilized_weight']['max']<6
+          # Signal-collapse ladder.
+          a=r2['metrics']['any_state_verified_redundancy']['standardized']
+          s=r3['metrics']['any_multi_generator_state_verified_redundancy']['standardized']
+          i=r4['metrics']['any_minimal_irreducible_state_verified_redundancy']['standardized']
+          n=r5['metrics']['any_noncommuting_primitive_state_verified_redundancy']['standardized']
+          assert 0.84<a<0.86 and 0.80<s<0.82 and 0.07<i<0.10 and n==0
+          assert r5['phenotype_counts']=={'NO_NONCOMMUTING_PRIMITIVE_STATE_VERIFIED_REDUNDANCY':874}
+          assert irred['selected_interval_n']==33 and irred['kind_counts']=={'SHORTER_EXACT_REWRITE':27,'EXACT_LOOP':6}
+          # Candidate audit confirms R4 was dominated by commutation/representation-normalization patterns.
+          top=irred['pattern_counts'][:3]
+          assert top[0]['actual']=="U' D' U'" and top[0]['n']==13
+          # Main/public/human authority boundary.
+          assert os.environ['R17_MAIN_SHA']=='13bb9f4ef855bf89988c5e36cc4b0d344879ef68'
+          sample_sha=hashlib.sha256(pathlib.Path('research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json').read_bytes()).hexdigest()
+          seal={
+            'schema_version':'CR0105R17-RAVEL-FINAL-SEAL-1',
+            'stage':'CUBE-REV 0.10.5-R1.7 — Counterfactual Route Alignment, Phase-aware Redundancy Phenotyping & Selection-corrected Reconstruction Analysis',
+            'status':'PASS',
+            'verdict':'PASS_STATE_CERTIFIED_COUNTERFACTUAL_HIERARCHY_WITH_SIGNAL_COLLAPSE_BEFORE_NONCOMMUTING_PRIMITIVE_DETOUR_GATE',
+            'scientific_result':'The exact-local counterfactual signal does not survive progressively stricter representation/commutation controls. R1.7 therefore does not validate a cognitive recovery/error phenotype; it establishes the failure boundary of local move-equivalence phenotyping and a state-certified, selection-audited platform for the next subgoal-level court.',
+            'authority':{
+              'main_commit':os.environ['R17_MAIN_SHA'],'main_mutated_by_r17':False,'public_runner_mutated_by_r17':False,'human_observations':0,'human_recruitment':'DEFERRED_BY_RESEARCH_DESIGN'},
+            'frozen_parent':{'wca_export_sha256':'35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad','analytical_db_sha256':'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'},
+            'phase_taxonomy':{'post_inspection_classification_rate':phase['post_inspection_classification_rate'],'order_regression_records':phase['records_with_annotation_order_regression'],'role':'ANNOTATION_ASSISTED; STATE_VERIFICATION_REQUIRED'},
+            'selection_target':{'estimand':'WCA official valid 3x3 attempts <10.00 s; speed x era post-stratified descriptive linked-reconstruction target','full_wca_prevalence':'PROHIBITED_ZERO_OVERLAP','prospective_target_gate':'UNDER10_SPEED_X_ERA','prior_declared_ess_min':200},
+            'route_admission':{'sample_n':sample['sample_n'],'state_certified_n':r2gate['state_certified_n'],'state_certification_rate':r2gate['state_certification_rate'],'target_population_coverage':r2gate['target_population_coverage'],'weight_ess':r2gate['weight_ess'],'stabilized_weight_p99':r2gate['stabilized_weight']['p99'],'stabilized_weight_max':r2gate['stabilized_weight']['max'],'sample_manifest_sha256':sample_sha},
+            'validator_ravel':{'handrolled_orientation_predicate':'REJECTED','official_kpattern_predicate':'ADOPTED','known_fixture_discrepancies':validator['predicate_discrepancy_count']},
+            'signal_collapse_ladder':[
+              {'court':'R2_ALGEBRAIC','role':'BROAD_STATE_VERIFIED_ALGEBRAIC_SENSITIVITY','standardized_any':a,'claim':'NOT_RECOVERY'},
+              {'court':'R3_MULTI_GENERATOR','role':'PREOUTCOME_STRUCTURAL_FILTER','standardized_any':s,'claim':'NOT_RECOVERY'},
+              {'court':'R4_MINIMAL_IRREDUCIBLE','role':'POSTHOC_ADVERSARIAL_SENSITIVITY','standardized_any':i,'bootstrap_95':r4['metrics']['any_minimal_irreducible_state_verified_redundancy']['bootstrap_95'],'claim':'NOT_PREREGISTERED_PRIMARY'},
+              {'court':'R5_NONCOMMUTING_PRIMITIVE','role':'POSTHOC_ADVERSARIAL_SENSITIVITY','standardized_any':n,'positive_records':0,'claim':'NULL_FOR_THIS_EXACT_LOCAL_DEFINITION_NOT_EVIDENCE_OF_NO_HUMAN_RECOVERY'}],
+            'r4_candidate_audit':{'selected_intervals':irred['selected_interval_n'],'shorter_exact_rewrite':irred['kind_counts']['SHORTER_EXACT_REWRITE'],'exact_loop':irred['kind_counts']['EXACT_LOOP'],'dominant_pattern':irred['pattern_counts'][0],'interpretation':'R4 survivors are dominated by opposite-face commutation normalization and notation/rotation/slice identities rather than identified noncommuting primitive detours.'},
+            'ravel_roles':{
+              'parent_vintage_auditor':'PASS','phase_grammar_auditor':'PASS','selection_positivity_auditor':'PASS_BOUNDARY_FOUND','state_validator_adversary':'PASS_BUG_FOUND_AND_REPAIRED','raw_route_provenance_auditor':'PASS','counterfactual_endpoint_auditor':'PASS','algebraic_envelope_adversary':'PASS_SIGNAL_COLLAPSED','commutation_representation_adversary':'PASS_SIGNAL_TO_ZERO','claim_scope_auditor':'PASS_NULL_NOT_OVERCLAIMED','authority_auditor':'PASS_RESEARCH_ONLY'},
+            'claim_scope':{
+              'allowed':['state-certified route-algebra sensitivity hierarchy in the frozen <10 s linked-reconstruction target','phase attribution for annotation-certified lines','selection/positivity diagnostics and explicit target coverage','null result for the R5 exact-local noncommuting-primitive definition'],
+              'prohibited':['full-WCA route-redundancy prevalence','cognitive recovery/error prevalence','causal or mechanistic recovery claim','claiming R4 8.38% is a preregistered primary estimate','interpreting R5 zero as absence of human recovery','population calibration by solving method','claiming WCA export identifies competitor attempt scramble']},
+            'runs':{'r2_full_route':32325937932,'r3_structural':32326111709,'r4_irreducible':int(r4meta['workflow_run_id']),'r5_noncommuting_primitive':int(r5meta['workflow_run_id'])},
+            'next_gate':'CUBE-REV 0.10.5-R1.8 — Prospective Primitive-detour Holdout, Algorithm-aware Null Court & Phase-boundary Subgoal-distance Recovery Test',
+            'sealed_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }
+          pathlib.Path('research/0.10.5-r1.7/final/RAVEL_FINAL_SEAL.json').write_text(json.dumps(seal,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          print(json.dumps({'status':seal['status'],'verdict':seal['verdict'],'signal_collapse_ladder':seal['signal_collapse_ladder'],'next_gate':seal['next_gate']},indent=2,ensure_ascii=False))
+          PY
+      - name: Commit final R1.7 seal only
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/final/RAVEL_FINAL_SEAL.json
+          git diff --cached --quiet || git commit -m "Seal CUBE-REV 0.10.5-R1.7 signal-collapse court ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-full-court
+      - name: Enforce final seal
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.7/final/RAVEL_FINAL_SEAL.json'))
+          assert x['status']=='PASS'
+          assert x['authority']['human_observations']==0
+          assert x['authority']['main_mutated_by_r17'] is False
+          assert x['signal_collapse_ladder'][-1]['standardized_any']==0
+          print('CR0105R17_FINAL_SEAL_PASS')
+          PY
