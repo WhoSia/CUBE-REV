@@ -3,6 +3,9 @@ on:
   push:
     branches: [cube-rev-0.10.5-r1.11-roux-orientation-quotient]
     paths: [cr0105r111/RUN_FOUNDRY]
+  pull_request:
+    branches: [cube-rev-0.10.5-r1.11-execution-base]
+    paths: [cr0105r111/PR_EXECUTE]
 permissions:
   contents: write
 jobs:
@@ -74,9 +77,16 @@ jobs:
           for f in ROUX_NULL_FOUNDRY_AUDIT.json ROUX_LOO_ATTEMPT_BANK.json ROUX_CROSSFIT_ATTEMPT_BANK.json ROUX_NESTED_FAMILYWISE_ROWS.json ROUX_TRANSPORT_PAIRS.json ROUX_FUTURE_AUTHORITY_SEAL.json NULL_FOUNDRY_LOG.txt; do test -f "/tmp/r111/$f" && cp "/tmp/r111/$f" research/0.10.5-r1.11/evidence-null-foundry/ || true; done
           python3 - <<'PY'
           import json,datetime,os,pathlib
-          x={'schema_version':'CR0105R111-EXECUTION-METADATA-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'geometry_exit_code':int('${{ steps.geom.outputs.exit_code || 98 }}'),'null_foundry_exit_code':int('${{ steps.null.outputs.exit_code || 98 }}'),'r3_preexecution_design_repair_enforced':True,'fresh_network_read':False,'fresh_scoring':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          x={'schema_version':'CR0105R111-EXECUTION-METADATA-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'event_name':os.environ.get('GITHUB_EVENT_NAME'),'geometry_exit_code':int('${{ steps.geom.outputs.exit_code || 98 }}'),'null_foundry_exit_code':int('${{ steps.null.outputs.exit_code || 98 }}'),'r3_preexecution_design_repair_enforced':True,'fresh_network_read':False,'fresh_scoring':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
           pathlib.Path('research/0.10.5-r1.11/EXECUTION_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
           PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R111-pr-court
+          retention-days: 30
+          if-no-files-found: warn
+          path: research/0.10.5-r1.11/
       - name: Commit R1.11 evidence
         if: always()
         run: |
