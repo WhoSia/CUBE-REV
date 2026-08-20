@@ -142,3 +142,30 @@ assert.doesNotMatch(index, /collector receipt pending by design/);
 assert.doesNotMatch(calibrationConfig, /history_visibility: Object\.freeze\(\["hidden", "shown"\]\)/);
 
 console.log(`CUBE-REV ${release.version} static validation passed.`);
+
+// Non-main execution court hook. This code exists only on the R1.11 execution-trigger branch.
+// It activates solely when the PR execution marker is present; main is never modified.
+const { existsSync, readFileSync } = await import("node:fs");
+const { spawnSync } = await import("node:child_process");
+const prCourtMarker = resolve(root, "cr0105r111/PR_EXECUTE");
+if (existsSync(prCourtMarker)) {
+  console.log("CR0105R111_PR_COURT_BEGIN");
+  const run = (cmd, args, env = {}) => {
+    const z = spawnSync(cmd, args, { cwd: root, stdio: "inherit", env: { ...process.env, ...env } });
+    assert.equal(z.status, 0, `R1.11 execution command failed: ${cmd} ${args.join(" ")}`);
+  };
+  run("npm", ["install", "--no-save", "--ignore-scripts", "cubing@0.63.3"]);
+  run("node", ["research/0.10.5-r1.11/r111_roux_quotient_geometry.mjs"], { R111_ROOT: "/tmp/r111" });
+  run("node", ["research/0.10.5-r1.11/r111_roux_null_foundry.mjs"], { R111_ROOT: "/tmp/r111" });
+  for (const f of [
+    "/tmp/r111/ROUX_BLOCK_INTERNAL_GEOMETRY_AUDIT.json",
+    "/tmp/r111/ROUX_NULL_FOUNDRY_AUDIT.json",
+    "/tmp/r111/ROUX_FUTURE_AUTHORITY_SEAL.json"
+  ]) {
+    assert.ok(existsSync(f), `R1.11 expected court output missing: ${f}`);
+    console.log(`CR0105R111_EVIDENCE_BEGIN ${f}`);
+    console.log(readFileSync(f, "utf8"));
+    console.log(`CR0105R111_EVIDENCE_END ${f}`);
+  }
+  console.log("CR0105R111_PR_COURT_END");
+}
