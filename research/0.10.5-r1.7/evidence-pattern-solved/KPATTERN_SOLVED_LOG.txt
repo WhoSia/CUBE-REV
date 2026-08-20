@@ -1,0 +1,41 @@
+{
+  "schema_version": "CR0105R17-KPATTERN-SOLVED-FIXTURE-1",
+  "status": "PASS_DIAGNOSTIC",
+  "cubing_version": "0.63.3",
+  "orientation_hash_group_size": 24,
+  "results": [
+    {
+      "name": "reco_12564_teodor",
+      "source": "reco.nz 12564 alg.cubing reconstruction",
+      "parse": true,
+      "transformation_exact_identity": false,
+      "orientation_hash_solved": false,
+      "kpattern_solved_ignore_orientation_and_center": true,
+      "kpattern_solved_ignore_orientation_only": true,
+      "residual_hash": "418af567bca8a387574d76ac1c45b5d90c0e95d4073e8606ed0375bba970ee46"
+    },
+    {
+      "name": "reco_11919_ryan",
+      "source": "reco.nz 11919 no-rotation reconstruction",
+      "parse": true,
+      "transformation_exact_identity": false,
+      "orientation_hash_solved": false,
+      "kpattern_solved_ignore_orientation_and_center": true,
+      "kpattern_solved_ignore_orientation_only": true,
+      "residual_hash": "49e6db90e24fce1eb32e768d6205d3882bd46feeb875016e55b9f9baca883e2f"
+    },
+    {
+      "name": "cubing_docs_setup_example",
+      "source": "js.cubing.net cubing/twisty setup-alg documentation example",
+      "parse": true,
+      "transformation_exact_identity": false,
+      "orientation_hash_solved": false,
+      "kpattern_solved_ignore_orientation_and_center": true,
+      "kpattern_solved_ignore_orientation_only": true,
+      "residual_hash": "c8ab866a0434cc5ae1f6c088e26c3dfac73204a6d5545b97a489c80951505886"
+    }
+  ],
+  "predicate_discrepancy_count": 3,
+  "decision": "REPLACE_HANDROLLED_ORIENTATION_HASH_WITH_KPATTERN_SOLVED",
+  "human_observations": 0
+}
