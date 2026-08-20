@@ -51,4 +51,7 @@ if (fs.existsSync(path.join(root, "cr0105r111", "PR_EXECUTE"))) {
   console.log("CR0105R111_PHASE_BOUNDARY_DIAGNOSTIC_BEGIN");
   await import(path.join(root, "research", "0.10.5-r1.11", "r111_phase_boundary_localization.mjs"));
   console.log("CR0105R111_PHASE_BOUNDARY_DIAGNOSTIC_END");
+  console.log("CR0105R111_FB_SEMANTIC_DIAGNOSTIC_BEGIN");
+  await import(path.join(root, "research", "0.10.5-r1.11", "r111_fb_semantic_localization.mjs"));
+  console.log("CR0105R111_FB_SEMANTIC_DIAGNOSTIC_END");
 }
