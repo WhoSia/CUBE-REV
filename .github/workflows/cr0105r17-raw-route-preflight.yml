@@ -1,0 +1,37 @@
+name: CR0105R17 Raw Route Preflight
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-raw-route-preflight]
+    paths: [cr0105r17/RUN_RAW_ROUTE_PREFLIGHT]
+permissions:
+  contents: write
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: |
+          python -m pip install --disable-pip-version-check requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+          npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Extract raw encoded routes with full-court decoder
+        run: python research/0.10.5-r1.7/r17_raw_route_preflight.py | tee /tmp/raw_route_extract.log
+      - name: Verify decoded routes with KPattern
+        run: node research/0.10.5-r1.7/r17_raw_route_preflight.mjs | tee /tmp/raw_route_kpattern.log
+      - name: Commit preflight evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/evidence-raw-route-preflight
+          test -f /tmp/raw_route_extract.log && cp /tmp/raw_route_extract.log research/0.10.5-r1.7/evidence-raw-route-preflight/EXTRACT_LOG.txt || true
+          test -f /tmp/raw_route_kpattern.log && cp /tmp/raw_route_kpattern.log research/0.10.5-r1.7/evidence-raw-route-preflight/KPATTERN_LOG.txt || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-raw-route-preflight
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 raw route preflight ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-raw-route-preflight
