@@ -1,0 +1,1455 @@
+{
+  "schema_version": "CR0105R17-SELECTION-COURT-1",
+  "status": "PASS",
+  "parent_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+  "population_valid_attempts": 8968473,
+  "linked_distinct_attempts_in_db": 3601,
+  "schemes": [
+    {
+      "name": "speed_only",
+      "dimensions": [
+        "speed"
+      ],
+      "cells_total": 6,
+      "cells_positive": 5,
+      "cells_supported_min5": 4,
+      "population_supported_n": 4143145,
+      "population_supported_fraction": 0.46196771735835074,
+      "linked_supported_n": 3597,
+      "linked_supported_fraction": 0.9988891974451541,
+      "raw_ipw_mean": 1151.8334723380594,
+      "stabilized_weight": {
+        "min": 0.006165693238134585,
+        "p50": 0.06543023458637397,
+        "p90": 1.109113561095435,
+        "p95": 13.02997328644665,
+        "p99": 13.02997328644665,
+        "max": 13.02997328644665,
+        "ess": 384.0021006313104,
+        "ess_fraction_of_linked_supported": 0.10675621368676964
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 5,
+          "ess": 716.448949711169,
+          "cell_distribution_tv": 0.2284139342099987,
+          "max_weight_after_cap": 5
+        },
+        {
+          "cap": 10,
+          "ess": 447.9600545756706,
+          "cell_distribution_tv": 0.05874735206263166,
+          "max_weight_after_cap": 10
+        },
+        {
+          "cap": 25,
+          "ess": 384.0021006313105,
+          "cell_distribution_tv": 8.337514706413529e-17,
+          "max_weight_after_cap": 13.02997328644665
+        },
+        {
+          "cap": 50,
+          "ess": 384.0021006313105,
+          "cell_distribution_tv": 8.337514706413529e-17,
+          "max_weight_after_cap": 13.02997328644665
+        },
+        {
+          "cap": 100,
+          "ess": 384.0021006313105,
+          "cell_distribution_tv": 8.337514706413529e-17,
+          "max_weight_after_cap": 13.02997328644665
+        }
+      ],
+      "cells": [
+        {
+          "speed": "10-15",
+          "population_n": 2881605,
+          "linked_n": 192,
+          "p_select": 6.662953458229007e-05,
+          "raw_ipw": 15008.359375,
+          "stabilized_ipw": 13.02997328644665
+        },
+        {
+          "speed": "15-30",
+          "population_n": 3316662,
+          "linked_n": 4,
+          "p_select": 1.2060318476830018e-06
+        },
+        {
+          "speed": "30+",
+          "population_n": 1508666,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "5-7",
+          "population_n": 124804,
+          "linked_n": 1656,
+          "p_select": 0.013268805487003621,
+          "raw_ipw": 75.36473429951691,
+          "stabilized_ipw": 0.06543023458637397
+        },
+        {
+          "speed": "7-10",
+          "population_n": 1130600,
+          "linked_n": 885,
+          "p_select": 0.0007827702105076951,
+          "raw_ipw": 1277.5141242937852,
+          "stabilized_ipw": 1.109113561095435
+        },
+        {
+          "speed": "<5",
+          "population_n": 6136,
+          "linked_n": 864,
+          "p_select": 0.1408083441981747,
+          "raw_ipw": 7.101851851851852,
+          "stabilized_ipw": 0.006165693238134585
+        }
+      ]
+    },
+    {
+      "name": "speed_x_era",
+      "dimensions": [
+        "speed",
+        "era"
+      ],
+      "cells_total": 29,
+      "cells_positive": 21,
+      "cells_supported_min5": 16,
+      "population_supported_n": 4143046,
+      "population_supported_fraction": 0.46195667868989515,
+      "linked_supported_n": 3547,
+      "linked_supported_fraction": 0.9850041655095807,
+      "raw_ipw_mean": 1168.0422892585284,
+      "stabilized_weight": {
+        "min": 0.0019050896065054244,
+        "p50": 0.03210500197197907,
+        "p90": 0.8955367481193209,
+        "p95": 3.00903690325484,
+        "p99": 6.625496414956531,
+        "max": 220.08877791846868,
+        "ess": 39.4579483805659,
+        "ess_fraction_of_linked_supported": 0.011124315867089344
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 5,
+          "ess": 460.3852355439506,
+          "cell_distribution_tv": 0.47821080508752983,
+          "max_weight_after_cap": 5
+        },
+        {
+          "cap": 10,
+          "ess": 348.6416413555354,
+          "cell_distribution_tv": 0.4025423916439224,
+          "max_weight_after_cap": 10
+        },
+        {
+          "cap": 25,
+          "ess": 192.14901512660137,
+          "cell_distribution_tv": 0.3068319918577541,
+          "max_weight_after_cap": 25
+        },
+        {
+          "cap": 50,
+          "ess": 147.6985735316722,
+          "cell_distribution_tv": 0.2535527720269101,
+          "max_weight_after_cap": 50
+        },
+        {
+          "cap": 100,
+          "ess": 90.56020390680538,
+          "cell_distribution_tv": 0.16001652845310108,
+          "max_weight_after_cap": 100
+        }
+      ],
+      "cells": [
+        {
+          "speed": "10-15",
+          "era": "2013-16",
+          "population_n": 298748,
+          "linked_n": 85,
+          "p_select": 0.0002845207331931929,
+          "raw_ipw": 3514.6823529411763,
+          "stabilized_ipw": 3.00903690325484
+        },
+        {
+          "speed": "10-15",
+          "era": "2017-19",
+          "population_n": 652330,
+          "linked_n": 21,
+          "p_select": 3.219229531065565e-05,
+          "raw_ipw": 31063.333333333332,
+          "stabilized_ipw": 26.594356744610927
+        },
+        {
+          "speed": "10-15",
+          "era": "2020-22",
+          "population_n": 293924,
+          "linked_n": 8,
+          "p_select": 2.7217920278711503e-05,
+          "raw_ipw": 36740.5,
+          "stabilized_ipw": 31.45476866537325
+        },
+        {
+          "speed": "10-15",
+          "era": "2023-26",
+          "population_n": 1542438,
+          "linked_n": 6,
+          "p_select": 3.889945657459165e-06,
+          "raw_ipw": 257073.0,
+          "stabilized_ipw": 220.08877791846868
+        },
+        {
+          "speed": "10-15",
+          "era": "<=2012",
+          "population_n": 94165,
+          "linked_n": 72,
+          "p_select": 0.0007646153029257155,
+          "raw_ipw": 1307.8472222222222,
+          "stabilized_ipw": 1.1196916706264477
+        },
+        {
+          "speed": "15-30",
+          "era": "2013-16",
+          "population_n": 460906,
+          "linked_n": 1,
+          "p_select": 2.1696397964010014e-06
+        },
+        {
+          "speed": "15-30",
+          "era": "2017-19",
+          "population_n": 787822,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2020-22",
+          "population_n": 313637,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2023-26",
+          "population_n": 1522325,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "<=2012",
+          "population_n": 231972,
+          "linked_n": 3,
+          "p_select": 1.2932595313227458e-05
+        },
+        {
+          "speed": "30+",
+          "era": "2013-16",
+          "population_n": 225053,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2017-19",
+          "population_n": 363601,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2020-22",
+          "population_n": 138926,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2023-26",
+          "population_n": 674305,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "<=2012",
+          "population_n": 106781,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "5-7",
+          "era": "2013-16",
+          "population_n": 946,
+          "linked_n": 95,
+          "p_select": 0.10042283298097252,
+          "raw_ipw": 9.957894736842105,
+          "stabilized_ipw": 0.00852528613768202
+        },
+        {
+          "speed": "5-7",
+          "era": "2017-19",
+          "population_n": 8807,
+          "linked_n": 300,
+          "p_select": 0.034063812876121265,
+          "raw_ipw": 29.356666666666666,
+          "stabilized_ipw": 0.025133222432641746
+        },
+        {
+          "speed": "5-7",
+          "era": "2020-22",
+          "population_n": 11833,
+          "linked_n": 495,
+          "p_select": 0.041832164286317926,
+          "raw_ipw": 23.905050505050504,
+          "stabilized_ipw": 0.02046591182946415
+        },
+        {
+          "speed": "5-7",
+          "era": "2023-26",
+          "population_n": 103181,
+          "linked_n": 744,
+          "p_select": 0.0072106298640253535,
+          "raw_ipw": 138.68413978494624,
+          "stabilized_ipw": 0.11873212216741119
+        },
+        {
+          "speed": "5-7",
+          "era": "<=2012",
+          "population_n": 37,
+          "linked_n": 22,
+          "p_select": 0.5945945945945946
+        },
+        {
+          "speed": "7-10",
+          "era": "2013-16",
+          "population_n": 47051,
+          "linked_n": 233,
+          "p_select": 0.004952073282183163,
+          "raw_ipw": 201.93562231759657,
+          "stabilized_ipw": 0.17288382807251354
+        },
+        {
+          "speed": "7-10",
+          "era": "2017-19",
+          "population_n": 177169,
+          "linked_n": 273,
+          "p_select": 0.0015409016250021166,
+          "raw_ipw": 648.9706959706959,
+          "stabilized_ipw": 0.5556054793038886
+        },
+        {
+          "speed": "7-10",
+          "era": "2020-22",
+          "population_n": 126569,
+          "linked_n": 121,
+          "p_select": 0.0009560002844298367,
+          "raw_ipw": 1046.0247933884298,
+          "stabilized_ipw": 0.8955367481193209
+        },
+        {
+          "speed": "7-10",
+          "era": "2023-26",
+          "population_n": 773886,
+          "linked_n": 100,
+          "p_select": 0.00012921799851657738,
+          "raw_ipw": 7738.86,
+          "stabilized_ipw": 6.625496414956531
+        },
+        {
+          "speed": "7-10",
+          "era": "<=2012",
+          "population_n": 5925,
+          "linked_n": 158,
+          "p_select": 0.02666666666666667,
+          "raw_ipw": 37.5,
+          "stabilized_ipw": 0.03210500197197907
+        },
+        {
+          "speed": "<5",
+          "era": "2013-16",
+          "population_n": 4,
+          "linked_n": 3,
+          "p_select": 0.75
+        },
+        {
+          "speed": "<5",
+          "era": "2017-19",
+          "population_n": 58,
+          "linked_n": 25,
+          "p_select": 0.43103448275862066
+        },
+        {
+          "speed": "<5",
+          "era": "2020-22",
+          "population_n": 247,
+          "linked_n": 111,
+          "p_select": 0.4493927125506073,
+          "raw_ipw": 2.225225225225225,
+          "stabilized_ipw": 0.0019050896065054244
+        },
+        {
+          "speed": "<5",
+          "era": "2023-26",
+          "population_n": 5827,
+          "linked_n": 725,
+          "p_select": 0.12442079972541617,
+          "raw_ipw": 8.037241379310345,
+          "stabilized_ipw": 0.0068809506755208106
+        }
+      ]
+    },
+    {
+      "name": "speed_x_era_x_roundmedian",
+      "dimensions": [
+        "speed",
+        "era",
+        "perf"
+      ],
+      "cells_total": 112,
+      "cells_positive": 55,
+      "cells_supported_min5": 27,
+      "population_supported_n": 1383468,
+      "population_supported_fraction": 0.15425903607001995,
+      "linked_supported_n": 3461,
+      "linked_supported_fraction": 0.9611219105803943,
+      "raw_ipw_mean": 399.73071366657035,
+      "stabilized_weight": {
+        "min": 0.005297684131897691,
+        "p50": 0.05957958360324998,
+        "p90": 1.4241558796722886,
+        "p95": 4.037337564791493,
+        "p99": 12.429517748151746,
+        "max": 76.47398349654637,
+        "ess": 97.2677853651606,
+        "ess_fraction_of_linked_supported": 0.028103954165027624
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 5,
+          "ess": 532.9425353475435,
+          "cell_distribution_tv": 0.3914045753559392,
+          "max_weight_after_cap": 5
+        },
+        {
+          "cap": 10,
+          "ess": 384.7136252130977,
+          "cell_distribution_tv": 0.3283231955651064,
+          "max_weight_after_cap": 10
+        },
+        {
+          "cap": 25,
+          "ess": 257.87656732728453,
+          "cell_distribution_tv": 0.22852122016699308,
+          "max_weight_after_cap": 25
+        },
+        {
+          "cap": 50,
+          "ess": 146.97327727035542,
+          "cell_distribution_tv": 0.09865893868617502,
+          "max_weight_after_cap": 50
+        },
+        {
+          "cap": 100,
+          "ess": 97.26778536516062,
+          "cell_distribution_tv": 4.988685246148927e-17,
+          "max_weight_after_cap": 76.47398349654637
+        }
+      ],
+      "cells": [
+        {
+          "speed": "10-15",
+          "era": "2013-16",
+          "perf": "10-15",
+          "population_n": 248423,
+          "linked_n": 50,
+          "p_select": 0.0002012696086916268,
+          "raw_ipw": 4968.46,
+          "stabilized_ipw": 12.429517748151746
+        },
+        {
+          "speed": "10-15",
+          "era": "2013-16",
+          "perf": "15-30",
+          "population_n": 41201,
+          "linked_n": 3,
+          "p_select": 7.281376665614912e-05
+        },
+        {
+          "speed": "10-15",
+          "era": "2013-16",
+          "perf": "30+",
+          "population_n": 5,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "10-15",
+          "era": "2013-16",
+          "perf": "7-10",
+          "population_n": 9112,
+          "linked_n": 31,
+          "p_select": 0.003402107111501317,
+          "raw_ipw": 293.93548387096774,
+          "stabilized_ipw": 0.735333747999534
+        },
+        {
+          "speed": "10-15",
+          "era": "2013-16",
+          "perf": "<7",
+          "population_n": 7,
+          "linked_n": 1,
+          "p_select": 0.14285714285714285
+        },
+        {
+          "speed": "10-15",
+          "era": "2017-19",
+          "perf": "10-15",
+          "population_n": 541538,
+          "linked_n": 4,
+          "p_select": 7.386369931565282e-06
+        },
+        {
+          "speed": "10-15",
+          "era": "2017-19",
+          "perf": "15-30",
+          "population_n": 75357,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "10-15",
+          "era": "2017-19",
+          "perf": "30+",
+          "population_n": 17,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "10-15",
+          "era": "2017-19",
+          "perf": "7-10",
+          "population_n": 35367,
+          "linked_n": 16,
+          "p_select": 0.0004523991291316764,
+          "raw_ipw": 2210.4375,
+          "stabilized_ipw": 5.529816510031313
+        },
+        {
+          "speed": "10-15",
+          "era": "2017-19",
+          "perf": "<7",
+          "population_n": 51,
+          "linked_n": 1,
+          "p_select": 0.0196078431372549
+        },
+        {
+          "speed": "10-15",
+          "era": "2020-22",
+          "perf": "10-15",
+          "population_n": 239982,
+          "linked_n": 1,
+          "p_select": 4.166979190105924e-06
+        },
+        {
+          "speed": "10-15",
+          "era": "2020-22",
+          "perf": "15-30",
+          "population_n": 28844,
+          "linked_n": 1,
+          "p_select": 3.466925530439606e-05
+        },
+        {
+          "speed": "10-15",
+          "era": "2020-22",
+          "perf": "30+",
+          "population_n": 1,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "10-15",
+          "era": "2020-22",
+          "perf": "7-10",
+          "population_n": 25010,
+          "linked_n": 4,
+          "p_select": 0.0001599360255897641
+        },
+        {
+          "speed": "10-15",
+          "era": "2020-22",
+          "perf": "<7",
+          "population_n": 87,
+          "linked_n": 2,
+          "p_select": 0.022988505747126436
+        },
+        {
+          "speed": "10-15",
+          "era": "2023-26",
+          "perf": "10-15",
+          "population_n": 1251935,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "10-15",
+          "era": "2023-26",
+          "perf": "15-30",
+          "population_n": 141138,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "10-15",
+          "era": "2023-26",
+          "perf": "30+",
+          "population_n": 18,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "10-15",
+          "era": "2023-26",
+          "perf": "7-10",
+          "population_n": 148403,
+          "linked_n": 1,
+          "p_select": 6.738408253202429e-06
+        },
+        {
+          "speed": "10-15",
+          "era": "2023-26",
+          "perf": "<7",
+          "population_n": 944,
+          "linked_n": 5,
+          "p_select": 0.005296610169491525,
+          "raw_ipw": 188.8,
+          "stabilized_ipw": 0.4723179719371898
+        },
+        {
+          "speed": "10-15",
+          "era": "<=2012",
+          "perf": "10-15",
+          "population_n": 74237,
+          "linked_n": 46,
+          "p_select": 0.0006196371081805569,
+          "raw_ipw": 1613.8478260869565,
+          "stabilized_ipw": 4.037337564791493
+        },
+        {
+          "speed": "10-15",
+          "era": "<=2012",
+          "perf": "15-30",
+          "population_n": 18927,
+          "linked_n": 6,
+          "p_select": 0.0003170074496750674,
+          "raw_ipw": 3154.5,
+          "stabilized_ipw": 7.891562724978098
+        },
+        {
+          "speed": "10-15",
+          "era": "<=2012",
+          "perf": "7-10",
+          "population_n": 1001,
+          "linked_n": 20,
+          "p_select": 0.01998001998001998,
+          "raw_ipw": 50.05,
+          "stabilized_ipw": 0.1252092928784764
+        },
+        {
+          "speed": "15-30",
+          "era": "2013-16",
+          "perf": "10-15",
+          "population_n": 44305,
+          "linked_n": 1,
+          "p_select": 2.257081593499605e-05
+        },
+        {
+          "speed": "15-30",
+          "era": "2013-16",
+          "perf": "15-30",
+          "population_n": 400367,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2013-16",
+          "perf": "30+",
+          "population_n": 15974,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2013-16",
+          "perf": "7-10",
+          "population_n": 260,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2017-19",
+          "perf": "10-15",
+          "population_n": 89904,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2017-19",
+          "perf": "15-30",
+          "population_n": 670571,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2017-19",
+          "perf": "30+",
+          "population_n": 26437,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2017-19",
+          "perf": "7-10",
+          "population_n": 907,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2017-19",
+          "perf": "<7",
+          "population_n": 3,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2020-22",
+          "perf": "10-15",
+          "population_n": 36276,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2020-22",
+          "perf": "15-30",
+          "population_n": 264946,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2020-22",
+          "perf": "30+",
+          "population_n": 11779,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2020-22",
+          "perf": "7-10",
+          "population_n": 634,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2020-22",
+          "perf": "<7",
+          "population_n": 2,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2023-26",
+          "perf": "10-15",
+          "population_n": 188759,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2023-26",
+          "perf": "15-30",
+          "population_n": 1274394,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2023-26",
+          "perf": "30+",
+          "population_n": 54702,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2023-26",
+          "perf": "7-10",
+          "population_n": 4435,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "2023-26",
+          "perf": "<7",
+          "population_n": 35,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "<=2012",
+          "perf": "10-15",
+          "population_n": 16368,
+          "linked_n": 1,
+          "p_select": 6.109481915933529e-05
+        },
+        {
+          "speed": "15-30",
+          "era": "<=2012",
+          "perf": "15-30",
+          "population_n": 208516,
+          "linked_n": 1,
+          "p_select": 4.795795046902875e-06
+        },
+        {
+          "speed": "15-30",
+          "era": "<=2012",
+          "perf": "30+",
+          "population_n": 7050,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "15-30",
+          "era": "<=2012",
+          "perf": "7-10",
+          "population_n": 38,
+          "linked_n": 1,
+          "p_select": 0.02631578947368421
+        },
+        {
+          "speed": "30+",
+          "era": "2013-16",
+          "perf": "10-15",
+          "population_n": 486,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2013-16",
+          "perf": "15-30",
+          "population_n": 24908,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2013-16",
+          "perf": "30+",
+          "population_n": 199642,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2013-16",
+          "perf": "7-10",
+          "population_n": 17,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2017-19",
+          "perf": "10-15",
+          "population_n": 495,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2017-19",
+          "perf": "15-30",
+          "population_n": 40435,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2017-19",
+          "perf": "30+",
+          "population_n": 322658,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2017-19",
+          "perf": "7-10",
+          "population_n": 13,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2020-22",
+          "perf": "10-15",
+          "population_n": 158,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2020-22",
+          "perf": "15-30",
+          "population_n": 16967,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2020-22",
+          "perf": "30+",
+          "population_n": 121793,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2020-22",
+          "perf": "7-10",
+          "population_n": 8,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2023-26",
+          "perf": "10-15",
+          "population_n": 939,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2023-26",
+          "perf": "15-30",
+          "population_n": 82943,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2023-26",
+          "perf": "30+",
+          "population_n": 590357,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2023-26",
+          "perf": "7-10",
+          "population_n": 61,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "2023-26",
+          "perf": "<7",
+          "population_n": 5,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "<=2012",
+          "perf": "10-15",
+          "population_n": 235,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "<=2012",
+          "perf": "15-30",
+          "population_n": 12197,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "<=2012",
+          "perf": "30+",
+          "population_n": 94347,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "30+",
+          "era": "<=2012",
+          "perf": "7-10",
+          "population_n": 2,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "5-7",
+          "era": "2013-16",
+          "perf": "10-15",
+          "population_n": 77,
+          "linked_n": 6,
+          "p_select": 0.07792207792207792
+        },
+        {
+          "speed": "5-7",
+          "era": "2013-16",
+          "perf": "7-10",
+          "population_n": 793,
+          "linked_n": 59,
+          "p_select": 0.07440100882723834,
+          "raw_ipw": 13.440677966101696,
+          "stabilized_ipw": 0.03362433134751073
+        },
+        {
+          "speed": "5-7",
+          "era": "2013-16",
+          "perf": "<7",
+          "population_n": 76,
+          "linked_n": 30,
+          "p_select": 0.39473684210526316
+        },
+        {
+          "speed": "5-7",
+          "era": "2017-19",
+          "perf": "10-15",
+          "population_n": 275,
+          "linked_n": 4,
+          "p_select": 0.014545454545454545
+        },
+        {
+          "speed": "5-7",
+          "era": "2017-19",
+          "perf": "7-10",
+          "population_n": 5986,
+          "linked_n": 80,
+          "p_select": 0.013364517206815904,
+          "raw_ipw": 74.825,
+          "stabilized_ipw": 0.18718851827436558
+        },
+        {
+          "speed": "5-7",
+          "era": "2017-19",
+          "perf": "<7",
+          "population_n": 2546,
+          "linked_n": 216,
+          "p_select": 0.08483896307934014,
+          "raw_ipw": 11.787037037037036,
+          "stabilized_ipw": 0.02948744400678959
+        },
+        {
+          "speed": "5-7",
+          "era": "2020-22",
+          "perf": "10-15",
+          "population_n": 173,
+          "linked_n": 3,
+          "p_select": 0.017341040462427744
+        },
+        {
+          "speed": "5-7",
+          "era": "2020-22",
+          "perf": "15-30",
+          "population_n": 1,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "5-7",
+          "era": "2020-22",
+          "perf": "7-10",
+          "population_n": 6823,
+          "linked_n": 32,
+          "p_select": 0.0046900190532024036,
+          "raw_ipw": 213.21875,
+          "stabilized_ipw": 0.5334059723463065
+        },
+        {
+          "speed": "5-7",
+          "era": "2020-22",
+          "perf": "<7",
+          "population_n": 4836,
+          "linked_n": 460,
+          "p_select": 0.09511993382961124,
+          "raw_ipw": 10.513043478260869,
+          "stabilized_ipw": 0.026300314483790638
+        },
+        {
+          "speed": "5-7",
+          "era": "2023-26",
+          "perf": "10-15",
+          "population_n": 1106,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "5-7",
+          "era": "2023-26",
+          "perf": "7-10",
+          "population_n": 49312,
+          "linked_n": 17,
+          "p_select": 0.0003447436729396496,
+          "raw_ipw": 2900.705882352941,
+          "stabilized_ipw": 7.256649997559415
+        },
+        {
+          "speed": "5-7",
+          "era": "2023-26",
+          "perf": "<7",
+          "population_n": 52763,
+          "linked_n": 727,
+          "p_select": 0.013778594848662888,
+          "raw_ipw": 72.57634112792297,
+          "stabilized_ipw": 0.1815630839627237
+        },
+        {
+          "speed": "5-7",
+          "era": "<=2012",
+          "perf": "10-15",
+          "population_n": 7,
+          "linked_n": 3,
+          "p_select": 0.42857142857142855
+        },
+        {
+          "speed": "5-7",
+          "era": "<=2012",
+          "perf": "7-10",
+          "population_n": 30,
+          "linked_n": 19,
+          "p_select": 0.6333333333333333
+        },
+        {
+          "speed": "7-10",
+          "era": "2013-16",
+          "perf": "10-15",
+          "population_n": 20396,
+          "linked_n": 44,
+          "p_select": 0.0021572857423024124,
+          "raw_ipw": 463.54545454545456,
+          "stabilized_ipw": 1.1596443272860797
+        },
+        {
+          "speed": "7-10",
+          "era": "2013-16",
+          "perf": "15-30",
+          "population_n": 108,
+          "linked_n": 1,
+          "p_select": 0.009259259259259259
+        },
+        {
+          "speed": "7-10",
+          "era": "2013-16",
+          "perf": "7-10",
+          "population_n": 26508,
+          "linked_n": 178,
+          "p_select": 0.006714953976158141,
+          "raw_ipw": 148.92134831460675,
+          "stabilized_ipw": 0.37255418015946445
+        },
+        {
+          "speed": "7-10",
+          "era": "2013-16",
+          "perf": "<7",
+          "population_n": 39,
+          "linked_n": 10,
+          "p_select": 0.2564102564102564
+        },
+        {
+          "speed": "7-10",
+          "era": "2017-19",
+          "perf": "10-15",
+          "population_n": 57495,
+          "linked_n": 4,
+          "p_select": 6.957126706670145e-05
+        },
+        {
+          "speed": "7-10",
+          "era": "2017-19",
+          "perf": "15-30",
+          "population_n": 200,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "7-10",
+          "era": "2017-19",
+          "perf": "7-10",
+          "population_n": 118410,
+          "linked_n": 208,
+          "p_select": 0.0017566083945612702,
+          "raw_ipw": 569.2788461538462,
+          "stabilized_ipw": 1.4241558796722886
+        },
+        {
+          "speed": "7-10",
+          "era": "2017-19",
+          "perf": "<7",
+          "population_n": 1064,
+          "linked_n": 61,
+          "p_select": 0.05733082706766917,
+          "raw_ipw": 17.442622950819672,
+          "stabilized_ipw": 0.043635933778581715
+        },
+        {
+          "speed": "7-10",
+          "era": "2020-22",
+          "perf": "10-15",
+          "population_n": 31299,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "7-10",
+          "era": "2020-22",
+          "perf": "15-30",
+          "population_n": 106,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "7-10",
+          "era": "2020-22",
+          "perf": "7-10",
+          "population_n": 93354,
+          "linked_n": 45,
+          "p_select": 0.00048203612057330165,
+          "raw_ipw": 2074.5333333333333,
+          "stabilized_ipw": 5.189827207182723
+        },
+        {
+          "speed": "7-10",
+          "era": "2020-22",
+          "perf": "<7",
+          "population_n": 1810,
+          "linked_n": 76,
+          "p_select": 0.041988950276243095,
+          "raw_ipw": 23.81578947368421,
+          "stabilized_ipw": 0.05957958360324998
+        },
+        {
+          "speed": "7-10",
+          "era": "2023-26",
+          "perf": "10-15",
+          "population_n": 174376,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "7-10",
+          "era": "2023-26",
+          "perf": "15-30",
+          "population_n": 582,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "7-10",
+          "era": "2023-26",
+          "perf": "7-10",
+          "population_n": 580811,
+          "linked_n": 19,
+          "p_select": 3.2712879060486114e-05,
+          "raw_ipw": 30569.0,
+          "stabilized_ipw": 76.47398349654637
+        },
+        {
+          "speed": "7-10",
+          "era": "2023-26",
+          "perf": "<7",
+          "population_n": 18117,
+          "linked_n": 81,
+          "p_select": 0.004470938897168405,
+          "raw_ipw": 223.66666666666666,
+          "stabilized_ipw": 0.5595433601162682
+        },
+        {
+          "speed": "7-10",
+          "era": "<=2012",
+          "perf": "10-15",
+          "population_n": 3597,
+          "linked_n": 57,
+          "p_select": 0.0158465387823186,
+          "raw_ipw": 63.10526315789474,
+          "stabilized_ipw": 0.1578694381001033
+        },
+        {
+          "speed": "7-10",
+          "era": "<=2012",
+          "perf": "15-30",
+          "population_n": 39,
+          "linked_n": 1,
+          "p_select": 0.02564102564102564
+        },
+        {
+          "speed": "7-10",
+          "era": "<=2012",
+          "perf": "7-10",
+          "population_n": 2289,
+          "linked_n": 100,
+          "p_select": 0.043687199650502405,
+          "raw_ipw": 22.89,
+          "stabilized_ipw": 0.057263550729037466
+        },
+        {
+          "speed": "<5",
+          "era": "2013-16",
+          "perf": "7-10",
+          "population_n": 2,
+          "linked_n": 1,
+          "p_select": 0.5
+        },
+        {
+          "speed": "<5",
+          "era": "2013-16",
+          "perf": "<7",
+          "population_n": 2,
+          "linked_n": 2,
+          "p_select": 1.0
+        },
+        {
+          "speed": "<5",
+          "era": "2017-19",
+          "perf": "10-15",
+          "population_n": 1,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "<5",
+          "era": "2017-19",
+          "perf": "7-10",
+          "population_n": 31,
+          "linked_n": 12,
+          "p_select": 0.3870967741935484
+        },
+        {
+          "speed": "<5",
+          "era": "2017-19",
+          "perf": "<7",
+          "population_n": 26,
+          "linked_n": 13,
+          "p_select": 0.5
+        },
+        {
+          "speed": "<5",
+          "era": "2020-22",
+          "perf": "10-15",
+          "population_n": 1,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "<5",
+          "era": "2020-22",
+          "perf": "7-10",
+          "population_n": 30,
+          "linked_n": 9,
+          "p_select": 0.3
+        },
+        {
+          "speed": "<5",
+          "era": "2020-22",
+          "perf": "<7",
+          "population_n": 216,
+          "linked_n": 102,
+          "p_select": 0.4722222222222222,
+          "raw_ipw": 2.1176470588235294,
+          "stabilized_ipw": 0.005297684131897691
+        },
+        {
+          "speed": "<5",
+          "era": "2023-26",
+          "perf": "10-15",
+          "population_n": 1,
+          "linked_n": 0,
+          "p_select": 0.0
+        },
+        {
+          "speed": "<5",
+          "era": "2023-26",
+          "perf": "7-10",
+          "population_n": 344,
+          "linked_n": 25,
+          "p_select": 0.07267441860465117,
+          "raw_ipw": 13.76,
+          "stabilized_ipw": 0.034423174225930775
+        },
+        {
+          "speed": "<5",
+          "era": "2023-26",
+          "perf": "<7",
+          "population_n": 5482,
+          "linked_n": 700,
+          "p_select": 0.12769062385990515,
+          "raw_ipw": 7.831428571428572,
+          "stabilized_ipw": 0.01959176091222514
+        }
+      ]
+    }
+  ],
+  "candidate_targets": [
+    {
+      "name": "ALL_VALID",
+      "population_n": 8968473,
+      "linked_n": 3601,
+      "selection_rate": 0.0004015176273597523
+    },
+    {
+      "name": "UNDER15",
+      "population_n": 4143145,
+      "linked_n": 3597,
+      "selection_rate": 0.0008681810556956128
+    },
+    {
+      "name": "UNDER10",
+      "population_n": 1261540,
+      "linked_n": 3405,
+      "selection_rate": 0.0026990820742901532
+    },
+    {
+      "name": "MODERN_2023_26_UNDER15",
+      "population_n": 2425332,
+      "linked_n": 1575,
+      "selection_rate": 0.0006493956291344855
+    },
+    {
+      "name": "MODERN_2023_26_UNDER10",
+      "population_n": 882894,
+      "linked_n": 1569,
+      "selection_rate": 0.0017771102759787697
+    }
+  ],
+  "full_cell_overlap": {
+    "zero_link_population_n": 6232245,
+    "zero_link_population_fraction": 0.6949059221118243,
+    "positive_but_lt5_link_population_n": 1352451,
+    "positive_but_lt5_link_population_fraction": 0.15080058779237002
+  },
+  "adjudication_rule": "Full-population prevalence is inadmissible if hard zero-overlap or stabilized-weight instability is material. Prefer the broadest explicitly defined target whose support and ESS remain defensible, and report trimmed sensitivity rather than silently clipping.",
+  "human_observations": 0
+}

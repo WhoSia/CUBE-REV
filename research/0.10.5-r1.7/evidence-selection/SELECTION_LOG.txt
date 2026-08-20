@@ -1,0 +1,89 @@
+{
+  "population": 8968473,
+  "linked": 3601,
+  "targets": [
+    {
+      "name": "ALL_VALID",
+      "population_n": 8968473,
+      "linked_n": 3601,
+      "selection_rate": 0.0004015176273597523
+    },
+    {
+      "name": "UNDER15",
+      "population_n": 4143145,
+      "linked_n": 3597,
+      "selection_rate": 0.0008681810556956128
+    },
+    {
+      "name": "UNDER10",
+      "population_n": 1261540,
+      "linked_n": 3405,
+      "selection_rate": 0.0026990820742901532
+    },
+    {
+      "name": "MODERN_2023_26_UNDER15",
+      "population_n": 2425332,
+      "linked_n": 1575,
+      "selection_rate": 0.0006493956291344855
+    },
+    {
+      "name": "MODERN_2023_26_UNDER10",
+      "population_n": 882894,
+      "linked_n": 1569,
+      "selection_rate": 0.0017771102759787697
+    }
+  ],
+  "scheme_summary": [
+    {
+      "name": "speed_only",
+      "population_supported_fraction": 0.46196771735835074,
+      "linked_supported_fraction": 0.9988891974451541,
+      "stabilized_weight": {
+        "min": 0.006165693238134585,
+        "p50": 0.06543023458637397,
+        "p90": 1.109113561095435,
+        "p95": 13.02997328644665,
+        "p99": 13.02997328644665,
+        "max": 13.02997328644665,
+        "ess": 384.0021006313104,
+        "ess_fraction_of_linked_supported": 0.10675621368676964
+      }
+    },
+    {
+      "name": "speed_x_era",
+      "population_supported_fraction": 0.46195667868989515,
+      "linked_supported_fraction": 0.9850041655095807,
+      "stabilized_weight": {
+        "min": 0.0019050896065054244,
+        "p50": 0.03210500197197907,
+        "p90": 0.8955367481193209,
+        "p95": 3.00903690325484,
+        "p99": 6.625496414956531,
+        "max": 220.08877791846868,
+        "ess": 39.4579483805659,
+        "ess_fraction_of_linked_supported": 0.011124315867089344
+      }
+    },
+    {
+      "name": "speed_x_era_x_roundmedian",
+      "population_supported_fraction": 0.15425903607001995,
+      "linked_supported_fraction": 0.9611219105803943,
+      "stabilized_weight": {
+        "min": 0.005297684131897691,
+        "p50": 0.05957958360324998,
+        "p90": 1.4241558796722886,
+        "p95": 4.037337564791493,
+        "p99": 12.429517748151746,
+        "max": 76.47398349654637,
+        "ess": 97.2677853651606,
+        "ess_fraction_of_linked_supported": 0.028103954165027624
+      }
+    }
+  ],
+  "full_cell_overlap": {
+    "zero_link_population_n": 6232245,
+    "zero_link_population_fraction": 0.6949059221118243,
+    "positive_but_lt5_link_population_n": 1352451,
+    "positive_but_lt5_link_population_fraction": 0.15080058779237002
+  }
+}
