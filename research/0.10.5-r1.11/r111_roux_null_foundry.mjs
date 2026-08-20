@@ -18,21 +18,18 @@ function localRef(train,z){
   for(const [level,rows,min] of levels)if(rows.length>=min)return {level,rows,n:rows.length,required:min};
   return null;
 }
-function scoreFeatures(target,train){let fallback=0;const out=[];for(const z of target){const r=localRef(train,z);if(!r){fallback++;continue;}const t=tail(r,z);out.push({...z,local_level:r.level,local_n:r.n,local_p:t.p,local_score:t.score});}return {rows:out,fallback};}
+function scoreFeatures(target,train){let fallback=0;const out=[];for(const z of target){const r=localRef(train,z);if(!r){fallback++;continue;}const t=tail(r.rows,z);out.push({...z,local_level:r.level,local_n:r.n,local_p:t.p,local_score:t.score});}return {rows:out,fallback};}
 function attemptsFromFeatures(rows){const by=new Map();for(const z of rows){const k=key(z);if(!by.has(k))by.set(k,[]);by.get(k).push(z);}return [...by.entries()].map(([k,z])=>({key:k,result_id:z[0].result_id,attempt_number:z[0].attempt_number,reco_id:z[0].reco_id,source:z[0].source,fold:z[0].fold,scored_feature_n:z.length,feature_count_bin:featureBin(z.length),attempt_statistic:Math.max(...z.map(x=>x.local_score))}));}
 function familyRef(rows,a,excludeSelf=true){let c=rows.filter(r=>r.attempt_statistic!==null);if(excludeSelf)c=c.filter(r=>r.key!==a.key);const b=c.filter(r=>r.feature_count_bin===a.feature_count_bin);if(b.length>=25)return {level:'FEATURE_COUNT_BIN',rows:b,n:b.length,required:25};if(c.length>=60)return {level:'ROUX_GLOBAL',rows:c,n:c.length,required:60};return null;}
 function familyP(ref,a){const ge=ref.rows.filter(r=>r.attempt_statistic>=a.attempt_statistic-1e-12).length;return (1+ge)/(ref.n+1);}
-// Leave-one-attempt-out future-scale bank.
 let looFallback=0;const looFeatureRows=[];
 for(const z of F){const train=F.filter(r=>key(r)!==key(z));const s=scoreFeatures([z],train);looFallback+=s.fallback;looFeatureRows.push(...s.rows);}
 const loo=attemptsFromFeatures(looFeatureRows);
 let looOk=0,looWatch=0,looPrimary=0;const looLevels={};
 const looAdjudicated=loo.map(a=>{const r=familyRef(loo,a,true);if(!r)return {...a,familywise_ok:false};const p=familyP(r,a);looOk++;if(p<=.05)looWatch++;if(p<=.01)looPrimary++;looLevels[r.level]=(looLevels[r.level]||0)+1;return {...a,familywise_ok:true,familywise_level:r.level,familywise_n:r.n,familywise_p:p};});
-// Five-fold crossfit bank for transport comparison.
 let crossFallback=0;const crossFeatures=[];
 for(let f=0;f<5;f++){const target=F.filter(z=>z.fold===f),train=F.filter(z=>z.fold!==f);const s=scoreFeatures(target,train);crossFallback+=s.fallback;crossFeatures.push(...s.rows);}
 const cross=attemptsFromFeatures(crossFeatures);
-// Fully nested no-outer-test-fold-leak familywise calibration.
 const nestedRows=[],outer=[];let nestedFallback=0;
 for(let f=0;f<5;f++){
   const testS=scoreFeatures(F.filter(z=>z.fold===f),F.filter(z=>z.fold!==f));nestedFallback+=testS.fallback;const testA=attemptsFromFeatures(testS.rows);
@@ -43,11 +40,9 @@ for(let f=0;f<5;f++){
   outer.push({fold:f,test_attempts:testA.length,familywise_ok_n:ok,watch_rate:w/Math.max(1,ok),primary_rate:p1/Math.max(1,ok),levels,reference_attempts:refs.length});
 }
 const nestedOk=nestedRows.filter(r=>r.familywise_ok),nestedWatch=nestedOk.filter(r=>r.familywise_p<=.05).length/Math.max(1,nestedOk.length),nestedPrimary=nestedOk.filter(r=>r.familywise_p<=.01).length/Math.max(1,nestedOk.length);
-// Crossfit versus LOO future-scale transport.
 const cm=new Map(cross.map(a=>[a.key,a])),pairs=[];for(const a of loo){const b=cm.get(a.key);if(b)pairs.push({key:a.key,fold:a.fold,feature_count_bin:a.feature_count_bin,crossfit_stat:b.attempt_statistic,loo_stat:a.attempt_statistic,abs_diff:Math.abs(b.attempt_statistic-a.attempt_statistic)});}
 function corr(rows){if(rows.length<2)return null;const x=rows.map(r=>r.crossfit_stat),y=rows.map(r=>r.loo_stat),mx=mean(x),my=mean(y);let n=0,dx=0,dy=0;for(let i=0;i<x.length;i++){n+=(x[i]-mx)*(y[i]-my);dx+=(x[i]-mx)**2;dy+=(y[i]-my)**2;}return dx&&dy?n/Math.sqrt(dx*dy):null;}
 const diffs=pairs.map(r=>r.abs_diff),pearson=corr(pairs),p99=diffs.length?upperQuantile(diffs,.99):null;
-// Explicit finite-sample resolution court for a future genuinely fresh attempt.
 const fullBank=loo.filter(a=>a.attempt_statistic!==null),globalN=fullBank.length;
 const futurePaths={};let primaryResolution=true;
 for(const b of bins){const n=fullBank.filter(a=>a.feature_count_bin===b).length;let level,refN;if(n>=25){level='FEATURE_COUNT_BIN';refN=n;}else if(globalN>=60){level='ROUX_GLOBAL';refN=globalN;}else{level='UNSUPPORTED';refN=0;}const minP=refN?1/(refN+1):null,ok=refN>=99;futurePaths[b]={level,reference_n:refN,minimum_add_one_p:minP,primary_1pct_resolvable:ok};if(!ok)primaryResolution=false;}
