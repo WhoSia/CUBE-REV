@@ -46,29 +46,50 @@ jobs:
           python -m pip install --disable-pip-version-check duckdb==1.3.2 requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
           npm install --no-save --ignore-scripts cubing@0.63.3
       - name: Prepare exact WCA-linked reconstruction inputs
+        id: prepare
+        shell: bash
         run: |
-          set -euo pipefail
+          set +e
           export R17_SMOKE_ROOT=/tmp/r17smoke
-          python research/0.10.5-r1.7/r17_prepare_state_smoke.py | tee /tmp/r17smoke/prepare.log
+          python research/0.10.5-r1.7/r17_prepare_state_smoke.py 2>&1 | tee /tmp/r17smoke/prepare.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
       - name: Execute cubing.js transformation court
+        id: state
+        if: always()
+        shell: bash
         run: |
-          set -euo pipefail
+          set +e
           export R17_SMOKE_INPUT=/tmp/r17smoke/STATE_SMOKE_INPUT.json
           export R17_SMOKE_OUTPUT=/tmp/r17smoke/STATE_ENGINE_SMOKE.json
-          node research/0.10.5-r1.7/r17_state_smoke.mjs | tee /tmp/r17smoke/state.log
-      - name: Persist smoke evidence
+          if test -f "$R17_SMOKE_INPUT"; then
+            node research/0.10.5-r1.7/r17_state_smoke.mjs 2>&1 | tee /tmp/r17smoke/state.log
+            code=${PIPESTATUS[0]}
+          else
+            echo 'STATE_SMOKE_INPUT_MISSING' | tee /tmp/r17smoke/state.log
+            code=98
+          fi
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist smoke evidence regardless of court result
+        if: always()
         run: |
           set -euo pipefail
           mkdir -p research/0.10.5-r1.7/evidence-state-smoke
-          cp /tmp/r17smoke/STATE_SMOKE_INPUT.json research/0.10.5-r1.7/evidence-state-smoke/
-          cp /tmp/r17smoke/STATE_ENGINE_SMOKE.json research/0.10.5-r1.7/evidence-state-smoke/
-          cp /tmp/r17smoke/prepare.log /tmp/r17smoke/state.log research/0.10.5-r1.7/evidence-state-smoke/
+          test -f /tmp/r17smoke/STATE_SMOKE_INPUT.json && cp /tmp/r17smoke/STATE_SMOKE_INPUT.json research/0.10.5-r1.7/evidence-state-smoke/ || true
+          test -f /tmp/r17smoke/STATE_ENGINE_SMOKE.json && cp /tmp/r17smoke/STATE_ENGINE_SMOKE.json research/0.10.5-r1.7/evidence-state-smoke/ || true
+          test -f /tmp/r17smoke/prepare.log && cp /tmp/r17smoke/prepare.log research/0.10.5-r1.7/evidence-state-smoke/PREPARE_LOG.txt || true
+          test -f /tmp/r17smoke/state.log && cp /tmp/r17smoke/state.log research/0.10.5-r1.7/evidence-state-smoke/STATE_LOG.txt || true
           python3 - <<'PY'
           import json,os,datetime,pathlib
-          p=pathlib.Path('research/0.10.5-r1.7/evidence-state-smoke/RUN_METADATA.json')
-          p.write_text(json.dumps({'schema_version':'CR0105R17-STATE-SMOKE-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'parent_artifact_id':9310311696,'cubing_npm_version':'0.63.3','generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'human_observations':0},indent=2)+'\n')
+          prep=int('${{ steps.prepare.outputs.exit_code || 97 }}')
+          state=int('${{ steps.state.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R17-STATE-SMOKE-RUN-2','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'parent_artifact_id':9310311696,'parent_db_sha256':'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1','cubing_npm_version':'0.63.3','prepare_exit_code':prep,'state_exit_code':state,'status':'PASS' if prep==0 and state==0 else 'HOLD','generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'human_observations':0}
+          pathlib.Path('research/0.10.5-r1.7/evidence-state-smoke/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
           PY
       - name: Commit smoke evidence
+        if: always()
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
@@ -77,12 +98,17 @@ jobs:
           git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 state engine smoke ${GITHUB_RUN_ID}"
           git push origin HEAD:cube-rev-0.10.5-r1.7-state-engine-smoke
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: CR0105R17-state-engine-smoke
           retention-days: 30
+          if-no-files-found: warn
           path: research/0.10.5-r1.7/evidence-state-smoke/
       - name: Enforce smoke closure
+        if: always()
         run: |
+          test '${{ steps.prepare.outputs.exit_code }}' = '0'
+          test '${{ steps.state.outputs.exit_code }}' = '0'
           python3 - <<'PY'
           import json
           x=json.load(open('research/0.10.5-r1.7/evidence-state-smoke/STATE_ENGINE_SMOKE.json'))
