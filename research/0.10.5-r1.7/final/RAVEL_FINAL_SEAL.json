@@ -1,0 +1,213 @@
+{
+  "schema_version": "CR0105R17-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.7 — Counterfactual Route Alignment, Phase-aware Redundancy Phenotyping & Selection-corrected Reconstruction Analysis",
+  "status": "PASS",
+  "verdict": "PASS_STATE_CERTIFIED_COUNTERFACTUAL_HIERARCHY_WITH_SIGNAL_COLLAPSE_BEFORE_NONCOMMUTING_PRIMITIVE_DETOUR_GATE",
+  "scientific_result": "The exact-local counterfactual signal does not survive progressively stricter representation and commutation controls. R1.7 therefore does not validate a cognitive recovery or cognitive-error phenotype. It establishes the failure boundary of local move-equivalence phenotyping and a state-certified, selection-audited platform for a prospective subgoal-level court.",
+  "seal_provenance": {
+    "method": "CONNECTOR_SIDE_READ_ONLY_VERIFIED_STATIC_SEAL",
+    "source_full_court_branch": "cube-rev-0.10.5-r1.7-full-court",
+    "source_trigger_commit": "42615832d568994b49b3860d558a8c064125f160",
+    "latest_r5_evidence_commit": "2455476a563527f7245978b4df386d0b3883f219",
+    "final_seal_branch": "cube-rev-0.10.5-r1.7-final-seal",
+    "automated_finalizer_triggered": true,
+    "automated_finalizer_seal_observed_before_independent_seal": false,
+    "scientific_inputs_changed_for_independent_seal": false
+  },
+  "authority": {
+    "main_commit": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "main_mutated_by_r17": false,
+    "public_runner_mutated_by_r17": false,
+    "human_observations": 0,
+    "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+  },
+  "frozen_parent": {
+    "r16_artifact_id": 9310311696,
+    "r16_artifact_digest": "sha256:f40270656c24d2a17b0b29a0add9e21b58950a9a9ac154cef0d475a1908ea27d",
+    "wca_export_date_utc": "2026-08-18T00:00:35Z",
+    "wca_format_version": "v2.0.2",
+    "wca_export_sha256": "35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad",
+    "analytical_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+    "wca_valid_333_attempts": 8968473,
+    "reco_333_rows": 10596,
+    "unique_linked_reconstructions": 3604,
+    "distinct_linked_wca_attempts": 3601
+  },
+  "phase_taxonomy": {
+    "evidence_commit": "dc7586d0ce5a0e92e0677fbc88626a575fe3054f",
+    "status": "PASS",
+    "probe_records": 125,
+    "post_inspection_lines": 738,
+    "post_inspection_classified": 727,
+    "post_inspection_classification_rate": 0.9850948509485095,
+    "records_fully_classified_post_inspection": 122,
+    "records_with_annotation_order_regression": 0,
+    "role": "ANNOTATION_ASSISTED_PHASE_EVIDENCE_REQUIRING_INDEPENDENT_STATE_VERIFICATION"
+  },
+  "selection_court": {
+    "global_evidence_commit": "01fd3192b707e181900d7876de3008caf7a550ee",
+    "target_evidence_commit": "16f8ac7117ae060086787d7ed742e1edb0edcc07",
+    "full_wca_prevalence": "PROHIBITED_ZERO_OVERLAP",
+    "full_3d_zero_link_population_fraction": 0.694906,
+    "full_3d_positive_but_lt5_link_population_fraction": 0.150801,
+    "primary_descriptive_target": "WCA official valid 3x3 attempts <10.00 s; speed x era post-stratified linked-reconstruction target",
+    "under10_speed_x_era": {
+      "target_population_n": 1261540,
+      "supported_population_fraction": 0.9999215244859457,
+      "supported_linked_fraction": 0.985316,
+      "prospective_ess_min": 200,
+      "selection_court_ess": 254.15,
+      "stabilized_weight_p99": 20.5827,
+      "stabilized_weight_max": 20.5827,
+      "status": "PASS_INTERNAL_WEIGHT_GATE"
+    },
+    "under10_speed_x_era_x_roundmedian": "HOLD_INSUFFICIENT_MULTIDIMENSIONAL_OVERLAP",
+    "sub7": "SUPPORTED_AS_ROBUSTNESS_TARGET_IN_SELECTION_COURT_BUT_CURRENT_900_ROUTE_SAMPLE_HAS_ESS_178.881_AND_IS_DIAGNOSTIC_ONLY"
+  },
+  "state_validator_ravel": {
+    "initial_handrolled_orientation_hash": "REJECTED_VALIDATOR",
+    "initial_false_hold": "0_OF_72_SOLVED_UNDER_HANDROLLED_PREDICATE",
+    "official_replacement": "cubing.js KPattern.experimentalIsSolved(ignorePuzzleOrientation=true, ignoreCenterOrientation=true)",
+    "known_fixture_predicate_discrepancies": 3,
+    "repaired_smoke": "64_OF_72_SOLVED_BEFORE_RAW_ROUTE_SOURCE_REDESIGN",
+    "raw_alg_cubing_route_preflight": "PASS",
+    "lesson": "A validator failure, not reconstruction failure, caused the initial 0/72 state-replay HOLD. Raw alg.cubing.net setup+alg became the canonical route-state source."
+  },
+  "full_route_admission": {
+    "sample_design": "One SHA-canonical reconstruction per distinct linked WCA attempt; 900 attempts allocated proportional to supported WCA speed x era target population and selected by within-cell SHA rank.",
+    "sample_manifest_sha256": "ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe",
+    "sample_n": 900,
+    "raw_route_source_n": 900,
+    "parsed_n": 894,
+    "state_certified_n": 874,
+    "state_certification_rate": 0.9776286353467561,
+    "target_population_coverage": 0.9999215244859457,
+    "weight_ess": 224.15939631208582,
+    "stabilized_weight_p99": 5.957704667387042,
+    "stabilized_weight_max": 5.957704667387042,
+    "r1_gate_error": "ESS_GE_400_WAS_INCONSISTENT_WITH_THE_PRIOR_PROSPECTIVE_ESS_GE_200_TARGET_GATE",
+    "r2_reconciliation": "ONLY_ESS_THRESHOLD_RESTORED_TO_PREVIOUSLY_DECLARED_200_BEFORE_ANY_ROUTE_OUTCOME_WAS_MATERIALIZED"
+  },
+  "signal_collapse_ladder": [
+    {
+      "court": "R2_ALGEBRAIC",
+      "role": "BROAD_STATE_VERIFIED_ALGEBRAIC_SENSITIVITY",
+      "standardized_any": 0.8486439935344317,
+      "standardized_exact_loop": 0.234729,
+      "standardized_shorter_exact_rewrite": 0.819573,
+      "standardized_mean_nonoverlap_saved_moves": 3.978455323729155,
+      "claim": "NOT_A_RECOVERY_OR_ERROR_PREVALENCE"
+    },
+    {
+      "court": "R3_MULTI_GENERATOR",
+      "role": "PREOUTCOME_MULTI_GENERATOR_STRUCTURAL_FILTER",
+      "standardized_any": 0.811467,
+      "standardized_exact_loop": 0.105865,
+      "standardized_shorter_exact_rewrite": 0.784935,
+      "standardized_mean_nonoverlap_saved_moves": 3.4824,
+      "claim": "STILL_DOMINATED_BY_ALGEBRAIC_ENVELOPE_EFFECTS"
+    },
+    {
+      "court": "R4_MINIMAL_IRREDUCIBLE",
+      "role": "POSTHOC_ADVERSARIAL_SENSITIVITY_NOT_PRIMARY_PREREGISTRATION",
+      "workflow_run_id": 32326346307,
+      "standardized_any": 0.08376633901127348,
+      "bootstrap_95": {
+        "lo": 0.0463989,
+        "hi": 0.1274732
+      },
+      "standardized_exact_loop": 0.02294050294540063,
+      "standardized_shorter_exact_rewrite": 0.06082583606587284,
+      "standardized_mean_nonoverlap_saved_moves": 0.14242295655722179,
+      "positive_records": 33,
+      "claim": "POSTHOC_FAILURE_BOUNDARY_ONLY"
+    },
+    {
+      "court": "R5_NONCOMMUTING_PRIMITIVE",
+      "role": "POSTHOC_ADVERSARIAL_SENSITIVITY_NOT_PRIMARY_PREREGISTRATION",
+      "workflow_run_id": 32326635363,
+      "standardized_any": 0.0,
+      "bootstrap_95": {
+        "lo": 0.0,
+        "hi": 0.0,
+        "replicates": 1200
+      },
+      "standardized_exact_loop": 0.0,
+      "standardized_shorter_exact_rewrite": 0.0,
+      "positive_records": 0,
+      "claim": "NULL_FOR_THIS_EXACT_LOCAL_NONCOMMUTING_PRIMITIVE_DEFINITION_NOT_EVIDENCE_OF_NO_HUMAN_RECOVERY"
+    }
+  ],
+  "r4_candidate_audit": {
+    "selected_intervals": 33,
+    "shorter_exact_rewrite": 27,
+    "exact_loop": 6,
+    "sub10_standardized_any": 0.08376633901127348,
+    "sub7_diagnostic_any": 0.024541896571473588,
+    "sub7_route_sample_ess": 178.88108739347106,
+    "seven_to_ten_diagnostic_any": 0.0906202088797202,
+    "modern_2023_26_diagnostic_any": 0.10065317014273514,
+    "dominant_patterns": [
+      {
+        "actual": "U' D' U'",
+        "replacement": "D' U2",
+        "n": 13,
+        "interpretation": "OPPOSITE_FACE_COMMUTATION_NORMALIZATION"
+      },
+      {
+        "actual": "D U' D",
+        "replacement": "D2 U'",
+        "n": 4,
+        "interpretation": "OPPOSITE_FACE_COMMUTATION_NORMALIZATION"
+      },
+      {
+        "actual": "D U D",
+        "replacement": "D2 U",
+        "n": 2,
+        "interpretation": "OPPOSITE_FACE_COMMUTATION_NORMALIZATION"
+      }
+    ],
+    "representation_identity_examples": [
+      "M' r' R -> identity",
+      "d' y' U -> identity",
+      "L R' x L' l -> identity"
+    ],
+    "adjudication": "R4_SURVIVORS_WERE_NOT_ADMISSIBLE_AS_IDENTIFIED_NONCOMMUTING_PRIMITIVE_DETOURS"
+  },
+  "ravel_roles": {
+    "parent_vintage_auditor": "PASS",
+    "phase_grammar_auditor": "PASS",
+    "selection_positivity_auditor": "PASS_BOUNDARY_FOUND",
+    "state_validator_adversary": "PASS_BUG_FOUND_AND_REPAIRED",
+    "raw_route_provenance_auditor": "PASS",
+    "counterfactual_endpoint_auditor": "PASS",
+    "algebraic_envelope_adversary": "PASS_SIGNAL_COLLAPSED_FROM_84P9_TO_8P4",
+    "commutation_representation_adversary": "PASS_SIGNAL_COLLAPSED_FROM_8P4_TO_ZERO",
+    "claim_scope_auditor": "PASS_NULL_NOT_OVERCLAIMED",
+    "authority_auditor": "PASS_RESEARCH_ONLY_NO_MAIN_PUBLIC_OR_HUMAN_WRITE"
+  },
+  "claim_scope": {
+    "allowed": [
+      "State-certified route-algebra sensitivity hierarchy in the frozen <10 s linked-reconstruction target.",
+      "Phase attribution for annotation-certified reconstruction lines.",
+      "Selection and positivity diagnostics with explicit target coverage and ESS.",
+      "A null result for the R5 exact-local noncommuting-primitive definition in the 874 state-certified routes."
+    ],
+    "prohibited": [
+      "Full-WCA route-redundancy prevalence.",
+      "Cognitive recovery or cognitive-error prevalence.",
+      "A causal or mechanistic recovery claim.",
+      "Treating the R4 8.38% posthoc sensitivity as a preregistered primary estimate.",
+      "Interpreting the R5 zero as evidence that human recovery or detours do not occur.",
+      "Population calibration by solving method.",
+      "Claiming WCA Results Export identifies the competitor-level attempt scramble."
+    ]
+  },
+  "runs": {
+    "r2_full_route": 32325937932,
+    "r3_structural": 32326111709,
+    "r4_irreducible": 32326346307,
+    "r5_noncommuting_primitive": 32326635363
+  },
+  "next_gate": "CUBE-REV 0.10.5-R1.8 — Prospective Primitive-detour Holdout, Algorithm-aware Null Court & Phase-boundary Subgoal-distance Recovery Test"
+}
