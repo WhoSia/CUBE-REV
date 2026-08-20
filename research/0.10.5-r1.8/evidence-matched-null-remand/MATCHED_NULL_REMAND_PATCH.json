@@ -1,0 +1,14 @@
+{
+  "schema_version": "CR0105R18-MATCHED-NULL-REMAND-PATCH-1",
+  "status": "PASS_POSTHOC_REMAND_PATCH",
+  "role": "POSTHOC_MEASUREMENT-STATISTIC MATCHING DIAGNOSTIC; NOT THE R1.8 PROSPECTIVE PRIMARY",
+  "prospective_zero_known_before_patch": true,
+  "prospective_threshold_seal_changed": false,
+  "changes": [
+    "Calibration envelope statistic changed from maximum excursion amplitude to pre-endpoint candidate-reversal amplitude, matching the holdout scoring statistic.",
+    "Representation and exact-transformation solver alternatives are scored with candidate-reversal amplitude rather than max excursion.",
+    "The original threshold hierarchy and nearest-rank quantile rules are retained only as a diagnostic comparison.",
+    "Outputs use distinct POSTHOC schema/file names and cannot supersede the frozen prospective threshold seal."
+  ],
+  "human_observations": 0
+}
