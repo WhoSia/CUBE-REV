@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R19-GEOMETRY-PROBE-RUN-1",
+  "workflow_run_id": "32357811044",
+  "head_sha": "c356d45f7244892712129bac3c8e42f01832a147",
+  "exit_code": 0,
+  "operational_status": "PASS",
+  "scientific_role": "GEOMETRY_VALIDATOR_ONLY_NO_FRESH_OUTCOME",
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T10:12:57.265572+00:00"
+}
