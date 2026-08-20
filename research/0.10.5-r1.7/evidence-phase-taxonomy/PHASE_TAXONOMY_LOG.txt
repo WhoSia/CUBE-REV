@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "source_probe_records": 125,
+  "post_inspection_classification_rate": 0.9850948509485095,
+  "records_fully_classified_post_inspection": 122,
+  "records_with_annotation_order_regression": 0,
+  "phase_counts": {
+    "INSPECTION": 117,
+    "CROSS": 86,
+    "F2L": 289,
+    "LL_ORIENT": 43,
+    "LL_PERMUTE": 46,
+    "LL_ONELOOK": 41,
+    "AMBIGUOUS": 2,
+    "ROUX_FB": 38,
+    "ROUX_SB": 75,
+    "ROUX_CMLL": 37,
+    "ROUX_LSE": 72,
+    "UNKNOWN": 9
+  },
+  "top_unknown_comments": [
+    [
+      "eofb",
+      1
+    ],
+    [
+      "fl corners 1 edge",
+      1
+    ],
+    [
+      "fl center 2nd edge",
+      1
+    ],
+    [
+      "fl 3rd edge",
+      1
+    ],
+    [
+      "ll 1st edge",
+      1
+    ],
+    [
+      "ll 2nd edge",
+      1
+    ],
+    [
+      "ll 3rd edge",
+      1
+    ],
+    [
+      "lse",
+      1
+    ],
+    [
+      "centers",
+      1
+    ]
+  ],
+  "top_ambiguous_comments": [
+    [
+      "2nd pair/finish cross",
+      1
+    ],
+    [
+      "cmll/fix sp",
+      1
+    ]
+  ]
+}
