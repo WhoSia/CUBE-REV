@@ -1,0 +1,59 @@
+name: CR0105R17 Phase Taxonomy Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-counterfactual-route]
+    paths: [cr0105r17/RUN_PHASE_TAXONOMY]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r17-phase-taxonomy
+  cancel-in-progress: false
+jobs:
+  taxonomy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify grammar lineage
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.7/evidence-grammar/DETAIL_GRAMMAR_PROBE.json'))
+          assert x['status']=='PASS'
+          assert x['linked_unique_frame_rows']==3604
+          assert x['probe_ok']==125
+          print('R17_GRAMMAR_LINEAGE_PASS')
+          PY
+      - name: Execute method-aware annotation taxonomy
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/evidence-phase-taxonomy
+          export R17_OUT="$GITHUB_WORKSPACE/research/0.10.5-r1.7/evidence-phase-taxonomy"
+          python3 research/0.10.5-r1.7/r17_phase_taxonomy.py | tee /tmp/r17_phase_taxonomy.log
+          cp /tmp/r17_phase_taxonomy.log research/0.10.5-r1.7/evidence-phase-taxonomy/PHASE_TAXONOMY_LOG.txt
+      - name: Persist run metadata
+        run: |
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R17-PHASE-TAXONOMY-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'human_observations':0}
+          pathlib.Path('research/0.10.5-r1.7/evidence-phase-taxonomy/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit taxonomy evidence
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-phase-taxonomy
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 phase taxonomy ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-counterfactual-route
+      - name: Enforce taxonomy court
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.7/evidence-phase-taxonomy/PHASE_TAXONOMY_COURT.json'))
+          assert x['status']=='PASS',x
+          assert x['human_observations']==0
+          print('CR0105R17_PHASE_TAXONOMY_PASS')
+          PY
