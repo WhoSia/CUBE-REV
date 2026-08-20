@@ -22,6 +22,7 @@ jobs:
           p=json.load(open('research/0.10.5-r1.10/final/RAVEL_FINAL_SEAL.json'))
           n=json.load(open('research/0.10.5-r1.11/NAPKIN_INTENT_AND_PREREGISTRATION.json'))
           c=json.load(open('research/0.10.5-r1.11/NAPKIN_PREEXEC_CLARIFICATION_R2.json'))
+          r3=json.load(open('research/0.10.5-r1.11/NAPKIN_PREEXEC_DESIGN_REPAIR_R3.json'))
           assert p['status']=='PASS_LAYERED_TRANSPORT_WITH_ROUX_HOLD_AND_FRESH_DATA_WAIT'
           assert p['authority']['roux_future_scorer_released'] is False
           assert n['frozen_before_r111_execution'] is True
@@ -30,7 +31,11 @@ jobs:
           assert c['status']=='FROZEN_BEFORE_ANY_R111_EMPIRICAL_EXECUTION'
           assert c['empirical_r111_outputs_seen_before_this_clarification'] is False
           assert c['gate_weakening'] is False
-          print('CR0105R111_PREEXEC_FREEZE_PASS')
+          assert r3['status']=='FROZEN_BEFORE_ANY_R111_EMPIRICAL_OUTPUT'
+          assert r3['empirical_r111_outputs_seen_before_repair'] is False
+          assert r3['gate_weakening'] is False
+          assert r3['repaired_block_internal_quotient']['representative_invariance_gate']==0.99
+          print('CR0105R111_PREEXEC_FREEZE_R3_PASS')
           PY
       - name: Install pinned cube runtime
         run: npm install --no-save --ignore-scripts cubing@0.63.3
@@ -69,7 +74,7 @@ jobs:
           for f in ROUX_NULL_FOUNDRY_AUDIT.json ROUX_LOO_ATTEMPT_BANK.json ROUX_CROSSFIT_ATTEMPT_BANK.json ROUX_NESTED_FAMILYWISE_ROWS.json ROUX_TRANSPORT_PAIRS.json ROUX_FUTURE_AUTHORITY_SEAL.json NULL_FOUNDRY_LOG.txt; do test -f "/tmp/r111/$f" && cp "/tmp/r111/$f" research/0.10.5-r1.11/evidence-null-foundry/ || true; done
           python3 - <<'PY'
           import json,datetime,os,pathlib
-          x={'schema_version':'CR0105R111-EXECUTION-METADATA-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'geometry_exit_code':int('${{ steps.geom.outputs.exit_code || 98 }}'),'null_foundry_exit_code':int('${{ steps.null.outputs.exit_code || 98 }}'),'fresh_network_read':False,'fresh_scoring':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          x={'schema_version':'CR0105R111-EXECUTION-METADATA-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'geometry_exit_code':int('${{ steps.geom.outputs.exit_code || 98 }}'),'null_foundry_exit_code':int('${{ steps.null.outputs.exit_code || 98 }}'),'r3_preexecution_design_repair_enforced':True,'fresh_network_read':False,'fresh_scoring':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
           pathlib.Path('research/0.10.5-r1.11/EXECUTION_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
           PY
       - name: Commit R1.11 evidence
@@ -92,7 +97,8 @@ jobs:
           import json
           g=json.load(open('research/0.10.5-r1.11/evidence-geometry/ROUX_BLOCK_INTERNAL_GEOMETRY_AUDIT.json'))
           n=json.load(open('research/0.10.5-r1.11/evidence-null-foundry/ROUX_NULL_FOUNDRY_AUDIT.json'))
+          assert g['schema_version']=='CR0105R111-ROUX-BLOCK-INTERNAL-GEOMETRY-R3-1'
           assert g['fresh_outcomes_seen'] is False and n['fresh_outcomes_seen'] is False
           assert n['human_observations']==0
-          print('CR0105R111_RUNTIME_COMPLETE',g['status'],n['status'])
+          print('CR0105R111_RUNTIME_COMPLETE_R3',g['status'],n['status'])
           PY
