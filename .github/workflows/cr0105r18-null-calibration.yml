@@ -1,0 +1,94 @@
+name: CR0105R18 Distance Validator and Null Calibration
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.8-prospective-subgoal-court]
+    paths: [cr0105r18/RUN_NULL_CALIBRATION]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r18-null-calibration
+  cancel-in-progress: false
+jobs:
+  null-court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify outcome-blind NAPKIN lineage
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib
+          n=json.load(open('research/0.10.5-r1.8/NAPKIN_INTENT_FREEZE.json'))
+          z=json.load(open('research/0.10.5-r1.8/NAPKIN_NULL_AGGREGATION_FREEZE.json'))
+          assert n['status']=='FROZEN_BEFORE_R18_HOLDOUT_OUTCOMES'
+          assert z['status']=='FROZEN_BEFORE_NULL_VALUES_AND_HOLDOUT_OUTCOMES'
+          assert z['holdout_source_read_allowed'] is False
+          p='research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json'
+          assert hashlib.sha256(open(p,'rb').read()).hexdigest()=='ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe'
+          print('R18_NULL_OUTCOME_BLIND_LINEAGE_PASS')
+          PY
+      - name: Install pinned cubing runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Materialize source-bound provenance runtime patch
+        run: python research/0.10.5-r1.8/r18_null_runtime_patch.py
+      - name: Run phase-distance validator and algorithm-aware null court
+        id: court
+        shell: bash
+        env:
+          R18_NULL_ROOT: /tmp/r18null
+        run: |
+          set +e
+          node /tmp/r18null/r18_distance_null_calibration_runtime.mjs 2>&1 | tee /tmp/r18null/null_calibration.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable null evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.8/evidence-null-calibration
+          for f in NULL_RUNTIME_PATCH.json PHASE_DISTANCE_VALIDATOR.json ALGORITHM_NULL_CALIBRATION.json NULL_THRESHOLD_SEAL.json NULL_SEGMENT_LEDGER.json; do
+            test -f "/tmp/r18null/$f" && cp "/tmp/r18null/$f" research/0.10.5-r1.8/evidence-null-calibration/ || true
+          done
+          test -f /tmp/r18null/null_calibration.log && cp /tmp/r18null/null_calibration.log research/0.10.5-r1.8/evidence-null-calibration/NULL_CALIBRATION_LOG.txt || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          code=int('${{ steps.court.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R18-NULL-CALIBRATION-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':code,'operational_status':'PASS' if code==0 else 'FAIL','holdout_outcomes_seen':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.8/evidence-null-calibration/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit null evidence before any holdout score
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.8/evidence-null-calibration
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.8 null calibration ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.8-prospective-subgoal-court
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R18-null-calibration
+          retention-days: 30
+          if-no-files-found: warn
+          path: research/0.10.5-r1.8/evidence-null-calibration/
+      - name: Enforce validator and threshold seal
+        if: always()
+        run: |
+          test '${{ steps.court.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          v=json.load(open('research/0.10.5-r1.8/evidence-null-calibration/PHASE_DISTANCE_VALIDATOR.json'))
+          s=json.load(open('research/0.10.5-r1.8/evidence-null-calibration/NULL_THRESHOLD_SEAL.json'))
+          assert v['status']=='PASS',v
+          assert s['status']=='SEALED_BEFORE_HOLDOUT_SCORE',s
+          assert s['holdout_outcomes_seen'] is False
+          print('CR0105R18_NULL_SEAL_PASS')
+          PY
