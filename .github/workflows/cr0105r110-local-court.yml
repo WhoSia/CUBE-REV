@@ -1,0 +1,103 @@
+name: CR0105R110 Local Method Transport and Roux Frame Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.10-method-stratified-transport-roux-frame]
+    paths: [cr0105r110/RUN_LOCAL_COURT]
+permissions:
+  contents: write
+jobs:
+  local-court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify frozen parent and R1.10 intent
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          p=json.load(open('research/0.10.5-r1.9/final/RAVEL_FINAL_SEAL.json'))
+          q=json.load(open('research/0.10.5-r1.9/FUTURE_SCORING_AUTHORITY_HOLD.json'))
+          n=json.load(open('research/0.10.5-r1.10/NAPKIN_INTENT_AND_PREREGISTRATION.json'))
+          assert p['status']=='PASS_WITH_REPLICATION_READINESS_HOLD'
+          assert p['authority']['future_confirmatory_scoring'] is False
+          assert q['r3_seal_authorized_for_future_confirmatory_scoring'] is False
+          assert n['frozen_before_r110_execution'] is True
+          assert n['fresh_vintage_watch']['confirmatory_scoring_in_r110'] is False
+          print('CR0105R110_PREFLIGHT_PASS')
+          PY
+      - name: Install pinned cube runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Run method-stratified transport
+        env: {R110_LOCAL_ROOT: /tmp/r110local}
+        run: |
+          mkdir -p /tmp/r110local
+          node research/0.10.5-r1.10/r110_method_stratified_transport.mjs 2>&1 | tee /tmp/r110local/METHOD_TRANSPORT_LOG.txt
+      - name: Run Roux state-derived block-frame court
+        env: {R110_LOCAL_ROOT: /tmp/r110local}
+        run: node research/0.10.5-r1.10/r110_roux_block_frame.mjs 2>&1 | tee /tmp/r110local/ROUX_BLOCK_FRAME_LOG.txt
+      - name: Persist local evidence and authority seal
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.10/evidence-method-transport research/0.10.5-r1.10/evidence-roux-block-frame
+          cp /tmp/r110local/METHOD_STRATIFIED_TRANSPORT.json research/0.10.5-r1.10/evidence-method-transport/
+          cp /tmp/r110local/LAYERED_LOO_ATTEMPT_BANK.json research/0.10.5-r1.10/evidence-method-transport/
+          cp /tmp/r110local/LAYERED_TRANSPORT_SEAL.json research/0.10.5-r1.10/evidence-method-transport/
+          cp /tmp/r110local/METHOD_TRANSPORT_LOG.txt research/0.10.5-r1.10/evidence-method-transport/
+          cp /tmp/r110local/ROUX_BLOCK_FRAME_IDENTIFICATION.json research/0.10.5-r1.10/evidence-roux-block-frame/
+          cp /tmp/r110local/ROUX_BLOCK_FRAME_ROWS.json research/0.10.5-r1.10/evidence-roux-block-frame/
+          cp /tmp/r110local/ROUX_BLOCK_FRAME_LOG.txt research/0.10.5-r1.10/evidence-roux-block-frame/
+          python3 - <<'PY'
+          import json,hashlib,pathlib,os,datetime
+          root=pathlib.Path('research/0.10.5-r1.10')
+          m=json.load(open(root/'evidence-method-transport/METHOD_STRATIFIED_TRANSPORT.json'))
+          ms=json.load(open(root/'evidence-method-transport/LAYERED_TRANSPORT_SEAL.json'))
+          r=json.load(open(root/'evidence-roux-block-frame/ROUX_BLOCK_FRAME_IDENTIFICATION.json'))
+          n=(root/'NAPKIN_INTENT_AND_PREREGISTRATION.json').read_bytes()
+          def fh(p): return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
+          x={
+            'schema_version':'CR0105R110-LOCAL-AUTHORITY-SEAL-1',
+            'stage':'CUBE-REV 0.10.5-R1.10 — Method-stratified Future-score Transport, Roux Block-frame Identification & Fresh-vintage Watch Seal',
+            'napkin_sha256':hashlib.sha256(n).hexdigest(),
+            'parent_r19_final_commit':'a876d4fc130d41bb20e6cd7d16abbe927ba0d51f',
+            'layered_transport_status':m['status'],
+            'layered_transport_seal':ms['seal_sha256'],
+            'layered_future_scoring_candidate':m['status']=='PASS_LAYERED_FUTURE_SCORE_TRANSPORT',
+            'roux_frame_status':r['status'],
+            'roux_future_scoring_authority':False,
+            'fresh_network_read_before_this_seal':False,
+            'fresh_watch_permitted_after_this_commit':True,
+            'fresh_confirmatory_scoring_authorized':False,
+            'human_observations':0,
+            'evidence_sha256':{
+              'method_transport':fh(root/'evidence-method-transport/METHOD_STRATIFIED_TRANSPORT.json'),
+              'layered_loo_bank':fh(root/'evidence-method-transport/LAYERED_LOO_ATTEMPT_BANK.json'),
+              'roux_frame':fh(root/'evidence-roux-block-frame/ROUX_BLOCK_FRAME_IDENTIFICATION.json')
+            },
+            'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }
+          canon=json.dumps(x,sort_keys=True,separators=(',',':')).encode();x['seal_sha256']=hashlib.sha256(canon).hexdigest()
+          (root/'LOCAL_AUTHORITY_SEAL.json').write_text(json.dumps(x,indent=2)+'\n')
+          print(json.dumps(x,indent=2))
+          PY
+      - name: Commit local court evidence before any fresh read
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.10
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.10 local court ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.10-method-stratified-transport-roux-frame
+      - name: Enforce authority semantics
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.10/LOCAL_AUTHORITY_SEAL.json'))
+          assert x['fresh_network_read_before_this_seal'] is False
+          assert x['fresh_confirmatory_scoring_authorized'] is False
+          assert x['roux_future_scoring_authority'] is False
+          print('CR0105R110_LOCAL_AUTHORITY_SEALED',x['layered_transport_status'],x['roux_frame_status'])
+          PY
