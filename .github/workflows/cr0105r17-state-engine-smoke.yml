@@ -1,13 +1,13 @@
-name: CR0105R17 State Engine Smoke
+name: CR0105R17 State Engine Smoke Replica
 on:
   push:
-    branches: [cube-rev-0.10.5-r1.7-state-engine-smoke]
-    paths: [cr0105r17/RUN_STATE_SMOKE]
+    branches: [cube-rev-0.10.5-r1.7-state-engine-smoke2]
+    paths: [cr0105r17/RUN_STATE_SMOKE2]
 permissions:
   contents: write
   actions: read
 concurrency:
-  group: cr0105r17-state-engine-smoke
+  group: cr0105r17-state-engine-smoke2
   cancel-in-progress: false
 jobs:
   smoke:
@@ -30,10 +30,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          mkdir -p /tmp/r17smoke
-          gh api -H 'Accept: application/vnd.github+json' repos/${GITHUB_REPOSITORY}/actions/artifacts/9310311696/zip > /tmp/r17smoke/r16.zip
-          unzip -q /tmp/r17smoke/r16.zip -d /tmp/r17smoke/unpacked
-          DB="$(find /tmp/r17smoke/unpacked -type f -name 'wca333.duckdb' -print -quit)"
+          mkdir -p /tmp/r17smoke2
+          gh api -H 'Accept: application/vnd.github+json' repos/${GITHUB_REPOSITORY}/actions/artifacts/9310311696/zip > /tmp/r17smoke2/r16.zip
+          unzip -q /tmp/r17smoke2/r16.zip -d /tmp/r17smoke2/unpacked
+          DB="$(find /tmp/r17smoke2/unpacked -type f -name 'wca333.duckdb' -print -quit)"
           test -n "$DB"
           test "$(sha256sum "$DB" | awk '{print $1}')" = 'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'
           echo "R17_PARENT_DB=$DB" >> "$GITHUB_ENV"
@@ -50,8 +50,8 @@ jobs:
         shell: bash
         run: |
           set +e
-          export R17_SMOKE_ROOT=/tmp/r17smoke
-          python research/0.10.5-r1.7/r17_prepare_state_smoke.py 2>&1 | tee /tmp/r17smoke/prepare.log
+          export R17_SMOKE_ROOT=/tmp/r17smoke2
+          python research/0.10.5-r1.7/r17_prepare_state_smoke.py 2>&1 | tee /tmp/r17smoke2/prepare.log
           code=${PIPESTATUS[0]}
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit 0
@@ -61,59 +61,58 @@ jobs:
         shell: bash
         run: |
           set +e
-          export R17_SMOKE_INPUT=/tmp/r17smoke/STATE_SMOKE_INPUT.json
-          export R17_SMOKE_OUTPUT=/tmp/r17smoke/STATE_ENGINE_SMOKE.json
+          export R17_SMOKE_INPUT=/tmp/r17smoke2/STATE_SMOKE_INPUT.json
+          export R17_SMOKE_OUTPUT=/tmp/r17smoke2/STATE_ENGINE_SMOKE.json
           if test -f "$R17_SMOKE_INPUT"; then
-            node research/0.10.5-r1.7/r17_state_smoke.mjs 2>&1 | tee /tmp/r17smoke/state.log
+            node research/0.10.5-r1.7/r17_state_smoke.mjs 2>&1 | tee /tmp/r17smoke2/state.log
             code=${PIPESTATUS[0]}
           else
-            echo 'STATE_SMOKE_INPUT_MISSING' | tee /tmp/r17smoke/state.log
+            echo 'STATE_SMOKE_INPUT_MISSING' | tee /tmp/r17smoke2/state.log
             code=98
           fi
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit 0
-      - name: Persist smoke evidence regardless of court result
+      - name: Persist replica evidence regardless of court result
         if: always()
         run: |
           set -euo pipefail
-          mkdir -p research/0.10.5-r1.7/evidence-state-smoke
-          test -f /tmp/r17smoke/STATE_SMOKE_INPUT.json && cp /tmp/r17smoke/STATE_SMOKE_INPUT.json research/0.10.5-r1.7/evidence-state-smoke/ || true
-          test -f /tmp/r17smoke/STATE_ENGINE_SMOKE.json && cp /tmp/r17smoke/STATE_ENGINE_SMOKE.json research/0.10.5-r1.7/evidence-state-smoke/ || true
-          test -f /tmp/r17smoke/prepare.log && cp /tmp/r17smoke/prepare.log research/0.10.5-r1.7/evidence-state-smoke/PREPARE_LOG.txt || true
-          test -f /tmp/r17smoke/state.log && cp /tmp/r17smoke/state.log research/0.10.5-r1.7/evidence-state-smoke/STATE_LOG.txt || true
+          mkdir -p research/0.10.5-r1.7/evidence-state-smoke2
+          test -f /tmp/r17smoke2/STATE_SMOKE_INPUT.json && cp /tmp/r17smoke2/STATE_SMOKE_INPUT.json research/0.10.5-r1.7/evidence-state-smoke2/ || true
+          test -f /tmp/r17smoke2/STATE_ENGINE_SMOKE.json && cp /tmp/r17smoke2/STATE_ENGINE_SMOKE.json research/0.10.5-r1.7/evidence-state-smoke2/ || true
+          test -f /tmp/r17smoke2/prepare.log && cp /tmp/r17smoke2/prepare.log research/0.10.5-r1.7/evidence-state-smoke2/PREPARE_LOG.txt || true
+          test -f /tmp/r17smoke2/state.log && cp /tmp/r17smoke2/state.log research/0.10.5-r1.7/evidence-state-smoke2/STATE_LOG.txt || true
           python3 - <<'PY'
           import json,os,datetime,pathlib
-          prep=int('${{ steps.prepare.outputs.exit_code || 97 }}')
-          state=int('${{ steps.state.outputs.exit_code || 97 }}')
-          x={'schema_version':'CR0105R17-STATE-SMOKE-RUN-2','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'parent_artifact_id':9310311696,'parent_db_sha256':'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1','cubing_npm_version':'0.63.3','prepare_exit_code':prep,'state_exit_code':state,'status':'PASS' if prep==0 and state==0 else 'HOLD','generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'human_observations':0}
-          pathlib.Path('research/0.10.5-r1.7/evidence-state-smoke/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          prep=int('${{ steps.prepare.outputs.exit_code || 97 }}'); state=int('${{ steps.state.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R17-STATE-SMOKE-REPLICA-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'parent_artifact_id':9310311696,'parent_db_sha256':'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1','cubing_npm_version':'0.63.3','prepare_exit_code':prep,'state_exit_code':state,'status':'PASS' if prep==0 and state==0 else 'HOLD','generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'human_observations':0}
+          pathlib.Path('research/0.10.5-r1.7/evidence-state-smoke2/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
           PY
-      - name: Commit smoke evidence
+      - name: Commit replica evidence
         if: always()
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add research/0.10.5-r1.7/evidence-state-smoke
-          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 state engine smoke ${GITHUB_RUN_ID}"
-          git push origin HEAD:cube-rev-0.10.5-r1.7-state-engine-smoke
+          git add research/0.10.5-r1.7/evidence-state-smoke2
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 state engine smoke replica ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-state-engine-smoke2
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: CR0105R17-state-engine-smoke
+          name: CR0105R17-state-engine-smoke2
           retention-days: 30
           if-no-files-found: warn
-          path: research/0.10.5-r1.7/evidence-state-smoke/
-      - name: Enforce smoke closure
+          path: research/0.10.5-r1.7/evidence-state-smoke2/
+      - name: Enforce smoke replica closure
         if: always()
         run: |
           test '${{ steps.prepare.outputs.exit_code }}' = '0'
           test '${{ steps.state.outputs.exit_code }}' = '0'
           python3 - <<'PY'
           import json
-          x=json.load(open('research/0.10.5-r1.7/evidence-state-smoke/STATE_ENGINE_SMOKE.json'))
+          x=json.load(open('research/0.10.5-r1.7/evidence-state-smoke2/STATE_ENGINE_SMOKE.json'))
           assert x['status']=='PASS',x
           assert x['orientation_group_size']==24
           assert x['human_observations']==0
-          print('CR0105R17_STATE_SMOKE_PASS')
+          print('CR0105R17_STATE_SMOKE_REPLICA_PASS')
           PY
