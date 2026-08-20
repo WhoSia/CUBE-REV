@@ -2,7 +2,7 @@ name: CR0105R110 Local Method Transport and Roux Frame Court
 on:
   push:
     branches: [cube-rev-0.10.5-r1.10-method-stratified-transport-roux-frame]
-    paths: [cr0105r110/RUN_LOCAL_COURT]
+    paths: [cr0105r110/RUN_LOCAL_COURT_R2]
 permissions:
   contents: write
 jobs:
@@ -24,7 +24,7 @@ jobs:
           n=json.load(open('research/0.10.5-r1.10/NAPKIN_INTENT_AND_PREREGISTRATION.json'))
           assert p['status']=='PASS_WITH_REPLICATION_READINESS_HOLD'
           assert p['authority']['future_confirmatory_scoring'] is False
-          assert q['r3_seal_authorized_for_future_confirmatory_scoring'] is False
+          assert q['authority_effect']['r3_seal_authorized_for_future_confirmatory_scoring'] is False
           assert n['frozen_before_r110_execution'] is True
           assert n['fresh_vintage_watch']['confirmatory_scoring_in_r110'] is False
           print('CR0105R110_PREFLIGHT_PASS')
@@ -51,17 +51,16 @@ jobs:
           cp /tmp/r110local/ROUX_BLOCK_FRAME_ROWS.json research/0.10.5-r1.10/evidence-roux-block-frame/
           cp /tmp/r110local/ROUX_BLOCK_FRAME_LOG.txt research/0.10.5-r1.10/evidence-roux-block-frame/
           python3 - <<'PY'
-          import json,hashlib,pathlib,os,datetime
+          import json,hashlib,pathlib,datetime
           root=pathlib.Path('research/0.10.5-r1.10')
           m=json.load(open(root/'evidence-method-transport/METHOD_STRATIFIED_TRANSPORT.json'))
           ms=json.load(open(root/'evidence-method-transport/LAYERED_TRANSPORT_SEAL.json'))
           r=json.load(open(root/'evidence-roux-block-frame/ROUX_BLOCK_FRAME_IDENTIFICATION.json'))
-          n=(root/'NAPKIN_INTENT_AND_PREREGISTRATION.json').read_bytes()
           def fh(p): return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
           x={
             'schema_version':'CR0105R110-LOCAL-AUTHORITY-SEAL-1',
             'stage':'CUBE-REV 0.10.5-R1.10 — Method-stratified Future-score Transport, Roux Block-frame Identification & Fresh-vintage Watch Seal',
-            'napkin_sha256':hashlib.sha256(n).hexdigest(),
+            'napkin_sha256':fh(root/'NAPKIN_INTENT_AND_PREREGISTRATION.json'),
             'parent_r19_final_commit':'a876d4fc130d41bb20e6cd7d16abbe927ba0d51f',
             'layered_transport_status':m['status'],
             'layered_transport_seal':ms['seal_sha256'],
@@ -87,7 +86,7 @@ jobs:
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.email '41898282+WhoSia@users.noreply.github.com'
           git add research/0.10.5-r1.10
           git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.10 local court ${GITHUB_RUN_ID}"
           git push origin HEAD:cube-rev-0.10.5-r1.10-method-stratified-transport-roux-frame
