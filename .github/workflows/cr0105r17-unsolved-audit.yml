@@ -1,0 +1,38 @@
+name: CR0105R17 Unsolved Raw Alg Audit
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-state-engine-smoke2]
+    paths: [cr0105r17/RUN_UNSOLVED_AUDIT]
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install runtimes
+        run: |
+          python -m pip install --disable-pip-version-check requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+          npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Extract raw alg.cubing links for the eight unsolved records
+        run: python research/0.10.5-r1.7/r17_extract_unsolved_alg_links.py | tee /tmp/r17_unsolved_extract.log
+      - name: Compare raw URL alg against parsed move stream
+        run: node research/0.10.5-r1.7/r17_unsolved_raw_compare.mjs | tee /tmp/r17_unsolved_compare.log
+      - name: Commit unsolved audit evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/evidence-unsolved-audit
+          test -f /tmp/r17_unsolved_extract.log && cp /tmp/r17_unsolved_extract.log research/0.10.5-r1.7/evidence-unsolved-audit/EXTRACT_LOG.txt || true
+          test -f /tmp/r17_unsolved_compare.log && cp /tmp/r17_unsolved_compare.log research/0.10.5-r1.7/evidence-unsolved-audit/COMPARE_LOG.txt || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-unsolved-audit
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 unsolved raw audit ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-state-engine-smoke2
