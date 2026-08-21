@@ -1,6 +1,13 @@
 {
-  "schema_version": "CR0105R112-G2-GEOMETRY-IMPLEMENTATION-FREEZE-1",
+  "schema_version": "CR0105R112-G2-GEOMETRY-IMPLEMENTATION-FREEZE-2",
   "status": "FROZEN_BEFORE_G2_GEOMETRY_EXECUTION",
+  "preexecution_repair": {
+    "when": "before any R1.12 G2 geometry execution",
+    "change": "LSE selection changed from first ROUX_LSE line to the maximal contiguous ROUX_LSE span after SB completion, with the last line endpoint as the LSE target.",
+    "reason": "The frozen parser maps EOLR, EOLRb, EP and LSE annotations into ROUX_LSE. Selecting the first line could repeat the already-localized SB subphase/completion error. No G2 outcome had been observed when this repair was made.",
+    "scientific_gate_changed": false,
+    "denominator_changed": false
+  },
   "population_flow": [
     "RAW_ALG_CUBING_LINK unique official attempt",
     "parseable and final-state certified",
@@ -38,7 +45,7 @@
     "FB": "the sole ordinary ROUX_FB line",
     "SB": "first contiguous ROUX_SB span; objective stops at first unique state-certified two-block completion",
     "CMLL": "first nonempty ROUX_CMLL line after SB completion; if absent, no CMLL opportunity",
-    "LSE": "first nonempty ROUX_LSE line after SB completion; if absent, no LSE opportunity"
+    "LSE": "maximal contiguous ROUX_LSE span beginning at the first ROUX_LSE line after SB completion; objective target is the last line endpoint, so EOLR/EOLRb/EP subphases cannot be mistaken for completed LSE solely because they are classified ROUX_LSE"
   },
   "diagnostics_not_gates": [
     "last-SB endpoint success",
