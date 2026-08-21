@@ -1,0 +1,76 @@
+name: CR0105R112 Generation Review Closure
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.12-roux-generation-g2]
+    paths: [cr0105r112/RUN_GENERATION_REVIEW]
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify all R1.12 courts are present
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          g=json.load(open('research/0.10.5-r1.12/evidence-g2/ROUX_G2_GEOMETRY_AUDIT.json'))
+          i=json.load(open('research/0.10.5-r1.12/evidence-gauge-identifiability/ROUX_G2_GAUGE_IDENTIFIABILITY_AUDIT.json'))
+          r=json.load(open('research/0.10.5-r1.12/evidence-residual-gauge/ROUX_G2_RESIDUAL_GAUGE_AUDIT.json'))
+          a=json.load(open('research/0.10.5-r1.12/GENERATION_REVIEW_AUTHORITY_RULES.json'))
+          assert g['status']=='HOLD_ROUX_G2_GEOMETRY'
+          assert i['counts']['prefix_unique_pair']==130 and i['counts']['prefix_unique_pair_sb_success']==120
+          assert r['counts']['prefix_failure']==10
+          assert a['nonnegotiable']['r112_g2_primary_can_be_released_by_posthoc_diagnostics'] is False
+          print('CR0105R112_GENERATION_REVIEW_INPUTS_PASS')
+          PY
+      - name: Execute generation review court
+        id: reviewcourt
+        shell: bash
+        env: {R112_ROOT: /tmp/r112}
+        run: |
+          set +e
+          mkdir -p /tmp/r112
+          python3 research/0.10.5-r1.12/r112_generation_review.py 2>&1 | tee /tmp/r112/GENERATION_REVIEW_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist generation review evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.12/evidence-generation-review
+          for f in GENERATION_REVIEW_CLOSURE.json GENERATION_REVIEW_LOG.txt; do
+            test -f "/tmp/r112/$f" && cp "/tmp/r112/$f" research/0.10.5-r1.12/evidence-generation-review/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R112-GENERATION-REVIEW-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':int('${{ steps.reviewcourt.outputs.exit_code || 97 }}'),'fresh_network_read':False,'fresh_scoring':False,'primary_gate_changed':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.12/evidence-generation-review/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit review evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.12/evidence-generation-review
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.12 generation review ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.12-roux-generation-g2
+          git push origin HEAD:cube-rev-0.10.5-r1.12-roux-generation-g2
+      - name: Enforce generation-review authority boundary
+        if: always()
+        run: |
+          test '${{ steps.reviewcourt.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.12/evidence-generation-review/GENERATION_REVIEW_CLOSURE.json'))
+          assert x['primary_disposition']['g2']=='REMANDED_NOT_RELEASED'
+          assert x['primary_disposition']['future_roux_scoring_authority'] is False
+          assert x['next_generation']['must_begin_with_new_NAPKIN'] is True
+          assert x['authority']['main_write'] is False
+          print('CR0105R112_GENERATION_REVIEW_COMPLETE',x['status'],x['next_generation']['label'])
+          PY
