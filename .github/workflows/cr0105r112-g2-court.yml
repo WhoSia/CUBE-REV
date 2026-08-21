@@ -52,7 +52,7 @@ jobs:
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit 0
       - name: Execute rebuilt G2 null court
-        id: null
+        id: nullcourt
         if: always()
         shell: bash
         env: {R112_ROOT: /tmp/r112}
@@ -77,7 +77,7 @@ jobs:
           done
           python3 - <<'PY'
           import json,os,datetime,pathlib
-          x={'schema_version':'CR0105R112-G2-COURT-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'geometry_exit_code':int('${{ steps.geometry.outputs.exit_code || 97 }}'),'null_exit_code':int('${{ steps.null.outputs.exit_code || 97 }}'),'candidate_bank_n':144,'fresh_network_read_during_scoring':False,'fresh_confirmatory_scoring':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          x={'schema_version':'CR0105R112-G2-COURT-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'geometry_exit_code':int('${{ steps.geometry.outputs.exit_code || 97 }}'),'null_exit_code':int('${{ steps.nullcourt.outputs.exit_code || 97 }}'),'candidate_bank_n':144,'fresh_network_read_during_scoring':False,'fresh_confirmatory_scoring':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
           pathlib.Path('research/0.10.5-r1.12/evidence-g2/G2_COURT_RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
           PY
       - name: Commit G2 evidence
@@ -94,7 +94,7 @@ jobs:
         if: always()
         run: |
           test '${{ steps.geometry.outputs.exit_code }}' = '0'
-          test '${{ steps.null.outputs.exit_code }}' = '0'
+          test '${{ steps.nullcourt.outputs.exit_code }}' = '0'
           python3 - <<'PY'
           import json
           g=json.load(open('research/0.10.5-r1.12/evidence-g2/ROUX_G2_GEOMETRY_AUDIT.json'))
