@@ -1,0 +1,22 @@
+{
+  "schema_version": "CR0105R113-RESIDUAL-BREAK-RESTORE-1",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "status": "POSTHOC_RESIDUAL_DIAGNOSTIC_NO_G3_GATE_CHANGE",
+  "primary_geometry_semantic_sha256": "4fa8067dc5541ff292acbd9241085371fd675edceb6bd87259153481f22f6c8e",
+  "counts": {
+    "eligible": 130,
+    "in_span_success": 120,
+    "residual": 10,
+    "residual_rotation": 3,
+    "residual_first_block_break": 6,
+    "residual_first_block_restored_after_break": 1,
+    "residual_both_complete_before_cmll": 0,
+    "residual_both_complete_before_lse": 1,
+    "residual_both_complete_any_later": 4,
+    "residual_final_both_solved": 4
+  },
+  "interpretation_guard": "Residual timing and first-block restoration are descriptive only and cannot redefine the frozen SB span, admission rule or G3 rotation gate.",
+  "post_result_gate_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "c14c09a1b307d367328f4cc17d76d4e9042d64d93b494c44a1366f52d48966ce"
+}

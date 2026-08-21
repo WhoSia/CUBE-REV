@@ -1,0 +1,210 @@
+{
+  "schema_version": "CR0105R113-RESIDUAL-BREAK-RESTORE-ROWS-1",
+  "rows": [
+    {
+      "attempt_key": "1656157:2",
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    },
+    {
+      "attempt_key": "1656157:4",
+      "reco_id": 2794,
+      "source": "SEALED_R111",
+      "rotation_tokens": [
+        "x'"
+      ],
+      "frame_key": "U|B",
+      "sb_span": {
+        "start": 8,
+        "end": 22
+      },
+      "first_block_break_state": 10,
+      "first_block_restore_state": null,
+      "first_both_completion_after_sb": null,
+      "cmll_start": 22,
+      "lse_start": 36,
+      "final_both_solved": false
+    },
+    {
+      "attempt_key": "1656157:5",
+      "error": "Unexpected character at index 5. Are you missing a space?"
+    },
+    {
+      "attempt_key": "3072444:2",
+      "reco_id": 3118,
+      "source": "SEALED_R111",
+      "rotation_tokens": [],
+      "frame_key": "U|F",
+      "sb_span": {
+        "start": 11,
+        "end": 28
+      },
+      "first_block_break_state": 12,
+      "first_block_restore_state": null,
+      "first_both_completion_after_sb": null,
+      "cmll_start": 28,
+      "lse_start": 44,
+      "final_both_solved": false
+    },
+    {
+      "attempt_key": "467563:5",
+      "reco_id": 805,
+      "source": "SEALED_R111",
+      "rotation_tokens": [],
+      "frame_key": "U|F",
+      "sb_span": {
+        "start": 9,
+        "end": 25
+      },
+      "first_block_break_state": null,
+      "first_block_restore_state": null,
+      "first_both_completion_after_sb": 44,
+      "cmll_start": 25,
+      "lse_start": 37,
+      "final_both_solved": true
+    },
+    {
+      "attempt_key": "611723:1",
+      "reco_id": 2112,
+      "source": "SEALED_R111",
+      "rotation_tokens": [],
+      "frame_key": "U|L",
+      "sb_span": {
+        "start": 7,
+        "end": 28
+      },
+      "first_block_break_state": 8,
+      "first_block_restore_state": 32,
+      "first_both_completion_after_sb": null,
+      "cmll_start": 28,
+      "lse_start": 40,
+      "final_both_solved": false
+    },
+    {
+      "attempt_key": "7247448:2",
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    },
+    {
+      "attempt_key": "7275458:4",
+      "reco_id": 11959,
+      "source": "SEALED_R111",
+      "rotation_tokens": [],
+      "frame_key": "U|F",
+      "sb_span": {
+        "start": 16,
+        "end": 27
+      },
+      "first_block_break_state": null,
+      "first_block_restore_state": null,
+      "first_both_completion_after_sb": 48,
+      "cmll_start": null,
+      "lse_start": 63,
+      "final_both_solved": true
+    },
+    {
+      "attempt_key": "1404884:2",
+      "reco_id": 2489,
+      "source": "R112_EXPANSION",
+      "rotation_tokens": [],
+      "frame_key": "U|R",
+      "sb_span": {
+        "start": 8,
+        "end": 24
+      },
+      "first_block_break_state": null,
+      "first_block_restore_state": null,
+      "first_both_completion_after_sb": 42,
+      "cmll_start": 24,
+      "lse_start": 35,
+      "final_both_solved": true
+    },
+    {
+      "attempt_key": "6170102:2",
+      "error": "Invalid move for KPuzzle (3x3x3): DU'"
+    },
+    {
+      "attempt_key": "6734619:2",
+      "reco_id": 11446,
+      "source": "R112_EXPANSION",
+      "rotation_tokens": [],
+      "frame_key": "U|L",
+      "sb_span": {
+        "start": 7,
+        "end": 16
+      },
+      "first_block_break_state": null,
+      "first_block_restore_state": null,
+      "first_both_completion_after_sb": 32,
+      "cmll_start": 16,
+      "lse_start": 26,
+      "final_both_solved": true
+    },
+    {
+      "attempt_key": "3171138:4",
+      "reco_id": 3135,
+      "source": "R112_EXPANSION",
+      "rotation_tokens": [],
+      "frame_key": "U|F",
+      "sb_span": {
+        "start": 14,
+        "end": 34
+      },
+      "first_block_break_state": 15,
+      "first_block_restore_state": null,
+      "first_both_completion_after_sb": null,
+      "cmll_start": 34,
+      "lse_start": 48,
+      "final_both_solved": false
+    },
+    {
+      "attempt_key": "7247423:4",
+      "error": "Invalid move for KPuzzle (3x3x3): Rl"
+    },
+    {
+      "attempt_key": "7247335:1",
+      "error": "Unexpected character at index 17. Are you missing a space?"
+    },
+    {
+      "attempt_key": "2011086:2",
+      "reco_id": 2912,
+      "source": "R112_EXPANSION",
+      "rotation_tokens": [
+        "x'"
+      ],
+      "frame_key": "U|R",
+      "sb_span": {
+        "start": 9,
+        "end": 17
+      },
+      "first_block_break_state": 12,
+      "first_block_restore_state": null,
+      "first_both_completion_after_sb": null,
+      "cmll_start": 17,
+      "lse_start": 25,
+      "final_both_solved": false
+    },
+    {
+      "attempt_key": "2112470:1",
+      "reco_id": 2874,
+      "source": "R112_EXPANSION",
+      "rotation_tokens": [
+        "x"
+      ],
+      "frame_key": "U|B",
+      "sb_span": {
+        "start": 9,
+        "end": 24
+      },
+      "first_block_break_state": 12,
+      "first_block_restore_state": null,
+      "first_both_completion_after_sb": null,
+      "cmll_start": 24,
+      "lse_start": 36,
+      "final_both_solved": false
+    },
+    {
+      "attempt_key": "7247265:5",
+      "error": "Invalid move for KPuzzle (3x3x3): DU'"
+    }
+  ],
+  "human_observations": 0
+}
