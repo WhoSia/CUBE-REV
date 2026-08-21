@@ -1,0 +1,103 @@
+name: CR0105R114 G4 Ontology and Canonical Reference Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.14-roux-generation-g4]
+    paths: [cr0105r114/RUN_ONTOLOGY_REFERENCE]
+permissions:
+  contents: write
+jobs:
+  court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify baseline and all pre-outcome freezes
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib
+          n=json.load(open('research/0.10.5-r1.14/NAPKIN_G4_PREREGISTRATION.json'))
+          g=json.load(open('research/0.10.5-r1.14/GENERATION_INHERITANCE_LEDGER.json'))
+          b=json.load(open('research/0.10.5-r1.14/evidence-baseline/G4_BASELINE_VINTAGE.json'))
+          i=json.load(open('research/0.10.5-r1.14/G4_IMPLEMENTATION_FREEZE.json'))
+          assert n['generation']=='ROUX-MEASUREMENT-G4'
+          assert g['generation']=='ROUX-MEASUREMENT-G4'
+          assert b['status']=='PASS_G4_BASELINE_VINTAGE_FROZEN'
+          assert b['live']['id_set_sha256']=='d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b'
+          assert i['status']=='FROZEN_AFTER_BASELINE_BEFORE_G4_ROUTE_RECLASSIFICATION'
+          assert i['baseline_id_set_sha256']==b['live']['id_set_sha256']
+          assert not pathlib.Path('research/0.10.5-r1.14/evidence-fresh-authority').exists()
+          print('CR0105R114_ONTOLOGY_REFERENCE_PREEXEC_PASS')
+          PY
+      - name: Install exact cube-state runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Execute raw-state G4 ontology court
+        id: ontology
+        env: {R114_ROOT: /tmp/r114}
+        shell: bash
+        run: |
+          set +e
+          mkdir -p /tmp/r114
+          node research/0.10.5-r1.14/r114_g4_ontology_runner.mjs 2>&1 | tee /tmp/r114/ONTOLOGY_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Execute canonical-only reference null
+        id: refnull
+        if: always()
+        env: {R114_ROOT: /tmp/r114}
+        shell: bash
+        run: |
+          set +e
+          if test -f /tmp/r114/G4_ONTOLOGY_AUDIT.json && test -f /tmp/r114/G4_CANONICAL_FEATURE_LEDGER.json; then
+            node research/0.10.5-r1.14/r114_g4_reference_null.mjs 2>&1 | tee /tmp/r114/REFERENCE_NULL_LOG.txt
+            code=${PIPESTATUS[0]}
+          else
+            echo 'Reference null skipped because ontology outputs were not materialized' | tee /tmp/r114/REFERENCE_NULL_LOG.txt
+            code=98
+          fi
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist ontology and reference evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.14/evidence-ontology research/0.10.5-r1.14/evidence-reference
+          for f in PREEXEC_IMPLEMENTATION_REPAIR_RECEIPT.json G4_ONTOLOGY_AUDIT.json G4_ONTOLOGY_ROUTE_ROWS.json G4_CANONICAL_FEATURE_LEDGER.json ONTOLOGY_LOG.txt; do test -f /tmp/r114/$f && cp /tmp/r114/$f research/0.10.5-r1.14/evidence-ontology/ || true; done
+          for f in G4_REFERENCE_NULL_AUDIT.json G4_REFERENCE_LOO_BANK.json G4_REFERENCE_CROSSFIT_BANK.json G4_REFERENCE_NESTED_ROWS.json G4_REFERENCE_TRANSPORT_PAIRS.json G4_REFERENCE_BANK_SEAL.json REFERENCE_NULL_LOG.txt; do test -f /tmp/r114/$f && cp /tmp/r114/$f research/0.10.5-r1.14/evidence-reference/ || true; done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R114-ONTOLOGY-REFERENCE-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'ontology_exit_code':int('${{ steps.ontology.outputs.exit_code || 97 }}'),'reference_null_exit_code':int('${{ steps.refnull.outputs.exit_code || 97 }}'),'baseline_id_set_sha256':'d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b','network_reads':0,'second_live_index_read_seen':False,'fresh_outcomes_seen':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.14/evidence-reference/ONTOLOGY_REFERENCE_RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit court evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.14/evidence-ontology research/0.10.5-r1.14/evidence-reference
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.14 G4 ontology/reference court ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.14-roux-generation-g4
+          git push origin HEAD:cube-rev-0.10.5-r1.14-roux-generation-g4
+      - name: Enforce operational completion without overriding scientific HOLDs
+        if: always()
+        run: |
+          test '${{ steps.ontology.outputs.exit_code }}' = '0'
+          test '${{ steps.refnull.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          o=json.load(open('research/0.10.5-r1.14/evidence-ontology/G4_ONTOLOGY_AUDIT.json'))
+          n=json.load(open('research/0.10.5-r1.14/evidence-reference/G4_REFERENCE_NULL_AUDIT.json'))
+          s=json.load(open('research/0.10.5-r1.14/evidence-reference/G4_REFERENCE_BANK_SEAL.json'))
+          assert o['r113_labels_used_for_classification'] is False
+          assert o['r113_features_or_scores_reused'] is False
+          assert o['post_result_gate_change'] is False
+          assert s['second_live_index_read_seen'] is False
+          assert s['fresh_outcomes_seen'] is False
+          assert s['authority_release'] is False
+          print('CR0105R114_ONTOLOGY_REFERENCE_OPERATIONAL_COMPLETE',o['status'],n['status'],s['status'])
+          PY
