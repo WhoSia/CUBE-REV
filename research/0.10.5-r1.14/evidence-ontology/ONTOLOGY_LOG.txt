@@ -1,0 +1,54 @@
+CR0105R114_PREEXEC_IMPLEMENTATION_REPAIR_PASS d1edd7b33b8f82f10221611499569371a24ed3595c53f31291e5d9a03c8a3a1a
+{
+  "status": "PASS_G4_DEVELOPMENT_ONTOLOGY",
+  "counts": {
+    "raw_unique_attempts": 144,
+    "parse_ok": 140,
+    "state_certified": 133,
+    "ordinary_fb_sb_eligible": 130,
+    "prefix_unique": 130,
+    "canonical": 114,
+    "block_disruptive": 12,
+    "fb_preserved_no_completion": 4,
+    "pseudo_fb_or_fbdr": 3,
+    "syntax_or_state_invalid": 11,
+    "ontology_unscorable": 0,
+    "cmll_opportunities": 111,
+    "cmll_consistent": 109,
+    "lse_opportunities": 114,
+    "lse_consistent": 111
+  },
+  "rates": {
+    "state_certification_rate": 0.9236111111111112,
+    "prefix_unique_rate_given_eligible": 1,
+    "ontology_assignment_rate_given_prefix_unique": 1,
+    "canonical_rate_given_prefix_unique": 0.8769230769230769,
+    "cmll_consistency_rate_canonical": 0.9819819819819819,
+    "lse_consistency_rate_canonical": 0.9736842105263158
+  },
+  "feature_counts": {
+    "total": 792,
+    "objective": 453,
+    "anchor": 339,
+    "canonical_attempts": 114,
+    "phase": {
+      "FB": 114,
+      "SB": 228,
+      "CMLL": 222,
+      "LSE": 228
+    }
+  },
+  "checks": {
+    "state_certified_n_min": true,
+    "ordinary_fb_sb_eligible_n_min": true,
+    "prefix_unique_rate_given_eligible_min": true,
+    "ontology_assignment_rate_given_prefix_unique_min": true,
+    "canonical_reference_attempts_min": true,
+    "cmll_consistency_rate_canonical_min": true,
+    "lse_consistency_rate_canonical_min": true,
+    "total_canonical_features_min": true,
+    "objective_canonical_features_min": true,
+    "all_features_g4_canonical": true
+  },
+  "semantic_sha256": "c0337535548b575a1ad2f5ebfda07414ada0d779b21aefe1150358c1d843e13c"
+}

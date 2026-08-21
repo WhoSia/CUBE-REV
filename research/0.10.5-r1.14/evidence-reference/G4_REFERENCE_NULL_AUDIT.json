@@ -1,0 +1,111 @@
+{
+  "schema_version": "CR0105R114-G4-CANONICAL-REFERENCE-NULL-1",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "status": "PASS_G4_CANONICAL_REFERENCE_NULL",
+  "ontology_status": "PASS_G4_DEVELOPMENT_ONTOLOGY",
+  "counts": {
+    "features": 792,
+    "reference_attempts": 114,
+    "loo_familywise_ok": 114,
+    "crossfit_attempts": 114,
+    "nested_familywise_ok": 114,
+    "transport_pairs": 114
+  },
+  "local_reference": {
+    "loo_fallback_n": 0,
+    "loo_fallback_rate": 0,
+    "crossfit_fallback_n": 0,
+    "nested_fallback_events": 0
+  },
+  "loo_pseudofresh": {
+    "primary_alpha": 0.01,
+    "primary_rate": 0.008771929824561403,
+    "watch_alpha": 0.05,
+    "watch_rate": 0.043859649122807015
+  },
+  "nested": {
+    "primary_rate": 0,
+    "watch_rate": 0.03508771929824561,
+    "outer_folds": [
+      {
+        "fold": 0,
+        "test_attempts": 27,
+        "familywise_ok_n": 27,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 87,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 1,
+        "test_attempts": 23,
+        "familywise_ok_n": 23,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 91,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 2,
+        "test_attempts": 20,
+        "familywise_ok_n": 20,
+        "watch_rate": 0.1,
+        "primary_rate": 0,
+        "reference_attempts": 94,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 3,
+        "test_attempts": 24,
+        "familywise_ok_n": 24,
+        "watch_rate": 0.08333333333333333,
+        "primary_rate": 0,
+        "reference_attempts": 90,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 4,
+        "test_attempts": 20,
+        "familywise_ok_n": 20,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 94,
+        "outer_test_excluded_from_references": true
+      }
+    ]
+  },
+  "transport": {
+    "pearson_crossfit_vs_loo": 0.9859661502049432,
+    "abs_difference": {
+      "p50": 0.036722807024739845,
+      "p90": 0.11177729055032892,
+      "p99": 0.3218498396015548,
+      "max": 0.3218498396015548
+    }
+  },
+  "finite_resolution": {
+    "reference_attempt_n": 114,
+    "loo_reference_n": 113,
+    "minimum_add_one_p": 0.008771929824561403,
+    "primary_1pct_resolvable": true,
+    "alpha_relaxation": "PROHIBITED"
+  },
+  "checks": {
+    "ontology_pass": true,
+    "loo_familywise_attempts_min": true,
+    "nested_familywise_attempts_min": true,
+    "local_fallback_rate_max": true,
+    "nested_watch_rate_band": true,
+    "crossfit_loo_pearson_min": true,
+    "crossfit_loo_abs_diff_p99_max": true,
+    "minimum_loo_reference_n": true,
+    "primary_1pct_resolution": true,
+    "g4_canonical_only": true
+  },
+  "development_reference_only": true,
+  "fresh_outcomes_seen": false,
+  "second_live_index_read_seen": false,
+  "future_roux_scoring_authority": false,
+  "human_observations": 0,
+  "semantic_sha256": "4c7e85e8b2dfa233171e024778d2f8e8a261ee61c11a070659f2cc5a68b34245"
+}

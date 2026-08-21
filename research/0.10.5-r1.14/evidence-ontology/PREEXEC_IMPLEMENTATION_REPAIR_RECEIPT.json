@@ -1,0 +1,16 @@
+{
+  "schema_version": "CR0105R114-PREEXEC-IMPLEMENTATION-REPAIR-1",
+  "status": "PASS_SINGLE_LITERAL_REPAIR_BEFORE_ANY_G4_ROUTE_OUTCOME",
+  "source_path": "research/0.10.5-r1.14/r114_g4_ontology_geometry.mjs",
+  "runtime_path": "research/0.10.5-r1.14/r114_g4_ontology_geometry.runtime.mjs",
+  "source_sha256": "91d1c14a145d0ee33de40ba8045876d7f9ba0a95a3f417aa2bf50bf967e20cdd",
+  "runtime_sha256": "d1edd7b33b8f82f10221611499569371a24ed3595c53f31291e5d9a03c8a3a1a",
+  "replacement_count": 1,
+  "old_literal": "lines[i].end>x.start",
+  "new_literal": "lines[i].end>lines[i].start",
+  "scientific_definition_changed": false,
+  "gate_changed": false,
+  "baseline_membership_changed": false,
+  "route_outcomes_seen_before_repair": false,
+  "human_observations": 0
+}
