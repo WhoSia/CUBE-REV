@@ -1,0 +1,102 @@
+{
+  "schema_version": "CR0105R112-DESTROY-COORDINATE-GAUGE-1",
+  "generation": "ROUX-MEASUREMENT-G2",
+  "status": "POSTHOC_DIAGNOSTIC_ONLY_NO_G2_GATE_CHANGE",
+  "primary_geometry_semantic_sha256": "f1c19e8b960373e9968cab8b57c48a0ae4ed130d02d8d27704126462d40595e8",
+  "counts": {
+    "eligible": 130,
+    "strict_admitted": 10,
+    "strict_fb_any_block": 33,
+    "strict_fb_unique_block": 33,
+    "post_sb_pre_cmll_completion_eligible": 125,
+    "post_sb_pre_cmll_completion": 0,
+    "route_global_any_solution": 120,
+    "route_global_unique_frame_group": 120,
+    "route_global_unique_orientation_frame_pair": 120,
+    "route_global_single_frame_multi_transform": 0,
+    "route_global_rescue_strict_no_completion": 70,
+    "route_global_rescue_strict_fb_cannot_orient": 39,
+    "route_global_candidate_matches_center_fb_transform": 30
+  },
+  "rates": {
+    "strict_admission": 0.07692307692307693,
+    "strict_fb_any_block": 0.25384615384615383,
+    "post_sb_pre_cmll_completion": 0,
+    "route_global_any_solution": 0.9230769230769231,
+    "route_global_unique_frame_group": 0.9230769230769231,
+    "route_global_unique_pair": 0.9230769230769231
+  },
+  "by_source": {
+    "SEALED_R111": {
+      "n": 89,
+      "strict_admitted": 6,
+      "rg_any": 82,
+      "no_completion": 51,
+      "fb_cannot_orient": 25
+    },
+    "R112_EXPANSION": {
+      "n": 41,
+      "strict_admitted": 4,
+      "rg_any": 38,
+      "no_completion": 19,
+      "fb_cannot_orient": 14
+    }
+  },
+  "by_strict_status": {
+    "FB_CANNOT_ORIENT_UNIQUE_AXIS": {
+      "n": 41,
+      "strict_admitted": 0,
+      "rg_any": 39,
+      "no_completion": 0,
+      "fb_cannot_orient": 0
+    },
+    "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN": {
+      "n": 78,
+      "strict_admitted": 0,
+      "rg_any": 70,
+      "no_completion": 0,
+      "fb_cannot_orient": 0
+    },
+    "G2_ADMITTED": {
+      "n": 10,
+      "strict_admitted": 10,
+      "rg_any": 10,
+      "no_completion": 0,
+      "fb_cannot_orient": 0
+    },
+    "FIRST_COMPLETION_MULTI_AXIS": {
+      "n": 1,
+      "strict_admitted": 0,
+      "rg_any": 1,
+      "no_completion": 0,
+      "fb_cannot_orient": 0
+    }
+  },
+  "by_fb_wide_slice_and_rotation": {
+    "wideSlice=true|rotationBeforeFb=true": {
+      "n": 93,
+      "strict_admitted": 7,
+      "rg_any": 85,
+      "no_completion": 0,
+      "fb_cannot_orient": 0
+    },
+    "wideSlice=false|rotationBeforeFb=true": {
+      "n": 32,
+      "strict_admitted": 2,
+      "rg_any": 30,
+      "no_completion": 0,
+      "fb_cannot_orient": 0
+    },
+    "wideSlice=true|rotationBeforeFb=false": {
+      "n": 5,
+      "strict_admitted": 1,
+      "rg_any": 5,
+      "no_completion": 0,
+      "fb_cannot_orient": 0
+    }
+  },
+  "interpretation_guard": "Route-global transformations are a posthoc diagnostic for a latent reconstruction coordinate gauge. They are not promoted into R1.12 geometry or authority and may represent an unobserved notation/color-frame convention rather than a physical cube orientation.",
+  "post_result_gate_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "9f505ef602a68d0c62158bfc0f05f81b5da7dcdc7951b82b0048202b6ccb2611"
+}
