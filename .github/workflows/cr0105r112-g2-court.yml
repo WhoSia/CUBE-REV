@@ -1,0 +1,109 @@
+name: CR0105R112 Roux G2 Geometry and Null Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.12-roux-generation-g2]
+    paths: [cr0105r112/RUN_G2_COURT]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r112-g2-court
+  cancel-in-progress: false
+jobs:
+  court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify G2 generation and pre-outcome freezes
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          g=json.load(open('research/0.10.5-r1.12/GENERATION_INHERITANCE_LEDGER.json'))
+          n=json.load(open('research/0.10.5-r1.12/NAPKIN_GENERATION_FREEZE.json'))
+          i=json.load(open('research/0.10.5-r1.12/G2_GEOMETRY_IMPLEMENTATION_FREEZE.json'))
+          a=json.load(open('research/0.10.5-r1.12/evidence-acquisition/ROUX_EXPANSION_ROUTE_MANIFEST.json'))
+          m=json.load(open('research/0.10.5-r1.12/evidence-acquisition/ROUX_EXPANSION_MEMBERSHIP.json'))
+          c=json.load(open('research/0.10.5-r1.12/evidence-census/SEALED_ROUTE_CENSUS.json'))
+          assert g['generation']=='ROUX-MEASUREMENT-G2'
+          assert n['frozen_before_r112_scoring'] is True
+          assert i['status']=='FROZEN_BEFORE_G2_GEOMETRY_EXECUTION'
+          assert i['schema_version']=='CR0105R112-G2-GEOMETRY-IMPLEMENTATION-FREEZE-2'
+          assert c['clean_unique_official_attempts']==98
+          assert m['selection_exhausted_pool'] is True and m['selected_n']==46
+          assert m['selection_uses_geometry'] is False and m['selection_uses_annotation_text'] is False and m['selection_uses_null_score'] is False
+          assert a['status']=='PASS_ACQUIRED' and a['raw_route_source_n']==46
+          print('CR0105R112_G2_PREEXEC_FREEZE_PASS')
+          PY
+      - name: Install exact cube-state runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Execute G2 geometry court
+        id: geometry
+        shell: bash
+        env: {R112_ROOT: /tmp/r112}
+        run: |
+          set +e
+          mkdir -p /tmp/r112
+          node research/0.10.5-r1.12/r112_roux_g2_geometry.mjs 2>&1 | tee /tmp/r112/G2_GEOMETRY_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Execute rebuilt G2 null court
+        id: null
+        if: always()
+        shell: bash
+        env: {R112_ROOT: /tmp/r112}
+        run: |
+          set +e
+          if test -f /tmp/r112/ROUX_G2_GEOMETRY_AUDIT.json && test -f /tmp/r112/ROUX_G2_FEATURE_LEDGER.json; then
+            node research/0.10.5-r1.12/r112_roux_g2_null_foundry.mjs 2>&1 | tee /tmp/r112/G2_NULL_LOG.txt
+            code=${PIPESTATUS[0]}
+          else
+            echo 'G2 null skipped because geometry outputs were not materialized' | tee /tmp/r112/G2_NULL_LOG.txt
+            code=98
+          fi
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable G2 evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.12/evidence-g2
+          for f in ROUX_G2_GEOMETRY_AUDIT.json ROUX_G2_ROUTE_ROWS.json ROUX_G2_FEATURE_LEDGER.json ROUX_G2_NULL_AUDIT.json ROUX_G2_LOO_ATTEMPT_BANK.json ROUX_G2_CROSSFIT_ATTEMPT_BANK.json ROUX_G2_NESTED_ROWS.json ROUX_G2_TRANSPORT_PAIRS.json ROUX_G2_FUTURE_AUTHORITY_SEAL.json G2_GEOMETRY_LOG.txt G2_NULL_LOG.txt; do
+            test -f "/tmp/r112/$f" && cp "/tmp/r112/$f" research/0.10.5-r1.12/evidence-g2/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R112-G2-COURT-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'geometry_exit_code':int('${{ steps.geometry.outputs.exit_code || 97 }}'),'null_exit_code':int('${{ steps.null.outputs.exit_code || 97 }}'),'candidate_bank_n':144,'fresh_network_read_during_scoring':False,'fresh_confirmatory_scoring':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.12/evidence-g2/G2_COURT_RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit G2 evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.12/evidence-g2
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.12 G2 court ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.12-roux-generation-g2
+          git push origin HEAD:cube-rev-0.10.5-r1.12-roux-generation-g2
+      - name: Enforce operational completion without weakening scientific HOLDs
+        if: always()
+        run: |
+          test '${{ steps.geometry.outputs.exit_code }}' = '0'
+          test '${{ steps.null.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          g=json.load(open('research/0.10.5-r1.12/evidence-g2/ROUX_G2_GEOMETRY_AUDIT.json'))
+          n=json.load(open('research/0.10.5-r1.12/evidence-g2/ROUX_G2_NULL_AUDIT.json'))
+          s=json.load(open('research/0.10.5-r1.12/evidence-g2/ROUX_G2_FUTURE_AUTHORITY_SEAL.json'))
+          assert g['generation']=='ROUX-MEASUREMENT-G2'
+          assert n['generation']=='ROUX-MEASUREMENT-G2'
+          assert s['generation']=='ROUX-MEASUREMENT-G2'
+          assert g['post_result_gate_change'] is False
+          assert n['finite_sample_primary_resolution']['alpha_relaxation']=='PROHIBITED'
+          print('CR0105R112_G2_OPERATIONAL_COMPLETE',g['status'],n['status'],s['status'])
+          PY
