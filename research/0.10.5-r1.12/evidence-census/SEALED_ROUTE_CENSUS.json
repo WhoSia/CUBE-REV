@@ -1,0 +1,1600 @@
+{
+  "schema_version": "CR0105R112-SEALED-ROUTE-CENSUS-1",
+  "status": "PASS",
+  "files_scanned": 175,
+  "raw_record_hits": 98,
+  "unique_official_attempts": 98,
+  "clean_unique_official_attempts": 98,
+  "r111_used_attempts_found": 98,
+  "novel_sealed_attempts": 0,
+  "combined_candidate_bank_if_all_clean_used": 98,
+  "candidate_bank_ge_100": false,
+  "route_conflict_attempts": 0,
+  "parse_error_files": 0,
+  "r111_source_manifest_missing": [],
+  "source_file_top20": [
+    [
+      "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json",
+      58
+    ],
+    [
+      "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json",
+      40
+    ]
+  ],
+  "conflicts": [],
+  "novel_attempts": [],
+  "all_clean_attempts": [
+    {
+      "attempt_key": "1341399:1",
+      "result_id": 1341399,
+      "attempt_number": 1,
+      "reco_id": 2418,
+      "raw_alg": "x2 // inspection\nL U L u r' U' R' F // FB\nr2 U R2' U' U' R U' R' U R U R' // SS\nU' R' r U' U' r' U' r // SP\nF R U' R' U R U R' U R U' R' F' // CMLL\nM' U M' U' M U' M U // EOLR\nM' U2 M2' U2 M' // EP",
+      "raw_setup": "L2 B2 L2 D R2 D' R2 U' F2 D' R' D L2 U' R2 U2 F' U' R' U",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "1404884:1",
+      "result_id": 1404884,
+      "attempt_number": 1,
+      "reco_id": 2488,
+      "raw_alg": "y // inspection\nD' U' R' U' R b' S' U r' U' R' F // FB\nR U U' U' R U2' R' U' // SB\nR2 U R' U R U r' // SP\nU R' U' R' F R F' R U' R' U2 R // CMLL\nU' M U' M' // EOLR\nU' M' U2' M' U M2' // EP",
+      "raw_setup": "U2 L2 R' D2 R' U2 F2 L R2 F D' U' R F' U2 L' D U2 B' L2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "1404884:3",
+      "result_id": 1404884,
+      "attempt_number": 3,
+      "reco_id": 2490,
+      "raw_alg": "y' x' // inspection\nr' U2 R u' M U M' F' // FB\nU' R U R U R U R' // SB\nU' M' M' U2' r' U r // SP\nU2' R U2 R' U' R U' R2 U2' R U R' U R // CMLL\nU M' U' M U' M' U2' M U' // EOLR\nU2' M' U2' M' // EP",
+      "raw_setup": "R2 B2 L U2 L F2 U2 F D B F' U2 B F2 L U2 L U2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "1404884:4",
+      "result_id": 1404884,
+      "attempt_number": 4,
+      "reco_id": 2491,
+      "raw_alg": "y2 // inspection\nU' r' U R' U F r' U2' r B' // FB\nr U' R' U R' M' U2' M r' U' // SB\nR2 U' R' U2' R U r' // SP\nR' U' R U' R' U2' R2 U R' U R U2' R' // CMLL\nU' M' U M' U' M2' // EOLR\nU2' U' M U2' M' U' U' // EP",
+      "raw_setup": "B2 D R2 D' F2 U' L2 R2 U L B' F2 D' U' B2 F2 R' U' F' R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "1404884:5",
+      "result_id": 1404884,
+      "attempt_number": 5,
+      "reco_id": 2492,
+      "raw_alg": "z // inspection\nr' u B R M F // FB\nr' U r R U M U2' R U' R' // SB\nU r' U R U' R' U R U' R' U' R // SP\nR U' L' U R' U' L // CMLL\nU M U' M' U' // EOLR\nU2' M U2' r' R // EP",
+      "raw_setup": "B2 F2 R2 D2 B2 U R2 B2 D L2 D' B' U2 F U' B' L F L2 U' R",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "1599700:5",
+      "result_id": 1599700,
+      "attempt_number": 5,
+      "reco_id": 2688,
+      "raw_alg": "y z' // inspection\nR' (U D) (r' L') l U' R2' F // FB\nU' r R' U R U' R' U R U' R' // SS\nU M' U' r' // SP\nU U R U' r' F R' F' r // CMLL\nU2 r' R U' r' R U' r R' U r R' U' r R' U2 R' r // EOLR\nU' r R' U2 R' r // EP",
+      "raw_setup": "U L2 R2 D B2 R2 D2 U F2 U' B2 L' U B R' D B2 F2 U' L' F'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "1656157:2",
+      "result_id": 1656157,
+      "attempt_number": 2,
+      "reco_id": 2792,
+      "raw_alg": "z2 x // inspection\nU'D L U D F' // FB\nR' U' r' U' R U R U' U U M' r U R' U M U2 R' U' r // SB\nF R U R' U' F' // CMLL\nM' U M' U' M U' M' U' M' U2 M' U M2 U' M2 U2 M' U2 M' // LSE",
+      "raw_setup": "D2 B2 L2 U2 F2 U2 R2 F2 L B' U F U2 R F2 L2 R U' R' F'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "1656157:3",
+      "result_id": 1656157,
+      "attempt_number": 3,
+      "reco_id": 2793,
+      "raw_alg": "y2 x // inspection\nr' u' r2 U F' // FB\nU' U R U' r U U' M' U r' U R U2 r U' R' // SB\nU R U' L' U R' U' L // CMLL\nU M U M' U' M2 U' M2 U2 M2 U2 // LSE",
+      "raw_setup": "D2 R' U2 F2 L' U2 L B' U' L R' U' L' D2 U R2 F2 R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "1656157:4",
+      "result_id": 1656157,
+      "attempt_number": 4,
+      "reco_id": 2794,
+      "raw_alg": "y' // inspection\nD' r' F U2' R' r' B' // FB\nx' L' U R2' U r' U' r // SS\nR U' M' M' U R' // SP\nU' M' U r2' D' r U r' D r2 U' r' U' r // CMLL\nM' U M' U2' M U' M U' M' U2' M U' M2' // EOLR\nU' M2' U2' M2' // EP",
+      "raw_setup": "L2 U2 R2 U B2 R2 U' R' U D R' B L D L2 F' D2 L' F'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "1656157:5",
+      "result_id": 1656157,
+      "attempt_number": 5,
+      "reco_id": 2795,
+      "raw_alg": "z2 // inspection\nD' B'F U2 F2 // FB\nU R U R' U R U2 R' U r U r U' r' M' // SB\nF R' F' R U R U' R' // CMLL\nU' M U' M U' M' U2 M' U M2 U' M2 U2 M U2 M // LSE",
+      "raw_setup": "R2 B2 L2 B' D2 L2 R2 U2 L' U' B2 L' B2 R' D F' U2 B R",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "2112470:2",
+      "result_id": 2112470,
+      "attempt_number": 2,
+      "reco_id": 2875,
+      "raw_alg": "y2 // inspection\nM U' R' D' M2' U' R B' // FB\nR' U R' r U R' // SS\nM' U' R' U R U' R' U r // SP\nU' F R U R' U' F' // CMLL\nU2 M U' M U M' U2' M U' M2' U' // EOLR\nM U2' M U2' // EP",
+      "raw_setup": "L F' U' B L F D' F2 U L F R2 U2 R2 F2 D2 L2 B2 L",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "2112470:3",
+      "result_id": 2112470,
+      "attempt_number": 3,
+      "reco_id": 2876,
+      "raw_alg": "y // inspection\nU B D D R2' U' r U r' B // FB\nR U' R M U' r' U r // SS\nR U R' U r U' R' // SP\nR U' L' U R' U' L // CMLL\nM' U M' U2' M U M' U M U2' M' U // EOLR\nM2' U2' M2' U2' // EP",
+      "raw_setup": "D2 R' F' D2 L2 F2 U' B U2 L' U2 D B2 D' F2 R2 U B2 R2 B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "2112470:4",
+      "result_id": 2112470,
+      "attempt_number": 4,
+      "reco_id": 2877,
+      "raw_alg": "x' // inspection\nU' r' F2 D D R M F // FB\nR' U M' U R U' R U' R' U r // SS\nU R U' U' R' U R U' r' // SP\nR U' L' U R' U' L // CMLL\nU2' M U' M' U M' U2' M // EOLR\nU' M U2' M' // EP",
+      "raw_setup": "D2 B2 R2 B' L2 D2 B' L2 F2 L B' D R' F' L D' R2 F2 D2 B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "2112470:5",
+      "result_id": 2112470,
+      "attempt_number": 5,
+      "reco_id": 2878,
+      "raw_alg": "x2 // inspection\nD' M U R' F U R U r B // FB\nU' U' R M U M' r U r' // SS\nU M' R' U' r // SP\nR U2 R' U' R U R' U' R U' r' // CMLL\nU M' U2' M U' M' U' M U2' M U' // EOLR\nM' U2' M U2' // EP",
+      "raw_setup": "F2 U2 F2 U2 L2 D2 F' U2 F' L2 F' D' R B D2 F' L' F' U B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3072444:1",
+      "result_id": 3072444,
+      "attempt_number": 1,
+      "reco_id": 3117,
+      "raw_alg": "y2 x // inspection\nR' U F' D R' U' R U' B // FB\nr U' R' U R' U' M2' U2' r' U r // SS\nU2' M R U' r' // SP\nU' R U' r' F R' F' r // CMLL\nU' M2' U' M' U2' M' U' M' U2' M2' U2' M' // LSE",
+      "raw_setup": "L2 F2 D2 R2 U2 R F2 L' U2 F' U2 L' F' D' L' U L' B2 U2 F",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3072444:2",
+      "result_id": 3072444,
+      "attempt_number": 2,
+      "reco_id": 3118,
+      "raw_alg": "y // inspection\nU F' D2' U' R' U2 R U' x' U // FB\nL' U R' U R' r' U' R // SS\nU R U2' R' U' M' r U R' // SP\nU R U R' U R U' R' U R U' R' U R U2' R' // CMLL\nM U' M' U M U' M' U M2' U' // LSE",
+      "raw_setup": "L' B2 L' F2 U2 L2 R F2 R F2 D' R D R' D' F U2 B2 D' U",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3072444:3",
+      "result_id": 3072444,
+      "attempt_number": 3,
+      "reco_id": 3119,
+      "raw_alg": "x' // inspection\nR' (U D) R U2' B U' M2' U R' F // FB\nr2 U R2' U M r' U' R // SS\nU' U2' R U r' // SP\nU' U' F R2 D R' U R D' R2' U' f' S // CMLL\nM' U' M' U2' M' U M U M2' U M' U2' M' // LSE",
+      "raw_setup": "L2 U2 L2 B2 R2 U R2 B2 R B2 D R2 U B' R' F U' B R2 U'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3072444:4",
+      "result_id": 3072444,
+      "attempt_number": 4,
+      "reco_id": 3120,
+      "raw_alg": "x2 // inspection\nU' F2 U' B2' U' U' R' U F2 // FB\nU R' U' R' U2' M2' U' r U' r' // SS\nR' U' R U M2' U' U' R' U R // SP\nU' F R2 D R' U R D' R2' U' F' // CMLL\nU M' U M' U M U M' U' M2' // LSE",
+      "raw_setup": "L2 R B2 R2 F2 R' D2 F2 R' D2 F U2 L' F D' B2 L R' D F",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3171147:1",
+      "result_id": 3171147,
+      "attempt_number": 1,
+      "reco_id": 3177,
+      "raw_alg": "z2 // inspection\nU D r' R' D F U' R2' F // FB\nr U' R U r U2' M r' U' r // SS\nU2' M U2' r U' r' // SP\nM' R R D R' U R D' R' U R' U' R U' r' // CMLL\nU M' U' M M' U' M U M' U' M' U2' M' U // EOLR\nM' U2' M' U2' M2' // EP",
+      "raw_setup": "U2 R2 L U' R D' B' D F R B' L2 D2 B D2 B' R2 D2 F2 D2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3171147:2",
+      "result_id": 3171147,
+      "attempt_number": 2,
+      "reco_id": 3178,
+      "raw_alg": "y x2 // inspection\nR L U L' (U D') R2' F // FB\nR' R U' R2' // SS\nU' R U R' U' R // SP\nR U2' R2' F R F' R U2' R' // CMLL\nU' M' U M' U' M2' U // EOLR\nM' U2' M U2' // EP",
+      "raw_setup": "U' R2 F2 U B2 U2 B2 D' B2 L2 B' F' U' R F U F' D L' D2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3171147:3",
+      "result_id": 3171147,
+      "attempt_number": 3,
+      "reco_id": 3179,
+      "raw_alg": "x2 y // inspection\nR B2 U' R2' F' U R U2' B // FB\nr2 M2' U2' R' U r // SS\nU' R U' R' U2' M' R U r' r U' M' U r' // SP\nU' R U2' R' U' R U' R' // CMLL\nU M U' M U' M' U M' // EOLR\nU M' E2' M E2' // EP",
+      "raw_setup": "R B2 D2 U2 L2 D2 R F2 U2 F2 R2 D' U B' L R2 D F' D U' R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3171147:4",
+      "result_id": 3171147,
+      "attempt_number": 4,
+      "reco_id": 3180,
+      "raw_alg": "y x // inspection\nU' r R D' R' r' B' // FB\nU' U' U2' R' // SS\nU' U R U' R2' U' R U U R U' R' U' R U r' // SP\nR' U2 R' D' R U2 R' D R2 // CMLL\nU' M U' M' U2' M' U2' M U M2' U' // EOLR\nU2' M U2' M' // EP",
+      "raw_setup": "D2 R2 F' U2 B R2 B R2 U2 F D2 R' B2 U' F' R B2 L' B2 L2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3171147:5",
+      "result_id": 3171147,
+      "attempt_number": 5,
+      "reco_id": 3181,
+      "raw_alg": "x y // inspection\nr' u' U2 R' U2' F' // FB\nU' r' U' R' U M' U2' r' U' r // SS\nU2' M U2' r U' r' // SP\nU2' R U2' R2' F R F' U2 R' F R F' // CMLL\nU' M U M U' M2' U' // EOLR\nE2' M E2' M' // EP",
+      "raw_setup": "L2 D2 R2 B2 F' D2 U2 L2 B2 F L B' U2 F' D U B L D2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3403221:1",
+      "result_id": 3403221,
+      "attempt_number": 1,
+      "reco_id": 3496,
+      "raw_alg": "y' // inspection\nD2 F' U' R' U B2 // FB\nU R U R U M' r U R' // SS\nU' M' U2 M r' U' r // SP\nU' U' R' U' R' F R F' R U' R' U2 R // CMLL\nM' U2 M' U2 M U M // EOLR\nU2 M2' U' M2' U2 M' U2 M // EP",
+      "raw_setup": "B2 L2 D2 R' B2 L D2 U2 L' D2 L' D' B F2 R U B D R' U",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3403221:2",
+      "result_id": 3403221,
+      "attempt_number": 2,
+      "reco_id": 3497,
+      "raw_alg": "y2 x // inspection\nU' R U r B R' U' R' U' r' F' // FB\nM2' U2 R U' R' // SS\nU R' U' R U' R' U' r // SP\nU' F R U' R' U' R U R' F' // CMLL\nM' U2 M' U2 M U M' // EOLR\nU' M2' U // EP",
+      "raw_setup": "B U2 R2 B R2 U2 F R2 B2 R2 D2 L' U L D' R' F' D' L' F R",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3403221:5",
+      "result_id": 3403221,
+      "attempt_number": 5,
+      "reco_id": 3500,
+      "raw_alg": "M D U R' U' R2 F // FB\nR' U' r' U' R' U R' U' R U R' U' R U R' // SS\nU2 R' U R U' R' U' R // SP\nR U R' U' R' F R F' R U R' U R U2' R' // CMLL\nU2 M U M U' M' U2 M' U' // EOLR\nM U2 M' U2 // EP",
+      "raw_setup": "U R2 B R' L U F R D2 R L2 U' R2 U F2 D B2 U' R2 D2 R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3403279:4",
+      "result_id": 3403279,
+      "attempt_number": 4,
+      "reco_id": 3501,
+      "raw_alg": "z2 // inspection\nr' B' D R2 U R' D' // FB\nR' U R U' R' U R' U' R // SS\nU' r U r' U2 r U R' // SP\nU U' M' U2 M' U2 M' U M // EOLR\nU2 M U2 M' // EP",
+      "raw_setup": "F2 B2 D L2 F2 L U2 D2 B R2 F2 L2 D' F2 B2 D' B2 D2 R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3428863:1",
+      "result_id": 3428863,
+      "attempt_number": 1,
+      "reco_id": 6581,
+      "raw_alg": "x // inspection\nR' U2' B2 R U' R2' U F // FB\nR' U2' M R U' R' // SS\nU' R' U R U' R' U R // SP\nU U F U R U' R' U R U' R2' F' R U R U' R' // CMLL\nU' M U2' M' U' M2' U' M U2' M' // DFDB\nU' M2' U' M2' U2' M2' U' M2' U' // EP",
+      "raw_setup": "D R B2 U R2 U' F' L2 F' L F2 R2 U2 B2 U L2 U B2 U'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3428863:3",
+      "result_id": 3428863,
+      "attempt_number": 3,
+      "reco_id": 6583,
+      "raw_alg": "y2 x' // inspection\nD' U' F' D U B // FB\nU' R' U2 R' U R' U' R // SS\nU' R U r' // SP\nU' R' F R U F U' R U R' U' F' // CMLL\nU' M' U2' M' U2' M U M' U' // EOLR\nU2' U2' M' U2' M' U2' // EP",
+      "raw_setup": "L2 D2 L2 F2 D2 F2 D L2 B2 F U' L' B' R' B2 U' B D R B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "3428863:4",
+      "result_id": 3428863,
+      "attempt_number": 4,
+      "reco_id": 6584,
+      "raw_alg": "z y' // inspection\nU' F r' F // FB\nU2' R2 U' R U R2' U' R // SS\nR U' M U' r' // SP\nU U R' U' R U' R' U2 R // CMLL\nU2' M U' M U' M U2' M' // EOLR\nU M2' U2' M' U2' M U2' // EP",
+      "raw_setup": "B L' D2 B2 D2 R' F R' L' B2 R2 B2 D' L2 F2 B2 D' F2 U2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "372818:1",
+      "result_id": 372818,
+      "attempt_number": 1,
+      "reco_id": 321,
+      "raw_alg": "x2 // inspection\nU' r U2 L U' x U M2' F // FB\nr2 U R U' R r U R' // SS\nU M U2 R' U' R // SP\nU2' R U2' R' U' R U' R' // CMLL\nU' M2' U' M' U M' U M' U2 M U' // EOLR\nU2 M U2 M // EP",
+      "raw_setup": "B L2 F R2 F U2 B L2 D2 F R2 U' B R' U' F2 D B F' U2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "372818:2",
+      "result_id": 372818,
+      "attempt_number": 2,
+      "reco_id": 322,
+      "raw_alg": "y x' // inspection\nB' u' r' U' r u' // FB\nR' U' R U' R' U2 r U R' // SS\nR' U' R U' R' U' R U r' U' r // SP\nU' L U L' U R' U L U' R U2' L' // CMLL\nU M' U2 M' U2 M' U' M U r M' R' U // EOLR\nU2 M U2 M // EP",
+      "raw_setup": "B2 L F2 B' L2 U2 L U F' B2 R2 L2 U' F2 R2 D R2 L2 U'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "372818:5",
+      "result_id": 372818,
+      "attempt_number": 5,
+      "reco_id": 325,
+      "raw_alg": "x // inspection\nD' F x' R' U' M' U' l' // FB\nU r U R U R2 U R' U R U R' // SS\nU' R' U' R U R' U' r // SP\nU' l' U' L U R U' r' F // CMLL\nM U' M' U M2' U M U2 M U' // EOLR\nM' U2 M' // EP",
+      "raw_setup": "F2 D2 L2 F D2 R2 F' L2 B U2 R D' U L' U L' R' F L' D2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "412962:3",
+      "result_id": 412962,
+      "attempt_number": 3,
+      "reco_id": 2092,
+      "raw_alg": "z2 // inspection\nD' B' M' B' r U R' F // FB\nR U' R' U R2 U' R' // SS\nU2 R' U' R U2 R' U' R // SP\nU' F R U R' U' F' // CMLL\nU' M U' M' U M' U2 M' // EOLR\nU M U2 M' // EP",
+      "raw_setup": "B D L2 F L' D' L D' L2 F' U' R F2 R2 L' U2 R2 D2 R' B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "4218496:2",
+      "result_id": 4218496,
+      "attempt_number": 2,
+      "reco_id": 8528,
+      "raw_alg": "z2 // inspection\nU' B r' U' L R' U R U' r' B // FB\nr U' r U' R U r' U' r // SS\nU r U' r' R U r' // SP\nU2 r U' r2' D' r U r' D r2 U r' // CMLL\nU' M U M U' M' U2 M' U' // EOLRb\nM' U2' M U2' M2' // EP",
+      "raw_setup": "F R B2 F D2 U2 L2 F U2 B L D B' R' D L2 U' L B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "4218496:3",
+      "result_id": 4218496,
+      "attempt_number": 3,
+      "reco_id": 8529,
+      "raw_alg": "// inspection\nU r' U D' R' U2' r' B // FB\nU' R U r R U' R' U R U R' // SS\nU M' U R' U2' r // SP\nU' R' F R U F U' R U R' U' F' // CMLL\nM2' U' M' U' M U' M U2' M' U' // EOLRb\nM U2' M U2' M2' // EP",
+      "raw_setup": "F' B' R' F2 U2 L D F2 D2 L' D2 R F2 L' B2 D' R2 F L2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "4218496:5",
+      "result_id": 4218496,
+      "attempt_number": 5,
+      "reco_id": 8531,
+      "raw_alg": "z2 // inspection\nU R' F R U M' B' // FB\nU R2 U2' R' U' R2 // SS\nU' R' U' R U R' U' R U R' // SP\nF R U R' U' R U R' U' F' // CMLL\nU2' M' U' M' U' M U M' U2' M U2' M' U' M2' U // EOLRb\nM' U2' M2' U2' M' // EP",
+      "raw_setup": "B2 R2 L' F' U' D' F2 R F' L' D F2 R2 B2 D2 B2 U' R2 L'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "467563:2",
+      "result_id": 467563,
+      "attempt_number": 2,
+      "reco_id": 802,
+      "raw_alg": "x2 // inspection\n(U D') F' U x' U2 F' U l' // FB\nR' U r U R U' R2 U' M U' r' // SS\nr' U2' M' U' r // SP\nR U' L' U R' U' L // CMLL\nM' U M // EOLR\nU M2' U M2' // EP",
+      "raw_setup": "D2 L2 F' U2 L2 F' D2 L2 F L' R' D' B' D2 R' F U' R B F",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "467563:3",
+      "result_id": 467563,
+      "attempt_number": 3,
+      "reco_id": 803,
+      "raw_alg": "x2 y // inspection\nD' R' U' R2 U R' U F' U r' U' l U' x // FB\nr' U' R' U R' U M' U2 R U R' // SS\nU' M2' U2 R' U r // SP\nU x' R U R' D R U' R U' R2' D' R U l' // CMLL\nM' U M U' M' U M' U' M2' U // EOLR\nM' U2 M2' U2 M // EP",
+      "raw_setup": "F2 U F R' B' U' R L' F2 D' L' U2 R U2 B2 L2 F2 D2 L' B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "467563:4",
+      "result_id": 467563,
+      "attempt_number": 4,
+      "reco_id": 804,
+      "raw_alg": "z' y' // inspection\nM' u U2' M F U M' U' M B // FB\nR U' R' U R U' R' // SS\nU' M2' U2 R' U r // SP\nU U' U' F R U R' U' F' // CMLL\nU' M' U M' U2 M' U M' // EOLR\nU M' U2 M U M2' U M U2 M // EP",
+      "raw_setup": "D' B2 L2 U B2 L2 D B D2 U2 L D' U' B R U' F' R' D",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "467563:5",
+      "result_id": 467563,
+      "attempt_number": 5,
+      "reco_id": 805,
+      "raw_alg": "y x' // inspection\nD' R' U x' D' l' B' // FB\nr U' R2 M' U' r' U R // SS\nU' R U' r' U2 r U R' // SP\nU' R U2' R' U2 R' F R2 U R' U' F' // CMLL\nM2' U (F B') R2 (F' B) U M' U M' U2 M' U' M // EOLR\nU' M U2 M U2 // EP",
+      "raw_setup": "F2 R2 B2 L D2 B L2 D' L U2 R' F' B' L2 B R2 F' R2 D2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "4790393:4",
+      "result_id": 4790393,
+      "attempt_number": 4,
+      "reco_id": 9106,
+      "raw_alg": "x' // inspection\nU' R F2 D R B // FB\nU R U r M' U r' U R2 // SS\nU' R' U' R U R' U2 R U' R' // SP\nU' U R' F R U F U' R U R' U' F' // CMLL\nU' M U M' U2' M' U' M U' M2' U' // EOLRb\nU2' M U2' M' // EP",
+      "raw_setup": "F L B2 F2 L D2 L D2 F2 R B2 R U' B' R D' U' F' U2 L",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "4790393:5",
+      "result_id": 4790393,
+      "attempt_number": 5,
+      "reco_id": 9107,
+      "raw_alg": "x' z2 // inspection\nU' D' U' r' U R' F U' M2' U' R B' // FB\nU' R2' U' R' U' R // SS\nU r U r' // SP\nU' U R' U' R U' R' U R' F R F' U R // CMLL\nM U' M' M U' M' U' M2' U // EOLRb\nM U2' M U2' M2' // EP",
+      "raw_setup": "B2 U' R2 L2 F' B' L U R' U2 L2 F R2 F2 U2 B' L2 U F'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "510701:3",
+      "result_id": 510701,
+      "attempt_number": 3,
+      "reco_id": 924,
+      "raw_alg": "y2 x // inspection\nU M' R' U' x M' U M U2 F' // FB\nM' U M U' M U2 M2' U R' U' R' // SS\nM2' R' U R // SP\nR U' L' U R' U' L // CMLL\nU2 M' U M' M U M' U' // EOLR\nM2' U2 M' U2 M // EP",
+      "raw_setup": "U' B2 D B2 F' U' L2 R' U' L2 B2 U' B' U' R' D F2 U",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220135:1",
+      "result_id": 5220135,
+      "attempt_number": 1,
+      "reco_id": 9353,
+      "raw_alg": "x // inspection\nR' F' R r' B' U2' R' U' R2' F // FB\nU r2' R U' R2' U R // SS\nR U2' R U R' U R U2' R2' // SP\nR U2' R' U' R U R' U2' R' F R F' // CMLL\nU2' M' U' M U' M' U' M' U M' U2' M U // EOLR\nM' U2' M' U2' // EP",
+      "raw_setup": "R2 D R' B2 R2 U L2 B2 D U R2 D2 R' F2 D' B' U F L B'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220135:3",
+      "result_id": 5220135,
+      "attempt_number": 3,
+      "reco_id": 9355,
+      "raw_alg": "y // inspection\nF' U2' R' F U M' r U' r' B // FB\nr U r U r2' R' U' R // SS\nF' U' F // SP\nU R U R' U R U2' r' // CMLL\nU M' U M U' M' M' U // EOLR\nM U2' M // EP",
+      "raw_setup": "F2 B' U' R2 U' R F' R' U' F2 R' F2 U2 R' F2 L' F2 R2 F'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220135:4",
+      "result_id": 5220135,
+      "attempt_number": 4,
+      "reco_id": 9356,
+      "raw_alg": "y // inspection\nL U2 L D' R' U' R2' F // FB\nU2' R2' U' R' U' R U' R' U R R' U R2 U' U' R' U2' R U' R' // SS\nU' R' U R U2' M r' U' R // SP\nU' R' F' U' F U' R U R' U R // CMLL\nM' U' M U2' M' M M' U' M' U M' U2 M' U' M' M' U // EOLR\nM' U2 M' U2 M' M' U2 // EP",
+      "raw_setup": "R B D L2 U L2 F2 D U F L' D2 B' L2 B2 D F2 U B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220135:5",
+      "result_id": 5220135,
+      "attempt_number": 5,
+      "reco_id": 9357,
+      "raw_alg": "x z' // inspection\nU D' D' F' r' U' R' r' B' // FB\nU r2 U R U R' U' R U R' // SS\nR' U R r' U r U2' r' U' R // SP\nU' U R U2' R' U' R U R' U' R U R' U' R U' R' // CMLL\nU2' M' U' M' U' M U2' M' U // EOLR",
+      "raw_setup": "F' D2 R2 U2 F2 D' L2 R2 B' L F' L2 R2 U R2 B' R F2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220219:1",
+      "result_id": 5220219,
+      "attempt_number": 1,
+      "reco_id": 9246,
+      "raw_alg": "x2 // inspection\nB D r' D' D' U' R2 D' // FB\nr' U r U r2' U M U2' M' M' R' U R // SS\nr U' r' U R U U' U' M U r' // SP\nR' F' U' F U' R U R' U R // CMLL\nU M' M' U' M' U M // EOLR\nU M' M' U M' U2' M' M' U2' M' // EP",
+      "raw_setup": "U' F2 U' L2 D L2 U' B2 D L2 F L' R' B' F2 D2 L D F2 U2 L' U2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220219:2",
+      "result_id": 5220219,
+      "attempt_number": 2,
+      "reco_id": 9247,
+      "raw_alg": "x' // inspection\nD' D' F' R U R' U2' R U' B // FB\nU2' R' U R U' R' U R // SS\nR U R' U' R U2' R' U' R U r' // SP\nU' F R U' R' U' R U R' F' r U R' U' r' F R F' // CMLL\nM' U' M U' M' U' M' U M' U2' M U' // EOLRb\nM' U2' M' U2' // EP",
+      "raw_setup": "U' R2 B2 U L2 U2 R2 D' F2 D R U' R U L' D' U F2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220219:3",
+      "result_id": 5220219,
+      "attempt_number": 3,
+      "reco_id": 9248,
+      "raw_alg": "x // inspection\nF' r U r' U D' U2' R2' U' R U' B // FB\nr r' U' M' U R U2' R' U R U' R' // SS\nU M U M' M' R' U r // SP\nU2' R' F' U' F U' R U R' U R // CMLL\nM U M U' M U2' M' U // EOLRb\nM' U2' M' M' U2' M // EP",
+      "raw_setup": "D' U B2 F2 D F2 R2 U' L2 U' R' F L2 U' F2 D B R' D' B' L",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220219:4",
+      "result_id": 5220219,
+      "attempt_number": 4,
+      "reco_id": 9249,
+      "raw_alg": "y' // inspection\nD U R' D' U r2 B // FB\nU M' M' r U r' U' U2' r U r' U M' U2' r' U' R // SS\nM' U' M U2' R U' R' // SP\nU' R2' D' R U2 R' D R U2 R // CMLL\nU' M' U' M' U' M U2' M U // EOLRb\nM U2' M U2' M' M' // EP",
+      "raw_setup": "D2 U' R2 B2 L2 B2 D B2 L2 D2 B' U' R' U2 F2 D' B F D B' R",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220221:2",
+      "result_id": 5220221,
+      "attempt_number": 2,
+      "reco_id": 9212,
+      "raw_alg": "x' // inspection\nD2 F' U' R U R' U2 R U2' B // FB\nU' R U' R' U' R U R' U2 R U' R' // SS\nU R' U R U' R' U r // SP\nU' U' R' U' F' U R R' F R // CMLLEO\nU M2' U M2' U // EOLRb\nM' U2 M2' U2 M // EP",
+      "raw_setup": "U' R2 B2 U L2 U2 R2 D' F2 D R U' R U L' D' U F2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220221:4",
+      "result_id": 5220221,
+      "attempt_number": 4,
+      "reco_id": 9214,
+      "raw_alg": "U' R' r' F r U' D' R U R' F // FB\nU' R2 U R' r' U' r2 // SS\nU r' U' M' r U r' // SP\nM' U' U' U' F R U' R' U R U2 R' U' F' // CMLL\nM U' M' U M U2 M U' // EOLRb\nM' U2 M2' U2 M' // EP",
+      "raw_setup": "D2 U' R2 B2 L2 B2 D B2 L2 D2 B' U' R' U2 F2 D' B F D B' R",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5220221:5",
+      "result_id": 5220221,
+      "attempt_number": 5,
+      "reco_id": 9215,
+      "raw_alg": "y2 // inspection\nD U B r U' r' R U2 F' // FB\nU' U M' U r2 R U' R' U' R U R' M' R' U R // SS\nU' R U' r' U2 M' r U r' // SP\nU' U' U' r U' r2' D' r U2 r' D r2 U r' // CMLL\nM' U2 M' U2 M' U' M' U M' U2 M' // EOLR\nU' M2' U U2 M' U2 M' // EP",
+      "raw_setup": "D L2 R2 D' L2 D2 F2 L2 U R2 B D' L U' B' D' L B' F2 D' U'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5300160:1",
+      "result_id": 5300160,
+      "attempt_number": 1,
+      "reco_id": 9363,
+      "raw_alg": "x2 y // inspection\nR' U' F D' R' D' // FB\nR U2 R U2' r R' M' U2 U' R R' U R U' R' // SS\nM' U M' U2 r' U' r // SP\nU' F R2 D R' U R D' R2' U' F' // CMLL\nU' M' U M U M' U' M U' M2' U' // EOLR\nM2' U2 M2' // EP",
+      "raw_setup": "F2 R2 U F2 R2 D' U L2 D R D2 U B' L U2 B2 F' U L2 U2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5300160:3",
+      "result_id": 5300160,
+      "attempt_number": 3,
+      "reco_id": 9365,
+      "raw_alg": "x' z // inspection\nR' U' R F' U R2 B // FB\nU R2' U r' U' r U2 r' U' R // SS\nU' r R' U R U' R' U R U' r' // SP\nU U R U2' R2' F R F' U2 R' F R F' // CMLL\nM' U M U' M' M U2 M' U' M U2 M' U2 M U' M2' U // EOLR",
+      "raw_setup": "L U' R' F2 L2 D2 R2 B D2 L2 F L' F' D' B' F2 R F' U'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5300160:4",
+      "result_id": 5300160,
+      "attempt_number": 4,
+      "reco_id": 9366,
+      "raw_alg": "x2 y // inspection\nD' B U2' R' U2 // FB\nx R2' U' R U R2' U' R // SS\nU R U' r' // SP\nU U' R R' f S' R U' R' U R U2' R' U' R U R' U' F' // CMLL\nU M U2 M' U' M2' U' // EOLR\nM' U2 M' U2 // EP",
+      "raw_setup": "B2 D2 B' U2 B R2 F' U2 R B F' L R2 B' D' B' D' B2 U",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "5300160:5",
+      "result_id": 5300160,
+      "attempt_number": 5,
+      "reco_id": 9367,
+      "raw_alg": "x // inspection\nf' R' U2' R2 D U F // FB\nR' U R' U2' R U' R U R' // SS\nU2 R' U R U2 M' R' U' R // SP\nU2 R U2' R' U2 R' F R F' // CMLL\nM' U' M U M' U' // EOLR\nM2' U2 M' // EP",
+      "raw_setup": "D2 B' L2 R2 U2 F L2 B F L' D U L' D2 F2 L2 B' U2 B'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "533419:1",
+      "result_id": 533419,
+      "attempt_number": 1,
+      "reco_id": 2026,
+      "raw_alg": "y x // inspection\nD' L' U2 l U' l U' // FB\nx U R' U' R r' U2 M' U' R' // SS\nU' r' U' r // SP\nU2 U L' U' L U r U' r' F // CMLL\nM' U M U' M' U M U' r M' R' U U' U' // EOLR\nr M' R' U2 M' U2 M' // EP",
+      "raw_setup": "D U' L2 D' F2 D' L' U R D' B2 L D2 B2 D' F' L R'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "533419:3",
+      "result_id": 533419,
+      "attempt_number": 3,
+      "reco_id": 2028,
+      "raw_alg": "x // inspection\nu R r u' U F2 U F' // FB\nU' r U R U R2 U' U' R' r' U' R2 // SS\nU' r R' U2 r M' R' U' R' // SP\nU R' U L' U2 R U' r' U2 (r L) // CMLL\nM' U' M U M' U R r2' // EOLR\nR U2 M' U2 // EP",
+      "raw_setup": "F2 R2 U2 F2 U L2 D L2 D' F D2 U L2 B F2 D' L F2 U F",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "611723:1",
+      "result_id": 611723,
+      "attempt_number": 1,
+      "reco_id": 2112,
+      "raw_alg": "x // inspection\nU R' l' U L2 U' // FB\n(l' R') U r U R U R2 r' U2 R' U R // SS\nU2 R U' R' U2 R U' r' // SP\nU' U' U L L2' U2 L U2 r U' r' F // CMLL\nM' U' M U M' U M // EOLR\nM' M' U2 M' U2 M' U M2' U2 M2' // EP",
+      "raw_setup": "B2 R2 D2 B' L D' F2 D' F2 L F' U B L F' D2 U2 R F2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "611723:2",
+      "result_id": 611723,
+      "attempt_number": 2,
+      "reco_id": 2113,
+      "raw_alg": "x2 y // inspection\nR R2' U U R U' (U' D') L U l U' x // FB\nU' R2' U R' U' R' r' U' // SS\nR2' R R' U r // SP\nU U L' U' L U r U' r' F // CMLL\nU' M' U M' U2 M' U M' // EOLR\nR r' U2 l L' U2 // EP",
+      "raw_setup": "U' B2 D R2 U' F D' R2 U B' F2 L' D2 R B2 F' D2 B2 R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "611723:4",
+      "result_id": 611723,
+      "attempt_number": 4,
+      "reco_id": 2115,
+      "raw_alg": "y' // inspection\nl F U2 x R U' U' F2' // FB\nR' M' U2 M' M' U' // SB\nR2 U' M' R' U2 R U' R' // SP\nU' U' R U2' R' U2 R' F R2 U R' U' F' // CMLL\nr M' R' U M' U' U U M' // EOLR\nM' U2 M U' r M' R' U' r M' R' U2 M2' // EP",
+      "raw_setup": "U' F2 U F2 L2 U' L2 U B' F2 R' D2 B' D2 B D' F U2 R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "611723:5",
+      "result_id": 611723,
+      "attempt_number": 5,
+      "reco_id": 2116,
+      "raw_alg": "y' x' // inspection\nM' u R2 U' M' U' (M R) x' U // FB\nx U2 M' U2 r' U' // SB\nR2 U' R' U' R U R' U2 R U' R' // SP\nU R' U R' R U R' D' R U2 R' D R2 // CMLL\nU M' U2 M' U2 M U M' U2 M2' U' // EOLR\nM' U2 M' U U // EP",
+      "raw_setup": "D2 U2 R2 F' R2 U F' R2 B U2 R' F' L D2 B2 R B U' F2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6143482:1",
+      "result_id": 6143482,
+      "attempt_number": 1,
+      "reco_id": 10499,
+      "raw_alg": "y // inspection\nD F D D R U' B2 // FB\nR' U' R U2' R' U' R // SS\nR U' R' U R U' R' // SP\nU U' F R2 D R' U R D' R2' U' F' // CMLL\nU' M U' M' U' M U' M' U M2' U // EOLRb\nM' U2' M2' U2' M' // EP",
+      "raw_setup": "U' D2 F2 U' R2 B2 L2 B2 D L' D2 F U B' R2 F U2 B' U B'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6143482:2",
+      "result_id": 6143482,
+      "attempt_number": 2,
+      "reco_id": 10500,
+      "raw_alg": "x y2 // inspection\nR2 D' U R U' r2 B // FB\nU R U R r' R2 U' R' // SS\nU' M' U2' r' U' R // SP\nR U R' F' R U R' U' R' F R2 U' R' // CMLL\nM' U2' M' U2' M' U' M' M2' U' M' U2' M U' // EOLRb\nM2' U2' M2' U2' // EP",
+      "raw_setup": "B2 U2 F2 D2 R2 L2 D2 B R' L' U L U B R' U' R U F' D'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6143482:3",
+      "result_id": 6143482,
+      "attempt_number": 3,
+      "reco_id": 10501,
+      "raw_alg": "y' // inspection\nU' R' U2' B2' r' R U R' F // FB\nU R U' R' U' R U' R' U R U' R2' // SS\nU' r U M r' U' R // SP\nU' U' R U2' R' U2' R' F R F' // CMLL\nU2' M U' M' U M' U2' M' // EOLR\nU' U2' U2 M2' U' // EP",
+      "raw_setup": "D R2 F2 U2 R2 U' F2 U B2 U B R' F' L2 D' R2 F' U2 R F2 L U",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6143482:5",
+      "result_id": 6143482,
+      "attempt_number": 5,
+      "reco_id": 10503,
+      "raw_alg": "z2 // inspection\nU2 r' U2' F2 R2 U' R B' // FB\nR U2' M2' U2' R U' R' // SS\nU' M2' U' r' U R // SP\nU' U' U' R' U2 R' D' R U2 R' D R2 // CMLL\nU' M U M U M2' U // EOLRb\nM U2' M // EP",
+      "raw_setup": "U' R2 U B2 D' F2 L2 U B2 D' B' L2 D2 F L' D2 B F' U' B",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6170102:1",
+      "result_id": 6170102,
+      "attempt_number": 1,
+      "reco_id": 11795,
+      "raw_alg": "y F2 U2' B R2' U F' // FB\nR' U2 M' r U // SS\nR' U' M2 U' r' U r // SB\nR' U' R U' R' U2 R // CMLL\nU' M' U' U2' M' U M U' M // EOLRb\nU' M2' U2' M' U2' M // EP",
+      "raw_setup": "R2 F' L2 B2 D2 F R2 F' D2 R2 F' D R' D B2 F' R B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6170102:5",
+      "result_id": 6170102,
+      "attempt_number": 5,
+      "reco_id": 11799,
+      "raw_alg": "x2 y' // inspection\nD' U2' R U2' B' U2' F' // FB\nU' R' U' R U' r' U // SS\nR U2' R U' r' // SB\nU' U R' U' R U' R' U2' R2 U R' U R U2' r' // CMLL\nU2' M' U' M' M U' M' U' M' U' M2' // EOLRb\nU' M U2' M' U2' M2' U2' // EP",
+      "raw_setup": "U2 F' D L2 U R2 B2 L' F2 U2 F2 D2 R2 U' L2 D R2 D' F",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6170204:3",
+      "result_id": 6170204,
+      "attempt_number": 3,
+      "reco_id": 11798,
+      "raw_alg": "x2 // inspection\nD L D2' R D // FB\nr' U' R2 U' R' U R U2' R' U r // SS\nU' U2' M2' U2 R U' R' // SB\nU' U' R U2' R' U' R U R' U2' R' F R F' // CMLL\nM M2' U' M U' M' U' M U2' M' U M2' // EOLRb\nU' M U2' M U2' M' U2' M U2 M' // EP",
+      "raw_setup": "L2 U' B2 U F2 D2 B2 D F R F2 L' B L F' L B R2 U'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6734619:1",
+      "result_id": 6734619,
+      "attempt_number": 1,
+      "reco_id": 11445,
+      "raw_alg": "x2 y' // inspection\nr U r' B2' R U R' D' // FB\nr U' r U' U2 M' U2 R U R' R' U R U R U' M' U R' // SS\nR' U2' R U' R' U' R // SB\nR' U' F U R U' R' F' R // CMLL\nU2 M U' M' U2 M U M' U2' M2' // EOLR\nU' M' U2 M2' U2 M' U2 // EP",
+      "raw_setup": "U' F2 R' U2 L' F2 L' B2 R D2 B2 U' R2 F' L' B' R U' B",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6734619:4",
+      "result_id": 6734619,
+      "attempt_number": 4,
+      "reco_id": 11448,
+      "raw_alg": "x z // inspection\nD F U' D' F U F2 // FB\nU' r R U R' U2' R U R' U' R2 // SS\nU' R' U2 R U R' // SB\nU' U R U2' R' U2' R' F R F' // CMLL\nM' U' M' U2 M' U M U M' U M U' M2' // EOLR\nU' M U2 M' U2 M2' // EP",
+      "raw_setup": "U F2 U2 R2 U R2 U2 F U' B D L2 D F' L' F' R D'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "6781597:5",
+      "result_id": 6781597,
+      "attempt_number": 5,
+      "reco_id": 11482,
+      "raw_alg": "y x // inspection\nU R' U' B2 // FB\nr' r U r' // SS\nU R' U' R U2' R' U' R // SP\nU R' D R U' R U' R' U R' D' R // CMLL\nM' U M' U' M U' M' U2' M' U M // LSE",
+      "raw_setup": "R' F' L' F' L2 F R B U L' B2 U2 F2 L2 D' F2 R2 U2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7130321:2",
+      "result_id": 7130321,
+      "attempt_number": 2,
+      "reco_id": 11913,
+      "raw_alg": "M' M' FB' F M' M' R' F' // FBDR\nU R' U' R U' R' U // SS\nR U R U' r' U2' r U R' // SP\nU R' U' R U' R' U2' R // CMLL\nU2' M' U M' U M U' M' U' M' M' // EOLRb\nU M' U2' M // EP",
+      "raw_setup": "U' B' D2 U2 L2 F' L2 B D2 B' R U F2 L' D B' D L R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7130321:5",
+      "result_id": 7130321,
+      "attempt_number": 5,
+      "reco_id": 11916,
+      "raw_alg": "F' r U' r R2' D // FB\nR2 U' M U2' M' U2' R' U // SS\nR2 U R' M' U' U' R U' r' // SB\nU2' R' F2 D R2 U R2' D' F2 R // CMLL\nU2' U M' U M U2 M' U' M M' U M U' M' U M' U2' M' M' // EOLRb\nU M' U' M' U' U M U' M' M' U2' M' // EP ",
+      "raw_setup": "L2 D2 U' F2 D U2 R2 F2 L' U2 B L R2 U2 F D' F' D R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247265:1",
+      "result_id": 7247265,
+      "attempt_number": 1,
+      "reco_id": 12792,
+      "raw_alg": "y2 z' // inspection\nU2 F' U F' // pseudo FB\nM U R2 U' M' U R' U R U' R' U // SS\nR U M2' U' r U' R' M u M' u' // SP/fix centers\nU F R' F' R U2 R U' R' U R U2' R' // CMLL\nU M' U' M' U' M' U2 M' // EOLRb\nU' M U2 M' U2 M2' // EP",
+      "raw_setup": "B2 D2 F' R' L B R' D' R2 F' L2 B L2 D2 F2 D2 B",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247265:2",
+      "result_id": 7247265,
+      "attempt_number": 2,
+      "reco_id": 12793,
+      "raw_alg": "z2 // inspection\nU r U r' D' r B2 // FB\nU' r2' U' U' M' U2 r' U // SS\nr U M U2 M' r U r' // SP\nU U F R U R' U' R U R' U' F' // CMLL\nM U2 M' U2 M' U' M U2 M2' // EOLRb\nU' M2' U2 M' U M' M U M' // EP",
+      "raw_setup": "D L' U' D2 F' R' F' B' R' D U2 F2 L F2 D2 R2 F2 R' D",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247265:4",
+      "result_id": 7247265,
+      "attempt_number": 4,
+      "reco_id": 12795,
+      "raw_alg": "x' y // inspection\nM U' M2' B // pseudo FB\nU R U' U R U' R U R' U R U' // SS\nR' U' R' U M U' R u' M' u // SP/fix centers\nU R2' D' R U' R' D R U' R U R' U R // CMLL\nM U M' U M U M' U' M2' // EOLRb\nU' M U2 M U // EP",
+      "raw_setup": "U' L D L' U2 R' B' R L B2 R U2 L2 D2 B L2 B' R2 B",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247335:3",
+      "result_id": 7247335,
+      "attempt_number": 3,
+      "reco_id": 12799,
+      "raw_alg": "y x // inspection\nF R' F U' D' U' R' B' U' B // FB\nU r2 R' U' U' R U' R' U // SS\nR U' r U' r' U2 M' r U r' // SP\nU' U R' U' R U' R' U2' R2 U R' U R U' U' R' // CMLL\nU2 M' M U' M' M M' U M U M' U2 M U' M2' // EOLRb\nU M2' U2 M' U M' M U M' // EP",
+      "raw_setup": "F2 L2 U2 R2 F2 L' D2 U2 F2 D2 U L U2 B L' F D B2 U L",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247335:4",
+      "result_id": 7247335,
+      "attempt_number": 4,
+      "reco_id": 12800,
+      "raw_alg": "y // inspection\nD2 U F r B // FB\nU' M' U // SS\nr r' r M' U R U2' R' U R U' R' // SP\nU2' U2 R U R' U R' F F' F R F' R U2' r' // CMLL\nU' M' U' M' U2 M U' M2' // EOLRb\nU' M2' // EP",
+      "raw_setup": "B2 R' B R' L B2 R F2 D' L' D2 R2 U2 F2 L2 B2 R2 F",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247335:5",
+      "result_id": 7247335,
+      "attempt_number": 5,
+      "reco_id": 12801,
+      "raw_alg": "z2 // inspection\nF R F r B' // FB\nR U r U r2 M U' R' U' R U' R' U // SS\nR U R U M' U R' // SP\nM' U M' U U M U' M U' M' U' M' U' M' M2' M // EOLRb\nM' M U' M2' // EP",
+      "raw_setup": "B2 L R2 F2 D2 L2 F' L2 D2 L2 U' B2 U' F' L' R2 D' U' R2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247423:1",
+      "result_id": 7247423,
+      "attempt_number": 1,
+      "reco_id": 12802,
+      "raw_alg": "x2 y // inspection\nx' R2 U L D' R U2' R U r' F' // FB\nU2 r R U' R U' R' U R U' // SS\nR' U R' R U R' U' R U R' U' r // SP\nU' R U2' R2' F R F' U2 R' F R F' // CMLL\nM' U2 M' // EOLRb\nU M U2 M' U2 // EP",
+      "raw_setup": "L D2 F' R2 B' F' D2 F' U2 L2 R D U2 B2 D L2 F D2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247423:2",
+      "result_id": 7247423,
+      "attempt_number": 2,
+      "reco_id": 12803,
+      "raw_alg": "y' x // inspection\nF2 r2 B R' U2 R F' // FBDR\nU' R U' R' U' R' U' // SS\nR U U R U' M' U R' // SP\nU F F' U' r U' r2' D' r U' r' D r2 U r' // CMLL\nM2 U M U' M' U M' U2 M U M2' // EOLRb\nU M U2 M' // EP",
+      "raw_setup": "B L2 D L D L F U' F2 D2 F U2 L2 F U2 F' L2 U2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247448:2",
+      "result_id": 7247448,
+      "attempt_number": 2,
+      "reco_id": 12808,
+      "raw_alg": "y2 x // inspection\nD2 F2 U2' B2' r' F // FB\nr' U' r R R U M' U' // SS\nR'M' U' R' U' R U R' U' R // SP\nU' R' U' R U' R' U R' D' R U R' D r2 // CMLL\nU M U M' U M U' M U M2' // EOLRb\nU M2' U2 M2' // EP",
+      "raw_setup": "U' R2 D2 U2 R' B F L2 U' F R' U L' U2 B D",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247448:3",
+      "result_id": 7247448,
+      "attempt_number": 3,
+      "reco_id": 12809,
+      "raw_alg": "y2 z' // inspection\nB2 R' U R' D' // pseudo FB\nR U R2 R' R U' r' U' // SS\nR U' r U' r' U2 M' r U R' u' M' u // SP/fix centers\nU' R U R' F' R U R' U' R' F R R U' R' // CMLL\nU' M M' M U M' U2 M U2 M // EOLRb\nU M2' U2 M2' // EP",
+      "raw_setup": "B' L2 B2 F2 U' B2 R2 U2 R B D L B2 D U L U B",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7247448:5",
+      "result_id": 7247448,
+      "attempt_number": 5,
+      "reco_id": 12811,
+      "raw_alg": "y x' // inspection\nU2' B2 U' B M2' U' F // FB\nR' M' U' R' U R U2 R U' // SS\nR' R' U R U R' U R U' R' U R // SP\nU U' R' U2 R' D' R U2 R' D R2 // CMLL\nU M' U M' U2 M U2 M' // EOLRb\nU' M' U2 M2' U2 M // EP",
+      "raw_setup": "F D L' D2 F2 R' F' R2 U' L2 F2 B2 D2 F2 L2 F' L' B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7275444:2",
+      "result_id": 7275444,
+      "attempt_number": 2,
+      "reco_id": 11952,
+      "raw_alg": "x z2 // inspection\nR' F2 U' r U' U' r2' D' // FB\nR' R U r' U' M' r U r' // SS\nU' R' U r M' U r' U r // SP\nU' r' D' r U r' D r U' r U r' // CMLL\nU' U' M U M' U M2' // LSE",
+      "raw_setup": "D R2 D2 L2 U' L2 F2 D2 L2 U' B L' B D' U' L' D2 B2 R2 F'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7275444:3",
+      "result_id": 7275444,
+      "attempt_number": 3,
+      "reco_id": 11953,
+      "raw_alg": "x' // inspection\nD' U L' U2 L U' r B // FB\nU' r' R' R U' R' // SS\nU M' U2 M r' U' R // SP\nU U' U' R2 D R' U2 R D' R' U2 r' // CMLL\nU2 M' U2 M U M U' M2' U M2' U2 // LSE",
+      "raw_setup": "R2 U2 F2 R2 D B2 F2 U B2 L F2 D L' U F' D B L' R B2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7275458:1",
+      "result_id": 7275458,
+      "attempt_number": 1,
+      "reco_id": 11956,
+      "raw_alg": "y2 // inspection\nr R U F' R' U' R D // FB\nr2 U r U r2' U U' M U M' r U r2' // SS\nU' r U2' M r' U' R // SP\nU' U' r U' r' F R' F' U2' R U R' U R // CMLL\nM' U M U M' r' M R U2' M // EOLRb\nU M' U2' M' M' U2' M U2' // EP",
+      "raw_setup": "R2 D' R2 U' F2 U' R2 U F2 D R' U2 L2 B R2 D R2 F2 U2 R",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7275458:2",
+      "result_id": 7275458,
+      "attempt_number": 2,
+      "reco_id": 11957,
+      "raw_alg": "x z2 // inspection\nL' U2 L' D R2 U' D R2' D' // FB\nR R U2' R' r' U R // SS\nR U R' U R U R' // SP\nU' R U2' R2' F R F' R U2' R' // CMLL\nU2' M' U' M U' U M U M' U M' U M U M' M' U // LSE",
+      "raw_setup": "D R2 D2 L2 U' L2 F2 D2 L2 U' B L' B D' U' L' D2 B2 R2 F'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7275458:4",
+      "result_id": 7275458,
+      "attempt_number": 4,
+      "reco_id": 11959,
+      "raw_alg": "z2 y // inspection\nU' R' R U' R2' B' r' R U M' M' U2' r' F // FB\nR r U' r' // SS\nr' U' r U r' U' r // flipped SP\nU R U' L' U R' U' l M U M U M R' U M U2' M' M' U r // CMLL/fix SP\nU' M' U' M' U' M U' M' U2' M' U2' M U' M' M' // EOFB\nU M U2' M' U2' M' M' U' // EP",
+      "raw_setup": "B2 U2 F2 D B2 U F2 D R2 D L U2 L' F2 D L D2 R' B'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7275458:5",
+      "result_id": 7275458,
+      "attempt_number": 5,
+      "reco_id": 11960,
+      "raw_alg": "y' // inspection\nF' R D' R2 D r' U r' R U2' r F' // FB\nU2' R2' U R' U' R2 U2' R' // SS\nR' U U' R U' R' U R U' R' U r // SP\nR2' D' R U2 R' D R U2 R // CMLL\nU' M' U' M U2' M' U' M U // EOLRb\nM' U2' M' U2' M' M' // EP",
+      "raw_setup": "B2 L2 U B2 L2 D' U2 R2 D' F' D R F D' F D R U R' B2 U'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7996680:1",
+      "result_id": 7996680,
+      "attempt_number": 1,
+      "reco_id": 12838,
+      "raw_alg": "x y2 // inspection\nM' U D R' F // FB\nr' U r2 U' R U' R' U R U' R' // SS\nU2 R' U2' R U' R' U r // SP\nR' U' F U R U' R' F' R // CMLL\nU' M U M' U2 M' U2 M U' M2' // EOLR\nU M' U2 M // EP",
+      "raw_setup": "D L' B' R' D2 R2 B2 U' B2 U B2 U' B' F' R D2 B U' B'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7996680:3",
+      "result_id": 7996680,
+      "attempt_number": 3,
+      "reco_id": 12840,
+      "raw_alg": "x' z // inspection\nM u' r' U2 r' U' F // FB\nR' U' r' U' r // SS\nM' U' R U2' R' U R U' r' // SP\nU U' R U2' R' F R' F' R U' R U' R' // CMLL\nU2 M U M' U M2' // EOLR\nU' M' U2 M U2 // EP",
+      "raw_setup": "R2 B U2 B' L2 R2 B' R2 B L F L D L D2 B' F' U'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7996680:4",
+      "result_id": 7996680,
+      "attempt_number": 4,
+      "reco_id": 12841,
+      "raw_alg": "y2 // inspection\nU R U2' B2' U2' r2' R' F' // FB\nR' U' R U2 R U' R' // SS\nU' M' U M r' U' r // SP\nL' U2 L U2 L F' L' F // CMLL\nU M' U M' U M U' M' U' M2' // EOLR\nU M' U2 M' U2 M2' U2 // EP",
+      "raw_setup": "D' F' D B2 L2 U' F2 R2 B2 L' F' L2 U R2 F' L2 D' U2",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_ROUTE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    },
+    {
+      "attempt_key": "7996680:5",
+      "result_id": 7996680,
+      "attempt_number": 5,
+      "reco_id": 12842,
+      "raw_alg": "x' z' // inspection\nR' F R F2 U' D' U' R U' B // FB\nR U' R' U R U' R' U r // SS\nM' U' R U R' U R U' r' // SP\nU r' D' r U r' D r U' r U r' // CMLL\nM U U' M' M' U M U M' U M U' M U2 M' U M' M' // EOLR\nU' R r' U2 M U2 M2' // EP",
+      "raw_setup": "D2 B2 D' L2 U B R' B2 R2 D2 B' U2 L2 D2 B' D L2 U2 L'",
+      "method": "Roux",
+      "route_source_status": "RAW_ALG_CUBING_LINK",
+      "source_count": 1,
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json"
+      ],
+      "route_conflict": false,
+      "used_by_r111": true
+    }
+  ],
+  "human_observations": 0,
+  "fresh_network_read": false,
+  "claim_boundary": "Availability/provenance census only. This does not establish G2 geometry admissibility or scientific authority."
+}
