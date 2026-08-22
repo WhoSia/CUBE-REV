@@ -1,0 +1,53 @@
+{
+  "schema_version": "CR0105R110-ROUX-FRAME-FAILURE-DIAGNOSTIC-1",
+  "status": "POSTHOC_DIAGNOSTIC_ONLY",
+  "authority_changed": false,
+  "gates_changed": false,
+  "rows_n": 96,
+  "clean_n": 92,
+  "distributions": {
+    "fb_exact_full": {
+      "0": 69,
+      "1": 23
+    },
+    "fb_exact_piece": {
+      "0": 69,
+      "1": 22,
+      "2": 1
+    },
+    "fb_orientation_free_full": {
+      "1": 92
+    },
+    "fb_orientation_free_piece": {
+      "1": 87,
+      "2": 2,
+      "3": 2,
+      "4": 1
+    },
+    "fb_best_full": {
+      "0": 33,
+      "1": 28,
+      "2": 8,
+      "5": 23
+    },
+    "fb_best_piece": {
+      "0": 16,
+      "1": 26,
+      "2": 22,
+      "3": 5,
+      "5": 23
+    },
+    "sb_exact_full_blocks": {
+      "0": 71,
+      "1": 20,
+      "3": 1
+    },
+    "sb_orientation_free_full_blocks": {
+      "1": 85,
+      "2": 2,
+      "3": 4,
+      "4": 1
+    }
+  },
+  "human_observations": 0
+}

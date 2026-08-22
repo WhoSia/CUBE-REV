@@ -1,0 +1,28 @@
+name: CR0105R17 State Convention Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-state-engine-smoke2]
+    paths: [cr0105r17/RUN_STATE_CONVENTION]
+permissions:
+  contents: write
+jobs:
+  convention:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Run composition matrix
+        run: node research/0.10.5-r1.7/r17_state_convention_court.mjs | tee /tmp/r17_convention.log
+      - name: Commit diagnostic evidence
+        run: |
+          set -euo pipefail
+          cp /tmp/r17_convention.log research/0.10.5-r1.7/evidence-state-convention/STATE_CONVENTION_LOG.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-state-convention
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 state convention court ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-state-engine-smoke2

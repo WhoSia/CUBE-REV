@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R114-PREEXISTING-COURT-RUN-1",
+  "workflow_run_id": "32540103976",
+  "head_sha": "526a2a78b740bb830565e8bcdc77d0f1a46e4a78",
+  "classifier_exit_code": 0,
+  "score_exit_code": 0,
+  "fresh_authority_eligible": false,
+  "reference_bank_mutated": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-22T00:22:13.721785+00:00"
+}

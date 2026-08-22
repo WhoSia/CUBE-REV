@@ -1,0 +1,147 @@
+{
+  "schema_version": "CR0105R110-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.10 — Method-stratified Future-score Transport, Roux Block-frame Identification & Fresh-vintage Watch Seal",
+  "status": "PASS_LAYERED_TRANSPORT_WITH_ROUX_HOLD_AND_FRESH_DATA_WAIT",
+  "verdict": "PASS_LAYERED_CFOP_ZB_FUTURE_SCORE_TRANSPORT_AUTHORITY; HOLD_ROUX_CENTER_CANONICAL_BLOCK_FRAME; WATCH_PASS_DATA_WAIT_ZERO_NEW_RECO_IDS",
+  "parent": {
+    "r19_final_branch": "cube-rev-0.10.5-r1.9-final-seal",
+    "r19_final_commit": "a876d4fc130d41bb20e6cd7d16abbe927ba0d51f",
+    "r19_status": "PASS_WITH_REPLICATION_READINESS_HOLD"
+  },
+  "napkin": {
+    "artifact": "research/0.10.5-r1.10/NAPKIN_INTENT_AND_PREREGISTRATION.json",
+    "frozen_before_execution": true,
+    "result_dependent_gate_weakening": false,
+    "fresh_network_read_before_local_seal": false
+  },
+  "layered_transport": {
+    "status": "PASS_LAYERED_FUTURE_SCORE_TRANSPORT",
+    "methods": ["CFOP", "ZB"],
+    "r19_metric_reused_without_mask_or_phase_change": true,
+    "roux_reference_contamination": false,
+    "features": 12121,
+    "attempts": 1585,
+    "loo_familywise_attempts": 1585,
+    "nested_familywise_attempts": 1585,
+    "local_fallback_rate": 0.0,
+    "loo_pseudofresh": {
+      "primary_alpha": 0.01,
+      "primary_rate": 0.008832807570977918,
+      "watch_alpha": 0.05,
+      "watch_rate": 0.050473186119873815
+    },
+    "nested_no_test_fold_leak": {
+      "primary_rate": 0.008201892744479496,
+      "watch_rate": 0.0473186119873817,
+      "total_local_fallback_events": 0
+    },
+    "transport": {
+      "crossfit_vs_loo_pearson": 0.9959764283935826,
+      "required_pearson": 0.95,
+      "abs_diff_p50": 0.01116006872243569,
+      "abs_diff_p90": 0.04608268299960794,
+      "abs_diff_p99": 0.12209355902630525,
+      "abs_diff_p99_gate": 0.50,
+      "abs_diff_max": 0.3933320548897403
+    },
+    "method_diagnostics": {
+      "CFOP": {"attempts": 1497, "features": 11595, "transport_correlation": 0.996605921924985},
+      "ZB": {"attempts": 88, "features": 526, "transport_correlation": 0.9881795713019871}
+    },
+    "transport_seal_sha256": "c24337bf750a09c10bdb9e2dc4d71b876dfbd2de57d17eb1e80d4e3eaecab3c2",
+    "authority": "RELEASED_FOR_GENUINELY_FRESH_CFOP_ZB_ATTEMPTS_IN_A_LATER_CONFIRMATORY_VERSION_SUBJECT_TO_FROZEN_FRESH_SAMPLE_GATES"
+  },
+  "roux_block_frame": {
+    "status": "HOLD_ROUX_BLOCK_FRAME_IDENTIFICATION",
+    "structural_geometry": {
+      "ordered_frames": 24,
+      "unordered_axes": 12,
+      "every_block_mask": "3 edges + 2 corners",
+      "structural_checks_passed": true
+    },
+    "manifest_roux_records": 98,
+    "route_source": 98,
+    "state_certified": 92,
+    "ordered_eligible": 92,
+    "ordered_unique": 0,
+    "axis_eligible": 92,
+    "axis_unique": 0,
+    "future_scoring_authority": false,
+    "implementation_note": "The initial court added an extra historical_roux_attempts_92 check that conflated 98 total Roux manifest records with 92 state-certified records. This was not a frozen NAPKIN gate and did not determine the HOLD; preregistered uniqueness and CMLL gates independently failed.",
+    "posthoc_diagnostic": {
+      "role": "DIAGNOSTIC_ONLY_NO_GATE_CHANGE",
+      "clean_state_certified_rows": 92,
+      "center_canonical_exact_full_fb": {"zero": 69, "one": 23},
+      "orientation_free_exact_full_fb": {"one": 92},
+      "interpretation": "All 92 state-certified Roux routes contain exactly one exact 1x2x3 first block under a 24-orientation search when center anchoring is relaxed. The R1.10 preregistered center-canonical frame is therefore too restrictive. A block-internal orientation quotient is a prospective redesign target, not an R1.10 repair."
+    },
+    "adjudication_artifact": "research/0.10.5-r1.10/ROUX_COURT_ADJUDICATION.json"
+  },
+  "fresh_vintage_watch": {
+    "status": "WATCH_PASS_DATA_WAIT",
+    "workflow_run_id": 32365958262,
+    "local_authority_seal_preceded_network_read": true,
+    "local_authority_seal_sha256": "b83478923356bb9a0de1a40613f6e6a58ddf482d538393d7dc40b04eb1291cc6",
+    "frozen_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+    "live_http_status": 200,
+    "live_html_sha256": "c0ca3106023d108209028fd2b0f56962c9a23b5b09e41fbf5af673d7ae4795ba",
+    "live_reco_rows": 10596,
+    "live_max_reco_id": 14051,
+    "live_id_set_sha256": "762e167b5c0ebca211e6e4249592bb35cf07d1b033cb6d611a6e9952336ff243",
+    "duplicate_id_rows": 0,
+    "missing_frozen_ids": 0,
+    "new_reco_ids": 0,
+    "route_fetch_performed": false,
+    "linkage_performed": false,
+    "phenotype_scoring_performed": false,
+    "layered_scorer_used": false,
+    "roux_scorer_used": false
+  },
+  "authority": {
+    "main_commit_observed": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "main_mutated_by_r110": false,
+    "public_runner_mutated_by_r110": false,
+    "collector_mutated_by_r110": false,
+    "human_recruitment": false,
+    "human_observations": 0,
+    "layered_future_scorer_released": true,
+    "roux_future_scorer_released": false,
+    "fresh_confirmatory_estimate_in_r110": false
+  },
+  "ravel_roles": {
+    "napkin_intent_preserver": "PASS",
+    "method_family_isolation_auditor": "PASS",
+    "loo_future_scale_auditor": "PASS",
+    "nested_no_test_fold_leak_auditor": "PASS",
+    "transport_threshold_auditor": "PASS_NO_GATE_WEAKENING",
+    "roux_geometry_auditor": "HOLD_CENTER_CANONICAL_FRAME",
+    "roux_failure_localizer": "PASS_DIAGNOSTIC_ONLY",
+    "roux_implementation_auditor": "PASS_EXTRA_NON_NAPKIN_COUNT_CHECK_IDENTIFIED_NO_VERDICT_EFFECT",
+    "fresh_ordering_auditor": "PASS_LOCAL_SEAL_BEFORE_NETWORK_READ",
+    "fresh_watch_auditor": "PASS_DATA_WAIT_ZERO_NEW_IDS",
+    "authority_auditor": "PASS_RESEARCH_ONLY_NO_MAIN_PUBLIC_COLLECTOR_OR_HUMAN_WRITE"
+  },
+  "claim_scope": {
+    "allowed": [
+      "The prospectively frozen CFOP/ZB LAYERED scorer passed method-isolated LOO, nested no-test-fold-leak calibration, and future-scale transport engineering gates.",
+      "R1.10 releases the LAYERED scorer only for genuinely fresh CFOP/ZB attempts in a later confirmatory version, subject to frozen freshness and sample-support gates.",
+      "The preregistered center-canonical Roux block-frame court failed, so Roux future scoring remains prohibited.",
+      "A posthoc diagnostic found exactly one orientation-free exact first block in all 92 state-certified Roux routes, motivating a future prospective block-frame quotient without changing R1.10.",
+      "The current reco.nz vintage contains zero new reconstruction IDs relative to the frozen 10,596-ID universe."
+    ],
+    "prohibited": [
+      "Cognitive recovery prevalence.",
+      "Cognitive error prevalence.",
+      "Any fresh replication estimate in R1.10.",
+      "Roux phenotype scoring.",
+      "Causal, intentional, awareness, or strategy-switching claims.",
+      "Full-WCA behavioral prevalence.",
+      "Treating reconstruction annotations as ground-truth latent cognitive phases."
+    ]
+  },
+  "research_debt": [
+    "Prospectively redefine Roux block geometry as a block-internal orientation quotient rather than center-canonical coordinates, then rerun frame identification and build a Roux-specific null from scratch.",
+    "When genuinely new reco.nz IDs appear, freeze their ID set first and launch a separate confirmatory version using the sealed LAYERED scorer without altering its metric, local-reference hierarchy, familywise alpha, or transport gates.",
+    "Keep fresh-any >=200 novel unique-linked state-certified attempts with >=3 supported cells and ESS>=100, and fresh-modern >=80 state-certified attempts in 2023-26 × 7-10 s, unchanged."
+  ]
+}

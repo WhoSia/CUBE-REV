@@ -1,0 +1,64 @@
+{
+  "status": "PASS_SUPPORTED_TARGET",
+  "admission": {
+    "holdout_n": 900,
+    "route_source_n": 900,
+    "parse_n": 896,
+    "state_certified_n": 888,
+    "state_certification_rate": 0.9910714285714286,
+    "eligible_phase_segments": 5564,
+    "threshold_fallback_segments": 0
+  },
+  "selection_gate": {
+    "estimand": "untouched-support speed×era target only; NOT full sub-10 WCA target",
+    "untouched_supported_population_n": 360986,
+    "original_sub10_population_n": 1261540,
+    "original_sub10_fraction": 0.2861470900645243,
+    "covered_population_n": 360986,
+    "covered_fraction_of_untouched_support": 1,
+    "weight_ess": 341.5043078242927,
+    "weight_ess_fraction": 0.38457692322555487,
+    "stabilized_weight": {
+      "p50": 0.7665041622754818,
+      "p90": 4.5398249516601465,
+      "p95": 4.5398249516601465,
+      "p99": 4.5398249516601465,
+      "max": 4.5398249516601465
+    },
+    "checks": {
+      "holdout_n_exact": true,
+      "r17_overlap_zero": true,
+      "route_source_rate_ge_0_95": true,
+      "parse_rate_ge_0_95": true,
+      "state_certification_rate_ge_0_85": true,
+      "state_certified_n_ge_500": true,
+      "untouched_support_coverage_ge_0_90": true,
+      "ess_ge_200": true,
+      "stabilized_p99_le_10": true,
+      "stabilized_max_le_20": true,
+      "null_threshold_fallback_zero": true
+    },
+    "full_sub10_standardization": "PROHIBITED_SUPPORT_ONLY_28P6_PERCENT"
+  },
+  "primary": {
+    "attempt_any_algorithm_excess_raw": 0,
+    "attempt_any_algorithm_excess_standardized": 0,
+    "bootstrap_95": {
+      "lo": 0,
+      "hi": 0,
+      "replicates": 2000
+    }
+  },
+  "primitive_replication": {
+    "definition": "EXACT_R1.7_R5_NONCOMMUTING_PRIMITIVE_UNCHANGED",
+    "positive_attempts": 0,
+    "raw_rate": 0,
+    "standardized_rate": 0,
+    "one_sided_95_upper_if_zero": 0.003367888278532294
+  },
+  "secondary": {
+    "phase_line_algorithm_excess_rate": 0,
+    "algorithm_excess_segment_n": 0,
+    "secondary_distance_agreement_on_primary_excess": null
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "status": "HOLD_ROUX_G3_DEVELOPMENT_NULL_ENGINEERING",
+  "engineering_pass": false,
+  "loo_attempts": 120,
+  "loo_watch": 0.05,
+  "nested_watch": 0.05,
+  "transport_pearson": 0.989423183668037,
+  "transport_p99": 0.21972505598650072,
+  "resolution": {
+    "admitted_attempt_bank_n": 120,
+    "loo_reference_n": 119,
+    "loo_minimum_add_one_p": 0.008333333333333333,
+    "required_loo_reference_n": 99,
+    "required_total_admitted_n": 100,
+    "primary_1pct_resolvable": true,
+    "alpha_relaxation": "PROHIBITED"
+  },
+  "seal": "42153a57c8cef2221c9c9556d2d16c9620badd0d9726be159695880f45f64c83"
+}

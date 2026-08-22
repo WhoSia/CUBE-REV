@@ -1,0 +1,43 @@
+import fs from 'node:fs';
+import { buildR19Core, parseAnnotated, sha } from '../0.10.5-r1.9/r19_quotient_core.mjs';
+const ROOT=process.env.R112_ROOT||'/tmp/r112';fs.mkdirSync(ROOT,{recursive:true});
+const core=await buildR19Core();const {defaultPattern,EDGE,CORNER,ORIENT,faces,faceSupport,opposite,canonicalizeByCenters}=core;
+const G=JSON.parse(fs.readFileSync('research/0.10.5-r1.12/evidence-g2/ROUX_G2_GEOMETRY_AUDIT.json','utf8'));
+const R=JSON.parse(fs.readFileSync('research/0.10.5-r1.12/evidence-g2/ROUX_G2_ROUTE_ROWS.json','utf8')).rows;
+const strictStatus=new Map(R.map(r=>[r.attempt_key,r.status]));
+const intersect=(a,b)=>{const s=new Set(b);return a.filter(x=>s.has(x));};
+function blockMask(bottom,side){const top=opposite[bottom];return {bottom,side,top,edges:faceSupport[side].edges.filter(i=>!faceSupport[top].edges.includes(i)),corners:intersect(faceSupport[bottom].corners,faceSupport[side].corners)};}
+const frames=[];for(const bottom of faces)for(const side of faces){if(side===bottom||side===opposite[bottom])continue;frames.push({key:`${bottom}|${side}`,bottom,top:opposite[bottom],first_side:side,second_side:opposite[side],first:blockMask(bottom,side),second:blockMask(bottom,opposite[side])});}
+const axisMap=new Map();for(const f of frames){const k=`${f.bottom}|${[f.first_side,f.second_side].sort().join('-')}`;if(!axisMap.has(k))axisMap.set(k,{key:k,bottom:f.bottom,a:f.first,b:f.second});}const axes=[...axisMap.values()];
+function coordSolved(p,orbit,i){const a=p.patternData[orbit],b=defaultPattern.patternData[orbit];return a.pieces[i]===b.pieces[i]&&a.orientation[i]===b.orientation[i];}
+function blockSolved(p,m){return m.edges.every(i=>coordSolved(p,EDGE,i))&&m.corners.every(i=>coordSolved(p,CORNER,i));}
+function both(p,f){return blockSolved(p,f.first)&&blockSolved(p,f.second);}
+function axisSolved(p,a){return blockSolved(p,a.a)&&blockSolved(p,a.b);}
+function ordinary(c){return /\bfb\b/i.test(c||'')&&!/\bpseudo\s+fb\b/i.test(c||'')&&!/\bfbdr\b/i.test(c||'');}
+function span(lines,phase,after=-1){let first=-1;for(let i=0;i<lines.length;i++)if(lines[i].phase===phase&&lines[i].end>lines[i].start&&lines[i].start>=after){first=i;break;}if(first<0)return null;let last=first;for(let i=first+1;i<lines.length;i++){if(lines[i].phase!==phase||lines[i].end<=lines[i].start)break;last=i;}return {start:lines[first].start,end:lines[last].end,lines:lines.slice(first,last+1)};}
+function firstLineAfter(lines,phase,after){return lines.find(x=>x.phase===phase&&x.end>x.start&&x.start>=after)||null;}
+function load(){const c=JSON.parse(fs.readFileSync('research/0.10.5-r1.12/evidence-census/SEALED_ROUTE_CENSUS.json','utf8'));const a=JSON.parse(fs.readFileSync('research/0.10.5-r1.12/evidence-acquisition/ROUX_EXPANSION_ROUTE_MANIFEST.json','utf8'));const out=[];for(const r of c.all_clean_attempts)out.push({...r,source:'SEALED_R111'});for(const r of a.records)if(r.route_source_status==='RAW_ALG_CUBING_LINK')out.push({...r,source:'R112_EXPANSION'});const m=new Map();for(const r of out)m.set(`${r.result_id}:${r.attempt_number}`,r);return [...m.values()];}
+const bySource={},byStrict={},wide={},rows=[];let eligible=0,strictFbAny=0,strictFbUnique=0,afterSpanCompletion=0,afterSpanEligible=0,rgAny=0,rgUniqueFrame=0,rgUniquePair=0,rgRescueNoCompletion=0,rgRescueFbOrient=0,rgMatchesCenterFb=0,rgSingleFrameButMultiTransform=0;
+function bump(obj,k,field){obj[k]??={n:0,strict_admitted:0,rg_any:0,no_completion:0,fb_cannot_orient:0};obj[k][field]=(obj[k][field]||0)+1;}
+for(const r of load()){
+ const k=`${r.result_id}:${r.attempt_number}`,st=strictStatus.get(k)||'UNKNOWN';
+ try{
+  const p=parseAnnotated(r.raw_alg,'Roux'),fbLines=p.lines.filter(x=>x.phase==='ROUX_FB'&&x.end>x.start);if(fbLines.length!==1||!ordinary(fbLines[0].comment))continue;const fb=fbLines[0],sb=span(p.lines,'ROUX_SB',fb.end);if(!sb)continue;
+  const moves=p.tokens.map(x=>x.move);let s=defaultPattern.applyAlg(r.raw_setup),states=[s];for(const m of moves){s=s.applyMove(m);states.push(s);}if(!s.experimentalIsSolved({ignorePuzzleOrientation:true,ignoreCenterOrientation:true}))continue;eligible++;
+  const fbMoves=moves.slice(fb.start,fb.end),hasWideSlice=fbMoves.some(m=>/^[rludfbMES]/.test(m)),hasRotation=moves.slice(0,fb.end).some(m=>/^[xyz]/.test(m));const wkey=`wideSlice=${hasWideSlice}|rotationBeforeFb=${hasRotation}`;
+  bump(bySource,r.source,'n');bump(byStrict,st,'n');bump(wide,wkey,'n');if(st==='G2_ADMITTED'){bump(bySource,r.source,'strict_admitted');bump(byStrict,st,'strict_admitted');bump(wide,wkey,'strict_admitted');}
+  const cf=canonicalizeByCenters(states[fb.end]);let fbSolvedN=null,centerIdx=null;if(cf.ok){centerIdx=cf.index;fbSolvedN=frames.filter(f=>blockSolved(cf.pattern,f.first)).length;if(fbSolvedN>0)strictFbAny++;if(fbSolvedN===1)strictFbUnique++;}
+  const cmll=firstLineAfter(p.lines,'ROUX_CMLL',sb.end);if(cmll){afterSpanEligible++;let found=false;for(let i=sb.end+1;i<=cmll.start;i++){const cc=canonicalizeByCenters(states[i]);if(cc.ok&&axes.some(a=>axisSolved(cc.pattern,a))){found=true;break;}}if(found)afterSpanCompletion++;}
+  const candidates=[];
+  for(let oi=0;oi<ORIENT.length;oi++){
+    const qfb=states[fb.end].applyTransformation(ORIENT[oi]);
+    for(const f of frames){if(!blockSolved(qfb,f.first)||blockSolved(qfb,f.second))continue;let completion=null;for(let i=sb.start;i<=sb.end;i++){const q=states[i].applyTransformation(ORIENT[oi]);if(both(q,f)){completion=i;break;}}if(completion!==null)candidates.push({orientation_index:oi,frame_key:f.key,completion_index:completion});}
+  }
+  const frameGroups=[...new Set(candidates.map(x=>x.frame_key))],pairN=candidates.length;if(pairN){rgAny++;bump(bySource,r.source,'rg_any');bump(byStrict,st,'rg_any');bump(wide,wkey,'rg_any');}if(frameGroups.length===1)rgUniqueFrame++;if(pairN===1)rgUniquePair++;if(frameGroups.length===1&&pairN>1)rgSingleFrameButMultiTransform++;
+  if(st==='NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN'&&pairN){rgRescueNoCompletion++;bump(bySource,r.source,'no_completion');}
+  if(st==='FB_CANNOT_ORIENT_UNIQUE_AXIS'&&pairN){rgRescueFbOrient++;bump(bySource,r.source,'fb_cannot_orient');}
+  if(centerIdx!==null&&candidates.some(x=>x.orientation_index===centerIdx))rgMatchesCenterFb++;
+  rows.push({attempt_key:k,source:r.source,strict_status:st,fb_center_solved_block_n:fbSolvedN,center_fb_orientation_index:centerIdx,fb_has_wide_or_slice:hasWideSlice,rotation_before_or_in_fb:hasRotation,strict_completion_after_sb_before_cmll:cmll?undefined:null,route_global_candidate_n:pairN,route_global_frame_group_n:frameGroups.length,route_global_frame_groups:frameGroups,route_global_first_candidates:candidates.slice(0,12)});
+ }catch(e){rows.push({attempt_key:k,source:r.source,strict_status:st,diagnostic_error:String(e?.message||e).slice(0,300)});}
+}
+const rate=(n,d)=>d?n/d:0;const out={schema_version:'CR0105R112-DESTROY-COORDINATE-GAUGE-1',generation:'ROUX-MEASUREMENT-G2',status:'POSTHOC_DIAGNOSTIC_ONLY_NO_G2_GATE_CHANGE',primary_geometry_semantic_sha256:G.semantic_sha256,counts:{eligible,strict_admitted:G.counts.g2_admitted,strict_fb_any_block:strictFbAny,strict_fb_unique_block:strictFbUnique,post_sb_pre_cmll_completion_eligible:afterSpanEligible,post_sb_pre_cmll_completion:afterSpanCompletion,route_global_any_solution:rgAny,route_global_unique_frame_group:rgUniqueFrame,route_global_unique_orientation_frame_pair:rgUniquePair,route_global_single_frame_multi_transform:rgSingleFrameButMultiTransform,route_global_rescue_strict_no_completion:rgRescueNoCompletion,route_global_rescue_strict_fb_cannot_orient:rgRescueFbOrient,route_global_candidate_matches_center_fb_transform:rgMatchesCenterFb},rates:{strict_admission:rate(G.counts.g2_admitted,eligible),strict_fb_any_block:rate(strictFbAny,eligible),post_sb_pre_cmll_completion:rate(afterSpanCompletion,afterSpanEligible),route_global_any_solution:rate(rgAny,eligible),route_global_unique_frame_group:rate(rgUniqueFrame,eligible),route_global_unique_pair:rate(rgUniquePair,eligible)},by_source:bySource,by_strict_status:byStrict,by_fb_wide_slice_and_rotation:wide,interpretation_guard:'Route-global transformations are a posthoc diagnostic for a latent reconstruction coordinate gauge. They are not promoted into R1.12 geometry or authority and may represent an unobserved notation/color-frame convention rather than a physical cube orientation.',post_result_gate_change:false,human_observations:0};out.semantic_sha256=sha(out);fs.writeFileSync(`${ROOT}/ROUX_G2_COORDINATE_GAUGE_DESTROY_AUDIT.json`,JSON.stringify(out,null,2)+'\n');fs.writeFileSync(`${ROOT}/ROUX_G2_COORDINATE_GAUGE_ROWS.json`,JSON.stringify({schema_version:'CR0105R112-DESTROY-COORDINATE-GAUGE-ROWS-1',rows,human_observations:0},null,2)+'\n');console.log(JSON.stringify(out,null,2));

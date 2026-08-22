@@ -1,0 +1,165 @@
+{
+  "schema_version": "CR0105R18-SUPPORT-PREFLIGHT-1",
+  "status": "PASS_CHARACTERIZED_WITH_BLOCKING_GATES_REPORTED",
+  "parent_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+  "r17_sample_manifest_sha256": "ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe",
+  "canonical_linked_under10_attempts": 3405,
+  "r17_used_attempts": 900,
+  "untouched_linked_attempts": 2505,
+  "target_population_under10": 1261540,
+  "untouched_supported_population": 360986,
+  "untouched_supported_population_fraction": 0.2861470900645243,
+  "holdout_A_selected_n": 900,
+  "holdout_A_overlap_n": 0,
+  "holdout_A_full_target_standardization_gate": "HOLD_TARGET_COVERAGE_LT_0_90",
+  "fresh_modern_gate": "HOLD_FRESH_MODERN_CELL",
+  "cell_support": [
+    {
+      "speed": "5-7",
+      "era": "2013-16",
+      "population_n": 946,
+      "linked_total_n": 95,
+      "used_r17_n": 48,
+      "untouched_linked_n": 47,
+      "untouched_supported": true,
+      "holdout_A_n": 46
+    },
+    {
+      "speed": "5-7",
+      "era": "2017-19",
+      "population_n": 8807,
+      "linked_total_n": 300,
+      "used_r17_n": 53,
+      "untouched_linked_n": 247,
+      "untouched_supported": true,
+      "holdout_A_n": 66
+    },
+    {
+      "speed": "5-7",
+      "era": "2020-22",
+      "population_n": 11833,
+      "linked_total_n": 495,
+      "used_r17_n": 55,
+      "untouched_linked_n": 440,
+      "untouched_supported": true,
+      "holdout_A_n": 73
+    },
+    {
+      "speed": "5-7",
+      "era": "2023-26",
+      "population_n": 103181,
+      "linked_total_n": 744,
+      "used_r17_n": 121,
+      "untouched_linked_n": 623,
+      "untouched_supported": true,
+      "holdout_A_n": 301
+    },
+    {
+      "speed": "5-7",
+      "era": "<=2012",
+      "population_n": 37,
+      "linked_total_n": 22,
+      "used_r17_n": 0,
+      "untouched_linked_n": 22,
+      "untouched_supported": false,
+      "holdout_A_n": 0
+    },
+    {
+      "speed": "7-10",
+      "era": "2013-16",
+      "population_n": 47051,
+      "linked_total_n": 233,
+      "used_r17_n": 80,
+      "untouched_linked_n": 153,
+      "untouched_supported": true,
+      "holdout_A_n": 153
+    },
+    {
+      "speed": "7-10",
+      "era": "2017-19",
+      "population_n": 177169,
+      "linked_total_n": 273,
+      "used_r17_n": 173,
+      "untouched_linked_n": 100,
+      "untouched_supported": true,
+      "holdout_A_n": 100
+    },
+    {
+      "speed": "7-10",
+      "era": "2020-22",
+      "population_n": 126569,
+      "linked_total_n": 121,
+      "used_r17_n": 121,
+      "untouched_linked_n": 0,
+      "untouched_supported": false,
+      "holdout_A_n": 0
+    },
+    {
+      "speed": "7-10",
+      "era": "2023-26",
+      "population_n": 773886,
+      "linked_total_n": 100,
+      "used_r17_n": 100,
+      "untouched_linked_n": 0,
+      "untouched_supported": false,
+      "holdout_A_n": 0
+    },
+    {
+      "speed": "7-10",
+      "era": "<=2012",
+      "population_n": 5925,
+      "linked_total_n": 158,
+      "used_r17_n": 51,
+      "untouched_linked_n": 107,
+      "untouched_supported": true,
+      "holdout_A_n": 59
+    },
+    {
+      "speed": "<5",
+      "era": "2013-16",
+      "population_n": 4,
+      "linked_total_n": 3,
+      "used_r17_n": 0,
+      "untouched_linked_n": 3,
+      "untouched_supported": false,
+      "holdout_A_n": 0
+    },
+    {
+      "speed": "<5",
+      "era": "2017-19",
+      "population_n": 58,
+      "linked_total_n": 25,
+      "used_r17_n": 0,
+      "untouched_linked_n": 25,
+      "untouched_supported": false,
+      "holdout_A_n": 0
+    },
+    {
+      "speed": "<5",
+      "era": "2020-22",
+      "population_n": 247,
+      "linked_total_n": 111,
+      "used_r17_n": 47,
+      "untouched_linked_n": 64,
+      "untouched_supported": true,
+      "holdout_A_n": 44
+    },
+    {
+      "speed": "<5",
+      "era": "2023-26",
+      "population_n": 5827,
+      "linked_total_n": 725,
+      "used_r17_n": 51,
+      "untouched_linked_n": 674,
+      "untouched_supported": true,
+      "holdout_A_n": 58
+    }
+  ],
+  "decision": {
+    "attempt_disjoint_holdout_A": "GO",
+    "full_under10_standardized_holdout_claim": "HOLD",
+    "fresh_modern_7_10_replication": "HOLD"
+  },
+  "human_observations": 0,
+  "authority": "RESEARCH_ONLY"
+}

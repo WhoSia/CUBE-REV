@@ -1,0 +1,13 @@
+{
+  "schema_version": "CR0105R19-SCALE-FAILURE-DIAGNOSTIC-RUN-2",
+  "workflow_run_id": "32359092515",
+  "head_sha": "d09a40ea2ea653d877db1e8386512e4bf64a7587",
+  "exit_code": 0,
+  "status": "PASS_DIAGNOSTIC",
+  "r1_failure": "ROOT_RUNTIME_COULD_NOT_RESOLVE_RELATIVE_QUOTIENT_CORE",
+  "failed_gate_changed": false,
+  "metric_or_null_changed": false,
+  "fresh_rows": 0,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T10:28:26.497989+00:00"
+}

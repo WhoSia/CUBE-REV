@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "frame": 3604,
+  "attempted": 98,
+  "accepted": 72,
+  "rejects": {
+    "scramble_not_unique": 25,
+    "round_mismatch": 1
+  }
+}

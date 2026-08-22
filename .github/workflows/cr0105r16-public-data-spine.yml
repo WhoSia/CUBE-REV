@@ -1,0 +1,127 @@
+name: CR0105R16 Public Data Spine Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.6-wca-public-data-spine]
+    paths: [cr0105r16/RUN]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r16-public-data-spine
+  cancel-in-progress: false
+jobs:
+  ingest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: R1.5 lineage and claim-boundary preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.5/final/RAVEL_FINAL_SEAL.json'))
+          assert x['status']=='PASS'
+          assert x['public_data_research_pivot']['primary_empirical_strategy']=='PUBLIC_DATA_FIRST'
+          assert x['human_research_boundary']['direct_human_recruitment']=='DEFERRED_BY_RESEARCH_DESIGN'
+          print('R15_LINEAGE_PASS')
+          PY
+      - name: Resolve and seal current WCA v2 export
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r16/wca
+          curl --fail --location --retry 5 --retry-all-errors \
+            -A 'CUBE-REV/0.10.5-R1.6 public-data research' \
+            https://www.worldcubeassociation.org/api/v0/export/public \
+            -o /tmp/r16/export_api.json
+          cat /tmp/r16/export_api.json
+          TSV_URL="$(python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/r16/export_api.json'))
+          print(x['tsv_url'])
+          PY
+          )"
+          test -n "$TSV_URL"
+          curl --fail --location --retry 6 --retry-all-errors --connect-timeout 30 \
+            -A 'CUBE-REV/0.10.5-R1.6 public-data research' \
+            "$TSV_URL" -o /tmp/r16/wca.tsv.zip
+          sha256sum /tmp/r16/wca.tsv.zip
+          unzip -q /tmp/r16/wca.tsv.zip -d /tmp/r16/wca
+          find /tmp/r16/wca -maxdepth 2 -type f -printf '%f %s\n' | sort | head -40
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install analytical runtime
+        run: python -m pip install --disable-pip-version-check duckdb==1.3.2 requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+      - name: Execute WCA/reconstruction RAVEL court
+        id: court
+        shell: bash
+        run: |
+          set +e
+          export R16_ROOT=/tmp/r16
+          export WCA_DIR=/tmp/r16/wca
+          export WCA_API_JSON=/tmp/r16/export_api.json
+          export WCA_ZIP=/tmp/r16/wca.tsv.zip
+          export R16_OUT="$GITHUB_WORKSPACE/research/0.10.5-r1.6/evidence"
+          python research/0.10.5-r1.6/r16_ingest.py 2>&1 | tee /tmp/r16/court.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable run metadata
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p research/0.10.5-r1.6/evidence
+          python3 - <<'PY'
+          import json,os,subprocess,datetime,pathlib
+          out=pathlib.Path('research/0.10.5-r1.6/evidence/RUN_METADATA.json')
+          x={
+            'schema_version':'CR0105R16-RUN-META-1',
+            'workflow_run_id':os.environ.get('GITHUB_RUN_ID'),
+            'head_sha':os.environ.get('GITHUB_SHA'),
+            'court_exit_code':int('${{ steps.court.outputs.exit_code || 99 }}'),
+            'human_observations':0,
+            'human_recruitment':'DEFERRED_BY_RESEARCH_DESIGN',
+            'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }
+          out.write_text(json.dumps(x,indent=2)+'\n')
+          PY
+          cp /tmp/r16/court.log research/0.10.5-r1.6/evidence/COURT_LOG.txt || true
+      - name: Commit compact evidence to research branch
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.6/evidence
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.6 public-data court ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.6-wca-public-data-spine
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R16-public-data-spine
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            research/0.10.5-r1.6/evidence/
+            /tmp/r16/wca333.duckdb
+            /tmp/r16/export_api.json
+            /tmp/r16/court.log
+      - name: Enforce R1.6 closure
+        if: always()
+        shell: bash
+        run: |
+          test "${{ steps.court.outputs.exit_code }}" = "0"
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.6/evidence/RAVEL_FINAL_SEAL.json'))
+          assert x['status']=='PASS',x
+          assert x['human_observations']==0
+          assert x['human_recruitment']=='DEFERRED_BY_RESEARCH_DESIGN'
+          print('CR0105R16_PUBLIC_DATA_PASS')
+          PY

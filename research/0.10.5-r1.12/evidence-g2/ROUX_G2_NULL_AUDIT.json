@@ -1,0 +1,119 @@
+{
+  "schema_version": "CR0105R112-ROUX-G2-METHOD-SPECIFIC-NULL-1",
+  "generation": "ROUX-MEASUREMENT-G2",
+  "status": "HOLD_ROUX_G2_NULL_FOUNDRY",
+  "geometry_status": "HOLD_ROUX_G2_GEOMETRY",
+  "counts": {
+    "features": 68,
+    "loo_attempts": 0,
+    "loo_familywise_ok": 0,
+    "crossfit_attempts": 0,
+    "nested_familywise_ok": 0,
+    "transport_pairs": 0
+  },
+  "local_reference": {
+    "loo_fallback_n": 68,
+    "loo_fallback_rate": 1,
+    "crossfit_fallback_n": 68,
+    "nested_fallback_events": 340
+  },
+  "loo_pseudofresh": {
+    "primary_alpha": 0.01,
+    "primary_rate": 0,
+    "watch_alpha": 0.05,
+    "watch_rate": 0,
+    "familywise_level": "ROUX_GLOBAL"
+  },
+  "nested_no_test_fold_leak": {
+    "primary_alpha": 0.01,
+    "primary_rate": 0,
+    "watch_alpha": 0.05,
+    "watch_rate": 0,
+    "outer_folds": [
+      {
+        "fold": 0,
+        "test_attempts": 0,
+        "familywise_ok_n": 0,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 0,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 1,
+        "test_attempts": 0,
+        "familywise_ok_n": 0,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 0,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 2,
+        "test_attempts": 0,
+        "familywise_ok_n": 0,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 0,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 3,
+        "test_attempts": 0,
+        "familywise_ok_n": 0,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 0,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 4,
+        "test_attempts": 0,
+        "familywise_ok_n": 0,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 0,
+        "outer_test_excluded_from_references": true
+      }
+    ]
+  },
+  "transport": {
+    "pearson_crossfit_vs_loo": null,
+    "abs_difference": {
+      "p50": null,
+      "p90": null,
+      "p99": null,
+      "max": null
+    }
+  },
+  "finite_sample_primary_resolution": {
+    "admitted_attempt_bank_n": 0,
+    "loo_reference_n": 0,
+    "loo_minimum_add_one_p": null,
+    "required_loo_reference_n": 99,
+    "required_total_admitted_n": 100,
+    "future_fresh_reference_n": 0,
+    "future_fresh_minimum_add_one_p": null,
+    "primary_1pct_resolvable": false,
+    "alpha_relaxation": "PROHIBITED"
+  },
+  "engineering_checks": {
+    "familywise_attempts_ge_75": false,
+    "nested_familywise_attempts_ge_75": false,
+    "local_fallback_rate_le_0_10": false,
+    "nested_watch_health": false,
+    "transport_pairs_ge_75": false,
+    "crossfit_loo_pearson_ge_0_90": false,
+    "crossfit_loo_abs_diff_p99_le_0_75": false,
+    "nested_outer_fold_excluded_from_local_and_family_reference": true,
+    "roux_g2_only_features": true,
+    "primary_familywise_reference_is_roux_global": true
+  },
+  "engineering_pass": false,
+  "frame_geometry_pass": false,
+  "future_roux_scoring_authority": false,
+  "acquired_public_routes_role": "DEVELOPMENT_AND_CALIBRATION_ONLY",
+  "fresh_confirmatory_scoring": false,
+  "human_observations": 0,
+  "semantic_sha256": "ac4cdeb0fa33056b298853d9161e267900c0d7db783ba8682b3bab3fe6898c6d"
+}

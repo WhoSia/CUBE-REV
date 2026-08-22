@@ -1,0 +1,35 @@
+name: CR0105R17 Cell Robustness Audit
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-full-court]
+    paths: [cr0105r17/RUN_CELL_ROBUSTNESS]
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify structural R3 lineage
+        run: |
+          python3 - <<'PY'
+          import json
+          r=json.load(open('research/0.10.5-r1.7/evidence-full-route-r3/FULL_ROUTE_COURT.json'))
+          assert r['schema_version']=='CR0105R17-STRUCTURAL-ROUTE-COURT-1' and r['status']=='PASS'
+          print('R17_CELL_ROBUSTNESS_PREFLIGHT_PASS')
+          PY
+      - name: Run cell influence and sub-7 audit
+        run: |
+          set -euo pipefail
+          python3 research/0.10.5-r1.7/r17_cell_robustness_audit.py | tee /tmp/r17_cell_robustness.log
+          cp /tmp/r17_cell_robustness.log research/0.10.5-r1.7/evidence-robustness/CELL_ROBUSTNESS_LOG.txt
+      - name: Commit robustness evidence
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-robustness
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 cell robustness ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-full-court

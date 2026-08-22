@@ -1,0 +1,75 @@
+{
+  "schema_version": "CR0105R114-G4-EXTERNAL-COURT-FREEZE-1",
+  "status": "FROZEN_AFTER_REFERENCE_SEAL_BEFORE_SECOND_LIVE_INDEX_READ",
+  "baseline_id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+  "reference_seal_sha256": "7cc0aaa2754fe911aa1bc536b3a53c527410b710f466ebe30ce8bbe37f17861a",
+  "reference_membership_sha256": "a89f34ee0601f2ba1f46bb23916cb300e5e2299c20ad2e88b0667e48b4ec7b78",
+  "second_live_read": {
+    "reads": 1,
+    "index_url": "https://reco.nz/solve/",
+    "row_identification": "integer first table cell as reco_id; 3x3 and Roux are recognized only when exact cell texts are present in the same row",
+    "post_freeze_fresh_membership": "reco_id absent from the complete frozen G4 baseline ID set",
+    "preexisting_unseen_membership": "reco_id present in baseline, 3x3, Roux, and absent from every R1.13-development reco_id",
+    "membership_uses_detail_route": false,
+    "membership_uses_geometry": false,
+    "membership_uses_null_score": false
+  },
+  "preexisting_unseen": {
+    "selection": "deterministic SHA256(R114PRE:reco_id) order over all eligible baseline-present unseen 3x3 Roux index rows",
+    "one_shot_cap": 120,
+    "if_pool_below_cap": "use all",
+    "role": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
+    "authority_release": false
+  },
+  "post_freeze_fresh": {
+    "selection": "all live-index rows with reco_id absent baseline and exact 3x3 + Roux cells",
+    "hard_safety_cap": 500,
+    "if_pool_above_cap": "HOLD_FRESH_BATCH_OVERFLOW; no authority release",
+    "minimum_raw_roux_routes_for_authority": 20,
+    "role": "FRESH_AUTHORITY_ELIGIBLE_ONLY_IF_ALL_OTHER_GATES_PASS"
+  },
+  "detail_fetch": {
+    "url": "https://reco.nz/solve/{reco_id}",
+    "raw_route": "alg.cubing.net link containing setup and alg query parameters",
+    "request_delay_seconds": 0.06,
+    "timeout_seconds": 30,
+    "no_result_dependent_retry_selection": true
+  },
+  "external_ontology": {
+    "operator": "exact frozen G4 raw-state operator; external routes are scored by a runtime copy differing only in input-loader plumbing and the already-recorded single helper typo repair",
+    "canonical_class": "CANONICAL_FB_PRESERVING",
+    "residual_classes": ["BLOCK_DISRUPTIVE_RESIDUAL","FB_PRESERVED_NO_COMPLETION_RESIDUAL","PSEUDO_FB_OR_FBDR_FORK","SYNTAX_OR_STATE_INVALID","ONTOLOGY_UNSCORABLE"],
+    "labels_do_not_imply_solver_intent_or_error": true
+  },
+  "external_null_scoring": {
+    "reference_features": "frozen G4 canonical development feature ledger from reference seal",
+    "local_reference_hierarchy": [
+      "phase×channel×move-bin if n>=25",
+      "phase×channel if n>=40",
+      "channel if n>=100"
+    ],
+    "feature_p": "add-one upper tail against full frozen reference features at the first available hierarchy level",
+    "attempt_statistic": "max -log10(feature_p) within each external canonical route",
+    "familywise_reference": "frozen G4 LOO reference attempt-statistic bank",
+    "familywise_p": "add-one upper tail of external attempt statistic against all finite frozen reference attempt statistics",
+    "primary_alpha": 0.01,
+    "watch_alpha": 0.05,
+    "membership_may_not_use_score": true
+  },
+  "preexisting_unseen_transport_gates": {
+    "minimum_raw_routes": 20,
+    "state_certification_rate_min": 0.90,
+    "prefix_unique_rate_given_eligible_min": 0.95,
+    "canonical_rate_given_prefix_unique_min": 0.80,
+    "null_fallback_rate_max": 0.10,
+    "note": "PASS supports ontology transport only, never authority."
+  },
+  "fresh_authority_gates_inherit_from_napkin": true,
+  "authority": {
+    "roux_future_scoring_authority_before_external_court": false,
+    "preexisting_unseen_can_release": false,
+    "post_freeze_fresh_can_release_only_if_n_ge_20_and_all_frozen_gates_pass": true,
+    "alpha_relaxation": "PROHIBITED",
+    "human_observations": 0
+  }
+}

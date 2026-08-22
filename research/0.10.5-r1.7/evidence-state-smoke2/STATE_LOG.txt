@@ -1,0 +1,16 @@
+{
+  "schema_version": "CR0105R17-STATE-ENGINE-SMOKE-1",
+  "status": "HOLD",
+  "cubing_npm_version": "0.63.3",
+  "orientation_group_size": 24,
+  "admitted_records": 72,
+  "engine_parse_failures": 0,
+  "solved_mod_orientation": 0,
+  "solved_mod_orientation_rate": 0,
+  "records_with_exact_state_revisit_loop": 41,
+  "records_with_shorter_exact_rewrite": 54,
+  "records_with_orientation_only_revisit": 45,
+  "counterfactual_rule": "A redundancy candidate is promoted only when cube transformation equality verifies that deletion or a shorter local replacement preserves the full route endpoint.",
+  "rotation_rule": "Whole-cube rotations are preserved in replay. Solved-state admission is modulo the 24 physical cube orientations; deletion-safe loops require exact fixed-frame state equality, not orientation-normalized equality.",
+  "human_observations": 0
+}

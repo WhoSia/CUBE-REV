@@ -1,0 +1,34 @@
+{
+  "schema_version": "CR0105R111-FB-SEMANTIC-LOCALIZATION-CANONICAL-1",
+  "status": "POSTHOC_DIAGNOSTIC_ONLY_NO_R111_GATE_CHANGE",
+  "source_execution": {
+    "workflow_run_id": 32428460690,
+    "job_id": 96615143324,
+    "execution_commit": "a8042474ee0140508e615e59a8868a48c78a8054"
+  },
+  "authority_changed": false,
+  "r111_holds_preserved": true,
+  "counts": {
+    "evaluated": 92,
+    "errors": 4,
+    "orientation_free_unique": 92,
+    "center_exact_unique": 23,
+    "unique_group_requires_center_relabel": 69,
+    "unique_group_has_center_default_rep": 23
+  },
+  "rates": {
+    "orientation_free_unique": 1.0,
+    "center_exact_unique": 0.25,
+    "requires_center_relabel_given_orientation_free_unique": 0.75
+  },
+  "fb_comment_family": {
+    "FB": {"n": 89, "orientation_free_unique": 89, "center_exact_unique": 23, "requires_center_relabel": 66},
+    "FBDR": {"n": 1, "orientation_free_unique": 1, "center_exact_unique": 0, "requires_center_relabel": 1},
+    "PSEUDO_FB": {"n": 2, "orientation_free_unique": 2, "center_exact_unique": 0, "requires_center_relabel": 2},
+    "OTHER": {"n": 0, "orientation_free_unique": 0, "center_exact_unique": 0, "requires_center_relabel": 0}
+  },
+  "interpretation": "R1.11's orientation-free uniqueness is computationally stable but 69/92 admitted FB frames require a whole-cube transformation that does not preserve default center/color labeling. This is not confined to pseudo-FB annotations: 66/89 ordinary FB comments require such relabeling. Therefore orientation-free uniqueness alone is insufficient evidence for a center-consistent physical Roux block frame.",
+  "semantic_sha256_from_execution": "452335db896926fd0a5de24699ee93f2b8d0b08cbbf40194e876dff4b346afc8",
+  "fresh_network_read": false,
+  "human_observations": 0
+}

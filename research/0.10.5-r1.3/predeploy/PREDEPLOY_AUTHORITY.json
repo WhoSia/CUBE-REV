@@ -1,0 +1,32 @@
+{
+  "schema_version": "CR0105R13-PREDEPLOY-AUTHORITY-1",
+  "stage": "CUBE-REV 0.10.5-R1.3 \u2014 Explicit Deployment Authority Court, Mainline Candidate Injection & Post-deploy Public-byte Identity Seal",
+  "status": "PASS",
+  "verdict": "PASS_EXPLICIT_DEPLOYMENT_AUTHORITY_STAGED_EXACT_SINGLE_FILE_COMMIT",
+  "authority_basis": "USER_EXPLICIT_REQUEST_2026-08-18_CURRENT_TURN",
+  "base_main_commit": "52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1",
+  "deployment_commit": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+  "staging_branch": "cube-rev-0.10.5-r1.3-main-staging",
+  "main_written": false,
+  "candidate": {
+    "bytes": 2591526,
+    "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+    "git_blob_sha1": "ce5b5608767083a696cf57982edd979a21b3ba22"
+  },
+  "predeploy_public": {
+    "bytes": 2588604,
+    "sha256": "e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf"
+  },
+  "checks": {
+    "v2_binding_pass": true,
+    "final_prelaunch_gate_pass": true,
+    "main_cas_base_exact": true,
+    "staging_cas_base_exact": true,
+    "candidate_exact": true,
+    "predeploy_public_baseline_exact": true,
+    "deployment_commit_parent_exact": true,
+    "deployment_diff_only_index_html": true,
+    "deployment_blob_exact": true
+  },
+  "gate": "READY_FOR_MAIN_FAST_FORWARD"
+}

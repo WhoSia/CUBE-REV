@@ -1,0 +1,49 @@
+name: CR0105R14 Finalize Human Launch Hold
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.4-live-collector-canary]
+    paths: [cr0105r14/FINALIZE]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify public release unchanged read-only
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd"
+          curl -fsSL "https://whosia.github.io/CUBE-REV/?cr0105r14-final=${GITHUB_RUN_ID}" -o /tmp/public.html
+          test "$(wc -c < /tmp/public.html)" = "2591526"
+          test "$(sha256sum /tmp/public.html | cut -d' ' -f1)" = "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180"
+      - name: Classify R3 live evidence without production writes
+        run: python scripts/cr0105r14_finalize.py
+      - name: Persist final RAVEL seal
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add research/0.10.5-r1.4/final/RAVEL_FINAL_SEAL.json
+          git commit -m "Seal CUBE-REV 0.10.5-R1.4 human-launch HOLD ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.4-live-collector-canary
+          seal_commit=$(git rev-parse HEAD)
+          tag=cube-rev-0.10.5-r1.4-human-launch-hold
+          if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then
+            remote=$(git ls-remote --tags origin "refs/tags/${tag}" | awk '{print $1}')
+            test "$remote" = "$seal_commit"
+          else
+            git tag "$tag" "$seal_commit"
+            git push origin "refs/tags/${tag}"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CR0105R14-final-ravel-seal
+          path: research/0.10.5-r1.4/final/RAVEL_FINAL_SEAL.json
+          retention-days: 30

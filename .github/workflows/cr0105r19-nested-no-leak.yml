@@ -1,0 +1,77 @@
+name: CR0105R19 Nested No-Leak Familywise Audit
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.9-quotient-familywise-readiness]
+    paths: [cr0105r19/RUN_NESTED_NO_LEAK]
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify R1 seal exists and no fresh outcome was read
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          s=json.load(open('research/0.10.5-r1.9/evidence-familywise-development/ATTEMPT_FAMILYWISE_NULL_PREREG_SEAL.json'))
+          assert s['status']=='SEALED_FOR_FUTURE_FRESH_VINTAGE'
+          assert s['future_fresh_outcomes_seen'] is False
+          print('CR0105R19_NESTED_RAVEL_PRECHECK_PASS')
+          PY
+      - name: Install pinned cubing runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Rebuild calibration health with outer test fold fully excluded
+        id: audit
+        shell: bash
+        env:
+          R19_NESTED_ROOT: /tmp/r19nested
+        run: |
+          set +e
+          mkdir -p /tmp/r19nested
+          node research/0.10.5-r1.9/r19_nested_no_leak_familywise.mjs 2>&1 | tee /tmp/r19nested/nested.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist nested no-leak evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.9/evidence-nested-no-leak
+          for f in NESTED_NO_LEAK_ATTEMPT_ROWS.json NESTED_NO_LEAK_AUDIT.json ATTEMPT_FAMILYWISE_NULL_PREREG_SEAL_R2.json; do
+            test -f "/tmp/r19nested/$f" && cp "/tmp/r19nested/$f" research/0.10.5-r1.9/evidence-nested-no-leak/ || true
+          done
+          cp /tmp/r19nested/nested.log research/0.10.5-r1.9/evidence-nested-no-leak/NESTED_LOG.txt || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          c=int('${{ steps.audit.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R19-NESTED-NO-LEAK-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':c,'status':'PASS' if c==0 else 'HOLD_OR_FAIL','fresh_outcomes_read':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.9/evidence-nested-no-leak/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit corrected seal before fresh-vintage read
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.9/evidence-nested-no-leak
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.9 nested no-leak audit ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.9-quotient-familywise-readiness
+      - name: Enforce superseding no-leak seal
+        if: always()
+        run: |
+          test '${{ steps.audit.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          a=json.load(open('research/0.10.5-r1.9/evidence-nested-no-leak/NESTED_NO_LEAK_AUDIT.json'))
+          s=json.load(open('research/0.10.5-r1.9/evidence-nested-no-leak/ATTEMPT_FAMILYWISE_NULL_PREREG_SEAL_R2.json'))
+          assert a['status']=='PASS_NESTED_NO_LEAK_READINESS',a
+          assert s['status']=='SEALED_FOR_FUTURE_FRESH_VINTAGE_R2_NO_TEST_FOLD_LEAK',s
+          assert s['future_fresh_outcomes_seen'] is False
+          print('CR0105R19_NESTED_NO_LEAK_SEAL_PASS')
+          PY

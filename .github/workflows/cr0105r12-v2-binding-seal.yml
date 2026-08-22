@@ -1,0 +1,82 @@
+name: CR0105R12 V2 Binding Seal
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.2-release-identity]
+    paths: ['cr0105r12/RUNBIND']
+permissions:
+  contents: write
+jobs:
+  bind-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify V2 evidence and current prelaunch boundary
+        shell: bash
+        run: |
+          set -euxo pipefail
+          main_sha=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+          test "$main_sha" = 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1
+          test "$(git hash-object index.html)" = 344faeb45d0046a52b24fad91a5bcbcb46784b71
+          test "$(git hash-object release-candidates/0.10.5-r1.2/98e6431c72c7b32f/index.html)" = ce5b5608767083a696cf57982edd979a21b3ba22
+          python - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.2/prelaunch-seal/FINAL_PRELAUNCH_GATE.json'))
+          assert x['schema_version']=='CR0105R12-PRELAUNCH-SEAL-2'
+          assert x['status']=='PASS'
+          assert x['workflow_run_id']=='32089610807'
+          assert x['release_identity']['sha256']=='98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180'
+          assert x['public_host_observed']['sha256']=='e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf'
+          assert all(x['checks'].values())
+          assert x['authority']=={'main_written':False,'pages_settings_written':False,'deployment_triggered':False,'human_launch':False}
+          PY
+          curl -sS -L -o /tmp/cr0105r12-public.html "https://whosia.github.io/CUBE-REV/?cr0105r12bind=${GITHUB_RUN_ID}"
+          test "$(wc -c < /tmp/cr0105r12-public.html)" = 2588604
+          test "$(sha256sum /tmp/cr0105r12-public.html | cut -d' ' -f1)" = e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf
+      - name: Persist V2 immutable binding certificate
+        id: persist
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p research/0.10.5-r1.2/prelaunch-seal
+          python - <<'PY'
+          import json,os
+          out={
+            'schema_version':'CR0105R12-V2-TAG-BINDING-1',
+            'status':'PASS',
+            'court_evidence_commit':'2dcf9c9fbc58dc442259cba2325b5a68aa924a03',
+            'court_workflow_run_id':'32089610807',
+            'sealed_candidate_sha256':'98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180',
+            'base_main_commit':'52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1',
+            'original_prelaunch_tag':'cube-rev-0.10.5-r1.2-prelaunch-seal',
+            'original_prelaunch_tag_preserved':True,
+            'v2_tag':'cube-rev-0.10.5-r1.2-prelaunch-seal-v2',
+            'main_written':False,
+            'deployment_triggered':False,
+            'public_host_still_baseline':True,
+            'binding_run_id':os.environ['GITHUB_RUN_ID']
+          }
+          open('research/0.10.5-r1.2/prelaunch-seal/V2_TAG_BINDING.json','w').write(json.dumps(out,indent=2))
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add research/0.10.5-r1.2/prelaunch-seal/V2_TAG_BINDING.json
+          git commit -m "Bind CUBE-REV 0.10.5-R1.2 V2 immutable prelaunch seal ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.2-release-identity
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Create and verify immutable V2 tag
+        shell: bash
+        run: |
+          set -euxo pipefail
+          tag='cube-rev-0.10.5-r1.2-prelaunch-seal-v2'
+          commit='${{ steps.persist.outputs.commit }}'
+          if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then
+            remote=$(git ls-remote --tags origin "refs/tags/${tag}" | awk '{print $1}')
+            test "$remote" = "$commit"
+          else
+            git tag "$tag" "$commit"
+            git push origin "refs/tags/${tag}"
+          fi
+          remote=$(git ls-remote --tags origin "refs/tags/${tag}" | awk '{print $1}')
+          test "$remote" = "$commit"

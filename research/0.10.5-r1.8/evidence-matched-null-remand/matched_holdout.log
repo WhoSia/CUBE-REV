@@ -1,0 +1,58 @@
+{
+  "status": "PASS_POSTHOC_DIAGNOSTIC",
+  "prospective_primary_unchanged": {
+    "attempt_positive_rate_raw": 0,
+    "attempt_positive_rate_standardized": 0,
+    "null_seal": "1343a667600a4a859ae081b3b3042cbe365e447b7b082dd7ebf77b9edc8494ea"
+  },
+  "matched_null": {
+    "calibration_status": "PASS",
+    "calibration_segments": 5515,
+    "global": {
+      "n": 5515,
+      "p50": 0.22916666666666652,
+      "p90": 0.4583333333333335,
+      "p95": 0.5833333333333334,
+      "p99": 0.7916666666666665,
+      "p995": 0.8333333333333334,
+      "max": 0.9583333333333335
+    },
+    "threshold_file_sha256": "d1780d4266dff5072660f2fcfe6bca8b1d250c99ba695dd81cfd179972d90424",
+    "warning": "Matched thresholds were constructed after the prospective zero was known. They cannot replace, rescue, or reinterpret the prospective primary result."
+  },
+  "holdout": {
+    "state_certified_attempts": 888,
+    "eligible_segments": 5564,
+    "positive_segments": 32,
+    "positive_attempts": 32,
+    "raw_attempt_rate": 0.036036036036036036,
+    "untouched_support_standardized_attempt_rate": 0.04362672857842155,
+    "bootstrap_95": {
+      "lo": 0.022493043182005148,
+      "hi": 0.07022318780670939,
+      "replicates": 2000
+    },
+    "phase_counts": {
+      "LL_PERMUTE": 6,
+      "ROUX_SB": 2,
+      "F2L": 18,
+      "CROSS": 2,
+      "LL_ORIENT": 3,
+      "LL_ONELOOK": 1
+    },
+    "method_counts": {
+      "CFOP": 30,
+      "Roux": 2
+    },
+    "cell_counts": {
+      "5-7|2023-26": 10,
+      "5-7|2013-16": 4,
+      "7-10|<=2012": 2,
+      "7-10|2017-19": 5,
+      "5-7|2020-22": 2,
+      "5-7|2017-19": 2,
+      "7-10|2013-16": 7
+    }
+  },
+  "adjudication": "If this matched-statistic posthoc sensitivity is materially nonzero while the prospective frozen-envelope court is zero, the correct R1.8 conclusion is measurement-court mismatch/over-conservatism, not prospective evidence of recovery. The matched construction should be prospectively frozen and retested on a new data vintage in a later version."
+}

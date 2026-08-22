@@ -1,0 +1,778 @@
+{
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    }
+  ],
+  "pageerror": [],
+  "requestfailed": [
+    {
+      "url": "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=health&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=__cubeRevHealth_e8cdf34d18d36e73&_=1787016367030",
+      "failure": "net::ERR_FAILED"
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:38287/index.html?debug=1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/collector-config.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/calibration/calibration-config.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/calibration/linkage.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/calibration/history-presentation.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/calibration/eligibility-clock.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/calibration/neutral-probe.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/calibration/export-decoration.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/calibration/randomization.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/calibration/runtime.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/js/i18n-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/js/collector-client.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/js/camera-zoom-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/js/responsive-layout-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/js/camera-orbit.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:38287/js/cube-drag-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+      "status": 200
+    }
+  ],
+  "state": {
+    "title": "CUBE-REV 0.7.12 \u00b7 source-bound browser run-in",
+    "selftest": {
+      "passed": true,
+      "check_count": 100,
+      "checks": [
+        {
+          "name": "U^4",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "U inverse",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "U distance1",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "R^4",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "R inverse",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "R distance1",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "F^4",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "F inverse",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "F distance1",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "D^4",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "D inverse",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "D distance1",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "L^4",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "L inverse",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "L distance1",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "B^4",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "B inverse",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "B distance1",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "x^4 full",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "x quotient invariant",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "y^4 full",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "y quotient invariant",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "z^4 full",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "z quotient invariant",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "canonical solved id",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "U' U2 => U",
+          "passed": true,
+          "detail": [
+            "U"
+          ]
+        },
+        {
+          "name": "R4 local identity",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "undo inverse U2",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "undo inverse x'",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "version unified",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "release cache key unified",
+          "passed": true,
+          "detail": [
+            "./js/i18n-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+            "./js/collector-client.js?v=0712-camera-neutral-bypass-hotfix-1",
+            "./js/camera-orbit.js?v=0712-camera-neutral-bypass-hotfix-1",
+            "./js/cube-drag-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+            "./js/camera-zoom-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+            "./js/responsive-layout-controller.js?v=0712-camera-neutral-bypass-hotfix-1"
+          ]
+        },
+        {
+          "name": "document version unified",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "screen-relative 360 camera orbit",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "csTimer xyz keymap",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "verified collector active with clock pending",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "hidden generation enforced",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "SOLID controllers loaded",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "trial timeout does not auto-advance",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "confirmed receipt protocol",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "collector receipt-v2 active",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "standard U/F trial camera",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "neutral control is nonvisual",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "export version authoritative",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "generator exact proposal",
+          "passed": true,
+          "detail": {
+            "tokens": [
+              "F'"
+            ],
+            "distance": 1,
+            "state_id": 2123260,
+            "generation_attempts": 1,
+            "proposal_distance": 1
+          }
+        },
+        {
+          "name": "stimulus P-S-01",
+          "passed": true,
+          "detail": {
+            "actual": 1224720,
+            "expected": 1224720
+          }
+        },
+        {
+          "name": "stimulus P-S-02",
+          "passed": true,
+          "detail": {
+            "actual": 3434407,
+            "expected": 3434407
+          }
+        },
+        {
+          "name": "stimulus P-S-03",
+          "passed": true,
+          "detail": {
+            "actual": 13230,
+            "expected": 13230
+          }
+        },
+        {
+          "name": "stimulus P-O-01",
+          "passed": true,
+          "detail": {
+            "actual": 1693577,
+            "expected": 1693577
+          }
+        },
+        {
+          "name": "stimulus P-O-02",
+          "passed": true,
+          "detail": {
+            "actual": 2370089,
+            "expected": 2370089
+          }
+        },
+        {
+          "name": "stimulus P-O-03",
+          "passed": true,
+          "detail": {
+            "actual": 727030,
+            "expected": 727030
+          }
+        },
+        {
+          "name": "stimulus O-01-01",
+          "passed": true,
+          "detail": {
+            "actual": 3019518,
+            "expected": 3019518
+          }
+        },
+        {
+          "name": "stimulus O-01-02",
+          "passed": true,
+          "detail": {
+            "actual": 1574640,
+            "expected": 1574640
+          }
+        },
+        {
+          "name": "stimulus O-01-03",
+          "passed": true,
+          "detail": {
+            "actual": 897082,
+            "expected": 897082
+          }
+        },
+        {
+          "name": "stimulus O-02-01",
+          "passed": true,
+          "detail": {
+            "actual": 2059837,
+            "expected": 2059837
+          }
+        },
+        {
+          "name": "stimulus O-02-02",
+          "passed": true,
+          "detail": {
+            "actual": 2975778,
+            "expected": 2975778
+          }
+        },
+        {
+          "name": "stimulus O-02-03",
+          "passed": true,
+          "detail": {
+            "actual": 1924972,
+            "expected": 1924972
+          }
+        },
+        {
+          "name": "stimulus O-03-01",
+          "passed": true,
+          "detail": {
+            "actual": 3560144,
+            "expected": 3560144
+          }
+        },
+        {
+          "name": "stimulus O-03-02",
+          "passed": true,
+          "detail": {
+            "actual": 2814932,
+            "expected": 2814932
+          }
+        },
+        {
+          "name": "stimulus O-03-03",
+          "passed": true,
+          "detail": {
+            "actual": 2802152,
+            "expected": 2802152
+          }
+        },
+        {
+          "name": "stimulus O-04-01",
+          "passed": true,
+          "detail": {
+            "actual": 558366,
+            "expected": 558366
+          }
+        },
+        {
+          "name": "stimulus O-04-02",
+          "passed": true,
+          "detail": {
+            "actual": 2104925,
+            "expected": 2104925
+          }
+        },
+        {
+          "name": "stimulus O-04-03",
+          "passed": true,
+          "detail": {
+            "actual": 1958144,
+            "expected": 1958144
+          }
+        },
+        {
+          "name": "stimulus O-05-01",
+          "passed": true,
+          "detail": {
+            "actual": 2113924,
+            "expected": 2113924
+          }
+        },
+        {
+          "name": "stimulus O-05-02",
+          "passed": true,
+          "detail": {
+            "actual": 2112940,
+            "expected": 2112940
+          }
+        },
+        {
+          "name": "stimulus O-05-03",
+          "passed": true,
+          "detail": {
+            "actual": 1400893,
+            "expected": 1400893
+          }
+        },
+        {
+          "name": "stimulus O-06-01",
+          "passed": true,
+          "detail": {
+            "actual": 930750,
+            "expected": 930750
+          }
+        },
+        {
+          "name": "stimulus O-06-02",
+          "passed": true,
+          "detail": {
+            "actual": 135398,
+            "expected": 135398
+          }
+        },
+        {
+          "name": "stimulus O-06-03",
+          "passed": true,
+          "detail": {
+            "actual": 3514114,
+            "expected": 3514114
+          }
+        },
+        {
+          "name": "stimulus O-07-01",
+          "passed": true,
+          "detail": {
+            "actual": 1648686,
+            "expected": 1648686
+          }
+        },
+        {
+          "name": "stimulus O-07-02",
+          "passed": true,
+          "detail": {
+            "actual": 265016,
+            "expected": 265016
+          }
+        },
+        {
+          "name": "stimulus O-07-03",
+          "passed": true,
+          "detail": {
+            "actual": 2323922,
+            "expected": 2323922
+          }
+        },
+        {
+          "name": "stimulus O-08-01",
+          "passed": true,
+          "detail": {
+            "actual": 3595780,
+            "expected": 3595780
+          }
+        },
+        {
+          "name": "stimulus O-08-02",
+          "passed": true,
+          "detail": {
+            "actual": 927087,
+            "expected": 927087
+          }
+        },
+        {
+          "name": "stimulus O-08-03",
+          "passed": true,
+          "detail": {
+            "actual": 558521,
+            "expected": 558521
+          }
+        },
+        {
+          "name": "stimulus S-01-01",
+          "passed": true,
+          "detail": {
+            "actual": 2123260,
+            "expected": 2123260
+          }
+        },
+        {
+          "name": "stimulus S-01-02",
+          "passed": true,
+          "detail": {
+            "actual": 2208251,
+            "expected": 2208251
+          }
+        },
+        {
+          "name": "stimulus S-02-01",
+          "passed": true,
+          "detail": {
+            "actual": 2317601,
+            "expected": 2317601
+          }
+        },
+        {
+          "name": "stimulus S-02-02",
+          "passed": true,
+          "detail": {
+            "actual": 1843338,
+            "expected": 1843338
+          }
+        },
+        {
+          "name": "stimulus S-03-01",
+          "passed": true,
+          "detail": {
+            "actual": 3359610,
+            "expected": 3359610
+          }
+        },
+        {
+          "name": "stimulus S-03-02",
+          "passed": true,
+          "detail": {
+            "actual": 32516,
+            "expected": 32516
+          }
+        },
+        {
+          "name": "stimulus S-04-01",
+          "passed": true,
+          "detail": {
+            "actual": 1126341,
+            "expected": 1126341
+          }
+        },
+        {
+          "name": "stimulus S-04-02",
+          "passed": true,
+          "detail": {
+            "actual": 3113427,
+            "expected": 3113427
+          }
+        },
+        {
+          "name": "stimulus S-05-01",
+          "passed": true,
+          "detail": {
+            "actual": 349215,
+            "expected": 349215
+          }
+        },
+        {
+          "name": "stimulus S-05-02",
+          "passed": true,
+          "detail": {
+            "actual": 3070964,
+            "expected": 3070964
+          }
+        },
+        {
+          "name": "history H-RB-005 geodesic",
+          "passed": true,
+          "detail": {
+            "actual": 1714291,
+            "expected": 1714291
+          }
+        },
+        {
+          "name": "history H-RB-005 uniform_reduced_bridge",
+          "passed": true,
+          "detail": {
+            "actual": 1714291,
+            "expected": 1714291
+          }
+        },
+        {
+          "name": "history H-RB-016 geodesic",
+          "passed": true,
+          "detail": {
+            "actual": 540291,
+            "expected": 540291
+          }
+        },
+        {
+          "name": "history H-RB-016 uniform_reduced_bridge",
+          "passed": true,
+          "detail": {
+            "actual": 540291,
+            "expected": 540291
+          }
+        },
+        {
+          "name": "history H-RB-004 geodesic",
+          "passed": true,
+          "detail": {
+            "actual": 645121,
+            "expected": 645121
+          }
+        },
+        {
+          "name": "history H-RB-004 uniform_reduced_bridge",
+          "passed": true,
+          "detail": {
+            "actual": 645121,
+            "expected": 645121
+          }
+        },
+        {
+          "name": "history H-RB-008 geodesic",
+          "passed": true,
+          "detail": {
+            "actual": 42534,
+            "expected": 42534
+          }
+        },
+        {
+          "name": "history H-RB-008 uniform_reduced_bridge",
+          "passed": true,
+          "detail": {
+            "actual": 42534,
+            "expected": 42534
+          }
+        },
+        {
+          "name": "history H-RB-001 geodesic",
+          "passed": true,
+          "detail": {
+            "actual": 3672406,
+            "expected": 3672406
+          }
+        },
+        {
+          "name": "history H-RB-001 uniform_reduced_bridge",
+          "passed": true,
+          "detail": {
+            "actual": 3672406,
+            "expected": 3672406
+          }
+        },
+        {
+          "name": "history H-RB-003 geodesic",
+          "passed": true,
+          "detail": {
+            "actual": 2304865,
+            "expected": 2304865
+          }
+        },
+        {
+          "name": "history H-RB-003 uniform_reduced_bridge",
+          "passed": true,
+          "detail": {
+            "actual": 2304865,
+            "expected": 2304865
+          }
+        },
+        {
+          "name": "history H-RB-006 geodesic",
+          "passed": true,
+          "detail": {
+            "actual": 1995585,
+            "expected": 1995585
+          }
+        },
+        {
+          "name": "history H-RB-006 uniform_reduced_bridge",
+          "passed": true,
+          "detail": {
+            "actual": 1995585,
+            "expected": 1995585
+          }
+        },
+        {
+          "name": "history H-RB-009 geodesic",
+          "passed": true,
+          "detail": {
+            "actual": 996562,
+            "expected": 996562
+          }
+        },
+        {
+          "name": "history H-RB-009 uniform_reduced_bridge",
+          "passed": true,
+          "detail": {
+            "actual": 996562,
+            "expected": 996562
+          }
+        }
+      ]
+    },
+    "status": "Internal checks passed: 100/100",
+    "hasStart": true,
+    "readyState": "complete"
+  }
+}

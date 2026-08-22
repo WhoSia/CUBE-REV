@@ -1,0 +1,233 @@
+name: CR0105R12 Prelaunch Gate
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.2-release-identity]
+    paths: ['cr0105r12/RUN']
+permissions:
+  contents: write
+  pages: read
+jobs:
+  prelaunch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Authority and ancestry court
+        id: authority
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p cr0105r12-artifact
+          main_sha=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+          printf '{"status":"%s","main_sha":"%s"}\n' "$(test "$main_sha" = 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1 && echo PASS || echo FAIL)" "$main_sha" > cr0105r12-artifact/AUTHORITY_COURT.json
+          test "$main_sha" = 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1
+          git merge-base --is-ancestor d949b9638d7db3661b62bc9913fa3439a83f3194 HEAD
+          test "$(git hash-object index.html)" = 344faeb45d0046a52b24fad91a5bcbcb46784b71
+          test "$(sha256sum index.html | cut -d' ' -f1)" = e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf
+          test "$(python - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.1/action-seal/FINAL_SEAL.json'))
+          print(x['first_patched']['sha256'])
+          PY
+          )" = 98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180
+      - name: Baseline regression suite
+        id: baseline
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euxo pipefail
+          node scripts/validate-static.mjs
+          node scripts/build-calibration-host.mjs
+          node scripts/validate-calibration.mjs
+          node tests/randomization.test.cjs
+          node tests/history-fidelity.test.cjs
+          node tests/neutral-probe.test.cjs
+          node tests/runtime.test.cjs
+          node tests/camera-orbit.test.cjs
+          node tests/collector-receipt.integration.cjs
+          python -m unittest tests/test_registry_and_annotation.py
+          node tests/documented-cli.test.cjs
+          printf '%s\n' '{"status":"PASS"}' > cr0105r12-artifact/BASELINE_COURT.json
+      - name: Install Chromium court runtime
+        id: chromium
+        continue-on-error: true
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install chromium
+      - name: Materialize sealed candidate from exact source
+        id: materialize
+        continue-on-error: true
+        shell: bash
+        env: {PYTHONUNBUFFERED: '1'}
+        run: |
+          set -euxo pipefail
+          python scripts/cr0105r11_exact_seal.py --root . --artifact-dir cr0105r12-artifact
+          test "$(wc -c < index.html)" = 2591526
+          test "$(sha256sum index.html | cut -d' ' -f1)" = 98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180
+          test "$(git hash-object index.html)" = ce5b5608767083a696cf57982edd979a21b3ba22
+          target='release-candidates/0.10.5-r1.2/98e6431c72c7b32f/index.html'
+          mkdir -p "$(dirname "$target")"
+          if test -f "$target"; then
+            test "$(sha256sum "$target" | cut -d' ' -f1)" = 98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180
+          else
+            cp index.html "$target"
+          fi
+          cmp -s index.html "$target"
+          printf '%s\n' '{"status":"PASS","candidate_sha256":"98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180"}' > cr0105r12-artifact/MATERIALIZATION_COURT.json
+      - name: Candidate-equivalent boot and browser court
+        id: browser
+        continue-on-error: true
+        env: {CR0105R11_ARTIFACT_DIR: cr0105r12-artifact, PYTHONUNBUFFERED: '1'}
+        run: |
+          python tests/cr0105r11_boot_diag.py
+          python tests/cr0105r11_exact_monolith_court.py
+      - name: Restore repository root to current public baseline
+        if: always()
+        id: restore
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euxo pipefail
+          if test -f cr0105r12-artifact/index.source.html; then cp cr0105r12-artifact/index.source.html index.html; else git checkout 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1 -- index.html; fi
+          test "$(git hash-object index.html)" = 344faeb45d0046a52b24fad91a5bcbcb46784b71
+      - name: Resolve GitHub Pages configuration read-only
+        if: always()
+        id: pages
+        continue-on-error: true
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -u
+          mkdir -p cr0105r12-artifact
+          code=$(curl -sS -o cr0105r12-artifact/pages.raw.json -w '%{http_code}' -H "Authorization: Bearer ${GH_TOKEN}" -H 'Accept: application/vnd.github+json' -H 'X-GitHub-Api-Version: 2022-11-28' https://api.github.com/repos/WhoSia/CUBE-REV/pages || true)
+          PAGES_HTTP_STATUS="$code" python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('cr0105r12-artifact/pages.raw.json')
+          try: raw=json.loads(p.read_text())
+          except Exception: raw={}
+          out={'http_status':int(os.environ.get('PAGES_HTTP_STATUS') or 0),'html_url':raw.get('html_url'),'source':raw.get('source'),'build_type':raw.get('build_type'),'raw_status':raw.get('status'),'message':raw.get('message')}
+          Path('cr0105r12-artifact/PAGES_METADATA.json').write_text(json.dumps(out,indent=2),encoding='utf-8')
+          print(json.dumps(out,indent=2))
+          PY
+      - name: Fetch current public host without deployment writes
+        if: always()
+        id: publichost
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -u
+          url=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('cr0105r12-artifact/PAGES_METADATA.json')
+          try:x=json.loads(p.read_text())
+          except Exception:x={}
+          print(x.get('html_url') or 'https://whosia.github.io/CUBE-REV/')
+          PY
+          )
+          case "$url" in */) ;; *) url="$url/" ;; esac
+          fetch_url="${url}?cr0105r12=${GITHUB_RUN_ID}"
+          code=$(curl -sS -L -o cr0105r12-artifact/public-host-index.html -w '%{http_code}' "$fetch_url" || true)
+          PUBLIC_HTTP_STATUS="$code" PUBLIC_URL="$url" FETCH_URL="$fetch_url" python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('cr0105r12-artifact/public-host-index.html')
+          out={'http_status':int(os.environ.get('PUBLIC_HTTP_STATUS') or 0),'canonical_url':os.environ.get('PUBLIC_URL'),'fetch_url':os.environ.get('FETCH_URL'),'bytes':p.stat().st_size if p.exists() else None}
+          Path('cr0105r12-artifact/PUBLIC_HOST_FETCH.json').write_text(json.dumps(out,indent=2),encoding='utf-8')
+          print(json.dumps(out,indent=2))
+          PY
+      - name: Record step outcomes
+        if: always()
+        shell: bash
+        env:
+          AUTHORITY: ${{ steps.authority.outcome }}
+          BASELINE: ${{ steps.baseline.outcome }}
+          CHROMIUM: ${{ steps.chromium.outcome }}
+          MATERIALIZE: ${{ steps.materialize.outcome }}
+          BROWSER: ${{ steps.browser.outcome }}
+          RESTORE: ${{ steps.restore.outcome }}
+          PAGES: ${{ steps.pages.outcome }}
+          PUBLICHOST: ${{ steps.publichost.outcome }}
+        run: |
+          mkdir -p cr0105r12-artifact
+          python - <<'PY'
+          import json,os
+          keys=['AUTHORITY','BASELINE','CHROMIUM','MATERIALIZE','BROWSER','RESTORE','PAGES','PUBLICHOST']
+          open('cr0105r12-artifact/STEP_OUTCOMES.json','w').write(json.dumps({k.lower():os.environ.get(k) for k in keys},indent=2))
+          PY
+      - name: Build fail-closed R1.2 prelaunch seal
+        if: always()
+        id: final
+        continue-on-error: true
+        env:
+          CR0105R12_ARTIFACT_DIR: cr0105r12-artifact
+          CR0105R12_MAIN_SHA: 52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1
+          PYTHONUNBUFFERED: '1'
+        run: python scripts/cr0105r12_release_identity.py
+      - name: Prepare candidate identity manifest when materialized
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          if test -f release-candidates/0.10.5-r1.2/98e6431c72c7b32f/index.html && test -f research/0.10.5-r1.2/prelaunch-seal/FINAL_PRELAUNCH_GATE.json; then
+            cp research/0.10.5-r1.2/prelaunch-seal/FINAL_PRELAUNCH_GATE.json release-candidates/0.10.5-r1.2/98e6431c72c7b32f/RELEASE_IDENTITY.json
+          fi
+      - name: Persist candidate and compact evidence on research branch
+        if: always()
+        id: persist
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p research/0.10.5-r1.2/prelaunch-seal
+          cp -f cr0105r12-artifact/STEP_OUTCOMES.json research/0.10.5-r1.2/prelaunch-seal/STEP_OUTCOMES.json || true
+          cp -f cr0105r12-artifact/AUTHORITY_COURT.json research/0.10.5-r1.2/prelaunch-seal/AUTHORITY_COURT.json || true
+          cp -f cr0105r12-artifact/BASELINE_COURT.json research/0.10.5-r1.2/prelaunch-seal/BASELINE_COURT.json || true
+          cp -f cr0105r12-artifact/MATERIALIZATION_COURT.json research/0.10.5-r1.2/prelaunch-seal/MATERIALIZATION_COURT.json || true
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add release-candidates/0.10.5-r1.2 research/0.10.5-r1.2/prelaunch-seal || true
+          if git diff --cached --quiet; then
+            echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Record CUBE-REV 0.10.5-R1.2 prelaunch court run ${GITHUB_RUN_ID}"
+            git push origin HEAD:cube-rev-0.10.5-r1.2-release-identity
+            echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Bind immutable prelaunch tag only on PASS
+        if: always()
+        shell: bash
+        run: |
+          set -euxo pipefail
+          status=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('cr0105r12-artifact/FINAL_PRELAUNCH_GATE.json')
+          try: print(json.loads(p.read_text()).get('status','HOLD'))
+          except Exception: print('HOLD')
+          PY
+          )
+          if test "$status" != PASS; then echo "Prelaunch gate is $status; immutable PASS tag intentionally withheld."; exit 0; fi
+          commit='${{ steps.persist.outputs.commit }}'
+          tag='cube-rev-0.10.5-r1.2-prelaunch-seal'
+          if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then
+            remote=$(git ls-remote --tags origin "refs/tags/${tag}" | awk '{print $1}')
+            test "$remote" = "$commit"
+          else
+            git tag "$tag" "$commit"
+            git push origin "refs/tags/${tag}"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R12-prelaunch-artifact
+          path: cr0105r12-artifact
+          if-no-files-found: error
+          retention-days: 30

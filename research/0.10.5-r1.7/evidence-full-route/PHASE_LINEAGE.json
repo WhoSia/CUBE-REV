@@ -1,0 +1,8304 @@
+{
+  "schema_version": "CR0105R17-PHASE-TAXONOMY-1",
+  "status": "PASS",
+  "source_probe_records": 125,
+  "post_inspection_lines": 738,
+  "post_inspection_classified": 727,
+  "post_inspection_classification_rate": 0.9850948509485095,
+  "records_fully_classified_post_inspection": 122,
+  "records_with_annotation_order_regression": 0,
+  "phase_counts": {
+    "INSPECTION": 117,
+    "CROSS": 86,
+    "F2L": 289,
+    "LL_ORIENT": 43,
+    "LL_PERMUTE": 46,
+    "LL_ONELOOK": 41,
+    "AMBIGUOUS": 2,
+    "ROUX_FB": 38,
+    "ROUX_SB": 75,
+    "ROUX_CMLL": 37,
+    "ROUX_LSE": 72,
+    "UNKNOWN": 9
+  },
+  "method_phase_counts": {
+    "CFOP": {
+      "INSPECTION": 48,
+      "CROSS": 51,
+      "F2L": 176,
+      "LL_ORIENT": 43,
+      "LL_PERMUTE": 45,
+      "AMBIGUOUS": 1,
+      "LL_ONELOOK": 6
+    },
+    "ZB": {
+      "INSPECTION": 32,
+      "CROSS": 35,
+      "F2L": 113,
+      "LL_ONELOOK": 34,
+      "LL_PERMUTE": 1
+    },
+    "Roux": {
+      "INSPECTION": 36,
+      "ROUX_FB": 38,
+      "ROUX_SB": 75,
+      "ROUX_CMLL": 37,
+      "ROUX_LSE": 72,
+      "AMBIGUOUS": 1,
+      "UNKNOWN": 1
+    },
+    "CF": {
+      "INSPECTION": 1,
+      "UNKNOWN": 8,
+      "LL_ONELOOK": 1
+    }
+  },
+  "top_unknown_comments": [
+    [
+      "eofb",
+      1
+    ],
+    [
+      "fl corners 1 edge",
+      1
+    ],
+    [
+      "fl center 2nd edge",
+      1
+    ],
+    [
+      "fl 3rd edge",
+      1
+    ],
+    [
+      "ll 1st edge",
+      1
+    ],
+    [
+      "ll 2nd edge",
+      1
+    ],
+    [
+      "ll 3rd edge",
+      1
+    ],
+    [
+      "lse",
+      1
+    ],
+    [
+      "centers",
+      1
+    ]
+  ],
+  "top_ambiguous_comments": [
+    [
+      "2nd pair/finish cross",
+      1
+    ],
+    [
+      "cmll/fix sp",
+      1
+    ]
+  ],
+  "taxonomy_rule": "Method-aware comment labels provide phase annotations; ambiguous/multi-phase comments are not force-classified. Annotation labels require independent cube-state replay before use in counterfactual phenotype claims.",
+  "records": [
+    {
+      "reco_id": 14051,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "3rd/4th pairs",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 4,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14035,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 4,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14034,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 4,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14033,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 4,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14032,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14031,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14015,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14014,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll(cp)",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14013,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "pseudo cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair/finish cross",
+          "phase": "AMBIGUOUS",
+          "hits": [
+            "CROSS",
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2gll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": false
+    },
+    {
+      "reco_id": 14012,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll(cp)",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14011,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14004,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14003,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14002,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14001,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 14000,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 4,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13482,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "psuedo xxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 4,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13481,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13480,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13479,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 4,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13478,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13477,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13470,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13469,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13468,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13467,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13466,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "ell",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13454,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll(cp)",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13453,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xxxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 4,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13452,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "xxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll(cp)",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13451,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/svls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13450,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13444,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll(cp)",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13443,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd/4th pairs",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13442,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13441,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13264,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "xxcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 4,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13257,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13249,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13074,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13073,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll(cp)",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13072,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 13030,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12999,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12998,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12995,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12990,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12909,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12908,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12906,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12873,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12842,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12841,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12840,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12839,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12838,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12836,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12818,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12811,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12809,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "pseudo fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp/fix centers",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12808,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12806,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12805,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12804,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12803,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fbdr",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12802,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12799,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12795,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "pseudo fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp/fix centers",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12793,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12790,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12751,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12643,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12594,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12259,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12222,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12078,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12032,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 12004,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11991,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11977,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11959,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "flipped sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll/fix sp",
+          "phase": "AMBIGUOUS",
+          "hits": [
+            "ROUX_SB",
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eofb",
+          "phase": "UNKNOWN",
+          "hits": []
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 4,
+      "fully_classified_post_inspection": false
+    },
+    {
+      "reco_id": 11956,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11941,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11916,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sb",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11877,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11831,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "psuedo xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11798,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sb",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11539,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11482,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "lse",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11450,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11449,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sb",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11445,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sb",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11024,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 11023,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 10051,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 10042,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9969,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9906,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9758,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "pseudo cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "fix everything/oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9365,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9356,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9315,
+      "method": "ZB",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair/zbls",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "zbll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9249,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9213,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9172,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 9103,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolrb",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 8696,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "ollcp",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 7759,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 6983,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "coll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 5541,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 5274,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 4871,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 4870,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "xcross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 3579,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "lse",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 3498,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 2651,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 2489,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "sb",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 5,
+      "post_inspection_classified": 5,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 2104,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 2029,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 2013,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 727,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "yellow cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "coll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "epll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 483,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "missed cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 380,
+      "method": "CFOP",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "cross",
+          "phase": "CROSS",
+          "hits": [
+            "CROSS"
+          ]
+        },
+        {
+          "comment": "1st pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "2nd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "3rd pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "4th pair",
+          "phase": "F2L",
+          "hits": [
+            "F2L"
+          ]
+        },
+        {
+          "comment": "oll",
+          "phase": "LL_ORIENT",
+          "hits": [
+            "LL_ORIENT"
+          ]
+        },
+        {
+          "comment": "pll",
+          "phase": "LL_PERMUTE",
+          "hits": [
+            "LL_PERMUTE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "CROSS",
+        "F2L",
+        "F2L",
+        "F2L",
+        "F2L",
+        "LL_ORIENT",
+        "LL_PERMUTE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 7,
+      "post_inspection_classified": 7,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 323,
+      "method": "Roux",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fb",
+          "phase": "ROUX_FB",
+          "hits": [
+            "ROUX_FB"
+          ]
+        },
+        {
+          "comment": "ss",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "sp",
+          "phase": "ROUX_SB",
+          "hits": [
+            "ROUX_SB"
+          ]
+        },
+        {
+          "comment": "cmll",
+          "phase": "ROUX_CMLL",
+          "hits": [
+            "ROUX_CMLL"
+          ]
+        },
+        {
+          "comment": "eolr",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        },
+        {
+          "comment": "ep",
+          "phase": "ROUX_LSE",
+          "hits": [
+            "ROUX_LSE"
+          ]
+        }
+      ],
+      "phase_sequence": [
+        "ROUX_FB",
+        "ROUX_SB",
+        "ROUX_SB",
+        "ROUX_CMLL",
+        "ROUX_LSE",
+        "ROUX_LSE"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 6,
+      "post_inspection_classified": 6,
+      "fully_classified_post_inspection": true
+    },
+    {
+      "reco_id": 169,
+      "method": "CF",
+      "lines": [
+        {
+          "comment": "inspection",
+          "phase": "INSPECTION",
+          "hits": [
+            "INSPECTION"
+          ]
+        },
+        {
+          "comment": "fl corners 1 edge",
+          "phase": "UNKNOWN",
+          "hits": []
+        },
+        {
+          "comment": "fl center 2nd edge",
+          "phase": "UNKNOWN",
+          "hits": []
+        },
+        {
+          "comment": "cll",
+          "phase": "LL_ONELOOK",
+          "hits": [
+            "LL_ONELOOK"
+          ]
+        },
+        {
+          "comment": "fl 3rd edge",
+          "phase": "UNKNOWN",
+          "hits": []
+        },
+        {
+          "comment": "ll 1st edge",
+          "phase": "UNKNOWN",
+          "hits": []
+        },
+        {
+          "comment": "ll 2nd edge",
+          "phase": "UNKNOWN",
+          "hits": []
+        },
+        {
+          "comment": "ll 3rd edge",
+          "phase": "UNKNOWN",
+          "hits": []
+        },
+        {
+          "comment": "lse",
+          "phase": "UNKNOWN",
+          "hits": []
+        },
+        {
+          "comment": "centers",
+          "phase": "UNKNOWN",
+          "hits": []
+        }
+      ],
+      "phase_sequence": [
+        "LL_ONELOOK"
+      ],
+      "ordinal_regressions": 0,
+      "post_inspection_lines": 9,
+      "post_inspection_classified": 1,
+      "fully_classified_post_inspection": false
+    }
+  ],
+  "human_observations": 0
+}

@@ -1,0 +1,89 @@
+name: CR0105R110 Post-Seal Fresh Vintage Watch
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.10-method-stratified-transport-roux-frame]
+    paths: [cr0105r110/RUN_FRESH_WATCH]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  fresh-watch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify local authority was sealed before network watch
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.10/LOCAL_AUTHORITY_SEAL.json'))
+          assert x['seal_sha256']=='b83478923356bb9a0de1a40613f6e6a58ddf482d538393d7dc40b04eb1291cc6'
+          assert x['fresh_network_read_before_this_seal'] is False
+          assert x['fresh_watch_permitted_after_this_commit'] is True
+          assert x['fresh_confirmatory_scoring_authorized'] is False
+          print('CR0105R110_POST_SEAL_WATCH_PRECHECK_PASS')
+          PY
+      - name: Restore exact frozen R1.6 analytical DB
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r110watch
+          gh api -H 'Accept: application/vnd.github+json' repos/${GITHUB_REPOSITORY}/actions/artifacts/9310311696/zip > /tmp/r110watch/r16.zip
+          unzip -q /tmp/r110watch/r16.zip -d /tmp/r110watch/unpacked
+          DB="$(find /tmp/r110watch/unpacked -type f -name 'wca333.duckdb' -print -quit)"
+          test -n "$DB"
+          SHA="$(sha256sum "$DB" | awk '{print $1}')"
+          test "$SHA" = 'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'
+          echo "R110_PARENT_DB=$DB" >> "$GITHUB_ENV"
+          echo "R110_PARENT_DB_SHA256=$SHA" >> "$GITHUB_ENV"
+          echo "R110_WATCH_ROOT=/tmp/r110watch" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install pinned watch runtime
+        run: python -m pip install --disable-pip-version-check duckdb==1.3.2 requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+      - name: Read current index once, watch only
+        id: watch
+        shell: bash
+        run: |
+          set +e
+          python research/0.10.5-r1.10/r110_fresh_watch.py 2>&1 | tee /tmp/r110watch/FRESH_WATCH_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist watch evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.10/evidence-fresh-watch
+          test -f /tmp/r110watch/FRESH_VINTAGE_WATCH.json && cp /tmp/r110watch/FRESH_VINTAGE_WATCH.json research/0.10.5-r1.10/evidence-fresh-watch/ || true
+          cp /tmp/r110watch/FRESH_WATCH_LOG.txt research/0.10.5-r1.10/evidence-fresh-watch/ || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          c=int('${{ steps.watch.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R110-FRESH-WATCH-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'local_authority_seal':'b83478923356bb9a0de1a40613f6e6a58ddf482d538393d7dc40b04eb1291cc6','exit_code':c,'operational_status':'PASS' if c==0 else 'HOLD_OR_FAIL','confirmatory_scoring_authorized':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.10/evidence-fresh-watch/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit post-seal watch evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.10/evidence-fresh-watch
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.10 fresh watch ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.10-method-stratified-transport-roux-frame
+      - name: Enforce watch-only integrity
+        if: always()
+        run: |
+          test '${{ steps.watch.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.10/evidence-fresh-watch/FRESH_VINTAGE_WATCH.json'))
+          assert x['delta']['missing_frozen_id_n']==0
+          assert x['ordering_proof']['local_seal_committed_before_network_read'] is True
+          assert x['authority']['phenotype_scoring_performed'] is False
+          print('CR0105R110_FRESH_WATCH_PASS',x['status'])
+          PY

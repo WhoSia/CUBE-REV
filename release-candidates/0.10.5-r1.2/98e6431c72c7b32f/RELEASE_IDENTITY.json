@@ -1,0 +1,85 @@
+{
+  "schema_version": "CR0105R12-PRELAUNCH-SEAL-2",
+  "stage": "CUBE-REV 0.10.5-R1.2 \u2014 Sealed Release-Identity Materialization, Deployment-byte Equivalence Court & Public-host Prelaunch Gate",
+  "status": "PASS",
+  "verdict": "PASS_SEALED_RELEASE_IDENTITY_MATERIALIZED_DEPLOYMENT_BYTE_EQUIVALENCE_PRELAUNCH_GATE",
+  "repository": "WhoSia/CUBE-REV",
+  "research_branch": "cube-rev-0.10.5-r1.2-release-identity",
+  "base_main_commit": "52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1",
+  "r11_evidence_commit": "d949b9638d7db3661b62bc9913fa3439a83f3194",
+  "workflow_head_sha": "0e870ddf63253a3ecd1cebeb3f2715bc81148c1c",
+  "workflow_run_id": "32089610807",
+  "release_identity": {
+    "candidate_path": "release-candidates/0.10.5-r1.2/98e6431c72c7b32f/index.html",
+    "bytes": 2591526,
+    "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+    "git_blob_sha1": "ce5b5608767083a696cf57982edd979a21b3ba22"
+  },
+  "candidate_observed": {
+    "present": true,
+    "bytes": 2591526,
+    "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+    "git_blob_sha1": "ce5b5608767083a696cf57982edd979a21b3ba22"
+  },
+  "source_observed": {
+    "present": true,
+    "bytes": 2588604,
+    "sha256": "e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf",
+    "git_blob_sha1": "344faeb45d0046a52b24fad91a5bcbcb46784b71"
+  },
+  "public_host_observed": {
+    "present": true,
+    "bytes": 2588604,
+    "sha256": "e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf",
+    "git_blob_sha1": "344faeb45d0046a52b24fad91a5bcbcb46784b71"
+  },
+  "pages_metadata": {
+    "http_status": 404,
+    "html_url": null,
+    "source": null,
+    "build_type": null,
+    "informational_only": true
+  },
+  "public_host_fetch": {
+    "http_status": 200,
+    "canonical_url": "https://whosia.github.io/CUBE-REV/",
+    "fetch_url": "https://whosia.github.io/CUBE-REV/?cr0105r12=32089610807",
+    "bytes": 2588604
+  },
+  "authority_observed": {
+    "status": "PASS",
+    "main_sha": "52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1"
+  },
+  "browser_check_count": 22,
+  "browser_pass_count": 22,
+  "checks": {
+    "r11_final_seal_pass": true,
+    "authority_court_pass": true,
+    "baseline_regression_pass": true,
+    "source_exact_base": true,
+    "patch_receipt_pass": true,
+    "materialization_court_pass": true,
+    "candidate_present": true,
+    "candidate_exact_sealed_bytes": true,
+    "candidate_exact_sealed_sha256": true,
+    "candidate_exact_sealed_git_blob": true,
+    "candidate_content_address_path": true,
+    "boot_selftest_pass": true,
+    "browser_court_pass": true,
+    "public_host_url_expected": true,
+    "public_host_http_200": true,
+    "public_host_matches_current_main_baseline": true,
+    "candidate_not_prematurely_public": true,
+    "no_human_observations": true,
+    "production_network_only_read": true,
+    "deployment_write_not_performed": true
+  },
+  "authority": {
+    "main_written": false,
+    "pages_settings_written": false,
+    "deployment_triggered": false,
+    "human_launch": false
+  },
+  "gate": "READY_FOR_EXPLICIT_DEPLOYMENT_AUTHORITY_COURT",
+  "scope": "PRELAUNCH_ENGINEERING_ONLY"
+}

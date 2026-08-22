@@ -1,0 +1,21 @@
+name: CR0105R12 Smoke
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.2-release-identity]
+    paths: ['cr0105r12/SMOKE']
+permissions:
+  contents: write
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write smoke receipt
+        run: |
+          mkdir -p research/0.10.5-r1.2/smoke
+          printf '{"status":"PASS","run_id":"%s","sha":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > research/0.10.5-r1.2/smoke/SMOKE.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add research/0.10.5-r1.2/smoke/SMOKE.json
+          git commit -m "Record CR0105R12 Actions smoke ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.2-release-identity
