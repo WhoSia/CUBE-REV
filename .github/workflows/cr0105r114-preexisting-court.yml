@@ -1,0 +1,106 @@
+name: CR0105R114 Preexisting Unseen Ontology Transport Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.14-roux-generation-g4]
+    paths: [cr0105r114/RUN_PREEXISTING_COURT]
+permissions:
+  contents: write
+jobs:
+  court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify frozen external membership and no fresh authority substitution
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.14/evidence-external-acquisition/G4_SECOND_LIVE_READ_AUDIT.json'))
+          m=json.load(open('research/0.10.5-r1.14/evidence-external-acquisition/G4_PREEXISTING_UNSEEN_ROUTE_MANIFEST.json'))
+          s=json.load(open('research/0.10.5-r1.14/evidence-reference/G4_REFERENCE_BANK_SEAL.json'))
+          f=json.load(open('research/0.10.5-r1.14/G4_EXTERNAL_SCORING_IMPLEMENTATION_FREEZE.json'))
+          assert x['status']=='PASS_SECOND_LIVE_READ_AND_MEMBERSHIP_FREEZE'
+          assert x['preexisting_unseen']['raw_route_n']==120
+          assert x['post_freeze_fresh']['raw_route_n']==0
+          assert m['role']=='PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY'
+          assert s['seal_sha256']==f['reference_seal_sha256']
+          print('CR0105R114_PREEXISTING_PRECHECK_PASS')
+          PY
+      - name: Install exact cube-state runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Materialize exact frozen G4 classifier with external loader only
+        env:
+          R114_EXTERNAL_MANIFEST: research/0.10.5-r1.14/evidence-external-acquisition/G4_PREEXISTING_UNSEEN_ROUTE_MANIFEST.json
+          R114_EXTERNAL_CLASSIFIER_OUT: research/0.10.5-r1.14/.r114_external_classifier_runtime.mjs
+        run: python3 research/0.10.5-r1.14/r114_materialize_external_classifier.py
+      - name: Execute frozen G4 ontology on preexisting unseen routes
+        id: classify
+        shell: bash
+        env: {R114_ROOT: /tmp/r114pre}
+        run: |
+          set +e
+          mkdir -p /tmp/r114pre
+          node research/0.10.5-r1.14/.r114_external_classifier_runtime.mjs 2>&1 | tee /tmp/r114pre/PREEXISTING_CLASSIFIER_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Score canonical external routes against frozen reference only
+        id: score
+        if: always()
+        shell: bash
+        env:
+          R114_EXTERNAL_ROOT: /tmp/r114pre
+          R114_EXTERNAL_ROLE: PREEXISTING_UNSEEN_HOLDOUT
+        run: |
+          set +e
+          if test -f /tmp/r114pre/G4_CANONICAL_FEATURE_LEDGER.json; then
+            node research/0.10.5-r1.14/r114_external_score.mjs 2>&1 | tee /tmp/r114pre/PREEXISTING_SCORE_LOG.txt
+            code=${PIPESTATUS[0]}
+          else
+            echo 'classifier output missing' | tee /tmp/r114pre/PREEXISTING_SCORE_LOG.txt
+            code=98
+          fi
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist preexisting-unseen evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.14/evidence-preexisting-unseen
+          for f in G4_ONTOLOGY_AUDIT.json G4_ONTOLOGY_ROUTE_ROWS.json G4_CANONICAL_FEATURE_LEDGER.json G4_EXTERNAL_SCORE_AUDIT.json G4_EXTERNAL_SCORED_FEATURES.json G4_EXTERNAL_ATTEMPT_SCORES.json PREEXISTING_CLASSIFIER_LOG.txt PREEXISTING_SCORE_LOG.txt; do
+            test -f "/tmp/r114pre/$f" && cp "/tmp/r114pre/$f" research/0.10.5-r1.14/evidence-preexisting-unseen/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R114-PREEXISTING-COURT-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'classifier_exit_code':int('${{ steps.classify.outputs.exit_code || 97 }}'),'score_exit_code':int('${{ steps.score.outputs.exit_code || 97 }}'),'fresh_authority_eligible':False,'reference_bank_mutated':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.14/evidence-preexisting-unseen/PREEXISTING_COURT_RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit external transport evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          rm -f research/0.10.5-r1.14/.r114_external_classifier_runtime.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.14/evidence-preexisting-unseen
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.14 preexisting unseen court ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.14-roux-generation-g4
+          git push origin HEAD:cube-rev-0.10.5-r1.14-roux-generation-g4
+      - name: Enforce operational completion and no authority release
+        if: always()
+        run: |
+          test '${{ steps.classify.outputs.exit_code }}' = '0'
+          test '${{ steps.score.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.14/evidence-preexisting-unseen/G4_EXTERNAL_SCORE_AUDIT.json'))
+          assert x['role']=='PREEXISTING_UNSEEN_HOLDOUT'
+          assert x['future_roux_scoring_authority'] is False
+          print('CR0105R114_PREEXISTING_COURT_COMPLETE',x['status'],x['counts'],x['rates'])
+          PY
