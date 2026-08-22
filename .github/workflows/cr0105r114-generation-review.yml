@@ -1,0 +1,81 @@
+name: CR0105R114 G4 Generation Review Closure
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.14-roux-generation-g4]
+    paths: [cr0105r114/RUN_GENERATION_REVIEW]
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify frozen review rules and R2 external evidence
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          f=json.load(open('research/0.10.5-r1.14/G4_GENERATION_REVIEW_FREEZE.json'))
+          p=json.load(open('research/0.10.5-r1.14/evidence-preexisting-unseen/G4_EXTERNAL_SCORE_AUDIT.json'))
+          m=json.load(open('research/0.10.5-r1.14/evidence-preexisting-unseen/PREEXISTING_COURT_RUN_METADATA.json'))
+          a=json.load(open('research/0.10.5-r1.14/evidence-external-acquisition/G4_SECOND_LIVE_READ_AUDIT.json'))
+          s=json.load(open('research/0.10.5-r1.14/PREEXISTING_COURT_R1_SUPERSESSION.json'))
+          assert f['status']=='FROZEN_BEFORE_PREEXISTING_UNSEEN_OUTCOMES_ARE_INSPECTED'
+          assert p['status']=='PASS_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT'
+          assert m['workflow_run_id']=='32540103976'
+          assert s['scientific_result_authority'] is False
+          assert a['post_freeze_fresh']['raw_route_n']==0
+          print('CR0105R114_GENERATION_REVIEW_PRECHECK_PASS')
+          PY
+      - name: Execute Generation Review and diagnostic tail localization
+        id: review
+        shell: bash
+        env: {R114_REVIEW_ROOT: /tmp/r114review}
+        run: |
+          set +e
+          mkdir -p /tmp/r114review
+          python3 research/0.10.5-r1.14/r114_generation_review.py 2>&1 | tee /tmp/r114review/GENERATION_REVIEW_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist review evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.14/evidence-generation-review
+          for f in PREEXISTING_TAIL_DIAGNOSTIC.json FRESH_AUTHORITY_DATA_WAIT.json G4_GENERATION_REVIEW.json GENERATION_REVIEW_LOG.txt; do
+            test -f "/tmp/r114review/$f" && cp "/tmp/r114review/$f" research/0.10.5-r1.14/evidence-generation-review/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R114-GENERATION-REVIEW-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':int('${{ steps.review.outputs.exit_code || 97 }}'),'main_expected_sha':'13bb9f4ef855bf89988c5e36cc4b0d344879ef68','primary_gate_changed':False,'reference_bank_changed':False,'fresh_authority_released':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.14/evidence-generation-review/GENERATION_REVIEW_RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit generation review evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.14/evidence-generation-review
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.14 generation review ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.14-roux-generation-g4
+          git push origin HEAD:cube-rev-0.10.5-r1.14-roux-generation-g4
+      - name: Enforce review closure boundaries
+        if: always()
+        run: |
+          test '${{ steps.review.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          r=json.load(open('research/0.10.5-r1.14/evidence-generation-review/G4_GENERATION_REVIEW.json'))
+          w=json.load(open('research/0.10.5-r1.14/evidence-generation-review/FRESH_AUTHORITY_DATA_WAIT.json'))
+          assert r['status']=='PASS_GENERATION_REVIEW_CLOSURE'
+          assert r['generation_disposition']=='VALIDATED_FOR_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT_AUTHORITY_DATA_WAIT'
+          assert r['authority']['roux_future_scoring_authority'] is False
+          assert w['status']=='HOLD_DATA_WAIT'
+          print('CR0105R114_GENERATION_REVIEW_COMPLETE',r['generation_disposition'],r['semantic_sha256'])
+          PY
