@@ -7,10 +7,22 @@
       "attempt_number": 0,
       "reco_id": 1023,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 9,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1025:0",
@@ -18,10 +30,28 @@
       "attempt_number": 0,
       "reco_id": 1025,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 23,
+      "frame_key": "D|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 35,
+      "sb_span": {
+        "start": 13,
+        "end": 35,
+        "line_count": 2
+      },
+      "rotation_present": true,
+      "rotation_tokens": [
+        {
+          "token_index": 13,
+          "move": "x",
+          "normalized": "x"
+        }
+      ],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1026:0",
@@ -29,10 +59,22 @@
       "attempt_number": 0,
       "reco_id": 1026,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 8,
+      "frame_key": "D|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 5,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": false,
+      "lse_consistent": false
     },
     {
       "attempt_key": "RECO_1029:0",
@@ -40,10 +82,22 @@
       "attempt_number": 0,
       "reco_id": 1029,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 8,
+      "frame_key": "D|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 35,
+      "sb_span": {
+        "start": 11,
+        "end": 35,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1035:0",
@@ -51,10 +105,22 @@
       "attempt_number": 0,
       "reco_id": 1035,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 25,
+      "sb_span": {
+        "start": 10,
+        "end": 25,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1054:0",
@@ -62,10 +128,22 @@
       "attempt_number": 0,
       "reco_id": 1054,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 34,
+      "sb_span": {
+        "start": 15,
+        "end": 34,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_10847:0",
@@ -73,10 +151,22 @@
       "attempt_number": 0,
       "reco_id": 10847,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 28,
+      "sb_span": {
+        "start": 7,
+        "end": 28,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_10849:0",
@@ -84,10 +174,22 @@
       "attempt_number": 0,
       "reco_id": 10849,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 0,
+      "frame_key": "D|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 20,
+      "sb_span": {
+        "start": 8,
+        "end": 20,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1116:0",
@@ -95,10 +197,22 @@
       "attempt_number": 0,
       "reco_id": 1116,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 25,
+      "sb_span": {
+        "start": 9,
+        "end": 25,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1117:0",
@@ -106,10 +220,22 @@
       "attempt_number": 0,
       "reco_id": 1117,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 27,
+      "sb_span": {
+        "start": 15,
+        "end": 27,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1118:0",
@@ -117,10 +243,22 @@
       "attempt_number": 0,
       "reco_id": 1118,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 10,
+      "frame_key": "U|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 23,
+      "sb_span": {
+        "start": 9,
+        "end": 23,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1121:0",
@@ -128,10 +266,22 @@
       "attempt_number": 0,
       "reco_id": 1121,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 32,
+      "sb_span": {
+        "start": 16,
+        "end": 32,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1123:0",
@@ -139,10 +289,22 @@
       "attempt_number": 0,
       "reco_id": 1123,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 28,
+      "sb_span": {
+        "start": 10,
+        "end": 28,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1124:0",
@@ -150,10 +312,22 @@
       "attempt_number": 0,
       "reco_id": 1124,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 13,
+        "end": 29,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": false,
+      "lse_consistent": false
     },
     {
       "attempt_key": "RECO_1125:0",
@@ -161,10 +335,22 @@
       "attempt_number": 0,
       "reco_id": 1125,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 10,
+      "frame_key": "U|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 21,
+      "sb_span": {
+        "start": 11,
+        "end": 21,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1127:0",
@@ -172,10 +358,22 @@
       "attempt_number": 0,
       "reco_id": 1127,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 8,
+      "frame_key": "D|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 32,
+      "sb_span": {
+        "start": 15,
+        "end": 32,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1128:0",
@@ -183,10 +381,22 @@
       "attempt_number": 0,
       "reco_id": 1128,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 8,
+      "frame_key": "D|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 34,
+      "sb_span": {
+        "start": 15,
+        "end": 34,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_11424:0",
@@ -194,10 +404,22 @@
       "attempt_number": 0,
       "reco_id": 11424,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 33,
+      "sb_span": {
+        "start": 14,
+        "end": 33,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_11431:0",
@@ -205,10 +427,22 @@
       "attempt_number": 0,
       "reco_id": 11431,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 2,
+      "frame_key": "D|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 22,
+      "sb_span": {
+        "start": 9,
+        "end": 22,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_11584:0",
@@ -236,10 +470,22 @@
       "attempt_number": 0,
       "reco_id": 11756,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 7,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_11818:0",
@@ -247,10 +493,22 @@
       "attempt_number": 0,
       "reco_id": 11818,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 25,
+      "sb_span": {
+        "start": 8,
+        "end": 25,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_11912:0",
@@ -268,10 +526,22 @@
       "attempt_number": 0,
       "reco_id": 11958,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 0,
+      "frame_key": "D|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 27,
+      "sb_span": {
+        "start": 10,
+        "end": 27,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1272:0",
@@ -279,10 +549,22 @@
       "attempt_number": 0,
       "reco_id": 1272,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 13,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_128:0",
@@ -290,10 +572,22 @@
       "attempt_number": 0,
       "reco_id": 128,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 9,
+      "frame_key": "B|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 34,
+      "sb_span": {
+        "start": 11,
+        "end": 34,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_12807:0",
@@ -301,10 +595,22 @@
       "attempt_number": 0,
       "reco_id": 12807,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 28,
+      "sb_span": {
+        "start": 11,
+        "end": 28,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_12893:0",
@@ -312,10 +618,22 @@
       "attempt_number": 0,
       "reco_id": 12893,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 27,
+      "sb_span": {
+        "start": 9,
+        "end": 27,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_12896:0",
@@ -323,10 +641,22 @@
       "attempt_number": 0,
       "reco_id": 12896,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 30,
+      "sb_span": {
+        "start": 11,
+        "end": 30,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_129:0",
@@ -334,10 +664,22 @@
       "attempt_number": 0,
       "reco_id": 129,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 21,
+      "frame_key": "B|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 31,
+      "sb_span": {
+        "start": 12,
+        "end": 31,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_130:0",
@@ -345,10 +687,22 @@
       "attempt_number": 0,
       "reco_id": 130,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 7,
+      "frame_key": "F|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 27,
+      "sb_span": {
+        "start": 11,
+        "end": 27,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_131:0",
@@ -356,10 +710,22 @@
       "attempt_number": 0,
       "reco_id": 131,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 6,
+      "frame_key": "F|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 22,
+      "sb_span": {
+        "start": 9,
+        "end": 22,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": false,
+      "lse_consistent": false
     },
     {
       "attempt_key": "RECO_132:0",
@@ -367,10 +733,22 @@
       "attempt_number": 0,
       "reco_id": 132,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 9,
+      "frame_key": "B|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 28,
+      "sb_span": {
+        "start": 10,
+        "end": 28,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_135:0",
@@ -378,10 +756,22 @@
       "attempt_number": 0,
       "reco_id": 135,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 21,
+      "frame_key": "B|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 36,
+      "sb_span": {
+        "start": 9,
+        "end": 36,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_136:0",
@@ -389,10 +779,22 @@
       "attempt_number": 0,
       "reco_id": 136,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 9,
+      "frame_key": "B|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 31,
+      "sb_span": {
+        "start": 12,
+        "end": 31,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_150:0",
@@ -400,10 +802,22 @@
       "attempt_number": 0,
       "reco_id": 150,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 21,
+      "frame_key": "B|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 32,
+      "sb_span": {
+        "start": 8,
+        "end": 32,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1519:0",
@@ -411,10 +825,22 @@
       "attempt_number": 0,
       "reco_id": 1519,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 21,
+      "frame_key": "B|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 36,
+      "sb_span": {
+        "start": 11,
+        "end": 36,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1524:0",
@@ -422,10 +848,22 @@
       "attempt_number": 0,
       "reco_id": 1524,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 9,
+      "frame_key": "B|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 30,
+      "sb_span": {
+        "start": 10,
+        "end": 30,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1525:0",
@@ -433,10 +871,22 @@
       "attempt_number": 0,
       "reco_id": 1525,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 13,
+      "frame_key": "R|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 8,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1526:0",
@@ -444,10 +894,18 @@
       "attempt_number": 0,
       "reco_id": 1526,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 19,
+      "frame_key": "R|D",
+      "first_block_break_index": 21,
+      "sb_completion_index": 30,
+      "sb_span": {
+        "start": 11,
+        "end": 30,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_1532:0",
@@ -455,10 +913,22 @@
       "attempt_number": 0,
       "reco_id": 1532,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 13,
+      "frame_key": "R|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 36,
+      "sb_span": {
+        "start": 9,
+        "end": 36,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1535:0",
@@ -466,10 +936,22 @@
       "attempt_number": 0,
       "reco_id": 1535,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 19,
+      "frame_key": "R|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 33,
+      "sb_span": {
+        "start": 15,
+        "end": 33,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_1550:0",
@@ -477,10 +959,28 @@
       "attempt_number": 0,
       "reco_id": 1550,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 1,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 5,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": true,
+      "rotation_tokens": [
+        {
+          "token_index": 5,
+          "move": "x'",
+          "normalized": "x'"
+        }
+      ],
+      "cmll_consistent": false,
+      "lse_consistent": false
     },
     {
       "attempt_key": "RECO_1619:0",
@@ -488,10 +988,18 @@
       "attempt_number": 0,
       "reco_id": 1619,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": 12,
+      "sb_completion_index": null,
+      "sb_span": {
+        "start": 8,
+        "end": 25,
+        "line_count": 1
+      }
     },
     {
       "attempt_key": "RECO_1620:0",
@@ -499,10 +1007,28 @@
       "attempt_number": 0,
       "reco_id": 1620,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 11,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 32,
+      "sb_span": {
+        "start": 10,
+        "end": 32,
+        "line_count": 1
+      },
+      "rotation_present": true,
+      "rotation_tokens": [
+        {
+          "token_index": 10,
+          "move": "x",
+          "normalized": "x"
+        }
+      ],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2027:0",
@@ -510,10 +1036,18 @@
       "attempt_number": 0,
       "reco_id": 2027,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": 18,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 12,
+        "end": 29,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_2069:0",
@@ -521,10 +1055,22 @@
       "attempt_number": 0,
       "reco_id": 2069,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 23,
+      "sb_span": {
+        "start": 9,
+        "end": 23,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2506:0",
@@ -532,10 +1078,28 @@
       "attempt_number": 0,
       "reco_id": 2506,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 1,
+      "frame_key": "D|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 18,
+      "sb_span": {
+        "start": 6,
+        "end": 18,
+        "line_count": 2
+      },
+      "rotation_present": true,
+      "rotation_tokens": [
+        {
+          "token_index": 6,
+          "move": "x",
+          "normalized": "x"
+        }
+      ],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2740:0",
@@ -543,10 +1107,22 @@
       "attempt_number": 0,
       "reco_id": 2740,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 25,
+      "sb_span": {
+        "start": 7,
+        "end": 25,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2771:0",
@@ -554,10 +1130,22 @@
       "attempt_number": 0,
       "reco_id": 2771,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 10,
+      "frame_key": "U|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 6,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2773:0",
@@ -565,10 +1153,22 @@
       "attempt_number": 0,
       "reco_id": 2773,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 21,
+      "sb_span": {
+        "start": 7,
+        "end": 21,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2775:0",
@@ -576,10 +1176,33 @@
       "attempt_number": 0,
       "reco_id": 2775,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 22,
+      "sb_span": {
+        "start": 9,
+        "end": 22,
+        "line_count": 2
+      },
+      "rotation_present": true,
+      "rotation_tokens": [
+        {
+          "token_index": 9,
+          "move": "x'",
+          "normalized": "x'"
+        },
+        {
+          "token_index": 10,
+          "move": "x",
+          "normalized": "x"
+        }
+      ],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2778:0",
@@ -587,10 +1210,22 @@
       "attempt_number": 0,
       "reco_id": 2778,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 25,
+      "sb_span": {
+        "start": 8,
+        "end": 25,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2805:0",
@@ -598,10 +1233,22 @@
       "attempt_number": 0,
       "reco_id": 2805,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 34,
+      "sb_span": {
+        "start": 8,
+        "end": 34,
+        "line_count": 1
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2847:0",
@@ -609,10 +1256,22 @@
       "attempt_number": 0,
       "reco_id": 2847,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 0,
+      "frame_key": "D|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 10,
+        "end": 29,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2848:0",
@@ -620,10 +1279,18 @@
       "attempt_number": 0,
       "reco_id": 2848,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 5,
+      "frame_key": "U|B",
+      "first_block_break_index": 10,
+      "sb_completion_index": null,
+      "sb_span": {
+        "start": 9,
+        "end": 28,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_2854:0",
@@ -631,10 +1298,22 @@
       "attempt_number": 0,
       "reco_id": 2854,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 36,
+      "sb_span": {
+        "start": 15,
+        "end": 36,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2855:0",
@@ -642,10 +1321,22 @@
       "attempt_number": 0,
       "reco_id": 2855,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 2,
+      "frame_key": "D|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 31,
+      "sb_span": {
+        "start": 13,
+        "end": 31,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_2858:0",
@@ -653,10 +1344,18 @@
       "attempt_number": 0,
       "reco_id": 2858,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 23,
+      "frame_key": "U|F",
+      "first_block_break_index": 19,
+      "sb_completion_index": 25,
+      "sb_span": {
+        "start": 8,
+        "end": 25,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_2967:0",
@@ -664,10 +1363,33 @@
       "attempt_number": 0,
       "reco_id": 2967,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 22,
+      "sb_span": {
+        "start": 9,
+        "end": 22,
+        "line_count": 2
+      },
+      "rotation_present": true,
+      "rotation_tokens": [
+        {
+          "token_index": 9,
+          "move": "x'",
+          "normalized": "x'"
+        },
+        {
+          "token_index": 10,
+          "move": "x",
+          "normalized": "x"
+        }
+      ],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_3134:0",
@@ -675,10 +1397,22 @@
       "attempt_number": 0,
       "reco_id": 3134,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 37,
+      "sb_span": {
+        "start": 20,
+        "end": 37,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_324:0",
@@ -686,10 +1420,22 @@
       "attempt_number": 0,
       "reco_id": 324,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 10,
+      "frame_key": "U|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 10,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_3449:0",
@@ -697,10 +1443,18 @@
       "attempt_number": 0,
       "reco_id": 3449,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 3,
+      "frame_key": "L|U",
+      "first_block_break_index": 29,
+      "sb_completion_index": 32,
+      "sb_span": {
+        "start": 15,
+        "end": 32,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_4471:0",
@@ -708,10 +1462,28 @@
       "attempt_number": 0,
       "reco_id": 4471,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 22,
+      "frame_key": "B|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 34,
+      "sb_span": {
+        "start": 12,
+        "end": 34,
+        "line_count": 2
+      },
+      "rotation_present": true,
+      "rotation_tokens": [
+        {
+          "token_index": 12,
+          "move": "z",
+          "normalized": "z"
+        }
+      ],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_4472:0",
@@ -719,10 +1491,22 @@
       "attempt_number": 0,
       "reco_id": 4472,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 6,
+      "frame_key": "F|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 30,
+      "sb_span": {
+        "start": 12,
+        "end": 30,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_4491:0",
@@ -730,10 +1514,22 @@
       "attempt_number": 0,
       "reco_id": 4491,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 16,
+      "frame_key": "F|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 9,
+        "end": 29,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_4883:0",
@@ -741,10 +1537,22 @@
       "attempt_number": 0,
       "reco_id": 4883,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 10,
+        "end": 29,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_4884:0",
@@ -752,10 +1560,22 @@
       "attempt_number": 0,
       "reco_id": 4884,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 23,
+      "sb_span": {
+        "start": 7,
+        "end": 23,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_4886:0",
@@ -763,10 +1583,22 @@
       "attempt_number": 0,
       "reco_id": 4886,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 23,
+      "sb_span": {
+        "start": 10,
+        "end": 23,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_4950:0",
@@ -774,10 +1606,22 @@
       "attempt_number": 0,
       "reco_id": 4950,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 2,
+      "frame_key": "D|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 32,
+      "sb_span": {
+        "start": 14,
+        "end": 32,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_5081:0",
@@ -785,10 +1629,22 @@
       "attempt_number": 0,
       "reco_id": 5081,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 10,
+      "frame_key": "U|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 21,
+      "sb_span": {
+        "start": 5,
+        "end": 21,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_5501:0",
@@ -796,10 +1652,22 @@
       "attempt_number": 0,
       "reco_id": 5501,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 15,
+      "sb_span": {
+        "start": 7,
+        "end": 15,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_595:0",
@@ -807,10 +1675,22 @@
       "attempt_number": 0,
       "reco_id": 595,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 38,
+      "sb_span": {
+        "start": 18,
+        "end": 38,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": false,
+      "lse_consistent": false
     },
     {
       "attempt_key": "RECO_596:0",
@@ -818,10 +1698,22 @@
       "attempt_number": 0,
       "reco_id": 596,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 10,
+      "frame_key": "U|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 30,
+      "sb_span": {
+        "start": 14,
+        "end": 30,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": false,
+      "lse_consistent": false
     },
     {
       "attempt_key": "RECO_598:0",
@@ -829,10 +1721,22 @@
       "attempt_number": 0,
       "reco_id": 598,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 18,
+      "sb_span": {
+        "start": 7,
+        "end": 18,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_599:0",
@@ -840,10 +1744,22 @@
       "attempt_number": 0,
       "reco_id": 599,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 26,
+      "sb_span": {
+        "start": 16,
+        "end": 26,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_601:0",
@@ -851,10 +1767,22 @@
       "attempt_number": 0,
       "reco_id": 601,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 28,
+      "sb_span": {
+        "start": 15,
+        "end": 28,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_604:0",
@@ -862,10 +1790,22 @@
       "attempt_number": 0,
       "reco_id": 604,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 33,
+      "sb_span": {
+        "start": 12,
+        "end": 33,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_606:0",
@@ -873,10 +1813,22 @@
       "attempt_number": 0,
       "reco_id": 606,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 27,
+      "sb_span": {
+        "start": 11,
+        "end": 27,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_607:0",
@@ -884,10 +1836,22 @@
       "attempt_number": 0,
       "reco_id": 607,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 8,
+      "frame_key": "D|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 28,
+      "sb_span": {
+        "start": 13,
+        "end": 28,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_615:0",
@@ -895,10 +1859,22 @@
       "attempt_number": 0,
       "reco_id": 615,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 9,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_619:0",
@@ -906,10 +1882,18 @@
       "attempt_number": 0,
       "reco_id": 619,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 8,
+      "frame_key": "D|R",
+      "first_block_break_index": 27,
+      "sb_completion_index": 37,
+      "sb_span": {
+        "start": 10,
+        "end": 37,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_620:0",
@@ -917,10 +1901,22 @@
       "attempt_number": 0,
       "reco_id": 620,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 37,
+      "sb_span": {
+        "start": 15,
+        "end": 37,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_622:0",
@@ -928,10 +1924,22 @@
       "attempt_number": 0,
       "reco_id": 622,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 6,
+        "end": 29,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": false,
+      "lse_consistent": false
     },
     {
       "attempt_key": "RECO_623:0",
@@ -939,10 +1947,18 @@
       "attempt_number": 0,
       "reco_id": 623,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": 14,
+      "sb_completion_index": 23,
+      "sb_span": {
+        "start": 8,
+        "end": 23,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_6240:0",
@@ -950,10 +1966,22 @@
       "attempt_number": 0,
       "reco_id": 6240,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 27,
+      "sb_span": {
+        "start": 13,
+        "end": 27,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_631:0",
@@ -961,10 +1989,18 @@
       "attempt_number": 0,
       "reco_id": 631,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 1,
+      "frame_key": "D|L",
+      "first_block_break_index": 19,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 11,
+        "end": 24,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_638:0",
@@ -972,10 +2008,21 @@
       "attempt_number": 0,
       "reco_id": 638,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 28,
+      "sb_span": {
+        "start": 12,
+        "end": 28,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_639:0",
@@ -983,10 +2030,22 @@
       "attempt_number": 0,
       "reco_id": 639,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 8,
+      "frame_key": "D|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 22,
+      "sb_span": {
+        "start": 7,
+        "end": 22,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_641:0",
@@ -994,10 +2053,22 @@
       "attempt_number": 0,
       "reco_id": 641,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 2,
+      "frame_key": "D|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 26,
+      "sb_span": {
+        "start": 13,
+        "end": 26,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_66:0",
@@ -1005,10 +2076,22 @@
       "attempt_number": 0,
       "reco_id": 66,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 9,
+      "frame_key": "B|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 37,
+      "sb_span": {
+        "start": 14,
+        "end": 37,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_673:0",
@@ -1016,10 +2099,22 @@
       "attempt_number": 0,
       "reco_id": 673,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 33,
+      "sb_span": {
+        "start": 10,
+        "end": 33,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_69:0",
@@ -1027,10 +2122,22 @@
       "attempt_number": 0,
       "reco_id": 69,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 9,
+      "frame_key": "B|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 30,
+      "sb_span": {
+        "start": 12,
+        "end": 30,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_7:0",
@@ -1038,10 +2145,22 @@
       "attempt_number": 0,
       "reco_id": 7,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 19,
+      "frame_key": "R|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 35,
+      "sb_span": {
+        "start": 15,
+        "end": 35,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_741:0",
@@ -1049,10 +2168,22 @@
       "attempt_number": 0,
       "reco_id": 741,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 13,
+      "frame_key": "R|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 28,
+      "sb_span": {
+        "start": 10,
+        "end": 28,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8012:0",
@@ -1060,10 +2191,22 @@
       "attempt_number": 0,
       "reco_id": 8012,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 10,
+      "frame_key": "U|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 35,
+      "sb_span": {
+        "start": 16,
+        "end": 35,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8013:0",
@@ -1071,10 +2214,22 @@
       "attempt_number": 0,
       "reco_id": 8013,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 26,
+      "sb_span": {
+        "start": 8,
+        "end": 26,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8014:0",
@@ -1082,10 +2237,22 @@
       "attempt_number": 0,
       "reco_id": 8014,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 0,
+      "frame_key": "D|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 31,
+      "sb_span": {
+        "start": 8,
+        "end": 31,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8018:0",
@@ -1093,10 +2260,10 @@
       "attempt_number": 0,
       "reco_id": 8018,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "ONTOLOGY_UNSCORABLE",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 2,
+      "reason": "PREFIX_MULTI"
     },
     {
       "attempt_key": "RECO_8022:0",
@@ -1104,10 +2271,18 @@
       "attempt_number": 0,
       "reco_id": 8022,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 16,
+      "frame_key": "F|R",
+      "first_block_break_index": 11,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 6,
+        "end": 29,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_8023:0",
@@ -1115,10 +2290,22 @@
       "attempt_number": 0,
       "reco_id": 8023,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 17,
+      "frame_key": "U|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 36,
+      "sb_span": {
+        "start": 17,
+        "end": 36,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8024:0",
@@ -1126,10 +2313,22 @@
       "attempt_number": 0,
       "reco_id": 8024,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 1,
+      "frame_key": "F|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 10,
+        "end": 29,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8026:0",
@@ -1137,10 +2336,28 @@
       "attempt_number": 0,
       "reco_id": 8026,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 13,
+      "frame_key": "B|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 6,
+        "end": 29,
+        "line_count": 2
+      },
+      "rotation_present": true,
+      "rotation_tokens": [
+        {
+          "token_index": 6,
+          "move": "x'",
+          "normalized": "x'"
+        }
+      ],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_820:0",
@@ -1148,10 +2365,22 @@
       "attempt_number": 0,
       "reco_id": 820,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 21,
+      "frame_key": "B|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 32,
+      "sb_span": {
+        "start": 16,
+        "end": 32,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_823:0",
@@ -1159,10 +2388,22 @@
       "attempt_number": 0,
       "reco_id": 823,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 21,
+      "frame_key": "B|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 26,
+      "sb_span": {
+        "start": 12,
+        "end": 26,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_824:0",
@@ -1170,10 +2411,22 @@
       "attempt_number": 0,
       "reco_id": 824,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 7,
+      "frame_key": "F|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 36,
+      "sb_span": {
+        "start": 17,
+        "end": 36,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_826:0",
@@ -1181,10 +2434,22 @@
       "attempt_number": 0,
       "reco_id": 826,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 21,
+      "frame_key": "B|D",
+      "first_block_break_index": null,
+      "sb_completion_index": 25,
+      "sb_span": {
+        "start": 13,
+        "end": 25,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_827:0",
@@ -1192,10 +2457,18 @@
       "attempt_number": 0,
       "reco_id": 827,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "BLOCK_DISRUPTIVE_RESIDUAL",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 21,
+      "frame_key": "B|D",
+      "first_block_break_index": 14,
+      "sb_completion_index": 33,
+      "sb_span": {
+        "start": 12,
+        "end": 33,
+        "line_count": 2
+      }
     },
     {
       "attempt_key": "RECO_828:0",
@@ -1203,10 +2476,22 @@
       "attempt_number": 0,
       "reco_id": 828,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 9,
+      "frame_key": "B|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 33,
+      "sb_span": {
+        "start": 11,
+        "end": 33,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8697:0",
@@ -1214,10 +2499,22 @@
       "attempt_number": 0,
       "reco_id": 8697,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 0,
+      "frame_key": "D|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 26,
+      "sb_span": {
+        "start": 7,
+        "end": 26,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8699:0",
@@ -1225,10 +2522,22 @@
       "attempt_number": 0,
       "reco_id": 8699,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 18,
+      "frame_key": "D|F",
+      "first_block_break_index": null,
+      "sb_completion_index": 24,
+      "sb_span": {
+        "start": 9,
+        "end": 24,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8700:0",
@@ -1236,10 +2545,22 @@
       "attempt_number": 0,
       "reco_id": 8700,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 0,
+      "frame_key": "D|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 31,
+      "sb_span": {
+        "start": 12,
+        "end": 31,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8701:0",
@@ -1247,10 +2568,22 @@
       "attempt_number": 0,
       "reco_id": 8701,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 2,
+      "frame_key": "D|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 26,
+      "sb_span": {
+        "start": 10,
+        "end": 26,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8705:0",
@@ -1258,10 +2591,22 @@
       "attempt_number": 0,
       "reco_id": 8705,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 19,
+      "sb_span": {
+        "start": 5,
+        "end": 19,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8709:0",
@@ -1269,10 +2614,21 @@
       "attempt_number": 0,
       "reco_id": 8709,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 2,
+      "frame_key": "D|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 29,
+      "sb_span": {
+        "start": 10,
+        "end": 29,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8719:0",
@@ -1280,10 +2636,22 @@
       "attempt_number": 0,
       "reco_id": 8719,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 8,
+      "frame_key": "D|R",
+      "first_block_break_index": null,
+      "sb_completion_index": 25,
+      "sb_span": {
+        "start": 11,
+        "end": 25,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_8720:0",
@@ -1291,10 +2659,22 @@
       "attempt_number": 0,
       "reco_id": 8720,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 12,
+      "frame_key": "U|B",
+      "first_block_break_index": null,
+      "sb_completion_index": 27,
+      "sb_span": {
+        "start": 10,
+        "end": 27,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_9211:0",
@@ -1302,10 +2682,22 @@
       "attempt_number": 0,
       "reco_id": 9211,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 4,
+      "frame_key": "U|L",
+      "first_block_break_index": null,
+      "sb_completion_index": 30,
+      "sb_span": {
+        "start": 9,
+        "end": 30,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     },
     {
       "attempt_key": "RECO_984:0",
@@ -1313,10 +2705,22 @@
       "attempt_number": 0,
       "reco_id": 984,
       "source": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
-      "g4_class": "SYNTAX_OR_STATE_INVALID",
+      "g4_class": "CANONICAL_FB_PRESERVING",
       "fb_comment": "FB",
-      "reason": "PARSE_OR_REPLAY_ERROR",
-      "error": "x is not defined"
+      "prefix_candidate_n": 1,
+      "initial_gauge": 9,
+      "frame_key": "B|U",
+      "first_block_break_index": null,
+      "sb_completion_index": 26,
+      "sb_span": {
+        "start": 6,
+        "end": 26,
+        "line_count": 2
+      },
+      "rotation_present": false,
+      "rotation_tokens": [],
+      "cmll_consistent": true,
+      "lse_consistent": true
     }
   ],
   "human_observations": 0

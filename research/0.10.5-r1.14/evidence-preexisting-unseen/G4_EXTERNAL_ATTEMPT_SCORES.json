@@ -1,6 +1,847 @@
 {
   "schema_version": "CR0105R114-G4-EXTERNAL-ATTEMPT-SCORES-1",
   "role": "PREEXISTING_UNSEEN_HOLDOUT",
-  "rows": [],
+  "rows": [
+    {
+      "key": "RECO_1023:0",
+      "reco_id": 1023,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.4548448600085102,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.06956521739130435
+    },
+    {
+      "key": "RECO_1025:0",
+      "reco_id": 1025,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.716003343634799,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_1026:0",
+      "reco_id": 1026,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.3010299956639813,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.12173913043478261
+    },
+    {
+      "key": "RECO_1029:0",
+      "reco_id": 1029,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1249387366083,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.21739130434782608
+    },
+    {
+      "key": "RECO_1035:0",
+      "reco_id": 1035,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1613680022349748,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.19130434782608696
+    },
+    {
+      "key": "RECO_1054:0",
+      "reco_id": 1054,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1249387366083,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.21739130434782608
+    },
+    {
+      "key": "RECO_10847:0",
+      "reco_id": 10847,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6020599913279624,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_10849:0",
+      "reco_id": 10849,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6097468199942534,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_1116:0",
+      "reco_id": 1116,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6368220975871743,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.5391304347826087
+    },
+    {
+      "key": "RECO_1117:0",
+      "reco_id": 1117,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1249387366083,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.21739130434782608
+    },
+    {
+      "key": "RECO_1118:0",
+      "reco_id": 1118,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1249387366083,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.21739130434782608
+    },
+    {
+      "key": "RECO_1121:0",
+      "reco_id": 1121,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1249387366083,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.21739130434782608
+    },
+    {
+      "key": "RECO_1123:0",
+      "reco_id": 1123,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1249387366083,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.21739130434782608
+    },
+    {
+      "key": "RECO_1124:0",
+      "reco_id": 1124,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.153814864344529,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.19130434782608696
+    },
+    {
+      "key": "RECO_1125:0",
+      "reco_id": 1125,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.6020599913279623,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_1127:0",
+      "reco_id": 1127,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9488474775526187,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3565217391304348
+    },
+    {
+      "key": "RECO_1128:0",
+      "reco_id": 1128,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9488474775526187,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3565217391304348
+    },
+    {
+      "key": "RECO_11424:0",
+      "reco_id": 11424,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6097468199942534,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_11431:0",
+      "reco_id": 11431,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.716003343634799,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_11756:0",
+      "reco_id": 11756,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.49008623188403005,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6695652173913044
+    },
+    {
+      "key": "RECO_11818:0",
+      "reco_id": 11818,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6368220975871743,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.5391304347826087
+    },
+    {
+      "key": "RECO_11958:0",
+      "reco_id": 11958,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.316269962220718,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.7913043478260869
+    },
+    {
+      "key": "RECO_1272:0",
+      "reco_id": 1272,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6020599913279624,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_128:0",
+      "reco_id": 128,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.4548448600085102,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.06956521739130435
+    },
+    {
+      "key": "RECO_12807:0",
+      "reco_id": 12807,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.38356488371919384,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.7565217391304347
+    },
+    {
+      "key": "RECO_12893:0",
+      "reco_id": 12893,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.1918855262389131,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.8869565217391304
+    },
+    {
+      "key": "RECO_12896:0",
+      "reco_id": 12896,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6020599913279624,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_129:0",
+      "reco_id": 129,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9030899869919435,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3652173913043478
+    },
+    {
+      "key": "RECO_130:0",
+      "reco_id": 130,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6020599913279624,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_131:0",
+      "reco_id": 131,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9030899869919435,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3652173913043478
+    },
+    {
+      "key": "RECO_132:0",
+      "reco_id": 132,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.16136800223497486,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.991304347826087
+    },
+    {
+      "key": "RECO_135:0",
+      "reco_id": 135,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.17881411739115455,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.9391304347826087
+    },
+    {
+      "key": "RECO_136:0",
+      "reco_id": 136,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.10067016188136318,
+      "familywise_reference_n": 114,
+      "familywise_p": 1
+    },
+    {
+      "key": "RECO_150:0",
+      "reco_id": 150,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6097468199942534,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_1519:0",
+      "reco_id": 1519,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1249387366083,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.21739130434782608
+    },
+    {
+      "key": "RECO_1524:0",
+      "reco_id": 1524,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.6020599913279623,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_1525:0",
+      "reco_id": 1525,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9030899869919435,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3652173913043478
+    },
+    {
+      "key": "RECO_1532:0",
+      "reco_id": 1532,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9488474775526187,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3565217391304348
+    },
+    {
+      "key": "RECO_1535:0",
+      "reco_id": 1535,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.282546589969968,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.1565217391304348
+    },
+    {
+      "key": "RECO_1550:0",
+      "reco_id": 1550,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6097468199942534,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_1620:0",
+      "reco_id": 1620,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.2304489213782739,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.17391304347826086
+    },
+    {
+      "key": "RECO_2069:0",
+      "reco_id": 2069,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.7533276666586115,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.43478260869565216
+    },
+    {
+      "key": "RECO_2506:0",
+      "reco_id": 2506,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.7533276666586115,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.43478260869565216
+    },
+    {
+      "key": "RECO_2740:0",
+      "reco_id": 2740,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.716003343634799,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_2771:0",
+      "reco_id": 2771,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.49008623188403005,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6695652173913044
+    },
+    {
+      "key": "RECO_2773:0",
+      "reco_id": 2773,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.38356488371919384,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.7565217391304347
+    },
+    {
+      "key": "RECO_2775:0",
+      "reco_id": 2775,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.2798406965940431,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.8782608695652174
+    },
+    {
+      "key": "RECO_2778:0",
+      "reco_id": 2778,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.6020599913279623,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_2805:0",
+      "reco_id": 2805,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.716003343634799,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_2847:0",
+      "reco_id": 2847,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.2934768577735353,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.808695652173913
+    },
+    {
+      "key": "RECO_2854:0",
+      "reco_id": 2854,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1249387366083,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.21739130434782608
+    },
+    {
+      "key": "RECO_2855:0",
+      "reco_id": 2855,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9030899869919435,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3652173913043478
+    },
+    {
+      "key": "RECO_2967:0",
+      "reco_id": 2967,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.2798406965940431,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.8782608695652174
+    },
+    {
+      "key": "RECO_3134:0",
+      "reco_id": 3134,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6690067809585756,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.4608695652173913
+    },
+    {
+      "key": "RECO_324:0",
+      "reco_id": 324,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9777236052888478,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3565217391304348
+    },
+    {
+      "key": "RECO_4471:0",
+      "reco_id": 4471,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.0579919469776868,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.28695652173913044
+    },
+    {
+      "key": "RECO_4472:0",
+      "reco_id": 4472,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.022276394711152253,
+      "familywise_reference_n": 114,
+      "familywise_p": 1
+    },
+    {
+      "key": "RECO_4491:0",
+      "reco_id": 4491,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.38356488371919384,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.7565217391304347
+    },
+    {
+      "key": "RECO_4883:0",
+      "reco_id": 4883,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6020599913279624,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_4884:0",
+      "reco_id": 4884,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.4771212547196625,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6869565217391305
+    },
+    {
+      "key": "RECO_4886:0",
+      "reco_id": 4886,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.38356488371919384,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.7565217391304347
+    },
+    {
+      "key": "RECO_4950:0",
+      "reco_id": 4950,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.0579919469776868,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.28695652173913044
+    },
+    {
+      "key": "RECO_5081:0",
+      "reco_id": 5081,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.17881411739115455,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.9391304347826087
+    },
+    {
+      "key": "RECO_5501:0",
+      "reco_id": 5501,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.5835765856339492,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.06086956521739131
+    },
+    {
+      "key": "RECO_595:0",
+      "reco_id": 595,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.716003343634799,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_596:0",
+      "reco_id": 596,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.278753600952829,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.1565217391304348
+    },
+    {
+      "key": "RECO_598:0",
+      "reco_id": 598,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.4548448600085102,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.06956521739130435
+    },
+    {
+      "key": "RECO_599:0",
+      "reco_id": 599,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.2155998003393549,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.17391304347826086
+    },
+    {
+      "key": "RECO_601:0",
+      "reco_id": 601,
+      "scored_feature_n": 7,
+      "attempt_statistic": 2.060697840353612,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.008695652173913044
+    },
+    {
+      "key": "RECO_604:0",
+      "reco_id": 604,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.38356488371919384,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.7565217391304347
+    },
+    {
+      "key": "RECO_606:0",
+      "reco_id": 606,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.38356488371919384,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.7565217391304347
+    },
+    {
+      "key": "RECO_607:0",
+      "reco_id": 607,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.4548448600085102,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.06956521739130435
+    },
+    {
+      "key": "RECO_615:0",
+      "reco_id": 615,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9777236052888478,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3565217391304348
+    },
+    {
+      "key": "RECO_620:0",
+      "reco_id": 620,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.716003343634799,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_622:0",
+      "reco_id": 622,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.8239087409443188,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3652173913043478
+    },
+    {
+      "key": "RECO_6240:0",
+      "reco_id": 6240,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.6020599913279623,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_638:0",
+      "reco_id": 638,
+      "scored_feature_n": 5,
+      "attempt_statistic": 0.4559319556497244,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6869565217391305
+    },
+    {
+      "key": "RECO_639:0",
+      "reco_id": 639,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.17881411739115455,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.9391304347826087
+    },
+    {
+      "key": "RECO_641:0",
+      "reco_id": 641,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.0579919469776868,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.28695652173913044
+    },
+    {
+      "key": "RECO_66:0",
+      "reco_id": 66,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.4559319556497244,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6869565217391305
+    },
+    {
+      "key": "RECO_673:0",
+      "reco_id": 673,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.6020599913279623,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_69:0",
+      "reco_id": 69,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.33043478260869563
+    },
+    {
+      "key": "RECO_7:0",
+      "reco_id": 7,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.0606978403536118,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.28695652173913044
+    },
+    {
+      "key": "RECO_741:0",
+      "reco_id": 741,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.2798406965940431,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.8782608695652174
+    },
+    {
+      "key": "RECO_8012:0",
+      "reco_id": 8012,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.4479139836338762,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.7043478260869566
+    },
+    {
+      "key": "RECO_8013:0",
+      "reco_id": 8013,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.716003343634799,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_8014:0",
+      "reco_id": 8014,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.7533276666586115,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.43478260869565216
+    },
+    {
+      "key": "RECO_8023:0",
+      "reco_id": 8023,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.153814864344529,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.19130434782608696
+    },
+    {
+      "key": "RECO_8024:0",
+      "reco_id": 8024,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6020599913279624,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_8026:0",
+      "reco_id": 8026,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6097468199942534,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_820:0",
+      "reco_id": 820,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.282546589969968,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.1565217391304348
+    },
+    {
+      "key": "RECO_823:0",
+      "reco_id": 823,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6989700043360187,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.4608695652173913
+    },
+    {
+      "key": "RECO_824:0",
+      "reco_id": 824,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.0606978403536118,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.28695652173913044
+    },
+    {
+      "key": "RECO_826:0",
+      "reco_id": 826,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.4559319556497244,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6869565217391305
+    },
+    {
+      "key": "RECO_828:0",
+      "reco_id": 828,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.505149978319906,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6086956521739131
+    },
+    {
+      "key": "RECO_8697:0",
+      "reco_id": 8697,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.7533276666586115,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.43478260869565216
+    },
+    {
+      "key": "RECO_8699:0",
+      "reco_id": 8699,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6368220975871743,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.5391304347826087
+    },
+    {
+      "key": "RECO_8700:0",
+      "reco_id": 8700,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.33043478260869563
+    },
+    {
+      "key": "RECO_8701:0",
+      "reco_id": 8701,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.716003343634799,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.05217391304347826
+    },
+    {
+      "key": "RECO_8705:0",
+      "reco_id": 8705,
+      "scored_feature_n": 7,
+      "attempt_statistic": 1.1249387366083,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.21739130434782608
+    },
+    {
+      "key": "RECO_8709:0",
+      "reco_id": 8709,
+      "scored_feature_n": 5,
+      "attempt_statistic": 0.49008623188403005,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6695652173913044
+    },
+    {
+      "key": "RECO_8719:0",
+      "reco_id": 8719,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.4559319556497244,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.6869565217391305
+    },
+    {
+      "key": "RECO_8720:0",
+      "reco_id": 8720,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.6368220975871743,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.5391304347826087
+    },
+    {
+      "key": "RECO_9211:0",
+      "reco_id": 9211,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.09311702399091734,
+      "familywise_reference_n": 114,
+      "familywise_p": 1
+    },
+    {
+      "key": "RECO_984:0",
+      "reco_id": 984,
+      "scored_feature_n": 7,
+      "attempt_statistic": 0.9488474775526187,
+      "familywise_reference_n": 114,
+      "familywise_p": 0.3565217391304348
+    }
+  ],
   "human_observations": 0
 }

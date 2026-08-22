@@ -2,36 +2,36 @@
   "schema_version": "CR0105R114-G4-EXTERNAL-SCORE-1",
   "generation": "ROUX-MEASUREMENT-G4",
   "role": "PREEXISTING_UNSEEN_HOLDOUT",
-  "status": "HOLD_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT",
+  "status": "PASS_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT",
   "counts": {
     "raw_routes": 120,
     "state_certified": 117,
-    "eligible_routes": 0,
-    "prefix_unique": 0,
-    "canonical": 0,
-    "block_disruptive": 0,
+    "eligible_routes": 117,
+    "prefix_unique": 116,
+    "canonical": 105,
+    "block_disruptive": 11,
     "fb_preserved_no_completion": 0,
-    "canonical_features": 0,
-    "scored_features": 0,
-    "scored_attempts": 0,
+    "canonical_features": 731,
+    "scored_features": 731,
+    "scored_attempts": 105,
     "reference_attempts": 114
   },
   "rates": {
     "state_certification": 0.975,
-    "prefix_unique_given_eligible": null,
-    "canonical_given_eligible": null,
-    "canonical_given_prefix_unique": null,
-    "cmll_consistency": null,
-    "lse_consistency": null,
+    "prefix_unique_given_eligible": 0.9914529914529915,
+    "canonical_given_eligible": 0.8974358974358975,
+    "canonical_given_prefix_unique": 0.9051724137931034,
+    "cmll_consistency": 0.9320388349514563,
+    "lse_consistency": 0.9333333333333333,
     "local_reference_fallback": 0,
-    "familywise_watch_0_05": null,
-    "familywise_primary_0_01": null
+    "familywise_watch_0_05": 0.009523809523809525,
+    "familywise_primary_0_01": 0.009523809523809525
   },
   "checks": {
     "minimum_raw_routes": true,
     "state_certification_rate": true,
-    "prefix_unique_rate_given_eligible": false,
-    "canonical_rate_given_prefix_unique": false,
+    "prefix_unique_rate_given_eligible": true,
+    "canonical_rate_given_prefix_unique": true,
     "null_fallback_rate": true
   },
   "reference": {
@@ -43,5 +43,5 @@
   "future_roux_scoring_authority": false,
   "semantic_guard": "Ontology classes are observable reconstruction-state categories, not solver intent/error labels.",
   "human_observations": 0,
-  "semantic_sha256": "7a58049e2ae1436bd75ea91d5df327fdbca59a8d0116f6e980f4dbb6436b58e9"
+  "semantic_sha256": "1c9ca17ceb5df31bcc0161f1baa75d2c723197f5bc757c2db930b52d1c9b4f09"
 }

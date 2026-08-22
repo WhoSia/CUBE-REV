@@ -1,53 +1,53 @@
 {
-  "status": "HOLD_G4_DEVELOPMENT_ONTOLOGY",
+  "status": "PASS_G4_DEVELOPMENT_ONTOLOGY",
   "counts": {
     "raw_unique_attempts": 120,
     "parse_ok": 118,
     "state_certified": 117,
-    "ordinary_fb_sb_eligible": 0,
-    "prefix_unique": 0,
-    "canonical": 0,
-    "block_disruptive": 0,
+    "ordinary_fb_sb_eligible": 117,
+    "prefix_unique": 116,
+    "canonical": 105,
+    "block_disruptive": 11,
     "fb_preserved_no_completion": 0,
     "pseudo_fb_or_fbdr": 0,
-    "syntax_or_state_invalid": 120,
-    "ontology_unscorable": 0,
-    "cmll_opportunities": 0,
-    "cmll_consistent": 0,
-    "lse_opportunities": 0,
-    "lse_consistent": 0
+    "syntax_or_state_invalid": 3,
+    "ontology_unscorable": 1,
+    "cmll_opportunities": 103,
+    "cmll_consistent": 96,
+    "lse_opportunities": 105,
+    "lse_consistent": 98
   },
   "rates": {
     "state_certification_rate": 0.975,
-    "prefix_unique_rate_given_eligible": 0,
-    "ontology_assignment_rate_given_prefix_unique": 0,
-    "canonical_rate_given_prefix_unique": 0,
-    "cmll_consistency_rate_canonical": 0,
-    "lse_consistency_rate_canonical": 0
+    "prefix_unique_rate_given_eligible": 0.9914529914529915,
+    "ontology_assignment_rate_given_prefix_unique": 1,
+    "canonical_rate_given_prefix_unique": 0.9051724137931034,
+    "cmll_consistency_rate_canonical": 0.9320388349514563,
+    "lse_consistency_rate_canonical": 0.9333333333333333
   },
   "feature_counts": {
-    "total": 0,
-    "objective": 0,
-    "anchor": 0,
-    "canonical_attempts": 0,
+    "total": 731,
+    "objective": 418,
+    "anchor": 313,
+    "canonical_attempts": 105,
     "phase": {
-      "FB": 0,
-      "SB": 0,
-      "CMLL": 0,
-      "LSE": 0
+      "FB": 105,
+      "SB": 210,
+      "CMLL": 206,
+      "LSE": 210
     }
   },
   "checks": {
     "state_certified_n_min": true,
-    "ordinary_fb_sb_eligible_n_min": false,
-    "prefix_unique_rate_given_eligible_min": false,
-    "ontology_assignment_rate_given_prefix_unique_min": false,
-    "canonical_reference_attempts_min": false,
-    "cmll_consistency_rate_canonical_min": false,
-    "lse_consistency_rate_canonical_min": false,
-    "total_canonical_features_min": false,
-    "objective_canonical_features_min": false,
+    "ordinary_fb_sb_eligible_n_min": true,
+    "prefix_unique_rate_given_eligible_min": true,
+    "ontology_assignment_rate_given_prefix_unique_min": true,
+    "canonical_reference_attempts_min": true,
+    "cmll_consistency_rate_canonical_min": true,
+    "lse_consistency_rate_canonical_min": true,
+    "total_canonical_features_min": true,
+    "objective_canonical_features_min": true,
     "all_features_g4_canonical": true
   },
-  "semantic_sha256": "553edeac313947393efff73834203f98b2c6f8b0e37243515d1327057a2a23e6"
+  "semantic_sha256": "151164de651f7f6036f7c6434b3d20d629c80d2bab710d58ba77bbc448566eb2"
 }
