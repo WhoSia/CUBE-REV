@@ -1,0 +1,556 @@
+{
+  "schema_version": "CR0105R114-G4-CANONICAL-ROUX-ONTOLOGY-1",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "status": "HOLD_G4_DEVELOPMENT_ONTOLOGY",
+  "baseline_id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+  "counts": {
+    "raw_unique_attempts": 120,
+    "parse_ok": 118,
+    "state_certified": 117,
+    "ordinary_fb_sb_eligible": 0,
+    "prefix_unique": 0,
+    "canonical": 0,
+    "block_disruptive": 0,
+    "fb_preserved_no_completion": 0,
+    "pseudo_fb_or_fbdr": 0,
+    "syntax_or_state_invalid": 120,
+    "ontology_unscorable": 0,
+    "cmll_opportunities": 0,
+    "cmll_consistent": 0,
+    "lse_opportunities": 0,
+    "lse_consistent": 0
+  },
+  "rates": {
+    "state_certification_rate": 0.975,
+    "prefix_unique_rate_given_eligible": 0,
+    "ontology_assignment_rate_given_prefix_unique": 0,
+    "canonical_rate_given_prefix_unique": 0,
+    "cmll_consistency_rate_canonical": 0,
+    "lse_consistency_rate_canonical": 0
+  },
+  "checks": {
+    "state_certified_n_min": true,
+    "ordinary_fb_sb_eligible_n_min": false,
+    "prefix_unique_rate_given_eligible_min": false,
+    "ontology_assignment_rate_given_prefix_unique_min": false,
+    "canonical_reference_attempts_min": false,
+    "cmll_consistency_rate_canonical_min": false,
+    "lse_consistency_rate_canonical_min": false,
+    "total_canonical_features_min": false,
+    "objective_canonical_features_min": false,
+    "all_features_g4_canonical": true
+  },
+  "source_counts": {
+    "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY": {
+      "n": 120,
+      "eligible": 0,
+      "canonical": 0,
+      "block_disruptive": 0,
+      "preserved_no_completion": 0
+    }
+  },
+  "frame_counts": {},
+  "feature_counts": {
+    "total": 0,
+    "objective": 0,
+    "anchor": 0,
+    "canonical_attempts": 0,
+    "phase": {
+      "FB": 0,
+      "SB": 0,
+      "CMLL": 0,
+      "LSE": 0
+    }
+  },
+  "confusion_vs_g3_diagnostic_only": {
+    "MISSING -> SYNTAX_OR_STATE_INVALID": 120
+  },
+  "errors": [
+    {
+      "attempt_key": "RECO_1023:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1025:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1026:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1029:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1035:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1054:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_10847:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_10849:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1116:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1117:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1118:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1121:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1123:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1124:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1125:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1127:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1128:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_11424:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_11431:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_11584:0",
+      "error": "Unexpected character at index 9. Are you missing a space?"
+    },
+    {
+      "attempt_key": "RECO_11752:0",
+      "error": "Unexpected character at index 16. Are you missing a space?"
+    },
+    {
+      "attempt_key": "RECO_11756:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_11818:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_11912:0",
+      "error": "Invalid move for KPuzzle (3x3x3): Mr'"
+    },
+    {
+      "attempt_key": "RECO_11958:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1272:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_128:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_12807:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_12893:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_12896:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_129:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_130:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_131:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_132:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_135:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_136:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_150:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1519:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1524:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1525:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1526:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1532:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1535:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1550:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1619:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_1620:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2027:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2069:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2506:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2740:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2771:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2773:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2775:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2778:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2805:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2847:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2848:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2854:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2855:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2858:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_2967:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_3134:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_324:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_3449:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_4471:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_4472:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_4491:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_4883:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_4884:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_4886:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_4950:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_5081:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_5501:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_595:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_596:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_598:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_599:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_601:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_604:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_606:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_607:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_615:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_619:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_620:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_622:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_623:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_6240:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_631:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_638:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_639:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_641:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_66:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_673:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_69:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_7:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_741:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8012:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8013:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8014:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8018:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8022:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8023:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8024:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8026:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_820:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_823:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_824:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_826:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_827:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_828:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8697:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8699:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8700:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8701:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8705:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8709:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8719:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_8720:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_9211:0",
+      "error": "x is not defined"
+    },
+    {
+      "attempt_key": "RECO_984:0",
+      "error": "x is not defined"
+    }
+  ],
+  "development_role": "CALIBRATION_AND_ONTOLOGY_STRESS_TEST_ONLY",
+  "r113_labels_used_for_classification": false,
+  "r113_features_or_scores_reused": false,
+  "post_result_gate_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "553edeac313947393efff73834203f98b2c6f8b0e37243515d1327057a2a23e6"
+}
