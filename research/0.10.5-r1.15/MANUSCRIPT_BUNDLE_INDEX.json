@@ -1,0 +1,85 @@
+{
+  "schema_version": "CR0105R115-MANUSCRIPT-BUNDLE-INDEX-1",
+  "stage": "CUBE-REV 0.10.5-R1.15",
+  "bundle_state": "MANUSCRIPT_BRIDGE_NOT_FROZEN",
+  "measurement_generation": "ROUX-MEASUREMENT-G4",
+  "research_question": {
+    "artifact": "MANUSCRIPT_NAPKIN_AND_LIFECYCLE_FREEZE.json",
+    "status": "FROZEN_FOR_R115_BRIDGE"
+  },
+  "claims": {
+    "artifact": "CLAIM_AUTHORITY_LEDGER.json",
+    "status": "MAPPED_C1_TO_C10",
+    "prohibited_claims_present_as_guardrails": true
+  },
+  "methods_assets": [
+    "CROSS_GENERATION_OBSERVATION_OPERATOR_ATLAS.json",
+    "SKILL_WORKSHOP_2.4.1_CROSS_CHAT_ADOPTION.json",
+    "parent sealed R1.7-R1.14 operator/null/authority artifacts"
+  ],
+  "data_and_runs": {
+    "role": "referenced through parent seals and source map; R1.15 does not create new scientific route outcomes",
+    "primary_source_map": "SOURCE_MAP_AND_CITATION_AUDIT.json"
+  },
+  "results": [
+    "SEMANTIC_MASTER_KO.md",
+    "ABSTRACT_EN_DRAFT.md"
+  ],
+  "negative_results": [
+    "operator succession in CROSS_GENERATION_OBSERVATION_OPERATOR_ATLAS.json",
+    "HOSTILE_REFEREE_COURT.md",
+    "PROVENANCE_FAMILY_ABLATION_COURT.json"
+  ],
+  "limitations": [
+    "Roux genuinely post-freeze authority remains DATA_WAIT",
+    "cognitive recovery/error prevalence prohibited",
+    "strong novelty/firstness wording remains HOLD",
+    "serial generations are not independent replications"
+  ],
+  "source_map": "SOURCE_MAP_AND_CITATION_AUDIT.json",
+  "citation_audit": {
+    "status": "PARTIAL_PASS",
+    "internal_numeric_source_map": "PASS",
+    "external_metadata_tieout": "PARTIAL",
+    "systematic_novelty_audit": "HOLD"
+  },
+  "missing_evidence": [
+    "database-explicit systematic novelty/citation-chaining audit for strong novelty wording",
+    "post-freeze fresh Roux N>=20 only if future Roux authority is claimed",
+    "human evidence only if cognitive construct claims are pursued"
+  ],
+  "figures": {
+    "plan": "FIGURE_TABLE_PLAN.md",
+    "frozen_assets": 0,
+    "status": "PLANNED_NOT_RENDERED"
+  },
+  "tables": {
+    "plan": "FIGURE_TABLE_PLAN.md",
+    "frozen_assets": 0,
+    "status": "PLANNED_NOT_RENDERED"
+  },
+  "reproduction_manifest": {
+    "status": "PARENT_SEALS_TRACEABLE_R115_BUNDLE_NOT_YET_PACKAGED",
+    "note": "R1.15 manuscript bridge does not replace parent reproducibility artifacts."
+  },
+  "intent_alignment": {
+    "status": "PASS",
+    "writing_is_evidence": false,
+    "new_measurement_generation_opened": false,
+    "g4_fresh_definitions_mutated": false
+  },
+  "decision_history": [
+    "R1.14 closed G4 as validated for preexisting-unseen ontology transport with fresh authority DATA_WAIT.",
+    "R1.15 opened a manuscript lifecycle, not a new measurement generation.",
+    "Hostile referee court rejected cognitive-prevalence framing and retained a measurement-methodology paper-sized claim.",
+    "Provenance-family ablation showed the core falsification thesis is family-robust at narrower scope but the positive unseen-transport endpoint depends materially on the R1.13-R1.14 lineage.",
+    "Bounded literature court found strong neighboring trace-validity and Rubik literatures but did not authorize firstness language."
+  ],
+  "ready_for_freeze": false,
+  "freeze_blockers": [
+    "strong novelty literature debt",
+    "external bibliography metadata tieout",
+    "figure/table asset freeze",
+    "final paragraph-level citation/source parity audit"
+  ]
+}
