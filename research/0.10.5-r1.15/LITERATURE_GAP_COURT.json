@@ -1,0 +1,95 @@
+{
+  "schema_version": "CR0105R115-LITERATURE-GAP-COURT-1",
+  "stage": "CUBE-REV 0.10.5-R1.15",
+  "status": "PASS_BOUNDED_GAP_MAP_HOLD_STRONG_FIRSTNESS_CLAIM",
+  "search_scope": {
+    "type": "bounded targeted web literature court, not a PRISMA/systematic review",
+    "query_families": [
+      "Rubik's Cube reconstruction human problem solving protocol analysis move sequence subgoal cognitive reconstruction speedcubing",
+      "speedcubing reconstruction move sequence strategy cognitive study",
+      "Rubik's Cube cognition expert performance learning strategy",
+      "Rubik's Cube decomposition problem solving human study",
+      "behavioral trace construct validity process tracing observation operator",
+      "digital trace construct validity measurement behavioral traces",
+      "trace data measurement validity process data"
+    ],
+    "limitations": [
+      "Consensus monthly search quota was exhausted during R1.15 and could not add a database-specific search layer.",
+      "No complete Scopus/Web of Science/Google Scholar export or exhaustive citation chaining was performed.",
+      "Search engines can miss terminology variants and non-indexed literature."
+    ]
+  },
+  "neighbor_families": [
+    {
+      "family": "Rubik real-world skill acquisition",
+      "example": "Meinz, Hambrick, Leach & Boschulte (2023), Journal of Intelligence, DOI 10.3390/jintelligence11010018",
+      "overlap": "Rubik's Cube as real-world skill acquisition paradigm; human learning and ability predictors.",
+      "difference": "Does not validate move-by-move reconstruction-to-construct observation operators."
+    },
+    {
+      "family": "Rubik macro-operators and subgoal structure",
+      "example": "Korf (1985), Artificial Intelligence 26(1):35-77, DOI 10.1016/0004-3702(85)90012-8",
+      "overlap": "Non-serializable subgoals, primitive moves, learned macros, operator decomposability.",
+      "difference": "Algorithmic problem-solving representation rather than validity/authority of natural human reconstruction traces."
+    },
+    {
+      "family": "Rubik decomposition and incomplete representation",
+      "example": "Decomposition Patterns in Problem Solving",
+      "overlap": "Rubik-like decomposition strategies and apparently erroneous behavior under incomplete representations.",
+      "difference": "Not a public expert reconstruction trace pipeline with frozen state/null/transport courts."
+    },
+    {
+      "family": "competitive speedcubing expertise and collective algorithm acquisition",
+      "example": "Krakauer, Kardeş & Grochow (2025), Universality in Collective Intelligence on the Rubik's Cube, arXiv:2511.18609",
+      "overlap": "Competitive cubing, expert performance, algorithm acquisition and collective knowledge.",
+      "difference": "Longitudinal/aggregate expertise rather than trace-to-construct measurement validity."
+    },
+    {
+      "family": "elite speedcubing cognitive-motor/neural performance",
+      "example": "Experimental Brain Research 2025 electrocortical study; 2026 competitive time-of-day ecological performance study",
+      "overlap": "Speedcubing as an expert cognitive-motor paradigm.",
+      "difference": "Performance/neural correlates rather than reconstruction observation-operator validation."
+    },
+    {
+      "family": "process tracing measurement validity",
+      "examples": [
+        "Lohse & Johnson (1996), comparison of Mouselab and eyegaze process tracing",
+        "Böckenholt & Hynan (1994), caveats on a process-tracing index",
+        "Jasper & Levin (2001), validating a process-tracing method",
+        "Computational process-tracing method for planning-strategy inference, Behavior Research Methods (2022)"
+      ],
+      "overlap": "Process measures can be reactive, index-dependent, or require explicit observation models and validation.",
+      "difference": "Different task/data ecology; provides methodological ancestry rather than a direct speedcubing analogue."
+    },
+    {
+      "family": "digital/learning trace construct validity",
+      "examples": [
+        "Winne (2020), Construct and consequential validity for learning analytics based on trace data, DOI 10.1016/j.chb.2020.106457",
+        "Fan et al. (2022), validity of self-regulated learning measurement based on trace data",
+        "TED-On total error framework for online digital traces",
+        "Landers et al. trace-data psychometric measurement workflow"
+      ],
+      "overlap": "Raw trace data are not theory-free measures; construct validity, generalizability, transformation and error layers must be justified.",
+      "difference": "CUBE-REV's specific contribution candidate is a state-exact expert-action case study with sequential operator falsification, familywise null, transport, gauge/ontology and explicit authority states."
+    }
+  ],
+  "gap_assessment": {
+    "direct_analogue_identified": false,
+    "strong_firstness_authorized": false,
+    "allowed_wording": "Prior work studies Rubik's Cube skill acquisition, decomposition, algorithms, expertise and performance, while broader process-tracing and digital-trace literatures emphasize measurement validity. In this bounded targeted search, we did not identify a directly analogous study that validates public speedcubing reconstruction traces through a succession of state-exact observation operators with separate null, transport, provenance and claim-authority courts.",
+    "prohibited_wording": [
+      "This is the first study of observation operators in speedcubing.",
+      "No prior work has validated reconstruction traces.",
+      "CUBE-REV is uniquely the first framework of its kind."
+    ]
+  },
+  "remaining_literature_debt": {
+    "severity": "BLOCKS_STRONG_NOVELTY_WORDING_BUT_NOT_METHOD_MANUSCRIPT_BRIDGE",
+    "closure": [
+      "database-explicit search log where access permits",
+      "backward/forward citation chaining from Rubik skill/decomposition and trace-validity anchors",
+      "novelty matrix across data granularity, state representation, observation operator, null, transport and construct authority",
+      "citation verification at manuscript-freeze time"
+    ]
+  }
+}
