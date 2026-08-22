@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R114-BASELINE-RUN-1",
+  "workflow_run_id": "32461489265",
+  "head_sha": "311ea0b9a3ead3603237b34e6efdeecce4885315",
+  "exit_code": 0,
+  "fresh_network_reads": 1,
+  "route_detail_reads": 0,
+  "geometry_scored": false,
+  "null_scored": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T08:04:42.926018+00:00"
+}

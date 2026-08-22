@@ -1,0 +1,55 @@
+{
+  "schema_version": "CR0105R11-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.1 \u2014 Exact-Monolith Byte Recovery, Source-Bound Patch Execution & Binary-identical Whole-page Release Seal",
+  "status": "PASS",
+  "verdict": "PASS_EXACT_MONOLITH_BYTE_RECOVERY_SOURCE_BOUND_PATCH_BINARY_IDENTICAL_WHOLE_PAGE_SEAL",
+  "repository": "WhoSia/CUBE-REV",
+  "research_branch": "cube-rev-0.10.5-r1.1-exact-monolith-seal",
+  "base_main_commit": "52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1",
+  "workflow_head_sha": "8f31614dca81d17a6ac573ace0d9a957b6d3bac4",
+  "workflow_run_id": "32088171678",
+  "source": {
+    "present": true,
+    "bytes": 2588604,
+    "sha256": "e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf",
+    "git_blob_sha1": "344faeb45d0046a52b24fad91a5bcbcb46784b71"
+  },
+  "first_patched": {
+    "present": true,
+    "bytes": 2591526,
+    "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+    "git_blob_sha1": "ce5b5608767083a696cf57982edd979a21b3ba22"
+  },
+  "second_patched": {
+    "present": true,
+    "bytes": 2591526,
+    "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+    "git_blob_sha1": "ce5b5608767083a696cf57982edd979a21b3ba22"
+  },
+  "patched_additive_bytes": 2922,
+  "checks": {
+    "source_present": true,
+    "source_exact_bytes": true,
+    "source_exact_sha256": true,
+    "source_exact_git_blob": true,
+    "patch_receipt_pass": true,
+    "baseline_validation_pass": true,
+    "first_patch_present": true,
+    "second_patch_present": true,
+    "patched_byte_identical": true,
+    "deterministic_rebuild_receipt_pass": true,
+    "boot_selftest_pass": true,
+    "boot_no_pageerror": true,
+    "browser_court_pass": true,
+    "browser_all_checks_pass": true,
+    "engineering_only_no_human": true,
+    "production_network_not_performed": true,
+    "production_mutated_false": true
+  },
+  "browser_check_count": 22,
+  "browser_pass_count": 22,
+  "human_observations": 0,
+  "main_or_pages_mutated": false,
+  "release_scope": "RESEARCH_BRANCH_ENGINEERING_SEAL_ONLY",
+  "human_launch": "ELIGIBLE_FOR_NEXT_RELEASE-IDENTITY_COURT; NOT_AUTO_LAUNCHED"
+}

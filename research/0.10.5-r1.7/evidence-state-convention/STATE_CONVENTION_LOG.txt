@@ -1,0 +1,202 @@
+{
+  "schema_version": "CR0105R17-STATE-CONVENTION-COURT-1",
+  "status": "PASS_DIAGNOSTIC",
+  "n": 72,
+  "orientation_group_size": 24,
+  "ranking": [
+    {
+      "name": "all_then_S",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "all_then_Sinv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "allInv_then_S",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "allInv_then_Sinv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noInsNoRot_then_S",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noInsNoRot_then_Sinv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noInsNoRotInv_then_S",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noInsNoRotInv_then_Sinv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noInspection_then_S",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noInspection_then_Sinv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noInspectionInv_then_S",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noInspectionInv_then_Sinv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noRot_then_S",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noRot_then_Sinv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noRotInv_then_S",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "noRotInv_then_Sinv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "S_then_all",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "S_then_allInv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "S_then_noInsNoRot",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "S_then_noInsNoRotInv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "S_then_noInspection",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "S_then_noInspectionInv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "S_then_noRot",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "S_then_noRotInv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "Sinv_then_all",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "Sinv_then_allInv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "Sinv_then_noInsNoRot",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "Sinv_then_noInsNoRotInv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "Sinv_then_noInspection",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "Sinv_then_noInspectionInv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "Sinv_then_noRot",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    },
+    {
+      "name": "Sinv_then_noRotInv",
+      "solved": 0,
+      "rate": 0,
+      "examples": []
+    }
+  ],
+  "interpretation": "This court diagnoses group-composition and inclusion conventions only. It does not license redundancy phenotypes. A convention must independently explain essentially all exact WCA-scramble-linked reconstructions or the parser/frame model remains on HOLD.",
+  "human_observations": 0
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": "CR0105R113-ROUX-G3-NULL-FOUNDRY-1",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "status": "HOLD_ROUX_G3_DEVELOPMENT_NULL_ENGINEERING",
+  "geometry_status": "HOLD_ROUX_G3_DEVELOPMENT_GEOMETRY",
+  "counts": {
+    "features": 832,
+    "loo_attempts": 120,
+    "loo_familywise_ok": 120,
+    "crossfit_attempts": 120,
+    "nested_familywise_ok": 120,
+    "transport_pairs": 120
+  },
+  "local_reference": {
+    "loo_fallback_n": 0,
+    "loo_fallback_rate": 0,
+    "crossfit_fallback_n": 0,
+    "nested_fallback_events": 0
+  },
+  "loo_pseudofresh": {
+    "primary_alpha": 0.01,
+    "primary_rate": 0,
+    "watch_alpha": 0.05,
+    "watch_rate": 0.05
+  },
+  "nested_no_test_fold_leak": {
+    "primary_alpha": 0.01,
+    "primary_rate": 0,
+    "watch_alpha": 0.05,
+    "watch_rate": 0.05,
+    "outer_folds": [
+      {
+        "fold": 0,
+        "test_attempts": 22,
+        "familywise_ok_n": 22,
+        "watch_rate": 0.045454545454545456,
+        "primary_rate": 0,
+        "reference_attempts": 98,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 1,
+        "test_attempts": 23,
+        "familywise_ok_n": 23,
+        "watch_rate": 0.13043478260869565,
+        "primary_rate": 0,
+        "reference_attempts": 97,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 2,
+        "test_attempts": 22,
+        "familywise_ok_n": 22,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 98,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 3,
+        "test_attempts": 26,
+        "familywise_ok_n": 26,
+        "watch_rate": 0.07692307692307693,
+        "primary_rate": 0,
+        "reference_attempts": 94,
+        "outer_test_excluded_from_references": true
+      },
+      {
+        "fold": 4,
+        "test_attempts": 27,
+        "familywise_ok_n": 27,
+        "watch_rate": 0,
+        "primary_rate": 0,
+        "reference_attempts": 93,
+        "outer_test_excluded_from_references": true
+      }
+    ]
+  },
+  "transport": {
+    "pearson_crossfit_vs_loo": 0.989423183668037,
+    "abs_difference": {
+      "p50": 0.03804335378723489,
+      "p90": 0.10914446942506806,
+      "p99": 0.21972505598650072,
+      "max": 0.21972505598650072
+    }
+  },
+  "finite_sample_primary_resolution": {
+    "admitted_attempt_bank_n": 120,
+    "loo_reference_n": 119,
+    "loo_minimum_add_one_p": 0.008333333333333333,
+    "required_loo_reference_n": 99,
+    "required_total_admitted_n": 100,
+    "primary_1pct_resolvable": true,
+    "alpha_relaxation": "PROHIBITED"
+  },
+  "checks": {
+    "geometry_pass": false,
+    "familywise_attempts_ge_75": true,
+    "nested_familywise_attempts_ge_75": true,
+    "local_fallback_rate_le_0_10": true,
+    "nested_watch_health": true,
+    "transport_pairs_ge_75": true,
+    "crossfit_loo_pearson_ge_0_90": true,
+    "crossfit_loo_abs_diff_p99_le_0_75": true,
+    "nested_outer_fold_excluded": true,
+    "g3_only_features": true,
+    "primary_1pct_resolution": true
+  },
+  "engineering_pass": false,
+  "data_role": "DEVELOPMENT_AND_CALIBRATION_ONLY",
+  "future_roux_scoring_authority": false,
+  "authority_reason": "R1.12-derived development bank cannot release G3 future authority even if engineering passes; a separately sealed genuinely fresh route court is required.",
+  "fresh_confirmatory_scoring": false,
+  "human_observations": 0,
+  "semantic_sha256": "66005b081a505e14e8178089d8272a4bd656914ceccc9dbd5c5dc4369f2e3143"
+}

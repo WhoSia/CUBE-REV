@@ -1,0 +1,89 @@
+{
+  "schema_version": "CR0105R15-LIVE-PUBLIC-CANARY-4",
+  "status": "HOLD",
+  "human_observations": 0,
+  "human_launch": false,
+  "human_recruitment_design": "DEFERRED_BY_RESEARCH_DESIGN",
+  "verdict": "HOLD_R15_LIVE_BEHAVIOR_NOT_EXACT",
+  "checks": {
+    "marker_exact": true,
+    "health_exact": true,
+    "A_stored": true,
+    "B_mutated_rejected": false,
+    "C_stored": true,
+    "D_duplicate_reverified": false,
+    "D_session_confirmed_after_reverify": false,
+    "stale_fail_closed": true,
+    "synthetic_only": true,
+    "no_page_errors": true
+  },
+  "mismatch_session_id": "CR-20260818025716-25e03c88cea8",
+  "samebyte_session_id": "CR-20260818025737-b52d31650170",
+  "case_errors": {
+    "A": null,
+    "B": "수집기가 저장한 파일의 무결성 확인값이 일치하지 않습니다.",
+    "C": null,
+    "D": null,
+    "STALE": "collectorClient.versionMismatch"
+  },
+  "case_receipt_status": {
+    "A": "stored",
+    "B": null,
+    "C": "stored",
+    "D": "stored"
+  },
+  "receipts": {
+    "A": {
+      "type": "CUBE_REV_COLLECTOR_ACK",
+      "ok": true,
+      "status": "stored",
+      "submission_nonce": "3706921187cfa6b30788e021",
+      "session_id": "CR-20260818025716-25e03c88cea8",
+      "file_name": "CR-20260818025716-25e03c88cea8.json",
+      "received_at": "2026-08-18T02:57:26.422Z",
+      "receipt_code": "RM0JWJQ0JZ_U",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "ec67f94d",
+      "error": null,
+      "transport": "jsonp_receipt_poll",
+      "response_verified": true,
+      "checksum_verified": true,
+      "stored_byte_reverified": false
+    },
+    "B": {},
+    "C": {
+      "type": "CUBE_REV_COLLECTOR_ACK",
+      "ok": true,
+      "status": "stored",
+      "submission_nonce": "bb4350f1fec9eca6800ba85e",
+      "session_id": "CR-20260818025737-b52d31650170",
+      "file_name": "CR-20260818025737-b52d31650170.json",
+      "received_at": "2026-08-18T02:57:42.595Z",
+      "receipt_code": "1NHPWH_AVRHZ",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "4150d1bb",
+      "error": null,
+      "transport": "jsonp_receipt_poll",
+      "response_verified": true,
+      "checksum_verified": true,
+      "stored_byte_reverified": false
+    },
+    "D": {
+      "type": "CUBE_REV_COLLECTOR_ACK",
+      "ok": true,
+      "status": "stored",
+      "submission_nonce": "ec20f22a788544ff0e8d791b",
+      "session_id": "CR-20260818025737-b52d31650170",
+      "file_name": "CR-20260818025737-b52d31650170.json",
+      "received_at": "2026-08-18T02:57:42.595Z",
+      "receipt_code": "1NHPWH_AVRHZ",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "4150d1bb",
+      "error": null,
+      "transport": "jsonp_receipt_poll",
+      "response_verified": true,
+      "checksum_verified": true,
+      "stored_byte_reverified": false
+    }
+  }
+}

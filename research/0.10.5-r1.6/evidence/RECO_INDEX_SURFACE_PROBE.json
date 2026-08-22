@@ -1,0 +1,18 @@
+{
+  "schema_version": "CR0105R16-RECO-SURFACE-PROBE-1",
+  "status": "PASS",
+  "url": "https://reco.nz/solve/",
+  "http": 200,
+  "bytes": 10317465,
+  "sha256": "c0ca3106023d108209028fd2b0f56962c9a23b5b09e41fbf5af673d7ae4795ba",
+  "table_rows": 12930,
+  "three_by_three_rows": 10596,
+  "id_min": 3,
+  "id_max": 14058,
+  "forms": [],
+  "pagination_like_links": [],
+  "scripts": [
+    "https://code.jquery.com/jquery-3.6.0.min.js",
+    "https://cdn.datatables.net/v/dt/dt-1.13.6/b-2.4.1/datatables.min.js"
+  ]
+}

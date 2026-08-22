@@ -1,0 +1,100 @@
+name: CR0105R18 Matched Null Remand
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.8-prospective-subgoal-court]
+    paths: [cr0105r18/RUN_MATCHED_NULL_REMAND]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r18-matched-null-remand
+  cancel-in-progress: false
+jobs:
+  remand:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify prospective result remains immutable and this is posthoc
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          h=json.load(open('research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_COURT.json'))
+          p=json.load(open('research/0.10.5-r1.8/evidence-zero-diagnostic/ZERO_COURT_DIAGNOSTIC.json'))
+          s=json.load(open('research/0.10.5-r1.8/evidence-null-calibration-r2/NULL_THRESHOLD_SEAL.json'))
+          assert h['primary']['attempt_any_algorithm_excess_raw']==0
+          assert p['prospective_result_unchanged']['algorithm_excess_attempts']==0
+          assert s['seal_sha256']=='1343a667600a4a859ae081b3b3042cbe365e447b7b082dd7ebf77b9edc8494ea'
+          print('R18_MATCHED_NULL_POSTHOC_LINEAGE_PASS')
+          PY
+      - name: Install pinned cubing runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Materialize explicit posthoc matched-statistic calibration
+        run: python research/0.10.5-r1.8/r18_matched_null_remand_patch.py
+      - name: Recalibrate on R1.7 only with matched candidate-reversal statistic
+        id: cal
+        shell: bash
+        env:
+          R18_NULL_ROOT: /tmp/r18matched
+        run: |
+          set +e
+          node ./r18_matched_null_runtime.mjs 2>&1 | tee /tmp/r18matched/matched_calibration.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Apply matched thresholds to already frozen holdout as posthoc sensitivity
+        id: apply
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          if test '${{ steps.cal.outputs.exit_code }}' = '0'; then
+            python research/0.10.5-r1.8/r18_apply_matched_null_posthoc.py 2>&1 | tee /tmp/r18matched/matched_holdout.log
+            code=${PIPESTATUS[0]}
+          else
+            echo R18_MATCHED_HOLDOUT_NOT_RUN_CALIBRATION_FAILED | tee /tmp/r18matched/matched_holdout.log
+            code=98
+          fi
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist posthoc remand evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.8/evidence-matched-null-remand
+          for f in MATCHED_NULL_REMAND_PATCH.json MATCHED_CANDIDATE_NULL_CALIBRATION.json MATCHED_CANDIDATE_NULL_THRESHOLD.json MATCHED_CANDIDATE_NULL_SEGMENT_LEDGER.json MATCHED_NULL_HOLDOUT_SENSITIVITY.json matched_calibration.log matched_holdout.log; do
+            test -f "/tmp/r18matched/$f" && cp "/tmp/r18matched/$f" research/0.10.5-r1.8/evidence-matched-null-remand/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          c=int('${{ steps.cal.outputs.exit_code || 97 }}'); a=int('${{ steps.apply.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R18-MATCHED-NULL-REMAND-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'calibration_exit_code':c,'apply_exit_code':a,'status':'PASS' if c==0 and a==0 else 'FAIL','role':'POSTHOC_REMAND_DIAGNOSTIC_NOT_PROSPECTIVE','prospective_primary_changed':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.8/evidence-matched-null-remand/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+          rm -f ./r18_matched_null_runtime.mjs
+      - name: Commit posthoc remand evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.8/evidence-matched-null-remand
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.8 matched-null remand ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.8-prospective-subgoal-court
+      - name: Enforce posthoc remand execution only
+        if: always()
+        run: |
+          test '${{ steps.cal.outputs.exit_code }}' = '0'
+          test '${{ steps.apply.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.8/evidence-matched-null-remand/MATCHED_NULL_HOLDOUT_SENSITIVITY.json'))
+          assert x['status']=='PASS_POSTHOC_DIAGNOSTIC'
+          assert x['prospective_primary_unchanged']['attempt_positive_rate_standardized']==0
+          print('CR0105R18_MATCHED_NULL_REMAND_PASS')
+          PY

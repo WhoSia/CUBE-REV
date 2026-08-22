@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "files_scanned": 175,
+  "raw_record_hits": 98,
+  "unique_official_attempts": 98,
+  "clean_unique_official_attempts": 98,
+  "r111_used_attempts_found": 98,
+  "novel_sealed_attempts": 0,
+  "combined_candidate_bank_if_all_clean_used": 98,
+  "candidate_bank_ge_100": false,
+  "route_conflict_attempts": 0,
+  "parse_error_files": 0
+}

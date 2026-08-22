@@ -1,0 +1,134 @@
+{
+  "schema_version": "CR0105R15-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.5 — Immutable Submission Snapshot Promotion, Duplicate Stored-byte Reverification & Receipt-race Closure",
+  "status": "PASS",
+  "verdict": "PASS_IMMUTABLE_SUBMISSION_SNAPSHOT_DUPLICATE_STORED_BYTE_REVERIFICATION_RECEIPT_RACE_CLOSED",
+  "proof_model": "COMPOSITIONAL_EXACT_CODE_PLUS_PUBLIC_BYTE_IDENTITY_PLUS_LIVE_PRODUCTION_BEHAVIOR",
+  "r14_input": {
+    "final_commit": "f8ee7aac3eec181bab5a977df9ccfc84af215e22",
+    "verdict": "HOLD_HUMAN_LAUNCH_LIVE_DUPLICATE_RECEIPT_STORED_BYTE_BINDING_RACE",
+    "race_confirmed": true
+  },
+  "final_main": {
+    "commit": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "base_r13_commit": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+    "functional_tree_diff_from_r13": ["js/collector-client.js"],
+    "temporary_control_workflows_removed": true,
+    "index_html_unchanged": true,
+    "index_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180"
+  },
+  "collector_client": {
+    "deployment_commit": "b1e5e51527690b0f9fc644569999f21e1165e78f",
+    "final_main_git_blob": "163e5114ef6ce725c2dfa06a6fe38d8e814190b0",
+    "bytes": 22087,
+    "sha256": "a155b2fb532c4fdcd20eaa2feb1c9c84b647b627c278a61c2dd44fbaa46f90f6",
+    "marker": "0.10.5-R1.5",
+    "record_version": "0.7.12",
+    "collector_id": "CUBE-REV-0712-MAIN",
+    "protocol_version": "receipt-v2"
+  },
+  "immutable_snapshot": {
+    "schema": "CUBE_REV_SUBMISSION_SNAPSHOT_V1",
+    "sealed_before_transport_telemetry_mutation": true,
+    "persisted_across_receipt_failure_and_page_reload": true,
+    "retry_reuses_exact_text_and_checksum": true,
+    "corruption_fails_closed": true,
+    "durable_storage_unavailable_fails_closed": true,
+    "cleared_only_after_confirmed_success": true
+  },
+  "duplicate_stored_byte_reverification": {
+    "duplicate_ack_is_not_sufficient_for_success": true,
+    "fresh_independent_nonce_required": true,
+    "required_confirmation_source": "drive_lookup",
+    "required_status": "stored",
+    "required_checksum_relation": "fresh_drive_checksum == immutable_submission_snapshot_checksum",
+    "mismatch_failure": "DUPLICATE_STORED_BYTE_CHECKSUM_MISMATCH"
+  },
+  "deterministic_exact_blob_court": {
+    "status": "PASS",
+    "count": "6/6",
+    "cache_first_r14_counterexample_forced": true,
+    "mutated_duplicate_rejected": true,
+    "legitimate_same_byte_duplicate_fresh_drive_reverified": true
+  },
+  "public_edge_identity": {
+    "status": "PASS",
+    "evidence_schema": "CR0105R15-EDGE-IDENTITY-2",
+    "fresh_query_sha256": "a155b2fb532c4fdcd20eaa2feb1c9c84b647b627c278a61c2dd44fbaa46f90f6",
+    "old_html_query_sha256": "a155b2fb532c4fdcd20eaa2feb1c9c84b647b627c278a61c2dd44fbaa46f90f6",
+    "old_query_cache_converged": true,
+    "public_index_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180"
+  },
+  "live_production_v4_semantic_reclassification": {
+    "raw_gate_status": "HOLD_DUE_TO_OVERLY_NARROW_EXPECTATION_OF_LITERAL_DUPLICATE_STATUS",
+    "semantic_safety_status": "PASS",
+    "collector_deployment_id": "AKfycbwJEB0khZSm",
+    "mismatch_session_id": "CR-20260818025716-25e03c88cea8",
+    "samebyte_session_id": "CR-20260818025737-b52d31650170",
+    "A": {
+      "status": "stored",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "ec67f94d",
+      "receipt_confirmed": true
+    },
+    "B": {
+      "payload_relation": "mutated relative to A",
+      "checksum_fnv1a32": "f1329fe3",
+      "status": "failed",
+      "receipt_confirmed": false,
+      "error": "수집기가 저장한 파일의 무결성 확인값이 일치하지 않습니다."
+    },
+    "C": {
+      "status": "stored",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "4150d1bb",
+      "receipt_code": "1NHPWH_AVRHZ"
+    },
+    "D": {
+      "payload_relation": "byte-identical application payload to C",
+      "status": "stored",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "4150d1bb",
+      "receipt_code": "1NHPWH_AVRHZ",
+      "interpretation": "The safe fresh Drive stored-file receipt won the live ordering. Literal duplicate reverification was therefore not needed in this observed ordering; the cache-first duplicate branch is covered by the deterministic exact-blob court."
+    },
+    "stale_version_fail_closed": true,
+    "synthetic_markers_present": true,
+    "page_errors": 0
+  },
+  "ravel_roles": {
+    "source_and_git_object_auditor": "PASS",
+    "immutable_snapshot_adversary": "PASS",
+    "reload_retry_adversary": "PASS",
+    "cache_first_receipt_race_adversary": "PASS",
+    "public_edge_identity_auditor": "PASS",
+    "live_network_behavior_auditor": "PASS_AFTER_SEMANTIC_RECLASSIFICATION",
+    "cleanup_and_authority_auditor": "PASS",
+    "claim_scope_auditor": "PASS"
+  },
+  "human_research_boundary": {
+    "human_observations": 0,
+    "human_launch": false,
+    "direct_human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN",
+    "technical_human_launch_eligibility_not_used_as_recruitment_authority": true,
+    "factorized_runner_role": "AUXILIARY_MECHANISM_EVIDENCE"
+  },
+  "public_data_research_pivot": {
+    "primary_empirical_strategy": "PUBLIC_DATA_FIRST",
+    "wca_results_export": {
+      "role": "PRIMARY_POPULATION_FRAME",
+      "observed_export_file_stem": "WCA_export_v2_221_20260809T000027Z",
+      "observed_export_date": "2026-08-10",
+      "format_version": "2.0.2",
+      "priority_tables": ["competitions", "persons", "results", "result_attempts", "scrambles", "events", "round_types", "formats"]
+    },
+    "reconstruction_database": {
+      "source": "reco.nz",
+      "role": "SELECTED_MOVE_LEVEL_CORPUS",
+      "population_claims_before_selection_analysis": "PROHIBITED"
+    },
+    "solver_generated_routes": "COUNTERFACTUAL_ONLY_NOT_HUMAN_DATA"
+  },
+  "synthetic_production_record_statement": "AT_LEAST_2 VERIFIED R1.5 LIVE SYNTHETIC SESSION FILES WERE CREATED IN THE VALID-SESSION COURT; DO NOT INTERPRET THEM AS HUMAN DATA.",
+  "next_gate": "WCA_PUBLIC_DATA_INGESTION_RECONSTRUCTION_LINKAGE_AND_RECOVERY_PHENOTYPE_BASELINE"
+}

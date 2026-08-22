@@ -1,0 +1,79 @@
+name: CR0105R114 External Acquisition Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.14-roux-generation-g4]
+    paths: [cr0105r114/RUN_EXTERNAL_ACQUISITION]
+permissions:
+  contents: write
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify fresh-outcome ordering boundary
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          b=json.load(open('research/0.10.5-r1.14/evidence-baseline/G4_BASELINE_VINTAGE.json'))
+          s=json.load(open('research/0.10.5-r1.14/evidence-reference/G4_REFERENCE_BANK_SEAL.json'))
+          f=json.load(open('research/0.10.5-r1.14/G4_EXTERNAL_COURT_FREEZE.json'))
+          assert s['status']=='PASS_REFERENCE_BANK_SEALED_BEFORE_FRESH_OUTCOMES'
+          assert s['fresh_outcomes_seen'] is False and s['second_live_index_read_seen'] is False
+          assert s['seal_sha256']==f['reference_seal_sha256']
+          assert b['live']['id_set_sha256']==f['baseline_id_set_sha256']
+          print('CR0105R114_EXTERNAL_ORDERING_PASS')
+          PY
+      - name: Install acquisition runtime
+        run: python -m pip install --disable-pip-version-check requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+      - name: Execute exactly one second live-index read and route acquisition
+        id: external
+        shell: bash
+        env: {R114_ROOT: /tmp/r114}
+        run: |
+          set +e
+          mkdir -p /tmp/r114
+          python3 research/0.10.5-r1.14/r114_external_acquisition.py 2>&1 | tee /tmp/r114/EXTERNAL_ACQUISITION_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable acquisition evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.14/evidence-external-acquisition
+          for f in G4_SECOND_LIVE_READ_AUDIT.json G4_PREEXISTING_UNSEEN_ROUTE_MANIFEST.json G4_POST_FREEZE_FRESH_ROUTE_MANIFEST.json EXTERNAL_ACQUISITION_LOG.txt; do
+            test -f "/tmp/r114/$f" && cp "/tmp/r114/$f" research/0.10.5-r1.14/evidence-external-acquisition/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R114-EXTERNAL-ACQUISITION-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':int('${{ steps.external.outputs.exit_code || 97 }}'),'reference_seal_sha256':'7cc0aaa2754fe911aa1bc536b3a53c527410b710f466ebe30ce8bbe37f17861a','second_live_index_read_seen':True,'ontology_scoring_performed':False,'null_scoring_performed':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.14/evidence-external-acquisition/EXTERNAL_ACQUISITION_RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit acquisition evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.14/evidence-external-acquisition
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.14 external acquisition ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.14-roux-generation-g4
+          git push origin HEAD:cube-rev-0.10.5-r1.14-roux-generation-g4
+      - name: Enforce operational boundary
+        if: always()
+        run: |
+          test '${{ steps.external.outputs.exit_code }}' = '0' || test '${{ steps.external.outputs.exit_code }}' = '20'
+          python3 - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('research/0.10.5-r1.14/evidence-external-acquisition/G4_SECOND_LIVE_READ_AUDIT.json')
+          assert p.exists()
+          x=json.load(open(p))
+          assert x['authority']['reference_seal_predated_read'] is True
+          assert x['authority']['fresh_authority_released'] is False
+          print('CR0105R114_EXTERNAL_ACQUISITION_COMPLETE',x['status'],x['preexisting_unseen'],x['post_freeze_fresh'])
+          PY

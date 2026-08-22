@@ -1,0 +1,71 @@
+name: CR0105R115 Manuscript Argument Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.15-manuscript-bridge]
+    paths: [cr0105r115/RUN_ARGUMENT_COURT]
+permissions:
+  contents: write
+jobs:
+  court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify immutable scientific parent
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          p=json.load(open('research/0.10.5-r1.14/final/RAVEL_FINAL_SEAL.json'))
+          assert p['status']=='PASS_G4_ONTOLOGY_TRANSPORT_WITH_FRESH_AUTHORITY_DATA_WAIT'
+          assert p['authority']['roux_future_scoring_authority'] is False
+          assert p['freshness_baseline']['post_freeze_fresh_raw_routes']==0
+          assert p['freshness_baseline']['minimum_post_freeze_fresh_raw_routes_for_authority']==20
+          print('CR0105R115_PARENT_SEAL_PASS')
+          PY
+      - name: Run manuscript argument court
+        id: argument
+        shell: bash
+        run: |
+          set +e
+          mkdir -p /tmp/r115
+          python3 research/0.10.5-r1.15/r115_argument_court.py 2>&1 | tee /tmp/r115/ARGUMENT_COURT_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable manuscript evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.15/evidence-argument-court
+          test -f /tmp/r115/ARGUMENT_COURT_AUDIT.json && cp /tmp/r115/ARGUMENT_COURT_AUDIT.json research/0.10.5-r1.15/evidence-argument-court/ || true
+          test -f /tmp/r115/ARGUMENT_COURT_LOG.txt && cp /tmp/r115/ARGUMENT_COURT_LOG.txt research/0.10.5-r1.15/evidence-argument-court/ || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R115-ARGUMENT-COURT-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':int('${{ steps.argument.outputs.exit_code || 97 }}'),'scientific_parent_mutated':False,'new_measurement_generation_opened':False,'fresh_network_read':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.15/evidence-argument-court/ARGUMENT_COURT_RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit argument court evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.15/evidence-argument-court
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.15 argument court ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.15-manuscript-bridge
+          git push origin HEAD:cube-rev-0.10.5-r1.15-manuscript-bridge
+      - name: Enforce court
+        if: always()
+        run: |
+          test '${{ steps.argument.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.15/evidence-argument-court/ARGUMENT_COURT_AUDIT.json'))
+          assert x['status']=='PASS_ARGUMENT_COURT_MANUSCRIPT_BRIDGE'
+          assert x['court_disposition']['cognitive_prevalence_paper']=='PROHIBITED'
+          assert x['court_disposition']['preprint_freeze']=='HOLD'
+          assert x['court_disposition']['roux_fresh_authority']=='HOLD_DATA_WAIT_0_OF_20'
+          print('CR0105R115_ARGUMENT_COURT_COMPLETE',x['semantic_sha256'])
+          PY

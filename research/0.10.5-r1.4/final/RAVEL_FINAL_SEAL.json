@@ -1,0 +1,68 @@
+{
+  "schema_version": "CR0105R14-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.4 — Live Collector Receipt Canary, Public-session End-to-end Provenance & Blinded Human-launch Gate",
+  "status": "HOLD",
+  "verdict": "HOLD_HUMAN_LAUNCH_LIVE_DUPLICATE_RECEIPT_STORED_BYTE_BINDING_RACE",
+  "engineering_infrastructure": "PASS",
+  "human_launch_gate": "HOLD",
+  "human_launch": false,
+  "human_observations": 0,
+  "main_commit": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+  "public_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+  "collector_deployment_id": "AKfycbwJEB0khZSm",
+  "r3_session_id": "CR-20260818022443-2bd2f477ace9",
+  "known_prior_r2_session_id": "CR-20260818022105-2e2d4c46edaa",
+  "verified_synthetic_sessions": [
+    "CR-20260818022105-2e2d4c46edaa",
+    "CR-20260818022443-2bd2f477ace9"
+  ],
+  "synthetic_record_count_statement": "AT_LEAST_2_VERIFIED_R14_SYNTHETIC_RECORDS; DO_NOT INTERPRET AS HUMAN DATA",
+  "stored_original": {
+    "checksum_fnv1a32": "b467dd85",
+    "receipt_code": "DYPM9YMHUWXJ",
+    "file_name": "CR-20260818022443-2bd2f477ace9.json"
+  },
+  "mutated_retry": {
+    "checksum_fnv1a32": "c8d53a2d",
+    "submission_nonce": "571b61d40a9093b2249ffe44",
+    "client_rejected": true
+  },
+  "cached_duplicate_ack": {
+    "checksum_fnv1a32": "c8d53a2d",
+    "submission_nonce": "571b61d40a9093b2249ffe44",
+    "status": "duplicate",
+    "confirmation_source": "doPost_store_complete"
+  },
+  "fresh_drive_lookup": {
+    "checksum_fnv1a32": "b467dd85",
+    "status": "stored",
+    "confirmation_source": "drive_lookup"
+  },
+  "mechanics_checks": {
+    "public_release_bound": true,
+    "live_health_exact": true,
+    "first_canary_stored_and_verified": true,
+    "inflight_duplicate_collapsed": true,
+    "mutated_payload_distinct": true,
+    "client_observed_integrity_rejection": true,
+    "fresh_drive_lookup_original_exact": true,
+    "prior_r2_canary_recovered": true,
+    "stale_version_fail_closed": true,
+    "synthetic_markers_present": true,
+    "no_page_errors": true
+  },
+  "race_checks": {
+    "duplicate_cached_ack_exists": true,
+    "duplicate_cached_ack_nonce_matches_retry": true,
+    "duplicate_cached_ack_session_matches": true,
+    "duplicate_cached_ack_checksum_matches_retry_B": true,
+    "actual_drive_checksum_matches_original_A": true,
+    "retry_B_differs_from_original_A": true,
+    "cached_ack_checksum_differs_from_actual_stored": true
+  },
+  "client_acceptance_predicate_on_cached_duplicate": true,
+  "race_confirmed": true,
+  "interpretation": "The observed client rejection in R3 is timing-contingent. The later cached duplicate ACK is self-consistent with retry B but not with the immutable stored file A, so a different poll ordering can satisfy the current client acceptance predicate for bytes that were not stored.",
+  "required_repair": "For status=duplicate, success must be bound to the checksum of the immutable stored file, not merely the retry payload. A client-side repair can require a fresh-nonce stored-file lookup before accepting duplicate; a server-side repair can return the existing stored-file checksum in duplicate ACKs.",
+  "next_gate": "REPAIR_REQUIRED_BEFORE_HUMAN_LAUNCH"
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "CR0105R115-CLAIM-AUTHORITY-LEDGER-1",
+  "stage": "CUBE-REV 0.10.5-R1.15",
+  "claims": [
+    {
+      "id": "C1_TRACE_NOT_SELF_INTERPRETING",
+      "text": "Move-by-move reconstruction traces are not self-interpreting behavioral evidence: conclusions depend materially on the observation operator used to map notation and cube states into candidate phenomena.",
+      "authority": "SUPPORTED_METHOD_CLAIM",
+      "supporting_lineages": ["R1.7", "R1.8", "R1.9-R1.14"],
+      "independence_note": "Serial methodological lineage, not independent replications; strength comes from falsification succession and out-of-development transport, not artifact count.",
+      "counterevidence": [],
+      "wording_guard": "Do not turn this into a universal theorem about all behavioral traces."
+    },
+    {
+      "id": "C2_SHORTER_PATH_NOT_RECOVERY",
+      "text": "Within this reconstruction corpus, algebraic/state-equivalent local shortening is not a defensible standalone operationalization of cognitive recovery or error.",
+      "authority": "SUPPORTED_NEGATIVE_METHOD_CLAIM",
+      "supporting_lineages": ["R1.7 strict-filter collapse", "R1.8 prospective R5 replication 0/888"],
+      "wording_guard": "Do not claim humans never make locally redundant recovery moves."
+    },
+    {
+      "id": "C3_FULL_STATE_REVERSAL_NOT_RECOVERY",
+      "text": "Temporary movement away from an exact phase endpoint in full cube-state distance is common under ordinary algorithm execution and is not a defensible standalone recovery marker.",
+      "authority": "SUPPORTED_NEGATIVE_METHOD_CLAIM",
+      "supporting_lineages": ["R1.8"],
+      "key_evidence": ["raw pre-endpoint reversal ~63.8%", "matched posthoc tail ~4.36%", "calibration familywise null ~5.96%"],
+      "wording_guard": "Do not say phase reversals never carry cognitive information in richer designs."
+    },
+    {
+      "id": "C4_PHASE_OBJECTIVE_AND_ATTEMPT_NULL",
+      "text": "Phase-specific quotient geometry and directly attempt-level familywise calibration provide a more stable engineering basis than exact full-state endpoint distance and segment-tail any-exceedance aggregation.",
+      "authority": "SUPPORTED_ENGINEERING_METHOD_CLAIM",
+      "supporting_lineages": ["R1.9", "R1.10"],
+      "wording_guard": "More stable does not mean cognitively valid or universally optimal."
+    },
+    {
+      "id": "C5_METHOD_SPECIFIC_SEMANTICS",
+      "text": "Observation-operator transport can be solving-method specific: CFOP/ZB transport passed under the frozen LAYERED court while Roux required a separate block/gauge ontology.",
+      "authority": "SUPPORTED_ENGINEERING_METHOD_CLAIM",
+      "supporting_lineages": ["R1.9", "R1.10"],
+      "wording_guard": "Do not infer population method differences in cognition."
+    },
+    {
+      "id": "C6_ROUX_GAUGE_IS_ROUTE_LEVEL",
+      "text": "For the studied Roux reconstruction representation, a prefix-identifiable route coordinate gauge is better supported than per-state center canonicalization as the frame for preserving block identity.",
+      "authority": "SUPPORTED_DEVELOPMENT_METHOD_CLAIM",
+      "supporting_lineages": ["R1.12", "R1.13"],
+      "key_evidence": ["prefix unique 130/130", "per-state center gauge changed FB->SB on ~96.9% in R1.12 development", "explicit rotation algebra fixture PASS"],
+      "wording_guard": "Do not describe the gauge as a latent mental coordinate frame."
+    },
+    {
+      "id": "C7_G4_ONTOLOGY_TRANSPORT",
+      "text": "The frozen G4 state ontology transported from development data to a baseline-present but development-unseen Roux route set under a frozen canonical reference scorer.",
+      "authority": "SUPPORTED_PREEXISTING_UNSEEN_TRANSPORT_CLAIM",
+      "supporting_lineages": ["R1.14"],
+      "key_evidence": ["development canonical 114/130 eligible", "unseen canonical 105/117 eligible", "unseen prefix unique 116/117", "local fallback 0", "reference contamination 0"],
+      "wording_guard": "Preexisting unseen is not post-freeze fresh and cannot release future authority."
+    },
+    {
+      "id": "C8_FRESH_AUTHORITY",
+      "text": "Genuinely post-freeze Roux authority has not yet been tested because the frozen R1.14 watch observed zero post-freeze raw Roux routes.",
+      "authority": "SUPPORTED_DATA_WAIT_STATUS",
+      "supporting_lineages": ["R1.14"],
+      "key_evidence": ["fresh raw Roux 0", "minimum required 20"],
+      "wording_guard": "Do not reinterpret data wait as measurement failure or success."
+    },
+    {
+      "id": "C9_COGNITIVE_PREVALENCE",
+      "text": "Cognitive recovery/error prevalence can be estimated from the current CUBE-REV reconstruction courts.",
+      "authority": "PROHIBITED",
+      "blocking_debt": ["no validated cognitive-ground-truth mapping", "Roux fresh authority DATA_WAIT", "annotation/state categories are observable rather than mental-state labels"],
+      "closure_test": "Would require a separately designed human/behavioral validation program and fresh measurement authority; current synthetic/public trace analysis cannot substitute."
+    },
+    {
+      "id": "C10_WORLD_FIRST_NOVELTY",
+      "text": "CUBE-REV is the first work to study observation-operator validity in speedcubing reconstruction traces.",
+      "authority": "HOLD_LITERATURE_GAP_NOT_SYSTEMATICALLY_CLOSED",
+      "supporting_context": "Targeted search found Rubik's Cube skill acquisition, expertise, macro-operator/decomposition, collective intelligence, tutoring and performance work, but no direct analogue was identified in the limited search.",
+      "closure_test": "Systematic literature search with explicit databases/query families, backward/forward citation chasing, and a novelty comparison table."
+    }
+  ],
+  "manuscript_rule": "No prose claim may exceed its ledger authority. PROHIBITED/HOLD claims may appear only as limitations, debts, or hypotheses.",
+  "family_ablation": {
+    "required": true,
+    "families": {
+      "EARLY_OPERATOR_FAILURES": ["R1.7", "R1.8"],
+      "QUOTIENT_AND_TRANSPORT": ["R1.9", "R1.10"],
+      "ROUX_MEASUREMENT_G1_G2": ["R1.11", "R1.12"],
+      "ROUX_G3_G4": ["R1.13", "R1.14"]
+    },
+    "interpretation": "The central thesis should remain coherent if one artifact within a family is removed; it may legitimately narrow if an entire provenance family is ablated."
+  }
+}

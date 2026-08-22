@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R17-IRREDUCIBLE-R4-RUN-1",
+  "workflow_run_id": "32326346307",
+  "head_sha": "d1a273cb08d0b2b99ccdbae6a5837cc122e9966f",
+  "route_exit_code": 0,
+  "status": "PASS",
+  "new_web_fetches": 0,
+  "role": "POSTHOC_ADVERSARIAL_SENSITIVITY",
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T02:55:24.458497+00:00"
+}

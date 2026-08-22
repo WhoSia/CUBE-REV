@@ -1,0 +1,122 @@
+{
+  "schema_version": "CR0105R113-GENERATION-REVIEW-1",
+  "stage": "CUBE-REV 0.10.5-R1.13 \u2014 Route-global Reconstruction Gauge, Rotation-covariant Prefix Frame & Rebuilt Roux Completion Null",
+  "generation_under_review": "ROUX-MEASUREMENT-G3",
+  "status": "PASS_GENERATION_REVIEW_G3_REMANDED_COMPONENTS_VALIDATED_G4_CANONICAL_ROUX_CANDIDATE_IDENTIFIED",
+  "primary_disposition": {
+    "g3": "REMANDED_NOT_RELEASED",
+    "reason": "Frozen rotation-present geometry gate failed at 3/6=0.50 versus required 0.75. Posthoc diagnostics cannot remove or relax that gate.",
+    "geometry_status": "HOLD_ROUX_G3_DEVELOPMENT_GEOMETRY",
+    "null_status": "HOLD_ROUX_G3_DEVELOPMENT_NULL_ENGINEERING",
+    "future_roux_scoring_authority": false,
+    "posthoc_diagnostics_can_repair_g3": false
+  },
+  "validated_or_surviving_components": {
+    "rotation_transport_algebra": true,
+    "prefix_unique_rate": 1,
+    "overall_sb_completion_rate": 0.9230769230769231,
+    "no_rotation_sb_completion_rate": 0.9435483870967742,
+    "cmll_consistency_rate": 0.9827586206896551,
+    "lse_consistency_rate": 0.975,
+    "admitted_attempts": 120,
+    "null_stack_pass_if_geometry_gate_externalized": true,
+    "loo_watch_rate": 0.05,
+    "nested_watch_rate": 0.05,
+    "crossfit_loo_pearson": 0.989423183668037,
+    "crossfit_loo_p99_abs_diff": 0.21972505598650072,
+    "primary_1pct_resolution": true
+  },
+  "falsified_or_remanded_hypotheses": {
+    "rotation_presence_as_residual_mechanism": {
+      "frozen_gate_pass": false,
+      "rotation_present_completion_rate": 0.5,
+      "fixed_success_rotation": 0.5,
+      "forward_success_rotation": 0.5,
+      "inverse_success_rotation": 0,
+      "fixed_forward_outcome_agreement_rotation": 0
+    },
+    "pure_rotation_algebra_failure": false,
+    "reason_pure_rotation_not_failure": "6/6 explicit rotation events preserved tracked block status under transported gauge.",
+    "wide_slice_as_hidden_coordinate_gauge": {
+      "candidate_pass": false,
+      "move_cocycle_completion_rate": 0.23076923076923078,
+      "g3_successes_lost": 91,
+      "g3_failures_rescued": 1
+    }
+  },
+  "residual_court": {
+    "residual_n": 10,
+    "residual_with_rotation_n": 3,
+    "residual_first_block_break_n": 6,
+    "first_block_restored_after_break_n": 1,
+    "both_complete_any_later_n": 4,
+    "both_complete_before_cmll_n": 0,
+    "both_complete_before_lse_n": 1,
+    "interpretation": "Residual routes are not explained by explicit rotation transport alone. Many violate the tracked first-block persistence assumption, and a general center-cocycle treatment of wide/slice moves is strongly rejected."
+  },
+  "inheritance_closure": {
+    "RETAIN": [
+      "FB-prefix-only unique gauge initialization",
+      "explicit whole-cube rotation transport table derived by asymmetric-state invariance",
+      "state-certified in-span two-block completion operator",
+      "Roux-only LOO/crossfit/nested attempt-level familywise null architecture",
+      "alpha=0.01 and total admitted N>=100 finite-resolution gate"
+    ],
+    "DOWNGRADE": [
+      "rotation presence as an explanatory residual mechanism; R1.13 targeted gate failed",
+      "fixed versus forward transport comparison; both score 120/130 but select disjoint outcomes on all six rotation routes"
+    ],
+    "RETIRE": [
+      "inverse rotation transport",
+      "general move-level center cocycle for wide/slice moves",
+      "R1.13 development feature/null bank for future confirmatory scoring"
+    ],
+    "MUTATE": [
+      "Roux ontology -> prospectively separate canonical first-block-preserving SB from block-disruptive/noncanonical-or-reconstruction-inconsistent residual routes",
+      "authority court -> require fresh routes after the next ontology freeze rather than reclassifying R1.13 routes in-place"
+    ],
+    "FORK": [
+      "canonical first-block-preserving Roux SB",
+      "first-block-disruptive residual reconstructions",
+      "pseudo-FB/FBDR and syntactically invalid reconstruction records"
+    ],
+    "RECOMBINE": [
+      "G3 explicit-rotation gauge algebra + canonical Roux block-preservation ontology + rebuilt null stack"
+    ],
+    "UNRESOLVED": [
+      "whether first-block-disruptive residuals are legitimate advanced Roux variants, reconstruction notation inconsistencies, or route errors",
+      "whether a distinct subgoal ontology is needed for block-disruptive variants",
+      "whole-project CUBE-REV generation numbering"
+    ]
+  },
+  "next_generation": {
+    "label": "ROUX-MEASUREMENT-G4",
+    "version_candidate": "CUBE-REV 0.10.5-R1.14",
+    "title_candidate": "Canonical Roux Block-preservation Ontology, Residual Reconstruction-consistency Fork & Fresh-route Gauge Authority Court",
+    "must_begin_with_new_NAPKIN": true,
+    "r113_routes_may_be_confirmatory": false,
+    "fresh_routes_required_for_authority": true,
+    "future_scoring_authority_at_transition": false
+  },
+  "authority": {
+    "roux_future_scoring_authority": false,
+    "main_write": false,
+    "public_runner_write": false,
+    "collector_write": false,
+    "human_recruitment": false,
+    "human_observations": 0,
+    "cognitive_recovery_error_prevalence_claim": "PROHIBITED",
+    "causal_intentionality_claim": "PROHIBITED",
+    "full_wca_prevalence_claim": "PROHIBITED"
+  },
+  "source_semantic_sha256": {
+    "rotation_fixture": "3a7a611adbe3e64e0cfcbac6d2cabccbf973a235c25060855a00989721bd2b82",
+    "g3_geometry": "4fa8067dc5541ff292acbd9241085371fd675edceb6bd87259153481f22f6c8e",
+    "g3_null": "66005b081a505e14e8178089d8272a4bd656914ceccc9dbd5c5dc4369f2e3143",
+    "rotation_destroy": "46c92c8bc474fefd340fa0fbefe33e7f4e470065ea7e0c88eedd044314fc6b19",
+    "rotation_localization": "cbed5023643e91e9e9fb28975497c15aca681d9307996d9269b3d86bbcef8a7c",
+    "break_restore": "c14c09a1b307d367328f4cc17d76d4e9042d64d93b494c44a1366f52d48966ce",
+    "move_cocycle": "8d47101700a18ef3724ffcb1c87812a0e4bcca748b95ed5f9b65940aadead3d2"
+  },
+  "semantic_sha256": "94d15c457c793f3733f11e069d6f5a6700066634b1043d757ba44aa9f1f4c20d"
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": "CR0105R112-CENSUS-EXECUTION-1",
+  "workflow_run_id": "32443980053",
+  "head_sha": "625cfeb6ed18ac223ddce864ffd4a76537702238",
+  "fresh_network_read": false,
+  "fresh_scoring": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T03:36:28.805003+00:00"
+}

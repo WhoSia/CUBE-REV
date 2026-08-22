@@ -1,0 +1,167 @@
+{
+  "schema_version": "CR0105R16-RECOVERY-PHENOTYPE-1",
+  "status": "PASS",
+  "label": "OUTCOME_ONLY_DISRUPTION_RECOVERY_PROXY",
+  "definition": {
+    "slow_shock": "valid attempt >=1.5x own round-result median and >=2.00 s slower",
+    "dnf_shock": "attempt attempt_value=-1",
+    "next_recovery": "next attempt valid and <=1.15x own round-result median"
+  },
+  "results": {
+    "dnf": {
+      "shock_n": 187290,
+      "next_attempt_observed_n": 145512,
+      "next_back_near_round_median_n": 117006,
+      "conditional_rate": 0.8040986310407389
+    },
+    "slow_outlier": {
+      "shock_n": 148966,
+      "next_attempt_observed_n": 119294,
+      "next_back_near_round_median_n": 105932,
+      "conditional_rate": 0.887991013797844
+    }
+  },
+  "by_year": [
+    {
+      "year": 1982,
+      "slow_shocks": 0,
+      "slow_next_recovery_rate": 0.0
+    },
+    {
+      "year": 2003,
+      "slow_shocks": 14,
+      "slow_next_recovery_rate": 1.0
+    },
+    {
+      "year": 2004,
+      "slow_shocks": 41,
+      "slow_next_recovery_rate": 0.9696969696969697
+    },
+    {
+      "year": 2005,
+      "slow_shocks": 93,
+      "slow_next_recovery_rate": 0.8607594936708861
+    },
+    {
+      "year": 2006,
+      "slow_shocks": 165,
+      "slow_next_recovery_rate": 0.9044117647058824
+    },
+    {
+      "year": 2007,
+      "slow_shocks": 363,
+      "slow_next_recovery_rate": 0.9214285714285714
+    },
+    {
+      "year": 2008,
+      "slow_shocks": 713,
+      "slow_next_recovery_rate": 0.8928571428571429
+    },
+    {
+      "year": 2009,
+      "slow_shocks": 1212,
+      "slow_next_recovery_rate": 0.9222797927461139
+    },
+    {
+      "year": 2010,
+      "slow_shocks": 1558,
+      "slow_next_recovery_rate": 0.8759007205764612
+    },
+    {
+      "year": 2011,
+      "slow_shocks": 2056,
+      "slow_next_recovery_rate": 0.8851557727550398
+    },
+    {
+      "year": 2012,
+      "slow_shocks": 2279,
+      "slow_next_recovery_rate": 0.8821932681867535
+    },
+    {
+      "year": 2013,
+      "slow_shocks": 2998,
+      "slow_next_recovery_rate": 0.8852459016393442
+    },
+    {
+      "year": 2014,
+      "slow_shocks": 4008,
+      "slow_next_recovery_rate": 0.883939774153074
+    },
+    {
+      "year": 2015,
+      "slow_shocks": 5267,
+      "slow_next_recovery_rate": 0.8848044954343245
+    },
+    {
+      "year": 2016,
+      "slow_shocks": 6720,
+      "slow_next_recovery_rate": 0.8892604979561501
+    },
+    {
+      "year": 2017,
+      "slow_shocks": 9459,
+      "slow_next_recovery_rate": 0.8839793623495171
+    },
+    {
+      "year": 2018,
+      "slow_shocks": 11295,
+      "slow_next_recovery_rate": 0.886418666079683
+    },
+    {
+      "year": 2019,
+      "slow_shocks": 12569,
+      "slow_next_recovery_rate": 0.8933728981206726
+    },
+    {
+      "year": 2020,
+      "slow_shocks": 1934,
+      "slow_next_recovery_rate": 0.8931788931788932
+    },
+    {
+      "year": 2021,
+      "slow_shocks": 1657,
+      "slow_next_recovery_rate": 0.8876146788990825
+    },
+    {
+      "year": 2022,
+      "slow_shocks": 9905,
+      "slow_next_recovery_rate": 0.8860902255639098
+    },
+    {
+      "year": 2023,
+      "slow_shocks": 19189,
+      "slow_next_recovery_rate": 0.8943110647181628
+    },
+    {
+      "year": 2024,
+      "slow_shocks": 22218,
+      "slow_next_recovery_rate": 0.8857319680432092
+    },
+    {
+      "year": 2025,
+      "slow_shocks": 21202,
+      "slow_next_recovery_rate": 0.8853273404695724
+    },
+    {
+      "year": 2026,
+      "slow_shocks": 12051,
+      "slow_next_recovery_rate": 0.8873634945397816
+    }
+  ],
+  "causal_claim": "PROHIBITED",
+  "mechanism_claim": "PROHIBITED",
+  "use": "population-scale descriptive baseline and candidate sampling only",
+  "move_level_selected_reconstruction_pilot": {
+    "sample_basis": "newest uniquely WCA-linked reco.nz 3x3 records, capped at 200",
+    "n_ok": 41,
+    "conservative_notation_markers": {
+      "detail_pages_ok": 41,
+      "detail_pages_failed": 0,
+      "scramble_exact_unique": 16,
+      "any_adjacent_same_face_compressible": 24,
+      "any_adjacent_exact_cancellation": 15,
+      "any_adjacent_repeated_bigram": 17
+    },
+    "interpretation": "Adjacent same-face compressibility/cancellation and repeated bigrams are route-grammar candidates, not validated cognitive recovery events. Algorithmic structure and reconstruction notation can generate them."
+  }
+}

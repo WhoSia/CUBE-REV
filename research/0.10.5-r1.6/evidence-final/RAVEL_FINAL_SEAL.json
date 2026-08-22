@@ -1,0 +1,64 @@
+{
+  "schema_version": "CR0105R16-RAVEL-FINAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.6 — WCA Results Spine Ingestion, Reconstruction-linkage Court & Public-data Recovery Phenotype Baseline",
+  "status": "PASS",
+  "verdict": "PASS_WCA_PUBLIC_SPINE_RECONSTRUCTION_LINKAGE_AND_RECOVERY_PROXY_BASELINE",
+  "wca_vintage": {
+    "export_date": "2026-08-18 00:00:35 UTC",
+    "format_version": "v2.0.2",
+    "zip_sha256": "35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad"
+  },
+  "population_counts": {
+    "results_333": 1835235,
+    "attempts_333": 9159748,
+    "valid_attempts": 8968473,
+    "dnf_attempts": 187290,
+    "dns_attempts": 3985,
+    "competitions": 15154,
+    "persons": 282898,
+    "scrambles_333": 730812,
+    "dnf_rate": 0.020447069067838983,
+    "dns_rate": 0.0004350556369018012
+  },
+  "reconstruction_linkage": {
+    "tiers": {
+      "B_NORMALIZED_UNIQUE": 910,
+      "C_AMBIGUOUS": 204,
+      "A_EXACT_UNIQUE": 2694,
+      "U_UNMATCHED": 6788
+    },
+    "linked_distinct_wca_attempts": 3601,
+    "detail_court": {
+      "detail_pages_ok": 200,
+      "detail_pages_failed": 0,
+      "scramble_exact_unique": 128,
+      "any_adjacent_same_face_compressible": 131,
+      "any_adjacent_exact_cancellation": 80,
+      "any_adjacent_repeated_bigram": 98
+    }
+  },
+  "recovery_proxy": {
+    "dnf": {
+      "shock_n": 187290,
+      "next_attempt_observed_n": 145512,
+      "next_back_near_round_median_n": 117006,
+      "conditional_rate": 0.8040986310407389
+    },
+    "slow_outlier": {
+      "shock_n": 148966,
+      "next_attempt_observed_n": 119294,
+      "next_back_near_round_median_n": 105932,
+      "conditional_rate": 0.887991013797844
+    }
+  },
+  "human_observations": 0,
+  "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN",
+  "ravel_roles": {
+    "source_vintage_auditor": "PASS",
+    "schema_join_auditor": "PASS",
+    "identifiability_adversary": "PASS",
+    "selection_bias_auditor": "PASS",
+    "phenotype_claim_scope_auditor": "PASS"
+  },
+  "next_gate": "COUNTERFACTUAL_ROUTE_ALIGNMENT_PHASE_AWARE_REDUNDANCY_AND_SELECTION_CORRECTED_RECONSTRUCTION_ANALYSIS"
+}

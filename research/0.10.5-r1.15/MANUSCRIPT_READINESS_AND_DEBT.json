@@ -1,0 +1,87 @@
+{
+  "schema_version": "CR0105R115-MANUSCRIPT-READINESS-DEBT-1",
+  "stage": "CUBE-REV 0.10.5-R1.15",
+  "status": "PASS_MANUSCRIPT_BRIDGE_HOLD_PREPRINT_FREEZE",
+  "paper_sized_claim_exists": true,
+  "paper_type": "measurement/methodology with competitive speedcubing reconstruction case study",
+  "measurement_generation": "ROUX-MEASUREMENT-G4",
+  "new_generation_needed": false,
+  "readiness": {
+    "research_question": "READY",
+    "central_claim": "READY_AT_COMPRESSED_METHOD_SCOPE",
+    "claim_authority_ledger": "READY",
+    "cross_generation_result_map": "READY",
+    "negative_result_taxonomy": "READY",
+    "development_unseen_transport_evidence": "READY",
+    "internal_numeric_source_map": "READY",
+    "korean_semantic_master": "READY_FOR_FURTHER_SURGERY",
+    "english_abstract": "DRAFT_PARITY_LAYER",
+    "hostile_referee_attack": "PASS_WITH_MAJOR_SCOPE_COMPRESSION",
+    "provenance_family_ablation": "PASS_WITH_DISCLOSED_F4_DEPENDENCE",
+    "external_literature_gap": "PARTIAL_BOUNDED_COURT",
+    "external_bibliographic_tieout": "INCOMPLETE",
+    "figure_table_assets": "PLANNED_NOT_FROZEN",
+    "paragraph_level_citation_parity": "NOT_RUN",
+    "reproduction_bundle_for_manuscript": "NOT_PACKAGED",
+    "post_freeze_roux_authority": "DATA_WAIT_0_OF_20",
+    "human_cognitive_validation": "NOT_REQUIRED_FOR_CURRENT_METHOD_PAPER_BUT_REQUIRED_FOR_COGNITIVE_CLAIMS"
+  },
+  "research_debt": [
+    {
+      "id": "D1_SYSTEMATIC_NOVELTY",
+      "severity": "BLOCKS_STRONG_NOVELTY_WORDING",
+      "blocks_current_method_claim": false,
+      "blocks_preprint_freeze": true,
+      "service_set": ["database-explicit search", "citation chaining", "novelty comparison matrix"],
+      "closure_test": "Every strong novelty sentence is either supported by an explicit search record or weakened to bounded-search wording."
+    },
+    {
+      "id": "D2_BIBLIOGRAPHIC_TIEOUT",
+      "severity": "BLOCKS_CITATION_FREEZE",
+      "blocks_current_method_claim": false,
+      "blocks_preprint_freeze": true,
+      "service_set": ["author/year/title/journal/DOI verification", "source-status marking"],
+      "closure_test": "All cited external works have verified bibliographic metadata and source status."
+    },
+    {
+      "id": "D3_FIGURE_TABLE_FREEZE",
+      "severity": "BLOCKS_MANUSCRIPT_FREEZE",
+      "blocks_current_method_claim": false,
+      "blocks_preprint_freeze": true,
+      "service_set": ["render operator succession figure", "render authority stack", "render G4 flow", "freeze table denominators"],
+      "closure_test": "All plotted/tabulated numbers map to source IDs and do not imply independent replications or prevalence."
+    },
+    {
+      "id": "D4_PARAGRAPH_SOURCE_PARITY",
+      "severity": "BLOCKS_MANUSCRIPT_FREEZE",
+      "blocks_current_method_claim": false,
+      "blocks_preprint_freeze": true,
+      "service_set": ["paragraph claim extraction", "authority comparison", "citation/source-map tieout"],
+      "closure_test": "No paragraph exceeds CLAIM_AUTHORITY_LEDGER and each material numeric claim has a source."
+    },
+    {
+      "id": "D5_FRESH_ROUX_AUTHORITY",
+      "severity": "BLOCKS_ONLY_STRONGER_FUTURE_AUTHORITY_CLAIM",
+      "blocks_current_method_claim": false,
+      "blocks_preprint_freeze": false,
+      "service_set": ["wait for >=20 genuinely post-freeze raw Roux routes", "apply frozen G4 authority court without definition changes"],
+      "closure_test": "Frozen G4 fresh lane reaches N>=20 and passes its predeclared geometry/scoring/integrity gates.",
+      "current": "0/20"
+    },
+    {
+      "id": "D6_HUMAN_COGNITIVE_GROUND_TRUTH",
+      "severity": "BLOCKS_COGNITIVE_RECOVERY_ERROR_INTERPRETATION",
+      "blocks_current_method_claim": false,
+      "blocks_preprint_freeze": false,
+      "service_set": ["separate future human validation design if cognitive construct claims are pursued"],
+      "closure_test": "A prospective human-evidence program validates trace categories against an independently defined cognitive criterion."
+    }
+  ],
+  "should_continue_decision": {
+    "more_measurement_metric_iterations_now": false,
+    "reason": "G4 is not failing; its future authority is data-wait. Additional metric invention would have low marginal value and risks unnecessary generation churn.",
+    "manuscript_bridge_continue": true,
+    "highest_value_next_work": ["bibliographic/systematic gap closure", "paragraph source parity", "figure/table freeze"]
+  },
+  "current_disposition": "A coherent methods paper exists at draft-argument level, but preprint/manuscript freeze is not yet authorized."
+}

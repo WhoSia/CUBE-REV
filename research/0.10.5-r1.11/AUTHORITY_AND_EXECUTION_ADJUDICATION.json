@@ -1,0 +1,21 @@
+{
+  "schema_version": "CR0105R111-AUTHORITY-EXECUTION-ADJUDICATION-1",
+  "main_commit_observed": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+  "main_mutated_by_r111": false,
+  "public_runner_mutated_by_r111": false,
+  "collector_mutated_by_r111": false,
+  "human_recruitment": false,
+  "human_observations": 0,
+  "fresh_network_read": false,
+  "fresh_scoring": false,
+  "layered_cfop_zb_authority_modified": false,
+  "roux_future_scoring_authority": false,
+  "execution_pr": {
+    "number": 20,
+    "base": "cube-rev-0.10.5-r1.11-execution-base",
+    "head": "cube-rev-0.10.5-r1.11-execution-trigger",
+    "role": "NON_MAIN_EXECUTION_CARRIER_ONLY",
+    "merge_to_main": "PROHIBITED"
+  },
+  "scientific_status": "PASS_NULL_ENGINEERING_WITH_ROUX_MEASUREMENT_AND_RESOLUTION_HOLDS"
+}

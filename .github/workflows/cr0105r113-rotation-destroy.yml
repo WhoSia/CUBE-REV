@@ -1,0 +1,75 @@
+name: CR0105R113 Rotation Mechanism Destroy Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.13-roux-generation-g3]
+    paths: [cr0105r113/RUN_ROTATION_DESTROY]
+permissions:
+  contents: write
+jobs:
+  destroy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify frozen G3 HOLD remains primary
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          g=json.load(open('research/0.10.5-r1.13/evidence-development/ROUX_G3_GEOMETRY_AUDIT.json'))
+          n=json.load(open('research/0.10.5-r1.13/evidence-development/ROUX_G3_NULL_AUDIT.json'))
+          assert g['status']=='HOLD_ROUX_G3_DEVELOPMENT_GEOMETRY'
+          assert g['semantic_sha256']=='4fa8067dc5541ff292acbd9241085371fd675edceb6bd87259153481f22f6c8e'
+          assert n['future_roux_scoring_authority'] is False
+          print('CR0105R113_ROTATION_DESTROY_PRIMARY_HOLD_PASS')
+          PY
+      - name: Install exact cubing runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Run posthoc rotation mechanism destroy court
+        id: destroycourt
+        shell: bash
+        env: {R113_ROOT: /tmp/r113}
+        run: |
+          set +e
+          mkdir -p /tmp/r113
+          node research/0.10.5-r1.13/r113_destroy_rotation_mechanism.mjs 2>&1 | tee /tmp/r113/ROTATION_DESTROY_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist destroy evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.13/evidence-rotation-destroy
+          for f in ROTATION_MECHANISM_DESTROY_AUDIT.json ROTATION_MECHANISM_DESTROY_ROWS.json ROTATION_DESTROY_LOG.txt; do
+            test -f "/tmp/r113/$f" && cp "/tmp/r113/$f" research/0.10.5-r1.13/evidence-rotation-destroy/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R113-ROTATION-DESTROY-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':int('${{ steps.destroycourt.outputs.exit_code || 97 }}'),'primary_gate_changed':False,'fresh_network_read':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.13/evidence-rotation-destroy/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit destroy evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.13/evidence-rotation-destroy
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.13 rotation destroy ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.13-roux-generation-g3
+          git push origin HEAD:cube-rev-0.10.5-r1.13-roux-generation-g3
+      - name: Enforce diagnostic boundary
+        if: always()
+        run: |
+          test '${{ steps.destroycourt.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.13/evidence-rotation-destroy/ROTATION_MECHANISM_DESTROY_AUDIT.json'))
+          assert x['status']=='POSTHOC_DIAGNOSTIC_ONLY_NO_G3_GATE_CHANGE'
+          assert x['post_result_gate_change'] is False
+          print('CR0105R113_ROTATION_DESTROY_COMPLETE',x['counts'])
+          PY

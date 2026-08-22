@@ -1,0 +1,56 @@
+{
+  "schema_version": "CR0105R114-G4-GENERATION-REVIEW-FREEZE-1",
+  "status": "FROZEN_BEFORE_PREEXISTING_UNSEEN_OUTCOMES_ARE_INSPECTED",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "required_inputs": [
+    "PASS_G4_DEVELOPMENT_ONTOLOGY",
+    "PASS_G4_CANONICAL_REFERENCE_NULL",
+    "PASS_REFERENCE_BANK_SEALED_BEFORE_FRESH_OUTCOMES",
+    "second live-index membership audit",
+    "preexisting-unseen transport court",
+    "post-freeze fresh authority court or explicit insufficient-data receipt"
+  ],
+  "disposition_rules": [
+    {
+      "if": "preexisting unseen transport PASS AND post-freeze fresh raw routes <20",
+      "generation_disposition": "VALIDATED_FOR_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT_AUTHORITY_DATA_WAIT",
+      "roux_future_scoring_authority": false,
+      "next_action": "keep G4 ontology/reference seal fixed and wait for genuinely post-freeze fresh routes; do not reopen development definitions"
+    },
+    {
+      "if": "preexisting unseen transport HOLD",
+      "generation_disposition": "REMANDED_EXTERNAL_ONTOLOGY_TRANSPORT_FAILURE",
+      "roux_future_scoring_authority": false,
+      "next_action": "attack transport failure before any G5 transition; fresh scarcity cannot rescue failed unseen transport"
+    },
+    {
+      "if": "post-freeze fresh raw routes >=20 AND every frozen fresh geometry/scoring/integrity gate PASS",
+      "generation_disposition": "VALIDATED_FRESH_AUTHORITY_RELEASE_ELIGIBLE",
+      "roux_future_scoring_authority": true,
+      "next_action": "release only the frozen G4 scorer for later genuinely fresh Roux routes; no cognitive prevalence claim"
+    },
+    {
+      "if": "post-freeze fresh raw routes >=20 BUT any frozen fresh gate FAIL",
+      "generation_disposition": "REMANDED_FRESH_AUTHORITY_FAILURE",
+      "roux_future_scoring_authority": false,
+      "next_action": "retain failure evidence; no threshold or ontology repair inside R1.14"
+    }
+  ],
+  "generation_policy": {
+    "data_wait_is_not_generation_failure": true,
+    "data_wait_does_not_create_new_generation": true,
+    "preexisting_unseen_pass_cannot_release_authority": true,
+    "fresh_zero_cannot_be_replaced_by_preexisting_routes": true,
+    "writing_is_evidence": false,
+    "generation_label_is_progress_claim": false
+  },
+  "prohibited": [
+    "lowering fresh N<20 requirement after seeing zero fresh routes",
+    "calling baseline-present unseen routes fresh",
+    "changing canonical ontology after unseen results",
+    "cognitive error/recovery/intent prevalence claims",
+    "full-WCA prevalence",
+    "human recruitment"
+  ],
+  "human_observations": 0
+}

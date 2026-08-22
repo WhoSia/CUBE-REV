@@ -1,0 +1,118 @@
+{
+  "schema_version": "CR0105R18-NAPKIN-INTENT-FREEZE-1",
+  "stage": "CUBE-REV 0.10.5-R1.8 — Prospective Primitive-detour Holdout, Algorithm-aware Null Court & Phase-boundary Subgoal-distance Recovery Test",
+  "status": "FROZEN_BEFORE_R18_HOLDOUT_OUTCOMES",
+  "parent_r17_final_seal_commit": "79a2b94b244e536fc9b7934738c5345ecfd1930d",
+  "parent_r17_latest_scientific_evidence_commit": "2455476a563527f7245978b4df386d0b3883f219",
+  "intent": "Test whether route-level progress reversals relative to annotation-certified phase boundaries contain signal beyond notation compression, commuting-face normalization, representation identities, and ordinary algorithmic non-monotonicity. Preserve R1.7's failure boundary rather than redefining local move equivalence until positives appear.",
+  "napkin_invariants": [
+    "R1.7 R5 zero is a failure-boundary result for one exact-local noncommuting-primitive definition, not evidence that human detours or recovery do not exist.",
+    "R1.8 must not restore R1.7 algebraic, multi-generator, or minimal-irreducible positives as cognitive-recovery prevalence.",
+    "Holdout membership is selected without route/subgoal outcomes and must be disjoint at the official-attempt key (result_id, attempt_number) from the R1.7 900-attempt route sample whenever the source vintage permits it.",
+    "If a speed×era cell has no untouched linked attempts, that cell is non-holdout-identifiable in the frozen vintage and cannot be silently represented by reused R1.7 attempts.",
+    "Modern 2023–26 × 7–10 s is explicitly known to have been exhausted 100/100 by the R1.7 route sample in the frozen R1.6 analytical vintage. A same-vintage holdout may not claim independent replication for this cell.",
+    "A fresh reconstruction vintage may repair the modern-cell holdout only with records demonstrably absent from the R1.6/R1.7 source universe; otherwise the modern replication gate remains HOLD_FRESH_MODERN_CELL.",
+    "The WCA Results Export remains an outcome/solver/competition/era spine. It is not an attempt-level scramble identity source.",
+    "Raw alg.cubing.net setup+alg is the route-state source; route admission requires parser success plus cubing.js KPattern solved-state certification.",
+    "Annotation labels segment phases but do not by themselves prove cognitive subgoals. Every phase-distance computation must be state-derived.",
+    "Distance reversal is called excursion/reversal, not recovery, until it exceeds the frozen algorithm-aware null and survives representation/commutation controls.",
+    "No result-dependent change to distance metric, excursion threshold, null family, phase eligibility, target population, or holdout membership is allowed. Any such change is a new version/remand.",
+    "No human observation, recruitment, main-branch deployment, or public-runner write occurs in R1.8."
+  ],
+  "prospective_data_design": {
+    "calibration_only": "R1.7 900-attempt SHA-stratified sample and all R1.7 R2–R5 outcomes.",
+    "holdout_A": "Frozen-vintage attempt-disjoint holdout drawn only from canonical linked <10 s attempts not present in the R1.7 900 sample; claim scope restricted to speed×era cells with untouched support.",
+    "holdout_B": "Fresh-vintage modern-cell replication, admitted only for reconstruction records and official-attempt keys absent from the frozen R1.6/R1.7 universe. If insufficient, report HOLD_FRESH_MODERN_CELL without substituting reused records.",
+    "selection_key": "SHA-256 deterministic rank from immutable official-attempt key and R1.8 salt; never phase outcome or reconstruction quality.",
+    "preferred_holdout_A_n": 900,
+    "minimum_state_certified_holdout_A_n": 500,
+    "minimum_target_coverage_for_any_standardized_holdout_claim": 0.90,
+    "minimum_weight_ess": 200,
+    "maximum_stabilized_weight_p99": 10,
+    "maximum_stabilized_weight_max": 20
+  },
+  "phase_distance_definition": {
+    "unit": "one annotation-certified non-inspection phase line in one state-certified reconstruction",
+    "boundary_target": "the exact cube KPattern reached at the end of that annotation line",
+    "state_sequence": "KPattern after each expanded leaf move from the line start through the line end",
+    "primary_distance": "orbit-normalized cubie disagreement to the phase-boundary target: 0.5*(edge piece+orientation mismatches/12) + 0.5*(corner piece+orientation mismatches/8); centers excluded and whole-cube orientation normalized by evaluating the minimum over the 24 physical cube orientations",
+    "secondary_distance": "unweighted total edge+corner piece+orientation mismatch count to the phase-boundary target, orientation-normalized over the same 24 cube orientations",
+    "progress_frontier": "running minimum of primary_distance from line start",
+    "excursion_amplitude": "maximum positive difference primary_distance(t)-running_min_before_t",
+    "recovery_depth": "for an excursion peak, decrease from the peak to the best later primary_distance before the phase endpoint",
+    "candidate_reversal": "excursion_amplitude >= 1/24 and recovery_depth >= excursion_amplitude; the 1/24 floor corresponds to one half-weight edge mismatch quantum and is frozen before holdout outcome inspection",
+    "large_reversal": "excursion_amplitude >= 1/12 and recovery_depth >= excursion_amplitude",
+    "phase_boundary_completion": "the endpoint itself is not counted as evidence of recovery; candidate scoring requires the return below the pre-excursion frontier strictly before the final phase move, preventing every nonmonotone line from becoming a trivial recovery because the endpoint distance is zero"
+  },
+  "algorithm_aware_null": {
+    "purpose": "Estimate how often ordinary correct algorithm execution is non-monotone with respect to the same phase-boundary distance, so generic algorithm geometry is not mislabeled recovery.",
+    "families": [
+      "observed-clean calibration segments from R1.7 that are state-certified and contain no R5 noncommuting-primitive positive (R5 had 0/874, so this family estimates ordinary observed algorithm geometry without asserting cognitive cleanliness)",
+      "same-transformation solver null: solve the phase segment's relative transformation back to identity with a pinned 3×3 solver and invert the returned solve to obtain an alternative algorithm realizing the identical start→boundary transformation",
+      "representation null: commute opposite faces, normalize rotations/wide/slice representations where transformation identity is preserved, and recompute the distance path to quantify notation-induced excursion"
+    ],
+    "primary_null_threshold": "method×phase-specific 99th percentile of excursion_amplitude when >=40 calibration segments exist; otherwise method-agnostic phase 99th percentile when >=80; otherwise global 99.5th percentile. Threshold selection hierarchy is frozen before holdout.",
+    "algorithm_excess_candidate": "holdout candidate_reversal whose excursion_amplitude is strictly above its frozen null threshold and whose pre-endpoint recovery occurs before the final phase move",
+    "null_claim_boundary": "Null exceedance is a state-trajectory anomaly relative to the modeled algorithm families, not proof of error, intention, awareness, or recovery mechanism."
+  },
+  "primitive_detour_replication": {
+    "definition": "Exact R1.7 R5 noncommuting-primitive definition is copied without alteration: ordinary outer-face turns only; at least one non-opposite generator pair; no proper contiguous subinterval with any detected exact shortening/identity relation; full-route endpoint preserved.",
+    "role": "prospective falsification control on untouched holdout routes",
+    "frozen_expectation": "R1.7 observed 0/874; R1.8 reports the untouched holdout count and confidence bound without changing the definition if positives occur."
+  },
+  "predeclared_outcomes": {
+    "primary": "attempt-level indicator of >=1 algorithm-excess phase excursion in holdout_A, standardized only over the untouched-support target if weight gates pass",
+    "secondary": [
+      "phase-line algorithm-excess excursion rate with cluster bootstrap by official attempt",
+      "large-reversal rate",
+      "distribution of excursion_amplitude minus frozen null threshold",
+      "phase of first algorithm-excess excursion",
+      "R1.7-R5 primitive-detour replication count"
+    ],
+    "robustness": [
+      "primary vs secondary distance agreement",
+      "strictly pre-endpoint recovery requirement",
+      "exclude any line containing UNKNOWN or AMBIGUOUS phase label",
+      "method-specific descriptive results are reconstruction-frame only unless a population method spine exists",
+      "sub-7 target only if its own route-sample ESS >= 200"
+    ]
+  },
+  "blocking_gates": [
+    "HOLDOUT_DISJOINTNESS",
+    "ROUTE_STATE_CERTIFICATION",
+    "PHASE_DISTANCE_VALIDATOR_FIXTURES",
+    "ALGORITHM_NULL_CALIBRATION_BEFORE_HOLDOUT_SCORING",
+    "SELECTION_POSITIVITY_AND_ESS",
+    "FRESH_MODERN_CELL_IF_MODERN_REPLICATION_IS_CLAIMED",
+    "CLAIM_SCOPE_NO_COGNITIVE_OVERREACH",
+    "AUTHORITY_RESEARCH_ONLY"
+  ],
+  "falsifiers": [
+    "Known solved fixtures fail the phase-distance orientation normalization.",
+    "Distance differs under physically equivalent whole-cube orientations after normalization.",
+    "Ordinary algorithm null produces excursion rates so high that the frozen threshold has no discriminatory support.",
+    "Holdout_A has <500 state-certified routes or standardized target coverage <0.90.",
+    "Weight ESS <200 or stabilized weights exceed p99=10/max=20 for a proposed standardized claim.",
+    "Any holdout attempt key overlaps the R1.7 900-sample key set.",
+    "A fresh-vintage record cannot be proven absent from the frozen source universe.",
+    "Any analysis script reads holdout excursion outcomes before null thresholds are sealed."
+  ],
+  "claim_scope": {
+    "allowed_if_gates_pass": [
+      "Prospective state-trajectory excursion rate relative to frozen phase-boundary and algorithm-null definitions in an explicitly supported untouched linked-reconstruction target.",
+      "Prospective replication or non-replication of the unchanged R1.7 R5 primitive-detour definition.",
+      "Method/phase reconstruction-frame descriptive comparisons with explicit scope."
+    ],
+    "prohibited": [
+      "Cognitive recovery prevalence.",
+      "Cognitive error prevalence.",
+      "Causal mechanism claims.",
+      "Full-WCA prevalence.",
+      "Independent modern 7–10 s replication from reused R1.7 attempts.",
+      "Population calibration by solving method.",
+      "Treating annotation labels as ground-truth latent cognitive states."
+    ]
+  },
+  "human_observations": 0,
+  "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+}

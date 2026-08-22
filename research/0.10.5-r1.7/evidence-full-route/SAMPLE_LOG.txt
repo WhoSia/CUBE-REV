@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "sample_n": 900,
+  "canonical_linked_attempts_under10": 3405,
+  "target_population_under10": 1261540,
+  "supported_target_fraction": 0.9999215244859457,
+  "route_source_failures": {},
+  "raw_alg_link_records": 900
+}
