@@ -1,0 +1,47 @@
+{
+  "schema_version": "CR0105R19-ATTEMPT-FAMILYWISE-NULL-PREREG-SEAL-1",
+  "status": "SEALED_FOR_FUTURE_FRESH_VINTAGE",
+  "stage": "CUBE-REV 0.10.5-R1.9 — Phase-objective Quotient Geometry, Attempt-level Familywise Null Preregistration & Fresh-vintage Replication Readiness",
+  "napkin_sha256": "e1fe8548a4d72deb83c4f7d8de0b4ea2123efea92b7b1e71e03d7466bcd2f537",
+  "core_sha256": "c1a38cc4c3db7adf8bc47f2ccfe006b6f731eea04e116b6161b3657ae03f002d",
+  "historical_development_only": true,
+  "future_primary_alpha": 0.01,
+  "future_watch_alpha": 0.05,
+  "local_reference_rule": {
+    "purpose": "Map heterogeneous phase/channel amplitudes to conservative empirical tail scores before the attempt-level maximum is formed.",
+    "move_count_bins": [
+      "3-5",
+      "6-8",
+      "9-12",
+      "13+"
+    ],
+    "hierarchy": [
+      "method×phase×channel×move_count_bin when reference n>=120",
+      "phase×channel×move_count_bin when n>=160",
+      "method×phase×channel when n>=120",
+      "phase×channel when n>=200",
+      "global channel when n>=500"
+    ],
+    "tail_probability": "add-one conservative empirical upper-tail probability: (1 + # reference amplitudes >= observed amplitude) / (n + 1)",
+    "tail_score": "-log10(tail_probability)",
+    "fallback_below_global_minimum": "HOLD_LOCAL_REFERENCE_SUPPORT"
+  },
+  "familywise_rule": {
+    "attempt_statistic": "Maximum local tail_score over all eligible phase-line objective and anchor channels in one official attempt.",
+    "crossfit": "Deterministic 5-fold split by SHA-256 of official-attempt key and R1.9 salt. Each held-out attempt is scored only against reference envelopes from the other four folds.",
+    "multiplicity_conditioning": "Familywise reference is conditioned by eligible feature-count bin: 1-8, 9-12, 13-16, 17+ when bin n>=300; otherwise global. Method×feature-count may be used only when n>=300 and is predeclared before execution; fallback order is method×count -> count -> method -> global with n>=300 for non-global levels.",
+    "primary_familywise_alpha": 0.01,
+    "secondary_watch_alpha": 0.05,
+    "future_familywise_p": "For a fresh attempt, score against the full sealed historical local reference, then compute add-one upper-tail probability against the sealed cross-fitted historical attempt-statistic reference at the highest supported multiplicity-conditioning level.",
+    "minimum_crossfit_state_certified_attempts": 1200,
+    "minimum_global_attempt_reference_n": 1000,
+    "minimum_supported_conditioning_n": 300,
+    "calibration_health_gate": "Across five held-out folds, empirical primary-alpha exceedance must lie in [0.003,0.02] overall; secondary-watch exceedance must lie in [0.025,0.08]. These are engineering calibration-health bands, not hypothesis-test acceptance regions."
+  },
+  "full_local_reference_semantic_sha256": "84af991a925e9f16f3d5e45015981b481bd80b6430fa822bb8e5f783f21060db",
+  "crossfit_attempt_reference_semantic_sha256": "ea3b518d0e82257a19d200466ad315dff973046505babee749cb95abdf51a8e4",
+  "development_summary_semantic_sha256": "f58b9c3f8111099969e1623e76fc033f1bebddde0f6cf23cbc674362fd887ddc",
+  "future_fresh_outcomes_seen": false,
+  "human_observations": 0,
+  "seal_sha256": "b7de3e635c4a304b35947920040e8d37aa9342f0703b5219e698e0d5a5e12e04"
+}

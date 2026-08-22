@@ -1,0 +1,331 @@
+R19_DEV_ROUTE_PROGRESS 200/1800
+R19_DEV_ROUTE_PROGRESS 400/1800
+R19_DEV_ROUTE_PROGRESS 600/1800
+R19_DEV_ROUTE_PROGRESS 800/1800
+R19_DEV_ROUTE_PROGRESS 1000/1800
+R19_DEV_ROUTE_PROGRESS 1200/1800
+R19_DEV_ROUTE_PROGRESS 1400/1800
+R19_DEV_ROUTE_PROGRESS 1600/1800
+{
+  "status": "PASS_READINESS_CALIBRATION",
+  "seal_sha256": "b7de3e635c4a304b35947920040e8d37aa9342f0703b5219e698e0d5a5e12e04",
+  "historical": {
+    "attempts": 1800,
+    "state_certified": 1762,
+    "eligible_attempts": 1677,
+    "eligible_features": 12650,
+    "objective_features": 9730,
+    "source_counts": {
+      "R17": 830,
+      "R18": 847
+    }
+  },
+  "geometry": {
+    "phase_channel": {
+      "CROSS|objective": {
+        "n": 1582,
+        "raw_positive": 667,
+        "raw_positive_rate": 0.4216182048040455,
+        "observed": {
+          "p50": 0,
+          "p90": 0.25,
+          "p99": 0.5,
+          "max": 0.75
+        },
+        "reference": {
+          "p50": 0,
+          "p90": 0.25,
+          "p99": 0.5,
+          "max": 0.875
+        }
+      },
+      "F2L|objective": {
+        "n": 5073,
+        "raw_positive": 2607,
+        "raw_positive_rate": 0.5138971023063276,
+        "observed": {
+          "p50": 0.05000000000000002,
+          "p90": 0.25,
+          "p99": 0.4,
+          "max": 0.75
+        },
+        "reference": {
+          "p50": 0.0625,
+          "p90": 0.2777777777777778,
+          "p99": 0.5,
+          "max": 0.75
+        }
+      },
+      "LL_ORIENT|objective": {
+        "n": 1266,
+        "raw_positive": 1092,
+        "raw_positive_rate": 0.8625592417061612,
+        "observed": {
+          "p50": 0.25,
+          "p90": 0.375,
+          "p99": 0.625,
+          "max": 0.75
+        },
+        "reference": {
+          "p50": 0.25,
+          "p90": 0.5,
+          "p99": 0.75,
+          "max": 0.875
+        }
+      },
+      "LL_ORIENT|anchor": {
+        "n": 1266,
+        "raw_positive": 1263,
+        "raw_positive_rate": 0.9976303317535545,
+        "observed": {
+          "p50": 0.5833333333333334,
+          "p90": 0.75,
+          "p99": 0.875,
+          "max": 0.875
+        },
+        "reference": {
+          "p50": 0.5833333333333334,
+          "p90": 0.7916666666666666,
+          "p99": 0.875,
+          "max": 0.875
+        }
+      },
+      "LL_PERMUTE|objective": {
+        "n": 1235,
+        "raw_positive": 1045,
+        "raw_positive_rate": 0.8461538461538461,
+        "observed": {
+          "p50": 0.25,
+          "p90": 0.5,
+          "p99": 0.625,
+          "max": 0.875
+        },
+        "reference": {
+          "p50": 0.25,
+          "p90": 0.625,
+          "p99": 0.625,
+          "max": 0.875
+        }
+      },
+      "LL_PERMUTE|anchor": {
+        "n": 1235,
+        "raw_positive": 1235,
+        "raw_positive_rate": 1,
+        "observed": {
+          "p50": 0.5833333333333334,
+          "p90": 0.75,
+          "p99": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "reference": {
+          "p50": 0.5833333333333334,
+          "p90": 0.75,
+          "p99": 0.9166666666666666,
+          "max": 0.9166666666666666
+        }
+      },
+      "ROUX_CMLL|objective": {
+        "n": 88,
+        "raw_positive": 27,
+        "raw_positive_rate": 0.3068181818181818,
+        "observed": {
+          "p50": 0,
+          "p90": 0.375,
+          "p99": 0.5,
+          "max": 0.5
+        },
+        "reference": {
+          "p50": 0,
+          "p90": 0.5,
+          "p99": 0.625,
+          "max": 0.625
+        }
+      },
+      "ROUX_CMLL|anchor": {
+        "n": 54,
+        "raw_positive": 47,
+        "raw_positive_rate": 0.8703703703703703,
+        "observed": {
+          "p50": 0.5,
+          "p90": 1,
+          "p99": 1,
+          "max": 1
+        },
+        "reference": {
+          "p50": 0.6428571428571429,
+          "p90": 1,
+          "p99": 1,
+          "max": 1
+        }
+      },
+      "ROUX_LSE|objective": {
+        "n": 170,
+        "raw_positive": 93,
+        "raw_positive_rate": 0.5470588235294118,
+        "observed": {
+          "p50": 0.125,
+          "p90": 0.41666666666666663,
+          "p99": 0.625,
+          "max": 0.625
+        },
+        "reference": {
+          "p50": 0.20833333333333331,
+          "p90": 0.41666666666666663,
+          "p99": 0.625,
+          "max": 0.625
+        }
+      },
+      "ROUX_LSE|anchor": {
+        "n": 133,
+        "raw_positive": 133,
+        "raw_positive_rate": 1,
+        "observed": {
+          "p50": 1,
+          "p90": 1,
+          "p99": 1,
+          "max": 1
+        },
+        "reference": {
+          "p50": 1,
+          "p90": 1,
+          "p99": 1,
+          "max": 1
+        }
+      },
+      "ROUX_FB|objective": {
+        "n": 24,
+        "raw_positive": 18,
+        "raw_positive_rate": 0.75,
+        "observed": {
+          "p50": 0.16666666666666663,
+          "p90": 0.33333333333333337,
+          "p99": 0.5833333333333334,
+          "max": 0.5833333333333334
+        },
+        "reference": {
+          "p50": 0.16666666666666663,
+          "p90": 0.33333333333333337,
+          "p99": 0.5833333333333334,
+          "max": 0.5833333333333334
+        }
+      },
+      "ROUX_SB|objective": {
+        "n": 60,
+        "raw_positive": 42,
+        "raw_positive_rate": 0.7,
+        "observed": {
+          "p50": 0.13636363636363635,
+          "p90": 0.40909090909090906,
+          "p99": 0.85,
+          "max": 0.85
+        },
+        "reference": {
+          "p50": 0.15000000000000002,
+          "p90": 0.40909090909090906,
+          "p99": 0.85,
+          "max": 0.85
+        }
+      },
+      "LL_ONELOOK|objective": {
+        "n": 232,
+        "raw_positive": 195,
+        "raw_positive_rate": 0.8405172413793104,
+        "observed": {
+          "p50": 0.25,
+          "p90": 0.4375,
+          "p99": 0.625,
+          "max": 0.625
+        },
+        "reference": {
+          "p50": 0.25,
+          "p90": 0.4375,
+          "p99": 0.625,
+          "max": 0.6875
+        }
+      },
+      "LL_ONELOOK|anchor": {
+        "n": 232,
+        "raw_positive": 232,
+        "raw_positive_rate": 1,
+        "observed": {
+          "p50": 0.5833333333333334,
+          "p90": 0.7916666666666666,
+          "p99": 0.8333333333333334,
+          "max": 0.875
+        },
+        "reference": {
+          "p50": 0.5833333333333334,
+          "p90": 0.7916666666666666,
+          "p99": 0.8333333333333334,
+          "max": 0.9166666666666666
+        }
+      }
+    },
+    "full_state_baseline": {
+      "segments": 11079,
+      "raw_positive_rate": 0.6386858019676867
+    },
+    "quotient_objective_raw_positive_rate": 0.594655704008222
+  },
+  "crossfit": {
+    "folds": 5,
+    "local_fallback_n": 0,
+    "local_fallback_rate": 0,
+    "familywise_attempts": 1677,
+    "primary_alpha": 0.01,
+    "primary_empirical_exceedance": 0.008944543828264758,
+    "watch_alpha": 0.05,
+    "watch_empirical_exceedance": 0.04889683959451401,
+    "fold_health": [
+      {
+        "fold": 0,
+        "n": 318,
+        "primary_rate": 0.012578616352201259,
+        "watch_rate": 0.06289308176100629
+      },
+      {
+        "fold": 1,
+        "n": 361,
+        "primary_rate": 0.008310249307479225,
+        "watch_rate": 0.036011080332409975
+      },
+      {
+        "fold": 2,
+        "n": 326,
+        "primary_rate": 0.012269938650306749,
+        "watch_rate": 0.049079754601226995
+      },
+      {
+        "fold": 3,
+        "n": 311,
+        "primary_rate": 0.003215434083601286,
+        "watch_rate": 0.04180064308681672
+      },
+      {
+        "fold": 4,
+        "n": 361,
+        "primary_rate": 0.008310249307479225,
+        "watch_rate": 0.055401662049861494
+      }
+    ],
+    "familywise_levels": {
+      "METHOD_COUNT": 1497,
+      "COUNT": 180
+    }
+  },
+  "roux_semantic_gate": {
+    "roux_state_certified": 92,
+    "roux_frame_ok": 38,
+    "decision": "HOLD_ROUX_CONFIRMATORY_SEMANTIC_FRAME_UNTIL_HIGHER_LAST_FACE_OR_BLOCK_IDENTIFICATION_SUPPORT"
+  },
+  "checks": {
+    "historical_attempts_1800": true,
+    "state_certified_attempts_ge_1700": true,
+    "crossfit_eligible_attempts_ge_1200": true,
+    "local_fallback_rate_le_0_05": true,
+    "familywise_reference_complete": true,
+    "primary_health_band": true,
+    "watch_health_band": true,
+    "no_scored_feature_uses_own_fold": true
+  }
+}

@@ -1,0 +1,68 @@
+name: CR0105R18 Candidate Adjudication
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.8-prospective-subgoal-court]
+    paths: [cr0105r18/RUN_CANDIDATE_ADJUDICATION]
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify posthoc lineage
+        run: |
+          python3 - <<'PY'
+          import json
+          s=json.load(open('research/0.10.5-r1.8/evidence-matched-null-remand/MATCHED_NULL_HOLDOUT_SENSITIVITY.json'))
+          f=json.load(open('research/0.10.5-r1.8/evidence-attempt-fwer-audit/ATTEMPT_FAMILYWISE_NULL_AUDIT.json'))
+          assert s['holdout']['positive_attempts']==32
+          assert f['prospective_primary_unchanged']==0
+          print('R18_CANDIDATE_POSTHOC_LINEAGE_PASS')
+          PY
+      - name: Audit candidate form and familywise burden
+        id: audit
+        shell: bash
+        run: |
+          set +e
+          python research/0.10.5-r1.8/r18_candidate_adjudication.py 2>&1 | tee /tmp/r18cand.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist candidate audit
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.8/evidence-candidate-adjudication
+          test -f /tmp/r18cand/CANDIDATE_ADJUDICATION.json && cp /tmp/r18cand/CANDIDATE_ADJUDICATION.json research/0.10.5-r1.8/evidence-candidate-adjudication/ || true
+          cp /tmp/r18cand.log research/0.10.5-r1.8/evidence-candidate-adjudication/AUDIT_LOG.txt || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          c=int('${{ steps.audit.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R18-CANDIDATE-ADJUDICATION-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':c,'status':'PASS' if c==0 else 'FAIL','role':'POSTHOC_CANDIDATE_AUDIT','prospective_primary_changed':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.8/evidence-candidate-adjudication/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit candidate audit
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.8/evidence-candidate-adjudication
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.8 candidate adjudication ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.8-prospective-subgoal-court
+      - name: Enforce diagnostic only
+        if: always()
+        run: |
+          test '${{ steps.audit.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.8/evidence-candidate-adjudication/CANDIDATE_ADJUDICATION.json'))
+          assert x['status']=='PASS_DIAGNOSTIC'
+          assert x['familywise_adjudication']['decision']=='NO_ATTEMPT_LEVEL_EXCESS_OVER_CALIBRATION_FAMILYWISE_NULL'
+          print('CR0105R18_CANDIDATE_ADJUDICATION_PASS')
+          PY

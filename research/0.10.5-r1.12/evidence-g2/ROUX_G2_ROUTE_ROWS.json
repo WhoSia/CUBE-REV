@@ -1,0 +1,3403 @@
+{
+  "schema_version": "CR0105R112-ROUX-G2-ROUTE-ROWS-1",
+  "generation": "ROUX-MEASUREMENT-G2",
+  "rows": [
+    {
+      "result_id": 1341399,
+      "attempt_number": 1,
+      "reco_id": 2418,
+      "source": "SEALED_R111",
+      "attempt_key": "1341399:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 29,
+        "axes": [
+          "D|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 1,
+      "reco_id": 2488,
+      "source": "SEALED_R111",
+      "attempt_key": "1404884:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 13,
+        "end": 28,
+        "line_count": 2,
+        "comments": [
+          "SB",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 28,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 2,
+      "reco_id": 2489,
+      "source": "R112_EXPANSION",
+      "attempt_key": "1404884:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 24,
+        "line_count": 1,
+        "comments": [
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 3,
+      "reco_id": 2490,
+      "source": "SEALED_R111",
+      "attempt_key": "1404884:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SB",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 4,
+      "reco_id": 2491,
+      "source": "SEALED_R111",
+      "attempt_key": "1404884:4",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 28,
+        "line_count": 2,
+        "comments": [
+          "SB",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 28,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 5,
+      "reco_id": 2492,
+      "source": "SEALED_R111",
+      "attempt_key": "1404884:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SB",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 1599700,
+      "attempt_number": 5,
+      "reco_id": 2688,
+      "source": "SEALED_R111",
+      "attempt_key": "1599700:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 26,
+        "axes": [
+          "R|D-U"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "R|D-U",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 1,
+      "reco_id": 2791,
+      "source": "R112_EXPANSION",
+      "attempt_key": "1656157:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 27,
+        "line_count": 1,
+        "comments": [
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 2,
+      "reco_id": 2792,
+      "source": "SEALED_R111",
+      "attempt_key": "1656157:2",
+      "status": "ERROR",
+      "error": "Error: Unexpected character at index 2. Are you missing a space?\n    at mustNotBeCrowded (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:354:15)\n    at AlgParser.parseAlgWithStopping (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:370:9)\n    at AlgParser.parseAlg (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:312:22)\n    at parseAlg (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-"
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 3,
+      "reco_id": 2793,
+      "source": "SEALED_R111",
+      "attempt_key": "1656157:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 23,
+        "line_count": 1,
+        "comments": [
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 4,
+      "reco_id": 2794,
+      "source": "SEALED_R111",
+      "attempt_key": "1656157:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 22,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 5,
+      "reco_id": 2795,
+      "source": "SEALED_R111",
+      "attempt_key": "1656157:5",
+      "status": "ERROR",
+      "error": "Error: Unexpected character at index 5. Are you missing a space?\n    at mustNotBeCrowded (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:354:15)\n    at AlgParser.parseAlgWithStopping (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:370:9)\n    at AlgParser.parseAlg (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:312:22)\n    at parseAlg (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-"
+    },
+    {
+      "result_id": 2011086,
+      "attempt_number": 2,
+      "reco_id": 2912,
+      "source": "R112_EXPANSION",
+      "attempt_key": "2011086:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 17,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 1,
+      "reco_id": 2874,
+      "source": "R112_EXPANSION",
+      "attempt_key": "2112470:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 2,
+      "reco_id": 2875,
+      "source": "SEALED_R111",
+      "attempt_key": "2112470:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 3,
+      "reco_id": 2876,
+      "source": "SEALED_R111",
+      "attempt_key": "2112470:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 4,
+      "reco_id": 2877,
+      "source": "SEALED_R111",
+      "attempt_key": "2112470:4",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 29,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 5,
+      "reco_id": 2878,
+      "source": "SEALED_R111",
+      "attempt_key": "2112470:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 246918,
+      "attempt_number": 1,
+      "reco_id": 2013,
+      "source": "R112_EXPANSION",
+      "attempt_key": "246918:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 15,
+        "end": 41,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 41,
+        "axes": [
+          "B|D-U"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "B|D-U",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 300639,
+      "attempt_number": 2,
+      "reco_id": 1019,
+      "source": "R112_EXPANSION",
+      "attempt_key": "300639:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 13,
+        "end": 32,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 1,
+      "reco_id": 3117,
+      "source": "SEALED_R111",
+      "attempt_key": "3072444:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 27,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 27,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 2,
+      "reco_id": 3118,
+      "source": "SEALED_R111",
+      "attempt_key": "3072444:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 28,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 3,
+      "reco_id": 3119,
+      "source": "SEALED_R111",
+      "attempt_key": "3072444:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 4,
+      "reco_id": 3120,
+      "source": "SEALED_R111",
+      "attempt_key": "3072444:4",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 30,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": true
+      },
+      "frame_key": "U|L",
+      "axis_key": "U|L-R",
+      "sb_completion_index": 30,
+      "cmll_consistent": true,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 41,
+        "end": 51,
+        "line_count": 1
+      }
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 5,
+      "reco_id": 3121,
+      "source": "R112_EXPANSION",
+      "attempt_key": "3072444:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 23,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3171138,
+      "attempt_number": 2,
+      "reco_id": 3133,
+      "source": "R112_EXPANSION",
+      "attempt_key": "3171138:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 16,
+        "end": 32,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3171138,
+      "attempt_number": 4,
+      "reco_id": 3135,
+      "source": "R112_EXPANSION",
+      "attempt_key": "3171138:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 14,
+        "end": 34,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3171138,
+      "attempt_number": 5,
+      "reco_id": 3136,
+      "source": "R112_EXPANSION",
+      "attempt_key": "3171138:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 30,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 1,
+      "reco_id": 3177,
+      "source": "SEALED_R111",
+      "attempt_key": "3171147:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 2,
+      "reco_id": 3178,
+      "source": "SEALED_R111",
+      "attempt_key": "3171147:2",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 20,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 20,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": true,
+        "block_b_solved": false
+      },
+      "frame_key": "U|F",
+      "axis_key": "U|B-F",
+      "sb_completion_index": 20,
+      "cmll_consistent": true,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 29,
+        "end": 40,
+        "line_count": 2
+      }
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 3,
+      "reco_id": 3179,
+      "source": "SEALED_R111",
+      "attempt_key": "3171147:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 31,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 4,
+      "reco_id": 3180,
+      "source": "SEALED_R111",
+      "attempt_key": "3171147:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 5,
+      "reco_id": 3181,
+      "source": "SEALED_R111",
+      "attempt_key": "3171147:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 1,
+      "reco_id": 3496,
+      "source": "SEALED_R111",
+      "attempt_key": "3403221:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 23,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 2,
+      "reco_id": 3497,
+      "source": "SEALED_R111",
+      "attempt_key": "3403221:2",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 13,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 26,
+        "axes": [
+          "D|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 3,
+      "reco_id": 3498,
+      "source": "R112_EXPANSION",
+      "attempt_key": "3403221:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 29,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 5,
+      "reco_id": 3500,
+      "source": "SEALED_R111",
+      "attempt_key": "3403221:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 30,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3403279,
+      "attempt_number": 4,
+      "reco_id": 3501,
+      "source": "SEALED_R111",
+      "attempt_key": "3403279:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 1,
+      "reco_id": 6581,
+      "source": "SEALED_R111",
+      "attempt_key": "3428863:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 2,
+      "reco_id": 6582,
+      "source": "R112_EXPANSION",
+      "attempt_key": "3428863:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 21,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 3,
+      "reco_id": 6583,
+      "source": "SEALED_R111",
+      "attempt_key": "3428863:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 20,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 20,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 4,
+      "reco_id": 6584,
+      "source": "SEALED_R111",
+      "attempt_key": "3428863:4",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 19,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 19,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 5,
+      "reco_id": 6585,
+      "source": "R112_EXPANSION",
+      "attempt_key": "3428863:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 26,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 3513235,
+      "attempt_number": 3,
+      "reco_id": 3579,
+      "source": "R112_EXPANSION",
+      "attempt_key": "3513235:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 18,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 1,
+      "reco_id": 321,
+      "source": "SEALED_R111",
+      "attempt_key": "372818:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 2,
+      "reco_id": 322,
+      "source": "SEALED_R111",
+      "attempt_key": "372818:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 28,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 3,
+      "reco_id": 323,
+      "source": "R112_EXPANSION",
+      "attempt_key": "372818:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 14,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 5,
+      "reco_id": 325,
+      "source": "SEALED_R111",
+      "attempt_key": "372818:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 412962,
+      "attempt_number": 3,
+      "reco_id": 2092,
+      "source": "SEALED_R111",
+      "attempt_key": "412962:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 1,
+      "reco_id": 8527,
+      "source": "R112_EXPANSION",
+      "attempt_key": "4218496:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 29,
+        "axes": [
+          "F|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "F|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 2,
+      "reco_id": 8528,
+      "source": "SEALED_R111",
+      "attempt_key": "4218496:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 28,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 3,
+      "reco_id": 8529,
+      "source": "SEALED_R111",
+      "attempt_key": "4218496:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 5,
+      "reco_id": 8531,
+      "source": "SEALED_R111",
+      "attempt_key": "4218496:5",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 24,
+        "axes": [
+          "B|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "B|L-R",
+        "block_a_solved": true,
+        "block_b_solved": false
+      },
+      "frame_key": "B|R",
+      "axis_key": "B|L-R",
+      "sb_completion_index": 24,
+      "cmll_consistent": true,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 34,
+        "end": 54,
+        "line_count": 2
+      }
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 2,
+      "reco_id": 802,
+      "source": "SEALED_R111",
+      "attempt_key": "467563:2",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 26,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": true
+      },
+      "frame_key": "U|L",
+      "axis_key": "U|L-R",
+      "sb_completion_index": 26,
+      "cmll_consistent": true,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 33,
+        "end": 40,
+        "line_count": 2
+      }
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 3,
+      "reco_id": 803,
+      "source": "SEALED_R111",
+      "attempt_key": "467563:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 16,
+        "end": 33,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 4,
+      "reco_id": 804,
+      "source": "SEALED_R111",
+      "attempt_key": "467563:4",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 25,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 5,
+      "reco_id": 805,
+      "source": "SEALED_R111",
+      "attempt_key": "467563:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 4790393,
+      "attempt_number": 1,
+      "reco_id": 9103,
+      "source": "R112_EXPANSION",
+      "attempt_key": "4790393:1",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 15,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 15,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": true,
+        "block_b_solved": false
+      },
+      "frame_key": "U|R",
+      "axis_key": "U|L-R",
+      "sb_completion_index": 15,
+      "cmll_consistent": true,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 27,
+        "end": 44,
+        "line_count": 2
+      }
+    },
+    {
+      "result_id": 4790393,
+      "attempt_number": 2,
+      "reco_id": 9104,
+      "source": "R112_EXPANSION",
+      "attempt_key": "4790393:2",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 25,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 4790393,
+      "attempt_number": 3,
+      "reco_id": 9105,
+      "source": "R112_EXPANSION",
+      "attempt_key": "4790393:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 4790393,
+      "attempt_number": 4,
+      "reco_id": 9106,
+      "source": "SEALED_R111",
+      "attempt_key": "4790393:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 4790393,
+      "attempt_number": 5,
+      "reco_id": 9107,
+      "source": "SEALED_R111",
+      "attempt_key": "4790393:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 14,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5090865,
+      "attempt_number": 5,
+      "reco_id": 9172,
+      "source": "R112_EXPANSION",
+      "attempt_key": "5090865:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 21,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 21,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 510701,
+      "attempt_number": 3,
+      "reco_id": 924,
+      "source": "SEALED_R111",
+      "attempt_key": "510701:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 27,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 27,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 1,
+      "reco_id": 9353,
+      "source": "SEALED_R111",
+      "attempt_key": "5220135:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 27,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 27,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 2,
+      "reco_id": 9354,
+      "source": "R112_EXPANSION",
+      "attempt_key": "5220135:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 3,
+      "reco_id": 9355,
+      "source": "SEALED_R111",
+      "attempt_key": "5220135:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 22,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 4,
+      "reco_id": 9356,
+      "source": "SEALED_R111",
+      "attempt_key": "5220135:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 38,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 5,
+      "reco_id": 9357,
+      "source": "SEALED_R111",
+      "attempt_key": "5220135:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 31,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 1,
+      "reco_id": 9246,
+      "source": "SEALED_R111",
+      "attempt_key": "5220219:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 33,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 33,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 2,
+      "reco_id": 9247,
+      "source": "SEALED_R111",
+      "attempt_key": "5220219:2",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 30,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 3,
+      "reco_id": 9248,
+      "source": "SEALED_R111",
+      "attempt_key": "5220219:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 13,
+        "end": 33,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 33,
+        "axes": [
+          "D|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 4,
+      "reco_id": 9249,
+      "source": "SEALED_R111",
+      "attempt_key": "5220219:4",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 32,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 32,
+        "axes": [
+          "D|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 5,
+      "reco_id": 9250,
+      "source": "R112_EXPANSION",
+      "attempt_key": "5220219:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 2,
+      "reco_id": 9212,
+      "source": "SEALED_R111",
+      "attempt_key": "5220221:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 31,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 3,
+      "reco_id": 9213,
+      "source": "R112_EXPANSION",
+      "attempt_key": "5220221:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 23,
+        "axes": [
+          "D|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 4,
+      "reco_id": 9214,
+      "source": "SEALED_R111",
+      "attempt_key": "5220221:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 5,
+      "reco_id": 9215,
+      "source": "SEALED_R111",
+      "attempt_key": "5220221:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 35,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 1,
+      "reco_id": 9363,
+      "source": "SEALED_R111",
+      "attempt_key": "5300160:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 2,
+      "reco_id": 9364,
+      "source": "R112_EXPANSION",
+      "attempt_key": "5300160:2",
+      "status": "FIRST_COMPLETION_MULTI_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 28,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 28,
+        "axes": [
+          "U|B-F",
+          "U|L-R"
+        ]
+      }
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 3,
+      "reco_id": 9365,
+      "source": "SEALED_R111",
+      "attempt_key": "5300160:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 4,
+      "reco_id": 9366,
+      "source": "SEALED_R111",
+      "attempt_key": "5300160:4",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 19,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 19,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 5,
+      "reco_id": 9367,
+      "source": "SEALED_R111",
+      "attempt_key": "5300160:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 26,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 533419,
+      "attempt_number": 1,
+      "reco_id": 2026,
+      "source": "SEALED_R111",
+      "attempt_key": "533419:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 533419,
+      "attempt_number": 3,
+      "reco_id": 2028,
+      "source": "SEALED_R111",
+      "attempt_key": "533419:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 30,
+        "axes": [
+          "D|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 533419,
+      "attempt_number": 4,
+      "reco_id": 2029,
+      "source": "R112_EXPANSION",
+      "attempt_key": "533419:4",
+      "status": "FINAL_NOT_SOLVED",
+      "final_solved": false
+    },
+    {
+      "result_id": 594959,
+      "attempt_number": 1,
+      "reco_id": 2104,
+      "source": "R112_EXPANSION",
+      "attempt_key": "594959:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 28,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 1,
+      "reco_id": 2112,
+      "source": "SEALED_R111",
+      "attempt_key": "611723:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 28,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 28,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 2,
+      "reco_id": 2113,
+      "source": "SEALED_R111",
+      "attempt_key": "611723:2",
+      "status": "FINAL_NOT_SOLVED",
+      "final_solved": false
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 4,
+      "reco_id": 2115,
+      "source": "SEALED_R111",
+      "attempt_key": "611723:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SB",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 5,
+      "reco_id": 2116,
+      "source": "SEALED_R111",
+      "attempt_key": "611723:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SB",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 1,
+      "reco_id": 10499,
+      "source": "SEALED_R111",
+      "attempt_key": "6143482:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 22,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 2,
+      "reco_id": 10500,
+      "source": "SEALED_R111",
+      "attempt_key": "6143482:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 3,
+      "reco_id": 10501,
+      "source": "SEALED_R111",
+      "attempt_key": "6143482:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 29,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 4,
+      "reco_id": 10502,
+      "source": "R112_EXPANSION",
+      "attempt_key": "6143482:4",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 31,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 31,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": true,
+        "block_b_solved": false
+      },
+      "frame_key": "U|F",
+      "axis_key": "U|B-F",
+      "sb_completion_index": 31,
+      "cmll_consistent": true,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 41,
+        "end": 56,
+        "line_count": 2
+      }
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 5,
+      "reco_id": 10503,
+      "source": "SEALED_R111",
+      "attempt_key": "6143482:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 22,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 6170102,
+      "attempt_number": 1,
+      "reco_id": 11795,
+      "source": "SEALED_R111",
+      "attempt_key": "6170102:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 19,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 6170102,
+      "attempt_number": 2,
+      "reco_id": 11796,
+      "source": "R112_EXPANSION",
+      "attempt_key": "6170102:2",
+      "status": "ERROR",
+      "error": "Error: Invalid move for KPuzzle (3x3x3): DU'\n    at moveToTransformationUncached (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:160:9)\n    at KPuzzle.moveToTransformation (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:610:32)\n    at _KPattern.applyMove (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:523:50)\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.12/r112_roux_g2_geometry.mjs:86:85"
+    },
+    {
+      "result_id": 6170102,
+      "attempt_number": 3,
+      "reco_id": 11797,
+      "source": "R112_EXPANSION",
+      "attempt_key": "6170102:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      },
+      "first_completion": {
+        "index": 30,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 6170102,
+      "attempt_number": 5,
+      "reco_id": 11799,
+      "source": "SEALED_R111",
+      "attempt_key": "6170102:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 21,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 6170204,
+      "attempt_number": 3,
+      "reco_id": 11798,
+      "source": "SEALED_R111",
+      "attempt_key": "6170204:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 649412,
+      "attempt_number": 5,
+      "reco_id": 2651,
+      "source": "R112_EXPANSION",
+      "attempt_key": "649412:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 16,
+        "end": 40,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 6734619,
+      "attempt_number": 1,
+      "reco_id": 11445,
+      "source": "SEALED_R111",
+      "attempt_key": "6734619:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 36,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 6734619,
+      "attempt_number": 2,
+      "reco_id": 11446,
+      "source": "R112_EXPANSION",
+      "attempt_key": "6734619:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 16,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 6734619,
+      "attempt_number": 3,
+      "reco_id": 11447,
+      "source": "R112_EXPANSION",
+      "attempt_key": "6734619:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      },
+      "first_completion": {
+        "index": 26,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 6734619,
+      "attempt_number": 4,
+      "reco_id": 11448,
+      "source": "SEALED_R111",
+      "attempt_key": "6734619:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 6734619,
+      "attempt_number": 5,
+      "reco_id": 11449,
+      "source": "R112_EXPANSION",
+      "attempt_key": "6734619:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 27,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      }
+    },
+    {
+      "result_id": 6765413,
+      "attempt_number": 4,
+      "reco_id": 11450,
+      "source": "R112_EXPANSION",
+      "attempt_key": "6765413:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 27,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 6781597,
+      "attempt_number": 5,
+      "reco_id": 11482,
+      "source": "SEALED_R111",
+      "attempt_key": "6781597:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 18,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7130321,
+      "attempt_number": 2,
+      "reco_id": 11913,
+      "source": "SEALED_R111",
+      "attempt_key": "7130321:2",
+      "status": "ERROR",
+      "error": "Error: Invalid move for KPuzzle (3x3x3): FB'\n    at moveToTransformationUncached (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:160:9)\n    at KPuzzle.moveToTransformation (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:610:32)\n    at _KPattern.applyMove (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:523:50)\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.12/r112_roux_g2_geometry.mjs:86:85"
+    },
+    {
+      "result_id": 7130321,
+      "attempt_number": 3,
+      "reco_id": 11914,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7130321:3",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 26,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": true,
+        "block_b_solved": false
+      },
+      "frame_key": "U|F",
+      "axis_key": "U|B-F",
+      "sb_completion_index": 26,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 41,
+        "end": 49,
+        "line_count": 1
+      }
+    },
+    {
+      "result_id": 7130321,
+      "attempt_number": 4,
+      "reco_id": 11915,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7130321:4",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      },
+      "first_completion": {
+        "index": 24,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": true,
+        "block_b_solved": false
+      },
+      "frame_key": "U|F",
+      "axis_key": "U|B-F",
+      "sb_completion_index": 24,
+      "cmll_consistent": true,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 32,
+        "end": 50,
+        "line_count": 2
+      }
+    },
+    {
+      "result_id": 7130321,
+      "attempt_number": 5,
+      "reco_id": 11916,
+      "source": "SEALED_R111",
+      "attempt_key": "7130321:5",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SB"
+        ]
+      },
+      "first_completion": {
+        "index": 23,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": true
+      },
+      "frame_key": "U|L",
+      "axis_key": "U|L-R",
+      "sb_completion_index": 23,
+      "cmll_consistent": true,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 33,
+        "end": 64,
+        "line_count": 2
+      }
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 1,
+      "reco_id": 12792,
+      "source": "SEALED_R111",
+      "attempt_key": "7247265:1",
+      "status": "FORK_PSEUDO_FB",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "pseudo FB"
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 2,
+      "reco_id": 12793,
+      "source": "SEALED_R111",
+      "attempt_key": "7247265:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 8,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 3,
+      "reco_id": 12794,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7247265:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 4,
+      "reco_id": 12795,
+      "source": "SEALED_R111",
+      "attempt_key": "7247265:4",
+      "status": "FINAL_NOT_SOLVED",
+      "final_solved": false
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 5,
+      "reco_id": 12796,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7247265:5",
+      "status": "ERROR",
+      "error": "Error: Invalid move for KPuzzle (3x3x3): DU'\n    at moveToTransformationUncached (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:160:9)\n    at KPuzzle.moveToTransformation (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:610:32)\n    at _KPattern.applyMove (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:523:50)\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.12/r112_roux_g2_geometry.mjs:86:85"
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 1,
+      "reco_id": 12797,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7247335:1",
+      "status": "ERROR",
+      "error": "Error: Unexpected character at index 17. Are you missing a space?\n    at mustNotBeCrowded (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:354:15)\n    at AlgParser.parseAlgWithStopping (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:370:9)\n    at AlgParser.parseAlg (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:312:22)\n    at parseAlg (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk"
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 3,
+      "reco_id": 12799,
+      "source": "SEALED_R111",
+      "attempt_key": "7247335:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 31,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 4,
+      "reco_id": 12800,
+      "source": "SEALED_R111",
+      "attempt_key": "7247335:4",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 21,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 21,
+        "axes": [
+          "D|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 5,
+      "reco_id": 12801,
+      "source": "SEALED_R111",
+      "attempt_key": "7247335:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 6,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7247423,
+      "attempt_number": 1,
+      "reco_id": 12802,
+      "source": "SEALED_R111",
+      "attempt_key": "7247423:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 13,
+        "end": 35,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7247423,
+      "attempt_number": 2,
+      "reco_id": 12803,
+      "source": "SEALED_R111",
+      "attempt_key": "7247423:2",
+      "status": "FORK_FBDR",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FBDR"
+    },
+    {
+      "result_id": 7247423,
+      "attempt_number": 3,
+      "reco_id": 12804,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7247423:3",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 24,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 24,
+        "axes": [
+          "D|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 7247423,
+      "attempt_number": 4,
+      "reco_id": 12805,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7247423:4",
+      "status": "ERROR",
+      "error": "Error: Invalid move for KPuzzle (3x3x3): Rl\n    at moveToTransformationUncached (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:160:9)\n    at KPuzzle.moveToTransformation (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:610:32)\n    at _KPattern.applyMove (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-RINY3U6G.js:523:50)\n    at file:///home/runner/work/CUBE-REV/CUBE-REV/research/0.10.5-r1.12/r112_roux_g2_geometry.mjs:86:85"
+    },
+    {
+      "result_id": 7247423,
+      "attempt_number": 5,
+      "reco_id": 12806,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7247423:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 5,
+        "end": 19,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 19,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 7247448,
+      "attempt_number": 2,
+      "reco_id": 12808,
+      "source": "SEALED_R111",
+      "attempt_key": "7247448:2",
+      "status": "ERROR",
+      "error": "Error: Unexpected character at index 2. Are you missing a space?\n    at mustNotBeCrowded (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:354:15)\n    at AlgParser.parseAlgWithStopping (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:370:9)\n    at AlgParser.parseAlg (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-O6HEZXGY.js:312:22)\n    at parseAlg (file:///home/runner/work/CUBE-REV/CUBE-REV/node_modules/cubing/dist/lib/cubing/chunks/chunk-"
+    },
+    {
+      "result_id": 7247448,
+      "attempt_number": 3,
+      "reco_id": 12809,
+      "source": "SEALED_R111",
+      "attempt_key": "7247448:3",
+      "status": "FORK_PSEUDO_FB",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "pseudo FB"
+    },
+    {
+      "result_id": 7247448,
+      "attempt_number": 5,
+      "reco_id": 12811,
+      "source": "SEALED_R111",
+      "attempt_key": "7247448:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 30,
+        "axes": [
+          "U|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 7275444,
+      "attempt_number": 1,
+      "reco_id": 11951,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7275444:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 13,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7275444,
+      "attempt_number": 2,
+      "reco_id": 11952,
+      "source": "SEALED_R111",
+      "attempt_key": "7275444:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 10,
+        "end": 28,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7275444,
+      "attempt_number": 3,
+      "reco_id": 11953,
+      "source": "SEALED_R111",
+      "attempt_key": "7275444:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 22,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7275444,
+      "attempt_number": 4,
+      "reco_id": 11954,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7275444:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 27,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7275444,
+      "attempt_number": 5,
+      "reco_id": 11955,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7275444:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 22,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 22,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 1,
+      "reco_id": 11956,
+      "source": "SEALED_R111",
+      "attempt_key": "7275458:1",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 29,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 29,
+        "axes": [
+          "D|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|L-R",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 2,
+      "reco_id": 11957,
+      "source": "SEALED_R111",
+      "attempt_key": "7275458:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 11,
+        "end": 25,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 4,
+      "reco_id": 11959,
+      "source": "SEALED_R111",
+      "attempt_key": "7275458:4",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 16,
+        "end": 27,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "flipped SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 5,
+      "reco_id": 11960,
+      "source": "SEALED_R111",
+      "attempt_key": "7275458:5",
+      "status": "FB_CANNOT_ORIENT_UNIQUE_AXIS",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 13,
+        "end": 33,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 33,
+        "axes": [
+          "D|B-F"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "D|B-F",
+        "block_a_solved": false,
+        "block_b_solved": false
+      }
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 1,
+      "reco_id": 12838,
+      "source": "SEALED_R111",
+      "attempt_key": "7996680:1",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 26,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 2,
+      "reco_id": 12839,
+      "source": "R112_EXPANSION",
+      "attempt_key": "7996680:2",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 7,
+        "end": 21,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 3,
+      "reco_id": 12840,
+      "source": "SEALED_R111",
+      "attempt_key": "7996680:3",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 4,
+      "reco_id": 12841,
+      "source": "SEALED_R111",
+      "attempt_key": "7996680:4",
+      "status": "G2_ADMITTED",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 9,
+        "end": 23,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      },
+      "first_completion": {
+        "index": 23,
+        "axes": [
+          "U|L-R"
+        ]
+      },
+      "fb_axis_state": {
+        "axis_key": "U|L-R",
+        "block_a_solved": true,
+        "block_b_solved": false
+      },
+      "frame_key": "U|R",
+      "axis_key": "U|L-R",
+      "sb_completion_index": 23,
+      "cmll_consistent": true,
+      "lse_consistent": true,
+      "lse_span": {
+        "start": 31,
+        "end": 48,
+        "line_count": 2
+      }
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 5,
+      "reco_id": 12842,
+      "source": "SEALED_R111",
+      "attempt_key": "7996680:5",
+      "status": "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN",
+      "final_solved": true,
+      "fb_line_count": 1,
+      "fb_comment": "FB",
+      "sb_span": {
+        "start": 12,
+        "end": 30,
+        "line_count": 2,
+        "comments": [
+          "SS",
+          "SP"
+        ]
+      }
+    }
+  ],
+  "human_observations": 0
+}

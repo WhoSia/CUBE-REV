@@ -1,0 +1,31 @@
+{
+  "status": "PASS_NESTED_NO_LEAK_READINESS_EXACT_PREREG_GATE",
+  "seal_sha256": "86522ee214024c8cac5257e07a4b9df451edff764fed13d9027ba79c957f2fca",
+  "nested_attempts": 1677,
+  "primary": 0.008348240906380441,
+  "watch": 0.04770423375074538,
+  "level_support": {
+    "COUNT": {
+      "attempts": 180,
+      "min_n": 387,
+      "max_n": 964,
+      "required_min": 300
+    },
+    "METHOD_COUNT": {
+      "attempts": 1497,
+      "min_n": 378,
+      "max_n": 827,
+      "required_min": 300
+    }
+  },
+  "checks": {
+    "nested_familywise_attempts_ge_1200": true,
+    "primary_health_band": true,
+    "watch_health_band": true,
+    "all_non_global_conditioning_refs_ge_300": true,
+    "all_global_refs_ge_1000": true,
+    "no_reference_size_violations": true,
+    "outer_test_fold_excluded_from_all_reference_construction": true,
+    "fresh_outcomes_unread": true
+  }
+}

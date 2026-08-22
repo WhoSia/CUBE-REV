@@ -1,0 +1,44 @@
+{
+  "schema_version": "CR0105R18-PHASE-DISTANCE-VALIDATOR-1",
+  "status": "PASS",
+  "cubing_version": "0.63.3",
+  "cubing_source_commit": "c223a53ba37e0941fe8242571aef1cccb978bb24",
+  "edge_orbit": "EDGES",
+  "corner_orbit": "CORNERS",
+  "center_orbit": "CENTERS",
+  "orientation_group_size": 24,
+  "primary_distance": "0.5*(edge piece+orientation mismatch / 12) + 0.5*(corner piece+orientation mismatch / 8), minimum over 24 whole-cube orientations; centers excluded",
+  "checks": {
+    "orientation_group_size_24": true,
+    "orbits_found": true,
+    "identity_zero": true,
+    "rotated_equivalent_x_zero": true,
+    "rotated_equivalent_y2_zero": true,
+    "nontrivial_positive": true,
+    "symmetry": true,
+    "orientation_invariance_general": true,
+    "final_endpoint_does_not_create_recovery": true,
+    "preendpoint_return_creates_reversal": true,
+    "distance_quantum_edge_halfweight": true
+  },
+  "synthetic": {
+    "endpoint_only_return": {
+      "max_excursion_amplitude": 0.09999999999999998,
+      "candidate_reversal_amplitude": 0,
+      "candidate": null
+    },
+    "preendpoint_return": {
+      "max_excursion_amplitude": 0.09999999999999998,
+      "candidate_reversal_amplitude": 0.09999999999999998,
+      "candidate": {
+        "peak_index": 2,
+        "return_index": 3,
+        "pre_frontier": 0.2,
+        "peak_distance": 0.3,
+        "return_distance": 0.1,
+        "amplitude": 0.09999999999999998
+      }
+    }
+  },
+  "human_observations": 0
+}

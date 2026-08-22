@@ -1,0 +1,75 @@
+name: CR0105R112 Residual Gauge Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.12-roux-generation-g2]
+    paths: [cr0105r112/RUN_RESIDUAL_GAUGE]
+permissions:
+  contents: write
+jobs:
+  residual:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify identifiability court lineage
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.12/evidence-gauge-identifiability/ROUX_G2_GAUGE_IDENTIFIABILITY_AUDIT.json'))
+          assert x['semantic_sha256']=='c6c776bc5df6cecc394f6acc2f4dc687e2c958ac20b6dac73a9b93c8af2a3b9a'
+          assert x['counts']['prefix_unique_pair']==130
+          assert x['counts']['prefix_unique_pair_sb_success']==120
+          assert x['post_result_gate_change'] is False
+          print('CR0105R112_RESIDUAL_LINEAGE_PASS')
+          PY
+      - name: Install exact cube-state runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Run residual gauge failure court
+        id: residualcourt
+        shell: bash
+        env: {R112_ROOT: /tmp/r112}
+        run: |
+          set +e
+          mkdir -p /tmp/r112
+          node research/0.10.5-r1.12/r112_residual_gauge_court.mjs 2>&1 | tee /tmp/r112/RESIDUAL_GAUGE_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist residual evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.12/evidence-residual-gauge
+          for f in ROUX_G2_RESIDUAL_GAUGE_AUDIT.json ROUX_G2_RESIDUAL_GAUGE_ROWS.json RESIDUAL_GAUGE_LOG.txt; do
+            test -f "/tmp/r112/$f" && cp "/tmp/r112/$f" research/0.10.5-r1.12/evidence-residual-gauge/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R112-RESIDUAL-GAUGE-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':int('${{ steps.residualcourt.outputs.exit_code || 97 }}'),'primary_gate_changed':False,'fresh_network_read':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.12/evidence-residual-gauge/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit residual evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.12/evidence-residual-gauge
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.12 residual gauge court ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.12-roux-generation-g2
+          git push origin HEAD:cube-rev-0.10.5-r1.12-roux-generation-g2
+      - name: Enforce diagnostic-only completion
+        if: always()
+        run: |
+          test '${{ steps.residualcourt.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.12/evidence-residual-gauge/ROUX_G2_RESIDUAL_GAUGE_AUDIT.json'))
+          assert x['status']=='POSTHOC_RESIDUAL_DIAGNOSTIC_NO_PRIMARY_GATE_CHANGE'
+          assert x['post_result_gate_change'] is False
+          print('CR0105R112_RESIDUAL_COMPLETE',x['counts'])
+          PY

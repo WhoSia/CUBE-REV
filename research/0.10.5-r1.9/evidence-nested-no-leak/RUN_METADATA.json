@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R19-NESTED-NO-LEAK-RUN-1",
+  "workflow_run_id": "32358293471",
+  "head_sha": "e6da5234241d3ff308009f353089fd38e486db23",
+  "exit_code": 20,
+  "status": "HOLD_OR_FAIL",
+  "fresh_outcomes_read": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T10:18:57.779277+00:00"
+}

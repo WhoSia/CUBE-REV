@@ -1,0 +1,64 @@
+{
+  "schema_version": "CR0105R15-PUBLIC-DATA-SPINE-2",
+  "stage": "CUBE-REV 0.10.5-R1.5 — Immutable Submission Snapshot Promotion, Duplicate Stored-byte Reverification & Receipt-race Closure",
+  "research_design": {
+    "primary_empirical_strategy": "PUBLIC_DATA_FIRST",
+    "direct_human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN",
+    "reason": "Factorized runner observations are retained as mechanism-oriented auxiliary evidence, but population and external-validity claims should rely primarily on established public cubing data.",
+    "human_launch_gate_after_technical_repair": "DO_NOT_AUTO_PROMOTE_TO_RECRUITMENT"
+  },
+  "source_tiers": [
+    {
+      "tier": "A",
+      "source": "World Cube Association Results Export v2",
+      "url": "https://www.worldcubeassociation.org/export/results",
+      "authority": "OFFICIAL_WCA",
+      "observed_export_file_stem": "WCA_export_v2_221_20260809T000027Z",
+      "observed_export_format": "2.0.2",
+      "observed_export_date": "2026-08-10",
+      "observed_metadata_export_date": "2026-08-10T12:40:02+00:00",
+      "recheck_latest_before_ingest": true,
+      "preferred_latest_discovery": "https://www.worldcubeassociation.org/api/v0/export/public",
+      "tables_of_interest": ["competitions", "persons", "results", "result_attempts", "scrambles", "events", "round_types", "formats"],
+      "best_for": ["population-level official performance", "within-round attempt sequences", "scramble-linked official outcomes", "competition/date/context stratification", "DNF/DNS analysis"],
+      "limitations": ["no move-by-move solution trajectory", "no inspection gaze/cognition telemetry", "public-person fields require WCA terms-of-use compliance"]
+    },
+    {
+      "tier": "B",
+      "source": "reco.nz reconstruction database",
+      "url": "https://reco.nz/",
+      "authority": "COMMUNITY_CURATED",
+      "observed_index_high_id": 13444,
+      "best_for": ["move-level reconstructions", "method labels", "movecount", "TPS", "high-level phase/path analysis", "official-solve linkage when metadata match"],
+      "limitations": ["community-driven collection creates a structural selection problem that must be quantified against the WCA population frame before prevalence claims", "manual reconstruction error is possible", "not a population-frequency estimator without explicit selection analysis", "bulk-use/API/terms must be checked before automated ingestion"]
+    },
+    {
+      "tier": "C",
+      "source": "Public smart-cube/timer software ecosystems",
+      "examples": ["https://github.com/cs0x7f/cstimer", "https://github.com/afedotov/gan-web-bluetooth"],
+      "authority": "PUBLIC_SOFTWARE_SCHEMA_NOT_POPULATION_DATA",
+      "best_for": ["timestamp/event schema design", "smart-cube clock-drift correction", "format compatibility", "future public/consented fixture ingestion"],
+      "limitations": ["software repositories are not themselves representative human solve corpora"]
+    },
+    {
+      "tier": "D",
+      "source": "Solver-generated counterfactual corpora",
+      "authority": "SYNTHETIC",
+      "best_for": ["optimal/near-optimal baseline", "route-equivalence classes", "counterfactual move redundancy", "failure-mode stress tests"],
+      "limitations": ["never interpret as human behavior"]
+    }
+  ],
+  "cube_rev_factorized_runner_role": {
+    "status": "AUXILIARY_MECHANISM_EVIDENCE",
+    "allowed_claims": ["UI/collector engineering validity", "designed mechanism falsification", "synthetic and self-study calibration"],
+    "disallowed_without_external_support": ["population prevalence", "WCA-wide behavioral frequency", "general human cognitive mechanism incidence"]
+  },
+  "planned_join_logic": [
+    "Use WCA competition/event/round/person/result/attempt as the population frame.",
+    "Use result_attempts to preserve within-round attempt order and official DNF/DNS outcomes.",
+    "Attach official scramble text through WCA scramble metadata only where round/group/attempt linkage can be established without ambiguity.",
+    "Link reconstruction records only when solver, competition/date/result and other available solve metadata jointly support the match; otherwise retain as unlinked move-level evidence.",
+    "Estimate selection into the reconstruction corpus against the WCA population frame before making aggregate trajectory claims.",
+    "Use solver-generated routes only as counterfactual comparators, never as substitute human observations."
+  ]
+}

@@ -1,0 +1,135 @@
+name: CR0105R15 Engineering Staging Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.5-receipt-race-closure]
+    paths: [cr0105r15/RUN_ENGINEERING]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r15-engineering-staging
+  cancel-in-progress: false
+jobs:
+  stage:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: R1.4 provenance and current-main preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | awk '{print $1}')" = "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd"
+          python - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.4/final/RAVEL_FINAL_SEAL.json'))
+          assert x['status']=='HOLD'
+          assert x['engineering_infrastructure']=='PASS'
+          assert x['race_confirmed'] is True
+          assert x['human_observations']==0
+          print('R14_HOLD_PROVENANCE_PASS')
+          PY
+          curl -fsSL --retry 3 "https://whosia.github.io/CUBE-REV/?cr0105r15-preflight=${GITHUB_RUN_ID}" -o /tmp/r15-public-preflight.html
+          test "$(wc -c < /tmp/r15-public-preflight.html)" = "2591526"
+          test "$(sha256sum /tmp/r15-public-preflight.html | cut -d' ' -f1)" = "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180"
+      - name: Materialize current-main staging worktree
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git ls-remote --heads origin cube-rev-0.10.5-r1.5-public-staging)"
+          git worktree add -b cube-rev-0.10.5-r1.5-public-staging /tmp/cr0105r15-main origin/main
+          mkdir -p /tmp/cr0105r15-main/scripts /tmp/cr0105r15-main/tests
+          cp scripts/cr0105r15_patch.py /tmp/cr0105r15-main/scripts/
+          cp tests/cr0105r15_receipt_race_closure.cjs /tmp/cr0105r15-main/tests/
+      - name: Apply immutable-snapshot and duplicate-reverification repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/cr0105r15-main
+          python scripts/cr0105r15_patch.py
+          node --check js/collector-client.js
+          node tests/cr0105r15_receipt_race_closure.cjs | tee /tmp/r15-court.log
+          node tests/collector-receipt.integration.cjs | tee /tmp/r15-existing-receipt.log
+          grep -q 'CR0105R15_RECEIPT_RACE_CLOSURE_PASS 4/4' /tmp/r15-court.log
+          grep -q 'collector receipt integration test passed' /tmp/r15-existing-receipt.log
+      - name: Bump public client identity without changing collector protocol version
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/cr0105r15-main
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old_cache='0712-camera-neutral-bypass-hotfix-1'
+          new_cache='0712-receipt-race-closure-r15-1'
+          old_build='0.7.12-camera-neutral-bypass-hotfix-1'
+          new_build='0.7.12-receipt-race-closure-r15-1'
+          assert old_cache in s and old_build in s
+          s=s.replace(old_cache,new_cache).replace(old_build,new_build)
+          assert "const VERSION = '0.7.12';" in s
+          assert 'CUBE-REV-0712-MAIN' in s
+          assert './js/collector-client.js?v='+new_cache in s
+          p.write_text(s)
+          print('R15_PUBLIC_IDENTITY_BUMP_PASS')
+          PY
+          node --check js/collector-client.js
+          grep -q 'DUPLICATE_STORED_BYTE_CHECKSUM_MISMATCH' js/collector-client.js
+          grep -q 'CUBE_REV_SUBMISSION_SNAPSHOT_V1' js/collector-client.js
+          grep -q 'collector-client.js?v=0712-receipt-race-closure-r15-1' index.html
+      - name: Build exact candidate identity and push isolated staging branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/cr0105r15-main
+          index_bytes=$(wc -c < index.html)
+          index_sha=$(sha256sum index.html | cut -d' ' -f1)
+          index_blob=$(git hash-object index.html)
+          client_bytes=$(wc -c < js/collector-client.js)
+          client_sha=$(sha256sum js/collector-client.js | cut -d' ' -f1)
+          client_blob=$(git hash-object js/collector-client.js)
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html js/collector-client.js
+          test "$(git diff --cached --name-only | sort | tr '\n' ' ')" = "index.html js/collector-client.js "
+          git commit -m 'Stage CUBE-REV 0.10.5-R1.5 receipt-race closure'
+          stage_sha=$(git rev-parse HEAD)
+          git push origin HEAD:cube-rev-0.10.5-r1.5-public-staging
+          printf '%s\n' "$stage_sha" > /tmp/r15-stage-sha
+          printf '%s\n' "$index_bytes" > /tmp/r15-index-bytes
+          printf '%s\n' "$index_sha" > /tmp/r15-index-sha
+          printf '%s\n' "$index_blob" > /tmp/r15-index-blob
+          printf '%s\n' "$client_bytes" > /tmp/r15-client-bytes
+          printf '%s\n' "$client_sha" > /tmp/r15-client-sha
+          printf '%s\n' "$client_blob" > /tmp/r15-client-blob
+      - name: Persist RAVEL engineering seal on research branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.5/engineering
+          STAGE_SHA=$(cat /tmp/r15-stage-sha) INDEX_BYTES=$(cat /tmp/r15-index-bytes) INDEX_SHA=$(cat /tmp/r15-index-sha) INDEX_BLOB=$(cat /tmp/r15-index-blob) CLIENT_BYTES=$(cat /tmp/r15-client-bytes) CLIENT_SHA=$(cat /tmp/r15-client-sha) CLIENT_BLOB=$(cat /tmp/r15-client-blob) python - <<'PY'
+          import json,os
+          out={
+            'schema_version':'CR0105R15-ENGINEERING-STAGING-1',
+            'stage':'CUBE-REV 0.10.5-R1.5 — Immutable Submission Snapshot Promotion, Duplicate Stored-byte Reverification & Receipt-race Closure',
+            'status':'PASS','verdict':'PASS_IMMUTABLE_SNAPSHOT_AND_DUPLICATE_STORED_BYTE_REVERIFICATION_ENGINEERING',
+            'base_main_commit':'19f7b83aceba3a3d0cec94a3c10b1b80af85fafd',
+            'r14_hold_commit':'f8ee7aac3eec181bab5a977df9ccfc84af215e22',
+            'staging_branch':'cube-rev-0.10.5-r1.5-public-staging','staging_commit':os.environ['STAGE_SHA'],
+            'index':{'bytes':int(os.environ['INDEX_BYTES']),'sha256':os.environ['INDEX_SHA'],'git_blob':os.environ['INDEX_BLOB']},
+            'collector_client':{'bytes':int(os.environ['CLIENT_BYTES']),'sha256':os.environ['CLIENT_SHA'],'git_blob':os.environ['CLIENT_BLOB']},
+            'courts':{'immutable_snapshot_retry_reconstruction':'PASS','snapshot_corruption_fail_closed':'PASS','r14_cache_first_counterexample_rejected':'PASS','legitimate_duplicate_fresh_drive_reverified':'PASS','legacy_receipt_integration':'PASS'},
+            'collector_protocol_version':'receipt-v2','record_version':'0.7.12',
+            'human_observations':0,'human_launch':False,'human_recruitment_design':'DEFERRED_BY_RESEARCH_DESIGN',
+            'next_gate':'PUBLIC_STAGING_BROWSER_AND_DEPLOYMENT_CAS'
+          }
+          open('research/0.10.5-r1.5/engineering/ENGINEERING_STAGING_SEAL.json','w').write(json.dumps(out,indent=2,ensure_ascii=False))
+          print(json.dumps(out,indent=2,ensure_ascii=False))
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add research/0.10.5-r1.5/engineering/ENGINEERING_STAGING_SEAL.json
+          git commit -m "Record CUBE-REV 0.10.5-R1.5 engineering staging ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.5-receipt-race-closure

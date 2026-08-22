@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R112-G2-COURT-RUN-1",
+  "workflow_run_id": "32444745535",
+  "head_sha": "8c2912917c9bda0471095acc6e4d0eead1f8eeae",
+  "geometry_exit_code": 0,
+  "null_exit_code": 0,
+  "candidate_bank_n": 144,
+  "fresh_network_read_during_scoring": false,
+  "fresh_confirmatory_scoring": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T03:49:40.937850+00:00"
+}

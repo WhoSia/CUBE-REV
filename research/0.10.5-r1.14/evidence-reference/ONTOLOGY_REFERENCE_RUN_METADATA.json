@@ -1,0 +1,13 @@
+{
+  "schema_version": "CR0105R114-ONTOLOGY-REFERENCE-RUN-1",
+  "workflow_run_id": "32462154062",
+  "head_sha": "413c2fa44db28b1385f69f8b8fc48c2f87ba0ca9",
+  "ontology_exit_code": 0,
+  "reference_null_exit_code": 0,
+  "baseline_id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+  "network_reads": 0,
+  "second_live_index_read_seen": false,
+  "fresh_outcomes_seen": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T08:13:16.016216+00:00"
+}

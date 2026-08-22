@@ -1,0 +1,125 @@
+name: CR0105R18 Threshold-Sealed Holdout Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.8-prospective-subgoal-court]
+    paths: [cr0105r18/RUN_HOLDOUT_COURT]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r18-holdout-court
+  cancel-in-progress: false
+jobs:
+  holdout:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify sealed-null ordering and support boundary before first holdout read
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib
+          s=json.load(open('research/0.10.5-r1.8/evidence-null-calibration-r2/NULL_THRESHOLD_SEAL.json'))
+          p=json.load(open('research/0.10.5-r1.8/evidence-support-preflight/SUPPORT_PREFLIGHT.json'))
+          m=json.load(open('research/0.10.5-r1.8/evidence-support-preflight/HOLDOUT_A_MEMBERSHIP.json'))
+          n=json.load(open('research/0.10.5-r1.8/NAPKIN_INTENT_FREEZE.json'))
+          assert s['status']=='SEALED_BEFORE_HOLDOUT_SCORE' and s['holdout_outcomes_seen'] is False
+          assert s['seal_sha256']=='1343a667600a4a859ae081b3b3042cbe365e447b7b082dd7ebf77b9edc8494ea'
+          assert p['decision']['attempt_disjoint_holdout_A']=='GO'
+          assert p['decision']['full_under10_standardized_holdout_claim']=='HOLD'
+          assert p['decision']['fresh_modern_7_10_replication']=='HOLD'
+          assert m['selected_n']==900 and m['overlap_with_r17_n']==0
+          assert n['prospective_data_design']['minimum_weight_ess']==200
+          print('CR0105R18_HOLDOUT_ORDERING_GATE_PASS')
+          PY
+      - name: Install pinned runtimes
+        run: |
+          python -m pip install --disable-pip-version-check requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+          npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Acquire 900 attempt-disjoint routes under frozen threshold seal
+        id: fetch
+        shell: bash
+        env:
+          R18_HOLDOUT_ROOT: /tmp/r18holdout
+        run: |
+          set +e
+          python research/0.10.5-r1.8/r18_fetch_holdout_routes.py 2>&1 | tee /tmp/r18holdout/fetch.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Materialize computationally equivalent holdout scorer
+        if: always()
+        run: |
+          set -euo pipefail
+          if test '${{ steps.fetch.outputs.exit_code }}' = '0'; then
+            python research/0.10.5-r1.8/r18_holdout_runtime_patch.py
+          else
+            mkdir -p /tmp/r18holdout
+            echo '{"schema_version":"CR0105R18-HOLDOUT-RUNTIME-PATCH-1","status":"NOT_RUN_FETCH_FAILED","human_observations":0}' > /tmp/r18holdout/HOLDOUT_RUNTIME_PATCH.json
+          fi
+      - name: Score prospective phase-distance and unchanged R1.7 R5 control
+        id: score
+        if: always()
+        shell: bash
+        env:
+          R18_HOLDOUT_ROOT: /tmp/r18holdout
+        run: |
+          set +e
+          if test '${{ steps.fetch.outputs.exit_code }}' = '0' && test -f ./r18_holdout_score_runtime.mjs; then
+            node ./r18_holdout_score_runtime.mjs 2>&1 | tee /tmp/r18holdout/score.log
+            code=${PIPESTATUS[0]}
+          else
+            echo 'R18_SCORE_NOT_RUN_FETCH_OR_RUNTIME_FAILED' | tee /tmp/r18holdout/score.log
+            code=98
+          fi
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable holdout evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.8/evidence-holdout-a
+          for f in HOLDOUT_A_ROUTE_MANIFEST.json HOLDOUT_A_COURT.json HOLDOUT_RUNTIME_PATCH.json fetch.log score.log; do
+            test -f "/tmp/r18holdout/$f" && cp "/tmp/r18holdout/$f" research/0.10.5-r1.8/evidence-holdout-a/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          f=int('${{ steps.fetch.outputs.exit_code || 97 }}');s=int('${{ steps.score.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R18-HOLDOUT-A-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'fetch_exit_code':f,'score_exit_code':s,'operational_fetch':'PASS' if f==0 else 'FAIL','court_status':'PASS' if s==0 else 'HOLD_OR_FAIL','null_threshold_seal':'1343a667600a4a859ae081b3b3042cbe365e447b7b082dd7ebf77b9edc8494ea','r17_r5_definition_source_sha':'0c9523fea6fcbda37a344eeb324cd5365894e8e6','human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.8/evidence-holdout-a/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+          rm -f ./r18_holdout_score_runtime.mjs
+      - name: Commit holdout evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.8/evidence-holdout-a
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.8 prospective holdout ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.8-prospective-subgoal-court
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R18-holdout-a
+          retention-days: 30
+          if-no-files-found: warn
+          path: research/0.10.5-r1.8/evidence-holdout-a/
+      - name: Enforce prospective court
+        if: always()
+        run: |
+          test '${{ steps.fetch.outputs.exit_code }}' = '0'
+          test '${{ steps.score.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.8/evidence-holdout-a/HOLDOUT_A_COURT.json'))
+          assert x['status']=='PASS_SUPPORTED_TARGET',x
+          assert x['selection_gate']['full_sub10_standardization']=='PROHIBITED_SUPPORT_ONLY_28P6_PERCENT'
+          assert x['human_observations']==0
+          print('CR0105R18_PROSPECTIVE_HOLDOUT_PASS')
+          PY

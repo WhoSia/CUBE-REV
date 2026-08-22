@@ -1,0 +1,117 @@
+name: CR0105R17 Full Route R2 Inherited Gate
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-full-court]
+    paths: [cr0105r17/RUN_FULL_ROUTE_R2]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r17-full-route-r2
+  cancel-in-progress: false
+jobs:
+  court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify R1 stopped before outcome materialization
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,pathlib
+          g=json.load(open('research/0.10.5-r1.7/evidence-full-route/ROUTE_ADMISSION_GATE.json'))
+          m=json.load(open('research/0.10.5-r1.7/evidence-full-route/RUN_METADATA.json'))
+          assert g['status']=='HOLD'
+          assert g['checks']['ess_ge_400'] is False
+          assert sum(v is False for v in g['checks'].values())==1
+          assert not pathlib.Path('research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_COURT.json').exists()
+          assert m['route_exit_code']==20
+          print('R17_R1_PRE_OUTCOME_HOLD_CONFIRMED')
+          PY
+      - name: Recover prior prospectively declared target-selection gate
+        run: |
+          set -euo pipefail
+          git fetch origin cube-rev-0.10.5-r1.7-selection-court
+          git show origin/cube-rev-0.10.5-r1.7-selection-court:research/0.10.5-r1.7/evidence-selection-target/TARGET_SELECTION_ADJUDICATION.json > /tmp/r17_target.json
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/r17_target.json'))
+          r=next(z for z in x['results'] if z['name']=='UNDER10_SPEED_X_ERA')
+          assert r['status']=='PASS_INTERNAL_WEIGHT_GATE'
+          assert r['gate']['ess_min']==200
+          assert r['stabilized_weight']['ess']>=200
+          print('R17_INHERITED_ESS_GATE_200_CONFIRMED')
+          PY
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install exact state runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Restore exact R1 sample without any new web fetch
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r17full/route
+          cp research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json /tmp/r17full/FULL_ROUTE_SAMPLE_MANIFEST.json
+          test "$(sha256sum /tmp/r17full/FULL_ROUTE_SAMPLE_MANIFEST.json | awk '{print $1}')" = "$(sha256sum research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json | awk '{print $1}')"
+      - name: Materialize pre-outcome inherited-gate repair
+        run: python research/0.10.5-r1.7/r17_full_route_gate_repair_r2.py | tee /tmp/r17full/gate_repair.log
+      - name: Run identical route court with inherited ESS gate
+        id: route
+        shell: bash
+        run: |
+          set +e
+          export R17_FULL_ROOT=/tmp/r17full
+          node research/0.10.5-r1.7/r17_full_route_court_r2_runtime.mjs 2>&1 | tee /tmp/r17full/route_r2.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist R2 evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/evidence-full-route-r2
+          cp /tmp/r17full/route/*.json research/0.10.5-r1.7/evidence-full-route-r2/ 2>/dev/null || true
+          test -f /tmp/r17full/gate_repair.log && cp /tmp/r17full/gate_repair.log research/0.10.5-r1.7/evidence-full-route-r2/GATE_REPAIR_LOG.txt || true
+          test -f /tmp/r17full/route_r2.log && cp /tmp/r17full/route_r2.log research/0.10.5-r1.7/evidence-full-route-r2/ROUTE_R2_LOG.txt || true
+          cp /tmp/r17_target.json research/0.10.5-r1.7/evidence-full-route-r2/TARGET_SELECTION_GATE_SOURCE.json
+          python3 - <<'PY'
+          import json,os,datetime,pathlib,hashlib
+          src=pathlib.Path('research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json').read_bytes()
+          code=int('${{ steps.route.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R17-FULL-ROUTE-R2-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'route_exit_code':code,'status':'PASS' if code==0 else 'HOLD','r1_sample_manifest_sha256':hashlib.sha256(src).hexdigest(),'new_web_fetches':0,'inherited_ess_min':200,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.7/evidence-full-route-r2/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit R2 evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          rm -f research/0.10.5-r1.7/r17_full_route_court_r2_runtime.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-full-route-r2
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 full route R2 ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-full-court
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R17-full-route-r2
+          retention-days: 30
+          if-no-files-found: warn
+          path: research/0.10.5-r1.7/evidence-full-route-r2/
+      - name: Enforce R2 closure
+        if: always()
+        run: |
+          test '${{ steps.route.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          g=json.load(open('research/0.10.5-r1.7/evidence-full-route-r2/ROUTE_ADMISSION_GATE.json'))
+          r=json.load(open('research/0.10.5-r1.7/evidence-full-route-r2/FULL_ROUTE_COURT.json'))
+          q=json.load(open('research/0.10.5-r1.7/evidence-full-route-r2/R2_GATE_REPAIR.json'))
+          assert g['status']=='PASS'
+          assert g['checks']['ess_ge_200_inherited_from_target_selection'] is True
+          assert r['status']=='PASS' and r['human_observations']==0
+          assert q['outcome_seen_before_repair'] is False
+          print('CR0105R17_FULL_ROUTE_R2_PASS')
+          PY

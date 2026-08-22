@@ -1,0 +1,236 @@
+{
+  "schema_version": "CR0105R18-ATTEMPT-FAMILYWISE-NULL-AUDIT-POSTHOC-1",
+  "status": "PASS_DIAGNOSTIC",
+  "role": "POSTHOC_MULTIPLICITY_AND_ROUTE_LEVEL_NULL_AUDIT_NOT_PROSPECTIVE_PRIMARY",
+  "prospective_primary_unchanged": 0,
+  "matched_holdout": {
+    "positive_attempts": 32,
+    "state_certified_attempts": 888,
+    "raw_rate": 0.036036036036036036,
+    "untouched_support_standardized_rate": 0.04362672857842155,
+    "cells": {
+      "5-7|2013-16": {
+        "n": 46,
+        "population_n": 946,
+        "rate": 0.08695652173913043,
+        "positives": 4
+      },
+      "5-7|2017-19": {
+        "n": 65,
+        "population_n": 8807,
+        "rate": 0.03076923076923077,
+        "positives": 2
+      },
+      "5-7|2020-22": {
+        "n": 73,
+        "population_n": 11833,
+        "rate": 0.0273972602739726,
+        "positives": 2
+      },
+      "5-7|2023-26": {
+        "n": 299,
+        "population_n": 103181,
+        "rate": 0.033444816053511704,
+        "positives": 10
+      },
+      "7-10|2013-16": {
+        "n": 151,
+        "population_n": 47051,
+        "rate": 0.046357615894039736,
+        "positives": 7
+      },
+      "7-10|2017-19": {
+        "n": 96,
+        "population_n": 177169,
+        "rate": 0.052083333333333336,
+        "positives": 5
+      },
+      "7-10|<=2012": {
+        "n": 56,
+        "population_n": 5925,
+        "rate": 0.03571428571428571,
+        "positives": 2
+      },
+      "<5|2020-22": {
+        "n": 44,
+        "population_n": 247,
+        "rate": 0.0,
+        "positives": 0
+      },
+      "<5|2023-26": {
+        "n": 58,
+        "population_n": 5827,
+        "rate": 0.0,
+        "positives": 0
+      }
+    }
+  },
+  "calibration_familywise": {
+    "attempts": 874,
+    "eligible_segments": 5515,
+    "fixed_full_calibration_threshold": {
+      "positive_attempts": 45,
+      "raw_rate": 0.05148741418764302,
+      "positive_segments": 45,
+      "untouched_support_standardized_rate": 0.05205278616887315,
+      "coverage_of_untouched_support": 1.0,
+      "cells": {
+        "5-7|2013-16": {
+          "n": 48,
+          "population_n": 946,
+          "rate": 0.0,
+          "positives": 0
+        },
+        "5-7|2017-19": {
+          "n": 53,
+          "population_n": 8807,
+          "rate": 0.03773584905660377,
+          "positives": 2
+        },
+        "5-7|2020-22": {
+          "n": 55,
+          "population_n": 11833,
+          "rate": 0.07272727272727272,
+          "positives": 4
+        },
+        "5-7|2023-26": {
+          "n": 117,
+          "population_n": 103181,
+          "rate": 0.06837606837606838,
+          "positives": 8
+        },
+        "7-10|2013-16": {
+          "n": 78,
+          "population_n": 47051,
+          "rate": 0.038461538461538464,
+          "positives": 3
+        },
+        "7-10|2017-19": {
+          "n": 172,
+          "population_n": 177169,
+          "rate": 0.046511627906976744,
+          "positives": 8
+        },
+        "7-10|<=2012": {
+          "n": 48,
+          "population_n": 5925,
+          "rate": 0.0625,
+          "positives": 3
+        },
+        "<5|2020-22": {
+          "n": 46,
+          "population_n": 247,
+          "rate": 0.021739130434782608,
+          "positives": 1
+        },
+        "<5|2023-26": {
+          "n": 50,
+          "population_n": 5827,
+          "rate": 0.02,
+          "positives": 1
+        }
+      }
+    },
+    "leave_one_attempt_out": {
+      "positive_attempts": 54,
+      "raw_rate": 0.06178489702517163,
+      "positive_segments": 54,
+      "untouched_support_standardized_rate": 0.059616250175049804,
+      "coverage_of_untouched_support": 1.0,
+      "threshold_levels": {
+        "METHOD_PHASE_99": 5434,
+        "PHASE_99": 81
+      },
+      "cells": {
+        "5-7|2013-16": {
+          "n": 48,
+          "population_n": 946,
+          "rate": 0.0,
+          "positives": 0
+        },
+        "5-7|2017-19": {
+          "n": 53,
+          "population_n": 8807,
+          "rate": 0.03773584905660377,
+          "positives": 2
+        },
+        "5-7|2020-22": {
+          "n": 55,
+          "population_n": 11833,
+          "rate": 0.09090909090909091,
+          "positives": 5
+        },
+        "5-7|2023-26": {
+          "n": 117,
+          "population_n": 103181,
+          "rate": 0.07692307692307693,
+          "positives": 9
+        },
+        "7-10|2013-16": {
+          "n": 78,
+          "population_n": 47051,
+          "rate": 0.05128205128205128,
+          "positives": 4
+        },
+        "7-10|2017-19": {
+          "n": 172,
+          "population_n": 177169,
+          "rate": 0.05232558139534884,
+          "positives": 9
+        },
+        "7-10|<=2012": {
+          "n": 48,
+          "population_n": 5925,
+          "rate": 0.0625,
+          "positives": 3
+        },
+        "<5|2020-22": {
+          "n": 46,
+          "population_n": 247,
+          "rate": 0.021739130434782608,
+          "positives": 1
+        },
+        "<5|2023-26": {
+          "n": 50,
+          "population_n": 5827,
+          "rate": 0.02,
+          "positives": 1
+        }
+      }
+    }
+  },
+  "multiplicity": {
+    "calibration_segments_per_attempt": {
+      "p50": 6,
+      "p90": 7,
+      "max": 7
+    },
+    "holdout_segments_per_attempt": {
+      "p50": 6,
+      "p90": 7,
+      "max": 7
+    },
+    "independent_six_tests_reference_probability": 0.058519850599
+  },
+  "bootstrap_holdout_minus_calibration_loo": {
+    "replicates": 5000,
+    "holdout": {
+      "p2_5": 0.02285671035835063,
+      "p50": 0.04285756128484449,
+      "p97_5": 0.06796649121232333
+    },
+    "calibration_loo": {
+      "p2_5": 0.038469568582961355,
+      "p50": 0.05906400791618148,
+      "p97_5": 0.08263182743027832
+    },
+    "difference": {
+      "p2_5": -0.04737031177446316,
+      "p50": -0.01598723646452746,
+      "p97_5": 0.015330947418279145
+    },
+    "probability_difference_gt_zero": 0.1702
+  },
+  "adjudication": "A matched segment-level tail can only motivate a recovery-like route anomaly if the holdout attempt-level exceedance is above the attempt-level familywise rate generated by the calibration null under the same multiplicity. If not, the apparent matched-null positives are explained by repeated per-phase testing and remain null-compatible.",
+  "human_observations": 0
+}

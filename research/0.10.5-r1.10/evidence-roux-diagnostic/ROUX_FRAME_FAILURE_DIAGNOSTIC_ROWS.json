@@ -1,0 +1,1960 @@
+{
+  "rows": [
+    {
+      "result_id": 412962,
+      "attempt_number": 3,
+      "reco_id": 2092,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        16
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 2,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 6170204,
+      "attempt_number": 3,
+      "reco_id": 11798,
+      "fb": [
+        1,
+        6
+      ],
+      "sb": [
+        6,
+        17
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 3,
+      "sb_orientation_free_full_blocks": 3
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 4,
+      "reco_id": 3120,
+      "fb": [
+        1,
+        10
+      ],
+      "sb": [
+        10,
+        20
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 2,
+      "reco_id": 8528,
+      "fb": [
+        1,
+        12
+      ],
+      "sb": [
+        12,
+        21
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 3,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 1,
+      "reco_id": 2488,
+      "fb": [
+        1,
+        13
+      ],
+      "sb": [
+        13,
+        21
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 2,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 4,
+      "reco_id": 12800,
+      "fb": [
+        1,
+        6
+      ],
+      "sb": [
+        6,
+        9
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 5,
+      "reco_id": 12842,
+      "fb": [
+        2,
+        12
+      ],
+      "sb": [
+        12,
+        21
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 1,
+      "reco_id": 3496,
+      "fb": [
+        1,
+        7
+      ],
+      "sb": [
+        7,
+        16
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 5,
+      "reco_id": 11960,
+      "fb": [
+        1,
+        13
+      ],
+      "sb": [
+        13,
+        21
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 1,
+      "reco_id": 9363,
+      "fb": [
+        2,
+        8
+      ],
+      "sb": [
+        8,
+        23
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 2,
+      "reco_id": 3118,
+      "fb": [
+        1,
+        11
+      ],
+      "sb": [
+        11,
+        19
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7130321,
+      "attempt_number": 2,
+      "reco_id": 11913,
+      "error": "Invalid move for KPuzzle (3x3x3): FB'"
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 2,
+      "reco_id": 9247,
+      "fb": [
+        1,
+        11
+      ],
+      "sb": [
+        11,
+        19
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 3,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 3,
+      "reco_id": 3179,
+      "fb": [
+        2,
+        11
+      ],
+      "sb": [
+        11,
+        17
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7275444,
+      "attempt_number": 2,
+      "reco_id": 11952,
+      "fb": [
+        2,
+        10
+      ],
+      "sb": [
+        10,
+        19
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 4,
+      "reco_id": 3180,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        13
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 3
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 5,
+      "reco_id": 3181,
+      "fb": [
+        2,
+        8
+      ],
+      "sb": [
+        8,
+        18
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 4,
+      "reco_id": 11959,
+      "fb": [
+        2,
+        16
+      ],
+      "sb": [
+        16,
+        20
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 4,
+      "reco_id": 6584,
+      "fb": [
+        2,
+        6
+      ],
+      "sb": [
+        6,
+        14
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 3,
+      "reco_id": 3119,
+      "fb": [
+        1,
+        12
+      ],
+      "sb": [
+        12,
+        20
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 1,
+      "reco_id": 10499,
+      "fb": [
+        1,
+        8
+      ],
+      "sb": [
+        8,
+        15
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 4790393,
+      "attempt_number": 4,
+      "reco_id": 9106,
+      "fb": [
+        1,
+        7
+      ],
+      "sb": [
+        7,
+        16
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 3,
+      "reco_id": 12799,
+      "fb": [
+        2,
+        12
+      ],
+      "sb": [
+        12,
+        21
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7275444,
+      "attempt_number": 3,
+      "reco_id": 11953,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        15
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 1,
+      "reco_id": 3177,
+      "fb": [
+        1,
+        10
+      ],
+      "sb": [
+        10,
+        20
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 4
+    },
+    {
+      "result_id": 6781597,
+      "attempt_number": 5,
+      "reco_id": 11482,
+      "fb": [
+        2,
+        6
+      ],
+      "sb": [
+        6,
+        10
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 5,
+      "reco_id": 3500,
+      "fb": [
+        0,
+        7
+      ],
+      "sb": [
+        7,
+        22
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 4,
+      "reco_id": 9356,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        29
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 3,
+      "reco_id": 8529,
+      "fb": [
+        0,
+        8
+      ],
+      "sb": [
+        8,
+        19
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 5,
+      "reco_id": 2878,
+      "fb": [
+        1,
+        11
+      ],
+      "sb": [
+        11,
+        20
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 3,
+      "reco_id": 2490,
+      "fb": [
+        2,
+        10
+      ],
+      "sb": [
+        10,
+        18
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 4,
+      "reco_id": 2115,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        15
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 1,
+      "reco_id": 3117,
+      "fb": [
+        2,
+        11
+      ],
+      "sb": [
+        11,
+        22
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7130321,
+      "attempt_number": 5,
+      "reco_id": 11916,
+      "fb": [
+        0,
+        6
+      ],
+      "sb": [
+        6,
+        14
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 1,
+      "reco_id": 9246,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        22
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 4,
+      "reco_id": 9214,
+      "fb": [
+        0,
+        11
+      ],
+      "sb": [
+        11,
+        18
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 1,
+      "reco_id": 11956,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        22
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 4,
+      "reco_id": 9249,
+      "fb": [
+        1,
+        8
+      ],
+      "sb": [
+        8,
+        25
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 3,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 3,
+      "reco_id": 6583,
+      "fb": [
+        2,
+        8
+      ],
+      "sb": [
+        8,
+        16
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 4,
+      "reco_id": 9366,
+      "fb": [
+        2,
+        7
+      ],
+      "sb": [
+        7,
+        15
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247448,
+      "attempt_number": 2,
+      "reco_id": 12808,
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 5,
+      "reco_id": 9215,
+      "fb": [
+        1,
+        10
+      ],
+      "sb": [
+        10,
+        26
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 6734619,
+      "attempt_number": 1,
+      "reco_id": 11445,
+      "fb": [
+        2,
+        10
+      ],
+      "sb": [
+        10,
+        29
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 4,
+      "reco_id": 2877,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        20
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 4,
+      "reco_id": 2794,
+      "fb": [
+        1,
+        8
+      ],
+      "sb": [
+        8,
+        16
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247423,
+      "attempt_number": 2,
+      "reco_id": 12803,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        16
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 3,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 5,
+      "reco_id": 2492,
+      "fb": [
+        1,
+        7
+      ],
+      "sb": [
+        7,
+        17
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 3,
+      "reco_id": 9365,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        19
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 6170102,
+      "attempt_number": 1,
+      "reco_id": 11795,
+      "fb": [
+        0,
+        7
+      ],
+      "sb": [
+        7,
+        12
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 5,
+      "reco_id": 12801,
+      "fb": [
+        1,
+        6
+      ],
+      "sb": [
+        6,
+        19
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 2,
+      "reco_id": 12793,
+      "fb": [
+        1,
+        8
+      ],
+      "sb": [
+        8,
+        16
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 2,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 3,
+      "reco_id": 9248,
+      "fb": [
+        1,
+        13
+      ],
+      "sb": [
+        13,
+        25
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 1341399,
+      "attempt_number": 1,
+      "reco_id": 2418,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        21
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 2,
+      "reco_id": 802,
+      "fb": [
+        1,
+        10
+      ],
+      "sb": [
+        10,
+        21
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 2,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 2,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 2,
+      "reco_id": 11957,
+      "fb": [
+        2,
+        11
+      ],
+      "sb": [
+        11,
+        18
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 4,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 3
+    },
+    {
+      "result_id": 1599700,
+      "attempt_number": 5,
+      "reco_id": 2688,
+      "fb": [
+        2,
+        11
+      ],
+      "sb": [
+        11,
+        22
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 2,
+      "reco_id": 3178,
+      "fb": [
+        2,
+        10
+      ],
+      "sb": [
+        10,
+        14
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 5,
+      "reco_id": 2795,
+      "error": "Unexpected character at index 5. Are you missing a space?"
+    },
+    {
+      "result_id": 533419,
+      "attempt_number": 1,
+      "reco_id": 2026,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        19
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 4790393,
+      "attempt_number": 5,
+      "reco_id": 9107,
+      "fb": [
+        2,
+        14
+      ],
+      "sb": [
+        14,
+        20
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 533419,
+      "attempt_number": 3,
+      "reco_id": 2028,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        21
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 3,
+      "reco_id": 803,
+      "fb": [
+        2,
+        16
+      ],
+      "sb": [
+        16,
+        27
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 1,
+      "reco_id": 321,
+      "fb": [
+        1,
+        10
+      ],
+      "sb": [
+        10,
+        18
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 1,
+      "reco_id": 12838,
+      "fb": [
+        2,
+        7
+      ],
+      "sb": [
+        7,
+        18
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 2,
+      "reco_id": 3497,
+      "fb": [
+        2,
+        13
+      ],
+      "sb": [
+        13,
+        18
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 5,
+      "reco_id": 10503,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        16
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247448,
+      "attempt_number": 3,
+      "reco_id": 12809,
+      "fb": [
+        2,
+        7
+      ],
+      "sb": [
+        7,
+        15
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 1,
+      "reco_id": 12792,
+      "fb": [
+        2,
+        6
+      ],
+      "sb": [
+        6,
+        18
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247423,
+      "attempt_number": 1,
+      "reco_id": 12802,
+      "fb": [
+        2,
+        13
+      ],
+      "sb": [
+        13,
+        23
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 1,
+      "reco_id": 6581,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        15
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 6170102,
+      "attempt_number": 5,
+      "reco_id": 11799,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        16
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 1,
+      "reco_id": 2112,
+      "fb": [
+        1,
+        7
+      ],
+      "sb": [
+        7,
+        20
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 5,
+      "reco_id": 9357,
+      "fb": [
+        2,
+        11
+      ],
+      "sb": [
+        11,
+        21
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 510701,
+      "attempt_number": 3,
+      "reco_id": 924,
+      "fb": [
+        2,
+        12
+      ],
+      "sb": [
+        12,
+        23
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 4,
+      "reco_id": 804,
+      "fb": [
+        2,
+        12
+      ],
+      "sb": [
+        12,
+        19
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 5,
+      "reco_id": 2116,
+      "fb": [
+        2,
+        12
+      ],
+      "sb": [
+        12,
+        18
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7247448,
+      "attempt_number": 5,
+      "reco_id": 12811,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        18
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 5,
+      "reco_id": 8531,
+      "fb": [
+        1,
+        8
+      ],
+      "sb": [
+        8,
+        14
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 3,
+      "reco_id": 2793,
+      "fb": [
+        2,
+        7
+      ],
+      "sb": [
+        7,
+        23
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 2
+    },
+    {
+      "result_id": 6734619,
+      "attempt_number": 4,
+      "reco_id": 11448,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        20
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 2,
+      "reco_id": 2792,
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 3,
+      "reco_id": 2876,
+      "fb": [
+        1,
+        11
+      ],
+      "sb": [
+        11,
+        19
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 2,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 5,
+      "reco_id": 325,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        21
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 3
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 3,
+      "reco_id": 12840,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        14
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 2,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 2,
+      "reco_id": 322,
+      "fb": [
+        2,
+        8
+      ],
+      "sb": [
+        8,
+        17
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 4,
+      "reco_id": 2491,
+      "fb": [
+        1,
+        11
+      ],
+      "sb": [
+        11,
+        21
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 2,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 2,
+      "reco_id": 2875,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        15
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 1,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 3,
+      "reco_id": 9355,
+      "fb": [
+        1,
+        11
+      ],
+      "sb": [
+        11,
+        19
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 3403279,
+      "attempt_number": 4,
+      "reco_id": 3501,
+      "fb": [
+        1,
+        8
+      ],
+      "sb": [
+        8,
+        17
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 2,
+      "fb_best_piece": 3,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 2,
+      "reco_id": 9212,
+      "fb": [
+        1,
+        11
+      ],
+      "sb": [
+        11,
+        23
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 3,
+      "fb_best_full": 2,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 2
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 5,
+      "reco_id": 805,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        17
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 3,
+      "reco_id": 10501,
+      "fb": [
+        1,
+        10
+      ],
+      "sb": [
+        10,
+        22
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 3,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 2,
+      "reco_id": 10500,
+      "fb": [
+        2,
+        9
+      ],
+      "sb": [
+        9,
+        17
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 2,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 4,
+      "reco_id": 12841,
+      "fb": [
+        1,
+        9
+      ],
+      "sb": [
+        9,
+        16
+      ],
+      "fb_exact_full": 1,
+      "fb_exact_piece": 1,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 5,
+      "fb_best_piece": 5,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 5,
+      "reco_id": 9367,
+      "fb": [
+        1,
+        8
+      ],
+      "sb": [
+        8,
+        17
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 1,
+      "fb_best_piece": 2,
+      "sb_exact_full_blocks": 0,
+      "sb_orientation_free_full_blocks": 1
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 1,
+      "reco_id": 9353,
+      "fb": [
+        1,
+        11
+      ],
+      "sb": [
+        11,
+        18
+      ],
+      "fb_exact_full": 0,
+      "fb_exact_piece": 0,
+      "fb_orientation_free_full": 1,
+      "fb_orientation_free_piece": 1,
+      "fb_best_full": 0,
+      "fb_best_piece": 0,
+      "sb_exact_full_blocks": 1,
+      "sb_orientation_free_full_blocks": 1
+    }
+  ]
+}

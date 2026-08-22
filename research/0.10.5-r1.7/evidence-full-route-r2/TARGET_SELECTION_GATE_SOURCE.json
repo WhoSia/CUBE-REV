@@ -1,0 +1,475 @@
+{
+  "schema_version": "CR0105R17-TARGET-SELECTION-ADJUDICATION-1",
+  "status": "PASS",
+  "source_selection_run_id": 32323654544,
+  "results": [
+    {
+      "name": "UNDER10_SPEED_ONLY",
+      "scheme": "speed_only",
+      "status": "PASS_INTERNAL_WEIGHT_GATE",
+      "target_population_n": 1261540,
+      "target_linked_n": 3405,
+      "supported_population_n": 1261540,
+      "supported_population_fraction": 1.0,
+      "supported_linked_n": 3405,
+      "supported_linked_fraction": 1.0,
+      "zero_overlap_population_n": 0,
+      "zero_overlap_fraction": 0.0,
+      "lt5_link_population_n": 0,
+      "lt5_link_fraction": 0.0,
+      "stabilized_weight": {
+        "min": 0.019168481027597665,
+        "p50": 0.2034156033814664,
+        "p90": 3.4481154725338388,
+        "p95": 3.4481154725338388,
+        "p99": 3.4481154725338388,
+        "max": 3.4481154725338388,
+        "ess": 1094.700546965958,
+        "ess_fraction": 0.3214979579929392
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 2,
+          "ess": 1249.405373411211,
+          "target_cell_tv": 0.06264440963126974
+        },
+        {
+          "cap": 5,
+          "ess": 1094.7005469659575,
+          "target_cell_tv": 6.938893903907228e-18
+        },
+        {
+          "cap": 10,
+          "ess": 1094.7005469659575,
+          "target_cell_tv": 6.938893903907228e-18
+        },
+        {
+          "cap": 20,
+          "ess": 1094.7005469659575,
+          "target_cell_tv": 6.938893903907228e-18
+        },
+        {
+          "cap": 25,
+          "ess": 1094.7005469659575,
+          "target_cell_tv": 6.938893903907228e-18
+        },
+        {
+          "cap": 50,
+          "ess": 1094.7005469659575,
+          "target_cell_tv": 6.938893903907228e-18
+        }
+      ],
+      "gate": {
+        "population_coverage_min": 0.95,
+        "linked_coverage_min": 0.9,
+        "ess_min": 200,
+        "ess_fraction_min": 0.05,
+        "p99_max": 25,
+        "max_weight_max": 50
+      }
+    },
+    {
+      "name": "UNDER10_SPEED_X_ERA",
+      "scheme": "speed_x_era",
+      "status": "PASS_INTERNAL_WEIGHT_GATE",
+      "target_population_n": 1261540,
+      "target_linked_n": 3405,
+      "supported_population_n": 1261441,
+      "supported_population_fraction": 0.9999215244859457,
+      "supported_linked_n": 3355,
+      "supported_linked_fraction": 0.9853157121879589,
+      "zero_overlap_population_n": 0,
+      "zero_overlap_fraction": 0.0,
+      "lt5_link_population_n": 4,
+      "lt5_link_fraction": 3.1707278405758043e-06,
+      "stabilized_weight": {
+        "min": 0.005918335166393538,
+        "p50": 0.0780786550196693,
+        "p90": 1.726039255884092,
+        "p95": 2.782066844044376,
+        "p99": 20.58271080454813,
+        "max": 20.58271080454813,
+        "ess": 254.15010206728013,
+        "ess_fraction": 0.07575263847012821
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 2,
+          "ess": 1050.3967346165755,
+          "target_cell_tv": 0.47085031865835325
+        },
+        {
+          "cap": 5,
+          "ess": 729.6949816825619,
+          "target_cell_tv": 0.33521012247071413
+        },
+        {
+          "cap": 10,
+          "ess": 442.37879919718966,
+          "target_cell_tv": 0.17809177456859965
+        },
+        {
+          "cap": 20,
+          "ess": 259.2405008214426,
+          "target_cell_tv": 0.006831664103807968
+        },
+        {
+          "cap": 25,
+          "ess": 254.15010206728013,
+          "target_cell_tv": 1.431146867680866e-17
+        },
+        {
+          "cap": 50,
+          "ess": 254.15010206728013,
+          "target_cell_tv": 1.431146867680866e-17
+        }
+      ],
+      "gate": {
+        "population_coverage_min": 0.95,
+        "linked_coverage_min": 0.9,
+        "ess_min": 200,
+        "ess_fraction_min": 0.05,
+        "p99_max": 25,
+        "max_weight_max": 50
+      }
+    },
+    {
+      "name": "UNDER10_SPEED_X_ERA_X_ROUNDMEDIAN",
+      "scheme": "speed_x_era_x_roundmedian",
+      "status": "HOLD_INTERNAL_WEIGHT_GATE",
+      "target_population_n": 1261540,
+      "target_linked_n": 3405,
+      "supported_population_n": 995457,
+      "supported_population_fraction": 0.7890808059990171,
+      "supported_linked_n": 3287,
+      "supported_linked_fraction": 0.9653450807635829,
+      "zero_overlap_population_n": 207673,
+      "zero_overlap_fraction": 0.16461864070897475,
+      "lt5_link_population_n": 58101,
+      "lt5_link_fraction": 0.0460556145663237,
+      "stabilized_weight": {
+        "min": 0.006992472685764369,
+        "p50": 0.07558280267254136,
+        "p90": 1.53062755005079,
+        "p95": 1.8797593138706066,
+        "p99": 9.578133696678126,
+        "max": 100.93886827858964,
+        "ess": 54.499084661845544,
+        "ess_fraction": 0.016580190040111208
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 2,
+          "ess": 853.2686460111111,
+          "target_cell_tv": 0.5739598454456253
+        },
+        {
+          "cap": 5,
+          "ess": 562.6261062552114,
+          "target_cell_tv": 0.5105573710770102
+        },
+        {
+          "cap": 10,
+          "ess": 370.3406624799973,
+          "target_cell_tv": 0.4616012948171014
+        },
+        {
+          "cap": 20,
+          "ess": 249.47161044722327,
+          "target_cell_tv": 0.3662147172194847
+        },
+        {
+          "cap": 25,
+          "ess": 205.62873350369082,
+          "target_cell_tv": 0.3258920341337387
+        },
+        {
+          "cap": 50,
+          "ess": 103.10733473540746,
+          "target_cell_tv": 0.17383085845211052
+        }
+      ],
+      "gate": {
+        "population_coverage_min": 0.95,
+        "linked_coverage_min": 0.9,
+        "ess_min": 200,
+        "ess_fraction_min": 0.05,
+        "p99_max": 25,
+        "max_weight_max": 50
+      }
+    },
+    {
+      "name": "UNDER7_SPEED_ONLY",
+      "scheme": "speed_only",
+      "status": "PASS_INTERNAL_WEIGHT_GATE",
+      "target_population_n": 130940,
+      "target_linked_n": 2520,
+      "supported_population_n": 130940,
+      "supported_population_fraction": 1.0,
+      "supported_linked_n": 2520,
+      "supported_linked_fraction": 1.0,
+      "zero_overlap_population_n": 0,
+      "zero_overlap_fraction": 0.0,
+      "lt5_link_population_n": 0,
+      "lt5_link_fraction": 0.0,
+      "stabilized_weight": {
+        "min": 0.13667837686472176,
+        "p50": 1.4504286729401452,
+        "p90": 1.4504286729401452,
+        "p95": 1.4504286729401452,
+        "p99": 1.4504286729401452,
+        "max": 1.4504286729401452,
+        "ess": 1814.4314524776835,
+        "ess_fraction": 0.7200124811419379
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 2,
+          "ess": 1814.4314524776835,
+          "target_cell_tv": 0.0
+        },
+        {
+          "cap": 5,
+          "ess": 1814.4314524776835,
+          "target_cell_tv": 0.0
+        },
+        {
+          "cap": 10,
+          "ess": 1814.4314524776835,
+          "target_cell_tv": 0.0
+        },
+        {
+          "cap": 20,
+          "ess": 1814.4314524776835,
+          "target_cell_tv": 0.0
+        },
+        {
+          "cap": 25,
+          "ess": 1814.4314524776835,
+          "target_cell_tv": 0.0
+        },
+        {
+          "cap": 50,
+          "ess": 1814.4314524776835,
+          "target_cell_tv": 0.0
+        }
+      ],
+      "gate": {
+        "population_coverage_min": 0.95,
+        "linked_coverage_min": 0.9,
+        "ess_min": 200,
+        "ess_fraction_min": 0.05,
+        "p99_max": 25,
+        "max_weight_max": 50
+      }
+    },
+    {
+      "name": "UNDER7_SPEED_X_ERA",
+      "scheme": "speed_x_era",
+      "status": "PASS_INTERNAL_WEIGHT_GATE",
+      "target_population_n": 130940,
+      "target_linked_n": 2520,
+      "supported_population_n": 130841,
+      "supported_population_fraction": 0.9992439285168779,
+      "supported_linked_n": 2470,
+      "supported_linked_fraction": 0.9801587301587301,
+      "zero_overlap_population_n": 0,
+      "zero_overlap_fraction": 0.0,
+      "lt5_link_population_n": 4,
+      "lt5_link_fraction": 3.054834275240568e-05,
+      "stabilized_weight": {
+        "min": 0.04200752291946948,
+        "p50": 0.45127654746963675,
+        "p90": 2.6180618098976405,
+        "p95": 2.6180618098976405,
+        "p99": 2.6180618098976405,
+        "max": 2.6180618098976405,
+        "ess": 1148.3509335864117,
+        "ess_fraction": 0.4649194063102881
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 2,
+          "ess": 1267.015511597293,
+          "target_cell_tv": 0.04835953365357145
+        },
+        {
+          "cap": 5,
+          "ess": 1148.3509335864119,
+          "target_cell_tv": 1.1058862159352145e-17
+        },
+        {
+          "cap": 10,
+          "ess": 1148.3509335864119,
+          "target_cell_tv": 1.1058862159352145e-17
+        },
+        {
+          "cap": 20,
+          "ess": 1148.3509335864119,
+          "target_cell_tv": 1.1058862159352145e-17
+        },
+        {
+          "cap": 25,
+          "ess": 1148.3509335864119,
+          "target_cell_tv": 1.1058862159352145e-17
+        },
+        {
+          "cap": 50,
+          "ess": 1148.3509335864119,
+          "target_cell_tv": 1.1058862159352145e-17
+        }
+      ],
+      "gate": {
+        "population_coverage_min": 0.95,
+        "linked_coverage_min": 0.9,
+        "ess_min": 200,
+        "ess_fraction_min": 0.05,
+        "p99_max": 25,
+        "max_weight_max": 50
+      }
+    },
+    {
+      "name": "MODERN_2023_26_UNDER10_SPEED_X_ERA",
+      "scheme": "speed_x_era",
+      "status": "HOLD_INTERNAL_WEIGHT_GATE",
+      "target_population_n": 882894,
+      "target_linked_n": 1569,
+      "supported_population_n": 882894,
+      "supported_population_fraction": 1.0,
+      "supported_linked_n": 1569,
+      "supported_linked_fraction": 1.0,
+      "zero_overlap_population_n": 0,
+      "zero_overlap_fraction": 0.0,
+      "lt5_link_population_n": 0,
+      "lt5_link_fraction": 0.0,
+      "stabilized_weight": {
+        "min": 0.014283064245694196,
+        "p50": 0.2464570099271041,
+        "p90": 0.2464570099271041,
+        "p95": 13.752807630361062,
+        "p99": 13.752807630361062,
+        "max": 13.752807630361062,
+        "ess": 129.84443353506197,
+        "ess_fraction": 0.0827561717878024
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 2,
+          "ess": 348.08258449819755,
+          "target_cell_tv": 0.36855711449816336
+        },
+        {
+          "cap": 5,
+          "ess": 189.06964150119924,
+          "target_cell_tv": 0.15578062863462133
+        },
+        {
+          "cap": 10,
+          "ess": 141.85340893485449,
+          "target_cell_tv": 0.03881538663583572
+        },
+        {
+          "cap": 20,
+          "ess": 129.84443353506194,
+          "target_cell_tv": 0.0
+        },
+        {
+          "cap": 25,
+          "ess": 129.84443353506194,
+          "target_cell_tv": 0.0
+        },
+        {
+          "cap": 50,
+          "ess": 129.84443353506194,
+          "target_cell_tv": 0.0
+        }
+      ],
+      "gate": {
+        "population_coverage_min": 0.95,
+        "linked_coverage_min": 0.9,
+        "ess_min": 200,
+        "ess_fraction_min": 0.05,
+        "p99_max": 25,
+        "max_weight_max": 50
+      }
+    },
+    {
+      "name": "MODERN_2023_26_UNDER10_SPEED_X_ERA_X_ROUNDMEDIAN",
+      "scheme": "speed_x_era_x_roundmedian",
+      "status": "HOLD_INTERNAL_WEIGHT_GATE",
+      "target_population_n": 882894,
+      "target_linked_n": 1569,
+      "supported_population_n": 706829,
+      "supported_population_fraction": 0.80058194981504,
+      "supported_linked_n": 1569,
+      "supported_linked_fraction": 1.0,
+      "zero_overlap_population_n": 176065,
+      "zero_overlap_fraction": 0.19941805018495992,
+      "lt5_link_population_n": 0,
+      "lt5_link_fraction": 0.0,
+      "stabilized_weight": {
+        "min": 0.01738399447188985,
+        "p50": 0.16110300968085794,
+        "p90": 0.16110300968085794,
+        "p95": 0.4964892498751466,
+        "p99": 67.85624387228029,
+        "max": 67.85624387228029,
+        "ess": 27.9020086441999,
+        "ess_fraction": 0.017783306975270807
+      },
+      "trim_sensitivity": [
+        {
+          "cap": 2,
+          "ess": 320.61317264057595,
+          "target_cell_tv": 0.6648637464401431
+        },
+        {
+          "cap": 5,
+          "ess": 130.64946150600213,
+          "target_cell_tv": 0.5504941863046511
+        },
+        {
+          "cap": 10,
+          "ess": 83.45588628223187,
+          "target_cell_tv": 0.417227089145116
+        },
+        {
+          "cap": 20,
+          "ess": 52.16342347328173,
+          "target_cell_tv": 0.24572158056984675
+        },
+        {
+          "cap": 25,
+          "ess": 45.14024406079192,
+          "target_cell_tv": 0.19235059290692047
+        },
+        {
+          "cap": 50,
+          "ess": 31.34572002618053,
+          "target_cell_tv": 0.0491871525828868
+        }
+      ],
+      "gate": {
+        "population_coverage_min": 0.95,
+        "linked_coverage_min": 0.9,
+        "ess_min": 200,
+        "ess_fraction_min": 0.05,
+        "p99_max": 25,
+        "max_weight_max": 50
+      }
+    }
+  ],
+  "internal_weight_gate_passes": [
+    "UNDER10_SPEED_ONLY",
+    "UNDER10_SPEED_X_ERA",
+    "UNDER7_SPEED_ONLY",
+    "UNDER7_SPEED_X_ERA"
+  ],
+  "estimand_decision": {
+    "full_wca_population": "PROHIBITED_ZERO_OVERLAP",
+    "speed_poststratified_sub10": "DESCRIPTIVE_SENSITIVITY_ONLY",
+    "multidimensional_sub10": "ADMISSIBLE_OVERLAP_RESTRICTED_ONLY",
+    "rule": "Never present speed-only poststratification as removing era/performance selection. If multidimensional target fails the declared gate, estimate route phenotypes only in the explicitly supported overlap domain and report population coverage."
+  },
+  "human_observations": 0
+}

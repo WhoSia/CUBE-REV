@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R19-FRESH-READINESS-RUN-1",
+  "workflow_run_id": "32358621444",
+  "head_sha": "18e1475a4e2e99fea4fa92c7d71cd695bb189149",
+  "r3_seal": "86522ee214024c8cac5257e07a4b9df451edff764fed13d9027ba79c957f2fca",
+  "exit_code": 0,
+  "operational_status": "PASS",
+  "confirmatory_scoring_authorized": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T10:23:09.970439+00:00"
+}

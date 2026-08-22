@@ -1,0 +1,36 @@
+{
+  "status": "PASS_GENERATION_REVIEW_G3_REMANDED_COMPONENTS_VALIDATED_G4_CANONICAL_ROUX_CANDIDATE_IDENTIFIED",
+  "primary": {
+    "g3": "REMANDED_NOT_RELEASED",
+    "reason": "Frozen rotation-present geometry gate failed at 3/6=0.50 versus required 0.75. Posthoc diagnostics cannot remove or relax that gate.",
+    "geometry_status": "HOLD_ROUX_G3_DEVELOPMENT_GEOMETRY",
+    "null_status": "HOLD_ROUX_G3_DEVELOPMENT_NULL_ENGINEERING",
+    "future_roux_scoring_authority": false,
+    "posthoc_diagnostics_can_repair_g3": false
+  },
+  "components": {
+    "rotation_transport_algebra": true,
+    "prefix_unique_rate": 1,
+    "overall_sb_completion_rate": 0.9230769230769231,
+    "no_rotation_sb_completion_rate": 0.9435483870967742,
+    "cmll_consistency_rate": 0.9827586206896551,
+    "lse_consistency_rate": 0.975,
+    "admitted_attempts": 120,
+    "null_stack_pass_if_geometry_gate_externalized": true,
+    "loo_watch_rate": 0.05,
+    "nested_watch_rate": 0.05,
+    "crossfit_loo_pearson": 0.989423183668037,
+    "crossfit_loo_p99_abs_diff": 0.21972505598650072,
+    "primary_1pct_resolution": true
+  },
+  "next": {
+    "label": "ROUX-MEASUREMENT-G4",
+    "version_candidate": "CUBE-REV 0.10.5-R1.14",
+    "title_candidate": "Canonical Roux Block-preservation Ontology, Residual Reconstruction-consistency Fork & Fresh-route Gauge Authority Court",
+    "must_begin_with_new_NAPKIN": true,
+    "r113_routes_may_be_confirmatory": false,
+    "fresh_routes_required_for_authority": true,
+    "future_scoring_authority_at_transition": false
+  },
+  "semantic_sha256": "94d15c457c793f3733f11e069d6f5a6700066634b1043d757ba44aa9f1f4c20d"
+}

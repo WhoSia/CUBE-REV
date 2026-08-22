@@ -1,0 +1,24 @@
+{
+  "status": "PASS_G4_CANONICAL_REFERENCE_NULL",
+  "reference_attempts": 114,
+  "fallback_rate": 0,
+  "loo_watch": 0.043859649122807015,
+  "nested_watch": 0.03508771929824561,
+  "pearson": 0.9859661502049432,
+  "p99": 0.3218498396015548,
+  "minP": 0.008771929824561403,
+  "resolution": true,
+  "checks": {
+    "ontology_pass": true,
+    "loo_familywise_attempts_min": true,
+    "nested_familywise_attempts_min": true,
+    "local_fallback_rate_max": true,
+    "nested_watch_rate_band": true,
+    "crossfit_loo_pearson_min": true,
+    "crossfit_loo_abs_diff_p99_max": true,
+    "minimum_loo_reference_n": true,
+    "primary_1pct_resolution": true,
+    "g4_canonical_only": true
+  },
+  "seal_sha256": "7cc0aaa2754fe911aa1bc536b3a53c527410b710f466ebe30ce8bbe37f17861a"
+}

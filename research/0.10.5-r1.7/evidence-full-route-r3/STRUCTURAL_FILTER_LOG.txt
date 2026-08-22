@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R17-STRUCTURAL-FILTER-PREOUTCOME-1",
+  "status": "PASS_PREOUTCOME_FILTER_FREEZE",
+  "source_manifest_sha256": "ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe",
+  "source_r2_court_sha256": "1c83eb6f7254bc092cb359bba369f6c0327bc857fcec9410561083e9d81fd49e",
+  "motivation_seen": "R2 algebraic phenotype was high; no individual R3 structural outcomes were computed before this filter was declared.",
+  "primary_structural_filter": "At least two distinct non-rotation move-generator families in candidate actual interval.",
+  "single_generator_policy": "Retain R2 as algebraic-compression sensitivity only; exclude from R3 primary structural phenotype.",
+  "scheduling_policy": "Re-run weighted interval scheduling after filtering; do not merely delete chosen R2 intervals.",
+  "human_observations": 0
+}
