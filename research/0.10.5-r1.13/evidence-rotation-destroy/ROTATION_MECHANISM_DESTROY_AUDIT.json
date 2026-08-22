@@ -1,0 +1,38 @@
+{
+  "schema_version": "CR0105R113-ROTATION-MECHANISM-DESTROY-1",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "status": "POSTHOC_DIAGNOSTIC_ONLY_NO_G3_GATE_CHANGE",
+  "primary_geometry_semantic_sha256": "4fa8067dc5541ff292acbd9241085371fd675edceb6bd87259153481f22f6c8e",
+  "fixture_semantic_sha256": "3a7a611adbe3e64e0cfcbac6d2cabccbf973a235c25060855a00989721bd2b82",
+  "counts": {
+    "eligible": 130,
+    "rotation_present": 6,
+    "fixed_success": 120,
+    "forward_success": 120,
+    "inverse_success": 117,
+    "fixed_forward_same_outcome": 124,
+    "fixed_forward_both_success": 117,
+    "fixed_only": 3,
+    "forward_only": 3,
+    "neither": 7,
+    "rotation_fixed_success": 3,
+    "rotation_forward_success": 3,
+    "rotation_inverse_success": 0,
+    "rotation_fixed_forward_same": 0,
+    "forward_failure_first_block_break": 6
+  },
+  "rates": {
+    "fixed_success": 0.9230769230769231,
+    "forward_success": 0.9230769230769231,
+    "inverse_success": 0.9,
+    "fixed_forward_same_outcome": 0.9538461538461539,
+    "rotation_fixed_success": 0.5,
+    "rotation_forward_success": 0.5,
+    "rotation_inverse_success": 0,
+    "rotation_fixed_forward_same": 0
+  },
+  "interpretation_guard": "This court is posthoc. Forward/inverse/fixed comparisons cannot repair R1.13 frozen geometry or select a new transport rule in-place. They only identify the next theory branch.",
+  "post_result_gate_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "46c92c8bc474fefd340fa0fbefe33e7f4e470065ea7e0c88eedd044314fc6b19"
+}

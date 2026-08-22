@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R114-EXTERNAL-ACQUISITION-RUN-1",
+  "workflow_run_id": "32539818768",
+  "head_sha": "cb8cd2376de89f33e8ef5c861ed7e296e0549110",
+  "exit_code": 0,
+  "reference_seal_sha256": "7cc0aaa2754fe911aa1bc536b3a53c527410b710f466ebe30ce8bbe37f17861a",
+  "second_live_index_read_seen": true,
+  "ontology_scoring_performed": false,
+  "null_scoring_performed": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-22T00:17:25.339561+00:00"
+}

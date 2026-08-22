@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R113-MOVE-COCYCLE-RUN-1",
+  "workflow_run_id": "32458980626",
+  "head_sha": "4163195ce77c274863d18c704d3fb79d337efa3e",
+  "exit_code": 0,
+  "primary_gate_changed": false,
+  "fresh_network_read": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T07:31:16.475377+00:00"
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "CUBE-REV-SKILL-WORKSHOP-DEFAULT-1",
+  "status": "ACTIVE_BY_DEFAULT_ON_DESCENDANT_RESEARCH_BRANCHES",
+  "introduced_in": "CUBE-REV 0.10.5-R1.8",
+  "scope": "CUBE-REV research/version branches descended from this research lineage; does not mutate public runner, collector, or human-launch authority.",
+  "passive_default": {
+    "napkin": "ON — preserve scientific intent, frozen estimands, falsifiers, and prohibited claims; any post-outcome representation change is a new remand/version, never an in-place rewrite.",
+    "ravel": "ON — repeated design/implementation/adversarial/statistical/authority loops; operational failure and negative scientific result are always separated.",
+    "court": "ON when a claim crosses a gate.",
+    "trace": "ON for run IDs, hashes, inputs, execution facts, and failures.",
+    "atlas": "ON for version lineage and supersession.",
+    "sentinel": "ON before persistent or consequential writes; research branches have no implicit main/public/human authority.",
+    "steward": "ON for fail-observable checkpoints and resumable execution.",
+    "forge_prism_orbit_axiom_scout_pivot": "Conditional — invoked when implementation, uncertainty decomposition, state transition, invariant proof, external evidence, or representation remand materially improves rigor."
+  },
+  "standing_invariants": [
+    "Do not optimize the research definition to obtain positive results.",
+    "Do not reinterpret a posthoc sensitivity as a prospective primary result.",
+    "Do not lower coverage, ESS, overlap, or integrity gates after outcome inspection.",
+    "Do not infer cognitive intention, error, or recovery from algebraic/state geometry alone without an explicit identification bridge.",
+    "Keep negative results, measurement failures, selection failures, and implementation failures as distinct states.",
+    "Human recruitment remains disabled until a future version explicitly passes its human-launch gate.",
+    "Main/public/collector changes require separate authority and are never inherited from a research PASS."
+  ],
+  "inheritance_rule": "A later CUBE-REV research version may add stricter local gates. It may not silently weaken these defaults. Any deliberate override must be explicit, versioned, justified, and recorded before affected outcomes are inspected.",
+  "human_observations": 0
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "CR0105R110-ROUX-BLOCK-FRAME-1",
+  "status": "HOLD_ROUX_BLOCK_FRAME_IDENTIFICATION",
+  "structural": {
+    "frames_24": true,
+    "axes_12": true,
+    "every_block_3_edges_2_corners": true,
+    "paired_blocks_disjoint": true
+  },
+  "counts": {
+    "historical_roux_attempts": 98,
+    "route_source": 98,
+    "state_certified": 92,
+    "ordered_eligible": 92,
+    "ordered_unique": 0,
+    "axis_eligible": 92,
+    "axis_unique": 0,
+    "cmll_consistency_n": 0,
+    "cmll_consistency_pass": 0,
+    "lse_consistency_n": 0,
+    "lse_consistency_pass": 0,
+    "errors": 4
+  },
+  "rates": {
+    "ordered_unique_rate": 0,
+    "axis_unique_rate": 0,
+    "cmll_consistency_rate": 0,
+    "lse_consistency_rate": 0
+  },
+  "checks": {
+    "frames_24": true,
+    "axes_12": true,
+    "every_block_3_edges_2_corners": true,
+    "paired_blocks_disjoint": true,
+    "historical_roux_attempts_92": false,
+    "roux_state_certified_ge_80": true,
+    "ordered_eligible_ge_15": true,
+    "ordered_unique_rate_ge_0_80": false,
+    "axis_eligible_ge_30": true,
+    "axis_unique_rate_ge_0_80": false,
+    "cmll_consistency_rate_ge_0_85": false
+  },
+  "future_roux_scoring_authority": false,
+  "interpretation": "State-derived 1x2x3 frame-identification engineering court only; comments choose route lines but do not define cubie frame. PASS never releases Roux scoring authority in R1.10.",
+  "human_observations": 0,
+  "semantic_sha256": "12e354f61c6414ebc59596f32cdc9b5b46a59b349ee7e7d86efc0d165d94d15b"
+}

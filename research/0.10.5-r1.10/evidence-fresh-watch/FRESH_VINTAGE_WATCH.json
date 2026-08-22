@@ -1,0 +1,42 @@
+{
+  "schema_version": "CR0105R110-FRESH-VINTAGE-WATCH-1",
+  "status": "WATCH_PASS_DATA_WAIT",
+  "ordering_proof": {
+    "local_authority_seal_sha256": "b83478923356bb9a0de1a40613f6e6a58ddf482d538393d7dc40b04eb1291cc6",
+    "local_seal_committed_before_network_read": true,
+    "fresh_confirmatory_scoring_authorized": false
+  },
+  "retrieval": {
+    "url": "https://reco.nz/solve/",
+    "http_status": 200,
+    "html_bytes": 10317465,
+    "html_sha256": "c0ca3106023d108209028fd2b0f56962c9a23b5b09e41fbf5af673d7ae4795ba"
+  },
+  "frozen": {
+    "db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+    "reco_rows": 10596,
+    "max_reco_id": 14051
+  },
+  "live": {
+    "reco_rows": 10596,
+    "max_reco_id": 14051,
+    "id_set_sha256": "762e167b5c0ebca211e6e4249592bb35cf07d1b033cb6d611a6e9952336ff243",
+    "duplicate_id_rows": 0
+  },
+  "delta": {
+    "missing_frozen_id_n": 0,
+    "missing_frozen_ids_first50": [],
+    "new_reco_id_n": 0,
+    "new_reco_ids": [],
+    "new_ids_above_frozen_max": []
+  },
+  "authority": {
+    "watch_only": true,
+    "route_fetch_performed": false,
+    "linkage_performed": false,
+    "phenotype_scoring_performed": false,
+    "future_layered_scorer_used": false,
+    "roux_scorer_used": false
+  },
+  "human_observations": 0
+}

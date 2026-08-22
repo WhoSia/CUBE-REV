@@ -1,0 +1,75 @@
+{
+  "schema_version": "CR0105R112-RESIDUAL-GAUGE-COURT-1",
+  "generation": "ROUX-MEASUREMENT-G2",
+  "status": "POSTHOC_RESIDUAL_DIAGNOSTIC_NO_PRIMARY_GATE_CHANGE",
+  "identifiability_semantic_sha256": "c6c776bc5df6cecc394f6acc2f4dc687e2c958ac20b6dac73a9b93c8af2a3b9a",
+  "counts": {
+    "eligible": 130,
+    "prefix_success": 120,
+    "prefix_failure": 10,
+    "failure_matches_final_gauge": 3,
+    "failure_completion_after_sb_before_cmll": 1,
+    "failure_completion_after_sb_before_lse": 1,
+    "failure_completion_any_later": 4,
+    "failure_has_rotation_in_sb": 3,
+    "failure_has_wide_slice_in_sb": 10,
+    "success_has_rotation_in_sb": 3,
+    "success_has_wide_slice_in_sb": 116,
+    "failure_final_prefix_frame_both_solved": 3,
+    "failure_same_transform_other_frame_completes_in_sb": 0,
+    "failure_first_block_breaks_in_sb": 6
+  },
+  "rates": {
+    "prefix_success": 0.9230769230769231,
+    "rotation_in_sb_failure": 0.3,
+    "rotation_in_sb_success": 0.025,
+    "wide_slice_in_sb_failure": 1,
+    "wide_slice_in_sb_success": 0.9666666666666667,
+    "failure_any_later_completion": 0.4,
+    "failure_final_prefix_frame_both_solved": 0.3,
+    "failure_first_block_breaks": 0.6
+  },
+  "by_source": {
+    "SEALED_R111": {
+      "eligible": 89,
+      "success": 82,
+      "failure": 7
+    },
+    "R112_EXPANSION": {
+      "eligible": 41,
+      "success": 38,
+      "failure": 3
+    }
+  },
+  "by_sb_annotation_family": {
+    "SS+SP": {
+      "eligible": 109,
+      "success": 103,
+      "failure": 6
+    },
+    "SP+SB": {
+      "eligible": 6,
+      "success": 5,
+      "failure": 1
+    },
+    "SB": {
+      "eligible": 3,
+      "success": 2,
+      "failure": 1
+    },
+    "SS+SB": {
+      "eligible": 11,
+      "success": 10,
+      "failure": 1
+    },
+    "SS+SP+FLIPPED_SP": {
+      "eligible": 1,
+      "success": 0,
+      "failure": 1
+    }
+  },
+  "adjudication_rule": "Residual court only characterizes the 10 prefix-identified failures. It cannot promote, repair, or relax R1.12 G2 authority.",
+  "post_result_gate_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "bcc971b134682d9f3c1f9445cbb3e49af527fadabc2c31b788cfc44033843e8d"
+}

@@ -1,0 +1,157 @@
+{
+  "schema_version": "CR0105R19-QUOTIENT-GEOMETRY-PROBE-1",
+  "status": "PASS",
+  "cubing_version": "0.63.3",
+  "cubing_source_commit": "c223a53ba37e0941fe8242571aef1cccb978bb24",
+  "orbits": {
+    "EDGE": "EDGES",
+    "CORNER": "CORNERS",
+    "CENTER": "CENTERS"
+  },
+  "face_support": {
+    "U": {
+      "edges": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "corners": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "D": {
+      "edges": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "corners": [
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "R": {
+      "edges": [
+        1,
+        5,
+        8,
+        10
+      ],
+      "corners": [
+        0,
+        1,
+        4,
+        7
+      ]
+    },
+    "L": {
+      "edges": [
+        3,
+        7,
+        9,
+        11
+      ],
+      "corners": [
+        2,
+        3,
+        5,
+        6
+      ]
+    },
+    "F": {
+      "edges": [
+        0,
+        4,
+        8,
+        9
+      ],
+      "corners": [
+        0,
+        3,
+        4,
+        5
+      ]
+    },
+    "B": {
+      "edges": [
+        2,
+        6,
+        10,
+        11
+      ],
+      "corners": [
+        1,
+        2,
+        6,
+        7
+      ]
+    }
+  },
+  "checks": {
+    "orientation_group_24": true,
+    "face_edge_support_4": true,
+    "face_corner_support_4": true,
+    "opposite_edge_support_disjoint": true,
+    "opposite_corner_support_disjoint": true,
+    "center_canonical_unique_unrotated": true,
+    "center_canonical_unique_rotated": true,
+    "center_canonical_rotation_invariant": true,
+    "synthetic_cross_face_detected": true,
+    "synthetic_cross_face_unique": true,
+    "synthetic_cross_face_D": true,
+    "cross_spec_admitted": true,
+    "cross_endpoint_zero": true,
+    "cross_ignores_U_layer_permutation": true,
+    "f2l_spec_admitted": true,
+    "f2l_endpoint_zero": true,
+    "f2l_quotients_last_layer_U_turn": true,
+    "pll_spec_admitted": true,
+    "pll_auf_equiv_U_zero": true,
+    "pll_auf_equiv_U2_zero": true,
+    "pll_auf_equiv_Uprime_zero": true,
+    "oll_spec_admitted": true,
+    "oll_piece_permutation_quotiented": true,
+    "historical_manifest_total_1800": true,
+    "historical_route_source_ge_1750": true,
+    "historical_state_certified_ge_1700": true,
+    "cfop_zb_cross_frame_rate_ge_0_95": true
+  },
+  "historical_frame_probe": {
+    "total": 1800,
+    "route_source": 1800,
+    "parse_ok": 1790,
+    "state_certified": 1762,
+    "cfop_zb": 1670,
+    "cfop_zb_cross_line": 1667,
+    "cfop_zb_frame_ok": 1585,
+    "cfop_zb_frame_tie": 6,
+    "roux": 92,
+    "roux_cmll_line": 88,
+    "roux_last_face_ok": 34,
+    "errors": 11
+  },
+  "cross_face_counts": {
+    "U": 751,
+    "L": 73,
+    "F": 98,
+    "D": 431,
+    "R": 89,
+    "B": 143
+  },
+  "cross_failures": {
+    "NO_EXACT_SOLVED_FACE_STAR": 82,
+    "NO_CROSS_LINE": 3
+  },
+  "roux_failures": {
+    "NO_FOUR_SOLVED_CORNER_FACE": 54,
+    "NO_CMLL_LINE": 4
+  },
+  "human_observations": 0
+}

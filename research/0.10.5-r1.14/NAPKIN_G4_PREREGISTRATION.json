@@ -1,0 +1,139 @@
+{
+  "schema_version": "CR0105R114-NAPKIN-G4-PREREGISTRATION-1",
+  "stage": "CUBE-REV 0.10.5-R1.14 — Canonical Roux Block-preservation Ontology, Residual Reconstruction-consistency Fork & Fresh-route Gauge Authority Court",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "status": "FROZEN_BEFORE_G4_ROUTE_RECLASSIFICATION_AND_BEFORE_G4_NETWORK_SNAPSHOT",
+  "parent": {
+    "branch": "cube-rev-0.10.5-r1.13-final-seal",
+    "commit": "6c1017cd23d20878ce4ec1e9bbaa6d4bf78f2d26",
+    "parent_generation": "ROUX-MEASUREMENT-G3",
+    "parent_disposition": "REMANDED_NOT_RELEASED",
+    "parent_development_routes_may_be_confirmatory": false,
+    "parent_roux_future_authority": false
+  },
+  "research_intent": {
+    "primary_question": "Can Roux reconstruction traces be prospectively partitioned into a state-defined canonical first-block-preserving second-block ontology and explicit residual forks without using outcome scores, and does that ontology remain usable on routes unseen by G3?",
+    "secondary_question": "Can the already resolution-capable G3 null architecture be frozen as a reference-only calibration object and applied without fallback to genuinely unseen canonical Roux routes?",
+    "not_the_question": [
+      "whether a residual route was mentally intended as Roux",
+      "whether a first-block break is a cognitive error",
+      "whether canonical Roux is superior",
+      "population prevalence of any cognitive phenomenon"
+    ]
+  },
+  "method_semantics_basis": {
+    "role": "external method semantics used only to motivate a prospective observable ontology; not treated as cognitive ground truth",
+    "convergent_statement": "Independent Roux method descriptions define SB as constructing the opposite 1x2x3 while preserving the already solved first block; common restricted move families are described as enabling this preservation.",
+    "sources_checked_before_route_scoring": [
+      "https://www.scheopner.com/cube/",
+      "https://ruwix.com/the-rubiks-cube/different-rubiks-cube-solving-methods/roux-method/",
+      "https://abaj.ai/wiki/cubing/roux/"
+    ]
+  },
+  "frozen_observation_operator": {
+    "route_entry_requirements": [
+      "method label Roux",
+      "RAW_ALG_CUBING_LINK or equivalent raw reconstruction with setup and annotated algorithm",
+      "parseable under the frozen cubing.js grammar",
+      "final-state certified solved ignoring global puzzle orientation and center orientation",
+      "exactly one ordinary FB line; pseudo FB and FBDR are forked before primary ontology",
+      "a contiguous ROUX_SB annotation span after FB"
+    ],
+    "frame": {
+      "initialization": "At the ordinary FB endpoint, enumerate 24 physical orientation representatives and 24 ordered block frames. Require exactly one orientation+frame pair with first block solved and opposite block not solved. This is prefix-only and cannot inspect the later SB outcome.",
+      "transport": "Only explicit whole-cube x/y/z rotations update the route gauge using the R1.13 group-action table derived by asymmetric-state invariance. Outer, wide and slice moves do not independently relabel the gauge.",
+      "retired": [
+        "per-state center canonicalization",
+        "inverse rotation transport",
+        "general wide/slice center cocycle"
+      ]
+    },
+    "canonical_fb_preserving": {
+      "label": "CANONICAL_FB_PRESERVING",
+      "definition": "From the state immediately after the ordinary FB endpoint through the first state-certified two-block completion inside the frozen contiguous SB span, the tracked first-block mask is solved at every state under the prefix-initialized, explicit-rotation-transported gauge. A unique first two-block completion must occur inside the SB span.",
+      "move_set_is_not_a_gate": true,
+      "annotation_text_cannot_override_state": true
+    },
+    "residual_forks": {
+      "BLOCK_DISRUPTIVE_RESIDUAL": "Prefix/frame is unique, but the tracked first block becomes unsolved at least once before any in-span two-block completion, whether or not it is later restored.",
+      "FB_PRESERVED_NO_COMPLETION_RESIDUAL": "Tracked first block remains solved throughout the SB span, but no state-certified two-block completion occurs inside that span.",
+      "PSEUDO_FB_OR_FBDR_FORK": "Annotation marks pseudo FB or FBDR; not eligible for the canonical ordinary-FB ontology.",
+      "SYNTAX_OR_STATE_INVALID": "Raw reconstruction cannot be parsed or does not replay to a solved final cube.",
+      "ONTOLOGY_UNSCORABLE": "Prefix gauge/frame or required phase span is not uniquely observable."
+    },
+    "semantic_guard": "Residual labels describe observable reconstruction-state behavior only. They do not declare a solve invalid, non-Roux, erroneous, intentional, or cognitively noncanonical."
+  },
+  "development_calibration": {
+    "corpus": "R1.13 inherited 144-route development bank only",
+    "role": "CALIBRATION_AND_ONTOLOGY_STRESS_TEST_ONLY",
+    "may_release_authority": false,
+    "must_reclassify_from_raw_states": true,
+    "may_copy_r113_route_labels": false,
+    "may_copy_r113_features_or_attempt_scores": false,
+    "report_full_confusion_against_G3_categories": true
+  },
+  "freshness_design": {
+    "ordering": [
+      "Commit this NAPKIN and G4 inheritance ledger.",
+      "Only then read the live reco.nz index once and freeze the complete live ID set as G4_BASELINE_VINTAGE.",
+      "Routes present in that baseline but absent from all R1.13 development evidence are PREEXISTING_UNSEEN_HOLDOUT; they may test the G4 ontology prospectively but cannot count as post-freeze fresh-vintage authority evidence.",
+      "Only IDs absent from G4_BASELINE_VINTAGE and appearing in a later sealed watch are POST_FREEZE_FRESH_VINTAGE.",
+      "No route detail, method, reconstruction text, linkage, geometry, feature or null score may influence the baseline ID-set definition."
+    ],
+    "post_freeze_fresh_requires": [
+      "reco_id absent from the baseline ID set",
+      "3x3 event in the live index",
+      "Roux method after the new row appears",
+      "raw reconstruction route recoverable",
+      "not duplicated by official attempt key against any development/reference route when linkage is available"
+    ],
+    "if_no_fresh_routes": "Seal HOLD_DATA_WAIT rather than substituting development or baseline-preexisting routes."
+  },
+  "authority_court": {
+    "reference_bank": "Freeze the G4-eligible canonical subset and its rebuilt attempt-level null from the development corpus before any POST_FREEZE_FRESH_VINTAGE route outcome is scored.",
+    "minimum_reference_attempts": 100,
+    "primary_alpha": 0.01,
+    "minimum_add_one_resolution": "reference bank must support p<=0.01 with add-one tails",
+    "minimum_post_freeze_fresh_raw_roux_routes": 20,
+    "fresh_geometry_gates": {
+      "state_certification_rate_min": 0.95,
+      "prefix_unique_rate_given_eligible_min": 0.95,
+      "canonical_fb_preserving_rate_given_eligible_min": 0.85,
+      "cmll_consistency_rate_min": 0.80,
+      "lse_consistency_rate_min": 0.90
+    },
+    "fresh_scoring_gates": {
+      "local_reference_fallback_rate_max": 0.10,
+      "familywise_watch_rate_0_05_max": 0.20,
+      "familywise_primary_rate_0_01_max": 0.10,
+      "reference_bank_contamination": 0
+    },
+    "release_logic": "Roux future scoring authority may be released only after all reference-bank, post-freeze freshness, geometry, scoring and integrity gates pass. A PREEXISTING_UNSEEN_HOLDOUT pass alone cannot release future authority.",
+    "alpha_relaxation": "PROHIBITED"
+  },
+  "prohibited_in_r114": [
+    "reclassifying a residual after seeing its null score",
+    "changing the block-preservation definition after inspecting G4 route outcomes",
+    "calling PREEXISTING_UNSEEN_HOLDOUT post-freeze fresh",
+    "calling canonical-vs-residual a cognitive strategy classification",
+    "Roux cognitive recovery/error prevalence",
+    "causal or intentional mechanism claims",
+    "full-WCA prevalence",
+    "human recruitment"
+  ],
+  "skill_workshop": {
+    "loop": ["NAPKIN","GENERATION","BUILD","WRITE","ATTACK","DESTROY","RECOMBINE","HANDOFF","COURT","ARCHIVE","NEXT_GENERATION"],
+    "writing_is_evidence": false,
+    "generation_label_is_progress_claim": false,
+    "posthoc_repairs_require_new_version_or_remand": true
+  },
+  "authority": {
+    "research_branch_only": true,
+    "main_write": false,
+    "public_runner_write": false,
+    "collector_write": false,
+    "roux_future_scoring_authority_at_start": false,
+    "human_observations": 0,
+    "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+  }
+}

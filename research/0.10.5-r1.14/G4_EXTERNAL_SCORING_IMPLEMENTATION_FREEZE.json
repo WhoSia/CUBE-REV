@@ -1,0 +1,60 @@
+{
+  "schema_version": "CR0105R114-G4-EXTERNAL-SCORING-IMPLEMENTATION-FREEZE-1",
+  "status": "FROZEN_BEFORE_SECOND_LIVE_READ_OUTCOMES_ARE_INSPECTED",
+  "reference_seal_sha256": "7cc0aaa2754fe911aa1bc536b3a53c527410b710f466ebe30ce8bbe37f17861a",
+  "classifier": {
+    "source": "research/0.10.5-r1.14/r114_g4_ontology_geometry.mjs",
+    "allowed_external_difference": "input-loader plumbing only; measurement/operator body is runtime-materialized from the frozen source",
+    "route_classes": ["CANONICAL_FB_PRESERVING","BLOCK_DISRUPTIVE_RESIDUAL","FB_PRESERVED_NO_COMPLETION_RESIDUAL","PSEUDO_FB_OR_FBDR_FORK","SYNTAX_OR_STATE_INVALID","ONTOLOGY_UNSCORABLE"]
+  },
+  "denominators": {
+    "raw_route_n": "manifest records with route_source_status=RAW_ALG_CUBING_LINK",
+    "state_certification_rate": "state_certified / raw_route_n",
+    "eligible_route_n": "state-certified routes with one ordinary FB and a contiguous ROUX_SB span; this equals classifier ordinary_fb_sb_eligible",
+    "prefix_unique_rate_given_eligible": "prefix_unique / eligible_route_n",
+    "canonical_fb_preserving_rate_given_eligible": "canonical / eligible_route_n",
+    "preexisting_canonical_rate_given_prefix_unique": "canonical / prefix_unique, exactly as frozen in G4_EXTERNAL_COURT_FREEZE",
+    "cmll_consistency_rate": "cmll_consistent / cmll_opportunities; zero opportunities is NOT evaluable and therefore cannot pass fresh authority",
+    "lse_consistency_rate": "lse_consistent / lse_opportunities; zero opportunities is NOT evaluable and therefore cannot pass fresh authority",
+    "null_fallback_rate": "external canonical features lacking every frozen local-reference level / all external canonical features",
+    "familywise_watch_rate": "canonical external attempts with frozen-reference familywise p<=0.05 / canonical external attempts with a finite attempt statistic",
+    "familywise_primary_rate": "canonical external attempts with frozen-reference familywise p<=0.01 / canonical external attempts with a finite attempt statistic"
+  },
+  "reference_scoring": {
+    "feature_reference": "research/0.10.5-r1.14/evidence-ontology/G4_CANONICAL_FEATURE_LEDGER.json",
+    "familywise_reference": "research/0.10.5-r1.14/evidence-reference/G4_REFERENCE_LOO_BANK.json",
+    "external_route_never_enters_reference": true,
+    "local_hierarchy": ["phase×channel×move_bin n>=25","phase×channel n>=40","channel n>=100"],
+    "attempt_statistic": "maximum -log10(add-one upper-tail feature p)",
+    "familywise_p": "add-one upper-tail against all finite frozen G4 LOO attempt statistics"
+  },
+  "preexisting_transport_gates": {
+    "minimum_raw_routes": 20,
+    "state_certification_rate_min": 0.90,
+    "prefix_unique_rate_given_eligible_min": 0.95,
+    "canonical_rate_given_prefix_unique_min": 0.80,
+    "null_fallback_rate_max": 0.10,
+    "authority_release": false
+  },
+  "fresh_authority_gates": {
+    "minimum_raw_routes": 20,
+    "state_certification_rate_min": 0.95,
+    "prefix_unique_rate_given_eligible_min": 0.95,
+    "canonical_fb_preserving_rate_given_eligible_min": 0.85,
+    "cmll_consistency_rate_min": 0.80,
+    "lse_consistency_rate_min": 0.90,
+    "local_reference_fallback_rate_max": 0.10,
+    "familywise_watch_rate_0_05_max": 0.20,
+    "familywise_primary_rate_0_01_max": 0.10,
+    "reference_bank_contamination": 0
+  },
+  "integrity": {
+    "fresh_membership_requires_baseline_absence": true,
+    "development_reco_overlap_required_zero": true,
+    "official_attempt_overlap_checked_when_linkage_available": true,
+    "lack_of_official_linkage_may_not_be_called_proven_nonoverlap": true,
+    "alpha_relaxation": "PROHIBITED",
+    "post_result_denominator_change": "PROHIBITED"
+  },
+  "human_observations": 0
+}

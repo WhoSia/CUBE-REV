@@ -1,0 +1,52 @@
+{
+  "schema_version": "CR0105R111-SB-FAILURE-LOCALIZATION-CANONICAL-1",
+  "status": "POSTHOC_DIAGNOSTIC_ONLY_NO_R111_GATE_CHANGE",
+  "source_execution": {
+    "workflow_run_id": 32428191677,
+    "job_id": 96614368786,
+    "execution_commit": "23037c976c2cb6848905f0f2285a71cdcd15e52d"
+  },
+  "authority_changed": false,
+  "r111_geometry_hold_preserved": true,
+  "r111_null_authority_hold_preserved": true,
+  "counts": {
+    "manifest_rows": 98,
+    "evaluated": 92,
+    "errors": 4,
+    "first_sb_endpoint_pass": 1,
+    "last_sb_endpoint_pass": 85,
+    "contiguous_span_endpoint_pass": 85,
+    "pre_cmll_pass": 82,
+    "pre_cmll_observed": 88,
+    "pre_lse_pass": 86,
+    "earliest_both_blocks_found": 87,
+    "first_block_preserved_at_first": 87,
+    "second_block_solved_at_first": 1,
+    "first_block_preserved_at_last": 87,
+    "second_block_solved_at_last": 85
+  },
+  "rates": {
+    "first_sb_endpoint_pass": 0.010869565217391304,
+    "last_sb_endpoint_pass": 0.9239130434782609,
+    "contiguous_span_endpoint_pass": 0.9239130434782609,
+    "pre_cmll_pass_given_observed": 0.9318181818181818,
+    "earliest_both_blocks_found": 0.9456521739130435
+  },
+  "earliest_relative_distribution": {
+    "AFTER_FIRST_BY_LAST_SB_END": 84,
+    "NEVER": 5,
+    "AFTER_CMLL_BY_PRE_LSE": 1,
+    "BY_FIRST_SB_END": 1,
+    "LATER": 1
+  },
+  "first_sb_comment_family": {
+    "SB": {"n": 7, "first_pass": 1, "last_pass": 6, "pre_cmll_pass": 6},
+    "SS": {"n": 85, "first_pass": 0, "last_pass": 79, "pre_cmll_pass": 76},
+    "SP": {"n": 0, "first_pass": 0, "last_pass": 0, "pre_cmll_pass": 0},
+    "FLIPPED_SP": {"n": 0, "first_pass": 0, "last_pass": 0, "pre_cmll_pass": 0}
+  },
+  "interpretation": "The frozen R1.11 first-ROUX_SB endpoint almost always selects an SS subphase rather than completed second block. The diagnostic strongly localizes the 1/92 gate failure to endpoint semantics, but no alternative endpoint rule is promoted into R1.11.",
+  "semantic_sha256_from_execution": "9bd49dd5cf48ecf6799582409d477188af80e1f09c6106d96dc6f956c4ccfd39",
+  "fresh_network_read": false,
+  "human_observations": 0
+}

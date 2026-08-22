@@ -1,0 +1,137 @@
+{
+  "schema_version": "CR0105R110-METHOD-STRATIFIED-TRANSPORT-1",
+  "status": "PASS_LAYERED_FUTURE_SCORE_TRANSPORT",
+  "method_family": "LAYERED",
+  "methods": [
+    "CFOP",
+    "ZB"
+  ],
+  "r19_metric_reused": true,
+  "r19_roux_excluded": true,
+  "counts": {
+    "features": 12121,
+    "attempts": 1585,
+    "loo_familywise_attempts": 1585,
+    "nested_familywise_attempts": 1585,
+    "transport_pairs": 1585
+  },
+  "method_diagnostics": {
+    "CFOP": {
+      "attempts": 1497,
+      "features": 11595,
+      "transport_correlation": 0.996605921924985
+    },
+    "ZB": {
+      "attempts": 88,
+      "features": 526,
+      "transport_correlation": 0.9881795713019871
+    }
+  },
+  "loo_pseudofresh": {
+    "primary_alpha": 0.01,
+    "primary_rate": 0.008832807570977918,
+    "watch_alpha": 0.05,
+    "watch_rate": 0.050473186119873815,
+    "levels": {
+      "METHOD_COUNT": 1497,
+      "COUNT": 88
+    },
+    "local_fallback_n": 0,
+    "local_fallback_rate": 0
+  },
+  "nested_no_test_fold_leak": {
+    "primary_rate": 0.008201892744479496,
+    "watch_rate": 0.0473186119873817,
+    "outer_folds": [
+      {
+        "fold": 0,
+        "n": 295,
+        "familywise_ok_n": 295,
+        "primary_rate": 0.006779661016949152,
+        "watch_rate": 0.061016949152542375,
+        "levels": {
+          "METHOD_COUNT": 274,
+          "COUNT": 21
+        },
+        "family_reference_attempts": 1290
+      },
+      {
+        "fold": 1,
+        "n": 346,
+        "familywise_ok_n": 346,
+        "primary_rate": 0.008670520231213872,
+        "watch_rate": 0.04046242774566474,
+        "levels": {
+          "METHOD_COUNT": 334,
+          "COUNT": 12
+        },
+        "family_reference_attempts": 1239
+      },
+      {
+        "fold": 2,
+        "n": 303,
+        "familywise_ok_n": 303,
+        "primary_rate": 0.013201320132013201,
+        "watch_rate": 0.039603960396039604,
+        "levels": {
+          "METHOD_COUNT": 284,
+          "COUNT": 19
+        },
+        "family_reference_attempts": 1282
+      },
+      {
+        "fold": 3,
+        "n": 296,
+        "familywise_ok_n": 296,
+        "primary_rate": 0.0033783783783783786,
+        "watch_rate": 0.04391891891891892,
+        "levels": {
+          "METHOD_COUNT": 280,
+          "COUNT": 16
+        },
+        "family_reference_attempts": 1289
+      },
+      {
+        "fold": 4,
+        "n": 345,
+        "familywise_ok_n": 345,
+        "primary_rate": 0.008695652173913044,
+        "watch_rate": 0.05217391304347826,
+        "levels": {
+          "METHOD_COUNT": 325,
+          "COUNT": 20
+        },
+        "family_reference_attempts": 1240
+      }
+    ],
+    "total_local_fallback_events": 0
+  },
+  "transport": {
+    "pearson_crossfit_vs_loo": 0.9959764283935826,
+    "abs_difference": {
+      "p50": 0.01116006872243569,
+      "p90": 0.04608268299960794,
+      "p99": 0.12209355902630525,
+      "max": 0.3933320548897403
+    }
+  },
+  "checks": {
+    "napkin_frozen": true,
+    "no_roux_in_layered_features": true,
+    "no_roux_in_layered_attempts": true,
+    "layered_attempts_ge_1200": true,
+    "loo_familywise_attempts_ge_1200": true,
+    "loo_local_fallback_rate_le_0_05": true,
+    "loo_primary_health": true,
+    "loo_watch_health": true,
+    "nested_familywise_attempts_ge_1200": true,
+    "nested_primary_health": true,
+    "nested_watch_health": true,
+    "transport_pair_n_ge_1200": true,
+    "crossfit_loo_pearson_ge_0_95": true,
+    "crossfit_loo_abs_diff_p99_le_0_50": true
+  },
+  "future_scoring_rule": "If and only if this artifact PASSes and a later authority seal releases it: score a genuinely fresh CFOP/ZB attempt against the full sealed LAYERED local reference, take the attempt maximum, and compute an add-one upper-tail familywise p against the frozen LAYERED LOO attempt-statistic bank using the highest supported within-LAYERED conditioning level.",
+  "fresh_outcomes_seen": false,
+  "human_observations": 0
+}

@@ -1,0 +1,408 @@
+{
+  "schema_version": "CR0105R17-PARENT-ARTIFACT-PROBE-1",
+  "status": "PASS",
+  "parent_artifact_id": 9310311696,
+  "parent_artifact_digest": "sha256:f40270656c24d2a17b0b29a0add9e21b58950a9a9ac154cef0d475a1908ea27d",
+  "db_bytes": 1139290112,
+  "db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+  "tables": [
+    "attempt_spine",
+    "attempts_333",
+    "competition_norm_map",
+    "competitions_333",
+    "formats_ref",
+    "linkage_candidates",
+    "linkage_class",
+    "person_norm_map",
+    "persons_333",
+    "phenotype_attempts",
+    "reco_index",
+    "results_333",
+    "round_types_ref",
+    "scrambles_333"
+  ],
+  "row_counts": {
+    "attempt_spine": 9159748,
+    "phenotype_attempts": 9159748,
+    "reco_index": 10596,
+    "linkage_candidates": 4031,
+    "linkage_class": 10596,
+    "scrambles_333": 730812,
+    "results_333": 1835235,
+    "attempts_333": 9159748,
+    "competitions_333": 15154
+  },
+  "schemas": {
+    "attempt_spine": [
+      {
+        "name": "result_id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "competition_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "competition_name",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "comp_year",
+        "type": "INTEGER"
+      },
+      {
+        "name": "comp_month",
+        "type": "INTEGER"
+      },
+      {
+        "name": "comp_day",
+        "type": "INTEGER"
+      },
+      {
+        "name": "person_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "person_name",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "round_type_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "format_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "attempt_number",
+        "type": "INTEGER"
+      },
+      {
+        "name": "attempt_value",
+        "type": "INTEGER"
+      },
+      {
+        "name": "attempt_status",
+        "type": "VARCHAR"
+      }
+    ],
+    "phenotype_attempts": [
+      {
+        "name": "result_id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "competition_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "competition_name",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "comp_year",
+        "type": "INTEGER"
+      },
+      {
+        "name": "comp_month",
+        "type": "INTEGER"
+      },
+      {
+        "name": "comp_day",
+        "type": "INTEGER"
+      },
+      {
+        "name": "person_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "person_name",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "round_type_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "format_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "attempt_number",
+        "type": "INTEGER"
+      },
+      {
+        "name": "attempt_value",
+        "type": "INTEGER"
+      },
+      {
+        "name": "attempt_status",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "med_valid",
+        "type": "DOUBLE"
+      },
+      {
+        "name": "next_value",
+        "type": "INTEGER"
+      },
+      {
+        "name": "shock_dnf",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "shock_slow",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "next_back_near_median",
+        "type": "BOOLEAN"
+      }
+    ],
+    "reco_index": [
+      {
+        "name": "reco_id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "result_text",
+        "type": "DOUBLE"
+      },
+      {
+        "name": "result_cs",
+        "type": "BIGINT"
+      },
+      {
+        "name": "solver",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "solver_norm",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "method",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "date",
+        "type": "DATE"
+      },
+      {
+        "name": "competition",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "competition_norm",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "tags",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "movecount",
+        "type": "BIGINT"
+      },
+      {
+        "name": "tps",
+        "type": "DOUBLE"
+      },
+      {
+        "name": "url",
+        "type": "VARCHAR"
+      }
+    ],
+    "linkage_candidates": [
+      {
+        "name": "reco_id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "result_text",
+        "type": "DOUBLE"
+      },
+      {
+        "name": "method",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "movecount",
+        "type": "BIGINT"
+      },
+      {
+        "name": "tps",
+        "type": "DOUBLE"
+      },
+      {
+        "name": "url",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "result_id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "competition_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "person_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "attempt_number",
+        "type": "INTEGER"
+      },
+      {
+        "name": "attempt_value",
+        "type": "INTEGER"
+      },
+      {
+        "name": "exact_text",
+        "type": "BOOLEAN"
+      }
+    ],
+    "linkage_class": [
+      {
+        "name": "reco_id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "tier",
+        "type": "VARCHAR"
+      }
+    ],
+    "scrambles_333": [
+      {
+        "name": "competition_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "round_type_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "group_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "is_extra",
+        "type": "INTEGER"
+      },
+      {
+        "name": "scramble_num",
+        "type": "INTEGER"
+      },
+      {
+        "name": "scramble",
+        "type": "VARCHAR"
+      }
+    ],
+    "results_333": [
+      {
+        "name": "result_id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "competition_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "round_type_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "pos",
+        "type": "INTEGER"
+      },
+      {
+        "name": "best",
+        "type": "INTEGER"
+      },
+      {
+        "name": "average",
+        "type": "INTEGER"
+      },
+      {
+        "name": "person_name",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "person_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "person_country_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "format_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "regional_single_record",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "regional_average_record",
+        "type": "VARCHAR"
+      }
+    ],
+    "attempts_333": [
+      {
+        "name": "result_id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "attempt_number",
+        "type": "INTEGER"
+      },
+      {
+        "name": "attempt_value",
+        "type": "INTEGER"
+      }
+    ],
+    "competitions_333": [
+      {
+        "name": "competition_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "competition_name",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "city_name",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "country_id",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "comp_year",
+        "type": "INTEGER"
+      },
+      {
+        "name": "comp_month",
+        "type": "INTEGER"
+      },
+      {
+        "name": "comp_day",
+        "type": "INTEGER"
+      }
+    ]
+  },
+  "checks": {
+    "attempts_333": true,
+    "reco_333": true,
+    "linkage_class": true,
+    "linkage_candidates_nonzero": true,
+    "phenotype_population": true
+  },
+  "human_observations": 0,
+  "public_runner_mutation": false
+}

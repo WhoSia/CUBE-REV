@@ -1,0 +1,45 @@
+{
+  "schema_version": "CR0105R113-MOVE-COCYCLE-GAUGE-DIAGNOSTIC-1",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "status": "POSTHOC_RECOMBINE_DIAGNOSTIC_NO_G3_GATE_CHANGE",
+  "primary_geometry_semantic_sha256": "4fa8067dc5541ff292acbd9241085371fd675edceb6bd87259153481f22f6c8e",
+  "observed_token_n": 45,
+  "checks": {
+    "all_observed_move_mappings_unique": true,
+    "outer_face_moves_gauge_identity": true,
+    "rotation_tokens_match_frozen_rotation_fixture": true
+  },
+  "token_family": {
+    "outer": 20,
+    "rotation": 5,
+    "wide": 10,
+    "slice": 8,
+    "other": 2,
+    "nontrivial_outer": 0,
+    "nontrivial_rotation": 5,
+    "nontrivial_wide": 10,
+    "nontrivial_slice": 8,
+    "nontrivial_other": 1
+  },
+  "counts": {
+    "eligible": 130,
+    "prefix_unique": 130,
+    "cocycle_completion": 30,
+    "rotation_present": 6,
+    "rotation_present_completion": 2,
+    "no_rotation": 124,
+    "no_rotation_completion": 28,
+    "g3_forward_completion": 120,
+    "cocycle_rescues_g3_failures": 1,
+    "cocycle_loses_g3_successes": 91
+  },
+  "rates": {
+    "cocycle_completion": 0.23076923076923078,
+    "rotation_present_completion": 0.3333333333333333,
+    "no_rotation_completion": 0.22580645161290322
+  },
+  "interpretation_guard": "The move-level center cocycle is a posthoc next-generation candidate. It cannot replace R1.13 explicit-rotation transport or repair its frozen gate.",
+  "post_result_gate_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "8d47101700a18ef3724ffcb1c87812a0e4bcca748b95ed5f9b65940aadead3d2"
+}

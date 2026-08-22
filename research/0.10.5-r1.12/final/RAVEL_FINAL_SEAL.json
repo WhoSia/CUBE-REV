@@ -1,0 +1,151 @@
+{
+  "schema_version": "CR0105R112-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.12 — Gauge Identifiability Court & Generation Review Closure",
+  "status": "PASS_R112_GENERATION_REVIEW_CLOSURE_G2_REMANDED_G3_ROTATION_COVARIANT_CANDIDATE_IDENTIFIED_NO_ROUX_AUTHORITY_RELEASE",
+  "final_seal_branch": "cube-rev-0.10.5-r1.12-final-seal",
+  "sealed_parent_branch": "cube-rev-0.10.5-r1.12-roux-generation-g2",
+  "sealed_parent_commit": "64f63dfd88c812eb8f32b43b7284439950095ca5",
+  "generation": {
+    "reviewed": "ROUX-MEASUREMENT-G2",
+    "g2_disposition": "REMANDED_NOT_RELEASED",
+    "next_candidate": "ROUX-MEASUREMENT-G3",
+    "whole_cube_rev_generation": "UNRESOLVED",
+    "generation_label_is_progress_claim": false,
+    "g3_requires_new_napkin_before_scoring": true,
+    "g3_scoring_authority_at_transition": false
+  },
+  "primary_r112": {
+    "candidate_bank_n": 144,
+    "state_certified_n": 133,
+    "ordinary_fb_sb_search_eligible_n": 130,
+    "g2_admitted_n": 10,
+    "g2_admission_rate": 0.07692307692307693,
+    "geometry_status": "HOLD_ROUX_G2_GEOMETRY",
+    "null_status": "HOLD_ROUX_G2_NULL_FOUNDRY",
+    "roux_future_scoring_authority": false,
+    "posthoc_diagnostics_repair_primary": false
+  },
+  "gauge_identifiability": {
+    "eligible_n": 130,
+    "fb_prefix_unique_orientation_frame_pair_n": 130,
+    "fb_prefix_unique_rate": 1.0,
+    "fb_prefix_sb_completion_n": 120,
+    "fb_prefix_sb_completion_rate": 0.9230769230769231,
+    "joint_fb_sb_route_global_solution_n": 120,
+    "prefix_success_equals_joint_solution_count": true,
+    "final_orientation_gauge_sb_completion_n": 117,
+    "final_orientation_gauge_sb_completion_rate": 0.9,
+    "sealed_r111_slice_prefix_success_rate": 0.9213483146067416,
+    "r112_expansion_slice_prefix_success_rate": 0.926829268292683,
+    "dynamic_center_gauge_changed_fb_to_sb_rate": 0.9692307692307692,
+    "fb_center_gauge_differs_final_rate": 0.7538461538461538,
+    "interpretation": "FB-prefix gauge is identified without SB outcome information on all 130 eligible routes and predicts the same 120-route success count as the joint diagnostic. This identifies a next-generation measurement hypothesis only."
+  },
+  "residual_failure_court": {
+    "prefix_failures_n": 10,
+    "any_later_completion_n": 4,
+    "completion_before_cmll_n": 1,
+    "first_block_breaks_in_sb_n": 6,
+    "rotation_in_sb_failure_rate": 0.3,
+    "rotation_in_sb_success_rate": 0.025,
+    "rotation_enrichment_ratio": 12.0,
+    "rotation_odds_ratio": 16.714285714285715,
+    "rotation_fisher_exact_two_sided_p": 0.00590780076908991,
+    "wide_slice_failure_rate": 1.0,
+    "wide_slice_success_rate": 0.9666666666666667,
+    "wide_slice_enrichment_ratio": 1.0344827586206897,
+    "statistics_authority": "POSTHOC_DIAGNOSTIC_ONLY_N10_FAILURES",
+    "next_design_branch": "PREFIX_INITIALIZED_ROTATION_COVARIANT_GAUGE_TRANSPORT"
+  },
+  "generation_inheritance": {
+    "RETAIN": [
+      "state-certified first two-block completion within frozen Roux SB span",
+      "FB-prefix-only frame identification as a prospective G3 hypothesis",
+      "Roux-only nested no-leak null architecture and alpha=0.01 finite-resolution requirements",
+      "ordinary-FB primary stratum; pseudo-FB/FBDR remain forked"
+    ],
+    "DOWNGRADE": [
+      "fixed route-global gauge because rotation-enriched residual failures argue against universal constancy",
+      "final-state-derived gauge because it uses future route information"
+    ],
+    "RETIRE": [
+      "per-state center canonicalization as persistent Roux route frame",
+      "ROUX-MEASUREMENT-G2 center-consistent authority candidate",
+      "R1.12 G2 feature/null bank for future fresh scoring"
+    ],
+    "MUTATE": [
+      "route frame to FB-prefix-initialized gauge with prospectively specified rotation-covariant transport",
+      "residual cases to explicit audited strata rather than posthoc endpoint substitution"
+    ],
+    "FORK": [
+      "pseudo-FB/FBDR",
+      "prefix-gauge residual routes with SB rotations or first-block breakage"
+    ],
+    "RECOMBINE": [
+      "R1.11 route-global quotient insight + R1.12 state-certified subphase completion + prefix-only identifiability",
+      "rotation-token transport semantics + block-state objective geometry"
+    ],
+    "UNRESOLVED": [
+      "whether rotation transport alone resolves the 10 residual routes",
+      "meaning of first-block breakage in residual Roux routes",
+      "whole-project CUBE-REV generation numbering"
+    ]
+  },
+  "ravel_roles": {
+    "DESIGN": "PASS: Generation/NAPKIN/authority rules fixed; G2 remand preserved; G3 hypothesis scoped prospectively.",
+    "IMPLEMENTATION": "PASS: census, one-shot acquisition, G2 geometry/null, joint destroy, gauge-identifiability, residual and generation-review workflows all materialized evidence with zero human observations.",
+    "SKEPTIC": "PASS_WITH_REMAND: strict G2 failed; joint-gauge signal survived prefix-only identifiability, but residual failures prevent universal fixed-gauge interpretation.",
+    "STATISTICS": "PASS_DIAGNOSTIC_BOUNDARY: rotation enrichment is recorded with Fisher exact p-value but remains posthoc with only 10 failures and is not confirmatory evidence.",
+    "AUTHORITY": "PASS_NO_RELEASE: Roux future scoring authority remains false; no cognitive/causal/full-WCA prevalence claim is admitted.",
+    "GENERATION": "PASS_TRANSITION_CANDIDATE: G2 is remanded; G3 is identified as a measurement candidate, not validated authority."
+  },
+  "workflow_runs": {
+    "sealed_census": "32443980053",
+    "one_shot_acquisition": "32444276014",
+    "g2_geometry_null": "32444745535",
+    "gauge_identifiability": "32449086739",
+    "residual_gauge": "32449189639",
+    "generation_review": "32449372072"
+  },
+  "semantic_sha256": {
+    "g2_geometry": "f1c19e8b960373e9968cab8b57c48a0ae4ed130d02d8d27704126462d40595e8",
+    "g2_null": "ac4cdeb0fa33056b298853d9161e267900c0d7db783ba8682b3bab3fe6898c6d",
+    "joint_destroy": "9f505ef602a68d0c62158bfc0f05f81b5da7dcdc7951b82b0048202b6ccb2611",
+    "gauge_identifiability": "c6c776bc5df6cecc394f6acc2f4dc687e2c958ac20b6dac73a9b93c8af2a3b9a",
+    "residual_gauge": "bcc971b134682d9f3c1f9445cbb3e49af527fadabc2c31b788cfc44033843e8d",
+    "generation_review": "5ab1147689d724842ff42c9f63acfeb1da19c3849ac8fa6a7d5aa8b2b51a3e16"
+  },
+  "main_authority": {
+    "main_commit_verified_at_closure": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "main_mutated_by_r112": false,
+    "public_runner_mutated_by_r112": false,
+    "collector_mutated_by_r112": false,
+    "research_branch_only": true
+  },
+  "claim_scope": {
+    "allowed": [
+      "R1.12 G2 center-consistent geometry failed its frozen gates",
+      "on 130 eligible historical/development Roux reconstructions, FB-prefix-only gauge identification was unique on 130 and predicted in-span two-block completion on 120",
+      "the sealed and one-shot expansion slices had similar prefix-gauge success rates",
+      "per-state center canonicalization was not a persistent route frame on this development corpus",
+      "rotation enrichment among the 10 residual failures is a posthoc diagnostic motivating a G3 rotation-covariant transport test"
+    ],
+    "prohibited": [
+      "Roux cognitive recovery or error prevalence",
+      "causal or intentional mechanism claims",
+      "full-WCA Roux prevalence",
+      "treating R1.12 posthoc diagnostics as prospective validation",
+      "using R1.12 outcomes as confirmatory evidence for G3",
+      "releasing Roux future scoring authority from R1.12"
+    ]
+  },
+  "next_stage": {
+    "version": "CUBE-REV 0.10.5-R1.13",
+    "title": "Route-global Reconstruction Gauge, Rotation-covariant Prefix Frame & Rebuilt Roux Completion Null",
+    "required_first_action": "Open a new ROUX-MEASUREMENT-G3 NAPKIN and prospective inheritance ledger before any G3 scoring or threshold evaluation.",
+    "fresh_holdout_required_for_authority": true,
+    "rebuild_features_and_null_from_raw_routes": true
+  },
+  "human_observations": 0,
+  "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+}

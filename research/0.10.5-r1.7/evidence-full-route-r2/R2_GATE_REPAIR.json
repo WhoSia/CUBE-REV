@@ -1,0 +1,13 @@
+{
+  "schema_version": "CR0105R17-FULL-ROUTE-GATE-REPAIR-R2-1",
+  "status": "PASS_PRE_OUTCOME_RULE_RECONCILIATION",
+  "r1_full_route_court_materialized": false,
+  "r1_failed_only_gate": "ESS_GE_400",
+  "inherited_prior_gate_source": "research/0.10.5-r1.7/evidence-selection-target/TARGET_SELECTION_ADJUDICATION.json",
+  "inherited_target": "UNDER10_SPEED_X_ERA",
+  "prior_declared_ess_min": 200,
+  "r2_change": "Only ESS threshold 400 -> inherited 200; all other admission criteria, sample design, route parser, state validator, and counterfactual definitions unchanged.",
+  "outcome_seen_before_repair": false,
+  "runtime_path": "research/0.10.5-r1.7/r17_full_route_court_r2_runtime.mjs",
+  "human_observations": 0
+}

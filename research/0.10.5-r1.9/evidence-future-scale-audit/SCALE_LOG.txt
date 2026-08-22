@@ -1,0 +1,42 @@
+{
+  "schema_version": "CR0105R19-FUTURE-SCORE-SCALE-COMPATIBILITY-1",
+  "status": "HOLD_FUTURE_SCALE_COMPATIBILITY",
+  "role": "POST-SEAL ZERO-FRESH ENGINEERING AUDIT; DOES NOT CHANGE THE FROZEN METRIC OR NULL",
+  "r3_seal": "86522ee214024c8cac5257e07a4b9df451edff764fed13d9027ba79c957f2fca",
+  "current_fresh_status": "READINESS_PASS_DATA_WAIT",
+  "loo_full_history_local_reference": {
+    "attempts": 1677,
+    "feature_fallback_n": 0,
+    "feature_fallback_rate": 0
+  },
+  "pseudo_fresh_against_sealed_crossfit_bank": {
+    "primary_alpha": 0.01,
+    "primary_empirical_exceedance": 0.011329755515802028,
+    "watch_alpha": 0.05,
+    "watch_empirical_exceedance": 0.05008944543828265,
+    "familywise_levels": {
+      "METHOD_COUNT": 1497,
+      "COUNT": 180
+    }
+  },
+  "score_transport": {
+    "pearson_crossfit_vs_loo": 0.9343681479872616,
+    "abs_difference": {
+      "p50": 0.011710223857271662,
+      "p90": 0.0615302953909751,
+      "p99": 0.9361335663554866,
+      "max": 1.3163750419410234
+    }
+  },
+  "checks": {
+    "loo_attempts_ge_1200": true,
+    "local_fallback_rate_le_0_05": true,
+    "pseudo_fresh_primary_health": true,
+    "pseudo_fresh_watch_health": true,
+    "crossfit_loo_stat_correlation_ge_0_95": false,
+    "r3_sealed": true,
+    "current_fresh_zero": true
+  },
+  "adjudication": "This audit approximates the future scoring scale by scoring each historical attempt against all other historical features, then comparing that attempt statistic to the already sealed cross-fitted historical attempt bank. It is an engineering transport check only; the nested R3 audit remains the no-test-fold-leak calibration proof.",
+  "human_observations": 0
+}

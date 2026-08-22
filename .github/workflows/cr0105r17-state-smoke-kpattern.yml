@@ -1,0 +1,44 @@
+name: CR0105R17 KPattern State Smoke
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-state-engine-smoke2]
+    paths: [cr0105r17/RUN_STATE_KPATTERN]
+permissions:
+  contents: write
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Verify validator fixture lineage
+        run: |
+          node - <<'NODE'
+          const x=require('./research/0.10.5-r1.7/evidence-pattern-solved/KPATTERN_SOLVED_FIXTURE.json');
+          if(x.predicate_discrepancy_count!==3||x.decision!=='REPLACE_HANDROLLED_ORIENTATION_HASH_WITH_KPATTERN_SOLVED') process.exit(2);
+          console.log('KPATTERN_VALIDATOR_LINEAGE_PASS');
+          NODE
+      - name: Re-adjudicate frozen 72-record smoke
+        run: node research/0.10.5-r1.7/r17_state_smoke_kpattern.mjs | tee /tmp/r17_state_kpattern.log
+      - name: Commit repaired smoke evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/evidence-state-smoke-kpattern
+          test -f /tmp/r17_state_kpattern.log && cp /tmp/r17_state_kpattern.log research/0.10.5-r1.7/evidence-state-smoke-kpattern/STATE_KPATTERN_LOG.txt || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-state-smoke-kpattern
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 repaired KPattern state smoke ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-state-engine-smoke2
+      - name: Enforce repaired state gate
+        run: |
+          node - <<'NODE'
+          const x=require('./research/0.10.5-r1.7/evidence-state-smoke-kpattern/STATE_ENGINE_SMOKE_KPATTERN.json');
+          if(x.status!=='PASS'||x.kpattern_solved_rate<0.95||x.human_observations!==0) process.exit(2);
+          console.log('CR0105R17_KPATTERN_STATE_PASS');
+          NODE

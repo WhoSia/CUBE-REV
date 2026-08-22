@@ -1,0 +1,115 @@
+{
+  "schema_version": "CR0105R112-ROUX-G2-CENTER-CONSISTENT-GEOMETRY-1",
+  "generation": "ROUX-MEASUREMENT-G2",
+  "status": "HOLD_ROUX_G2_GEOMETRY",
+  "operator": {
+    "center_canonicalization": "unique center-default physical orientation at every queried state",
+    "ordered_physical_frames": 24,
+    "physical_axes": 12,
+    "sb_completion": "first state in frozen contiguous SB span with any completed axis; first completion must be unique",
+    "fb_orientation": "unique completion axis oriented by exactly one solved block at ordinary FB endpoint",
+    "color_relabel": false,
+    "lse_target": "last endpoint of first contiguous ROUX_LSE span after SB completion"
+  },
+  "counts": {
+    "raw_unique_attempts": 144,
+    "parse_ok": 140,
+    "state_certified": 133,
+    "ordinary_fb": 130,
+    "forked_pseudo_fb": 2,
+    "forked_fbdr": 1,
+    "fb_missing_or_nonordinary": 0,
+    "sb_search_eligible": 130,
+    "center_canonical_all_states": 130,
+    "sb_any_completion": 52,
+    "sb_first_completion_multi_axis": 1,
+    "unique_axis_completion": 51,
+    "fb_oriented_unique_axis": 10,
+    "g2_admitted": 10,
+    "cmll_opportunities": 9,
+    "cmll_consistent": 9,
+    "lse_opportunities": 10,
+    "lse_consistent": 10,
+    "errors": 8
+  },
+  "rates": {
+    "sb_any_completion_rate": 0.4,
+    "unique_axis_completion_rate_given_any_completion": 0.9807692307692307,
+    "fb_orientation_rate_given_unique_axis": 0.19607843137254902,
+    "end_to_end_sb_completion_rate": 0.07692307692307693,
+    "cmll_consistency_rate": 1,
+    "lse_consistency_rate": 1,
+    "geometry_failure_rate": 0.9230769230769231
+  },
+  "checks": {
+    "ordered_physical_frames_24": true,
+    "physical_axes_12": true,
+    "every_frame_two_disjoint_3e2c_blocks": true,
+    "state_certified_ge_100": true,
+    "primary_exact_fb_attempts_ge_100": false,
+    "sb_any_completion_rate_ge_0_90": false,
+    "unique_axis_completion_rate_given_any_completion_ge_0_90": true,
+    "fb_orientation_rate_given_unique_axis_ge_0_90": false,
+    "end_to_end_sb_completion_rate_ge_0_90": false,
+    "cmll_consistency_rate_ge_0_80": true,
+    "lse_consistency_rate_ge_0_90": true,
+    "geometry_failure_rate_le_0_10": false,
+    "total_features_ge_350": false,
+    "objective_features_ge_275": false,
+    "no_center_color_relabel": true,
+    "all_features_g2": true
+  },
+  "rejection_reasons": {
+    "FB_CANNOT_ORIENT_UNIQUE_AXIS": 41,
+    "NO_TWO_BLOCK_COMPLETION_IN_SB_SPAN": 78,
+    "ERROR": 8,
+    "FIRST_COMPLETION_MULTI_AXIS": 1,
+    "FINAL_NOT_SOLVED": 3,
+    "FORK_PSEUDO_FB": 2,
+    "FORK_FBDR": 1
+  },
+  "feature_counts": {
+    "total": 68,
+    "objective": 39,
+    "anchor": 29,
+    "eligible_attempts": 10,
+    "phase": {
+      "FB": 10,
+      "SB": 20,
+      "CMLL": 18,
+      "LSE": 20
+    }
+  },
+  "axis_counts": {
+    "D|B-F": 6,
+    "U|B-F": 15,
+    "U|L-R": 22,
+    "R|D-U": 1,
+    "B|D-U": 1,
+    "D|L-R": 4,
+    "F|L-R": 1,
+    "B|L-R": 1
+  },
+  "frame_counts": {
+    "U|L": 3,
+    "U|F": 4,
+    "B|R": 1,
+    "U|R": 2
+  },
+  "sb_annotation_family_counts": {
+    "SS": 121,
+    "SP": 115,
+    "SB": 20,
+    "FLIPPED_SP": 1
+  },
+  "candidate_sources": {
+    "SEALED_R111": 98,
+    "R112_EXPANSION": 46
+  },
+  "post_result_gate_change": false,
+  "fresh_network_read_in_geometry": false,
+  "acquired_public_routes_role": "DEVELOPMENT_AND_CALIBRATION_ONLY",
+  "fresh_confirmatory_scoring": false,
+  "human_observations": 0,
+  "semantic_sha256": "f1c19e8b960373e9968cab8b57c48a0ae4ed130d02d8d27704126462d40595e8"
+}

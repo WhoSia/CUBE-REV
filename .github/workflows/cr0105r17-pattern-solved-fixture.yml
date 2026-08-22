@@ -1,0 +1,30 @@
+name: CR0105R17 KPattern Solved Fixture
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-state-engine-smoke2]
+    paths: [cr0105r17/RUN_PATTERN_SOLVED]
+permissions:
+  contents: write
+jobs:
+  fixture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Execute authoritative KPattern predicate court
+        run: node research/0.10.5-r1.7/r17_pattern_solved_fixture.mjs | tee /tmp/r17_pattern_solved.log
+      - name: Commit diagnostic evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/evidence-pattern-solved
+          test -f /tmp/r17_pattern_solved.log && cp /tmp/r17_pattern_solved.log research/0.10.5-r1.7/evidence-pattern-solved/KPATTERN_SOLVED_LOG.txt || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-pattern-solved
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 KPattern solved fixture ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-state-engine-smoke2

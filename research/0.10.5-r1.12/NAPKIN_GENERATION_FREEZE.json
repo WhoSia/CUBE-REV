@@ -1,0 +1,96 @@
+{
+  "schema_version": "CR0105R112-NAPKIN-GENERATION-FREEZE-1",
+  "stage": "CUBE-REV 0.10.5-R1.12 — Roux Subphase-completion Operator, Color-neutral Frame Quotient & Resolution-expanded Method-specific Null",
+  "frozen_before_r112_scoring": true,
+  "skill_workshop": {
+    "suite": "2.4.1 philosophy applied",
+    "generation": "ROUX-MEASUREMENT-G2",
+    "generation_scope": "Roux subprogram only",
+    "whole_project_generation": "UNRESOLVED",
+    "writing_is_epistemic_stress_test_not_evidence": true,
+    "generation_transition_requires_court_review": true,
+    "loop": ["NAPKIN","GENERATION","BUILD","WRITE","ATTACK","DESTROY","RECOMBINE","HANDOFF","COURT","ARCHIVE","NEXT_GENERATION"]
+  },
+  "parent": {
+    "branch": "cube-rev-0.10.5-r1.11-final-seal",
+    "commit": "c7d48b887550b5dbe35fe28feef2f182d7dcff02",
+    "roux_future_authority": false,
+    "cfop_zb_layered_authority_unchanged": true,
+    "r111_null_engineering_pass": true,
+    "r111_primary_resolution_pass": false,
+    "r111_reference_attempts": 92
+  },
+  "preexecution_data_policy": {
+    "step_1": "Census every already-sealed repository JSON manifest for unique Roux RAW_ALG_CUBING_LINK official attempts before any fresh network acquisition.",
+    "step_2": "Use previously unused sealed attempts only if provenance fields result_id, attempt_number, raw_setup, raw_alg and route source are present and the attempt is not duplicated in the R1.11 bank.",
+    "step_3": "Only if the sealed repository census cannot yield at least 100 G2-admissible attempts may R1.12 acquire additional public reco.nz reconstruction pages and WCA linkage evidence.",
+    "fresh_data_if_needed": "Freshly acquired public routes are DEVELOPMENT_AND_CALIBRATION_ONLY in R1.12; they do not become a fresh cognitive prevalence sample merely because they are newly downloaded.",
+    "human_observations": 0
+  },
+  "primary_population": {
+    "method": "Roux",
+    "route_source_status": "RAW_ALG_CUBING_LINK",
+    "official_attempt_key": "result_id:attempt_number",
+    "primary_fb_stratum": "ordinary exact-block FB only",
+    "forked_nonprimary_strata": ["pseudo FB", "FBDR", "FB endpoints that cannot be oriented by an exact first-block history under the G2 frame"],
+    "minimum_total_admissible_attempts_for_1pct_LOO": 100,
+    "reason": "With N total attempts, each LOO test has N-1 references; add-one p_min=1/((N-1)+1)=1/N, so p<=0.01 requires N>=100."
+  },
+  "color_neutral_center_consistent_quotient": {
+    "center_canonicalization": "At every queried state, apply the unique physical whole-cube orientation that returns center pieces to the default center arrangement. If unique center canonicalization fails, the state is geometry-ineligible.",
+    "color_neutrality": "After center canonicalization, enumerate all 24 ordered physical block frames (bottom face x adjacent side face). This permits any color-neutral first-block choice without permitting arbitrary center/color relabeling.",
+    "block_mask": "A 1x2x3 block consists of the three side-face edges not incident to the frame top plus the two bottom-side corners, in full piece+orientation coordinates.",
+    "frame_inference": "Within the frozen SB subphase span, search forward for the first move state at which exactly one unordered left/right block-axis has both opposite 1x2x3 blocks solved after center canonicalization. That first unique two-block state defines the physical axis; later states cannot choose another axis.",
+    "first_side_orientation": "Orient the axis using FB history: at the ordinary FB endpoint exactly one of the axis's two blocks must be solved and the opposite block must not be solved. The solved block is first block; otherwise the route leaves the primary exact-FB stratum.",
+    "no_color_relabel": true
+  },
+  "subphase_completion_operator": {
+    "SB_span": "The maximal contiguous sequence of nonempty annotated lines classified ROUX_SB beginning at the first ROUX_SB line and ending at the last consecutive ROUX_SB line before CMLL/LSE/another non-SB phase. SS, SP, flipped SP and SB labels remain visible as annotation-family metadata rather than being collapsed into a completion claim.",
+    "completion": "The first move state inside the frozen SB span where the uniquely inferred center-consistent physical axis has both blocks solved. This state, not the first annotation line endpoint and not automatically the last line endpoint, is the completed-SB endpoint.",
+    "blocking_cases": ["no two-block completion inside span", "multiple physical axes at the first completion state", "FB history cannot uniquely orient first versus second block", "first block not preserved at completion"],
+    "posthoc_endpoint_substitution": "PROHIBITED"
+  },
+  "phase_geometry": {
+    "FB": "Objective distance to exact first-block mask over the annotated ordinary-FB line; endpoint must acquire the first block and leave the opposite block incomplete.",
+    "SB": "Objective distance to the second-block mask over the full SB span up to first state-certified completion; first-block damage is an anchor channel.",
+    "CMLL": "All-corner distance to annotated CMLL endpoint up to top-face AUF within the locked center-consistent frame; both blocks are anchors.",
+    "LSE": "Distance of the six non-block edges to the LSE/final endpoint in the locked frame; both blocks are anchors.",
+    "feature_amplitude": "Recompute every feature from raw route states. No R1.11 feature amplitude or attempt statistic may be copied into G2."
+  },
+  "geometry_gates": {
+    "minimum_state_certified_attempts": 100,
+    "minimum_primary_exact_fb_attempts": 100,
+    "minimum_unique_axis_completion_rate": 0.90,
+    "minimum_fb_orientation_rate_given_unique_axis": 0.90,
+    "minimum_sb_completion_rate": 0.90,
+    "minimum_cmll_consistency_rate": 0.80,
+    "minimum_lse_consistency_rate": 0.90,
+    "maximum_geometry_failure_rate": 0.10,
+    "minimum_total_features": 350,
+    "minimum_objective_features": 275
+  },
+  "null_foundry": {
+    "architecture": "Roux-only LOO local-tail and nested no-test-fold-leak architecture retained from R1.11, rebuilt on G2 features.",
+    "folds": 5,
+    "local_reference_hierarchy": ["phase×channel×move-count-bin when leave-one-attempt-out n>=25", "phase×channel when n>=40", "channel across Roux when n>=100"],
+    "attempt_statistic": "maximum -log10(add-one upper-tail p) over G2 features within one attempt",
+    "primary_familywise_reference": "Roux-global attempt-statistic bank. Feature-count-bin familywise references remain diagnostics unless they independently have >=99 LOO references.",
+    "primary_alpha": 0.01,
+    "watch_alpha": 0.05,
+    "watch_health_band": [0.015,0.12],
+    "minimum_local_fallback_rate_requirement": "fallback rate <=0.10",
+    "crossfit_vs_loo_pearson_min": 0.90,
+    "crossfit_vs_loo_abs_difference_p99_max": 0.75,
+    "primary_resolution": "For every LOO test attempt, global familywise reference_n>=99; equivalently total admitted attempt bank N>=100.",
+    "alpha_relaxation": "PROHIBITED"
+  },
+  "authority_logic": {
+    "future_roux_scoring_authority": "Only if G2 geometry gates, null engineering gates, and 1% finite-resolution gate all pass in a prospectively frozen execution. Otherwise HOLD.",
+    "fresh_confirmatory_scoring_in_r112": false,
+    "cognitive_recovery_or_error_claim": "PROHIBITED",
+    "causal_intentionality_awareness_strategy_claim": "PROHIBITED",
+    "full_WCA_prevalence_claim": "PROHIBITED",
+    "cfop_zb_authority_modified": false
+  },
+  "authority": {"research_branch_only": true, "main_write": false, "public_runner_write": false, "collector_write": false, "human_recruitment": false, "human_observations": 0}
+}

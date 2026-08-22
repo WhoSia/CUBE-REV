@@ -1,0 +1,8 @@
+{
+  "schema_version": "CR0105R114-POST-FREEZE-FRESH-ROUTES-1",
+  "role": "FRESH_AUTHORITY_ELIGIBLE_ONLY_IF_GATES_PASS",
+  "selected_index_n": 0,
+  "raw_route_n": 0,
+  "records": [],
+  "human_observations": 0
+}

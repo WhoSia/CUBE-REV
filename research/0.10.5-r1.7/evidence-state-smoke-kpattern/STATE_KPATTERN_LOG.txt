@@ -1,0 +1,15 @@
+{
+  "schema_version": "CR0105R17-STATE-ENGINE-SMOKE-KPATTERN-1",
+  "status": "HOLD",
+  "cubing_version": "0.63.3",
+  "solved_predicate": "KPattern.experimentalIsSolved(ignorePuzzleOrientation=true, ignoreCenterOrientation=true)",
+  "admitted_records": 72,
+  "engine_parse_failures": 0,
+  "kpattern_solved": 64,
+  "kpattern_solved_rate": 0.8888888888888888,
+  "records_with_exact_state_revisit_loop": 41,
+  "records_with_shorter_exact_rewrite": 54,
+  "conservative_counterfactual_rule": "Candidate deletion/rewrite still requires exact KTransformation equality and full-route endpoint equality. KPattern is used only for physical solved-state admission, correcting the overly strict hand-rolled transformation-hash predicate.",
+  "prior_validator_failure": "The previous hand-rolled 24-orientation transformation hash rejected known solved fixtures; see KPattern solved fixture court.",
+  "human_observations": 0
+}

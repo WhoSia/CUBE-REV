@@ -1,0 +1,35 @@
+{
+  "schema_version": "CR0105R15-LIVE-PUBLIC-CANARY-3",
+  "status": "HOLD",
+  "human_observations": 0,
+  "human_launch": false,
+  "human_recruitment_design": "DEFERRED_BY_RESEARCH_DESIGN",
+  "verdict": "HOLD_R15_LIVE_BEHAVIOR_NOT_EXACT",
+  "checks": {
+    "marker_exact": true,
+    "health_exact": true,
+    "A_stored": false,
+    "B_mutated_rejected": false,
+    "C_stored": false,
+    "D_duplicate_reverified": false,
+    "D_session_confirmed_after_reverify": false,
+    "stale_fail_closed": true,
+    "synthetic_only": true,
+    "no_page_errors": true
+  },
+  "mismatch_session_id": "CR-R15-M-12524fd87f43",
+  "samebyte_session_id": "CR-R15-S-017c1d73489a",
+  "case_errors": {
+    "A": "Invalid CUBE-REV session ID.",
+    "B": "Invalid CUBE-REV session ID.",
+    "C": "Invalid CUBE-REV session ID.",
+    "D": "Invalid CUBE-REV session ID.",
+    "STALE": "collectorClient.versionMismatch"
+  },
+  "case_receipt_status": {
+    "A": null,
+    "B": null,
+    "C": null,
+    "D": null
+  }
+}

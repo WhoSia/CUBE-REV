@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R113-ROTATION-LOCALIZATION-RUN-1",
+  "workflow_run_id": "32458624637",
+  "head_sha": "fba49498ab31ec3ea04b5bd86ab781e8311e50c6",
+  "exit_code": 0,
+  "primary_gate_changed": false,
+  "fresh_network_read": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T07:26:29.492881+00:00"
+}

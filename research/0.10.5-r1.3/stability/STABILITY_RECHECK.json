@@ -1,0 +1,44 @@
+{
+  "schema_version": "CR0105R13-STABILITY-RECHECK-1",
+  "status": "PASS",
+  "deployment_commit": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+  "fresh_fetches": [
+    {
+      "attempt": 1,
+      "http_status": 200,
+      "bytes": 2591526,
+      "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+      "url": "https://whosia.github.io/CUBE-REV/?cr0105r13-stability=32090487128-1-1787018672591298402"
+    },
+    {
+      "attempt": 2,
+      "http_status": 200,
+      "bytes": 2591526,
+      "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+      "url": "https://whosia.github.io/CUBE-REV/?cr0105r13-stability=32090487128-2-1787018677744859438"
+    },
+    {
+      "attempt": 3,
+      "http_status": 200,
+      "bytes": 2591526,
+      "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+      "url": "https://whosia.github.io/CUBE-REV/?cr0105r13-stability=32090487128-3-1787018682836876070"
+    }
+  ],
+  "browser_checks": {
+    "ready_complete": true,
+    "start_present": true,
+    "selftest_passed": true,
+    "selftest_100": true,
+    "telemetry_helper_present": true,
+    "telemetry_version_exact": true,
+    "no_page_errors": true,
+    "main_document_200": true
+  },
+  "checks": {
+    "main_still_deployment_commit": true,
+    "three_fresh_fetches_exact": true,
+    "fresh_browser_pass": true
+  },
+  "gate": "POSTDEPLOY_STABILITY_RECONFIRMED"
+}

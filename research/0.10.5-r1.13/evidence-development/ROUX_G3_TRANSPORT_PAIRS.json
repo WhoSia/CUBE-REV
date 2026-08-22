@@ -1,0 +1,966 @@
+{
+  "schema_version": "CR0105R113-G3-TRANSPORT-PAIRS-1",
+  "rows": [
+    {
+      "key": "1341399:1",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 1.0280287236002434,
+      "loo_stat": 0.9138138523837167,
+      "abs_diff": 0.11421487121652674
+    },
+    {
+      "key": "1404884:1",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.39280036901962656,
+      "loo_stat": 0.3899710790007623,
+      "abs_diff": 0.0028292900188642833
+    },
+    {
+      "key": "1404884:3",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.6651117370750514,
+      "loo_stat": 0.6127838567197355,
+      "abs_diff": 0.05232788035531599
+    },
+    {
+      "key": "1404884:4",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.18905623622004886,
+      "loo_stat": 0.1895379827829276,
+      "abs_diff": 0.00048174656287874873
+    },
+    {
+      "key": "1404884:5",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 1.278753600952829,
+      "loo_stat": 1.2863067388432747,
+      "abs_diff": 0.007553137890445649
+    },
+    {
+      "key": "1599700:5",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.9542425094393249,
+      "loo_stat": 1.135662602000073,
+      "abs_diff": 0.1814200925607482
+    },
+    {
+      "key": "1656157:1",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.7140337507718947,
+      "loo_stat": 0.7720771026714505,
+      "abs_diff": 0.058043351899555784
+    },
+    {
+      "key": "1656157:3",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.4771212547196624,
+      "loo_stat": 1.462397997898956,
+      "abs_diff": 0.014723256820706299
+    },
+    {
+      "key": "2112470:2",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.20925962230833584,
+      "loo_stat": 0.20113512910646258,
+      "abs_diff": 0.00812449320187325
+    },
+    {
+      "key": "2112470:3",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 1.5006023505691852,
+      "loo_stat": 1.587336734507256,
+      "abs_diff": 0.08673438393807076
+    },
+    {
+      "key": "2112470:4",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.1760912590556813,
+      "loo_stat": 1.1102154797875936,
+      "abs_diff": 0.06587577926808774
+    },
+    {
+      "key": "2112470:5",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.20925962230833584,
+      "loo_stat": 0.1895379827829276,
+      "abs_diff": 0.01972163952540823
+    },
+    {
+      "key": "246918:1",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 1.0925452076056064,
+      "loo_stat": 1.1249387366083,
+      "abs_diff": 0.032393529002693544
+    },
+    {
+      "key": "300639:2",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 1.9542425094393248,
+      "loo_stat": 2.03342375548695,
+      "abs_diff": 0.07918124604762511
+    },
+    {
+      "key": "3072444:1",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.23736091579460386,
+      "loo_stat": 0.3309932190414244,
+      "abs_diff": 0.09363230324682056
+    },
+    {
+      "key": "3072444:3",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.2775488998144583,
+      "loo_stat": 0.2905645619858162,
+      "abs_diff": 0.013015662171357911
+    },
+    {
+      "key": "3072444:4",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.5772364076029303,
+      "loo_stat": 0.5081554884596312,
+      "abs_diff": 0.06908091914329906
+    },
+    {
+      "key": "3072444:5",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.4471580313422192,
+      "loo_stat": 1.5563025007672873,
+      "abs_diff": 0.10914446942506806
+    },
+    {
+      "key": "3171138:2",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.7269987279362623,
+      "loo_stat": 0.7676858167054786,
+      "abs_diff": 0.04068708876921634
+    },
+    {
+      "key": "3171138:5",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.39280036901962656,
+      "loo_stat": 0.3899710790007623,
+      "abs_diff": 0.0028292900188642833
+    },
+    {
+      "key": "3171147:1",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.5772364076029303,
+      "loo_stat": 0.4366925976640542,
+      "abs_diff": 0.14054380993887605
+    },
+    {
+      "key": "3171147:2",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.4049261295327037,
+      "loo_stat": 0.38021124171160603,
+      "abs_diff": 0.024714887821097653
+    },
+    {
+      "key": "3171147:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.8325089127062364,
+      "loo_stat": 1.9138138523837167,
+      "abs_diff": 0.08130493967748031
+    },
+    {
+      "key": "3171147:4",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.5740312677277188,
+      "loo_stat": 0.6532125137753437,
+      "abs_diff": 0.07918124604762489
+    },
+    {
+      "key": "3171147:5",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 1.6901960800285136,
+      "loo_stat": 1.4771212547196624,
+      "abs_diff": 0.21307482530885125
+    },
+    {
+      "key": "3403221:1",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.400414627799893,
+      "loo_stat": 0.3899710790007623,
+      "abs_diff": 0.01044354879913073
+    },
+    {
+      "key": "3403221:2",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.17107045768063045,
+      "loo_stat": 0.17236338653643807,
+      "abs_diff": 0.001292928855807618
+    },
+    {
+      "key": "3403221:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.13353890837021748,
+      "loo_stat": 0.12142216288546281,
+      "abs_diff": 0.012116745484754665
+    },
+    {
+      "key": "3403221:5",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.359021942641668,
+      "loo_stat": 0.2905645619858162,
+      "abs_diff": 0.06845738065585177
+    },
+    {
+      "key": "3403279:4",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.1903316981702914,
+      "loo_stat": 1.1522883443830565,
+      "abs_diff": 0.03804335378723489
+    },
+    {
+      "key": "3428863:1",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.3357921019231931,
+      "loo_stat": 0.3309932190414244,
+      "abs_diff": 0.004798882881768662
+    },
+    {
+      "key": "3428863:2",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.4313637641589874,
+      "loo_stat": 1.3741370939994129,
+      "abs_diff": 0.0572266701595745
+    },
+    {
+      "key": "3428863:3",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.6842467475153124,
+      "loo_stat": 0.7720771026714505,
+      "abs_diff": 0.08783035515613802
+    },
+    {
+      "key": "3428863:4",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.5042735007632773,
+      "loo_stat": 0.4457127904680383,
+      "abs_diff": 0.05856071029523896
+    },
+    {
+      "key": "3428863:5",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.5329790721846633,
+      "loo_stat": 0.5088356678968691,
+      "abs_diff": 0.024143404287794268
+    },
+    {
+      "key": "3513235:3",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.070037866607755,
+      "loo_stat": 1.0791812460476249,
+      "abs_diff": 0.00914337943986987
+    },
+    {
+      "key": "372818:1",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.7533276666586115,
+      "loo_stat": 0.7096938697277919,
+      "abs_diff": 0.04363379693081959
+    },
+    {
+      "key": "372818:2",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.3010299956639813,
+      "loo_stat": 1.462397997898956,
+      "abs_diff": 0.16136800223497483
+    },
+    {
+      "key": "372818:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.9242792860618816,
+      "loo_stat": 2.03342375548695,
+      "abs_diff": 0.10914446942506828
+    },
+    {
+      "key": "372818:5",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 1.0543576623225928,
+      "loo_stat": 1.135662602000073,
+      "abs_diff": 0.08130493967748031
+    },
+    {
+      "key": "412962:3",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.5329790721846633,
+      "loo_stat": 0.5088356678968691,
+      "abs_diff": 0.024143404287794268
+    },
+    {
+      "key": "4218496:1",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.6334684555795866,
+      "loo_stat": 1.7323937598229686,
+      "abs_diff": 0.09892530424338197
+    },
+    {
+      "key": "4218496:2",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.5228787452803376,
+      "loo_stat": 0.5081554884596312,
+      "abs_diff": 0.01472325682070641
+    },
+    {
+      "key": "4218496:3",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.6398485522173621,
+      "loo_stat": 0.6494846412561005,
+      "abs_diff": 0.00963608903873836
+    },
+    {
+      "key": "4218496:5",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.17271151840430066,
+      "loo_stat": 0.1895379827829276,
+      "abs_diff": 0.01682646437862695
+    },
+    {
+      "key": "467563:2",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 1.0234810958495228,
+      "loo_stat": 1.1102154797875936,
+      "abs_diff": 0.08673438393807076
+    },
+    {
+      "key": "467563:3",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.5563025007672873,
+      "loo_stat": 1.6127838567197355,
+      "abs_diff": 0.05648135595244819
+    },
+    {
+      "key": "467563:4",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.31951340135799433,
+      "loo_stat": 0.316269962220718,
+      "abs_diff": 0.003243439137276316
+    },
+    {
+      "key": "4790393:1",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.9822712330395684,
+      "loo_stat": 1.0644579892269184,
+      "abs_diff": 0.08218675618734994
+    },
+    {
+      "key": "4790393:2",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 1.2671717284030137,
+      "loo_stat": 1.3117538610557542,
+      "abs_diff": 0.04458213265274047
+    },
+    {
+      "key": "4790393:3",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.27300127206373764,
+      "loo_stat": 0.2905645619858162,
+      "abs_diff": 0.017563289922078562
+    },
+    {
+      "key": "4790393:4",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.18905623622004886,
+      "loo_stat": 0.1895379827829276,
+      "abs_diff": 0.00048174656287874873
+    },
+    {
+      "key": "4790393:5",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.6020599913279624,
+      "loo_stat": 0.6127838567197355,
+      "abs_diff": 0.010723865391773058
+    },
+    {
+      "key": "5090865:5",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.5976951859255123,
+      "loo_stat": 0.6167832481486687,
+      "abs_diff": 0.0190880622231564
+    },
+    {
+      "key": "510701:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.7970365945440174,
+      "loo_stat": 0.8091854841236124,
+      "abs_diff": 0.012148889579594924
+    },
+    {
+      "key": "5220135:1",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.39280036901962656,
+      "loo_stat": 0.3899710790007623,
+      "abs_diff": 0.0028292900188642833
+    },
+    {
+      "key": "5220135:2",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.7533276666586115,
+      "loo_stat": 0.7676858167054786,
+      "abs_diff": 0.014358150046867135
+    },
+    {
+      "key": "5220135:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.3756636139608853,
+      "loo_stat": 1.3010299956639813,
+      "abs_diff": 0.07463361829690407
+    },
+    {
+      "key": "5220135:4",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.40301953420131265,
+      "loo_stat": 0.3899710790007623,
+      "abs_diff": 0.013048455200550368
+    },
+    {
+      "key": "5220135:5",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.7140337507718947,
+      "loo_stat": 0.6532125137753437,
+      "abs_diff": 0.060821236996550954
+    },
+    {
+      "key": "5220219:1",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.4471580313422192,
+      "loo_stat": 0.5088356678968691,
+      "abs_diff": 0.06167763655464986
+    },
+    {
+      "key": "5220219:2",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.255272505103306,
+      "loo_stat": 1.3117538610557542,
+      "abs_diff": 0.05648135595244819
+    },
+    {
+      "key": "5220219:3",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.18905623622004886,
+      "loo_stat": 0.1895379827829276,
+      "abs_diff": 0.00048174656287874873
+    },
+    {
+      "key": "5220219:4",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 1.2388820889151366,
+      "loo_stat": 1.2863067388432747,
+      "abs_diff": 0.04742464992813811
+    },
+    {
+      "key": "5220219:5",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.6398485522173621,
+      "loo_stat": 0.6494846412561005,
+      "abs_diff": 0.00963608903873836
+    },
+    {
+      "key": "5220221:2",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.17609125905568127,
+      "loo_stat": 0.17010089536649378,
+      "abs_diff": 0.005990363689187483
+    },
+    {
+      "key": "5220221:3",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 1.2937307569224816,
+      "loo_stat": 1.3741370939994129,
+      "abs_diff": 0.08040633707693123
+    },
+    {
+      "key": "5220221:4",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.27300127206373764,
+      "loo_stat": 0.2905645619858162,
+      "abs_diff": 0.017563289922078562
+    },
+    {
+      "key": "5220221:5",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.22184874961635637,
+      "loo_stat": 0.2905645619858162,
+      "abs_diff": 0.06871581236945984
+    },
+    {
+      "key": "5300160:1",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.6020599913279624,
+      "loo_stat": 0.6494846412561005,
+      "abs_diff": 0.04742464992813811
+    },
+    {
+      "key": "5300160:2",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 1.03698356625317,
+      "loo_stat": 1.0791812460476249,
+      "abs_diff": 0.04219767979445499
+    },
+    {
+      "key": "5300160:3",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.7781512503836436,
+      "loo_stat": 0.9138138523837167,
+      "abs_diff": 0.13566260200007307
+    },
+    {
+      "key": "5300160:4",
+      "fold": 1,
+      "rotation_present": true,
+      "crossfit_stat": 1.6901960800285136,
+      "loo_stat": 1.7781512503836436,
+      "abs_diff": 0.08795517035513001
+    },
+    {
+      "key": "5300160:5",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.7140337507718947,
+      "loo_stat": 0.6532125137753437,
+      "abs_diff": 0.060821236996550954
+    },
+    {
+      "key": "533419:1",
+      "fold": 4,
+      "rotation_present": true,
+      "crossfit_stat": 1.4313637641589874,
+      "loo_stat": 1.3741370939994129,
+      "abs_diff": 0.0572266701595745
+    },
+    {
+      "key": "533419:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.6989700043360187,
+      "loo_stat": 1.7634279935629373,
+      "abs_diff": 0.06445798922691859
+    },
+    {
+      "key": "594959:1",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.8782664032669114,
+      "loo_stat": 0.9138138523837167,
+      "abs_diff": 0.035547449116805296
+    },
+    {
+      "key": "611723:4",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 1.1139433523068367,
+      "loo_stat": 1.214843848047698,
+      "abs_diff": 0.10090049574086124
+    },
+    {
+      "key": "611723:5",
+      "fold": 0,
+      "rotation_present": true,
+      "crossfit_stat": 0.359021942641668,
+      "loo_stat": 0.2905645619858162,
+      "abs_diff": 0.06845738065585177
+    },
+    {
+      "key": "6143482:1",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.6307051727774924,
+      "loo_stat": 0.6532125137753437,
+      "abs_diff": 0.022507340997851344
+    },
+    {
+      "key": "6143482:2",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.7900504736833514,
+      "loo_stat": 0.7676858167054786,
+      "abs_diff": 0.02236465697787271
+    },
+    {
+      "key": "6143482:3",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.40301953420131265,
+      "loo_stat": 0.3899710790007623,
+      "abs_diff": 0.013048455200550368
+    },
+    {
+      "key": "6143482:4",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.6720978579357174,
+      "loo_stat": 0.6494846412561005,
+      "abs_diff": 0.02261321667961691
+    },
+    {
+      "key": "6143482:5",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.194976603216055,
+      "loo_stat": 0.17236338653643807,
+      "abs_diff": 0.022613216679616938
+    },
+    {
+      "key": "6170102:1",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.5976951859255123,
+      "loo_stat": 0.6167832481486687,
+      "abs_diff": 0.0190880622231564
+    },
+    {
+      "key": "6170102:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.6455256851090527,
+      "loo_stat": 0.6532125137753437,
+      "abs_diff": 0.007686828666291001
+    },
+    {
+      "key": "6170102:5",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.19883438619424096,
+      "loo_stat": 0.17609125905568127,
+      "abs_diff": 0.022743127138559693
+    },
+    {
+      "key": "6170204:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.3553876579865738,
+      "loo_stat": 1.1522883443830565,
+      "abs_diff": 0.2030993136035173
+    },
+    {
+      "key": "649412:5",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 1.0280287236002434,
+      "loo_stat": 0.9138138523837167,
+      "abs_diff": 0.11421487121652674
+    },
+    {
+      "key": "6734619:1",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.6557448502907387,
+      "loo_stat": 0.6532125137753437,
+      "abs_diff": 0.002532336515394973
+    },
+    {
+      "key": "6734619:3",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.2041199826559248,
+      "loo_stat": 0.17236338653643807,
+      "abs_diff": 0.031756596119486724
+    },
+    {
+      "key": "6734619:4",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.3233063903751334,
+      "loo_stat": 0.316269962220718,
+      "abs_diff": 0.007036428154415408
+    },
+    {
+      "key": "6734619:5",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.6532125137753437,
+      "loo_stat": 0.7096938697277919,
+      "abs_diff": 0.05648135595244819
+    },
+    {
+      "key": "6765413:4",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.7294593264839191,
+      "loo_stat": 0.7720771026714505,
+      "abs_diff": 0.042617776187531375
+    },
+    {
+      "key": "6781597:5",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.6478174818886375,
+      "loo_stat": 0.6494846412561005,
+      "abs_diff": 0.001667159367462978
+    },
+    {
+      "key": "7130321:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.3222192947339193,
+      "loo_stat": 1.334453751150931,
+      "abs_diff": 0.012234456417011597
+    },
+    {
+      "key": "7130321:4",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 1.8325089127062364,
+      "loo_stat": 1.9138138523837167,
+      "abs_diff": 0.08130493967748031
+    },
+    {
+      "key": "7130321:5",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.5228787452803376,
+      "loo_stat": 0.5081554884596312,
+      "abs_diff": 0.01472325682070641
+    },
+    {
+      "key": "7247265:2",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.3553876579865738,
+      "loo_stat": 1.135662602000073,
+      "abs_diff": 0.21972505598650072
+    },
+    {
+      "key": "7247265:3",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.27300127206373764,
+      "loo_stat": 0.2905645619858162,
+      "abs_diff": 0.017563289922078562
+    },
+    {
+      "key": "7247335:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.3553876579865738,
+      "loo_stat": 1.135662602000073,
+      "abs_diff": 0.21972505598650072
+    },
+    {
+      "key": "7247335:4",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.070037866607755,
+      "loo_stat": 1.1760912590556813,
+      "abs_diff": 0.10605339244792633
+    },
+    {
+      "key": "7247335:5",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 0.18905623622004886,
+      "loo_stat": 0.1895379827829276,
+      "abs_diff": 0.00048174656287874873
+    },
+    {
+      "key": "7247423:1",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.6455256851090527,
+      "loo_stat": 0.6532125137753437,
+      "abs_diff": 0.007686828666291001
+    },
+    {
+      "key": "7247423:3",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 1.2304489213782739,
+      "loo_stat": 1.3117538610557542,
+      "abs_diff": 0.08130493967748031
+    },
+    {
+      "key": "7247423:5",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.4168253528324114,
+      "loo_stat": 0.4457127904680383,
+      "abs_diff": 0.0288874376356269
+    },
+    {
+      "key": "7247448:5",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.7781512503836436,
+      "loo_stat": 0.7720771026714505,
+      "abs_diff": 0.0060741477121931675
+    },
+    {
+      "key": "7275444:1",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.5772364076029303,
+      "loo_stat": 0.4366925976640542,
+      "abs_diff": 0.14054380993887605
+    },
+    {
+      "key": "7275444:2",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.17107045768063045,
+      "loo_stat": 0.17010089536649378,
+      "abs_diff": 0.0009695623141366683
+    },
+    {
+      "key": "7275444:3",
+      "fold": 1,
+      "rotation_present": false,
+      "crossfit_stat": 1.1139433523068367,
+      "loo_stat": 1.0644579892269184,
+      "abs_diff": 0.049485363079918354
+    },
+    {
+      "key": "7275444:4",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 0.6532125137753437,
+      "loo_stat": 0.7096938697277919,
+      "abs_diff": 0.05648135595244819
+    },
+    {
+      "key": "7275444:5",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.3324384599156054,
+      "loo_stat": 1.334453751150931,
+      "abs_diff": 0.0020152912353255115
+    },
+    {
+      "key": "7275458:1",
+      "fold": 4,
+      "rotation_present": false,
+      "crossfit_stat": 1.0280287236002434,
+      "loo_stat": 1.135662602000073,
+      "abs_diff": 0.10763387839982963
+    },
+    {
+      "key": "7275458:2",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 1.2304489213782739,
+      "loo_stat": 1.3117538610557542,
+      "abs_diff": 0.08130493967748031
+    },
+    {
+      "key": "7275458:5",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.9731278535996987,
+      "loo_stat": 1.0644579892269184,
+      "abs_diff": 0.0913301356272197
+    },
+    {
+      "key": "7996680:1",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 0.6720978579357174,
+      "loo_stat": 0.6494846412561005,
+      "abs_diff": 0.02261321667961691
+    },
+    {
+      "key": "7996680:2",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.5329790721846633,
+      "loo_stat": 0.5088356678968691,
+      "abs_diff": 0.024143404287794268
+    },
+    {
+      "key": "7996680:3",
+      "fold": 0,
+      "rotation_present": false,
+      "crossfit_stat": 0.359021942641668,
+      "loo_stat": 0.3309932190414244,
+      "abs_diff": 0.028028723600243555
+    },
+    {
+      "key": "7996680:4",
+      "fold": 3,
+      "rotation_present": false,
+      "crossfit_stat": 0.27415784926367986,
+      "loo_stat": 0.3010299956639812,
+      "abs_diff": 0.026872146400301333
+    },
+    {
+      "key": "7996680:5",
+      "fold": 2,
+      "rotation_present": false,
+      "crossfit_stat": 1.1335389083702174,
+      "loo_stat": 1.214843848047698,
+      "abs_diff": 0.08130493967748054
+    }
+  ],
+  "human_observations": 0
+}

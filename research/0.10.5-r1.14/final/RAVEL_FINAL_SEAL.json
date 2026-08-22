@@ -1,0 +1,182 @@
+{
+  "schema_version": "CR0105R114-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.14 — Canonical Roux Block-preservation Ontology, Residual Reconstruction-consistency Fork & Fresh-route Gauge Authority Court",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "status": "PASS_G4_ONTOLOGY_TRANSPORT_WITH_FRESH_AUTHORITY_DATA_WAIT",
+  "verdict": "PASS_G4_DEVELOPMENT_AND_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT; HOLD_FUTURE_ROUX_AUTHORITY_FOR_ZERO_POST_FREEZE_FRESH_ROUTES",
+  "generation_disposition": "VALIDATED_FOR_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT_AUTHORITY_DATA_WAIT",
+  "parent": {
+    "branch": "cube-rev-0.10.5-r1.13-final-seal",
+    "commit": "6c1017cd23d20878ce4ec1e9bbaa6d4bf78f2d26",
+    "parent_generation": "ROUX-MEASUREMENT-G3",
+    "parent_disposition": "REMANDED_NOT_RELEASED"
+  },
+  "research_branch_head_before_final_seal": "eb9879863b7aa76d99c98f1a33ec79ded2a41306",
+  "main_audit": {
+    "main_sha": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "main_mutated_by_r114": false,
+    "public_runner_mutated": false,
+    "collector_mutated": false
+  },
+  "ordering": {
+    "napkin_and_g4_inheritance_before_route_reclassification": true,
+    "baseline_id_set_before_g4_development_outcomes": true,
+    "reference_bank_sealed_before_second_live_index_read": true,
+    "external_membership_frozen_before_external_ontology_scoring": true,
+    "preexisting_r1_operational_failure_superseded_without_membership_or_gate_change": true,
+    "fresh_outcomes_used_to_modify_reference": false,
+    "post_result_gate_change": false
+  },
+  "development_ontology": {
+    "status": "PASS_G4_DEVELOPMENT_ONTOLOGY",
+    "raw_unique_attempts": 144,
+    "state_certified": 133,
+    "ordinary_fb_sb_eligible": 130,
+    "prefix_unique": 130,
+    "canonical_fb_preserving": 114,
+    "block_disruptive_residual": 12,
+    "fb_preserved_no_completion_residual": 4,
+    "canonical_rate_given_prefix_unique": 0.8769230769230769,
+    "cmll_consistency_rate": 0.9819819819819819,
+    "lse_consistency_rate": 0.9736842105263158,
+    "canonical_features": 792,
+    "objective_features": 453,
+    "semantic_sha256": "c0337535548b575a1ad2f5ebfda07414ada0d779b21aefe1150358c1d843e13c"
+  },
+  "canonical_reference_null": {
+    "status": "PASS_G4_CANONICAL_REFERENCE_NULL",
+    "reference_attempts": 114,
+    "features": 792,
+    "loo_familywise_ok": 114,
+    "crossfit_attempts": 114,
+    "nested_familywise_ok": 114,
+    "local_fallback_rate": 0.0,
+    "loo_primary_rate_0_01": 0.008771929824561403,
+    "loo_watch_rate_0_05": 0.043859649122807015,
+    "nested_primary_rate_0_01": 0.0,
+    "nested_watch_rate_0_05": 0.03508771929824561,
+    "crossfit_loo_pearson": 0.9859661502049432,
+    "abs_difference_p99": 0.3218498396015548,
+    "minimum_add_one_p": 0.008771929824561403,
+    "primary_1pct_resolvable": true,
+    "semantic_sha256": "4c7e85e8b2dfa233171e024778d2f8e8a261ee61c11a070659f2cc5a68b34245",
+    "reference_membership_sha256": "a89f34ee0601f2ba1f46bb23916cb300e5e2299c20ad2e88b0667e48b4ec7b78",
+    "reference_seal_sha256": "7cc0aaa2754fe911aa1bc536b3a53c527410b710f466ebe30ce8bbe37f17861a"
+  },
+  "freshness_baseline": {
+    "baseline_id_n": 12936,
+    "baseline_max_id": 14058,
+    "baseline_id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+    "second_live_id_n": 12936,
+    "second_live_max_id": 14058,
+    "missing_baseline_ids": 0,
+    "new_ids_all_events": 0,
+    "new_3x3_roux_ids": 0,
+    "post_freeze_fresh_raw_routes": 0,
+    "minimum_post_freeze_fresh_raw_routes_for_authority": 20,
+    "fresh_status": "HOLD_DATA_WAIT"
+  },
+  "preexisting_unseen_court": {
+    "role": "PROSPECTIVE_ONTOLOGY_TRANSPORT_DIAGNOSTIC_ONLY",
+    "authority_release_allowed": false,
+    "eligible_index_pool": 388,
+    "frozen_selected_raw_routes": 120,
+    "state_certified": 117,
+    "ordinary_fb_sb_eligible": 117,
+    "prefix_unique": 116,
+    "canonical_fb_preserving": 105,
+    "block_disruptive_residual": 11,
+    "fb_preserved_no_completion_residual": 0,
+    "state_certification_rate": 0.975,
+    "prefix_unique_rate_given_eligible": 0.9914529914529915,
+    "canonical_rate_given_eligible": 0.8974358974358975,
+    "canonical_rate_given_prefix_unique": 0.9051724137931034,
+    "cmll_consistency_rate": 0.9320388349514563,
+    "lse_consistency_rate": 0.9333333333333333,
+    "canonical_features": 731,
+    "scored_attempts": 105,
+    "local_reference_fallback_rate": 0.0,
+    "familywise_watch_rate_0_05": 0.009523809523809525,
+    "familywise_primary_rate_0_01": 0.009523809523809525,
+    "frozen_transport_gate_status": "PASS_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT",
+    "semantic_sha256": "1c9ca17ceb5df31bcc0161f1baa75d2c723197f5bc757c2db930b52d1c9b4f09"
+  },
+  "preexisting_tail_diagnostic": {
+    "role": "POSTHOC_DIAGNOSTIC_ONLY_NO_GATE_CHANGE",
+    "primary_tail_n": 1,
+    "primary_tail_rate": 0.009523809523809525,
+    "reco_id": 601,
+    "familywise_p": 0.008695652173913044,
+    "top_feature": {
+      "phase": "FB",
+      "channel": "objective",
+      "move_count": 13,
+      "move_bin": "13+",
+      "observed_amplitude": 0.7,
+      "local_reference_n": 114,
+      "local_p": 0.008695652173913044
+    },
+    "authority_effect": "NONE",
+    "semantic_sha256": "52b711c6920473a6b71786f0a1c11944814302124377c72e7e5269912b3abf64"
+  },
+  "operational_adjudication": {
+    "preexisting_court_r1_workflow_run_id": "32539977082",
+    "r1_scientific_authority": false,
+    "r1_failure": "external runtime materializer omitted the already-recorded pre-execution helper literal repair, causing 'x is not defined'",
+    "prior_repair_receipt": "PASS_SINGLE_LITERAL_REPAIR_BEFORE_ANY_G4_ROUTE_OUTCOME",
+    "r2_workflow_run_id": "32540103976",
+    "r2_membership_changed": false,
+    "r2_reference_changed": false,
+    "r2_gate_changed": false,
+    "r2_result": "PASS_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT"
+  },
+  "generation_review": {
+    "status": "PASS_GENERATION_REVIEW_CLOSURE",
+    "semantic_sha256": "ee736b975515d98394509b31cfce9e8b90ab27d88b5840a448692648a89751e7",
+    "open_new_generation_now": false,
+    "reason": "Data wait is not a measurement-generation failure. The G4 ontology and frozen reference scorer remain fixed until genuinely post-freeze fresh Roux routes exist."
+  },
+  "authority": {
+    "roux_future_scoring_authority": false,
+    "reason": "POST_FREEZE_FRESH_VINTAGE raw Roux N=0 < frozen minimum 20",
+    "preexisting_unseen_can_release": false,
+    "cognitive_recovery_or_error_prevalence": "PROHIBITED",
+    "causal_intentional_awareness_strategy_claim": "PROHIBITED",
+    "canonical_vs_residual_as_cognitive_strategy": "PROHIBITED",
+    "full_WCA_prevalence": "PROHIBITED",
+    "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN",
+    "human_observations": 0
+  },
+  "skill_workshop": {
+    "generation_label_is_progress_claim": false,
+    "writing_is_evidence": false,
+    "napkin_preserved": true,
+    "generation_review_completed": true,
+    "ravel_operational_scientific_authority_failures_separated": true,
+    "inheritance": {
+      "RETAIN": [
+        "CANONICAL_FB_PRESERVING state ontology",
+        "explicit residual forks",
+        "prefix-only gauge plus explicit x/y/z transport",
+        "114-attempt frozen canonical reference bank",
+        "1% add-one resolution and no-alpha-relaxation",
+        "post-freeze-only future authority rule"
+      ],
+      "RETIRE": [
+        "preexisting unseen R1 operational output"
+      ],
+      "FORK": [
+        "baseline-present unseen transport lane",
+        "genuinely post-freeze fresh authority lane"
+      ],
+      "UNRESOLVED": [
+        "fresh Roux future authority due zero post-freeze data",
+        "future official-attempt duplicate linkage when new records appear"
+      ]
+    }
+  },
+  "next_action": {
+    "same_generation": "Keep ROUX-MEASUREMENT-G4 frozen and reopen only the post-freeze fresh authority court when at least 20 genuinely new raw Roux reconstruction routes exist.",
+    "parallel_research": "Begin a separate manuscript/argument-map synthesis of the CUBE-REV observation-operator sequence without treating writing as evidence."
+  }
+}

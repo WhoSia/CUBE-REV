@@ -1,0 +1,104 @@
+{
+  "schema_version": "CR0105R115-SOURCE-MAP-CITATION-AUDIT-1",
+  "stage": "CUBE-REV 0.10.5-R1.15",
+  "status": "PASS_INTERNAL_SOURCE_MAP_WITH_EXTERNAL_CITATION_VERIFICATION_DEBT",
+  "internal_sources": [
+    {
+      "claim_ids": ["C2_SHORTER_PATH_NOT_RECOVERY"],
+      "sources": [
+        "research/0.10.5-r1.7/evidence-full-route-r5/FULL_ROUTE_COURT.json",
+        "research/0.10.5-r1.8/final/RAVEL_FINAL_SEAL.json"
+      ],
+      "verified_points": ["R1.7 R5 state-certified n=874 and strict noncommuting-primitive redundancy=0", "R1.8 attempt-disjoint state-certified holdout n=888 and unchanged R5 positive attempts=0"]
+    },
+    {
+      "claim_ids": ["C3_FULL_STATE_REVERSAL_NOT_RECOVERY"],
+      "sources": ["research/0.10.5-r1.8/final/RAVEL_FINAL_SEAL.json"],
+      "verified_points": ["raw pre-endpoint reversal rate ~0.6380", "frozen null-statistic mismatch/over-conservatism", "matched posthoc standardized attempt tail ~0.04363", "calibration LOO familywise rate ~0.05962", "no attempt-level excess"]
+    },
+    {
+      "claim_ids": ["C4_PHASE_OBJECTIVE_AND_ATTEMPT_NULL", "C5_METHOD_SPECIFIC_SEMANTICS"],
+      "sources": [
+        "research/0.10.5-r1.9/final/RAVEL_FINAL_SEAL.json",
+        "research/0.10.5-r1.10/final/RAVEL_FINAL_SEAL.json"
+      ],
+      "verified_points": ["R1.9 quotient invariants and nested attempt-level calibration", "R1.9 overall future-scale correlation 0.93437 < frozen 0.95, concentrated in Roux", "R1.10 CFOP/ZB LAYERED attempts=1585, features=12121, fallback=0, crossfit-LOO r=0.99598, p99 difference=0.12209"]
+    },
+    {
+      "claim_ids": ["C6_ROUX_GAUGE_IS_ROUTE_LEVEL"],
+      "sources": [
+        "research/0.10.5-r1.11/final/RAVEL_FINAL_SEAL.json",
+        "research/0.10.5-r1.12/final/RAVEL_FINAL_SEAL.json",
+        "research/0.10.5-r1.13/final/RAVEL_FINAL_SEAL.json"
+      ],
+      "verified_points": ["R1.11 first-SB 1/92 vs last-SB 85/92; 69/92 frames require center/color relabel", "R1.12 prefix gauge unique 130/130 and in-span completion 120/130; per-state center gauge changes FB-to-SB ~0.969", "R1.13 explicit x/y/z rotation algebra fixtures PASS; targeted rotation-present hypothesis fails 3/6"]
+    },
+    {
+      "claim_ids": ["C7_G4_ONTOLOGY_TRANSPORT", "C8_FRESH_AUTHORITY"],
+      "sources": ["research/0.10.5-r1.14/final/RAVEL_FINAL_SEAL.json"],
+      "verified_points": ["development eligible=130, canonical=114, residual forks=12/4", "canonical reference attempts=114, features=792, fallback=0, 1% resolution PASS", "preexisting-unseen raw=120, eligible=117, prefix unique=116, canonical=105, features=731, fallback=0, reference contamination=0", "post-freeze fresh raw Roux=0, authority minimum=20, HOLD_DATA_WAIT"]
+    }
+  ],
+  "external_literature_anchors": [
+    {
+      "topic": "Rubik real-world skill acquisition",
+      "citation": "Meinz EJ, Hambrick DZ, Leach JJ, Boschulte PJ. Ability and Nonability Predictors of Real-World Skill Acquisition: The Case of Rubik's Cube Solving. Journal of Intelligence. 2023;11(1):18.",
+      "doi": "10.3390/jintelligence11010018",
+      "status": "VERIFIED_METADATA"
+    },
+    {
+      "topic": "Rubik macro-operators/non-serializable subgoals",
+      "citation": "Korf RE. Macro-operators: A weak method for learning. Artificial Intelligence. 1985;26(1):35-77.",
+      "doi": "10.1016/0004-3702(85)90012-8",
+      "status": "VERIFIED_METADATA"
+    },
+    {
+      "topic": "competitive collective expertise",
+      "citation": "Krakauer D, Kardeş G, Grochow J. Universality in Collective Intelligence on the Rubik's Cube. arXiv:2511.18609 (2025).",
+      "doi_or_id": "10.48550/arXiv.2511.18609",
+      "status": "VERIFIED_PREPRINT_METADATA"
+    },
+    {
+      "topic": "trace-data construct validity",
+      "citation": "Winne PH. Construct and consequential validity for learning analytics based on trace data. Computers in Human Behavior. 2020;112:106457.",
+      "doi": "10.1016/j.chb.2020.106457",
+      "status": "VERIFIED_METADATA"
+    },
+    {
+      "topic": "trace-based SRL validity",
+      "citation": "Fan Y et al. Towards investigating the validity of measurement of self-regulated learning based on trace data. Metacognition and Learning. 2022;17:949-987.",
+      "doi": "10.1007/s11409-022-09291-1",
+      "status": "VERIFIED_METADATA"
+    },
+    {
+      "topic": "process-tracing index validity",
+      "citation": "Böckenholt U, Hynan LS. Caveats on a process-tracing measure and a remedy. Journal of Behavioral Decision Making. 1994;7:103-117.",
+      "doi": "10.1002/bdm.3960070203",
+      "status": "VERIFIED_METADATA"
+    },
+    {
+      "topic": "process-tracing method reactivity/validity",
+      "citation": "Lohse GL, Johnson EJ. A Comparison of Two Process Tracing Methods for Choice Tasks. Organizational Behavior and Human Decision Processes. 1996;68(1):28-43.",
+      "doi": "10.1006/obhd.1996.0087",
+      "status": "VERIFIED_METADATA"
+    },
+    {
+      "topic": "digital trace total error/construct definition",
+      "citation": "A Total Error Framework for Digital Traces of Human Behavior on Online Platforms (TED-On). Public Opinion Quarterly. 2021;85(S1):399-422.",
+      "status": "VERIFIED_TITLE_AND_JOURNAL; AUTHOR/DOI_TIEOUT_PENDING"
+    }
+  ],
+  "citation_audit": {
+    "internal_numeric_claims_have_source_paths": true,
+    "manuscript_may_cite_workflow_ids_as_scientific_support": false,
+    "workflow_ids_role": "reproducibility/provenance only",
+    "strong_novelty_claim_verified": false,
+    "external_reference_bibliography_fully_tied_out": false,
+    "remaining_actions": [
+      "author/year/page/DOI tie-out for every external reference at manuscript freeze",
+      "systematic novelty/citation-chaining court",
+      "ensure all numeric Results sentences are generated from or linked to this source map"
+    ]
+  },
+  "source_status_guard": "A sealed pipeline or workflow receipt is evidence of execution/reproducibility, not by itself evidence that a scientific effect or construct interpretation is valid."
+}

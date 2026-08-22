@@ -1,0 +1,62 @@
+name: CR0105R17 Detail Grammar Probe
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-counterfactual-route]
+    paths: [cr0105r17/RUN_GRAMMAR]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: cr0105r17-detail-grammar-probe
+  cancel-in-progress: false
+jobs:
+  grammar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify parent probe
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.7/evidence-parent/PARENT_ARTIFACT_PROBE.json'))
+          assert x['status']=='PASS'
+          assert x['db_sha256']=='a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'
+          print('R17_PARENT_PROBE_PASS')
+          PY
+      - name: Restore frozen R1.6 analytical DB
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r17grammar
+          gh api -H 'Accept: application/vnd.github+json' repos/${GITHUB_REPOSITORY}/actions/artifacts/9310311696/zip > /tmp/r17grammar/r16.zip
+          unzip -q /tmp/r17grammar/r16.zip -d /tmp/r17grammar/unpacked
+          DB="$(find /tmp/r17grammar/unpacked -type f -name 'wca333.duckdb' -print -quit)"
+          test -n "$DB"
+          test "$(sha256sum "$DB" | awk '{print $1}')" = 'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'
+          echo "R17_PARENT_DB=$DB" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install grammar runtime
+        run: python -m pip install --disable-pip-version-check duckdb==1.3.2 requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+      - name: Run detail grammar court
+        run: |
+          set -euo pipefail
+          export R17_OUT="$GITHUB_WORKSPACE/research/0.10.5-r1.7/evidence-grammar"
+          python research/0.10.5-r1.7/r17_detail_grammar_probe.py | tee /tmp/r17grammar/grammar.log
+      - name: Persist and commit grammar evidence
+        run: |
+          set -euo pipefail
+          cp /tmp/r17grammar/grammar.log research/0.10.5-r1.7/evidence-grammar/GRAMMAR_LOG.txt
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          p=pathlib.Path('research/0.10.5-r1.7/evidence-grammar/RUN_METADATA.json')
+          p.write_text(json.dumps({'schema_version':'CR0105R17-GRAMMAR-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'human_observations':0},indent=2)+'\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-grammar
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 detail grammar probe ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-counterfactual-route

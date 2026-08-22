@@ -1,0 +1,1046 @@
+{
+  "schema_version": "CR0105R113-MOVE-COCYCLE-GAUGE-ROWS-1",
+  "rows": [
+    {
+      "attempt_key": "1341399:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "1404884:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "1404884:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "1404884:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "1404884:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "1599700:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "1656157:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "1656157:4",
+      "source": "SEALED_R111",
+      "rotation_present": true,
+      "cocycle_completion_index": null,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "2112470:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "2112470:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 26,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "2112470:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "2112470:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3072444:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3072444:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 28,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3072444:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3072444:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 30,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "3171147:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 26,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "3171147:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 20,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "3171147:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3171147:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3171147:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3403221:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3403221:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3403221:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3403279:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3428863:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3428863:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3428863:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "372818:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "372818:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "372818:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "412962:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 24,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "4218496:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "4218496:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "4218496:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 24,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "467563:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 26,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "467563:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "467563:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "467563:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "4790393:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "4790393:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 24,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "510701:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220135:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220135:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 22,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "5220135:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220135:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220219:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220219:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220219:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220219:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220221:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220221:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220221:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 35,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "5300160:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 30,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "5300160:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5300160:4",
+      "source": "SEALED_R111",
+      "rotation_present": true,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5300160:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "533419:1",
+      "source": "SEALED_R111",
+      "rotation_present": true,
+      "cocycle_completion_index": 23,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "533419:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "611723:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "611723:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 23,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "611723:5",
+      "source": "SEALED_R111",
+      "rotation_present": true,
+      "cocycle_completion_index": 29,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "6143482:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 22,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "6143482:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "6143482:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "6143482:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "6170102:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 19,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "6170102:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "6170204:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "6734619:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 36,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "6734619:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "6781597:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7130321:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 23,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "7247265:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7247335:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7247335:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7247335:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7247423:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7247448:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7275444:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7275444:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7275458:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7275458:2",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7275458:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "7275458:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7996680:1",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7996680:3",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 23,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "7996680:4",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": 23,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "7996680:5",
+      "source": "SEALED_R111",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5090865:5",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3428863:5",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "1656157:1",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": 27,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "4790393:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "1404884:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "6734619:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "3171138:4",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "5220221:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220219:5",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": 25,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "7247423:5",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7275444:4",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "6734619:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3171138:5",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5220135:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "5300160:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": 28,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "6765413:4",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": 27,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "3513235:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": 18,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "3403221:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "6143482:4",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": 31,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "7130321:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": 26,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "3428863:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "4790393:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "246918:1",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7130321:4",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": 24,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "7275444:5",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "6170102:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "2011086:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": true,
+      "cocycle_completion_index": null,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "649412:5",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "300639:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7996680:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7247423:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "4218496:1",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "594959:1",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "2112470:1",
+      "source": "R112_EXPANSION",
+      "rotation_present": true,
+      "cocycle_completion_index": null,
+      "g3_status": "NO_TRANSPORTED_SB_COMPLETION",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "6734619:5",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "4790393:1",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": 15,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": false
+    },
+    {
+      "attempt_key": "3171138:2",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7247265:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "372818:3",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "7275444:1",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    },
+    {
+      "attempt_key": "3072444:5",
+      "source": "R112_EXPANSION",
+      "rotation_present": false,
+      "cocycle_completion_index": null,
+      "g3_status": "G3_ADMITTED",
+      "cocycle_changed_outcome": true
+    }
+  ],
+  "human_observations": 0
+}

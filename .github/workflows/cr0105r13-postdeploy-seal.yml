@@ -1,0 +1,138 @@
+name: CR0105R13 Postdeploy Public Byte Seal
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.3-deployment-authority]
+    paths: ['cr0105r13/RUN_POST']
+permissions:
+  contents: write
+jobs:
+  postdeploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install public-host browser runtime
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install chromium
+      - name: Verify main identity, public bytes, and live browser
+        shell: bash
+        env:
+          CAND_BYTES: '2591526'
+          CAND_SHA256: 98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180
+          CAND_BLOB: ce5b5608767083a696cf57982edd979a21b3ba22
+          BASE_BYTES: '2588604'
+          BASE_SHA256: e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf
+          RESEARCH_BRANCH: cube-rev-0.10.5-r1.3-deployment-authority
+        run: |
+          set +e
+          ART=cr0105r13-artifact
+          EVID=research/0.10.5-r1.3/postdeploy
+          mkdir -p "$ART" "$EVID"
+          expected=$(python - <<'PY'
+          import json
+          print(json.load(open('research/0.10.5-r1.3/predeploy/PREDEPLOY_AUTHORITY.json'))['deployment_commit'])
+          PY
+          )
+          main_sha=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+          main_ok=0
+          if test "$main_sha" = "$expected"; then
+            git fetch origin main --quiet
+            blob=$(git rev-parse "$main_sha:index.html")
+            bytes=$(git show "$main_sha:index.html" | wc -c)
+            sha=$(git show "$main_sha:index.html" | sha256sum | cut -d' ' -f1)
+            if test "$blob" = "$CAND_BLOB" -a "$bytes" = "$CAND_BYTES" -a "$sha" = "$CAND_SHA256"; then main_ok=1; fi
+          fi
+          : > "$ART/PUBLIC_ATTEMPTS.jsonl"
+          matched=0
+          classification=NO_MATCH
+          final_bytes=0
+          final_sha=''
+          final_url=''
+          for i in $(seq 1 36); do
+            u="https://whosia.github.io/CUBE-REV/?cr0105r13=${GITHUB_RUN_ID}-${i}-$(date +%s%N)"
+            code=$(curl -sS -L -H 'Cache-Control: no-cache, no-store' -o "$ART/public-current.html" -w '%{http_code}' "$u" || true)
+            if test -f "$ART/public-current.html"; then
+              final_bytes=$(wc -c < "$ART/public-current.html")
+              final_sha=$(sha256sum "$ART/public-current.html" | cut -d' ' -f1)
+            else
+              final_bytes=0; final_sha=''
+            fi
+            final_url="$u"
+            ATTEMPT="$i" CODE="$code" BYTES="$final_bytes" SHA="$final_sha" URL="$u" python - <<'PY' >> "$ART/PUBLIC_ATTEMPTS.jsonl"
+          import json,os
+          print(json.dumps({'attempt':int(os.environ['ATTEMPT']),'http_status':int(os.environ['CODE'] or 0),'bytes':int(os.environ['BYTES'] or 0),'sha256':os.environ['SHA'],'url':os.environ['URL']}))
+          PY
+            if test "$code" = 200 -a "$final_bytes" = "$CAND_BYTES" -a "$final_sha" = "$CAND_SHA256"; then matched=1; classification=CANDIDATE_EXACT; break; fi
+            if test "$code" = 200 -a "$final_bytes" = "$BASE_BYTES" -a "$final_sha" = "$BASE_SHA256"; then classification=BASELINE_STILL_SERVING; else classification=UNEXPECTED_PUBLIC_BYTES; fi
+            sleep 5
+          done
+          browser_rc=99
+          if test "$matched" = 1; then
+            CR0105R13_ARTIFACT_DIR="$ART" CR0105R13_PUBLIC_URL="$final_url" python tests/cr0105r13_public_host_court.py
+            browser_rc=$?
+          fi
+          EXPECTED="$expected" MAIN_SHA="$main_sha" MAIN_OK="$main_ok" MATCHED="$matched" CLASSIFICATION="$classification" FINAL_BYTES="$final_bytes" FINAL_SHA="$final_sha" FINAL_URL="$final_url" BROWSER_RC="$browser_rc" python - <<'PY'
+          import json,os
+          from pathlib import Path
+          attempts=[]
+          p=Path('cr0105r13-artifact/PUBLIC_ATTEMPTS.jsonl')
+          if p.exists():
+           attempts=[json.loads(x) for x in p.read_text().splitlines() if x.strip()]
+          browser={}
+          bp=Path('cr0105r13-artifact/PUBLIC_HOST_BROWSER_COURT.json')
+          if bp.exists(): browser=json.loads(bp.read_text())
+          checks={
+           'main_ref_exact_deployment_commit':os.environ['MAIN_OK']=='1',
+           'main_index_exact_candidate':os.environ['MAIN_OK']=='1',
+           'public_http_candidate_exact':os.environ['MATCHED']=='1',
+           'public_browser_court_pass':int(os.environ['BROWSER_RC'])==0 and browser.get('status')=='PASS'
+          }
+          status='PASS' if all(checks.values()) else 'HOLD'
+          out={
+           'schema_version':'CR0105R13-POSTDEPLOY-SEAL-1',
+           'stage':'CUBE-REV 0.10.5-R1.3 — Explicit Deployment Authority Court, Mainline Candidate Injection & Post-deploy Public-byte Identity Seal',
+           'status':status,
+           'verdict':'PASS_MAINLINE_EXACT_CANDIDATE_PUBLIC_BYTES_IDENTICAL' if status=='PASS' else 'HOLD_POSTDEPLOY_PUBLIC_IDENTITY',
+           'deployment_commit_expected':os.environ['EXPECTED'],'main_commit_observed':os.environ['MAIN_SHA'],
+           'candidate':{'bytes':2591526,'sha256':'98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180','git_blob_sha1':'ce5b5608767083a696cf57982edd979a21b3ba22'},
+           'public_final':{'classification':os.environ['CLASSIFICATION'],'bytes':int(os.environ['FINAL_BYTES'] or 0),'sha256':os.environ['FINAL_SHA'],'url':os.environ['FINAL_URL']},
+           'attempts':attempts,'browser_status':browser.get('status'),'browser_checks':browser.get('checks'),
+           'checks':checks,'authority':{'main_written_in_preceding_explicit_step':True,'pages_settings_written':False,'human_launch':False},
+           'gate':'PUBLIC_RELEASE_IDENTITY_SEALED' if status=='PASS' else 'POSTDEPLOY_HOLD_REQUIRES_ADJUDICATION'
+          }
+          Path('research/0.10.5-r1.3/postdeploy/FINAL_PUBLIC_BYTE_SEAL.json').write_text(json.dumps(out,indent=2),encoding='utf-8')
+          Path('cr0105r13-artifact/FINAL_PUBLIC_BYTE_SEAL.json').write_text(json.dumps(out,indent=2),encoding='utf-8')
+          PY
+          cp -f "$ART/PUBLIC_HOST_BROWSER_COURT.json" "$EVID/PUBLIC_HOST_BROWSER_COURT.json" 2>/dev/null || true
+          cp -f "$ART/PUBLIC_ATTEMPTS.jsonl" "$EVID/PUBLIC_ATTEMPTS.jsonl" 2>/dev/null || true
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "$EVID"
+          if ! git diff --cached --quiet; then
+            git commit -m "Record CUBE-REV 0.10.5-R1.3 postdeploy court ${GITHUB_RUN_ID}"
+            git push origin HEAD:${RESEARCH_BRANCH}
+          fi
+          final_status=$(python - <<'PY'
+          import json
+          print(json.load(open('cr0105r13-artifact/FINAL_PUBLIC_BYTE_SEAL.json'))['status'])
+          PY
+          )
+          if test "$final_status" = PASS; then
+            seal_commit=$(git rev-parse HEAD)
+            tag='cube-rev-0.10.5-r1.3-public-byte-seal'
+            if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then exit 91; fi
+            git tag "$tag" "$seal_commit" && git push origin "refs/tags/${tag}"
+            exit 0
+          fi
+          exit 2
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R13-postdeploy-seal
+          path: cr0105r13-artifact
+          if-no-files-found: error
+          retention-days: 30

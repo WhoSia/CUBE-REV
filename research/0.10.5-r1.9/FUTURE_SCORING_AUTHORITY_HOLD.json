@@ -1,0 +1,69 @@
+{
+  "schema_version": "CR0105R19-FUTURE-SCORING-AUTHORITY-HOLD-1",
+  "stage": "CUBE-REV 0.10.5-R1.9 — Phase-objective Quotient Geometry, Attempt-level Familywise Null Preregistration & Fresh-vintage Replication Readiness",
+  "status": "HOLD_FUTURE_SCORING_AUTHORITY",
+  "r3_null_seal_sha256": "86522ee214024c8cac5257e07a4b9df451edff764fed13d9027ba79c957f2fca",
+  "r3_seal_status_at_creation": "SEALED_FOR_FUTURE_FRESH_VINTAGE_R3_NESTED_EXACT_PREREG_GATE",
+  "quarantine_reason": "A post-seal future-score scale compatibility audit, run after the current live vintage was confirmed to contain zero new reconstruction IDs, failed the predeclared engineering correlation gate: cross-fitted historical attempt statistics versus leave-one-attempt-out full-history-scale statistics had overall Pearson correlation 0.9343681479872616 < 0.95. The primary/watch pseudo-fresh exceedance rates remained within calibration-health bands, but the tail-score transport gate is not waived.",
+  "compatibility_evidence": {
+    "status": "HOLD_FUTURE_SCALE_COMPATIBILITY",
+    "workflow_run_id": 32358844584,
+    "primary_empirical_exceedance": 0.011329755515802028,
+    "watch_empirical_exceedance": 0.05008944543828265,
+    "overall_crossfit_vs_loo_correlation": 0.9343681479872616,
+    "abs_diff_p50": 0.011710223857271662,
+    "abs_diff_p90": 0.0615302953909751,
+    "abs_diff_p99": 0.9361335663554866,
+    "abs_diff_max": 1.3163750419410234
+  },
+  "posthoc_failure_decomposition": {
+    "workflow_run_id": 32359092515,
+    "role": "DIAGNOSTIC_ONLY; FAILED GATE UNCHANGED",
+    "CFOP": {
+      "n": 1497,
+      "correlation": 0.9965966880069477,
+      "abs_diff_p99": 0.1104525863233996,
+      "max": 0.37560894989613797
+    },
+    "ZB": {
+      "n": 88,
+      "correlation": 0.9883379784794232,
+      "abs_diff_p99": 0.3834790912819852,
+      "max": 0.3834790912819852
+    },
+    "Roux": {
+      "n": 92,
+      "correlation": 0.5620191598193393,
+      "abs_diff_p50": 0.4848639839880431,
+      "abs_diff_p99": 1.3163750419410234,
+      "max": 1.3163750419410234
+    },
+    "interpretation": "The transport failure is concentrated in the Roux reconstruction frame and is consistent with the earlier weak Roux structural-frame identification. CFOP/ZB diagnostics are strong, but method-specific future-scoring authority was not the frozen global R1.9 authority gate and therefore is not promoted posthoc."
+  },
+  "fresh_vintage_context": {
+    "workflow_run_id": 32358621444,
+    "status": "READINESS_PASS_DATA_WAIT",
+    "live_reco_rows": 10596,
+    "live_max_reco_id": 14051,
+    "new_reco_id_rows": 0,
+    "novel_unique_linked_attempts": 0,
+    "confirmatory_outcomes_scored": false
+  },
+  "authority_effect": {
+    "r3_seal_retained_as_historical_engineering_evidence": true,
+    "r3_seal_authorized_for_future_confirmatory_scoring": false,
+    "partial_CFOP_ZB_future_authority": false,
+    "reason_partial_not_promoted": "The global transport gate was frozen and failed. Method-stratified promotion would be a post-result authority redesign and belongs in a new version.",
+    "main_write": false,
+    "public_runner_write": false,
+    "collector_write": false,
+    "human_recruitment": false,
+    "human_observations": 0
+  },
+  "required_remand": [
+    "Prospectively freeze a method-stratified or otherwise transport-stable future scoring bank before any nonzero fresh vintage is opened.",
+    "Separate CFOP/ZB scorer authority from Roux until Roux block/last-layer frame identification is independently stabilized.",
+    "Re-run pseudo-fresh transport and no-test-fold-leak familywise health under the new frozen bank without lowering the 0.95 compatibility gate after observing results.",
+    "Only after that seal may a nonzero fresh vintage be scored confirmatorily."
+  ]
+}

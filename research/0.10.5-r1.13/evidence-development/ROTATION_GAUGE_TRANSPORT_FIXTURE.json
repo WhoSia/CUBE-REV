@@ -1,0 +1,6858 @@
+{
+  "schema_version": "CR0105R113-ROTATION-COVARIANT-GAUGE-FIXTURE-1",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "status": "PASS_ROTATION_GAUGE_ALGEBRA",
+  "cubing_version": "0.63.3",
+  "transport_semantics": "For pure whole-cube rotation r, G_next is the unique orientation representative such that (X apply r) apply G_next == X apply G_old on all asymmetric probes.",
+  "rotation_tokens": [
+    "x",
+    "x'",
+    "x2",
+    "y",
+    "y'",
+    "y2",
+    "z",
+    "z'",
+    "z2"
+  ],
+  "probe_algs": [
+    "R U F2 L D B' R2 U' F L2 D'",
+    "F R2 U B' L2 D R' U2 F' D2",
+    "L U2 B R' D F2 U' L2 B' R"
+  ],
+  "checks": {
+    "orientation_group_24": true,
+    "mapping_rows_216": true,
+    "every_mapping_unique": true,
+    "inverse_and_order_checks": true,
+    "pure_rotation_path_invariance": true,
+    "table_rows_are_permutations": true
+  },
+  "mapping_rows": [
+    {
+      "old_gauge": 0,
+      "rotation": "x",
+      "new_gauge": 11,
+      "candidate_count": 1,
+      "candidates": [
+        11
+      ]
+    },
+    {
+      "old_gauge": 0,
+      "rotation": "x'",
+      "new_gauge": 1,
+      "candidate_count": 1,
+      "candidates": [
+        1
+      ]
+    },
+    {
+      "old_gauge": 0,
+      "rotation": "x2",
+      "new_gauge": 4,
+      "candidate_count": 1,
+      "candidates": [
+        4
+      ]
+    },
+    {
+      "old_gauge": 0,
+      "rotation": "y",
+      "new_gauge": 18,
+      "candidate_count": 1,
+      "candidates": [
+        18
+      ]
+    },
+    {
+      "old_gauge": 0,
+      "rotation": "y'",
+      "new_gauge": 2,
+      "candidate_count": 1,
+      "candidates": [
+        2
+      ]
+    },
+    {
+      "old_gauge": 0,
+      "rotation": "y2",
+      "new_gauge": 8,
+      "candidate_count": 1,
+      "candidates": [
+        8
+      ]
+    },
+    {
+      "old_gauge": 0,
+      "rotation": "z",
+      "new_gauge": 19,
+      "candidate_count": 1,
+      "candidates": [
+        19
+      ]
+    },
+    {
+      "old_gauge": 0,
+      "rotation": "z'",
+      "new_gauge": 3,
+      "candidate_count": 1,
+      "candidates": [
+        3
+      ]
+    },
+    {
+      "old_gauge": 0,
+      "rotation": "z2",
+      "new_gauge": 10,
+      "candidate_count": 1,
+      "candidates": [
+        10
+      ]
+    },
+    {
+      "old_gauge": 1,
+      "rotation": "x",
+      "new_gauge": 0,
+      "candidate_count": 1,
+      "candidates": [
+        0
+      ]
+    },
+    {
+      "old_gauge": 1,
+      "rotation": "x'",
+      "new_gauge": 4,
+      "candidate_count": 1,
+      "candidates": [
+        4
+      ]
+    },
+    {
+      "old_gauge": 1,
+      "rotation": "x2",
+      "new_gauge": 11,
+      "candidate_count": 1,
+      "candidates": [
+        11
+      ]
+    },
+    {
+      "old_gauge": 1,
+      "rotation": "y",
+      "new_gauge": 6,
+      "candidate_count": 1,
+      "candidates": [
+        6
+      ]
+    },
+    {
+      "old_gauge": 1,
+      "rotation": "y'",
+      "new_gauge": 7,
+      "candidate_count": 1,
+      "candidates": [
+        7
+      ]
+    },
+    {
+      "old_gauge": 1,
+      "rotation": "y2",
+      "new_gauge": 16,
+      "candidate_count": 1,
+      "candidates": [
+        16
+      ]
+    },
+    {
+      "old_gauge": 1,
+      "rotation": "z",
+      "new_gauge": 23,
+      "candidate_count": 1,
+      "candidates": [
+        23
+      ]
+    },
+    {
+      "old_gauge": 1,
+      "rotation": "z'",
+      "new_gauge": 5,
+      "candidate_count": 1,
+      "candidates": [
+        5
+      ]
+    },
+    {
+      "old_gauge": 1,
+      "rotation": "z2",
+      "new_gauge": 15,
+      "candidate_count": 1,
+      "candidates": [
+        15
+      ]
+    },
+    {
+      "old_gauge": 2,
+      "rotation": "x",
+      "new_gauge": 20,
+      "candidate_count": 1,
+      "candidates": [
+        20
+      ]
+    },
+    {
+      "old_gauge": 2,
+      "rotation": "x'",
+      "new_gauge": 5,
+      "candidate_count": 1,
+      "candidates": [
+        5
+      ]
+    },
+    {
+      "old_gauge": 2,
+      "rotation": "x2",
+      "new_gauge": 12,
+      "candidate_count": 1,
+      "candidates": [
+        12
+      ]
+    },
+    {
+      "old_gauge": 2,
+      "rotation": "y",
+      "new_gauge": 0,
+      "candidate_count": 1,
+      "candidates": [
+        0
+      ]
+    },
+    {
+      "old_gauge": 2,
+      "rotation": "y'",
+      "new_gauge": 8,
+      "candidate_count": 1,
+      "candidates": [
+        8
+      ]
+    },
+    {
+      "old_gauge": 2,
+      "rotation": "y2",
+      "new_gauge": 18,
+      "candidate_count": 1,
+      "candidates": [
+        18
+      ]
+    },
+    {
+      "old_gauge": 2,
+      "rotation": "z",
+      "new_gauge": 7,
+      "candidate_count": 1,
+      "candidates": [
+        7
+      ]
+    },
+    {
+      "old_gauge": 2,
+      "rotation": "z'",
+      "new_gauge": 9,
+      "candidate_count": 1,
+      "candidates": [
+        9
+      ]
+    },
+    {
+      "old_gauge": 2,
+      "rotation": "z2",
+      "new_gauge": 17,
+      "candidate_count": 1,
+      "candidates": [
+        17
+      ]
+    },
+    {
+      "old_gauge": 3,
+      "rotation": "x",
+      "new_gauge": 9,
+      "candidate_count": 1,
+      "candidates": [
+        9
+      ]
+    },
+    {
+      "old_gauge": 3,
+      "rotation": "x'",
+      "new_gauge": 6,
+      "candidate_count": 1,
+      "candidates": [
+        6
+      ]
+    },
+    {
+      "old_gauge": 3,
+      "rotation": "x2",
+      "new_gauge": 13,
+      "candidate_count": 1,
+      "candidates": [
+        13
+      ]
+    },
+    {
+      "old_gauge": 3,
+      "rotation": "y",
+      "new_gauge": 22,
+      "candidate_count": 1,
+      "candidates": [
+        22
+      ]
+    },
+    {
+      "old_gauge": 3,
+      "rotation": "y'",
+      "new_gauge": 5,
+      "candidate_count": 1,
+      "candidates": [
+        5
+      ]
+    },
+    {
+      "old_gauge": 3,
+      "rotation": "y2",
+      "new_gauge": 14,
+      "candidate_count": 1,
+      "candidates": [
+        14
+      ]
+    },
+    {
+      "old_gauge": 3,
+      "rotation": "z",
+      "new_gauge": 0,
+      "candidate_count": 1,
+      "candidates": [
+        0
+      ]
+    },
+    {
+      "old_gauge": 3,
+      "rotation": "z'",
+      "new_gauge": 10,
+      "candidate_count": 1,
+      "candidates": [
+        10
+      ]
+    },
+    {
+      "old_gauge": 3,
+      "rotation": "z2",
+      "new_gauge": 19,
+      "candidate_count": 1,
+      "candidates": [
+        19
+      ]
+    },
+    {
+      "old_gauge": 4,
+      "rotation": "x",
+      "new_gauge": 1,
+      "candidate_count": 1,
+      "candidates": [
+        1
+      ]
+    },
+    {
+      "old_gauge": 4,
+      "rotation": "x'",
+      "new_gauge": 11,
+      "candidate_count": 1,
+      "candidates": [
+        11
+      ]
+    },
+    {
+      "old_gauge": 4,
+      "rotation": "x2",
+      "new_gauge": 0,
+      "candidate_count": 1,
+      "candidates": [
+        0
+      ]
+    },
+    {
+      "old_gauge": 4,
+      "rotation": "y",
+      "new_gauge": 12,
+      "candidate_count": 1,
+      "candidates": [
+        12
+      ]
+    },
+    {
+      "old_gauge": 4,
+      "rotation": "y'",
+      "new_gauge": 17,
+      "candidate_count": 1,
+      "candidates": [
+        17
+      ]
+    },
+    {
+      "old_gauge": 4,
+      "rotation": "y2",
+      "new_gauge": 10,
+      "candidate_count": 1,
+      "candidates": [
+        10
+      ]
+    },
+    {
+      "old_gauge": 4,
+      "rotation": "z",
+      "new_gauge": 13,
+      "candidate_count": 1,
+      "candidates": [
+        13
+      ]
+    },
+    {
+      "old_gauge": 4,
+      "rotation": "z'",
+      "new_gauge": 14,
+      "candidate_count": 1,
+      "candidates": [
+        14
+      ]
+    },
+    {
+      "old_gauge": 4,
+      "rotation": "z2",
+      "new_gauge": 8,
+      "candidate_count": 1,
+      "candidates": [
+        8
+      ]
+    },
+    {
+      "old_gauge": 5,
+      "rotation": "x",
+      "new_gauge": 2,
+      "candidate_count": 1,
+      "candidates": [
+        2
+      ]
+    },
+    {
+      "old_gauge": 5,
+      "rotation": "x'",
+      "new_gauge": 12,
+      "candidate_count": 1,
+      "candidates": [
+        12
+      ]
+    },
+    {
+      "old_gauge": 5,
+      "rotation": "x2",
+      "new_gauge": 20,
+      "candidate_count": 1,
+      "candidates": [
+        20
+      ]
+    },
+    {
+      "old_gauge": 5,
+      "rotation": "y",
+      "new_gauge": 3,
+      "candidate_count": 1,
+      "candidates": [
+        3
+      ]
+    },
+    {
+      "old_gauge": 5,
+      "rotation": "y'",
+      "new_gauge": 14,
+      "candidate_count": 1,
+      "candidates": [
+        14
+      ]
+    },
+    {
+      "old_gauge": 5,
+      "rotation": "y2",
+      "new_gauge": 22,
+      "candidate_count": 1,
+      "candidates": [
+        22
+      ]
+    },
+    {
+      "old_gauge": 5,
+      "rotation": "z",
+      "new_gauge": 1,
+      "candidate_count": 1,
+      "candidates": [
+        1
+      ]
+    },
+    {
+      "old_gauge": 5,
+      "rotation": "z'",
+      "new_gauge": 15,
+      "candidate_count": 1,
+      "candidates": [
+        15
+      ]
+    },
+    {
+      "old_gauge": 5,
+      "rotation": "z2",
+      "new_gauge": 23,
+      "candidate_count": 1,
+      "candidates": [
+        23
+      ]
+    },
+    {
+      "old_gauge": 6,
+      "rotation": "x",
+      "new_gauge": 3,
+      "candidate_count": 1,
+      "candidates": [
+        3
+      ]
+    },
+    {
+      "old_gauge": 6,
+      "rotation": "x'",
+      "new_gauge": 13,
+      "candidate_count": 1,
+      "candidates": [
+        13
+      ]
+    },
+    {
+      "old_gauge": 6,
+      "rotation": "x2",
+      "new_gauge": 9,
+      "candidate_count": 1,
+      "candidates": [
+        9
+      ]
+    },
+    {
+      "old_gauge": 6,
+      "rotation": "y",
+      "new_gauge": 16,
+      "candidate_count": 1,
+      "candidates": [
+        16
+      ]
+    },
+    {
+      "old_gauge": 6,
+      "rotation": "y'",
+      "new_gauge": 1,
+      "candidate_count": 1,
+      "candidates": [
+        1
+      ]
+    },
+    {
+      "old_gauge": 6,
+      "rotation": "y2",
+      "new_gauge": 7,
+      "candidate_count": 1,
+      "candidates": [
+        7
+      ]
+    },
+    {
+      "old_gauge": 6,
+      "rotation": "z",
+      "new_gauge": 18,
+      "candidate_count": 1,
+      "candidates": [
+        18
+      ]
+    },
+    {
+      "old_gauge": 6,
+      "rotation": "z'",
+      "new_gauge": 12,
+      "candidate_count": 1,
+      "candidates": [
+        12
+      ]
+    },
+    {
+      "old_gauge": 6,
+      "rotation": "z2",
+      "new_gauge": 21,
+      "candidate_count": 1,
+      "candidates": [
+        21
+      ]
+    },
+    {
+      "old_gauge": 7,
+      "rotation": "x",
+      "new_gauge": 19,
+      "candidate_count": 1,
+      "candidates": [
+        19
+      ]
+    },
+    {
+      "old_gauge": 7,
+      "rotation": "x'",
+      "new_gauge": 14,
+      "candidate_count": 1,
+      "candidates": [
+        14
+      ]
+    },
+    {
+      "old_gauge": 7,
+      "rotation": "x2",
+      "new_gauge": 21,
+      "candidate_count": 1,
+      "candidates": [
+        21
+      ]
+    },
+    {
+      "old_gauge": 7,
+      "rotation": "y",
+      "new_gauge": 1,
+      "candidate_count": 1,
+      "candidates": [
+        1
+      ]
+    },
+    {
+      "old_gauge": 7,
+      "rotation": "y'",
+      "new_gauge": 16,
+      "candidate_count": 1,
+      "candidates": [
+        16
+      ]
+    },
+    {
+      "old_gauge": 7,
+      "rotation": "y2",
+      "new_gauge": 6,
+      "candidate_count": 1,
+      "candidates": [
+        6
+      ]
+    },
+    {
+      "old_gauge": 7,
+      "rotation": "z",
+      "new_gauge": 17,
+      "candidate_count": 1,
+      "candidates": [
+        17
+      ]
+    },
+    {
+      "old_gauge": 7,
+      "rotation": "z'",
+      "new_gauge": 2,
+      "candidate_count": 1,
+      "candidates": [
+        2
+      ]
+    },
+    {
+      "old_gauge": 7,
+      "rotation": "z2",
+      "new_gauge": 9,
+      "candidate_count": 1,
+      "candidates": [
+        9
+      ]
+    },
+    {
+      "old_gauge": 8,
+      "rotation": "x",
+      "new_gauge": 16,
+      "candidate_count": 1,
+      "candidates": [
+        16
+      ]
+    },
+    {
+      "old_gauge": 8,
+      "rotation": "x'",
+      "new_gauge": 15,
+      "candidate_count": 1,
+      "candidates": [
+        15
+      ]
+    },
+    {
+      "old_gauge": 8,
+      "rotation": "x2",
+      "new_gauge": 10,
+      "candidate_count": 1,
+      "candidates": [
+        10
+      ]
+    },
+    {
+      "old_gauge": 8,
+      "rotation": "y",
+      "new_gauge": 2,
+      "candidate_count": 1,
+      "candidates": [
+        2
+      ]
+    },
+    {
+      "old_gauge": 8,
+      "rotation": "y'",
+      "new_gauge": 18,
+      "candidate_count": 1,
+      "candidates": [
+        18
+      ]
+    },
+    {
+      "old_gauge": 8,
+      "rotation": "y2",
+      "new_gauge": 0,
+      "candidate_count": 1,
+      "candidates": [
+        0
+      ]
+    },
+    {
+      "old_gauge": 8,
+      "rotation": "z",
+      "new_gauge": 14,
+      "candidate_count": 1,
+      "candidates": [
+        14
+      ]
+    },
+    {
+      "old_gauge": 8,
+      "rotation": "z'",
+      "new_gauge": 13,
+      "candidate_count": 1,
+      "candidates": [
+        13
+      ]
+    },
+    {
+      "old_gauge": 8,
+      "rotation": "z2",
+      "new_gauge": 4,
+      "candidate_count": 1,
+      "candidates": [
+        4
+      ]
+    },
+    {
+      "old_gauge": 9,
+      "rotation": "x",
+      "new_gauge": 13,
+      "candidate_count": 1,
+      "candidates": [
+        13
+      ]
+    },
+    {
+      "old_gauge": 9,
+      "rotation": "x'",
+      "new_gauge": 3,
+      "candidate_count": 1,
+      "candidates": [
+        3
+      ]
+    },
+    {
+      "old_gauge": 9,
+      "rotation": "x2",
+      "new_gauge": 6,
+      "candidate_count": 1,
+      "candidates": [
+        6
+      ]
+    },
+    {
+      "old_gauge": 9,
+      "rotation": "y",
+      "new_gauge": 11,
+      "candidate_count": 1,
+      "candidates": [
+        11
+      ]
+    },
+    {
+      "old_gauge": 9,
+      "rotation": "y'",
+      "new_gauge": 15,
+      "candidate_count": 1,
+      "candidates": [
+        15
+      ]
+    },
+    {
+      "old_gauge": 9,
+      "rotation": "y2",
+      "new_gauge": 21,
+      "candidate_count": 1,
+      "candidates": [
+        21
+      ]
+    },
+    {
+      "old_gauge": 9,
+      "rotation": "z",
+      "new_gauge": 2,
+      "candidate_count": 1,
+      "candidates": [
+        2
+      ]
+    },
+    {
+      "old_gauge": 9,
+      "rotation": "z'",
+      "new_gauge": 17,
+      "candidate_count": 1,
+      "candidates": [
+        17
+      ]
+    },
+    {
+      "old_gauge": 9,
+      "rotation": "z2",
+      "new_gauge": 7,
+      "candidate_count": 1,
+      "candidates": [
+        7
+      ]
+    },
+    {
+      "old_gauge": 10,
+      "rotation": "x",
+      "new_gauge": 15,
+      "candidate_count": 1,
+      "candidates": [
+        15
+      ]
+    },
+    {
+      "old_gauge": 10,
+      "rotation": "x'",
+      "new_gauge": 16,
+      "candidate_count": 1,
+      "candidates": [
+        16
+      ]
+    },
+    {
+      "old_gauge": 10,
+      "rotation": "x2",
+      "new_gauge": 8,
+      "candidate_count": 1,
+      "candidates": [
+        8
+      ]
+    },
+    {
+      "old_gauge": 10,
+      "rotation": "y",
+      "new_gauge": 17,
+      "candidate_count": 1,
+      "candidates": [
+        17
+      ]
+    },
+    {
+      "old_gauge": 10,
+      "rotation": "y'",
+      "new_gauge": 12,
+      "candidate_count": 1,
+      "candidates": [
+        12
+      ]
+    },
+    {
+      "old_gauge": 10,
+      "rotation": "y2",
+      "new_gauge": 4,
+      "candidate_count": 1,
+      "candidates": [
+        4
+      ]
+    },
+    {
+      "old_gauge": 10,
+      "rotation": "z",
+      "new_gauge": 3,
+      "candidate_count": 1,
+      "candidates": [
+        3
+      ]
+    },
+    {
+      "old_gauge": 10,
+      "rotation": "z'",
+      "new_gauge": 19,
+      "candidate_count": 1,
+      "candidates": [
+        19
+      ]
+    },
+    {
+      "old_gauge": 10,
+      "rotation": "z2",
+      "new_gauge": 0,
+      "candidate_count": 1,
+      "candidates": [
+        0
+      ]
+    },
+    {
+      "old_gauge": 11,
+      "rotation": "x",
+      "new_gauge": 4,
+      "candidate_count": 1,
+      "candidates": [
+        4
+      ]
+    },
+    {
+      "old_gauge": 11,
+      "rotation": "x'",
+      "new_gauge": 0,
+      "candidate_count": 1,
+      "candidates": [
+        0
+      ]
+    },
+    {
+      "old_gauge": 11,
+      "rotation": "x2",
+      "new_gauge": 1,
+      "candidate_count": 1,
+      "candidates": [
+        1
+      ]
+    },
+    {
+      "old_gauge": 11,
+      "rotation": "y",
+      "new_gauge": 21,
+      "candidate_count": 1,
+      "candidates": [
+        21
+      ]
+    },
+    {
+      "old_gauge": 11,
+      "rotation": "y'",
+      "new_gauge": 9,
+      "candidate_count": 1,
+      "candidates": [
+        9
+      ]
+    },
+    {
+      "old_gauge": 11,
+      "rotation": "y2",
+      "new_gauge": 15,
+      "candidate_count": 1,
+      "candidates": [
+        15
+      ]
+    },
+    {
+      "old_gauge": 11,
+      "rotation": "z",
+      "new_gauge": 20,
+      "candidate_count": 1,
+      "candidates": [
+        20
+      ]
+    },
+    {
+      "old_gauge": 11,
+      "rotation": "z'",
+      "new_gauge": 22,
+      "candidate_count": 1,
+      "candidates": [
+        22
+      ]
+    },
+    {
+      "old_gauge": 11,
+      "rotation": "z2",
+      "new_gauge": 16,
+      "candidate_count": 1,
+      "candidates": [
+        16
+      ]
+    },
+    {
+      "old_gauge": 12,
+      "rotation": "x",
+      "new_gauge": 5,
+      "candidate_count": 1,
+      "candidates": [
+        5
+      ]
+    },
+    {
+      "old_gauge": 12,
+      "rotation": "x'",
+      "new_gauge": 20,
+      "candidate_count": 1,
+      "candidates": [
+        20
+      ]
+    },
+    {
+      "old_gauge": 12,
+      "rotation": "x2",
+      "new_gauge": 2,
+      "candidate_count": 1,
+      "candidates": [
+        2
+      ]
+    },
+    {
+      "old_gauge": 12,
+      "rotation": "y",
+      "new_gauge": 10,
+      "candidate_count": 1,
+      "candidates": [
+        10
+      ]
+    },
+    {
+      "old_gauge": 12,
+      "rotation": "y'",
+      "new_gauge": 4,
+      "candidate_count": 1,
+      "candidates": [
+        4
+      ]
+    },
+    {
+      "old_gauge": 12,
+      "rotation": "y2",
+      "new_gauge": 17,
+      "candidate_count": 1,
+      "candidates": [
+        17
+      ]
+    },
+    {
+      "old_gauge": 12,
+      "rotation": "z",
+      "new_gauge": 6,
+      "candidate_count": 1,
+      "candidates": [
+        6
+      ]
+    },
+    {
+      "old_gauge": 12,
+      "rotation": "z'",
+      "new_gauge": 21,
+      "candidate_count": 1,
+      "candidates": [
+        21
+      ]
+    },
+    {
+      "old_gauge": 12,
+      "rotation": "z2",
+      "new_gauge": 18,
+      "candidate_count": 1,
+      "candidates": [
+        18
+      ]
+    },
+    {
+      "old_gauge": 13,
+      "rotation": "x",
+      "new_gauge": 6,
+      "candidate_count": 1,
+      "candidates": [
+        6
+      ]
+    },
+    {
+      "old_gauge": 13,
+      "rotation": "x'",
+      "new_gauge": 9,
+      "candidate_count": 1,
+      "candidates": [
+        9
+      ]
+    },
+    {
+      "old_gauge": 13,
+      "rotation": "x2",
+      "new_gauge": 3,
+      "candidate_count": 1,
+      "candidates": [
+        3
+      ]
+    },
+    {
+      "old_gauge": 13,
+      "rotation": "y",
+      "new_gauge": 20,
+      "candidate_count": 1,
+      "candidates": [
+        20
+      ]
+    },
+    {
+      "old_gauge": 13,
+      "rotation": "y'",
+      "new_gauge": 23,
+      "candidate_count": 1,
+      "candidates": [
+        23
+      ]
+    },
+    {
+      "old_gauge": 13,
+      "rotation": "y2",
+      "new_gauge": 19,
+      "candidate_count": 1,
+      "candidates": [
+        19
+      ]
+    },
+    {
+      "old_gauge": 13,
+      "rotation": "z",
+      "new_gauge": 8,
+      "candidate_count": 1,
+      "candidates": [
+        8
+      ]
+    },
+    {
+      "old_gauge": 13,
+      "rotation": "z'",
+      "new_gauge": 4,
+      "candidate_count": 1,
+      "candidates": [
+        4
+      ]
+    },
+    {
+      "old_gauge": 13,
+      "rotation": "z2",
+      "new_gauge": 14,
+      "candidate_count": 1,
+      "candidates": [
+        14
+      ]
+    },
+    {
+      "old_gauge": 14,
+      "rotation": "x",
+      "new_gauge": 7,
+      "candidate_count": 1,
+      "candidates": [
+        7
+      ]
+    },
+    {
+      "old_gauge": 14,
+      "rotation": "x'",
+      "new_gauge": 21,
+      "candidate_count": 1,
+      "candidates": [
+        21
+      ]
+    },
+    {
+      "old_gauge": 14,
+      "rotation": "x2",
+      "new_gauge": 19,
+      "candidate_count": 1,
+      "candidates": [
+        19
+      ]
+    },
+    {
+      "old_gauge": 14,
+      "rotation": "y",
+      "new_gauge": 5,
+      "candidate_count": 1,
+      "candidates": [
+        5
+      ]
+    },
+    {
+      "old_gauge": 14,
+      "rotation": "y'",
+      "new_gauge": 22,
+      "candidate_count": 1,
+      "candidates": [
+        22
+      ]
+    },
+    {
+      "old_gauge": 14,
+      "rotation": "y2",
+      "new_gauge": 3,
+      "candidate_count": 1,
+      "candidates": [
+        3
+      ]
+    },
+    {
+      "old_gauge": 14,
+      "rotation": "z",
+      "new_gauge": 4,
+      "candidate_count": 1,
+      "candidates": [
+        4
+      ]
+    },
+    {
+      "old_gauge": 14,
+      "rotation": "z'",
+      "new_gauge": 8,
+      "candidate_count": 1,
+      "candidates": [
+        8
+      ]
+    },
+    {
+      "old_gauge": 14,
+      "rotation": "z2",
+      "new_gauge": 13,
+      "candidate_count": 1,
+      "candidates": [
+        13
+      ]
+    },
+    {
+      "old_gauge": 15,
+      "rotation": "x",
+      "new_gauge": 8,
+      "candidate_count": 1,
+      "candidates": [
+        8
+      ]
+    },
+    {
+      "old_gauge": 15,
+      "rotation": "x'",
+      "new_gauge": 10,
+      "candidate_count": 1,
+      "candidates": [
+        10
+      ]
+    },
+    {
+      "old_gauge": 15,
+      "rotation": "x2",
+      "new_gauge": 16,
+      "candidate_count": 1,
+      "candidates": [
+        16
+      ]
+    },
+    {
+      "old_gauge": 15,
+      "rotation": "y",
+      "new_gauge": 9,
+      "candidate_count": 1,
+      "candidates": [
+        9
+      ]
+    },
+    {
+      "old_gauge": 15,
+      "rotation": "y'",
+      "new_gauge": 21,
+      "candidate_count": 1,
+      "candidates": [
+        21
+      ]
+    },
+    {
+      "old_gauge": 15,
+      "rotation": "y2",
+      "new_gauge": 11,
+      "candidate_count": 1,
+      "candidates": [
+        11
+      ]
+    },
+    {
+      "old_gauge": 15,
+      "rotation": "z",
+      "new_gauge": 5,
+      "candidate_count": 1,
+      "candidates": [
+        5
+      ]
+    },
+    {
+      "old_gauge": 15,
+      "rotation": "z'",
+      "new_gauge": 23,
+      "candidate_count": 1,
+      "candidates": [
+        23
+      ]
+    },
+    {
+      "old_gauge": 15,
+      "rotation": "z2",
+      "new_gauge": 1,
+      "candidate_count": 1,
+      "candidates": [
+        1
+      ]
+    },
+    {
+      "old_gauge": 16,
+      "rotation": "x",
+      "new_gauge": 10,
+      "candidate_count": 1,
+      "candidates": [
+        10
+      ]
+    },
+    {
+      "old_gauge": 16,
+      "rotation": "x'",
+      "new_gauge": 8,
+      "candidate_count": 1,
+      "candidates": [
+        8
+      ]
+    },
+    {
+      "old_gauge": 16,
+      "rotation": "x2",
+      "new_gauge": 15,
+      "candidate_count": 1,
+      "candidates": [
+        15
+      ]
+    },
+    {
+      "old_gauge": 16,
+      "rotation": "y",
+      "new_gauge": 7,
+      "candidate_count": 1,
+      "candidates": [
+        7
+      ]
+    },
+    {
+      "old_gauge": 16,
+      "rotation": "y'",
+      "new_gauge": 6,
+      "candidate_count": 1,
+      "candidates": [
+        6
+      ]
+    },
+    {
+      "old_gauge": 16,
+      "rotation": "y2",
+      "new_gauge": 1,
+      "candidate_count": 1,
+      "candidates": [
+        1
+      ]
+    },
+    {
+      "old_gauge": 16,
+      "rotation": "z",
+      "new_gauge": 22,
+      "candidate_count": 1,
+      "candidates": [
+        22
+      ]
+    },
+    {
+      "old_gauge": 16,
+      "rotation": "z'",
+      "new_gauge": 20,
+      "candidate_count": 1,
+      "candidates": [
+        20
+      ]
+    },
+    {
+      "old_gauge": 16,
+      "rotation": "z2",
+      "new_gauge": 11,
+      "candidate_count": 1,
+      "candidates": [
+        11
+      ]
+    },
+    {
+      "old_gauge": 17,
+      "rotation": "x",
+      "new_gauge": 23,
+      "candidate_count": 1,
+      "candidates": [
+        23
+      ]
+    },
+    {
+      "old_gauge": 17,
+      "rotation": "x'",
+      "new_gauge": 22,
+      "candidate_count": 1,
+      "candidates": [
+        22
+      ]
+    },
+    {
+      "old_gauge": 17,
+      "rotation": "x2",
+      "new_gauge": 18,
+      "candidate_count": 1,
+      "candidates": [
+        18
+      ]
+    },
+    {
+      "old_gauge": 17,
+      "rotation": "y",
+      "new_gauge": 4,
+      "candidate_count": 1,
+      "candidates": [
+        4
+      ]
+    },
+    {
+      "old_gauge": 17,
+      "rotation": "y'",
+      "new_gauge": 10,
+      "candidate_count": 1,
+      "candidates": [
+        10
+      ]
+    },
+    {
+      "old_gauge": 17,
+      "rotation": "y2",
+      "new_gauge": 12,
+      "candidate_count": 1,
+      "candidates": [
+        12
+      ]
+    },
+    {
+      "old_gauge": 17,
+      "rotation": "z",
+      "new_gauge": 9,
+      "candidate_count": 1,
+      "candidates": [
+        9
+      ]
+    },
+    {
+      "old_gauge": 17,
+      "rotation": "z'",
+      "new_gauge": 7,
+      "candidate_count": 1,
+      "candidates": [
+        7
+      ]
+    },
+    {
+      "old_gauge": 17,
+      "rotation": "z2",
+      "new_gauge": 2,
+      "candidate_count": 1,
+      "candidates": [
+        2
+      ]
+    },
+    {
+      "old_gauge": 18,
+      "rotation": "x",
+      "new_gauge": 22,
+      "candidate_count": 1,
+      "candidates": [
+        22
+      ]
+    },
+    {
+      "old_gauge": 18,
+      "rotation": "x'",
+      "new_gauge": 23,
+      "candidate_count": 1,
+      "candidates": [
+        23
+      ]
+    },
+    {
+      "old_gauge": 18,
+      "rotation": "x2",
+      "new_gauge": 17,
+      "candidate_count": 1,
+      "candidates": [
+        17
+      ]
+    },
+    {
+      "old_gauge": 18,
+      "rotation": "y",
+      "new_gauge": 8,
+      "candidate_count": 1,
+      "candidates": [
+        8
+      ]
+    },
+    {
+      "old_gauge": 18,
+      "rotation": "y'",
+      "new_gauge": 0,
+      "candidate_count": 1,
+      "candidates": [
+        0
+      ]
+    },
+    {
+      "old_gauge": 18,
+      "rotation": "y2",
+      "new_gauge": 2,
+      "candidate_count": 1,
+      "candidates": [
+        2
+      ]
+    },
+    {
+      "old_gauge": 18,
+      "rotation": "z",
+      "new_gauge": 21,
+      "candidate_count": 1,
+      "candidates": [
+        21
+      ]
+    },
+    {
+      "old_gauge": 18,
+      "rotation": "z'",
+      "new_gauge": 6,
+      "candidate_count": 1,
+      "candidates": [
+        6
+      ]
+    },
+    {
+      "old_gauge": 18,
+      "rotation": "z2",
+      "new_gauge": 12,
+      "candidate_count": 1,
+      "candidates": [
+        12
+      ]
+    },
+    {
+      "old_gauge": 19,
+      "rotation": "x",
+      "new_gauge": 21,
+      "candidate_count": 1,
+      "candidates": [
+        21
+      ]
+    },
+    {
+      "old_gauge": 19,
+      "rotation": "x'",
+      "new_gauge": 7,
+      "candidate_count": 1,
+      "candidates": [
+        7
+      ]
+    },
+    {
+      "old_gauge": 19,
+      "rotation": "x2",
+      "new_gauge": 14,
+      "candidate_count": 1,
+      "candidates": [
+        14
+      ]
+    },
+    {
+      "old_gauge": 19,
+      "rotation": "y",
+      "new_gauge": 23,
+      "candidate_count": 1,
+      "candidates": [
+        23
+      ]
+    },
+    {
+      "old_gauge": 19,
+      "rotation": "y'",
+      "new_gauge": 20,
+      "candidate_count": 1,
+      "candidates": [
+        20
+      ]
+    },
+    {
+      "old_gauge": 19,
+      "rotation": "y2",
+      "new_gauge": 13,
+      "candidate_count": 1,
+      "candidates": [
+        13
+      ]
+    },
+    {
+      "old_gauge": 19,
+      "rotation": "z",
+      "new_gauge": 10,
+      "candidate_count": 1,
+      "candidates": [
+        10
+      ]
+    },
+    {
+      "old_gauge": 19,
+      "rotation": "z'",
+      "new_gauge": 0,
+      "candidate_count": 1,
+      "candidates": [
+        0
+      ]
+    },
+    {
+      "old_gauge": 19,
+      "rotation": "z2",
+      "new_gauge": 3,
+      "candidate_count": 1,
+      "candidates": [
+        3
+      ]
+    },
+    {
+      "old_gauge": 20,
+      "rotation": "x",
+      "new_gauge": 12,
+      "candidate_count": 1,
+      "candidates": [
+        12
+      ]
+    },
+    {
+      "old_gauge": 20,
+      "rotation": "x'",
+      "new_gauge": 2,
+      "candidate_count": 1,
+      "candidates": [
+        2
+      ]
+    },
+    {
+      "old_gauge": 20,
+      "rotation": "x2",
+      "new_gauge": 5,
+      "candidate_count": 1,
+      "candidates": [
+        5
+      ]
+    },
+    {
+      "old_gauge": 20,
+      "rotation": "y",
+      "new_gauge": 19,
+      "candidate_count": 1,
+      "candidates": [
+        19
+      ]
+    },
+    {
+      "old_gauge": 20,
+      "rotation": "y'",
+      "new_gauge": 13,
+      "candidate_count": 1,
+      "candidates": [
+        13
+      ]
+    },
+    {
+      "old_gauge": 20,
+      "rotation": "y2",
+      "new_gauge": 23,
+      "candidate_count": 1,
+      "candidates": [
+        23
+      ]
+    },
+    {
+      "old_gauge": 20,
+      "rotation": "z",
+      "new_gauge": 16,
+      "candidate_count": 1,
+      "candidates": [
+        16
+      ]
+    },
+    {
+      "old_gauge": 20,
+      "rotation": "z'",
+      "new_gauge": 11,
+      "candidate_count": 1,
+      "candidates": [
+        11
+      ]
+    },
+    {
+      "old_gauge": 20,
+      "rotation": "z2",
+      "new_gauge": 22,
+      "candidate_count": 1,
+      "candidates": [
+        22
+      ]
+    },
+    {
+      "old_gauge": 21,
+      "rotation": "x",
+      "new_gauge": 14,
+      "candidate_count": 1,
+      "candidates": [
+        14
+      ]
+    },
+    {
+      "old_gauge": 21,
+      "rotation": "x'",
+      "new_gauge": 19,
+      "candidate_count": 1,
+      "candidates": [
+        19
+      ]
+    },
+    {
+      "old_gauge": 21,
+      "rotation": "x2",
+      "new_gauge": 7,
+      "candidate_count": 1,
+      "candidates": [
+        7
+      ]
+    },
+    {
+      "old_gauge": 21,
+      "rotation": "y",
+      "new_gauge": 15,
+      "candidate_count": 1,
+      "candidates": [
+        15
+      ]
+    },
+    {
+      "old_gauge": 21,
+      "rotation": "y'",
+      "new_gauge": 11,
+      "candidate_count": 1,
+      "candidates": [
+        11
+      ]
+    },
+    {
+      "old_gauge": 21,
+      "rotation": "y2",
+      "new_gauge": 9,
+      "candidate_count": 1,
+      "candidates": [
+        9
+      ]
+    },
+    {
+      "old_gauge": 21,
+      "rotation": "z",
+      "new_gauge": 12,
+      "candidate_count": 1,
+      "candidates": [
+        12
+      ]
+    },
+    {
+      "old_gauge": 21,
+      "rotation": "z'",
+      "new_gauge": 18,
+      "candidate_count": 1,
+      "candidates": [
+        18
+      ]
+    },
+    {
+      "old_gauge": 21,
+      "rotation": "z2",
+      "new_gauge": 6,
+      "candidate_count": 1,
+      "candidates": [
+        6
+      ]
+    },
+    {
+      "old_gauge": 22,
+      "rotation": "x",
+      "new_gauge": 17,
+      "candidate_count": 1,
+      "candidates": [
+        17
+      ]
+    },
+    {
+      "old_gauge": 22,
+      "rotation": "x'",
+      "new_gauge": 18,
+      "candidate_count": 1,
+      "candidates": [
+        18
+      ]
+    },
+    {
+      "old_gauge": 22,
+      "rotation": "x2",
+      "new_gauge": 23,
+      "candidate_count": 1,
+      "candidates": [
+        23
+      ]
+    },
+    {
+      "old_gauge": 22,
+      "rotation": "y",
+      "new_gauge": 14,
+      "candidate_count": 1,
+      "candidates": [
+        14
+      ]
+    },
+    {
+      "old_gauge": 22,
+      "rotation": "y'",
+      "new_gauge": 3,
+      "candidate_count": 1,
+      "candidates": [
+        3
+      ]
+    },
+    {
+      "old_gauge": 22,
+      "rotation": "y2",
+      "new_gauge": 5,
+      "candidate_count": 1,
+      "candidates": [
+        5
+      ]
+    },
+    {
+      "old_gauge": 22,
+      "rotation": "z",
+      "new_gauge": 11,
+      "candidate_count": 1,
+      "candidates": [
+        11
+      ]
+    },
+    {
+      "old_gauge": 22,
+      "rotation": "z'",
+      "new_gauge": 16,
+      "candidate_count": 1,
+      "candidates": [
+        16
+      ]
+    },
+    {
+      "old_gauge": 22,
+      "rotation": "z2",
+      "new_gauge": 20,
+      "candidate_count": 1,
+      "candidates": [
+        20
+      ]
+    },
+    {
+      "old_gauge": 23,
+      "rotation": "x",
+      "new_gauge": 18,
+      "candidate_count": 1,
+      "candidates": [
+        18
+      ]
+    },
+    {
+      "old_gauge": 23,
+      "rotation": "x'",
+      "new_gauge": 17,
+      "candidate_count": 1,
+      "candidates": [
+        17
+      ]
+    },
+    {
+      "old_gauge": 23,
+      "rotation": "x2",
+      "new_gauge": 22,
+      "candidate_count": 1,
+      "candidates": [
+        22
+      ]
+    },
+    {
+      "old_gauge": 23,
+      "rotation": "y",
+      "new_gauge": 13,
+      "candidate_count": 1,
+      "candidates": [
+        13
+      ]
+    },
+    {
+      "old_gauge": 23,
+      "rotation": "y'",
+      "new_gauge": 19,
+      "candidate_count": 1,
+      "candidates": [
+        19
+      ]
+    },
+    {
+      "old_gauge": 23,
+      "rotation": "y2",
+      "new_gauge": 20,
+      "candidate_count": 1,
+      "candidates": [
+        20
+      ]
+    },
+    {
+      "old_gauge": 23,
+      "rotation": "z",
+      "new_gauge": 15,
+      "candidate_count": 1,
+      "candidates": [
+        15
+      ]
+    },
+    {
+      "old_gauge": 23,
+      "rotation": "z'",
+      "new_gauge": 1,
+      "candidate_count": 1,
+      "candidates": [
+        1
+      ]
+    },
+    {
+      "old_gauge": 23,
+      "rotation": "z2",
+      "new_gauge": 5,
+      "candidate_count": 1,
+      "candidates": [
+        5
+      ]
+    }
+  ],
+  "identity_checks": [
+    {
+      "g": 0,
+      "a": "x",
+      "b": "x'",
+      "result": 0,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "a": "x'",
+      "b": "x",
+      "result": 0,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "a": "y",
+      "b": "y'",
+      "result": 0,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "a": "y'",
+      "b": "y",
+      "result": 0,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "a": "z",
+      "b": "z'",
+      "result": 0,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "a": "z'",
+      "b": "z",
+      "result": 0,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "a4": "x",
+      "result": 0,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "a4": "y",
+      "result": 0,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "a4": "z",
+      "result": 0,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "double": "x",
+      "a2": "x2",
+      "result": 4,
+      "expected": 4,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "double": "y",
+      "a2": "y2",
+      "result": 8,
+      "expected": 8,
+      "ok": true
+    },
+    {
+      "g": 0,
+      "double": "z",
+      "a2": "z2",
+      "result": 10,
+      "expected": 10,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "a": "x",
+      "b": "x'",
+      "result": 1,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "a": "x'",
+      "b": "x",
+      "result": 1,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "a": "y",
+      "b": "y'",
+      "result": 1,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "a": "y'",
+      "b": "y",
+      "result": 1,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "a": "z",
+      "b": "z'",
+      "result": 1,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "a": "z'",
+      "b": "z",
+      "result": 1,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "a4": "x",
+      "result": 1,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "a4": "y",
+      "result": 1,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "a4": "z",
+      "result": 1,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "double": "x",
+      "a2": "x2",
+      "result": 11,
+      "expected": 11,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "double": "y",
+      "a2": "y2",
+      "result": 16,
+      "expected": 16,
+      "ok": true
+    },
+    {
+      "g": 1,
+      "double": "z",
+      "a2": "z2",
+      "result": 15,
+      "expected": 15,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "a": "x",
+      "b": "x'",
+      "result": 2,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "a": "x'",
+      "b": "x",
+      "result": 2,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "a": "y",
+      "b": "y'",
+      "result": 2,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "a": "y'",
+      "b": "y",
+      "result": 2,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "a": "z",
+      "b": "z'",
+      "result": 2,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "a": "z'",
+      "b": "z",
+      "result": 2,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "a4": "x",
+      "result": 2,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "a4": "y",
+      "result": 2,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "a4": "z",
+      "result": 2,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "double": "x",
+      "a2": "x2",
+      "result": 12,
+      "expected": 12,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "double": "y",
+      "a2": "y2",
+      "result": 18,
+      "expected": 18,
+      "ok": true
+    },
+    {
+      "g": 2,
+      "double": "z",
+      "a2": "z2",
+      "result": 17,
+      "expected": 17,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "a": "x",
+      "b": "x'",
+      "result": 3,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "a": "x'",
+      "b": "x",
+      "result": 3,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "a": "y",
+      "b": "y'",
+      "result": 3,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "a": "y'",
+      "b": "y",
+      "result": 3,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "a": "z",
+      "b": "z'",
+      "result": 3,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "a": "z'",
+      "b": "z",
+      "result": 3,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "a4": "x",
+      "result": 3,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "a4": "y",
+      "result": 3,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "a4": "z",
+      "result": 3,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "double": "x",
+      "a2": "x2",
+      "result": 13,
+      "expected": 13,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "double": "y",
+      "a2": "y2",
+      "result": 14,
+      "expected": 14,
+      "ok": true
+    },
+    {
+      "g": 3,
+      "double": "z",
+      "a2": "z2",
+      "result": 19,
+      "expected": 19,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "a": "x",
+      "b": "x'",
+      "result": 4,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "a": "x'",
+      "b": "x",
+      "result": 4,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "a": "y",
+      "b": "y'",
+      "result": 4,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "a": "y'",
+      "b": "y",
+      "result": 4,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "a": "z",
+      "b": "z'",
+      "result": 4,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "a": "z'",
+      "b": "z",
+      "result": 4,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "a4": "x",
+      "result": 4,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "a4": "y",
+      "result": 4,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "a4": "z",
+      "result": 4,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "double": "x",
+      "a2": "x2",
+      "result": 0,
+      "expected": 0,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "double": "y",
+      "a2": "y2",
+      "result": 10,
+      "expected": 10,
+      "ok": true
+    },
+    {
+      "g": 4,
+      "double": "z",
+      "a2": "z2",
+      "result": 8,
+      "expected": 8,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "a": "x",
+      "b": "x'",
+      "result": 5,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "a": "x'",
+      "b": "x",
+      "result": 5,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "a": "y",
+      "b": "y'",
+      "result": 5,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "a": "y'",
+      "b": "y",
+      "result": 5,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "a": "z",
+      "b": "z'",
+      "result": 5,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "a": "z'",
+      "b": "z",
+      "result": 5,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "a4": "x",
+      "result": 5,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "a4": "y",
+      "result": 5,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "a4": "z",
+      "result": 5,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "double": "x",
+      "a2": "x2",
+      "result": 20,
+      "expected": 20,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "double": "y",
+      "a2": "y2",
+      "result": 22,
+      "expected": 22,
+      "ok": true
+    },
+    {
+      "g": 5,
+      "double": "z",
+      "a2": "z2",
+      "result": 23,
+      "expected": 23,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "a": "x",
+      "b": "x'",
+      "result": 6,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "a": "x'",
+      "b": "x",
+      "result": 6,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "a": "y",
+      "b": "y'",
+      "result": 6,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "a": "y'",
+      "b": "y",
+      "result": 6,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "a": "z",
+      "b": "z'",
+      "result": 6,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "a": "z'",
+      "b": "z",
+      "result": 6,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "a4": "x",
+      "result": 6,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "a4": "y",
+      "result": 6,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "a4": "z",
+      "result": 6,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "double": "x",
+      "a2": "x2",
+      "result": 9,
+      "expected": 9,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "double": "y",
+      "a2": "y2",
+      "result": 7,
+      "expected": 7,
+      "ok": true
+    },
+    {
+      "g": 6,
+      "double": "z",
+      "a2": "z2",
+      "result": 21,
+      "expected": 21,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "a": "x",
+      "b": "x'",
+      "result": 7,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "a": "x'",
+      "b": "x",
+      "result": 7,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "a": "y",
+      "b": "y'",
+      "result": 7,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "a": "y'",
+      "b": "y",
+      "result": 7,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "a": "z",
+      "b": "z'",
+      "result": 7,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "a": "z'",
+      "b": "z",
+      "result": 7,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "a4": "x",
+      "result": 7,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "a4": "y",
+      "result": 7,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "a4": "z",
+      "result": 7,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "double": "x",
+      "a2": "x2",
+      "result": 21,
+      "expected": 21,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "double": "y",
+      "a2": "y2",
+      "result": 6,
+      "expected": 6,
+      "ok": true
+    },
+    {
+      "g": 7,
+      "double": "z",
+      "a2": "z2",
+      "result": 9,
+      "expected": 9,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "a": "x",
+      "b": "x'",
+      "result": 8,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "a": "x'",
+      "b": "x",
+      "result": 8,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "a": "y",
+      "b": "y'",
+      "result": 8,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "a": "y'",
+      "b": "y",
+      "result": 8,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "a": "z",
+      "b": "z'",
+      "result": 8,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "a": "z'",
+      "b": "z",
+      "result": 8,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "a4": "x",
+      "result": 8,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "a4": "y",
+      "result": 8,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "a4": "z",
+      "result": 8,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "double": "x",
+      "a2": "x2",
+      "result": 10,
+      "expected": 10,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "double": "y",
+      "a2": "y2",
+      "result": 0,
+      "expected": 0,
+      "ok": true
+    },
+    {
+      "g": 8,
+      "double": "z",
+      "a2": "z2",
+      "result": 4,
+      "expected": 4,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "a": "x",
+      "b": "x'",
+      "result": 9,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "a": "x'",
+      "b": "x",
+      "result": 9,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "a": "y",
+      "b": "y'",
+      "result": 9,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "a": "y'",
+      "b": "y",
+      "result": 9,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "a": "z",
+      "b": "z'",
+      "result": 9,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "a": "z'",
+      "b": "z",
+      "result": 9,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "a4": "x",
+      "result": 9,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "a4": "y",
+      "result": 9,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "a4": "z",
+      "result": 9,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "double": "x",
+      "a2": "x2",
+      "result": 6,
+      "expected": 6,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "double": "y",
+      "a2": "y2",
+      "result": 21,
+      "expected": 21,
+      "ok": true
+    },
+    {
+      "g": 9,
+      "double": "z",
+      "a2": "z2",
+      "result": 7,
+      "expected": 7,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "a": "x",
+      "b": "x'",
+      "result": 10,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "a": "x'",
+      "b": "x",
+      "result": 10,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "a": "y",
+      "b": "y'",
+      "result": 10,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "a": "y'",
+      "b": "y",
+      "result": 10,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "a": "z",
+      "b": "z'",
+      "result": 10,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "a": "z'",
+      "b": "z",
+      "result": 10,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "a4": "x",
+      "result": 10,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "a4": "y",
+      "result": 10,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "a4": "z",
+      "result": 10,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "double": "x",
+      "a2": "x2",
+      "result": 8,
+      "expected": 8,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "double": "y",
+      "a2": "y2",
+      "result": 4,
+      "expected": 4,
+      "ok": true
+    },
+    {
+      "g": 10,
+      "double": "z",
+      "a2": "z2",
+      "result": 0,
+      "expected": 0,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "a": "x",
+      "b": "x'",
+      "result": 11,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "a": "x'",
+      "b": "x",
+      "result": 11,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "a": "y",
+      "b": "y'",
+      "result": 11,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "a": "y'",
+      "b": "y",
+      "result": 11,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "a": "z",
+      "b": "z'",
+      "result": 11,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "a": "z'",
+      "b": "z",
+      "result": 11,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "a4": "x",
+      "result": 11,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "a4": "y",
+      "result": 11,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "a4": "z",
+      "result": 11,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "double": "x",
+      "a2": "x2",
+      "result": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "double": "y",
+      "a2": "y2",
+      "result": 15,
+      "expected": 15,
+      "ok": true
+    },
+    {
+      "g": 11,
+      "double": "z",
+      "a2": "z2",
+      "result": 16,
+      "expected": 16,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "a": "x",
+      "b": "x'",
+      "result": 12,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "a": "x'",
+      "b": "x",
+      "result": 12,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "a": "y",
+      "b": "y'",
+      "result": 12,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "a": "y'",
+      "b": "y",
+      "result": 12,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "a": "z",
+      "b": "z'",
+      "result": 12,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "a": "z'",
+      "b": "z",
+      "result": 12,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "a4": "x",
+      "result": 12,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "a4": "y",
+      "result": 12,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "a4": "z",
+      "result": 12,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "double": "x",
+      "a2": "x2",
+      "result": 2,
+      "expected": 2,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "double": "y",
+      "a2": "y2",
+      "result": 17,
+      "expected": 17,
+      "ok": true
+    },
+    {
+      "g": 12,
+      "double": "z",
+      "a2": "z2",
+      "result": 18,
+      "expected": 18,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "a": "x",
+      "b": "x'",
+      "result": 13,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "a": "x'",
+      "b": "x",
+      "result": 13,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "a": "y",
+      "b": "y'",
+      "result": 13,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "a": "y'",
+      "b": "y",
+      "result": 13,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "a": "z",
+      "b": "z'",
+      "result": 13,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "a": "z'",
+      "b": "z",
+      "result": 13,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "a4": "x",
+      "result": 13,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "a4": "y",
+      "result": 13,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "a4": "z",
+      "result": 13,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "double": "x",
+      "a2": "x2",
+      "result": 3,
+      "expected": 3,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "double": "y",
+      "a2": "y2",
+      "result": 19,
+      "expected": 19,
+      "ok": true
+    },
+    {
+      "g": 13,
+      "double": "z",
+      "a2": "z2",
+      "result": 14,
+      "expected": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "a": "x",
+      "b": "x'",
+      "result": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "a": "x'",
+      "b": "x",
+      "result": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "a": "y",
+      "b": "y'",
+      "result": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "a": "y'",
+      "b": "y",
+      "result": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "a": "z",
+      "b": "z'",
+      "result": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "a": "z'",
+      "b": "z",
+      "result": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "a4": "x",
+      "result": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "a4": "y",
+      "result": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "a4": "z",
+      "result": 14,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "double": "x",
+      "a2": "x2",
+      "result": 19,
+      "expected": 19,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "double": "y",
+      "a2": "y2",
+      "result": 3,
+      "expected": 3,
+      "ok": true
+    },
+    {
+      "g": 14,
+      "double": "z",
+      "a2": "z2",
+      "result": 13,
+      "expected": 13,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "a": "x",
+      "b": "x'",
+      "result": 15,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "a": "x'",
+      "b": "x",
+      "result": 15,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "a": "y",
+      "b": "y'",
+      "result": 15,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "a": "y'",
+      "b": "y",
+      "result": 15,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "a": "z",
+      "b": "z'",
+      "result": 15,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "a": "z'",
+      "b": "z",
+      "result": 15,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "a4": "x",
+      "result": 15,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "a4": "y",
+      "result": 15,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "a4": "z",
+      "result": 15,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "double": "x",
+      "a2": "x2",
+      "result": 16,
+      "expected": 16,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "double": "y",
+      "a2": "y2",
+      "result": 11,
+      "expected": 11,
+      "ok": true
+    },
+    {
+      "g": 15,
+      "double": "z",
+      "a2": "z2",
+      "result": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "a": "x",
+      "b": "x'",
+      "result": 16,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "a": "x'",
+      "b": "x",
+      "result": 16,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "a": "y",
+      "b": "y'",
+      "result": 16,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "a": "y'",
+      "b": "y",
+      "result": 16,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "a": "z",
+      "b": "z'",
+      "result": 16,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "a": "z'",
+      "b": "z",
+      "result": 16,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "a4": "x",
+      "result": 16,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "a4": "y",
+      "result": 16,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "a4": "z",
+      "result": 16,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "double": "x",
+      "a2": "x2",
+      "result": 15,
+      "expected": 15,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "double": "y",
+      "a2": "y2",
+      "result": 1,
+      "expected": 1,
+      "ok": true
+    },
+    {
+      "g": 16,
+      "double": "z",
+      "a2": "z2",
+      "result": 11,
+      "expected": 11,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "a": "x",
+      "b": "x'",
+      "result": 17,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "a": "x'",
+      "b": "x",
+      "result": 17,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "a": "y",
+      "b": "y'",
+      "result": 17,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "a": "y'",
+      "b": "y",
+      "result": 17,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "a": "z",
+      "b": "z'",
+      "result": 17,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "a": "z'",
+      "b": "z",
+      "result": 17,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "a4": "x",
+      "result": 17,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "a4": "y",
+      "result": 17,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "a4": "z",
+      "result": 17,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "double": "x",
+      "a2": "x2",
+      "result": 18,
+      "expected": 18,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "double": "y",
+      "a2": "y2",
+      "result": 12,
+      "expected": 12,
+      "ok": true
+    },
+    {
+      "g": 17,
+      "double": "z",
+      "a2": "z2",
+      "result": 2,
+      "expected": 2,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "a": "x",
+      "b": "x'",
+      "result": 18,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "a": "x'",
+      "b": "x",
+      "result": 18,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "a": "y",
+      "b": "y'",
+      "result": 18,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "a": "y'",
+      "b": "y",
+      "result": 18,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "a": "z",
+      "b": "z'",
+      "result": 18,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "a": "z'",
+      "b": "z",
+      "result": 18,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "a4": "x",
+      "result": 18,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "a4": "y",
+      "result": 18,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "a4": "z",
+      "result": 18,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "double": "x",
+      "a2": "x2",
+      "result": 17,
+      "expected": 17,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "double": "y",
+      "a2": "y2",
+      "result": 2,
+      "expected": 2,
+      "ok": true
+    },
+    {
+      "g": 18,
+      "double": "z",
+      "a2": "z2",
+      "result": 12,
+      "expected": 12,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "a": "x",
+      "b": "x'",
+      "result": 19,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "a": "x'",
+      "b": "x",
+      "result": 19,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "a": "y",
+      "b": "y'",
+      "result": 19,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "a": "y'",
+      "b": "y",
+      "result": 19,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "a": "z",
+      "b": "z'",
+      "result": 19,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "a": "z'",
+      "b": "z",
+      "result": 19,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "a4": "x",
+      "result": 19,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "a4": "y",
+      "result": 19,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "a4": "z",
+      "result": 19,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "double": "x",
+      "a2": "x2",
+      "result": 14,
+      "expected": 14,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "double": "y",
+      "a2": "y2",
+      "result": 13,
+      "expected": 13,
+      "ok": true
+    },
+    {
+      "g": 19,
+      "double": "z",
+      "a2": "z2",
+      "result": 3,
+      "expected": 3,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "a": "x",
+      "b": "x'",
+      "result": 20,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "a": "x'",
+      "b": "x",
+      "result": 20,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "a": "y",
+      "b": "y'",
+      "result": 20,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "a": "y'",
+      "b": "y",
+      "result": 20,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "a": "z",
+      "b": "z'",
+      "result": 20,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "a": "z'",
+      "b": "z",
+      "result": 20,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "a4": "x",
+      "result": 20,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "a4": "y",
+      "result": 20,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "a4": "z",
+      "result": 20,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "double": "x",
+      "a2": "x2",
+      "result": 5,
+      "expected": 5,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "double": "y",
+      "a2": "y2",
+      "result": 23,
+      "expected": 23,
+      "ok": true
+    },
+    {
+      "g": 20,
+      "double": "z",
+      "a2": "z2",
+      "result": 22,
+      "expected": 22,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "a": "x",
+      "b": "x'",
+      "result": 21,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "a": "x'",
+      "b": "x",
+      "result": 21,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "a": "y",
+      "b": "y'",
+      "result": 21,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "a": "y'",
+      "b": "y",
+      "result": 21,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "a": "z",
+      "b": "z'",
+      "result": 21,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "a": "z'",
+      "b": "z",
+      "result": 21,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "a4": "x",
+      "result": 21,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "a4": "y",
+      "result": 21,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "a4": "z",
+      "result": 21,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "double": "x",
+      "a2": "x2",
+      "result": 7,
+      "expected": 7,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "double": "y",
+      "a2": "y2",
+      "result": 9,
+      "expected": 9,
+      "ok": true
+    },
+    {
+      "g": 21,
+      "double": "z",
+      "a2": "z2",
+      "result": 6,
+      "expected": 6,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "a": "x",
+      "b": "x'",
+      "result": 22,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "a": "x'",
+      "b": "x",
+      "result": 22,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "a": "y",
+      "b": "y'",
+      "result": 22,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "a": "y'",
+      "b": "y",
+      "result": 22,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "a": "z",
+      "b": "z'",
+      "result": 22,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "a": "z'",
+      "b": "z",
+      "result": 22,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "a4": "x",
+      "result": 22,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "a4": "y",
+      "result": 22,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "a4": "z",
+      "result": 22,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "double": "x",
+      "a2": "x2",
+      "result": 23,
+      "expected": 23,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "double": "y",
+      "a2": "y2",
+      "result": 5,
+      "expected": 5,
+      "ok": true
+    },
+    {
+      "g": 22,
+      "double": "z",
+      "a2": "z2",
+      "result": 20,
+      "expected": 20,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "a": "x",
+      "b": "x'",
+      "result": 23,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "a": "x'",
+      "b": "x",
+      "result": 23,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "a": "y",
+      "b": "y'",
+      "result": 23,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "a": "y'",
+      "b": "y",
+      "result": 23,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "a": "z",
+      "b": "z'",
+      "result": 23,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "a": "z'",
+      "b": "z",
+      "result": 23,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "a4": "x",
+      "result": 23,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "a4": "y",
+      "result": 23,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "a4": "z",
+      "result": 23,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "double": "x",
+      "a2": "x2",
+      "result": 22,
+      "expected": 22,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "double": "y",
+      "a2": "y2",
+      "result": 20,
+      "expected": 20,
+      "ok": true
+    },
+    {
+      "g": 23,
+      "double": "z",
+      "a2": "z2",
+      "result": 5,
+      "expected": 5,
+      "ok": true
+    }
+  ],
+  "pure_rotation_path_tests": [
+    {
+      "initial_gauge": 0,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 17,
+      "ok": true
+    },
+    {
+      "initial_gauge": 0,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 17,
+      "ok": true
+    },
+    {
+      "initial_gauge": 0,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 17,
+      "ok": true
+    },
+    {
+      "initial_gauge": 0,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 11,
+      "ok": true
+    },
+    {
+      "initial_gauge": 0,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 11,
+      "ok": true
+    },
+    {
+      "initial_gauge": 0,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 11,
+      "ok": true
+    },
+    {
+      "initial_gauge": 0,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 14,
+      "ok": true
+    },
+    {
+      "initial_gauge": 0,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 14,
+      "ok": true
+    },
+    {
+      "initial_gauge": 0,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 14,
+      "ok": true
+    },
+    {
+      "initial_gauge": 1,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 9,
+      "ok": true
+    },
+    {
+      "initial_gauge": 1,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 9,
+      "ok": true
+    },
+    {
+      "initial_gauge": 1,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 9,
+      "ok": true
+    },
+    {
+      "initial_gauge": 1,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 0,
+      "ok": true
+    },
+    {
+      "initial_gauge": 1,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 0,
+      "ok": true
+    },
+    {
+      "initial_gauge": 1,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 0,
+      "ok": true
+    },
+    {
+      "initial_gauge": 1,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 22,
+      "ok": true
+    },
+    {
+      "initial_gauge": 1,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 22,
+      "ok": true
+    },
+    {
+      "initial_gauge": 1,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 22,
+      "ok": true
+    },
+    {
+      "initial_gauge": 2,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 4,
+      "ok": true
+    },
+    {
+      "initial_gauge": 2,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 4,
+      "ok": true
+    },
+    {
+      "initial_gauge": 2,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 4,
+      "ok": true
+    },
+    {
+      "initial_gauge": 2,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 20,
+      "ok": true
+    },
+    {
+      "initial_gauge": 2,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 20,
+      "ok": true
+    },
+    {
+      "initial_gauge": 2,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 20,
+      "ok": true
+    },
+    {
+      "initial_gauge": 2,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 21,
+      "ok": true
+    },
+    {
+      "initial_gauge": 2,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 21,
+      "ok": true
+    },
+    {
+      "initial_gauge": 2,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 21,
+      "ok": true
+    },
+    {
+      "initial_gauge": 3,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 23,
+      "ok": true
+    },
+    {
+      "initial_gauge": 3,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 23,
+      "ok": true
+    },
+    {
+      "initial_gauge": 3,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 23,
+      "ok": true
+    },
+    {
+      "initial_gauge": 3,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 9,
+      "ok": true
+    },
+    {
+      "initial_gauge": 3,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 9,
+      "ok": true
+    },
+    {
+      "initial_gauge": 3,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 9,
+      "ok": true
+    },
+    {
+      "initial_gauge": 3,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 4,
+      "ok": true
+    },
+    {
+      "initial_gauge": 3,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 4,
+      "ok": true
+    },
+    {
+      "initial_gauge": 3,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 4,
+      "ok": true
+    },
+    {
+      "initial_gauge": 4,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 2,
+      "ok": true
+    },
+    {
+      "initial_gauge": 4,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 2,
+      "ok": true
+    },
+    {
+      "initial_gauge": 4,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 2,
+      "ok": true
+    },
+    {
+      "initial_gauge": 4,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 1,
+      "ok": true
+    },
+    {
+      "initial_gauge": 4,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 1,
+      "ok": true
+    },
+    {
+      "initial_gauge": 4,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 1,
+      "ok": true
+    },
+    {
+      "initial_gauge": 4,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 3,
+      "ok": true
+    },
+    {
+      "initial_gauge": 4,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 3,
+      "ok": true
+    },
+    {
+      "initial_gauge": 4,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 3,
+      "ok": true
+    },
+    {
+      "initial_gauge": 5,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 13,
+      "ok": true
+    },
+    {
+      "initial_gauge": 5,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 13,
+      "ok": true
+    },
+    {
+      "initial_gauge": 5,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 13,
+      "ok": true
+    },
+    {
+      "initial_gauge": 5,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 2,
+      "ok": true
+    },
+    {
+      "initial_gauge": 5,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 2,
+      "ok": true
+    },
+    {
+      "initial_gauge": 5,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 2,
+      "ok": true
+    },
+    {
+      "initial_gauge": 5,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 11,
+      "ok": true
+    },
+    {
+      "initial_gauge": 5,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 11,
+      "ok": true
+    },
+    {
+      "initial_gauge": 5,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 11,
+      "ok": true
+    },
+    {
+      "initial_gauge": 6,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 15,
+      "ok": true
+    },
+    {
+      "initial_gauge": 6,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 15,
+      "ok": true
+    },
+    {
+      "initial_gauge": 6,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 15,
+      "ok": true
+    },
+    {
+      "initial_gauge": 6,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 3,
+      "ok": true
+    },
+    {
+      "initial_gauge": 6,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 3,
+      "ok": true
+    },
+    {
+      "initial_gauge": 6,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 3,
+      "ok": true
+    },
+    {
+      "initial_gauge": 6,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 17,
+      "ok": true
+    },
+    {
+      "initial_gauge": 6,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 17,
+      "ok": true
+    },
+    {
+      "initial_gauge": 6,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 17,
+      "ok": true
+    },
+    {
+      "initial_gauge": 7,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 11,
+      "ok": true
+    },
+    {
+      "initial_gauge": 7,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 11,
+      "ok": true
+    },
+    {
+      "initial_gauge": 7,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 11,
+      "ok": true
+    },
+    {
+      "initial_gauge": 7,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 19,
+      "ok": true
+    },
+    {
+      "initial_gauge": 7,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 19,
+      "ok": true
+    },
+    {
+      "initial_gauge": 7,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 19,
+      "ok": true
+    },
+    {
+      "initial_gauge": 7,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 18,
+      "ok": true
+    },
+    {
+      "initial_gauge": 7,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 18,
+      "ok": true
+    },
+    {
+      "initial_gauge": 7,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 18,
+      "ok": true
+    },
+    {
+      "initial_gauge": 8,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 12,
+      "ok": true
+    },
+    {
+      "initial_gauge": 8,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 12,
+      "ok": true
+    },
+    {
+      "initial_gauge": 8,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 12,
+      "ok": true
+    },
+    {
+      "initial_gauge": 8,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 16,
+      "ok": true
+    },
+    {
+      "initial_gauge": 8,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 16,
+      "ok": true
+    },
+    {
+      "initial_gauge": 8,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 16,
+      "ok": true
+    },
+    {
+      "initial_gauge": 8,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 19,
+      "ok": true
+    },
+    {
+      "initial_gauge": 8,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 19,
+      "ok": true
+    },
+    {
+      "initial_gauge": 8,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 19,
+      "ok": true
+    },
+    {
+      "initial_gauge": 9,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 1,
+      "ok": true
+    },
+    {
+      "initial_gauge": 9,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 1,
+      "ok": true
+    },
+    {
+      "initial_gauge": 9,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 1,
+      "ok": true
+    },
+    {
+      "initial_gauge": 9,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 13,
+      "ok": true
+    },
+    {
+      "initial_gauge": 9,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 13,
+      "ok": true
+    },
+    {
+      "initial_gauge": 9,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 13,
+      "ok": true
+    },
+    {
+      "initial_gauge": 9,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 12,
+      "ok": true
+    },
+    {
+      "initial_gauge": 9,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 12,
+      "ok": true
+    },
+    {
+      "initial_gauge": 9,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 12,
+      "ok": true
+    },
+    {
+      "initial_gauge": 10,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 18,
+      "ok": true
+    },
+    {
+      "initial_gauge": 10,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 18,
+      "ok": true
+    },
+    {
+      "initial_gauge": 10,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 18,
+      "ok": true
+    },
+    {
+      "initial_gauge": 10,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 15,
+      "ok": true
+    },
+    {
+      "initial_gauge": 10,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 15,
+      "ok": true
+    },
+    {
+      "initial_gauge": 10,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 15,
+      "ok": true
+    },
+    {
+      "initial_gauge": 10,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 13,
+      "ok": true
+    },
+    {
+      "initial_gauge": 10,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 13,
+      "ok": true
+    },
+    {
+      "initial_gauge": 10,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 13,
+      "ok": true
+    },
+    {
+      "initial_gauge": 11,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 7,
+      "ok": true
+    },
+    {
+      "initial_gauge": 11,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 7,
+      "ok": true
+    },
+    {
+      "initial_gauge": 11,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 7,
+      "ok": true
+    },
+    {
+      "initial_gauge": 11,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 4,
+      "ok": true
+    },
+    {
+      "initial_gauge": 11,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 4,
+      "ok": true
+    },
+    {
+      "initial_gauge": 11,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 4,
+      "ok": true
+    },
+    {
+      "initial_gauge": 11,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 5,
+      "ok": true
+    },
+    {
+      "initial_gauge": 11,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 5,
+      "ok": true
+    },
+    {
+      "initial_gauge": 11,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 5,
+      "ok": true
+    },
+    {
+      "initial_gauge": 12,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 8,
+      "ok": true
+    },
+    {
+      "initial_gauge": 12,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 8,
+      "ok": true
+    },
+    {
+      "initial_gauge": 12,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 8,
+      "ok": true
+    },
+    {
+      "initial_gauge": 12,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 5,
+      "ok": true
+    },
+    {
+      "initial_gauge": 12,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 5,
+      "ok": true
+    },
+    {
+      "initial_gauge": 12,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 5,
+      "ok": true
+    },
+    {
+      "initial_gauge": 12,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 9,
+      "ok": true
+    },
+    {
+      "initial_gauge": 12,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 9,
+      "ok": true
+    },
+    {
+      "initial_gauge": 12,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 9,
+      "ok": true
+    },
+    {
+      "initial_gauge": 13,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 5,
+      "ok": true
+    },
+    {
+      "initial_gauge": 13,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 5,
+      "ok": true
+    },
+    {
+      "initial_gauge": 13,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 5,
+      "ok": true
+    },
+    {
+      "initial_gauge": 13,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 6,
+      "ok": true
+    },
+    {
+      "initial_gauge": 13,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 6,
+      "ok": true
+    },
+    {
+      "initial_gauge": 13,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 6,
+      "ok": true
+    },
+    {
+      "initial_gauge": 13,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 10,
+      "ok": true
+    },
+    {
+      "initial_gauge": 13,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 10,
+      "ok": true
+    },
+    {
+      "initial_gauge": 13,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 10,
+      "ok": true
+    },
+    {
+      "initial_gauge": 14,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 20,
+      "ok": true
+    },
+    {
+      "initial_gauge": 14,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 20,
+      "ok": true
+    },
+    {
+      "initial_gauge": 14,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 20,
+      "ok": true
+    },
+    {
+      "initial_gauge": 14,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 7,
+      "ok": true
+    },
+    {
+      "initial_gauge": 14,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 7,
+      "ok": true
+    },
+    {
+      "initial_gauge": 14,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 7,
+      "ok": true
+    },
+    {
+      "initial_gauge": 14,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 0,
+      "ok": true
+    },
+    {
+      "initial_gauge": 14,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 0,
+      "ok": true
+    },
+    {
+      "initial_gauge": 14,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 0,
+      "ok": true
+    },
+    {
+      "initial_gauge": 15,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 6,
+      "ok": true
+    },
+    {
+      "initial_gauge": 15,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 6,
+      "ok": true
+    },
+    {
+      "initial_gauge": 15,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 6,
+      "ok": true
+    },
+    {
+      "initial_gauge": 15,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 8,
+      "ok": true
+    },
+    {
+      "initial_gauge": 15,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 8,
+      "ok": true
+    },
+    {
+      "initial_gauge": 15,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 8,
+      "ok": true
+    },
+    {
+      "initial_gauge": 15,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 20,
+      "ok": true
+    },
+    {
+      "initial_gauge": 15,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 20,
+      "ok": true
+    },
+    {
+      "initial_gauge": 15,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 20,
+      "ok": true
+    },
+    {
+      "initial_gauge": 16,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 21,
+      "ok": true
+    },
+    {
+      "initial_gauge": 16,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 21,
+      "ok": true
+    },
+    {
+      "initial_gauge": 16,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 21,
+      "ok": true
+    },
+    {
+      "initial_gauge": 16,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 10,
+      "ok": true
+    },
+    {
+      "initial_gauge": 16,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 10,
+      "ok": true
+    },
+    {
+      "initial_gauge": 16,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 10,
+      "ok": true
+    },
+    {
+      "initial_gauge": 16,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 23,
+      "ok": true
+    },
+    {
+      "initial_gauge": 16,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 23,
+      "ok": true
+    },
+    {
+      "initial_gauge": 16,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 23,
+      "ok": true
+    },
+    {
+      "initial_gauge": 17,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 0,
+      "ok": true
+    },
+    {
+      "initial_gauge": 17,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 0,
+      "ok": true
+    },
+    {
+      "initial_gauge": 17,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 0,
+      "ok": true
+    },
+    {
+      "initial_gauge": 17,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 23,
+      "ok": true
+    },
+    {
+      "initial_gauge": 17,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 23,
+      "ok": true
+    },
+    {
+      "initial_gauge": 17,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 23,
+      "ok": true
+    },
+    {
+      "initial_gauge": 17,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 6,
+      "ok": true
+    },
+    {
+      "initial_gauge": 17,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 6,
+      "ok": true
+    },
+    {
+      "initial_gauge": 17,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 6,
+      "ok": true
+    },
+    {
+      "initial_gauge": 18,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 10,
+      "ok": true
+    },
+    {
+      "initial_gauge": 18,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 10,
+      "ok": true
+    },
+    {
+      "initial_gauge": 18,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 10,
+      "ok": true
+    },
+    {
+      "initial_gauge": 18,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 22,
+      "ok": true
+    },
+    {
+      "initial_gauge": 18,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 22,
+      "ok": true
+    },
+    {
+      "initial_gauge": 18,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 22,
+      "ok": true
+    },
+    {
+      "initial_gauge": 18,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 7,
+      "ok": true
+    },
+    {
+      "initial_gauge": 18,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 7,
+      "ok": true
+    },
+    {
+      "initial_gauge": 18,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 7,
+      "ok": true
+    },
+    {
+      "initial_gauge": 19,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 22,
+      "ok": true
+    },
+    {
+      "initial_gauge": 19,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 22,
+      "ok": true
+    },
+    {
+      "initial_gauge": 19,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 22,
+      "ok": true
+    },
+    {
+      "initial_gauge": 19,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 21,
+      "ok": true
+    },
+    {
+      "initial_gauge": 19,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 21,
+      "ok": true
+    },
+    {
+      "initial_gauge": 19,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 21,
+      "ok": true
+    },
+    {
+      "initial_gauge": 19,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 8,
+      "ok": true
+    },
+    {
+      "initial_gauge": 19,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 8,
+      "ok": true
+    },
+    {
+      "initial_gauge": 19,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 8,
+      "ok": true
+    },
+    {
+      "initial_gauge": 20,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 14,
+      "ok": true
+    },
+    {
+      "initial_gauge": 20,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 14,
+      "ok": true
+    },
+    {
+      "initial_gauge": 20,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 14,
+      "ok": true
+    },
+    {
+      "initial_gauge": 20,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 12,
+      "ok": true
+    },
+    {
+      "initial_gauge": 20,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 12,
+      "ok": true
+    },
+    {
+      "initial_gauge": 20,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 12,
+      "ok": true
+    },
+    {
+      "initial_gauge": 20,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 15,
+      "ok": true
+    },
+    {
+      "initial_gauge": 20,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 15,
+      "ok": true
+    },
+    {
+      "initial_gauge": 20,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 15,
+      "ok": true
+    },
+    {
+      "initial_gauge": 21,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 16,
+      "ok": true
+    },
+    {
+      "initial_gauge": 21,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 16,
+      "ok": true
+    },
+    {
+      "initial_gauge": 21,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 16,
+      "ok": true
+    },
+    {
+      "initial_gauge": 21,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 14,
+      "ok": true
+    },
+    {
+      "initial_gauge": 21,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 14,
+      "ok": true
+    },
+    {
+      "initial_gauge": 21,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 14,
+      "ok": true
+    },
+    {
+      "initial_gauge": 21,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 2,
+      "ok": true
+    },
+    {
+      "initial_gauge": 21,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 2,
+      "ok": true
+    },
+    {
+      "initial_gauge": 21,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 2,
+      "ok": true
+    },
+    {
+      "initial_gauge": 22,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 19,
+      "ok": true
+    },
+    {
+      "initial_gauge": 22,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 19,
+      "ok": true
+    },
+    {
+      "initial_gauge": 22,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 19,
+      "ok": true
+    },
+    {
+      "initial_gauge": 22,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 17,
+      "ok": true
+    },
+    {
+      "initial_gauge": 22,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 17,
+      "ok": true
+    },
+    {
+      "initial_gauge": 22,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 17,
+      "ok": true
+    },
+    {
+      "initial_gauge": 22,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 1,
+      "ok": true
+    },
+    {
+      "initial_gauge": 22,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 1,
+      "ok": true
+    },
+    {
+      "initial_gauge": 22,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 1,
+      "ok": true
+    },
+    {
+      "initial_gauge": 23,
+      "probe": 0,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 3,
+      "ok": true
+    },
+    {
+      "initial_gauge": 23,
+      "probe": 1,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 3,
+      "ok": true
+    },
+    {
+      "initial_gauge": 23,
+      "probe": 2,
+      "path": [
+        "x",
+        "y",
+        "z'",
+        "x2"
+      ],
+      "final_gauge": 3,
+      "ok": true
+    },
+    {
+      "initial_gauge": 23,
+      "probe": 0,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 18,
+      "ok": true
+    },
+    {
+      "initial_gauge": 23,
+      "probe": 1,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 18,
+      "ok": true
+    },
+    {
+      "initial_gauge": 23,
+      "probe": 2,
+      "path": [
+        "z",
+        "z",
+        "y2",
+        "x'"
+      ],
+      "final_gauge": 18,
+      "ok": true
+    },
+    {
+      "initial_gauge": 23,
+      "probe": 0,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 16,
+      "ok": true
+    },
+    {
+      "initial_gauge": 23,
+      "probe": 1,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 16,
+      "ok": true
+    },
+    {
+      "initial_gauge": 23,
+      "probe": 2,
+      "path": [
+        "y'",
+        "x",
+        "z2",
+        "y"
+      ],
+      "final_gauge": 16,
+      "ok": true
+    }
+  ],
+  "transport_table": {
+    "0": {
+      "x": 11,
+      "x'": 1,
+      "x2": 4,
+      "y": 18,
+      "y'": 2,
+      "y2": 8,
+      "z": 19,
+      "z'": 3,
+      "z2": 10
+    },
+    "1": {
+      "x": 0,
+      "x'": 4,
+      "x2": 11,
+      "y": 6,
+      "y'": 7,
+      "y2": 16,
+      "z": 23,
+      "z'": 5,
+      "z2": 15
+    },
+    "2": {
+      "x": 20,
+      "x'": 5,
+      "x2": 12,
+      "y": 0,
+      "y'": 8,
+      "y2": 18,
+      "z": 7,
+      "z'": 9,
+      "z2": 17
+    },
+    "3": {
+      "x": 9,
+      "x'": 6,
+      "x2": 13,
+      "y": 22,
+      "y'": 5,
+      "y2": 14,
+      "z": 0,
+      "z'": 10,
+      "z2": 19
+    },
+    "4": {
+      "x": 1,
+      "x'": 11,
+      "x2": 0,
+      "y": 12,
+      "y'": 17,
+      "y2": 10,
+      "z": 13,
+      "z'": 14,
+      "z2": 8
+    },
+    "5": {
+      "x": 2,
+      "x'": 12,
+      "x2": 20,
+      "y": 3,
+      "y'": 14,
+      "y2": 22,
+      "z": 1,
+      "z'": 15,
+      "z2": 23
+    },
+    "6": {
+      "x": 3,
+      "x'": 13,
+      "x2": 9,
+      "y": 16,
+      "y'": 1,
+      "y2": 7,
+      "z": 18,
+      "z'": 12,
+      "z2": 21
+    },
+    "7": {
+      "x": 19,
+      "x'": 14,
+      "x2": 21,
+      "y": 1,
+      "y'": 16,
+      "y2": 6,
+      "z": 17,
+      "z'": 2,
+      "z2": 9
+    },
+    "8": {
+      "x": 16,
+      "x'": 15,
+      "x2": 10,
+      "y": 2,
+      "y'": 18,
+      "y2": 0,
+      "z": 14,
+      "z'": 13,
+      "z2": 4
+    },
+    "9": {
+      "x": 13,
+      "x'": 3,
+      "x2": 6,
+      "y": 11,
+      "y'": 15,
+      "y2": 21,
+      "z": 2,
+      "z'": 17,
+      "z2": 7
+    },
+    "10": {
+      "x": 15,
+      "x'": 16,
+      "x2": 8,
+      "y": 17,
+      "y'": 12,
+      "y2": 4,
+      "z": 3,
+      "z'": 19,
+      "z2": 0
+    },
+    "11": {
+      "x": 4,
+      "x'": 0,
+      "x2": 1,
+      "y": 21,
+      "y'": 9,
+      "y2": 15,
+      "z": 20,
+      "z'": 22,
+      "z2": 16
+    },
+    "12": {
+      "x": 5,
+      "x'": 20,
+      "x2": 2,
+      "y": 10,
+      "y'": 4,
+      "y2": 17,
+      "z": 6,
+      "z'": 21,
+      "z2": 18
+    },
+    "13": {
+      "x": 6,
+      "x'": 9,
+      "x2": 3,
+      "y": 20,
+      "y'": 23,
+      "y2": 19,
+      "z": 8,
+      "z'": 4,
+      "z2": 14
+    },
+    "14": {
+      "x": 7,
+      "x'": 21,
+      "x2": 19,
+      "y": 5,
+      "y'": 22,
+      "y2": 3,
+      "z": 4,
+      "z'": 8,
+      "z2": 13
+    },
+    "15": {
+      "x": 8,
+      "x'": 10,
+      "x2": 16,
+      "y": 9,
+      "y'": 21,
+      "y2": 11,
+      "z": 5,
+      "z'": 23,
+      "z2": 1
+    },
+    "16": {
+      "x": 10,
+      "x'": 8,
+      "x2": 15,
+      "y": 7,
+      "y'": 6,
+      "y2": 1,
+      "z": 22,
+      "z'": 20,
+      "z2": 11
+    },
+    "17": {
+      "x": 23,
+      "x'": 22,
+      "x2": 18,
+      "y": 4,
+      "y'": 10,
+      "y2": 12,
+      "z": 9,
+      "z'": 7,
+      "z2": 2
+    },
+    "18": {
+      "x": 22,
+      "x'": 23,
+      "x2": 17,
+      "y": 8,
+      "y'": 0,
+      "y2": 2,
+      "z": 21,
+      "z'": 6,
+      "z2": 12
+    },
+    "19": {
+      "x": 21,
+      "x'": 7,
+      "x2": 14,
+      "y": 23,
+      "y'": 20,
+      "y2": 13,
+      "z": 10,
+      "z'": 0,
+      "z2": 3
+    },
+    "20": {
+      "x": 12,
+      "x'": 2,
+      "x2": 5,
+      "y": 19,
+      "y'": 13,
+      "y2": 23,
+      "z": 16,
+      "z'": 11,
+      "z2": 22
+    },
+    "21": {
+      "x": 14,
+      "x'": 19,
+      "x2": 7,
+      "y": 15,
+      "y'": 11,
+      "y2": 9,
+      "z": 12,
+      "z'": 18,
+      "z2": 6
+    },
+    "22": {
+      "x": 17,
+      "x'": 18,
+      "x2": 23,
+      "y": 14,
+      "y'": 3,
+      "y2": 5,
+      "z": 11,
+      "z'": 16,
+      "z2": 20
+    },
+    "23": {
+      "x": 18,
+      "x'": 17,
+      "x2": 22,
+      "y": 13,
+      "y'": 19,
+      "y2": 20,
+      "z": 15,
+      "z'": 1,
+      "z2": 5
+    }
+  },
+  "post_result_table_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "3a7a611adbe3e64e0cfcbac6d2cabccbf973a235c25060855a00989721bd2b82"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "CR0105R13-POSTDEPLOY-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.3 \u2014 Explicit Deployment Authority Court, Mainline Candidate Injection & Post-deploy Public-byte Identity Seal",
+  "status": "PASS",
+  "verdict": "PASS_MAINLINE_EXACT_CANDIDATE_PUBLIC_BYTES_IDENTICAL",
+  "deployment_commit_expected": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+  "main_commit_observed": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+  "candidate": {
+    "bytes": 2591526,
+    "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+    "git_blob_sha1": "ce5b5608767083a696cf57982edd979a21b3ba22"
+  },
+  "public_final": {
+    "classification": "CANDIDATE_EXACT",
+    "bytes": 2591526,
+    "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+    "url": "https://whosia.github.io/CUBE-REV/?cr0105r13=32090383335-2-1787018580455867006"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "http_status": 200,
+      "bytes": 2588604,
+      "sha256": "e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf",
+      "url": "https://whosia.github.io/CUBE-REV/?cr0105r13=32090383335-1-1787018575157455137"
+    },
+    {
+      "attempt": 2,
+      "http_status": 200,
+      "bytes": 2591526,
+      "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+      "url": "https://whosia.github.io/CUBE-REV/?cr0105r13=32090383335-2-1787018580455867006"
+    }
+  ],
+  "browser_status": "PASS",
+  "browser_checks": {
+    "ready_complete": true,
+    "start_present": true,
+    "selftest_passed": true,
+    "selftest_100": true,
+    "telemetry_helper_present": true,
+    "telemetry_version_exact": true,
+    "no_page_errors": true,
+    "main_document_200": true
+  },
+  "checks": {
+    "main_ref_exact_deployment_commit": true,
+    "main_index_exact_candidate": true,
+    "public_http_candidate_exact": true,
+    "public_browser_court_pass": true
+  },
+  "authority": {
+    "main_written_in_preceding_explicit_step": true,
+    "pages_settings_written": false,
+    "human_launch": false
+  },
+  "gate": "PUBLIC_RELEASE_IDENTITY_SEALED"
+}

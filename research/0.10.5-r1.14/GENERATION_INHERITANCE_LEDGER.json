@@ -1,0 +1,62 @@
+{
+  "schema_version": "CR0105R114-GENERATION-INHERITANCE-1",
+  "generation_scope": "ROUX_SUBPROGRAM_ONLY",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "parent_generation": "ROUX-MEASUREMENT-G3",
+  "parent_final_commit": "6c1017cd23d20878ce4ec1e9bbaa6d4bf78f2d26",
+  "whole_cube_rev_generation": "UNRESOLVED",
+  "generation_transition_dimensions": ["ontology","measurement","data_regime","court","authority"],
+  "generation_label_is_progress_claim": false,
+  "inheritance": {
+    "RETAIN": [
+      "FB-prefix-only unique gauge initialization",
+      "explicit whole-cube x/y/z gauge transport algebra derived by asymmetric-state invariance",
+      "state-certified in-span two-block completion operator",
+      "Roux-only LOO/crossfit/nested attempt-level familywise null architecture",
+      "alpha=0.01 and at least 100 reference attempts for one-percent empirical resolution",
+      "development, unseen-preexisting holdout and post-freeze fresh-vintage evidence remain distinct authority classes"
+    ],
+    "DOWNGRADE": [
+      "G3 120/130 completion rate: retained only as development evidence and ontology-design context",
+      "rotation presence as a residual explanation: association observed previously but not a valid causal or ontology rule"
+    ],
+    "RETIRE": [
+      "per-state center canonicalization",
+      "inverse rotation transport",
+      "general wide/slice center-cocycle gauge transport",
+      "using R1.13 feature or attempt-score banks as if they were G4-confirmatory evidence",
+      "universal treatment of every Roux-labeled SB trace as belonging to one block-preserving measurement class"
+    ],
+    "MUTATE": [
+      "Roux SB ontology -> state-derived canonical first-block-preserving class plus explicit residual forks",
+      "future authority -> requires routes absent from a post-NAPKIN frozen live-index baseline and a separately frozen canonical reference bank",
+      "reconstruction consistency -> observed state consistency category rather than inferred solver intent"
+    ],
+    "FORK": [
+      "CANONICAL_FB_PRESERVING",
+      "BLOCK_DISRUPTIVE_RESIDUAL",
+      "FB_PRESERVED_NO_COMPLETION_RESIDUAL",
+      "PSEUDO_FB_OR_FBDR_FORK",
+      "SYNTAX_OR_STATE_INVALID",
+      "ONTOLOGY_UNSCORABLE"
+    ],
+    "RECOMBINE": [
+      "G3 prefix/explicit-rotation gauge algebra + G4 block-preservation ontology + rebuilt canonical-only null reference bank",
+      "prospective unseen-route ontology court + post-freeze fresh-vintage authority gate"
+    ],
+    "UNRESOLVED": [
+      "whether block-disruptive residuals are advanced legitimate Roux variants, notation inconsistencies, reconstruction errors, or a distinct subgoal family",
+      "whether future evidence justifies a dedicated null model for block-disruptive residuals",
+      "whole-project CUBE-REV generation numbering"
+    ]
+  },
+  "generation_court_rule": "G4 cannot be called validated merely because inherited development routes classify cleanly. The ontology must first survive a route set unseen by G3, and future scoring authority additionally requires POST_FREEZE_FRESH_VINTAGE evidence.",
+  "authority": {
+    "roux_future_scoring_authority": false,
+    "main_write": false,
+    "public_runner_write": false,
+    "collector_write": false,
+    "human_recruitment": false,
+    "human_observations": 0
+  }
+}

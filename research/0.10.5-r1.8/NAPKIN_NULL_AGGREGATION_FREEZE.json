@@ -1,0 +1,29 @@
+{
+  "schema_version": "CR0105R18-NAPKIN-NULL-AGGREGATION-FREEZE-1",
+  "status": "FROZEN_BEFORE_NULL_VALUES_AND_HOLDOUT_OUTCOMES",
+  "parent_napkin_commit": "a15f2d95a3b64bd0f7af759cfeb38b5720b98ede",
+  "calibration_source": "R1.7 900-attempt route manifest only",
+  "holdout_source_read_allowed": false,
+  "segment_null_observation": "For each eligible calibration phase segment, compute excursion amplitude for the observed segment and every accepted same-transformation null realization. Use the maximum amplitude across those realizations as one segment-level null observation. Variants never become independent pseudo-observations.",
+  "accepted_null_realizations": {
+    "observed_path": "Always included after route state certification; its inclusion is conservative because an unobserved human detour in calibration can only raise the null envelope.",
+    "commutation_representation": "Adjacent opposite-face swaps and deterministic opposite-face canonicalization are included only after exact KTransformation equality to the original phase segment is verified.",
+    "solver_alternative": "cubing.js experimentalSolve3x3x3IgnoringCenters is run on the relative phase endpoint. Inverted solve is included in the primary envelope only when its full KTransformation is exactly identical to the observed phase transformation. Physically-equivalent-but-not-exact alternatives are reported diagnostically but excluded from the primary null threshold.",
+    "other_representation": "Any rotation/wide/slice rewrite may be added only if exact KTransformation equality is programmatically verified and the rewrite rule was encoded before null values are read."
+  },
+  "threshold_hierarchy": [
+    "method×phase 99th percentile when n>=40 segment-level envelope observations",
+    "phase-only 99th percentile when n>=80",
+    "global 99.5th percentile otherwise"
+  ],
+  "quantile_rule": "nearest-rank upper empirical quantile: sorted values, index ceil(q*n)-1, so threshold never interpolates downward between observed null amplitudes",
+  "minimum_candidate_floor": 0.041666666666666664,
+  "large_reversal_floor": 0.08333333333333333,
+  "candidate_requires": [
+    "amplitude >= minimum_candidate_floor",
+    "amplitude strictly greater than frozen algorithm-null threshold",
+    "return to or below the pre-excursion frontier occurs strictly before the final phase move"
+  ],
+  "no_result_dependent_changes": true,
+  "human_observations": 0
+}

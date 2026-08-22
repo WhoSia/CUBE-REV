@@ -1,0 +1,52 @@
+name: CR0105R17 Irreducible Candidate Audit
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-full-court]
+    paths: [cr0105r17/RUN_IRRED_CANDIDATE_AUDIT]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r17-irred-candidate-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify R4 posthoc sensitivity lineage
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          r=json.load(open('research/0.10.5-r1.7/evidence-full-route-r4/FULL_ROUTE_COURT.json'))
+          p=json.load(open('research/0.10.5-r1.7/evidence-full-route-r4/IRREDUCIBLE_FILTER_FREEZE.json'))
+          assert r['schema_version']=='CR0105R17-IRREDUCIBLE-ROUTE-COURT-1' and r['status']=='PASS'
+          assert p['role']=='POSTHOC_ADVERSARIAL_ROBUSTNESS_NOT_PRIMARY_PREREGISTRATION'
+          assert r['human_observations']==0
+          print('R17_IRRED_CANDIDATE_PREFLIGHT_PASS')
+          PY
+      - name: Audit surviving intervals and target robustness
+        run: |
+          set -euo pipefail
+          python3 research/0.10.5-r1.7/r17_irreducible_candidate_audit.py | tee /tmp/r17_irred_candidate.log
+          cp /tmp/r17_irred_candidate.log research/0.10.5-r1.7/evidence-irred-audit/IRREDUCIBLE_CANDIDATE_LOG.txt
+      - name: Commit candidate audit evidence
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-irred-audit
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 irreducible candidate audit ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-full-court
+      - name: Enforce audit closure
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.7/evidence-irred-audit/IRREDUCIBLE_CANDIDATE_AUDIT.json'))
+          assert x['status']=='PASS'
+          assert x['source_role']=='POSTHOC_ADVERSARIAL_ROBUSTNESS_NOT_PRIMARY_PREREGISTRATION'
+          assert x['human_observations']==0
+          print('CR0105R17_IRRED_CANDIDATE_AUDIT_PASS')
+          PY
