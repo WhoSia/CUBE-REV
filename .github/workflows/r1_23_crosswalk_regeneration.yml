@@ -7,6 +7,12 @@ on:
     paths:
       - 'research/r1_23_crosswalk_regeneration.py'
       - '.github/workflows/r1_23_crosswalk_regeneration.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'research/r1_23_crosswalk_regeneration.py'
+      - '.github/workflows/r1_23_crosswalk_regeneration.yml'
   workflow_dispatch:
 
 permissions:
