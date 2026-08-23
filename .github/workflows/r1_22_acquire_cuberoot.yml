@@ -1,0 +1,55 @@
+name: R1.22 Acquire CubeRoot Bytes
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acquire pinned public CubeRoot files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p acquired
+          BASE='https://raw.githubusercontent.com/2017YANR02/cuberoot.me/e5a6bb14961b5b26c882f9fb3bf13d61d9eba890'
+          curl -L --fail --retry 3 --retry-all-errors "$BASE/data/recon_backup/wca_attempts.json" -o acquired/wca_attempts.json
+          curl -L --fail --retry 3 --retry-all-errors "$BASE/data/recon_backup/recons_backup.json" -o acquired/recons_backup.json
+          curl -L --fail --retry 3 --retry-all-errors "$BASE/core/packages/stats-build/src/bin/build_wca_attempts.ts" -o acquired/build_wca_attempts.ts
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          out = {}
+          for p in sorted(Path('acquired').iterdir()):
+              b = p.read_bytes()
+              git_blob = hashlib.sha1(f'blob {len(b)}\0'.encode() + b).hexdigest()
+              out[p.name] = {
+                  'bytes': len(b),
+                  'sha256': hashlib.sha256(b).hexdigest(),
+                  'git_blob_sha1': git_blob,
+              }
+          json.loads(Path('acquired/wca_attempts.json').read_text())
+          json.loads(Path('acquired/recons_backup.json').read_text())
+          Path('acquired/acquisition_manifest.json').write_text(json.dumps(out, indent=2) + '\n')
+          print(json.dumps(out, indent=2))
+          PY
+
+          test "$(python3 -c "import os; print(os.path.getsize('acquired/wca_attempts.json'))")" = '110301'
+          test "$(python3 -c "import hashlib; b=open('acquired/wca_attempts.json','rb').read(); print(hashlib.sha1(f'blob {len(b)}\\0'.encode()+b).hexdigest())")" = '78949e0be591c8d99dfa5e5e5754b76eb4013df9'
+          test "$(python3 -c "import os; print(os.path.getsize('acquired/recons_backup.json'))")" = '2089782'
+          test "$(python3 -c "import hashlib; b=open('acquired/recons_backup.json','rb').read(); print(hashlib.sha1(f'blob {len(b)}\\0'.encode()+b).hexdigest())")" = '681adbeba019ef1fc657d6927287fd00dbca6c87'
+
+      - name: Upload exact acquisition artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CUBE-REV-R1.22-CubeRoot-byte-acquisition
+          path: acquired/
+          if-no-files-found: error
+          retention-days: 7
