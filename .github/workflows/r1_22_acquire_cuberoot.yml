@@ -5,6 +5,10 @@ on:
     branches: [r1.22-acquisition]
     paths:
       - '.github/workflows/r1_22_acquire_cuberoot.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/r1_22_acquire_cuberoot.yml'
   workflow_dispatch:
 
 permissions:
