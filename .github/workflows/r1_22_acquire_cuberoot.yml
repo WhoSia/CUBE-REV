@@ -9,6 +9,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/r1_22_acquire_cuberoot.yml'
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 permissions:
