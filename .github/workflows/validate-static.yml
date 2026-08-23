@@ -42,6 +42,8 @@ jobs:
         run: python scripts/r1_23_crosswalk_regenerate.py
       - name: Regenerate round-bucket-repaired pinned crosswalk
         run: python scripts/r1_23_crosswalk_roundbucket_p1.py
+      - name: Materialize exact meso panel
+        run: python scripts/r1_23_enrich_exact_meso.py
       - name: Upload R1.23 P0 regeneration court
         uses: actions/upload-artifact@v4
         with:
@@ -54,5 +56,12 @@ jobs:
         with:
           name: cube-rev-r1-23-regeneration-p1
           path: r1_23_output_p1/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Upload R1.23 P2 exact meso panel
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-r1-23-exact-meso-p2
+          path: r1_23_output_p2/
           if-no-files-found: error
           retention-days: 7
