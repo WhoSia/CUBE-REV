@@ -1,0 +1,32 @@
+name: CUBE-REV R1.23 Crosswalk Regeneration
+
+on:
+  push:
+    branches:
+      - r1-23-crosswalk-regeneration
+    paths:
+      - 'research/r1_23_crosswalk_regeneration.py'
+      - '.github/workflows/r1_23_crosswalk_regeneration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run pinned R1.23 court
+        run: python research/r1_23_crosswalk_regeneration.py
+      - name: Upload R1.23 court outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-r1-23-crosswalk-regeneration
+          path: r1_23_out/
+          if-no-files-found: error
+          retention-days: 7
