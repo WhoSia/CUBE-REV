@@ -1,14 +1,8 @@
 name: R1.22 Acquire CubeRoot Bytes
 
 on:
-  push:
-    branches: [r1.22-acquisition]
-    paths:
-      - '.github/workflows/r1_22_acquire_cuberoot.yml'
   pull_request:
     branches: [main]
-    paths:
-      - '.github/workflows/r1_22_acquire_cuberoot.yml'
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
@@ -59,3 +53,5 @@ jobs:
           path: acquired/
           if-no-files-found: error
           retention-days: 7
+
+# synchronize marker: R1.22 acquisition court
