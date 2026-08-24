@@ -7,6 +7,12 @@ on:
     paths:
       - 'scripts/r1_23_fresh_wca_p3.py'
       - '.github/workflows/r1_23_p3_fresh_wca.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'scripts/r1_23_fresh_wca_p3.py'
+      - '.github/workflows/r1_23_p3_fresh_wca.yml'
   workflow_dispatch:
 
 permissions:
