@@ -1,0 +1,32 @@
+name: CUBE-REV R1.23 P3 Fresh WCA Regeneration
+
+on:
+  push:
+    branches:
+      - r1-23-p3-fresh-wca
+    paths:
+      - 'scripts/r1_23_fresh_wca_p3.py'
+      - '.github/workflows/r1_23_p3_fresh_wca.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fresh_wca_regeneration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run fresh WCA crosswalk regeneration
+        run: python scripts/r1_23_fresh_wca_p3.py
+      - name: Upload P3 fresh WCA court artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-r1-23-p3-fresh-wca
+          path: r1_23_output_p3/
+          if-no-files-found: error
+          retention-days: 7
