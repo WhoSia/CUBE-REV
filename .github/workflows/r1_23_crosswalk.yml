@@ -7,6 +7,12 @@ on:
     paths:
       - 'research/r1_23/rebuild_crosswalk.py'
       - '.github/workflows/r1_23_crosswalk.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'research/r1_23/**'
+      - '.github/workflows/r1_23_crosswalk.yml'
   workflow_dispatch:
 
 permissions:
@@ -50,6 +56,7 @@ jobs:
           print(s['verdict'])
           PY
       - name: Persist execution receipt
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
         shell: bash
         run: |
           rm -rf research/r1_23/input
