@@ -5,21 +5,24 @@ on:
     branches:
       - research/r1.23-crosswalk-rebuild
     paths:
-      - 'research/r1_23/**'
+      - 'research/r1_23/rebuild_crosswalk.py'
       - '.github/workflows/r1_23_crosswalk.yml'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   rebuild:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: research/r1.23-crosswalk-rebuild
       - name: Acquire pinned CubeRoot bytes
         shell: bash
         run: |
+          rm -rf research/r1_23/input research/r1_23/out
           mkdir -p research/r1_23/input research/r1_23/out
           curl --fail --location --retry 3 \
             'https://raw.githubusercontent.com/2017YANR02/cuberoot.me/e5a6bb14961b5b26c882f9fb3bf13d61d9eba890/data/recon_backup/recons_backup.json' \
@@ -46,6 +49,19 @@ jobs:
           assert all(r['recon_id'] for r in rows)
           print(s['verdict'])
           PY
+      - name: Persist execution receipt
+        shell: bash
+        run: |
+          rm -rf research/r1_23/input
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/r1_23/out
+          if git diff --cached --quiet; then
+            echo 'No output changes'
+          else
+            git commit -m 'research: R1.23 regenerated crosswalk receipt [skip ci]'
+            git push origin HEAD:research/r1.23-crosswalk-rebuild
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: CUBE_REV_0.10.5-R1.23_CROSSWALK_COURT
