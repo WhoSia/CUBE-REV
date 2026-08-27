@@ -1,0 +1,30 @@
+{
+  "schema_version": "CR0105R114-PREEXISTING-TAIL-DIAGNOSTIC-1",
+  "status": "POSTHOC_DIAGNOSTIC_ONLY_NO_GATE_CHANGE",
+  "preexisting_attempts_n": 105,
+  "primary_tail_n": 1,
+  "primary_tail_rate": 0.009523809523809525,
+  "rows": [
+    {
+      "key": "RECO_601:0",
+      "reco_id": 601,
+      "familywise_p": 0.008695652173913044,
+      "attempt_statistic": 2.060697840353612,
+      "top_feature": {
+        "phase": "FB",
+        "channel": "objective",
+        "move_count": 13,
+        "move_bin": "13+",
+        "observed_amplitude": 0.7,
+        "local_level": "PHASE_CHANNEL",
+        "local_n": 114,
+        "local_p": 0.008695652173913044,
+        "local_score": 2.060697840353612
+      }
+    }
+  ],
+  "gate_changed": false,
+  "authority_effect": "NONE",
+  "human_observations": 0,
+  "semantic_sha256": "52b711c6920473a6b71786f0a1c11944814302124377c72e7e5269912b3abf64"
+}

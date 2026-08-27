@@ -1,0 +1,39 @@
+{
+  "schema_version": "CR0105R113-G3-IMPLEMENTATION-FREEZE-1",
+  "status": "FROZEN_BEFORE_G3_ROUTE_SCORING",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "rotation_token_normalization": {
+    "accepted": ["x","x'","x2","y","y'","y2","z","z'","z2"],
+    "double_prime_normalization": "x2'/y2'/z2' normalize to x2/y2/z2 if emitted by parser",
+    "wide_and_slice_are_gauge_neutral": true
+  },
+  "gauge_at_state_index": "G is initialized at FB endpoint state. Moving forward across token j, first update G if token j is an explicit x/y/z rotation, then use the updated G for state j+1. Moving backward through FB for feature paths uses the exact inverse permutation of the frozen forward transport table.",
+  "prefix_initialization": "At the ordinary FB endpoint, search 24 orientation representatives x 24 ordered Roux frames; admissible pair requires first block exactly solved and opposite block not solved. Exactly one pair is required.",
+  "sb_completion": "First state from SB-span start through SB-span end where both locked blocks are exactly solved under the transported gauge.",
+  "rotation_present_stratum": "At least one normalized x/y/z rotation token occurs from FB endpoint token index through SB completion-or-span-end inclusive.",
+  "feature_metric": {
+    "objective_backtrack": "For distances d_0..d_T, maintain running frontier=min_{s<=t} d_s and amplitude=max_t(d_t-frontier_before_or_at_t). Endpoint need not itself create a positive amplitude.",
+    "anchor_break_peak": "max_t max(0, anchor_damage_t-anchor_damage_0) over the phase path.",
+    "distance": "fraction of piece and orientation coordinates mismatching the frozen target over the phase-specific cubie mask",
+    "FB_target": "default solved coordinates of the locked first 1x2x3 block",
+    "SB_target": "default solved coordinates of the locked opposite 1x2x3 block",
+    "CMLL_target": "transported endpoint corner configuration minimized over four AUF variants around the locked top face; both blocks are anchors",
+    "LSE_target": "transported last LSE-span endpoint on the six non-block edges; both blocks are anchors"
+  },
+  "phase_spans": {
+    "FB": "sole ordinary FB line",
+    "SB": "first maximal contiguous ROUX_SB span after FB",
+    "CMLL": "first nonempty ROUX_CMLL line after SB completion",
+    "LSE": "first maximal contiguous ROUX_LSE span after SB completion"
+  },
+  "development_denominators": {
+    "geometry_eligible": "state-certified ordinary-FB routes with an SB span",
+    "prefix_unique_rate": "prefix-unique routes / geometry-eligible",
+    "sb_completion_rate": "transported in-span completion / prefix-unique routes",
+    "rotation_present_completion_rate": "completion among prefix-unique routes with >=1 post-FB pre-completion/span-end x/y/z token",
+    "no_rotation_completion_rate": "completion among the complementary prefix-unique stratum",
+    "g3_admitted": "prefix-unique routes with transported in-span two-block completion"
+  },
+  "post_result_change": "Any change to transport, rotation classification, phase span, distance, amplitude, denominator or gate after G3 route results is a new remand/version, not an R1.13 repair.",
+  "human_observations": 0
+}

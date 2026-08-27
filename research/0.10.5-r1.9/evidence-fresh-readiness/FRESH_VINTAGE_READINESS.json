@@ -1,0 +1,50 @@
+{
+  "schema_version": "CR0105R19-FRESH-VINTAGE-READINESS-1",
+  "status": "READINESS_PASS_DATA_WAIT",
+  "ordering_proof": {
+    "r3_seal_sha256": "86522ee214024c8cac5257e07a4b9df451edff764fed13d9027ba79c957f2fca",
+    "r3_status": "SEALED_FOR_FUTURE_FRESH_VINTAGE_R3_NESTED_EXACT_PREREG_GATE",
+    "fresh_outcomes_seen_in_seal": false,
+    "network_read_after_local_seal_assertions": true
+  },
+  "retrieval": {
+    "url": "https://reco.nz/solve/",
+    "http_status": 200,
+    "html_bytes": 10317465,
+    "html_sha256": "c0ca3106023d108209028fd2b0f56962c9a23b5b09e41fbf5af673d7ae4795ba"
+  },
+  "frozen": {
+    "db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+    "reco_rows": 10596,
+    "max_reco_id": 14051,
+    "historical_attempt_keys": 1800
+  },
+  "live": {
+    "reco_rows": 10596,
+    "max_reco_id": 14051,
+    "removed_frozen_id_n": 0,
+    "removed_frozen_ids_first20": [],
+    "index_superset_gate": true
+  },
+  "fresh": {
+    "new_reco_id_rows": 0,
+    "new_reco_ids": [],
+    "linkage_tiers": {},
+    "unique_linked_attempts": 0,
+    "historical_attempt_overlap_n": 0,
+    "novel_unique_linked_attempts": 0,
+    "novel_cells": {},
+    "fresh_any_pre_route_gate": false,
+    "fresh_modern_2023_26_7_10_n": 0,
+    "fresh_modern_pre_route_gate": false,
+    "records": []
+  },
+  "confirmatory_authority": {
+    "score_recovery_rate": false,
+    "reason": "R1.9 is readiness only; route/state validation and all preregistered fresh gates must pass in a later confirmatory court before any estimate.",
+    "fresh_any_required": ">=200 novel unique-linked state-certified attempts, >=3 cells, ESS>=100",
+    "fresh_modern_required": ">=80 novel unique-linked state-certified attempts in 2023-26 × 7-10 s"
+  },
+  "human_observations": 0,
+  "authority": "RESEARCH_ONLY"
+}

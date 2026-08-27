@@ -1,0 +1,21 @@
+{
+  "schema_version": "CR0105R15-EDGE-IDENTITY-2",
+  "status": "PASS",
+  "checks": {
+    "source_client_blob_exact": true,
+    "source_client_sha_exact": true,
+    "source_index_unchanged": true,
+    "fresh_query_edge_exact": true,
+    "old_query_edge_exact": true,
+    "public_index_unchanged": true,
+    "cache_converged": true
+  },
+  "source_client_git_blob": "163e5114ef6ce725c2dfa06a6fe38d8e814190b0",
+  "source_client_sha256": "a155b2fb532c4fdcd20eaa2feb1c9c84b647b627c278a61c2dd44fbaa46f90f6",
+  "fresh_query_sha256": "a155b2fb532c4fdcd20eaa2feb1c9c84b647b627c278a61c2dd44fbaa46f90f6",
+  "old_query_sha256": "a155b2fb532c4fdcd20eaa2feb1c9c84b647b627c278a61c2dd44fbaa46f90f6",
+  "source_index_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+  "public_index_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+  "client_deployment_commit": "b1e5e51527690b0f9fc644569999f21e1165e78f",
+  "workflow_control_commit": "89b488fc1a9e3d37d9407c450a6d17e661872e0f"
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "CR0105R111-NAPKIN-PREEXEC-CLARIFICATION-R2",
+  "stage": "CUBE-REV 0.10.5-R1.11 — Roux Block-internal Orientation Quotient, Frame-preserving Phase Geometry & Method-specific Null Foundry",
+  "status": "FROZEN_BEFORE_ANY_R111_EMPIRICAL_EXECUTION",
+  "supersedes_only_ambiguous_wording": true,
+  "original_napkin_commit": "5665a4e38e31b93a9db825a89d82220e2d76f621",
+  "empirical_r111_outputs_seen_before_this_clarification": false,
+  "gate_weakening": false,
+  "clarifications": {
+    "cmll_consistency": "For an admitted locked frame, at a nonempty ROUX_CMLL endpoint both standard 1x2x3 blocks must be exactly solved and all eight corner cubies must equal the solved-corner configuration under at least one of the four U-face AUF variants {I,U,U2,U'}. This is not comparison of the endpoint to itself.",
+    "cmll_objective_geometry": "Within the CMLL line, objective distance is all-corner full piece+orientation distance to the annotated CMLL endpoint, minimized over the endpoint's four U-face AUF variants. This is a trajectory geometry definition and is separate from the solved-corner consistency gate.",
+    "objective_backtrack_amplitude": "For distances d_0,...,d_T within one phase, amplitude=max_t[d_t-min_{0<=j<=t} d_j], with a floor at zero. Thus only worsening after previously achieved progress contributes.",
+    "anchor_break_amplitude": "For an anchor mask expected solved at phase entry, compute coordinate mismatch fraction a_t in the locked frame and amplitude=max_t max(0,a_t-a_0).",
+    "geometry_failure_denominator": "Eligible phase opportunities are nonempty annotated FB/SB/CMLL/LSE lines in unique-frame state-certified attempts; failures are opportunities whose frozen mask/endpoint geometry cannot be evaluated. Missing phase annotations are reported separately and are not silently converted into zero-amplitude features.",
+    "one_percent_resolution": "For a genuinely fresh attempt compared against a frozen historical familywise attempt bank of size n, add-one p_min=1/(n+1). Primary 1% authority therefore requires n>=99 on every conditioning path that could be used for the primary claim."
+  },
+  "authority": {
+    "fresh_network_read": false,
+    "fresh_scoring": false,
+    "roux_future_authority_before_execution": false,
+    "layered_cfop_zb_authority_modified": false,
+    "human_observations": 0
+  }
+}

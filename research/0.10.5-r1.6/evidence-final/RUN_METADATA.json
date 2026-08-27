@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R16-FINAL-RUN-META-1",
+  "workflow_run_id": "32096976382",
+  "head_sha": "829e226c688b2cb98a0569d3d05841d52508e2fa",
+  "court_exit_code": 0,
+  "wca_zip_sha256": "35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad",
+  "linkage_engine": "PLUS2_AWARE_DISTINCT_NORMALIZATION_NATIVE_EQUALITY",
+  "index_date_role": "DIAGNOSTIC_ONLY_NOT_HARD_LINKAGE",
+  "human_observations": 0,
+  "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN",
+  "generated_at_utc": "2026-08-18T03:53:25.547575+00:00"
+}

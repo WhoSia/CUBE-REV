@@ -1,0 +1,22 @@
+{
+  "schema_version": "CR0105R110-LOCAL-AUTHORITY-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.10 \u2014 Method-stratified Future-score Transport, Roux Block-frame Identification & Fresh-vintage Watch Seal",
+  "napkin_sha256": "73d9a0f59706523a70b1e2c2e7cde13ef3396a27a0651a17d0229db0a7f66a47",
+  "parent_r19_final_commit": "a876d4fc130d41bb20e6cd7d16abbe927ba0d51f",
+  "layered_transport_status": "PASS_LAYERED_FUTURE_SCORE_TRANSPORT",
+  "layered_transport_seal": "c24337bf750a09c10bdb9e2dc4d71b876dfbd2de57d17eb1e80d4e3eaecab3c2",
+  "layered_future_scoring_candidate": true,
+  "roux_frame_status": "HOLD_ROUX_BLOCK_FRAME_IDENTIFICATION",
+  "roux_future_scoring_authority": false,
+  "fresh_network_read_before_this_seal": false,
+  "fresh_watch_permitted_after_this_commit": true,
+  "fresh_confirmatory_scoring_authorized": false,
+  "human_observations": 0,
+  "evidence_sha256": {
+    "method_transport": "91b7f3db0fabd238233f52fbc9056f68708dec1e3d273310c07045949055c094",
+    "layered_loo_bank": "db4494a18cf56220be671a4d9b52c8451e3895f132df34f511b909e688d5daae",
+    "roux_frame": "aecd680c70a2fcbef4b9c7fc2ed62376bd100342b6a076a8b635e6423c64c69c"
+  },
+  "generated_at_utc": "2026-08-20T11:48:05.088662+00:00",
+  "seal_sha256": "b83478923356bb9a0de1a40613f6e6a58ddf482d538393d7dc40b04eb1291cc6"
+}

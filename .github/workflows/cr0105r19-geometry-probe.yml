@@ -1,0 +1,84 @@
+name: CR0105R19 Quotient Geometry Probe
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.9-quotient-familywise-readiness]
+    paths: [cr0105r19/RUN_GEOMETRY_PROBE]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r19-geometry-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify inherited Skill-Workshop and NAPKIN freeze
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          s=json.load(open('research/CUBE_REV_SKILL_WORKSHOP_DEFAULT.json'))
+          n=json.load(open('research/0.10.5-r1.9/NAPKIN_INTENT_AND_PREREGISTRATION.json'))
+          assert s['status']=='ACTIVE_BY_DEFAULT_ON_DESCENDANT_RESEARCH_BRANCHES'
+          assert n['status']=='FROZEN_BEFORE_R19_DEVELOPMENT_EXECUTION'
+          assert n['authority']['main_write'] is False and n['authority']['human_recruitment'] is False
+          print('CR0105R19_NAPKIN_INHERITANCE_PASS')
+          PY
+      - name: Install pinned cubing runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Run quotient geometry invariant and historical frame probe
+        id: probe
+        shell: bash
+        env:
+          R19_GEOM_ROOT: /tmp/r19geom
+        run: |
+          set +e
+          mkdir -p /tmp/r19geom
+          node research/0.10.5-r1.9/r19_geometry_probe.mjs 2>&1 | tee /tmp/r19geom/probe.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.9/evidence-geometry-probe
+          test -f /tmp/r19geom/QUOTIENT_GEOMETRY_PROBE.json && cp /tmp/r19geom/QUOTIENT_GEOMETRY_PROBE.json research/0.10.5-r1.9/evidence-geometry-probe/ || true
+          cp /tmp/r19geom/probe.log research/0.10.5-r1.9/evidence-geometry-probe/GEOMETRY_PROBE_LOG.txt || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          c=int('${{ steps.probe.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R19-GEOMETRY-PROBE-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':c,'operational_status':'PASS' if c==0 else 'FAIL_OR_HOLD','scientific_role':'GEOMETRY_VALIDATOR_ONLY_NO_FRESH_OUTCOME','human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.9/evidence-geometry-probe/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit probe evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.9/evidence-geometry-probe
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.9 geometry probe ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.9-quotient-familywise-readiness
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R19-geometry-probe
+          retention-days: 30
+          if-no-files-found: warn
+          path: research/0.10.5-r1.9/evidence-geometry-probe/
+      - name: Enforce geometry validator
+        if: always()
+        run: |
+          test '${{ steps.probe.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.9/evidence-geometry-probe/QUOTIENT_GEOMETRY_PROBE.json'))
+          assert x['status']=='PASS',x
+          print('CR0105R19_GEOMETRY_PROBE_PASS')
+          PY

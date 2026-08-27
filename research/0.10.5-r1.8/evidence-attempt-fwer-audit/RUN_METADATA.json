@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R18-ATTEMPT-FWER-AUDIT-RUN-1",
+  "workflow_run_id": "32342843095",
+  "head_sha": "190aeb6978a14a9110b7b706d4f8bf12a4538828",
+  "exit_code": 0,
+  "status": "PASS",
+  "role": "POSTHOC_MULTIPLICITY_AUDIT",
+  "prospective_primary_changed": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T07:11:55.377420+00:00"
+}

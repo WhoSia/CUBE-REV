@@ -1,0 +1,67 @@
+name: CR0105R18 Attempt Familywise Null Audit
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.8-prospective-subgoal-court]
+    paths: [cr0105r18/RUN_ATTEMPT_FWER_AUDIT]
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify matched-null evidence is posthoc and prospective primary remains zero
+        run: |
+          python3 - <<'PY'
+          import json
+          m=json.load(open('research/0.10.5-r1.8/evidence-matched-null-remand/MATCHED_NULL_HOLDOUT_SENSITIVITY.json'))
+          assert m['status']=='PASS_POSTHOC_DIAGNOSTIC'
+          assert m['prospective_primary_unchanged']['attempt_positive_rate_standardized']==0
+          print('R18_FWER_LINEAGE_PASS')
+          PY
+      - name: Run attempt-level familywise null audit
+        id: audit
+        shell: bash
+        run: |
+          set +e
+          python research/0.10.5-r1.8/r18_attempt_familywise_null_audit.py 2>&1 | tee /tmp/r18fwer.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist audit
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.8/evidence-attempt-fwer-audit
+          test -f /tmp/r18fwer/ATTEMPT_FAMILYWISE_NULL_AUDIT.json && cp /tmp/r18fwer/ATTEMPT_FAMILYWISE_NULL_AUDIT.json research/0.10.5-r1.8/evidence-attempt-fwer-audit/ || true
+          cp /tmp/r18fwer.log research/0.10.5-r1.8/evidence-attempt-fwer-audit/AUDIT_LOG.txt || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          c=int('${{ steps.audit.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R18-ATTEMPT-FWER-AUDIT-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':c,'status':'PASS' if c==0 else 'FAIL','role':'POSTHOC_MULTIPLICITY_AUDIT','prospective_primary_changed':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.8/evidence-attempt-fwer-audit/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit audit evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.8/evidence-attempt-fwer-audit
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.8 attempt FWER audit ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.8-prospective-subgoal-court
+      - name: Enforce diagnostic execution
+        if: always()
+        run: |
+          test '${{ steps.audit.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.8/evidence-attempt-fwer-audit/ATTEMPT_FAMILYWISE_NULL_AUDIT.json'))
+          assert x['status']=='PASS_DIAGNOSTIC'
+          assert x['prospective_primary_unchanged']==0
+          print('CR0105R18_ATTEMPT_FWER_AUDIT_PASS')
+          PY

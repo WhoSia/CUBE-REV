@@ -1,0 +1,55 @@
+{
+  "schema_version": "CR0105R114-G4-BASELINE-VINTAGE-1",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "status": "PASS_G4_BASELINE_VINTAGE_FROZEN",
+  "ordering_proof": {
+    "napkin_committed_before_network_read": true,
+    "generation_ledger_committed_before_network_read": true,
+    "g4_route_reclassification_before_this_read": false,
+    "g4_feature_or_null_scoring_before_this_read": false,
+    "fresh_authority_scoring_before_this_read": false
+  },
+  "retrieval": {
+    "url": "https://reco.nz/solve/",
+    "retrieved_at_utc": "2026-08-21T08:04:42.575545+00:00",
+    "http_status": 200,
+    "html_bytes": 10322409,
+    "html_sha256": "b30537d9041264c35ff3921f8300de20938521fe365bdfb08f9c2ddd0e132aa0"
+  },
+  "baseline_definition": {
+    "membership": "every integer reco_id parsed from the live index table, regardless of event/method/reconstruction/linkage/geometry/score",
+    "uses_method": false,
+    "uses_route_detail": false,
+    "uses_linkage": false,
+    "uses_geometry": false,
+    "uses_features": false,
+    "uses_null_score": false
+  },
+  "live": {
+    "row_n": 12936,
+    "unique_reco_id_n": 12936,
+    "duplicate_id_rows": 0,
+    "min_reco_id": 3,
+    "max_reco_id": 14058,
+    "id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+    "event_counts_diagnostic_only": {
+      "3x3": 10596,
+      "4x4": 354,
+      "5x5": 117,
+      "6x6": 36,
+      "7x7": 15,
+      "OH": 1629,
+      "SQ1": 189
+    }
+  },
+  "authority": {
+    "baseline_only": true,
+    "route_detail_fetch_performed": false,
+    "method_filter_performed_for_membership": false,
+    "linkage_performed": false,
+    "geometry_scoring_performed": false,
+    "null_scoring_performed": false,
+    "roux_future_scoring_authority": false
+  },
+  "human_observations": 0
+}

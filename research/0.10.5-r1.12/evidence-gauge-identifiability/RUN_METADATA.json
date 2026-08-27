@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R112-GAUGE-IDENTIFIABILITY-RUN-1",
+  "workflow_run_id": "32449086739",
+  "head_sha": "1fbfc1626df5fe38999d516982ec2e9444c96730",
+  "exit_code": 0,
+  "primary_gate_changed": false,
+  "fresh_network_read": false,
+  "fresh_confirmatory_scoring": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T05:02:33.637232+00:00"
+}

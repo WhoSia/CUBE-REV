@@ -1,0 +1,77 @@
+name: CR0105R113 Generation Review Closure
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.13-roux-generation-g3]
+    paths: [cr0105r113/RUN_GENERATION_REVIEW]
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify all R1.13 courts are materialized
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          f=json.load(open('research/0.10.5-r1.13/evidence-development/ROTATION_GAUGE_TRANSPORT_FIXTURE.json'))
+          g=json.load(open('research/0.10.5-r1.13/evidence-development/ROUX_G3_GEOMETRY_AUDIT.json'))
+          n=json.load(open('research/0.10.5-r1.13/evidence-development/ROUX_G3_NULL_AUDIT.json'))
+          d=json.load(open('research/0.10.5-r1.13/evidence-rotation-destroy/ROTATION_MECHANISM_DESTROY_AUDIT.json'))
+          l=json.load(open('research/0.10.5-r1.13/evidence-rotation-localization/ROTATION_ROUTE_LOCALIZATION_AUDIT.json'))
+          b=json.load(open('research/0.10.5-r1.13/evidence-break-restore/RESIDUAL_BREAK_RESTORE_AUDIT.json'))
+          c=json.load(open('research/0.10.5-r1.13/evidence-move-cocycle/MOVE_COCYCLE_GAUGE_DIAGNOSTIC.json'))
+          assert f['status']=='PASS_ROTATION_GAUGE_ALGEBRA'
+          assert g['status']=='HOLD_ROUX_G3_DEVELOPMENT_GEOMETRY'
+          assert n['future_roux_scoring_authority'] is False
+          assert d['post_result_gate_change'] is False and l['post_result_gate_change'] is False and b['post_result_gate_change'] is False and c['post_result_gate_change'] is False
+          print('CR0105R113_REVIEW_INPUTS_PASS')
+          PY
+      - name: Execute generation review
+        id: reviewcourt
+        shell: bash
+        env: {R113_ROOT: /tmp/r113}
+        run: |
+          set +e
+          mkdir -p /tmp/r113
+          python3 research/0.10.5-r1.13/r113_generation_review.py 2>&1 | tee /tmp/r113/GENERATION_REVIEW_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist generation review
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.13/evidence-generation-review
+          test -f /tmp/r113/GENERATION_REVIEW_CLOSURE.json && cp /tmp/r113/GENERATION_REVIEW_CLOSURE.json research/0.10.5-r1.13/evidence-generation-review/ || true
+          test -f /tmp/r113/GENERATION_REVIEW_LOG.txt && cp /tmp/r113/GENERATION_REVIEW_LOG.txt research/0.10.5-r1.13/evidence-generation-review/ || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R113-GENERATION-REVIEW-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':int('${{ steps.reviewcourt.outputs.exit_code || 97 }}'),'fresh_network_read':False,'fresh_scoring':False,'primary_gate_changed':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.13/evidence-generation-review/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit generation review evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.13/evidence-generation-review
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.13 generation review ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.13-roux-generation-g3
+          git push origin HEAD:cube-rev-0.10.5-r1.13-roux-generation-g3
+      - name: Enforce review boundary
+        if: always()
+        run: |
+          test '${{ steps.reviewcourt.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.13/evidence-generation-review/GENERATION_REVIEW_CLOSURE.json'))
+          assert x['primary_disposition']['g3']=='REMANDED_NOT_RELEASED'
+          assert x['authority']['roux_future_scoring_authority'] is False
+          assert x['next_generation']['r113_routes_may_be_confirmatory'] is False
+          print('CR0105R113_GENERATION_REVIEW_COMPLETE',x['status'])
+          PY

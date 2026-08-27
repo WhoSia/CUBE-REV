@@ -1,0 +1,89 @@
+{
+  "schema_version": "CR0105R111-RAVEL-READJUDICATION-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.11 — Null Foundry Re-adjudication & SB Failure Localization",
+  "status": "PASS_NULL_ENGINEERING_WITH_ROUX_MEASUREMENT_AND_RESOLUTION_HOLDS",
+  "verdict": "PASS_ROUX_METHOD_SPECIFIC_NULL_ENGINEERING_AND_SB_FAILURE_LOCALIZATION; HOLD_ROUX_FUTURE_AUTHORITY_FOR_PHASE_ENDPOINT_SEMANTICS_CENTER_CONSISTENCY_AND_1PCT_FINITE_SAMPLE_RESOLUTION",
+  "null_foundry": {
+    "engineering_pass": true,
+    "loo_watch_rate": 0.043478260869565216,
+    "nested_watch_rate": 0.03260869565217391,
+    "transport_pearson": 0.9711500576628999,
+    "transport_abs_diff_p99": 0.49291552190289434,
+    "fallback_rate": 0.0,
+    "semantic_sha256": "ff0c30c8a616806f391d98e3662e2fd2cb07a7fde65595d2538c2a9a5a0dcb1e"
+  },
+  "finite_sample_resolution": {
+    "reference_attempts": 92,
+    "minimum_add_one_p": 0.010752688172043012,
+    "primary_alpha": 0.01,
+    "required_reference_attempts": 99,
+    "primary_resolution_pass": false,
+    "alpha_relaxation_after_result": "PROHIBITED"
+  },
+  "geometry": {
+    "status": "HOLD_ROUX_BLOCK_INTERNAL_FRAME_GEOMETRY",
+    "semantic_sha256": "1c75c9e40ed1553f8b38ad7600b8baddf0074e2c82df5556911b53fba1d810b7",
+    "orientation_free_unique_rate": 1.0,
+    "frozen_first_sb_completion_rate": 0.010869565217391304,
+    "cmll_consistency_rate": 0.9318181818181818,
+    "lse_consistency_rate": 0.9347826086956522
+  },
+  "failure_localization": {
+    "sb_endpoint": {
+      "first_sb_pass": 1,
+      "last_sb_pass": 85,
+      "evaluated": 92,
+      "last_sb_rate": 0.9239130434782609,
+      "first_sb_family_ss_n": 85,
+      "first_sb_family_ss_first_pass": 0,
+      "interpretation": "The frozen first ROUX_SB endpoint usually denotes SS, a second-block subphase. This explains the 1/92 frozen gate failure without repairing R1.11."
+    },
+    "fb_center_semantics": {
+      "orientation_free_unique": 92,
+      "center_exact_unique": 23,
+      "requires_center_relabel": 69,
+      "interpretation": "Orientation-free uniqueness mixes physical orientation with center/color relabeling in 75% of admitted routes and therefore cannot yet serve as a center-consistent physical Roux frame."
+    },
+    "phase_boundary": {
+      "fb_line_count_distribution": {"1": 92},
+      "sb_line_count_distribution": {"1": 1, "2": 91},
+      "interpretation": "FB is not a multi-line endpoint problem; SB is. A later prospective version must redesign both SB completion semantics and the frame/color quotient rather than merely selecting the last SB line."
+    }
+  },
+  "authority": {
+    "future_roux_scoring_authority": false,
+    "future_roux_authority_seal_sha256": "751fc6f6c0d111f280d3bdcfe61392bb687743790e586d57c1022d39f9c6b826",
+    "layered_cfop_zb_authority_modified": false,
+    "fresh_network_read": false,
+    "fresh_scoring": false,
+    "human_recruitment": false,
+    "human_observations": 0,
+    "main_write": false,
+    "public_runner_write": false,
+    "collector_write": false
+  },
+  "execution_provenance": {
+    "execution_pr": 20,
+    "null_readjudication_run": 32368756191,
+    "sb_localization_run": 32428191677,
+    "phase_boundary_run": 32428317890,
+    "fb_semantic_run": 32428460690,
+    "execution_pr_must_not_merge_to_main": true
+  },
+  "claim_scope": {
+    "allowed": [
+      "The Roux-only method-specific null engineering stack passed its frozen fallback, nested calibration, and crossfit-to-LOO transport gates on the 92 historical state-certified attempts.",
+      "The current 92-attempt add-one familywise bank cannot resolve the frozen 1% primary tail.",
+      "The R1.11 first-SB failure is strongly localized to annotation endpoint semantics: 85/92 first SB-classified lines are SS and 85/92 routes satisfy both-block completion by the last SB-classified endpoint.",
+      "R1.11 orientation-free frame uniqueness is not equivalent to center-consistent physical frame identification because 69/92 admitted frames require center/color relabeling."
+    ],
+    "prohibited": [
+      "Roux future confirmatory scoring authority.",
+      "Repairing the R1.11 frozen geometry gate using last-SB or another posthoc endpoint.",
+      "Treating orientation-free uniqueness as a validated physical Roux block frame.",
+      "Lowering the 1% primary alpha after observing finite-sample resolution failure.",
+      "Cognitive recovery, error, intentionality, awareness, or causal claims.",
+      "Any fresh replication estimate in R1.11."
+    ]
+  }
+}

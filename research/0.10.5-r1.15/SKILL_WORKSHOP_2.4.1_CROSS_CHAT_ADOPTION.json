@@ -1,0 +1,57 @@
+{
+  "schema_version": "CR0105R115-SKILL-WORKSHOP-CROSS-CHAT-ADOPTION-1",
+  "stage": "CUBE-REV 0.10.5-R1.15 — Observation-operator Manuscript Bridge, Claim Compression & Cross-generation Argument Court",
+  "source_learning": {
+    "suite": "Skill-Workshop 2.4.1 private cross-chat learning atlas",
+    "project_families_reviewed": ["RITHM", "RITHM-PAPER", "KSGT", "KSGT-Judge", "EvoNOMOS", "PEA-Scope", "C3X"],
+    "normative_usage_claim": false,
+    "adoption_is_project_specific": true
+  },
+  "promoted_principles": {
+    "generation_not_version": "Do not open a new measurement generation merely because R1.15 is a new version. ROUX-MEASUREMENT-G4 remains current because R1.14 ended in DATA_WAIT rather than measurement failure.",
+    "inheritance_not_rewrite": "Preserve RETAIN/DOWNGRADE/RETIRE/MUTATE/FORK/RECOMBINE/UNRESOLVED histories instead of rewriting failed operators as if they never existed.",
+    "writing_as_epistemic_stress": "Draft argument, abstract, figure narrative, and referee memo may expose missing evidence and generate new research tasks, but no drafted sentence is evidence.",
+    "can_continue_vs_should_continue": "A technically available next analysis is not automatically justified; manuscript debt and marginal information value may dominate another model/metric iteration.",
+    "provenance_family_not_item_count": "Claims supported by multiple artifacts from one development lineage must be stress-tested at the lineage/family level, not counted as independent evidence items.",
+    "human_gate_not_synthetic_substitute": "If a claim eventually requires human evidence, more synthetic sophistication cannot erase that gate.",
+    "immutable_base_incremental_patch": "Sealed R1.8–R1.14 artifacts remain immutable evidence bases; R1.15 adds a manuscript/claim layer rather than rewriting scientific bytes.",
+    "memory_relation_specific": "Intent, actuality, claim authority, and continuation state are tracked separately; no universal status rank collapses them."
+  },
+  "borrowed_workflows": {
+    "RITHM_PAPER": [
+      "work in small verified section units",
+      "perform evidence/claim surgery before prose polishing",
+      "maintain a Korean semantic master before English realization",
+      "return literature/evidence gaps discovered in writing back to research rather than papering them over"
+    ],
+    "KSGT_JUDGE": [
+      "separate reproducibility/package evidence from effect/scientific claims",
+      "state reported-but-not-regenerated quantities explicitly",
+      "make limitations and source-status first-class manuscript objects"
+    ],
+    "EvoNOMOS": [
+      "generation transition requires ontology/theory/data/measurement/court/authority change, not ordinary version advance",
+      "repairs may preserve scientific bytes while changing validators or execution plumbing"
+    ],
+    "PEA_SCOPE": [
+      "freeze calibration before holdout",
+      "preserve partial-resumable and schema-drift states rather than silently normalizing them"
+    ],
+    "KSGT": [
+      "defer human recruitment until synthetic/adversarial work no longer closes the relevant evidence debt",
+      "keep productive spin-offs from displacing the original research question"
+    ]
+  },
+  "r115_module_posture": {
+    "structural": ["NAPKIN", "RAVEL", "COURT", "TRACE", "ATLAS", "RHETOR", "PRISM", "SCOUT"],
+    "conditional": ["HUMANIZER", "FORGE", "ORBIT", "SENTINEL", "STEWARD", "MOSAIC"],
+    "writing_role": "epistemic stress test and compression layer",
+    "writing_evidence": false
+  },
+  "status_board_contract": {
+    "sections": ["지금 완료", "다음 단계", "대기 / 외부 게이트", "병렬 연구 트랙", "비정기 누적 감시"],
+    "active_means_background_execution": false,
+    "active_definition": "can be resumed/executed in a subsequent research turn without external dependency",
+    "roux_watch": "Run irregularly during substantive CUBE-REV research turns after any required pre-outcome seal; never by silently changing G4 freshness definitions."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PASS_CHARACTERIZED_WITH_BLOCKING_GATES_REPORTED",
+  "canonical_linked_under10_attempts": 3405,
+  "untouched_linked_attempts": 2505,
+  "untouched_supported_population_fraction": 0.2861470900645243,
+  "holdout_A_selected_n": 900,
+  "fresh_live_rows": 10596,
+  "fresh_new_reco_ids": 0,
+  "fresh_modern_7_10_untouched_n": 0,
+  "decisions": {
+    "attempt_disjoint_holdout_A": "GO",
+    "full_under10_standardized_holdout_claim": "HOLD",
+    "fresh_modern_7_10_replication": "HOLD"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "CR0105R112-GENERATION-REVIEW-AUTHORITY-RULES-1",
+  "stage": "CUBE-REV 0.10.5-R1.12 — Gauge Identifiability Court & Generation Review Closure",
+  "generation_under_review": "ROUX-MEASUREMENT-G2",
+  "status": "AUTHORITY_RULES_FROZEN_BEFORE_RESIDUAL_RESULT_OBSERVED",
+  "nonnegotiable": {
+    "r112_g2_primary_can_be_released_by_posthoc_diagnostics": false,
+    "r112_g2_primary_geometry_status": "HOLD_ROUX_G2_GEOMETRY",
+    "r112_g2_null_status": "HOLD_ROUX_G2_NULL_FOUNDRY",
+    "roux_future_scoring_authority_in_r112": false,
+    "cfop_zb_layered_authority_modified": false,
+    "human_observations": 0,
+    "fresh_confirmatory_scoring": false
+  },
+  "generation_review_logic": {
+    "g2_disposition": "REMAND_MEASUREMENT_GENERATION regardless of residual diagnostic because the frozen G2 operator admitted only 10/130 eligible ordinary-FB routes and failed its prospective geometry gates.",
+    "g3_candidate_identified_if": [
+      "FB-prefix-only orientation+frame pair is unique on >=0.95 of eligible routes",
+      "the uniquely prefix-identified pair predicts state-certified SB completion within the frozen SB span on >=0.90 of eligible routes",
+      "the same prefix operator achieves >=0.85 SB-completion rate independently in SEALED_R111 and R112_EXPANSION source slices",
+      "per-state center gauge changes during FB-to-SB on >=0.80 of eligible routes, supporting rejection of dynamic center recanonicalization as a persistent route frame",
+      "no post-result change to R1.12 primary gates or candidate membership occurred"
+    ],
+    "g3_candidate_not_authority": "Meeting these conditions identifies a next-generation measurement hypothesis only. It does not release scoring authority and cannot be used to score a fresh outcome until a new prospective generation freeze and rebuilt null court pass.",
+    "residual_branching": {
+      "late_completion_fraction_ge_0_50": "NEXT_G3_MUST_COMBINE_PREFIX_GAUGE_WITH_PHASE_SPAN_REDESIGN",
+      "late_completion_fraction_le_0_20": "NEXT_G3_SHOULD_RETAIN_FROZEN_SB_SPAN_AND_FOCUS_ON_GAUGE_TRANSPORT_OR_RESIDUAL_ROUTE_STRATA",
+      "rotation_enrichment_failure_vs_success_ratio_ge_1_5": "NEXT_G3_SHOULD_TEST_ROTATION_COVARIANT_GAUGE_TRANSPORT",
+      "otherwise": "NEXT_G3_FIXED_PREFIX_GAUGE_WITH_EXPLICIT_RESIDUAL_STRATIFICATION"
+    }
+  },
+  "generation_label_policy": {
+    "whole_cube_rev_generation": "UNRESOLVED",
+    "next_roux_generation_label_if_candidate_identified": "ROUX-MEASUREMENT-G3",
+    "generation_label_is_progress_claim": false,
+    "transition_requires_new_NAPKIN_before_any_G3_scoring": true
+  },
+  "authority": {
+    "research_branch_only": true,
+    "main_write": false,
+    "public_runner_write": false,
+    "collector_write": false,
+    "human_recruitment": false
+  }
+}

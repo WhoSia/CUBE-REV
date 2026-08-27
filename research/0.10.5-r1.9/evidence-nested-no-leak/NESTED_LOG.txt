@@ -1,0 +1,79 @@
+{
+  "status": "HOLD_NESTED_CALIBRATION",
+  "old_seal": "b7de3e635c4a304b35947920040e8d37aa9342f0703b5219e698e0d5a5e12e04",
+  "new_seal": "29c2f0fa69db677c2e6abc0b672d761150a6a2afb36d4b11a504bbcb8d2e8ed1",
+  "nested_attempts": 1677,
+  "primary_empirical_exceedance": 0.008348240906380441,
+  "watch_empirical_exceedance": 0.04770423375074538,
+  "min_family_reference_n": 378,
+  "outer_folds": [
+    {
+      "fold": 0,
+      "n": 318,
+      "familywise_ok_n": 318,
+      "primary_rate": 0.009433962264150943,
+      "watch_rate": 0.06289308176100629,
+      "familywise_levels": {
+        "METHOD_COUNT": 274,
+        "COUNT": 44
+      },
+      "family_reference_attempts": 1359
+    },
+    {
+      "fold": 1,
+      "n": 361,
+      "familywise_ok_n": 361,
+      "primary_rate": 0.008310249307479225,
+      "watch_rate": 0.038781163434903045,
+      "familywise_levels": {
+        "METHOD_COUNT": 334,
+        "COUNT": 27
+      },
+      "family_reference_attempts": 1316
+    },
+    {
+      "fold": 2,
+      "n": 326,
+      "familywise_ok_n": 326,
+      "primary_rate": 0.012269938650306749,
+      "watch_rate": 0.046012269938650305,
+      "familywise_levels": {
+        "COUNT": 42,
+        "METHOD_COUNT": 284
+      },
+      "family_reference_attempts": 1351
+    },
+    {
+      "fold": 3,
+      "n": 311,
+      "familywise_ok_n": 311,
+      "primary_rate": 0.003215434083601286,
+      "watch_rate": 0.04180064308681672,
+      "familywise_levels": {
+        "METHOD_COUNT": 280,
+        "COUNT": 31
+      },
+      "family_reference_attempts": 1366
+    },
+    {
+      "fold": 4,
+      "n": 361,
+      "familywise_ok_n": 361,
+      "primary_rate": 0.008310249307479225,
+      "watch_rate": 0.04986149584487535,
+      "familywise_levels": {
+        "METHOD_COUNT": 325,
+        "COUNT": 36
+      },
+      "family_reference_attempts": 1316
+    }
+  ],
+  "checks": {
+    "nested_familywise_attempts_ge_1200": true,
+    "primary_health_band": true,
+    "watch_health_band": true,
+    "min_family_reference_n_ge_1000": false,
+    "outer_test_fold_excluded_from_local_and_family_reference": true,
+    "future_fresh_outcomes_seen_false": true
+  }
+}

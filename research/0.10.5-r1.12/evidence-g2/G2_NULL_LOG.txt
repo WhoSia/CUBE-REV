@@ -1,0 +1,24 @@
+{
+  "status": "HOLD_ROUX_G2_NULL_FOUNDRY",
+  "geometry_status": "HOLD_ROUX_G2_GEOMETRY",
+  "engineering_pass": false,
+  "primary_resolution_pass": false,
+  "future_authority": false,
+  "loo_attempts": 0,
+  "loo_watch": 0,
+  "nested_watch": 0,
+  "transport_pearson": null,
+  "transport_p99": null,
+  "finite_resolution": {
+    "admitted_attempt_bank_n": 0,
+    "loo_reference_n": 0,
+    "loo_minimum_add_one_p": null,
+    "required_loo_reference_n": 99,
+    "required_total_admitted_n": 100,
+    "future_fresh_reference_n": 0,
+    "future_fresh_minimum_add_one_p": null,
+    "primary_1pct_resolvable": false,
+    "alpha_relaxation": "PROHIBITED"
+  },
+  "seal": "8ee57017a46587d91ba1d1cfc51760f38a11cf458fb2084d302ca942418f9670"
+}

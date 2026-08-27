@@ -1,0 +1,21 @@
+{
+  "schema_version": "CR0105R18-FRESH-RECO-PREFLIGHT-1",
+  "status": "PASS_CHARACTERIZED",
+  "retrieved_url": "https://reco.nz/solve/",
+  "http_status": 200,
+  "html_bytes": 10317465,
+  "html_sha256": "c0ca3106023d108209028fd2b0f56962c9a23b5b09e41fbf5af673d7ae4795ba",
+  "live_3x3_rows": 10596,
+  "live_max_reco_id": 14051,
+  "frozen_3x3_rows": 10596,
+  "frozen_max_reco_id": 14051,
+  "new_reco_id_rows": 0,
+  "new_linkage_tiers": {},
+  "new_unique_linked_attempts": 0,
+  "new_unique_linked_attempts_untouched_by_r17": 0,
+  "fresh_modern_2023_26_7_10_untouched_n": 0,
+  "fresh_modern_gate_min_n": 80,
+  "fresh_modern_gate": "HOLD_FRESH_MODERN_CELL",
+  "fresh_modern_records": [],
+  "human_observations": 0
+}

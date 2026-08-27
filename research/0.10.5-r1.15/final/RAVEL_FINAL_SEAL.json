@@ -1,0 +1,179 @@
+{
+  "schema_version": "CR0105R115-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.15 — Observation-operator Manuscript Bridge, Claim Compression & Cross-generation Argument Court",
+  "status": "PASS_MANUSCRIPT_BRIDGE_WITH_COHERENT_METHOD_CLAIM_AND_PREPRINT_FREEZE_HOLD",
+  "verdict": "PASS_CROSS_GENERATION_OBSERVATION_OPERATOR_ARGUMENT_AND_PAPER_SIZED_MEASUREMENT_METHOD_CLAIM; HOLD_PREPRINT_FREEZE_FOR_NOVELTY_BIBLIOGRAPHY_AND_FIGURE_TABLE_ASSET_DEBTS; ROUX_FRESH_AUTHORITY_DATA_WAIT_0_OF_20",
+  "sealed_parent": {
+    "branch": "cube-rev-0.10.5-r1.14-final-seal",
+    "commit": "d334bdb17a0df432bb08edd035b85fa62a52875c",
+    "measurement_generation": "ROUX-MEASUREMENT-G4",
+    "new_measurement_generation_opened_in_r115": false
+  },
+  "skill_workshop_adoption": {
+    "source": "Skill-Workshop 2.4.1 cross-chat learning and manuscript/research workflow artifacts",
+    "adopted": [
+      "generation_not_version",
+      "explicit inheritance rather than history rewrite",
+      "writing as epistemic stress test, not evidence",
+      "research memo/theory/results/referee/response writing loop",
+      "provenance-family ablation rather than artifact counting",
+      "can_continue versus should_continue",
+      "research debt as claim-blocking evidence obligation",
+      "human/external evidence gates cannot be erased by synthetic sophistication",
+      "manuscript bundle and readiness states",
+      "RITHM-style status board with active/wait/sealed lanes"
+    ],
+    "measurement_generation_at_close": "ROUX-MEASUREMENT-G4"
+  },
+  "manuscript_bridge": {
+    "working_title": "Behavioral Reconstruction Traces Are Not Self-Interpreting: Observation-Operator Failure, Transport, and Authority in Competitive Speedcubing",
+    "paper_type": "measurement/methodology with empirical competitive-speedcubing reconstruction case study",
+    "paper_sized_claim": "PASS_MEASUREMENT_METHOD_SCOPE",
+    "central_thesis": "Behavioral reconstruction traces are not self-interpreting; trace-to-construct observation operators require separate validation of representation, null behavior, multiplicity, transport, provenance, and claim authority before behavioral interpretation.",
+    "cognitive_prevalence_paper": "PROHIBITED",
+    "manuscript_frozen": false,
+    "writing_is_evidence": false
+  },
+  "operator_succession": {
+    "atlas": "research/0.10.5-r1.15/CROSS_GENERATION_OBSERVATION_OPERATOR_ATLAS.json",
+    "compressed_epistemic_ratchet": [
+      "shorter/equivalent sequence != cognitive detour",
+      "full-state reversal != cognitive recovery",
+      "annotation label != latent subgoal",
+      "orientation equivalence != persistent physical frame",
+      "mathematically valid gauge transport != sufficient method ontology",
+      "preexisting-unseen transport != genuinely fresh authority"
+    ],
+    "positive_endpoint": "G4 frozen state ontology transported to a baseline-present development-unseen Roux route set under a frozen 114-attempt reference null."
+  },
+  "claim_and_source_authority": {
+    "claim_ledger": "research/0.10.5-r1.15/CLAIM_AUTHORITY_LEDGER.json",
+    "source_map": "research/0.10.5-r1.15/SOURCE_MAP_AND_CITATION_AUDIT.json",
+    "paragraph_source_parity": "PASS_SEMANTIC_SECTION_CLAIM_SOURCE_PARITY",
+    "unmapped_material_numeric_claims_in_semantic_master": 0,
+    "workflow_receipt_is_effect_evidence": false,
+    "world_first_claim_authorized": false
+  },
+  "argument_court": {
+    "workflow_run_id": "32543108852",
+    "status": "PASS_ARGUMENT_COURT_MANUSCRIPT_BRIDGE",
+    "semantic_sha256": "d83a302f809e084aca34d2efd97c19466d9e4c39fefa7787159cef16d45c0846",
+    "failed_checks": 0,
+    "abstract_banned_claim_hits": 0,
+    "disposition": {
+      "measurement_method_paper": "PASS",
+      "cognitive_prevalence_paper": "PROHIBITED",
+      "preprint_freeze": "HOLD",
+      "roux_fresh_authority": "HOLD_DATA_WAIT_0_OF_20"
+    }
+  },
+  "hostile_referee_court": {
+    "status": "PASS_PAPER_SIZED_METHOD_CLAIM_WITH_MAJOR_SCOPE_COMPRESSION",
+    "key_reframes": [
+      "do not sell version chronology or debugging history as contribution",
+      "separate operational bugs from falsified measurement hypotheses",
+      "do not claim cognition without ground truth",
+      "downgrade novelty of the Roux preservation definition itself; retain value of the validated observation-operator protocol",
+      "treat preexisting-unseen as transport rather than temporal fresh replication",
+      "compress statistical gates into null, multiplicity, and transport obligations"
+    ]
+  },
+  "provenance_family_ablation": {
+    "status": "PASS_WITH_POSITIVE_ENDPOINT_DEPENDENCE_ON_G3_G4_LINEAGE",
+    "central_thesis_survives_each_single_family_ablation": true,
+    "positive_unseen_transport_endpoint_depends_materially_on": "R1.13-R1.14 lineage",
+    "serial_generations_are_independent_replications": false,
+    "recommended_language": "serial falsification lineage plus one frozen development-unseen ontology transport court"
+  },
+  "literature_gap": {
+    "status": "PASS_BOUNDED_GAP_MAP_HOLD_STRONG_FIRSTNESS_CLAIM",
+    "neighbor_families": [
+      "Rubik real-world skill acquisition",
+      "macro-operators/non-serializable subgoals",
+      "decomposition/incomplete representation",
+      "competitive collective expertise and algorithm acquisition",
+      "speedcubing cognitive-motor performance",
+      "process-tracing method validity",
+      "digital/learning trace construct validity"
+    ],
+    "direct_analogue_identified_in_bounded_search": false,
+    "strong_firstness_authorized": false,
+    "remaining_debt": "database-explicit search/citation chaining/novelty comparison matrix and final bibliography tieout"
+  },
+  "manuscript_bundle": {
+    "semantic_master_ko": "research/0.10.5-r1.15/SEMANTIC_MASTER_KO.md",
+    "english_abstract_draft": "research/0.10.5-r1.15/ABSTRACT_EN_DRAFT.md",
+    "figure_table_plan": "research/0.10.5-r1.15/FIGURE_TABLE_PLAN.md",
+    "bundle_index": "research/0.10.5-r1.15/MANUSCRIPT_BUNDLE_INDEX.json",
+    "readiness": "PASS_MANUSCRIPT_BRIDGE_HOLD_PREPRINT_FREEZE",
+    "ready_for_freeze": false,
+    "remaining_freeze_blockers": [
+      "strong-novelty systematic/citation-chain closure",
+      "external bibliography final metadata tieout",
+      "render and source-lock figure/table assets"
+    ],
+    "fresh_roux_data_wait_blocks_current_method_preprint_in_principle": false,
+    "human_cognitive_validation_blocks_current_method_preprint": false
+  },
+  "should_continue": {
+    "new_measurement_metric_iteration_now": false,
+    "reason": "G4 is not a measurement failure; it is awaiting post-freeze data. More metric invention has lower marginal value than manuscript evidence-debt closure.",
+    "next_high_value_work": [
+      "systematic novelty court",
+      "bibliographic source lock",
+      "figure/table rendering and source lock",
+      "manuscript freeze readiness court"
+    ]
+  },
+  "irregular_roux_watch": {
+    "workflow_run_id": "32543200705",
+    "mode": "IRREGULAR_RESEARCH_TURN_NOT_AUTOMATION",
+    "status": "NO_CHANGE",
+    "manuscript_bridge_seal_preceded_watch": true,
+    "baseline_id_n": 12936,
+    "live_id_n": 12936,
+    "baseline_max_id": 14058,
+    "live_max_id": 14058,
+    "new_id_n_all_events": 0,
+    "new_3x3_roux_index_n": 0,
+    "new_raw_roux_n": 0,
+    "progress": "0/20",
+    "authority_court_may_reopen": false,
+    "g4_definition_mutated": false,
+    "authority_scoring_performed": false
+  },
+  "authority": {
+    "main_commit_verified_at_closure": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "main_mutated_by_r115": false,
+    "public_runner_mutated_by_r115": false,
+    "collector_mutated_by_r115": false,
+    "roux_future_scoring_authority": false,
+    "human_observations": 0,
+    "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+  },
+  "claim_scope": {
+    "allowed": [
+      "CUBE-REV supports a paper-sized methodological argument that rich reconstruction traces require validated observation operators before behavioral interpretation.",
+      "Multiple plausible operators failed distinct representation, null-statistic, multiplicity, transport, semantic/frame, ontology, or authority courts across the serial research lineage.",
+      "The G4 state-defined Roux ontology transported to a development-unseen preexisting route set under a frozen reference scorer.",
+      "The current literature search found neighboring Rubik/process-tracing/trace-validity work but no direct analogue in a bounded targeted search; strong novelty wording remains unapproved.",
+      "The latest irregular post-freeze Roux watch remains 0/20."
+    ],
+    "prohibited": [
+      "Cognitive recovery prevalence.",
+      "Cognitive error prevalence.",
+      "Calling canonical/residual categories latent mental strategies.",
+      "Calling R1.7-R1.14 independent replications.",
+      "Calling the preexisting-unseen court a genuinely fresh replication.",
+      "World-first or no-prior-work novelty statements.",
+      "Full-WCA behavioral prevalence.",
+      "Roux future scoring authority before the frozen fresh gate is met."
+    ]
+  },
+  "next_stage": {
+    "version": "CUBE-REV 0.10.5-R1.16",
+    "title": "Systematic Novelty Court, Figure–Table Source Lock & Preprint Freeze Readiness",
+    "measurement_generation": "ROUX-MEASUREMENT-G4_UNCHANGED",
+    "required_first_action": "Treat R1.15 semantic/claim artifacts as an immutable manuscript-bridge base; close novelty/bibliography/figure debts without altering G4 scientific definitions or silently promoting DATA_WAIT claims."
+  }
+}

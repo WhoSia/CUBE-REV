@@ -1,0 +1,27 @@
+{
+  "schema_version": "CR0105R19-ATTEMPT-FAMILYWISE-NULL-PREREG-SEAL-2",
+  "status": "HOLD_NOT_SEALABLE",
+  "supersedes_seal_sha256": "b7de3e635c4a304b35947920040e8d37aa9342f0703b5219e698e0d5a5e12e04",
+  "supersession_reason": "RAVEL found indirect outer-fold influence in the R1 crossfit health court: scores in other folds could have used the target fold as local training data. R2 validates calibration with the entire outer test fold excluded from local and familywise-reference score construction. No fresh-vintage outcomes had been read.",
+  "napkin_sha256": "e1fe8548a4d72deb83c4f7d8de0b4ea2123efea92b7b1e71e03d7466bcd2f537",
+  "full_local_reference_file_sha256": "01d8ef8ac8e68f5ba939c71532a54759366526c6762176901270538e1c3a4e38",
+  "historical_crossfit_attempt_reference_file_sha256": "949a4b4d2e3e5af2cc1b6df07160d49d29c223f74e63e9b19280b649a261a979",
+  "nested_audit_semantic_sha256": "535ac54c8f606b6aee06b427a65a15cb81a1c2d3e35d7993afa336ffc366ca81",
+  "future_scoring_rule": {
+    "attempt_statistic": "Maximum local tail_score over all eligible phase-line objective and anchor channels in one official attempt.",
+    "crossfit": "Deterministic 5-fold split by SHA-256 of official-attempt key and R1.9 salt. Each held-out attempt is scored only against reference envelopes from the other four folds.",
+    "multiplicity_conditioning": "Familywise reference is conditioned by eligible feature-count bin: 1-8, 9-12, 13-16, 17+ when bin n>=300; otherwise global. Method×feature-count may be used only when n>=300 and is predeclared before execution; fallback order is method×count -> count -> method -> global with n>=300 for non-global levels.",
+    "primary_familywise_alpha": 0.01,
+    "secondary_watch_alpha": 0.05,
+    "future_familywise_p": "For a fresh attempt, score against the full sealed historical local reference, then compute add-one upper-tail probability against the sealed cross-fitted historical attempt-statistic reference at the highest supported multiplicity-conditioning level.",
+    "minimum_crossfit_state_certified_attempts": 1200,
+    "minimum_global_attempt_reference_n": 1000,
+    "minimum_supported_conditioning_n": 300,
+    "calibration_health_gate": "Across five held-out folds, empirical primary-alpha exceedance must lie in [0.003,0.02] overall; secondary-watch exceedance must lie in [0.025,0.08]. These are engineering calibration-health bands, not hypothesis-test acceptance regions."
+  },
+  "future_primary_alpha": 0.01,
+  "future_watch_alpha": 0.05,
+  "future_fresh_outcomes_seen": false,
+  "human_observations": 0,
+  "seal_sha256": "29c2f0fa69db677c2e6abc0b672d761150a6a2afb36d4b11a504bbcb8d2e8ed1"
+}

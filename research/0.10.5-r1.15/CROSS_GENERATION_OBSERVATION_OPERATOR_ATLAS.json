@@ -1,0 +1,93 @@
+{
+  "schema_version": "CR0105R115-OBSERVATION-OPERATOR-ATLAS-1",
+  "stage": "CUBE-REV 0.10.5-R1.15",
+  "organizing_principle": "operator succession rather than version chronology",
+  "measurement_generation_at_end": "ROUX-MEASUREMENT-G4",
+  "operator_lineage": [
+    {
+      "id": "O1_EXACT_LOCAL_MOVE_EQUIVALENCE",
+      "source_stage": "R1.7",
+      "object": "local move sequence and algebraic/state-equivalent shortening",
+      "initial_appeal": "A locally redundant route could appear to operationalize an unnecessary detour.",
+      "court_result": "Signal collapsed sharply as equivalence was restricted from broad algebraic/state redundancy toward irreducible/noncommuting primitive structure; the strict R5 definition was null and later prospectively replicated 0/888 in R1.8.",
+      "disposition": "RETIRE_AS_COGNITIVE_RECOVERY_OPERATOR; RETAIN_AS_NEGATIVE_CONTROL",
+      "lesson": "Existence of a shorter/equivalent local move representation does not identify a cognitive detour."
+    },
+    {
+      "id": "O2_FULL_STATE_PHASE_ENDPOINT_DISTANCE",
+      "source_stage": "R1.8",
+      "object": "distance of intermediate full cube state from annotated phase endpoint",
+      "initial_appeal": "Moving away from a phase endpoint before returning could appear to identify recovery or correction.",
+      "court_result": "Raw pre-endpoint reversal was common (~63.8%); the preregistered max-excursion null was statistic-mismatched and over-conservative; a matched posthoc tail (~4.36% standardized) did not exceed the calibration familywise null (~5.96%).",
+      "disposition": "RETIRE_AS_COGNITIVE_OPERATOR; RETAIN_STATE_TRAJECTORY_INFRASTRUCTURE",
+      "lesson": "Temporary increase in full-state endpoint distance is ordinary algorithm geometry, not evidence of cognitive recovery."
+    },
+    {
+      "id": "O3_PHASE_OBJECTIVE_QUOTIENT_GEOMETRY",
+      "source_stage": "R1.9",
+      "object": "phase-specific task-relevant cubies with irrelevant coordinates quotiented out",
+      "initial_appeal": "Subgoal measurement should ignore cube coordinates irrelevant to the current phase.",
+      "court_result": "Synthetic invariants passed and CFOP/ZB structural support was strong; directly attempt-level nested familywise calibration passed. Global future-score transport nevertheless failed its frozen 0.95 compatibility gate, localized mainly to Roux.",
+      "disposition": "RETAIN_FOR_CFOP_ZB; FORK_ROUX",
+      "lesson": "A better geometric operator can still fail transport because method-specific semantics differ."
+    },
+    {
+      "id": "O4_METHOD_STRATIFIED_TRANSPORT",
+      "source_stage": "R1.10",
+      "object": "CFOP/ZB-specific future-scale attempt statistic versus Roux block frame",
+      "court_result": "CFOP/ZB LAYERED transport passed prospectively (crossfit↔LOO r≈0.996, p99 difference≈0.122), releasing scorer engineering authority for later genuinely fresh CFOP/ZB; Roux center-canonical block frame failed.",
+      "disposition": "RETAIN_CFOP_ZB; REMAND_ROUX",
+      "lesson": "Transport authority belongs to a frozen method family, not automatically to a global scorer."
+    },
+    {
+      "id": "O5_ROUX_BLOCK_INTERNAL_ORIENTATION_QUOTIENT",
+      "source_stage": "R1.11",
+      "object": "Roux first/second block geometry with orientation-free frame and phase-line semantics",
+      "court_result": "Null engineering itself passed on 92 attempts, but frozen first-SB completion was 1/92 because SS was mistaken for completed SB; 69/92 orientation-free FB frames required center/color relabeling; N=92 could not resolve alpha=0.01.",
+      "disposition": "RETIRE_FIRST_SB_ENDPOINT; RETIRE_UNQUALIFIED_COLOR_RELABEL; RETAIN_NULL_ARCHITECTURE",
+      "lesson": "Annotation family membership is not phase completion, and orientation freedom is not automatically a physically persistent frame."
+    },
+    {
+      "id": "O6_CENTER_CONSISTENT_ROUX_G2",
+      "source_stage": "R1.12",
+      "object": "per-state center-canonical physical frame plus state-defined first two-block completion",
+      "court_result": "Primary G2 admission collapsed to 10/130. A posthoc route-global diagnostic recovered 120/130, and FB-prefix-only gauge identification reproduced 120/130 without inspecting SB outcomes. Per-state center gauge changed across FB→SB in ~96.9% of routes.",
+      "disposition": "RETIRE_PER_STATE_CENTER_CANONICALIZATION; PROMOTE_PREFIX_GAUGE_AS_G3_HYPOTHESIS",
+      "lesson": "The reconstruction coordinate frame is a latent route-level gauge, not a statewise center reset."
+    },
+    {
+      "id": "O7_PREFIX_GAUGE_PLUS_ROTATION_TRANSPORT_G3",
+      "source_stage": "R1.13",
+      "object": "FB-prefix-only unique gauge with explicit x/y/z group-action transport",
+      "court_result": "Rotation algebra fixtures passed; prefix gauge was unique on 130/130 and completion on 120/130. However the targeted rotation-present stratum was only 3/6 against a frozen 0.75 gate. Wide/slice center-cocycle generalization was strongly rejected (30/130, losing 91 prior successes). The 120-route null bank achieved 1% resolution.",
+      "disposition": "RETAIN_PREFIX_GAUGE_AND_EXPLICIT_ROTATION_ALGEBRA; RETIRE_ROTATION_AS_RESIDUAL_EXPLANATION; OPEN_G4_ONTOLOGY",
+      "lesson": "A mathematically valid transport rule does not by itself define the right method ontology."
+    },
+    {
+      "id": "O8_CANONICAL_BLOCK_PRESERVATION_ONTOLOGY_G4",
+      "source_stage": "R1.14",
+      "object": "state-derived CANONICAL_FB_PRESERVING versus explicit residual forks under the frozen prefix gauge",
+      "court_result": "Development: 114 canonical / 12 block-disruptive / 4 preserved-no-completion among 130 eligible. Canonical-only 114-attempt null retained zero fallback and 1% add-one resolution. Preexisting-unseen holdout: 117 eligible, 116 prefix-unique, 105 canonical (89.74%), with zero reference contamination and zero local fallback. Post-freeze genuinely fresh Roux routes: 0.",
+      "disposition": "VALIDATED_FOR_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT; AUTHORITY_DATA_WAIT",
+      "lesson": "A method-specific observable ontology can transport outside its development corpus while still withholding future authority until genuinely post-freeze evidence exists."
+    }
+  ],
+  "compressed_epistemic_ratchet": [
+    "shorter/equivalent sequence != cognitive detour",
+    "full-state reversal != cognitive recovery",
+    "annotation label != latent subgoal",
+    "orientation equivalence != persistent physical frame",
+    "mathematically valid gauge transport != sufficient method ontology",
+    "development transport != genuinely fresh authority"
+  ],
+  "current_claim_boundary": {
+    "strongest_supported": "CUBE-REV demonstrates, in a public speedcubing reconstruction case study, that behavioral traces require validated observation operators; multiple plausible operators failed falsification or transport courts, while the later G4 Roux ontology transported to a preexisting unseen route set under a frozen reference null.",
+    "not_supported": [
+      "prevalence of cognitive recovery or cognitive error",
+      "latent mental-state labels for canonical/residual classes",
+      "causal strategy-switching mechanisms",
+      "full-WCA prevalence",
+      "genuinely post-freeze Roux authority"
+    ]
+  }
+}

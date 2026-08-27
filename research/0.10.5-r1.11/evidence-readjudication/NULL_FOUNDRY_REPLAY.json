@@ -1,0 +1,82 @@
+{
+  "schema_version": "CR0105R111-NULL-FOUNDRY-READJUDICATION-1",
+  "stage": "CUBE-REV 0.10.5-R1.11 — Null Foundry Re-adjudication & SB Failure Localization",
+  "source_execution": {
+    "execution_pr": 20,
+    "execution_branch": "cube-rev-0.10.5-r1.11-execution-trigger",
+    "fix_commit": "b635276452f4ea4a50260df4887e8322ea507b8f",
+    "workflow_run_id": 32368756191,
+    "job_id": 96424183893,
+    "workflow_conclusion": "success",
+    "initial_runtime_bug": "localRef returned an object but tail received that object rather than its rows array; repaired as a dereference-only implementation fix without changing the metric, null, hierarchy, alpha, or gates"
+  },
+  "geometry_replayed_unchanged": {
+    "status": "HOLD_ROUX_BLOCK_INTERNAL_FRAME_GEOMETRY",
+    "semantic_sha256": "1c75c9e40ed1553f8b38ad7600b8baddf0074e2c82df5556911b53fba1d810b7",
+    "manifest_roux": 98,
+    "state_certified": 92,
+    "unique_frame_group": 92,
+    "representative_invariance_pass": 92,
+    "fb_acquisition_pass": 92,
+    "sb_pass": 1,
+    "cmll_pass": 82,
+    "cmll_line": 88,
+    "lse_pass": 86,
+    "lse_line": 92,
+    "features": 636
+  },
+  "null_foundry": {
+    "status": "HOLD_ROUX_NULL_FOUNDRY",
+    "semantic_sha256": "ff0c30c8a616806f391d98e3662e2fd2cb07a7fde65595d2538c2a9a5a0dcb1e",
+    "engineering_pass": true,
+    "counts": {
+      "features": 636,
+      "loo_attempts": 92,
+      "loo_familywise_ok": 92,
+      "crossfit_attempts": 92,
+      "nested_familywise_ok": 92,
+      "transport_pairs": 92
+    },
+    "local_reference": {
+      "loo_fallback_n": 0,
+      "crossfit_fallback_n": 0,
+      "nested_fallback_events": 0
+    },
+    "loo_pseudofresh": {
+      "primary_alpha": 0.01,
+      "primary_rate": 0.0,
+      "watch_alpha": 0.05,
+      "watch_rate": 0.043478260869565216
+    },
+    "nested_no_test_fold_leak": {
+      "primary_alpha": 0.01,
+      "primary_rate": 0.0,
+      "watch_alpha": 0.05,
+      "watch_rate": 0.03260869565217391
+    },
+    "transport": {
+      "pearson_crossfit_vs_loo": 0.9711500576628999,
+      "abs_difference_p50": 0.048061445470239494,
+      "abs_difference_p90": 0.18607547996228213,
+      "abs_difference_p99": 0.49291552190289434,
+      "abs_difference_max": 0.49291552190289434
+    },
+    "finite_sample_primary_resolution": {
+      "global_bank_n": 92,
+      "required_reference_n": 99,
+      "minimum_add_one_p": 0.010752688172043012,
+      "primary_1pct_resolvable": false
+    }
+  },
+  "future_authority": {
+    "status": "HOLD_ROUX_FUTURE_AUTHORITY",
+    "seal_sha256": "751fc6f6c0d111f280d3bdcfe61392bb687743790e586d57c1022d39f9c6b826",
+    "engineering_pass": true,
+    "geometry_pass": false,
+    "primary_1pct_resolution_pass": false,
+    "future_roux_scoring_authority": false
+  },
+  "fresh_network_read": false,
+  "fresh_scoring": false,
+  "human_observations": 0
+}

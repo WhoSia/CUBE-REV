@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R19-FUTURE-SCALE-AUDIT-RUN-1",
+  "workflow_run_id": "32358844584",
+  "head_sha": "c8be6dbb073f635956bcf904ec2a986a3adefe87",
+  "exit_code": 20,
+  "status": "HOLD_OR_FAIL",
+  "metric_or_null_changed": false,
+  "current_fresh_rows": 0,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T10:25:24.357808+00:00"
+}

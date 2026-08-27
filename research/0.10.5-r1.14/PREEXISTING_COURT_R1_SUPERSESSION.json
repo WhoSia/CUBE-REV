@@ -1,0 +1,19 @@
+{
+  "schema_version": "CR0105R114-PREEXISTING-R1-SUPERSESSION-1",
+  "status": "SUPERSEDED_OPERATIONAL_IMPLEMENTATION_TRANSPORT_FAILURE",
+  "superseded_workflow_run_id": "32539977082",
+  "scientific_result_authority": false,
+  "observed_symptom": "117/120 routes state-certified but all routes were ultimately classified SYNTAX_OR_STATE_INVALID because the external runtime copy retained the source literal lines[i].end>x.start and raised 'x is not defined'.",
+  "root_cause": "The external materializer applied input-loader plumbing but omitted the already-recorded single helper typo repair that had been applied before any G4 development route outcome.",
+  "prior_repair_receipt": "research/0.10.5-r1.14/evidence-ontology/PREEXEC_IMPLEMENTATION_REPAIR_RECEIPT.json",
+  "prior_repair_status": "PASS_SINGLE_LITERAL_REPAIR_BEFORE_ANY_G4_ROUTE_OUTCOME",
+  "allowed_by_external_freeze": "G4_EXTERNAL_COURT_FREEZE explicitly permits the exact frozen G4 raw-state operator with input-loader plumbing and the already-recorded single helper typo repair.",
+  "membership_changed": false,
+  "reference_bank_changed": false,
+  "ontology_definition_changed": false,
+  "gate_changed": false,
+  "second_live_read_changed": false,
+  "fresh_membership_changed": false,
+  "rerun_policy": "Rerun the exact same 120 preexisting-unseen routes with the recorded one-literal helper repair plus input-loader plumbing only.",
+  "human_observations": 0
+}

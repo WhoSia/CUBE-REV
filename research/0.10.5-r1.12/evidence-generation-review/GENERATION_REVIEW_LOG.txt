@@ -1,0 +1,13 @@
+{
+  "status": "PASS_GENERATION_REVIEW_G2_REMANDED_G3_CANDIDATE_IDENTIFIED",
+  "g2": "REMANDED_NOT_RELEASED",
+  "g3_candidate": true,
+  "prefix_success_rate": 0.9230769230769231,
+  "sealed_slice": 0.9213483146067416,
+  "expansion_slice": 0.926829268292683,
+  "rotation_enrichment_ratio": 11.999999999999998,
+  "rotation_odds_ratio": 16.714285714285715,
+  "rotation_fisher_p": 0.00590780076908991,
+  "residual_branch": "NEXT_G3_SHOULD_TEST_ROTATION_COVARIANT_GAUGE_TRANSPORT",
+  "semantic_sha256": "5ab1147689d724842ff42c9f63acfeb1da19c3849ac8fa6a7d5aa8b2b51a3e16"
+}

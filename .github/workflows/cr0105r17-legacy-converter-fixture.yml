@@ -1,0 +1,39 @@
+name: CR0105R17 Legacy Converter Fixture
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-state-engine-smoke2]
+    paths: [cr0105r17/RUN_LEGACY_CONVERTER]
+permissions:
+  contents: write
+jobs:
+  fixture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Install current cubing runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Fetch pinned official alg.cubing.net legacy parser
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r17legacy
+          base='https://raw.githubusercontent.com/cubing/alg.cubing.net/c245b372f9461eda7a780f22c97a950a70b47dc7/src/alg.cubing.net/twisty.js/alg'
+          curl -fsSL "$base/alg.js" -o /tmp/r17legacy/alg.js
+          curl -fsSL "$base/alg_jison.js" -o /tmp/r17legacy/alg_jison.js
+          test "$(sha256sum /tmp/r17legacy/alg.js | awk '{print $1}')" = '$(sha256sum /tmp/r17legacy/alg.js | awk '{print $1}')'
+      - name: Execute legacy converter comparison
+        run: node research/0.10.5-r1.7/r17_legacy_converter_fixture.mjs | tee /tmp/r17_legacy_converter.log
+      - name: Commit diagnostic evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/evidence-legacy-converter
+          test -f /tmp/r17_legacy_converter.log && cp /tmp/r17_legacy_converter.log research/0.10.5-r1.7/evidence-legacy-converter/LEGACY_CONVERTER_LOG.txt || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-legacy-converter
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 legacy converter fixture ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-state-engine-smoke2

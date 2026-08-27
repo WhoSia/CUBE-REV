@@ -1,0 +1,51 @@
+{
+  "schema_version": "CR0105R114-G4-SECOND-LIVE-READ-1",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "status": "PASS_SECOND_LIVE_READ_AND_MEMBERSHIP_FREEZE",
+  "retrieval": {
+    "url": "https://reco.nz/solve/",
+    "retrieved_at_utc": "2026-08-22T00:17:24.889340+00:00",
+    "http_status": 200,
+    "html_bytes": 10322409,
+    "html_sha256": "b30537d9041264c35ff3921f8300de20938521fe365bdfb08f9c2ddd0e132aa0"
+  },
+  "baseline": {
+    "id_n": 12936,
+    "id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+    "max_id": 14058
+  },
+  "live": {
+    "id_n": 12936,
+    "max_id": 14058,
+    "roux3_index_rows": 532
+  },
+  "delta": {
+    "missing_baseline_id_n": 0,
+    "missing_baseline_ids_first50": [],
+    "new_id_n_all_events": 0,
+    "new_ids_all_events": [],
+    "new_3x3_roux_index_n": 0,
+    "new_3x3_roux_ids": []
+  },
+  "preexisting_unseen": {
+    "eligible_index_n": 388,
+    "selected_n": 120,
+    "raw_route_n": 120,
+    "selection_cap": 120,
+    "selection_used_geometry": false,
+    "selection_used_score": false
+  },
+  "post_freeze_fresh": {
+    "eligible_index_n": 0,
+    "fetched_n": 0,
+    "raw_route_n": 0,
+    "overflow": false,
+    "minimum_raw_for_authority": 20
+  },
+  "authority": {
+    "second_live_index_read_seen": true,
+    "reference_seal_predated_read": true,
+    "fresh_authority_released": false
+  },
+  "human_observations": 0
+}

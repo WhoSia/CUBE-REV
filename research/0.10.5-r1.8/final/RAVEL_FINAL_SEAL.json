@@ -1,0 +1,241 @@
+{
+  "schema_version": "CR0105R18-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.8 — Prospective Primitive-detour Holdout, Algorithm-aware Null Court & Phase-boundary Subgoal-distance Recovery Test",
+  "status": "PASS_WITH_MEASUREMENT_REMAND",
+  "verdict": "PASS_PROSPECTIVE_PRIMITIVE_NULL_REPLICATION_AND_STATE_TRAJECTORY_INFRASTRUCTURE; HOLD_CONFIRMATORY_PHASE_DISTANCE_RECOVERY_INFERENCE",
+  "scientific_result": "R1.8 prospectively replicated the unchanged R1.7 R5 noncommuting-primitive null in an attempt-disjoint holdout (0/888 state-certified attempts) and established a state-certified phase-trajectory platform. The preregistered phase-distance algorithm-excess court also returned 0/888, but posthoc RAVEL showed that its null statistic was mismatched and over-conservative: frozen max-excursion-envelope thresholds exceeded the entire holdout candidate-reversal maximum in all 14 observed method×phase combinations. A posthoc matched-statistic remand recovered a 4.36% standardized attempt tail, but this was below the 5.96% leave-one-attempt-out calibration familywise null and therefore remained null-compatible. R1.8 does not identify cognitive recovery or cognitive error.",
+  "skill_workshop_default": {
+    "artifact": "research/CUBE_REV_SKILL_WORKSHOP_DEFAULT.json",
+    "artifact_commit": "cc77de48bbd55c72a9253b6e676531d1402b1702",
+    "passive_default": ["NAPKIN", "RAVEL", "COURT", "TRACE", "ATLAS", "SENTINEL", "STEWARD"],
+    "conditional": ["FORGE", "SCOUT", "PRISM", "ORBIT", "PIVOT", "AXIOM"],
+    "inheritance": "Future descendant CUBE-REV research branches inherit these defaults unless an explicit pre-outcome versioned override is recorded."
+  },
+  "napkin_freeze": {
+    "status": "FROZEN_BEFORE_R18_HOLDOUT_OUTCOMES",
+    "commit": "a15f2d95a3b64bd0f7af759cfeb38b5720b98ede",
+    "parent_r17_final_seal_commit": "79a2b94b244e536fc9b7934738c5345ecfd1930d",
+    "parent_r17_scientific_evidence_commit": "2455476a563527f7245978b4df386d0b3883f219",
+    "key_rule": "No result-dependent change to distance metric, excursion threshold, null family, phase eligibility, target population, or holdout membership inside R1.8."
+  },
+  "authority": {
+    "main_commit": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "main_mutated_by_r18": false,
+    "public_runner_mutated_by_r18": false,
+    "collector_mutated_by_r18": false,
+    "human_observations": 0,
+    "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+  },
+  "frozen_parent": {
+    "r16_artifact_id": 9310311696,
+    "analytical_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+    "r17_900_manifest_sha256": "ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe"
+  },
+  "support_preflight": {
+    "workflow_run_id": 32341103987,
+    "canonical_linked_under10_attempts": 3601,
+    "r17_used_attempts": 900,
+    "untouched_linked_attempts": 2701,
+    "holdout_A_selected_n": 900,
+    "holdout_A_overlap_with_r17": 0,
+    "original_sub10_target_population_n": 1261540,
+    "untouched_supported_population_n": 360986,
+    "untouched_supported_fraction_of_original_sub10": 0.2861469906503641,
+    "full_sub10_standardized_holdout_claim": "HOLD_TARGET_COVERAGE_LT_0_90",
+    "fresh_reco_vintage": {
+      "live_3x3_rows": 10596,
+      "frozen_3x3_rows": 10596,
+      "live_max_reco_id": 14051,
+      "frozen_max_reco_id": 14051,
+      "new_reco_id_rows": 0,
+      "fresh_modern_2023_26_7_10_untouched_n": 0,
+      "gate": "HOLD_FRESH_MODERN_CELL"
+    }
+  },
+  "phase_distance_validator": {
+    "status": "PASS",
+    "cubing_version": "0.63.3",
+    "orientation_group_size": 24,
+    "primary_distance": "0.5*(edge piece+orientation mismatch / 12) + 0.5*(corner piece+orientation mismatch / 8), minimized over 24 whole-cube orientations; centers excluded",
+    "checks": {
+      "identity_zero": true,
+      "whole_cube_orientation_invariance": true,
+      "symmetry": true,
+      "nontrivial_positive": true,
+      "final_endpoint_does_not_create_recovery": true,
+      "preendpoint_return_creates_reversal": true
+    }
+  },
+  "prospective_null_calibration": {
+    "workflow_run_id": 32341737715,
+    "state_certified_calibration_routes": 874,
+    "eligible_phase_segments": 5515,
+    "raw_candidate_reversal_segments": 3526,
+    "representation_variants_exact_accepted": 910,
+    "solver_attempted": 5515,
+    "solver_exact_transformation_accepted": 1712,
+    "solver_physical_only_not_primary": 1692,
+    "solver_errors": 2111,
+    "global_max_excursion_envelope": {
+      "p50": 0.4375,
+      "p90": 0.8125,
+      "p95": 0.9166666666666669,
+      "p99": 1.0833333333333333,
+      "p995": 1.0833333333333333,
+      "max": 1.1666666666666665
+    },
+    "semantic_threshold_seal": "1343a667600a4a859ae081b3b3042cbe365e447b7b082dd7ebf77b9edc8494ea",
+    "holdout_outcomes_seen_before_seal": false
+  },
+  "prospective_holdout_A": {
+    "workflow_run_id": 32342096491,
+    "status": "PASS_SUPPORTED_TARGET",
+    "holdout_n": 900,
+    "route_source_n": 900,
+    "parse_n": 896,
+    "state_certified_n": 888,
+    "state_certification_rate": 0.9910714285714286,
+    "eligible_phase_segments": 5564,
+    "threshold_fallback_segments": 0,
+    "selection": {
+      "estimand": "untouched-support speed×era target only",
+      "untouched_supported_population_n": 360986,
+      "coverage_within_untouched_support": 1.0,
+      "weight_ess": 341.5043078242927,
+      "stabilized_weight_p99": 4.5398249516601465,
+      "stabilized_weight_max": 4.5398249516601465,
+      "full_sub10_standardization": "PROHIBITED_SUPPORT_ONLY_28P6_PERCENT"
+    },
+    "preregistered_phase_algorithm_excess": {
+      "positive_attempts": 0,
+      "raw_rate": 0.0,
+      "standardized_rate": 0.0,
+      "bootstrap_95": [0.0, 0.0],
+      "positive_segments": 0,
+      "adjudication": "VALID_RESULT_FOR_THE_FROZEN_DEFINITION_BUT_NOT_INFORMATIVE_AS_A_GENERAL_PHASE_REVERSAL_NULL_AFTER_MEASUREMENT_SUPPORT_AUDIT"
+    },
+    "unchanged_r17_r5_noncommuting_primitive": {
+      "positive_attempts": 0,
+      "raw_rate": 0.0,
+      "standardized_rate": 0.0,
+      "one_sided_95_upper_if_zero": 0.003367888278532294,
+      "adjudication": "PROSPECTIVE_ZERO_REPLICATION_FOR_THIS_EXACT_LOCAL_DEFINITION_ONLY"
+    }
+  },
+  "posthoc_zero_measurement_audit": {
+    "workflow_run_id": 32342450869,
+    "role": "POSTHOC_MEASUREMENT_SUPPORT_AUDIT_NOT_PRIMARY",
+    "raw_preendpoint_candidate_reversal_segments": 3550,
+    "eligible_holdout_segments": 5564,
+    "raw_preendpoint_reversal_rate": 0.6380301941049604,
+    "frozen_threshold_above_entire_holdout_method_phase_max_combinations": 14,
+    "observed_method_phase_combinations": 14,
+    "calibration_actual_candidate_reversal_p99": 0.7500000000000001,
+    "calibration_frozen_null_envelope_p99": 1.0833333333333333,
+    "null_envelope_minus_actual_candidate_reversal_p50": 0.12500000000000022,
+    "adjudication": "FROZEN_NULL_STATISTIC_MISMATCH_AND_OVERCONSERVATIVE_SUPPORT_CONFIRMED"
+  },
+  "posthoc_matched_statistic_remand": {
+    "workflow_run_id": 32342628107,
+    "role": "POSTHOC_REMAND_DIAGNOSTIC_NOT_PROSPECTIVE",
+    "matched_candidate_null_global": {
+      "p50": 0.22916666666666652,
+      "p90": 0.4583333333333335,
+      "p95": 0.5833333333333334,
+      "p99": 0.7916666666666665,
+      "p995": 0.8333333333333334,
+      "max": 0.9583333333333335
+    },
+    "holdout_positive_segments": 32,
+    "holdout_positive_attempts": 32,
+    "holdout_raw_attempt_rate": 0.036036036036036036,
+    "holdout_untouched_support_standardized_attempt_rate": 0.04362672857842155,
+    "bootstrap_95": [0.022493043182005148, 0.07022318780670939],
+    "claim": "CANNOT_REPLACE_OR_RESCUE_THE_PROSPECTIVE_PRIMARY"
+  },
+  "attempt_familywise_null_audit": {
+    "workflow_run_id": 32342843095,
+    "role": "POSTHOC_MULTIPLICITY_AUDIT",
+    "segments_per_attempt": {
+      "calibration_p50": 6,
+      "calibration_p90": 7,
+      "holdout_p50": 6,
+      "holdout_p90": 7
+    },
+    "calibration_fixed_threshold_standardized_attempt_rate": 0.05205278616887315,
+    "calibration_leave_one_attempt_out_standardized_attempt_rate": 0.059616250175049804,
+    "matched_holdout_standardized_attempt_rate": 0.04362672857842155,
+    "holdout_minus_calibration_loo_point_difference": -0.015989521596628253,
+    "bootstrap_difference_95": [-0.04737031177446316, 0.015330947418279145],
+    "bootstrap_probability_difference_gt_zero": 0.1702,
+    "decision": "NO_ATTEMPT_LEVEL_EXCESS_OVER_CALIBRATION_FAMILYWISE_NULL"
+  },
+  "candidate_adjudication": {
+    "workflow_run_id": 32343036278,
+    "role": "POSTHOC_CANDIDATE_AUDIT_NOT_CONFIRMATORY",
+    "matched_tail_candidates": 32,
+    "distinct_attempts": 32,
+    "phase_counts": {
+      "F2L": 18,
+      "LL_PERMUTE": 6,
+      "LL_ORIENT": 3,
+      "CROSS": 2,
+      "ROUX_SB": 2,
+      "LL_ONELOOK": 1
+    },
+    "excess_margin_p50": 0.04166666666666652,
+    "excess_margin_p90": 0.10416666666666663,
+    "excess_margin_max": 0.1874999999999999,
+    "within_one_1_over_48_quantum_n": 14,
+    "within_one_1_over_24_quantum_n": 19,
+    "secondary_distance_agreement_n": 31,
+    "secondary_distance_agreement_rate": 0.96875,
+    "candidate_in_top_10pct_method_phase_move_length_n": 10,
+    "candidate_in_top_10pct_method_phase_move_length_rate": 0.3125,
+    "decision": "NULL_COMPATIBLE_AFTER_ATTEMPT_LEVEL_FAMILYWISE_ADJUDICATION"
+  },
+  "ravel_roles": {
+    "intent_preservation_napkin": "PASS",
+    "support_and_overlap_auditor": "PASS_BOUNDARY_FOUND_FULL_TARGET_HOLD",
+    "fresh_vintage_auditor": "PASS_BOUNDARY_FOUND_NO_NEW_RECORDS",
+    "distance_invariant_auditor": "PASS",
+    "null_ordering_auditor": "PASS_THRESHOLD_SEALED_BEFORE_HOLDOUT",
+    "operational_failure_auditor": "PASS_ESM_RUNTIME_FAILURE_SEPARATED_AND_REPAIRED_WITHOUT_SCIENCE_CHANGE",
+    "prospective_holdout_auditor": "PASS_SUPPORTED_TARGET",
+    "measurement_support_adversary": "PASS_FROZEN_NULL_STATISTIC_MISMATCH_FOUND",
+    "matched_statistic_remand": "PASS_POSTHOC_ONLY",
+    "multiplicity_adversary": "PASS_MATCHED_TAIL_NULL_COMPATIBLE",
+    "candidate_form_adversary": "PASS_NO_CONFIRMATORY_RECOVERY_CANDIDATES",
+    "primitive_replication_auditor": "PASS_PROSPECTIVE_ZERO_REPLICATION",
+    "claim_scope_auditor": "PASS",
+    "authority_auditor": "PASS_RESEARCH_ONLY_NO_MAIN_PUBLIC_COLLECTOR_OR_HUMAN_WRITE"
+  },
+  "claim_scope": {
+    "allowed": [
+      "Prospective 0/888 replication of the unchanged R1.7 R5 noncommuting-primitive exact-local definition in the state-certified attempt-disjoint holdout.",
+      "Phase-boundary pre-endpoint reversals are common in the holdout under the frozen state-distance definition.",
+      "The preregistered max-excursion-envelope algorithm-excess court produced zero but was shown posthoc to be over-conservative and statistic-mismatched for candidate-reversal detection.",
+      "A posthoc matched-statistic sensitivity produced a 4.36% standardized attempt tail, which did not exceed the 5.96% leave-one-attempt-out calibration familywise null.",
+      "No evidence of phase-distance anomaly beyond the calibrated attempt-level familywise null was identified in the untouched-support target."
+    ],
+    "prohibited": [
+      "Cognitive recovery prevalence.",
+      "Cognitive error prevalence.",
+      "Causal, intentional, awareness, or strategy-switching mechanism claims.",
+      "Treating the prospective 0 as evidence that phase reversals do not occur.",
+      "Treating the posthoc matched 4.36% as a prospective estimate or recovery prevalence.",
+      "Full sub-10 WCA prevalence or extrapolation beyond the untouched-support target.",
+      "Fresh modern 2023–26 × 7–10 s replication from this frozen vintage.",
+      "Population calibration by solving method.",
+      "Treating reconstruction annotation labels as ground-truth cognitive subgoals."
+    ]
+  },
+  "research_debt": [
+    "Replace exact phase-endpoint full-state distance with phase-objective quotient geometry that ignores task-irrelevant cubies and distinguishes preserve-vs-acquire constraints.",
+    "Preregister an attempt-level familywise null directly, rather than calibrating segment tails and then taking any-exceedance across phases.",
+    "Condition null geometry on algorithm/phase length or an equivalent pre-outcome complexity statistic if justified before new holdout data.",
+    "Improve exact-transformation solver-null coverage; R1.8 exact acceptance was 1712/5515 with 2111 solver errors.",
+    "Acquire a genuinely fresh reconstruction vintage before claiming independent modern 2023–26 × 7–10 s replication."
+  ],
+  "next_gate": "CUBE-REV 0.10.5-R1.9 — Phase-objective Quotient Geometry, Attempt-level Familywise Null Preregistration & Fresh-vintage Replication Readiness"
+}

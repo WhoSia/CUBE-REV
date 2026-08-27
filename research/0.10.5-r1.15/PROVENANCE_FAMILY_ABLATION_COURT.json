@@ -1,0 +1,51 @@
+{
+  "schema_version": "CR0105R115-PROVENANCE-FAMILY-ABLATION-1",
+  "stage": "CUBE-REV 0.10.5-R1.15",
+  "status": "PASS_WITH_POSITIVE_ENDPOINT_DEPENDENCE_ON_G3_G4_LINEAGE",
+  "principle": "Correlated artifacts from one research lineage are not counted as independent support. Remove whole provenance families and ask which manuscript claims survive.",
+  "families": {
+    "F1_EARLY_OPERATOR_FAILURES": {
+      "members": ["R1.7", "R1.8"],
+      "role": "early counterexamples: exact-local redundancy and full-state reversal",
+      "ablation_effect": "Central observation-operator thesis survives via later phase-quotient/Roux failures and G4 unseen transport, but the paper loses its cleanest intuitive examples showing that superficially plausible behavioral signals can fail construct courts.",
+      "central_thesis_survives": true,
+      "strongest_positive_transport_claim_survives": true,
+      "manuscript_action": "Retain at least one early failure in main text; move detailed R1.7 filter cascade to supplement."
+    },
+    "F2_QUOTIENT_AND_TRANSPORT": {
+      "members": ["R1.9", "R1.10"],
+      "role": "phase-specific quotient geometry, attempt-level multiplicity, method-specific transport",
+      "ablation_effect": "Trace-not-self-interpreting thesis survives through early failures and Roux lineage, but the general methodological obligations around multiplicity and future-scale transport become much less directly evidenced.",
+      "central_thesis_survives": true,
+      "strongest_positive_transport_claim_survives": true,
+      "manuscript_action": "Keep one compact statistical-method section; do not drown main text in gate details."
+    },
+    "F3_ROUX_G1_G2_MEASUREMENT": {
+      "members": ["R1.11", "R1.12"],
+      "role": "annotation endpoint failure, center/color frame failure, discovery of prefix-identifiable route gauge",
+      "ablation_effect": "G4 positive endpoint still exists mechanically, but the explanatory bridge from failed method semantics to prefix gauge/ontology becomes under-motivated and risks appearing posthoc.",
+      "central_thesis_survives": true,
+      "strongest_positive_transport_claim_survives": true,
+      "manuscript_action": "Retain SB/center failures as the key semantic/frame falsification transition."
+    },
+    "F4_ROUX_G3_G4": {
+      "members": ["R1.13", "R1.14"],
+      "role": "rotation algebra stress test, canonical ontology, canonical null, development-unseen transport",
+      "ablation_effect": "The paper loses its strongest positive endpoint and becomes a predominantly negative methodological paper about failed observation operators. The central falsification thesis remains coherent, but the statement that a later frozen operator transported out of development no longer survives.",
+      "central_thesis_survives": true,
+      "strongest_positive_transport_claim_survives": false,
+      "manuscript_action": "Declare the positive transport conclusion lineage-dependent and never count R1.13/R1.14 sub-artifacts as multiple independent replications."
+    }
+  },
+  "cross_family_conclusion": {
+    "central_thesis": "ROBUST_TO_EACH_SINGLE_FAMILY_ABLATION_AT_NARROWER_SCOPE",
+    "positive_endpoint": "MATERIALLY_DEPENDS_ON_F4_ROUX_G3_G4",
+    "replication_language": "PROHIBIT_COUNTING_SERIAL_GENERATIONS_AS_INDEPENDENT_REPLICATIONS",
+    "recommended_evidence_wording": "The manuscript is supported by a serial falsification lineage plus one frozen development-unseen ontology transport court, not by eight independent studies."
+  },
+  "readiness_effect": {
+    "manuscript_bridge": "PASS",
+    "preprint_freeze": "NOT_BLOCKED_BY_FAMILY_ABLATION_AFTER_EXPLICIT_DEPENDENCE_DISCLOSURE",
+    "fresh_authority": "UNCHANGED_DATA_WAIT"
+  }
+}

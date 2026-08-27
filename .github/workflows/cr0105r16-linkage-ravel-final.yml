@@ -1,0 +1,117 @@
+name: CR0105R16 Linkage RAVEL Final Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.6-linkage-ravel-final]
+    paths: [cr0105r16/RUN_FINAL]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r16-linkage-ravel-final
+  cancel-in-progress: false
+jobs:
+  court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Lineage, probe and claim-scope preflight
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          r15=json.load(open('research/0.10.5-r1.5/final/RAVEL_FINAL_SEAL.json'))
+          assert r15['status']=='PASS'
+          assert r15['human_research_boundary']['direct_human_recruitment']=='DEFERRED_BY_RESEARCH_DESIGN'
+          p=json.load(open('research/0.10.5-r1.6/evidence/RECO_INDEX_SURFACE_PROBE.json'))
+          assert p['three_by_three_rows']==10596
+          assert p['pagination_like_links']==[]
+          old=json.load(open('research/0.10.5-r1.6/evidence/WCA_VINTAGE_MANIFEST.json'))
+          assert old['zip_sha256']=='35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad'
+          print('CR0105R16_FINAL_PREFLIGHT_PASS')
+          PY
+      - name: Recover exact sealed WCA vintage from official API
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r16final/wca
+          curl --fail --location --retry 5 --retry-all-errors \
+            -A 'CUBE-REV/0.10.5-R1.6 final public-data court' \
+            https://www.worldcubeassociation.org/api/v0/export/public -o /tmp/r16final/export_api.json
+          TSV_URL="$(python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/r16final/export_api.json'))
+          assert x['export_date']=='2026-08-18T00:00:35Z',x
+          assert x['export_version']=='v2.0.2',x
+          print(x['tsv_url'])
+          PY
+          )"
+          curl --fail --location --retry 6 --retry-all-errors --connect-timeout 30 \
+            -A 'CUBE-REV/0.10.5-R1.6 final public-data court' "$TSV_URL" -o /tmp/r16final/wca.tsv.zip
+          test "$(sha256sum /tmp/r16final/wca.tsv.zip | awk '{print $1}')" = '35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad'
+          unzip -q /tmp/r16final/wca.tsv.zip -d /tmp/r16final/wca
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install analytical runtime
+        run: python -m pip install --disable-pip-version-check duckdb==1.3.2 requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+      - name: Execute penalty-aware optimized final court
+        id: run
+        shell: bash
+        run: |
+          set +e
+          export R16_ROOT=/tmp/r16final
+          export WCA_DIR=/tmp/r16final/wca
+          export WCA_API_JSON=/tmp/r16final/export_api.json
+          export WCA_ZIP=/tmp/r16final/wca.tsv.zip
+          export R16_OUT="$GITHUB_WORKSPACE/research/0.10.5-r1.6/evidence-final"
+          python research/0.10.5-r1.6/r16_ingest_ravel_final_v2.py 2>&1 | tee /tmp/r16final/court.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist final run metadata
+        if: always()
+        run: |
+          mkdir -p research/0.10.5-r1.6/evidence-final
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R16-FINAL-RUN-META-1','workflow_run_id':os.environ.get('GITHUB_RUN_ID'),
+             'head_sha':os.environ.get('GITHUB_SHA'),'court_exit_code':int('${{ steps.run.outputs.exit_code || 99 }}'),
+             'wca_zip_sha256':'35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad',
+             'linkage_engine':'PLUS2_AWARE_DISTINCT_NORMALIZATION_NATIVE_EQUALITY',
+             'index_date_role':'DIAGNOSTIC_ONLY_NOT_HARD_LINKAGE',
+             'human_observations':0,'human_recruitment':'DEFERRED_BY_RESEARCH_DESIGN',
+             'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.6/evidence-final/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+          cp /tmp/r16final/court.log research/0.10.5-r1.6/evidence-final/COURT_LOG.txt || true
+      - name: Commit final evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.6/evidence-final
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.6 final linkage RAVEL ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.6-linkage-ravel-final
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R16-linkage-ravel-final
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            research/0.10.5-r1.6/evidence-final/
+            /tmp/r16final/wca333.duckdb
+            /tmp/r16final/court.log
+      - name: Enforce final R1.6 closure
+        if: always()
+        run: |
+          test "${{ steps.run.outputs.exit_code }}" = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.6/evidence-final/RAVEL_FINAL_SEAL.json'))
+          assert x['status']=='PASS',x
+          assert x['wca_vintage']['zip_sha256']=='35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad'
+          assert x['human_observations']==0
+          assert x['human_recruitment']=='DEFERRED_BY_RESEARCH_DESIGN'
+          print('CR0105R16_FINAL_PASS')
+          PY
