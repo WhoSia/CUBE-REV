@@ -30,3 +30,38 @@ jobs:
           node tests/collector-receipt.integration.cjs
           python -m unittest tests/test_registry_and_annotation.py
           node tests/documented-cli.test.cjs
+
+  r1_23_regeneration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate conservative pinned crosswalk
+        run: python scripts/r1_23_crosswalk_regenerate.py
+      - name: Regenerate round-bucket-repaired pinned crosswalk
+        run: python scripts/r1_23_crosswalk_roundbucket_p1.py
+      - name: Materialize exact meso panel
+        run: python scripts/r1_23_enrich_exact_meso.py
+      - name: Upload R1.23 P0 regeneration court
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-r1-23-regeneration-p0
+          path: r1_23_output/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Upload R1.23 P1 round-bucket court
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-r1-23-regeneration-p1
+          path: r1_23_output_p1/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Upload R1.23 P2 exact meso panel
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-r1-23-exact-meso-p2
+          path: r1_23_output_p2/
+          if-no-files-found: error
+          retention-days: 7
