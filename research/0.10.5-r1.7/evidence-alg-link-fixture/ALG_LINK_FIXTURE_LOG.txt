@@ -1,0 +1,25 @@
+{
+  "schema_version": "CR0105R17-ALG-LINK-FIXTURE-1",
+  "fixture": {
+    "source": "reco.nz solve 12564 public alg.cubing.net link",
+    "setup": "L B R2 B' R2 U2 F D R2 U R2 F2 D2 R U B L2",
+    "raw_alg": "x' // inspection\nr' U F U' r U' r' U2 r' U r // xxxcross\nR U2' R2' U' R U R U2' R' // 4th pair\nU' F' r U R' U' r' F R // ZBLL"
+  },
+  "orientation_group_size": 24,
+  "tests": {
+    "raw": {
+      "parse": true,
+      "solved_mod_orientation": false,
+      "exact_identity": false,
+      "residual_hash": "418af567bca8a387574d76ac1c45b5d90c0e95d4073e8606ed0375bba970ee46"
+    },
+    "normalized": {
+      "parse": true,
+      "solved_mod_orientation": false,
+      "exact_identity": false,
+      "residual_hash": "418af567bca8a387574d76ac1c45b5d90c0e95d4073e8606ed0375bba970ee46"
+    }
+  },
+  "status": "HOLD_RAW_ALG_LINK",
+  "human_observations": 0
+}

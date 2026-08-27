@@ -1,0 +1,18 @@
+{
+  "schema_version": "CR0105R110-LAYERED-TRANSPORT-SEAL-1",
+  "status": "SEALABLE_LAYERED_FUTURE_SCORER",
+  "napkin_sha256": "73d9a0f59706523a70b1e2c2e7cde13ef3396a27a0651a17d0229db0a7f66a47",
+  "r19_feature_ledger_sha256": "b44fd600fd7509138d81d93df50701c2bcff38c7e6e2693d803a4c693edeed11",
+  "method_family": "LAYERED",
+  "methods": [
+    "CFOP",
+    "ZB"
+  ],
+  "metric_changed": false,
+  "roux_reference_contamination": false,
+  "loo_bank_semantic_sha256": "3b4e9e0bbc192a7704cb46625cf84b3772353958fea90ea27088022d642f6eaf",
+  "transport_result_semantic_sha256": "0bde2cd7a540c9d65ce4e64f024335ec9f9d0e4224380efc88e8b8cc6cc53ed9",
+  "future_fresh_outcomes_seen": false,
+  "human_observations": 0,
+  "seal_sha256": "c24337bf750a09c10bdb9e2dc4d71b876dfbd2de57d17eb1e80d4e3eaecab3c2"
+}

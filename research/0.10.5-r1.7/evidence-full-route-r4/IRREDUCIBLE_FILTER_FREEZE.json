@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R17-IRREDUCIBLE-FILTER-POSTHOC-RAVEL-1",
+  "status": "PASS_ADVERSARIAL_SENSITIVITY_FREEZE",
+  "role": "POSTHOC_ADVERSARIAL_ROBUSTNESS_NOT_PRIMARY_PREREGISTRATION",
+  "source_sample_manifest_sha256": "ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe",
+  "source_r3_sha256": "fcd2d6cb72d9a5589b074ad526dea68741a4253c9b4ba53cb8a3cc1cbc425627",
+  "motivation": "R3 multi-generator shortening remained common; test whether enclosing windows are merely wrappers around smaller algebraic cancellations.",
+  "filter": "Multi-generator candidate with no proper contiguous subinterval that is itself any detected exact shortening or identity relation.",
+  "outcome_role": "Sensitivity boundary only. Do not retroactively call this preregistered primary.",
+  "human_observations": 0
+}

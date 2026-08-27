@@ -1,0 +1,75 @@
+{
+  "schema_version": "CR0105R115-MANUSCRIPT-NAPKIN-1",
+  "stage": "CUBE-REV 0.10.5-R1.15 — Observation-operator Manuscript Bridge, Claim Compression & Cross-generation Argument Court",
+  "parent_final_seal": {
+    "branch": "cube-rev-0.10.5-r1.14-final-seal",
+    "commit": "d334bdb17a0df432bb08edd035b85fa62a52875c",
+    "status": "PASS_G4_ONTOLOGY_TRANSPORT_WITH_FRESH_AUTHORITY_DATA_WAIT",
+    "measurement_generation": "ROUX-MEASUREMENT-G4",
+    "open_new_measurement_generation": false
+  },
+  "lifecycle": {
+    "track": "CUBE-REV-MANUSCRIPT-BRIDGE",
+    "state_at_start": "ACTIVE",
+    "measurement_generation_relation": "USES_SEALED_GENERATION_HISTORY_WITHOUT_ADVANCING_GENERATION",
+    "writing_is_evidence": false,
+    "manuscript_freeze_in_r115": false,
+    "submission_ready_claim_in_r115": false
+  },
+  "research_intent": {
+    "primary": "Compress the R1.7–R1.14 observation-operator history into a falsifiable methodological argument without converting diagnostic or development evidence into cognitive claims.",
+    "secondary": [
+      "Construct an auditable claim-to-evidence ledger and manuscript readiness map.",
+      "Identify which cross-generation failures are scientifically informative rather than merely historical clutter.",
+      "Use writing/referee attack to expose missing literature, evidence, definitions, and fresh-validation obligations.",
+      "Decide whether a coherent paper-sized contribution exists now and, if so, what its narrowest defensible thesis is."
+    ],
+    "not_primary": [
+      "write a polished final paper regardless of evidence gaps",
+      "claim cognitive recovery/error prevalence",
+      "claim that reconstruction annotations are latent cognitive states",
+      "claim full-WCA behavioral prevalence",
+      "reopen G4 measurement definitions because manuscript prose is inconvenient"
+    ]
+  },
+  "paper_candidate": {
+    "working_thesis": "Behavioral reconstruction traces are not self-interpreting: inference about expert problem-solving depends on a sequence of observation operators whose invariance, null behavior, provenance, and authority must be separately validated. CUBE-REV demonstrates this by repeatedly rejecting plausible but non-identifying operators and converging on method-specific state ontologies.",
+    "empirical_spine": "Public WCA/reco.nz linked reconstruction evidence plus sealed R1.7–R1.14 engineering/measurement courts.",
+    "paper_type": "measurement/methodology paper with empirical case study; not a cognitive prevalence paper",
+    "scope_guard": "Roux G4 fresh authority remains DATA_WAIT and cannot be silently promoted by manuscript synthesis."
+  },
+  "section_unit_policy": {
+    "semantic_master_language": "Korean",
+    "english_role": "later realization/parity layer",
+    "unit": "small claim-bounded section with explicit evidence IDs and prohibited extrapolations",
+    "section_may_advance_only_if": [
+      "claim authority is explicit",
+      "supporting evidence provenance is identified",
+      "counterevidence/failed predecessor is represented when material",
+      "limitations/debt are visible",
+      "wording does not exceed the strongest supporting seal"
+    ]
+  },
+  "argument_court": {
+    "roles": ["DESIGN", "EVIDENCE", "SKEPTIC", "STATISTICS", "LITERATURE", "WRITING", "AUTHORITY", "GENERATION"],
+    "lineage_ablation_required": true,
+    "reason": "R1.8–R1.14 artifacts are serially dependent; many files within a generation are not independent replications.",
+    "failure_policy": "Return the gap to research or narrow the claim; do not polish around it."
+  },
+  "freshness_and_wait": {
+    "roux_baseline_id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+    "g4_reference_seal_sha256": "7cc0aaa2754fe911aa1bc536b3a53c527410b710f466ebe30ce8bbe37f17861a",
+    "fresh_raw_roux_at_parent_close": 0,
+    "fresh_minimum_for_authority": 20,
+    "watch_is_automatic": false,
+    "watch_policy": "irregular check during substantive CUBE-REV turns after any required manuscript/scientific seals"
+  },
+  "release_logic": {
+    "possible_r115_statuses": [
+      "PASS_MANUSCRIPT_BRIDGE_WITH_EVIDENCE_DEBTS",
+      "HOLD_NO_COHERENT_PAPER_SIZED_CLAIM",
+      "RETURN_TO_RESEARCH_FOR_BLOCKING_EVIDENCE_GAP"
+    ],
+    "cannot_release": ["Roux future scoring authority", "fresh cognitive prevalence", "human mechanism claim"]
+  }
+}

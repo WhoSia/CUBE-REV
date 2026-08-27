@@ -1,0 +1,340 @@
+{
+  "schema_version": "CR0105R17-IRREDUCIBLE-ROUTE-ADMISSION-GATE-1",
+  "status": "PASS",
+  "declared_before_route_outcome_materialization": true,
+  "target_definition": "WCA official valid 3x3 attempts with result <10.00 s in frozen 2026-08-18 export; speed x era post-stratified descriptive target.",
+  "sample_n": 900,
+  "route_source_n": 900,
+  "route_source_rate": 1,
+  "parse_n": 894,
+  "parse_rate": 0.9933333333333333,
+  "state_certified_n": 874,
+  "state_certification_rate": 0.9776286353467561,
+  "target_population_n": 1261540,
+  "target_population_covered_n": 1261441,
+  "target_population_coverage": 0.9999215244859457,
+  "weight_ess": 224.15939631208582,
+  "weight_ess_fraction": 0.2564752818216085,
+  "stabilized_weight": {
+    "p50": 0.6110241294590024,
+    "p90": 5.957704667387042,
+    "p95": 5.957704667387042,
+    "p99": 5.957704667387042,
+    "max": 5.957704667387042
+  },
+  "checks": {
+    "sample_n_exact": true,
+    "route_source_rate_ge_0_95": true,
+    "parse_rate_ge_0_95": true,
+    "state_certification_rate_ge_0_85": true,
+    "state_certified_n_ge_650": true,
+    "target_population_coverage_ge_0_95": true,
+    "ess_ge_200_inherited_from_target_selection": true,
+    "stabilized_p99_le_10": true,
+    "stabilized_max_le_20": true
+  },
+  "cell_certification": [
+    {
+      "cell": "5-7|2013-16",
+      "population_n": 946,
+      "linked_n": 95,
+      "sample_n": 48,
+      "certified_n": 48
+    },
+    {
+      "cell": "5-7|2017-19",
+      "population_n": 8807,
+      "linked_n": 300,
+      "sample_n": 53,
+      "certified_n": 53
+    },
+    {
+      "cell": "5-7|2020-22",
+      "population_n": 11833,
+      "linked_n": 495,
+      "sample_n": 55,
+      "certified_n": 55
+    },
+    {
+      "cell": "5-7|2023-26",
+      "population_n": 103181,
+      "linked_n": 744,
+      "sample_n": 121,
+      "certified_n": 117
+    },
+    {
+      "cell": "7-10|2013-16",
+      "population_n": 47051,
+      "linked_n": 233,
+      "sample_n": 80,
+      "certified_n": 78
+    },
+    {
+      "cell": "7-10|2017-19",
+      "population_n": 177169,
+      "linked_n": 273,
+      "sample_n": 173,
+      "certified_n": 172
+    },
+    {
+      "cell": "7-10|2020-22",
+      "population_n": 126569,
+      "linked_n": 121,
+      "sample_n": 121,
+      "certified_n": 117
+    },
+    {
+      "cell": "7-10|2023-26",
+      "population_n": 773886,
+      "linked_n": 100,
+      "sample_n": 100,
+      "certified_n": 90
+    },
+    {
+      "cell": "7-10|<=2012",
+      "population_n": 5925,
+      "linked_n": 158,
+      "sample_n": 51,
+      "certified_n": 48
+    },
+    {
+      "cell": "<5|2020-22",
+      "population_n": 247,
+      "linked_n": 111,
+      "sample_n": 47,
+      "certified_n": 46
+    },
+    {
+      "cell": "<5|2023-26",
+      "population_n": 5827,
+      "linked_n": 725,
+      "sample_n": 51,
+      "certified_n": 50
+    }
+  ],
+  "human_observations": 0,
+  "interpretation": "This gate depends only on route-source availability, parse/state certification, target-cell coverage and weights. Redundancy outcomes are not materialized unless it passes."
+}
+{
+  "schema_version": "CR0105R17-IRREDUCIBLE-ROUTE-COURT-1",
+  "status": "PASS",
+  "stage": "CUBE-REV 0.10.5-R1.7 — Counterfactual Route Alignment, Phase-aware Redundancy Phenotyping & Selection-corrected Reconstruction Analysis",
+  "parent_wca_export_sha256": "35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad",
+  "parent_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+  "target_definition": "WCA official valid 3x3 attempts with result <10.00 s in frozen 2026-08-18 export; speed x era post-stratified descriptive target.",
+  "sample_design": "Canonical one reconstruction per distinct linked WCA attempt by SHA rank; 900 attempts allocated proportional to supported WCA speed x era population, availability-capped; within-cell SHA rank selection.",
+  "admission_gate_summary": {
+    "state_certified_n": 874,
+    "state_certification_rate": 0.9776286353467561,
+    "target_population_coverage": 0.9999215244859457,
+    "weight_ess": 224.15939631208582,
+    "stabilized_weight": {
+      "p50": 0.6110241294590024,
+      "p90": 5.957704667387042,
+      "p95": 5.957704667387042,
+      "p99": 5.957704667387042,
+      "max": 5.957704667387042
+    }
+  },
+  "phenotype_definition": {
+    "unit": "distinct WCA-linked official attempt with one SHA-canonical reconstruction",
+    "route_source": "raw alg.cubing.net setup + reconstruction alg",
+    "state_certification": "cubing.js KPattern experimentalIsSolved, ignoring puzzle and center orientation",
+    "phase_rule": "candidate interval must be wholly inside one non-inspection, non-unknown, non-ambiguous annotation line",
+    "counterfactual_rule": "exact fixed-frame KTransformation identity loop or <=8 ordinary-face-turn window exactly replaceable by <=3 ordinary face turns; replacement rechecked against full route endpoint",
+    "irreducibility_filter": "Candidate must be multi-generator and contain no proper contiguous subinterval that itself has any detected exact shortening/identity relation; this is an adversarial post-R3 sensitivity definition, not a preregistered primary phenotype.",
+    "overlap_rule": "weighted interval scheduling is rerun on minimal irreducible candidates and maximizes saved non-overlapping move tokens; overlapping windows are never summed"
+  },
+  "metrics": {
+    "any_minimal_irreducible_state_verified_redundancy": {
+      "raw": 0.03775743707093822,
+      "standardized": 0.08376633901127288,
+      "bootstrap_95": {
+        "lo": 0.04639890231256255,
+        "hi": 0.12747315733858314,
+        "replicates": 1200
+      }
+    },
+    "any_exact_loop": {
+      "raw": 0.006864988558352402,
+      "standardized": 0.022940502945400464,
+      "bootstrap_95": {
+        "lo": 0.002531727583893377,
+        "hi": 0.04939031788541917,
+        "replicates": 1200
+      }
+    },
+    "any_shorter_exact_rewrite": {
+      "raw": 0.030892448512585814,
+      "standardized": 0.060825836065872406,
+      "bootstrap_95": {
+        "lo": 0.029646374238994945,
+        "hi": 0.09898492572968386,
+        "replicates": 1200
+      }
+    },
+    "max_nonoverlap_saved_moves": {
+      "raw": 0.05263157894736842,
+      "standardized": 0.1424229565572208,
+      "bootstrap_95": {
+        "lo": 0.0669693195094354,
+        "hi": 0.23140214079722132,
+        "replicates": 1200
+      }
+    },
+    "face_turn_token_redundancy_fraction": {
+      "raw": 0.0008943119998572218,
+      "standardized": 0.002348363373549966,
+      "bootstrap_95": {
+        "lo": 0.0011552483327363452,
+        "hi": 0.0037044173530638527,
+        "replicates": 1200
+      }
+    },
+    "phase_CROSS_any_selected_redundancy": {
+      "raw": 0.010297482837528604,
+      "standardized": 0.00536847861138665,
+      "bootstrap_95": {
+        "lo": 0.0019102951712864815,
+        "hi": 0.00932713392800337,
+        "replicates": 1200
+      }
+    },
+    "phase_F2L_any_selected_redundancy": {
+      "raw": 0.010297482837528604,
+      "standardized": 0.02551324235561382,
+      "bootstrap_95": {
+        "lo": 0.005104466994106755,
+        "hi": 0.05269760162007701,
+        "replicates": 1200
+      }
+    },
+    "phase_LL_ORIENT_any_selected_redundancy": {
+      "raw": 0.0011441647597254005,
+      "standardized": 0.006816595729275702,
+      "bootstrap_95": {
+        "lo": 0,
+        "hi": 0.020449787187827254,
+        "replicates": 1200
+      }
+    },
+    "phase_LL_ONELOOK_any_selected_redundancy": {
+      "raw": 0.002288329519450801,
+      "standardized": 0.007674175532680155,
+      "bootstrap_95": {
+        "lo": 0,
+        "hi": 0.027266382917103007,
+        "replicates": 1200
+      }
+    },
+    "phase_LL_PERMUTE_any_selected_redundancy": {
+      "raw": 0.010297482837528604,
+      "standardized": 0.01794405959448943,
+      "bootstrap_95": {
+        "lo": 0.002504990206103467,
+        "hi": 0.03975105950853456,
+        "replicates": 1200
+      }
+    },
+    "phase_ROUX_FB_any_selected_redundancy": {
+      "raw": 0.003432494279176201,
+      "standardized": 0.02044978718782711,
+      "bootstrap_95": {
+        "lo": 0,
+        "hi": 0.04771617010493026,
+        "replicates": 1200
+      }
+    },
+    "phase_ROUX_SB_any_selected_redundancy": {
+      "raw": 0,
+      "standardized": 0,
+      "bootstrap_95": {
+        "lo": 0,
+        "hi": 0,
+        "replicates": 1200
+      }
+    },
+    "phase_ROUX_CMLL_any_selected_redundancy": {
+      "raw": 0,
+      "standardized": 0,
+      "bootstrap_95": {
+        "lo": 0,
+        "hi": 0,
+        "replicates": 1200
+      }
+    },
+    "phase_ROUX_LSE_any_selected_redundancy": {
+      "raw": 0,
+      "standardized": 0,
+      "bootstrap_95": {
+        "lo": 0,
+        "hi": 0,
+        "replicates": 1200
+      }
+    }
+  },
+  "hierarchy_comparison": {
+    "raw_any_algebraic": 0.6887871853546911,
+    "standardized_any_algebraic": 0.8486439935344317,
+    "raw_any_structural": 0.6498855835240275,
+    "standardized_any_structural": 0.8114672521335946,
+    "raw_algebraic_saved": 2.583524027459954,
+    "standardized_algebraic_saved": 3.978455323729155,
+    "raw_structural_saved": 2.311212814645309,
+    "standardized_structural_saved": 3.482414218974758
+  },
+  "phenotype_counts": {
+    "NO_MINIMAL_IRREDUCIBLE_STATE_VERIFIED_REDUNDANCY": 841,
+    "MINIMAL_IRREDUCIBLE_STATE_VERIFIED_LOCAL_SHORTENING": 27,
+    "MINIMAL_IRREDUCIBLE_STATE_VERIFIED_EXACT_LOOP": 6
+  },
+  "selected_interval_phase_counts": {
+    "ROUX_FB": 3,
+    "F2L": 9,
+    "LL_PERMUTE": 9,
+    "LL_ONELOOK": 2,
+    "CROSS": 9,
+    "LL_ORIENT": 1
+  },
+  "method_reconstruction_frame": {
+    "CFOP": {
+      "n": 780,
+      "raw_any_minimal_irreducible_redundancy": 0.035897435897435895,
+      "raw_mean_saved_moves": 0.052564102564102565,
+      "claim_scope": "RECONSTRUCTION_FRAME_DESCRIPTIVE_ONLY; WCA has no solving-method field for population calibration."
+    },
+    "Roux": {
+      "n": 54,
+      "raw_any_minimal_irreducible_redundancy": 0.05555555555555555,
+      "raw_mean_saved_moves": 0.05555555555555555,
+      "claim_scope": "RECONSTRUCTION_FRAME_DESCRIPTIVE_ONLY; WCA has no solving-method field for population calibration."
+    },
+    "ZB": {
+      "n": 40,
+      "raw_any_minimal_irreducible_redundancy": 0.05,
+      "raw_mean_saved_moves": 0.05,
+      "claim_scope": "RECONSTRUCTION_FRAME_DESCRIPTIVE_ONLY; WCA has no solving-method field for population calibration."
+    }
+  },
+  "certification_attrition": {
+    "STATE_CERTIFIED": 874,
+    "STATE_UNCERTIFIED": 20,
+    "PARSE_ERROR": 6
+  },
+  "claim_scope": {
+    "allowed": [
+      "speed x era standardized descriptive route-redundancy phenotype for the supported <10s linked-reconstruction target",
+      "raw reconstruction-frame method summaries",
+      "phase attribution only for annotation-certified lines"
+    ],
+    "prohibited": [
+      "full-WCA prevalence",
+      "causal cognitive error or recovery mechanism",
+      "claiming speed x era standardization removes unobserved reconstruction selection",
+      "claiming WCA export identifies competitor attempt scramble",
+      "population calibration by solving method"
+    ]
+  },
+  "human_observations": 0,
+  "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+}

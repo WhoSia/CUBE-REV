@@ -1,0 +1,11 @@
+{
+  "disposition": "VALIDATED_FOR_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT_AUTHORITY_DATA_WAIT",
+  "preexisting_status": "PASS_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT",
+  "preexisting_canonical_n": 105,
+  "preexisting_canonical_rate": 0.8974358974358975,
+  "tail_n": 1,
+  "fresh_raw_n": 0,
+  "fresh_status": "HOLD_DATA_WAIT",
+  "authority": false,
+  "review_sha256": "ee736b975515d98394509b31cfce9e8b90ab27d88b5840a448692648a89751e7"
+}

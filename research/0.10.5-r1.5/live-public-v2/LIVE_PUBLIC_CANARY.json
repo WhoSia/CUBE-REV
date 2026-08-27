@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R15-LIVE-PUBLIC-CANARY-2",
+  "status": "FAIL",
+  "human_observations": 0,
+  "human_launch": false,
+  "human_recruitment_design": "DEFERRED_BY_RESEARCH_DESIGN",
+  "verdict": "FAIL_LIVE_PUBLIC_INFRASTRUCTURE",
+  "exception": "'NoneType' object has no attribute 'get'",
+  "traceback": "Traceback (most recent call last):\n  File \"/tmp/r15v2/live.py\", line 23, in main\n    'mismatch_original_stored':a.get('receipt',{}).get('status')=='stored',\n                               ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'get'\n"
+}

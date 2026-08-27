@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R18-MATCHED-NULL-REMAND-RUN-1",
+  "workflow_run_id": "32342628107",
+  "head_sha": "7377486c3e7141f634e0258589de4f0d11b2fbb6",
+  "calibration_exit_code": 0,
+  "apply_exit_code": 0,
+  "status": "PASS",
+  "role": "POSTHOC_REMAND_DIAGNOSTIC_NOT_PROSPECTIVE",
+  "prospective_primary_changed": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T07:08:56.334963+00:00"
+}

@@ -1,0 +1,5 @@
+{
+  "status": "PASS_ARGUMENT_COURT_MANUSCRIPT_BRIDGE",
+  "failed": [],
+  "semantic_sha256": "d83a302f809e084aca34d2efd97c19466d9e4c39fefa7787159cef16d45c0846"
+}

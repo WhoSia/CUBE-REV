@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R112-RESIDUAL-GAUGE-RUN-1",
+  "workflow_run_id": "32449189639",
+  "head_sha": "b4220c6bdfb5b0535b61bc5306fb2c6a9290f45e",
+  "exit_code": 0,
+  "primary_gate_changed": false,
+  "fresh_network_read": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T05:04:21.009191+00:00"
+}

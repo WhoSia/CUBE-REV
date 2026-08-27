@@ -1,0 +1,37 @@
+{
+  "schema_version": "CR0105R19-NESTED-EXACT-PREREG-GATE-REPAIR-1",
+  "status": "PASS_NESTED_NO_LEAK_READINESS_EXACT_PREREG_GATE",
+  "role": "OPERATIONAL_GATE_REPAIR_USING_PREOUTCOME_PREREGISTERED_SUPPORT_THRESHOLDS",
+  "r2_hold_reason": "R2 implementation incorrectly required familywise_n>=1000 at every conditioning level, while the frozen NAPKIN requires n>=300 for non-global conditioning and n>=1000 only for global.",
+  "scientific_definition_changed": false,
+  "fresh_vintage_read_before_repair": false,
+  "nested_attempts": 1677,
+  "primary_empirical_exceedance": 0.008348240906380441,
+  "watch_empirical_exceedance": 0.04770423375074538,
+  "level_support": {
+    "COUNT": {
+      "attempts": 180,
+      "min_n": 387,
+      "max_n": 964,
+      "required_min": 300
+    },
+    "METHOD_COUNT": {
+      "attempts": 1497,
+      "min_n": 378,
+      "max_n": 827,
+      "required_min": 300
+    }
+  },
+  "violations": [],
+  "checks": {
+    "nested_familywise_attempts_ge_1200": true,
+    "primary_health_band": true,
+    "watch_health_band": true,
+    "all_non_global_conditioning_refs_ge_300": true,
+    "all_global_refs_ge_1000": true,
+    "no_reference_size_violations": true,
+    "outer_test_fold_excluded_from_all_reference_construction": true,
+    "fresh_outcomes_unread": true
+  },
+  "human_observations": 0
+}

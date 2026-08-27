@@ -1,0 +1,100 @@
+{
+  "schema_version": "CR0105R111-NAPKIN-1",
+  "stage": "CUBE-REV 0.10.5-R1.11 — Roux Block-internal Orientation Quotient, Frame-preserving Phase Geometry & Method-specific Null Foundry",
+  "frozen_before_r111_execution": true,
+  "parent": {
+    "branch": "cube-rev-0.10.5-r1.10-final-seal",
+    "commit": "9886b367f8f2493a24f232199a33d986be6fb26c",
+    "status": "PASS_LAYERED_TRANSPORT_WITH_ROUX_HOLD_AND_FRESH_DATA_WAIT",
+    "layered_cfop_zb_authority": "RELEASED_BUT_UNCHANGED_BY_R111",
+    "roux_authority": false,
+    "r110_design_input_only": "A posthoc R1.10 diagnostic found one orientation-free exact FB block in each of 92 state-certified Roux routes. R1.11 does not reuse that diagnostic as a PASS; it prospectively freezes a new quotient and reruns all Roux frame and null courts from raw historical routes."
+  },
+  "intent": {
+    "primary": "Define a Roux block-internal orientation quotient that is independent of center-canonical coordinates and test whether a first-block-derived frame remains coherent through SB, CMLL and LSE.",
+    "secondary": "Build phase-objective Roux features in that fixed frame, with explicit objective and block-preservation anchor channels rather than solved-support proxies.",
+    "tertiary": "Build a Roux-only leave-one-attempt-out and nested no-test-fold-leak null foundry, while refusing 1% future authority when finite attempt support cannot resolve an add-one p<=0.01 tail."
+  },
+  "historical_data_role": "R1.7 and R1.8 Roux routes are DEVELOPMENT_AND_CALIBRATION_ONLY. They are not fresh replication and cannot establish cognitive recovery prevalence.",
+  "block_internal_orientation_quotient": {
+    "standard_frame": {"bottom": "D", "first_side": "L", "second_side": "R", "top": "U"},
+    "standard_first_block": "Exactly the 1x2x3 cubie block for (D,L): 3 edges on L not incident to U plus 2 corners in D∩L.",
+    "standard_second_block": "The opposite 1x2x3 cubie block for (D,R) in the same frame.",
+    "canonical_transform_rule": "At the nonempty annotated ROUX_FB endpoint, search the frozen 24 physical whole-cube orientations. A transform is admissible iff applying it makes the standard first-block mask exactly solved in full piece+orientation coordinates. Admit the attempt only if exactly one transform is admissible.",
+    "frame_lock": "The unique FB-derived transform is immutable for the rest of that attempt. SB, CMLL and LSE are evaluated only after applying this same transform; later states cannot choose a different orientation.",
+    "fb_acquisition": "The standard first block must not already be solved at FB start and must be exactly solved at FB endpoint.",
+    "sb_acquisition": "At the annotated ROUX_SB endpoint the first block must remain solved, the standard second block must be solved, and both blocks must not already have been solved at SB start.",
+    "cmll_consistency": "If a nonempty ROUX_CMLL line exists, both blocks must remain solved at its endpoint and all corners must match the CMLL endpoint up to U-face AUF equivalence in the locked frame.",
+    "lse_consistency": "If a nonempty ROUX_LSE line exists, both blocks must remain solved at its endpoint and the solve must finish solved ignoring whole-puzzle orientation/center orientation.",
+    "gates": {
+      "minimum_state_certified_attempts": 80,
+      "minimum_fb_line_attempts": 80,
+      "minimum_unique_transform_rate": 0.95,
+      "minimum_fb_acquisition_rate": 0.95,
+      "minimum_sb_line_attempts": 75,
+      "minimum_sb_frame_preservation_and_acquisition_rate": 0.85,
+      "minimum_cmll_line_attempts": 70,
+      "minimum_cmll_consistency_rate": 0.80,
+      "minimum_lse_line_attempts": 70,
+      "minimum_lse_consistency_rate": 0.90
+    }
+  },
+  "frame_preserving_phase_geometry": {
+    "FB": {"objective": "Distance to the exact standard first-block endpoint mask under the locked transform.", "anchor": "none"},
+    "SB": {"objective": "Distance to the exact standard second-block endpoint mask under the locked transform.", "anchor": "first-block preservation; anchor-break amplitude records temporary damage to the completed FB."},
+    "CMLL": {"objective": "All-corner piece+orientation distance to the annotated CMLL endpoint, minimized over U/U2/U' AUF variants in the locked frame.", "anchor": "both 1x2x3 blocks must remain solved; block damage is an anchor-break channel."},
+    "LSE": {"objective": "The six edges outside the two locked blocks, compared with the final LSE endpoint in full piece+orientation coordinates.", "anchor": "both 1x2x3 blocks; no frame switching is allowed."},
+    "feature_amplitude": "For each nonempty phase line and each defined channel, compute the maximum worsening relative to monotone progress toward that phase endpoint (objective backtrack) or maximum temporary damage relative to a solved anchor (anchor break). Zero-amplitude features remain in the ledger for calibration support.",
+    "move_count_bins": ["1-5", "6-8", "9-12", "13+"],
+    "minimum_eligible_attempts": 80,
+    "minimum_total_features": 300,
+    "minimum_objective_features": 250,
+    "maximum_geometry_failure_rate": 0.10
+  },
+  "roux_null_foundry": {
+    "population": "Only admitted historical Roux features generated by the R1.11 locked-frame geometry.",
+    "folds": 5,
+    "fold_assignment": "Deterministic attempt-key hash modulo 5; all features of one official attempt stay in one fold.",
+    "local_reference_hierarchy": ["phase×channel×move_count_bin when leave-one-attempt-out n>=25", "phase×channel when n>=40", "channel across Roux when n>=100"],
+    "local_tail": "add-one conservative upper-tail probability of feature amplitude within the highest-supported Roux-only reference; score=-log10(p)",
+    "attempt_statistic": "maximum local tail score over all admitted R1.11 Roux features in one attempt",
+    "attempt_feature_count_bins": ["1-4", "5-8", "9-12", "13+"],
+    "familywise_hierarchy": ["feature-count-bin when reference attempts n>=25", "Roux global when reference attempts n>=60"],
+    "future_scale_bank": "Leave-one-attempt-out full-history Roux attempt-statistic bank. This is an engineering foundry bank only unless every authority gate below passes.",
+    "nested_no_test_fold_leak": "For outer fold f, its features are excluded from both test local-reference construction and every inner reference-attempt score used for familywise calibration.",
+    "watch_alpha": 0.05,
+    "watch_health_band": [0.015, 0.12],
+    "primary_alpha": 0.01,
+    "primary_resolution_rule": "No 1% future authority unless the relevant frozen attempt-level familywise reference has at least 99 other attempts, making add-one p<=0.01 attainable.",
+    "minimum_familywise_attempts_for_engineering_calibration": 75,
+    "maximum_local_fallback_rate": 0.10,
+    "crossfit_vs_loo_pearson_min": 0.90,
+    "crossfit_vs_loo_abs_difference_p99_max": 0.75,
+    "result_dependent_gate_weakening": "PROHIBITED"
+  },
+  "authority_logic": {
+    "frame_geometry_pass": "All block quotient and phase-geometry gates pass.",
+    "null_foundry_engineering_pass": "At least 75 familywise attempts, <=10% local fallback, nested 5% health inside frozen band, and crossfit-vs-LOO transport gates pass.",
+    "one_percent_resolution_pass": "Every future-authority conditioning path intended for the 1% primary claim has >=99 reference attempts.",
+    "future_roux_scoring_authority": "Released only if frame_geometry_pass AND null_foundry_engineering_pass AND one_percent_resolution_pass. Otherwise HOLD, even if 5% engineering calibration looks healthy.",
+    "fresh_scoring_in_r111": false,
+    "fresh_network_read_in_r111": false,
+    "layered_cfop_zb_authority_modified": false
+  },
+  "blocking_falsifiers": [
+    "The FB endpoint does not yield a unique block-internal canonical transform in at least 95% of eligible state-certified routes.",
+    "The locked transform fails to preserve the first block through SB at the frozen rate gate.",
+    "CMLL or LSE consistency fails its frozen gate.",
+    "Geometry failure exceeds 10% or feature/attempt support is insufficient.",
+    "Nested outer-fold features influence their own local or familywise reference scores.",
+    "Nested 5% empirical exceedance falls outside [0.015,0.12].",
+    "Crossfit-vs-LOO attempt-statistic correlation is below 0.90 or p99 absolute difference exceeds 0.75.",
+    "The 1% add-one familywise tail lacks >=99 reference attempts.",
+    "Any gate or mask is changed after observing an R1.11 result."
+  ],
+  "claim_scope": {
+    "allowed": ["Engineering validity or failure of a Roux block-internal orientation quotient.", "Frame-preservation rates across annotated Roux phases.", "Historical development/calibration behavior of the Roux-only null foundry.", "Finite-sample resolution limits on 1% attempt-level familywise inference."],
+    "prohibited": ["Cognitive recovery or cognitive error prevalence.", "Intentionality, awareness, strategy-switching, or causal mechanism claims.", "Fresh replication estimates.", "Full-WCA behavioral prevalence.", "Treating annotations as ground-truth latent cognitive states."]
+  },
+  "authority": {"research_branch_only": true, "main_write": false, "public_runner_write": false, "collector_write": false, "human_recruitment": false, "human_observations": 0}
+}

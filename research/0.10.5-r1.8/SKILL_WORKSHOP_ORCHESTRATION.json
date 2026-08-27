@@ -1,0 +1,48 @@
+{
+  "schema_version": "CR0105R18-SKILL-WORKSHOP-ORCHESTRATION-1",
+  "stage": "CUBE-REV 0.10.5-R1.8 — Prospective Primitive-detour Holdout, Algorithm-aware Null Court & Phase-boundary Subgoal-distance Recovery Test",
+  "activation_mode": "PASSIVE_DEFAULT_WITH_EXPLICIT_GATES",
+  "explicit_modules": ["napkin", "ravel"],
+  "structural_modules": ["court", "trace", "atlas", "sentinel", "steward"],
+  "conditional_modules": ["forge", "scout", "prism", "orbit", "pivot", "axiom"],
+  "module_roles": {
+    "napkin": "Preserve the R1.8 scientific intent, estimands, falsifiers, and no-go claims; reject goal substitution after outcomes are seen.",
+    "ravel": "Run repeated design/implementation/adversarial/statistical/authority loops and distinguish negative scientific results from operational failures.",
+    "court": "Adjudicate claim-local gates; a local burden may strengthen but never weaken the global burden.",
+    "trace": "Persist actual execution facts, workflow IDs, hashes, inputs, and failures; never replace intent state.",
+    "atlas": "Maintain lineage from R1.7 signal-collapse result through R1.8 definitions and supersessions.",
+    "sentinel": "Gate consequential persistent writes; R1.8 is research-only and cannot mutate main/public/human-launch state.",
+    "steward": "Own checkpoint/resume and fail-observable evidence persistence.",
+    "forge": "Materialize validators, null engines, holdout courts, and deterministic artifacts only after NAPKIN freeze.",
+    "scout": "Acquire public algorithm/reference evidence only when a null-family gap requires it; external evidence does not silently redefine the frozen metric.",
+    "prism": "Separate uncertainty sources: sampling, selection, route certification, null calibration, phase-label uncertainty, and definition sensitivity.",
+    "orbit": "Represent calibration→freeze→holdout→remand transitions and prevent bypass of a blocking gate.",
+    "pivot": "May propose a representation change only after a formal RAVEL remand; it cannot rewrite R1.8 in place after holdout outcomes.",
+    "axiom": "Check structural invariants such as orientation invariance, endpoint equality, and disjointness before statistical search."
+  },
+  "guarded_transitions": [
+    {"from":"NAPKIN_FROZEN","to":"SUPPORT_PREFLIGHT","requires":["parent_lineage_exact"]},
+    {"from":"SUPPORT_PREFLIGHT","to":"DISTANCE_VALIDATOR","requires":["holdout_disjointness_characterized","modern_cell_exhaustion_not_hidden"]},
+    {"from":"DISTANCE_VALIDATOR","to":"NULL_CALIBRATION","requires":["orientation_invariance_pass","known_fixture_pass"]},
+    {"from":"NULL_CALIBRATION","to":"NULL_SEAL","requires":["thresholds_materialized_without_holdout_outcomes"]},
+    {"from":"NULL_SEAL","to":"HOLDOUT_SCORE","requires":["holdout_membership_frozen","null_hash_frozen"]},
+    {"from":"HOLDOUT_SCORE","to":"SELECTION_COURT","requires":["state_certification_complete","no_holdout_overlap"]},
+    {"from":"SELECTION_COURT","to":"CLAIM_COURT","requires":["estimand_specific_weight_gate"]},
+    {"from":"CLAIM_COURT","to":"FINAL_SEAL","requires":["authority_research_only","human_observations_zero"]}
+  ],
+  "forbidden_shortcuts": [
+    "score holdout before null thresholds are sealed",
+    "reuse R1.7 attempts in a purported attempt-disjoint holdout",
+    "lower ESS/coverage thresholds after observing outcome",
+    "rename generic distance nonmonotonicity as cognitive recovery",
+    "treat algorithm-library membership as ground-truth intention",
+    "mutate main/public runner or recruit humans in R1.8"
+  ],
+  "authority": {
+    "research_branch_only": true,
+    "main_write": false,
+    "public_runner_write": false,
+    "collector_write": false,
+    "human_recruitment": false
+  }
+}

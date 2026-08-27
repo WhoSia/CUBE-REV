@@ -1,0 +1,9 @@
+{
+  "schema_version": "CR0105R11-DETERMINISTIC-REBUILD-1",
+  "status": "PASS",
+  "byte_identical": true,
+  "first_bytes": 2591526,
+  "second_bytes": 2591526,
+  "first_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+  "second_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180"
+}

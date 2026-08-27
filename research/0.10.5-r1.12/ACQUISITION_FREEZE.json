@@ -1,0 +1,36 @@
+{
+  "schema_version": "CR0105R112-ACQUISITION-FREEZE-1",
+  "status": "FROZEN_BEFORE_G2_GEOMETRY_AND_BEFORE_ROUTE_FETCH",
+  "parent_db": {
+    "artifact_id": 9310311696,
+    "wca333_duckdb_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+    "role": "sealed R1.6 linkage/provenance frame only"
+  },
+  "membership": {
+    "method": "Roux",
+    "linkage_tiers": ["A_EXACT_UNIQUE", "B_NORMALIZED_UNIQUE"],
+    "official_attempt_unique": true,
+    "exclude_existing_r111_attempts": true,
+    "route_geometry_variables_allowed_for_selection": false,
+    "annotation_text_allowed_for_selection": false,
+    "speed_or_null_score_allowed_for_selection": false,
+    "canonical_reconstruction_per_official_attempt": "minimum SHA256 of R112ACQ:result_id:attempt_number:reco_id",
+    "candidate_order": "SHA256(R112ORDER:result_id:attempt_number)",
+    "one_shot_cap": 800,
+    "if_eligible_below_cap": "use all eligible unique official attempts",
+    "if_eligible_above_cap": "take first 800 by frozen hash order"
+  },
+  "rationale_for_cap": "R1.11 diagnostic center-consistent exact-frame support was only 23/92=25%. A one-shot cap of 800 supplies a conservative pre-outcome safety margin while remaining tractable for low-rate public detail-page acquisition. The cap is fixed before G2 geometry results and will not be increased inside R1.12 if the resulting G2-admitted bank remains below 100.",
+  "fetch": {
+    "source": "public reco.nz detail-page URL already stored in the sealed R1.6 DB",
+    "required_route_source": "RAW_ALG_CUBING_LINK",
+    "detail_page_timeout_seconds": 30,
+    "inter_request_delay_seconds": 0.06,
+    "fresh_index_scan": false,
+    "new_linkage_against_post-R1.6_WCA": false
+  },
+  "stop_rule": "Exactly one membership/fetch expansion under this freeze. If G2-admitted N<100 afterward, R1.12 records a support/resolution HOLD rather than mining another batch.",
+  "epistemic_role": "DEVELOPMENT_AND_CALIBRATION_ONLY",
+  "human_observations": 0,
+  "authority": {"research_only": true, "main_write": false, "public_runner_write": false, "collector_write": false}
+}

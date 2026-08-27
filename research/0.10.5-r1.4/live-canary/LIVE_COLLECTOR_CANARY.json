@@ -1,0 +1,417 @@
+{
+  "schema_version": "CR0105R14-LIVE-COLLECTOR-CANARY-2",
+  "session_id": "CR-20260818022443-2bd2f477ace9",
+  "human_observations": 0,
+  "known_prior_canary_session": "CR-20260818022105-2e2d4c46edaa",
+  "status": "FAIL",
+  "verdict": "FAIL_CANARY_COURT",
+  "public_url": "https://whosia.github.io/CUBE-REV/",
+  "expected_main": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+  "expected_public_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+  "first_tab": {
+    "href": "https://whosia.github.io/CUBE-REV/?cr0105r14=canary-f619e5dceefb",
+    "config": {
+      "enabled": true,
+      "endpoint": "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec",
+      "studyId": "CUBE-REV-0.7.12",
+      "collectorId": "CUBE-REV-0712-MAIN",
+      "protocolVersion": "receipt-v2"
+    },
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:24:47.744Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-20260818022443-2bd2f477ace9",
+      "participant_code": "SYNTHETIC-NONHUMAN-R14",
+      "mode": "SYNTHETIC_CANARY_R14",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.4",
+      "public_release_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+      "deployment_commit": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+      "canary_variant": "A_STORED_BASE",
+      "created_at": "2026-08-18T02:24:46.917Z",
+      "trials": [],
+      "data_submission": {
+        "status": "received",
+        "receipt_confirmed": true,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:24:47.909Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:24:48.584Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 915,
+        "transmitted_bytes": 915,
+        "checksum_fnv1a32": "b467dd85",
+        "submission_nonce": "e21454c08292802045af15ac",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "collector_status": "stored",
+        "received_at": "2026-08-18T02:24:53.145Z",
+        "receipt_code": "DYPM9YMHUWXJ",
+        "file_name": "CR-20260818022443-2bd2f477ace9.json",
+        "last_error": null,
+        "transport": "jsonp_receipt_poll",
+        "response_verification": "collector_receipt",
+        "checksum_verified": true
+      }
+    },
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:24:48.584Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_receipt_confirmed",
+        "collector_status": "stored",
+        "file_name": "CR-20260818022443-2bd2f477ace9.json",
+        "receipt_code": "DYPM9YMHUWXJ",
+        "submission_method": "automatic",
+        "transport": "jsonp_receipt_poll",
+        "response_verified": true,
+        "checksum_verified": true
+      }
+    ],
+    "statuses": [
+      {
+        "message": "collectorClient.checking",
+        "kind": "info",
+        "options": {
+          "pending": true
+        }
+      },
+      {
+        "message": "collectorClient.preparingFile",
+        "kind": "info",
+        "options": {
+          "pending": true
+        }
+      },
+      {
+        "message": "collectorClient.sending",
+        "kind": "info",
+        "options": {
+          "pending": true
+        }
+      },
+      {
+        "message": "collectorClient.receivedStored",
+        "kind": "success",
+        "options": {
+          "pending": false,
+          "confirmed": true,
+          "receipt_code": "DYPM9YMHUWXJ"
+        }
+      }
+    ],
+    "receipts": [
+      {
+        "type": "CUBE_REV_COLLECTOR_ACK",
+        "ok": true,
+        "status": "stored",
+        "submission_nonce": "e21454c08292802045af15ac",
+        "session_id": "CR-20260818022443-2bd2f477ace9",
+        "file_name": "CR-20260818022443-2bd2f477ace9.json",
+        "received_at": "2026-08-18T02:24:53.145Z",
+        "receipt_code": "DYPM9YMHUWXJ",
+        "confirmation_source": "drive_lookup",
+        "checksum_fnv1a32": "b467dd85",
+        "error": null,
+        "transport": "jsonp_receipt_poll",
+        "response_verified": true,
+        "checksum_verified": true
+      },
+      {
+        "type": "CUBE_REV_COLLECTOR_ACK",
+        "ok": true,
+        "status": "stored",
+        "submission_nonce": "e21454c08292802045af15ac",
+        "session_id": "CR-20260818022443-2bd2f477ace9",
+        "file_name": "CR-20260818022443-2bd2f477ace9.json",
+        "received_at": "2026-08-18T02:24:53.145Z",
+        "receipt_code": "DYPM9YMHUWXJ",
+        "confirmation_source": "drive_lookup",
+        "checksum_fnv1a32": "b467dd85",
+        "error": null,
+        "transport": "jsonp_receipt_poll",
+        "response_verified": true,
+        "checksum_verified": true
+      }
+    ],
+    "submit_error": null,
+    "submission_attempt_event_count": 1,
+    "receipt_event_count": 1,
+    "failed_event_count": 0
+  },
+  "second_tab_mutated_duplicate": {
+    "href": "https://whosia.github.io/CUBE-REV/?cr0105r14=duplicate-e0e6f9199517",
+    "config": {
+      "enabled": true,
+      "endpoint": "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec",
+      "studyId": "CUBE-REV-0.7.12",
+      "collectorId": "CUBE-REV-0712-MAIN",
+      "protocolVersion": "receipt-v2"
+    },
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:24:58.153Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-20260818022443-2bd2f477ace9",
+      "participant_code": "SYNTHETIC-NONHUMAN-R14",
+      "mode": "SYNTHETIC_CANARY_R14",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.4",
+      "public_release_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+      "deployment_commit": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+      "canary_variant": "B_MUTATED_DUPLICATE",
+      "created_at": "2026-08-18T02:24:57.672Z",
+      "trials": [],
+      "data_submission": {
+        "status": "failed",
+        "receipt_confirmed": false,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:24:58.398Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:24:59.056Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 921,
+        "transmitted_bytes": 921,
+        "checksum_fnv1a32": "c8d53a2d",
+        "submission_nonce": "571b61d40a9093b2249ffe44",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "last_error": "수집기가 저장한 파일의 무결성 확인값이 일치하지 않습니다."
+      }
+    },
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:24:59.056Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_failed",
+        "error": "수집기가 저장한 파일의 무결성 확인값이 일치하지 않습니다.",
+        "manual_portal_available": true,
+        "receipt_confirmed": false
+      }
+    ],
+    "statuses": [
+      {
+        "message": "collectorClient.checking",
+        "kind": "info",
+        "options": {
+          "pending": true
+        }
+      },
+      {
+        "message": "collectorClient.preparingFile",
+        "kind": "info",
+        "options": {
+          "pending": true
+        }
+      },
+      {
+        "message": "collectorClient.sending",
+        "kind": "info",
+        "options": {
+          "pending": true
+        }
+      },
+      {
+        "message": "collectorClient.failed",
+        "kind": "error",
+        "options": {
+          "pending": false,
+          "failed": true
+        }
+      }
+    ],
+    "receipts": [],
+    "submit_error": "수집기가 저장한 파일의 무결성 확인값이 일치하지 않습니다.",
+    "submission_attempt_event_count": 1,
+    "receipt_event_count": 0,
+    "failed_event_count": 1
+  },
+  "stale_version_probe": {
+    "stale_health_rejected": true,
+    "stale_error": "collectorClient.versionMismatch"
+  },
+  "fresh_drive_lookup": {
+    "http_status": 200,
+    "url": "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=receipt&submission_nonce=e62285081deaccf145dba9c1&session_id=CR-20260818022443-2bd2f477ace9&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=CR0105R14CBf3d82655cf&_=1787019903734",
+    "payload": {
+      "type": "CUBE_REV_COLLECTOR_ACK",
+      "ok": true,
+      "status": "stored",
+      "submission_nonce": "e62285081deaccf145dba9c1",
+      "session_id": "CR-20260818022443-2bd2f477ace9",
+      "file_name": "CR-20260818022443-2bd2f477ace9.json",
+      "received_at": "2026-08-18T02:24:53.145Z",
+      "receipt_code": "DYPM9YMHUWXJ",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "b467dd85",
+      "error": null
+    }
+  },
+  "duplicate_cached_receipt": {
+    "http_status": 200,
+    "url": "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=receipt&submission_nonce=571b61d40a9093b2249ffe44&session_id=CR-20260818022443-2bd2f477ace9&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=CR0105R14CBe090ad369a&_=1787019911256",
+    "payload": {
+      "type": "CUBE_REV_COLLECTOR_ACK",
+      "ok": true,
+      "status": "duplicate",
+      "submission_nonce": "571b61d40a9093b2249ffe44",
+      "session_id": "CR-20260818022443-2bd2f477ace9",
+      "file_name": "CR-20260818022443-2bd2f477ace9.json",
+      "received_at": "2026-08-18T02:24:53.145Z",
+      "receipt_code": "DYPM9YMHUWXJ",
+      "confirmation_source": "doPost_store_complete",
+      "checksum_fnv1a32": "c8d53a2d",
+      "error": null
+    }
+  },
+  "known_prior_canary_lookup": {
+    "http_status": 200,
+    "url": "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=receipt&submission_nonce=a8396f985109b72417c0317a&session_id=CR-20260818022105-2e2d4c46edaa&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=CR0105R14CB51fa32ada9&_=1787019908092",
+    "payload": {
+      "type": "CUBE_REV_COLLECTOR_ACK",
+      "ok": true,
+      "status": "stored",
+      "submission_nonce": "a8396f985109b72417c0317a",
+      "session_id": "CR-20260818022105-2e2d4c46edaa",
+      "file_name": "CR-20260818022105-2e2d4c46edaa.json",
+      "received_at": "2026-08-18T02:21:15.059Z",
+      "receipt_code": "ND4EKPPCN1VJ",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "fc6b0a3a",
+      "error": null
+    }
+  },
+  "independent_health": {
+    "http_status": 200,
+    "url": "https://script.google.com/macros/s/AKfycbwJEB0khZSmbbvUkjlzdWE9y33ALHml9D8NUnDhPi9_Z5Z6ZmhoRfjwaRo6vjjaDVVyPw/exec?action=health&collector_id=CUBE-REV-0712-MAIN&protocol_version=receipt-v2&version=0.7.12&callback=CR0105R14CB78ea2c20e3&_=1787019912050",
+    "payload": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:25:12.512Z"
+    }
+  },
+  "page_errors": [],
+  "page2_errors": [],
+  "checks": {
+    "public_client_present": true,
+    "health_exact": true,
+    "first_submit_stored": true,
+    "first_receipt_checksum_verified": true,
+    "concurrent_submit_collapsed": true,
+    "payloads_intentionally_different": true,
+    "mutated_duplicate_rejected_by_client": true,
+    "mutated_duplicate_attempted_once": true,
+    "duplicate_server_receipt_present": true,
+    "duplicate_server_receipt_binds_stored_checksum": false,
+    "duplicate_server_receipt_not_mutated_checksum": false,
+    "fresh_lookup_stored": true,
+    "fresh_lookup_binds_original_stored_checksum": true,
+    "known_prior_r2_canary_persisted": true,
+    "stale_version_health_fail_closed": true,
+    "independent_health_exact": true,
+    "no_page_errors": true,
+    "synthetic_markers_present": true
+  },
+  "synthetic_production_records_written_this_run": 1,
+  "known_prior_synthetic_record_verified": "CR-20260818022105-2e2d4c46edaa",
+  "human_launch_gate": "HOLD",
+  "human_launch_reason": "one or more live collector provenance checks failed"
+}

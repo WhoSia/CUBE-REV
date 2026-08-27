@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R18-NULL-CALIBRATION-RUN-2",
+  "workflow_run_id": "32341737715",
+  "head_sha": "a1cce45496f78c33b433b5cc7d1b622a374ad667",
+  "exit_code": 0,
+  "operational_status": "PASS",
+  "r1_failure": "ESM_RUNTIME_IN_TMP_COULD_NOT_RESOLVE_WORKSPACE_NODE_MODULES",
+  "scientific_definition_changed": false,
+  "holdout_outcomes_seen": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T06:57:01.908653+00:00"
+}

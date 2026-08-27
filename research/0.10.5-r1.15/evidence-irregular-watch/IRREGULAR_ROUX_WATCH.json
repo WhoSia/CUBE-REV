@@ -1,0 +1,46 @@
+{
+  "schema_version": "CR0105R115-IRREGULAR-ROUX-WATCH-1",
+  "status": "NO_CHANGE",
+  "watch_mode": "IRREGULAR_RESEARCH_TURN_NOT_AUTOMATION",
+  "ordering": {
+    "manuscript_bridge_seal_preceded_watch": true,
+    "g4_baseline_unchanged": true,
+    "g4_reference_definitions_mutated": false,
+    "authority_scoring_performed": false
+  },
+  "retrieval": {
+    "retrieved_at_utc": "2026-08-22T01:21:56.200031+00:00",
+    "http_status": 200,
+    "html_bytes": 10322409,
+    "html_sha256": "b30537d9041264c35ff3921f8300de20938521fe365bdfb08f9c2ddd0e132aa0"
+  },
+  "baseline": {
+    "id_n": 12936,
+    "max_id": 14058,
+    "id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b"
+  },
+  "live": {
+    "id_n": 12936,
+    "max_id": 14058
+  },
+  "delta": {
+    "missing_baseline_id_n": 0,
+    "new_id_n_all_events": 0,
+    "new_ids_all_events": [],
+    "new_3x3_roux_index_n": 0,
+    "new_3x3_roux_ids": []
+  },
+  "roux_accumulation": {
+    "new_roux_index_n": 0,
+    "new_raw_roux_n": 0,
+    "authority_threshold": 20,
+    "progress": "0/20",
+    "route_rows": []
+  },
+  "authority": {
+    "roux_future_scoring_authority": false,
+    "authority_court_may_reopen": false,
+    "reason": "Frozen G4 authority court may reopen only at >=20 post-freeze raw Roux routes; this watch never scores outcomes."
+  },
+  "human_observations": 0
+}

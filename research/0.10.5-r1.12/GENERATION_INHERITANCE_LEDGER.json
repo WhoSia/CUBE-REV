@@ -1,0 +1,58 @@
+{
+  "schema_version": "CR0105R112-GENERATION-INHERITANCE-1",
+  "stage": "CUBE-REV 0.10.5-R1.12 — Roux Subphase-completion Operator, Color-neutral Frame Quotient & Resolution-expanded Method-specific Null",
+  "generation_scope": "ROUX_SUBPROGRAM_ONLY",
+  "generation": "ROUX-MEASUREMENT-G2",
+  "parent_generation": "ROUX-MEASUREMENT-G1_RETROSPECTIVE_LABEL_FOR_R1.11",
+  "whole_cube_rev_generation": "UNRESOLVED",
+  "generation_transition_dimensions": ["ontology", "data_regime", "measurement", "court", "authority"],
+  "progress_claim_from_generation_label": false,
+  "inheritance": {
+    "RETAIN": [
+      "cubie-state replay and final-state certification",
+      "attempt-level provenance and deterministic fold assignment",
+      "Roux-only local-reference null architecture",
+      "nested outer-fold exclusion from both local and familywise references",
+      "crossfit-to-LOO transport court",
+      "primary alpha=0.01 with no result-dependent relaxation",
+      "historical reconstructions remain development/calibration evidence rather than fresh prevalence evidence",
+      "CFOP/ZB layered authority is outside R1.12 and remains unchanged"
+    ],
+    "DOWNGRADE": [
+      "R1.11 orientation-free 24-orientation x 24-frame uniqueness: retained only as a diagnostic counterexample because 69/92 admitted frames required center/color relabeling",
+      "R1.11 first-SB and last-SB endpoint rates: diagnostic evidence for redesign, not R1.12 validation evidence"
+    ],
+    "RETIRE": [
+      "first ROUX_SB-classified line as the completed-second-block endpoint",
+      "arbitrary whole-cube transformation that changes center/color identity as a harmless physical-orientation quotient",
+      "transplanting R1.11 feature amplitudes or attempt-statistic bank into the redesigned geometry"
+    ],
+    "MUTATE": [
+      "ROUX_SB line -> prospectively defined SB subphase span plus first state-certified two-block completion operator",
+      "orientation-free frame group -> center-consistent color-neutral frame enumeration after center canonicalization",
+      "FB-derived transform -> frame inferred from unique two-block completion and then oriented by FB history",
+      "Roux null bank -> rebuilt from newly generated G2 geometry features"
+    ],
+    "FORK": [
+      "ordinary exact-FB routes versus pseudo-FB/FBDR or otherwise non-exact FB routes; the latter are a separate stratum and cannot silently enter the primary exact-block court",
+      "primary center-consistent physical-frame interpretation versus exploratory broader color-relabel quotient; only the former is authority-eligible in R1.12"
+    ],
+    "RECOMBINE": [
+      "R1.11 null-engineering architecture with R1.12 state-certified phase-span geometry after complete re-featurization",
+      "R1.11 SB failure localization with center-consistent frame inference to define a new prospective completion operator"
+    ],
+    "UNRESOLVED": [
+      "whether pseudo-FB/FBDR deserves a separate future null rather than exclusion from the exact-block primary court",
+      "whether route annotation vocabulary is sufficiently stable for method-subphase ontology beyond Roux",
+      "whole-project CUBE-REV generation numbering"
+    ]
+  },
+  "skill_workshop_contract": {
+    "meta_loop": ["NAPKIN", "GENERATION", "BUILD", "WRITE", "ATTACK", "DESTROY", "RECOMBINE", "HANDOFF", "COURT", "ARCHIVE", "NEXT_GENERATION"],
+    "writing_is_epistemic_stress_test": true,
+    "writing_is_evidence": false,
+    "generation_transition_requires_court_review": true,
+    "automatic_theory_portfolio_reallocation": false
+  },
+  "authority": {"research_branch_only": true, "main_write": false, "public_runner_write": false, "collector_write": false, "human_recruitment": false, "human_observations": 0}
+}

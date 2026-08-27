@@ -1,0 +1,15 @@
+{
+  "schema_version": "CR0105R113-G3-DEVELOPMENT-RUN-1",
+  "workflow_run_id": "32458265002",
+  "head_sha": "f21c2e75d9b61abae6a2cddff471ae833523d826",
+  "fixture_exit_code": 0,
+  "geometry_exit_code": 0,
+  "null_exit_code": 0,
+  "candidate_bank_n": 144,
+  "data_role": "DEVELOPMENT_AND_CALIBRATION_ONLY",
+  "fresh_network_read": false,
+  "fresh_confirmatory_scoring": false,
+  "primary_gate_changed": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T07:21:35.982027+00:00"
+}

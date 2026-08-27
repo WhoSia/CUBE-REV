@@ -1,0 +1,42 @@
+name: CR0105R110 Roux Frame Failure Diagnostic
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.10-method-stratified-transport-roux-frame]
+    paths: [cr0105r110/RUN_ROUX_DIAGNOSTIC]
+permissions:
+  contents: write
+jobs:
+  diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify frozen HOLD remains in force
+        run: |
+          python3 - <<'PY'
+          import json
+          a=json.load(open('research/0.10.5-r1.10/LOCAL_AUTHORITY_SEAL.json'))
+          r=json.load(open('research/0.10.5-r1.10/evidence-roux-block-frame/ROUX_BLOCK_FRAME_IDENTIFICATION.json'))
+          assert a['roux_future_scoring_authority'] is False
+          assert r['status']=='HOLD_ROUX_BLOCK_FRAME_IDENTIFICATION'
+          print('R110_ROUX_DIAG_PRECHECK_PASS')
+          PY
+      - run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Run diagnostic without changing authority
+        env: {R110_DIAG_ROOT: /tmp/r110diag}
+        run: |
+          mkdir -p /tmp/r110diag
+          node research/0.10.5-r1.10/r110_roux_frame_diagnostic.mjs 2>&1 | tee /tmp/r110diag/DIAGNOSTIC_LOG.txt
+      - name: Persist diagnostic
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.10/evidence-roux-diagnostic
+          cp /tmp/r110diag/* research/0.10.5-r1.10/evidence-roux-diagnostic/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.10/evidence-roux-diagnostic
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.10 Roux diagnostic ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.10-method-stratified-transport-roux-frame

@@ -1,0 +1,12 @@
+{
+  "status": "PASS_ROTATION_GAUGE_ALGEBRA",
+  "checks": {
+    "orientation_group_24": true,
+    "mapping_rows_216": true,
+    "every_mapping_unique": true,
+    "inverse_and_order_checks": true,
+    "pure_rotation_path_invariance": true,
+    "table_rows_are_permutations": true
+  },
+  "semantic_sha256": "3a7a611adbe3e64e0cfcbac6d2cabccbf973a235c25060855a00989721bd2b82"
+}
