@@ -1,0 +1,177 @@
+{
+  "schema_version": "CR0105R19-NAPKIN-INTENT-PREREG-1",
+  "stage": "CUBE-REV 0.10.5-R1.9 — Phase-objective Quotient Geometry, Attempt-level Familywise Null Preregistration & Fresh-vintage Replication Readiness",
+  "status": "FROZEN_BEFORE_R19_DEVELOPMENT_EXECUTION",
+  "parent_r18_final_seal_commit": "7df42eb2dfa2383488e70a296a5f1b05b4f6f741",
+  "skill_workshop_default": "research/CUBE_REV_SKILL_WORKSHOP_DEFAULT.json",
+  "intent": "Replace R1.8's exact phase-endpoint full-state distance with phase-objective quotient geometry that explicitly ignores task-irrelevant state coordinates, and replace segment-tail-then-any-exceedance testing with a directly calibrated attempt-level familywise null. R1.9 is a historical-development and future-readiness stage: no R1.7/R1.8 record may be relabeled confirmatory, and no recovery/error prevalence claim may be made from R1.9 development results.",
+  "historical_data_status": {
+    "r17_900": "HISTORICAL_DEVELOPMENT_ONLY; outcomes and R1.8 analyses are already known.",
+    "r18_900": "HISTORICAL_DEVELOPMENT_ONLY; it was prospective for R1.8 but is not a fresh holdout for R1.9.",
+    "combined_official_attempt_overlap_required": 0,
+    "future_confirmatory_data": "Only reconstruction IDs absent from the frozen historical reconstruction universe AND official-attempt keys absent from both R1.7 and R1.8 may enter a later confirmatory replication."
+  },
+  "phase_frame": {
+    "center_canonicalization": "Every intermediate KPattern is mapped to a fixed physical cube frame by the unique whole-cube orientation whose center-piece permutation equals the solved center permutation. Center orientation is ignored. Any non-unique or missing canonicalization is a blocking validator failure.",
+    "face_supports": "U,D,R,L,F,B edge/corner position supports are derived from the pinned cubing.js 3x3 KTransformation definitions rather than hard-coded cubie indices.",
+    "cfop_zb_cross_face": "For CFOP/ZB routes, the first eligible CROSS endpoint after center canonicalization must contain an exactly solved four-edge face star. If multiple face stars qualify, select the face with the greatest number of solved positions in the corresponding F2L domain; remaining ties are deterministic U,D,R,L,F,B order and are reported. If none qualifies, CFOP/ZB quotient geometry for that route is inadmissible.",
+    "last_layer_face": "The face opposite the detected cross face.",
+    "f2l_domain": "All edge and corner positions not moved by a turn of the detected last-layer face. This quotient removes last-layer coordinates by construction."
+  },
+  "phase_objectives": {
+    "CROSS": {
+      "objective": "Full piece+orientation agreement with the phase endpoint on the four edge positions incident to the detected cross face.",
+      "quotiented_out": "All corners and all non-cross edges.",
+      "admission": "All four cross-edge endpoint coordinates must be solved in the canonical frame."
+    },
+    "F2L": {
+      "objective": "Full piece+orientation agreement with the phase endpoint only on positions inside the F2L domain that are solved at that endpoint.",
+      "quotiented_out": "All last-layer positions and every not-yet-solved F2L-domain position.",
+      "admission": "The endpoint must add at least one solved edge and one solved corner inside the F2L domain relative to line start, while retaining an exact solved cross."
+    },
+    "LL_ORIENT": {
+      "objective": "Orientation agreement only on last-layer edge+corner positions.",
+      "quotiented_out": "Last-layer permutation/piece identity.",
+      "anchor": "Full piece+orientation agreement with the phase endpoint on solved F2L-domain positions is tracked as a separate anchor-break channel, not mixed into objective distance."
+    },
+    "LL_PERMUTE": {
+      "objective": "Piece-position agreement only on last-layer edge+corner positions, minimized over the four U-equivalent/AUF-equivalent representatives of the endpoint after mapping the detected last layer to the canonical U action by conjugation.",
+      "quotiented_out": "Last-layer orientation and AUF-equivalent endpoint representatives.",
+      "anchor": "Solved F2L-domain structure is a separate anchor-break channel."
+    },
+    "LL_ONELOOK": {
+      "objective": "Full piece+orientation agreement on last-layer edge+corner positions, minimized over AUF-equivalent endpoint representatives.",
+      "quotiented_out": "Only AUF-equivalent endpoint representatives and non-last-layer coordinates.",
+      "anchor": "Solved F2L-domain structure is a separate anchor-break channel."
+    },
+    "ROUX_FB": {
+      "objective": "Dynamic solved-support quotient: full piece+orientation agreement only on edge/corner positions that are solved at the phase endpoint, with at least three newly solved positions relative to line start.",
+      "quotiented_out": "All endpoint-unsolved positions.",
+      "claim_scope": "Roux reconstruction-frame engineering metric; not asserted to be a unique cognitive first-block representation."
+    },
+    "ROUX_SB": {
+      "objective": "Dynamic solved-support quotient: full piece+orientation agreement only on endpoint-solved edge/corner positions, with at least two newly solved positions relative to line start.",
+      "quotiented_out": "All endpoint-unsolved positions.",
+      "claim_scope": "Roux reconstruction-frame engineering metric; not asserted to identify subjective block choice."
+    },
+    "ROUX_CMLL": {
+      "objective": "Full piece+orientation agreement on all corners, with edges quotiented out; AUF-equivalent endpoint representatives are allowed when transformation-equivalent in the canonical frame.",
+      "quotiented_out": "All edges except that existing solved-support anchors are separately audited.",
+      "claim_scope": "Corner-state objective proxy only."
+    },
+    "ROUX_LSE": {
+      "objective": "Full piece+orientation agreement on all edges, corners quotiented out; AUF-equivalent endpoint representatives are allowed.",
+      "quotiented_out": "All corners.",
+      "claim_scope": "Edge-state objective proxy only."
+    }
+  },
+  "line_features": {
+    "objective_backtrack": "On the phase-objective quotient distance path, the maximum increase above the running best that subsequently returns to or below that pre-excursion best strictly before the final phase move. Final-endpoint-only return is ineligible, preserving the R1.8 anti-triviality rule.",
+    "anchor_break_peak": "For phases with an anchor channel, the maximum full-state mismatch fraction on anchor coordinates at any intermediate move. This is an excursion feature, not called recovery.",
+    "distance_normalization": "Each objective or anchor channel is normalized by the number of active comparison coordinates, so raw distances lie in [0,1]. Empty masks are inadmissible rather than assigned zero.",
+    "secondary_checks": "Unweighted coordinate-count versions of every primary quotient channel are retained for invariant and candidate agreement audits."
+  },
+  "algorithm_aware_reference": {
+    "observed_historical_path": "Included in the historical reference envelope as a conservative ordinary-route realization; this cannot prove the route cognitively clean.",
+    "representation_variants": "Only rewrites whose full KTransformation is exactly identical to the original phase transformation are admitted.",
+    "solver_alternative": "Pinned cubing.js solver alternatives are admitted only when full KTransformation identity is exact; physical-only equivalence is diagnostic and excluded from the primary reference.",
+    "matched_statistic_rule": "Every reference realization is scored with the exact same quotient feature as the observed line. R1.8's max-excursion versus candidate-reversal mismatch is forbidden."
+  },
+  "local_tail_normalization": {
+    "purpose": "Map heterogeneous phase/channel amplitudes to conservative empirical tail scores before the attempt-level maximum is formed.",
+    "move_count_bins": ["3-5", "6-8", "9-12", "13+"],
+    "hierarchy": [
+      "method×phase×channel×move_count_bin when reference n>=120",
+      "phase×channel×move_count_bin when n>=160",
+      "method×phase×channel when n>=120",
+      "phase×channel when n>=200",
+      "global channel when n>=500"
+    ],
+    "tail_probability": "add-one conservative empirical upper-tail probability: (1 + # reference amplitudes >= observed amplitude) / (n + 1)",
+    "tail_score": "-log10(tail_probability)",
+    "fallback_below_global_minimum": "HOLD_LOCAL_REFERENCE_SUPPORT"
+  },
+  "attempt_level_familywise_null": {
+    "attempt_statistic": "Maximum local tail_score over all eligible phase-line objective and anchor channels in one official attempt.",
+    "crossfit": "Deterministic 5-fold split by SHA-256 of official-attempt key and R1.9 salt. Each held-out attempt is scored only against reference envelopes from the other four folds.",
+    "multiplicity_conditioning": "Familywise reference is conditioned by eligible feature-count bin: 1-8, 9-12, 13-16, 17+ when bin n>=300; otherwise global. Method×feature-count may be used only when n>=300 and is predeclared before execution; fallback order is method×count -> count -> method -> global with n>=300 for non-global levels.",
+    "primary_familywise_alpha": 0.01,
+    "secondary_watch_alpha": 0.05,
+    "future_familywise_p": "For a fresh attempt, score against the full sealed historical local reference, then compute add-one upper-tail probability against the sealed cross-fitted historical attempt-statistic reference at the highest supported multiplicity-conditioning level.",
+    "minimum_crossfit_state_certified_attempts": 1200,
+    "minimum_global_attempt_reference_n": 1000,
+    "minimum_supported_conditioning_n": 300,
+    "calibration_health_gate": "Across five held-out folds, empirical primary-alpha exceedance must lie in [0.003,0.02] overall; secondary-watch exceedance must lie in [0.025,0.08]. These are engineering calibration-health bands, not hypothesis-test acceptance regions."
+  },
+  "historical_evaluation": {
+    "role": "DEVELOPMENT_AND_CROSSFIT_HEALTH_ONLY",
+    "comparison": [
+      "R1.8 full-state raw reversal geometry versus R1.9 quotient raw reversal geometry",
+      "familywise cross-fit calibration health",
+      "phase/channel support and fallback frequency",
+      "candidate stability under secondary coordinate-count metrics",
+      "Roux semantic-mask admission/failure rates"
+    ],
+    "prohibited": "No historical cross-fitted exceedance is a new recovery prevalence estimate or independent replication."
+  },
+  "fresh_vintage_readiness": {
+    "frozen_historical_reco_rows": 10596,
+    "frozen_historical_max_reco_id": 14051,
+    "historical_baseline_source": "R1.8 live-vintage audit; exact ID set must be materialized from the frozen R1.6 analytical DB before future admission.",
+    "fresh_record": "reco_id absent from frozen historical ID set AND official-attempt key absent from R1.7 and R1.8; reconstructed route must pass parser/state/frame/quotient validators after the R1.9 metric+null seal.",
+    "fresh_any_gate": "At least 200 new unique-linked state-certified attempts with >=3 supported speed×era cells and weight ESS>=100 before any standardized replication estimate.",
+    "fresh_modern_7_10_gate": "At least 80 new unique-linked state-certified attempts in 2023-26 × 7-10 s before an independent modern-cell replication claim.",
+    "zero_new_records_behavior": "READINESS_PASS_DATA_WAIT; do not recycle historical attempts and do not weaken gates."
+  },
+  "blocking_validators": [
+    "CENTER_CANONICALIZATION_UNIQUE",
+    "FACE_SUPPORT_GROUP_INVARIANTS",
+    "CROSS_FACE_DETECTION_STABILITY",
+    "PHASE_ENDPOINT_OBJECTIVE_ZERO",
+    "QUOTIENT_INVARIANCE_TO_IGNORED_COORDINATES",
+    "AUF_EQUIVALENCE_FOR_LL_PHASES",
+    "MATCHED_FEATURE_REFERENCE",
+    "FIVE_FOLD_NO_SELF_REFERENCE",
+    "LOCAL_REFERENCE_SUPPORT",
+    "ATTEMPT_FAMILYWISE_CALIBRATION_HEALTH",
+    "HISTORICAL_VS_FRESH_ID_AND_ATTEMPT_DISJOINTNESS",
+    "RESEARCH_ONLY_AUTHORITY"
+  ],
+  "falsifiers": [
+    "A whole-cube rotation changes quotient distance after center canonicalization.",
+    "Changing a coordinate declared quotiented-out changes the primary objective distance.",
+    "The canonical endpoint has nonzero objective distance to its own quotient class.",
+    "A U/AUF-equivalent PLL or one-look endpoint receives nonzero objective distance.",
+    "Any cross-fitted held-out attempt contributes to its own local or familywise reference distribution.",
+    "Local-reference fallback occurs for >5% of eligible historical features.",
+    "Cross-fitted state-certified attempt n<1200.",
+    "Primary or secondary calibration-health bands fail after implementation bugs and deterministic split are ruled out.",
+    "Fresh-vintage admission cannot prove both reco-ID and official-attempt-key novelty."
+  ],
+  "claim_scope": {
+    "allowed_in_r19": [
+      "Engineering validation of phase-objective quotient geometry on historical reconstructions.",
+      "Cross-fitted calibration-health characteristics of the preregistered attempt-level familywise null.",
+      "Readiness or HOLD status for future fresh-vintage replication.",
+      "Descriptive comparison showing how quotienting changes historical route geometry, explicitly labeled historical development."
+    ],
+    "prohibited_in_r19": [
+      "Cognitive recovery prevalence.",
+      "Cognitive error prevalence.",
+      "Independent replication using R1.7 or R1.8 attempts.",
+      "Causal, intentional, awareness, or strategy-switching mechanism claims.",
+      "Full-WCA prevalence.",
+      "Fresh modern replication if the fresh-modern gate is not met.",
+      "Treating annotations as ground-truth latent cognitive subgoals.",
+      "Changing quotient masks, tail hierarchy, familywise alpha, or freshness criteria after observing a future fresh attempt."
+    ]
+  },
+  "authority": {
+    "research_branch_only": true,
+    "main_write": false,
+    "public_runner_write": false,
+    "collector_write": false,
+    "human_recruitment": false,
+    "human_observations": 0
+  }
+}

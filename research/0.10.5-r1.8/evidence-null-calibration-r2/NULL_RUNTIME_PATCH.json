@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R18-NULL-RUNTIME-PATCH-1",
+  "status": "PASS_SOURCE_BOUND_RUNTIME_PATCH",
+  "changes": [
+    "R1.7 manifest provenance hash uses UTF-8 file text bytes, not stable serialization of a Node Buffer object.",
+    "NAPKIN null-freeze provenance hash uses UTF-8 file text bytes, not stable serialization of a Node Buffer object."
+  ],
+  "scientific_definition_changed": false,
+  "holdout_outcomes_seen": false,
+  "human_observations": 0
+}

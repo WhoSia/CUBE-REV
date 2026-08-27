@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R113-BREAK-RESTORE-RUN-1",
+  "workflow_run_id": "32458795785",
+  "head_sha": "381c25a4f9be53ea71644254744247ce637cd1a0",
+  "exit_code": 0,
+  "primary_gate_changed": false,
+  "fresh_network_read": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T07:28:50.050405+00:00"
+}

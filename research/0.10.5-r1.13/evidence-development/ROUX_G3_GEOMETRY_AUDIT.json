@@ -1,0 +1,102 @@
+{
+  "schema_version": "CR0105R113-ROUX-G3-ROTATION-COVARIANT-GEOMETRY-1",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "status": "HOLD_ROUX_G3_DEVELOPMENT_GEOMETRY",
+  "fixture_semantic_sha256": "3a7a611adbe3e64e0cfcbac6d2cabccbf973a235c25060855a00989721bd2b82",
+  "counts": {
+    "raw_unique_attempts": 144,
+    "parse_ok": 140,
+    "state_certified": 133,
+    "ordinary_fb": 130,
+    "forked_pseudo_fb": 2,
+    "forked_fbdr": 1,
+    "geometry_eligible": 130,
+    "prefix_any": 130,
+    "prefix_unique": 130,
+    "prefix_multi": 0,
+    "g3_admitted": 120,
+    "rotation_present_prefix_unique": 6,
+    "rotation_present_completed": 3,
+    "no_rotation_prefix_unique": 124,
+    "no_rotation_completed": 117,
+    "cmll_opportunities": 116,
+    "cmll_consistent": 114,
+    "lse_opportunities": 120,
+    "lse_consistent": 117,
+    "first_block_break_failures": 6,
+    "errors": 8
+  },
+  "rates": {
+    "prefix_unique_rate": 1,
+    "sb_completion_rate": 0.9230769230769231,
+    "rotation_present_sb_completion_rate": 0.5,
+    "no_rotation_sb_completion_rate": 0.9435483870967742,
+    "cmll_consistency_rate": 0.9827586206896551,
+    "lse_consistency_rate": 0.975,
+    "geometry_failure_rate": 0.07692307692307687
+  },
+  "checks": {
+    "rotation_fixture_pass": true,
+    "state_certified_ge_100": true,
+    "prefix_unique_rate_ge_0_95": true,
+    "sb_completion_rate_ge_0_90": true,
+    "no_rotation_sb_completion_rate_ge_0_90": true,
+    "rotation_present_sb_completion_rate_ge_0_75": false,
+    "cmll_consistency_rate_ge_0_80": true,
+    "lse_consistency_rate_ge_0_90": true,
+    "geometry_failure_rate_le_0_10": true,
+    "g3_admitted_ge_100": true,
+    "total_features_ge_350": true,
+    "objective_features_ge_275": true,
+    "all_features_g3": true
+  },
+  "rejection_reasons": {
+    "NO_TRANSPORTED_SB_COMPLETION": 10,
+    "ERROR": 8,
+    "FINAL_NOT_SOLVED": 3
+  },
+  "feature_counts": {
+    "total": 832,
+    "objective": 476,
+    "anchor": 356,
+    "eligible_attempts": 120,
+    "phase": {
+      "FB": 120,
+      "SB": 240,
+      "CMLL": 232,
+      "LSE": 240
+    }
+  },
+  "frame_counts": {
+    "D|B": 8,
+    "U|F": 27,
+    "U|R": 21,
+    "U|L": 26,
+    "R|U": 2,
+    "U|B": 15,
+    "B|U": 3,
+    "D|R": 10,
+    "D|F": 8,
+    "F|L": 2,
+    "B|R": 2,
+    "D|L": 6
+  },
+  "source_counts": {
+    "SEALED_R111": {
+      "eligible": 89,
+      "prefix_unique": 89,
+      "admitted": 84
+    },
+    "R112_EXPANSION": {
+      "eligible": 41,
+      "prefix_unique": 41,
+      "admitted": 36
+    }
+  },
+  "data_role": "DEVELOPMENT_AND_CALIBRATION_ONLY",
+  "r112_outcomes_used_as_confirmatory": false,
+  "post_result_gate_change": false,
+  "fresh_confirmatory_scoring": false,
+  "human_observations": 0,
+  "semantic_sha256": "4fa8067dc5541ff292acbd9241085371fd675edceb6bd87259153481f22f6c8e"
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "CR0105R111-NAPKIN-PREEXEC-DESIGN-REPAIR-R3",
+  "stage": "CUBE-REV 0.10.5-R1.11 — Roux Block-internal Orientation Quotient, Frame-preserving Phase Geometry & Method-specific Null Foundry",
+  "status": "FROZEN_BEFORE_ANY_R111_EMPIRICAL_OUTPUT",
+  "supersedes": [
+    "CR0105R111-NAPKIN-1 standard_frame/canonical_transform_rule only",
+    "CR0105R111-NAPKIN-PREEXEC-CLARIFICATION-R2 only where frame face U was hard-coded"
+  ],
+  "reason": "Static representation audit before execution showed that a physical whole-cube rotation does not relabel cubie color identities into a universal D/L block. The R1.10 diagnostic searched rotation×frame pairs and deduplicated frame labels; therefore the prospective R1.11 quotient must identify a solve-specific unique block-frame equivalence class rather than force every solve into one color frame.",
+  "empirical_r111_outputs_seen_before_repair": false,
+  "gate_weakening": false,
+  "repaired_block_internal_quotient": {
+    "frame_space": "All 24 ordered adjacent-face Roux frames (bottom, first_side); second_side=opposite(first_side), top=opposite(bottom). Each frame has an exact 3-edge+2-corner first-block mask and disjoint opposite second-block mask.",
+    "candidate_space": "At the annotated FB endpoint, evaluate all 24 frozen whole-cube orientation transformations crossed with all 24 ordered frames. A pair (orientation,frame) is admissible iff the transformed endpoint exactly solves that frame's first-block 3E+2C mask in full piece+orientation coordinates.",
+    "quotient_class": "Group admissible pairs by ordered frame label. The block-internal frame is identified only if exactly one frame group remains, regardless of how many orientation representatives that group contains.",
+    "representative_rule": "Within the unique frame group use the numerically smallest frozen orientation index as a deterministic computational representative, but scientific quantities are admitted only if every admissible representative in that same group yields identical FB/SB/CMLL/LSE consistency flags and phase/channel amplitudes to tolerance 1e-12.",
+    "representative_invariance_gate": 0.99,
+    "frame_lock": "The unique ordered frame and its quotient class are immutable after FB. Later phases cannot choose another frame or a representative outside the FB-derived class.",
+    "face_generalization": "CMLL AUF variants use the identified frame's top face, not hard-coded U. LSE is the six edges outside the two blocks defined by the identified frame."
+  },
+  "unchanged_gates": {
+    "minimum_state_certified_attempts": 80,
+    "minimum_fb_line_attempts": 80,
+    "minimum_unique_frame_group_rate": 0.95,
+    "minimum_fb_acquisition_rate": 0.95,
+    "minimum_sb_line_attempts": 75,
+    "minimum_sb_frame_preservation_and_acquisition_rate": 0.85,
+    "minimum_cmll_line_attempts": 70,
+    "minimum_cmll_consistency_rate": 0.80,
+    "minimum_lse_line_attempts": 70,
+    "minimum_lse_consistency_rate": 0.90,
+    "geometry_failure_rate_max": 0.10,
+    "null_and_transport_gates": "UNCHANGED_FROM_CR0105R111-NAPKIN-1"
+  },
+  "authority": {
+    "fresh_network_read": false,
+    "fresh_scoring": false,
+    "roux_future_authority_before_execution": false,
+    "layered_cfop_zb_authority_modified": false,
+    "human_observations": 0
+  }
+}

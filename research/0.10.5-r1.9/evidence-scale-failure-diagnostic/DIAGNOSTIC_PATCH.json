@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R19-SCALE-FAILURE-DIAGNOSTIC-PATCH-1",
+  "status": "POSTHOC_DIAGNOSTIC_PATCH",
+  "original_failed_gate": "crossfit_loo_stat_correlation_ge_0_95",
+  "gate_changed": false,
+  "metric_changed": false,
+  "null_changed": false,
+  "fresh_current_rows": 0,
+  "human_observations": 0
+}

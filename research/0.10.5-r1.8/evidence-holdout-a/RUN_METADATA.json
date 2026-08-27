@@ -1,0 +1,13 @@
+{
+  "schema_version": "CR0105R18-HOLDOUT-A-RUN-1",
+  "workflow_run_id": "32342096491",
+  "head_sha": "9380f1a5c1354fa6e0e3f5c2c0c2278d7a10e69a",
+  "fetch_exit_code": 0,
+  "score_exit_code": 0,
+  "operational_fetch": "PASS",
+  "court_status": "PASS",
+  "null_threshold_seal": "1343a667600a4a859ae081b3b3042cbe365e447b7b082dd7ebf77b9edc8494ea",
+  "r17_r5_definition_source_sha": "0c9523fea6fcbda37a344eeb324cd5365894e8e6",
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T07:03:52.399257+00:00"
+}

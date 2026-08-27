@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R18-SUPPORT-PREFLIGHT-RUN-1",
+  "workflow_run_id": "32341103987",
+  "head_sha": "0ea472edfad956d80db465b8ecabbbf9759ac5f0",
+  "parent_artifact_id": 9310311696,
+  "parent_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+  "exit_code": 0,
+  "operational_status": "PASS",
+  "scientific_gate_status": "SEE_SUPPORT_PREFLIGHT",
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T06:48:29.866800+00:00"
+}

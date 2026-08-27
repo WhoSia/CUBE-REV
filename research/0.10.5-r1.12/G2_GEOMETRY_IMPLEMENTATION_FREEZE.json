@@ -1,0 +1,58 @@
+{
+  "schema_version": "CR0105R112-G2-GEOMETRY-IMPLEMENTATION-FREEZE-2",
+  "status": "FROZEN_BEFORE_G2_GEOMETRY_EXECUTION",
+  "preexecution_repair": {
+    "when": "before any R1.12 G2 geometry execution",
+    "change": "LSE selection changed from first ROUX_LSE line to the maximal contiguous ROUX_LSE span after SB completion, with the last line endpoint as the LSE target.",
+    "reason": "The frozen parser maps EOLR, EOLRb, EP and LSE annotations into ROUX_LSE. Selecting the first line could repeat the already-localized SB subphase/completion error. No G2 outcome had been observed when this repair was made.",
+    "scientific_gate_changed": false,
+    "denominator_changed": false
+  },
+  "population_flow": [
+    "RAW_ALG_CUBING_LINK unique official attempt",
+    "parseable and final-state certified",
+    "exactly one nonempty ordinary ROUX_FB annotated line (pseudo FB and FBDR forked out)",
+    "nonempty contiguous ROUX_SB span present",
+    "center canonicalization succeeds for every state queried by the operator",
+    "at least one two-block physical-axis completion occurs inside the SB span",
+    "the first completion state has exactly one completed physical axis",
+    "FB endpoint uniquely orients that axis because exactly one of its two blocks is solved there",
+    "G2 admitted attempt"
+  ],
+  "denominators": {
+    "sb_search_eligible": "state-certified ordinary-FB routes with an SB span",
+    "sb_any_completion_rate": "routes with >=1 completed physical axis at some SB-span state / sb_search_eligible",
+    "unique_axis_completion_rate": "routes whose first any-completion state has exactly one completed physical axis / routes with any completion",
+    "fb_orientation_rate_given_unique_axis": "routes where FB endpoint solves exactly one of that unique axis's two blocks / unique-axis routes",
+    "primary_exact_fb_attempts": "fb-oriented unique-axis routes; these are the G2-admitted primary attempts",
+    "geometry_failure_rate": "1 - G2-admitted / sb_search_eligible",
+    "sb_completion_rate": "same numerator as G2-admitted / sb_search_eligible; reported separately because it is the end-to-end SB operator success rate"
+  },
+  "gate_mapping": {
+    "minimum_state_certified_attempts": 100,
+    "minimum_primary_exact_fb_attempts": 100,
+    "minimum_sb_any_completion_rate": 0.90,
+    "minimum_unique_axis_completion_rate_given_any_completion": 0.90,
+    "minimum_fb_orientation_rate_given_unique_axis": 0.90,
+    "minimum_end_to_end_sb_completion_rate": 0.90,
+    "minimum_cmll_consistency_rate": 0.80,
+    "minimum_lse_consistency_rate": 0.90,
+    "maximum_geometry_failure_rate": 0.10,
+    "minimum_total_features": 350,
+    "minimum_objective_features": 275
+  },
+  "phase_selection": {
+    "FB": "the sole ordinary ROUX_FB line",
+    "SB": "first contiguous ROUX_SB span; objective stops at first unique state-certified two-block completion",
+    "CMLL": "first nonempty ROUX_CMLL line after SB completion; if absent, no CMLL opportunity",
+    "LSE": "maximal contiguous ROUX_LSE span beginning at the first ROUX_LSE line after SB completion; objective target is the last line endpoint, so EOLR/EOLRb/EP subphases cannot be mistaken for completed LSE solely because they are classified ROUX_LSE"
+  },
+  "diagnostics_not_gates": [
+    "last-SB endpoint success",
+    "annotation-family SS/SP/flipped-SP/SB frequencies",
+    "broader orientation-free/color-relabel quotient",
+    "pseudo-FB/FBDR geometry"
+  ],
+  "post_result_denominator_change": "PROHIBITED",
+  "human_observations": 0
+}

@@ -1,0 +1,235 @@
+{
+  "schema_version": "CR0105R113-ROTATION-ROUTE-LOCALIZATION-ROWS-1",
+  "rows": [
+    {
+      "attempt_key": "1656157:2",
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    },
+    {
+      "attempt_key": "1656157:4",
+      "reco_id": 2794,
+      "source": "SEALED_R111",
+      "frame_key": "U|B",
+      "initial_gauge": 12,
+      "sb_span": {
+        "start": 8,
+        "end": 22
+      },
+      "rotation_events": [
+        {
+          "token_index": 8,
+          "move": "x'",
+          "normalized": "x'",
+          "phase": "ROUX_SB",
+          "comment": "SS",
+          "before_gauge": 12,
+          "after_gauge": 20,
+          "first_before": true,
+          "first_after": true,
+          "second_before": false,
+          "second_after": false,
+          "block_status_invariant": true
+        }
+      ],
+      "forward_completion_index": null,
+      "first_forward_first_block_break_state": 10,
+      "first_break_token": {
+        "token_index": 9,
+        "move": "L'",
+        "phase": "ROUX_SB",
+        "comment": "SS"
+      },
+      "raw_alg": "y' // inspection\nD' r' F U2' R' r' B' // FB\nx' L' U R2' U r' U' r // SS\nR U' M' M' U R' // SP\nU' M' U r2' D' r U r' D r2 U' r' U' r // CMLL\nM' U M' U2' M U' M U' M' U2' M U' M2' // EOLR\nU' M2' U2' M2' // EP"
+    },
+    {
+      "attempt_key": "1656157:5",
+      "error": "Unexpected character at index 5. Are you missing a space?"
+    },
+    {
+      "attempt_key": "5300160:4",
+      "reco_id": 9366,
+      "source": "SEALED_R111",
+      "frame_key": "U|B",
+      "initial_gauge": 20,
+      "sb_span": {
+        "start": 7,
+        "end": 19
+      },
+      "rotation_events": [
+        {
+          "token_index": 7,
+          "move": "x",
+          "normalized": "x",
+          "phase": "ROUX_SB",
+          "comment": "SS",
+          "before_gauge": 20,
+          "after_gauge": 12,
+          "first_before": true,
+          "first_after": true,
+          "second_before": false,
+          "second_after": false,
+          "block_status_invariant": true
+        }
+      ],
+      "forward_completion_index": 19,
+      "first_forward_first_block_break_state": null,
+      "first_break_token": null,
+      "raw_alg": "x2 y // inspection\nD' B U2' R' U2 // FB\nx R2' U' R U R2' U' R // SS\nU R U' r' // SP\nU U' R R' f S' R U' R' U R U2' R' U' R U R' U' F' // CMLL\nU M U2 M' U' M2' U' // EOLR\nM' U2 M' U2 // EP"
+    },
+    {
+      "attempt_key": "533419:1",
+      "reco_id": 2026,
+      "source": "SEALED_R111",
+      "frame_key": "U|F",
+      "initial_gauge": 22,
+      "sb_span": {
+        "start": 9,
+        "end": 23
+      },
+      "rotation_events": [
+        {
+          "token_index": 9,
+          "move": "x",
+          "normalized": "x",
+          "phase": "ROUX_SB",
+          "comment": "SS",
+          "before_gauge": 22,
+          "after_gauge": 17,
+          "first_before": true,
+          "first_after": true,
+          "second_before": false,
+          "second_after": false,
+          "block_status_invariant": true
+        }
+      ],
+      "forward_completion_index": 23,
+      "first_forward_first_block_break_state": null,
+      "first_break_token": null,
+      "raw_alg": "y x // inspection\nD' L' U2 l U' l U' // FB\nx U R' U' R r' U2 M' U' R' // SS\nU' r' U' r // SP\nU2 U L' U' L U r U' r' F // CMLL\nM' U M U' M' U M U' r M' R' U U' U' // EOLR\nr M' R' U2 M' U2 M' // EP"
+    },
+    {
+      "attempt_key": "611723:5",
+      "reco_id": 2116,
+      "source": "SEALED_R111",
+      "frame_key": "U|L",
+      "initial_gauge": 11,
+      "sb_span": {
+        "start": 12,
+        "end": 29
+      },
+      "rotation_events": [
+        {
+          "token_index": 12,
+          "move": "x",
+          "normalized": "x",
+          "phase": "ROUX_SB",
+          "comment": "SB",
+          "before_gauge": 11,
+          "after_gauge": 4,
+          "first_before": true,
+          "first_after": true,
+          "second_before": false,
+          "second_after": false,
+          "block_status_invariant": true
+        }
+      ],
+      "forward_completion_index": 29,
+      "first_forward_first_block_break_state": null,
+      "first_break_token": null,
+      "raw_alg": "y' x' // inspection\nM' u R2 U' M' U' (M R) x' U // FB\nx U2 M' U2 r' U' // SB\nR2 U' R' U' R U R' U2 R U' R' // SP\nU R' U R' R U R' D' R U2 R' D R2 // CMLL\nU M' U2 M' U2 M U M' U2 M2' U' // EOLR\nM' U2 M' U U // EP"
+    },
+    {
+      "attempt_key": "7247448:2",
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    },
+    {
+      "attempt_key": "6170102:2",
+      "error": "Invalid move for KPuzzle (3x3x3): DU'"
+    },
+    {
+      "attempt_key": "7247423:4",
+      "error": "Invalid move for KPuzzle (3x3x3): Rl"
+    },
+    {
+      "attempt_key": "7247335:1",
+      "error": "Unexpected character at index 17. Are you missing a space?"
+    },
+    {
+      "attempt_key": "2011086:2",
+      "reco_id": 2912,
+      "source": "R112_EXPANSION",
+      "frame_key": "U|R",
+      "initial_gauge": 10,
+      "sb_span": {
+        "start": 9,
+        "end": 17
+      },
+      "rotation_events": [
+        {
+          "token_index": 10,
+          "move": "x'",
+          "normalized": "x'",
+          "phase": "ROUX_SB",
+          "comment": "SS",
+          "before_gauge": 10,
+          "after_gauge": 16,
+          "first_before": true,
+          "first_after": true,
+          "second_before": false,
+          "second_after": false,
+          "block_status_invariant": true
+        }
+      ],
+      "forward_completion_index": null,
+      "first_forward_first_block_break_state": 12,
+      "first_break_token": {
+        "token_index": 11,
+        "move": "l'",
+        "phase": "ROUX_SB",
+        "comment": "SS"
+      },
+      "raw_alg": "z2 // inspection\nR2 r' F B' R' U R' F // FB\nU' x' l' r' // SS\nU2' R' U R // SP\nR U R' U' R' F R F' // CMLL\nM2' U M' U' M' U' M2' U' // EOLR\nU2' M U2' M' // EP"
+    },
+    {
+      "attempt_key": "2112470:1",
+      "reco_id": 2874,
+      "source": "R112_EXPANSION",
+      "frame_key": "U|B",
+      "initial_gauge": 12,
+      "sb_span": {
+        "start": 9,
+        "end": 24
+      },
+      "rotation_events": [
+        {
+          "token_index": 10,
+          "move": "x",
+          "normalized": "x",
+          "phase": "ROUX_SB",
+          "comment": "SS",
+          "before_gauge": 12,
+          "after_gauge": 5,
+          "first_before": true,
+          "first_after": true,
+          "second_before": false,
+          "second_after": false,
+          "block_status_invariant": true
+        }
+      ],
+      "forward_completion_index": null,
+      "first_forward_first_block_break_state": 12,
+      "first_break_token": {
+        "token_index": 11,
+        "move": "l",
+        "phase": "ROUX_SB",
+        "comment": "SS"
+      },
+      "raw_alg": "y' // inspection\nU R U' D r' U' R' F // FB\nU2' x l R' R r U2' r U' // SS\nr' r' U M' U' R // SP\nR' U' R U' R' U R' F R F' U R // CMLL\nM M2' U M2' U M // LSE"
+    },
+    {
+      "attempt_key": "7247265:5",
+      "error": "Invalid move for KPuzzle (3x3x3): DU'"
+    }
+  ],
+  "human_observations": 0
+}

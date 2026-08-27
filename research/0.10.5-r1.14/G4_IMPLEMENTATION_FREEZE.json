@@ -1,0 +1,47 @@
+{
+  "schema_version": "CR0105R114-G4-IMPLEMENTATION-FREEZE-1",
+  "status": "FROZEN_AFTER_BASELINE_BEFORE_G4_ROUTE_RECLASSIFICATION",
+  "baseline_id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+  "development_ontology_gates": {
+    "state_certified_n_min": 100,
+    "ordinary_fb_sb_eligible_n_min": 100,
+    "prefix_unique_rate_given_eligible_min": 0.95,
+    "ontology_assignment_rate_given_prefix_unique_min": 1.0,
+    "canonical_reference_attempts_min": 100,
+    "cmll_consistency_rate_canonical_min": 0.80,
+    "lse_consistency_rate_canonical_min": 0.90,
+    "total_canonical_features_min": 350,
+    "objective_canonical_features_min": 275
+  },
+  "reference_null_gates": {
+    "loo_familywise_attempts_min": 100,
+    "nested_familywise_attempts_min": 100,
+    "local_fallback_rate_max": 0.10,
+    "nested_watch_rate_band": [0.015,0.12],
+    "crossfit_loo_pearson_min": 0.90,
+    "crossfit_loo_abs_diff_p99_max": 0.75,
+    "minimum_loo_reference_n": 99,
+    "primary_alpha": 0.01,
+    "alpha_relaxation": "PROHIBITED"
+  },
+  "reference_bank_freeze": {
+    "attempt_membership": "all and only CANONICAL_FB_PRESERVING attempts from the fixed 144-route development bank that generate at least one valid G4 feature",
+    "membership_may_not_use_null_score": true,
+    "membership_may_not_use_future_live_index_delta": true,
+    "must_be_sealed_before_second_live_index_read": true,
+    "r113_attempt_scores_reused": false
+  },
+  "preexisting_unseen_holdout": {
+    "role": "ontology transport diagnostic only",
+    "authority_release": false,
+    "minimum_n_for_descriptive_rate": 1,
+    "if_zero": "record HOLD_NO_PREEXISTING_UNSEEN_3X3_ROUX rather than substitute development routes"
+  },
+  "post_freeze_fresh_authority": {
+    "minimum_raw_roux_routes": 20,
+    "if_below_minimum": "HOLD_DATA_WAIT",
+    "development_or_baseline_preexisting_substitution": "PROHIBITED"
+  },
+  "post_result_gate_change": "PROHIBITED",
+  "human_observations": 0
+}

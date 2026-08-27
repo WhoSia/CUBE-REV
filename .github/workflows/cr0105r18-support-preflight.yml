@@ -1,0 +1,116 @@
+name: CR0105R18 Prospective Support Preflight
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.8-prospective-subgoal-court]
+    paths: [cr0105r18/RUN_SUPPORT_PREFLIGHT]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: cr0105r18-support-preflight
+  cancel-in-progress: false
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify NAPKIN and R1.7 lineage before network read
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib
+          n=json.load(open('research/0.10.5-r1.8/NAPKIN_INTENT_FREEZE.json'))
+          o=json.load(open('research/0.10.5-r1.8/SKILL_WORKSHOP_ORCHESTRATION.json'))
+          assert n['status']=='FROZEN_BEFORE_R18_HOLDOUT_OUTCOMES'
+          assert n['parent_r17_latest_scientific_evidence_commit']=='2455476a563527f7245978b4df386d0b3883f219'
+          assert n['prospective_data_design']['minimum_weight_ess']==200
+          assert n['prospective_data_design']['minimum_target_coverage_for_any_standardized_holdout_claim']==0.90
+          assert o['activation_mode']=='PASSIVE_DEFAULT_WITH_EXPLICIT_GATES'
+          assert o['authority']['main_write'] is False and o['authority']['human_recruitment'] is False
+          p='research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json'
+          assert hashlib.sha256(open(p,'rb').read()).hexdigest()=='ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe'
+          print('CR0105R18_NAPKIN_LINEAGE_PASS')
+          PY
+      - name: Restore exact frozen R1.6 analytical DB
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r18
+          gh api -H 'Accept: application/vnd.github+json' repos/${GITHUB_REPOSITORY}/actions/artifacts/9310311696/zip > /tmp/r18/r16.zip
+          unzip -q /tmp/r18/r16.zip -d /tmp/r18/unpacked
+          DB="$(find /tmp/r18/unpacked -type f -name 'wca333.duckdb' -print -quit)"
+          test -n "$DB"
+          SHA="$(sha256sum "$DB" | awk '{print $1}')"
+          test "$SHA" = 'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'
+          echo "R18_PARENT_DB=$DB" >> "$GITHUB_ENV"
+          echo "R18_PARENT_DB_SHA256=$SHA" >> "$GITHUB_ENV"
+          echo "R18_ROOT=/tmp/r18" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen analytical runtime
+        run: python -m pip install --disable-pip-version-check duckdb==1.3.2 requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+      - name: Characterize untouched and fresh-vintage support
+        id: preflight
+        shell: bash
+        run: |
+          set +e
+          python research/0.10.5-r1.8/r18_support_preflight.py 2>&1 | tee /tmp/r18/support_preflight.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable support evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.8/evidence-support-preflight
+          for f in SUPPORT_PREFLIGHT.json HOLDOUT_A_MEMBERSHIP.json FRESH_RECO_VINTAGE_PREFLIGHT.json; do
+            test -f "/tmp/r18/$f" && cp "/tmp/r18/$f" research/0.10.5-r1.8/evidence-support-preflight/ || true
+          done
+          cp /tmp/r18/support_preflight.log research/0.10.5-r1.8/evidence-support-preflight/SUPPORT_PREFLIGHT_LOG.txt || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          code=int('${{ steps.preflight.outputs.exit_code || 97 }}')
+          x={
+            'schema_version':'CR0105R18-SUPPORT-PREFLIGHT-RUN-1',
+            'workflow_run_id':os.environ['GITHUB_RUN_ID'],
+            'head_sha':os.environ['GITHUB_SHA'],
+            'parent_artifact_id':9310311696,
+            'parent_db_sha256':'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1',
+            'exit_code':code,
+            'operational_status':'PASS' if code==0 else 'FAIL',
+            'scientific_gate_status':'SEE_SUPPORT_PREFLIGHT',
+            'human_observations':0,
+            'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }
+          pathlib.Path('research/0.10.5-r1.8/evidence-support-preflight/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit preflight evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.8/evidence-support-preflight
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.8 support preflight ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.8-prospective-subgoal-court
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R18-support-preflight
+          retention-days: 30
+          if-no-files-found: warn
+          path: research/0.10.5-r1.8/evidence-support-preflight/
+      - name: Enforce operational preflight only
+        if: always()
+        run: |
+          test '${{ steps.preflight.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('research/0.10.5-r1.8/evidence-support-preflight/SUPPORT_PREFLIGHT.json'))
+          assert p['status']=='PASS_CHARACTERIZED_WITH_BLOCKING_GATES_REPORTED'
+          assert p['holdout_A_overlap_n']==0
+          print('CR0105R18_SUPPORT_PREFLIGHT_OPERATIONAL_PASS')
+          PY

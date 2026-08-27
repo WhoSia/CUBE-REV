@@ -1,0 +1,14 @@
+{
+  "schema_version": "CR0105R112-ROUX-G2-FUTURE-AUTHORITY-SEAL-1",
+  "generation": "ROUX-MEASUREMENT-G2",
+  "status": "HOLD_ROUX_FUTURE_AUTHORITY",
+  "geometry_semantic_sha256": "f1c19e8b960373e9968cab8b57c48a0ae4ed130d02d8d27704126462d40595e8",
+  "null_foundry_semantic_sha256": "ac4cdeb0fa33056b298853d9161e267900c0d7db783ba8682b3bab3fe6898c6d",
+  "engineering_pass": false,
+  "primary_1pct_resolution_pass": false,
+  "future_roux_scoring_authority": false,
+  "fresh_confirmatory_score_in_r112": false,
+  "cfop_zb_layered_future_authority_modified": false,
+  "human_observations": 0,
+  "seal_sha256": "8ee57017a46587d91ba1d1cfc51760f38a11cf458fb2084d302ca942418f9670"
+}

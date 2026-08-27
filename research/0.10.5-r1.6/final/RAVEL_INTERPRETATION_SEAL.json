@@ -1,0 +1,111 @@
+{
+  "schema_version": "CR0105R16-INTERPRETATION-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.6 — WCA Results Spine Ingestion, Reconstruction-linkage Court & Public-data Recovery Phenotype Baseline",
+  "status": "PASS",
+  "verdict": "PASS_PUBLIC_DATA_SPINE_WITH_SELECTION_AND_IDENTIFIABILITY_BOUNDARIES",
+  "authoritative_evidence": {
+    "branch": "cube-rev-0.10.5-r1.6-linkage-ravel-final",
+    "evidence_commit": "fab855c11bde1d1a2581c2533dc072e322420051",
+    "workflow_run_id": 32096976382,
+    "workflow_conclusion": "success",
+    "artifact_id": 9310311696,
+    "artifact_name": "CR0105R16-linkage-ravel-final",
+    "artifact_digest": "sha256:f40270656c24d2a17b0b29a0add9e21b58950a9a9ac154cef0d475a1908ea27d"
+  },
+  "public_authority_boundary": {
+    "main_commit_observed_after_r16": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "main_mutated_by_r16": false,
+    "public_runner_mutated_by_r16": false,
+    "human_observations": 0,
+    "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+  },
+  "wca_population_spine": {
+    "export_date_utc": "2026-08-18T00:00:35Z",
+    "format_version": "v2.0.2",
+    "zip_sha256": "35ce0975798b3c4f648c2421f35b94784ed0811fec8df12f70e8ae574f2d20ad",
+    "results_333": 1835235,
+    "attempts_333": 9159748,
+    "valid_attempts": 8968473,
+    "dnf_attempts": 187290,
+    "dns_attempts": 3985,
+    "competitions": 15154,
+    "persons": 282898,
+    "scrambles_333": 730812
+  },
+  "outcome_only_recovery_proxy": {
+    "dnf_next_near_round_median_rate": 0.8040986310407389,
+    "slow_outlier_next_near_round_median_rate": 0.887991013797844,
+    "important_limit": "The round-result median is computed from the full round result and can include attempts occurring after the focal attempt. This phenotype is therefore descriptive and partially look-ahead-defined, not a prospective predictor, causal estimator, or identified cognitive recovery event.",
+    "allowed_use": "population-scale descriptive baseline and candidate sampling",
+    "causal_claim": "PROHIBITED",
+    "mechanism_claim": "PROHIBITED"
+  },
+  "reconstruction_frame": {
+    "source": "https://reco.nz/solve/",
+    "html_sha256": "c0ca3106023d108209028fd2b0f56962c9a23b5b09e41fbf5af673d7ae4795ba",
+    "parsed_3x3_rows": 10596,
+    "max_reco_id_in_final_snapshot": 14051,
+    "plus2_rows": 130,
+    "linkage_tiers": {
+      "A_EXACT_UNIQUE": 2694,
+      "B_NORMALIZED_UNIQUE": 910,
+      "C_AMBIGUOUS": 204,
+      "U_UNMATCHED": 6788
+    },
+    "unique_link_candidates": 3604,
+    "linked_distinct_wca_attempts": 3601,
+    "unique_candidate_fraction_of_reco_3x3": 0.3401283503208758,
+    "plus2_correction_effect": {
+      "pre_correction_linked_distinct_wca_attempts": 3560,
+      "post_correction_linked_distinct_wca_attempts": 3601,
+      "net_gain": 41
+    }
+  },
+  "selection_bias_court": {
+    "selection_rate_by_official_time": {
+      "lt_5s": 0.1408083441981747,
+      "5_to_7s": 0.013268805487003621,
+      "7_to_10s": 0.0007827702105076951,
+      "10_to_15s": 0.00006662953458229007,
+      "15_to_30s": 0.0000012060318476830018,
+      "ge_30s": 0.0
+    },
+    "lt5_vs_10_to_15_selection_ratio": 2113.3022327249023,
+    "lt5_vs_15_to_30_selection_ratio": 116753.42112125162,
+    "conclusion": "Raw reco.nz frequencies are not admissible as WCA-population prevalence estimates without explicit selection correction or tightly scoped conditional claims."
+  },
+  "date_field_audit": {
+    "unique_links_with_parseable_reco_index_year": 3604,
+    "year_matches_wca_competition_start_year": 2992,
+    "year_mismatches": 612,
+    "mismatch_fraction": 0.16981132075471697,
+    "decision": "Reco index Date is diagnostic metadata only and is not a hard linkage key."
+  },
+  "scramble_identifiability": {
+    "wca_export_only_attempt_to_scramble": "NOT_GENERALLY_IDENTIFIABLE",
+    "reason": "WCA Results Export exposes round/group scramble rows but no competitor-level scramble-group identifier in result_attempt records.",
+    "detail_pilot_n": 200,
+    "detail_pilot_exact_unique_wca_scramble": 128,
+    "admissible_path": "Promote scramble identity only when reconstruction-provided scramble text and WCA competition/round context support an exact unique match."
+  },
+  "move_grammar_pilot": {
+    "detail_pages_ok": 200,
+    "adjacent_same_face_compressible_present": 131,
+    "adjacent_exact_cancellation_present": 80,
+    "adjacent_repeated_bigram_present": 98,
+    "interpretation": "These are conservative route-grammar anomaly candidates. They are not cognitive-error or recovery labels because normal algorithms, rotations/notation conventions, phase boundaries, and reconstruction choices can generate the same local patterns."
+  },
+  "ravel_adjudication": {
+    "source_vintage_auditor": "PASS",
+    "current_schema_auditor": "PASS",
+    "attempt_scramble_identifiability_adversary": "PASS_BOUNDARY_FOUND",
+    "reco_surface_frame_auditor": "PASS_FULL_PUBLIC_INDEX_IDENTIFIED",
+    "plus2_penalty_adversary": "PASS_CORRECTED",
+    "date_key_adversary": "PASS_DATE_DEMOTED_TO_DIAGNOSTIC",
+    "selection_bias_auditor": "PASS_STRONG_BIAS_QUANTIFIED",
+    "outcome_proxy_claim_scope_auditor": "PASS_DESCRIPTIVE_ONLY",
+    "move_grammar_claim_scope_auditor": "PASS_CANDIDATE_ONLY",
+    "authority_auditor": "PASS_RESEARCH_ONLY_NO_MAIN_OR_HUMAN_WRITE"
+  },
+  "next_gate": "CUBE-REV 0.10.5-R1.7 — Counterfactual Route Alignment, Phase-aware Redundancy Phenotyping & Selection-corrected Reconstruction Analysis"
+}

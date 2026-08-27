@@ -1,0 +1,135 @@
+{
+  "schema_version": "CR0105R114-G4-CANONICAL-ROUX-ONTOLOGY-1",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "status": "PASS_G4_DEVELOPMENT_ONTOLOGY",
+  "baseline_id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+  "counts": {
+    "raw_unique_attempts": 144,
+    "parse_ok": 140,
+    "state_certified": 133,
+    "ordinary_fb_sb_eligible": 130,
+    "prefix_unique": 130,
+    "canonical": 114,
+    "block_disruptive": 12,
+    "fb_preserved_no_completion": 4,
+    "pseudo_fb_or_fbdr": 3,
+    "syntax_or_state_invalid": 11,
+    "ontology_unscorable": 0,
+    "cmll_opportunities": 111,
+    "cmll_consistent": 109,
+    "lse_opportunities": 114,
+    "lse_consistent": 111
+  },
+  "rates": {
+    "state_certification_rate": 0.9236111111111112,
+    "prefix_unique_rate_given_eligible": 1,
+    "ontology_assignment_rate_given_prefix_unique": 1,
+    "canonical_rate_given_prefix_unique": 0.8769230769230769,
+    "cmll_consistency_rate_canonical": 0.9819819819819819,
+    "lse_consistency_rate_canonical": 0.9736842105263158
+  },
+  "checks": {
+    "state_certified_n_min": true,
+    "ordinary_fb_sb_eligible_n_min": true,
+    "prefix_unique_rate_given_eligible_min": true,
+    "ontology_assignment_rate_given_prefix_unique_min": true,
+    "canonical_reference_attempts_min": true,
+    "cmll_consistency_rate_canonical_min": true,
+    "lse_consistency_rate_canonical_min": true,
+    "total_canonical_features_min": true,
+    "objective_canonical_features_min": true,
+    "all_features_g4_canonical": true
+  },
+  "source_counts": {
+    "SEALED_R111": {
+      "n": 98,
+      "eligible": 89,
+      "canonical": 83,
+      "block_disruptive": 4,
+      "preserved_no_completion": 2
+    },
+    "R112_EXPANSION": {
+      "n": 46,
+      "eligible": 41,
+      "canonical": 31,
+      "block_disruptive": 8,
+      "preserved_no_completion": 2
+    }
+  },
+  "frame_counts": {
+    "D|B": 8,
+    "U|F": 27,
+    "U|R": 21,
+    "U|L": 26,
+    "R|U": 2,
+    "U|B": 15,
+    "B|U": 3,
+    "D|R": 10,
+    "D|F": 8,
+    "F|L": 2,
+    "B|R": 2,
+    "D|L": 6
+  },
+  "feature_counts": {
+    "total": 792,
+    "objective": 453,
+    "anchor": 339,
+    "canonical_attempts": 114,
+    "phase": {
+      "FB": 114,
+      "SB": 228,
+      "CMLL": 222,
+      "LSE": 228
+    }
+  },
+  "confusion_vs_g3_diagnostic_only": {
+    "G3_ADMITTED -> CANONICAL_FB_PRESERVING": 114,
+    "NO_TRANSPORTED_SB_COMPLETION -> FB_PRESERVED_NO_COMPLETION_RESIDUAL": 4,
+    "ERROR -> SYNTAX_OR_STATE_INVALID": 8,
+    "NO_TRANSPORTED_SB_COMPLETION -> BLOCK_DISRUPTIVE_RESIDUAL": 6,
+    "G3_ADMITTED -> BLOCK_DISRUPTIVE_RESIDUAL": 6,
+    "FINAL_NOT_SOLVED -> SYNTAX_OR_STATE_INVALID": 3,
+    "FORK_PSEUDO_FB -> PSEUDO_FB_OR_FBDR_FORK": 2,
+    "FORK_FBDR -> PSEUDO_FB_OR_FBDR_FORK": 1
+  },
+  "errors": [
+    {
+      "attempt_key": "1656157:2",
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    },
+    {
+      "attempt_key": "1656157:5",
+      "error": "Unexpected character at index 5. Are you missing a space?"
+    },
+    {
+      "attempt_key": "6170102:2",
+      "error": "Invalid move for KPuzzle (3x3x3): DU'"
+    },
+    {
+      "attempt_key": "7130321:2",
+      "error": "Invalid move for KPuzzle (3x3x3): FB'"
+    },
+    {
+      "attempt_key": "7247265:5",
+      "error": "Invalid move for KPuzzle (3x3x3): DU'"
+    },
+    {
+      "attempt_key": "7247335:1",
+      "error": "Unexpected character at index 17. Are you missing a space?"
+    },
+    {
+      "attempt_key": "7247423:4",
+      "error": "Invalid move for KPuzzle (3x3x3): Rl"
+    },
+    {
+      "attempt_key": "7247448:2",
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    }
+  ],
+  "development_role": "CALIBRATION_AND_ONTOLOGY_STRESS_TEST_ONLY",
+  "r113_labels_used_for_classification": false,
+  "r113_features_or_scores_reused": false,
+  "post_result_gate_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "c0337535548b575a1ad2f5ebfda07414ada0d779b21aefe1150358c1d843e13c"
+}

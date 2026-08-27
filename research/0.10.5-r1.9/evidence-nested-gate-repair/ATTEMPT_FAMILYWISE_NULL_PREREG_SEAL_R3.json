@@ -1,0 +1,39 @@
+{
+  "schema_version": "CR0105R19-ATTEMPT-FAMILYWISE-NULL-PREREG-SEAL-R3-1",
+  "status": "SEALED_FOR_FUTURE_FRESH_VINTAGE_R3_NESTED_EXACT_PREREG_GATE",
+  "supersedes_initial_seal_sha256": "b7de3e635c4a304b35947920040e8d37aa9342f0703b5219e698e0d5a5e12e04",
+  "r2_nested_audit_sha256": "2fac7d4fa58ad289222814a1badd4bd5f084218c2cbf15a7b3107c4b583c9e48",
+  "r2_nested_rows_sha256": "d9d50ddbada7dac21a3cfd8fc75acbaa26eb277243c2663f5696a41ae4fab112",
+  "napkin_file_sha256": "e1fe8548a4d72deb83c4f7d8de0b4ea2123efea92b7b1e71e03d7466bcd2f537",
+  "repair_semantic_sha256": "2eb9bc8c119f35b742f221b240a4ba7b8a1ee528933f311a81a9be3876a12091",
+  "nested_dependency_rule": "For outer test fold f, test local reference uses folds != f. Every familywise-reference attempt in inner fold g is itself scored using only folds != f and != g. Thus no feature from outer test fold f can affect either its local score or the familywise reference scores against which it is compared.",
+  "familywise_support_gate": {
+    "non_global_min_n": 300,
+    "global_min_n": 1000
+  },
+  "primary_alpha": 0.01,
+  "watch_alpha": 0.05,
+  "nested_calibration": {
+    "attempts": 1677,
+    "primary_empirical_exceedance": 0.008348240906380441,
+    "watch_empirical_exceedance": 0.04770423375074538,
+    "level_support": {
+      "COUNT": {
+        "attempts": 180,
+        "min_n": 387,
+        "max_n": 964,
+        "required_min": 300
+      },
+      "METHOD_COUNT": {
+        "attempts": 1497,
+        "min_n": 378,
+        "max_n": 827,
+        "required_min": 300
+      }
+    }
+  },
+  "future_scoring_rule": "For a fresh attempt, score against the full sealed historical local reference, then compute add-one upper-tail probability against the sealed cross-fitted historical attempt-statistic reference at the highest supported multiplicity-conditioning level.",
+  "future_fresh_outcomes_seen": false,
+  "human_observations": 0,
+  "seal_sha256": "86522ee214024c8cac5257e07a4b9df451edff764fed13d9027ba79c957f2fca"
+}

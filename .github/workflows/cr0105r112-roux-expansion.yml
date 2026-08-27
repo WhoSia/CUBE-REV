@@ -1,0 +1,100 @@
+name: CR0105R112 One-shot Roux Expansion
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.12-roux-generation-g2]
+    paths: [cr0105r112/RUN_ACQUIRE]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: cr0105r112-acquire
+  cancel-in-progress: false
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify generation, NAPKIN, census and acquisition freeze
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          g=json.load(open('research/0.10.5-r1.12/GENERATION_INHERITANCE_LEDGER.json'))
+          n=json.load(open('research/0.10.5-r1.12/NAPKIN_GENERATION_FREEZE.json'))
+          c=json.load(open('research/0.10.5-r1.12/evidence-census/SEALED_ROUTE_CENSUS.json'))
+          a=json.load(open('research/0.10.5-r1.12/ACQUISITION_FREEZE.json'))
+          assert g['generation']=='ROUX-MEASUREMENT-G2'
+          assert n['frozen_before_r112_scoring'] is True
+          assert c['clean_unique_official_attempts']==98 and c['novel_sealed_attempts']==0
+          assert a['status']=='FROZEN_BEFORE_G2_GEOMETRY_AND_BEFORE_ROUTE_FETCH'
+          assert a['membership']['one_shot_cap']==800
+          assert a['stop_rule'].startswith('Exactly one')
+          print('CR0105R112_ACQUISITION_FREEZE_PASS')
+          PY
+      - name: Restore sealed R1.6 analytical DB
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r112
+          gh api -H 'Accept: application/vnd.github+json' repos/${GITHUB_REPOSITORY}/actions/artifacts/9310311696/zip > /tmp/r112/r16.zip
+          unzip -q /tmp/r112/r16.zip -d /tmp/r112/unpacked
+          DB="$(find /tmp/r112/unpacked -type f -name 'wca333.duckdb' -print -quit)"
+          test -n "$DB"
+          SHA="$(sha256sum "$DB" | awk '{print $1}')"
+          test "$SHA" = 'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1'
+          echo "R112_PARENT_DB=$DB" >> "$GITHUB_ENV"
+          echo "R112_PARENT_DB_SHA256=$SHA" >> "$GITHUB_ENV"
+          echo "R112_ROOT=/tmp/r112" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install frozen acquisition runtime
+        run: python -m pip install --disable-pip-version-check duckdb==1.3.2 requests==2.32.4 beautifulsoup4==4.13.4 lxml==6.0.0
+      - name: Freeze membership from sealed DB then fetch exactly once
+        id: acquire
+        shell: bash
+        run: |
+          set +e
+          python research/0.10.5-r1.12/r112_acquire_roux_expansion.py 2>&1 | tee /tmp/r112/ACQUISITION_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable acquisition evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.12/evidence-acquisition
+          for f in ROUX_EXPANSION_MEMBERSHIP.json ROUX_EXPANSION_ROUTE_MANIFEST.json ACQUISITION_LOG.txt; do
+            test -f "/tmp/r112/$f" && cp "/tmp/r112/$f" research/0.10.5-r1.12/evidence-acquisition/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          code=int('${{ steps.acquire.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R112-ACQUISITION-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'parent_artifact_id':9310311696,'parent_db_sha256':'a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1','exit_code':code,'operational_status':'PASS' if code==0 else 'FAIL','geometry_scored':False,'null_scored':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.12/evidence-acquisition/ACQUISITION_RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit acquisition evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.12/evidence-acquisition
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.12 one-shot acquisition ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.12-roux-generation-g2
+          git push origin HEAD:cube-rev-0.10.5-r1.12-roux-generation-g2
+      - name: Enforce acquisition execution only
+        if: always()
+        run: |
+          test '${{ steps.acquire.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          m=json.load(open('research/0.10.5-r1.12/evidence-acquisition/ROUX_EXPANSION_MEMBERSHIP.json'))
+          r=json.load(open('research/0.10.5-r1.12/evidence-acquisition/ROUX_EXPANSION_ROUTE_MANIFEST.json'))
+          assert m['status']=='PASS_MEMBERSHIP_FROZEN'
+          assert m['selection_uses_geometry'] is False
+          assert r['status']=='PASS_ACQUIRED'
+          assert r['new_linkage_performed'] is False
+          print('CR0105R112_ACQUISITION_COMPLETE',m['eligible_unique_official_attempts_n'],r['raw_route_source_n'])
+          PY

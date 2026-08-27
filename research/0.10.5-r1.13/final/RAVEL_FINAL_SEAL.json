@@ -1,0 +1,197 @@
+{
+  "schema_version": "CR0105R113-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.13 — Route-global Reconstruction Gauge, Rotation-covariant Prefix Frame & Rebuilt Roux Completion Null",
+  "status": "PASS_R113_COMPONENT_ENGINEERING_WITH_ROTATION_STRATUM_REMAND_NO_ROUX_AUTHORITY_RELEASE_G4_CANONICAL_ROUX_CANDIDATE_IDENTIFIED",
+  "final_seal_branch": "cube-rev-0.10.5-r1.13-final-seal",
+  "sealed_parent_commit": "db125ca1cc555cad85fde08dea83f3c78851b955",
+  "generation": {
+    "reviewed": "ROUX-MEASUREMENT-G3",
+    "g3_disposition": "REMANDED_NOT_RELEASED",
+    "next_candidate": "ROUX-MEASUREMENT-G4",
+    "whole_cube_rev_generation": "UNRESOLVED",
+    "generation_label_is_progress_claim": false,
+    "g4_requires_new_napkin_before_scoring": true,
+    "g4_future_scoring_authority_at_transition": false
+  },
+  "rotation_algebra": {
+    "status": "PASS_ROTATION_GAUGE_ALGEBRA",
+    "orientation_group_n": 24,
+    "rotation_token_n": 9,
+    "mapping_rows": 216,
+    "all_mappings_unique": true,
+    "inverse_and_order_checks": true,
+    "pure_rotation_path_invariance": true,
+    "semantic_sha256": "3a7a611adbe3e64e0cfcbac6d2cabccbf973a235c25060855a00989721bd2b82"
+  },
+  "development_geometry": {
+    "data_role": "DEVELOPMENT_AND_CALIBRATION_ONLY",
+    "candidate_bank_n": 144,
+    "state_certified_n": 133,
+    "ordinary_fb_sb_eligible_n": 130,
+    "prefix_unique_n": 130,
+    "prefix_unique_rate": 1.0,
+    "g3_admitted_n": 120,
+    "overall_sb_completion_rate": 0.9230769230769231,
+    "no_rotation_n": 124,
+    "no_rotation_completed_n": 117,
+    "no_rotation_completion_rate": 0.9435483870967742,
+    "rotation_present_n": 6,
+    "rotation_present_completed_n": 3,
+    "rotation_present_completion_rate": 0.5,
+    "frozen_rotation_present_gate": 0.75,
+    "rotation_present_gate_pass": false,
+    "cmll_consistency_rate": 0.9827586206896551,
+    "lse_consistency_rate": 0.975,
+    "feature_n": 832,
+    "objective_feature_n": 476,
+    "geometry_status": "HOLD_ROUX_G3_DEVELOPMENT_GEOMETRY",
+    "semantic_sha256": "4fa8067dc5541ff292acbd9241085371fd675edceb6bd87259153481f22f6c8e"
+  },
+  "null_engineering": {
+    "status": "HOLD_ONLY_BECAUSE_PRIMARY_GEOMETRY_GATE_FAILED",
+    "conditioned_statistical_stack_pass": true,
+    "loo_attempts": 120,
+    "loo_familywise_ok": 120,
+    "crossfit_attempts": 120,
+    "nested_familywise_ok": 120,
+    "transport_pairs": 120,
+    "loo_fallback_rate": 0.0,
+    "loo_watch_rate": 0.05,
+    "loo_primary_rate": 0.0,
+    "nested_watch_rate": 0.05,
+    "nested_primary_rate": 0.0,
+    "crossfit_loo_pearson": 0.989423183668037,
+    "crossfit_loo_abs_diff_p99": 0.21972505598650072,
+    "admitted_attempt_bank_n": 120,
+    "loo_reference_n": 119,
+    "minimum_add_one_p": 0.008333333333333333,
+    "primary_1pct_resolution_pass": true,
+    "alpha_relaxation": "PROHIBITED",
+    "semantic_sha256": "66005b081a505e14e8178089d8272a4bd656914ceccc9dbd5c5dc4369f2e3143"
+  },
+  "destroy_and_localization": {
+    "fixed_prefix_success_n": 120,
+    "forward_rotation_covariant_success_n": 120,
+    "inverse_covariant_success_n": 117,
+    "rotation_stratum_fixed_success_n": 3,
+    "rotation_stratum_forward_success_n": 3,
+    "rotation_stratum_inverse_success_n": 0,
+    "rotation_stratum_fixed_forward_outcome_agreement_n": 0,
+    "pure_rotation_events_n": 6,
+    "pure_rotation_events_block_status_invariant_n": 6,
+    "forward_failures_after_rotation_n": 3,
+    "forward_failures_break_at_rotation_n": 0,
+    "interpretation": "Explicit rotation transport algebra is locally valid, but rotation presence does not explain the residual route class. Fixed and forward transport select different three-of-six successes in the rotation stratum."
+  },
+  "residual_and_recombine_courts": {
+    "residual_n": 10,
+    "residual_with_rotation_n": 3,
+    "residual_first_block_break_n": 6,
+    "first_block_restored_after_break_n": 1,
+    "both_blocks_complete_any_later_n": 4,
+    "both_blocks_complete_before_cmll_n": 0,
+    "both_blocks_complete_before_lse_n": 1,
+    "general_move_center_cocycle_completion_n": 30,
+    "general_move_center_cocycle_completion_rate": 0.23076923076923078,
+    "general_move_center_cocycle_g3_failures_rescued": 1,
+    "general_move_center_cocycle_g3_successes_lost": 91,
+    "move_center_cocycle_disposition": "RETIRED_AS_GENERAL_GAUGE_TRANSPORT"
+  },
+  "generation_inheritance": {
+    "RETAIN": [
+      "FB-prefix-only unique gauge initialization",
+      "explicit whole-cube rotation transport algebra derived by asymmetric-state invariance",
+      "state-certified in-span two-block completion",
+      "Roux-only LOO/crossfit/nested attempt-level familywise null architecture",
+      "alpha=0.01 and N>=100 finite-resolution requirement"
+    ],
+    "DOWNGRADE": [
+      "rotation presence as an explanatory residual mechanism",
+      "fixed versus forward transport as universal route semantics"
+    ],
+    "RETIRE": [
+      "inverse rotation transport",
+      "general center-cocycle transport for wide/slice moves",
+      "R1.13 development feature/null bank for future confirmatory scoring"
+    ],
+    "MUTATE": [
+      "Roux ontology to prospectively separate canonical first-block-preserving SB from block-disruptive/noncanonical-or-reconstruction-inconsistent residual routes",
+      "authority court to a fresh-route test after the G4 ontology freeze"
+    ],
+    "FORK": [
+      "canonical first-block-preserving Roux SB",
+      "first-block-disruptive residual reconstructions",
+      "pseudo-FB/FBDR",
+      "syntactically invalid reconstruction records"
+    ],
+    "RECOMBINE": [
+      "G3 explicit-rotation gauge algebra + canonical Roux block-preservation ontology + rebuilt resolution-capable null stack"
+    ],
+    "UNRESOLVED": [
+      "whether block-disruptive residuals are legitimate advanced Roux variants, reconstruction inconsistencies, or route errors",
+      "whether a distinct subgoal ontology is needed for block-disruptive variants",
+      "whole-project CUBE-REV generation numbering"
+    ]
+  },
+  "ravel_roles": {
+    "DESIGN": "PASS: G3 NAPKIN and generation inheritance were frozen before scoring; R1.12 outcomes remained development-only.",
+    "IMPLEMENTATION": "PASS: rotation algebra, geometry, full re-featurization, null foundry, destroy/localization and generation-review courts all materialized evidence.",
+    "SKEPTIC": "PASS_WITH_REMAND: the targeted rotation-present hypothesis failed its preregistered 0.75 gate and was not relaxed.",
+    "STATISTICS": "PASS_COMPONENT: on 120 admitted development routes the attempt-level null stack has zero fallback, stable nested calibration and valid 1% empirical resolution; it carries no cognitive authority.",
+    "AUTHORITY": "PASS_NO_RELEASE: no Roux future scoring authority, cognitive prevalence, causal, intention or full-WCA claim is released.",
+    "GENERATION": "PASS_TRANSITION_CANDIDATE: G3 is remanded while a G4 ontology/authority candidate is identified."
+  },
+  "workflow_runs": {
+    "g3_development": "32458265002",
+    "rotation_destroy": "32458466399",
+    "rotation_localization": "32458624637",
+    "break_restore": "32458795785",
+    "generation_review": "32459178347"
+  },
+  "semantic_sha256": {
+    "rotation_fixture": "3a7a611adbe3e64e0cfcbac6d2cabccbf973a235c25060855a00989721bd2b82",
+    "g3_geometry": "4fa8067dc5541ff292acbd9241085371fd675edceb6bd87259153481f22f6c8e",
+    "g3_null": "66005b081a505e14e8178089d8272a4bd656914ceccc9dbd5c5dc4369f2e3143",
+    "rotation_destroy": "46c92c8bc474fefd340fa0fbefe33e7f4e470065ea7e0c88eedd044314fc6b19",
+    "rotation_localization": "cbed5023643e91e9e9fb28975497c15aca681d9307996d9269b3d86bbcef8a7c",
+    "break_restore": "c14c09a1b307d367328f4cc17d76d4e9042d64d93b494c44a1366f52d48966ce",
+    "move_cocycle": "8d47101700a18ef3724ffcb1c87812a0e4bcca748b95ed5f9b65940aadead3d2",
+    "generation_review": "94d15c457c793f3733f11e069d6f5a6700066634b1043d757ba44aa9f1f4c20d"
+  },
+  "main_authority": {
+    "main_commit_verified_at_closure": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "main_mutated_by_r113": false,
+    "public_runner_mutated_by_r113": false,
+    "collector_mutated_by_r113": false,
+    "research_branch_only": true
+  },
+  "claim_scope": {
+    "allowed": [
+      "The explicit x/y/z rotation gauge algebra passed internal group-action fixtures.",
+      "On the R1.12-derived development corpus, prefix gauge identification was unique on 130/130 ordinary-FB eligible routes and transported in-span two-block completion was observed on 120/130.",
+      "No-rotation routes completed at 117/124, while the preregistered rotation-present stratum completed at 3/6 and failed its 0.75 gate.",
+      "The 120 admitted development routes support a zero-fallback, nested attempt-level null bank with 1% empirical resolution.",
+      "A general move-level center-cocycle treatment of wide/slice moves was strongly rejected in posthoc diagnostics.",
+      "G3 is remanded and motivates a prospective canonical-Roux versus residual reconstruction-consistency ontology court."
+    ],
+    "prohibited": [
+      "Roux cognitive recovery or error prevalence",
+      "causal or intentional mechanism claims",
+      "full-WCA Roux prevalence",
+      "calling 120/130 a fresh or confirmatory G3 validation",
+      "releasing Roux future scoring authority from R1.13",
+      "declaring the ten residual routes invalid or non-Roux without a separate prospective ontology/reconstruction-consistency court"
+    ]
+  },
+  "next_stage": {
+    "version": "CUBE-REV 0.10.5-R1.14",
+    "generation": "ROUX-MEASUREMENT-G4",
+    "title": "Canonical Roux Block-preservation Ontology, Residual Reconstruction-consistency Fork & Fresh-route Gauge Authority Court",
+    "required_first_action": "Open a new G4 NAPKIN and prospective inheritance ledger before any route reclassification or fresh scoring.",
+    "r113_routes_may_be_confirmatory": false,
+    "fresh_routes_required_for_authority": true,
+    "rebuild_or_freeze_eligible_reference_bank_before_fresh_outcomes": true
+  },
+  "human_observations": 0,
+  "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN"
+}

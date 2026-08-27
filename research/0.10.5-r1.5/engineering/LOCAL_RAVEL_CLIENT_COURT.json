@@ -1,0 +1,28 @@
+{
+  "schema_version": "CR0105R15-LOCAL-RAVEL-CLIENT-COURT-1",
+  "stage": "CUBE-REV 0.10.5-R1.5 — Immutable Submission Snapshot Promotion, Duplicate Stored-byte Reverification & Receipt-race Closure",
+  "status": "PASS",
+  "verdict": "CR0105R15_RAVEL_CLIENT_PASS_6_OF_6",
+  "tested_client": {
+    "bytes": 22087,
+    "sha256": "a155b2fb532c4fdcd20eaa2feb1c9c84b647b627c278a61c2dd44fbaa46f90f6",
+    "git_blob": "163e5114ef6ce725c2dfa06a6fe38d8e814190b0",
+    "production_marker": "0.10.5-R1.5"
+  },
+  "courts": {
+    "normal_stored_and_same_client_inflight_collapse": "PASS",
+    "receipt_loss_reload_retry_reuses_byte_identical_persisted_snapshot": "PASS",
+    "persisted_snapshot_corruption_fails_closed": "PASS",
+    "r14_cache_first_mutated_duplicate_counterexample_rejected_after_fresh_drive_reverification": "PASS",
+    "legitimate_same_byte_duplicate_accepts_only_after_independent_fresh_nonce_drive_lookup": "PASS",
+    "durable_snapshot_storage_unavailable_fails_closed": "PASS"
+  },
+  "r14_counterexample_fixture": {
+    "stored_A_checksum_fnv1a32": "b467dd85",
+    "mutated_B_checksum_fnv1a32": "c8d53a2d",
+    "expected_failure": "DUPLICATE_STORED_BYTE_CHECKSUM_MISMATCH"
+  },
+  "proof_scope": "Deterministic cache-first and retry-reconstruction court against the exact JavaScript bytes later materialized as Git blob 163e5114ef6ce725c2dfa06a6fe38d8e814190b0. Network/public-byte and live-production evidence are sealed separately.",
+  "human_observations": 0,
+  "human_launch": false
+}

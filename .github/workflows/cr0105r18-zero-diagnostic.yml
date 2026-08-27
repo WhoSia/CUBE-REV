@@ -1,0 +1,73 @@
+name: CR0105R18 Zero Court RAVEL Diagnostic
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.8-prospective-subgoal-court]
+    paths: [cr0105r18/RUN_ZERO_DIAGNOSTIC]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r18-zero-diagnostic
+  cancel-in-progress: false
+jobs:
+  diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify prospective zero is sealed and diagnostic is posthoc
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          r=json.load(open('research/0.10.5-r1.8/evidence-holdout-a/RUN_METADATA.json'))
+          s=json.load(open('research/0.10.5-r1.8/evidence-null-calibration-r2/NULL_THRESHOLD_SEAL.json'))
+          assert r['court_status']=='PASS' and r['null_threshold_seal']==s['seal_sha256']
+          assert s['holdout_outcomes_seen'] is False
+          print('R18_POSTHOC_ZERO_DIAGNOSTIC_LINEAGE_PASS')
+          PY
+      - name: Run support-mismatch diagnostic without changing the prospective result
+        id: audit
+        shell: bash
+        run: |
+          set +e
+          python research/0.10.5-r1.8/r18_zero_court_diagnostic.py 2>&1 | tee /tmp/r18zero.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist diagnostic
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.8/evidence-zero-diagnostic
+          test -f /tmp/r18zero/ZERO_COURT_DIAGNOSTIC.json && cp /tmp/r18zero/ZERO_COURT_DIAGNOSTIC.json research/0.10.5-r1.8/evidence-zero-diagnostic/ || true
+          cp /tmp/r18zero.log research/0.10.5-r1.8/evidence-zero-diagnostic/DIAGNOSTIC_LOG.txt || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          c=int('${{ steps.audit.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R18-ZERO-DIAGNOSTIC-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'exit_code':c,'status':'PASS' if c==0 else 'FAIL','role':'POSTHOC_MEASUREMENT_SUPPORT_AUDIT','prospective_result_changed':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.8/evidence-zero-diagnostic/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit diagnostic evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.8/evidence-zero-diagnostic
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.8 zero diagnostic ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.8-prospective-subgoal-court
+      - name: Enforce diagnostic only
+        if: always()
+        run: |
+          test '${{ steps.audit.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.8/evidence-zero-diagnostic/ZERO_COURT_DIAGNOSTIC.json'))
+          assert x['status']=='PASS_DIAGNOSTIC'
+          assert x['prospective_result_unchanged']['algorithm_excess_attempts']==0
+          assert x['prospective_result_unchanged']['r17_r5_primitive_attempts']==0
+          print('CR0105R18_ZERO_DIAGNOSTIC_PASS')
+          PY

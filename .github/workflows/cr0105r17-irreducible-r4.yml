@@ -1,0 +1,99 @@
+name: CR0105R17 Minimal Irreducible R4
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.7-full-court]
+    paths: [cr0105r17/RUN_IRREDUCIBLE_R4]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r17-irreducible-r4
+  cancel-in-progress: false
+jobs:
+  court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify R3 and inherited target gate
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          r=json.load(open('research/0.10.5-r1.7/evidence-full-route-r3/FULL_ROUTE_COURT.json'))
+          assert r['schema_version']=='CR0105R17-STRUCTURAL-ROUTE-COURT-1' and r['status']=='PASS'
+          print('R17_R4_R3_LINEAGE_PASS')
+          PY
+          git fetch origin cube-rev-0.10.5-r1.7-selection-court
+          git show origin/cube-rev-0.10.5-r1.7-selection-court:research/0.10.5-r1.7/evidence-selection-target/TARGET_SELECTION_ADJUDICATION.json > /tmp/r17_target.json
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/r17_target.json'));r=next(z for z in x['results'] if z['name']=='UNDER10_SPEED_X_ERA')
+          assert r['gate']['ess_min']==200 and r['status']=='PASS_INTERNAL_WEIGHT_GATE'
+          PY
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Restore exact sample without web fetch
+        run: |
+          mkdir -p /tmp/r17full/route /tmp/r17r4
+          cp research/0.10.5-r1.7/evidence-full-route/FULL_ROUTE_SAMPLE_MANIFEST.json /tmp/r17full/FULL_ROUTE_SAMPLE_MANIFEST.json
+      - name: Freeze posthoc irreducible sensitivity definition
+        run: python research/0.10.5-r1.7/r17_irreducible_route_patch_r4.py | tee /tmp/r17r4/filter.log
+      - name: Execute minimal irreducible route court
+        id: route
+        shell: bash
+        run: |
+          set +e
+          export R17_FULL_ROOT=/tmp/r17full
+          node research/0.10.5-r1.7/r17_irreducible_route_r4_runtime.mjs 2>&1 | tee /tmp/r17r4/route.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist R4 evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.7/evidence-full-route-r4
+          cp /tmp/r17full/route/*.json research/0.10.5-r1.7/evidence-full-route-r4/ 2>/dev/null || true
+          cp /tmp/r17r4/IRREDUCIBLE_FILTER_FREEZE.json research/0.10.5-r1.7/evidence-full-route-r4/ 2>/dev/null || true
+          test -f /tmp/r17r4/filter.log && cp /tmp/r17r4/filter.log research/0.10.5-r1.7/evidence-full-route-r4/FILTER_LOG.txt || true
+          test -f /tmp/r17r4/route.log && cp /tmp/r17r4/route.log research/0.10.5-r1.7/evidence-full-route-r4/IRREDUCIBLE_ROUTE_LOG.txt || true
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          code=int('${{ steps.route.outputs.exit_code || 97 }}')
+          x={'schema_version':'CR0105R17-IRREDUCIBLE-R4-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'route_exit_code':code,'status':'PASS' if code==0 else 'HOLD','new_web_fetches':0,'role':'POSTHOC_ADVERSARIAL_SENSITIVITY','human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.7/evidence-full-route-r4/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit R4 evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          rm -f research/0.10.5-r1.7/r17_irreducible_route_r4_runtime.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.7/evidence-full-route-r4
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.7 irreducible route R4 ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.7-full-court
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: CR0105R17-irreducible-route-r4
+          retention-days: 30
+          if-no-files-found: warn
+          path: research/0.10.5-r1.7/evidence-full-route-r4/
+      - name: Enforce R4 execution
+        if: always()
+        run: |
+          test '${{ steps.route.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('research/0.10.5-r1.7/evidence-full-route-r4/IRREDUCIBLE_FILTER_FREEZE.json'))
+          r=json.load(open('research/0.10.5-r1.7/evidence-full-route-r4/FULL_ROUTE_COURT.json'))
+          assert p['role']=='POSTHOC_ADVERSARIAL_ROBUSTNESS_NOT_PRIMARY_PREREGISTRATION'
+          assert r['schema_version']=='CR0105R17-IRREDUCIBLE-ROUTE-COURT-1' and r['status']=='PASS'
+          assert r['human_observations']==0
+          print('CR0105R17_IRREDUCIBLE_R4_PASS')
+          PY

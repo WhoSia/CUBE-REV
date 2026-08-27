@@ -1,0 +1,8 @@
+{
+  "schema_version": "CR0105R18-HOLDOUT-RUNTIME-PATCH-1",
+  "status": "PASS_COMPUTATIONAL_EQUIVALENCE_PATCH",
+  "change": "Pre-index phase-line positive/eligible counts by official attempt before cluster bootstrap; estimand, PRNG, bootstrap resampling unit, replicate count, and scoring thresholds unchanged.",
+  "scientific_definition_changed": false,
+  "holdout_route_outcomes_read_by_patch": false,
+  "human_observations": 0
+}
