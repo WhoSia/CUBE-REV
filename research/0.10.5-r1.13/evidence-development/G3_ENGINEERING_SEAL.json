@@ -1,0 +1,13 @@
+{
+  "schema_version": "CR0105R113-G3-ENGINEERING-SEAL-1",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "status": "HOLD_ENGINEERING",
+  "geometry_semantic_sha256": "4fa8067dc5541ff292acbd9241085371fd675edceb6bd87259153481f22f6c8e",
+  "null_semantic_sha256": "66005b081a505e14e8178089d8272a4bd656914ceccc9dbd5c5dc4369f2e3143",
+  "development_engineering_pass": false,
+  "future_roux_scoring_authority": false,
+  "fresh_route_court_required": true,
+  "r112_outcomes_confirmatory": false,
+  "human_observations": 0,
+  "seal_sha256": "42153a57c8cef2221c9c9556d2d16c9620badd0d9726be159695880f45f64c83"
+}

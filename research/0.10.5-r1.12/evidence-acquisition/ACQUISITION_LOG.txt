@@ -1,0 +1,13 @@
+R112_ACQ_PROGRESS 46/46
+{
+  "status": "PASS_ACQUIRED",
+  "selected_n": 46,
+  "raw_route_source_n": 46,
+  "raw_route_source_rate": 1.0,
+  "route_source_failures": {}
+}
+{
+  "eligible_unique_official_attempts_n": 46,
+  "selected_n": 46,
+  "selection_exhausted_pool": true
+}

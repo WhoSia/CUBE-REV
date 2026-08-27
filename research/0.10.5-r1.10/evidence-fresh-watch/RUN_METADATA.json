@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R110-FRESH-WATCH-RUN-1",
+  "workflow_run_id": "32365958262",
+  "head_sha": "51493a1a805d8895faada6b4d195045a59b95dd0",
+  "local_authority_seal": "b83478923356bb9a0de1a40613f6e6a58ddf482d538393d7dc40b04eb1291cc6",
+  "exit_code": 0,
+  "operational_status": "PASS",
+  "confirmatory_scoring_authorized": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T11:53:18.360285+00:00"
+}

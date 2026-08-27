@@ -1,0 +1,441 @@
+{
+  "A": {
+    "marker": "0.10.5-R1.5",
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:57:19.580Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-20260818025716-25e03c88cea8",
+      "participant_code": "SYNTHETIC-NONHUMAN-R15",
+      "mode": "SYNTHETIC_CANARY_R15",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.5",
+      "payload_tag": "ORIGINAL-A",
+      "trials": [],
+      "data_submission": {
+        "status": "received",
+        "receipt_confirmed": true,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:57:19.831Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:57:20.612Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 352,
+        "transmitted_bytes": 352,
+        "checksum_fnv1a32": "ec67f94d",
+        "submission_nonce": "3706921187cfa6b30788e021",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "submission_snapshot_source": "sealed_now",
+        "collector_status": "stored",
+        "received_at": "2026-08-18T02:57:26.422Z",
+        "receipt_code": "RM0JWJQ0JZ_U",
+        "file_name": "CR-20260818025716-25e03c88cea8.json",
+        "last_error": null,
+        "transport": "jsonp_receipt_poll",
+        "response_verification": "collector_receipt",
+        "checksum_verified": true,
+        "stored_byte_reverified": false
+      }
+    },
+    "receipt": {
+      "type": "CUBE_REV_COLLECTOR_ACK",
+      "ok": true,
+      "status": "stored",
+      "submission_nonce": "3706921187cfa6b30788e021",
+      "session_id": "CR-20260818025716-25e03c88cea8",
+      "file_name": "CR-20260818025716-25e03c88cea8.json",
+      "received_at": "2026-08-18T02:57:26.422Z",
+      "receipt_code": "RM0JWJQ0JZ_U",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "ec67f94d",
+      "error": null,
+      "transport": "jsonp_receipt_poll",
+      "response_verified": true,
+      "checksum_verified": true,
+      "stored_byte_reverified": false
+    },
+    "error": null,
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:57:20.612Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_receipt_confirmed",
+        "collector_status": "stored",
+        "file_name": "CR-20260818025716-25e03c88cea8.json",
+        "receipt_code": "RM0JWJQ0JZ_U",
+        "submission_method": "automatic",
+        "transport": "jsonp_receipt_poll",
+        "response_verified": true,
+        "checksum_verified": true,
+        "stored_byte_reverified": false
+      }
+    ]
+  },
+  "A_errors": [],
+  "B": {
+    "marker": "0.10.5-R1.5",
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:57:30.733Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-20260818025716-25e03c88cea8",
+      "participant_code": "SYNTHETIC-NONHUMAN-R15",
+      "mode": "SYNTHETIC_CANARY_R15",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.5",
+      "payload_tag": "MUTATED-B",
+      "trials": [],
+      "data_submission": {
+        "status": "failed",
+        "receipt_confirmed": false,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:57:31.017Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:57:31.940Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 351,
+        "transmitted_bytes": 351,
+        "checksum_fnv1a32": "f1329fe3",
+        "submission_nonce": "3132a684eec40cac38c348a2",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "submission_snapshot_source": "sealed_now",
+        "last_error": "수집기가 저장한 파일의 무결성 확인값이 일치하지 않습니다."
+      }
+    },
+    "receipt": null,
+    "error": "수집기가 저장한 파일의 무결성 확인값이 일치하지 않습니다.",
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:57:31.940Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_failed",
+        "error": "수집기가 저장한 파일의 무결성 확인값이 일치하지 않습니다.",
+        "manual_portal_available": true,
+        "receipt_confirmed": false
+      }
+    ]
+  },
+  "B_errors": [],
+  "C": {
+    "marker": "0.10.5-R1.5",
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:57:39.046Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-20260818025737-b52d31650170",
+      "participant_code": "SYNTHETIC-NONHUMAN-R15",
+      "mode": "SYNTHETIC_CANARY_R15",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.5",
+      "payload_tag": "IDENTICAL-C",
+      "trials": [],
+      "data_submission": {
+        "status": "received",
+        "receipt_confirmed": true,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:57:39.268Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:57:39.812Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 353,
+        "transmitted_bytes": 353,
+        "checksum_fnv1a32": "4150d1bb",
+        "submission_nonce": "bb4350f1fec9eca6800ba85e",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "submission_snapshot_source": "sealed_now",
+        "collector_status": "stored",
+        "received_at": "2026-08-18T02:57:42.595Z",
+        "receipt_code": "1NHPWH_AVRHZ",
+        "file_name": "CR-20260818025737-b52d31650170.json",
+        "last_error": null,
+        "transport": "jsonp_receipt_poll",
+        "response_verification": "collector_receipt",
+        "checksum_verified": true,
+        "stored_byte_reverified": false
+      }
+    },
+    "receipt": {
+      "type": "CUBE_REV_COLLECTOR_ACK",
+      "ok": true,
+      "status": "stored",
+      "submission_nonce": "bb4350f1fec9eca6800ba85e",
+      "session_id": "CR-20260818025737-b52d31650170",
+      "file_name": "CR-20260818025737-b52d31650170.json",
+      "received_at": "2026-08-18T02:57:42.595Z",
+      "receipt_code": "1NHPWH_AVRHZ",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "4150d1bb",
+      "error": null,
+      "transport": "jsonp_receipt_poll",
+      "response_verified": true,
+      "checksum_verified": true,
+      "stored_byte_reverified": false
+    },
+    "error": null,
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:57:39.812Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_receipt_confirmed",
+        "collector_status": "stored",
+        "file_name": "CR-20260818025737-b52d31650170.json",
+        "receipt_code": "1NHPWH_AVRHZ",
+        "submission_method": "automatic",
+        "transport": "jsonp_receipt_poll",
+        "response_verified": true,
+        "checksum_verified": true,
+        "stored_byte_reverified": false
+      }
+    ]
+  },
+  "C_errors": [],
+  "D": {
+    "marker": "0.10.5-R1.5",
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:57:46.640Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-20260818025737-b52d31650170",
+      "participant_code": "SYNTHETIC-NONHUMAN-R15",
+      "mode": "SYNTHETIC_CANARY_R15",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.5",
+      "payload_tag": "IDENTICAL-C",
+      "trials": [],
+      "data_submission": {
+        "status": "received",
+        "receipt_confirmed": true,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:57:46.849Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:57:47.657Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 353,
+        "transmitted_bytes": 353,
+        "checksum_fnv1a32": "4150d1bb",
+        "submission_nonce": "ec20f22a788544ff0e8d791b",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "submission_snapshot_source": "sealed_now",
+        "collector_status": "stored",
+        "received_at": "2026-08-18T02:57:42.595Z",
+        "receipt_code": "1NHPWH_AVRHZ",
+        "file_name": "CR-20260818025737-b52d31650170.json",
+        "last_error": null,
+        "transport": "jsonp_receipt_poll",
+        "response_verification": "collector_receipt",
+        "checksum_verified": true,
+        "stored_byte_reverified": false
+      }
+    },
+    "receipt": {
+      "type": "CUBE_REV_COLLECTOR_ACK",
+      "ok": true,
+      "status": "stored",
+      "submission_nonce": "ec20f22a788544ff0e8d791b",
+      "session_id": "CR-20260818025737-b52d31650170",
+      "file_name": "CR-20260818025737-b52d31650170.json",
+      "received_at": "2026-08-18T02:57:42.595Z",
+      "receipt_code": "1NHPWH_AVRHZ",
+      "confirmation_source": "drive_lookup",
+      "checksum_fnv1a32": "4150d1bb",
+      "error": null,
+      "transport": "jsonp_receipt_poll",
+      "response_verified": true,
+      "checksum_verified": true,
+      "stored_byte_reverified": false
+    },
+    "error": null,
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:57:47.657Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_receipt_confirmed",
+        "collector_status": "stored",
+        "file_name": "CR-20260818025737-b52d31650170.json",
+        "receipt_code": "1NHPWH_AVRHZ",
+        "submission_method": "automatic",
+        "transport": "jsonp_receipt_poll",
+        "response_verified": true,
+        "checksum_verified": true,
+        "stored_byte_reverified": false
+      }
+    ]
+  },
+  "D_errors": [],
+  "STALE": {
+    "marker": "0.10.5-R1.5",
+    "staleRejected": true,
+    "error": "collectorClient.versionMismatch"
+  },
+  "STALE_errors": [],
+  "mismatch_session_id": "CR-20260818025716-25e03c88cea8",
+  "samebyte_session_id": "CR-20260818025737-b52d31650170"
+}

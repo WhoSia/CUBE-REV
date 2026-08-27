@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R114-GENERATION-REVIEW-RUN-1",
+  "workflow_run_id": "32540233942",
+  "head_sha": "6cf2af7bdc83314a5ed7ef695c684a769be36eb0",
+  "exit_code": 0,
+  "main_expected_sha": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+  "primary_gate_changed": false,
+  "reference_bank_changed": false,
+  "fresh_authority_released": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-22T00:24:26.474228+00:00"
+}

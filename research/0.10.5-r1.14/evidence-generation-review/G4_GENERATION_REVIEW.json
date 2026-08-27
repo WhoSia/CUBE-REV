@@ -1,0 +1,67 @@
+{
+  "schema_version": "CR0105R114-G4-GENERATION-REVIEW-1",
+  "stage": "CUBE-REV 0.10.5-R1.14 — Canonical Roux Block-preservation Ontology, Residual Reconstruction-consistency Fork & Fresh-route Gauge Authority Court",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "status": "PASS_GENERATION_REVIEW_CLOSURE",
+  "generation_disposition": "VALIDATED_FOR_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT_AUTHORITY_DATA_WAIT",
+  "evidence_chain": {
+    "development_ontology": "PASS_G4_DEVELOPMENT_ONTOLOGY",
+    "development_canonical_n": 114,
+    "reference_null": "PASS_G4_CANONICAL_REFERENCE_NULL",
+    "reference_attempt_n": 114,
+    "reference_seal_sha256": "7cc0aaa2754fe911aa1bc536b3a53c527410b710f466ebe30ce8bbe37f17861a",
+    "preexisting_unseen_transport": "PASS_PREEXISTING_UNSEEN_ONTOLOGY_TRANSPORT",
+    "preexisting_raw_n": 120,
+    "preexisting_canonical_n": 105,
+    "preexisting_canonical_rate_given_eligible": 0.8974358974358975,
+    "preexisting_fallback_rate": 0,
+    "fresh_raw_n": 0,
+    "fresh_minimum_required": 20,
+    "fresh_status": "HOLD_DATA_WAIT",
+    "r1_operational_supersession_preserved": true
+  },
+  "inheritance": {
+    "RETAIN": [
+      "G4 CANONICAL_FB_PRESERVING state ontology",
+      "BLOCK_DISRUPTIVE_RESIDUAL and FB_PRESERVED_NO_COMPLETION_RESIDUAL as observable forks",
+      "prefix-only gauge identification with explicit x/y/z transport",
+      "114-attempt canonical reference bank and its frozen local/familywise null",
+      "1% add-one resolution and no-alpha-relaxation",
+      "freshness baseline and post-freeze-only authority rule"
+    ],
+    "DOWNGRADE": [
+      "preexisting unseen familywise tail is transport-diagnostic only and cannot be interpreted as cognitive anomaly prevalence"
+    ],
+    "RETIRE": [
+      "superseded preexisting court R1 output caused by omitted pre-recorded helper repair"
+    ],
+    "MUTATE": [],
+    "FORK": [
+      "future genuinely post-freeze fresh authority lane remains separate from baseline-present unseen lane"
+    ],
+    "RECOMBINE": [
+      "G4 ontology plus frozen reference scorer is technically ready for a future post-freeze fresh court without reopening development definitions"
+    ],
+    "UNRESOLVED": [
+      "fresh authority because post-freeze fresh Roux N=0",
+      "official-attempt duplicate exclusion for future fresh records when linkage is not yet available"
+    ]
+  },
+  "authority": {
+    "roux_future_scoring_authority": false,
+    "preexisting_unseen_can_release": false,
+    "fresh_data_wait": true,
+    "cognitive_recovery_or_error_claim": "PROHIBITED",
+    "causal_intentional_strategy_claim": "PROHIBITED",
+    "full_WCA_prevalence": "PROHIBITED",
+    "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN",
+    "human_observations": 0
+  },
+  "next_generation": {
+    "open_new_generation_now": false,
+    "reason": "Data wait is not a measurement-generation failure. Keep G4 frozen until genuinely post-freeze fresh Roux evidence exists; meanwhile manuscript/observation-operator synthesis may proceed on a separate writing branch."
+  },
+  "post_result_gate_change": false,
+  "generated_at_utc": "2026-08-22T00:24:26.412124+00:00",
+  "semantic_sha256": "ee736b975515d98394509b31cfce9e8b90ab27d88b5840a448692648a89751e7"
+}

@@ -1,0 +1,370 @@
+{
+  "A": {
+    "marker": "0.10.5-R1.5",
+    "config": {
+      "collectorId": "CUBE-REV-0712-MAIN",
+      "protocolVersion": "receipt-v2"
+    },
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:55:46.703Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-R15-M-12524fd87f43",
+      "participant_code": "SYNTHETIC-NONHUMAN-R15",
+      "mode": "SYNTHETIC_CANARY_R15",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.5",
+      "payload_tag": "A",
+      "trials": [],
+      "data_submission": {
+        "status": "failed",
+        "receipt_confirmed": false,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:55:47.024Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:55:47.774Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 334,
+        "transmitted_bytes": 334,
+        "checksum_fnv1a32": "3b4a00e8",
+        "submission_nonce": "19be581bb25ba1b0d754d0fa",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "submission_snapshot_source": "sealed_now",
+        "last_error": "Invalid CUBE-REV session ID."
+      }
+    },
+    "receipt": null,
+    "error": "Invalid CUBE-REV session ID.",
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:55:47.774Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_failed",
+        "error": "Invalid CUBE-REV session ID.",
+        "manual_portal_available": true,
+        "receipt_confirmed": false
+      }
+    ]
+  },
+  "A_errors": [],
+  "B": {
+    "marker": "0.10.5-R1.5",
+    "config": {
+      "collectorId": "CUBE-REV-0712-MAIN",
+      "protocolVersion": "receipt-v2"
+    },
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:55:51.092Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-R15-M-12524fd87f43",
+      "participant_code": "SYNTHETIC-NONHUMAN-R15",
+      "mode": "SYNTHETIC_CANARY_R15",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.5",
+      "payload_tag": "B",
+      "trials": [],
+      "data_submission": {
+        "status": "failed",
+        "receipt_confirmed": false,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:55:51.292Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:55:51.830Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 334,
+        "transmitted_bytes": 334,
+        "checksum_fnv1a32": "3b4a00e8",
+        "submission_nonce": "f46d85b18ba14d8b9d6d523f",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "submission_snapshot_source": "local_storage",
+        "last_error": "Invalid CUBE-REV session ID."
+      }
+    },
+    "receipt": null,
+    "error": "Invalid CUBE-REV session ID.",
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:55:51.830Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_failed",
+        "error": "Invalid CUBE-REV session ID.",
+        "manual_portal_available": true,
+        "receipt_confirmed": false
+      }
+    ]
+  },
+  "B_errors": [],
+  "C": {
+    "marker": "0.10.5-R1.5",
+    "config": {
+      "collectorId": "CUBE-REV-0712-MAIN",
+      "protocolVersion": "receipt-v2"
+    },
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:55:55.045Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-R15-S-017c1d73489a",
+      "participant_code": "SYNTHETIC-NONHUMAN-R15",
+      "mode": "SYNTHETIC_CANARY_R15",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.5",
+      "payload_tag": "C",
+      "trials": [],
+      "data_submission": {
+        "status": "failed",
+        "receipt_confirmed": false,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:55:55.195Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:55:55.957Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 334,
+        "transmitted_bytes": 334,
+        "checksum_fnv1a32": "4ba1ddba",
+        "submission_nonce": "9e63af908484b4f1f1621c50",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "submission_snapshot_source": "sealed_now",
+        "last_error": "Invalid CUBE-REV session ID."
+      }
+    },
+    "receipt": null,
+    "error": "Invalid CUBE-REV session ID.",
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:55:55.957Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_failed",
+        "error": "Invalid CUBE-REV session ID.",
+        "manual_portal_available": true,
+        "receipt_confirmed": false
+      }
+    ]
+  },
+  "C_errors": [],
+  "D": {
+    "marker": "0.10.5-R1.5",
+    "config": {
+      "collectorId": "CUBE-REV-0712-MAIN",
+      "protocolVersion": "receipt-v2"
+    },
+    "health": {
+      "type": "CUBE_REV_COLLECTOR_HEALTH",
+      "ok": true,
+      "service": "CUBE-REV collector",
+      "expected_version": "0.7.12",
+      "requested_version": "0.7.12",
+      "version_match": true,
+      "accepted_record_versions": [
+        "0.6.11",
+        "0.7.12"
+      ],
+      "collector_id": "CUBE-REV-0712-MAIN",
+      "protocol_version": "receipt-v2",
+      "collector_match": true,
+      "protocol_match": true,
+      "receipt_confirmation_available": true,
+      "manual_upload_available": true,
+      "deployment_id": "AKfycbwJEB0khZSm",
+      "server_time": "2026-08-18T02:55:59.409Z"
+    },
+    "session": {
+      "project": "CUBE-REV",
+      "version": "0.7.12",
+      "session_id": "CR-R15-S-017c1d73489a",
+      "participant_code": "SYNTHETIC-NONHUMAN-R15",
+      "mode": "SYNTHETIC_CANARY_R15",
+      "source_class": "ENGINEERING_LIVE_CANARY",
+      "human_observation": false,
+      "synthetic_canary": true,
+      "research_stage": "CUBE-REV 0.10.5-R1.5",
+      "payload_tag": "C",
+      "trials": [],
+      "data_submission": {
+        "status": "failed",
+        "receipt_confirmed": false,
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-18T02:55:59.580Z",
+        "manual": false,
+        "collector_health": {
+          "checked_at": "2026-08-18T02:56:00.313Z",
+          "expected_version": "0.7.12",
+          "receipt_confirmation_available": true,
+          "deployment_id": "AKfycbwJEB0khZSm",
+          "collector_id": "CUBE-REV-0712-MAIN",
+          "protocol_version": "receipt-v2"
+        },
+        "encoding": "json",
+        "original_bytes": 334,
+        "transmitted_bytes": 334,
+        "checksum_fnv1a32": "4ba1ddba",
+        "submission_nonce": "0b12caaadfa2ce3fc3623543",
+        "confirmation_protocol": "post_then_jsonp_receipt_v2",
+        "submission_snapshot_source": "local_storage",
+        "last_error": "Invalid CUBE-REV session ID."
+      }
+    },
+    "receipt": null,
+    "error": "Invalid CUBE-REV session ID.",
+    "events": [
+      {
+        "type": "submission_attempted",
+        "attempt_count": 1,
+        "study_id": "CUBE-REV-0.7.12",
+        "manual": false,
+        "confirmation_protocol": "post_then_receipt_v2"
+      },
+      {
+        "type": "collector_health_confirmed",
+        "checked_at": "2026-08-18T02:56:00.313Z",
+        "expected_version": "0.7.12",
+        "receipt_confirmation_available": true,
+        "deployment_id": "AKfycbwJEB0khZSm",
+        "collector_id": "CUBE-REV-0712-MAIN",
+        "protocol_version": "receipt-v2"
+      },
+      {
+        "type": "submission_failed",
+        "error": "Invalid CUBE-REV session ID.",
+        "manual_portal_available": true,
+        "receipt_confirmed": false
+      }
+    ]
+  },
+  "D_errors": [],
+  "STALE": {
+    "marker": "0.10.5-R1.5",
+    "staleRejected": true,
+    "error": "collectorClient.versionMismatch"
+  },
+  "STALE_errors": [],
+  "mismatch_session_id": "CR-R15-M-12524fd87f43",
+  "samebyte_session_id": "CR-R15-S-017c1d73489a"
+}

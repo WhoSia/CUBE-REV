@@ -1,0 +1,128 @@
+{
+  "schema_version": "CR0105R110-NAPKIN-1",
+  "stage": "CUBE-REV 0.10.5-R1.10 — Method-stratified Future-score Transport, Roux Block-frame Identification & Fresh-vintage Watch Seal",
+  "frozen_before_r110_execution": true,
+  "parent": {
+    "branch": "cube-rev-0.10.5-r1.9-final-seal",
+    "commit": "a876d4fc130d41bb20e6cd7d16abbe927ba0d51f",
+    "r19_status": "PASS_WITH_REPLICATION_READINESS_HOLD",
+    "r19_future_scoring_authority": false,
+    "r19_global_transport_failure": "crossfit-versus-full-history attempt-statistic correlation 0.9343681479872616 < frozen 0.95 gate",
+    "r19_posthoc_localization": "CFOP 0.9965966880069477; ZB 0.9883379784794232; Roux 0.5620191598193393. These are design inputs only, not R1.10 results."
+  },
+  "intent": {
+    "primary": "Replace the failed all-method future-score transport authority with a prospectively frozen method-family design without modifying the R1.9 phase-objective quotient metric for CFOP/ZB.",
+    "secondary": "Replace the weak Roux last-face proxy with a state-derived 1x2x3 block-frame identification court before any Roux scoring authority can be considered.",
+    "tertiary": "After the local transport/frame authority court is sealed, read the current reco.nz index once and issue a watch-only freshness seal. No fresh confirmatory phenotype estimate is authorized in R1.10."
+  },
+  "historical_data_role": "R1.7 and R1.8 routes remain DEVELOPMENT_AND_CALIBRATION_ONLY. R1.10 does not relabel them as fresh replication.",
+  "method_families": {
+    "LAYERED": {
+      "methods": ["CFOP", "ZB"],
+      "rationale": "Both use the already validated R1.9 cross/F2L/last-layer quotient geometry. Roux is excluded from every LAYERED local and familywise reference distribution.",
+      "minimum_state_certified_attempts": 1200,
+      "future_authority_candidate": true
+    },
+    "ROUX": {
+      "methods": ["Roux"],
+      "future_authority_candidate": false,
+      "reason": "R1.10 is a frame-identification court only for Roux. Even a frame PASS does not authorize future Roux phenotype scoring until a later version freezes and calibrates a Roux-specific metric/null."
+    }
+  },
+  "layered_scorer": {
+    "metric_bytes": "Reuse R1.9 QUOTIENT_FEATURE_LEDGER amplitudes without changing quotient masks, phase classification, exact-null realization logic, move bins, or observed/reference envelopes.",
+    "local_reference_family_isolation": "Every local reference candidate must come from CFOP or ZB only. Roux rows are forbidden in LAYERED training/reference construction.",
+    "local_reference_hierarchy": [
+      "method×phase×channel×move_count_bin when n>=120",
+      "phase×channel×move_count_bin within LAYERED when n>=160",
+      "method×phase×channel when n>=120",
+      "phase×channel within LAYERED when n>=200",
+      "global channel within LAYERED when n>=500"
+    ],
+    "local_tail": "add-one conservative upper-tail probability from exact R1.9 reference_envelope amplitudes; score=-log10(p)",
+    "attempt_statistic": "maximum local tail score over all admitted quotient features in one official attempt",
+    "future_bank": "Leave-one-attempt-out full-history LAYERED attempt-statistic bank. Each historical bank row excludes that attempt's own features from its local reference. A genuinely fresh attempt is scored against the full sealed LAYERED local reference and compared with this LOO bank.",
+    "familywise_conditioning": "Within LAYERED only: method×feature-count-bin if n>=300 -> feature-count-bin if n>=300 -> method if n>=300 -> LAYERED global if n>=1000.",
+    "feature_count_bins": ["1-8", "9-12", "13-16", "17+"],
+    "primary_alpha": 0.01,
+    "watch_alpha": 0.05
+  },
+  "layered_validation_gates": {
+    "nested_no_test_fold_leak": "For outer fold f, test attempts use local references from folds !=f; every familywise-reference attempt in inner fold g is itself scored using features from folds !=f and !=g.",
+    "minimum_nested_familywise_attempts": 1200,
+    "maximum_local_reference_fallback_rate": 0.05,
+    "nested_primary_health_band": [0.003, 0.02],
+    "nested_watch_health_band": [0.025, 0.08],
+    "loo_pseudofresh_primary_health_band": [0.003, 0.02],
+    "loo_pseudofresh_watch_health_band": [0.025, 0.08],
+    "crossfit_vs_loo_pearson_min": 0.95,
+    "crossfit_vs_loo_abs_difference_p99_max": 0.50,
+    "result_dependent_gate_weakening": "PROHIBITED"
+  },
+  "roux_block_frame": {
+    "representation": "A block frame is an ordered pair (bottom_face, first_block_side_face), where the faces are adjacent. The opposite side is the second-block side. Front/back ordering is intentionally quotiented out. This produces exactly 24 physical block frames.",
+    "first_block_mask": "For bottom B and side S: the three S-side edges not incident to top=opposite(B), plus the two corners in intersection(B,S). This is a 1x2x3 cubie block (3 edges + 2 corners).",
+    "second_block_mask": "Same construction using opposite(S) and the same bottom B.",
+    "state_convention": "Every evaluated state is center-canonicalized using the frozen R1.9 24-orientation canonicalizer before block masks are tested.",
+    "ordered_frame_evidence": [
+      "A nonempty annotated ROUX_FB line exists; its endpoint solves the candidate first block and its start does not already solve that block.",
+      "A later nonempty annotated ROUX_SB line exists; its endpoint preserves the first block, solves the opposite second block, and its start does not already have both blocks solved."
+    ],
+    "axis_frame_evidence": "If ordered FB evidence is absent, an unordered side-axis/bottom frame may be diagnosed from an SB acquisition line, but it is descriptive only and cannot substitute for ordered-frame authority.",
+    "cmll_consistency": "When a nonempty ROUX_CMLL line exists for an admitted frame, both 1x2x3 blocks must remain solved at its endpoint and all corners must be solved under at least one top-face AUF variant.",
+    "lse_consistency": "When ROUX_LSE exists, the admitted block frame must remain compatible with the final solved state; no cognitive interpretation is attached.",
+    "minimum_ordered_eligible_attempts": 15,
+    "minimum_ordered_unique_rate": 0.80,
+    "minimum_axis_eligible_attempts": 30,
+    "minimum_axis_unique_rate": 0.80,
+    "minimum_cmll_consistency_rate": 0.85,
+    "future_roux_scoring_authority_even_if_pass": false
+  },
+  "fresh_vintage_watch": {
+    "network_ordering": "No current reco.nz read may occur until the R1.10 local method-transport and Roux frame court has committed its authority artifact.",
+    "baseline": {
+      "frozen_reco_rows": 10596,
+      "frozen_max_reco_id": 14051,
+      "r19_live_html_sha256": "c0ca3106023d108209028fd2b0f56962c9a23b5b09e41fbf5af673d7ae4795ba"
+    },
+    "watch_action": "Read https://reco.nz/solve/ once after local seal; record row count, max ID, exact current ID digest, and IDs greater than or absent from the frozen historical set when that set is available.",
+    "zero_new_behavior": "WATCH_PASS_DATA_WAIT",
+    "nonzero_behavior": "WATCH_NEW_VINTAGE_DETECTED_ONLY. R1.10 must not score recovery phenotype rates from the new rows.",
+    "confirmatory_scoring_in_r110": false
+  },
+  "blocking_falsifiers": [
+    "Any Roux feature enters a LAYERED local or familywise reference.",
+    "Nested outer-fold features influence their own local or familywise-reference score construction.",
+    "LAYERED crossfit-vs-LOO correlation is below 0.95.",
+    "LAYERED crossfit-vs-LOO absolute score difference p99 exceeds 0.50.",
+    "Either nested or LOO pseudo-fresh 1%/5% engineering health band fails.",
+    "A purported Roux 1x2x3 block mask does not contain exactly 3 edges and 2 corners.",
+    "Ordered Roux frame identification does not meet the frozen support/uniqueness gates.",
+    "Fresh network outcomes are read before the local R1.10 authority artifact is committed.",
+    "Any gate is weakened after observing its R1.10 result."
+  ],
+  "claim_scope": {
+    "allowed": [
+      "Engineering transport validity or HOLD for the prospectively frozen LAYERED scorer.",
+      "State-derived Roux block-frame identification performance and failure modes.",
+      "Fresh-vintage watch status after the local seal.",
+      "Descriptive historical diagnostics explicitly labelled development/calibration."
+    ],
+    "prohibited": [
+      "Cognitive recovery prevalence or cognitive error prevalence.",
+      "Intentionality, awareness, strategy-switching, or causal mechanism claims.",
+      "Roux future scoring authority in R1.10.",
+      "Fresh replication estimates in R1.10.",
+      "Full-WCA behavioral prevalence.",
+      "Treating reconstruction annotations as ground-truth latent cognitive phases."
+    ]
+  },
+  "authority": {
+    "research_branch_only": true,
+    "main_write": false,
+    "public_runner_write": false,
+    "collector_write": false,
+    "human_recruitment": false,
+    "human_observations": 0
+  }
+}

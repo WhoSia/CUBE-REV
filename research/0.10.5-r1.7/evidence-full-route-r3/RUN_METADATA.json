@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R17-STRUCTURAL-R3-RUN-1",
+  "workflow_run_id": "32326111709",
+  "head_sha": "d68df457cff3d9e95376f52f00072b01cae5c124",
+  "route_exit_code": 0,
+  "status": "PASS",
+  "sample_manifest_sha256": "ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe",
+  "new_web_fetches": 0,
+  "inherited_ess_min": 200,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T02:51:26.327500+00:00"
+}

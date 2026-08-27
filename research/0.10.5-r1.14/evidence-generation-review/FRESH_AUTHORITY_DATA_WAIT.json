@@ -1,0 +1,16 @@
+{
+  "schema_version": "CR0105R114-FRESH-AUTHORITY-DATA-WAIT-1",
+  "generation": "ROUX-MEASUREMENT-G4",
+  "status": "HOLD_DATA_WAIT",
+  "baseline_id_set_sha256": "d4e8169031d3c9acf703ec4004e4ef8108bb7913fa584adb090d75596941565b",
+  "reference_seal_sha256": "7cc0aaa2754fe911aa1bc536b3a53c527410b710f466ebe30ce8bbe37f17861a",
+  "second_live_read_timestamp": "2026-08-22T00:17:24.889340+00:00",
+  "post_freeze_fresh_index_n": 0,
+  "post_freeze_fresh_raw_route_n": 0,
+  "minimum_raw_required": 20,
+  "substitution_with_preexisting_routes": "PROHIBITED",
+  "fresh_authority_released": false,
+  "reason": "No post-freeze fresh Roux routes were available at the sealed second live read.",
+  "human_observations": 0,
+  "seal_sha256": "78b796c17ffaa07b9c745ae2172f30e494349a86346e7f4fddcd8a8b797889b5"
+}

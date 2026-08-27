@@ -1,0 +1,18 @@
+{
+  "schema_version": "CR0105R113-ROTATION-ROUTE-LOCALIZATION-1",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "status": "POSTHOC_LOCALIZATION_ONLY_NO_G3_GATE_CHANGE",
+  "destroy_semantic_sha256": "46c92c8bc474fefd340fa0fbefe33e7f4e470065ea7e0c88eedd044314fc6b19",
+  "counts": {
+    "rotation_routes": 6,
+    "rotation_events": 6,
+    "rotation_events_block_status_invariant": 6,
+    "forward_failures": 3,
+    "forward_failure_first_break_at_rotation": 0,
+    "forward_failure_first_break_later": 3
+  },
+  "interpretation_guard": "Pure rotation invariance checks validate algebra locally; later first-block breaks diagnose route semantics but cannot be used to alter R1.13 admission or gates.",
+  "post_result_gate_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "cbed5023643e91e9e9fb28975497c15aca681d9307996d9269b3d86bbcef8a7c"
+}

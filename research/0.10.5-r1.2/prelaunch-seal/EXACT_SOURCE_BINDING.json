@@ -1,0 +1,11 @@
+{
+  "schema_version": "CR0105R11-SOURCE-BINDING-1",
+  "repository": "WhoSia/CUBE-REV",
+  "base_main_commit": "52fc4a04c922ea0d39dd29cdf1ac6ebed5a196a1",
+  "index": {
+    "bytes": 2588604,
+    "sha256": "e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf",
+    "git_blob_sha1": "344faeb45d0046a52b24fad91a5bcbcb46784b71"
+  },
+  "status": "PASS"
+}

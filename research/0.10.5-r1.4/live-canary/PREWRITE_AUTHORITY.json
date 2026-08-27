@@ -1,0 +1,9 @@
+{
+  "schema_version": "CR0105R14-PREWRITE-AUTHORITY-2",
+  "status": "PASS",
+  "main_sha": "19f7b83aceba3a3d0cec94a3c10b1b80af85fafd",
+  "public_bytes": 2591526,
+  "public_sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+  "production_write_authorized": "SYNTHETIC_CANARY_ONLY",
+  "human_observations": 0
+}

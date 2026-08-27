@@ -1,0 +1,60 @@
+{
+  "schema_version": "CR0105R113-GENERATION-INHERITANCE-1",
+  "stage": "CUBE-REV 0.10.5-R1.13 — Route-global Reconstruction Gauge, Rotation-covariant Prefix Frame & Rebuilt Roux Completion Null",
+  "generation_scope": "ROUX_SUBPROGRAM_ONLY",
+  "generation": "ROUX-MEASUREMENT-G3",
+  "parent_generation": "ROUX-MEASUREMENT-G2",
+  "parent_final_seal": "f3b8a2cbd277360c95227bf8655f105ed418b155",
+  "whole_cube_rev_generation": "UNRESOLVED",
+  "generation_transition_dimensions": ["theory","ontology","measurement","court","authority"],
+  "progress_claim_from_generation_label": false,
+  "inheritance": {
+    "RETAIN": [
+      "cubie-state replay and final-state certification",
+      "ordinary-FB primary Roux stratum with pseudo-FB/FBDR forked",
+      "state-certified first two-block completion inside the frozen SB span",
+      "Roux-only local-tail and attempt-level familywise null architecture",
+      "nested outer-fold exclusion from local and familywise references",
+      "primary familywise alpha=0.01 and total admitted N>=100 finite-resolution requirement",
+      "no cognitive/causal/prevalence authority from geometry alone",
+      "CFOP/ZB layered authority is outside G3 and unchanged"
+    ],
+    "DOWNGRADE": [
+      "R1.12 fixed route-global gauge: 120/130 diagnostic coverage but residual rotation enrichment means universal constancy is unproven",
+      "R1.12 final-state gauge: 117/130 diagnostic prediction but uses future information",
+      "R1.12 rotation-enrichment Fisher exact result: design motivation only, not confirmatory evidence"
+    ],
+    "RETIRE": [
+      "per-state center canonicalization as a persistent route coordinate frame",
+      "R1.12 G2 feature/null bank for any G3 scoring or authority",
+      "joint FB+SB gauge search as an admissible prospective gauge estimator"
+    ],
+    "MUTATE": [
+      "route-global fixed gauge -> FB-prefix-initialized gauge transported prospectively by explicit whole-cube rotations",
+      "coordinate state X_t -> joint observed state (X_t,G_t) where G_t is the reconstruction-coordinate gauge",
+      "Roux completion features -> fully regenerated under transported gauge"
+    ],
+    "FORK": [
+      "routes with explicit x/y/z after FB versus routes without post-FB rotations",
+      "pseudo-FB/FBDR routes",
+      "routes with first-block breakage after a correctly transported prefix gauge"
+    ],
+    "RECOMBINE": [
+      "R1.11 route-global quotient insight + R1.12 state-certified subphase completion + R1.12 prefix-only gauge identifiability",
+      "group-action rotation transport fixture + block-state objective geometry + Roux-only null foundry"
+    ],
+    "UNRESOLVED": [
+      "whether explicit rotation transport alone resolves R1.12's 10 prefix-gauge residuals",
+      "whether first-block breakage is legitimate Roux substructure, annotation mismatch, or reconstruction error",
+      "whole-project CUBE-REV generation numbering"
+    ]
+  },
+  "skill_workshop_contract": {
+    "passive_defaults": ["NAPKIN","RAVEL","COURT","TRACE","ATLAS","SENTINEL","STEWARD"],
+    "meta_loop": ["NAPKIN","GENERATION","BUILD","WRITE","ATTACK","DESTROY","RECOMBINE","HANDOFF","COURT","ARCHIVE","NEXT_GENERATION"],
+    "writing_is_epistemic_stress_test": true,
+    "writing_is_evidence": false,
+    "generation_transition_requires_court_review": true
+  },
+  "authority": {"research_branch_only": true, "main_write": false, "public_runner_write": false, "collector_write": false, "human_recruitment": false, "human_observations": 0}
+}

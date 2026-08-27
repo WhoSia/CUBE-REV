@@ -1,0 +1,207 @@
+{
+  "schema_version": "CR0105R16-WCA333-BASELINE-1",
+  "status": "PASS",
+  "counts": {
+    "results_333": 1835235,
+    "attempts_333": 9159748,
+    "valid_attempts": 8968473,
+    "dnf_attempts": 187290,
+    "dns_attempts": 3985,
+    "competitions": 15154,
+    "persons": 282898,
+    "scrambles_333": 730812,
+    "dnf_rate": 0.020447069067838983,
+    "dns_rate": 0.0004350556369018012
+  },
+  "valid_time_centiseconds": {
+    "n": 8968473,
+    "min": 276,
+    "p01": 669.0,
+    "p05": 828.0,
+    "p25": 1163.0,
+    "p50": 1574.0,
+    "p75": 2400.0,
+    "p95": 5353.0,
+    "p99": 9303.0,
+    "max": 118300
+  },
+  "speed_bins": [
+    {
+      "bin": "<5s",
+      "n": 6136
+    },
+    {
+      "bin": "5-7s",
+      "n": 124804
+    },
+    {
+      "bin": "7-10s",
+      "n": 1130600
+    },
+    {
+      "bin": "10-15s",
+      "n": 2881605
+    },
+    {
+      "bin": "15-30s",
+      "n": 3316662
+    },
+    {
+      "bin": "30s+",
+      "n": 1508666
+    }
+  ],
+  "by_year": [
+    {
+      "year": 1982,
+      "attempts": 57,
+      "valid": 56,
+      "dnf": 1
+    },
+    {
+      "year": 2003,
+      "attempts": 399,
+      "valid": 398,
+      "dnf": 1
+    },
+    {
+      "year": 2004,
+      "attempts": 1811,
+      "valid": 1775,
+      "dnf": 36
+    },
+    {
+      "year": 2005,
+      "attempts": 4746,
+      "valid": 4656,
+      "dnf": 84
+    },
+    {
+      "year": 2006,
+      "attempts": 8478,
+      "valid": 8305,
+      "dnf": 145
+    },
+    {
+      "year": 2007,
+      "attempts": 16851,
+      "valid": 16514,
+      "dnf": 308
+    },
+    {
+      "year": 2008,
+      "attempts": 36445,
+      "valid": 35483,
+      "dnf": 947
+    },
+    {
+      "year": 2009,
+      "attempts": 65618,
+      "valid": 63546,
+      "dnf": 1874
+    },
+    {
+      "year": 2010,
+      "attempts": 89029,
+      "valid": 86440,
+      "dnf": 2486
+    },
+    {
+      "year": 2011,
+      "attempts": 109697,
+      "valid": 106737,
+      "dnf": 2855
+    },
+    {
+      "year": 2012,
+      "attempts": 117928,
+      "valid": 114970,
+      "dnf": 2847
+    },
+    {
+      "year": 2013,
+      "attempts": 155435,
+      "valid": 151311,
+      "dnf": 4021
+    },
+    {
+      "year": 2014,
+      "attempts": 223383,
+      "valid": 217227,
+      "dnf": 5980
+    },
+    {
+      "year": 2015,
+      "attempts": 285982,
+      "valid": 279237,
+      "dnf": 6578
+    },
+    {
+      "year": 2016,
+      "attempts": 393962,
+      "valid": 384933,
+      "dnf": 8733
+    },
+    {
+      "year": 2017,
+      "attempts": 567802,
+      "valid": 554928,
+      "dnf": 12565
+    },
+    {
+      "year": 2018,
+      "attempts": 693098,
+      "valid": 677655,
+      "dnf": 15166
+    },
+    {
+      "year": 2019,
+      "attempts": 773867,
+      "valid": 757204,
+      "dnf": 16363
+    },
+    {
+      "year": 2020,
+      "attempts": 131554,
+      "valid": 128772,
+      "dnf": 2710
+    },
+    {
+      "year": 2021,
+      "attempts": 111543,
+      "valid": 109320,
+      "dnf": 2194
+    },
+    {
+      "year": 2022,
+      "attempts": 660384,
+      "valid": 647044,
+      "dnf": 13135
+    },
+    {
+      "year": 2023,
+      "attempts": 1261770,
+      "valid": 1236031,
+      "dnf": 25280
+    },
+    {
+      "year": 2024,
+      "attempts": 1398951,
+      "valid": 1372326,
+      "dnf": 26147
+    },
+    {
+      "year": 2025,
+      "attempts": 1301818,
+      "valid": 1277906,
+      "dnf": 23567
+    },
+    {
+      "year": 2026,
+      "attempts": 749140,
+      "valid": 735699,
+      "dnf": 13267
+    }
+  ],
+  "interpretation_boundary": "Official attempt outcomes are population-frame observations for WCA competitors, not move-level recovery mechanisms."
+}

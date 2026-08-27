@@ -1,0 +1,128 @@
+name: CR0105R113 Roux G3 Rotation Gauge Development Court
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.13-roux-generation-g3]
+    paths: [cr0105r113/RUN_G3_DEVELOPMENT]
+permissions:
+  contents: write
+concurrency:
+  group: cr0105r113-g3-development
+  cancel-in-progress: false
+jobs:
+  court:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify G3 NAPKIN and generation freeze
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          g=json.load(open('research/0.10.5-r1.13/GENERATION_INHERITANCE_LEDGER.json'))
+          n=json.load(open('research/0.10.5-r1.13/NAPKIN_G3_PREREGISTRATION.json'))
+          i=json.load(open('research/0.10.5-r1.13/G3_IMPLEMENTATION_FREEZE.json'))
+          p=json.load(open('research/0.10.5-r1.12/final/RAVEL_FINAL_SEAL.json'))
+          assert g['generation']=='ROUX-MEASUREMENT-G3'
+          assert n['frozen_before_g3_scoring'] is True
+          assert n['parent']['r112_g2_disposition']=='REMANDED_NOT_RELEASED'
+          assert n['data_roles']['r112_candidate_bank_144']=='DEVELOPMENT_AND_CALIBRATION_ONLY'
+          assert i['status']=='FROZEN_BEFORE_G3_ROUTE_SCORING'
+          assert p['generation']['g2_disposition']=='REMANDED_NOT_RELEASED'
+          assert p['primary_r112']['roux_future_scoring_authority'] is False
+          print('CR0105R113_G3_FREEZE_PASS')
+          PY
+      - name: Install exact cubing runtime
+        run: npm install --no-save --ignore-scripts cubing@0.63.3
+      - name: Derive and verify rotation transport algebra
+        id: fixture
+        shell: bash
+        env: {R113_ROOT: /tmp/r113}
+        run: |
+          set +e
+          mkdir -p /tmp/r113
+          node research/0.10.5-r1.13/r113_rotation_transport_fixture.mjs 2>&1 | tee /tmp/r113/ROTATION_FIXTURE_LOG.txt
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Execute G3 route geometry
+        id: geometry
+        if: always()
+        shell: bash
+        env: {R113_ROOT: /tmp/r113}
+        run: |
+          set +e
+          if python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/r113/ROTATION_GAUGE_TRANSPORT_FIXTURE.json'))
+          raise SystemExit(0 if x['status']=='PASS_ROTATION_GAUGE_ALGEBRA' else 1)
+          PY
+          then
+            node research/0.10.5-r1.13/r113_roux_g3_geometry.mjs 2>&1 | tee /tmp/r113/G3_GEOMETRY_LOG.txt
+            code=${PIPESTATUS[0]}
+          else
+            echo 'G3 geometry skipped because rotation algebra did not pass' | tee /tmp/r113/G3_GEOMETRY_LOG.txt
+            code=98
+          fi
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Execute rebuilt G3 null foundry
+        id: nullcourt
+        if: always()
+        shell: bash
+        env: {R113_ROOT: /tmp/r113}
+        run: |
+          set +e
+          if test -f /tmp/r113/ROUX_G3_GEOMETRY_AUDIT.json && test -f /tmp/r113/ROUX_G3_FEATURE_LEDGER.json; then
+            node research/0.10.5-r1.13/r113_roux_g3_null_foundry.mjs 2>&1 | tee /tmp/r113/G3_NULL_LOG.txt
+            code=${PIPESTATUS[0]}
+          else
+            echo 'G3 null skipped because geometry outputs absent' | tee /tmp/r113/G3_NULL_LOG.txt
+            code=98
+          fi
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist fail-observable G3 development evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.13/evidence-development
+          for f in ROTATION_GAUGE_TRANSPORT_FIXTURE.json ROTATION_FIXTURE_LOG.txt ROUX_G3_GEOMETRY_AUDIT.json ROUX_G3_ROUTE_ROWS.json ROUX_G3_FEATURE_LEDGER.json G3_GEOMETRY_LOG.txt ROUX_G3_NULL_AUDIT.json ROUX_G3_LOO_ATTEMPT_BANK.json ROUX_G3_CROSSFIT_ATTEMPT_BANK.json ROUX_G3_NESTED_ROWS.json ROUX_G3_TRANSPORT_PAIRS.json G3_ENGINEERING_SEAL.json G3_NULL_LOG.txt; do
+            test -f "/tmp/r113/$f" && cp "/tmp/r113/$f" research/0.10.5-r1.13/evidence-development/ || true
+          done
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          x={'schema_version':'CR0105R113-G3-DEVELOPMENT-RUN-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'fixture_exit_code':int('${{ steps.fixture.outputs.exit_code || 97 }}'),'geometry_exit_code':int('${{ steps.geometry.outputs.exit_code || 97 }}'),'null_exit_code':int('${{ steps.nullcourt.outputs.exit_code || 97 }}'),'candidate_bank_n':144,'data_role':'DEVELOPMENT_AND_CALIBRATION_ONLY','fresh_network_read':False,'fresh_confirmatory_scoring':False,'primary_gate_changed':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          pathlib.Path('research/0.10.5-r1.13/evidence-development/RUN_METADATA.json').write_text(json.dumps(x,indent=2)+'\n')
+          PY
+      - name: Commit G3 development evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.13/evidence-development
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.13 G3 development court ${GITHUB_RUN_ID}"
+          git pull --rebase origin cube-rev-0.10.5-r1.13-roux-generation-g3
+          git push origin HEAD:cube-rev-0.10.5-r1.13-roux-generation-g3
+      - name: Enforce operational completion only
+        if: always()
+        run: |
+          test '${{ steps.fixture.outputs.exit_code }}' = '0'
+          test '${{ steps.geometry.outputs.exit_code }}' = '0'
+          test '${{ steps.nullcourt.outputs.exit_code }}' = '0'
+          python3 - <<'PY'
+          import json
+          f=json.load(open('research/0.10.5-r1.13/evidence-development/ROTATION_GAUGE_TRANSPORT_FIXTURE.json'))
+          g=json.load(open('research/0.10.5-r1.13/evidence-development/ROUX_G3_GEOMETRY_AUDIT.json'))
+          n=json.load(open('research/0.10.5-r1.13/evidence-development/ROUX_G3_NULL_AUDIT.json'))
+          s=json.load(open('research/0.10.5-r1.13/evidence-development/G3_ENGINEERING_SEAL.json'))
+          assert f['status']=='PASS_ROTATION_GAUGE_ALGEBRA'
+          assert g['post_result_gate_change'] is False
+          assert n['future_roux_scoring_authority'] is False
+          assert s['future_roux_scoring_authority'] is False
+          print('CR0105R113_G3_OPERATIONAL_COMPLETE',g['status'],n['status'],s['status'])
+          PY

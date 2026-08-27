@@ -1,0 +1,223 @@
+{
+  "schema_version": "CR0105R19-RAVEL-FINAL-SEAL-1",
+  "stage": "CUBE-REV 0.10.5-R1.9 — Phase-objective Quotient Geometry, Attempt-level Familywise Null Preregistration & Fresh-vintage Replication Readiness",
+  "status": "PASS_WITH_REPLICATION_READINESS_HOLD",
+  "verdict": "PASS_CFOP_ZB_PHASE_OBJECTIVE_GEOMETRY_AND_NESTED_ATTEMPT_FAMILYWISE_CALIBRATION; HOLD_GLOBAL_FUTURE_SCORE_TRANSPORT_AND_ROUX_SEMANTIC_FRAME; READINESS_PASS_DATA_WAIT_FRESH_VINTAGE",
+  "scientific_result": "R1.9 replaced R1.8's full-state phase-endpoint geometry with phase-objective quotient geometry and validated its invariants on historical reconstructions. A directly attempt-level familywise null was developed and passed nested no-test-fold-leak calibration health under the frozen 1%/5% gates. However, a post-seal pseudo-fresh transport audit failed the predeclared 0.95 crossfit-versus-full-history score-compatibility gate, with the failure concentrated in Roux. Therefore no future confirmatory scoring authority is released from R1.9. The current reco.nz vintage contains zero reconstruction IDs beyond the frozen historical universe, so fresh replication remains DATA_WAIT. R1.9 makes no cognitive recovery or error prevalence claim.",
+  "skill_workshop": {
+    "default_artifact": "research/CUBE_REV_SKILL_WORKSHOP_DEFAULT.json",
+    "passive_default": ["NAPKIN", "RAVEL", "COURT", "TRACE", "ATLAS", "SENTINEL", "STEWARD"],
+    "conditional": ["FORGE", "SCOUT", "PRISM", "ORBIT", "PIVOT", "AXIOM"],
+    "intent_preservation": "PASS",
+    "result_dependent_gate_weakening": false
+  },
+  "napkin": {
+    "artifact": "research/0.10.5-r1.9/NAPKIN_INTENT_AND_PREREGISTRATION.json",
+    "status": "FROZEN_BEFORE_R19_DEVELOPMENT_EXECUTION",
+    "parent_r18_final_seal_commit": "7df42eb2dfa2383488e70a296a5f1b05b4f6f741",
+    "historical_r17_r18_role": "DEVELOPMENT_AND_CALIBRATION_ONLY",
+    "future_confirmatory_novelty_rule": "reco_id absent from frozen historical ID set AND official-attempt key absent from both R1.7 and R1.8"
+  },
+  "authority": {
+    "main_commit_observed": "13bb9f4ef855bf89988c5e36cc4b0d344879ef68",
+    "main_mutated_by_r19": false,
+    "public_runner_mutated_by_r19": false,
+    "collector_mutated_by_r19": false,
+    "human_observations": 0,
+    "human_recruitment": "DEFERRED_BY_RESEARCH_DESIGN",
+    "future_confirmatory_scoring": false
+  },
+  "phase_objective_quotient_geometry": {
+    "workflow_run_id": 32357811044,
+    "status": "PASS",
+    "cubing_version": "0.63.3",
+    "cubing_source_commit": "c223a53ba37e0941fe8242571aef1cccb978bb24",
+    "orientation_group_size": 24,
+    "face_support": "Derived from pinned 3x3 transformation permutations; every face validated as 4 edges + 4 corners.",
+    "center_canonicalization": "Unique solved-center-permutation representative across the 24 physical cube orientations; synthetic rotation invariance PASS.",
+    "validated_quotients": {
+      "CROSS": "Only four cross edges; U/last-layer-only perturbation ignored in synthetic invariant court.",
+      "F2L": "Only endpoint-solved F2L-domain positions; last-layer coordinates quotiented out.",
+      "LL_ORIENT": "Last-layer orientation only; piece permutation quotiented out.",
+      "LL_PERMUTE": "Last-layer piece position with AUF-equivalent endpoint quotient.",
+      "LL_ONELOOK": "Last-layer full piece+orientation with AUF-equivalent endpoint quotient.",
+      "Roux": "Dynamic solved-support/corner/edge engineering proxies only; semantic authority held."
+    },
+    "historical_probe": {
+      "attempts": 1800,
+      "route_source": 1800,
+      "parse_ok": 1790,
+      "state_certified": 1762,
+      "cfop_zb_cross_lines": 1667,
+      "cfop_zb_cross_frame_ok": 1585,
+      "cfop_zb_cross_frame_rate": 0.9508098380323935,
+      "cfop_zb_cross_ties": 6,
+      "roux_state_certified": 92,
+      "roux_cmll_line": 88,
+      "roux_structural_last_face_ok": 34,
+      "roux_structural_last_face_rate_among_cmll_lines": 0.38636363636363635
+    }
+  },
+  "historical_familywise_development": {
+    "workflow_run_id": 32358069237,
+    "status": "PASS_READINESS_CALIBRATION",
+    "role": "HISTORICAL_DEVELOPMENT_ONLY",
+    "attempts": 1800,
+    "state_certified": 1762,
+    "eligible_attempts": 1677,
+    "eligible_features": 12650,
+    "objective_features": 9730,
+    "source_eligible": {"R17": 830, "R18": 847},
+    "local_reference_fallback_rate": 0.0,
+    "full_state_r18_raw_reversal_rate": 0.6386858019676867,
+    "quotient_objective_raw_reversal_rate": 0.594655704008222,
+    "initial_crossfit": {
+      "primary_alpha": 0.01,
+      "primary_empirical_exceedance": 0.008944543828264758,
+      "watch_alpha": 0.05,
+      "watch_empirical_exceedance": 0.04889683959451401
+    },
+    "ravel_issue": "Initial familywise health bank allowed indirect outer-fold influence through other-fold local score construction; repaired before any fresh-vintage read."
+  },
+  "nested_no_test_fold_leak_court": {
+    "workflow_run_id": 32358293471,
+    "r2_initial_status": "HOLD_NESTED_CALIBRATION",
+    "r2_reason": "Implementation incorrectly required n>=1000 for every familywise conditioning level despite frozen NAPKIN requiring n>=300 for non-global levels and n>=1000 only for global.",
+    "scientific_health_in_r2": {
+      "primary_empirical_exceedance": 0.008348240906380441,
+      "watch_empirical_exceedance": 0.04770423375074538,
+      "outer_test_fold_excluded_from_all_reference_construction": true
+    },
+    "r3_gate_repair_workflow_run_id": 32358480686,
+    "r3_status": "PASS_NESTED_NO_LEAK_READINESS_EXACT_PREREG_GATE",
+    "r3_null_seal_sha256": "86522ee214024c8cac5257e07a4b9df451edff764fed13d9027ba79c957f2fca",
+    "nested_attempts": 1677,
+    "primary_empirical_exceedance": 0.008348240906380441,
+    "watch_empirical_exceedance": 0.04770423375074538,
+    "conditioning_support": {
+      "COUNT": {"attempts": 180, "min_n": 387, "max_n": 964, "required_min": 300},
+      "METHOD_COUNT": {"attempts": 1497, "min_n": 378, "max_n": 827, "required_min": 300}
+    },
+    "fresh_outcomes_seen_before_r3_seal": false
+  },
+  "fresh_vintage_readiness": {
+    "workflow_run_id": 32358621444,
+    "status": "READINESS_PASS_DATA_WAIT",
+    "ordering": "Current reco.nz network read occurred only after local verification of R3 seal 86522ee214024c8cac5257e07a4b9df451edff764fed13d9027ba79c957f2fca.",
+    "frozen_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+    "frozen_reco_rows": 10596,
+    "frozen_max_reco_id": 14051,
+    "historical_attempt_keys": 1800,
+    "live_http_status": 200,
+    "live_html_sha256": "c0ca3106023d108209028fd2b0f56962c9a23b5b09e41fbf5af673d7ae4795ba",
+    "live_reco_rows": 10596,
+    "live_max_reco_id": 14051,
+    "removed_frozen_ids": 0,
+    "new_reco_id_rows": 0,
+    "novel_unique_linked_attempts": 0,
+    "fresh_any_pre_route_gate": false,
+    "fresh_modern_2023_26_7_10_n": 0,
+    "fresh_modern_pre_route_gate": false,
+    "confirmatory_scoring_performed": false
+  },
+  "future_score_transport_audit": {
+    "workflow_run_id": 32358844584,
+    "status": "HOLD_FUTURE_SCALE_COMPATIBILITY",
+    "role": "POST-SEAL ZERO-FRESH ENGINEERING TRANSPORT AUDIT",
+    "pseudo_fresh_primary_empirical_exceedance": 0.011329755515802028,
+    "pseudo_fresh_watch_empirical_exceedance": 0.05008944543828265,
+    "health_bands_passed": true,
+    "crossfit_vs_loo_pearson": 0.9343681479872616,
+    "required_correlation": 0.95,
+    "abs_score_difference": {
+      "p50": 0.011710223857271662,
+      "p90": 0.0615302953909751,
+      "p99": 0.9361335663554866,
+      "max": 1.3163750419410234
+    },
+    "failed_gate": "crossfit_loo_stat_correlation_ge_0_95",
+    "gate_lowered_after_result": false
+  },
+  "transport_failure_posthoc_diagnostic": {
+    "workflow_run_id": 32359092515,
+    "status": "POSTHOC_DIAGNOSTIC",
+    "r1_diagnostic_runtime_failure": "Root runtime could not resolve relative r19_quotient_core.mjs; repaired without changing metric, null, or failed gate.",
+    "CFOP": {
+      "n": 1497,
+      "crossfit_vs_loo_correlation": 0.9965966880069477,
+      "abs_diff_p50": 0.011186567768911582,
+      "abs_diff_p90": 0.044733428415254295,
+      "abs_diff_p99": 0.1104525863233996,
+      "max": 0.37560894989613797
+    },
+    "ZB": {
+      "n": 88,
+      "crossfit_vs_loo_correlation": 0.9883379784794232,
+      "abs_diff_p50": 0.010891610539635055,
+      "abs_diff_p90": 0.08928474844326528,
+      "abs_diff_p99": 0.3834790912819852,
+      "max": 0.3834790912819852
+    },
+    "Roux": {
+      "n": 92,
+      "crossfit_vs_loo_correlation": 0.5620191598193393,
+      "abs_diff_p50": 0.4848639839880431,
+      "abs_diff_p90": 1.0182489054281088,
+      "abs_diff_p99": 1.3163750419410234,
+      "max": 1.3163750419410234
+    },
+    "interpretation": "The global transport failure is concentrated in Roux. CFOP/ZB diagnostics are individually strong, but method-specific future authority was not the frozen global R1.9 authority gate and is therefore not promoted posthoc."
+  },
+  "future_scoring_authority_quarantine": {
+    "artifact": "research/0.10.5-r1.9/FUTURE_SCORING_AUTHORITY_HOLD.json",
+    "artifact_commit": "ec9804186b25603b68f4c10ba91d02f0e7f4dcb6",
+    "status": "HOLD_FUTURE_SCORING_AUTHORITY",
+    "r3_seal_retained_as_historical_engineering_evidence": true,
+    "r3_seal_authorized_for_future_confirmatory_scoring": false,
+    "partial_CFOP_ZB_authority_promoted_posthoc": false
+  },
+  "ravel_roles": {
+    "napkin_intent_preserver": "PASS",
+    "quotient_invariant_court": "PASS",
+    "historical_reuse_authority_auditor": "PASS_HISTORY_DEVELOPMENT_ONLY",
+    "familywise_multiplicity_designer": "PASS_ATTEMPT_LEVEL_MAX_DIRECTLY_CALIBRATED",
+    "crossfit_leak_adversary": "PASS_ISSUE_FOUND_AND_NESTED_REPAIRED_BEFORE_FRESH_READ",
+    "prereg_gate_auditor": "PASS_R2_OVERSTRICT_IMPLEMENTATION_REPAIRED_TO_EXACT_FROZEN_GATE",
+    "fresh_ordering_auditor": "PASS_R3_SEAL_PRECEDES_CURRENT_VINTAGE_READ",
+    "fresh_novelty_auditor": "PASS_DATA_WAIT_ZERO_NEW_IDS",
+    "future_transport_adversary": "HOLD_GLOBAL_SCALE_COMPATIBILITY",
+    "roux_semantic_auditor": "HOLD_STRUCTURAL_FRAME_AND_TRANSPORT",
+    "cfop_zb_diagnostic_auditor": "PASS_DIAGNOSTIC_ONLY_NO_POSTHOC_AUTHORITY_PROMOTION",
+    "authority_auditor": "PASS_RESEARCH_ONLY_NO_MAIN_PUBLIC_COLLECTOR_OR_HUMAN_WRITE"
+  },
+  "claim_scope": {
+    "allowed": [
+      "R1.9 engineered and validated a phase-objective quotient geometry for historical reconstruction analysis, with strong CFOP/ZB frame support and weaker Roux semantic support.",
+      "The historical directly attempt-level familywise null passed nested no-test-fold-leak engineering calibration-health bands under the frozen 1% and 5% gates.",
+      "Quotienting reduced but did not eliminate ordinary phase-route nonmonotonicity: historical objective raw reversal remained common, so raw reversal is not a cognitive recovery marker.",
+      "The current live reconstruction vintage contained zero IDs beyond the frozen 10,596-row historical universe, so confirmatory fresh replication could not launch.",
+      "A future-score scale transport audit failed its predeclared overall 0.95 compatibility gate, and future scoring authority was quarantined rather than weakening the gate.",
+      "Posthoc decomposition localized most transport instability to Roux; this is a design diagnostic only."
+    ],
+    "prohibited": [
+      "Cognitive recovery prevalence.",
+      "Cognitive error prevalence.",
+      "Independent R1.9 replication using R1.7 or R1.8 attempts.",
+      "Any confirmatory rate from the zero-fresh current vintage.",
+      "Using R3 to score future data without a superseding transport-safe authority seal.",
+      "Posthoc promotion of CFOP/ZB-only confirmatory authority inside R1.9.",
+      "Causal, intentional, awareness, or strategy-switching claims.",
+      "Full-WCA prevalence.",
+      "Treating annotations or Roux proxy frames as ground-truth cognitive subgoals."
+    ]
+  },
+  "research_debt": [
+    "Prospectively split or otherwise stabilize future-score transport by solving-method family; the R1.9 global 0.95 transport gate failed because Roux statistics were unstable while CFOP/ZB were highly compatible.",
+    "Replace weak Roux last-face/block reconstruction with a transformation/state-derived block-frame identification court before any Roux confirmatory authority.",
+    "Re-run nested no-test-fold-leak calibration and pseudo-fresh full-history transport under the newly frozen scorer without lowering the 0.95 compatibility gate.",
+    "Keep CFOP/ZB and Roux authority separate until both satisfy their prospective transport gates.",
+    "Continue fresh-vintage monitoring; current reco.nz has no new reconstruction IDs beyond the frozen universe.",
+    "Only after a transport-safe seal may fresh-any >=200 state-certified attempts / >=3 cells / ESS>=100 or fresh-modern >=80 2023-26 × 7-10 attempts enter a confirmatory court."
+  ],
+  "next_gate": "CUBE-REV 0.10.5-R1.10 — Method-stratified Future-score Transport, Roux Block-frame Identification & Fresh-vintage Watch Seal"
+}

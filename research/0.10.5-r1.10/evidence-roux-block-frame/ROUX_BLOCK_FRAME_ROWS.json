@@ -1,0 +1,2800 @@
+{
+  "schema_version": "CR0105R110-ROUX-BLOCK-FRAME-ROWS-1",
+  "rows": [
+    {
+      "result_id": 412962,
+      "attempt_number": 3,
+      "reco_id": 2092,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          16
+        ],
+        "cmll": [
+          24,
+          31
+        ],
+        "lse": [
+          31,
+          39
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6170204,
+      "attempt_number": 3,
+      "reco_id": 11798,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          6
+        ],
+        "sb": [
+          6,
+          17
+        ],
+        "cmll": [
+          24,
+          38
+        ],
+        "lse": [
+          38,
+          50
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 4,
+      "reco_id": 3120,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          10
+        ],
+        "sb": [
+          10,
+          20
+        ],
+        "cmll": [
+          30,
+          41
+        ],
+        "lse": [
+          41,
+          51
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 2,
+      "reco_id": 8528,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          12
+        ],
+        "sb": [
+          12,
+          21
+        ],
+        "cmll": [
+          28,
+          40
+        ],
+        "lse": [
+          40,
+          49
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 1,
+      "reco_id": 2488,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          13
+        ],
+        "sb": [
+          13,
+          21
+        ],
+        "cmll": [
+          28,
+          40
+        ],
+        "lse": [
+          40,
+          44
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 4,
+      "reco_id": 12800,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          6
+        ],
+        "sb": [
+          6,
+          9
+        ],
+        "cmll": [
+          21,
+          36
+        ],
+        "lse": [
+          36,
+          44
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 5,
+      "reco_id": 12842,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          12
+        ],
+        "sb": [
+          12,
+          21
+        ],
+        "cmll": [
+          30,
+          42
+        ],
+        "lse": [
+          42,
+          60
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 1,
+      "reco_id": 3496,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          7
+        ],
+        "sb": [
+          7,
+          16
+        ],
+        "cmll": [
+          23,
+          36
+        ],
+        "lse": [
+          36,
+          43
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 5,
+      "reco_id": 11960,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          13
+        ],
+        "sb": [
+          13,
+          21
+        ],
+        "cmll": [
+          33,
+          42
+        ],
+        "lse": [
+          42,
+          51
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 1,
+      "reco_id": 9363,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          8
+        ],
+        "sb": [
+          8,
+          23
+        ],
+        "cmll": [
+          30,
+          41
+        ],
+        "lse": [
+          41,
+          52
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 2,
+      "reco_id": 3118,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          11
+        ],
+        "sb": [
+          11,
+          19
+        ],
+        "cmll": [
+          28,
+          44
+        ],
+        "lse": [
+          44,
+          54
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7130321,
+      "attempt_number": 2,
+      "reco_id": 11913,
+      "source": "R17",
+      "status": "ERROR",
+      "error": "Invalid move for KPuzzle (3x3x3): FB'"
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 2,
+      "reco_id": 9247,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          11
+        ],
+        "sb": [
+          11,
+          19
+        ],
+        "cmll": [
+          30,
+          48
+        ],
+        "lse": [
+          48,
+          60
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 3,
+      "reco_id": 3179,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          11
+        ],
+        "sb": [
+          11,
+          17
+        ],
+        "cmll": [
+          31,
+          39
+        ],
+        "lse": [
+          39,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7275444,
+      "attempt_number": 2,
+      "reco_id": 11952,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          10
+        ],
+        "sb": [
+          10,
+          19
+        ],
+        "cmll": [
+          28,
+          40
+        ],
+        "lse": [
+          40,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 4,
+      "reco_id": 3180,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          13
+        ],
+        "cmll": [
+          29,
+          38
+        ],
+        "lse": [
+          38,
+          49
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 5,
+      "reco_id": 3181,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          8
+        ],
+        "sb": [
+          8,
+          18
+        ],
+        "cmll": [
+          24,
+          36
+        ],
+        "lse": [
+          36,
+          43
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 4,
+      "reco_id": 11959,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          16
+        ],
+        "sb": [
+          16,
+          20
+        ],
+        "cmll": null,
+        "lse": [
+          63,
+          71
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 4,
+      "reco_id": 6584,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          6
+        ],
+        "sb": [
+          6,
+          14
+        ],
+        "cmll": [
+          19,
+          28
+        ],
+        "lse": [
+          28,
+          36
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 3,
+      "reco_id": 3119,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          12
+        ],
+        "sb": [
+          12,
+          20
+        ],
+        "cmll": [
+          25,
+          38
+        ],
+        "lse": [
+          38,
+          51
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 1,
+      "reco_id": 10499,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          8
+        ],
+        "sb": [
+          8,
+          15
+        ],
+        "cmll": [
+          22,
+          34
+        ],
+        "lse": [
+          34,
+          45
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 4790393,
+      "attempt_number": 4,
+      "reco_id": 9106,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          7
+        ],
+        "sb": [
+          7,
+          16
+        ],
+        "cmll": [
+          26,
+          39
+        ],
+        "lse": [
+          39,
+          50
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 3,
+      "reco_id": 12799,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          12
+        ],
+        "sb": [
+          12,
+          21
+        ],
+        "cmll": [
+          31,
+          47
+        ],
+        "lse": [
+          47,
+          62
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7275444,
+      "attempt_number": 3,
+      "reco_id": 11953,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          15
+        ],
+        "cmll": [
+          22,
+          34
+        ],
+        "lse": [
+          34,
+          45
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 2,
+      "reco_id": 2113,
+      "source": "R17",
+      "status": "FINAL_NOT_SOLVED"
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 1,
+      "reco_id": 3177,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          10
+        ],
+        "sb": [
+          10,
+          20
+        ],
+        "cmll": [
+          26,
+          41
+        ],
+        "lse": [
+          41,
+          55
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6781597,
+      "attempt_number": 5,
+      "reco_id": 11482,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          6
+        ],
+        "sb": [
+          6,
+          10
+        ],
+        "cmll": [
+          18,
+          30
+        ],
+        "lse": [
+          30,
+          41
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 5,
+      "reco_id": 3500,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          0,
+          7
+        ],
+        "sb": [
+          7,
+          22
+        ],
+        "cmll": [
+          30,
+          45
+        ],
+        "lse": [
+          45,
+          54
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 4,
+      "reco_id": 9356,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          29
+        ],
+        "cmll": [
+          38,
+          49
+        ],
+        "lse": [
+          49,
+          66
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 3,
+      "reco_id": 8529,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          0,
+          8
+        ],
+        "sb": [
+          8,
+          19
+        ],
+        "cmll": [
+          25,
+          37
+        ],
+        "lse": [
+          37,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 5,
+      "reco_id": 2878,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          11
+        ],
+        "sb": [
+          11,
+          20
+        ],
+        "cmll": [
+          25,
+          36
+        ],
+        "lse": [
+          36,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 3,
+      "reco_id": 2490,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          10
+        ],
+        "sb": [
+          10,
+          18
+        ],
+        "cmll": [
+          25,
+          39
+        ],
+        "lse": [
+          39,
+          48
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 4,
+      "reco_id": 2115,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          15
+        ],
+        "cmll": [
+          23,
+          36
+        ],
+        "lse": [
+          36,
+          45
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3072444,
+      "attempt_number": 1,
+      "reco_id": 3117,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          11
+        ],
+        "sb": [
+          11,
+          22
+        ],
+        "cmll": [
+          27,
+          35
+        ],
+        "lse": [
+          35,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7130321,
+      "attempt_number": 5,
+      "reco_id": 11916,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          0,
+          6
+        ],
+        "sb": [
+          6,
+          14
+        ],
+        "cmll": [
+          23,
+          33
+        ],
+        "lse": [
+          33,
+          52
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 1,
+      "reco_id": 9246,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          22
+        ],
+        "cmll": [
+          33,
+          43
+        ],
+        "lse": [
+          43,
+          50
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 4,
+      "reco_id": 9214,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          0,
+          11
+        ],
+        "sb": [
+          11,
+          18
+        ],
+        "cmll": [
+          25,
+          39
+        ],
+        "lse": [
+          39,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 1,
+      "reco_id": 11956,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          22
+        ],
+        "cmll": [
+          29,
+          43
+        ],
+        "lse": [
+          43,
+          53
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 4,
+      "reco_id": 9249,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          8
+        ],
+        "sb": [
+          8,
+          25
+        ],
+        "cmll": [
+          32,
+          42
+        ],
+        "lse": [
+          42,
+          51
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 3,
+      "reco_id": 6583,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          8
+        ],
+        "sb": [
+          8,
+          16
+        ],
+        "cmll": [
+          20,
+          32
+        ],
+        "lse": [
+          32,
+          41
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 4,
+      "reco_id": 9366,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          7
+        ],
+        "sb": [
+          7,
+          15
+        ],
+        "cmll": [
+          19,
+          38
+        ],
+        "lse": [
+          38,
+          45
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247448,
+      "attempt_number": 2,
+      "reco_id": 12808,
+      "source": "R17",
+      "status": "ERROR",
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 5,
+      "reco_id": 9215,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          10
+        ],
+        "sb": [
+          10,
+          26
+        ],
+        "cmll": [
+          35,
+          49
+        ],
+        "lse": [
+          49,
+          60
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6734619,
+      "attempt_number": 1,
+      "reco_id": 11445,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          10
+        ],
+        "sb": [
+          10,
+          29
+        ],
+        "cmll": [
+          36,
+          45
+        ],
+        "lse": [
+          45,
+          55
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 4,
+      "reco_id": 2877,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          20
+        ],
+        "cmll": [
+          29,
+          36
+        ],
+        "lse": [
+          36,
+          44
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 4,
+      "reco_id": 2794,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          8
+        ],
+        "sb": [
+          8,
+          16
+        ],
+        "cmll": [
+          22,
+          36
+        ],
+        "lse": [
+          36,
+          49
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247423,
+      "attempt_number": 2,
+      "reco_id": 12803,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          16
+        ],
+        "cmll": [
+          24,
+          39
+        ],
+        "lse": [
+          39,
+          50
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 5,
+      "reco_id": 2492,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          7
+        ],
+        "sb": [
+          7,
+          17
+        ],
+        "cmll": [
+          29,
+          36
+        ],
+        "lse": [
+          36,
+          41
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 3,
+      "reco_id": 9365,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          19
+        ],
+        "cmll": [
+          30,
+          43
+        ],
+        "lse": [
+          43,
+          60
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6170102,
+      "attempt_number": 1,
+      "reco_id": 11795,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          0,
+          7
+        ],
+        "sb": [
+          7,
+          12
+        ],
+        "cmll": [
+          19,
+          26
+        ],
+        "lse": [
+          26,
+          35
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247335,
+      "attempt_number": 5,
+      "reco_id": 12801,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          6
+        ],
+        "sb": [
+          6,
+          19
+        ],
+        "cmll": null,
+        "lse": [
+          26,
+          42
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 2,
+      "reco_id": 12793,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          8
+        ],
+        "sb": [
+          8,
+          16
+        ],
+        "cmll": [
+          24,
+          36
+        ],
+        "lse": [
+          36,
+          45
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5220219,
+      "attempt_number": 3,
+      "reco_id": 9248,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          13
+        ],
+        "sb": [
+          13,
+          25
+        ],
+        "cmll": [
+          33,
+          44
+        ],
+        "lse": [
+          44,
+          52
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1341399,
+      "attempt_number": 1,
+      "reco_id": 2418,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          21
+        ],
+        "cmll": [
+          29,
+          42
+        ],
+        "lse": [
+          42,
+          50
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 2,
+      "reco_id": 802,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          1,
+          10
+        ],
+        "sb": [
+          10,
+          21
+        ],
+        "cmll": [
+          26,
+          33
+        ],
+        "lse": [
+          33,
+          36
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 4,
+      "reco_id": 12795,
+      "source": "R17",
+      "status": "FINAL_NOT_SOLVED"
+    },
+    {
+      "result_id": 7275458,
+      "attempt_number": 2,
+      "reco_id": 11957,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          11
+        ],
+        "sb": [
+          11,
+          18
+        ],
+        "cmll": [
+          25,
+          35
+        ],
+        "lse": [
+          35,
+          52
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1599700,
+      "attempt_number": 5,
+      "reco_id": 2688,
+      "source": "R17",
+      "lines": {
+        "fb": [
+          2,
+          11
+        ],
+        "sb": [
+          11,
+          22
+        ],
+        "cmll": [
+          26,
+          35
+        ],
+        "lse": [
+          35,
+          53
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3171147,
+      "attempt_number": 2,
+      "reco_id": 3178,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          10
+        ],
+        "sb": [
+          10,
+          14
+        ],
+        "cmll": [
+          20,
+          29
+        ],
+        "lse": [
+          29,
+          36
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 5,
+      "reco_id": 2795,
+      "source": "R18",
+      "status": "ERROR",
+      "error": "Unexpected character at index 5. Are you missing a space?"
+    },
+    {
+      "result_id": 533419,
+      "attempt_number": 1,
+      "reco_id": 2026,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          19
+        ],
+        "cmll": [
+          23,
+          33
+        ],
+        "lse": [
+          33,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 4790393,
+      "attempt_number": 5,
+      "reco_id": 9107,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          14
+        ],
+        "sb": [
+          14,
+          20
+        ],
+        "cmll": [
+          24,
+          38
+        ],
+        "lse": [
+          38,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 533419,
+      "attempt_number": 3,
+      "reco_id": 2028,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          21
+        ],
+        "cmll": [
+          30,
+          41
+        ],
+        "lse": [
+          41,
+          49
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 3,
+      "reco_id": 803,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          16
+        ],
+        "sb": [
+          16,
+          27
+        ],
+        "cmll": [
+          33,
+          48
+        ],
+        "lse": [
+          48,
+          58
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 1,
+      "reco_id": 321,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          10
+        ],
+        "sb": [
+          10,
+          18
+        ],
+        "cmll": [
+          24,
+          32
+        ],
+        "lse": [
+          32,
+          43
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 1,
+      "reco_id": 12838,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          7
+        ],
+        "sb": [
+          7,
+          18
+        ],
+        "cmll": [
+          26,
+          35
+        ],
+        "lse": [
+          35,
+          45
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3403221,
+      "attempt_number": 2,
+      "reco_id": 3497,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          13
+        ],
+        "sb": [
+          13,
+          18
+        ],
+        "cmll": [
+          26,
+          36
+        ],
+        "lse": [
+          36,
+          43
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 5,
+      "reco_id": 10503,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          16
+        ],
+        "cmll": [
+          22,
+          34
+        ],
+        "lse": [
+          34,
+          41
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247448,
+      "attempt_number": 3,
+      "reco_id": 12809,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          7
+        ],
+        "sb": [
+          7,
+          15
+        ],
+        "cmll": [
+          28,
+          43
+        ],
+        "lse": [
+          43,
+          53
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247265,
+      "attempt_number": 1,
+      "reco_id": 12792,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          6
+        ],
+        "sb": [
+          6,
+          18
+        ],
+        "cmll": [
+          29,
+          42
+        ],
+        "lse": [
+          42,
+          50
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247423,
+      "attempt_number": 1,
+      "reco_id": 12802,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          13
+        ],
+        "sb": [
+          13,
+          23
+        ],
+        "cmll": [
+          35,
+          47
+        ],
+        "lse": [
+          47,
+          50
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3428863,
+      "attempt_number": 1,
+      "reco_id": 6581,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          15
+        ],
+        "cmll": [
+          23,
+          40
+        ],
+        "lse": [
+          50,
+          59
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6170102,
+      "attempt_number": 5,
+      "reco_id": 11799,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          16
+        ],
+        "cmll": [
+          21,
+          36
+        ],
+        "lse": [
+          36,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 1,
+      "reco_id": 2112,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          7
+        ],
+        "sb": [
+          7,
+          20
+        ],
+        "cmll": [
+          28,
+          40
+        ],
+        "lse": [
+          40,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 5,
+      "reco_id": 9357,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          11
+        ],
+        "sb": [
+          11,
+          21
+        ],
+        "cmll": [
+          31,
+          48
+        ],
+        "lse": [
+          48,
+          57
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 510701,
+      "attempt_number": 3,
+      "reco_id": 924,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          12
+        ],
+        "sb": [
+          12,
+          23
+        ],
+        "cmll": [
+          27,
+          34
+        ],
+        "lse": [
+          34,
+          42
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 4,
+      "reco_id": 804,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          12
+        ],
+        "sb": [
+          12,
+          19
+        ],
+        "cmll": [
+          25,
+          34
+        ],
+        "lse": [
+          34,
+          42
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 611723,
+      "attempt_number": 5,
+      "reco_id": 2116,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          12
+        ],
+        "sb": [
+          12,
+          18
+        ],
+        "cmll": [
+          29,
+          42
+        ],
+        "lse": [
+          42,
+          53
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7247448,
+      "attempt_number": 5,
+      "reco_id": 12811,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          18
+        ],
+        "cmll": [
+          30,
+          41
+        ],
+        "lse": [
+          41,
+          49
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 4218496,
+      "attempt_number": 5,
+      "reco_id": 8531,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          8
+        ],
+        "sb": [
+          8,
+          14
+        ],
+        "cmll": [
+          24,
+          34
+        ],
+        "lse": [
+          34,
+          49
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 3,
+      "reco_id": 2793,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          7
+        ],
+        "sb": [
+          7,
+          23
+        ],
+        "cmll": [
+          23,
+          31
+        ],
+        "lse": [
+          31,
+          42
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6734619,
+      "attempt_number": 4,
+      "reco_id": 11448,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          20
+        ],
+        "cmll": [
+          26,
+          36
+        ],
+        "lse": [
+          36,
+          49
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1656157,
+      "attempt_number": 2,
+      "reco_id": 2792,
+      "source": "R18",
+      "status": "ERROR",
+      "error": "Unexpected character at index 2. Are you missing a space?"
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 3,
+      "reco_id": 2876,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          11
+        ],
+        "sb": [
+          11,
+          19
+        ],
+        "cmll": [
+          26,
+          33
+        ],
+        "lse": [
+          33,
+          45
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 5,
+      "reco_id": 325,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          21
+        ],
+        "cmll": [
+          29,
+          38
+        ],
+        "lse": [
+          38,
+          48
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 3,
+      "reco_id": 12840,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          14
+        ],
+        "cmll": [
+          23,
+          36
+        ],
+        "lse": [
+          36,
+          42
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 372818,
+      "attempt_number": 2,
+      "reco_id": 322,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          8
+        ],
+        "sb": [
+          8,
+          17
+        ],
+        "cmll": [
+          28,
+          40
+        ],
+        "lse": [
+          40,
+          53
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 1404884,
+      "attempt_number": 4,
+      "reco_id": 2491,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          11
+        ],
+        "sb": [
+          11,
+          21
+        ],
+        "cmll": [
+          28,
+          41
+        ],
+        "lse": [
+          41,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 2112470,
+      "attempt_number": 2,
+      "reco_id": 2875,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          15
+        ],
+        "cmll": [
+          24,
+          31
+        ],
+        "lse": [
+          31,
+          42
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 3,
+      "reco_id": 9355,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          11
+        ],
+        "sb": [
+          11,
+          19
+        ],
+        "cmll": [
+          22,
+          30
+        ],
+        "lse": [
+          30,
+          38
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 3403279,
+      "attempt_number": 4,
+      "reco_id": 3501,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          8
+        ],
+        "sb": [
+          8,
+          17
+        ],
+        "cmll": null,
+        "lse": [
+          25,
+          34
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5220221,
+      "attempt_number": 2,
+      "reco_id": 9212,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          11
+        ],
+        "sb": [
+          11,
+          23
+        ],
+        "cmll": null,
+        "lse": [
+          41,
+          46
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 467563,
+      "attempt_number": 5,
+      "reco_id": 805,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          17
+        ],
+        "cmll": [
+          25,
+          37
+        ],
+        "lse": [
+          37,
+          52
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 3,
+      "reco_id": 10501,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          10
+        ],
+        "sb": [
+          10,
+          22
+        ],
+        "cmll": [
+          29,
+          39
+        ],
+        "lse": [
+          39,
+          47
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 6143482,
+      "attempt_number": 2,
+      "reco_id": 10500,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          2,
+          9
+        ],
+        "sb": [
+          9,
+          17
+        ],
+        "cmll": [
+          23,
+          36
+        ],
+        "lse": [
+          36,
+          49
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 7996680,
+      "attempt_number": 4,
+      "reco_id": 12841,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          9
+        ],
+        "sb": [
+          9,
+          16
+        ],
+        "cmll": [
+          23,
+          31
+        ],
+        "lse": [
+          31,
+          41
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5300160,
+      "attempt_number": 5,
+      "reco_id": 9367,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          8
+        ],
+        "sb": [
+          8,
+          17
+        ],
+        "cmll": [
+          26,
+          35
+        ],
+        "lse": [
+          35,
+          41
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    },
+    {
+      "result_id": 5220135,
+      "attempt_number": 1,
+      "reco_id": 9353,
+      "source": "R18",
+      "lines": {
+        "fb": [
+          1,
+          11
+        ],
+        "sb": [
+          11,
+          18
+        ],
+        "cmll": [
+          27,
+          39
+        ],
+        "lse": [
+          39,
+          52
+        ]
+      },
+      "ordered_candidate_n": 0,
+      "ordered_candidates": [],
+      "axis_candidate_n": 0,
+      "axis_candidates": [],
+      "frame_source": null,
+      "status": "STATE_CERTIFIED"
+    }
+  ],
+  "human_observations": 0
+}

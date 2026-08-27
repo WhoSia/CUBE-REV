@@ -1,0 +1,12 @@
+{
+  "schema_version": "CR0105R17-FULL-ROUTE-RUN-1",
+  "workflow_run_id": "32325486202",
+  "head_sha": "10d55a8b0fa304aeb02da8dc535c68797cd54efb",
+  "parent_artifact_id": 9310311696,
+  "parent_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+  "sample_exit_code": 0,
+  "route_exit_code": 20,
+  "status": "HOLD",
+  "generated_at_utc": "2026-08-20T02:43:40.266983+00:00",
+  "human_observations": 0
+}

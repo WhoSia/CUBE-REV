@@ -1,0 +1,13 @@
+{
+  "schema_version": "CR0105R112-ACQUISITION-RUN-1",
+  "workflow_run_id": "32444276014",
+  "head_sha": "4ffa0aa0460bfbfb46145642c93071ceb5d78f3e",
+  "parent_artifact_id": 9310311696,
+  "parent_db_sha256": "a04f1d2fd351e34ec7406e63524b7b8ceb166bf8a53d4630f94c9d6a792848f1",
+  "exit_code": 0,
+  "operational_status": "PASS",
+  "geometry_scored": false,
+  "null_scored": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-21T03:42:01.449370+00:00"
+}

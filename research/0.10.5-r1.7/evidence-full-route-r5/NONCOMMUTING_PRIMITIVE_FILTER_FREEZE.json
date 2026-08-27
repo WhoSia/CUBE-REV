@@ -1,0 +1,17 @@
+{
+  "schema_version": "CR0105R17-NONCOMMUTING-PRIMITIVE-FILTER-POSTHOC-1",
+  "status": "PASS_ADVERSARIAL_SENSITIVITY_FREEZE",
+  "role": "POSTHOC_ADVERSARIAL_ROBUSTNESS_NOT_PRIMARY_PREREGISTRATION",
+  "source_sample_manifest_sha256": "ce7de5db2c2448d13af922930997fedf6196c6a5f2d573425d4d22fdc3d14bbe",
+  "source_r4_candidate_audit_sha256": "5a399bb02355980f0513206fa3153425ef0241ecc0074065fab3da124a2ef735",
+  "motivation": "R4 surviving intervals were dominated by opposite-face commutation normalizations and rotation/slice representation identities.",
+  "filter": "Ordinary outer-face turns only; at least one pair of distinct non-opposite face families; no proper contiguous subinterval with any detected exact shortening or identity relation.",
+  "excluded_examples": [
+    "U' D' U' -> D' U2 (U/D commute)",
+    "L' R L -> R (L/R commute)",
+    "M' r' R -> identity (slice/wide representation)",
+    "d' y' U -> identity (rotation/wide representation)"
+  ],
+  "outcome_role": "Adversarial sensitivity only. A zero or near-zero result is evidence that R4 did not isolate noncommuting primitive detours; it is not proof that human recovery never occurs.",
+  "human_observations": 0
+}

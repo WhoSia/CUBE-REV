@@ -1,0 +1,10 @@
+{
+  "schema_version": "CR0105R18-NULL-CALIBRATION-RUN-1",
+  "workflow_run_id": "32341613415",
+  "head_sha": "22ac66f64257ffc24532a48ad2d423ff7272fe18",
+  "exit_code": 1,
+  "operational_status": "FAIL",
+  "holdout_outcomes_seen": false,
+  "human_observations": 0,
+  "generated_at_utc": "2026-08-20T06:55:03.701449+00:00"
+}

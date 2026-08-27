@@ -1,0 +1,79 @@
+{
+  "schema_version": "CR0105R11-EXACT-SOURCE-PATCH-3",
+  "status": "PASS",
+  "integration_mode": "INLINE_MONOLITH_HELPER_TO_PRESERVE_RELEASE_SCRIPT_TOPOLOGY",
+  "source_expected": {
+    "bytes": 2588604,
+    "sha256": "e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf",
+    "git_blob_sha1": "344faeb45d0046a52b24fad91a5bcbcb46784b71"
+  },
+  "source_observed": {
+    "bytes": 2588604,
+    "sha256": "e6e66bb489fc0c814a431c7d24c3d067363162393317e773abdec1377877d7cf",
+    "git_blob_sha1": "344faeb45d0046a52b24fad91a5bcbcb46784b71"
+  },
+  "telemetry_reference_file": {
+    "bytes": 2527,
+    "sha256": "251eb8eb29dded50b6ff3d0c6d28a73f173cbe8f7ea48ee99d3b3e2f86fa864d",
+    "git_blob_sha1": "8a71db0a14f7c8aa2e4cb78858561cf0d263950d"
+  },
+  "patched": {
+    "bytes": 2591526,
+    "sha256": "98e6431c72c7b32fd9461b261c981b470bdda04c617bdb0595b7ce059a250180",
+    "git_blob_sha1": "ce5b5608767083a696cf57982edd979a21b3ba22",
+    "additive_bytes": 2922
+  },
+  "cache_key": "0712-camera-neutral-bypass-hotfix-1",
+  "external_script_srcs_before": [
+    "./collector-config.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/calibration-config.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/linkage.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/randomization.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/history-presentation.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/neutral-probe.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/eligibility-clock.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/export-decoration.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/runtime.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/i18n-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/collector-client.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/camera-orbit.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/cube-drag-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/camera-zoom-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/responsive-layout-controller.js?v=0712-camera-neutral-bypass-hotfix-1"
+  ],
+  "external_script_srcs_after": [
+    "./collector-config.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/calibration-config.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/linkage.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/randomization.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/history-presentation.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/neutral-probe.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/eligibility-clock.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/export-decoration.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./calibration/runtime.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/i18n-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/collector-client.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/camera-orbit.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/cube-drag-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/camera-zoom-controller.js?v=0712-camera-neutral-bypass-hotfix-1",
+    "./js/responsive-layout-controller.js?v=0712-camera-neutral-bypass-hotfix-1"
+  ],
+  "checks": {
+    "source_exact_byte_length": true,
+    "source_exact_sha256": true,
+    "source_exact_git_blob": true,
+    "source_version_anchor": true,
+    "responsive_main_anchor_singleton": true,
+    "logger_anchor_singleton": true,
+    "source_unpatched_before_execution": true,
+    "post_write_byte_identity": true,
+    "patch_marker_singleton": true,
+    "logger_hook_singleton": true,
+    "source_backup_exact": true,
+    "release_external_script_topology_preserved": true,
+    "release_js_script_count_preserved": true,
+    "release_cache_key_preserved": true
+  },
+  "human_observations": 0,
+  "production_mutated": false
+}

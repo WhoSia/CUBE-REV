@@ -1,0 +1,38 @@
+{
+  "schema_version": "CR0105R111-PHASE-BOUNDARY-LOCALIZATION-CANONICAL-1",
+  "status": "POSTHOC_DIAGNOSTIC_ONLY_NO_R111_GATE_CHANGE",
+  "source_execution": {
+    "workflow_run_id": 32428317890,
+    "job_id": 96614727937,
+    "execution_commit": "85535c4c0a5ca339d396deccebfda367792aaa50"
+  },
+  "authority_changed": false,
+  "r111_holds_preserved": true,
+  "counts": {
+    "evaluated": 92,
+    "errors": 4,
+    "first_fb_unique_center_anchored": 23,
+    "last_fb_unique_center_anchored": 23,
+    "last_fb_frame_first_sb_both": 0,
+    "last_fb_frame_last_sb_both": 6,
+    "last_fb_frame_pre_cmll_both": 6,
+    "last_fb_frame_pre_cmll_observed": 22,
+    "last_fb_frame_earliest_both_found": 23
+  },
+  "rates": {
+    "first_fb_unique_center_anchored": 0.25,
+    "last_fb_unique_center_anchored": 0.25,
+    "last_sb_both_given_last_fb_unique": 0.2608695652173913,
+    "pre_cmll_both_given_last_fb_unique_and_observed": 0.2727272727272727
+  },
+  "distributions": {
+    "fb_line_n": {"1": 92},
+    "sb_line_n": {"1": 1, "2": 91},
+    "first_fb_exact_frame_n": {"0": 69, "1": 23},
+    "last_fb_exact_frame_n": {"0": 69, "1": 23}
+  },
+  "interpretation": "FB is not a multi-line-boundary problem: all 92 evaluated routes have exactly one ROUX_FB line. Per-state center-canonical physical block identification succeeds in only 23/92, so simply switching R1.11 from first SB to last SB cannot validate the underlying physical frame representation.",
+  "semantic_sha256_from_execution": "048542486f8030c92c3f5d9782ee8ff16376a34dc4173f69c122e9537b9bcef3",
+  "fresh_network_read": false,
+  "human_observations": 0
+}

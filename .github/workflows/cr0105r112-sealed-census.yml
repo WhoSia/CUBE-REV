@@ -1,0 +1,67 @@
+name: CR0105R112 Sealed Roux Route Census
+on:
+  push:
+    branches: [cube-rev-0.10.5-r1.12-roux-generation-g2]
+    paths: [cr0105r112/RUN_CENSUS]
+permissions:
+  contents: write
+jobs:
+  census:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify R1.12 generation freeze precedes execution
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          n=json.load(open('research/0.10.5-r1.12/NAPKIN_GENERATION_FREEZE.json'))
+          g=json.load(open('research/0.10.5-r1.12/GENERATION_INHERITANCE_LEDGER.json'))
+          p=json.load(open('research/0.10.5-r1.11/final/RAVEL_FINAL_SEAL.json'))
+          assert n['frozen_before_r112_scoring'] is True
+          assert n['skill_workshop']['generation']=='ROUX-MEASUREMENT-G2'
+          assert n['primary_population']['minimum_total_admissible_attempts_for_1pct_LOO']==100
+          assert g['generation']=='ROUX-MEASUREMENT-G2'
+          assert g['skill_workshop_contract']['generation_transition_requires_court_review'] is True
+          assert p['future_authority']['roux_future_scoring_authority'] is False
+          assert p['future_authority']['cfop_zb_layered_future_authority_unchanged'] is True
+          print('CR0105R112_PREEXEC_GENERATION_FREEZE_PASS')
+          PY
+      - name: Census sealed Roux routes
+        env: {R112_ROOT: /tmp/r112}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r112
+          python3 research/0.10.5-r1.12/r112_sealed_route_census.py | tee /tmp/r112/CENSUS_LOG.txt
+      - name: Persist census evidence
+        run: |
+          set -euo pipefail
+          mkdir -p research/0.10.5-r1.12/evidence-census
+          cp /tmp/r112/SEALED_ROUTE_CENSUS.json research/0.10.5-r1.12/evidence-census/
+          cp /tmp/r112/CENSUS_LOG.txt research/0.10.5-r1.12/evidence-census/
+          python3 - <<'PY'
+          import json,os,datetime,pathlib
+          p=pathlib.Path('research/0.10.5-r1.12/evidence-census/CENSUS_EXECUTION_METADATA.json')
+          p.write_text(json.dumps({'schema_version':'CR0105R112-CENSUS-EXECUTION-1','workflow_run_id':os.environ['GITHUB_RUN_ID'],'head_sha':os.environ['GITHUB_SHA'],'fresh_network_read':False,'fresh_scoring':False,'human_observations':0,'generated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()},indent=2)+'\n')
+          PY
+      - name: Commit census evidence
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/0.10.5-r1.12/evidence-census
+          git diff --cached --quiet || git commit -m "Record CUBE-REV 0.10.5-R1.12 sealed route census ${GITHUB_RUN_ID}"
+          git push origin HEAD:cube-rev-0.10.5-r1.12-roux-generation-g2
+      - name: Enforce census completeness
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('research/0.10.5-r1.12/evidence-census/SEALED_ROUTE_CENSUS.json'))
+          assert x['status']=='PASS'
+          assert x['fresh_network_read'] is False
+          assert x['human_observations']==0
+          print('CR0105R112_CENSUS_COMPLETE',x['clean_unique_official_attempts'],x['novel_sealed_attempts'],x['candidate_bank_ge_100'])
+          PY

@@ -1,0 +1,35 @@
+{
+  "schema_version": "CR0105R110-ROUX-COURT-ADJUDICATION-1",
+  "status": "HOLD_RETAINED_WITH_IMPLEMENTATION_NOTE",
+  "stage": "CUBE-REV 0.10.5-R1.10 — Method-stratified Future-score Transport, Roux Block-frame Identification & Fresh-vintage Watch Seal",
+  "frozen_roux_result": "HOLD_ROUX_BLOCK_FRAME_IDENTIFICATION",
+  "implementation_note": {
+    "issue": "The court added an extra check named historical_roux_attempts_92, but the combined R1.7+R1.8 manifests contain 98 Roux records. Ninety-two are state-certified. The extra check conflated total Roux records with the state-certified count.",
+    "napkin_gate": false,
+    "effect_on_verdict": "NONE. The frozen NAPKIN did not require total Roux records == 92, and the court independently failed the preregistered ordered-frame uniqueness, axis uniqueness, and CMLL-consistency gates.",
+    "post_result_gate_change": false
+  },
+  "state_derived_frame_result": {
+    "manifest_roux_records": 98,
+    "route_source": 98,
+    "state_certified": 92,
+    "ordered_eligible": 92,
+    "ordered_unique": 0,
+    "axis_eligible": 92,
+    "axis_unique": 0,
+    "future_roux_scoring_authority": false
+  },
+  "posthoc_failure_diagnostic": {
+    "role": "DIAGNOSTIC_ONLY; R1.10 frozen gate unchanged",
+    "clean_state_certified_rows": 92,
+    "center_canonical_exact_full_fb": {"zero": 69, "one": 23},
+    "orientation_free_full_fb": {"one": 92},
+    "interpretation": "Every state-certified Roux route contains exactly one exact 1x2x3 FB under a 24-orientation search when center-frame anchoring is relaxed. The R1.10 failure therefore localizes primarily to the preregistered center-canonical frame convention rather than absence of a geometric Roux first block. This observation motivates a new prospective block-internal orientation quotient; it does not repair or supersede R1.10."
+  },
+  "authority": {
+    "roux_future_scoring": false,
+    "layered_cfop_zb_authority_affected": false,
+    "fresh_confirmatory_scoring_in_r110": false,
+    "human_observations": 0
+  }
+}

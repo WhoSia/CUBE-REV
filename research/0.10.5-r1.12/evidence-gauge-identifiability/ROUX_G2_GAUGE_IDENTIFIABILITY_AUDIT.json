@@ -1,0 +1,46 @@
+{
+  "schema_version": "CR0105R112-DESTROY-GAUGE-IDENTIFIABILITY-1",
+  "generation": "ROUX-MEASUREMENT-G2",
+  "status": "POSTHOC_DIAGNOSTIC_ONLY_NO_G2_GATE_CHANGE",
+  "primary_geometry_semantic_sha256": "f1c19e8b960373e9968cab8b57c48a0ae4ed130d02d8d27704126462d40595e8",
+  "prior_destroy_semantic_sha256": "9f505ef602a68d0c62158bfc0f05f81b5da7dcdc7951b82b0048202b6ccb2611",
+  "counts": {
+    "eligible": 130,
+    "final_gauge_available": 130,
+    "final_gauge_fb_unique": 120,
+    "final_gauge_sb_success": 117,
+    "prefix_any_pair": 130,
+    "prefix_unique_pair": 130,
+    "prefix_unique_pair_sb_success": 120,
+    "prefix_unique_pair_matches_final_gauge": 120,
+    "dynamic_center_gauge_changed_fb_to_sb": 126,
+    "fb_center_gauge_differs_final": 98,
+    "strict_admitted": 10,
+    "route_global_joint_solution": 120
+  },
+  "rates": {
+    "final_gauge_sb_success": 0.9,
+    "prefix_unique_pair": 1,
+    "prefix_unique_pair_sb_success": 0.9230769230769231,
+    "prefix_success_given_unique": 0.9230769230769231,
+    "prefix_unique_matches_final_gauge": 0.9230769230769231,
+    "dynamic_center_gauge_changed_fb_to_sb": 0.9692307692307692,
+    "fb_center_gauge_differs_final": 0.7538461538461538
+  },
+  "by_source": {
+    "SEALED_R111": {
+      "eligible": 89,
+      "final_gauge_sb_success": 82,
+      "prefix_unique_pair_sb_success": 82
+    },
+    "R112_EXPANSION": {
+      "eligible": 41,
+      "final_gauge_sb_success": 35,
+      "prefix_unique_pair_sb_success": 38
+    }
+  },
+  "interpretation_guard": "Final-orientation and FB-prefix gauges are posthoc mechanism diagnostics. They do not alter the frozen R1.12 G2 center-consistent operator. A future generation may prospectively define a route-global reconstruction-coordinate gauge only after a separate theory and court freeze.",
+  "post_result_gate_change": false,
+  "human_observations": 0,
+  "semantic_sha256": "c6c776bc5df6cecc394f6acc2f4dc687e2c958ac20b6dac73a9b93c8af2a3b9a"
+}
