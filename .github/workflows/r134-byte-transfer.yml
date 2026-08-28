@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/r134-byte-transfer.yml'
       - 'research/r134_external_transfer.py'
+      - 'research/r134_current_detail_live_read.py'
 
 permissions:
   contents: read
@@ -18,12 +19,16 @@ jobs:
     steps:
       - name: Checkout isolated court branch
         uses: actions/checkout@v4
-      - name: Run current-revision acquisition and temporal court
+      - name: Run pinned 35-capture acquisition and temporal court
         shell: bash
         run: |
           rm -rf r134-output
           python research/r134_external_transfer.py | tee /tmp/R134_STDOUT_SUMMARY.txt
           cp /tmp/R134_STDOUT_SUMMARY.txt r134-output/R134_STDOUT_SUMMARY.txt
+      - name: Run read-only current-detail live-read court
+        shell: bash
+        run: |
+          python research/r134_current_detail_live_read.py | tee r134-output/R134_CURRENT_DETAIL_STDOUT.txt
       - name: Hash court outputs
         if: always()
         shell: bash
@@ -33,7 +38,7 @@ jobs:
             find . -type f ! -name R134_OUTPUT_SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > R134_OUTPUT_SHA256SUMS
             cat R134_OUTPUT_SHA256SUMS
           fi
-      - name: Upload immutable transfer court artifact
+      - name: Upload immutable R1.34 court artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -41,15 +46,17 @@ jobs:
           path: r134-output/
           if-no-files-found: error
           retention-days: 30
-      - name: Enforce court pass
+      - name: Enforce combined court pass
         if: always()
         shell: bash
         run: |
           python - <<'PY'
           import json, pathlib
-          p=pathlib.Path('r134-output/R134_TIMESTAMP_REPLICATION.json')
-          if not p.exists(): raise SystemExit('missing court result')
-          d=json.loads(p.read_text())
-          print(json.dumps(d['summary'], indent=2, sort_keys=True))
-          if not d['summary']['pass']: raise SystemExit(2)
+          temporal=pathlib.Path('r134-output/R134_TIMESTAMP_REPLICATION.json')
+          detail=pathlib.Path('r134-output/R134_CURRENT_DETAIL_LIVE_READ.json')
+          if not temporal.exists() or not detail.exists(): raise SystemExit('missing combined court result')
+          t=json.loads(temporal.read_text())['summary']
+          d=json.loads(detail.read_text())
+          print(json.dumps({'temporal_pass':t['pass'],'detail_pass':d['pass']},indent=2))
+          if not t['pass'] or not d['pass']: raise SystemExit(2)
           PY
