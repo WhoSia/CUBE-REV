@@ -18,11 +18,12 @@ jobs:
       HF_REVISION: 7fae604962c590ac9c658ba6ee0350e86de9c4f5
       HF_BASE: https://huggingface.co/datasets/cubed-core/cubed-data-v1/resolve
     steps:
-      - name: Create court script
+      - name: Run acquisition and temporal court
         shell: bash
         run: |
+          mkdir -p r134-output/raw
           cat > /tmp/r134.py <<'PY'
-          import csv, hashlib, json, math, os, re, statistics, time, urllib.request
+          import csv, hashlib, json, os, re, statistics, time, urllib.request
           from pathlib import Path
 
           rev = os.environ['HF_REVISION']
@@ -35,17 +36,18 @@ jobs:
               last = None
               for i in range(tries):
                   try:
-                      req = urllib.request.Request(url, headers={'User-Agent':'CUBE-REV-R1.34/1.0'})
+                      req = urllib.request.Request(url, headers={'User-Agent':'CUBE-REV-R1.34/1.1'})
                       with urllib.request.urlopen(req, timeout=45) as r:
                           b = r.read()
+                          meta = {'status': getattr(r, 'status', None), 'content_type': r.headers.get('content-type'), 'final_url': r.geturl()}
                       dest.write_bytes(b)
-                      return b
+                      return b, meta
                   except Exception as e:
                       last = e
                       time.sleep(1.5 * (i+1))
               raise RuntimeError(f'fetch failed {url}: {last}')
 
-          sums_bytes = fetch(f'{base}/SHA256SUMS?download=true', out/'SHA256SUMS')
+          sums_bytes, sums_meta = fetch(f'{base}/SHA256SUMS?download=true', out/'SHA256SUMS')
           sums_sha = hashlib.sha256(sums_bytes).hexdigest()
           sums_text = sums_bytes.decode('utf-8')
           expected = {}
@@ -54,148 +56,124 @@ jobs:
               if m:
                   expected[m.group(2)] = m.group(1)
           session_paths = sorted(p for p in expected if re.fullmatch(r'captures/[^/]+/cube_session\.json', p))
+
+          rows=[]; probes=[]; failures=[]
+          all_intervals=all_boundaries=total_moves=0
           if len(session_paths) != 35:
-              raise RuntimeError(f'expected exactly 35 cube_session.json paths from SHA256SUMS, got {len(session_paths)}')
+              failures.append({'reason':'session_path_count','observed':len(session_paths),'expected':35})
 
-          def med(xs):
-              return statistics.median(xs)
-
-          rows=[]
-          all_intervals=0
-          all_boundaries=0
-          total_moves=0
-          failures=[]
           for path in session_paths:
               cid = path.split('/')[1]
-              b = fetch(f'{base}/{path}?download=true', raw/f'{cid}_cube_session.json')
-              obs = hashlib.sha256(b).hexdigest()
-              exp = expected[path]
+              b, meta = fetch(f'{base}/{path}?download=true', raw/f'{cid}_cube_session.json')
+              obs = hashlib.sha256(b).hexdigest(); exp = expected[path]
+              probe={'capture_id':cid,'path':path,'bytes':len(b),'sha256':obs,'expected_sha256':exp,'hash_match':obs==exp,**meta}
               if obs != exp:
                   failures.append({'capture_id':cid,'reason':'sha256_mismatch','expected':exp,'observed':obs})
-              doc = json.loads(b)
-              moves = doc.get('moves')
-              if not isinstance(moves, list) or len(moves) < 2:
-                  failures.append({'capture_id':cid,'reason':'moves_missing_or_short'})
+              try:
+                  doc=json.loads(b)
+              except Exception as e:
+                  probe.update({'json_type':None,'top_keys':[],'preview':b[:240].decode('utf-8','replace')})
+                  probes.append(probe); failures.append({'capture_id':cid,'reason':'json_parse','error':repr(e)}); continue
+              probe['json_type']=type(doc).__name__
+              probe['top_keys']=sorted(doc.keys()) if isinstance(doc,dict) else []
+              moves=doc.get('moves') if isinstance(doc,dict) else None
+              probe['moves_type']=type(moves).__name__ if moves is not None else None
+              probe['moves_len']=len(moves) if isinstance(moves,list) else None
+              if not isinstance(moves,list) or len(moves)<2:
+                  probe['preview']=json.dumps(doc, ensure_ascii=False)[:500]
+                  probes.append(probe)
+                  failures.append({'capture_id':cid,'reason':'moves_missing_or_short','top_keys':probe['top_keys'],'moves_type':probe['moves_type'],'moves_len':probe['moves_len']})
                   continue
-              ts=[]
-              missing_t=0
-              nonint_t=0
+              probes.append(probe)
+              ts=[]; missing_t=0; nonint_t=0
               for mv in moves:
                   t=mv.get('t_ms') if isinstance(mv,dict) else None
-                  if t is None:
-                      missing_t += 1
-                  elif not isinstance(t,int) or isinstance(t,bool):
-                      nonint_t += 1
-                  else:
-                      ts.append(t)
+                  if t is None: missing_t += 1
+                  elif not isinstance(t,int) or isinstance(t,bool): nonint_t += 1
+                  else: ts.append(t)
               if missing_t or nonint_t or len(ts)!=len(moves):
                   failures.append({'capture_id':cid,'reason':'timestamp_schema','missing_t':missing_t,'nonint_t':nonint_t,'moves':len(moves),'valid_t':len(ts)})
                   continue
-              intervals=[b-a for a,b in zip(ts,ts[1:])]
+              intervals=[y-x for x,y in zip(ts,ts[1:])]
               nonpositive=sum(1 for x in intervals if x<=0)
-              if nonpositive:
-                  failures.append({'capture_id':cid,'reason':'nonpositive_imi','count':nonpositive})
-              median_imi=med(intervals)
-              deviations=[abs(x-median_imi) for x in intervals]
-              mad=med(deviations)
-              threshold=median_imi + 3*mad
+              if nonpositive: failures.append({'capture_id':cid,'reason':'nonpositive_imi','count':nonpositive})
+              median_imi=statistics.median(intervals)
+              mad=statistics.median([abs(x-median_imi) for x in intervals])
+              threshold=median_imi+3*mad
               boundary_count=sum(1 for x in intervals if x>threshold)
-              boundary_rate=boundary_count/len(intervals)
-              rows.append({
-                  'capture_id':cid,
-                  'path':path,
-                  'bytes':len(b),
-                  'sha256':obs,
-                  'expected_sha256':exp,
-                  'hash_match':obs==exp,
-                  'move_count':len(moves),
-                  'interval_count':len(intervals),
-                  'first_t_ms':ts[0],
-                  'last_t_ms':ts[-1],
-                  'duration_ms':ts[-1]-ts[0],
-                  'strictly_increasing':nonpositive==0,
-                  'median_imi_ms':median_imi,
-                  'mad_imi_ms':mad,
-                  'threshold_ms':threshold,
-                  'boundary_count':boundary_count,
-                  'boundary_rate':boundary_rate,
-                  'max_imi_ms':max(intervals),
-              })
-              total_moves += len(moves)
-              all_intervals += len(intervals)
-              all_boundaries += boundary_count
+              row={
+                  'capture_id':cid,'path':path,'bytes':len(b),'sha256':obs,'expected_sha256':exp,'hash_match':obs==exp,
+                  'move_count':len(moves),'interval_count':len(intervals),'first_t_ms':ts[0],'last_t_ms':ts[-1],
+                  'duration_ms':ts[-1]-ts[0],'strictly_increasing':nonpositive==0,'median_imi_ms':median_imi,
+                  'mad_imi_ms':mad,'threshold_ms':threshold,'boundary_count':boundary_count,
+                  'boundary_rate':boundary_count/len(intervals),'max_imi_ms':max(intervals)
+              }
+              rows.append(row); total_moves += len(moves); all_intervals += len(intervals); all_boundaries += boundary_count
 
-          if len(rows)!=35:
-              failures.append({'reason':'row_count','rows':len(rows)})
-
-          # Leave-one-capture-out aggregate check. The threshold is NEVER pooled:
-          # each capture keeps its own frozen median+3*MAD rule; only the aggregate rate is recomputed.
+          if len(rows)!=35: failures.append({'reason':'analyzable_row_count','rows':len(rows),'expected':35})
           lco=[]
           for held in rows:
               ints=sum(r['interval_count'] for r in rows if r['capture_id']!=held['capture_id'])
               bds=sum(r['boundary_count'] for r in rows if r['capture_id']!=held['capture_id'])
-              lco.append({'held_out':held['capture_id'],'remaining_intervals':ints,'remaining_boundaries':bds,'boundary_rate':(bds/ints if ints else None)})
-
+              lco.append({'held_out':held['capture_id'],'remaining_intervals':ints,'remaining_boundaries':bds,'boundary_rate':bds/ints if ints else None})
+          rates=[r['boundary_rate'] for r in rows]; medimis=[r['median_imi_ms'] for r in rows]; thrs=[r['threshold_ms'] for r in rows]
           summary={
               'court':'CUBE-REV 0.10.5-R1.34 — External Raw-Byte Transfer, 35-Capture Timestamp Replication & Current-Detail Live-Read Court',
-              'dataset':'cubed-core/cubed-data-v1',
-              'revision':rev,
-              'sha256sums_sha256':sums_sha,
-              'session_count':len(rows),
-              'hash_match_count':sum(1 for r in rows if r['hash_match']),
-              'strictly_increasing_count':sum(1 for r in rows if r['strictly_increasing']),
-              'total_moves':total_moves,
-              'total_intervals':all_intervals,
-              'total_boundaries':all_boundaries,
-              'aggregate_boundary_rate':(all_boundaries/all_intervals if all_intervals else None),
-              'capture_boundary_rate_min':min((r['boundary_rate'] for r in rows), default=None),
-              'capture_boundary_rate_median':statistics.median([r['boundary_rate'] for r in rows]) if rows else None,
-              'capture_boundary_rate_max':max((r['boundary_rate'] for r in rows), default=None),
-              'capture_median_imi_ms_median':statistics.median([r['median_imi_ms'] for r in rows]) if rows else None,
-              'capture_threshold_ms_median':statistics.median([r['threshold_ms'] for r in rows]) if rows else None,
-              'lco_boundary_rate_min':min((x['boundary_rate'] for x in lco), default=None),
-              'lco_boundary_rate_max':max((x['boundary_rate'] for x in lco), default=None),
+              'dataset':'cubed-core/cubed-data-v1','revision':rev,'sha256sums_sha256':sums_sha,
+              'sha256sums_http':sums_meta,'session_path_count':len(session_paths),'download_count':len(probes),
+              'download_hash_match_count':sum(1 for p in probes if p['hash_match']),'session_count':len(rows),
+              'strictly_increasing_count':sum(1 for r in rows if r['strictly_increasing']),'total_moves':total_moves,
+              'total_intervals':all_intervals,'total_boundaries':all_boundaries,
+              'aggregate_boundary_rate':all_boundaries/all_intervals if all_intervals else None,
+              'capture_boundary_rate_min':min(rates) if rates else None,'capture_boundary_rate_median':statistics.median(rates) if rates else None,
+              'capture_boundary_rate_max':max(rates) if rates else None,'capture_median_imi_ms_median':statistics.median(medimis) if medimis else None,
+              'capture_threshold_ms_median':statistics.median(thrs) if thrs else None,
+              'lco_boundary_rate_min':min((x['boundary_rate'] for x in lco),default=None),'lco_boundary_rate_max':max((x['boundary_rate'] for x in lco),default=None),
               'rule':'within-capture IMI boundary iff IMI > median(IMI_capture) + 3*MAD(IMI_capture); no pooled threshold; LCO only recomputes aggregate rate',
-              'failures':failures,
-              'pass': len(rows)==35 and not failures and all(r['hash_match'] and r['strictly_increasing'] for r in rows),
-              'human_rows':0,
-              'live_collector_calls':0,
-              'production_writes':0,
+              'failures':failures,'pass':len(rows)==35 and len(session_paths)==35 and not failures and all(r['hash_match'] and r['strictly_increasing'] for r in rows),
+              'human_rows':0,'live_collector_calls':0,'production_writes':0
           }
-          (out/'R134_TIMESTAMP_REPLICATION.json').write_text(json.dumps({'summary':summary,'captures':rows,'leave_one_capture_out':lco},indent=2,sort_keys=True), encoding='utf-8')
-          with (out/'R134_CAPTURE_TABLE.csv').open('w',newline='',encoding='utf-8') as f:
-              w=csv.DictWriter(f, fieldnames=list(rows[0].keys()))
-              w.writeheader(); w.writerows(rows)
+          (out/'R134_TIMESTAMP_REPLICATION.json').write_text(json.dumps({'summary':summary,'captures':rows,'leave_one_capture_out':lco},indent=2,sort_keys=True),encoding='utf-8')
+          (out/'R134_DOWNLOAD_PROBES.json').write_text(json.dumps(probes,indent=2,sort_keys=True),encoding='utf-8')
+          if rows:
+              with (out/'R134_CAPTURE_TABLE.csv').open('w',newline='',encoding='utf-8') as f:
+                  w=csv.DictWriter(f,fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
           (out/'R134_TRANSFER_RECEIPT.json').write_text(json.dumps({
-              'schema':'cube-rev/r134-external-byte-transfer-v1',
-              'dataset':'cubed-core/cubed-data-v1',
-              'revision':rev,
-              'source_base':base,
-              'sha256sums_sha256':sums_sha,
-              'selected_files':[{'path':r['path'],'bytes':r['bytes'],'sha256':r['sha256']} for r in rows],
-              'selected_file_count':len(rows),
-              'all_expected_hashes_match':all(r['hash_match'] for r in rows),
-              'raw_bytes_retained_in_artifact':True,
-              'network_executor':'GitHub-hosted ubuntu-latest runner on isolated research branch',
+              'schema':'cube-rev/r134-external-byte-transfer-v1','dataset':'cubed-core/cubed-data-v1','revision':rev,'source_base':base,
+              'sha256sums_sha256':sums_sha,'selected_files':[{'path':p['path'],'bytes':p['bytes'],'sha256':p['sha256'],'hash_match':p['hash_match']} for p in probes],
+              'selected_file_count':len(probes),'all_expected_hashes_match':len(probes)==35 and all(p['hash_match'] for p in probes),
+              'raw_bytes_retained_in_artifact':True,'network_executor':'GitHub-hosted ubuntu-latest runner on isolated research branch',
               'human_rows':0,'live_collector_calls':0,'production_writes':0
           },indent=2,sort_keys=True),encoding='utf-8')
-          print(json.dumps(summary, indent=2, sort_keys=True))
-          if not summary['pass']:
-              raise SystemExit(2)
+          print(json.dumps(summary,indent=2,sort_keys=True))
           PY
           python /tmp/r134.py | tee r134-output/R134_STDOUT_SUMMARY.txt
 
       - name: Hash court outputs
+        if: always()
         shell: bash
         run: |
           cd r134-output
-          find . -type f -print0 | sort -z | xargs -0 sha256sum > R134_OUTPUT_SHA256SUMS
+          find . -type f ! -name R134_OUTPUT_SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > R134_OUTPUT_SHA256SUMS
           cat R134_OUTPUT_SHA256SUMS
 
       - name: Upload immutable transfer court artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: CUBE_REV_R1_34_EXTERNAL_RAW_BYTE_TRANSFER
           path: r134-output/
           if-no-files-found: error
           retention-days: 30
+
+      - name: Enforce court pass
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('r134-output/R134_TIMESTAMP_REPLICATION.json')
+          if not p.exists(): raise SystemExit('missing court result')
+          d=json.loads(p.read_text())
+          if not d['summary']['pass']: raise SystemExit(2)
+          PY
