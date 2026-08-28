@@ -1,0 +1,50 @@
+name: R1.35 historical/current archive acquisition court
+
+on:
+  push:
+    branches:
+      - research/r135-archive-census
+    paths:
+      - '.github/workflows/r135-archive-census.yml'
+      - 'research/r135_archive_acquisition.py'
+      - 'research/r135_loop_census.py'
+
+permissions:
+  contents: read
+
+jobs:
+  acquire-and-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout isolated R1.35 court branch
+        uses: actions/checkout@v4
+      - name: Run pinned historical transfer and exhaustive GET-only current-detail reconstruction
+        shell: bash
+        run: |
+          rm -rf r135-output
+          python research/r135_archive_acquisition.py | tee /tmp/R135_ACQUISITION_STDOUT.txt
+          cp /tmp/R135_ACQUISITION_STDOUT.txt r135-output/R135_ACQUISITION_STDOUT.txt
+      - name: Run rotation-invariant loop census when implementation is present
+        if: ${{ hashFiles('research/r135_loop_census.py') != '' }}
+        shell: bash
+        run: |
+          python research/r135_loop_census.py | tee /tmp/R135_LOOP_STDOUT.txt
+          cp /tmp/R135_LOOP_STDOUT.txt r135-output/R135_LOOP_STDOUT.txt
+      - name: Hash all court outputs
+        if: always()
+        shell: bash
+        run: |
+          if [ -d r135-output ]; then
+            cd r135-output
+            find . -type f ! -name R135_OUTPUT_SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > R135_OUTPUT_SHA256SUMS
+            cat R135_OUTPUT_SHA256SUMS
+          fi
+      - name: Upload immutable R1.35 court artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CUBE_REV_R1_35_ARCHIVE_CENSUS
+          path: r135-output/
+          if-no-files-found: error
+          retention-days: 30
