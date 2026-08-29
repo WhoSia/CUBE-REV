@@ -17,7 +17,7 @@ This is the public release-candidate surface for the manuscript **“State recon
 - Fixed-cross scalar pair-set multiplicities are 4/6/4 at k=1/2/3.
 
 ## Release status
-The complete sealed M1.0 reproducibility package has been built and passes `CUBE_REV_PAPER1_M1_0_REPRO_PASS`. Its ZIP SHA-256 is `25956c29b97a18a705d7180e75c3fb2d8462edb078facfb63ea3e302bf6244a4`.
+The complete sealed M1.0 reproducibility package has been built and passes `CUBE_REV_PAPER1_M1_0_REPRO_PASS`. The **final** BRM/Zenodo release-candidate ZIP SHA-256 is `4448194195d350d7e446f037e9aaf7d6356fe133e6d850685be17ccd41d03e8f`.
 
 The recovered raw CubeRoot reconstruction archive is **not redistributed** because an explicit archive-wide redistribution license was not verified. The full frozen **derived** Paper-1 analysis package is prepared for Zenodo; DOI minting is the remaining repository-side action.
 
