@@ -1,0 +1,17 @@
+{
+  "title": "CUBE-REV Paper 1: State reconstruction and observation-induced subgoal aliasing in naturalistic Rubik's Cube solving",
+  "description": "Reproducibility and software release metadata for CUBE-REV Paper 1. Raw third-party CubeRoot reconstruction bytes are not redistributed; derived analysis materials, verification resources, figure inputs, and provenance are released separately under their documented authority boundaries.",
+  "creators": [
+    {
+      "name": "Kim, Woojun",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0003-3880-3255"
+    }
+  ],
+  "keywords": ["naturalistic behavior", "state reconstruction", "measurement", "partial observability", "state aliasing", "Rubik's Cube"],
+  "version": "Paper-1-M1.1",
+  "publication_date": "2026-08-30",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT"
+}
