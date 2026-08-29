@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use the CUBE-REV Paper 1 reproducibility package, please cite the software release and associated manuscript."
+message: "If you use the CUBE-REV Paper 1 reproducibility package, please cite the Zenodo M1.1 release and associated manuscript."
 title: "CUBE-REV Paper 1: State reconstruction and observation-induced subgoal aliasing"
 type: software
 authors:
@@ -10,5 +10,9 @@ authors:
 version: "Paper-1-M1.1"
 date-released: "2026-08-30"
 repository-code: "https://github.com/WhoSia/CUBE-REV"
-url: "https://github.com/WhoSia/CUBE-REV"
+url: "https://doi.org/10.5281/zenodo.22164926"
 license: MIT
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22164926"
+    description: "Zenodo version DOI for the complete Paper-1 M1.1 reproducibility package"
