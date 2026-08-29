@@ -3,9 +3,9 @@
   "description": "Reproducibility package for a Behavior Research Methods submission candidate. Includes derived frontier-segment analysis materials, deterministic verification resources, figure inputs, and provenance. Raw third-party CubeRoot reconstruction bytes are not redistributed.",
   "creators": [
     {
-      "name": "[AUTHOR_NAME]",
-      "affiliation": "[AFFILIATION]",
-      "orcid": "[ORCID]"
+      "name": "Kim, Woojun",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0003-3880-3255"
     }
   ],
   "keywords": ["naturalistic behavior", "state reconstruction", "measurement", "partial observability", "state aliasing", "Rubik's Cube"],
