@@ -1,0 +1,38 @@
+{
+  "schema": "CUBE-REV-G3-P10-R2-E1-CERT-v1",
+  "base_url": "https://cube-rev-g3-cog-e1.onrender.com",
+  "candidate_id": "G3-P10-R2-E1-20260914-A",
+  "browser": "140.0.7339.16",
+  "served_https": true,
+  "candidate_binding": true,
+  "marker_permutations": {
+    "pass": 0,
+    "total": 48
+  },
+  "manifest_commits": {
+    "pass": 0,
+    "total": 48
+  },
+  "response_manifest_bindings": {
+    "pass": 0,
+    "total": 24
+  },
+  "cube_pixel_invariance": {
+    "pass": 0,
+    "total": 48
+  },
+  "matched_r0_r1_pixel_pairs": {
+    "pass": 0,
+    "total": 2
+  },
+  "crosswalk": null,
+  "generalization": null,
+  "result": "FAIL",
+  "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at /__w/CUBE-REV/CUBE-REV/g3-cog/tests/r2-e1-cert.mjs:37:18",
+  "workflow": "g3-cog-r2-e1.yml",
+  "workflow_run_id": "34799403350",
+  "workflow_run_attempt": "1",
+  "container": "mcr.microsoft.com/playwright:v1.55.0-noble",
+  "playwright": "1.55.0",
+  "runner": "ubuntu-24.04"
+}
