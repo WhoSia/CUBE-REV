@@ -1,0 +1,18 @@
+{
+  "schema":"CUBE-REV-G3-P10-R2-P7-HASH-CROSSWALK-v1",
+  "predecessor_packet_sha256":"f4cc28047e795c36c506cd999e79518871ac9d27c9f79d2006f5590aa8c68143",
+  "predecessor_probe_sha256":"e603f2cc21d9b0d0eadf80d066d5a554d48725d1cd9340f1052c3e0ce305e677",
+  "predecessor_exact_bytes_status":"UNAVAILABLE_NOT_RECONSTRUCTED",
+  "successor_packet_sha256":"ce545bd2b8ad374316242281ab6edda129775dab67211796cbc7caed11404692",
+  "successor_probe_sha256":"bba0c0fbdfa441d14db8d11644a412bf7e6664d98abc8731c25117ec1c1f649c",
+  "crosswalk_type":"SEMANTIC_RELATION_NOT_HASH_TRANSFORM",
+  "ratified_claims":[
+    "same canonical start algorithm",
+    "same six opaque analysis cells",
+    "same four primary history strings",
+    "all five unique successor render surfaces converge to one exact successor probe serialization",
+    "R toggle does not alter successor physical state",
+    "no claim that predecessor hash bytes can be transformed into successor hash bytes"
+  ],
+  "status":"PASS_PROSPECTIVE_BYTE_SUPERSESSION_WITH_HISTORICAL_NAMESPACE_NONIDENTITY"
+}
