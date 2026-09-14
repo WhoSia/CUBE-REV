@@ -1,5 +1,5 @@
 {
-  "schema": "CUBE-REV-G3-P11-NAV-CERT-v2",
+  "schema": "CUBE-REV-G3-P11-NAV-CERT-v3",
   "candidate_id": "G3-P11-NAV-20260914-A",
   "base_url": "http://127.0.0.1:4174",
   "browser": "140.0.7339.16",
@@ -32,11 +32,11 @@
     ]
   },
   "browser_cells": {
-    "pass": 97,
+    "pass": 2,
     "total": 144
   },
   "manifest_uniqueness": {
-    "pass": 4,
+    "pass": 0,
     "total": 6
   },
   "representation_labels": {
@@ -44,7 +44,7 @@
     "total": 48
   },
   "physical_pixel_invariance": {
-    "pass": 96,
+    "pass": 1,
     "total": 144
   },
   "response_lock": {
@@ -61,9 +61,9 @@
   },
   "result": "FAIL",
   "diagnostics": [],
-  "error": "Error: N5H7Q2WB/ABCD label permutation\n    at file:///__w/CUBE-REV/CUBE-REV/g3-cog/nav/tests/cert.mjs:32:115",
+  "error": "Error: NV4Q8A2C/ABDC physical pixels changed\n    at file:///__w/CUBE-REV/CUBE-REV/g3-cog/nav/tests/cert.mjs:33:215",
   "workflow": "g3-p11-nav.yml",
-  "workflow_run_id": "34808999174",
+  "workflow_run_id": "34809151387",
   "workflow_run_attempt": "1",
   "container": "mcr.microsoft.com/playwright:v1.55.0-noble",
   "playwright": "1.55.0",
