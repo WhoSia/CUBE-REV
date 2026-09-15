@@ -2,11 +2,6 @@ name: G3 P14-R1 WCA immutable acquisition
 
 on:
   workflow_dispatch:
-  push:
-    branches: [research/current]
-    paths:
-      - '.github/workflows/p14-r1-wca.yml'
-      - 'data_frontier/wca/**'
 
 permissions:
   contents: read
