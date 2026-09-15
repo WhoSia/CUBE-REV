@@ -1,0 +1,52 @@
+{
+  "stage": "CUBE-REV Generation III G3-P14-R2",
+  "source": {
+    "export_version": "v2.0.2",
+    "export_timestamp": "2026-09-14T00:00:16Z",
+    "raw_zip_bytes": 376033641,
+    "raw_zip_sha256": "95ab3be3db10ca759e2328b6a487e592d8ce206352f77e689dd7681b681d9482",
+    "derived_zip_bytes": 99376424,
+    "derived_zip_sha256": "694fca87aacc9a0dd71331d478af3b574b20cd560c3ee36399ff84f275ca8e75",
+    "attempt_parquet_sha256": "6840d5441fecc7b0e37159fba5b27fe0ee018110ca809afb78bc5c104d579727",
+    "longitudinal_index_sha256": "4ef5f4620b876ca1ab69440daabc3f78f85f2e3c0606ec181f5da3af4798e635",
+    "drive_derived_file_id": "1QABFEjojHbljuUbt-pFwuSMCPIGFsRKh",
+    "drive_raw_split_receipt_file_id": "1V6o6tmah4P44KLIB9aiFnmHtXHWZCjU3"
+  },
+  "github_runs": {"acquire_and_derive": 34910083516, "raw_four_part_split": 34910991071},
+  "invariants": {
+    "attempt_rows": 9278024, "unique_result_attempt_keys": 9278024,
+    "competitors": 285697, "competitions": 15316,
+    "valid": 9084452, "dnf": 189559, "dns": 4013,
+    "no_result": 0, "unexpected": 0, "status_time_mismatch": 0
+  },
+  "analysis": {
+    "seed": 314159, "permutations": 199, "permutation_blocks": 18539,
+    "adjacent_valid_n": 6678418, "adjacent_residual_correlation": 0.5481453505,
+    "adjacent_order_null_p": 0.32,
+    "dnf_to_dnf_rate": 0.0646530357, "valid_to_dnf_rate": 0.0196142274,
+    "dnf_repeat_null_p": 0.005,
+    "matched_post_dnf_final_proportional_difference": 0.0163456469,
+    "matched_post_dnf_nonfinal_proportional_difference": 0.0337087498,
+    "pre_dnf_mean_log_residual": 0.0200265089,
+    "post_dnf_mean_log_residual": 0.0283869081
+  },
+  "verdict": "ROBUST_NATURALISTIC_SIGNAL_DNF_CLUSTERING_NO_COGNITIVE_RECOVERY",
+  "promotion": {"aalto_136m": "ACQUIRE_NEXT_P15", "ednet": "QUALIFIED_NO_DOWNLOAD_YET"},
+  "summary_checksums": {
+    "adjudication_inputs.json": "29d9dd4b0b86bb5cdf66ae7cff7ffe8289edebf335506aaa49eeb4f6d7e61c76",
+    "atlas_annual.csv": "2cd3960ae6c467e73aed3c88de87fbe0a70bc018c5f9576cf6ced2ad633f0cfd",
+    "atlas_depth.json": "aff121a4f36e4557b3b4b3a4253ff4e99b2ce7ea01b24dd3d9a121d8ce523df9",
+    "atlas_round_format.csv": "b8654ef9b6bca5b36f044e308af69e38d2a2a6a9f3e2178d84cfeedc1ba27884",
+    "dnf_reverse_time_placebo.csv": "7be3c3aa4f605ba3d66582660b75ca7cce8d5f280a6334a7700c3c1c521abf88",
+    "dnf_transition_matrix.csv": "51dc03c7a3ba4f52213208966c08e7ed87f5485e2cba9eeb75cb003dabbe553d",
+    "sequential_adjacent.csv": "872b0ff0365c18302933b57dac0badc28e770c094928e105f22874acc3d220f7",
+    "sequential_position.csv": "651463988f2f0d3a5f0bb334dc4582c3c991802465c9199f7e43eaad5fa8c3aa",
+    "skill_trajectory.csv": "40fef29da55ee6591874be89ee2d885ee07bf0935ab658c7276e585bceaacca6",
+    "structure_preserving_null.json": "0dca2be472c4b74eeb986b6153ddc147b6317e374d8bea225292c5c434df184f"
+  },
+  "external_actions": {
+    "paper1_changed": false, "public_release": false, "zenodo_changed": false,
+    "journal_action": false, "human_contact": false,
+    "aalto_downloaded": false, "ednet_downloaded": false
+  }
+}

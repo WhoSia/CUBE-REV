@@ -16,11 +16,12 @@ release_classes:
 corpora:
   - id: WCA_V2
     rank: 1
-    status: ACQUIRE_NEXT
+    status: ACQUIRED_P14_R1
+    p14_r2_verdict: ROBUST_NATURALISTIC_SIGNAL_DNF_CLUSTERING_NO_COGNITIVE_RECOVERY
     lane: population_performance
     source: https://www.worldcubeassociation.org/export/results
-    current_anchor: v2.0.2_2026-09-10
-    scale: "~358 MB TSV compressed / ~370 MB SQL compressed"
+    current_anchor: v2.0.2_2026-09-14T00:00:16Z
+    scale: "376,033,641-byte TSV ZIP; 9,278,024 materialized 3x3 attempt rows"
     fields_of_interest: [persons, competitions, results, result_attempts, events, round_types, formats]
     estimands:
       - within_round_attempt_order_dependence
@@ -47,7 +48,7 @@ corpora:
 
   - id: AALTO_136M_KEYSTROKES
     rank: 3
-    status: QUALIFIED_NO_DOWNLOAD_YET
+    status: ACQUIRE_NEXT_P15
     lane: motor_control_comparator
     source: https://userinterfaces.aalto.fi/136Mkeystrokes/
     scale: "136M keystrokes; ~168k participants; ~1.4 GB zipped"
@@ -56,6 +57,7 @@ corpora:
       - history_conditioned_interkey_timing
       - rollover_and_preparation_structure
       - stable_style_vs_transient_control_state
+      - bidirectional_slowdown_and_repeated_error_hazard_around_error_events
     limits: [transcription_task, self_selected_online_sample, noncommercial_reuse_terms]
     release_class: R2
     scores: [3,4,3,2,4,3,3,4,4]
