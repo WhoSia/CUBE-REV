@@ -1,0 +1,10 @@
+{
+  "stage": "CUBE-REV Generation III G3-P15",
+  "verdict": "SOURCE-INTEGRITY_HOLD",
+  "archive_sha256": "5fb217e0e1273017a6789c5c7ebcc00eed624f2f6426c284da2077a88e270420",
+  "archive_bytes": 1572785433,
+  "drive_raw_custody_folder": "1KQJGpJV1A-okFZ0SSkIoUTlDjQpf9c1X",
+  "integrity_census": {"streams":2495387,"participants":168593,"raw_rows":121291605,"final_input_stream_disagreement_n":1770441,"final_input_stream_disagreement_rate":0.7094855427234332,"invalid_missing_target_streams":180},
+  "metadata_join": {"intersection":168593,"metadata_only":1,"confirmatory_metadata_use":"NOT_USED"},
+  "hold_reason":"keycode-to-output mapping remains incomplete; no hazard analysis authorized"
+}
