@@ -1,0 +1,74 @@
+{
+  "schema": "CUBE-REV-G3-P11-NAV-CERT-v4",
+  "candidate_id": "G3-P11-NAV-20260914-A",
+  "base_url": "http://127.0.0.1:4174",
+  "browser": "140.0.7339.16",
+  "formal_contract": {
+    "pass": 3,
+    "total": 3,
+    "details": [
+      {
+        "pair": "AVOID1/AVOID2",
+        "kind": "equal",
+        "same_terminal": true,
+        "same_pre_suffix": true,
+        "suffix": true,
+        "histogram": true,
+        "context": true
+      },
+      {
+        "pair": "HIT/AVOID1",
+        "kind": "divergent",
+        "same_terminal": true,
+        "same_pre_suffix": true,
+        "suffix": true,
+        "histogram": true,
+        "context": true
+      }
+    ],
+    "optimal_first_moves": [
+      "E",
+      "N"
+    ]
+  },
+  "browser_cells": {
+    "pass": 144,
+    "total": 144
+  },
+  "manifest_uniqueness": {
+    "pass": 6,
+    "total": 6
+  },
+  "representation_labels": {
+    "pass": 48,
+    "total": 48
+  },
+  "physical_render_invariance": {
+    "pass": 144,
+    "total": 144
+  },
+  "matched_r0_r1_physical_surface": {
+    "pass": 2,
+    "total": 2
+  },
+  "response_lock": {
+    "pass": 24,
+    "total": 24
+  },
+  "cross_task_preseal": {
+    "estimand": "P(a_next | s*, h, R)",
+    "normalized_divergence": "JSD / ln(2)",
+    "contrasts": [
+      "Delta_K = D(divergent,R0)-D(control,R0)",
+      "Delta_R = D(divergent,R0)-D(divergent,R1)"
+    ]
+  },
+  "result": "PASS_RSTP_G3_INSTRUMENT_PORTABILITY_PREFLIGHT",
+  "diagnostics": [],
+  "workflow": "g3-p11-nav.yml",
+  "workflow_run_id": "34809334605",
+  "workflow_run_attempt": "1",
+  "container": "mcr.microsoft.com/playwright:v1.55.0-noble",
+  "playwright": "1.55.0",
+  "runner": "ubuntu-24.04"
+}
