@@ -2,11 +2,12 @@
 """Streaming P15 source-integrity pass; writes aggregates only, never raw rows."""
 from __future__ import annotations
 
-import argparse, csv, hashlib, io, json, re, zipfile
+import argparse, csv, hashlib, io, json, re, unicodedata, zipfile
 from collections import Counter
 from pathlib import Path
 
 from p15_compiler import KeyEvent, compile_stream, CORRECTION_KEYS
+from p15_r1_adapter import classify
 
 csv.field_size_limit(10_000_000)
 
@@ -31,6 +32,16 @@ def optional_float(value):
         return float(value)
     except (TypeError, ValueError):
         return None
+
+
+def event_order_key(row):
+    """Recover browser keydown order without inventing missing timestamps."""
+    press = optional_float(row.get("PRESS_TIME"))
+    try:
+        event_id = int(row.get("KEYSTROKE_ID"))
+    except (TypeError, ValueError):
+        event_id = 2**63 - 1
+    return (press is None, press if press is not None else 0.0, event_id)
 
 
 def iter_streams(za, names):
@@ -67,6 +78,7 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--shard", type=int, default=0)
     ap.add_argument("--shards", type=int, default=1)
+    ap.add_argument("--policy", choices=["r0", "r1"], default="r1")
     args = ap.parse_args()
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
     zpath = Path(args.zip)
@@ -87,7 +99,20 @@ def main():
                 # compiler or hazard observation is authorized for this stream.
                 census["invalid_missing_target_stream"] += 1
                 continue
-            events = [KeyEvent(r["LETTER"], optional_float(r["PRESS_TIME"]), optional_float(r["RELEASE_TIME"]), output_char(r["LETTER"], r["KEYCODE"])) for r in rows]
+            # The collector appends a completed record on keyup, while the
+            # text-producing operation occurred at keydown/keypress.  Layer T
+            # therefore follows recorded press time, with source event id only
+            # as a deterministic tie-breaker.
+            rows = sorted(rows, key=event_order_key)
+            if args.policy == "r1":
+                adapted = [classify(r["LETTER"], r["KEYCODE"]) for r in rows]
+                events = [KeyEvent(op, optional_float(r["PRESS_TIME"]), optional_float(r["RELEASE_TIME"]), lit)
+                          for r, (op, lit) in zip(rows, adapted)]
+                census.update(op for op, _ in adapted)
+                conservative_ok = all(op not in {"UNKNOWN", "AMBIGUOUS_OUTPUT", "DELETE"} for op, _ in adapted)
+            else:
+                events = [KeyEvent(r["LETTER"], optional_float(r["PRESS_TIME"]), optional_float(r["RELEASE_TIME"]), output_char(r["LETTER"], r["KEYCODE"])) for r in rows]
+                conservative_ok = False
             result = compile_stream(target, events, logged, include_alignment=False)
             if not result["stream_matches_logged_final"]:
                 stream_disagree += 1
@@ -98,6 +123,12 @@ def main():
             census["stream_target_match"] += int(result["stream_matches_target"])
             census["stream_target_mismatch"] += int(not result["stream_matches_target"])
             census["stream_final_disagreement"] += int(not result["stream_matches_logged_final"])
+            if conservative_ok:
+                census["r2_eligible_stream"] += 1
+                census["r2_exact_match"] += int(result["stream_matches_logged_final"])
+                norm_match = (logged is not None and unicodedata.normalize("NFC", logged.replace("\r\n", "\n")) ==
+                              unicodedata.normalize("NFC", result["reconstructed"].replace("\r\n", "\n")))
+                census["r2_normalization_match"] += int(norm_match)
             census["corrected_error_episodes"] += result["corrected_episode_count"]
             census["uncorrected_errors"] += result["uncorrected_error_count"]
             census["ambiguous_edits"] += result["ambiguous_edit_count"]
@@ -111,6 +142,7 @@ def main():
         "stage": "G3-P15 integrity pass",
         "shard": args.shard,
         "shards": args.shards,
+        "policy": args.policy,
         "raw_files_in_shard": len(shard_names),
         "archive_sha256": sha256_file(zpath),
         "streams": stream_total,

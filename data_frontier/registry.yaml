@@ -1,5 +1,5 @@
 schema: CUBE-REV-DATA-FRONTIER-v1
-stage: G3-P14
+stage: G3-P15-R1
 policy:
   human_collection: DORMANT_RESERVE
   bulk_download_requires: [named_estimand, license_check, provenance_plan, release_plan]
@@ -48,7 +48,8 @@ corpora:
 
   - id: AALTO_136M_KEYSTROKES
     rank: 3
-    status: ACQUIRE_NEXT_P15
+    status: SOURCE_INTEGRITY_HOLD_P15_R1
+    p15_r1_verdict: SOURCE_INTEGRITY_HOLD
     lane: motor_control_comparator
     source: https://userinterfaces.aalto.fi/136Mkeystrokes/
     scale: "136M keystrokes; ~168k participants; ~1.4 GB zipped"

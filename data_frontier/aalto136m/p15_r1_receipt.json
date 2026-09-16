@@ -1,0 +1,48 @@
+{
+  "stage": "CUBE-REV Generation III G3-P15-R1",
+  "verdict": "SOURCE_INTEGRITY_HOLD",
+  "executed_at": "2026-09-16",
+  "archive": {
+    "bytes": 1572785433,
+    "sha256": "5fb217e0e1273017a6789c5c7ebcc00eed624f2f6426c284da2077a88e270420"
+  },
+  "collector": {
+    "repository": "aalto-ui/136m-keystrokes",
+    "commit": "98dcee94dc6c0464b35e8ca43d60e1b225cc621f"
+  },
+  "tests": {
+    "collector_adapter_and_compiler": 12,
+    "passed": 12
+  },
+  "source_census": {
+    "rows": 121291785,
+    "streams": 2495387,
+    "participants": 168593,
+    "layer_l_missing": 11866603
+  },
+  "validation": {
+    "target_eligible_streams": 2495207,
+    "r1_exact_match": 1730213,
+    "r1_exact_match_rate": 0.6934146144989173,
+    "r1_disagreement": 764994,
+    "r2_observable_only_streams": 2211671,
+    "r2_coverage": 0.8863672709318683,
+    "r2_exact_match": 1726325,
+    "r2_exact_match_rate": 0.7805523515929811,
+    "r2_unexplained_mismatch": 485346,
+    "r2_unexplained_mismatch_rate": 0.21944764840701894
+  },
+  "private_shard_receipt_sha256": [
+    "8bd2a7b330af22ca25b11c944f5559c501067bfed44d8333f451a1352b3c2a46",
+    "7342d979785d864bbcc03564d962b0c1a1516aaaeb06707f0baa765b9707bc07",
+    "3d1cd4834d3d1e43fb7b48d4afaed95467da18b7f41942b4dcb8b0328b90edad",
+    "3ea0f486b53c5a95395d2dd1c93f612e39abde2e5b662d5d07ef8f45b58f66d8"
+  ],
+  "authorization": {
+    "error_compiler": "NOT_REAUTHORIZED",
+    "hazard_analysis": "FORBIDDEN",
+    "peri_error_analysis": "FORBIDDEN",
+    "wca_aalto_transport": "FORBIDDEN"
+  },
+  "successor_gate": "bounded_original_source_artifact_or_export_semantics_resolution_audit_else_abandon_aalto_error_state_lane"
+}
