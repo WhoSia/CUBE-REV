@@ -1,0 +1,23 @@
+{
+  "observation": {
+    "status": "HOLD",
+    "reason": "Inherited ID-encoded necessity differs from canonical adapter coordinate values; no scientific repair authorized."
+  },
+  "action": {
+    "status": "HOLD",
+    "reason": "Hasse and gamma audits are exact on inherited masks; exact-target normalization proof, missing pruning controls, and prospectively minimal witness must be reconciled before certification."
+  },
+  "combined": {
+    "status": "HOLD",
+    "reason": "Both mechanism gates and runtime-premise gate must pass."
+  },
+  "abstract_schema": "Finite state set, transitions, exact target predicate, representation automorphism, coordinate-deletion observations, action subsets ordered by inclusion, cost bound, and constructive or exhaustive certificates.",
+  "holds": [
+    "P37_OBSERVATION_USES_INTERNAL_STICKER_ID_VALUES_NOT_ADAPTER_COLOR_VALUES",
+    "P37_FRONTIER_ONLY_3684_OF_16993_SUPPORTS_RECORDED_AND_DOMINANCE_TEST_OMITS_SUBSET_CONDITION",
+    "P37_FIRST_ACTION_WITNESS_ORDER_OMITS_ORIGIN_HASH_PRIORITY",
+    "P37_TARGET_INDEXED_CACHE_AND_UNPRUNED_DOMINANCE_REGRESSION_ABSENT"
+  ],
+  "world_contact": "HOLD",
+  "successor": "NOT_OPENED"
+}

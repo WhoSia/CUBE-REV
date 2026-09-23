@@ -1,0 +1,22 @@
+{
+  "theorem": "Define Y_O(D) as target-fiber ambiguity and Y_A(M) as bounded reachability on fixed exact states. If neither function consumes the other instrument, Y(D,M)=(Y_O(D),Y_A(M)) by definition. Any differing coordinate is already a pure-axis difference; no joint-only difference exists.",
+  "runtime": {
+    "lane_A_reads_observation_artifacts": false,
+    "lane_A_uses_projection": false,
+    "selectors_depend_only_on_masks": true,
+    "common_transition_adapter": true,
+    "observation_reads_bank_without_mutation": true,
+    "origin_target_normalization_in_A": true,
+    "target_indexed_reverse_cache_present": false,
+    "mask_dominance_unpruned_regression_present": false,
+    "observation_serialization_parity": false,
+    "prior_joint_evaluation": "literal status assignment; no joint runtime ledger"
+  },
+  "code_hashes": {
+    "O": "8748b33fe075fe12b7f25e9fa07bdd63039334d03b369587c8e380eb03e6dded",
+    "A": "d694a7a2aaeeb369280cc1916f320ba3bbf3ed8265dac9995f2d0042c3156131"
+  },
+  "formal_result": "FACTORISATION_THEOREM_VALID_UNDER_STATED_PREMISES",
+  "runtime_promotion": "HOLD_CANONICAL_OBSERVATION_SEMANTICS_AND_EXACT_TARGET_REUSE_REQUIRE_RECONCILIATION",
+  "structural_joint_null_promoted": false
+}

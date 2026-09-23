@@ -1,0 +1,106 @@
+{
+  "stage": "G3-P38-R1",
+  "verdict": "P38_R1_AUDIT_HOLD / INHERITED_SEMANTIC_AND_PROVENANCE_DISCREPANCIES_LOCALIZED / NO_TRANSPORT_PROMOTION / NO_SUCCESSOR_OPENED",
+  "input_hashes": [
+    {
+      "path": "p34-runtime/p34-bank.json",
+      "sha256": "cef57e7943510d15d2bfbb59f18761217599f9d5c7b749511a02d1c371e9ae00",
+      "bytes": 118280803
+    },
+    {
+      "path": "p37-runtime/p37-r1-r1-lane-o-frontier.json",
+      "sha256": "107eb90daa714a280bebe39e9453faf380606575c50bde1aa93c7b7b3e9c6cf9",
+      "bytes": 790633
+    },
+    {
+      "path": "p37-runtime/p37-r1-r1-lane-a.json",
+      "sha256": "2caeeb0c96d518c74747b3fc64fbead4668771bf55607315da21ca985e775603",
+      "bytes": 21811
+    },
+    {
+      "path": "p37-runtime/p37-r1-r1-lane-a-antichains.json",
+      "sha256": "6a58186be1e7cea70036114a1b26c3e63232633b8f8e586fe017525c12d59dd4",
+      "bytes": 2327138
+    },
+    {
+      "path": "p37-runtime/p37-r1-r1-terminal-receipt.json",
+      "sha256": "e401e7565e17d474860e7faae46d7f21e70ed1252057ed90cae2ad36f6b0fc57",
+      "bytes": 2492
+    }
+  ],
+  "counts": {
+    "states": 155040,
+    "comparisons": 2480624,
+    "inherited_supports": 16993,
+    "canonical_supports": 2318194,
+    "size10": 4,
+    "rotations": 24,
+    "Hasse_edges": 180,
+    "minimal_informative": 11,
+    "pairing_unmatched": 1024
+  },
+  "holds": [
+    "P37_OBSERVATION_USES_INTERNAL_STICKER_ID_VALUES_NOT_ADAPTER_COLOR_VALUES",
+    "P37_FRONTIER_ONLY_3684_OF_16993_SUPPORTS_RECORDED_AND_DOMINANCE_TEST_OMITS_SUBSET_CONDITION",
+    "P37_FIRST_ACTION_WITNESS_ORDER_OMITS_ORIGIN_HASH_PRIORITY",
+    "P37_TARGET_INDEXED_CACHE_AND_UNPRUNED_DOMINANCE_REGRESSION_ABSENT"
+  ],
+  "artifacts": [
+    {
+      "name": "canonical-observation-counterexample.json",
+      "bytes": 15334,
+      "sha256": "b54ef8a781711b68966cdac2da7e1496b3a07894ac868e975ebe14de2964480b"
+    },
+    {
+      "name": "observation-necessity.json",
+      "bytes": 15750,
+      "sha256": "c7d4325fb6aaf53241e6c8f629a57a1a8ea5daa26434a8b0ec85695f89cadaef"
+    },
+    {
+      "name": "coordinate-automorphisms.json",
+      "bytes": 26065,
+      "sha256": "d8f158b90a7eec7b763121af2bb89f264af28b1b61e43186782e107e9c80674f"
+    },
+    {
+      "name": "size10-orbit.json",
+      "bytes": 8824,
+      "sha256": "6a398342396a0f81fae05c6471695a441b02ce7c42999d8ef7473a1d0727eb2e"
+    },
+    {
+      "name": "hasse-edges.json",
+      "bytes": 71336,
+      "sha256": "bdd3903566aa66fe5e38675dae8e399f312a25a73cf2d8319c006af60e03fa13"
+    },
+    {
+      "name": "informative-antichain.json",
+      "bytes": 2260905,
+      "sha256": "1b574fd010e05fd7c58e923babdadf4a458bae57fab0cfc7fa6a2711eb2f8537"
+    },
+    {
+      "name": "gamma-orbits.json",
+      "bytes": 26113,
+      "sha256": "2d5f1509f5bac08981ea821d6de34450048565871d0ca5ad2803a33f16c9a641"
+    },
+    {
+      "name": "context-pairing.json",
+      "bytes": 623715,
+      "sha256": "a26920fe254f26d556139de2efcf60876c03c3c6ccf3a6af6af2c49234aadb99"
+    },
+    {
+      "name": "witness-mechanism.json",
+      "bytes": 2436,
+      "sha256": "3e8e3bec0ebe6b57821034da3b07101fda849bbd32105977312f92b73afb77b6"
+    },
+    {
+      "name": "factorization-proof.json",
+      "bytes": 1226,
+      "sha256": "d4a9b4dcf1c368476c122093ebafaaca1d31e9f7591c3abde01e82228589eae3"
+    },
+    {
+      "name": "transport-gates.json",
+      "bytes": 1166,
+      "sha256": "13049a1fd20fd97aedddf547e938bd8dfeaadb45eb42a239a6154254db401b35"
+    }
+  ],
+  "compiler_sha256": "e261a2557f50b60cd82c66d46908de9d2fb8b08c9f6d04755d12aa2474d296a2"
+}

@@ -1,0 +1,46 @@
+{
+  "status": "AUDIT_ARTIFACT_VERIFICATION_PASS_NOT_TRANSPORT_PROMOTION",
+  "counterexample_hashes_verified": true,
+  "counterexample_delta": [
+    4,
+    9,
+    11,
+    31,
+    44,
+    45
+  ],
+  "actual_color_witness_unpruned_MITM": {
+    "r1": {
+      "forward_entries": 1333,
+      "reverse_entries": 1333,
+      "legal_joins": 2,
+      "masks": [
+        50
+      ]
+    },
+    "r2": {
+      "forward_entries": 1333,
+      "reverse_entries": 1333,
+      "legal_joins": 2,
+      "masks": [
+        14
+      ]
+    }
+  },
+  "D_orbit": {
+    "size": 12,
+    "stabilizer": 2,
+    "frontier_one_rotation_orbit": true,
+    "ranking_statistics_invariant": false
+  },
+  "A_rank_under_union_then_balance_then_mask": 14,
+  "A_first_context": {
+    "row_id": "P34-001644",
+    "branch": "A",
+    "budget": 6,
+    "history_length": 6,
+    "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+    "side": "r2"
+  },
+  "scope": "Witness-specific exact target and unpruned controls do not retroactively certify the entire inherited 6724-key search or its normalization. No inherited artifact changed."
+}

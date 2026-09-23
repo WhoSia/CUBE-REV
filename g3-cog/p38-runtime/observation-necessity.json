@@ -1,0 +1,1122 @@
+{
+  "inputs": [
+    {
+      "path": "p34-runtime/p34-bank.json",
+      "sha256": "cef57e7943510d15d2bfbb59f18761217599f9d5c7b749511a02d1c371e9ae00",
+      "bytes": 118280803
+    },
+    {
+      "path": "p37-runtime/p37-r1-r1-lane-o-frontier.json",
+      "sha256": "107eb90daa714a280bebe39e9453faf380606575c50bde1aa93c7b7b3e9c6cf9",
+      "bytes": 790633
+    },
+    {
+      "path": "p37-runtime/p37-r1-r1-lane-a.json",
+      "sha256": "2caeeb0c96d518c74747b3fc64fbead4668771bf55607315da21ca985e775603",
+      "bytes": 21811
+    },
+    {
+      "path": "p37-runtime/p37-r1-r1-lane-a-antichains.json",
+      "sha256": "6a58186be1e7cea70036114a1b26c3e63232633b8f8e586fe017525c12d59dd4",
+      "bytes": 2327138
+    },
+    {
+      "path": "p37-runtime/p37-r1-r1-terminal-receipt.json",
+      "sha256": "e401e7565e17d474860e7faae46d7f21e70ed1252057ed90cae2ad36f6b0fc57",
+      "bytes": 2492
+    }
+  ],
+  "comparisons": 2480624,
+  "coordinate_index": [
+    {
+      "i": 0,
+      "p": [
+        -1,
+        -1,
+        -1
+      ],
+      "n": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 1,
+      "p": [
+        -1,
+        -1,
+        -1
+      ],
+      "n": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "i": 2,
+      "p": [
+        -1,
+        -1,
+        -1
+      ],
+      "n": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "i": 3,
+      "p": [
+        -1,
+        -1,
+        0
+      ],
+      "n": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 4,
+      "p": [
+        -1,
+        -1,
+        0
+      ],
+      "n": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "i": 5,
+      "p": [
+        -1,
+        -1,
+        1
+      ],
+      "n": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 6,
+      "p": [
+        -1,
+        -1,
+        1
+      ],
+      "n": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "i": 7,
+      "p": [
+        -1,
+        -1,
+        1
+      ],
+      "n": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "i": 8,
+      "p": [
+        -1,
+        0,
+        -1
+      ],
+      "n": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 9,
+      "p": [
+        -1,
+        0,
+        -1
+      ],
+      "n": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "i": 10,
+      "p": [
+        -1,
+        0,
+        0
+      ],
+      "n": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 11,
+      "p": [
+        -1,
+        0,
+        1
+      ],
+      "n": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 12,
+      "p": [
+        -1,
+        0,
+        1
+      ],
+      "n": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "i": 13,
+      "p": [
+        -1,
+        1,
+        -1
+      ],
+      "n": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 14,
+      "p": [
+        -1,
+        1,
+        -1
+      ],
+      "n": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "i": 15,
+      "p": [
+        -1,
+        1,
+        -1
+      ],
+      "n": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "i": 16,
+      "p": [
+        -1,
+        1,
+        0
+      ],
+      "n": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 17,
+      "p": [
+        -1,
+        1,
+        0
+      ],
+      "n": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "i": 18,
+      "p": [
+        -1,
+        1,
+        1
+      ],
+      "n": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 19,
+      "p": [
+        -1,
+        1,
+        1
+      ],
+      "n": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "i": 20,
+      "p": [
+        -1,
+        1,
+        1
+      ],
+      "n": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "i": 21,
+      "p": [
+        0,
+        -1,
+        -1
+      ],
+      "n": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "i": 22,
+      "p": [
+        0,
+        -1,
+        -1
+      ],
+      "n": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "i": 23,
+      "p": [
+        0,
+        -1,
+        0
+      ],
+      "n": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "i": 24,
+      "p": [
+        0,
+        -1,
+        1
+      ],
+      "n": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "i": 25,
+      "p": [
+        0,
+        -1,
+        1
+      ],
+      "n": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "i": 26,
+      "p": [
+        0,
+        0,
+        -1
+      ],
+      "n": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "i": 27,
+      "p": [
+        0,
+        0,
+        1
+      ],
+      "n": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "i": 28,
+      "p": [
+        0,
+        1,
+        -1
+      ],
+      "n": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "i": 29,
+      "p": [
+        0,
+        1,
+        -1
+      ],
+      "n": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "i": 30,
+      "p": [
+        0,
+        1,
+        0
+      ],
+      "n": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "i": 31,
+      "p": [
+        0,
+        1,
+        1
+      ],
+      "n": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "i": 32,
+      "p": [
+        0,
+        1,
+        1
+      ],
+      "n": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "i": 33,
+      "p": [
+        1,
+        -1,
+        -1
+      ],
+      "n": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "i": 34,
+      "p": [
+        1,
+        -1,
+        -1
+      ],
+      "n": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "i": 35,
+      "p": [
+        1,
+        -1,
+        -1
+      ],
+      "n": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 36,
+      "p": [
+        1,
+        -1,
+        0
+      ],
+      "n": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "i": 37,
+      "p": [
+        1,
+        -1,
+        0
+      ],
+      "n": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 38,
+      "p": [
+        1,
+        -1,
+        1
+      ],
+      "n": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "i": 39,
+      "p": [
+        1,
+        -1,
+        1
+      ],
+      "n": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "i": 40,
+      "p": [
+        1,
+        -1,
+        1
+      ],
+      "n": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 41,
+      "p": [
+        1,
+        0,
+        -1
+      ],
+      "n": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "i": 42,
+      "p": [
+        1,
+        0,
+        -1
+      ],
+      "n": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 43,
+      "p": [
+        1,
+        0,
+        0
+      ],
+      "n": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 44,
+      "p": [
+        1,
+        0,
+        1
+      ],
+      "n": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "i": 45,
+      "p": [
+        1,
+        0,
+        1
+      ],
+      "n": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 46,
+      "p": [
+        1,
+        1,
+        -1
+      ],
+      "n": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "i": 47,
+      "p": [
+        1,
+        1,
+        -1
+      ],
+      "n": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "i": 48,
+      "p": [
+        1,
+        1,
+        -1
+      ],
+      "n": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 49,
+      "p": [
+        1,
+        1,
+        0
+      ],
+      "n": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "i": 50,
+      "p": [
+        1,
+        1,
+        0
+      ],
+      "n": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 51,
+      "p": [
+        1,
+        1,
+        1
+      ],
+      "n": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "i": 52,
+      "p": [
+        1,
+        1,
+        1
+      ],
+      "n": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "i": 53,
+      "p": [
+        1,
+        1,
+        1
+      ],
+      "n": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "inherited": {
+    "supports": 16993,
+    "histogram": {
+      "10": 4,
+      "16": 1,
+      "18": 2,
+      "20": 16,
+      "21": 1,
+      "22": 7,
+      "23": 7,
+      "24": 13,
+      "25": 14,
+      "26": 27,
+      "27": 64,
+      "28": 150,
+      "29": 126,
+      "30": 274,
+      "31": 364,
+      "32": 743,
+      "33": 972,
+      "34": 1523,
+      "35": 1970,
+      "36": 2703,
+      "37": 2319,
+      "38": 2125,
+      "39": 1780,
+      "40": 829,
+      "41": 528,
+      "42": 248,
+      "43": 96,
+      "44": 66,
+      "45": 8,
+      "46": 12,
+      "48": 1
+    },
+    "minimum": 10,
+    "size10": 4,
+    "D": [
+      3,
+      4,
+      21,
+      22,
+      24,
+      25,
+      28,
+      29,
+      41,
+      42
+    ],
+    "witness": {
+      "q": "27df138e5ea8f0b12e5ff9578104dc06643cece87df8c209be4fb014bb02c876",
+      "x": "0fe522fef4453d31dc66fda64837c6e9b7ebc09882599f5bab976ddf716fcae6",
+      "delta": [
+        3,
+        4,
+        21,
+        22,
+        24,
+        25,
+        28,
+        29,
+        41,
+        42
+      ]
+    }
+  },
+  "canonical_adapter": {
+    "supports": 2318194,
+    "histogram": {
+      "6": 2,
+      "7": 1,
+      "8": 21,
+      "9": 23,
+      "10": 4,
+      "12": 1,
+      "13": 4,
+      "14": 12,
+      "15": 27,
+      "16": 61,
+      "17": 71,
+      "18": 100,
+      "19": 62,
+      "20": 54,
+      "21": 120,
+      "22": 252,
+      "23": 356,
+      "24": 589,
+      "25": 895,
+      "26": 1284,
+      "27": 2056,
+      "28": 3210,
+      "29": 5224,
+      "30": 8618,
+      "31": 14144,
+      "32": 23587,
+      "33": 38043,
+      "34": 60250,
+      "35": 92260,
+      "36": 135076,
+      "37": 188284,
+      "38": 246089,
+      "39": 295738,
+      "40": 325243,
+      "41": 317844,
+      "42": 268773,
+      "43": 186454,
+      "44": 86466,
+      "45": 15743,
+      "46": 1104,
+      "47": 48,
+      "48": 1
+    },
+    "minimum": 6,
+    "witness_delta": [
+      3,
+      4,
+      21,
+      22,
+      24,
+      25,
+      28,
+      29,
+      41,
+      42
+    ],
+    "D_stats": {
+      "coverage": 218368,
+      "targetsAffected": 16,
+      "pairs": 16,
+      "max": 2,
+      "hist": {
+        "1": 155008,
+        "2": 16
+      }
+    }
+  },
+  "leave_one_out": [
+    {
+      "coordinate": 3,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 27296,
+        "targetsAffected": 2,
+        "pairs": 2,
+        "max": 2,
+        "hist": {
+          "1": 155036,
+          "2": 2
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    },
+    {
+      "coordinate": 4,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 40944,
+        "targetsAffected": 3,
+        "pairs": 3,
+        "max": 2,
+        "hist": {
+          "1": 155034,
+          "2": 3
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    },
+    {
+      "coordinate": 21,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    },
+    {
+      "coordinate": 22,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 13648,
+        "targetsAffected": 1,
+        "pairs": 1,
+        "max": 2,
+        "hist": {
+          "1": 155038,
+          "2": 1
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    },
+    {
+      "coordinate": 24,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 13648,
+        "targetsAffected": 1,
+        "pairs": 1,
+        "max": 2,
+        "hist": {
+          "1": 155038,
+          "2": 1
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    },
+    {
+      "coordinate": 25,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 27296,
+        "targetsAffected": 2,
+        "pairs": 2,
+        "max": 2,
+        "hist": {
+          "1": 155036,
+          "2": 2
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    },
+    {
+      "coordinate": 28,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 40944,
+        "targetsAffected": 3,
+        "pairs": 3,
+        "max": 2,
+        "hist": {
+          "1": 155034,
+          "2": 3
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    },
+    {
+      "coordinate": 29,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 27296,
+        "targetsAffected": 2,
+        "pairs": 2,
+        "max": 2,
+        "hist": {
+          "1": 155036,
+          "2": 2
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    },
+    {
+      "coordinate": 41,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 68240,
+        "targetsAffected": 5,
+        "pairs": 5,
+        "max": 2,
+        "hist": {
+          "1": 155030,
+          "2": 5
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    },
+    {
+      "coordinate": 42,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 27296,
+        "targetsAffected": 2,
+        "pairs": 2,
+        "max": 2,
+        "hist": {
+          "1": 155036,
+          "2": 2
+        }
+      },
+      "pair_essential": true,
+      "canonical_pair_essential": true,
+      "all_coverage_essential": true
+    }
+  ],
+  "semantic_parity": "HOLD_INTERNAL_STICKER_IDS_DIFFER_FROM_SERIALIZED_COLOR_VALUES"
+}
