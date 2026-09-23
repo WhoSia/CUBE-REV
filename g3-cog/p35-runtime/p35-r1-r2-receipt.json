@@ -1,0 +1,69 @@
+{
+  "schema": "CUBE-REV-G3-P35-R1-R2-RECEIPT-v1",
+  "authority": "G3-P35-R1-R1",
+  "bank_sha256": "cef57e7943510d15d2bfbb59f18761217599f9d5c7b749511a02d1c371e9ae00",
+  "bank_unchanged": true,
+  "implementation": {
+    "node": "v24.17.0",
+    "compiler_sha256": "6785b422554a7a7998292f09216a204d3200303108babff6f4eb78469c3946a9",
+    "state_adapter_sha256": "a7a083bbd37a5e111a86cc4669a9a8b539c6968eef6f36d5d783edc94b5cba9b"
+  },
+  "transform": {
+    "face_map": {
+      "U": "U",
+      "D": "D",
+      "F": "R",
+      "R": "B",
+      "B": "L",
+      "L": "F"
+    },
+    "gamma": {
+      "U": "U",
+      "U'": "U'",
+      "D": "D",
+      "D'": "D'",
+      "L": "F",
+      "L'": "F'",
+      "R": "B",
+      "R'": "B'",
+      "F": "R",
+      "F'": "R'",
+      "B": "L",
+      "B'": "L'"
+    },
+    "g_bijective": true,
+    "gamma_bijective": true,
+    "solved_consistency": true,
+    "inverse_consistency": true,
+    "encountered_distinct_states": 155040,
+    "transition_pairs_checked": 1860480,
+    "transition_failures": 0,
+    "cost_parity_contexts": 218368,
+    "target_parity_contexts": 218368
+  },
+  "contexts": {
+    "expected": 218368,
+    "materialized": 218368,
+    "selector_parity": 218368,
+    "history_parity": 218368,
+    "special_bounded_search_keys": 16,
+    "special_bounded_search_context_uses": 32,
+    "context_csv_sha256": "3f50de66322cbb8e395cbc2a8217e78e0093110a0d4f42367ada0cb79b590534"
+  },
+  "census": {
+    "I_plus": 218368,
+    "I_minus": 0,
+    "R1_only": 0,
+    "R2_only": 0,
+    "OOA": 0
+  },
+  "minimal_witness": null,
+  "first_non_commuting_component": "NONE_NO_REPRESENTATION_SENSITIVE_CONTEXT",
+  "no_divergence_region": {
+    "contexts": 218368,
+    "bounded_by": "certified P34 rows x A/B histories; frozen selector and terminal-to-origin QTM budget",
+    "result": "CERTIFIED_BOUNDED_NO_DIVERGENCE_REGION"
+  },
+  "p36_gate": "CLOSED",
+  "verdict": "EXACT_COORDINATE_EQUIVARIANCE_PASS / CERTIFIED_BOUNDED_NO_DIVERGENCE_REGION / P36_CLOSED"
+}
