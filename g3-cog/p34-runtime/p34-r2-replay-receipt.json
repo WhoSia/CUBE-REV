@@ -1,0 +1,82 @@
+{
+  "schema": "CUBE-REV-G3-P34-R2-PLAYWRIGHT-INDEPENDENT-REPLAY-v1",
+  "authority": "G3-P34-AUTH-v1",
+  "method": "CANONICAL_STATE_ADAPTER_DIRECT_REPLAY_NO_PLAYWRIGHT_NO_DOM_NO_PIXEL_CLAIM",
+  "node": "v24.17.0",
+  "input_hashes": {
+    "lane_a_bank_json_sha256": "cef57e7943510d15d2bfbb59f18761217599f9d5c7b749511a02d1c371e9ae00",
+    "lane_a_compiler_sha256": "3575538d9a988b992044adc67b655423659a77cfc4625fe2b31f364581b19fe0",
+    "state_adapter_sha256": "a7a083bbd37a5e111a86cc4669a9a8b539c6968eef6f36d5d783edc94b5cba9b",
+    "replay_script_sha256": "421a4b3922fc1e1895f8f9eb2f4b3a545e108e7f6e71eee8ccd9bd7f6906041c"
+  },
+  "semantic_parity": {
+    "move_order": true,
+    "enumeration_authority": true,
+    "row_field_mismatches": 0,
+    "terminal_hashes": true,
+    "census": true,
+    "fixture_outputs": true
+  },
+  "census": {
+    "candidate_count": 196608,
+    "excluded_pre_duplicate": 87424,
+    "exclusion_reasons": {
+      "SAME_FACE_P_CORE_A": 24576,
+      "SAME_FACE_P_CORE_B": 40960,
+      "SAME_FACE_CORE_S": 32768,
+      "ILLEGAL_A": 53120,
+      "ILLEGAL_B": 67072,
+      "ENDPOINT_MISMATCH": 0,
+      "LENGTH_MISMATCH": 0,
+      "MOVE_MULTISET_MISMATCH": 0,
+      "INVERSE_TARGET_IDENTITY": 0,
+      "START_AUTHORITY_MISMATCH": 0
+    },
+    "admitted_pre_duplicate": 109184,
+    "duplicate_removed": 0,
+    "admitted_final": 109184,
+    "unique_start_state_hashes": 16,
+    "unique_terminal_state_hashes": 107584,
+    "family_counts": {
+      "R/L": 24192,
+      "U/D": 48384,
+      "F/B": 36608
+    },
+    "distance_counts": {
+      "6": 27152,
+      "7": 54400,
+      "8": 27632
+    }
+  },
+  "synthetic_controls": {
+    "S_positive": {
+      "pass": 218368,
+      "fail": 0
+    },
+    "R_positive": {
+      "pass": 218368,
+      "fail": 0
+    },
+    "R_negative_cross": {
+      "pass": 218368,
+      "fail": 0
+    },
+    "R_negative_alternative": {
+      "pass": 218368,
+      "fail": 0
+    },
+    "G_positive": {
+      "pass": 218368,
+      "fail": 0
+    },
+    "G_negative": {
+      "pass": 218368,
+      "fail": 0
+    }
+  },
+  "residual_failures": [],
+  "browser_dependency": "CLOSED_FOR_SEMANTIC_REPLAY_ONLY",
+  "render_scope": "NOT_EXECUTED_NO_DOM_OR_PIXEL_PARITY_CLAIM",
+  "p35_gate": "AUTHORIZED_BY_EXACT_CROSS_LANE_SEMANTIC_EQUIVALENCE_ONLY",
+  "verdict": "EXACT_CROSS_LANE_SEMANTIC_EQUIVALENCE_PASS"
+}
