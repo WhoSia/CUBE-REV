@@ -1,0 +1,60 @@
+{
+  "verdict": "INDEPENDENT_ARTIFACT_AND_CUSTODY_VERIFICATION_PASS",
+  "frontier": {
+    "all": 2318195,
+    "nonempty": 2318195,
+    "header": "support_hex,size,target_bits,target_count,target_rival_pairs"
+  },
+  "orbit": {
+    "all": 873473,
+    "nonempty": 873472,
+    "header": "{\"source_context_id\":\"P34-000000/A\",\"row_id\":\"P34-000000\",\"branch\":\"A\",\"orbit_exponent\":0,\"start_hash\":\"f554d95b3563cd4688d26c7b59d0bf9330b4339b0f65ecc1bb428930474d2516\",\"target_hash\":\"1daf0bbc16e24cfe4e1822d1200045d742fe402d6f9565f06233e67318627686\",\"history\":\"B D F B U' F' D\",\"budget\":7,\"selector_coordinates\":[\"D\",\"L\",\"R\"],\"original_domain_membership\":true,\"provenance\":{\"bank_row\":\"P34-000000\",\"source_branch\":\"A\",\"transform\":\"g^0\"}}"
+  },
+  "canonical_D_color": [
+    4,
+    8,
+    9,
+    11,
+    31,
+    45
+  ],
+  "canonical_witness": {
+    "row_id": "P34-001644",
+    "branch": "A",
+    "representation": "r2",
+    "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+    "budget": 6,
+    "history_length": 6,
+    "selector_symmetric_difference": 4,
+    "first_divergent_prefix_length": 1,
+    "sort_key": [
+      6,
+      6,
+      4,
+      1,
+      "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "P34-001644",
+      0,
+      1
+    ]
+  },
+  "reuse_checks": {
+    "contexts": 218368,
+    "distinct_reuse_keys": 6724,
+    "transition_checks": 2620416,
+    "inverse_checks": 218368,
+    "grammar_adjacency_checks": 1311232,
+    "mask_checks": 218368,
+    "failures": 0
+  },
+  "raw_control_rows": 100,
+  "historical_residue_preserved": [
+    "ID minimum-10 frontier and D_ID preserved",
+    "P34-001164/A/r2 preserved as valid-but-not-first",
+    "original 16-origin domain preserved as non-closed",
+    "P38 0/1024 in-bank pairing failure preserved",
+    "prior 6724-key implementation preserved",
+    "P38-R1 HOLD preserved as historical audit"
+  ],
+  "scope": "Finite certified universe only; transport review reauthorization is not external validation."
+}

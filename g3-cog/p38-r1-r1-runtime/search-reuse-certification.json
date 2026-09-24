@@ -1,0 +1,5142 @@
+{
+  "schema": "CUBE-REV-G3-P38-R1-R1-SEARCH-REUSE-v1",
+  "formal": {
+    "map": "N_q relabels each sticker value v by q^{-1}(v); moves permute positions only",
+    "equation": "N_q(T(s,a))=T(N_q(s),a)",
+    "eta": "identity on 12 moves",
+    "invertible": true,
+    "cost_preserved": true,
+    "budget_preserved": true,
+    "grammar_preserved": true,
+    "used_face_mask_preserved": true,
+    "literal_selector_membership_preserved": true,
+    "antichain_preserved_by_graph_isomorphism": true
+  },
+  "exhaustive": {
+    "contexts": 218368,
+    "distinct_reuse_keys": 6724,
+    "transition_checks": 2620416,
+    "inverse_checks": 218368,
+    "grammar_adjacency_checks": 1311232,
+    "mask_checks": 218368,
+    "failures": 0
+  },
+  "raw_controls": {
+    "freeze_rule": "first available row for every target x budget in 6,7,8; plus historical and canonical witnesses; branch A; both representations",
+    "contexts": 50,
+    "rows": 100,
+    "selectors": [
+      1,
+      3,
+      7,
+      14,
+      15,
+      31,
+      62
+    ],
+    "failures": 0,
+    "records": [
+      {
+        "row_id": "P34-000001",
+        "branch": "A",
+        "target_id": "START-d4-00",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000001",
+        "branch": "A",
+        "target_id": "START-d4-00",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000008",
+        "branch": "A",
+        "target_id": "START-d4-00",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          23
+        ],
+        "normalized_masks": [
+          23
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000008",
+        "branch": "A",
+        "target_id": "START-d4-00",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          27
+        ],
+        "normalized_masks": [
+          27
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000012",
+        "branch": "A",
+        "target_id": "START-d4-00",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000012",
+        "branch": "A",
+        "target_id": "START-d4-00",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000020",
+        "branch": "A",
+        "target_id": "START-d4-01",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000020",
+        "branch": "A",
+        "target_id": "START-d4-01",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000039",
+        "branch": "A",
+        "target_id": "START-d4-01",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000039",
+        "branch": "A",
+        "target_id": "START-d4-01",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000024",
+        "branch": "A",
+        "target_id": "START-d4-01",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000024",
+        "branch": "A",
+        "target_id": "START-d4-01",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000007",
+        "branch": "A",
+        "target_id": "START-d4-02",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          53
+        ],
+        "normalized_masks": [
+          53
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000007",
+        "branch": "A",
+        "target_id": "START-d4-02",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          29
+        ],
+        "normalized_masks": [
+          29
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000031",
+        "branch": "A",
+        "target_id": "START-d4-02",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000031",
+        "branch": "A",
+        "target_id": "START-d4-02",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          59
+        ],
+        "normalized_masks": [
+          59
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000198",
+        "branch": "A",
+        "target_id": "START-d4-02",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000198",
+        "branch": "A",
+        "target_id": "START-d4-02",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000042",
+        "branch": "A",
+        "target_id": "START-d4-03",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000042",
+        "branch": "A",
+        "target_id": "START-d4-03",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000002",
+        "branch": "A",
+        "target_id": "START-d4-03",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          61
+        ],
+        "normalized_masks": [
+          61
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000002",
+        "branch": "A",
+        "target_id": "START-d4-03",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          61
+        ],
+        "normalized_masks": [
+          61
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000070",
+        "branch": "A",
+        "target_id": "START-d4-03",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000070",
+        "branch": "A",
+        "target_id": "START-d4-03",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000082",
+        "branch": "A",
+        "target_id": "START-d4-04",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          30
+        ],
+        "normalized_masks": [
+          30
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000082",
+        "branch": "A",
+        "target_id": "START-d4-04",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          58
+        ],
+        "normalized_masks": [
+          58
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000028",
+        "branch": "A",
+        "target_id": "START-d4-04",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000028",
+        "branch": "A",
+        "target_id": "START-d4-04",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000126",
+        "branch": "A",
+        "target_id": "START-d4-04",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000126",
+        "branch": "A",
+        "target_id": "START-d4-04",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000137",
+        "branch": "A",
+        "target_id": "START-d4-05",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          47
+        ],
+        "normalized_masks": [
+          47
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000137",
+        "branch": "A",
+        "target_id": "START-d4-05",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000014",
+        "branch": "A",
+        "target_id": "START-d4-05",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000014",
+        "branch": "A",
+        "target_id": "START-d4-05",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000288",
+        "branch": "A",
+        "target_id": "START-d4-05",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000288",
+        "branch": "A",
+        "target_id": "START-d4-05",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000029",
+        "branch": "A",
+        "target_id": "START-d4-06",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          54
+        ],
+        "normalized_masks": [
+          54
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000029",
+        "branch": "A",
+        "target_id": "START-d4-06",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          30
+        ],
+        "normalized_masks": [
+          30
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000043",
+        "branch": "A",
+        "target_id": "START-d4-06",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000043",
+        "branch": "A",
+        "target_id": "START-d4-06",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000035",
+        "branch": "A",
+        "target_id": "START-d4-06",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          59
+        ],
+        "normalized_masks": [
+          59
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000035",
+        "branch": "A",
+        "target_id": "START-d4-06",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          47
+        ],
+        "normalized_masks": [
+          47
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000056",
+        "branch": "A",
+        "target_id": "START-d4-07",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          28
+        ],
+        "normalized_masks": [
+          28
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000056",
+        "branch": "A",
+        "target_id": "START-d4-07",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          56
+        ],
+        "normalized_masks": [
+          56
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000032",
+        "branch": "A",
+        "target_id": "START-d4-07",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          59
+        ],
+        "normalized_masks": [
+          59
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000032",
+        "branch": "A",
+        "target_id": "START-d4-07",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          47
+        ],
+        "normalized_masks": [
+          47
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000121",
+        "branch": "A",
+        "target_id": "START-d4-07",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          47
+        ],
+        "normalized_masks": [
+          47
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000121",
+        "branch": "A",
+        "target_id": "START-d4-07",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000010",
+        "branch": "A",
+        "target_id": "START-d6-00",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000010",
+        "branch": "A",
+        "target_id": "START-d6-00",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000000",
+        "branch": "A",
+        "target_id": "START-d6-00",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          51
+        ],
+        "normalized_masks": [
+          51
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000000",
+        "branch": "A",
+        "target_id": "START-d6-00",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          15
+        ],
+        "normalized_masks": [
+          15
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000064",
+        "branch": "A",
+        "target_id": "START-d6-00",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          23
+        ],
+        "normalized_masks": [
+          23
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000064",
+        "branch": "A",
+        "target_id": "START-d6-00",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          27
+        ],
+        "normalized_masks": [
+          27
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000003",
+        "branch": "A",
+        "target_id": "START-d6-01",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000003",
+        "branch": "A",
+        "target_id": "START-d6-01",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          59
+        ],
+        "normalized_masks": [
+          59
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000057",
+        "branch": "A",
+        "target_id": "START-d6-01",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000057",
+        "branch": "A",
+        "target_id": "START-d6-01",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000019",
+        "branch": "A",
+        "target_id": "START-d6-01",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000019",
+        "branch": "A",
+        "target_id": "START-d6-01",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000041",
+        "branch": "A",
+        "target_id": "START-d6-02",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          39
+        ],
+        "normalized_masks": [
+          39
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000041",
+        "branch": "A",
+        "target_id": "START-d6-02",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          23
+        ],
+        "normalized_masks": [
+          23
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000045",
+        "branch": "A",
+        "target_id": "START-d6-02",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          60
+        ],
+        "normalized_masks": [
+          60
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000045",
+        "branch": "A",
+        "target_id": "START-d6-02",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          60
+        ],
+        "normalized_masks": [
+          60
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000021",
+        "branch": "A",
+        "target_id": "START-d6-02",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000021",
+        "branch": "A",
+        "target_id": "START-d6-02",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000017",
+        "branch": "A",
+        "target_id": "START-d6-03",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000017",
+        "branch": "A",
+        "target_id": "START-d6-03",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000004",
+        "branch": "A",
+        "target_id": "START-d6-03",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          61
+        ],
+        "normalized_masks": [
+          61
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000004",
+        "branch": "A",
+        "target_id": "START-d6-03",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          61
+        ],
+        "normalized_masks": [
+          61
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000071",
+        "branch": "A",
+        "target_id": "START-d6-03",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000071",
+        "branch": "A",
+        "target_id": "START-d6-03",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000027",
+        "branch": "A",
+        "target_id": "START-d6-04",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          28
+        ],
+        "normalized_masks": [
+          28
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000027",
+        "branch": "A",
+        "target_id": "START-d6-04",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          56
+        ],
+        "normalized_masks": [
+          56
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000011",
+        "branch": "A",
+        "target_id": "START-d6-04",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          59
+        ],
+        "normalized_masks": [
+          59
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000011",
+        "branch": "A",
+        "target_id": "START-d6-04",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          47
+        ],
+        "normalized_masks": [
+          47
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000145",
+        "branch": "A",
+        "target_id": "START-d6-04",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          47
+        ],
+        "normalized_masks": [
+          47
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000145",
+        "branch": "A",
+        "target_id": "START-d6-04",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          55
+        ],
+        "normalized_masks": [
+          55
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000033",
+        "branch": "A",
+        "target_id": "START-d6-05",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          59
+        ],
+        "normalized_masks": [
+          59
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000033",
+        "branch": "A",
+        "target_id": "START-d6-05",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          47
+        ],
+        "normalized_masks": [
+          47
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000030",
+        "branch": "A",
+        "target_id": "START-d6-05",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          53
+        ],
+        "normalized_masks": [
+          53
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000030",
+        "branch": "A",
+        "target_id": "START-d6-05",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          29
+        ],
+        "normalized_masks": [
+          29
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000026",
+        "branch": "A",
+        "target_id": "START-d6-05",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          31
+        ],
+        "normalized_masks": [
+          31
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000026",
+        "branch": "A",
+        "target_id": "START-d6-05",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          59
+        ],
+        "normalized_masks": [
+          59
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000090",
+        "branch": "A",
+        "target_id": "START-d6-06",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          58
+        ],
+        "normalized_masks": [
+          58
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000090",
+        "branch": "A",
+        "target_id": "START-d6-06",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          46
+        ],
+        "normalized_masks": [
+          46
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000013",
+        "branch": "A",
+        "target_id": "START-d6-06",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000013",
+        "branch": "A",
+        "target_id": "START-d6-06",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000023",
+        "branch": "A",
+        "target_id": "START-d6-06",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000023",
+        "branch": "A",
+        "target_id": "START-d6-06",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000141",
+        "branch": "A",
+        "target_id": "START-d6-07",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000141",
+        "branch": "A",
+        "target_id": "START-d6-07",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          62
+        ],
+        "normalized_masks": [
+          62
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000089",
+        "branch": "A",
+        "target_id": "START-d6-07",
+        "budget": 7,
+        "representation": "r1",
+        "raw_masks": [
+          39
+        ],
+        "normalized_masks": [
+          39
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000089",
+        "branch": "A",
+        "target_id": "START-d6-07",
+        "budget": 7,
+        "representation": "r2",
+        "raw_masks": [
+          23
+        ],
+        "normalized_masks": [
+          23
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000006",
+        "branch": "A",
+        "target_id": "START-d6-07",
+        "budget": 8,
+        "representation": "r1",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-000006",
+        "branch": "A",
+        "target_id": "START-d6-07",
+        "budget": 8,
+        "representation": "r2",
+        "raw_masks": [
+          63
+        ],
+        "normalized_masks": [
+          63
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": false,
+            "normalized": false
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-001164",
+        "branch": "A",
+        "target_id": "START-d6-01",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          50
+        ],
+        "normalized_masks": [
+          50
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-001164",
+        "branch": "A",
+        "target_id": "START-d6-01",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          14
+        ],
+        "normalized_masks": [
+          14
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 15,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-001644",
+        "branch": "A",
+        "target_id": "START-d6-03",
+        "budget": 6,
+        "representation": "r1",
+        "raw_masks": [
+          50
+        ],
+        "normalized_masks": [
+          50
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 15,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 31,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "row_id": "P34-001644",
+        "branch": "A",
+        "target_id": "START-d6-03",
+        "budget": 6,
+        "representation": "r2",
+        "raw_masks": [
+          14
+        ],
+        "normalized_masks": [
+          14
+        ],
+        "selector_parity": [
+          {
+            "M": 1,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 3,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 7,
+            "raw": false,
+            "normalized": false
+          },
+          {
+            "M": 14,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 15,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 31,
+            "raw": true,
+            "normalized": true
+          },
+          {
+            "M": 62,
+            "raw": true,
+            "normalized": true
+          }
+        ],
+        "pass": true
+      }
+    ]
+  },
+  "verdict": "FULL_DOMAIN_SEARCH_REUSE_CERTIFIED"
+}

@@ -1,0 +1,684 @@
+{
+  "schema": "CUBE-REV-G3-P38-R1-R1-WITNESS-v1",
+  "comparator": [
+    "QTM budget",
+    "history length",
+    "selector symmetric difference",
+    "first divergent prefix length",
+    "canonical origin-state hash",
+    "canonical row identity",
+    "branch A before B",
+    "representation r1 before r2"
+  ],
+  "candidate_count": 1024,
+  "canonical": {
+    "row_id": "P34-001644",
+    "branch": "A",
+    "representation": "r2",
+    "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+    "budget": 6,
+    "history_length": 6,
+    "selector_symmetric_difference": 4,
+    "first_divergent_prefix_length": 1,
+    "sort_key": [
+      6,
+      6,
+      4,
+      1,
+      "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "P34-001644",
+      0,
+      1
+    ]
+  },
+  "leading_candidates": [
+    {
+      "row_id": "P34-001644",
+      "branch": "A",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-001644",
+        0,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-001644",
+      "branch": "B",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-001644",
+        1,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-003514",
+      "branch": "A",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-003514",
+        0,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-003514",
+      "branch": "B",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-003514",
+        1,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-004125",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-004125",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-004125",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-004125",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-009266",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-009266",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-009266",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-009266",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-015868",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-015868",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-015868",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-015868",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-018626",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-018626",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-018626",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-018626",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-019093",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-019093",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-019093",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-019093",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-022059",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-022059",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-022059",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-022059",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-029369",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-029369",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-029369",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-029369",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-032354",
+      "branch": "A",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-032354",
+        0,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-032354",
+      "branch": "B",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-032354",
+        1,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-046692",
+      "branch": "A",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-046692",
+        0,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-046692",
+      "branch": "B",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-046692",
+        1,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-054525",
+      "branch": "A",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-054525",
+        0,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-054525",
+      "branch": "B",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-054525",
+        1,
+        1
+      ]
+    },
+    {
+      "row_id": "P34-057468",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-057468",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-057468",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-057468",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-062493",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-062493",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-062493",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-062493",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-063090",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-063090",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-063090",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-063090",
+        1,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-064024",
+      "branch": "A",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-064024",
+        0,
+        0
+      ]
+    },
+    {
+      "row_id": "P34-064024",
+      "branch": "B",
+      "representation": "r1",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-064024",
+        1,
+        0
+      ]
+    }
+  ],
+  "historical": {
+    "row_id": "P34-001164",
+    "branch": "A",
+    "representation": "r2",
+    "valid": true,
+    "not_retroactively_replaced": true
+  },
+  "prospective_scope": "successor use only"
+}

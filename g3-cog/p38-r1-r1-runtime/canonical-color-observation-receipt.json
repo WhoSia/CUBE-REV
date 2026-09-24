@@ -1,0 +1,530 @@
+{
+  "schema": "CUBE-REV-G3-P38-R1-R1-CANONICAL-COLOR-v1",
+  "authority": "POST_AUDIT_SEMANTIC_RECONSTITUTION / RULE_FROZEN_BEFORE_REEXECUTION",
+  "canonical_semantics": "adapter-emitted colors at 54 canonical positions",
+  "comparisons": 2480624,
+  "states": 155040,
+  "targets": 16,
+  "unique_supports": 2318194,
+  "histogram": {
+    "6": 2,
+    "7": 1,
+    "8": 21,
+    "9": 23,
+    "10": 4,
+    "12": 1,
+    "13": 4,
+    "14": 12,
+    "15": 27,
+    "16": 61,
+    "17": 71,
+    "18": 100,
+    "19": 62,
+    "20": 54,
+    "21": 120,
+    "22": 252,
+    "23": 356,
+    "24": 589,
+    "25": 895,
+    "26": 1284,
+    "27": 2056,
+    "28": 3210,
+    "29": 5224,
+    "30": 8618,
+    "31": 14144,
+    "32": 23587,
+    "33": 38043,
+    "34": 60250,
+    "35": 92260,
+    "36": 135076,
+    "37": 188284,
+    "38": 246089,
+    "39": 295738,
+    "40": 325243,
+    "41": 317844,
+    "42": 268773,
+    "43": 186454,
+    "44": 86466,
+    "45": 15743,
+    "46": 1104,
+    "47": 48,
+    "48": 1
+  },
+  "minimum_cardinality": 6,
+  "minimum_candidates": [
+    {
+      "support_hex": "00200080000b10",
+      "coordinates": [
+        4,
+        8,
+        9,
+        11,
+        31,
+        45
+      ],
+      "target_bits": 16384,
+      "target_rival_pairs": 1,
+      "pairs": 1,
+      "max_fiber": 2,
+      "aliased_fibers": 1,
+      "fiber_histogram": {
+        "1": 155038,
+        "2": 1
+      },
+      "coverage": 13648,
+      "targets_affected": 1
+    },
+    {
+      "support_hex": "00300080000a10",
+      "coordinates": [
+        4,
+        9,
+        11,
+        31,
+        44,
+        45
+      ],
+      "target_bits": 1024,
+      "target_rival_pairs": 1,
+      "pairs": 1,
+      "max_fiber": 2,
+      "aliased_fibers": 1,
+      "fiber_histogram": {
+        "1": 155038,
+        "2": 1
+      },
+      "coverage": 13648,
+      "targets_affected": 1
+    }
+  ],
+  "selected": {
+    "support_hex": "00200080000b10",
+    "coordinates": [
+      4,
+      8,
+      9,
+      11,
+      31,
+      45
+    ],
+    "target_bits": 16384,
+    "target_rival_pairs": 1,
+    "pairs": 1,
+    "max_fiber": 2,
+    "aliased_fibers": 1,
+    "fiber_histogram": {
+      "1": 155038,
+      "2": 1
+    },
+    "coverage": 13648,
+    "targets_affected": 1
+  },
+  "witness": {
+    "target_index": 14,
+    "target_hash": "7d654fa531a114f77ae490e31a1cc304e6a319b68bde3b894cf07210c84b92f7",
+    "rival_hash": "f99bdece05c36c32352da198f2a4195b1fe12d744b60dbb7394b2f8dbca3d0c5",
+    "origin_hash": "7d654fa531a114f77ae490e31a1cc304e6a319b68bde3b894cf07210c84b92f7"
+  },
+  "leave_one_out": [
+    {
+      "coordinate": 4,
+      "pairs": 0,
+      "max_fiber": 1,
+      "aliased_fibers": 0,
+      "fiber_histogram": {
+        "1": 155040
+      },
+      "coverage": 0,
+      "targets_affected": 0,
+      "witness_pair_separated": true
+    },
+    {
+      "coordinate": 8,
+      "pairs": 0,
+      "max_fiber": 1,
+      "aliased_fibers": 0,
+      "fiber_histogram": {
+        "1": 155040
+      },
+      "coverage": 0,
+      "targets_affected": 0,
+      "witness_pair_separated": true
+    },
+    {
+      "coordinate": 9,
+      "pairs": 0,
+      "max_fiber": 1,
+      "aliased_fibers": 0,
+      "fiber_histogram": {
+        "1": 155040
+      },
+      "coverage": 0,
+      "targets_affected": 0,
+      "witness_pair_separated": true
+    },
+    {
+      "coordinate": 11,
+      "pairs": 0,
+      "max_fiber": 1,
+      "aliased_fibers": 0,
+      "fiber_histogram": {
+        "1": 155040
+      },
+      "coverage": 0,
+      "targets_affected": 0,
+      "witness_pair_separated": true
+    },
+    {
+      "coordinate": 31,
+      "pairs": 0,
+      "max_fiber": 1,
+      "aliased_fibers": 0,
+      "fiber_histogram": {
+        "1": 155040
+      },
+      "coverage": 0,
+      "targets_affected": 0,
+      "witness_pair_separated": true
+    },
+    {
+      "coordinate": 45,
+      "pairs": 0,
+      "max_fiber": 1,
+      "aliased_fibers": 0,
+      "fiber_histogram": {
+        "1": 155040
+      },
+      "coverage": 0,
+      "targets_affected": 0,
+      "witness_pair_separated": true
+    }
+  ],
+  "semantic_coarsening": {
+    "theorem": "chi=p^K o psi implies Delta_chi subseteq Delta_psi coordinatewise",
+    "exhaustive_violations": 0
+  },
+  "rotation": {
+    "group_order": 24,
+    "orbit_size": 24,
+    "stabilizer": 1,
+    "members": [
+      {
+        "coordinates": [
+          11,
+          25,
+          41,
+          42,
+          45,
+          49
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          8,
+          28,
+          36,
+          42,
+          44,
+          45
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          8,
+          11,
+          12,
+          17,
+          22,
+          42
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          4,
+          8,
+          9,
+          11,
+          31,
+          45
+        ],
+        "on_frontier": true,
+        "minimum_color_support": true
+      },
+      {
+        "coordinates": [
+          3,
+          21,
+          37,
+          44,
+          49,
+          50
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          16,
+          32,
+          36,
+          37,
+          41,
+          50
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          3,
+          9,
+          16,
+          17,
+          24,
+          37
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          3,
+          4,
+          12,
+          16,
+          29,
+          50
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          9,
+          21,
+          29,
+          31,
+          32,
+          50
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          12,
+          21,
+          22,
+          24,
+          32,
+          37
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          16,
+          24,
+          28,
+          29,
+          32,
+          44
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          3,
+          21,
+          24,
+          25,
+          29,
+          41
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          4,
+          22,
+          25,
+          28,
+          29,
+          42
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          17,
+          24,
+          25,
+          28,
+          31,
+          45
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          11,
+          22,
+          25,
+          31,
+          32,
+          36
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          8,
+          21,
+          22,
+          28,
+          31,
+          49
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          4,
+          11,
+          17,
+          28,
+          49,
+          50
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          4,
+          8,
+          17,
+          25,
+          36,
+          37
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          16,
+          17,
+          31,
+          36,
+          42,
+          49
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          3,
+          4,
+          22,
+          36,
+          45,
+          49
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          3,
+          9,
+          12,
+          32,
+          44,
+          45
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          9,
+          12,
+          16,
+          21,
+          41,
+          42
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          8,
+          9,
+          29,
+          37,
+          41,
+          44
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      },
+      {
+        "coordinates": [
+          11,
+          12,
+          24,
+          41,
+          44,
+          50
+        ],
+        "on_frontier": false,
+        "minimum_color_support": false
+      }
+    ]
+  },
+  "historical_comparison": {
+    "D_ID": [
+      3,
+      4,
+      21,
+      22,
+      24,
+      25,
+      28,
+      29,
+      41,
+      42
+    ],
+    "D_color": [
+      4,
+      8,
+      9,
+      11,
+      31,
+      45
+    ],
+    "intersection": [
+      4
+    ],
+    "ID_minimum": 10,
+    "color_minimum": 6,
+    "preserved": true
+  },
+  "frontier_file": "canonical-color-support-frontier.csv.gz"
+}

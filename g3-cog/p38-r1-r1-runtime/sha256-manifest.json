@@ -1,0 +1,42 @@
+[
+  {
+    "name": "canonical-color-support-frontier.csv.gz",
+    "bytes": 16453378,
+    "sha256": "d6eced878b0b9936e286249192b7f7da31ac490614f4308a3f260b17f6648fee"
+  },
+  {
+    "name": "canonical-color-observation-receipt.json",
+    "bytes": 9576,
+    "sha256": "e57cf16b034490e48dc5860c3a652d4bebbc975a201bcc16630d62e787b6ed50"
+  },
+  {
+    "name": "yplus-orbit-closed-contexts.jsonl.gz",
+    "bytes": 40872502,
+    "sha256": "bea9000804e62c8a52c696d1ead952ff72335b358b268f79902e280a331b4d04"
+  },
+  {
+    "name": "yplus-cycle-pairing.json",
+    "bytes": 31225346,
+    "sha256": "d6d0bf8dc397ac9e4155ed398ec2a26e21a4df575ea7bd3a001a65ce297783f2"
+  },
+  {
+    "name": "canonical-witness-reselection.json",
+    "bytes": 17175,
+    "sha256": "81e17befd6200575171512d73aeab3966f7d49bdb4d8ab41ca65822439b03182"
+  },
+  {
+    "name": "search-reuse-certification.json",
+    "bytes": 105699,
+    "sha256": "4bcbdcaee0e851caada5223b1a8384e6a89492386e3f6e23e5f27432779add81"
+  },
+  {
+    "name": "repaired-factorization-premises.json",
+    "bytes": 331,
+    "sha256": "53db4787cc0a6471ae900e7554f08976bb6c9d68505b7b712aa8a8d23eec6948"
+  },
+  {
+    "name": "terminal-receipt.json",
+    "bytes": 2732,
+    "sha256": "08c72aa2a3ad6d0943ace9749fed9b7e51bd5eeef2ed1824ca2dc2ebe1d6709d"
+  }
+]

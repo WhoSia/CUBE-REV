@@ -1,0 +1,31 @@
+import {readFileSync,writeFileSync,readdirSync,createReadStream} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {createGunzip} from 'node:zlib';
+import {createInterface} from 'node:readline';
+import {dirname,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const here=dirname(fileURLToPath(import.meta.url)),root=join(here,'..'),sha=b=>createHash('sha256').update(b).digest('hex'),read=n=>JSON.parse(readFileSync(join(here,n)));
+const assert=(x,m)=>{if(!x)throw Error(m);};
+async function gzipLines(name){let all=0,nonempty=0,header='';const rl=createInterface({input:createReadStream(join(here,name)).pipe(createGunzip()),crlfDelay:Infinity});for await(const line of rl){all++;if(line){nonempty++;if(!header)header=line;}}return {all,nonempty,header};}
+const terminal=read('terminal-receipt.json'),obs=read('canonical-color-observation-receipt.json'),pair=read('yplus-cycle-pairing.json'),w=read('canonical-witness-reselection.json'),reuse=read('search-reuse-certification.json'),factor=read('repaired-factorization-premises.json');
+for(const x of Object.values(terminal.input_hashes))assert(sha(readFileSync(join(root,x.path)))===x.sha256,'INPUT_HASH:'+x.path);
+const frontier=await gzipLines('canonical-color-support-frontier.csv.gz'),orbit=await gzipLines('yplus-orbit-closed-contexts.jsonl.gz');
+assert(frontier.header==='support_hex,size,target_bits,target_count,target_rival_pairs','FRONTIER_HEADER');
+assert(frontier.nonempty===obs.unique_supports+1,'FRONTIER_CARDINALITY');
+assert(Object.values(obs.histogram).reduce((a,b)=>a+b,0)===obs.unique_supports,'HISTOGRAM_SUM');
+assert(obs.minimum_cardinality===6&&obs.minimum_candidates.length===2,'COLOR_MINIMUM');
+assert(JSON.stringify(obs.selected.coordinates)===JSON.stringify([4,8,9,11,31,45]),'D_COLOR');
+assert(obs.semantic_coarsening.exhaustive_violations===0,'COARSENING');
+assert(obs.leave_one_out.every(x=>x.witness_pair_separated&&x.coverage===0),'LEAVE_ONE_OUT');
+assert(orbit.nonempty===pair.deduplicated_orbit_contexts,'ORBIT_LEDGER_CARDINALITY');
+assert(pair.deduplicated_orbit_contexts===873472&&pair.unmatched_directional_records===0&&pair.g_bijection,'ORBIT_PAIRING');
+assert(pair.R1_only===pair.R2_only&&pair.paired_directional_records===pair.directional_contexts,'DIRECTIONAL_PAIRING');
+for(let i=1;i<w.leading_candidates.length;i++){const a=w.leading_candidates[i-1].sort_key,b=w.leading_candidates[i].sort_key;let d=0;for(let k=0;k<a.length&&!d;k++)d=typeof a[k]==='string'?a[k].localeCompare(b[k]):a[k]-b[k];assert(d<=0,'WITNESS_SORT');}
+assert(w.canonical.row_id==='P34-001644'&&w.canonical.branch==='A'&&w.canonical.representation==='r2','WITNESS');
+assert(reuse.exhaustive.distinct_reuse_keys===6724&&reuse.exhaustive.failures===0,'REUSE_EXHAUSTIVE');
+assert(reuse.raw_controls.rows===100&&reuse.raw_controls.failures===0&&reuse.raw_controls.records.every(x=>x.pass),'RAW_CONTROLS');
+assert(Object.values(terminal.gates).every(x=>x==='PASS')&&factor.product_factorization_premises_repaired,'GATES');
+const result={verdict:'INDEPENDENT_ARTIFACT_AND_CUSTODY_VERIFICATION_PASS',frontier,orbit,canonical_D_color:obs.selected.coordinates,canonical_witness:w.canonical,reuse_checks:reuse.exhaustive,raw_control_rows:reuse.raw_controls.rows,historical_residue_preserved:terminal.historical_adverse_residue,scope:'Finite certified universe only; transport review reauthorization is not external validation.'};
+writeFileSync(join(here,'verification.json'),JSON.stringify(result,null,2)+'\n');
+const files=readdirSync(here).filter(n=>n!=='custody-sha256.json').sort(),manifest=files.map(name=>{const b=readFileSync(join(here,name));return {name,bytes:b.length,sha256:sha(b)};});writeFileSync(join(here,'custody-sha256.json'),JSON.stringify(manifest,null,2)+'\n');
+console.log(JSON.stringify(result,null,2));
