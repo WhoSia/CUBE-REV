@@ -1,0 +1,11 @@
+{
+  "stage":"CUBE-REV Generation III G3-CLOSE",
+  "entry_authority":{"p38":"QAST_NOVELTY_KILLED","rt1":"NO_DISTINCTIVE_SURVIVOR","rt2":"NO_METHOD_LEVEL_RESIDUAL_FINAL_STOP_RULE_ENFORCED"},
+  "preserved_boundaries":["NO_RT3","NO_P39","NO_EXTERNAL_WORLD_CONTACT","NO_G4_OPENED","NO_H33_MUTATION"],
+  "outputs":["g3-final-epistemic-balance-sheet.json","g3-surviving-artifact-manifest.json","g3-defeated-claim-tombstones.json","g3-adverse-residue-ledger.json","g3-unexecuted-design-ledger.json","g3-authority-classification.json","g3-research-os-doctrine-harvest.json","g3-github-living-surface-closure.json","g4-problem-rebirth-contract.json","g4-candidate-question-template.json"],
+  "results":{"p1":4,"p2":7,"p3":6,"p4":9,"p5":3,"tombstones":9,"unexecuted_designs":3,"minimal_counterexamples_preserved":11,"g4_opened":false,"external_execution":false},
+  "github_living_surface":{"updated":"g3-cog/README.md","remote_push":false,"history_dump":false},
+  "doctrine":{"promoted":"negative-closure no-revival tombstone guard","other_candidates":"subsumed by existing Research OS doctrine","global_doctrine_version_created":false},
+  "verification_command":"node g3-cog/close-runtime/verify-close.mjs",
+  "verdict":"G3_CLOSED_NEGATIVE_LEGACY / POSITIVE_NOVELTY_CLAIM_DEFEATED / EXACT_ARTIFACT_LEGACY_PROMOTED / DEFEATED_CLAIMS_TOMBSTONED / G4_PROBLEM_REBIRTH_GATE_SEALED / NO_G4_OPENED / NO_RT3 / NO_P39 / WORLD_CONTACT_HOLD"
+}

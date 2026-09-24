@@ -1,0 +1,12 @@
+{
+  "schema":"CUBE-REV-G3-CLOSE-ADVERSE-RESIDUE-v1",
+  "residue":[
+    {"item":"P37-R1 resource HOLD","status":"preserved","meaning":"resource/capacity state, not a scientific negative"},
+    {"item":"sticker-ID minimum-10 versus canonical-color minimum-6","status":"preserved","meaning":"semantic-observation discrepancy; ID result not relabelled as color science"},
+    {"item":"0 matched / 1024 unmatched original Y+ pairing","status":"preserved","meaning":"non-closed 16-origin restriction"},
+    {"item":"P34-001164/A/r2","status":"preserved","meaning":"valid historical route but not comparator-first"},
+    {"item":"6724-key reuse gap before R1-R1","status":"preserved","meaning":"no retrospective certification before exact reuse proof"},
+    {"item":"BRM editorial rejection without external review","status":"preserved","meaning":"submission outcome; does not validate/refute later exact program"},
+    {"item":"source custody gaps and later repairs","status":"preserved","meaning":"repair history does not restore novelty"}
+  ]
+}

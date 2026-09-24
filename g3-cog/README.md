@@ -1,7 +1,7 @@
-# CUBE-REV G3 cognitive runtime
+# Generation III closure surface
 
-Prehuman certification branch for Generation III G3-P10-R1.
+Generation III is closed as a negative legacy. Its detailed scientific genealogy, defeated claims, and closure receipt live in Notion; this directory is only the compact executable/reproducibility surface.
 
-The historical G3-P7 2,453-byte presentation packet was not recoverable from the connected surfaces used for this materialization. `packets/p7-presentation.v2.json` is therefore an explicit byte-level successor carrying the sealed six-cell scientific semantics; it does **not** claim predecessor byte identity.
+Reusable items are limited to the P1 finite-domain artifacts and P2 engineering instruments recorded in `close-runtime/g3-surviving-artifact-manifest.json`. They do not establish a general method, human mechanism, or novelty claim.
 
-Human collection is disabled. The branch is eligible only for browser certification until separate governance authority exists.
+Do not revive QAST, EWRA, P39, or any G3 contribution claim from this directory. Reuse requires a new independent empirical problem and a fresh novelty audit.
