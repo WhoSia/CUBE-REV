@@ -1,0 +1,18 @@
+{
+  "schema":"G3-RT1-S1-S8-ADJUDICATION-v1",
+  "mechanical_attack":"8/8 seeds covered by constructive witness or counterexample",
+  "adjudications":[
+    {"id":"S1","truth":"QUALIFIED_TRUE","novelty":"NOVELTY_KILLED","distinctive_survivor":false},
+    {"id":"S2","truth":"PROVED_FINITE_REDUCTION","novelty":"NOVELTY_KILLED","distinctive_survivor":false},
+    {"id":"S3","truth":"IDENTIFICATION_BOUNDARY","novelty":"NOVELTY_KILLED","distinctive_survivor":false},
+    {"id":"S4","truth":"PROVED_BINARY_CASE","novelty":"NOVELTY_KILLED","distinctive_survivor":false},
+    {"id":"S5","truth":"PROVED_IFF","novelty":"NOVELTY_KILLED","distinctive_survivor":false},
+    {"id":"S6","truth":"PROVED_FINITE_CASE","novelty":"NOVELTY_KILLED","distinctive_survivor":false},
+    {"id":"S7","truth":"RELATIVE_CERTIFICATE_AND_NO_GO","novelty":"NOVELTY_KILLED","distinctive_survivor":false},
+    {"id":"S8","truth":"PROVED_IFF","novelty":"NOVELTY_KILLED","distinctive_survivor":false}
+  ],
+  "distinctive_survivor_count":0,
+  "external_falsifier_changed":false,
+  "reason":"Every mechanically valid proposition is covered by stronger established theory or is an elementary boundary/audit control. No nonempty load-bearing prior-art complement remains.",
+  "verdict":"NO_DISTINCTIVE_SURVIVOR"
+}

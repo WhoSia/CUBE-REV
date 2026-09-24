@@ -1,0 +1,23 @@
+{
+  "schema":"G3-RT1-P39-GATE-v1",
+  "entry":"P39_UNAUTHORIZED",
+  "requirements":{
+    "distinctive_survivor":false,
+    "mechanically_checked_package":true,
+    "residual_survives_novelty_kill":false,
+    "external_packet_rewritten_to_discriminate_survivor":false,
+    "load_bearing_source_custody":true
+  },
+  "p38_qast_novelty_kill":"PRESERVED",
+  "p38_custody":{
+    "terminal_receipt_sha256":"8ce96c3fef1012f4f9e1a17cdc663717776213ca3ba5f176c3ae6110abbb9258",
+    "preseal_a_sha256":"5cb6357bd3d539ab431c478aa496129af957819150d8a02cd7bf705860379c38",
+    "preseal_b_sha256":"b2834b678b0c95b8c7b76c02efc39d551bca0a40daaa901d3ab19fedfe862f19",
+    "modified":false
+  },
+  "external_packet_action":"NONE; rewriting is forbidden because no Distinctive Survivor exists.",
+  "world_contact":"NOT_EXECUTED",
+  "p39_opened":false,
+  "g3_graduation_delta":"Counterexample and archaeology authority strengthened; abstract-core novelty gate remains failed; independent world contact remains absent.",
+  "decision":"P39_REAUTHORIZATION_DENIED"
+}
