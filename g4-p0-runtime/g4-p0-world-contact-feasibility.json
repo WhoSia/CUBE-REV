@@ -1,0 +1,44 @@
+{
+  "schema": "CUBE-REV-G4-P0-WORLD-CONTACT-FEASIBILITY-v1",
+  "execution_boundary": "Prospective design only. No participant contact, data acquisition, task deployment, recruitment, consent, or external communication was executed.",
+  "common_hard_gates": [
+    "ethics/consent and participant-contact authority",
+    "canonical source custody for each load-bearing novelty comparator",
+    "versioned task implementation with exact event logging",
+    "pre-registered positive control, negative control, exclusion, and kill criterion",
+    "independent audit of exact-state and action-coordinate logging"
+  ],
+  "finalist_packets": [
+    {
+      "candidate": "Q1",
+      "minimum_world_contact_design": "Within-solver 2x2 perturbation experiment: preserve/destroy subgoal boundary crossed with a matched perturbation topology. Record exact state, action stream, latency, repair route, and declared subgoal phase.",
+      "positive_control": "A perturbation intentionally preserving the active subgoal has shorter local repair than a matched boundary-destroying perturbation.",
+      "negative_control": "A motor interruption with no state perturbation does not reproduce the boundary-specific repair pattern.",
+      "fatal_result": "After matching state distance, elapsed time, and motor interruption, the preregistered interaction is absent or fully accounted for by a non-plan rival.",
+      "feasibility_verdict": "NOT_AUTHORIZED"
+    },
+    {
+      "candidate": "Q3",
+      "minimum_world_contact_design": "Factorial physical-frame switch × action-label remap × plan-continuity protocol, with exact task state and move-coordinate logs.",
+      "positive_control": "The known spatial-switch manipulation shifts the spatial component when labels and continuity are held fixed.",
+      "negative_control": "A label-preserving no-remap switch does not mimic the action-coordinate effect.",
+      "fatal_result": "All factors collapse to a single generic rotation/familiarity effect or factorial implementation fails manipulation checks.",
+      "feasibility_verdict": "NOT_AUTHORIZED"
+    },
+    {
+      "candidate": "Q2",
+      "minimum_world_contact_design": "Longitudinal solver cohort with exact state/move/latency records, preregistered change-point detector, independent transfer session, and practice-dose logs.",
+      "positive_control": "A known taught chunk transition is detected at a protocol-defined acquisition point.",
+      "negative_control": "Synthetic smooth-rate trajectories do not trigger the discrete-transition rule at the specified false-positive rate.",
+      "fatal_result": "All transitions disappear under preregistered practice, baseline ability, and motor-speed controls or fail held-out transfer.",
+      "feasibility_verdict": "NOT_AUTHORIZED"
+    }
+  ],
+  "ethics_and_operations": {
+    "contact_status": "NOT_STARTED",
+    "data_collection_status": "NOT_STARTED",
+    "recruitment_status": "NOT_STARTED",
+    "instrument_status": "SPECIFICATION_ONLY",
+    "result": "WORLD_CONTACT_FEASIBILITY_PENDING"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "CUBE-REV-G4-P0-TERMINAL-RECEIPT-v1",
+  "verdict": "G4_P0_PROBLEM_TOURNAMENT_COMPLETE / Q1_Q8_INDEPENDENTLY_ADJUDICATED / G3_TOMBSTONES_PRESERVED / TOP3_CONDITIONAL_Q1_Q3_Q2 / SOURCE_CUSTODY_MISSING / WORLD_CONTACT_NOT_AUTHORIZED / G4_MAINLINE_NOT_LAUNCHED",
+  "authority": {
+    "notion_packet": "3e5ef561-cf92-8180-90ad-ca8c6ceaf323",
+    "g3_close_commit": "22525c3ef81e013384d55817592a943d6d29c1dc",
+    "g3_status": "negative legacy; no revival"
+  },
+  "commands": [
+    "Drive-first source searches for Rubik skill, transfer, action sequence, reference frame, and search-objective authorities",
+    "Fresh scholarly novelty preflight for Q1-Q8 after pre-literature claim/rival freeze",
+    "No external task, participant, browser-world, or portal execution"
+  ],
+  "outputs": [
+    "pre-literature-q1-q8-freeze.json",
+    "g4-p0-tournament-adjudication.json",
+    "g4-p0-source-custody-request.json",
+    "g4-p0-world-contact-feasibility.json"
+  ],
+  "top3": ["Q1 conditional", "Q3 conditional", "Q2 conditional"],
+  "launch_gate": {
+    "result": "NO_LAUNCH",
+    "why": ["Q1 and Q3 rely on fresh sources absent canonical Drive", "all finalists lack participant/ethics/instrumentation authority", "no exact task implementation is piloted", "conditional novelty remains below full authority gate"]
+  },
+  "no_successor_opened": true,
+  "no_world_contact": true
+}
