@@ -1,0 +1,77 @@
+{
+  "schema": "QAST-T1-T10-v1",
+  "argument_freeze": "PRE_LITERATURE",
+  "theorems": [
+    {
+      "id": "T1",
+      "status": "PROVED_QUALIFIED",
+      "claim": "An exact task isomorphism with closed context domain transports every legal bounded path bijectively and therefore preserves bounded target reachability.",
+      "proof": "Map every path actionwise by gamma. Transition equivariance proves endpoint transport by induction; target, cost, grammar and selector preservation prove legality in both directions. Apply the inverse maps for reflection.",
+      "killed_form": "Outcome agreement alone implies representation isomorphism.",
+      "counterexample": "CE-T1-CONVERSE"
+    },
+    {
+      "id": "T2",
+      "status": "PROVED_IFF",
+      "claim": "Target membership is a function of an observation exactly when it is constant on each observation fiber in the certified domain.",
+      "proof": "Necessity follows by equal inputs to the putative decision function. For sufficiency define the decision on each realized observation by the common fiber label.",
+      "counterexample": null
+    },
+    {
+      "id": "T3",
+      "status": "PROVED_WITH_NONMONOTONE_RANKING_BOUNDARY",
+      "claim": "Coordinatewise semantic coarsening makes each pairwise difference support a subset of its finer support. Pairwise and global minimum deletion cardinalities cannot increase. For a fixed deletion set, the induced equivalence relation only coarsens, so merged pairs, maximum fiber size and target-alias coverage cannot decrease. The identity of an optimizer, support multiplicities, orbit occupancy and lexicographic ranking need not be preserved.",
+      "proof": "If coarsened values differ, their antecedent values differ. Projection after pointwise coarsening factors through the finer projection, so every finer fiber is contained in a coarser fiber.",
+      "counterexamples": ["CE-T3-STRICT", "CE-T3-OPTIMIZER"]
+    },
+    {
+      "id": "T4",
+      "status": "PROVED_WITH_FAILED_CONVERSE_AND_INFORMATIVE_NONMONOTONICITY",
+      "claim": "With fixed task objects and selector-independent grammar, reachability is an up-set in the inclusion order on admissible primitive sets. Nonreachability is a down-set. Representation divergence need not be monotone and its inclusion-minimal boundary is an antichain.",
+      "proof": "Every word over M is also a word over N when M is a subset of N. Minimal elements of any finite up-set form an antichain.",
+      "counterexamples": ["CE-T4-CONVERSE", "CE-T4-DIVERGENCE"]
+    },
+    {
+      "id": "T5",
+      "status": "QUALIFIED",
+      "claim": "Closure is necessary for a total endomorphism-based pairing of every context inside the same restricted domain; explicit orbit completion is an alternative. Closure is not necessary for a partial pairing or for coincidental outcome equality. Aggregate equality does not establish a contextwise pairing.",
+      "proof": "A total internal pairing by g requires g(C) to be contained in C. Cardinality equality of outcome classes supplies no map and no commuting diagram.",
+      "counterexample": "CE-T5-AGGREGATE"
+    },
+    {
+      "id": "T6",
+      "status": "QUALIFIED",
+      "claim": "An invertible task isomorphism is sufficient for universal certificate-preserving search reuse. It is necessary only when reuse authority demands preservation and reflection of the full task structure; accidental equality of one query result does not imply isomorphism.",
+      "proof": "The isomorphism transports paths and certificates bijectively. The unrestricted iff fails because a lossy or non-homomorphic map can return the same Boolean value on a selected query.",
+      "counterexample": "CE-T6-QUERY"
+    },
+    {
+      "id": "T7",
+      "status": "PROVED_FOR_TYPED_PRODUCT_ONLY",
+      "claim": "Under independent interventions, the typed joint readout is the ordered pair of the pure observation and pure action readouts. No statement follows for an arbitrary scalar post-processing functional.",
+      "proof": "By A3 and A4 each component consumes only its declared instrument. Product introduction yields the ordered pair; it does not constrain a later coupling functional.",
+      "counterexample": "CE-T7-SCALAR"
+    },
+    {
+      "id": "T8",
+      "status": "PROVED_FOR_COMPONENTWISE_SEPARATOR_REFUTED_FOR_ARBITRARY_JOINT_STATISTIC",
+      "claim": "A joint-only difference is impossible for equality of the typed product outcome when both pure components are equal. A joint-only scalar statistic remains possible if the statistic couples the coordinates.",
+      "proof": "Equality is componentwise for ordered pairs. A nonlinear scalar such as conjunction supplies a minimal counterexample to the unrestricted claim.",
+      "counterexample": "CE-T8-AND"
+    },
+    {
+      "id": "T9",
+      "status": "SPLIT_THEOREM_FAMILY",
+      "claim": "Embeddings that preserve and reflect target, observation equality and legal bounded paths transport both separator polarities. Forward simulations transport positive reachability only. Surjective quotient maps preserve target-fiber conclusions only with label constancy. Negative and no-separator transport require backward completeness or reflection; they do not follow from simulation alone.",
+      "proof": "Each polarity follows from the direction in which paths, labels and observation fibers are preserved. The missing reverse direction is witnessed by an added target-reaching path in the codomain.",
+      "counterexamples": ["CE-T9-SIMULATION-NEGATIVE", "CE-T9-QUOTIENT-LABEL"]
+    },
+    {
+      "id": "T10",
+      "status": "META_PROGRAM_CERTIFIED_NOT_A_DOMAIN_THEOREM",
+      "claim": "Every rejected converse or overstrong transport claim is paired with a constructive example and a minimality claim under the frozen order. Minimality is exhaustive where the executable atlas says EXHAUSTIVE and structural otherwise.",
+      "proof": "The atlas records executable predicates, witnesses, lower-bound arguments and certification scope.",
+      "counterexample": null
+    }
+  ]
+}

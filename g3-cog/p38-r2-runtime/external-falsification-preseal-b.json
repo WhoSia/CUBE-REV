@@ -1,0 +1,42 @@
+{
+  "schema": "QAST-EXTERNAL-PRESEAL-v1",
+  "packet_id": "P39-B-MINIGRID-DOORKEY-5X5",
+  "status": "PRESEALED_NOT_EXECUTED",
+  "domain": "MiniGrid DoorKey 5x5",
+  "authority_url": "https://minigrid.farama.org/environments/minigrid/DoorKeyEnv/",
+  "environment_id": "MiniGrid-DoorKey-5x5-v0",
+  "acquisition_rule": "Pin the installed minigrid package version and wheel/source SHA-256 before import. If the registered environment or source semantics differ from the authority page, HOLD without version substitution.",
+  "system": {
+    "state": "complete environment state including grid objects/states, agent position/direction, carried object, step count, and termination flag",
+    "transition": "exact deterministic environment step for official actions 0..6",
+    "target": "official goal termination before timeout",
+    "observation_maps": [
+      "O_full: exact complete environment state encoding",
+      "O_native: official direction plus 7x7x3 image encoding, excluding mission text because it is constant"
+    ],
+    "admissible_actions": "The official Discrete(7) interface; effective-action support is the subset whose step changes full state or terminates. No learned policy is used.",
+    "representation": "left-right grid reflection with agent direction, object coordinates, and actions 0(left)/1(right) relabeled; actions 2..6 fixed"
+  },
+  "frozen_domain": "Exhaustive reachable-state closure for each official 5x5 layout instance exposed by the pinned environment generation. If seeded generation produces more than one layout, each seed is a separate predeclared stratum; no favorable seed selection.",
+  "frozen_checks": [
+    "enumerate every reachable full state under actions 0..6 until closure",
+    "build native-observation fibers and test target constancy",
+    "test all official-action and effective-action reachability supports",
+    "construct reflected layouts mechanically and prove state/action/target closure",
+    "compare every reflected transition and shortest-path distance",
+    "emit the first mismatch under lexicographic (layout,state,action) order"
+  ],
+  "positive_prediction": "For a reflected layout pair, exact full-state/action relabeling commutes and shortest-path search can be reused.",
+  "negative_controls": [
+    "reflect state coordinates without swapping left/right actions; commutation must fail",
+    "use O_native fibers without direction; target constancy or one-step support must fail somewhere if such a fiber exists, otherwise report NO_COUNTEREXAMPLE_IN_DOMAIN"
+  ],
+  "kill_criteria": [
+    "any positive-domain closure residue",
+    "any unmatched transition, terminal flag, or shortest-path distance",
+    "negative control fails to fail where its antecedent fiber exists",
+    "reflection requires modifying environment physics rather than relabeling"
+  ],
+  "retry_rule": "No alternate grid size, wrapper, or seed selected after observing a failure. Localize and return HOLD.",
+  "world_contact": "NOT_EXECUTED"
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "QAST-NOVELTY-KILL-v1",
+  "argument_first_freeze": "argument-first-freeze.json",
+  "search_date": "2026-09-24",
+  "rule": "Mathematical truth, task usefulness, and novelty are separate decisions. Search hits are leads; only inspected primary or canonical sources can kill novelty.",
+  "sources": [
+    {
+      "id": "Cousot1977",
+      "tradition": "abstract interpretation",
+      "url": "https://www.di.ens.fr/~cousot/COUSOTpapers/POPL77.shtml",
+      "inspected": true,
+      "bearing": "sound abstraction and fixpoint-based approximation predate QAST"
+    },
+    {
+      "id": "ClarkeGrumbergLong1992",
+      "tradition": "model checking",
+      "url": "https://www.cs.cmu.edu/~emc/papers/Papers%20In%20Refereed%20Journals/Model%20Checking%20and%20Abstraction99.pdf",
+      "inspected": true,
+      "bearing": "simulation-based abstraction and property preservation predate QAST"
+    },
+    {
+      "id": "GivanDeanGreig2003",
+      "tradition": "MDP bisimulation",
+      "url": "https://cs.brown.edu/people/tdean/publications/archive/GivanetalAIJ-03.pdf",
+      "inspected": true,
+      "bearing": "state equivalence, quotient models, and model minimization predate QAST"
+    },
+    {
+      "id": "RavindranBarto2003",
+      "tradition": "MDP homomorphism",
+      "url": "https://wsai.iitm.ac.in/~ravi/papers/IJCAI03.pdf",
+      "inspected": true,
+      "bearing": "state-action homomorphisms and value preservation predate QAST"
+    },
+    {
+      "id": "LiWalshLittman2006",
+      "tradition": "state abstraction",
+      "url": "https://thomasjwalsh.net/pub/aima06Towards.pdf",
+      "inspected": true,
+      "bearing": "unified state-abstraction schemes and their guarantees predate QAST"
+    },
+    {
+      "id": "RITHM-OQP",
+      "tradition": "internal observation quotient",
+      "notion_page_id": "3caef561-cf92-81f6-8652-f79302813552",
+      "inspected": true,
+      "bearing": "claims must be invariant on observation fibers; directly anticipates T2"
+    },
+    {
+      "id": "ResearchOS-Harvest-XLV",
+      "tradition": "causal abstraction and transport",
+      "notion_page_id": "3e5ef561-cf92-8152-a1a6-e9d88a6d9f17",
+      "inspected": true,
+      "bearing": "intervention-defined abstraction and transport assumptions predate the integrated framing"
+    },
+    {
+      "id": "MQR-formal-methods-harvest",
+      "tradition": "formal methods",
+      "notion_page_id": "3dfef561-cf92-81de-aa23-c2c71efa492c",
+      "inspected": true,
+      "bearing": "full abstraction, robust preservation, counterexample-preserving reduction, and diagnosability are prior art"
+    }
+  ],
+  "adjudications": [
+    {"theorem":"T1","truth":"QUALIFIED_TRUE","novelty":"KILLED","reason":"Exact task isomorphism preserving solution sets is standard equivariance/isomorphism reasoning; the converse fails by CE-T1."},
+    {"theorem":"T2","truth":"PROVED_IFF","novelty":"KILLED","reason":"Fiber constancy is an elementary factorization criterion and is already explicit in the internal Observation Quotient Principle."},
+    {"theorem":"T3","truth":"PROVED_WITH_BOUNDARIES","novelty":"KILLED","reason":"Support inclusion under observation coarsening is elementary set semantics; optimizer and ranked-output extensions fail without extra assumptions."},
+    {"theorem":"T4","truth":"PROVED_WITH_BOUNDARIES","novelty":"KILLED","reason":"Reachability monotonicity under action-set inclusion is elementary; divergence and normalized scores are not monotone."},
+    {"theorem":"T5","truth":"QUALIFIED_TRUE","novelty":"KILLED","reason":"Closure under a total within-domain representation action is standard symmetry/equivariance bookkeeping; aggregate cardinality equality is insufficient."},
+    {"theorem":"T6","truth":"QUALIFIED_TRUE","novelty":"KILLED","reason":"Exact transition/goal/action isomorphism suffices for search reuse, while query-specific agreement does not imply structure; homomorphism and bisimulation literatures subsume the preservation logic."},
+    {"theorem":"T7","truth":"PRODUCT_CASE_ONLY","novelty":"KILLED","reason":"Independent-channel composition is a product construction, not a new separation theorem; coupled channels defeat the unrestricted claim."},
+    {"theorem":"T8","truth":"PRODUCT_CASE_ONLY","novelty":"KILLED","reason":"Componentwise product orders inherit monotonicity; arbitrary scalarizations need not."},
+    {"theorem":"T9","truth":"SPLIT_FAMILY","novelty":"KILLED","reason":"Positive preservation, negative reflection, and exact equivalence correspond to simulation, completeness/full abstraction, and bisimulation-style distinctions already established in formal methods."},
+    {"theorem":"T10","truth":"META_PROGRAM","novelty":"KILLED_AS_THEOREM","reason":"A counterexample-first audit protocol is useful methodologically but is not itself a mathematical theorem."}
+  ],
+  "package_verdict": "QAST_LABEL_RETIRED_AS_NOVEL_THEORY",
+  "retained_value": "The cube-erased definitions, theorem/counterexample ledger, and typed product warnings remain a reusable audit vocabulary, not a novelty or priority claim.",
+  "novelty_residue": "No nontrivial theorem survived the argument-first novelty kill as demonstrably distinct. The exact joint packaging was not found verbatim, but mere packaging is not novelty evidence."
+}

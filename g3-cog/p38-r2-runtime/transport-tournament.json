@@ -1,0 +1,117 @@
+{
+  "schema": "QAST-TRANSPORT-TOURNAMENT-v1",
+  "frozen_comparator": [
+    "public exact transition semantics",
+    "nontrivial many-to-one observation map",
+    "non-artificial admissible action family",
+    "representation map with mechanically testable domain closure",
+    "bounded exhaustive or independently checkable oracle",
+    "ability to falsify at least one qualified theorem",
+    "no scientific interpretation required before execution"
+  ],
+  "traditions_represented": ["probabilistic model checking","reinforcement-learning navigation","symbolic planning","board games","automata learning"],
+  "candidates": [
+    {
+      "rank": 1,
+      "id": "PRISM-RDP-N3",
+      "domain": "PRISM randomized dining philosophers, N=3",
+      "tradition": "probabilistic model checking",
+      "source": "https://www.prismmodelchecker.org/casestudies/phil.php",
+      "observation_family": "process-indexed local state versus rotation-invariant occupancy/event summaries",
+      "action_family": "enabled scheduler choice among the model's existing guarded commands",
+      "representation": "cyclic renaming of philosopher/process indices",
+      "status": "ELIGIBLE_SURVIVOR_A",
+      "strong_rival": "Any pass can be explained entirely by standard MDP bisimulation/symmetry reduction; QAST adds no theorem.",
+      "fatal_test": "One unmatched enabled-command distribution or target mismatch under cyclic renaming kills exact reuse."
+    },
+    {
+      "rank": 2,
+      "id": "MINIGRID-DOORKEY-5X5",
+      "domain": "MiniGrid DoorKey 5x5",
+      "tradition": "reinforcement-learning navigation",
+      "source": "https://minigrid.farama.org/environments/minigrid/DoorKeyEnv/",
+      "observation_family": "official 7x7x3 egocentric encoding versus exact full-state encoding",
+      "action_family": "official seven-action interface and state-dependent effective-action mask induced by transition change",
+      "representation": "exact grid reflection paired with left/right action relabeling on reflected layouts",
+      "status": "ELIGIBLE_SURVIVOR_B",
+      "strong_rival": "Partial observability alone, not observation-action separation, explains all divergence.",
+      "fatal_test": "A reflected state/action transition, terminal condition, or shortest-path result that fails to commute kills reuse."
+    },
+    {
+      "rank": 3,
+      "id": "GYM-TAXI-V4",
+      "domain": "Gymnasium Taxi-v4",
+      "tradition": "reinforcement-learning navigation",
+      "source": "https://gymnasium.farama.org/environments/toy_text/taxi/",
+      "status": "RESERVE_NOT_PRESEALED",
+      "fatality": "The asymmetric wall map defeats the obvious dihedral representation group; only weaker relabelings remain and risk triviality."
+    },
+    {
+      "rank": 4,
+      "id": "PRISM-DINING-CRYPT",
+      "domain": "PRISM dining cryptographers",
+      "tradition": "probabilistic model checking",
+      "source": "https://www.prismmodelchecker.org/casestudies/dining_crypt.php",
+      "status": "KILLED",
+      "fatality": "Observation/anonymity quotient is natural, but no independent non-artificial admissible-action family is exposed by the fixed protocol."
+    },
+    {
+      "rank": 5,
+      "id": "FAST-DOWNWARD-BLOCKSWORLD",
+      "domain": "IPC BlocksWorld through Fast Downward",
+      "tradition": "symbolic planning",
+      "source": "https://www.fast-downward.org/latest/documentation/",
+      "status": "KILLED",
+      "fatality": "Candidate observation and action families would be investigator-created encodings rather than domain-native interfaces."
+    },
+    {
+      "rank": 6,
+      "id": "PETTINGZOO-CHESS",
+      "domain": "PettingZoo Chess",
+      "tradition": "board games",
+      "source": "https://pettingzoo.farama.org/main/environments/classic/chess/",
+      "status": "KILLED_FOR_BOUNDED_GATE",
+      "fatality": "The 8x8x111 observation and 4672-action interface are exact, but exhaustive bounded-state closure is not available without a new sampling regime."
+    },
+    {
+      "rank": 7,
+      "id": "PETTINGZOO-CONNECT4",
+      "domain": "PettingZoo Connect Four",
+      "tradition": "board games",
+      "source": "https://pettingzoo.farama.org/1.24.2/environments/classic/connect_four/",
+      "status": "KILLED",
+      "fatality": "Reflection is useful, but the proposed observation quotient/action restrictions are artificial and the example collapses to standard game symmetry."
+    },
+    {
+      "rank": 8,
+      "id": "AALPY-MEALY",
+      "domain": "AALpy finite Mealy-machine fixtures",
+      "tradition": "automata learning",
+      "source": "https://github.com/DES-Lab/AALpy",
+      "status": "KILLED_AS_EXTERNAL_VALIDATION",
+      "fatality": "It is an excellent synthetic theorem harness but is structurally isomorphic to the finite-system definitions and therefore cannot provide non-isomorphic external transport."
+    },
+    {
+      "rank": 9,
+      "id": "TOWER-OF-HANOI",
+      "domain": "bounded Tower of Hanoi",
+      "tradition": "symbolic planning",
+      "status": "KILLED",
+      "fatality": "Puzzle homology and investigator-defined action restrictions make it an anti-isomorphism failure."
+    },
+    {
+      "rank": 10,
+      "id": "GENERIC-WORKFLOW-FSM",
+      "domain": "generic approval workflow state machine",
+      "tradition": "software process verification",
+      "status": "KILLED",
+      "fatality": "No canonical public transition corpus or authoritative action semantics were identified before the freeze."
+    }
+  ],
+  "survivor_nonisomorphism": {
+    "A": "finite probabilistic concurrent protocol with nondeterministic scheduler",
+    "B": "deterministic single-agent spatial navigation with egocentric sensing",
+    "verdict": "GENUINELY_NON_ISOMORPHIC_AT_DOMAIN_AND_SEMANTIC_LEVEL"
+  },
+  "tournament_verdict": "TWO_STRUCTURAL_SURVIVORS_EARNED_PRESEAL_BUT_NOT_WORLD_CONTACT"
+}
