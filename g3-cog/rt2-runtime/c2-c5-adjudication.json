@@ -1,0 +1,56 @@
+{
+  "schema": "CUBE-REV-G3-RT2-C2-C5-ADJUDICATION-v1",
+  "prior_authority": {
+    "p38_qast_novelty": "KILLED_PRESERVED",
+    "rt1_distinctive_survivor": "NONE_PRESERVED",
+    "p39": "CLOSED"
+  },
+  "strongest_real_composition_rival": {
+    "components": [
+      {"component":"abstract interpretation and sound abstraction", "source":"Cousot & Cousot (1977)", "canonical_identifier":"doi:10.1145/512950.512973"},
+      {"component":"MDP equivalence/model minimization", "source":"Givan, Dean & Greig (2003)", "canonical_identifier":"doi:10.1016/S0004-3702(02)00376-4"},
+      {"component":"exact property checking and counterexample production", "source":"PRISM/model-checking tradition already presealed in P38"},
+      {"component":"bounded planning/reachability", "source":"planning/search tradition already presealed in P38"},
+      {"component":"traceability/provenance of transformations", "source":"Almeida et al. (2017)", "canonical_identifier":"doi:10.1002/spe.2506"},
+      {"component":"per-property benchmark and falsification design", "source":"standard experimental-design and verification benchmark practice"}
+    ],
+    "competence_assumption": "The rival is permitted to label its domain, state preconditions, individual properties, witnesses, counterexamples, and OOA outcomes explicitly."
+  },
+  "classes": {
+    "C2": {
+      "proposed_contribution":"sealed exact-world audit protocol",
+      "load_bearing_test":"Changes a negative claim to OOA when a query lies outside a declared representation domain.",
+      "anti_combination_result":"KILLED",
+      "reason":"Domain preconditions plus provenance make the identical output available to the rival; the conjunction is good practice, not a non-compositional invariant.",
+      "minimal_counterexample":"An out-of-domain reachability query is negative under an unguarded routine and OOA under a guarded routine; a conventional checker with the same precondition has the same correction.",
+      "external_falsifier_changed": false
+    },
+    "C3": {
+      "proposed_contribution":"coupled alias/closure/reachability/residue certificate",
+      "load_bearing_test":"Separates observation aliasing, action exclusion, and OOA rather than returning a single bit.",
+      "anti_combination_result":"KILLED",
+      "reason":"A labelled property suite with provenance and counterexamples gives the same partition; no new measurable or certificate relation remains after the rival is granted those ordinary capabilities.",
+      "minimal_counterexample":"Two procedures share aggregate success but differ on one OOA-labelled input; ordinary per-property reporting isolates the same discrepancy.",
+      "external_falsifier_changed": false
+    },
+    "C4": {
+      "proposed_contribution":"three-tier exact-world benchmark",
+      "load_bearing_test":"Changes a future external test design by requiring paired observation/action/OOA probes.",
+      "anti_combination_result":"KILLED",
+      "reason":"These are coverage dimensions already expressible as conventional benchmark strata and model-checking properties. Tier C lacks independently custodied data/code, so no external test-design change is earned.",
+      "minimal_counterexample":"Two systems agree on aggregate tasks but one fails a surface-fixed selector; adding that labelled selector to a standard suite distinguishes them without EWRA-specific machinery.",
+      "external_falsifier_changed": false
+    },
+    "C5": {
+      "proposed_contribution":"P34 certified-bank resource",
+      "load_bearing_test":"Supports independent reuse of exact positive, negative, and OOA certificates.",
+      "anti_combination_result":"KILLED_AS_METHOD_RESIDUAL; RETAINED_AS_SUPPORTING_ARTIFACT",
+      "reason":"The bank is a valuable bounded fixture but does not independently establish a phenomenon or a method output beyond its cube-specific authority.",
+      "minimal_counterexample":"A second exact finite-state corpus using the same schema can reproduce the audit categories; the P34 bank alone supplies no cross-world method invariant.",
+      "external_falsifier_changed": false
+    }
+  },
+  "method_level_residual": "NONE",
+  "final_stop_rule": "SATISFIED",
+  "recommendation": "G3_NEGATIVE_CLOSURE_RECOMMENDED; DO_NOT_OPEN_RT3; DO_NOT_OPEN_P39; NO_WORLD_CONTACT"
+}

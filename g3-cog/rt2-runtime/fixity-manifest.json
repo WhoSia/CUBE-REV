@@ -1,0 +1,12 @@
+{
+  "schema": "CUBE-REV-G3-RT2-FIXITY-v1",
+  "algorithm": "SHA-256",
+  "scope": "RT2 generated outputs and verifier; manifest is excluded from its own checksum set",
+  "files": {
+    "c2-c5-adjudication.json": "cccb8e3f0e6ad49269e654ff2ddd85075da01f2ecb8bf70e40ce22a6f9ff0aea",
+    "rt2-pre-literature-ledger.json": "7e53ecb3306ff720750b860e7a545db107fc4f98cb67710014b3f923ce44342b",
+    "three-tier-exact-world-benchmark.json": "1eabfdbce15164664de73057ce189bb4510893b4b1a6613b20e1edcf352f1aa9",
+    "terminal-receipt.json": "556f63ec7acf7059d96c50c21debf19abd7b01764672913d483a9b77b124f786",
+    "verify-rt2.mjs": "35e5500bb38fefee4eea4cb8aeff82878634a0029d55f34b1dc023f278944028"
+  }
+}
