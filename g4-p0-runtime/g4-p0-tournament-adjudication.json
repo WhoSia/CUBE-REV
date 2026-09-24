@@ -19,12 +19,12 @@
       "presealed_mechanism": "A perturbation that preserves versus destroys a solver's subgoal boundary changes local repair topology and latency after state distance and motor interruption are matched.",
       "fatal_rival": "State distance, surprise, elapsed time, generic motor interruption, or an algorithm restart fully explains the contrast.",
       "literature_pressure": "OPEN_BUT_SHRUNK",
-      "prior_art_read": ["Nuzzi, Cisek & Pezzulo 2026, DOI 10.1073/pnas.2602504123", "Margolis et al. 2019, DOI 10.1162/jocn_a_01414"],
+      "prior_art_read": ["Nuzzi, Cisek & Pezzulo 2026, DOI 10.1073/pnas.2602504123", "Javadi et al. 2019, DOI 10.1162/jocn_a_01414, Drive 18RBYKfcE-iztCCQ7JsTFQviFfKzA-ClN"],
       "custody": "SOURCE_CUSTODY_MISSING",
       "prospective_discriminator": "2x2 boundary-preserved/destroyed × matched perturbation topology; preregister repair latency, replanned route, and local/global continuation with a motor-only control.",
       "feasibility": "DESIGN_FEASIBLE__AUTHORITY_HOLD",
       "decision": "TOP3_CONDITIONAL",
-      "promotion_blockers": ["canonical source custody", "ethics/participant and instrumentation authority", "piloted exact-state perturbation implementation"]
+      "promotion_blockers": ["Nuzzi 2026 canonical source custody", "ethics/participant and instrumentation authority", "piloted exact-state perturbation implementation"]
     },
     {
       "id": "Q2",
@@ -45,12 +45,12 @@
       "presealed_mechanism": "Physical-frame transformation, action-coordinate relabeling, and disruption of plan continuity have separable performance signatures in the same task.",
       "fatal_rival": "Generic mental rotation, familiarity, motor remapping, or plan-memory loss explains all effects.",
       "literature_pressure": "OPEN_BUT_NARROW",
-      "prior_art_read": ["Ray & Welsh 2018, DOI 10.3389/fpsyg.2018.00542", "Wang et al. 2011, DOI 10.1016/j.cognition.2011.02.006", "Verwey 2001, Drive 1MJGWsUxx53wGe9A6UPutbuqBPgOoiXFw", "Botvinick, Niv & Barto 2009, Drive 1bnj5sUehfpZkt2CqMw_gSIGy6mOaA0sG"],
-      "custody": "SOURCE_CUSTODY_MISSING",
+      "prior_art_read": ["Ray & Welsh 2018, DOI 10.3389/fpsyg.2018.00542, Drive 1XgPqjI4x6AgO0zO0TzyCaAOglpARglXq", "Zhang et al. 2011, DOI 10.1016/j.cognition.2011.02.006, Drive 1CabQTGcOTZ2iwgCbas0K7J9HIP8udkjC", "Verwey 2001, Drive 1MJGWsUxx53wGe9A6UPutbuqBPgOoiXFw", "Botvinick, Niv & Barto 2009, Drive 1bnj5sUehfpZkt2CqMw_gSIGy6mOaA0sG"],
+      "custody": "DRIVE_CUSTODIED",
       "prospective_discriminator": "Factorial physical switch × label remap × plan continuity, with a no-remap spatial-switch control and preregistered dissociation pattern.",
       "feasibility": "DESIGN_FEASIBLE__AUTHORITY_HOLD",
       "decision": "TOP3_CONDITIONAL",
-      "promotion_blockers": ["canonical source custody", "ethics/participant and instrumentation authority", "validated factorial task implementation"]
+      "promotion_blockers": ["ethics/participant and instrumentation authority", "validated factorial task implementation"]
     },
     {
       "id": "Q4",
@@ -122,7 +122,7 @@
   "selection_basis": "Each retains independent scientific importance, at least two presealed rival mechanisms, a prospective intervention discriminator, and no G3-tombstone revival; order is not a launch authorization.",
   "final_problem_gate": {
     "result": "NO_G4_MAINLINE_LAUNCH",
-    "failed_conditions": ["No finalist has all load-bearing literature in canonical Drive custody", "No participant/ethics/instrumentation authority is present", "No feasibility packet has a piloted exact implementation", "No finalist has cleared authority pressure beyond discovery-stage preflight"],
+    "failed_conditions": ["Q1 lacks Nuzzi 2026 canonical Drive custody", "No participant/ethics/instrumentation authority is present", "No feasibility packet has a piloted exact implementation", "No finalist has cleared authority pressure beyond discovery-stage preflight"],
     "allowed_next_action": "Acquire canonical source bytes/identifiers and obtain separate authorization before any finalist-specific launch packet; rerun the gate without changing the pre-literature freeze."
   }
 }

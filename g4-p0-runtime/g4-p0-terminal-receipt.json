@@ -20,7 +20,7 @@
   "top3": ["Q1 conditional", "Q3 conditional", "Q2 conditional"],
   "launch_gate": {
     "result": "NO_LAUNCH",
-    "why": ["Q1 and Q3 rely on fresh sources absent canonical Drive", "all finalists lack participant/ethics/instrumentation authority", "no exact task implementation is piloted", "conditional novelty remains below full authority gate"]
+    "why": ["Q1 relies on Nuzzi 2026 absent canonical Drive; Q3 custody was verified", "all finalists lack participant/ethics/instrumentation authority", "no exact task implementation is piloted", "conditional novelty remains below full authority gate"]
   },
   "no_successor_opened": true,
   "no_world_contact": true

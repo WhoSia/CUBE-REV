@@ -2,10 +2,7 @@
   "schema": "CUBE-REV-G4-P0-SOURCE-CUSTODY-REQUEST-v1",
   "rule": "Discovery is not canonical authority. Each listed item is load-bearing for a conditional finalist or a kill decision and must be placed in canonical Drive before promotion or final reliance.",
   "requested_now": [
-    {"candidate":"Q1","identifier":"10.1073/pnas.2602504123","citation":"Nuzzi, Cisek & Pezzulo (2026), The continuous dynamics of planning and acting in a virtually embodied task","status":"SOURCE_CUSTODY_MISSING"},
-    {"candidate":"Q1","identifier":"10.1162/jocn_a_01414","citation":"Margolis et al. (2019), Human detours and shortcuts","status":"SOURCE_CUSTODY_MISSING"},
-    {"candidate":"Q3","identifier":"10.3389/fpsyg.2018.00542","citation":"Ray & Welsh (2018), Multiple Frames of Reference Are Used During the Selection and Planning of a Sequential Joint Action","status":"SOURCE_CUSTODY_MISSING"},
-    {"candidate":"Q3","identifier":"10.1016/j.cognition.2011.02.006","citation":"Wang et al. (2011), Spatial updating according to a fixed reference direction","status":"SOURCE_CUSTODY_MISSING"}
+    {"candidate":"Q1","identifier":"10.1073/pnas.2602504123","citation":"Nuzzi, Cisek & Pezzulo (2026), The continuous dynamics of planning and acting in a virtually embodied task","status":"SOURCE_CUSTODY_MISSING"}
   ],
   "nonfinalist_or_kill_context_sources": [
     {"candidate":"Q6","identifier":"10.7554/eLife.26713","status":"SOURCE_CUSTODY_MISSING"},
@@ -13,6 +10,9 @@
     {"candidate":"Q8","identifier":"10.1007/s00221-025-07104-w","status":"SOURCE_CUSTODY_MISSING"}
   ],
   "drive_custodied_used": [
+    {"id":"18RBYKfcE-iztCCQ7JsTFQviFfKzA-ClN","citation":"Javadi et al. (2019), DOI 10.1162/jocn_a_01414"},
+    {"id":"1XgPqjI4x6AgO0zO0TzyCaAOglpARglXq","citation":"Ray & Welsh (2018), DOI 10.3389/fpsyg.2018.00542"},
+    {"id":"1CabQTGcOTZ2iwgCbas0K7J9HIP8udkjC","citation":"Zhang et al. (2011), DOI 10.1016/j.cognition.2011.02.006"},
     {"id":"1evZEtiF9f1oyg9kjMctEKVZ3VFmec6mA","citation":"Meinz et al. (2023)"},
     {"id":"1WoKGHPM-lrcR8__166i_CrXRd4tKVEsf","citation":"Daniels, Moreau & Macnamara (2022)"},
     {"id":"1MJGWsUxx53wGe9A6UPutbuqBPgOoiXFw","citation":"Verwey (2001)"},
