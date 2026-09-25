@@ -41,5 +41,12 @@
     }
   },
   "explicit_non_actions": ["No Zenodo mutation", "No H33 artifact mutation", "No GitHub Pages deployment change", "No Apps Script call or change", "No collector activation", "No untracked G3 runtime byte staged"],
-  "post_push_required": ["verify remote research/current resolves to local head", "verify m1.0 remote ref is absent", "verify main and m1.1 heads unchanged"]
+  "post_push_verification": {
+    "remote_research_current": "c7ea8e4ad140e798219b748a0738fee0f3068cb3",
+    "remote_m1_0": "ABSENT_AS_RETIRED",
+    "remote_m1_1": "51f0093e9f2e5c5938d5fca3ddf58e342cb330ce_UNCHANGED",
+    "remote_main": "a5b16ad3f64c7f3de31b891e439c40e902d582bf_UNCHANGED",
+    "remote_archive_tag_object": "700aa01bb3e88fee67a2aa21dc689120bde97b42",
+    "result": "RECONCILIATION_AND_REQUESTED_RETIREMENT_PASS"
+  }
 }
