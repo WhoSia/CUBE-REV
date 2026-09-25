@@ -1,0 +1,33 @@
+{
+  "schema": "CUBE-REV-G4-P1-R2-REQUIRED-FILE-MISSING-HOLD-v1",
+  "verdict": "HOLD_GEOMETRY / REQUIRED_FILE_MISSING / CROSS_LANGUAGE_EQUIVALENCE_NOT_EXECUTED / FULL_CENSUS_NOT_STARTED / HUMAN_WORLD_CONTACT_CLOSED",
+  "authority": {
+    "notion_packet": "3e6ef561-cf92-8153-90f3-e928f6262704",
+    "notion_r1_reference": "3e6ef561-cf92-81f6-9a10-d1c5079ae843",
+    "branch": "research/current",
+    "frozen_requirement": "Both P1-R1 Python regression witnesses must be reproduced before any Rust census count is accepted."
+  },
+  "required_missing_input": {
+    "name": "P1-R1 executable Python reference oracle",
+    "why_required": [
+      "R2 names Python as the reference implementation.",
+      "The packet requires two frozen witness replays before Rust output may influence the matching contract.",
+      "The full plan-family enumeration, canonical tie-break implementation, and exact matching compiler are not recoverable from prose witness values without reconstructing unsealed rules."
+    ],
+    "searches_completed": [
+      "research/current working tree, including g4-p0-runtime and all tracked files",
+      "all local Git refs and history reachable in research/current",
+      "accessible C:/Users/kimwo/.codex/.chatgpt-projects roots filtered for P1/R1/2x2/Rubik/matched-pair source artifacts"
+    ],
+    "result": "No executable P1-R1 Python oracle or authoritative export found."
+  },
+  "notion_prose_available_but_not_substituted": [
+    "Algorithm-corridor witness state and expected U F versus R' U' values",
+    "Stage/subgoal witness state and expected F' versus R values",
+    "R1 bounded counts quoted in the packet"
+  ],
+  "non_actions": [
+    "No Rust engine created", "No distance table generated", "No full census started", "No move grammar, metric, tie-break, or plan corridor reconstructed", "No main/H33/Zenodo/human collection action"],
+  "unblock": "Provide or synchronize the exact P1-R1 Python oracle and its frozen input/configuration bytes into research/current (or an immutable, readable canonical location). Then rerun R2 from witness replay before full census.",
+  "authority_ceiling": "This receipt establishes only input custody failure, not a geometric or scientific negative result."
+}
