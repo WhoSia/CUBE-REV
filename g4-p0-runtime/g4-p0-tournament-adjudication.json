@@ -1,0 +1,128 @@
+{
+  "schema": "CUBE-REV-G4-P0-TOURNAMENT-ADJUDICATION-v1",
+  "scope": "prelaunch problem selection only; no world contact, data collection, recruitment, or G4 mainline",
+  "frozen_pre_literature_binding": "pre-literature-q1-q8-freeze.json",
+  "g3_tombstone_guard": {
+    "preserved": ["QAST/T1-T10", "S1-S8", "EWRA audit as novel contribution", "three-tier benchmark novelty", "P34 certified bank as empirical contribution", "P39", "publication-level G3 generality"],
+    "prohibited_revival": true,
+    "g3_artifact_role": "optional measurement instrument only; never the reason a G4 problem matters"
+  },
+  "source_custody_legend": {
+    "DRIVE_CUSTODIED": "canonical Drive byte present",
+    "SOURCE_CUSTODY_MISSING": "identifier discovered but canonical Drive byte absent; cannot support promotion",
+    "DISCOVERY_ONLY": "fresh search lead, not admitted as final scientific authority"
+  },
+  "candidates": [
+    {
+      "id": "Q1",
+      "question": "Perturbation-defined plan granularity",
+      "presealed_mechanism": "A perturbation that preserves versus destroys a solver's subgoal boundary changes local repair topology and latency after state distance and motor interruption are matched.",
+      "fatal_rival": "State distance, surprise, elapsed time, generic motor interruption, or an algorithm restart fully explains the contrast.",
+      "literature_pressure": "OPEN_BUT_SHRUNK",
+      "prior_art_read": ["Nuzzi, Cisek & Pezzulo 2026, DOI 10.1073/pnas.2602504123", "Javadi et al. 2019, DOI 10.1162/jocn_a_01414, Drive 18RBYKfcE-iztCCQ7JsTFQviFfKzA-ClN"],
+      "custody": "SOURCE_CUSTODY_MISSING",
+      "prospective_discriminator": "2x2 boundary-preserved/destroyed × matched perturbation topology; preregister repair latency, replanned route, and local/global continuation with a motor-only control.",
+      "feasibility": "DESIGN_FEASIBLE__AUTHORITY_HOLD",
+      "decision": "TOP3_CONDITIONAL",
+      "promotion_blockers": ["Nuzzi 2026 canonical source custody", "ethics/participant and instrumentation authority", "piloted exact-state perturbation implementation"]
+    },
+    {
+      "id": "Q2",
+      "question": "Longitudinal microstructure of skill acquisition",
+      "presealed_mechanism": "Skill improvement contains discrete recognition/uncertainty/chunk transitions rather than only a smooth practice-speed curve.",
+      "fatal_rival": "Practice amount, baseline ability, fixed method, or motor speeding accounts for every apparent transition.",
+      "literature_pressure": "SHRUNK",
+      "prior_art_read": ["Meinz et al. 2023, Drive 1evZEtiF9f1oyg9kjMctEKVZ3VFmec6mA", "Daniels, Moreau & Macnamara 2022, Drive 1WoKGHPM-lrcR8__166i_CrXRd4tKVEsf"],
+      "custody": "DRIVE_CUSTODIED",
+      "prospective_discriminator": "Longitudinal exact-state/move/latency records, preregistered change-point rule, held-out transfer, and matched-practice/motor controls.",
+      "feasibility": "DESIGN_FEASIBLE__AUTHORITY_HOLD",
+      "decision": "TOP3_CONDITIONAL",
+      "promotion_blockers": ["ethics/participant and instrumentation authority", "longitudinal retention feasibility", "precommitted change-point and transfer controls"]
+    },
+    {
+      "id": "Q3",
+      "question": "Frame remapping versus action-coordinate remapping versus plan continuity",
+      "presealed_mechanism": "Physical-frame transformation, action-coordinate relabeling, and disruption of plan continuity have separable performance signatures in the same task.",
+      "fatal_rival": "Generic mental rotation, familiarity, motor remapping, or plan-memory loss explains all effects.",
+      "literature_pressure": "OPEN_BUT_NARROW",
+      "prior_art_read": ["Ray & Welsh 2018, DOI 10.3389/fpsyg.2018.00542, Drive 1XgPqjI4x6AgO0zO0TzyCaAOglpARglXq", "Zhang et al. 2011, DOI 10.1016/j.cognition.2011.02.006, Drive 1CabQTGcOTZ2iwgCbas0K7J9HIP8udkjC", "Verwey 2001, Drive 1MJGWsUxx53wGe9A6UPutbuqBPgOoiXFw", "Botvinick, Niv & Barto 2009, Drive 1bnj5sUehfpZkt2CqMw_gSIGy6mOaA0sG"],
+      "custody": "DRIVE_CUSTODIED",
+      "prospective_discriminator": "Factorial physical switch × label remap × plan continuity, with a no-remap spatial-switch control and preregistered dissociation pattern.",
+      "feasibility": "DESIGN_FEASIBLE__AUTHORITY_HOLD",
+      "decision": "TOP3_CONDITIONAL",
+      "promotion_blockers": ["ethics/participant and instrumentation authority", "validated factorial task implementation"]
+    },
+    {
+      "id": "Q4",
+      "question": "Human-optimal search objective gap",
+      "presealed_mechanism": "Skilled non-shortest routes minimize an objective including recognition, uncertainty, retrieval, motor cost, risk, or future recognizability.",
+      "fatal_rival": "Knowledge gaps, method constraints, motor limits, or a planner-irrelevant route convention explain route choice.",
+      "literature_pressure": "UNDERPOWERED_NOVELTY_CASE",
+      "prior_art_read": ["Agostinelli et al. 2019, Drive 1lwgrCYHqGrzja5sfuT9_27O5Npv3Mj7o"],
+      "custody": "DRIVE_CUSTODIED",
+      "prospective_discriminator": "State pairs whose candidate objectives rank routes differently, with explicit knowledge/repertoire and motor controls.",
+      "feasibility": "DESIGN_COMPLEX__AUTHORITY_HOLD",
+      "decision": "NOT_TOP3",
+      "promotion_blockers": ["objective family not sufficiently delimited", "expert-repertoire measurement", "ethics/instrumentation authority"]
+    },
+    {
+      "id": "Q5",
+      "question": "Structural transfer versus algorithm memorization",
+      "presealed_mechanism": "Transfer is carried by structural knowledge rather than named algorithms, chunks, or generic practice.",
+      "fatal_rival": "Difficulty, overlap, spatial ability, training order, or algorithm repertoire accounts for transfer.",
+      "literature_pressure": "DIRECT_RIVAL_PRESENT",
+      "prior_art_read": ["Daniels, Moreau & Macnamara 2022, Drive 1WoKGHPM-lrcR8__166i_CrXRd4tKVEsf"],
+      "custody": "DRIVE_CUSTODIED",
+      "prospective_discriminator": "Transfer matrix crossing surface and structural overlap with repertoire and baseline controls.",
+      "feasibility": "DESIGN_FEASIBLE__NOVELTY_INSUFFICIENT",
+      "decision": "NOT_TOP3",
+      "promotion_blockers": ["strong direct transfer rival", "residual not yet proposition-distinct"]
+    },
+    {
+      "id": "Q6",
+      "question": "State-matched action hysteresis",
+      "presealed_mechanism": "Matched current state retains a causal action-history bias.",
+      "fatal_rival": "Motor, visual, subgoal, or incomplete-state matching explains the effect.",
+      "literature_pressure": "DIRECT_GENERAL_RIVAL_AND_G3_OVERLAP",
+      "prior_art_read": ["Action history influences subsequent movement, DOI 10.7554/eLife.26713"],
+      "custody": "SOURCE_CUSTODY_MISSING",
+      "prospective_discriminator": "Exact-state matched histories with motor/visual/subgoal controls.",
+      "feasibility": "PROHIBITED_BY_G3_TOMBSTONE_GUARD",
+      "decision": "KILLED",
+      "promotion_blockers": ["G3 state-history boundary", "general action-history prior art"]
+    },
+    {
+      "id": "Q7",
+      "question": "Collective algorithm innovation",
+      "presealed_mechanism": "Population dissemination and adoption, not only individual improvement, shapes algorithm innovation.",
+      "fatal_rival": "Selection, hardware, format, practice, and survival bias explain apparent collective change.",
+      "literature_pressure": "DIRECT_RUBIK_COLLECTIVE_RIVAL",
+      "prior_art_read": ["Krakauer, Kardeş & Grochow 2025, Universality in Collective Intelligence on the Rubik's Cube, arXiv:2511.18609"],
+      "custody": "SOURCE_CUSTODY_MISSING",
+      "prospective_discriminator": "Time-indexed dissemination with predeclared adoption, selection, hardware, and format controls.",
+      "feasibility": "NOVELTY_KILLED_AND_RECORD_CUSTODY_INSUFFICIENT",
+      "decision": "KILLED",
+      "promotion_blockers": ["direct collective-intelligence rival", "selection-censoring problem", "canonical source/data custody"]
+    },
+    {
+      "id": "Q8",
+      "question": "Blindfold versus sighted solving",
+      "presealed_mechanism": "Blindfold and sighted solving separate state estimation, memory, retrieval, motor execution, and algorithm use.",
+      "fatal_rival": "Population, repertoire, event-format, and aggregate-time differences explain the comparison.",
+      "literature_pressure": "DIRECT_RUBIK_AND_NEUROCOGNITIVE_RIVALS",
+      "prior_art_read": ["Krakauer, Kardeş & Grochow 2025, arXiv:2511.18609", "Zarei et al. 2025, DOI 10.1007/s00221-025-07104-w"],
+      "custody": "SOURCE_CUSTODY_MISSING",
+      "prospective_discriminator": "Within-solver matched repertoire protocol separating memorization, execution, and retrieval with event-format controls.",
+      "feasibility": "DATA_AND_RECRUITMENT_FATAL_HOLD",
+      "decision": "KILLED",
+      "promotion_blockers": ["matched within-solver data absent", "source custody", "recruitment/ethics authority"]
+    }
+  ],
+  "top3_ranked_conditionally": ["Q1", "Q3", "Q2"],
+  "selection_basis": "Each retains independent scientific importance, at least two presealed rival mechanisms, a prospective intervention discriminator, and no G3-tombstone revival; order is not a launch authorization.",
+  "final_problem_gate": {
+    "result": "NO_G4_MAINLINE_LAUNCH",
+    "failed_conditions": ["Q1 lacks Nuzzi 2026 canonical Drive custody", "No participant/ethics/instrumentation authority is present", "No feasibility packet has a piloted exact implementation", "No finalist has cleared authority pressure beyond discovery-stage preflight"],
+    "allowed_next_action": "Acquire canonical source bytes/identifiers and obtain separate authorization before any finalist-specific launch packet; rerun the gate without changing the pre-literature freeze."
+  }
+}

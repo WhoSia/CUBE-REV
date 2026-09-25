@@ -1,0 +1,66 @@
+{
+  "schema": "QAST-P38-R2-VERIFICATION-v1",
+  "generated_at": "2026-09-24T08:24:46.304Z",
+  "checks": {
+    "theorem_count": 10,
+    "counterexample_count": 11,
+    "novelty_adjudication_count": 10,
+    "candidate_count": 10,
+    "tradition_count": 5,
+    "eligible_survivor_count": 2,
+    "preseal_count": 2,
+    "cube_erasure_hits": 0,
+    "world_contact_executed": false,
+    "p39_opened": false
+  },
+  "hashes": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "EXECUTION.md": {
+      "bytes": 1351,
+      "sha256": "ef6a2bd7717c4928fc869e8cf48a4c12bef863a70d5f91bf6d60df91fdf6f30f"
+    },
+    "argument-first-freeze.json": {
+      "bytes": 772,
+      "sha256": "40896d20adf4856bfe27552b4f3e6e9a047cbdd1fc137f0e302d7f18489db42d"
+    },
+    "audit-package.mjs": {
+      "bytes": 3039,
+      "sha256": "46721f574d8ddc10c46293bd6d198699bf119725503f9aac992bc27fb6c56c35"
+    },
+    "counterexamples.mjs": {
+      "bytes": 4976,
+      "sha256": "25a5810695da20e1decd05fa9c56af5de2bf8c9eb81d20568c20711373c5800c"
+    },
+    "external-falsification-preseal-a.json": {
+      "bytes": 2516,
+      "sha256": "5cb6357bd3d539ab431c478aa496129af957819150d8a02cd7bf705860379c38"
+    },
+    "external-falsification-preseal-b.json": {
+      "bytes": 2986,
+      "sha256": "b2834b678b0c95b8c7b76c02efc39d551bca0a40daaa901d3ab19fedfe862f19"
+    },
+    "minimal-counterexample-atlas.json": {
+      "bytes": 7219,
+      "sha256": "9bfd8c741baaff3ed328b694e6cce5ad3837bc7621dbe6d55a4cfeb246688893"
+    },
+    "novelty-kill-matrix.json": {
+      "bytes": 5272,
+      "sha256": "0965e48abab26371bd930cd91701e3cddc53b7c5381539deda4b90e1fc29e887"
+    },
+    "qast-axioms.md": {
+      "bytes": 2476,
+      "sha256": "985849f09620132ccec76b77b3604adc6ef712db2b4d4e433e4cda04f595b690"
+    },
+    "theorem-ledger.json": {
+      "bytes": 6043,
+      "sha256": "d4798cb1d4514979f9d31e738ea51c4daad6dbc55a4816ea657a13b21ca24ca5"
+    },
+    "transport-tournament.json": {
+      "bytes": 5844,
+      "sha256": "1013af1416fdc5e6552766bc30961e5093f8863158d69c9e770c5aae51f44ccc"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+import { createHash } from 'node:crypto';
+import { readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+const here = new URL('.', import.meta.url).pathname.replace(/^\/(.:)/, '$1');
+const sha = p => createHash('sha256').update(readFileSync(p)).digest('hex');
+const a = JSON.parse(readFileSync(join(here, 'c2-c5-adjudication.json')));
+const b = JSON.parse(readFileSync(join(here, 'three-tier-exact-world-benchmark.json')));
+const p38 = JSON.parse(readFileSync(join(here, '..', 'p38-r2-runtime', 'terminal-receipt.json')));
+const rt1 = JSON.parse(readFileSync(join(here, '..', 'rt1-runtime', 'terminal-receipt.json')));
+if (a.prior_authority.p38_qast_novelty !== 'KILLED_PRESERVED' || !/NO_DISTINCTIVE_SURVIVOR/.test(rt1.verdict)) throw Error('INHERITED_NOVELTY_HOLD');
+if (a.method_level_residual !== 'NONE' || a.final_stop_rule !== 'SATISFIED') throw Error('STOP_RULE_HOLD');
+if (b.tiers.length !== 3 || b.execution !== 'DESIGN_ONLY_NO_EXTERNAL_EXECUTION') throw Error('BENCHMARK_CONTRACT_HOLD');
+for (const c of Object.values(a.classes)) if (c.external_falsifier_changed) throw Error('UNAUTHORIZED_PROMOTION');
+console.log(JSON.stringify({pass:true, files:readdirSync(here).filter(x=>x.endsWith('.json')).sort(), hashes:Object.fromEntries(readdirSync(here).filter(x=>x.endsWith('.json')).sort().map(x=>[x,sha(join(here,x))])), p38_verdict:p38.verdict, rt1_verdict:rt1.verdict}, null, 2));

@@ -1,0 +1,97 @@
+{
+  "row": {
+    "start_id": "START-d6-01",
+    "start_state_sha256": "cbd3dbe8b54daee3b4a78d3e59707d4210a1be1bc94f676a593b86b827f54f90",
+    "terminal_state_sha256": "1be6222b47fc2f63c4c8fa9d0266b435071e5a974eea90f6a628aaffdbb7c155",
+    "relation_family": "F/B",
+    "relation_core_id": "CORE-074",
+    "prefix_id": "PREFIX-p2-04",
+    "suffix_id": "SUFFIX-s1-01",
+    "prefix": "B D",
+    "suffix": "B'",
+    "word_A": "B D F B' D B'",
+    "word_B": "B D B' F D B'",
+    "inv_A": "B D' B F' D' B'",
+    "inv_B": "B D' F' B D' B'",
+    "displayed_length": 6,
+    "move_multiset": {
+      "U": 0,
+      "U'": 0,
+      "D": 2,
+      "D'": 0,
+      "L": 0,
+      "L'": 0,
+      "R": 0,
+      "R'": 0,
+      "F": 1,
+      "F'": 0,
+      "B": 1,
+      "B'": 2
+    },
+    "canonical_orientation": "CANONICAL_IDENTITY",
+    "duplicate_key_sha256": "02aaffe3ad7925869c23fceffab24f8b209488f4f7fb662a913ccb5177f8e68c",
+    "item_id": "P34-001164",
+    "trained_macro_order": "B",
+    "terminal_to_origin_qtm": 6
+  },
+  "route": [
+    "L",
+    "D'",
+    "L",
+    "R'",
+    "D'",
+    "L'"
+  ],
+  "mask": 14,
+  "gamma_route": [
+    "F",
+    "D'",
+    "F",
+    "B'",
+    "D'",
+    "F'"
+  ],
+  "gamma_mask": 50,
+  "start_r2": "a4236216e4e0679f0f8b860076695c9298fc0dc00098095f9c3b399bd77d42f3",
+  "target_r2": "fc8aca5db1705fc544d6b9493ac6289ac4ce9801207639271a22b6ca2464a02d",
+  "actual_route_return": true,
+  "gamma_route_return": true,
+  "antichains": {
+    "r1": [
+      50
+    ],
+    "r2": [
+      14
+    ]
+  },
+  "r1_no_subset_mask": true,
+  "r2_subset_mask": true,
+  "partner": {
+    "row_id": "P34-001164",
+    "branch": "A",
+    "budget": 6,
+    "history_length": 6,
+    "origin_hash": "cbd3dbe8b54daee3b4a78d3e59707d4210a1be1bc94f676a593b86b827f54f90",
+    "side": "r2",
+    "transformed_target": "fc8aca5db1705fc544d6b9493ac6289ac4ce9801207639271a22b6ca2464a02d",
+    "transformed_start": "a4236216e4e0679f0f8b860076695c9298fc0dc00098095f9c3b399bd77d42f3",
+    "transformed_history": [
+      "L",
+      "D",
+      "R",
+      "L'",
+      "D",
+      "L'"
+    ],
+    "status": "UNMATCHED_TRANSFORMED_TARGET_OUTSIDE_CERTIFIED_ORIGIN_SET"
+  },
+  "frozen_witness_first_under_origin_hash_order": {
+    "row_id": "P34-001644",
+    "branch": "A",
+    "budget": 6,
+    "history_length": 6,
+    "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+    "side": "r2"
+  },
+  "inherited_witness_minimality_matches": false
+}

@@ -1,0 +1,8 @@
+{
+  "observation_reads_canonical_colors": true,
+  "action_normalization_exact": true,
+  "orbit_domain_closed": true,
+  "pure_instruments_operationally_separate": true,
+  "product_factorization_premises_repaired": true,
+  "joint_null_scope": "finite derived domain and frozen product outcome only; no external or cognitive claim"
+}

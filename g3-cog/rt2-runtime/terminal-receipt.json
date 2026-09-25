@@ -1,0 +1,59 @@
+{
+  "stage": "CUBE-REV Generation III G3-RT2",
+  "executed_at": "2026-09-24T19:00:00+09:00",
+  "execution_boundary": "NO_EXTERNAL_EXECUTION / NO_WORLD_CONTACT / NO_P39 / NO_RT3",
+  "inherited_authority": {
+    "p38_qast_novelty_kill": "PRESERVED",
+    "rt1_distinctive_survivor": "NONE_PRESERVED",
+    "p34_bank": "UNCHANGED_AND_NOT_RERUN"
+  },
+  "intake_custody": {
+    "source_folder": "00_INTAKE — Literature Radar (1MLtYh0pv8QUZDReYzRqjDrOjRkSJAD16)",
+    "destination_folder": "10_PAPERS — Canonical Literature Commons (1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP)",
+    "files_relocated": 12,
+    "raw_bytes_replaced": false,
+    "drive_ids_preserved": true,
+    "post_move_intake_items": 0,
+    "load_bearing_identifiers": [
+      "Cousot & Cousot (1977), doi:10.1145/512950.512973",
+      "Givan, Dean & Greig (2003), doi:10.1016/S0004-3702(02)00376-4",
+      "Almeida et al. (2017), doi:10.1002/spe.2506"
+    ],
+    "missing_load_bearing_identifier": "NONE"
+  },
+  "benchmark": {
+    "tiers": 3,
+    "tier_A": "P34 certified cube proof-world regression authority; 109184 rows / 218368 row-history contexts; not rerun",
+    "tier_B": "PRISM randomized Dining Philosophers plus MiniGrid DoorKey preseal only; not executed",
+    "tier_C": "Mouselab-MDP-style future behavioral candidate; data/code canonical identifier HOLD; non-load-bearing; not executed"
+  },
+  "adjudication": {
+    "C2": "NOVELTY_KILLED_BY_COMPOSITION",
+    "C3": "NOVELTY_KILLED_BY_COMPOSITION",
+    "C4": "NOVELTY_KILLED_BY_COMPOSITION_AND_TIER_C_CUSTODY_HOLD",
+    "C5": "METHOD_RESIDUAL_KILLED_RETAIN_AS_SUPPORTING_ARTIFACT",
+    "method_level_residual": "NONE",
+    "external_falsifier_changed": false
+  },
+  "commands": [
+    "node g3-cog/rt2-runtime/verify-rt2.mjs"
+  ],
+  "git_lineage": {
+    "commit": "RECORDED_IN_CANONICAL_NOTION_TERMINAL_RECEIPT_AFTER_FINAL_COMMIT",
+    "changed_files": [
+      "g3-cog/rt2-runtime/c2-c5-adjudication.json",
+      "g3-cog/rt2-runtime/fixity-manifest.json",
+      "g3-cog/rt2-runtime/rt2-pre-literature-ledger.json",
+      "g3-cog/rt2-runtime/terminal-receipt.json",
+      "g3-cog/rt2-runtime/three-tier-exact-world-benchmark.json",
+      "g3-cog/rt2-runtime/verify-rt2.mjs"
+    ],
+    "unrelated_untracked_files_staged": false
+  },
+  "hashes": {
+    "rt2-pre-literature-ledger.json": "7e53ecb3306ff720750b860e7a545db107fc4f98cb67710014b3f923ce44342b",
+    "three-tier-exact-world-benchmark.json": "1eabfdbce15164664de73057ce189bb4510893b4b1a6613b20e1edcf352f1aa9",
+    "c2-c5-adjudication.json": "cccb8e3f0e6ad49269e654ff2ddd85075da01f2ecb8bf70e40ce22a6f9ff0aea"
+  },
+  "verdict": "G3_RT2_COMPLETE / P38_RT1_NOVELTY_KILLS_PRESERVED / 00_INTAKE_CANONICALLY_RELOCATED / C2_C3_C4_C5_ANTI_COMBINATION_NOVELTY_KILLED / THREE_TIER_BENCHMARK_PRESEALED_NO_EXTERNAL_EXECUTION / NO_METHOD_LEVEL_RESIDUAL / FINAL_STOP_RULE_ENFORCED / G3_NEGATIVE_CLOSURE_RECOMMENDED / NO_RT3 / NO_P39 / WORLD_CONTACT_HOLD"
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "G3-RT1-ARGUMENT-FIRST-FREEZE-v1",
+  "frozen_at": "2026-09-24T08:52:37.822Z",
+  "seed_count": 8,
+  "attack_count": 8,
+  "hashes": {
+    "g3-residual-archaeology.json": {
+      "bytes": 3557,
+      "sha256": "6c80bae763bd3e8326bae2f160de4d8b836eff6fd4f9e5dcbcbb17df60a10c1c"
+    },
+    "seed-ledger.pre-literature.json": {
+      "bytes": 4301,
+      "sha256": "dc112b3bbfccd1dc9b9c08b22071c9110a2c381e103b281bac8ea814e0d72ecd"
+    },
+    "counterexample-witness-atlas.json": {
+      "bytes": 3129,
+      "sha256": "da61a48e6fcdcc47ec821ecf38c13645ec454a60efcb987c076bc8b70e00b754"
+    },
+    "attack-seeds.mjs": {
+      "bytes": 2710,
+      "sha256": "3ca80698e430202924f032735e7c44c141f31688e9cdc874c44058f6256a3770"
+    }
+  }
+}

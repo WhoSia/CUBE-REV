@@ -1,0 +1,41 @@
+{
+  "packet": "CUBE-REV Generation III G3-RT2",
+  "stage": "argument-first pre-literature adversarial ledger",
+  "frozen_authority": [
+    "G3-P38 theorem/novelty kills",
+    "G3-RT1 terminal receipt",
+    "G3-P34 certified bank"
+  ],
+  "external_execution": "PROHIBITED",
+  "classes": {
+    "C2_method_protocol": {
+      "candidate": "EWRA requires a jointly sealed state model, observation map, representation domain, action restriction, history rule, and OOA convention before an exact-world verdict is reported.",
+      "load_bearing_output": "A verdict can be reclassified from negative to OOA/undefined when domain closure is absent.",
+      "minimal_counterexample": "A reachability routine queried outside its declared representation domain returns no witness. A bare negative report is false as a domain statement; an explicit OOA guard returns OOA.",
+      "adversarial_question": "Can ordinary model checking plus a domain precondition and provenance log produce the same corrected output?",
+      "pre_literature_status": "LIKELY_COMPOSITION; no nonstandard invariant yet established"
+    },
+    "C3_audit_instrument": {
+      "candidate": "A coupled certificate reports alias, closure, reachability, witness, and residue together rather than a single success/failure bit.",
+      "load_bearing_output": "The certificate locates whether an apparent failure is observation aliasing, an action-domain exclusion, or OOA.",
+      "minimal_counterexample": "Two procedures share an aggregate success rate but differ on a single OOA context. A capability-labelled test table distinguishes them.",
+      "adversarial_question": "Does a standard labelled test suite plus per-property verification yield the identical diagnosis?",
+      "pre_literature_status": "LIKELY_COMPOSITION; no new measured quantity yet established"
+    },
+    "C4_benchmark": {
+      "candidate": "A three-tier exact-world benchmark contrasts observation coarsening, representation closure, action restriction, reuse validity, and OOA on the same interface.",
+      "load_bearing_output": "A system's apparent generalization can be separated into a valid certificate, a counterexample, or an OOA boundary.",
+      "minimal_counterexample": "Two systems agree on all aggregate tasks but one fails a deliberately labelled surface-fixed action selector; a per-property benchmark separates them.",
+      "adversarial_question": "Are these simply ordinary coverage dimensions of verification and planning benchmarks once the labels are supplied?",
+      "pre_literature_status": "UNPROVEN; requires an external test-design difference, not a new naming scheme"
+    },
+    "C5_empirical_resource": {
+      "candidate": "The P34 bank supplies exact, prospectively ordered contexts and negative/OOA residue for an audit corpus.",
+      "load_bearing_output": "A future user can reproduce a bounded certificate and its failure boundary.",
+      "minimal_counterexample": "A second exact finite-state corpus with the same metadata schema yields the same audit outputs; the cube bank alone then adds no method-level scientific output.",
+      "adversarial_question": "Does the bank establish an independently interesting empirical phenomenon rather than furnish one worked finite-state fixture?",
+      "pre_literature_status": "LIKELY_SUPPORTING_RESOURCE_ONLY"
+    }
+  },
+  "precommitment": "No class is promotable unless a non-compositional invariant changes a capability, coupling, falsifier, measurement, or certificate output after the strongest actual prior-art composition is granted."
+}

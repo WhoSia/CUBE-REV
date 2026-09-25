@@ -1,0 +1,78 @@
+name: G3 P14-R1 WCA immutable acquisition
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acquire-and-derive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pinned compiler dependency
+        run: python -m pip install --disable-pip-version-check duckdb==1.4.0
+
+      - name: Fetch live WCA export metadata
+        run: |
+          mkdir -p raw work/extract out
+          curl -fsSL --retry 4 --retry-delay 3 \
+            https://www.worldcubeassociation.org/api/v0/export/public \
+            -o raw/wca_export_api.json
+          python - <<'PY'
+          import json
+          p='raw/wca_export_api.json'
+          d=json.load(open(p,encoding='utf-8'))
+          if not str(d.get('export_version','')).startswith('v2.'):
+              raise SystemExit(f"unexpected export_version: {d.get('export_version')}")
+          if not d.get('tsv_url'):
+              raise SystemExit('missing tsv_url')
+          print(json.dumps(d,indent=2))
+          open('raw/tsv_url.txt','w',encoding='utf-8').write(d['tsv_url'])
+          PY
+
+      - name: Download immutable source bytes
+        run: |
+          URL="$(cat raw/tsv_url.txt)"
+          curl -fL --retry 5 --retry-delay 5 "$URL" -o raw/wca_export.tsv.zip
+          sha256sum raw/wca_export.tsv.zip | tee raw/wca_export.tsv.zip.sha256
+          unzip -t raw/wca_export.tsv.zip
+          unzip -q raw/wca_export.tsv.zip -d work/extract
+
+      - name: Compile attempt-level longitudinal spine
+        run: |
+          SHA="$(awk '{print $1}' raw/wca_export.tsv.zip.sha256)"
+          python data_frontier/wca/build_p14_r1.py \
+            --extract-dir work/extract \
+            --out-dir out \
+            --source-sha256 "$SHA" \
+            --api-json raw/wca_export_api.json
+          cp raw/wca_export_api.json out/source_api.json
+          cp raw/wca_export.tsv.zip.sha256 out/source_archive.sha256
+          (cd out && sha256sum * > derived_checksums.sha256)
+
+      - name: Upload raw snapshot transit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: p14-r1-wca-raw
+          path: |
+            raw/wca_export.tsv.zip
+            raw/wca_export.tsv.zip.sha256
+            raw/wca_export_api.json
+          compression-level: 0
+          retention-days: 3
+
+      - name: Upload derived release-candidate artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: p14-r1-wca-derived
+          path: out/
+          compression-level: 0
+          retention-days: 7

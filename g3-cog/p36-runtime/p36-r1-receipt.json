@@ -1,0 +1,101 @@
+{
+  "schema": "CUBE-REV-G3-P36-R1-RECEIPT-v1",
+  "authority": {
+    "p34_bank_sha256": "cef57e7943510d15d2bfbb59f18761217599f9d5c7b749511a02d1c371e9ae00",
+    "p34_bank_unchanged": true,
+    "p35_r1_r2_receipt_sha256": "db488ba3fa2ac163d9160e06f5df9e0965d12d12d07ece9891396a454638683b",
+    "p35_context_ledger_sha256": "3f50de66322cbb8e395cbc2a8217e78e0093110a0d4f42367ada0cb79b590534"
+  },
+  "implementation": {
+    "node": "v24.17.0",
+    "compiler_sha256": "93f22827869fda13a4fc230df28d8d7bd41462de281a23693bc248c4710f0b28",
+    "state_adapter_sha256": "a7a083bbd37a5e111a86cc4669a9a8b539c6968eef6f36d5d783edc94b5cba9b"
+  },
+  "frozen_regimes": {
+    "O0A0": "exact-state + equivariant history-family selector",
+    "O1A0": "fixed U/F/R surface observation + A0",
+    "O0A1": "exact-state + fixed literal U/F/R selector",
+    "O1A1": "fixed U/F/R surface observation + fixed literal U/F/R selector"
+  },
+  "analysis_universe": {
+    "definition": "all distinct exact states encountered while replaying every certified P34 row origin and its frozen A/B history",
+    "states": 155040,
+    "contexts": 218368,
+    "history_terminal_checks": 218368,
+    "origin_targets": 16
+  },
+  "o1": {
+    "coordinate_derivation": "canonical adapter slots whose fixed normal is U, F, or R",
+    "retained_slots": 27,
+    "keys": 155030,
+    "fiber_size_histogram": {
+      "1": 155020,
+      "2": 10
+    },
+    "singleton_fibers": 155020,
+    "non_singleton_fibers": 10,
+    "aliased_fibers": 10,
+    "target_relevant_aliased_fibers": 0,
+    "max_fiber_size": 2,
+    "o0_exact_unique_hashes": 155040,
+    "o0_identifiability": "PASS",
+    "r1_r2_transformed_o1_same": 0,
+    "r1_r2_transformed_o1_different": 155040,
+    "fiber_ledger_sha256": "508141ac462e9d64a4dbd703be3179e0fd8ee4fd88c313f94c12436ffc1c4361"
+  },
+  "a0_regression": {
+    "I_plus": 218368,
+    "I_minus": 0,
+    "R1_only": 0,
+    "R2_only": 0,
+    "OOA": 0,
+    "bounded_search_keys": 16,
+    "bounded_search_contexts": 32,
+    "pass": true
+  },
+  "a1": {
+    "literal_moves": [
+      "U",
+      "U'",
+      "F",
+      "F'",
+      "R",
+      "R'"
+    ],
+    "grammar": "no adjacent moves on the same face",
+    "search_budget_max": 8,
+    "r1_search_states": 130435,
+    "r2_search_states": 130435,
+    "r1_reachable_contexts": 0,
+    "r2_reachable_contexts": 0,
+    "same_outcome_contexts": 218368,
+    "different_outcome_contexts": 0,
+    "unreachable_reason": "bounded frontier exhausted under literal U/F/R selector within certified QTM budget"
+  },
+  "separators": {
+    "pure_O_contexts": 218368,
+    "pure_A_contexts": 0,
+    "joint_only_contexts": 0,
+    "no_separator_contexts": 0,
+    "o1_target_identifiability_loss_contexts": 0,
+    "o1_r1_r2_information_divergence_contexts": 218368,
+    "prospective_minimal_separator": {
+      "row_id": "P34-000017",
+      "branch": "A",
+      "budget": 6,
+      "history_length": 6,
+      "axis": "pure-O",
+      "fiber_multiplicity": 1,
+      "selector_symmetric_difference": 0,
+      "divergent_search_prefix": null,
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f"
+    },
+    "rule": "joint-only requires an O1A1 outcome not reducible to either pure axis; O1 does not alter A1 literal action reachability"
+  },
+  "outputs": {
+    "fiber_ledger_sha256": "508141ac462e9d64a4dbd703be3179e0fd8ee4fd88c313f94c12436ffc1c4361",
+    "context_ledger_sha256": "6fb19725216fd91eb1075f9198fb7736d261311c4f793c36a5506d8470a39d02"
+  },
+  "p36_gate": "CLOSED",
+  "verdict": "P36_R1_COMPLETE / O1_FIBER_CENSUS_PASS / A0_REGRESSION_PASS / A1_R1_R2_BOUNDED_REPLAY_PASS / SEPARATOR_EXTRACTION_COMPLETE / NO_SUCCESSOR_OPENED"
+}

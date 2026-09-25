@@ -1,0 +1,34 @@
+{
+  "schema":"CUBE-REV-RSTP-NAV-PACKET-v1",
+  "system":"TORUS5-LANDMARK-CONTEXT-v3",
+  "grid":{"width":5,"height":5,"wrap":true},
+  "start":[0,0],
+  "probe":[1,1],
+  "goal":[3,3],
+  "context_trigger":[1,0],
+  "common_suffix":["N","E"],
+  "actions":["E","W","N","S"],
+  "landmarks":[[1,0],[4,0],[0,1],[0,4]],
+  "histories":{
+    "HIT":["E","N","W","S","N","E"],
+    "AVOID1":["W","N","E","S","N","E"],
+    "AVOID2":["N","W","S","E","N","E"]
+  },
+  "cells":[
+    {"id":"NV4Q8A2C","O":0,"R":0,"history":"AVOID1","K":"A"},
+    {"id":"N7P3M5KD","O":0,"R":0,"history":"AVOID2","K":"A"},
+    {"id":"N2X9F6RT","O":1,"R":0,"history":"HIT","K":"I"},
+    {"id":"N8C1V4JL","O":1,"R":0,"history":"AVOID1","K":"A"},
+    {"id":"N5H7Q2WB","O":1,"R":1,"history":"HIT","K":"I"},
+    {"id":"N3D6K9SP","O":1,"R":1,"history":"AVOID1","K":"A"}
+  ],
+  "scientific_contract":{
+    "primary_outcome":"first committed move at exact probe state",
+    "primary_estimand":"P(a_next | s*, h, R)",
+    "state_only_null":"within matched O/R cells, action distribution is history-invariant after exact probe matching",
+    "history_context_prediction":"O1 history divergence exceeds O0 control divergence",
+    "representation_prediction":"if history dependence is maintained through internal identity representation, O1 divergence changes under R=1",
+    "latency_role":"secondary only",
+    "human_collection":false
+  }
+}

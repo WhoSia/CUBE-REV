@@ -1,0 +1,519 @@
+{
+  "all_size10": [
+    [
+      3,
+      4,
+      8,
+      9,
+      11,
+      12,
+      31,
+      32,
+      44,
+      45
+    ],
+    [
+      3,
+      4,
+      8,
+      9,
+      16,
+      17,
+      24,
+      25,
+      36,
+      37
+    ],
+    [
+      16,
+      17,
+      24,
+      25,
+      28,
+      29,
+      31,
+      32,
+      44,
+      45
+    ],
+    [
+      3,
+      4,
+      21,
+      22,
+      24,
+      25,
+      28,
+      29,
+      41,
+      42
+    ]
+  ],
+  "orbit_size": 12,
+  "stabilizer": 2,
+  "orbit_members_on_frontier": 4,
+  "geometry": [
+    {
+      "coordinates": [
+        3,
+        4,
+        8,
+        9,
+        11,
+        12,
+        31,
+        32,
+        44,
+        45
+      ],
+      "on_size10_frontier": true,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 16,
+      "inherited": {
+        "coverage": 218368,
+        "targetsAffected": 16,
+        "pairs": 48,
+        "max": 2,
+        "hist": {
+          "1": 154944,
+          "2": 48
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 218368,
+        "targetsAffected": 16,
+        "pairs": 48,
+        "max": 2,
+        "hist": {
+          "1": 154944,
+          "2": 48
+        }
+      }
+    },
+    {
+      "coordinates": [
+        3,
+        4,
+        8,
+        9,
+        16,
+        17,
+        24,
+        25,
+        36,
+        37
+      ],
+      "on_size10_frontier": true,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 12,
+      "inherited": {
+        "coverage": 218368,
+        "targetsAffected": 16,
+        "pairs": 48,
+        "max": 2,
+        "hist": {
+          "1": 154944,
+          "2": 48
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 218368,
+        "targetsAffected": 16,
+        "pairs": 48,
+        "max": 2,
+        "hist": {
+          "1": 154944,
+          "2": 48
+        }
+      }
+    },
+    {
+      "coordinates": [
+        16,
+        17,
+        24,
+        25,
+        28,
+        29,
+        31,
+        32,
+        44,
+        45
+      ],
+      "on_size10_frontier": true,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 12,
+      "inherited": {
+        "coverage": 218368,
+        "targetsAffected": 16,
+        "pairs": 64,
+        "max": 2,
+        "hist": {
+          "1": 154912,
+          "2": 64
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 218368,
+        "targetsAffected": 16,
+        "pairs": 64,
+        "max": 2,
+        "hist": {
+          "1": 154912,
+          "2": 64
+        }
+      }
+    },
+    {
+      "coordinates": [
+        3,
+        4,
+        21,
+        22,
+        24,
+        25,
+        28,
+        29,
+        41,
+        42
+      ],
+      "on_size10_frontier": true,
+      "on_D_orbit": true,
+      "is_D": true,
+      "symmetric_difference": 0,
+      "inherited": {
+        "coverage": 218368,
+        "targetsAffected": 16,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 218368,
+        "targetsAffected": 16,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      }
+    },
+    {
+      "coordinates": [
+        8,
+        9,
+        21,
+        22,
+        28,
+        29,
+        31,
+        32,
+        49,
+        50
+      ],
+      "on_size10_frontier": false,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 12,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      }
+    },
+    {
+      "coordinates": [
+        11,
+        12,
+        21,
+        22,
+        24,
+        25,
+        31,
+        32,
+        36,
+        37
+      ],
+      "on_size10_frontier": false,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 12,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 32,
+        "max": 2,
+        "hist": {
+          "1": 154976,
+          "2": 32
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 32,
+        "max": 2,
+        "hist": {
+          "1": 154976,
+          "2": 32
+        }
+      }
+    },
+    {
+      "coordinates": [
+        11,
+        12,
+        24,
+        25,
+        41,
+        42,
+        44,
+        45,
+        49,
+        50
+      ],
+      "on_size10_frontier": false,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 12,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      }
+    },
+    {
+      "coordinates": [
+        8,
+        9,
+        28,
+        29,
+        36,
+        37,
+        41,
+        42,
+        44,
+        45
+      ],
+      "on_size10_frontier": false,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 12,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 0,
+        "max": 1,
+        "hist": {
+          "1": 155040
+        }
+      }
+    },
+    {
+      "coordinates": [
+        8,
+        9,
+        11,
+        12,
+        16,
+        17,
+        21,
+        22,
+        41,
+        42
+      ],
+      "on_size10_frontier": false,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 12,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      }
+    },
+    {
+      "coordinates": [
+        16,
+        17,
+        31,
+        32,
+        36,
+        37,
+        41,
+        42,
+        49,
+        50
+      ],
+      "on_size10_frontier": false,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 16,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 34,
+        "max": 3,
+        "hist": {
+          "1": 154975,
+          "2": 31,
+          "3": 1
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 34,
+        "max": 3,
+        "hist": {
+          "1": 154975,
+          "2": 31,
+          "3": 1
+        }
+      }
+    },
+    {
+      "coordinates": [
+        3,
+        4,
+        21,
+        22,
+        36,
+        37,
+        44,
+        45,
+        49,
+        50
+      ],
+      "on_size10_frontier": false,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 12,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 16,
+        "max": 2,
+        "hist": {
+          "1": 155008,
+          "2": 16
+        }
+      }
+    },
+    {
+      "coordinates": [
+        3,
+        4,
+        11,
+        12,
+        16,
+        17,
+        28,
+        29,
+        49,
+        50
+      ],
+      "on_size10_frontier": false,
+      "on_D_orbit": true,
+      "is_D": false,
+      "symmetric_difference": 12,
+      "inherited": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 32,
+        "max": 2,
+        "hist": {
+          "1": 154976,
+          "2": 32
+        }
+      },
+      "canonical_adapter": {
+        "coverage": 0,
+        "targetsAffected": 0,
+        "pairs": 32,
+        "max": 2,
+        "hist": {
+          "1": 154976,
+          "2": 32
+        }
+      }
+    }
+  ],
+  "uniqueness": {
+    "cardinality_unique": false,
+    "full_coverage_minima": 4,
+    "minimum_collateral_minima": 1
+  },
+  "authority": "INHERITED_ID_ENCODING_RESULTS_WITH_CANONICAL_COLOR_AUDIT; NOT_A_REDEFINITION_OF_D"
+}

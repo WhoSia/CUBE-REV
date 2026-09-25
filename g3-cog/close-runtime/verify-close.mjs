@@ -1,0 +1,13 @@
+import { createHash } from 'node:crypto';
+import { readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+const here = new URL('.', import.meta.url).pathname.replace(/^\/(.:)/, '$1');
+const read = n => JSON.parse(readFileSync(join(here,n)));
+const sha = n => createHash('sha256').update(readFileSync(join(here,n))).digest('hex');
+const balance=read('g3-final-epistemic-balance-sheet.json'), manifest=read('g3-surviving-artifact-manifest.json'), tomb=read('g3-defeated-claim-tombstones.json'), g4=read('g4-problem-rebirth-contract.json');
+const status=new Set(manifest.artifacts.map(x=>x.status));
+if(!['P1','P2','P3','P4','P5'].every(x=>status.has(x))) throw Error('P_CLASS_COVERAGE_HOLD');
+if(tomb.tombstones.length!==9 || !/NONE WITHIN G3/.test(tomb.no_revival_invariant)) throw Error('TOMBSTONE_HOLD');
+if(balance.closure_metrics.minimal_counterexamples_P38_R2!==11) throw Error('COUNTEREXAMPLE_COUNT_HOLD');
+if(g4.status!=='G4_NOT_OPENED' || g4.world_contact!=='NOT_EXECUTED') throw Error('G4_GATE_HOLD');
+console.log(JSON.stringify({pass:true,files:readdirSync(here).filter(x=>x.endsWith('.json')).sort(),hashes:Object.fromEntries(readdirSync(here).filter(x=>x.endsWith('.json')).sort().map(x=>[x,sha(x)])),p_classes:[...status].sort(),tombstones:tomb.tombstones.length,g4:g4.status},null,2));

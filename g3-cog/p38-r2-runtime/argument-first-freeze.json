@@ -1,0 +1,12 @@
+{
+  "stage": "G3-P38-R2",
+  "event": "ARGUMENT_FIRST_FREEZE_BEFORE_LITERATURE_SEARCH",
+  "date": "2026-09-24",
+  "files": [
+    {"name":"qast-axioms.md","sha256":"985849f09620132ccec76b77b3604adc6ef712db2b4d4e433e4cda04f595b690"},
+    {"name":"theorem-ledger.json","sha256":"d4798cb1d4514979f9d31e738ea51c4daad6dbc55a4816ea657a13b21ca24ca5"},
+    {"name":"minimal-counterexample-atlas.json","sha256":"9bfd8c741baaff3ed328b694e6cce5ad3837bc7621dbe6d55a4cfeb246688893"},
+    {"name":"counterexamples.mjs","sha256":"25a5810695da20e1decd05fa9c56af5de2bf8c9eb81d20568c20711373c5800c"}
+  ],
+  "authority": "No literature hit may retroactively change the frozen claims, counterexamples, or comparator. Literature may kill, subsume, split, or rename them in a separate ledger."
+}

@@ -1,0 +1,127 @@
+{
+  "schema": "P37-R1-R1-A-REGRESSION-v1",
+  "pass": true,
+  "queries": [
+    {
+      "b": 6,
+      "rep": "r1",
+      "antichain": [
+        62
+      ],
+      "stats": {
+        "forward_nodes": 1333,
+        "reverse_nodes": 1333,
+        "forward_peak": 2,
+        "reverse_peak": 2
+      },
+      "direct_bfs_masks": [
+        1,
+        17,
+        25
+      ],
+      "p35_full_face_return": true,
+      "p36_ufr_unreachable": true
+    },
+    {
+      "b": 6,
+      "rep": "r2",
+      "antichain": [
+        62
+      ],
+      "stats": {
+        "forward_nodes": 1333,
+        "reverse_nodes": 1333,
+        "forward_peak": 2,
+        "reverse_peak": 2
+      },
+      "direct_bfs_masks": [
+        1,
+        17,
+        25
+      ],
+      "p35_full_face_return": true,
+      "p36_ufr_unreachable": true
+    },
+    {
+      "b": 7,
+      "rep": "r1",
+      "antichain": [
+        51
+      ],
+      "stats": {
+        "forward_nodes": 1333,
+        "reverse_nodes": 12133,
+        "forward_peak": 2,
+        "reverse_peak": 7
+      },
+      "direct_bfs_masks": [
+        1,
+        17,
+        25
+      ],
+      "p35_full_face_return": true,
+      "p36_ufr_unreachable": true
+    },
+    {
+      "b": 7,
+      "rep": "r2",
+      "antichain": [
+        15
+      ],
+      "stats": {
+        "forward_nodes": 1333,
+        "reverse_nodes": 12133,
+        "forward_peak": 2,
+        "reverse_peak": 7
+      },
+      "direct_bfs_masks": [
+        1,
+        17,
+        25
+      ],
+      "p35_full_face_return": true,
+      "p36_ufr_unreachable": true
+    },
+    {
+      "b": 8,
+      "rep": "r1",
+      "antichain": [
+        63
+      ],
+      "stats": {
+        "forward_nodes": 12133,
+        "reverse_nodes": 12133,
+        "forward_peak": 7,
+        "reverse_peak": 7
+      },
+      "direct_bfs_masks": [
+        1,
+        17,
+        25
+      ],
+      "p35_full_face_return": true,
+      "p36_ufr_unreachable": true
+    },
+    {
+      "b": 8,
+      "rep": "r2",
+      "antichain": [
+        63
+      ],
+      "stats": {
+        "forward_nodes": 12133,
+        "reverse_nodes": 12133,
+        "forward_peak": 7,
+        "reverse_peak": 7
+      },
+      "direct_bfs_masks": [
+        1,
+        17,
+        25
+      ],
+      "p35_full_face_return": true,
+      "p36_ufr_unreachable": true
+    }
+  ],
+  "completeness": "every legal length <= b route splits after min(floor(b/2), length); reverse suffix is inverted before boundary test; identical meet state, total depth, and unequal boundary face are required"
+}

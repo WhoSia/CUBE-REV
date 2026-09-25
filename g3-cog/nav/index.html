@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RSTP Navigation — prehuman instrument</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main id="app">
+  <header>
+    <div class="eyebrow">CUBE-REV · RSTP · PREHUMAN</div>
+    <h1>Reversible Navigation Probe</h1>
+    <p>Watch the route. At the probe state, choose the first move you would take toward the target.</p>
+  </header>
+  <section class="stage" aria-label="5 by 5 torus navigation grid">
+    <div id="grid" class="grid"></div>
+    <div class="legend">
+      <span><i class="dot agent"></i> current position</span>
+      <span><i class="dot goal"></i> target</span>
+      <span id="support-legend" class="hidden"><i class="dot landmark"></i> stable place labels</span>
+    </div>
+  </section>
+  <section class="status">
+    <div><b>Phase</b> <span id="phase">LOAD</span></div>
+    <div><b>Cell</b> <span id="cell">—</span></div>
+    <div><b>Move</b> <span id="move-index">0/6</span></div>
+  </section>
+  <section id="response" class="response" aria-label="first move response">
+    <button data-action="N" disabled>North</button>
+    <button data-action="E" disabled>East</button>
+    <button data-action="S" disabled>South</button>
+    <button data-action="W" disabled>West</button>
+  </section>
+  <pre id="debug" class="debug"></pre>
+</main>
+<script type="module" src="runtime.js"></script>
+</body>
+</html>

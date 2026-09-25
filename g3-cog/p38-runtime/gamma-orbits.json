@@ -1,0 +1,1269 @@
+{
+  "orbits": [
+    [
+      {
+        "M": 1,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U"
+        ],
+        "formal_equivariant": true,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 2,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "D"
+        ],
+        "formal_equivariant": true,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 3,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "D"
+        ],
+        "formal_equivariant": true,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 4,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "L"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 16,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 8,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "R"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 32,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 5,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "L"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 17,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 9,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "R"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 33,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 6,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "D",
+          "L"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 18,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "D",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 10,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "D",
+          "R"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 34,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "D",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 7,
+        "r1": 1024,
+        "r2": 0,
+        "both": 0,
+        "neither": 217344,
+        "r1only": 1024,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "D",
+          "L"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      },
+      {
+        "M": 19,
+        "r1": 0,
+        "r2": 1024,
+        "both": 0,
+        "neither": 217344,
+        "r1only": 0,
+        "r2only": 1024,
+        "faces": [
+          "U",
+          "D",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      },
+      {
+        "M": 11,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "D",
+          "R"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 35,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "D",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 12,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "L",
+          "R"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 48,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 13,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "L",
+          "R"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 49,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 14,
+        "r1": 512,
+        "r2": 512,
+        "both": 0,
+        "neither": 217344,
+        "r1only": 512,
+        "r2only": 512,
+        "faces": [
+          "D",
+          "L",
+          "R"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      },
+      {
+        "M": 50,
+        "r1": 512,
+        "r2": 512,
+        "both": 0,
+        "neither": 217344,
+        "r1only": 512,
+        "r2only": 512,
+        "faces": [
+          "D",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      }
+    ],
+    [
+      {
+        "M": 15,
+        "r1": 9984,
+        "r2": 2304,
+        "both": 0,
+        "neither": 206080,
+        "r1only": 9984,
+        "r2only": 2304,
+        "faces": [
+          "U",
+          "D",
+          "L",
+          "R"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 51,
+        "r1": 2304,
+        "r2": 9984,
+        "both": 0,
+        "neither": 206080,
+        "r1only": 2304,
+        "r2only": 9984,
+        "faces": [
+          "U",
+          "D",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 20,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "L",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 24,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "R",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 40,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "R",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 36,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "L",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 21,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "L",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 25,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "R",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 41,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "R",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 37,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "L",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 22,
+        "r1": 0,
+        "r2": 32,
+        "both": 0,
+        "neither": 218336,
+        "r1only": 0,
+        "r2only": 32,
+        "faces": [
+          "D",
+          "L",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      },
+      {
+        "M": 26,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "D",
+          "R",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 42,
+        "r1": 0,
+        "r2": 0,
+        "both": 0,
+        "neither": 218368,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "D",
+          "R",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "floor-degenerate",
+        "OOA": 0,
+        "population_class": "floor",
+        "is_minimal": false
+      },
+      {
+        "M": 38,
+        "r1": 32,
+        "r2": 0,
+        "both": 0,
+        "neither": 218336,
+        "r1only": 32,
+        "r2only": 0,
+        "faces": [
+          "D",
+          "L",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      }
+    ],
+    [
+      {
+        "M": 23,
+        "r1": 7680,
+        "r2": 7712,
+        "both": 1024,
+        "neither": 204000,
+        "r1only": 6656,
+        "r2only": 6688,
+        "faces": [
+          "U",
+          "D",
+          "L",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 27,
+        "r1": 0,
+        "r2": 7680,
+        "both": 0,
+        "neither": 210688,
+        "r1only": 0,
+        "r2only": 7680,
+        "faces": [
+          "U",
+          "D",
+          "R",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 43,
+        "r1": 1792,
+        "r2": 0,
+        "both": 0,
+        "neither": 216576,
+        "r1only": 1792,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "D",
+          "R",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      },
+      {
+        "M": 39,
+        "r1": 7712,
+        "r2": 1792,
+        "both": 0,
+        "neither": 208864,
+        "r1only": 7712,
+        "r2only": 1792,
+        "faces": [
+          "U",
+          "D",
+          "L",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 28,
+        "r1": 512,
+        "r2": 0,
+        "both": 0,
+        "neither": 217856,
+        "r1only": 512,
+        "r2only": 0,
+        "faces": [
+          "L",
+          "R",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      },
+      {
+        "M": 56,
+        "r1": 256,
+        "r2": 512,
+        "both": 0,
+        "neither": 217600,
+        "r1only": 256,
+        "r2only": 512,
+        "faces": [
+          "R",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      },
+      {
+        "M": 44,
+        "r1": 768,
+        "r2": 256,
+        "both": 0,
+        "neither": 217344,
+        "r1only": 768,
+        "r2only": 256,
+        "faces": [
+          "L",
+          "R",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      },
+      {
+        "M": 52,
+        "r1": 0,
+        "r2": 768,
+        "both": 0,
+        "neither": 217600,
+        "r1only": 0,
+        "r2only": 768,
+        "faces": [
+          "L",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": true
+      }
+    ],
+    [
+      {
+        "M": 29,
+        "r1": 1024,
+        "r2": 3072,
+        "both": 0,
+        "neither": 214272,
+        "r1only": 1024,
+        "r2only": 3072,
+        "faces": [
+          "U",
+          "L",
+          "R",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 57,
+        "r1": 1024,
+        "r2": 1024,
+        "both": 0,
+        "neither": 216320,
+        "r1only": 1024,
+        "r2only": 1024,
+        "faces": [
+          "U",
+          "R",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 45,
+        "r1": 1792,
+        "r2": 1024,
+        "both": 0,
+        "neither": 215552,
+        "r1only": 1792,
+        "r2only": 1024,
+        "faces": [
+          "U",
+          "L",
+          "R",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 53,
+        "r1": 3072,
+        "r2": 1792,
+        "both": 0,
+        "neither": 213504,
+        "r1only": 3072,
+        "r2only": 1792,
+        "faces": [
+          "U",
+          "L",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 30,
+        "r1": 4096,
+        "r2": 5408,
+        "both": 0,
+        "neither": 208864,
+        "r1only": 4096,
+        "r2only": 5408,
+        "faces": [
+          "D",
+          "L",
+          "R",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 58,
+        "r1": 6144,
+        "r2": 4096,
+        "both": 0,
+        "neither": 208128,
+        "r1only": 6144,
+        "r2only": 4096,
+        "faces": [
+          "D",
+          "R",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 46,
+        "r1": 7680,
+        "r2": 6144,
+        "both": 0,
+        "neither": 204544,
+        "r1only": 7680,
+        "r2only": 6144,
+        "faces": [
+          "D",
+          "L",
+          "R",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 54,
+        "r1": 5408,
+        "r2": 7680,
+        "both": 32,
+        "neither": 205312,
+        "r1only": 5376,
+        "r2only": 7648,
+        "faces": [
+          "D",
+          "L",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 31,
+        "r1": 34272,
+        "r2": 52256,
+        "both": 7744,
+        "neither": 139584,
+        "r1only": 26528,
+        "r2only": 44512,
+        "faces": [
+          "U",
+          "D",
+          "L",
+          "R",
+          "F"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 59,
+        "r1": 21504,
+        "r2": 34272,
+        "both": 0,
+        "neither": 162592,
+        "r1only": 21504,
+        "r2only": 34272,
+        "faces": [
+          "U",
+          "D",
+          "R",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 47,
+        "r1": 47936,
+        "r2": 21504,
+        "both": 1792,
+        "neither": 150720,
+        "r1only": 46144,
+        "r2only": 19712,
+        "faces": [
+          "U",
+          "D",
+          "L",
+          "R",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      },
+      {
+        "M": 55,
+        "r1": 52256,
+        "r2": 47936,
+        "both": 7712,
+        "neither": 125888,
+        "r1only": 44544,
+        "r2only": 40224,
+        "faces": [
+          "U",
+          "D",
+          "L",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": false,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "informative",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 60,
+        "r1": 9728,
+        "r2": 9728,
+        "both": 9728,
+        "neither": 208640,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "L",
+          "R",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": true,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "nondegenerate-equal",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 61,
+        "r1": 30208,
+        "r2": 30208,
+        "both": 30208,
+        "neither": 188160,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "U",
+          "L",
+          "R",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": true,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "nondegenerate-equal",
+        "is_minimal": false
+      }
+    ],
+    [
+      {
+        "M": 62,
+        "r1": 56864,
+        "r2": 56864,
+        "both": 56864,
+        "neither": 161504,
+        "r1only": 0,
+        "r2only": 0,
+        "faces": [
+          "D",
+          "L",
+          "R",
+          "F",
+          "B"
+        ],
+        "formal_equivariant": true,
+        "classification": "nondegenerate",
+        "OOA": 0,
+        "population_class": "nondegenerate-equal",
+        "is_minimal": false
+      }
+    ]
+  ],
+  "A_orbit": [
+    {
+      "M": 14,
+      "r1": 512,
+      "r2": 512,
+      "both": 0,
+      "neither": 217344,
+      "r1only": 512,
+      "r2only": 512,
+      "faces": [
+        "D",
+        "L",
+        "R"
+      ],
+      "formal_equivariant": false,
+      "classification": "nondegenerate",
+      "OOA": 0,
+      "population_class": "informative",
+      "is_minimal": true
+    },
+    {
+      "M": 50,
+      "r1": 512,
+      "r2": 512,
+      "both": 0,
+      "neither": 217344,
+      "r1only": 512,
+      "r2only": 512,
+      "faces": [
+        "D",
+        "F",
+        "B"
+      ],
+      "formal_equivariant": false,
+      "classification": "nondegenerate",
+      "OOA": 0,
+      "population_class": "informative",
+      "is_minimal": true
+    }
+  ],
+  "informative_family_closed": false,
+  "minimal_family_closed": false,
+  "gamma_equivariance_failures": 0
+}

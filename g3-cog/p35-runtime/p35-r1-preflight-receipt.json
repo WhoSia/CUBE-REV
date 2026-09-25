@@ -1,0 +1,46 @@
+{
+  "schema": "CUBE-REV-G3-P35-R1-DIVERGENCE-SURFACE-PREFLIGHT-v1",
+  "authority": "G3-P35-R1-PRESEAL",
+  "inherited_authority": "G3-P34-R2",
+  "inputs": {
+    "p34_bank_sha256": "cef57e7943510d15d2bfbb59f18761217599f9d5c7b749511a02d1c371e9ae00",
+    "p34_r2_receipt_sha256": "ea5358dd2839fca95c2955d49f442c1dc0e8e80fceee444507d89e88d37efdc9",
+    "compiler_sha256": "8436e24d845711b768e838619419fb28bb7c57dd716ba87a49355de5c62751c5"
+  },
+  "preconditions": {
+    "inherited_p34_r2_pass": true,
+    "bank_sha256_matches_p34": true,
+    "bank_schema": true,
+    "representation_authority_materialized": false,
+    "representation_authority_complete": false
+  },
+  "missing_representation_bindings": [
+    "representation_r1",
+    "representation_r2",
+    "state_bijection_g",
+    "action_bijection_gamma",
+    "observation_maps_phi",
+    "action_encodings_e",
+    "selector_rules_c",
+    "history_rules_j",
+    "target_sets_q",
+    "row_to_start_budget_history",
+    "prospective_witness_order"
+  ],
+  "certified_bank_rows": 109184,
+  "divergence_surface_census": {
+    "I_positive": "NOT_COMPUTED",
+    "I_negative": "NOT_COMPUTED",
+    "R1_only": "NOT_COMPUTED",
+    "R2_only": "NOT_COMPUTED",
+    "OOA": "NOT_COMPUTED",
+    "reason": "CERTIFIED_BANK_ROWS_CANNOT_BE_CLASSIFIED_WITHOUT_PRESEALED_REPRESENTATION_INSTRUMENT"
+  },
+  "assumption_level_diagnostics": "NOT_COMPUTED_MISSING_G_GAMMA_PHI_E_C_J_Q_AND_ROW_MAPPING",
+  "first_non_commuting_component_census": "NOT_COMPUTED_NO_LOAD_BEARING_REPRESENTATION_CONTEXT_DEFINED",
+  "minimal_witness": "NOT_SEARCHED_NO_PROSPECTIVELY_BOUND_REPRESENTATION_ORDERING_INPUT",
+  "no_witness_region": "NOT_CERTIFIABLE",
+  "bank_mutation": false,
+  "p36_gate": "CLOSED",
+  "verdict": "P35_R1_INSTRUMENT_AUTHORITY_HOLD"
+}

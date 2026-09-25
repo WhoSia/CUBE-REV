@@ -1,0 +1,10 @@
+{
+  "schema":"CUBE-REV-G4-PROBLEM-REBIRTH-CONTRACT-v1",
+  "status":"G4_NOT_OPENED",
+  "forbidden_starts":["generalize G3","rescue QAST/EWRA","find a domain to validate CUBE-REV","reach P39"],
+  "tournament_requirement":{"candidate_questions_at_least":6,"empirical_or_domain_traditions_at_least":3,"solution_fit_scoring":"FORBIDDEN"},
+  "required_fields":["explanandum","independent importance","world-contact path","strongest existing explanation","fatal rival","belief-changing observation","G3 tool role needed/optional/irrelevant","novelty risk","feasibility","ethical/operational constraints"],
+  "launch_gate":["independent importance","world-contact availability","nontrivial rival","prospective discriminator","early novelty preflight","authority feasibility","G3 non-dependence","ambition"],
+  "decision_rule":"No candidate is selected here. G4 may be opened only after a future tournament is prospectively completed and one candidate satisfies every launch-gate item.",
+  "world_contact":"NOT_EXECUTED"
+}

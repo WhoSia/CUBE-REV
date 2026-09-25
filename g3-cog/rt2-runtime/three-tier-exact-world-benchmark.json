@@ -1,0 +1,38 @@
+{
+  "schema": "CUBE-REV-G3-RT2-THREE-TIER-EXACT-WORLD-BENCHMARK-v1",
+  "execution": "DESIGN_ONLY_NO_EXTERNAL_EXECUTION",
+  "common_contract": {
+    "required_inputs": ["exact state space or explicitly bounded reconstruction", "transition grammar", "observation map", "representation domain", "action restriction", "history rule", "OOA convention"],
+    "required_probes": ["full versus coarse observation", "closed versus open representation domain", "equivariant versus surface-fixed action restriction", "valid versus invalid search reuse", "positive and negative observation aliases", "positive and negative action separators", "OOA"],
+    "required_outputs": ["verdict", "minimal witness or bounded negative certificate", "provenance boundary", "OOA count", "closure diagnosis", "residue"],
+    "forbidden_inference": "No world-level behavioral, cognitive, causal, or transport claim follows from a tier result."
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "world": "CUBE-REV certified CUBE exact proof world",
+      "authority": "unchanged P34 bank; 109184 rows and 218368 row-history contexts",
+      "role": "internal regression and certificate-format control",
+      "known_controls": ["frozen S/R/G fixtures", "exact 2,620,416 move-transition identities", "closed Y+ orbit domain where certified", "historical non-closed restriction retained as adverse control"],
+      "execution_status": "ALREADY_CERTIFIED_AUTHORITY; NOT_RERUN_BY_RT2"
+    },
+    {
+      "tier": "B",
+      "worlds": ["PRISM randomized Dining Philosophers", "MiniGrid DoorKey"],
+      "role": "non-cube exact-world preseal",
+      "presealed_design": "For each world, instantiate the common contract before execution; enumerate only the declared bounded domain; record a negative certificate or an OOA boundary rather than silently coercing either to failure.",
+      "kill_condition": "If the same per-property suite under a conventional model-checking/planning harness yields identical verdict/witness/OOA outputs, tier B contributes no method-level residual.",
+      "execution_status": "NOT_EXECUTED_BY_RT2"
+    },
+    {
+      "tier": "C",
+      "world": "future behavioral exact-state candidate: Mouselab-MDP-style human planning task",
+      "source_anchor": "Callaway et al. (2022), Rational Use of Cognitive Resources in Human Planning, Drive file 11lmR6cdEBj38-HL8jRh_WJMMkrsJfPr3",
+      "eligibility": ["exact task state and action log must be available independently", "trajectory record must be citable and custody-verified", "observation/representation manipulation must be defined without importing cube semantics", "estimand and falsifier must be presealed"],
+      "required_output_if_eligible": "A change in a predeclared behavioral test design, not a cognition attribution.",
+      "source_custody": "HOLD: canonical data/code identifier not recovered; candidate is non-load-bearing and was not executed.",
+      "execution_status": "NOT_EXECUTED_BY_RT2"
+    }
+  ],
+  "promotion_rule": "A method residual may advance only if at least one tier produces a load-bearing output unavailable to the full real prior-art composition under the same declared contract."
+}

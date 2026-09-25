@@ -1,0 +1,10 @@
+{
+  "schema":"CUBE-REV-G3-P11-NAV-CANDIDATE-v1",
+  "candidate_id":"G3-P11-NAV-20260914-A",
+  "runtime_line":"CUBE-REV-RSTP-NAV-RUNTIME-v1",
+  "packet_path":"packet.json",
+  "task_family":"reversible torus navigation",
+  "primary_estimand":"P(a_next | s*, h, R)",
+  "human_collection":false,
+  "promotion_target":"RSTP-G3-INSTRUMENT-PORTABILITY"
+}

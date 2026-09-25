@@ -1,0 +1,13 @@
+{
+  "schema":"G3-RT1-STRONGEST-RIVALS-v1",
+  "rivals":[
+    {"id":"R1","name":"standard abstraction/state aggregation","defeats":"S5/S6 and the state-side of S1 unless a proposition exceeds congruence, bisimulation, or future-profile minimization.","outcome":"DEFEATS"},
+    {"id":"R2","name":"ordinary constrained reachability","defeats":"Action support and monotone selector claims that do not add an identification theorem.","outcome":"DEFEATS"},
+    {"id":"R3","name":"system identification/inverse-model equivalence","defeats":"S1/S3 whenever multiple latent representations induce identical frozen response laws.","outcome":"DEFEATS"},
+    {"id":"R4","name":"distinguishing sequence/experiment design","defeats":"S2 and the adaptive portions of P27-P30.","outcome":"DEFEATS"},
+    {"id":"R5","name":"factorial interaction/separability","defeats":"S4's binary joint-only criterion.","outcome":"DEFEATS"},
+    {"id":"R6","name":"representation bookkeeping artifact","defeats":"S8 unless the comparator itself is a scientifically motivated invariant rather than an arbitrary key.","outcome":"DEFEATS"},
+    {"id":"R7","name":"closed-world/model-based diagnosis","defeats":"S7 as novelty; completeness is necessarily relative to the modeled factor family.","outcome":"DEFEATS"},
+    {"id":"R8","name":"domain-specific coincidence","defeats":"Any residual that changes no PRISM/MiniGrid falsifier beyond already-required closure, negative controls, or exact transition checks.","outcome":"DEFEATS"}
+  ]
+}

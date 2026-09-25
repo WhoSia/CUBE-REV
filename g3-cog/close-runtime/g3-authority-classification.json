@@ -1,0 +1,13 @@
+{
+  "schema":"CUBE-REV-G3-CLOSE-AUTHORITY-CLASSIFICATION-v1",
+  "classes":{
+    "ESTABLISHED_FINITE_DOMAIN":["canonical-color D_color","62-selector surface/A*","Y+ closed-orbit pairing","rule-selected witness"],
+    "ESTABLISHED_NEGATIVE":["P38 QAST novelty kill","RT1 S1-S8 no-survivor verdict","RT2 C2-C5 no-method-residual verdict"],
+    "ENGINEERING_CERTIFIED":["state adapter","orbit closure","selector/antichain search","search-reuse certification","fixity/custody manifests"],
+    "NOVELTY_KILLED":["QAST","T1-T10 package","S1-S8","EWRA protocol/instrument","three-tier benchmark novelty","bank-as-cross-world-resource"],
+    "AUTHORITY_RETIRED":["P39 launch","G3 publication-level generality"],
+    "UNEXECUTED_DESIGN":["PRISM","MiniGrid","Tier-C behavioral candidate"],
+    "OUT_OF_SCOPE":["BRM editorial outcome","H33/Samsung status","human cognition or mechanism claims"]
+  },
+  "prohibited_inferences":["finite exactness does not establish human cognition","engineering certification does not establish novelty","unexecuted design does not establish external validation","inheritance does not establish G4 authority"]
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "CUBE-REV-G3-P37-R1-R1-TERMINAL-RECEIPT-v1",
+  "authority": {
+    "p34_bank_sha256": "cef57e7943510d15d2bfbb59f18761217599f9d5c7b749511a02d1c371e9ae00",
+    "p35_r1_r2_receipt_sha256": "db488ba3fa2ac163d9160e06f5df9e0965d12d12d07ece9891396a454638683b",
+    "p36_r1_receipt_sha256": "e04455b9831326c0cefbb0db8e794116c295e672fcab02dfbc67dbc1a75353c9",
+    "unchanged": true
+  },
+  "lane_o": {
+    "targets": 16,
+    "comparison_states": 155040,
+    "target_rival_comparisons": 2480624,
+    "unique_supports": 16993,
+    "D_star": {
+      "coordinates": [3,4,21,22,24,25,28,29,41,42],
+      "size": 10,
+      "target_context_coverage": 218368,
+      "collateral_merged_pairs": 16,
+      "alias_fibers": 16,
+      "max_fiber_size": 2
+    },
+    "frontier_sha256": "107eb90daa714a280bebe39e9453faf380606575c50bde1aa93c7b7b3e9c6cf9"
+  },
+  "lane_a": {
+    "regression_pass": true,
+    "unique_physical_search_keys": 6724,
+    "contexts": 218368,
+    "selector_count": 62,
+    "floor_degenerate": 31,
+    "ceiling_degenerate": 0,
+    "nondegenerate": 31,
+    "informative_selector_count": 28,
+    "A_star": {
+      "faces": ["D","L","R"],
+      "mask": 14,
+      "r1_reachable": 512,
+      "r2_reachable": 512,
+      "both_reachable": 0,
+      "both_unreachable": 217344,
+      "R1_only": 512,
+      "R2_only": 512
+    },
+    "minimal_divergent_witness": {
+      "row_id": "P34-001164",
+      "branch": "A",
+      "reachable_representation": "r2",
+      "budget": 6,
+      "history_length": 6,
+      "route": ["L","D'","L","R'","D'","L'"],
+      "route_mask": 14
+    },
+    "resource": {"peak_half_frontier_entries": 12133, "peak_antichain_width": 2},
+    "result_sha256": "2caeeb0c96d518c74747b3fc64fbead4668771bf55607315da21ca985e775603",
+    "antichain_ledger_sha256": "6a58186be1e7cea70036114a1b26c3e63232633b8f8e586fe017525c12d59dd4"
+  },
+  "joint": {
+    "status": "EVALUATED_NO_JOINT_ONLY_SEPARATOR",
+    "reason": "D_star alone already aliases certified targets and A_star alone already supplies representation-conditioned reachability; the fixed observation projection does not modify the action transition relation."
+  },
+  "scientific_boundary": "finite-system separator objects only; no cognition or world-contact promotion",
+  "successor": "NOT_OPENED",
+  "verdict": "P37_R1_R1_PASS / EXACT_RESOURCE_REFACTOR_PASS / ALL_62_REPLAY_PASS / MINIMAL_TARGET_ALIAS_PROJECTION_FOUND / NONDEGENERATE_REACHABILITY_SEPARATOR_FOUND / JOINT_STATUS_ADJUDICATED / NO_SUCCESSOR_OPENED"
+}

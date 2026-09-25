@@ -1,0 +1,15 @@
+{
+  "schema":"CUBE-REV-G3-CLOSE-DOCTRINE-HARVEST-v1",
+  "audit":[
+    {"lesson":"Semantic authority exceeds implementation identity","decision":"SUBSUMED","reason":"existing Court/Atlas authority-separation doctrine"},
+    {"lesson":"Domain closure precedes symmetry/equivariance authority","decision":"SUBSUMED","reason":"existing claim-scope and declared-contract doctrine"},
+    {"lesson":"Exact reuse requires task-isomorphism certification","decision":"SUBSUMED","reason":"existing equivalence/continuation and no-silent-repair doctrine"},
+    {"lesson":"Historical witness differs from comparator-selected witness","decision":"SUBSUMED","reason":"existing prospective-ordering/provenance doctrine"},
+    {"lesson":"Novelty kill precedes world contact when generality is load-bearing","decision":"SUBSUMED","reason":"existing Court/Ravel gate separation"},
+    {"lesson":"Stop rules are scientific instruments","decision":"SUBSUMED","reason":"existing Ravel stop/hold authority"},
+    {"lesson":"Negative closure plus explicit no-revival tombstones prevents unsafe re-promotion","decision":"PROMOTED_MINIMAL","reason":"not a new science doctrine; reusable governance guard against lineage-based novelty resurrection"}
+  ],
+  "promotion_text":"After a terminal novelty defeat, retain a searchable tombstone with defeating rival and a no-revival condition. Reuse of components requires a new independent explanandum and a fresh novelty audit; missing world contact alone never revives the defeated contribution.",
+  "promotion_scope":"Research OS governance only; no scientific authority transferred.",
+  "research_os_writeback":"NOTION_CLOSURE_RECEIPT_ONLY; no new global doctrine page/version created because six of seven lessons are subsumed and the remaining guard is recorded minimally."
+}

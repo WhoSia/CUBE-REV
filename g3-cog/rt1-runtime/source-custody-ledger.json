@@ -1,0 +1,21 @@
+{
+  "schema": "G3-RT1-SOURCE-CUSTODY-v1",
+  "checked_at": "2026-09-24T17:50:00+09:00",
+  "rule": "Drive custody establishes source availability, not proposition truth. Web-only sources remain discovery leads.",
+  "canonical_drive": [
+    {"source":"Cousot & Cousot (1977), Abstract Interpretation","drive_id":"1hZfipMMYFSwpOVx4ZuhAIvkzt4jDptIl","filename":"cousot1977.pdf","bytes":1184973,"status":"PRESENT","note":"RT1 page preflight MISSING state is superseded by direct current Drive readback; created 2026-09-24T08:48:25Z."},
+    {"source":"Givan, Dean & Greig (2003), Equivalence notions and model minimization in MDPs","drive_id":"1nb1_v9pKOvJMtkwmYfXtowzfYUo3fmg4","filename":"givan2003.pdf","bytes":579937,"status":"PRESENT","note":"RT1 page preflight MISSING state is superseded by direct current Drive readback; created 2026-09-24T08:48:29Z."},
+    {"source":"Li, Walsh & Littman (2006), Towards a Unified Theory of State Abstraction for MDPs","status":"PRESENT_BY_CANONICAL_RT1_PREFLIGHT"},
+    {"source":"Rivest & Schapire (1993), Inference of Finite Automata Using Homing Sequences","drive_id":"1JNqBDFbRgaUEHBwDQJVhgWM1CPkFn1pp","bytes":2331951,"status":"PRESENT"},
+    {"source":"Lee & Yannakakis (1994), Testing Finite-State Machines: State Identification and Verification","drive_id":"1yp5Mc5-4mTeNpu7DyuHKIH4gEuz-BIwk","bytes":1920977,"status":"PRESENT"},
+    {"source":"Türker, Ünlüyurt & Yenigün (2016), Minimum Cost Adaptive Distinguishing Sequences","drive_id":"10N6hZKeeKT6zMp0udLza4Si1yIaYEKUm","bytes":3269663,"status":"PRESENT"},
+    {"source":"Bonchi et al. (2011), Coalgebraic Perspective on Minimization","drive_id":"1mDHkVjxRcCfwzTjYJQALl0W8iR6dZPlu","bytes":467711,"status":"PRESENT"},
+    {"source":"Shalizi & Crutchfield (2001), Computational Mechanics","drive_id":"1T0T2lXQs5VuD9ytU86O6KnV6B_JIlZ-k","bytes":512205,"status":"PRESENT"},
+    {"source":"Singh et al. (2003), Learning Predictive State Representations","drive_id":"1mPRT396Rq0Usm8vV7EGvlk3PMLYGsbGs","bytes":323931,"status":"PRESENT"}
+  ],
+  "web_discovery_non_load_bearing": [
+    {"source":"Hauser & Bühlmann, interventional Markov equivalence","url":"https://arxiv.org/abs/1104.2808","status":"DISCOVERY_ONLY_NOT_CUSTODY_ADMITTED"},
+    {"source":"Jung & Frisk (2018), residual selection for fault isolation","doi":"10.1016/j.automatica.2018.08.006","status":"DISCOVERY_ONLY_NOT_CUSTODY_ADMITTED"}
+  ],
+  "custody_gate":"NO_MISSING_SOURCE_IS_NEEDED_TO_SUPPORT A SURVIVOR BECAUSE NO SURVIVOR WAS PROMOTED"
+}

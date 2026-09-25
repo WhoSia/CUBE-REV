@@ -1,0 +1,140 @@
+schema: CUBE-REV-DATA-FRONTIER-v1
+stage: G3-P15-R1
+policy:
+  human_collection: DORMANT_RESERVE
+  bulk_download_requires: [named_estimand, license_check, provenance_plan, release_plan]
+  release_target: [Zenodo, Kaggle-compatible package]
+  github_role: code_manifest_schema_only
+  drive_role: raw_large_intermediate_release_candidate
+score_scale: 0-4
+score_dimensions: [question_fit, granularity, repeated_depth, natural_contrast, scale, auditability, release_friendliness, independence, incremental_information]
+release_classes:
+  R0: raw redistribution broadly allowed
+  R1: redistribution allowed with source notice/attribution conditions
+  R2: research/noncommercial or other reuse limits; verify before rehosting raw
+  R3: do not plan to rehost raw; release code/manifests/derived outputs only
+corpora:
+  - id: WCA_V2
+    rank: 1
+    status: ACQUIRED_P14_R1
+    p14_r2_verdict: ROBUST_NATURALISTIC_SIGNAL_DNF_CLUSTERING_NO_COGNITIVE_RECOVERY
+    lane: population_performance
+    source: https://www.worldcubeassociation.org/export/results
+    current_anchor: v2.0.2_2026-09-14T00:00:16Z
+    scale: "376,033,641-byte TSV ZIP; 9,278,024 materialized 3x3 attempt rows"
+    fields_of_interest: [persons, competitions, results, result_attempts, events, round_types, formats]
+    estimands:
+      - within_round_attempt_order_dependence
+      - post_outlier_recovery_and_DNF_recovery
+      - longitudinal_skill_plateau_and_volatility
+      - cross_event_transfer_and_specialization
+    limits: [attempt_level_not_move_level, competition_selection, changing_participant_skill_mix]
+    release_class: R1
+    scores: [4,2,4,3,4,4,4,3,4]
+
+  - id: CUBE_INTERNAL_TRACE
+    rank: 2
+    status: ACTIVE_EXISTING
+    lane: trace_mechanism
+    source: existing_CUBE_reconstruction_and_BLE_archives
+    estimands:
+      - exact_state_history_dependence
+      - correction_loop_and_recovery_grammar
+      - phase_transition_timing
+      - transposition_and_action_surface_structure
+    limits: [source_concentration, incomplete_timing_coverage, selection]
+    release_class: R3
+    scores: [4,4,3,4,2,3,2,0,4]
+
+  - id: AALTO_136M_KEYSTROKES
+    rank: 3
+    status: SOURCE_INTEGRITY_HOLD_P15_R1
+    p15_r1_verdict: SOURCE_INTEGRITY_HOLD
+    lane: motor_control_comparator
+    source: https://userinterfaces.aalto.fi/136Mkeystrokes/
+    scale: "136M keystrokes; ~168k participants; ~1.4 GB zipped"
+    estimands:
+      - error_recovery_microdynamics
+      - history_conditioned_interkey_timing
+      - rollover_and_preparation_structure
+      - stable_style_vs_transient_control_state
+      - bidirectional_slowdown_and_repeated_error_hazard_around_error_events
+    limits: [transcription_task, self_selected_online_sample, noncommercial_reuse_terms]
+    release_class: R2
+    scores: [3,4,3,2,4,3,3,4,4]
+
+  - id: EDNET
+    rank: 4
+    status: QUALIFIED_NO_DOWNLOAD_YET
+    lane: sequential_learning_comparator
+    source: https://github.com/riiid/ednet
+    scale: "131,441,538 interactions; 784,309 learners"
+    estimands:
+      - history_conditioned_error_recovery
+      - learning_state_transition_and_plateau
+      - response_time_vs_recent_history
+      - skill_specific_transfer
+    limits: [adaptive_platform_selection, shifted_timestamps, educational_not_motor_task]
+    release_class: R2
+    scores: [3,3,4,3,4,3,3,4,3]
+
+  - id: DUOLINGO_13M
+    rank: 5
+    status: QUALIFIED_RESERVE
+    lane: memory_history_comparator
+    source: https://github.com/duolingo/halflife-regression
+    scale: "~13M learning traces; ~361 MB gzipped"
+    estimands:
+      - recency_spacing_history_dependence
+      - recovery_after_error
+      - within_item_learning_dynamics
+    limits: [aggregated_lesson_level_recall, language_domain, historical_platform_policy]
+    release_class: R2
+    scores: [3,2,4,3,4,3,3,4,3]
+
+  - id: HOW_WE_TYPE
+    rank: 6
+    status: BRIDGE_RESERVE
+    lane: multimodal_mechanism_bridge
+    source: https://zenodo.org/records/4047775
+    scale: "30 participants; ~45.7 GB multimodal"
+    estimands:
+      - keystroke_preparation_to_hand_motion
+      - gaze_motor_coordination
+      - error_recovery_with_motion_context
+    limits: [small_N, heavy_storage, transcription_specific]
+    release_class: R2
+    scores: [3,4,2,3,1,4,3,4,3]
+
+  - id: PHYSIONET_EEGMMIDB
+    rank: 7
+    status: BRIDGE_RESERVE
+    lane: physiology_bridge
+    source: https://physionet.org/content/eegmmidb/1.0.0/
+    estimands:
+      - executed_vs_imagined_motor_state
+      - repetition_and_motor_context_dynamics
+    limits: [not_naturalistic, not_RTS_reversible_state, modest_subject_count]
+    release_class: R1
+    scores: [2,4,3,3,2,4,4,4,2]
+
+  - id: OPENNEURO_REGISTRY
+    rank: 8
+    status: QUESTION_FIRST_ONLY
+    lane: neural_bridge_registry
+    source: https://openneuro.org/
+    release_class: R0
+    admission_rule: "select a concrete BIDS dataset only after a CUBE claim names the required bridge"
+
+  - id: STARDATA
+    rank: 9
+    status: HOLD_COST
+    lane: complex_action_comparator
+    source: https://github.com/TorchCraft/StarData
+    scale: "65,646 games; 496M actions; ~365 GB compressed"
+    estimands:
+      - action_sequence_recovery
+      - skill_conditioned_control_state
+    limits: [very_high_storage_cost, game_specific, AI_research_saturation, distant_from_CUBE]
+    release_class: R3
+    scores: [2,4,4,3,4,3,2,4,2]

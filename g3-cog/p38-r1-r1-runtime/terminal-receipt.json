@@ -1,0 +1,90 @@
+{
+  "stage": "G3-P38-R1-R1",
+  "authority_page": "3e5ef561-cf92-8168-94aa-e66e68c87389",
+  "input_hashes": {
+    "bank": {
+      "path": "p34-runtime/p34-bank.json",
+      "bytes": 118280803,
+      "sha256": "cef57e7943510d15d2bfbb59f18761217599f9d5c7b749511a02d1c371e9ae00"
+    },
+    "laneA": {
+      "path": "p37-runtime/p37-r1-r1-lane-a.json",
+      "bytes": 21811,
+      "sha256": "2caeeb0c96d518c74747b3fc64fbead4668771bf55607315da21ca985e775603"
+    },
+    "ledger": {
+      "path": "p37-runtime/p37-r1-r1-lane-a-antichains.json",
+      "bytes": 2327138,
+      "sha256": "6a58186be1e7cea70036114a1b26c3e63232633b8f8e586fe017525c12d59dd4"
+    },
+    "p38": {
+      "path": "p38-runtime/terminal-receipt.json",
+      "bytes": 3522,
+      "sha256": "50df8728311b62b7d4a0dfa693ca223f68068d099ae49ad18f9e0949f4188064"
+    }
+  },
+  "gates": {
+    "canonical_observation": "PASS",
+    "orbit_closed_domain": "PASS",
+    "witness_reselection": "PASS",
+    "search_reuse": "PASS"
+  },
+  "verdict": "P38_R1_R1_PASS / CANONICAL_OBSERVATION_AUTHORITY_RECONSTITUTED / YPLUS_ORBIT_CLOSED_DOMAIN_CERTIFIED / RULE_SELECTED_WITNESS_CERTIFIED / FULL_DOMAIN_SEARCH_REUSE_CERTIFIED / TRANSPORT_REVIEW_REAUTHORIZED / WORLD_CONTACT_HOLD / NO_SUCCESSOR_OPENED",
+  "counts": {
+    "states": 155040,
+    "comparisons": 2480624,
+    "color_supports": 2318194,
+    "color_minimum": 6,
+    "color_minima": 2,
+    "orbit_contexts": 873472,
+    "directional_contexts": 4096,
+    "directional_unmatched": 0,
+    "witness_candidates": 1024,
+    "reuse_keys": 6724,
+    "transition_checks": 2620416,
+    "raw_control_rows": 100,
+    "raw_control_failures": 0
+  },
+  "canonical": {
+    "D_color": [
+      4,
+      8,
+      9,
+      11,
+      31,
+      45
+    ],
+    "witness": {
+      "row_id": "P34-001644",
+      "branch": "A",
+      "representation": "r2",
+      "origin_hash": "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+      "budget": 6,
+      "history_length": 6,
+      "selector_symmetric_difference": 4,
+      "first_divergent_prefix_length": 1,
+      "sort_key": [
+        6,
+        6,
+        4,
+        1,
+        "1818f50508e8a4fdaa8c2d52e25173a4b17e26af4d54d0666689e08e6ab2750f",
+        "P34-001644",
+        0,
+        1
+      ]
+    }
+  },
+  "historical_adverse_residue": [
+    "ID minimum-10 frontier and D_ID preserved",
+    "P34-001164/A/r2 preserved as valid-but-not-first",
+    "original 16-origin domain preserved as non-closed",
+    "P38 0/1024 in-bank pairing failure preserved",
+    "prior 6724-key implementation preserved",
+    "P38-R1 HOLD preserved as historical audit"
+  ],
+  "transport_review_reauthorized": true,
+  "external_validation": false,
+  "world_contact": "HOLD",
+  "successor": "NOT_OPENED"
+}

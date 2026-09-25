@@ -1,0 +1,27 @@
+{
+  "stage": "CUBE-REV Generation III G3-P15-R1",
+  "archive_sha256": "5fb217e0e1273017a6789c5c7ebcc00eed624f2f6426c284da2077a88e270420",
+  "raw_rows": 121291785,
+  "streams": 2495387,
+  "participants": 168593,
+  "layer_l_missing": 11866603,
+  "keycode_missing": 4877,
+  "timestamp_missing": 183,
+  "press_order_violations": 18083,
+  "duplicate_press_timestamps": 7653,
+  "zero_dwell": 9234,
+  "negative_dwell": 607,
+  "final_pass_operations": {
+    "EMIT_LITERAL": 98067085,
+    "BACKSPACE": 6520849,
+    "SHIFT": 3957294,
+    "UNKNOWN": 11866423,
+    "NON_TEXT": 831808,
+    "AMBIGUOUS_OUTPUT": 12586,
+    "CTRL": 27704,
+    "ALT": 3072,
+    "DELETE": 4689,
+    "TAB": 95
+  },
+  "interpretation": "Layer L is high coverage but not complete. Empty Layer L occurs at high mass for ordinary character keycodes, so Layer K cannot authorize a deterministic literal fallback."
+}

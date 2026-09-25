@@ -1,0 +1,15 @@
+{
+  "schema":"CUBE-REV-G3-CLOSE-TOMBSTONES-v1",
+  "no_revival_invariant":"NONE WITHIN G3 LINEAGE. Components may be reused only under a genuinely new empirical problem and a new novelty audit.",
+  "tombstones":[
+    {"claim":"QAST is a distinct novel theory","introduced":"P38","defeated":"P38-R2","type":"novelty defeated","rival":"abstraction, homomorphism, simulation/bisimulation, full abstraction, product/order reasoning"},
+    {"claim":"T1-T10 constitute a novel theorem package","introduced":"P38-R2","defeated":"P38-R2","type":"novelty defeated","rival":"same formal-methods proposition cover"},
+    {"claim":"S1-S8 contain a distinctive theorem residual","introduced":"RT1","defeated":"RT1","type":"novelty defeated","rival":"prior-art complement ledger"},
+    {"claim":"EWRA is a distinct method protocol","introduced":"RT2","defeated":"RT2","type":"contribution class defeated","rival":"standard abstraction/model checking/reachability/provenance composition"},
+    {"claim":"EWRA is a distinct computational audit instrument","introduced":"RT2","defeated":"RT2","type":"contribution class defeated","rival":"labelled property suite with ordinary witnesses/counterexamples"},
+    {"claim":"Three-tier exact-world benchmark is a distinct benchmark contribution","introduced":"RT2","defeated":"RT2","type":"contribution class defeated","rival":"ordinary verification/benchmark coverage strata"},
+    {"claim":"P34 bank is an independent cross-world empirical contribution","introduced":"RT2","defeated":"RT2","type":"contribution class defeated","rival":"bounded fixture schema can be instantiated in another finite-state corpus"},
+    {"claim":"P39 can launch","introduced":"P38-R2","defeated":"P38-R2 and RT2","type":"authority retired","rival":"required distinctive theory or method residual absent"},
+    {"claim":"G3 supports a publication-level generality claim","introduced":"implicit lineage aspiration","defeated":"RT2","type":"authority exceeded","rival":"absence of distinctive residual and unexecuted external designs"}
+  ]
+}

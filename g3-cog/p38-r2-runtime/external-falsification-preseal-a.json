@@ -1,0 +1,43 @@
+{
+  "schema": "QAST-EXTERNAL-PRESEAL-v1",
+  "packet_id": "P39-A-PRISM-RDP-N3",
+  "status": "PRESEALED_NOT_EXECUTED",
+  "domain": "PRISM randomized dining philosophers N=3",
+  "authority_url": "https://www.prismmodelchecker.org/casestudies/phil.php",
+  "exact_model_link_from_authority": "phil3.nm",
+  "acquisition_rule": "Acquire only through the authority page's model link; record final URL, retrieval UTC, byte count, and SHA-256. Any redirect to an unversioned or changed model is HOLD, not substitution.",
+  "system": {
+    "state": "reachable valuation tuple (p1,p2,p3)",
+    "transition": "exact PRISM MDP guarded-command distributions",
+    "target": "the authority model's hungry/eat labels evaluated separately; no target may be rewritten after enumeration",
+    "observation_maps": [
+      "O_exact: ordered tuple (p1,p2,p3)",
+      "O_orbit: lexicographically minimal cyclic rotation of (p1,p2,p3)",
+      "O_event: cyclic-invariant pair (hungry,eat)"
+    ],
+    "admissible_actions": "Enabled guarded-command/scheduler choices already present in the parsed model; no new action subset may be invented.",
+    "representation": "gamma(p1,p2,p3)=(p2,p3,p1) with the corresponding module/command relabeling"
+  },
+  "frozen_checks": [
+    "parse and enumerate all reachable states and probabilistic transitions",
+    "prove gamma closure and bijection over the reachable domain",
+    "compare every successor distribution after state/action relabeling",
+    "compare target labels statewise",
+    "compute observation-fiber target constancy for O_exact, O_orbit, and O_event",
+    "compute reachability support under all existing enabled choices and any domain-native command class only if the source names that class",
+    "emit the first mismatch under lexicographic (state,action,successor) order"
+  ],
+  "positive_prediction": "Exact cyclic representation transport commutes and permits solved-origin reuse for cyclic-invariant targets.",
+  "negative_controls": [
+    "process-1-specific target label must break cyclic target preservation",
+    "deleting one relabeled enabled command must break action-family closure"
+  ],
+  "kill_criteria": [
+    "any unmatched transition probability",
+    "any domain or target closure residue for the positive target",
+    "negative control fails to fail",
+    "required action classes cannot be recovered without investigator invention"
+  ],
+  "retry_rule": "No repair or alternate N after a failure. Localize and return HOLD.",
+  "world_contact": "NOT_EXECUTED"
+}

@@ -1,0 +1,18 @@
+{
+  "seed": 314159,
+  "permutations": 199,
+  "selected_blocks": 18539,
+  "selection_rule": "abs(hash(result_id,314159)) % 100 < 1; block size 3-5",
+  "lag_residual_correlation": {
+    "observed": 0.5557430546985528,
+    "null_mean": 0.5551827520803114,
+    "null_sd": 0.001763800541056081,
+    "two_sided_monte_carlo_p": 0.395
+  },
+  "dnf_to_dnf_probability": {
+    "observed": 0.07249466950959488,
+    "null_mean": 0.06018970985353019,
+    "null_sd": 0.003741180486763078,
+    "upper_monte_carlo_p": 0.005
+  }
+}

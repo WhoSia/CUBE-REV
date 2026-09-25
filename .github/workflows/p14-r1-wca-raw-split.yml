@@ -1,0 +1,92 @@
+name: G3 P14-R1 WCA raw split transfer
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - '.github/workflows/p14-r1-wca-raw-split.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  split-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      EXPECTED_SHA256: 95ab3be3db10ca759e2328b6a487e592d8ce206352f77e689dd7681b681d9482
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch exact current WCA v2 source and verify frozen SHA
+        run: |
+          mkdir -p raw parts receipt
+          curl -fsSL --retry 4 https://www.worldcubeassociation.org/api/v0/export/public -o raw/api.json
+          URL="$(python -c "import json;print(json.load(open('raw/api.json'))['tsv_url'])")"
+          curl -fL --retry 5 --retry-delay 5 "$URL" -o raw/wca_export.tsv.zip
+          ACTUAL="$(sha256sum raw/wca_export.tsv.zip | awk '{print $1}')"
+          echo "actual=$ACTUAL"
+          test "$ACTUAL" = "$EXPECTED_SHA256"
+
+      - name: Split without changing source bytes
+        run: |
+          split -b 90M -d -a 2 raw/wca_export.tsv.zip parts/wca_export.tsv.zip.part
+          test "$(find parts -type f | wc -l)" -eq 4
+          sha256sum parts/* > receipt/parts.sha256
+          python - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('parts')
+          parts=[]
+          for p in sorted(root.iterdir()):
+              h=hashlib.sha256(p.read_bytes()).hexdigest()
+              parts.append({'name':p.name,'bytes':p.stat().st_size,'sha256':h})
+          api=json.load(open('raw/api.json'))
+          receipt={
+            'source_sha256':'95ab3be3db10ca759e2328b6a487e592d8ce206352f77e689dd7681b681d9482',
+            'source_bytes':pathlib.Path('raw/wca_export.tsv.zip').stat().st_size,
+            'export_date':api.get('export_date'),
+            'export_version':api.get('export_version'),
+            'parts':parts,
+            'reassemble_linux':'cat wca_export.tsv.zip.part00 wca_export.tsv.zip.part01 wca_export.tsv.zip.part02 wca_export.tsv.zip.part03 > wca_export.tsv.zip'
+          }
+          pathlib.Path('receipt/RAW_SPLIT_RECEIPT.json').write_text(json.dumps(receipt,indent=2))
+          PY
+
+      - name: Upload part 00
+        uses: actions/upload-artifact@v4
+        with:
+          name: p14-r1-wca-raw-part00
+          path: parts/wca_export.tsv.zip.part00
+          compression-level: 0
+          retention-days: 3
+      - name: Upload part 01
+        uses: actions/upload-artifact@v4
+        with:
+          name: p14-r1-wca-raw-part01
+          path: parts/wca_export.tsv.zip.part01
+          compression-level: 0
+          retention-days: 3
+      - name: Upload part 02
+        uses: actions/upload-artifact@v4
+        with:
+          name: p14-r1-wca-raw-part02
+          path: parts/wca_export.tsv.zip.part02
+          compression-level: 0
+          retention-days: 3
+      - name: Upload part 03
+        uses: actions/upload-artifact@v4
+        with:
+          name: p14-r1-wca-raw-part03
+          path: parts/wca_export.tsv.zip.part03
+          compression-level: 0
+          retention-days: 3
+      - name: Upload split receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: p14-r1-wca-raw-split-receipt
+          path: |
+            receipt/RAW_SPLIT_RECEIPT.json
+            receipt/parts.sha256
+            raw/api.json
+          retention-days: 7

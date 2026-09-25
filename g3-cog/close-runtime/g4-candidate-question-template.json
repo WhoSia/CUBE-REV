@@ -1,0 +1,14 @@
+{
+  "schema":"CUBE-REV-G4-CANDIDATE-QUESTION-TEMPLATE-v1",
+  "status":"EMPTY_PROSPECTIVE_TEMPLATE_NOT_A_G4_STAGE",
+  "slots":[
+    {"slot":1,"tradition":"behavioral sequential task","question":null},
+    {"slot":2,"tradition":"behavioral sequential task","question":null},
+    {"slot":3,"tradition":"human-algorithm comparison","question":null},
+    {"slot":4,"tradition":"measurement/intervention design","question":null},
+    {"slot":5,"tradition":"naturalistic trajectory data","question":null},
+    {"slot":6,"tradition":"external exact/semi-exact system","question":null}
+  ],
+  "required_per_slot":["independent importance","source/world-contact custody","rival","prospective discriminator","G3-dependence assessment","novelty preflight","feasibility/ethics"],
+  "selection":"NONE"
+}

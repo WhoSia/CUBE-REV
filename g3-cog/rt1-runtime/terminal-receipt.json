@@ -1,0 +1,14 @@
+{
+  "stage":"G3-RT1",
+  "executed_at":"2026-09-24T18:00:00+09:00",
+  "canonical_notion_page_id":"3e5ef561-cf92-814b-a733-f154e9ab7a65",
+  "entry_authority":{"p38_r2_commit":"d5cbc6949813236fc1b93f79cf5f965955a28c2c","qast_novelty":"KILLED","p39":"UNAUTHORIZED"},
+  "commands":["node g3-cog/rt1-runtime/attack-seeds.mjs","node g3-cog/rt1-runtime/audit-rt1.mjs"],
+  "results":{"archaeology_entries":10,"seeds":8,"constructive_attacks":8,"prior_art_complements":8,"strong_rivals":8,"distinctive_survivors":0,"external_falsifier_changed":false,"world_contact_executed":false,"p39_opened":false},
+  "seed_outcomes":{"S1":"NOVELTY_KILLED","S2":"NOVELTY_KILLED","S3":"NOVELTY_KILLED","S4":"NOVELTY_KILLED","S5":"NOVELTY_KILLED","S6":"NOVELTY_KILLED","S7":"NOVELTY_KILLED","S8":"NOVELTY_KILLED"},
+  "source_custody":{"cousot_1977":"PRESENT_IN_DRIVE","givan_2003":"PRESENT_IN_DRIVE","earlier_preflight_missing_state":"SUPERSEDED_BY_CURRENT_READBACK","effect":"CUSTODY_REPAIRED_BUT_NOVELTY_NOT_RESTORED"},
+  "adverse_residue":["All eight seeds retain mathematical or audit value but no load-bearing distinctive proposition.","S7's omitted-factor no-go is true only as a general model-relative completeness boundary and is not distinctive.","S8 would improve comparator QA but is elementary order-equivariance and does not justify an external-packet rewrite.","No PRISM/MiniGrid preseal was rewritten because the packet permits rewriting only after a Distinctive Survivor.","The attack runner was hardened after the original freeze to stop overwriting the freeze timestamp; the frozen seed, archaeology, atlas, and original runner hashes remain recorded in argument-first-freeze.json."],
+  "gates":{"p38_qast_novelty_kill":"PRESERVED","distinctive_survivor":"NONE","p39_reauthorization":"DENIED","g3_graduation":"NOT_AUTHORIZED","world_contact":"HOLD"},
+  "hashes":{"argument-first-freeze.json":"5c6082bfe7ad9be5a8ab23dfb4273d466ee2f8636d879fdd58475f2bb2bad057","counterexample-witness-atlas.json":"da61a48e6fcdcc47ec821ecf38c13645ec454a60efcb987c076bc8b70e00b754","g3-residual-archaeology.json":"6c80bae763bd3e8326bae2f160de4d8b836eff6fd4f9e5dcbcbb17df60a10c1c","prior-art-complement-ledger.json":"e4ee43e63285ae22805d51c50fed1c6f0bd2fe586b14caa8ab3b6246c0f27341","seed-adjudication.json":"1a53274f7d69e45266948943c8701eaeac71de31ccc5cb9f9edb549bee849b36","source-custody-ledger.json":"378db165b3c87f41154ccf3d03a74a84b2d6708183a6b06b0e14ee2c1c48bbb9","verification.json":"e051040c9cf0ab54caa80647b038d6bf79e287455a1190295035dcba4e54a13d"},
+  "verdict":"G3_RT1_COMPLETE / P38_QAST_NOVELTY_KILL_PRESERVED / P20_P38_RESIDUAL_ARCHAEOLOGY_COMPLETE / S1_S8_MECHANICALLY_ATTACKED / PRIOR_ART_COMPLEMENT_EMPTY / NO_DISTINCTIVE_SURVIVOR / SOURCE_CUSTODY_REPAIRED_FOR_P38_CORE / P39_REAUTHORIZATION_DENIED / G3_GRADUATION_NOT_AUTHORIZED / WORLD_CONTACT_HOLD / NO_P39_OPENED"
+}

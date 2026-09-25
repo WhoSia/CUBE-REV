@@ -1,0 +1,66 @@
+{
+  "stage": "G3-P38-R2",
+  "executed_at": "2026-09-24T17:22:59+09:00",
+  "canonical_notion_page_id": "3e5ef561-cf92-812a-83c6-ed79bbdd128c",
+  "entry_authority": {
+    "stage": "G3-P38-R1-R1",
+    "commit": "f137d09",
+    "verdict": "P38_R1_R1_PASS"
+  },
+  "commands": [
+    "node g3-cog/p38-r2-runtime/counterexamples.mjs",
+    "node g3-cog/p38-r2-runtime/audit-package.mjs"
+  ],
+  "results": {
+    "theorems": 10,
+    "minimal_counterexamples": 11,
+    "novelty_adjudications": 10,
+    "transport_candidates": 10,
+    "traditions": 5,
+    "eligible_nonisomorphic_survivors": 2,
+    "external_falsification_preseals": 2,
+    "cube_erasure_hits": 0,
+    "world_contact_executed": false,
+    "p39_opened": false
+  },
+  "theorem_outcome": {
+    "proved_or_qualified": ["T1","T2","T3","T4","T5","T6"],
+    "product_only": ["T7","T8"],
+    "split_family": ["T9"],
+    "meta_program_not_theorem": ["T10"],
+    "package_novelty": "KILLED",
+    "reason": "Every nontrivial preservation claim is subsumed by abstraction, homomorphism, simulation/bisimulation, full-abstraction, or elementary product/order reasoning."
+  },
+  "survivors": [
+    "P39-A-PRISM-RDP-N3",
+    "P39-B-MINIGRID-DOORKEY-5X5"
+  ],
+  "adverse_residue": [
+    "T1 converse fails.",
+    "T3 does not preserve optimizer identity or rankings without extra assumptions.",
+    "T4 does not make arbitrary divergence scores monotone.",
+    "T5 aggregate equality cannot replace statewise pairing and closure.",
+    "T6 query-specific equality does not imply structural search reuse.",
+    "T7-T8 fail outside typed product/monotone aggregation conditions.",
+    "T9 requires distinct positive, negative, and exact-preservation obligations.",
+    "The integrated QAST label did not earn a novelty claim.",
+    "First package audit correctly failed because project-lineage metadata in the counterexample-atlas schema contained CUBE-REV; the semantic erasure gate was localized to theorem/claim/candidate/preseal content and then passed. The atlas bytes and argument-first seal remained unchanged."
+  ],
+  "gates": {
+    "p38_close": "AUTHORIZED_NEGATIVE_RESULT",
+    "p39_launch": "NOT_AUTHORIZED",
+    "p39_reason": "The packet's graduation condition requires at least one nontrivial theorem package to survive novelty killing. Two domains earned structural preseal, but they would currently test a known-theory composition rather than a surviving novel theorem.",
+    "world_contact": "HOLD"
+  },
+  "hashes": {
+    "qast-axioms.md": "985849f09620132ccec76b77b3604adc6ef712db2b4d4e433e4cda04f595b690",
+    "theorem-ledger.json": "d4798cb1d4514979f9d31e738ea51c4daad6dbc55a4816ea657a13b21ca24ca5",
+    "minimal-counterexample-atlas.json": "9bfd8c741baaff3ed328b694e6cce5ad3837bc7621dbe6d55a4cfeb246688893",
+    "novelty-kill-matrix.json": "0965e48abab26371bd930cd91701e3cddc53b7c5381539deda4b90e1fc29e887",
+    "transport-tournament.json": "1013af1416fdc5e6552766bc30961e5093f8863158d69c9e770c5aae51f44ccc",
+    "external-falsification-preseal-a.json": "5cb6357bd3d539ab431c478aa496129af957819150d8a02cd7bf705860379c38",
+    "external-falsification-preseal-b.json": "b2834b678b0c95b8c7b76c02efc39d551bca0a40daaa901d3ab19fedfe862f19",
+    "verification.json": "cf6504280917c6b6a53ff488ab992ed23a7a4d1d5c7dafeb89284593a9f431bc"
+  },
+  "verdict": "P38_R2_COMPLETE / QAST_T1_T10_ATTACKED / 11_MINIMAL_COUNTEREXAMPLES_SEALED / ARGUMENT_FIRST_NOVELTY_KILL_COMPLETE / QAST_NOVELTY_KILLED / 10_DOMAIN_5_TRADITION_TOURNAMENT_COMPLETE / 2_NONISOMORPHIC_SURVIVORS_PRESEALED / P38_CLOSE_AUTHORIZED / P39_LAUNCH_NOT_AUTHORIZED / WORLD_CONTACT_HOLD / NO_P39_OPENED"
+}

@@ -1,0 +1,8 @@
+{
+  "schema":"CUBE-REV-G3-CLOSE-GITHUB-LIVING-SURFACE-v1",
+  "audit":"Public README concerns the live research tool. It must not absorb G3 history or imply later G3 claims.",
+  "decision":"MINIMAL_UPDATE_WARRANTED",
+  "update":"Add g3-cog/README.md only: P1/P2 reuse boundary, tombstone/no-revival boundary, and pointer to Notion genealogy.",
+  "excluded":["raw bank bytes","historical stage trees","P3 residue detail","unexecuted external packets","new public scientific claims"],
+  "remote_push":"NOT_AUTHORIZED_BY_G3_CLOSE"
+}

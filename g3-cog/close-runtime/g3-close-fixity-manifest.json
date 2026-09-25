@@ -1,0 +1,20 @@
+{
+  "schema":"CUBE-REV-G3-CLOSE-FIXITY-v1",
+  "algorithm":"SHA-256",
+  "scope":"closure outputs; manifest excludes itself",
+  "files":{
+    "g3-final-epistemic-balance-sheet.json":"14a93c8e454abe1f54a0e8febd4ce17138cf66d0f5a044820dc242e026d62782",
+    "g3-surviving-artifact-manifest.json":"1dd0979a1cefe60094129f6f3b71beb3568c4c080fac81d04caac2010bd4c1d5",
+    "g3-defeated-claim-tombstones.json":"5768e78486d30b68069a5184127b9e9578ddbebfaf7e229ab0b6031e1fda5fd4",
+    "g3-adverse-residue-ledger.json":"112d180e39b58c1854bff156c21e6064cf2c9b4f647556cf94f844f8c5136f42",
+    "g3-unexecuted-design-ledger.json":"5edb61097c4b5327b4b0b32a648c459dba048b6a9493d06b12e480a02066bdbc",
+    "g3-authority-classification.json":"701121638a1d31f3089580ee53f821f3d411f9d7f275e3f26f8a6a3bc3c170c8",
+    "g3-research-os-doctrine-harvest.json":"fc04d42dc891868864938ea793e3a490f18289e52ce76159d5d9ac5d98ba5c05",
+    "g3-github-living-surface-closure.json":"f1a2d1fb95b3133a006a34cedef4833cd904accda6f5da8c0c943341cf24e774",
+    "g4-problem-rebirth-contract.json":"bbf32b8ce8c828aa834b202d0700f718def3f97e13527088975411f7274eee9f",
+    "g4-candidate-question-template.json":"3337a798ff0e81d9c8f0215e18254fb778ffbe17e75e6d6152fbbfd79203ba0d",
+    "g3-close-terminal-receipt.json":"58a82b16e655be517f8cdfecc6c3fc40b76bb7d6d88fcd679ad6bf7178627145",
+    "verify-close.mjs":"0b61b6e826e31074a70f351830976cb1009c712e89e56061e68f8ece215d5316",
+    "../README.md":"1934ea0d931d4f2039703d085ccc3b52d7f430da5eedd4d1ba8bdbaecf5649ec"
+  }
+}

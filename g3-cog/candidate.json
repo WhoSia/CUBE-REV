@@ -1,0 +1,9 @@
+{
+  "schema":"CUBE-REV-G3-P10-R2-E1-CANDIDATE-v1",
+  "candidate_id":"G3-P10-R2-E1-20260914-A",
+  "runtime_line":"CUBE-REV-G3-COG-RUNTIME-v2",
+  "packet_path":"packets/p7-presentation.v2.json",
+  "human_collection":false,
+  "served_origin":"https://cube-rev-g3-cog-e1.onrender.com",
+  "generalization_contract":"generalization/RSTP.md"
+}

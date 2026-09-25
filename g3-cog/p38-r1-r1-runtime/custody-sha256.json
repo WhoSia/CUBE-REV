@@ -1,0 +1,72 @@
+[
+  {
+    "name": ".gitattributes",
+    "bytes": 8,
+    "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+  },
+  {
+    "name": "EXECUTION.md",
+    "bytes": 3568,
+    "sha256": "489e3490c9d10bee6f78d3bd5fed66a4692de18219434b539897f31b51b9110c"
+  },
+  {
+    "name": "canonical-color-observation-receipt.json",
+    "bytes": 9576,
+    "sha256": "e57cf16b034490e48dc5860c3a652d4bebbc975a201bcc16630d62e787b6ed50"
+  },
+  {
+    "name": "canonical-color-support-frontier.csv.gz",
+    "bytes": 16453378,
+    "sha256": "d6eced878b0b9936e286249192b7f7da31ac490614f4308a3f260b17f6648fee"
+  },
+  {
+    "name": "canonical-witness-reselection.json",
+    "bytes": 17175,
+    "sha256": "81e17befd6200575171512d73aeab3966f7d49bdb4d8ab41ca65822439b03182"
+  },
+  {
+    "name": "repaired-factorization-premises.json",
+    "bytes": 331,
+    "sha256": "53db4787cc0a6471ae900e7554f08976bb6c9d68505b7b712aa8a8d23eec6948"
+  },
+  {
+    "name": "run.mjs",
+    "bytes": 22820,
+    "sha256": "5da7d1e80228c95637f0f119d8944b04b5376a2e6aba786b5084ef71d3893669"
+  },
+  {
+    "name": "search-reuse-certification.json",
+    "bytes": 105699,
+    "sha256": "4bcbdcaee0e851caada5223b1a8384e6a89492386e3f6e23e5f27432779add81"
+  },
+  {
+    "name": "sha256-manifest.json",
+    "bytes": 1278,
+    "sha256": "87bc5b7fd57a099da7e6ac5683b75f5fe58aefbf5155c2a149bd54dc3ca260b6"
+  },
+  {
+    "name": "terminal-receipt.json",
+    "bytes": 2732,
+    "sha256": "08c72aa2a3ad6d0943ace9749fed9b7e51bd5eeef2ed1824ca2dc2ebe1d6709d"
+  },
+  {
+    "name": "verification.json",
+    "bytes": 2056,
+    "sha256": "c9d70927c84cd0dad7fd6c7d5033e9bc65da384ab4e306c12cf37b27ae836cc3"
+  },
+  {
+    "name": "verify.mjs",
+    "bytes": 3808,
+    "sha256": "9b84468ac8815807c6fc9aceec27c59953b5e3d5024f1cda9a59a71af296a7c2"
+  },
+  {
+    "name": "yplus-cycle-pairing.json",
+    "bytes": 31225346,
+    "sha256": "d6d0bf8dc397ac9e4155ed398ec2a26e21a4df575ea7bd3a001a65ce297783f2"
+  },
+  {
+    "name": "yplus-orbit-closed-contexts.jsonl.gz",
+    "bytes": 40872502,
+    "sha256": "bea9000804e62c8a52c696d1ead952ff72335b358b268f79902e280a331b4d04"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "schema":"CUBE-REV-G3-CLOSE-UNEXECUTED-DESIGNS-v1",
+  "designs":[
+    {"id":"P5-01","design":"PRISM randomized Dining Philosophers","status":"UNEXECUTED_DESIGN","evidence_value":"none","activation":"new independent question plus prospective authorization"},
+    {"id":"P5-02","design":"MiniGrid DoorKey","status":"UNEXECUTED_DESIGN","evidence_value":"none","activation":"new independent question plus prospective authorization"},
+    {"id":"P5-03","design":"Tier-C exact-state behavioral candidate","status":"UNEXECUTED_DESIGN","evidence_value":"none","activation":"custodied data/code plus fresh problem-specific preseal"}
+  ],
+  "world_contact":"PROHIBITED_BY_G3_CLOSE"
+}

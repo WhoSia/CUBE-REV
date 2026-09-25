@@ -1,0 +1,19 @@
+{
+  "schema": "CUBE-REV-G3-CLOSE-BALANCE-SHEET-v1",
+  "scope": "Generation III only; no external validation, human inference, or general-method authority",
+  "ledger_A_established_within_certified_scope": [
+    {"id":"A1","statement":"Exact-coordinate representation equivariance over the sealed finite domain.","scope":"P34/P35 certified context universe","evidence":"P35-R1-R2 receipt","authority":"ESTABLISHED_FINITE_DOMAIN","kind":"computational"},
+    {"id":"A2","statement":"Canonical-color observation semantics and target-alias frontier; D_color=[4,8,9,11,31,45] under the frozen post-audit rule.","scope":"155040 states; 2480624 comparisons","evidence":"P38-R1-R1 terminal receipt","authority":"ESTABLISHED_FINITE_DOMAIN","kind":"scientific"},
+    {"id":"A3","statement":"Complete 62-selector reachability surface; A*={D,L,R} under the frozen P37 ranking.","scope":"218368 contexts and frozen selector family","evidence":"P37-R1-R1 lane receipts","authority":"ESTABLISHED_FINITE_DOMAIN","kind":"computational"},
+    {"id":"A4","statement":"Y+ orbit-closed expansion contains 873472 contexts with pairing residue 0.","scope":"declared g^0..g^3 closed orbit only","evidence":"P38-R1-R1 yplus-cycle-pairing","authority":"ESTABLISHED_FINITE_DOMAIN","kind":"scientific"},
+    {"id":"A5","statement":"Canonical successor-use witness is P34-001644/A/r2 under the frozen comparator; P34-001164/A/r2 remains valid but not first.","scope":"frozen comparator only","evidence":"P38-R1-R1 canonical-witness-reselection","authority":"ESTABLISHED_FINITE_DOMAIN","kind":"computational"},
+    {"id":"A6","statement":"Solved-origin normalization/search-reuse passed exact checks for 6724 keys and 2620416 transition identities.","scope":"certified full-domain search-reuse contract","evidence":"P38-R1-R1 search-reuse certification","authority":"ENGINEERING_CERTIFIED","kind":"engineering"},
+    {"id":"A7","statement":"P38/RT1/RT2 counterexample and novelty-kill ledgers are mechanically validated negative knowledge.","scope":"their declared claims and rivals only","evidence":"P38-R2, RT1, RT2 terminal receipts","authority":"ESTABLISHED_NEGATIVE","kind":"governance"}
+  ],
+  "ledger_B_defeated_or_nondistinctive_claims": ["QAST novel theory","T1-T10 novel theorem package","S1-S8 distinctive theorem residuals","EWRA novel protocol","EWRA novel audit instrument","three-tier benchmark novelty","P34 bank as independent cross-world empirical resource","P39 authorization","publication-level G3 generality"],
+  "ledger_C_unexecuted_nonloadbearing": ["PRISM randomized Dining Philosophers preseal","MiniGrid DoorKey preseal","Tier-C behavioral exact-state candidate"],
+  "ledger_D_historical_adverse_residue": ["P37-R1 resource HOLD","internal sticker-ID minimum-10 versus canonical-color minimum-6 discrepancy","original 0 matched / 1024 unmatched in-bank Y+ pairing","P34-001164/A/r2 valid-but-not-first history","pre-certification 6724-key reuse authority gap","BRM editorial rejection without external review","source-custody gaps and later repairs"],
+  "ledger_E_reusable": ["exact state adapter/transition authority","state/context bank fixtures","orbit closure machinery","selector-mask antichain search","normalization/reuse certification","witness comparator","counterexample atlas","custody/fixity manifests","no-silent-repair/versioned reconstitution"],
+  "closure_metrics": {"active_g3_files_observed":128,"minimal_counterexamples_P38_R2":11,"theorem_subclaims_T1_T10":10,"residual_seeds_S1_S8":8,"C2_C5_contribution_classes":4,"external_designs_unexecuted":3,"intake_papers_relocated_RT2":12,"source_custody_core_repairs_RT1":2,"p4_tombstones":9,"p5_dormant_designs":3},
+  "metric_caveat":"No total stage/receipt count is asserted because the live lineage contains multiple historical receipt representations."
+}

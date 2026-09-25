@@ -1,0 +1,52 @@
+{
+  "schema": "CUBE-REV-REPOSITORY-RECONCILIATION-AND-LEGACY-FREEZE-v1",
+  "date": "2026-09-25",
+  "scope": "Git topology reconciliation and source-level legacy main audit only; no Zenodo, H33 artifact, Pages deployment, or Apps Script mutation.",
+  "remote": "https://github.com/WhoSia/CUBE-REV.git",
+  "pre_push_remote_heads": {
+    "main": "a5b16ad3f64c7f3de31b891e439c40e902d582bf",
+    "paper1-m1.0-brm-zenodo-rc": "5d5d7fba73cfa6f5e25cdc40a0a7f4f78cfee8bf",
+    "paper1-m1.1-public-repro-rc": "51f0093e9f2e5c5938d5fca3ddf58e342cb330ce",
+    "research/current": "b7cd6b0ed76c2186550e0d83bb238005e9c5f33c"
+  },
+  "continuation_decision": {
+    "state": "FAST_FORWARD_SAFE_FOR_RESEARCH_CURRENT",
+    "inheritance_boundary": "origin/research/current b7cd6b0 is an ancestor of local research/current 53a03cd; later G3-P34-R2 through G4-P0 receipts remain on the same research branch without semantic rewriting.",
+    "authority_ceiling": "repository continuity only; no scientific or deployment conclusion"
+  },
+  "branch_policy": {
+    "research/current": "push complete later G3/G4 lineage",
+    "paper1-m1.0-brm-zenodo-rc": {
+      "action": "RETIRE_REMOTE_REF",
+      "preservation": "annotated tag paper1-m1.0 resolves to the m1.0 head lineage; m1.0 is an ancestor of m1.1",
+      "zenodo": "NO_MUTATION"
+    },
+    "paper1-m1.1-public-repro-rc": {
+      "action": "RETAIN",
+      "reason": "H33 dependency hold stated by user; do not modify H33 or Paper I bytes"
+    },
+    "main": {
+      "action": "AUDIT_AND_FREEZE_ONLY",
+      "legacy_head": "a5b16ad3f64c7f3de31b891e439c40e902d582bf",
+      "pages": "main/repository-root source declared by deployment note; deployment not contacted",
+      "collector": "collector-config.js declares CUBE-REV-0712-MAIN and a Google Apps Script endpoint; endpoint not contacted and no configuration change made",
+      "source_audit": {
+        "deployment_note_blob": "ae30cd233be34a389e5fa101026fb2ffc8a45c47",
+        "index_blob": "ce5b5608767083a696cf57982edd979a21b3ba22",
+        "pilot_blob": "344faeb45d0046a52b24fad91a5bcbcb46784b71",
+        "collector_config_blob": "6e2c15ef1aa2df3bd060227251a52499de351e19",
+        "collector_client_blob": "163e5114ef6ce725c2dfa06a6fe38d8e814190b0",
+        "hold": "Deployment note requires index.html and CUBE-REV_0.7.12_GitHub_Pages_Pilot.html byte-identical, but their Git blob IDs differ. This is a source-level legacy-freeze discrepancy, not a live deployment or collector test."
+      }
+    }
+  },
+  "explicit_non_actions": ["No Zenodo mutation", "No H33 artifact mutation", "No GitHub Pages deployment change", "No Apps Script call or change", "No collector activation", "No untracked G3 runtime byte staged"],
+  "post_push_verification": {
+    "remote_research_current": "c7ea8e4ad140e798219b748a0738fee0f3068cb3",
+    "remote_m1_0": "ABSENT_AS_RETIRED",
+    "remote_m1_1": "51f0093e9f2e5c5938d5fca3ddf58e342cb330ce_UNCHANGED",
+    "remote_main": "a5b16ad3f64c7f3de31b891e439c40e902d582bf_UNCHANGED",
+    "remote_archive_tag_object": "700aa01bb3e88fee67a2aa21dc689120bde97b42",
+    "result": "RECONCILIATION_AND_REQUESTED_RETIREMENT_PASS"
+  }
+}

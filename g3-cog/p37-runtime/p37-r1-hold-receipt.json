@@ -1,0 +1,25 @@
+{
+  "schema": "CUBE-REV-G3-P37-R1-HOLD-RECEIPT-v1",
+  "authority": {
+    "p34_bank_sha256": "cef57e7943510d15d2bfbb59f18761217599f9d5c7b749511a02d1c371e9ae00",
+    "p35_r1_r2_receipt_sha256": "db488ba3fa2ac163d9160e06f5df9e0965d12d12d07ece9891396a454638683b",
+    "p36_r1_receipt_sha256": "e04455b9831326c0cefbb0db8e794116c295e672fcab02dfbc67dbc1a75353c9",
+    "bank_mutated": false
+  },
+  "attempt": {
+    "compiler": "run-r1.mjs",
+    "requested_action_surface": "all 62 nonempty proper literal face subsets, two representations, all 218368 contexts",
+    "exact_search_state": "state plus last-face, required by frozen no-same-face-adjacent grammar",
+    "failure": "The full-face depth-8 exact frontier exceeded 6.6 GB resident memory before any selector ledger could be durably emitted.",
+    "partial_results_admitted": false,
+    "manual_stop": true
+  },
+  "holds": [
+    "ALL_62_SELECTOR_SURFACE_INCOMPLETE",
+    "NO_D_STAR_OR_A_STAR_SEALED",
+    "NO_JOINT_EVALUATION",
+    "NO_SCIENTIFIC_PROMOTION"
+  ],
+  "p37_gate": "HOLD",
+  "verdict": "P37_R1_HOLD / EXACT_ACTION_FRONTIER_RESOURCE_LIMIT / NO_PARTIAL_SELECTOR_RESULT_ADMITTED / NO_SUCCESSOR_OPENED"
+}
