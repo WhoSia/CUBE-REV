@@ -1,0 +1,31 @@
+{
+  "schema": "CUBE-REV-G4-P1-R3-R3-MATERIALIZATION-BLOCKER-v1",
+  "verdict": "R3_R3_TYPED_BLOCKER / MATERIALIZATION_NOT_PASS / R2_HOLD_UNCHANGED / HUMAN_WORLD_CONTACT_CLOSED",
+  "observed_before": {
+    "tracked_file_count": 242,
+    "tracked_bytes": 109539692,
+    "html_count": 8,
+    "json_count": 98,
+    "markdown_count": 33,
+    "historical_concentration": "g3-cog contains 139 tracked paths"
+  },
+  "verified_archive_state": {
+    "root": "1xpUKiXclYvGGPMpE9dVDhp2lOc_YJzRS",
+    "subfolders_checked": ["15-KLlnWh9uebxwHwnsivN9gWJS6ho_BE", "1_0B4a-dyLewMcgdIyH6CgfDftetitQo5", "1gaCwX0THG8rMO206W_l7XOmAocDO3Soy", "11oJMuZj_VOxGlGW55jg0ZrJEfOOWOH5t", "1EnWCcdvtup2W8oyVLYyeLosheqB1lGgL"],
+    "result": "all destination folders empty at inspection; no artifact removal authorized before upload/readback"
+  },
+  "blockers": [
+    {
+      "code": "R2_REQUIRED_FILE_MISSING",
+      "effect": "Rust exact-core may not be treated as cross-language authority and no R2 census can start",
+      "unblock": "synchronize immutable P1-R1 Python oracle plus frozen input/configuration bytes"
+    },
+    {
+      "code": "TYPESCRIPT_BUILD_TOOLCHAIN_MISSING",
+      "effect": "TypeScript kernel can be authored but cannot meet required typecheck/build/test gate",
+      "unblock": "provide a pinned TypeScript compiler/build toolchain in the repository or authorize a pinned dependency installation"
+    }
+  ],
+  "non_actions": ["no Git removal", "no Drive upload claimed", "no main/H33/Zenodo mutation", "no human collection", "no R4 opening"],
+  "authority_ceiling": "This is an implementation-custody/toolchain blocker, not a scientific result."
+}
