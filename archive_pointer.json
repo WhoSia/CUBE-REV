@@ -11,7 +11,8 @@
       "drive_file_id": "1MfqBv-ZM52KuXn-PgGkhXR0OTsItLjHh",
       "drive_url": "https://drive.google.com/file/d/1MfqBv-ZM52KuXn-PgGkhXR0OTsItLjHh/view",
       "verification_status": "PARENT_NAME_SIZE_READBACK_VERIFIED",
-      "removal_commit": "178ae77cc02db4cd894cef0840c51b89bb578f4e"
+      "removal_commit": "fad656d024482b6acab9c8838b588a22a0b83bce",
+      "pre_reconciliation_commit": "178ae77cc02db4cd894cef0840c51b89bb578f4e"
     },
     {
       "original_path": "root/calibration/r128-shadow/release-snapshots historical HTML snapshots",
@@ -21,7 +22,8 @@
       "drive_file_id": "1pKm3fR-Nf4NKUkRrBJUwxNxBIwmhwPZx",
       "drive_url": "https://drive.google.com/file/d/1pKm3fR-Nf4NKUkRrBJUwxNxBIwmhwPZx/view",
       "verification_status": "PARENT_NAME_SIZE_READBACK_VERIFIED",
-      "removal_commit": "178ae77cc02db4cd894cef0840c51b89bb578f4e"
+      "removal_commit": "fad656d024482b6acab9c8838b588a22a0b83bce",
+      "pre_reconciliation_commit": "178ae77cc02db4cd894cef0840c51b89bb578f4e"
     }
   ]
 }

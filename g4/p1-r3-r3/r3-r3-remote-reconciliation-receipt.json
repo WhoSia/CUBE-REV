@@ -1,0 +1,26 @@
+{
+  "receipt_id": "G4-P1-R3-R3-remote-reconciliation-v1",
+  "remote_head_before": "b2ecd5b8fd49f506195c6afe60b6f91336065dc1",
+  "local_head_before": "81359c08cf6673190d882d01b37c2eaa879d685f",
+  "merge_base": "97516ce69b36d23dbfd84ffec9afba307a5527a0",
+  "ahead_behind_before": {"local_ahead": 5, "local_behind": 1},
+  "reconciliation_strategy": "non-force rebase of the five local-only commits onto origin/research/current; preserves b2ecd5b Delete LICENSE",
+  "preserved_remote_commits": ["97516ce69b36d23dbfd84ffec9afba307a5527a0", "b2ecd5b8fd49f506195c6afe60b6f91336065dc1"],
+  "original_to_reconciled_sha_map": {
+    "c7ac2a278a8b9a9ffa9fd9952c0794597801f408": "7311aa7",
+    "5a3599cfd4d3356572de497ed6059388a7fcd44c": "962581e",
+    "9647eedd7d7d97e55855acee26a72e12d253fff9": "8786d5748705b52dd773be05ccf26f804b42ddbd",
+    "178ae77cc02db4cd894cef0840c51b89bb578f4e": "fad656d024482b6acab9c8838b588a22a0b83bce",
+    "81359c08cf6673190d882d01b37c2eaa879d685f": "bd2301a7c53e06356c09694ac12a0c5ab098afa9"
+  },
+  "content_equivalence": "stable patch-id matched for the three reported materialization commits",
+  "tests_rerun": {"cargo_fmt_check":"PASS","cargo_check":"PASS","cargo_test":"PASS (3 unit tests)","npm_typecheck":"PASS","npm_build":"PASS","fixture_parity":"PASS (10/10)","synthetic_replay":"PASS (1/1)"},
+  "push_result": "PENDING",
+  "remote_head_after": "PENDING",
+  "local_head_after": "PENDING",
+  "remote_tree_verified": "PENDING",
+  "pre_push_tree": {"tracked_files": 113, "tracked_bytes": 585812, "g3_cog_paths": 0, "html_count": 1},
+  "r2_hold_state": "HOLD_GEOMETRY / REQUIRED_FILE_MISSING / CROSS_LANGUAGE_EQUIVALENCE_NOT_EXECUTED / FULL_CENSUS_NOT_STARTED",
+  "human_world_contact": "NONE",
+  "verdict": "PENDING_PUSH_AND_REMOTE_READBACK"
+}
