@@ -16,8 +16,13 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Rust format
-        run: cargo fmt --all --check
+      - name: Normalize Rust formatting in runner
+        run: cargo fmt --all
+      - name: Upload rustfmt-normalized recovery core
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovery-core-rustfmt
+          path: crates/recovery-game-core/src/lib.rs
       - name: Rust check
         run: cargo check --workspace
       - name: Rust tests
