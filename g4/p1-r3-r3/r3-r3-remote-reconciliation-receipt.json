@@ -15,12 +15,13 @@
   },
   "content_equivalence": "stable patch-id matched for the three reported materialization commits",
   "tests_rerun": {"cargo_fmt_check":"PASS","cargo_check":"PASS","cargo_test":"PASS (3 unit tests)","npm_typecheck":"PASS","npm_build":"PASS","fixture_parity":"PASS (10/10)","synthetic_replay":"PASS (1/1)"},
-  "push_result": "PENDING",
-  "remote_head_after": "PENDING",
-  "local_head_after": "PENDING",
-  "remote_tree_verified": "PENDING",
+  "push_result": "PASS: non-force push b2ecd5b..72883d6",
+  "remote_head_after": "72883d65332071bba754b391848ebed0da9fe947 (first remote readback; this receipt is subsequently sealed in the final remote commit)",
+  "local_head_after": "72883d65332071bba754b391848ebed0da9fe947 (first remote readback)",
+  "remote_tree_verified": "PASS: local/origin heads identical and git diff --exit-code clean",
   "pre_push_tree": {"tracked_files": 113, "tracked_bytes": 585812, "g3_cog_paths": 0, "html_count": 1},
   "r2_hold_state": "HOLD_GEOMETRY / REQUIRED_FILE_MISSING / CROSS_LANGUAGE_EQUIVALENCE_NOT_EXECUTED / FULL_CENSUS_NOT_STARTED",
   "human_world_contact": "NONE",
-  "verdict": "PENDING_PUSH_AND_REMOTE_READBACK"
+  "remote_tree_after_first_push": {"tracked_files": 114, "tracked_bytes": 581993, "g3_cog_paths": 0, "html_count": 1, "required_paths_present": true},
+  "verdict": "REMOTE_RECONCILIATION_PASS_PENDING_RECEIPT_SEAL_PUSH"
 }
