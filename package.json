@@ -5,7 +5,9 @@
   "description": "Active-lineage synthetic instrument toolchain; no human collection authority.",
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "test:parity": "npm run build && node scripts/run-r3-parity.mjs",
+    "test:replay": "npm run build && node scripts/run-r3-replay.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

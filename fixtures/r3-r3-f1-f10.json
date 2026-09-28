@@ -1,0 +1,16 @@
+{
+  "packet_id": "G4-P1-R3-R3-F1-F10-v1",
+  "immutability": "Inputs are frozen; expected values are evaluated by both implementations without fixture rewrite.",
+  "fixtures": [
+    {"fixture_id":"F1","class":"alias-equivalent move words / same normalized group element","input":{"perm":[0,1,2,3,4,5,6],"ori":[0,0,0,0,0,0,0],"view":"UFR","arm":"P"},"expected":"PASS"},
+    {"fixture_id":"F2","class":"different exact states / same authorized visible SymbolicFrame collision","input":{"perm":[1,0,2,3,4,5,6],"ori":[0,0,0,0,0,0,0],"view":"masked-UFR","arm":"P"},"expected":"PASS"},
+    {"fixture_id":"F3","class":"visible exact-state difference","input":{"perm":[1,0,2,3,4,5,6],"ori":[0,0,0,0,0,0,0],"view":"UFR","arm":"P"},"expected":"PASS"},
+    {"fixture_id":"F4","class":"same exact state / different authorized view","input":{"perm":[0,1,2,3,4,5,6],"ori":[0,0,0,0,0,0,0],"view":"DFR","arm":"I"},"expected":"PASS"},
+    {"fixture_id":"F5","class":"renderer/build-only mutation isolation","input":{"perm":[0,1,2,3,4,5,6],"ori":[0,0,0,0,0,0,0],"view":"UFR","arm":"P"},"expected":"PASS"},
+    {"fixture_id":"F6","class":"input-order permutation invariance","input":{"perm":[0,1,2,3,4,5,6],"ori":[0,0,0,0,0,0,0],"view":"UFR","arm":"I"},"expected":"PASS"},
+    {"fixture_id":"F7","class":"duplicate candidate invariance","input":{"perm":[0,1,2,3,4,5,6],"ori":[0,0,0,0,0,0,0],"view":"UFR","arm":"I"},"expected":"PASS"},
+    {"fixture_id":"F8","class":"semantic preserve/invalidate arm storage reversal invariance","input":{"perm":[0,1,2,3,4,5,6],"ori":[0,0,0,0,0,0,0],"view":"UFR","arm":"I"},"expected":"PASS"},
+    {"fixture_id":"F9","class":"illegal cubie state rejection","input":{"perm":[0,0,2,3,4,5,6],"ori":[0,0,0,0,0,0,0],"view":"UFR","arm":"P"},"expected":"FAIL"},
+    {"fixture_id":"F10","class":"malformed canonical payload rejection","input":{"perm":[0,1],"ori":[0,0],"view":"UFR","arm":"P"},"expected":"FAIL"}
+  ]
+}

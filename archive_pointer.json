@@ -1,0 +1,27 @@
+{
+  "schema": "CUBE-REV-active-lineage-archive-pointer-v1",
+  "active_branch": "research/current",
+  "r2_status": "R2_ORACLE_PROVENANCE_HOLD / HOLD_GEOMETRY / REQUIRED_FILE_MISSING / CROSS_LANGUAGE_EQUIVALENCE_NOT_EXECUTED / FULL_CENSUS_NOT_STARTED",
+  "archives": [
+    {
+      "original_path": "g3-cog/** (139 tracked paths at pre-cleanup inventory)",
+      "sha256": "99F6C345F388BF34B503AD0ED5FF3BC874DA7E7CB4E2C9486D73A8B802297400",
+      "artifact_role": "ARCHIVE_ONLY",
+      "superseded_by": "G3 closure; G4 active implementation boundary",
+      "drive_file_id": "1MfqBv-ZM52KuXn-PgGkhXR0OTsItLjHh",
+      "drive_url": "https://drive.google.com/file/d/1MfqBv-ZM52KuXn-PgGkhXR0OTsItLjHh/view",
+      "verification_status": "PARENT_NAME_SIZE_READBACK_VERIFIED",
+      "removal_commit": "PENDING"
+    },
+    {
+      "original_path": "root/calibration/r128-shadow/release-snapshots historical HTML snapshots",
+      "sha256": "965067C0A9601E084FD32D384A48C48D79FD5FBBAD778567F5ED02A6C4044A9F",
+      "artifact_role": "ARCHIVE_ONLY",
+      "superseded_by": "thin web/public/index.html shell",
+      "drive_file_id": "1pKm3fR-Nf4NKUkRrBJUwxNxBIwmhwPZx",
+      "drive_url": "https://drive.google.com/file/d/1pKm3fR-Nf4NKUkRrBJUwxNxBIwmhwPZx/view",
+      "verification_status": "PARENT_NAME_SIZE_READBACK_VERIFIED",
+      "removal_commit": "PENDING"
+    }
+  ]
+}
