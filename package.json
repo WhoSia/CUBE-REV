@@ -1,0 +1,13 @@
+{
+  "name": "cube-rev-research-current",
+  "private": true,
+  "version": "0.0.0-r3-r3",
+  "description": "Active-lineage synthetic instrument toolchain; no human collection authority.",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
