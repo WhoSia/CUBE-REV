@@ -21,6 +21,7 @@
     "replay":"synthetic 4-event replay with explicit rank-invariant SHAM"
   },
   "tests": {"rust":"cargo fmt --check; cargo check; cargo test: PASS (3 unit tests)","typescript":"npm run typecheck; npm run build: PASS","parity":"npm run test:parity: PASS (10/10)","replay":"npm run test:replay: PASS (1/1)"},
+  "commit_shas": ["178ae77cc02db4cd894cef0840c51b89bb578f4e"],
   "custody_blockers": ["Raw Drive stream offered a file reference; direct local SHA-256 of the streamed bytes was not available. Parent/name/size readback passed."],
   "r2_status":"R2_ORACLE_PROVENANCE_HOLD / HOLD_GEOMETRY / REQUIRED_FILE_MISSING / CROSS_LANGUAGE_EQUIVALENCE_NOT_EXECUTED / FULL_CENSUS_NOT_STARTED",
   "human_contact":"NONE",
