@@ -1,0 +1,8 @@
+[package]
+name = "recovery-game-core"
+version = "0.1.0"
+edition = "2021"
+description = "G5 exact recovery-surface core: hypotheses, transcript recovery, partition audits, and resource frontiers."
+
+[lib]
+path = "src/lib.rs"

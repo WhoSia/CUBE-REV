@@ -1,0 +1,35 @@
+name: Validate recovery-surface core
+
+on:
+  push:
+    branches: ['research/current']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recovery-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - name: Rust format
+        run: cargo fmt --all --check
+      - name: Rust check
+        run: cargo check --workspace
+      - name: Rust tests
+        run: cargo test --workspace
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Existing TypeScript contract
+        run: |
+          npm ci
+          npm run typecheck
+          npm run build
+          npm run test:parity
+          npm run test:replay
