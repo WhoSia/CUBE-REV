@@ -199,8 +199,7 @@ pub fn verify_cube_controller_lattice() -> CubeAllocationCertificate {
     for lehmer in 0..PERMUTATIONS {
         let rank = lehmer * ORIENTATIONS;
         let state = CornerState::unrank(rank).expect("valid cube representative");
-        let alt = CornerState::unrank(rank + ORIENTATIONS - 1)
-            .expect("valid orientation variant");
+        let alt = CornerState::unrank(rank + ORIENTATIONS - 1).expect("valid orientation variant");
 
         assert_eq!(state.perm, alt.perm);
         assert_eq!(
