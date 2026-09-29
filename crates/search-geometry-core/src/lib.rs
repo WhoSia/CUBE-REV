@@ -285,6 +285,118 @@ pub fn bfs_phase2_distance(tables: &TransitionTables) -> Vec<u8> {
 /// - moving d -> d-1 preserves slack;
 /// - d -> d consumes one slack;
 /// - d -> d+1 consumes two slack.
+
+pub fn full_permutation_distance(tables: &TransitionTables) -> Vec<u8> {
+    let mut dist = vec![u8::MAX; PERMUTATIONS as usize];
+    let mut queue = VecDeque::new();
+    dist[0] = 0;
+    queue.push_back(0u32);
+
+    while let Some(p) = queue.pop_front() {
+        let d = dist[p as usize];
+        for m in 0..FULL_MOVES.len() {
+            let next = tables.next_perm(p, m);
+            if dist[next as usize] == u8::MAX {
+                dist[next as usize] = d + 1;
+                queue.push_back(next);
+            }
+        }
+    }
+    dist
+}
+
+pub fn entry_surface_shortest_orientation(
+    tables: &TransitionTables,
+    orientation_dist: &[u8],
+    phase2_dist: &[u8],
+) -> (Vec<u8>, Vec<u8>) {
+    let max_d = *orientation_dist.iter().max().expect("orientation states") as usize;
+    let mut layers = vec![Vec::<u32>::new(); max_d + 1];
+    for o in 0..ORIENTATIONS {
+        layers[orientation_dist[o as usize] as usize].push(o);
+    }
+
+    let mut min_h = vec![u8::MAX; STATE_DOMAIN as usize];
+    let mut max_h = vec![0u8; STATE_DOMAIN as usize];
+
+    for p in 0..PERMUTATIONS {
+        let rank = p * ORIENTATIONS;
+        min_h[rank as usize] = phase2_dist[p as usize];
+        max_h[rank as usize] = phase2_dist[p as usize];
+    }
+
+    for d in 1..=max_d {
+        for &o in &layers[d] {
+            for p in 0..PERMUTATIONS {
+                let rank = p * ORIENTATIONS + o;
+                let mut lo = u8::MAX;
+                let mut hi = 0u8;
+                let mut found = false;
+
+                for m in 0..FULL_MOVES.len() {
+                    let next = tables.next_rank(rank, m);
+                    let next_o = (next % ORIENTATIONS) as usize;
+                    if orientation_dist[next_o] + 1 != d as u8 {
+                        continue;
+                    }
+                    found = true;
+                    lo = lo.min(min_h[next as usize]);
+                    hi = hi.max(max_h[next as usize]);
+                }
+
+                assert!(found, "positive orientation distance needs a descending move");
+                min_h[rank as usize] = lo;
+                max_h[rank as usize] = hi;
+            }
+        }
+    }
+
+    (min_h, max_h)
+}
+
+pub fn build_generator_cycle_c3(tables: &TransitionTables) -> Vec<u32> {
+    let mut map = vec![u32::MAX; STATE_DOMAIN as usize];
+    let mut queue = VecDeque::new();
+    map[0] = 0;
+    queue.push_back(0u32);
+
+    while let Some(rank) = queue.pop_front() {
+        let image = map[rank as usize];
+        for m in 0..FULL_MOVES.len() {
+            let next = tables.next_rank(rank, m);
+            let mapped_move = cycle_move_index(m);
+            let image_next = tables.next_rank(image, mapped_move);
+
+            if map[next as usize] == u32::MAX {
+                map[next as usize] = image_next;
+                queue.push_back(next);
+            } else {
+                assert_eq!(
+                    map[next as usize], image_next,
+                    "generator relabeling must define a global graph automorphism"
+                );
+            }
+        }
+    }
+
+    assert!(map.iter().all(|&x| x != u32::MAX));
+    for rank in 0..STATE_DOMAIN {
+        let b = map[rank as usize];
+        let c = map[b as usize];
+        assert_eq!(map[c as usize], rank, "C3 automorphism must cube to identity");
+    }
+    map
+}
+
+fn cycle_move_index(move_index: usize) -> usize {
+    match move_index {
+        0..=2 => move_index + 3,
+        3..=5 => move_index + 3,
+        6..=8 => move_index - 6,
+        _ => panic!("invalid move index"),
+    }
+}
+
 pub fn first_hit_two_phase_family(
     tables: &TransitionTables,
     orientation_dist: &[u8],
