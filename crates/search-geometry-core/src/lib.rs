@@ -552,6 +552,67 @@ pub fn run_full_court(max_slack: u8) -> SearchGeometrySummary {
     }
 }
 
+
+
+pub fn entry_surface_spectrum_shortest_orientation(
+    tables: &TransitionTables,
+    orientation_dist: &[u8],
+    phase2_dist: &[u8],
+) -> Vec<u16> {
+    assert_eq!(orientation_dist.len(), ORIENTATIONS as usize);
+    assert_eq!(phase2_dist.len(), PERMUTATIONS as usize);
+    assert!(
+        phase2_dist.iter().all(|&d| d < 16),
+        "u16 spectrum requires phase-2 distances below 16"
+    );
+
+    let max_d = *orientation_dist.iter().max().expect("orientation states") as usize;
+    let mut layers = vec![Vec::<u32>::new(); max_d + 1];
+    for o in 0..ORIENTATIONS {
+        layers[orientation_dist[o as usize] as usize].push(o);
+    }
+
+    let mut spectrum = vec![0u16; STATE_DOMAIN as usize];
+    for p in 0..PERMUTATIONS {
+        let rank = p * ORIENTATIONS;
+        spectrum[rank as usize] = 1u16 << phase2_dist[p as usize];
+    }
+
+    for d in 1..=max_d {
+        for &o in &layers[d] {
+            for p in 0..PERMUTATIONS {
+                let rank = p * ORIENTATIONS + o;
+                let mut mask = 0u16;
+                for m in 0..FULL_MOVES.len() {
+                    let next = tables.next_rank(rank, m);
+                    let next_o = (next % ORIENTATIONS) as usize;
+                    if orientation_dist[next_o] + 1 == d as u8 {
+                        mask |= spectrum[next as usize];
+                    }
+                }
+                assert_ne!(mask, 0, "shortest-entry spectrum cannot be empty");
+                spectrum[rank as usize] = mask;
+            }
+        }
+    }
+
+    spectrum
+}
+
+pub fn spectrum_min(mask: u16) -> u8 {
+    assert_ne!(mask, 0);
+    mask.trailing_zeros() as u8
+}
+
+pub fn spectrum_max(mask: u16) -> u8 {
+    assert_ne!(mask, 0);
+    (15 - mask.leading_zeros()) as u8
+}
+
+pub fn spectrum_cardinality(mask: u16) -> u8 {
+    mask.count_ones() as u8
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
