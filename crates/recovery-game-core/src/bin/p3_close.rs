@@ -46,9 +46,7 @@ impl ObservationChannel<LiveState> for LiveObservation {
 
     fn observe(&self, state: &LiveState) -> Self::Observation {
         match state {
-            LiveState::Live(s) => {
-                LiveObs::Bit(s.pointer, ((s.bits >> s.pointer) & 1) as u8)
-            }
+            LiveState::Live(s) => LiveObs::Bit(s.pointer, ((s.bits >> s.pointer) & 1) as u8),
             _ => LiveObs::Junk,
         }
     }
@@ -143,9 +141,20 @@ impl PublishedFsm {
 fn kushik_yevtushenko_table1() -> PublishedFsm {
     let mut t = BTreeMap::new();
     let rows = [
-        (1, 1, 1, 1), (1, 1, 2, 3), (2, 1, 2, 2), (2, 1, 1, 3), (3, 1, 2, 2),
-        (1, 2, 1, 1), (1, 2, 2, 2), (2, 2, 1, 3), (2, 2, 2, 3), (3, 2, 1, 1),
-        (1, 3, 1, 1), (1, 3, 2, 3), (2, 3, 1, 2), (3, 3, 2, 1),
+        (1, 1, 1, 1),
+        (1, 1, 2, 3),
+        (2, 1, 2, 2),
+        (2, 1, 1, 3),
+        (3, 1, 2, 2),
+        (1, 2, 1, 1),
+        (1, 2, 2, 2),
+        (2, 2, 1, 3),
+        (2, 2, 2, 3),
+        (3, 2, 1, 1),
+        (1, 3, 1, 1),
+        (1, 3, 2, 3),
+        (2, 3, 1, 2),
+        (3, 3, 2, 1),
     ];
     for (state, input, output, next) in rows {
         t.insert((state, input, output), next);
@@ -270,25 +279,126 @@ fn print_row(fields: [&str; 12]) {
 
 fn main() {
     print_row([
-        "kind","family","n","p","target","recoverable","depth","memory",
-        "ambiguity","external","internal","note",
+        "kind",
+        "family",
+        "n",
+        "p",
+        "target",
+        "recoverable",
+        "depth",
+        "memory",
+        "ambiguity",
+        "external",
+        "internal",
+        "note",
     ]);
 
     for n in 1u8..=12 {
         let ns = n.to_string();
-        print_row(["grid","B",&ns,"","exact","true",&ns,&ns,"","","","analytic_law"]);
-        print_row(["grid","B",&ns,"","parity","true",&ns,"1","","","","analytic_law"]);
-        print_row(["grid","LI",&ns,"","parity","true",&ns,"1","","","","matched_live_support"]);
+        print_row([
+            "grid",
+            "B",
+            &ns,
+            "",
+            "exact",
+            "true",
+            &ns,
+            &ns,
+            "",
+            "",
+            "",
+            "analytic_law",
+        ]);
+        print_row([
+            "grid",
+            "B",
+            &ns,
+            "",
+            "parity",
+            "true",
+            &ns,
+            "1",
+            "",
+            "",
+            "",
+            "analytic_law",
+        ]);
+        print_row([
+            "grid",
+            "LI",
+            &ns,
+            "",
+            "parity",
+            "true",
+            &ns,
+            "1",
+            "",
+            "",
+            "",
+            "matched_live_support",
+        ]);
     }
 
     for n in 2u8..=12 {
         let ns = n.to_string();
-        print_row(["grid","TL",&ns,"","parity","true","1","1","","","","target_lossless_merge"]);
-        print_row(["grid","M2O",&ns,"","parity","false","inf","","","","","PERMANENT_TARGET_COLLISION"]);
+        print_row([
+            "grid",
+            "TL",
+            &ns,
+            "",
+            "parity",
+            "true",
+            "1",
+            "1",
+            "",
+            "",
+            "",
+            "target_lossless_merge",
+        ]);
+        print_row([
+            "grid",
+            "M2O",
+            &ns,
+            "",
+            "parity",
+            "false",
+            "inf",
+            "",
+            "",
+            "",
+            "",
+            "PERMANENT_TARGET_COLLISION",
+        ]);
 
         let raw_internal = (n as u32 - 1).to_string();
-        print_row(["grid","E",&ns,"","parity","true","0","","0","0",&raw_internal,"raw"]);
-        print_row(["grid","E",&ns,"","parity","true","0","","0","1","0","normalized"]);
+        print_row([
+            "grid",
+            "E",
+            &ns,
+            "",
+            "parity",
+            "true",
+            "0",
+            "",
+            "0",
+            "0",
+            &raw_internal,
+            "raw",
+        ]);
+        print_row([
+            "grid",
+            "E",
+            &ns,
+            "",
+            "parity",
+            "true",
+            "0",
+            "",
+            "0",
+            "1",
+            "0",
+            "normalized",
+        ]);
 
         for p in 0u8..=n {
             let ps = p.to_string();
@@ -297,26 +407,82 @@ fn main() {
             let exacts = exact.to_string();
             let paritys = parity.to_string();
             print_row([
-                "grid","HM",&ns,&ps,"exact",
+                "grid",
+                "HM",
+                &ns,
+                &ps,
+                "exact",
                 if exact == 0 { "true" } else { "false" },
-                if exact == 0 { "0" } else { "inf" },"",&exacts,"","","component_channel;joint_ambiguity=0",
+                if exact == 0 { "0" } else { "inf" },
+                "",
+                &exacts,
+                "",
+                "",
+                "component_channel;joint_ambiguity=0",
             ]);
             print_row([
-                "grid","HM",&ns,&ps,"parity",
+                "grid",
+                "HM",
+                &ns,
+                &ps,
+                "parity",
                 if parity == 0 { "true" } else { "false" },
-                if parity == 0 { "0" } else { "inf" },"",&paritys,"","","component_channel;joint_ambiguity=0",
+                if parity == 0 { "0" } else { "inf" },
+                "",
+                &paritys,
+                "",
+                "",
+                "component_channel;joint_ambiguity=0",
             ]);
         }
     }
 
     for (source, target, verdict, note) in [
-        ("B","LI","PASS","transcript_partition+dstar+pareto;off_support_global_dynamics_ignored"),
-        ("B_exact","B_parity","PASS_PARTIAL","dstar;memory_transport_fail_n_vs_1"),
-        ("B_parity","TL_parity","PASS_PARTIAL","finite_recoverability;dstar_transport_fail_n_vs_1"),
-        ("TL_parity","M2O_parity","FAIL","recoverability;target_distinction_destroyed"),
-        ("E_raw","E_normalized","PASS_PARTIAL","target_sufficiency;resource_vector_nontransport"),
+        (
+            "B",
+            "LI",
+            "PASS",
+            "transcript_partition+dstar+pareto;off_support_global_dynamics_ignored",
+        ),
+        (
+            "B_exact",
+            "B_parity",
+            "PASS_PARTIAL",
+            "dstar;memory_transport_fail_n_vs_1",
+        ),
+        (
+            "B_parity",
+            "TL_parity",
+            "PASS_PARTIAL",
+            "finite_recoverability;dstar_transport_fail_n_vs_1",
+        ),
+        (
+            "TL_parity",
+            "M2O_parity",
+            "FAIL",
+            "recoverability;target_distinction_destroyed",
+        ),
+        (
+            "E_raw",
+            "E_normalized",
+            "PASS_PARTIAL",
+            "target_sufficiency;resource_vector_nontransport",
+        ),
     ] {
-        print_row(["transport",source,"","",target,verdict,"","","","","",note]);
+        print_row([
+            "transport",
+            source,
+            "",
+            "",
+            target,
+            verdict,
+            "",
+            "",
+            "",
+            "",
+            "",
+            note,
+        ]);
     }
 
     let fsm = kushik_yevtushenko_table1();
@@ -324,8 +490,18 @@ fn main() {
         .into_iter()
         .all(|pair| fsm.pair_is_adaptively_homing(pair));
     print_row([
-        "hard","A_HOME_KY2015_TABLE1","3","","adaptive_homing",
-        if all_homing { "true" } else { "false" },"","","","","","published_table_reconstructed",
+        "hard",
+        "A_HOME_KY2015_TABLE1",
+        "3",
+        "",
+        "adaptive_homing",
+        if all_homing { "true" } else { "false" },
+        "",
+        "",
+        "",
+        "",
+        "",
+        "published_table_reconstructed",
     ]);
 
     for (n, k) in [(4usize, 2usize), (5, 2), (5, 3), (6, 3)] {
@@ -335,8 +511,18 @@ fn main() {
         let ds = exact.to_string();
         let note = format!("expected={expected};not_a_direct_PDS_instance");
         print_row([
-            "hard","A_TS_PANTELEEV_LEMMA8_DONOR",&ns,&ks,"shortest_transformation_word",
-            if exact == expected { "true" } else { "false" },&ds,"","","","",&note,
+            "hard",
+            "A_TS_PANTELEEV_LEMMA8_DONOR",
+            &ns,
+            &ks,
+            "shortest_transformation_word",
+            if exact == expected { "true" } else { "false" },
+            &ds,
+            "",
+            "",
+            "",
+            "",
+            &note,
         ]);
     }
 }
