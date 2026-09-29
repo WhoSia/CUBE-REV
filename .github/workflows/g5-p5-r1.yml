@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  statuses: write
+  contents: read
 
 jobs:
   p5-r1:
@@ -18,23 +17,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Canonicalize Rust for diagnostic R1
-        run: cargo fmt --all
-      - name: Publish canonical R1 source blobs without moving refs
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          encode_blob() {
-            local path="$1"
-            local context="$2"
-            local encoded
-            encoded="$(base64 -w0 "$path")"
-            local sha
-            sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs"               -f content="$encoded" -f encoding="base64" --jq '.sha')"
-            gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA"               -f state="success" -f context="$context" -f description="$sha" >/dev/null
-          }
-          encode_blob "crates/search-geometry-core/src/lib.rs" "g5-p5-r1/rustfmt-lib"
-          encode_blob "crates/search-geometry-core/src/bin/p5_r1.rs" "g5-p5-r1/rustfmt-bin"
+      - name: Rust format seal
+        run: cargo fmt --all --check
       - name: Workspace check
         run: cargo check --workspace
       - name: Workspace tests

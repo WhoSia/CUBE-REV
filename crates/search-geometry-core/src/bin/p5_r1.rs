@@ -12,13 +12,11 @@ fn main() {
     let d_o_coord = bfs_orientation_distance(&tables);
     let d_h = bfs_phase2_distance(&tables);
     let d_p = full_permutation_distance(&tables);
-    let (entry_min, entry_max) =
-        entry_surface_shortest_orientation(&tables, &d_o_coord, &d_h);
-    let first_hit_0 =
-        first_hit_two_phase_family(&tables, &d_o_coord, &d_h, 0)
-            .into_iter()
-            .next()
-            .expect("slack-zero court");
+    let (entry_min, entry_max) = entry_surface_shortest_orientation(&tables, &d_o_coord, &d_h);
+    let first_hit_0 = first_hit_two_phase_family(&tables, &d_o_coord, &d_h, 0)
+        .into_iter()
+        .next()
+        .expect("slack-zero court");
     let c3 = build_generator_cycle_c3(&tables);
 
     let mut by_do: BTreeMap<u8, (u64, u64, u8)> = BTreeMap::new();
@@ -178,15 +176,7 @@ fn main() {
 
     for (i, &rank) in max_gap_states.iter().enumerate() {
         print_witness(
-            "max_gap",
-            i,
-            rank,
-            &dg,
-            &d_o_coord,
-            &d_p,
-            &entry_min,
-            &entry_max,
-            &c3,
+            "max_gap", i, rank, &dg, &d_o_coord, &d_p, &entry_min, &entry_max, &c3,
         );
     }
     for (i, &rank) in max_gap_orbit_canon.iter().enumerate() {
@@ -213,9 +203,7 @@ fn main() {
     let mut phase_asym_witnesses = BTreeSet::new();
     for rank in 0..STATE_DOMAIN {
         let mate = c3[rank as usize];
-        if gap_of(rank, &dg, &d_o_coord, &entry_min)
-            != gap_of(mate, &dg, &d_o_coord, &entry_min)
-        {
+        if gap_of(rank, &dg, &d_o_coord, &entry_min) != gap_of(mate, &dg, &d_o_coord, &entry_min) {
             let canon = rank.min(mate).min(c3[mate as usize]);
             phase_asym_witnesses.insert(canon);
             if phase_asym_witnesses.len() >= 16 {
@@ -249,12 +237,7 @@ fn push_stat(map: &mut BTreeMap<u8, (u64, u64, u8)>, key: u8, gap: u8) {
     e.2 = e.2.max(gap);
 }
 
-fn witness_collision(
-    map: &mut BTreeMap<u8, (u32, u8, u32, u8)>,
-    key: u8,
-    rank: u32,
-    gap: u8,
-) {
+fn witness_collision(map: &mut BTreeMap<u8, (u32, u8, u32, u8)>, key: u8, rank: u32, gap: u8) {
     match map.get_mut(&key) {
         None => {
             map.insert(key, (rank, gap, rank, gap));

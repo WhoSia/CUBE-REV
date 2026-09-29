@@ -344,7 +344,10 @@ pub fn entry_surface_shortest_orientation(
                     hi = hi.max(max_h[next as usize]);
                 }
 
-                assert!(found, "positive orientation distance needs a descending move");
+                assert!(
+                    found,
+                    "positive orientation distance needs a descending move"
+                );
                 min_h[rank as usize] = lo;
                 max_h[rank as usize] = hi;
             }
@@ -383,7 +386,10 @@ pub fn build_generator_cycle_c3(tables: &TransitionTables) -> Vec<u32> {
     for rank in 0..STATE_DOMAIN {
         let b = map[rank as usize];
         let c = map[b as usize];
-        assert_eq!(map[c as usize], rank, "C3 automorphism must cube to identity");
+        assert_eq!(
+            map[c as usize], rank,
+            "C3 automorphism must cube to identity"
+        );
     }
     map
 }
