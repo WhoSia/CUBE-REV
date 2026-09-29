@@ -1,0 +1,42 @@
+name: Validate G5-P6 representation ecology
+
+on:
+  push:
+    branches: ['research/current']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  statuses: write
+
+jobs:
+  p6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - name: Canonicalize Rust for diagnostic P6
+        run: cargo fmt --all
+      - name: Publish canonical P6 source blob without moving refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          encoded="$(base64 -w0 crates/search-geometry-core/src/bin/p6.rs)"
+          sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs" -f content="$encoded" -f encoding="base64" --jq '.sha')"
+          gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA" -f state="success" -f context="g5-p6/rustfmt-bin" -f description="$sha" >/dev/null
+      - name: Workspace check
+        run: cargo check --workspace
+      - name: Workspace tests
+        run: cargo test --workspace
+      - name: Materialize P6 ecology court
+        run: |
+          mkdir -p g5/p6/ci-output
+          cargo run --release --quiet -p search-geometry-core --bin p6 > g5/p6/ci-output/p6.tsv
+      - name: Upload P6 court
+        uses: actions/upload-artifact@v4
+        with:
+          name: g5-p6-representation-ecology
+          path: g5/p6/ci-output/p6.tsv
