@@ -1,12 +1,13 @@
 use recovery_synthesis_core::r1::{
     balanced_is_unique_under_own_budget, parity_frontier, parity_protocol_witnesses,
-    scalarization_counterexample, scalarization_counterexample_is_pareto,
-    scale_reversal_witness, unsupported_balanced_symbolic_certificate, verify_parity_protocol,
-    ParityProtocolKind,
+    scalarization_counterexample, scalarization_counterexample_is_pareto, scale_reversal_witness,
+    unsupported_balanced_symbolic_certificate, verify_parity_protocol, ParityProtocolKind,
 };
 
 fn main() {
-    println!("court\tn\tprotocol\tverified\tquery\texternal_actions\tinternal_ops\tmemory_bits\tpareto");
+    println!(
+        "court\tn\tprotocol\tverified\tquery\texternal_actions\tinternal_ops\tmemory_bits\tpareto"
+    );
 
     for n in 3..=8 {
         let frontier = parity_frontier(n);
