@@ -5,6 +5,8 @@
 //! Human executability, learned-policy adequacy, and adversarial robustness
 //! remain claims to be earned by later courts.
 
+pub mod r1;
+
 use recovery_game_core::{
     permanent_target_collision, target_is_constant, FiniteDynamics, HypothesisRecord,
     ObservationChannel, ResourceVector,
@@ -294,7 +296,7 @@ fn add_cost(a: ResourceVector, b: ResourceVector) -> ResourceVector {
         query: a.query.saturating_add(b.query),
         external_actions: a.external_actions.saturating_add(b.external_actions),
         internal_ops: a.internal_ops.saturating_add(b.internal_ops),
-        memory_bits: a.memory_bits.saturating_add(b.memory_bits),
+        memory_bits: a.memory_bits.max(b.memory_bits),
     }
 }
 
