@@ -42,19 +42,14 @@ impl<A> ActionProtocol<A> {
 pub fn target_is_constant<S, T: Eq>(belief: &[HypothesisRecord<S, T>]) -> bool {
     match belief.first() {
         None => true,
-        Some(first) => belief
-            .iter()
-            .all(|h| h.target_value == first.target_value),
+        Some(first) => belief.iter().all(|h| h.target_value == first.target_value),
     }
 }
 
-pub fn permanent_target_collision<S: Eq, T: Eq>(
-    belief: &[HypothesisRecord<S, T>],
-) -> bool {
+pub fn permanent_target_collision<S: Eq, T: Eq>(belief: &[HypothesisRecord<S, T>]) -> bool {
     for (i, left) in belief.iter().enumerate() {
         for right in &belief[i + 1..] {
-            if left.current_state == right.current_state
-                && left.target_value != right.target_value
+            if left.current_state == right.current_state && left.target_value != right.target_value
             {
                 return true;
             }
@@ -63,9 +58,7 @@ pub fn permanent_target_collision<S: Eq, T: Eq>(
     false
 }
 
-pub fn ambiguity_pairs<K: Ord, T: Eq>(
-    pairs: impl IntoIterator<Item = (K, T)>,
-) -> u64 {
+pub fn ambiguity_pairs<K: Ord, T: Eq>(pairs: impl IntoIterator<Item = (K, T)>) -> u64 {
     let mut groups: BTreeMap<K, Vec<T>> = BTreeMap::new();
     for (key, target) in pairs {
         groups.entry(key).or_default().push(target);
@@ -99,14 +92,7 @@ where
 {
     for depth in 0..=max_depth {
         let mut memo = BTreeMap::new();
-        if solvable_within(
-            dynamics,
-            observation,
-            protocol,
-            belief,
-            depth,
-            &mut memo,
-        ) {
+        if solvable_within(dynamics, observation, protocol, belief, depth, &mut memo) {
             return Some(depth);
         }
     }
@@ -155,16 +141,10 @@ where
             });
         }
 
-        if children.values().all(|child| {
-            solvable_within(
-                dynamics,
-                observation,
-                protocol,
-                child,
-                depth - 1,
-                memo,
-            )
-        }) {
+        if children
+            .values()
+            .all(|child| solvable_within(dynamics, observation, protocol, child, depth - 1, memo))
+        {
             memo.insert(key, true);
             return true;
         }
@@ -336,9 +316,7 @@ impl FiniteDynamics for TargetLosslessCollapse {
 
     fn step(&self, state: &Self::State, _action: &Self::Action) -> Self::State {
         match state {
-            CollapseState::Root(bits) => CollapseState::ParitySink(
-                (bits.count_ones() & 1) as u8,
-            ),
+            CollapseState::Root(bits) => CollapseState::ParitySink((bits.count_ones() & 1) as u8),
             sink => sink.clone(),
         }
     }
@@ -417,23 +395,11 @@ mod tests {
             let parity = bit_query_parity_belief(n);
 
             assert_eq!(
-                minimal_query_depth(
-                    &dynamics,
-                    &observation,
-                    &protocol,
-                    &exact,
-                    n as usize,
-                ),
+                minimal_query_depth(&dynamics, &observation, &protocol, &exact, n as usize,),
                 Some(n as usize)
             );
             assert_eq!(
-                minimal_query_depth(
-                    &dynamics,
-                    &observation,
-                    &protocol,
-                    &parity,
-                    n as usize,
-                ),
+                minimal_query_depth(&dynamics, &observation, &protocol, &parity, n as usize,),
                 Some(n as usize)
             );
         }
