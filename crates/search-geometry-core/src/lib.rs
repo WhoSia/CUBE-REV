@@ -552,8 +552,6 @@ pub fn run_full_court(max_slack: u8) -> SearchGeometrySummary {
     }
 }
 
-
-
 pub fn entry_surface_spectrum_shortest_orientation(
     tables: &TransitionTables,
     orientation_dist: &[u8],

@@ -12,8 +12,7 @@ const F_DP: u8 = 1 << 2;
 const F_ENTRY_MIN: u8 = 1 << 3;
 const F_ENTRY_WIDTH: u8 = 1 << 4;
 const F_SPECTRUM: u8 = 1 << 5;
-const ALL_FEATURES: u8 =
-    F_DG | F_DO | F_DP | F_ENTRY_MIN | F_ENTRY_WIDTH | F_SPECTRUM;
+const ALL_FEATURES: u8 = F_DG | F_DO | F_DP | F_ENTRY_MIN | F_ENTRY_WIDTH | F_SPECTRUM;
 
 #[derive(Clone, Copy)]
 struct Coordinates {
@@ -40,10 +39,8 @@ fn main() {
     let d_o_coord = bfs_orientation_distance(&tables);
     let d_h = bfs_phase2_distance(&tables);
     let d_p = full_permutation_distance(&tables);
-    let (entry_min, entry_max) =
-        entry_surface_shortest_orientation(&tables, &d_o_coord, &d_h);
-    let spectrum =
-        entry_surface_spectrum_shortest_orientation(&tables, &d_o_coord, &d_h);
+    let (entry_min, entry_max) = entry_surface_shortest_orientation(&tables, &d_o_coord, &d_h);
+    let spectrum = entry_surface_spectrum_shortest_orientation(&tables, &d_o_coord, &d_h);
     let c3 = build_generator_cycle_c3(&tables);
 
     let mut coords = Vec::with_capacity(STATE_DOMAIN as usize);
@@ -142,8 +139,7 @@ fn main() {
     let mut phase_profiles = BTreeSet::<(u8, [u8; 3])>::new();
     let mut phase_profile_to_gap = HashMap::<[u8; 3], [u8; 3]>::new();
     let mut phase_profile_without_dg_collision = None;
-    let mut structural_profile_to_gap =
-        HashMap::<(u8, [(u8, u8); 3]), [u8; 3]>::new();
+    let mut structural_profile_to_gap = HashMap::<(u8, [(u8, u8); 3]), [u8; 3]>::new();
 
     for rank in 0..STATE_DOMAIN {
         if visited[rank as usize] {
@@ -212,7 +208,10 @@ fn main() {
             ),
         ];
         structural.sort_unstable();
-        match structural_profile_to_gap.get(&(dg_orbit, structural)).copied() {
+        match structural_profile_to_gap
+            .get(&(dg_orbit, structural))
+            .copied()
+        {
             None => {
                 structural_profile_to_gap.insert((dg_orbit, structural), gaps);
             }
@@ -267,10 +266,7 @@ fn main() {
         best_orientation.classes
     );
 
-    println!(
-        "structural_min_feature_count\t{}",
-        min_structural_features
-    );
+    println!("structural_min_feature_count\t{}", min_structural_features);
     println!(
         "structural_best_mask\t{}",
         feature_names(best_structural.mask)
@@ -339,7 +335,14 @@ fn main() {
     println!("symmetric_structural_quotient_violations\t0");
 
     // Print first insufficiency witnesses for the simplest candidate families.
-    for mask in [F_DO, F_ENTRY_MIN, F_DG, F_DP, F_SPECTRUM, F_DG | F_ENTRY_MIN] {
+    for mask in [
+        F_DO,
+        F_ENTRY_MIN,
+        F_DG,
+        F_DP,
+        F_SPECTRUM,
+        F_DG | F_ENTRY_MIN,
+    ] {
         let r = structural_results.iter().find(|r| r.mask == mask).unwrap();
         if let Some((a, da, b, db)) = r.witness {
             println!(
