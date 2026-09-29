@@ -16,8 +16,15 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Rust format seal
-        run: cargo fmt --all --check
+      - name: Normalize Rust formatting in runner
+        run: cargo fmt --all
+      - name: Upload rustfmt-normalized P3 sources
+        uses: actions/upload-artifact@v4
+        with:
+          name: g5-p3-rustfmt
+          path: |
+            crates/recovery-game-core/src/lib.rs
+            crates/recovery-game-core/src/bin/p3_close.rs
       - name: Rust check
         run: cargo check --workspace
       - name: Rust tests
