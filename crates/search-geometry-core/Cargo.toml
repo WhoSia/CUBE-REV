@@ -1,0 +1,11 @@
+[package]
+name = "search-geometry-core"
+version = "0.1.0"
+edition = "2021"
+description = "G5-P5 exact 2x2 anchored-RUF search geometry and two-phase representation court."
+
+[dependencies]
+cuberev-core = { path = "../cuberev-core" }
+
+[lib]
+path = "src/lib.rs"
