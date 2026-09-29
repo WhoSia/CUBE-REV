@@ -7,6 +7,7 @@
 
 pub mod r1;
 pub mod r2;
+pub mod r3;
 
 use recovery_game_core::{
     permanent_target_collision, target_is_constant, FiniteDynamics, HypothesisRecord,
