@@ -134,6 +134,39 @@ Under the full anchored-RUF move algebra, exact predictive closure of q346 colla
 
 This is the terminal scientific boundary of P5. Additional policy-quotient taxonomies belong in a new P-stage, not P5-R4/R5.
 
+### G5-P6 — representation ecology synthesis
+P6 synthesizes the Generation-V search, controller, symmetry, and prospective cognition axes on the same exact 3,674,160-state world.
+
+Exact representation class counts:
+- GEO `dG`: **12**
+- PDB `(dO,dP)`: **56**
+- PHASE `q346=(dG,dO,entryMin)`: **346**
+- POLICY `(q346,optimalPolicyMask)`: **9,284**
+- C3SYM: **1,046**
+- FULL: **3,674,160**
+
+The exact representation × preserved-claim court establishes a crossed ecology rather than a total order:
+
+- GEO preserves exact geodesic distance but not phase distortion, policy, symmetry-orbit target, or full transitions.
+- PDB is a valid search abstraction but does not exactly determine any of the five tested targets.
+- PHASE preserves geodesic distance and `Delta0`, but not exact action policy or dynamics.
+- POLICY additionally preserves the exact first-hit optimal action set, but not full transitions.
+- C3SYM preserves geodesic distance and the symmetrized `Psi` target, while intentionally losing unsymmetrized `Delta0`.
+- FULL preserves every tested exact claim.
+
+Therefore:
+
+> **Representation quality is claim-relative. There is no representation-independent total ordering across search, explanation, policy, symmetry, and predictive dynamics.**
+
+P6 freezes four matched-state human-precontact contrasts:
+- same `dG`, different `Delta0`;
+- same PDB coordinate, different entry/phase distortion;
+- same `q346`, different exact optimal policy;
+- same exact C3 graph orbit and `dG`, different phase distortion.
+
+The viewpoint-externalization contrast remains blocked until the interface viewpoint-state semantics are authoritative.
+Human world contact remains **CLOSED**.
+
 ## Repository structure
 
 The research branch keeps legacy deployment files because it descends from the public repository, but current scientific authority lives mainly in:
@@ -152,11 +185,13 @@ g5/
 │  ├─ R1.md
 │  ├─ R2.md
 │  └─ R3.md
-└─ p5/
-   ├─ R0.md
-   ├─ R1.md
-   ├─ R2.md
-   └─ R3.md
+├─ p5/
+│  ├─ R0.md
+│  ├─ R1.md
+│  ├─ R2.md
+│  └─ R3.md
+└─ p6/
+   └─ CONSTITUTION.md
 
 .github/workflows/
 ├─ g5-p4-synthesis.yml
@@ -184,9 +219,36 @@ cargo run --release --quiet -p search-geometry-core --bin p5_r0
 cargo run --release --quiet -p search-geometry-core --bin p5_r1
 cargo run --release --quiet -p search-geometry-core --bin p5_r2
 cargo run --release --quiet -p search-geometry-core --bin p5_r3
+cargo run --release --quiet -p search-geometry-core --bin p6
 ```
 
 GitHub Actions are used as reproducible execution receipts. A scientific result is not treated as closed merely because code exists locally; canonical courts are re-run at the exact branch head and inherited P3/P4 gates are checked for regression.
+
+## Current canonical Generation-V synthesis
+
+P6 canonical strict-seal commit:
+
+```text
+7c6f5808a63208bf229e79a9f74e67d8d62eab55
+```
+
+Strict P6 run:
+
+```text
+36534719743 — SUCCESS
+```
+
+Artifact:
+
+```text
+g5-p6-representation-ecology
+artifact id: 11017018939
+sha256: 6276ce94d970412c418fff473c4e1375390ff8e9cb6e317df312db3ac8e28ab9
+```
+
+At the same head, P5-R3, P5-R2, P5-R1, P5-R0, P4, and P3 all passed.
+
+The earlier P5-R3 science/seal commit remains the terminal authority for P5 itself; P6 is the cross-layer Generation-V synthesis above it.
 
 ## Current canonical P5 closure
 
