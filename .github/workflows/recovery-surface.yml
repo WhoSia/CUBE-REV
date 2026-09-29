@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   recovery-core:
@@ -16,12 +16,16 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Produce canonical rustfmt patch
+      - name: Materialize canonical Rust blob
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           cargo fmt --all
-          git diff -- crates/recovery-game-core/src/lib.rs crates/recovery-game-core/src/bin/p3_close.rs > /tmp/g5-p3-rustfmt.patch
-      - name: Upload rustfmt patch
+          CONTENT=$(base64 -w0 crates/recovery-game-core/src/bin/p3_close.rs)
+          SHA=$(curl -fsSL -X POST             -H "Authorization: Bearer $GH_TOKEN"             -H "Accept: application/vnd.github+json"             -H "X-GitHub-Api-Version: 2022-11-28"             https://api.github.com/repos/${GITHUB_REPOSITORY}/git/blobs             -d "{\"content\":\"$CONTENT\",\"encoding\":\"base64\"}" | python -c "import json,sys; print(json.load(sys.stdin)['sha'])")
+          printf '%s\n' "$SHA" > /tmp/p3-close-blob-sha.txt
+      - name: Upload canonical blob identity
         uses: actions/upload-artifact@v4
         with:
-          name: g5-p3-rustfmt-patch
-          path: /tmp/g5-p3-rustfmt.patch
+          name: g5-p3-formatted-blob
+          path: /tmp/p3-close-blob-sha.txt
