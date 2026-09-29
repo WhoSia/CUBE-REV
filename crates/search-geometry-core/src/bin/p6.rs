@@ -57,8 +57,7 @@ fn main() {
         let p = (rank / ORIENTATIONS) as usize;
         let o = (rank % ORIENTATIONS) as usize;
         base_delta[rank as usize] = d_o[o] + entry_min[rank as usize] - dg[rank as usize];
-        base_policy[rank as usize] =
-            optimal_policy_mask(rank, &tables, &d_o, &d_h, &first_hit);
+        base_policy[rank as usize] = optimal_policy_mask(rank, &tables, &d_o, &d_h, &first_hit);
         let _ = d_p[p];
     }
 
@@ -85,7 +84,10 @@ fn main() {
 
         rows.push(StateRow {
             dg: dg[rank as usize],
-            pdb: Pdb { do_: d_o[o], dp: d_p[p] },
+            pdb: Pdb {
+                do_: d_o[o],
+                dp: d_p[p],
+            },
             q: Q346 {
                 dg: dg[rank as usize],
                 do_: d_o[o],
@@ -94,7 +96,10 @@ fn main() {
             policy: base_policy[rank as usize],
             delta: base_delta[rank as usize],
             psi,
-            sym: Sym { dg: dg[rank as usize], phase },
+            sym: Sym {
+                dg: dg[rank as usize],
+                phase,
+            },
         });
     }
 
@@ -114,14 +119,14 @@ fn main() {
     let geo: Vec<u8> = rows.iter().map(|r| r.dg).collect();
     let pdb: Vec<Pdb> = rows.iter().map(|r| r.pdb).collect();
     let phase: Vec<Q346> = rows.iter().map(|r| r.q).collect();
-    let policy_repr: Vec<(Q346,u16)> = rows.iter().map(|r| (r.q,r.policy)).collect();
+    let policy_repr: Vec<(Q346, u16)> = rows.iter().map(|r| (r.q, r.policy)).collect();
     let sym: Vec<Sym> = rows.iter().map(|r| r.sym).collect();
     let full: Vec<u32> = (0..STATE_DOMAIN).collect();
 
     let targets_geo: Vec<u8> = rows.iter().map(|r| r.dg).collect();
     let targets_delta: Vec<u8> = rows.iter().map(|r| r.delta).collect();
     let targets_policy: Vec<u16> = rows.iter().map(|r| r.policy).collect();
-    let targets_psi: Vec<[u8;3]> = rows.iter().map(|r| r.psi).collect();
+    let targets_psi: Vec<[u8; 3]> = rows.iter().map(|r| r.psi).collect();
 
     let class_counts = [
         classes(&geo),
@@ -134,41 +139,41 @@ fn main() {
 
     let matrix = [
         [
-            sufficient(&geo,&targets_geo).0,
-            sufficient(&geo,&targets_delta).0,
-            sufficient(&geo,&targets_policy).0,
-            sufficient(&geo,&targets_psi).0,
-            sufficient(&geo,&full_transition).0,
+            sufficient(&geo, &targets_geo).0,
+            sufficient(&geo, &targets_delta).0,
+            sufficient(&geo, &targets_policy).0,
+            sufficient(&geo, &targets_psi).0,
+            sufficient(&geo, &full_transition).0,
         ],
         [
-            sufficient(&pdb,&targets_geo).0,
-            sufficient(&pdb,&targets_delta).0,
-            sufficient(&pdb,&targets_policy).0,
-            sufficient(&pdb,&targets_psi).0,
-            sufficient(&pdb,&full_transition).0,
+            sufficient(&pdb, &targets_geo).0,
+            sufficient(&pdb, &targets_delta).0,
+            sufficient(&pdb, &targets_policy).0,
+            sufficient(&pdb, &targets_psi).0,
+            sufficient(&pdb, &full_transition).0,
         ],
         [
-            sufficient(&phase,&targets_geo).0,
-            sufficient(&phase,&targets_delta).0,
-            sufficient(&phase,&targets_policy).0,
-            sufficient(&phase,&targets_psi).0,
-            sufficient(&phase,&full_transition).0,
+            sufficient(&phase, &targets_geo).0,
+            sufficient(&phase, &targets_delta).0,
+            sufficient(&phase, &targets_policy).0,
+            sufficient(&phase, &targets_psi).0,
+            sufficient(&phase, &full_transition).0,
         ],
         [
-            sufficient(&policy_repr,&targets_geo).0,
-            sufficient(&policy_repr,&targets_delta).0,
-            sufficient(&policy_repr,&targets_policy).0,
-            sufficient(&policy_repr,&targets_psi).0,
-            sufficient(&policy_repr,&full_transition).0,
+            sufficient(&policy_repr, &targets_geo).0,
+            sufficient(&policy_repr, &targets_delta).0,
+            sufficient(&policy_repr, &targets_policy).0,
+            sufficient(&policy_repr, &targets_psi).0,
+            sufficient(&policy_repr, &full_transition).0,
         ],
         [
-            sufficient(&sym,&targets_geo).0,
-            sufficient(&sym,&targets_delta).0,
-            sufficient(&sym,&targets_policy).0,
-            sufficient(&sym,&targets_psi).0,
-            sufficient(&sym,&full_transition).0,
+            sufficient(&sym, &targets_geo).0,
+            sufficient(&sym, &targets_delta).0,
+            sufficient(&sym, &targets_policy).0,
+            sufficient(&sym, &targets_psi).0,
+            sufficient(&sym, &full_transition).0,
         ],
-        [true,true,true,true,true],
+        [true, true, true, true, true],
     ];
 
     // Required inherited expectations.
@@ -183,28 +188,31 @@ fn main() {
     assert!(matrix[5].iter().all(|x| *x));
 
     println!("representation\tclasses");
-    for (name,n) in repr_names.iter().zip(class_counts.iter()) {
-        println!("{}\t{}",name,n);
+    for (name, n) in repr_names.iter().zip(class_counts.iter()) {
+        println!("{}\t{}", name, n);
     }
 
     println!("representation\tclaim\tsufficient");
-    for (i,rn) in repr_names.iter().enumerate() {
-        for (j,cn) in claim_names.iter().enumerate() {
-            println!("{}\t{}\t{}",rn,cn,matrix[i][j]);
+    for (i, rn) in repr_names.iter().enumerate() {
+        for (j, cn) in claim_names.iter().enumerate() {
+            println!("{}\t{}\t{}", rn, cn, matrix[i][j]);
         }
     }
 
     // Deterministic collision witnesses for failed relations.
-    emit_witness("GEO_to_DELTA", sufficient(&geo,&targets_delta).1);
-    emit_witness("PDB_to_DELTA", sufficient(&pdb,&targets_delta).1);
-    emit_witness("PHASE_to_POLICY", sufficient(&phase,&targets_policy).1);
-    emit_witness("POLICY_to_FULL_TRANSITION", sufficient(&policy_repr,&full_transition).1);
-    emit_witness("C3SYM_to_DELTA", sufficient(&sym,&targets_delta).1);
+    emit_witness("GEO_to_DELTA", sufficient(&geo, &targets_delta).1);
+    emit_witness("PDB_to_DELTA", sufficient(&pdb, &targets_delta).1);
+    emit_witness("PHASE_to_POLICY", sufficient(&phase, &targets_policy).1);
+    emit_witness(
+        "POLICY_to_FULL_TRANSITION",
+        sufficient(&policy_repr, &full_transition).1,
+    );
+    emit_witness("C3SYM_to_DELTA", sufficient(&sym, &targets_delta).1);
 
     // Matched-state packet seeds.
-    emit_pair("H_GEO_PHASE", collision_pair(&geo,&targets_delta));
-    emit_pair("H_PDB_ENTRY", collision_pair(&pdb,&targets_delta));
-    emit_pair("H_STATIC_POLICY", collision_pair(&phase,&targets_policy));
+    emit_pair("H_GEO_PHASE", collision_pair(&geo, &targets_delta));
+    emit_pair("H_PDB_ENTRY", collision_pair(&pdb, &targets_delta));
+    emit_pair("H_STATIC_POLICY", collision_pair(&phase, &targets_policy));
 
     let c3_pair = (0..STATE_DOMAIN)
         .find_map(|rank| {
@@ -213,80 +221,103 @@ fn main() {
                 && dg[rank as usize] == dg[b as usize]
                 && base_delta[rank as usize] != base_delta[b as usize]
             {
-                Some((rank,b))
-            } else { None }
+                Some((rank, b))
+            } else {
+                None
+            }
         })
         .expect("R1 established C3 phase asymmetry");
     println!(
         "matched_packet\tH_C3_REP\trank_a={} rank_b={} dg={} delta_a={} delta_b={}",
-        c3_pair.0,c3_pair.1,dg[c3_pair.0 as usize],
-        base_delta[c3_pair.0 as usize],base_delta[c3_pair.1 as usize]
+        c3_pair.0,
+        c3_pair.1,
+        dg[c3_pair.0 as usize],
+        base_delta[c3_pair.0 as usize],
+        base_delta[c3_pair.1 as usize]
     );
 
-    println!("prospective_packet\tH_VIEW\tSTATUS=BLOCKED_UNTIL_AUTHORITATIVE_UI_VIEWPOINT_STATE_MODEL");
+    println!(
+        "prospective_packet\tH_VIEW\tSTATUS=BLOCKED_UNTIL_AUTHORITATIVE_UI_VIEWPOINT_STATE_MODEL"
+    );
     println!("human_world_contact\tCLOSED");
 }
 
-fn classes<K: Eq + Hash>(keys:&[K])->usize {
-    let mut set=HashMap::<&K,()>::new();
-    for k in keys { set.insert(k,()); }
+fn classes<K: Eq + Hash>(keys: &[K]) -> usize {
+    let mut set = HashMap::<&K, ()>::new();
+    for k in keys {
+        set.insert(k, ());
+    }
     set.len()
 }
 
-fn sufficient<K,T>(keys:&[K], targets:&[T])->(bool,Option<(u32,u32)>)
-where K: Eq+Hash+Copy, T: Eq+Copy {
-    let mut map=HashMap::<K,(T,u32)>::new();
-    for (i,(&k,&t)) in keys.iter().zip(targets.iter()).enumerate() {
+fn sufficient<K, T>(keys: &[K], targets: &[T]) -> (bool, Option<(u32, u32)>)
+where
+    K: Eq + Hash + Copy,
+    T: Eq + Copy,
+{
+    let mut map = HashMap::<K, (T, u32)>::new();
+    for (i, (&k, &t)) in keys.iter().zip(targets.iter()).enumerate() {
         match map.get(&k).copied() {
-            None=>{map.insert(k,(t,i as u32));}
-            Some((old,j)) if old!=t=>return (false,Some((j,i as u32))),
-            _=>{}
+            None => {
+                map.insert(k, (t, i as u32));
+            }
+            Some((old, j)) if old != t => return (false, Some((j, i as u32))),
+            _ => {}
         }
     }
-    (true,None)
+    (true, None)
 }
 
-fn collision_pair<K,T>(keys:&[K],targets:&[T])->(u32,u32)
-where K:Eq+Hash+Copy,T:Eq+Copy {
-    sufficient(keys,targets).1.expect("requested failed relation needs collision")
+fn collision_pair<K, T>(keys: &[K], targets: &[T]) -> (u32, u32)
+where
+    K: Eq + Hash + Copy,
+    T: Eq + Copy,
+{
+    sufficient(keys, targets)
+        .1
+        .expect("requested failed relation needs collision")
 }
 
-fn emit_witness(label:&str,w:Option<(u32,u32)>) {
+fn emit_witness(label: &str, w: Option<(u32, u32)>) {
     match w {
-        Some((a,b))=>println!("collision\t{}\trank_a={} rank_b={}",label,a,b),
-        None=>println!("collision\t{}\tNONE",label),
+        Some((a, b)) => println!("collision\t{}\trank_a={} rank_b={}", label, a, b),
+        None => println!("collision\t{}\tNONE", label),
     }
 }
 
-fn emit_pair(label:&str,p:(u32,u32)) {
-    println!("matched_packet\t{}\trank_a={} rank_b={}",label,p.0,p.1);
+fn emit_pair(label: &str, p: (u32, u32)) {
+    println!("matched_packet\t{}\trank_a={} rank_b={}", label, p.0, p.1);
 }
 
 fn optimal_policy_mask(
-    rank:u32,
-    tables:&TransitionTables,
-    d_o:&[u8],
-    d_h:&[u8],
-    first_hit:&[u8],
-)->u16 {
-    if rank==0 { return 0; }
-    let o=(rank%ORIENTATIONS) as usize;
-    let p=(rank/ORIENTATIONS) as usize;
-    let mut mask=0u16;
-    if d_o[o]==0 {
-        let here=d_h[p];
+    rank: u32,
+    tables: &TransitionTables,
+    d_o: &[u8],
+    d_h: &[u8],
+    first_hit: &[u8],
+) -> u16 {
+    if rank == 0 {
+        return 0;
+    }
+    let o = (rank % ORIENTATIONS) as usize;
+    let p = (rank / ORIENTATIONS) as usize;
+    let mut mask = 0u16;
+    if d_o[o] == 0 {
+        let here = d_h[p];
         for &m in &PHASE2_MOVE_INDICES {
-            let next=tables.next_rank(rank,m);
-            let np=(next/ORIENTATIONS) as usize;
-            if d_h[np]+1==here { mask|=1u16<<m; }
+            let next = tables.next_rank(rank, m);
+            let np = (next / ORIENTATIONS) as usize;
+            if d_h[np] + 1 == here {
+                mask |= 1u16 << m;
+            }
         }
     } else {
-        let here=first_hit[rank as usize];
+        let here = first_hit[rank as usize];
         for m in 0..FULL_MOVES.len() {
-            let next=tables.next_rank(rank,m);
-            let no=(next%ORIENTATIONS) as usize;
-            if d_o[no]+1==d_o[o] && first_hit[next as usize]+1==here {
-                mask|=1u16<<m;
+            let next = tables.next_rank(rank, m);
+            let no = (next % ORIENTATIONS) as usize;
+            if d_o[no] + 1 == d_o[o] && first_hit[next as usize] + 1 == here {
+                mask |= 1u16 << m;
             }
         }
     }
