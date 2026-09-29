@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  statuses: write
 
 jobs:
   p5-search:
@@ -17,18 +18,33 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Canonicalize Rust for diagnostic run
+      - name: Canonicalize Rust for repaired R0
         run: cargo fmt --all
+      - name: Publish canonical P5 source blobs without moving refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          encode_blob() {
+            local path="$1"
+            local context="$2"
+            local encoded
+            encoded="$(base64 -w0 "$path")"
+            local sha
+            sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs"               -f content="$encoded" -f encoding="base64" --jq '.sha')"
+            gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA"               -f state="success" -f context="$context" -f description="$sha" >/dev/null
+          }
+          encode_blob "crates/search-geometry-core/src/lib.rs" "g5-p5-r0/rustfmt-lib"
+          encode_blob "crates/search-geometry-core/src/bin/p5_r0.rs" "g5-p5-r0/rustfmt-bin"
       - name: Workspace check
         run: cargo check --workspace
       - name: Workspace tests
         run: cargo test --workspace
-      - name: Materialize exact P5-R0 geometry
+      - name: Materialize exact first-hit P5-R0 geometry
         run: |
           mkdir -p g5/p5/ci-output
-          cargo run --release --quiet -p search-geometry-core --bin p5_r0 > g5/p5/ci-output/p5-r0.tsv
+          cargo run --release --quiet -p search-geometry-core --bin p5_r0 > g5/p5/ci-output/p5-r0-first-hit.tsv
       - name: Upload P5 court
         uses: actions/upload-artifact@v4
         with:
-          name: g5-p5-r0-search-geometry
+          name: g5-p5-r0-first-hit-search-geometry
           path: g5/p5/ci-output/

@@ -45,19 +45,25 @@ pub struct TransitionTables {
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
+pub struct PhaseSlackSummary {
+    pub slack: u8,
+    pub diameter: u8,
+    pub exact_match_states: u32,
+    pub max_gap: u8,
+    pub gap_histogram: Vec<u32>,
+    pub distance_histogram: Vec<u32>,
+    pub extremal_ranks: Vec<u32>,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct SearchGeometrySummary {
     pub states: u32,
     pub subgroup_states: u32,
     pub geodesic_diameter: u8,
     pub orientation_diameter: u8,
     pub phase2_diameter: u8,
-    pub two_phase_diameter: u8,
-    pub exact_match_states: u32,
-    pub max_gap: u8,
-    pub gap_histogram: Vec<u32>,
     pub geodesic_histogram: Vec<u32>,
-    pub two_phase_histogram: Vec<u32>,
-    pub extremal_ranks: Vec<u32>,
+    pub phase_slack: Vec<PhaseSlackSummary>,
 }
 
 impl TransitionTables {
@@ -242,47 +248,85 @@ pub fn bfs_phase2_distance(tables: &TransitionTables) -> Vec<u8> {
     dist
 }
 
-pub fn exact_two_phase_distance(
+/// Exact first-hit two-phase family.
+///
+/// Phase 1 must switch immediately on the first orientation-solved state.
+/// For a state whose minimum orientation distance is d, slack b permits at most
+/// d+b phase-1 moves before that first hit.
+///
+/// The recurrence is acyclic in (slack, orientation_distance):
+/// - moving d -> d-1 preserves slack;
+/// - d -> d consumes one slack;
+/// - d -> d+1 consumes two slack.
+pub fn first_hit_two_phase_family(
     tables: &TransitionTables,
+    orientation_dist: &[u8],
     phase2_dist: &[u8],
-) -> Vec<u8> {
+    max_slack: u8,
+) -> Vec<Vec<u8>> {
+    assert_eq!(orientation_dist.len(), ORIENTATIONS as usize);
     assert_eq!(phase2_dist.len(), PERMUTATIONS as usize);
-    let mut dist = vec![u8::MAX; STATE_DOMAIN as usize];
-    let mut buckets: Vec<VecDeque<u32>> = (0..64).map(|_| VecDeque::new()).collect();
 
-    for p in 0..PERMUTATIONS {
-        let cost = phase2_dist[p as usize];
-        assert_ne!(cost, u8::MAX);
-        let rank = p * ORIENTATIONS;
-        dist[rank as usize] = cost;
-        buckets[cost as usize].push_back(rank);
+    let max_d = *orientation_dist.iter().max().expect("orientation states") as usize;
+    let mut layers = vec![Vec::<u32>::new(); max_d + 1];
+    for o in 0..ORIENTATIONS {
+        layers[orientation_dist[o as usize] as usize].push(o);
     }
 
-    let mut current = 0usize;
-    while current < buckets.len() {
-        while let Some(rank) = buckets[current].pop_front() {
-            if dist[rank as usize] as usize != current {
-                continue;
-            }
-            let next_cost = current + 1;
-            if next_cost >= buckets.len() {
-                buckets.push(VecDeque::new());
-            }
-            for m in 0..FULL_MOVES.len() {
-                let next = tables.next_rank(rank, m);
-                if next_cost < dist[next as usize] as usize {
-                    dist[next as usize] = next_cost as u8;
-                    buckets[next_cost].push_back(next);
+    let mut family: Vec<Vec<u8>> = Vec::new();
+
+    for slack in 0..=max_slack {
+        let mut current = vec![u8::MAX; STATE_DOMAIN as usize];
+
+        for p in 0..PERMUTATIONS {
+            current[(p * ORIENTATIONS) as usize] = phase2_dist[p as usize];
+        }
+
+        for d in 1..=max_d {
+            for &o in &layers[d] {
+                for p in 0..PERMUTATIONS {
+                    let rank = p * ORIENTATIONS + o;
+                    let mut best = u8::MAX;
+
+                    for m in 0..FULL_MOVES.len() {
+                        let next = tables.next_rank(rank, m);
+                        let next_o = next % ORIENTATIONS;
+                        let next_d = orientation_dist[next_o as usize] as i16;
+                        let next_slack =
+                            slack as i16 + d as i16 - 1 - next_d;
+
+                        if next_slack < 0 || next_slack > slack as i16 {
+                            continue;
+                        }
+
+                        let tail = if next_slack as u8 == slack {
+                            current[next as usize]
+                        } else {
+                            family[next_slack as usize][next as usize]
+                        };
+
+                        if tail != u8::MAX {
+                            best = best.min(tail.saturating_add(1));
+                        }
+                    }
+
+                    assert_ne!(
+                        best,
+                        u8::MAX,
+                        "every state must have a first-hit phase path within its slack regime"
+                    );
+                    current[rank as usize] = best;
                 }
             }
         }
-        current += 1;
+
+        family.push(current);
     }
 
-    dist
+    family
 }
 
-pub fn run_full_court() -> SearchGeometrySummary {
+pub fn run_full_court(max_slack: u8) -> SearchGeometrySummary {
     let tables = TransitionTables::build();
 
     let subgroup = phase2_subgroup_census(&tables);
@@ -298,44 +342,60 @@ pub fn run_full_court() -> SearchGeometrySummary {
     let phase2 = bfs_phase2_distance(&tables);
     assert!(phase2.iter().all(|&d| d != u8::MAX));
 
-    let two_phase = exact_two_phase_distance(&tables, &phase2);
-    assert!(two_phase.iter().all(|&d| d != u8::MAX));
+    let phase_family =
+        first_hit_two_phase_family(&tables, &orientation, &phase2, max_slack);
 
     let geodesic_diameter = *geodesic.iter().max().unwrap();
     let orientation_diameter = *orientation.iter().max().unwrap();
     let phase2_diameter = *phase2.iter().max().unwrap();
-    let two_phase_diameter = *two_phase.iter().max().unwrap();
 
-    let mut gap_histogram = vec![0u32; 1];
     let mut geodesic_histogram = vec![0u32; geodesic_diameter as usize + 1];
-    let mut two_phase_histogram = vec![0u32; two_phase_diameter as usize + 1];
-    let mut exact_match_states = 0u32;
-    let mut max_gap = 0u8;
-    let mut extremal_ranks = Vec::new();
+    for &d in &geodesic {
+        geodesic_histogram[d as usize] += 1;
+    }
 
-    for rank in 0..STATE_DOMAIN {
-        let dg = geodesic[rank as usize];
-        let d2 = two_phase[rank as usize];
-        assert!(d2 >= dg, "two-phase distance undercut unrestricted geodesic");
-        geodesic_histogram[dg as usize] += 1;
-        two_phase_histogram[d2 as usize] += 1;
+    let mut phase_slack = Vec::new();
+    for (slack, distances) in phase_family.iter().enumerate() {
+        let diameter = *distances.iter().max().unwrap();
+        let mut exact_match_states = 0u32;
+        let mut max_gap = 0u8;
+        let mut gap_histogram = vec![0u32; 1];
+        let mut distance_histogram = vec![0u32; diameter as usize + 1];
+        let mut extremal_ranks = Vec::new();
 
-        let gap = d2 - dg;
-        if gap as usize >= gap_histogram.len() {
-            gap_histogram.resize(gap as usize + 1, 0);
-        }
-        gap_histogram[gap as usize] += 1;
+        for rank in 0..STATE_DOMAIN {
+            let dg = geodesic[rank as usize];
+            let d2 = distances[rank as usize];
+            assert!(d2 >= dg, "first-hit phase distance undercut geodesic");
+            distance_histogram[d2 as usize] += 1;
 
-        if gap == 0 {
-            exact_match_states += 1;
+            let gap = d2 - dg;
+            if gap as usize >= gap_histogram.len() {
+                gap_histogram.resize(gap as usize + 1, 0);
+            }
+            gap_histogram[gap as usize] += 1;
+
+            if gap == 0 {
+                exact_match_states += 1;
+            }
+            if gap > max_gap {
+                max_gap = gap;
+                extremal_ranks.clear();
+                extremal_ranks.push(rank);
+            } else if gap == max_gap && extremal_ranks.len() < 16 {
+                extremal_ranks.push(rank);
+            }
         }
-        if gap > max_gap {
-            max_gap = gap;
-            extremal_ranks.clear();
-            extremal_ranks.push(rank);
-        } else if gap == max_gap && extremal_ranks.len() < 32 {
-            extremal_ranks.push(rank);
-        }
+
+        phase_slack.push(PhaseSlackSummary {
+            slack: slack as u8,
+            diameter,
+            exact_match_states,
+            max_gap,
+            gap_histogram,
+            distance_histogram,
+            extremal_ranks,
+        });
     }
 
     SearchGeometrySummary {
@@ -344,13 +404,8 @@ pub fn run_full_court() -> SearchGeometrySummary {
         geodesic_diameter,
         orientation_diameter,
         phase2_diameter,
-        two_phase_diameter,
-        exact_match_states,
-        max_gap,
-        gap_histogram,
         geodesic_histogram,
-        two_phase_histogram,
-        extremal_ranks,
+        phase_slack,
     }
 }
 
