@@ -1,8 +1,8 @@
 use cuberev_core::{ORIENTATIONS, STATE_DOMAIN};
 use search_geometry_core::{
     bfs_geodesic, bfs_orientation_distance, bfs_phase2_distance,
-    entry_surface_shortest_orientation, first_hit_two_phase_family, TransitionTables,
-    FULL_MOVES, PHASE2_MOVE_INDICES,
+    entry_surface_shortest_orientation, first_hit_two_phase_family, TransitionTables, FULL_MOVES,
+    PHASE2_MOVE_INDICES,
 };
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 
@@ -128,22 +128,22 @@ fn main() {
     println!("states\t{}", STATE_DOMAIN);
     println!("q346_classes\t{}", classes.len());
     println!("unique_dg_zero_states\t{}", zero_states);
-    println!("reachable_states\t{}", dg.iter().filter(|&&d| d != u8::MAX).count());
+    println!(
+        "reachable_states\t{}",
+        dg.iter().filter(|&&d| d != u8::MAX).count()
+    );
     println!("inverse_sample_violations\t{}", inverse_violations);
-    println!("q346_action_congruence_violations\t{}", congruence_violations);
+    println!(
+        "q346_action_congruence_violations\t{}",
+        congruence_violations
+    );
     println!("minimal_full_action_predictive_classes\t{}", STATE_DOMAIN);
     println!(
         "distinct_nonterminal_optimal_policy_masks\t{}",
         policy_masks.len()
     );
-    println!(
-        "q346_classes_split_by_policy_mask\t{}",
-        split_q_classes
-    );
-    println!(
-        "q346_plus_policy_mask_classes\t{}",
-        q_policy_classes.len()
-    );
+    println!("q346_classes_split_by_policy_mask\t{}", split_q_classes);
+    println!("q346_plus_policy_mask_classes\t{}", q_policy_classes.len());
 
     println!(
         "action_congruence_witness\trank_a={} rank_b={} move={} successor_a=({},{},{}) successor_b=({},{},{})",
