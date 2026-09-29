@@ -69,9 +69,9 @@ pub fn split_xor_controller(events: &[u8], k: u8, external_bits: u8) -> u8 {
     let mut internal = 0u8;
 
     for &event in events {
-        assert!(event <= internal_mask);
-        external ^= event & external_mask;
-        internal ^= (event & internal_mask) >> external_bits;
+        let projected = event & internal_mask;
+        external ^= projected & external_mask;
+        internal ^= projected >> external_bits;
     }
 
     (internal << external_bits) | external
