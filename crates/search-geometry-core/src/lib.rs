@@ -6,6 +6,8 @@
 //! - no claim of equivalence to the ordinary six-face HTM until separately proved;
 //! - Kociemba is a design donor, not a priority claim or cognitive model.
 
+pub mod g6;
+
 use cuberev_core::{CornerState, ORIENTATIONS, PERMUTATIONS, STATE_DOMAIN};
 use std::collections::VecDeque;
 
