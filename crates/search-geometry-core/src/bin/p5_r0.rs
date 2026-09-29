@@ -26,10 +26,7 @@ fn main() {
             println!("slack_{}_gap_{}\t{}", regime.slack, gap, count);
         }
         for (i, rank) in regime.extremal_ranks.iter().enumerate() {
-            println!(
-                "slack_{}_max_gap_rank_{}\t{}",
-                regime.slack, i, rank
-            );
+            println!("slack_{}_max_gap_rank_{}\t{}", regime.slack, i, rank);
         }
     }
 }

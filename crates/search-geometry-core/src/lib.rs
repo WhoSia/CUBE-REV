@@ -25,15 +25,42 @@ pub struct Move {
 }
 
 pub const FULL_MOVES: [Move; 9] = [
-    Move { face: Face::U, power: 1 },
-    Move { face: Face::U, power: 2 },
-    Move { face: Face::U, power: 3 },
-    Move { face: Face::R, power: 1 },
-    Move { face: Face::R, power: 2 },
-    Move { face: Face::R, power: 3 },
-    Move { face: Face::F, power: 1 },
-    Move { face: Face::F, power: 2 },
-    Move { face: Face::F, power: 3 },
+    Move {
+        face: Face::U,
+        power: 1,
+    },
+    Move {
+        face: Face::U,
+        power: 2,
+    },
+    Move {
+        face: Face::U,
+        power: 3,
+    },
+    Move {
+        face: Face::R,
+        power: 1,
+    },
+    Move {
+        face: Face::R,
+        power: 2,
+    },
+    Move {
+        face: Face::R,
+        power: 3,
+    },
+    Move {
+        face: Face::F,
+        power: 1,
+    },
+    Move {
+        face: Face::F,
+        power: 2,
+    },
+    Move {
+        face: Face::F,
+        power: 3,
+    },
 ];
 
 pub const PHASE2_MOVE_INDICES: [usize; 5] = [0, 1, 2, 4, 7];
@@ -136,8 +163,14 @@ fn apply_quarter(state: &CornerState, face: Face) -> CornerState {
         next_ori[pos] = (full_ori[cp[pos]] + co[pos]) % 3;
     }
 
-    assert_eq!(next_perm[6], 6, "anchored generators must preserve DBL corner");
-    assert_eq!(next_ori[6], 0, "anchored generators must preserve DBL orientation");
+    assert_eq!(
+        next_perm[6], 6,
+        "anchored generators must preserve DBL corner"
+    );
+    assert_eq!(
+        next_ori[6], 0,
+        "anchored generators must preserve DBL orientation"
+    );
 
     let mut perm = [0u8; 7];
     let mut ori = [0u8; 7];
@@ -154,14 +187,8 @@ fn apply_quarter(state: &CornerState, face: Face) -> CornerState {
 fn quarter_table(face: Face) -> ([usize; 8], [u8; 8]) {
     match face {
         Face::U => ([3, 0, 1, 2, 4, 5, 6, 7], [0; 8]),
-        Face::R => (
-            [4, 1, 2, 0, 7, 5, 6, 3],
-            [2, 0, 0, 1, 1, 0, 0, 2],
-        ),
-        Face::F => (
-            [1, 5, 2, 3, 0, 4, 6, 7],
-            [1, 2, 0, 0, 2, 1, 0, 0],
-        ),
+        Face::R => ([4, 1, 2, 0, 7, 5, 6, 3], [2, 0, 0, 1, 1, 0, 0, 2]),
+        Face::F => ([1, 5, 2, 3, 0, 4, 6, 7], [1, 2, 0, 0, 2, 1, 0, 0]),
     }
 }
 
@@ -292,8 +319,7 @@ pub fn first_hit_two_phase_family(
                         let next = tables.next_rank(rank, m);
                         let next_o = next % ORIENTATIONS;
                         let next_d = orientation_dist[next_o as usize] as i16;
-                        let next_slack =
-                            slack as i16 + d as i16 - 1 - next_d;
+                        let next_slack = slack as i16 + d as i16 - 1 - next_d;
 
                         if next_slack < 0 || next_slack > slack as i16 {
                             continue;
@@ -342,8 +368,7 @@ pub fn run_full_court(max_slack: u8) -> SearchGeometrySummary {
     let phase2 = bfs_phase2_distance(&tables);
     assert!(phase2.iter().all(|&d| d != u8::MAX));
 
-    let phase_family =
-        first_hit_two_phase_family(&tables, &orientation, &phase2, max_slack);
+    let phase_family = first_hit_two_phase_family(&tables, &orientation, &phase2, max_slack);
 
     let geodesic_diameter = *geodesic.iter().max().unwrap();
     let orientation_diameter = *orientation.iter().max().unwrap();
