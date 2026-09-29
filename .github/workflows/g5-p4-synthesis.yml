@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  statuses: write
 
 jobs:
   p4-synthesis:
@@ -18,13 +19,21 @@ jobs:
           components: rustfmt
       - name: Canonicalize Rust in runner
         run: cargo fmt --all
-      - name: Upload canonical P4 Rust sources
-        uses: actions/upload-artifact@v4
-        with:
-          name: g5-p4-rustfmt
-          path: |
-            crates/recovery-synthesis-core/src/lib.rs
-            crates/recovery-synthesis-core/src/bin/p4_open.rs
+      - name: Publish canonical source blobs without moving refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          encode_blob() {
+            local path="$1"
+            local context="$2"
+            local encoded
+            encoded="$(base64 -w0 "$path")"
+            local sha
+            sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs"               -f content="$encoded" -f encoding="base64" --jq '.sha')"
+            gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA"               -f state="success" -f context="$context" -f description="$sha" >/dev/null
+          }
+          encode_blob "crates/recovery-synthesis-core/src/lib.rs" "g5-p4/rustfmt-lib"
+          encode_blob "crates/recovery-synthesis-core/src/bin/p4_open.rs" "g5-p4/rustfmt-bin"
       - name: Workspace check
         run: cargo check --workspace
       - name: Workspace tests
