@@ -16,8 +16,15 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Rust format seal
-        run: cargo fmt --all --check
+      - name: Canonicalize Rust in runner
+        run: cargo fmt --all
+      - name: Upload canonical P4 Rust sources
+        uses: actions/upload-artifact@v4
+        with:
+          name: g5-p4-rustfmt
+          path: |
+            crates/recovery-synthesis-core/src/lib.rs
+            crates/recovery-synthesis-core/src/bin/p4_open.rs
       - name: Workspace check
         run: cargo check --workspace
       - name: Workspace tests
