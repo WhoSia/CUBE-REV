@@ -6,6 +6,7 @@
 //! remain claims to be earned by later courts.
 
 pub mod r1;
+pub mod r2;
 
 use recovery_game_core::{
     permanent_target_collision, target_is_constant, FiniteDynamics, HypothesisRecord,

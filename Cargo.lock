@@ -14,5 +14,6 @@ version = "0.1.0"
 name = "recovery-synthesis-core"
 version = "0.1.0"
 dependencies = [
+ "cuberev-core",
  "recovery-game-core",
 ]

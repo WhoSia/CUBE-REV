@@ -22,11 +22,12 @@ jobs:
         run: cargo check --workspace
       - name: Workspace tests
         run: cargo test --workspace
-      - name: Materialize P4 opening and R1 courts
+      - name: Materialize P4 courts
         run: |
           mkdir -p g5/p4/ci-output
           cargo run --quiet -p recovery-synthesis-core --bin p4_open > g5/p4/ci-output/p4-opening.tsv
           cargo run --quiet -p recovery-synthesis-core --bin p4_r1 > g5/p4/ci-output/p4-r1.tsv 2> g5/p4/ci-output/p4-r1-certificate.txt
+          cargo run --quiet -p recovery-synthesis-core --bin p4_r2 > g5/p4/ci-output/p4-r2.tsv
       - name: Upload P4 courts
         uses: actions/upload-artifact@v4
         with:
