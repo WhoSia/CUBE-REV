@@ -163,10 +163,7 @@ where
             for candidate in frontier {
                 let mut new_branches = branches.clone();
                 new_branches.insert(obs.clone(), Box::new(candidate.root.clone()));
-                next.push((
-                    new_branches,
-                    max_cost(*accumulated, candidate.cost),
-                ));
+                next.push((new_branches, max_cost(*accumulated, candidate.cost)));
             }
         }
         pareto_branch_partials(&mut next);
@@ -314,8 +311,8 @@ fn max_cost(a: ResourceVector, b: ResourceVector) -> ResourceVector {
 mod tests {
     use super::*;
     use recovery_game_core::{
-        bit_query_exact_belief, bit_query_parity_belief, BitQueryDynamics,
-        BitQueryObservation, RotateProbe,
+        bit_query_exact_belief, bit_query_parity_belief, BitQueryDynamics, BitQueryObservation,
+        RotateProbe,
     };
 
     fn read_cost(_: &RotateProbe) -> ResourceVector {
@@ -334,8 +331,7 @@ mod tests {
         let observation = BitQueryObservation;
         let actions: Vec<_> = (0..n).map(RotateProbe).collect();
         let belief = bit_query_exact_belief(n);
-        let policies =
-            synthesize_pareto(&dynamics, &observation, &actions, &belief, 3, &read_cost);
+        let policies = synthesize_pareto(&dynamics, &observation, &actions, &belief, 3, &read_cost);
 
         assert!(!policies.is_empty());
         assert!(policies.iter().all(|p| p.cost.query == 3));
@@ -349,8 +345,7 @@ mod tests {
         let observation = BitQueryObservation;
         let actions: Vec<_> = (0..n).map(RotateProbe).collect();
         let belief = bit_query_exact_belief(n);
-        let policies =
-            synthesize_pareto(&dynamics, &observation, &actions, &belief, 2, &read_cost);
+        let policies = synthesize_pareto(&dynamics, &observation, &actions, &belief, 2, &read_cost);
 
         assert!(policies.is_empty());
     }
@@ -384,8 +379,7 @@ mod tests {
         let observation = BitQueryObservation;
         let actions: Vec<_> = (0..n).map(RotateProbe).collect();
         let belief = bit_query_exact_belief(n);
-        let policies =
-            synthesize_pareto(&dynamics, &observation, &actions, &belief, 3, &read_cost);
+        let policies = synthesize_pareto(&dynamics, &observation, &actions, &belief, 3, &read_cost);
 
         let tight = ResourceBudget {
             max: ResourceVector {
@@ -415,8 +409,7 @@ mod tests {
         let observation = BitQueryObservation;
         let actions: Vec<_> = (0..n).map(RotateProbe).collect();
         let belief = bit_query_exact_belief(n);
-        let baseline =
-            synthesize_pareto(&dynamics, &observation, &actions, &belief, 2, &read_cost);
+        let baseline = synthesize_pareto(&dynamics, &observation, &actions, &belief, 2, &read_cost);
         let preserved = baseline.clone();
         let broken = Vec::new();
         let budget = ResourceBudget {

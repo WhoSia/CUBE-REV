@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  statuses: write
+  contents: read
 
 jobs:
   p4-synthesis:
@@ -17,23 +16,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Canonicalize Rust in runner
-        run: cargo fmt --all
-      - name: Publish canonical source blobs without moving refs
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          encode_blob() {
-            local path="$1"
-            local context="$2"
-            local encoded
-            encoded="$(base64 -w0 "$path")"
-            local sha
-            sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs"               -f content="$encoded" -f encoding="base64" --jq '.sha')"
-            gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA"               -f state="success" -f context="$context" -f description="$sha" >/dev/null
-          }
-          encode_blob "crates/recovery-synthesis-core/src/lib.rs" "g5-p4/rustfmt-lib"
-          encode_blob "crates/recovery-synthesis-core/src/bin/p4_open.rs" "g5-p4/rustfmt-bin"
+      - name: Rust format seal
+        run: cargo fmt --all --check
       - name: Workspace check
         run: cargo check --workspace
       - name: Workspace tests
