@@ -16,17 +16,23 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Normalize Rust formatting in runner
-        run: cargo fmt --all
-      - name: Upload rustfmt-normalized recovery core
-        uses: actions/upload-artifact@v4
-        with:
-          name: recovery-core-rustfmt
-          path: crates/recovery-game-core/src/lib.rs
+      - name: Rust format seal
+        run: cargo fmt --all --check
       - name: Rust check
         run: cargo check --workspace
       - name: Rust tests
         run: cargo test --workspace
+      - name: Frozen P3 grid and independent audit
+        run: |
+          mkdir -p g5/p3/ci-output
+          cargo run --quiet -p recovery-game-core --bin p3_close > g5/p3/ci-output/p3-grid.tsv
+          python scripts/g5_p3_independent_audit.py g5/p3/ci-output/p3-grid.tsv
+          python scripts/g5_p3_learned_quotient.py > g5/p3/ci-output/p3-learned-quotient.json
+      - name: Upload P3 court outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: g5-p3-court
+          path: g5/p3/ci-output/
       - uses: actions/setup-node@v4
         with:
           node-version: 22
