@@ -1,0 +1,33 @@
+name: Validate G5-P4 recovery synthesis
+
+on:
+  push:
+    branches: ['research/current']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  p4-synthesis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - name: Rust format seal
+        run: cargo fmt --all --check
+      - name: Workspace check
+        run: cargo check --workspace
+      - name: Workspace tests
+        run: cargo test --workspace
+      - name: Materialize P4 opening court
+        run: |
+          mkdir -p g5/p4/ci-output
+          cargo run --quiet -p recovery-synthesis-core --bin p4_open > g5/p4/ci-output/p4-opening.tsv
+      - name: Upload P4 opening court
+        uses: actions/upload-artifact@v4
+        with:
+          name: g5-p4-opening-court
+          path: g5/p4/ci-output/

@@ -9,3 +9,10 @@ version = "0.1.0"
 [[package]]
 name = "recovery-game-core"
 version = "0.1.0"
+
+[[package]]
+name = "recovery-synthesis-core"
+version = "0.1.0"
+dependencies = [
+ "recovery-game-core",
+]
