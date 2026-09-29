@@ -32,10 +32,7 @@ fn main() {
         "joint_capacity_before\t{}",
         transfer.joint_capacity_before()
     );
-    println!(
-        "joint_capacity_after\t{}",
-        transfer.joint_capacity_after()
-    );
+    println!("joint_capacity_after\t{}", transfer.joint_capacity_after());
     println!(
         "cube_permutation_representatives_checked\t{}",
         cube.permutation_representatives_checked

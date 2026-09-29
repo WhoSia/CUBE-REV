@@ -134,8 +134,7 @@ pub fn verify_cube_permutation_transport() -> CubeTransportCertificate {
 
         // Orientation is deliberately excluded from both the target and stream.
         // Check a second orientation-coded state in the same permutation block.
-        let alt = CornerState::unrank(rank + ORIENTATIONS - 1)
-            .expect("valid orientation variant");
+        let alt = CornerState::unrank(rank + ORIENTATIONS - 1).expect("valid orientation variant");
         assert_eq!(alt.perm, state.perm);
         assert_eq!(
             cube_permutation_inversion_stream(&alt),
@@ -183,9 +182,7 @@ pub fn fit_parity_controller_from_short_traces(max_len: usize) -> LearnedControl
 
     for len in 0..=max_len {
         for mask in 0..(1usize << len) {
-            let bits: Vec<u8> = (0..len)
-                .map(|i| ((mask >> i) & 1) as u8)
-                .collect();
+            let bits: Vec<u8> = (0..len).map(|i| ((mask >> i) & 1) as u8).collect();
             let state = history_quotient_class(&bits) as usize;
             let output = run_internal_parity_controller(&bits);
             outputs[state] = Some(output);
@@ -257,9 +254,7 @@ pub fn observation_history_partition(max_len: usize) -> BTreeMap<ParityMemory, u
     let mut counts = BTreeMap::new();
     for len in 0..=max_len {
         for mask in 0..(1usize << len) {
-            let bits: Vec<u8> = (0..len)
-                .map(|i| ((mask >> i) & 1) as u8)
-                .collect();
+            let bits: Vec<u8> = (0..len).map(|i| ((mask >> i) & 1) as u8).collect();
             *counts.entry(history_quotient_class(&bits)).or_insert(0) += 1;
         }
     }
@@ -291,7 +286,10 @@ mod tests {
         assert_eq!(witness.internal_states_after, 1);
         assert_eq!(witness.external_states_before, 1);
         assert_eq!(witness.external_states_after, 2);
-        assert_eq!(witness.joint_capacity_before(), witness.joint_capacity_after());
+        assert_eq!(
+            witness.joint_capacity_before(),
+            witness.joint_capacity_after()
+        );
     }
 
     #[test]
