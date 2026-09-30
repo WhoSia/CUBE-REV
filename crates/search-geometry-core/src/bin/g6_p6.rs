@@ -1,6 +1,6 @@
 use search_geometry_core::g6::{
-    entry_cost_signature, first_hit_g1_endpoints, phase1_ball, phase2_ball, rotate_action_c4,
-    Cube, EntryCostSignature, Phase1, Phase1Moves, HTM,
+    entry_cost_signature, first_hit_g1_endpoints, phase1_ball, phase2_ball, rotate_action_c4, Cube,
+    EntryCostSignature, Phase1, Phase1Moves, HTM,
 };
 use std::collections::{HashMap, HashSet, VecDeque};
 
@@ -74,14 +74,8 @@ fn main() {
     let mut hard_states = Vec::new();
 
     for &(state, _) in &slice {
-        let shortest = entry_cost_signature(
-            &first_hit_g1_endpoints(state, 2),
-            &phase2_dist,
-        );
-        let slack1 = entry_cost_signature(
-            &first_hit_g1_endpoints(state, 3),
-            &phase2_dist,
-        );
+        let shortest = entry_cost_signature(&first_hit_g1_endpoints(state, 2), &phase2_dist);
+        let slack1 = entry_cost_signature(&first_hit_g1_endpoints(state, 3), &phase2_dist);
 
         *shortest_profiles.entry(shortest.clone()).or_insert(0) += 1;
         *frontier_profiles
@@ -135,12 +129,18 @@ fn main() {
     assert!(shortest_by_state[&hard].exact_phase2_costs.is_empty());
     assert_eq!(shortest_by_state[&hard].beyond_phase2_radius, 4);
 
-    let same_q_regret_classes = q_strata.values().filter(|classes| classes.len() > 1).count();
+    let same_q_regret_classes = q_strata
+        .values()
+        .filter(|classes| classes.len() > 1)
+        .count();
     let max_same_q_strata = q_strata.values().map(HashSet::len).max().unwrap_or(0);
 
     // C4 is the executable symmetry positive control. The physical rotation
     // acts on a state by relabeling every move in any word from solved.
-    let slice_set = slice.iter().map(|&(state, _)| state).collect::<HashSet<_>>();
+    let slice_set = slice
+        .iter()
+        .map(|&(state, _)| state)
+        .collect::<HashSet<_>>();
     let mut visited = HashSet::new();
     let mut orbit_histogram = HashMap::<usize, usize>::new();
     let mut symmetry_conflicts = 0usize;
@@ -179,7 +179,10 @@ fn main() {
     println!("SLICE_STATES\t{}", slice.len());
     println!("PHASE2_EXACT_RADIUS\t6");
     println!("SHORTEST_PROFILE_CLASSES\t{}", shortest_profiles.len());
-    println!("SLACK_FRONTIER_PROFILE_CLASSES\t{}", frontier_profiles.len());
+    println!(
+        "SLACK_FRONTIER_PROFILE_CLASSES\t{}",
+        frontier_profiles.len()
+    );
     println!("REGRET_POSITIVE_STATES\t{regret_positive}");
     println!("HARD_ENTRY_STATES\t{}", hard_states.len());
     println!("SAME_Q_COORDINATES\t{}", q_strata.len());
@@ -199,9 +202,7 @@ fn main() {
         shortest_by_state[&easy],
         shortest_by_state[&hard]
     );
-    println!(
-        "NONVACUOUS_SLACK_WITNESS\tR' L U2: shortest_total>=9; +1_slack_total=4"
-    );
+    println!("NONVACUOUS_SLACK_WITNESS\tR' L U2: shortest_total>=9; +1_slack_total=4");
     println!(
         "REPRESENTATION_LADDER\tq -> shortest endpoint-cost fiber -> slack frontier -> full state"
     );
