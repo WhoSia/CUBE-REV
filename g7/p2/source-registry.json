@@ -86,7 +86,7 @@
       "redistribution_status": "RAW_PUBLIC_RELEASE_HOLD",
       "code_license": null,
       "priority": "VERY_HIGH",
-      "notes": "Index and /solve/{id} pages are server-rendered HTML. About page explicitly describes large-scale analysis as a purpose, but no bulk export/API or redistribution terms have been grounded. Default acquisition must remain dry-run/bounded until rights/robots are resolved."
+      "notes": "Index and /solve/{id} pages are server-rendered HTML. About page explicitly describes large-scale analysis as a purpose. Live 2026-09-30 check found robots.txt absent (404) and no dedicated terms/privacy/export/API page in site map. No explicit bulk export or redistribution terms are grounded; keep bounded-only acquisition and raw public release HOLD."
     },
     {
       "source_id": "speedcubing_reconstructions",
