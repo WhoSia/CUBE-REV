@@ -21,7 +21,13 @@ assert.deepEqual(r.average_neighbor_ids,[14098,14133]);
 
 const indexHtml=fs.readFileSync("scripts/g7-p2/fixtures/reco-index-minimal.html","utf8");
 const idx=parseRecoIndexHtml(indexHtml);
-assert.deepEqual(idx.solve_ids,[14132,14133,14134]);
+assert.deepEqual(idx.solve_ids,[14133,14134,14147]);
+assert.equal(idx.rows.length,3);
+assert.equal(idx.rows[0].puzzle,"OH");
+assert.equal(idx.rows[1].puzzle,"3x3");
+assert.equal(idx.rows[1].method,"CFOP");
+assert.equal(idx.rows[1].movecount,55);
+assert.equal(idx.rows[1].tps,14.32);
 assert.deepEqual(idx.referenced_pages,[2,42]);
 
 console.log("G7_P2_RECO_HTML_PARSER_PASS");
