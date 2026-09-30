@@ -107,12 +107,10 @@ jobs:
           node scripts/g7-p2/census-reco-index.mjs --out /tmp/reco-index-census --delay-ms 2000 --max-pages 400 | tee /tmp/reco-index-census/derived/execution.log
       - name: Seal census evidence
         run: |
-          (cd /tmp/reco-index-census && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
-          test -s /tmp/reco-index-census/derived/census.json
-          test -s /tmp/reco-index-census/derived/index-rows.jsonl
-          grep -q $'SOLVE_BODY_REQUESTS\\t0' /tmp/reco-index-census/derived/execution.log
+          node scripts/g7-p2/validate-reco-index-census.mjs /tmp/reco-index-census
           echo G7_P2_RECO_INDEX_CENSUS_CUSTODY_PASS
       - uses: actions/upload-artifact@v4
+        if: \${{ always() }}
         with:
           name: G7-P2-reco-index-census-${{ github.sha }}
           path: /tmp/reco-index-census
