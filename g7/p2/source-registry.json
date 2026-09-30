@@ -55,6 +55,40 @@
       "notes": "MIT applies to repository code; do not infer that it licenses database content. Internal raw mirror and derived analysis are separated."
     },
     {
+      "source_id": "reco_nz",
+      "title": "reco.nz reconstruction database",
+      "source_class": "public_reconstruction_site_ssr",
+      "homepage": "https://reco.nz/",
+      "index_url": "https://reco.nz/solve/index",
+      "solve_url_template": "https://reco.nz/solve/{id}",
+      "event_scope": [
+        "333",
+        "other_events"
+      ],
+      "provides": [
+        "scramble",
+        "solution_reconstruction",
+        "solver",
+        "result",
+        "date",
+        "competition",
+        "reconstructor",
+        "method_context",
+        "stage_annotations",
+        "stage_stats",
+        "video_url",
+        "average_neighbor_ids"
+      ],
+      "move_by_move": true,
+      "access_status": "PUBLIC_SSR_HTML",
+      "bulk_acquisition": "BOUNDED_ONLY_PENDING_RIGHTS",
+      "data_rights_status": "UNSPECIFIED",
+      "redistribution_status": "RAW_PUBLIC_RELEASE_HOLD",
+      "code_license": null,
+      "priority": "VERY_HIGH",
+      "notes": "Index and /solve/{id} pages are server-rendered HTML. About page explicitly describes large-scale analysis as a purpose, but no bulk export/API or redistribution terms have been grounded. Default acquisition must remain dry-run/bounded until rights/robots are resolved."
+    },
+    {
       "source_id": "speedcubing_reconstructions",
       "title": "speedcubing.com Reconstructions",
       "source_class": "public_reconstruction_site",
