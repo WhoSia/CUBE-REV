@@ -386,7 +386,10 @@ fn main() {
         "FAMILIES_WITH_COMBINED_POLICY_DIFFERENCE\t{}",
         families_with_policy_difference
     );
-    println!("FULL_SOLUTION_COUNT_MATCH_FAMILIES\t{}", full_solution_count_match);
+    println!(
+        "FULL_SOLUTION_COUNT_MATCH_FAMILIES\t{}",
+        full_solution_count_match
+    );
     println!(
         "FULL_FIRST_ACTION_SET_MATCH_FAMILIES\t{}",
         full_first_action_set_match
