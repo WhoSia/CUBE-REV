@@ -18,6 +18,7 @@ const outDir=value("--out","g7/p2/reco-capture");
 const pageStart=Number(value("--page-start","1"));
 const pages=Number(value("--pages","1"));
 const maxSolves=Number(value("--max-solves","5"));
+const puzzle=value("--puzzle","3x3");
 const delayMs=Number(value("--delay-ms",String(policy.min_delay_ms)));
 
 if(policy.source_id!=="reco_nz") throw new Error("RECO_POLICY_SOURCE");
@@ -35,6 +36,7 @@ if(!execute){
   console.log("MODE\t"+policy.mode);
   console.log("INDEX_URLS\t"+indexUrls.join(","));
   console.log("MAX_SOLVES\t"+maxSolves);
+  console.log("PUZZLE_FILTER\t"+puzzle);
   console.log("DELAY_MS\t"+delayMs);
   console.log("EXECUTION\tREFUSED_WITHOUT_--execute");
   process.exit(0);
@@ -81,7 +83,7 @@ fs.mkdirSync(path.join(outDir,"raw","index"),{recursive:true});
 fs.mkdirSync(path.join(outDir,"raw","solve"),{recursive:true});
 fs.mkdirSync(path.join(outDir,"derived"),{recursive:true});
 
-const discovered=[];
+const discoveredRows=[];
 for(let i=0;i<indexUrls.length;i++){
   const url=indexUrls[i];
   const page=pageStart+i;
@@ -95,9 +97,16 @@ for(let i=0;i<indexUrls.length;i++){
     fs.writeFileSync(target,html);
   }
   const parsed=parseRecoIndexHtml(html);
-  for(const id of parsed.solve_ids) discovered.push(id);
+  if(!parsed.rows.length) throw new Error("RECO_INDEX_ROWS_MISSING:"+page);
+  for(const row of parsed.rows) discoveredRows.push({...row,index_page:page});
 }
-const ids=[...new Set(discovered)].slice(0,maxSolves);
+const eligibleRows=discoveredRows.filter(row=>puzzle==="*" || row.puzzle===puzzle);
+const ids=[...new Set(eligibleRows.map(row=>row.id))].slice(0,maxSolves);
+if(!ids.length) throw new Error("RECO_NO_ELIGIBLE_SOLVES");
+fs.writeFileSync(
+  path.join(outDir,"derived","index-rows.jsonl"),
+  discoveredRows.map(x=>JSON.stringify(x)).join("\n")+"\n"
+);
 
 const manifest=[];
 for(let i=0;i<ids.length;i++){
@@ -126,6 +135,9 @@ fs.writeFileSync(path.join(outDir,"capture-manifest.json"),JSON.stringify({
   page_start:pageStart,
   pages,
   delay_ms:delayMs,
+  puzzle_filter:puzzle,
+  index_row_count:discoveredRows.length,
+  eligible_row_count:eligibleRows.length,
   solve_count:manifest.length,
   robots_check:robotsCheck,
   records:manifest.map(({parsed,...x})=>x)
@@ -133,6 +145,9 @@ fs.writeFileSync(path.join(outDir,"capture-manifest.json"),JSON.stringify({
 
 console.log("G7_P2_RECO_BOUNDED_CAPTURE_PASS");
 console.log("INDEX_PAGES\t"+pages);
+console.log("INDEX_ROWS\t"+discoveredRows.length);
+console.log("ELIGIBLE_ROWS\t"+eligibleRows.length);
+console.log("PUZZLE_FILTER\t"+puzzle);
 console.log("SOLVES\t"+manifest.length);
 console.log("RAW_HTML_PRESERVED\tYES");
 console.log("ROBOTS_CHECK\t"+robotsCheck);
