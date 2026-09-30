@@ -432,3 +432,157 @@ pub fn rotate_action_c4(action: usize) -> usize {
     };
     face_idx * 3 + mv.power as usize - 1
 }
+
+
+/// The ten half-turn-metric generators allowed inside Kociemba phase 2:
+/// U/U2/U', D/D2/D', and half turns of the four side faces.
+pub const G1_ACTIONS: [usize; 10] = [0, 1, 2, 9, 10, 11, 4, 13, 7, 16];
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash, Ord, PartialOrd)]
+pub struct Phase2 {
+    pub corner_perm: u16,
+    pub ud_edge_perm: u16,
+    pub slice_perm: u8,
+}
+
+impl Cube {
+    /// Exact natural phase-2 coordinate for states in G1.
+    ///
+    /// The triple is a lossless identifier of a legal G1 cubie state:
+    /// corner permutation (8!), U/D-edge permutation (8!), and
+    /// slice-edge permutation (4!), subject to the ordinary parity coupling.
+    pub fn phase2(self) -> Option<Phase2> {
+        if !self.phase1().is_g1() {
+            return None;
+        }
+        let corner_perm = rank_perm(&self.cp) as u16;
+        let ud_edge_perm = rank_perm(&self.ep[..8]) as u16;
+        let mut slice = [0u8; 4];
+        for (i, &edge) in self.ep[8..].iter().enumerate() {
+            debug_assert!((8..12).contains(&edge));
+            slice[i] = edge - 8;
+        }
+        Some(Phase2 {
+            corner_perm,
+            ud_edge_perm,
+            slice_perm: rank_perm(&slice) as u8,
+        })
+    }
+
+    pub fn is_g1(self) -> bool {
+        self.phase1().is_g1()
+    }
+}
+
+fn rank_perm(values: &[u8]) -> usize {
+    let mut rank = 0usize;
+    for i in 0..values.len() {
+        let smaller_right = values[i + 1..]
+            .iter()
+            .filter(|&&x| x < values[i])
+            .count();
+        rank = rank * (values.len() - i) + smaller_right;
+    }
+    rank
+}
+
+#[cfg(test)]
+mod phase2_tests {
+    use super::*;
+
+    #[test]
+    fn phase2_coordinate_is_defined_exactly_on_g1() {
+        assert_eq!(
+            Cube::SOLVED.phase2(),
+            Some(Phase2 {
+                corner_perm: 0,
+                ud_edge_perm: 0,
+                slice_perm: 0
+            })
+        );
+        for (action, &mv) in HTM.iter().enumerate() {
+            let state = Cube::SOLVED.apply(mv);
+            assert_eq!(
+                state.phase2().is_some(),
+                G1_ACTIONS.contains(&action),
+                "G1 membership disagreement for action {action}"
+            );
+        }
+    }
+
+    #[test]
+    fn phase2_coordinate_separates_local_g1_states() {
+        use std::collections::{HashMap, VecDeque};
+
+        let mut queue = VecDeque::from([(Cube::SOLVED, 0u8)]);
+        let mut seen = HashMap::from([(Cube::SOLVED, 0u8)]);
+        let mut coordinate_owner = HashMap::new();
+
+        while let Some((state, depth)) = queue.pop_front() {
+            let coord = state.phase2().expect("G1 BFS state");
+            if let Some(previous) = coordinate_owner.insert(coord, state) {
+                assert_eq!(previous, state, "phase-2 coordinate collision");
+            }
+            if depth == 4 {
+                continue;
+            }
+            for &action in &G1_ACTIONS {
+                let next = state.apply(HTM[action]);
+                assert!(next.is_g1());
+                if !seen.contains_key(&next) {
+                    seen.insert(next, depth + 1);
+                    queue.push_back((next, depth + 1));
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn natural_phase2_pairs_each_drop_real_information() {
+        use std::collections::{HashMap, VecDeque};
+
+        let mut queue = VecDeque::from([(Cube::SOLVED, 0u8)]);
+        let mut seen = HashMap::from([(Cube::SOLVED, 0u8)]);
+        let mut cp_ud = HashMap::<(u16, u16), Phase2>::new();
+        let mut cp_slice = HashMap::<(u16, u8), Phase2>::new();
+        let mut ud_slice = HashMap::<(u16, u8), Phase2>::new();
+        let mut witnesses = [false; 3];
+
+        while let Some((state, depth)) = queue.pop_front() {
+            let p = state.phase2().expect("G1 BFS state");
+            if cp_ud
+                .insert((p.corner_perm, p.ud_edge_perm), p)
+                .is_some_and(|old| old != p)
+            {
+                witnesses[0] = true;
+            }
+            if cp_slice
+                .insert((p.corner_perm, p.slice_perm), p)
+                .is_some_and(|old| old != p)
+            {
+                witnesses[1] = true;
+            }
+            if ud_slice
+                .insert((p.ud_edge_perm, p.slice_perm), p)
+                .is_some_and(|old| old != p)
+            {
+                witnesses[2] = true;
+            }
+
+            if depth == 4 || witnesses.iter().all(|&x| x) {
+                if witnesses.iter().all(|&x| x) {
+                    break;
+                }
+                continue;
+            }
+            for &action in &G1_ACTIONS {
+                let next = state.apply(HTM[action]);
+                if !seen.contains_key(&next) {
+                    seen.insert(next, depth + 1);
+                    queue.push_back((next, depth + 1));
+                }
+            }
+        }
+        assert_eq!(witnesses, [true, true, true]);
+    }
+}
