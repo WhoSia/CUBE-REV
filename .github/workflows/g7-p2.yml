@@ -91,8 +91,6 @@ jobs:
           retention-days: 1
 
   reco-index-census:
-    if: ${{ false }}
-    needs: reco-bounded-materialize
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -104,7 +102,7 @@ jobs:
         run: |
           set -o pipefail
           rm -rf /tmp/reco-index-census
-          mkdir -p /tmp/reco-index-census
+          mkdir -p /tmp/reco-index-census/derived
           node scripts/g7-p2/census-reco-index.mjs --out /tmp/reco-index-census --delay-ms 2000 --max-pages 400 | tee /tmp/reco-index-census/derived/execution.log
       - name: Seal census evidence
         run: |
