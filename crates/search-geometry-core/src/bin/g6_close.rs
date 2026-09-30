@@ -158,8 +158,7 @@ fn main() {
     q_values.sort_by_key(|q| (q.twist, q.flip, q.slice));
     for q in q_values {
         let group = &by_q[&q];
-        let mut classes =
-            HashMap::<String, HashMap<String, Vec<Record>>>::new();
+        let mut classes = HashMap::<String, HashMap<String, Vec<Record>>>::new();
         for record in group {
             classes
                 .entry(signature_key(&record.shortest))
@@ -183,11 +182,7 @@ fn main() {
             }
             for i in 0..ordered.len() {
                 for j in i + 1..ordered.len() {
-                    slack_pairs.push((
-                        q,
-                        ordered[i].1[0].clone(),
-                        ordered[j].1[0].clone(),
-                    ));
+                    slack_pairs.push((q, ordered[i].1[0].clone(), ordered[j].1[0].clone()));
                 }
             }
         }
@@ -216,10 +211,7 @@ fn main() {
     println!("C4_MATCHED_PAIR_FAMILIES\t{}", c4_families.len());
     println!("SLACK_ONLY_DIVERGENT_Q\t{slack_only_q}");
     println!("RAW_SLACK_ONLY_PAIRS\t{}", slack_pairs.len());
-    println!(
-        "C4_SLACK_ONLY_FAMILIES\t{}",
-        slack_c4_families.len()
-    );
+    println!("C4_SLACK_ONLY_FAMILIES\t{}", slack_c4_families.len());
 
     for (idx, (q, a, b)) in pairs.iter().enumerate() {
         assert_eq!(a.state.phase1(), b.state.phase1());
