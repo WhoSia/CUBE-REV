@@ -1,0 +1,38 @@
+name: Validate G7-P2 reconstruction corpus intake
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p2/**'
+      - 'scripts/g7-p2/**'
+      - '.github/workflows/g7-p2.yml'
+  pull_request:
+    paths:
+      - 'g7/p2/**'
+      - 'scripts/g7-p2/**'
+      - '.github/workflows/g7-p2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  g7-p2-intake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/g7-p2/validate-source-registry.mjs
+      - run: node scripts/g7-p2/test-parser.mjs
+      - name: Validate JSON schema syntax
+        run: node -e "JSON.parse(require('fs').readFileSync('g7/p2/human-solve-record.schema.json','utf8')); console.log('G7_P2_SCHEMA_JSON_PASS')"
+      - name: Validate intake manifest
+        run: |
+          test -s g7/p2/manual-intake.tsv
+          grep -q '^cubesolves_2014_dump' g7/p2/manual-intake.tsv
+          grep -q '^cubedb' g7/p2/manual-intake.tsv
+          grep -q '^speedcubing_reconstructions' g7/p2/manual-intake.tsv
+          echo G7_P2_MANUAL_INTAKE_MANIFEST_PASS
