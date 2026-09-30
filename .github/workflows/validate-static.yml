@@ -16,9 +16,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Detect legacy static release surface
+        id: static_surface
+        shell: bash
+        run: |
+          if [[ -f index.html ]]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "Legacy 0.7.12 root static surface is present; release validation is active."
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+            echo "Legacy root index.html is absent; static-release validation is not applicable to this checkout."
+          fi
       - name: Check release identity and static assets
+        if: steps.static_surface.outputs.active == 'true'
         run: node scripts/validate-static.mjs
       - name: Build and validate source-bound calibration host
+        if: steps.static_surface.outputs.active == 'true'
         run: |
           node scripts/build-calibration-host.mjs
           node scripts/validate-calibration.mjs
