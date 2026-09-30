@@ -1,0 +1,40 @@
+name: Validate G6-CLOSE generation synthesis
+
+on:
+  push:
+    branches: ['research/current']
+  pull_request:
+    paths:
+      - 'crates/search-geometry-core/src/g6.rs'
+      - 'crates/search-geometry-core/src/bin/g6_p6.rs'
+      - 'crates/search-geometry-core/src/bin/g6_close.rs'
+      - 'g6/close/**'
+      - '.github/workflows/g6-close.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  g6-close:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - run: cargo fmt --all --check
+      - run: cargo check --workspace
+      - run: cargo test --workspace
+      - run: cargo run --release --quiet -p search-geometry-core --bin g6_p1
+      - run: cargo run --release --quiet -p search-geometry-core --bin g6_p2
+      - run: cargo run --release --quiet -p search-geometry-core --bin g6_p6
+      - run: cargo run --release --quiet -p search-geometry-core --bin g6_close | tee g6-close-receipt.tsv
+      - run: cargo run --release --quiet -p search-geometry-core --bin p5_r3
+      - run: cargo run --release --quiet -p search-geometry-core --bin p6
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G6-CLOSE-receipt-${{ github.sha }}
+          path: g6-close-receipt.tsv
+          if-no-files-found: error
