@@ -1,7 +1,7 @@
 //! 3x3 phase-1 Schreier coordinate oracle and Kociemba-style projected PDBs.
 //! Move convention matches Kociemba CubieCube: position arrays, right composition.
 
-use std::collections::VecDeque;
+use std::collections::{HashMap, HashSet, VecDeque};
 use std::sync::OnceLock;
 
 pub const TWIST_COUNT: usize = 2_187;
@@ -584,5 +584,187 @@ mod phase2_tests {
             }
         }
         assert_eq!(witnesses, [true, true, true]);
+    }
+}
+
+
+#[derive(Clone, Debug, Eq, PartialEq, Hash)]
+pub struct EntryCostSignature {
+    pub endpoint_count: usize,
+    pub exact_phase2_costs: Vec<u8>,
+    pub beyond_phase2_radius: usize,
+}
+
+impl EntryCostSignature {
+    pub fn regret_width(&self) -> Option<u8> {
+        let lo = self.exact_phase2_costs.first().copied()?;
+        let hi = self.exact_phase2_costs.last().copied()?;
+        Some(hi - lo)
+    }
+
+    pub fn best_exact_cost(&self) -> Option<u8> {
+        self.exact_phase2_costs.first().copied()
+    }
+}
+
+/// Exact G1 BFS from solved through a bounded radius.
+pub fn phase2_ball(max_depth: u8) -> HashMap<Cube, u8> {
+    let mut dist = HashMap::from([(Cube::SOLVED, 0u8)]);
+    let mut queue = VecDeque::from([Cube::SOLVED]);
+    while let Some(state) = queue.pop_front() {
+        let depth = dist[&state];
+        if depth == max_depth {
+            continue;
+        }
+        for &action in &G1_ACTIONS {
+            let next = state.apply(HTM[action]);
+            debug_assert!(next.is_g1());
+            if let std::collections::hash_map::Entry::Vacant(slot) = dist.entry(next) {
+                slot.insert(depth + 1);
+                queue.push_back(next);
+            }
+        }
+    }
+    dist
+}
+
+/// Exact full-cube HTM BFS from solved through a bounded radius.
+pub fn full_htm_ball(max_depth: u8) -> HashMap<Cube, u8> {
+    let mut dist = HashMap::from([(Cube::SOLVED, 0u8)]);
+    let mut queue = VecDeque::from([Cube::SOLVED]);
+    while let Some(state) = queue.pop_front() {
+        let depth = dist[&state];
+        if depth == max_depth {
+            continue;
+        }
+        for &mv in &HTM {
+            let next = state.apply(mv);
+            if let std::collections::hash_map::Entry::Vacant(slot) = dist.entry(next) {
+                slot.insert(depth + 1);
+                queue.push_back(next);
+            }
+        }
+    }
+    dist
+}
+
+/// Exact phase-1 quotient BFS from G1 through a bounded radius.
+pub fn phase1_ball(moves: &Phase1Moves, max_depth: u8) -> HashMap<Phase1, u8> {
+    let origin = Cube::SOLVED.phase1();
+    let mut dist = HashMap::from([(origin, 0u8)]);
+    let mut queue = VecDeque::from([origin]);
+    while let Some(q) = queue.pop_front() {
+        let depth = dist[&q];
+        if depth == max_depth {
+            continue;
+        }
+        for action in 0..MOVE_COUNT {
+            let next = moves.next(q, action);
+            if let std::collections::hash_map::Entry::Vacant(slot) = dist.entry(next) {
+                slot.insert(depth + 1);
+                queue.push_back(next);
+            }
+        }
+    }
+    dist
+}
+
+/// Enumerate exact first-hit G1 endpoints after exactly N HTM moves.
+///
+/// Paths that touch G1 before the final move are not extended, so this is a
+/// handoff-surface object rather than an unrestricted path endpoint set.
+pub fn first_hit_g1_endpoints(start: Cube, steps: u8) -> HashSet<Cube> {
+    if steps == 0 {
+        return if start.is_g1() {
+            HashSet::from([start])
+        } else {
+            HashSet::new()
+        };
+    }
+
+    let mut frontier = HashSet::from([start]);
+    for depth in 1..=steps {
+        let mut next_frontier = HashSet::new();
+        for state in frontier {
+            for &mv in &HTM {
+                let next = state.apply(mv);
+                if depth == steps {
+                    if next.is_g1() {
+                        next_frontier.insert(next);
+                    }
+                } else if !next.is_g1() {
+                    next_frontier.insert(next);
+                }
+            }
+        }
+        frontier = next_frontier;
+        if frontier.is_empty() {
+            break;
+        }
+    }
+    frontier
+}
+
+pub fn entry_cost_signature(
+    endpoints: &HashSet<Cube>,
+    phase2_dist: &HashMap<Cube, u8>,
+) -> EntryCostSignature {
+    let mut exact_phase2_costs = Vec::new();
+    let mut beyond_phase2_radius = 0usize;
+    for endpoint in endpoints {
+        if let Some(&cost) = phase2_dist.get(endpoint) {
+            exact_phase2_costs.push(cost);
+        } else {
+            beyond_phase2_radius += 1;
+        }
+    }
+    exact_phase2_costs.sort_unstable();
+    EntryCostSignature {
+        endpoint_count: endpoints.len(),
+        exact_phase2_costs,
+        beyond_phase2_radius,
+    }
+}
+
+#[cfg(test)]
+mod entry_fiber_tests {
+    use super::*;
+
+    #[test]
+    fn phase2_radius_six_matches_generation_vi_receipt() {
+        let dist = phase2_ball(6);
+        assert_eq!(dist.len(), 146_635);
+        let mut shells = [0usize; 7];
+        for &d in dist.values() {
+            shells[d as usize] += 1;
+        }
+        assert_eq!(shells, [1, 10, 67, 456, 3_079, 19_948, 123_074]);
+    }
+
+    #[test]
+    fn first_hit_contract_excludes_early_g1_paths() {
+        let r = Cube::SOLVED.apply(HTM[3]);
+        let one = first_hit_g1_endpoints(r, 1);
+        assert!(!one.is_empty());
+        assert!(one.iter().all(|state| state.is_g1()));
+        assert_eq!(
+            first_hit_g1_endpoints(Cube::SOLVED, 0),
+            HashSet::from([Cube::SOLVED])
+        );
+    }
+
+    #[test]
+    fn bounded_entry_signature_reproduces_easy_local_witness() {
+        let phase2 = phase2_ball(6);
+        let state = Cube::SOLVED
+            .apply(HTM[0])
+            .apply(HTM[3])
+            .apply(HTM[12]);
+        let endpoints = first_hit_g1_endpoints(state, 2);
+        let signature = entry_cost_signature(&endpoints, &phase2);
+        assert_eq!(signature.endpoint_count, 4);
+        assert_eq!(signature.exact_phase2_costs, vec![1, 2, 2, 3]);
+        assert_eq!(signature.beyond_phase2_radius, 0);
+        assert_eq!(signature.regret_width(), Some(2));
     }
 }
