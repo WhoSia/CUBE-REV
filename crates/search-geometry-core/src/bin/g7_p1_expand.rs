@@ -153,10 +153,8 @@ fn main() {
     let phase2 = phase2_ball(6);
 
     let depth4 = full.values().filter(|(d, _)| *d == 4).count();
-    let mut groups = HashMap::<
-        (u8, Phase1, EntryCostSignature, GeoSignature),
-        Vec<Candidate>,
-    >::new();
+    let mut groups =
+        HashMap::<(u8, Phase1, EntryCostSignature, GeoSignature), Vec<Candidate>>::new();
 
     for (&state, (dg, scramble)) in &full {
         if *dg < 3 {
@@ -229,7 +227,10 @@ fn main() {
     println!("G7_P1_RADIUS4_MATCH_SEARCH_PASS");
     println!("FULL_BALL_RADIUS4_STATES\t{}", full.len());
     println!("DEPTH4_STATES\t{depth4}");
-    println!("MATCHED_RAW_PAIRS\t{}", c4.values().map(Vec::len).sum::<usize>());
+    println!(
+        "MATCHED_RAW_PAIRS\t{}",
+        c4.values().map(Vec::len).sum::<usize>()
+    );
     println!("MATCHED_C4_FAMILIES\t{}", c4.len());
     println!("family\tdg\td1\tq\tsolutions\tfirst_mask\tprefix2\tA\tA_slack\tB\tB_slack");
 
