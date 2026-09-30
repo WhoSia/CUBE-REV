@@ -5,8 +5,8 @@ use search_geometry_core::g6::{
 use std::collections::{HashMap, VecDeque};
 
 const MOVE_NAMES: [&str; 18] = [
-    "U", "U2", "U'", "R", "R2", "R'", "F", "F2", "F'", "D", "D2", "D'", "L", "L2",
-    "L'", "B", "B2", "B'",
+    "U", "U2", "U'", "R", "R2", "R'", "F", "F2", "F'", "D", "D2", "D'", "L", "L2", "L'", "B", "B2",
+    "B'",
 ];
 
 #[derive(Clone)]
@@ -73,7 +73,10 @@ fn signature_key(sig: &EntryCostSignature) -> String {
 fn pair_c4_key(a: &[usize], b: &[usize]) -> String {
     let mut candidates = Vec::new();
     for turns in 0..4 {
-        let mut words = [word_text(&rotate_word(a, turns)), word_text(&rotate_word(b, turns))];
+        let mut words = [
+            word_text(&rotate_word(a, turns)),
+            word_text(&rotate_word(b, turns)),
+        ];
         words.sort();
         candidates.push(format!("{} || {}", words[0], words[1]));
     }
