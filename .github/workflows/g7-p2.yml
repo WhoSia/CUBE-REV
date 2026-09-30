@@ -32,6 +32,7 @@ jobs:
       - run: node scripts/g7-p2/test-parser.mjs
       - run: node scripts/g7-p2/test-reco-parser.mjs
       - run: node scripts/g7-p2/test-reco-acquisition.mjs
+      - run: node scripts/g7-p2/test-reco-index-census-validator.mjs
       - name: Validate JSON schema syntax
         run: node -e "JSON.parse(require('fs').readFileSync('g7/p2/human-solve-record.schema.json','utf8')); console.log('G7_P2_SCHEMA_JSON_PASS')"
       - name: Validate intake manifest
