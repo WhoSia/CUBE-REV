@@ -71,11 +71,13 @@ jobs:
           node-version: 22
       - name: Execute bounded real capture
         run: |
+          set -o pipefail
           rm -rf /tmp/reco-bounded-capture
           node scripts/g7-p2/acquire-reco.mjs --execute --page-start 1 --pages 1 --max-solves 10 --puzzle 3x3 --delay-ms 2000 --out /tmp/reco-bounded-capture
       - name: Validate capture and custody
         run: |
-          node scripts/g7-p2/validate-reco-live-probe.mjs /tmp/reco-bounded-capture | tee /tmp/reco-bounded-capture/validation-receipt.txt
+          set -o pipefail
+          node scripts/g7-p2/validate-reco-bounded-capture.mjs /tmp/reco-bounded-capture 10 | tee /tmp/reco-bounded-capture/validation-receipt.txt
           (cd /tmp/reco-bounded-capture && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
           test "$(find /tmp/reco-bounded-capture/raw/solve -type f -name '*.html' | wc -l)" -eq 10
           test -s /tmp/reco-bounded-capture/derived/solves.jsonl
@@ -100,6 +102,7 @@ jobs:
           node-version: 22
       - name: Execute index-only census
         run: |
+          set -o pipefail
           rm -rf /tmp/reco-index-census
           mkdir -p /tmp/reco-index-census
           node scripts/g7-p2/census-reco-index.mjs --out /tmp/reco-index-census --delay-ms 2000 --max-pages 400 | tee /tmp/reco-index-census/derived/execution.log
