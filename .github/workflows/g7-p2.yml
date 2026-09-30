@@ -92,7 +92,6 @@ jobs:
           retention-days: 1
 
   reco-index-census:
-    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
