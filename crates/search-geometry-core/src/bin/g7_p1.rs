@@ -5,8 +5,8 @@ use search_geometry_core::g6::{
 use std::collections::{HashMap, HashSet, VecDeque};
 
 const MOVE_NAMES: [&str; 18] = [
-    "U", "U2", "U'", "R", "R2", "R'", "F", "F2", "F'", "D", "D2", "D'", "L", "L2", "L'",
-    "B", "B2", "B'",
+    "U", "U2", "U'", "R", "R2", "R'", "F", "F2", "F'", "D", "D2", "D'", "L", "L2", "L'", "B", "B2",
+    "B'",
 ];
 
 #[derive(Clone)]
@@ -64,14 +64,14 @@ fn endpoints_by_first_action(start: Cube, steps: u8) -> HashMap<usize, HashSet<C
     out
 }
 
-fn best_cost_by_first(
-    start: Cube,
-    steps: u8,
-    phase2: &HashMap<Cube, u8>,
-) -> HashMap<usize, u8> {
+fn best_cost_by_first(start: Cube, steps: u8, phase2: &HashMap<Cube, u8>) -> HashMap<usize, u8> {
     let mut out = HashMap::new();
     for (first, endpoints) in endpoints_by_first_action(start, steps) {
-        if let Some(best_d2) = endpoints.iter().filter_map(|s| phase2.get(s).copied()).min() {
+        if let Some(best_d2) = endpoints
+            .iter()
+            .filter_map(|s| phase2.get(s).copied())
+            .min()
+        {
             out.insert(first, steps + best_d2);
         }
     }
@@ -94,7 +94,10 @@ fn combined_optimal_actions(
 ) -> HashSet<usize> {
     let mut merged = shortest.clone();
     for (&a, &c) in slack {
-        merged.entry(a).and_modify(|old| *old = (*old).min(c)).or_insert(c);
+        merged
+            .entry(a)
+            .and_modify(|old| *old = (*old).min(c))
+            .or_insert(c);
     }
     optimal_actions(&merged)
 }
@@ -104,7 +107,10 @@ fn signature(endpoints: &HashSet<Cube>, phase2: &HashMap<Cube, u8>) -> EntryCost
 }
 
 fn word_text(word: &[usize]) -> String {
-    word.iter().map(|&a| MOVE_NAMES[a]).collect::<Vec<_>>().join(" ")
+    word.iter()
+        .map(|&a| MOVE_NAMES[a])
+        .collect::<Vec<_>>()
+        .join(" ")
 }
 
 fn rotate_word(word: &[usize], turns: usize) -> Vec<usize> {
@@ -136,7 +142,10 @@ fn pair_c4_key(a: &[usize], b: &[usize]) -> String {
 fn action_set_text(actions: &HashSet<usize>) -> String {
     let mut v = actions.iter().copied().collect::<Vec<_>>();
     v.sort_unstable();
-    v.into_iter().map(|a| MOVE_NAMES[a]).collect::<Vec<_>>().join(",")
+    v.into_iter()
+        .map(|a| MOVE_NAMES[a])
+        .collect::<Vec<_>>()
+        .join(",")
 }
 
 fn is_flexible(sig: &EntryCostSignature) -> bool {
