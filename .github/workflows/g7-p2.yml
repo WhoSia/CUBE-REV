@@ -30,6 +30,8 @@ jobs:
           python-version: '3.12'
       - run: node scripts/g7-p2/validate-source-registry.mjs
       - run: node scripts/g7-p2/test-parser.mjs
+      - run: node scripts/g7-p2/test-reco-parser.mjs
+      - run: node scripts/g7-p2/test-reco-acquisition.mjs
       - name: Validate JSON schema syntax
         run: node -e "JSON.parse(require('fs').readFileSync('g7/p2/human-solve-record.schema.json','utf8')); console.log('G7_P2_SCHEMA_JSON_PASS')"
       - name: Validate intake manifest
@@ -45,10 +47,13 @@ jobs:
           mkdir -p g7/p2/build
           node scripts/g7-p2/validate-source-registry.mjs > g7/p2/build/source-registry-receipt.txt
           node scripts/g7-p2/test-parser.mjs > g7/p2/build/parser-receipt.txt
+          node scripts/g7-p2/test-reco-parser.mjs > g7/p2/build/reco-parser-receipt.txt
+          node scripts/g7-p2/test-reco-acquisition.mjs > g7/p2/build/reco-acquisition-policy-receipt.txt
           python -m unittest scripts/g7-p2/test-cubesolves-extractor.py > g7/p2/build/cubesolves-extractor-receipt.txt 2>&1
           cp g7/p2/source-registry.json g7/p2/build/
           cp g7/p2/human-solve-record.schema.json g7/p2/build/
           cp g7/p2/manual-intake.tsv g7/p2/build/
+          cp g7/p2/reco-acquisition-policy.json g7/p2/build/
       - uses: actions/upload-artifact@v4
         with:
           name: G7-P2-intake-ready-${{ github.sha }}
