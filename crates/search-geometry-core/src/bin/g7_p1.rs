@@ -152,6 +152,51 @@ fn is_flexible(sig: &EntryCostSignature) -> bool {
     sig.exact_phase2_costs.first().copied() == Some(0)
 }
 
+fn full_optimal_solutions(start: Cube) -> Vec<[usize; 3]> {
+    let mut out = Vec::new();
+    for a in 0..18 {
+        let s1 = start.apply(HTM[a]);
+        for b in 0..18 {
+            let s2 = s1.apply(HTM[b]);
+            for c in 0..18 {
+                if s2.apply(HTM[c]).is_solved() {
+                    out.push([a, b, c]);
+                }
+            }
+        }
+    }
+    out
+}
+
+fn full_first_actions(paths: &[[usize; 3]]) -> HashSet<usize> {
+    paths.iter().map(|p| p[0]).collect()
+}
+
+fn full_prefix2(paths: &[[usize; 3]]) -> HashSet<(usize, usize)> {
+    paths.iter().map(|p| (p[0], p[1])).collect()
+}
+
+fn first_g1_hit_depth(start: Cube, path: &[usize; 3]) -> u8 {
+    let mut state = start;
+    for (i, &action) in path.iter().enumerate() {
+        state = state.apply(HTM[action]);
+        if state.is_g1() {
+            return (i + 1) as u8;
+        }
+    }
+    4
+}
+
+fn g1_hit_histogram(start: Cube, paths: &[[usize; 3]]) -> [usize; 4] {
+    let mut hist = [0usize; 4];
+    for path in paths {
+        let d = first_g1_hit_depth(start, path);
+        assert!((1..=3).contains(&d));
+        hist[d as usize] += 1;
+    }
+    hist
+}
+
 fn main() {
     let phase1_moves = Phase1Moves::build();
     let phase1_dist = phase1_ball(&phase1_moves, 3);
@@ -227,10 +272,15 @@ fn main() {
 
     let mut families_with_new_flex_actions = 0usize;
     let mut families_with_policy_difference = 0usize;
+    let mut full_solution_count_match = 0usize;
+    let mut full_first_action_set_match = 0usize;
+    let mut full_prefix2_count_match = 0usize;
+    let mut strong_geodesic_match = 0usize;
+    let mut g1_hit_distribution_difference = 0usize;
 
     println!("G7_P1_POLICY_BANK_PASS");
     println!("C4_FAMILIES\t{}", family_keys.len());
-    println!("family_id\tq\tflexible_scramble\trigid_scramble\tshort_opt_flex\tcombined_opt_flex\tnew_slack_opt_flex\tshort_opt_rigid\tcombined_opt_rigid\tnew_slack_opt_rigid");
+    println!("family_id\tq\tflexible_scramble\trigid_scramble\tshort_opt_flex\tcombined_opt_flex\tnew_slack_opt_flex\tshort_opt_rigid\tcombined_opt_rigid\tnew_slack_opt_rigid\tfull_solutions_flex\tfull_solutions_rigid\tfull_first_flex\tfull_first_rigid\tprefix2_flex\tprefix2_rigid\tg1hit2_flex\tg1hit3_flex\tg1hit2_rigid\tg1hit3_rigid");
 
     for (idx, key) in family_keys.iter().enumerate() {
         let mut candidates = families[key].clone();
@@ -273,8 +323,36 @@ fn main() {
             families_with_policy_difference += 1;
         }
 
+        let flex_full = full_optimal_solutions(flex.state);
+        let rigid_full = full_optimal_solutions(rigid.state);
+        let flex_full_first = full_first_actions(&flex_full);
+        let rigid_full_first = full_first_actions(&rigid_full);
+        let flex_prefix2 = full_prefix2(&flex_full);
+        let rigid_prefix2 = full_prefix2(&rigid_full);
+        let flex_g1 = g1_hit_histogram(flex.state, &flex_full);
+        let rigid_g1 = g1_hit_histogram(rigid.state, &rigid_full);
+
+        let count_match = flex_full.len() == rigid_full.len();
+        let first_match = flex_full_first == rigid_full_first;
+        let prefix_count_match = flex_prefix2.len() == rigid_prefix2.len();
+        if count_match {
+            full_solution_count_match += 1;
+        }
+        if first_match {
+            full_first_action_set_match += 1;
+        }
+        if prefix_count_match {
+            full_prefix2_count_match += 1;
+        }
+        if count_match && first_match && prefix_count_match {
+            strong_geodesic_match += 1;
+        }
+        if flex_g1 != rigid_g1 {
+            g1_hit_distribution_difference += 1;
+        }
+
         println!(
-            "{}\t{},{},{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            "{}\t{},{},{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
             idx + 1,
             q.twist,
             q.flip,
@@ -287,6 +365,16 @@ fn main() {
             action_set_text(&rigid_short),
             action_set_text(&rigid_combined),
             action_set_text(&rigid_new),
+            flex_full.len(),
+            rigid_full.len(),
+            action_set_text(&flex_full_first),
+            action_set_text(&rigid_full_first),
+            flex_prefix2.len(),
+            rigid_prefix2.len(),
+            flex_g1[2],
+            flex_g1[3],
+            rigid_g1[2],
+            rigid_g1[3],
         );
     }
 
@@ -297,6 +385,20 @@ fn main() {
     println!(
         "FAMILIES_WITH_COMBINED_POLICY_DIFFERENCE\t{}",
         families_with_policy_difference
+    );
+    println!("FULL_SOLUTION_COUNT_MATCH_FAMILIES\t{}", full_solution_count_match);
+    println!(
+        "FULL_FIRST_ACTION_SET_MATCH_FAMILIES\t{}",
+        full_first_action_set_match
+    );
+    println!(
+        "FULL_PREFIX2_COUNT_MATCH_FAMILIES\t{}",
+        full_prefix2_count_match
+    );
+    println!("STRONG_GEODESIC_MATCH_FAMILIES\t{}", strong_geodesic_match);
+    println!(
+        "G1_HIT_DISTRIBUTION_DIFFERENCE_FAMILIES\t{}",
+        g1_hit_distribution_difference
     );
     println!("RETROSPECTIVE_HUMAN_LANE\tSOURCE_BYTES_UNAVAILABLE");
     println!("NEW_HUMAN_COLLECTION\tHOLD_PENDING_INSTRUMENT_AND_LAUNCH_AUTHORITY");
