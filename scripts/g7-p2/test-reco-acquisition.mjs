@@ -15,6 +15,7 @@ const dry=spawnSync(process.execPath,[
 assert.equal(dry.status,0,dry.stderr);
 assert.match(dry.stdout,/G7_P2_RECO_ACQUISITION_DRY_RUN/);
 assert.match(dry.stdout,/EXECUTION\tREFUSED_WITHOUT_--execute/);
+assert.match(dry.stdout,/PUZZLE_FILTER\t3x3/);
 
 const tooMany=spawnSync(process.execPath,[
   "scripts/g7-p2/acquire-reco.mjs",
