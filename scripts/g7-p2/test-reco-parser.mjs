@@ -17,7 +17,17 @@ assert.ok(r.reconstruction_raw.includes("// OLL"));
 assert.equal(r.stats.Time.Total,"3.84");
 assert.equal(r.stats.STM.Total,"55");
 assert.equal(r.video_url,"https://www.youtube.com/embed/bl30ZOMTGL8");
+
 assert.deepEqual(r.average_neighbor_ids,[14098,14133]);
+
+const rendered=solveHtml
+  .replace('<iframe src="https://www.youtube.com/embed/bl30ZOMTGL8"></iframe>',
+           '<div src="https://www.youtube.com/embed/bl30ZOMTGL8" data-original-tag="iframe"></div>')
+  .replace('href="14098"','href="https://reco.nz/solve/14098"')
+  .replace('href="14133"','href="https://reco.nz/solve/14133"');
+const rr=parseRecoSolveHtml(rendered,"https://reco.nz/solve/14134");
+assert.equal(rr.video_url,"https://www.youtube.com/embed/bl30ZOMTGL8");
+assert.deepEqual(rr.average_neighbor_ids,[14098,14133]);
 
 const indexHtml=fs.readFileSync("scripts/g7-p2/fixtures/reco-index-minimal.html","utf8");
 const idx=parseRecoIndexHtml(indexHtml);
