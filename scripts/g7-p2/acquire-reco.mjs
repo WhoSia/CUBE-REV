@@ -64,10 +64,17 @@ async function get(url){
 }
 
 const robotsRes=await fetch("https://reco.nz/robots.txt",{headers:{"User-Agent":policy.user_agent}});
-if(!robotsRes.ok) throw new Error("RECO_ROBOTS_UNREADABLE:"+robotsRes.status);
-const robotsText=await robotsRes.text();
-for(const target of ["/","/solve/"]){
-  if(disallowedByRobots(robotsText,target)) throw new Error("RECO_ROBOTS_DISALLOW:"+target);
+let robotsCheck;
+if(robotsRes.status===200){
+  const robotsText=await robotsRes.text();
+  for(const target of ["/","/solve/"]){
+    if(disallowedByRobots(robotsText,target)) throw new Error("RECO_ROBOTS_DISALLOW:"+target);
+  }
+  robotsCheck="PRESENT_ALLOW";
+}else if(robotsRes.status===404){
+  robotsCheck="ABSENT_404";
+}else{
+  throw new Error("RECO_ROBOTS_UNREADABLE:"+robotsRes.status);
 }
 
 fs.mkdirSync(path.join(outDir,"raw","index"),{recursive:true});
@@ -120,6 +127,7 @@ fs.writeFileSync(path.join(outDir,"capture-manifest.json"),JSON.stringify({
   pages,
   delay_ms:delayMs,
   solve_count:manifest.length,
+  robots_check:robotsCheck,
   records:manifest.map(({parsed,...x})=>x)
 },null,2)+"\n");
 
@@ -127,4 +135,4 @@ console.log("G7_P2_RECO_BOUNDED_CAPTURE_PASS");
 console.log("INDEX_PAGES\t"+pages);
 console.log("SOLVES\t"+manifest.length);
 console.log("RAW_HTML_PRESERVED\tYES");
-console.log("ROBOTS_CHECK\tPASS");
+console.log("ROBOTS_CHECK\t"+robotsCheck);
