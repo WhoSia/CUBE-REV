@@ -167,6 +167,27 @@ P6 freezes four matched-state human-precontact contrasts:
 The viewpoint-externalization contrast remains blocked until the interface viewpoint-state semantics are authoritative.
 Human world contact remains **CLOSED**.
 
+
+## Current Generation VI state
+
+Generation VI lifts the representation program from the complete 2×2 world into exact 3×3 Kociemba phase geometry.
+
+- G6-P1 defines the 3×3 phase-1 coordinate `(twist, flip, UD-slice)` over the 2,217,093,120-state quotient domain.
+- G6-P2 makes the 18-HTM phase-1 transition oracle executable and separates abstract phase policy from full-cube optimal policy.
+- G6-P3 quantifies the gap between the weak projected PDB and exact phase-1 distance.
+- G6-P4 lifts within-G1 endpoint identity to exact phase-2 coordinates and establishes the local necessity of all three natural phase-2 coordinate families.
+- G6-P5 shows that shortest phase-1 entry does not determine downstream phase-2 cost and that +1 phase-1 slack can sharply improve non-vacuous total cost.
+- **G6-P6 executable synthesis:** on the exact `dG=3,d1=2` 960-state slice, shortest entry-cost fibers form 3 classes, one-slack frontiers form 4 classes, 928 states have shortest-entry regret, 32 are hard-entry states, and C4 symmetry compresses the slice to 248 orbits with zero cost-signature conflicts.
+
+The current 3×3 representation ladder is:
+
+`weak projected PDB → exact q/d1 → shortest endpoint-cost fiber → slack frontier → full state`
+
+The mathematical axis is intended to generate sharper cognitive-science experiments, not to replace them. Same-q / different-fiber states are treated as future matched-state planning stimuli; no machine coordinate is identified with a human cognitive representation without behavioral world contact.
+
+Strict executable G6-P6 science HEAD: `2a58f8abb8154310493107486a5461d176938884`.
+Human world contact remains **CLOSED**.
+
 ## Repository structure
 
 The research branch keeps legacy deployment files because it descends from the public repository, but current scientific authority lives mainly in:
