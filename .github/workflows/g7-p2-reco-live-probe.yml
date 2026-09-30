@@ -1,0 +1,40 @@
+name: G7-P2 bounded reco.nz live probe
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p2/probes/reco-live-probe-trigger.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reco-live-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Execute bounded 3x3 probe
+        run: |
+          rm -rf /tmp/reco-live-probe
+          node scripts/g7-p2/acquire-reco.mjs --execute --page-start 1 --pages 1 --max-solves 5 --puzzle 3x3 --delay-ms 2000 --out /tmp/reco-live-probe
+      - name: Validate live capture
+        run: |
+          mkdir -p g7/p2/build/reco-live-probe
+          node scripts/g7-p2/validate-reco-live-probe.mjs /tmp/reco-live-probe | tee g7/p2/build/reco-live-probe/receipt.txt
+          cp /tmp/reco-live-probe/capture-manifest.json g7/p2/build/reco-live-probe/
+      - name: Assert raw content is not published
+        run: |
+          test ! -e g7/p2/build/reco-live-probe/raw
+          test ! -e g7/p2/build/reco-live-probe/derived
+          echo G7_P2_RECO_RAW_RELEASE_HOLD_PASS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P2-reco-live-probe-${{ github.sha }}
+          path: g7/p2/build/reco-live-probe
+          if-no-files-found: error
