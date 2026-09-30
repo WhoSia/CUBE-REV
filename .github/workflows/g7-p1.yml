@@ -36,6 +36,7 @@ jobs:
       - run: mkdir -p g7/p1/build
       - run: cargo run --release --quiet -p search-geometry-core --bin g6_close > g7/p1/build/g6-close-regression.tsv
       - run: cargo run --release --quiet -p search-geometry-core --bin g7_p1 | tee g7/p1/build/g7-p1-policy-bank.tsv
+      - run: cargo run --release --quiet -p search-geometry-core --bin g7_p1_expand | tee g7/p1/build/g7-p1-radius4-match-search.tsv
       - uses: actions/upload-artifact@v4
         with:
           name: G7-P1-policy-bank-${{ github.sha }}
