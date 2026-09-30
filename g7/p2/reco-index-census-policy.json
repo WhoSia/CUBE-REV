@@ -1,0 +1,19 @@
+{
+  "schema_version": "g7-p2-reco-index-census-policy-1",
+  "source_id": "reco_nz",
+  "mode": "INDEX_CENSUS_ONLY",
+  "solve_body_fetch_authorized": false,
+  "index_census_authorized": true,
+  "max_index_pages": 400,
+  "min_delay_ms": 2000,
+  "preserve_raw_index_html": true,
+  "user_agent": "CUBE-REV-research/0.1 (+https://github.com/WhoSia/CUBE-REV)",
+  "robots_policy": "CHECK_AT_EXECUTION; 200=parse directives; 404=treat as absent; other failures refuse",
+  "redistribution": "RAW_INDEX_ARTIFACT_AUTHENTICATED_TEMPORARY; SOLVE_RAW_PUBLIC_RELEASE_HOLD",
+  "notes": [
+    "This lane is metadata census only.",
+    "It must never request /solve/{id}.",
+    "Full solve-body mirroring remains unauthorized.",
+    "Sequential index requests are rate-limited to at least 2 seconds and terminate on the first short/empty page."
+  ]
+}
