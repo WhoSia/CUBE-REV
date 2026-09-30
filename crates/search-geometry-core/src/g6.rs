@@ -433,7 +433,6 @@ pub fn rotate_action_c4(action: usize) -> usize {
     face_idx * 3 + mv.power as usize - 1
 }
 
-
 /// The ten half-turn-metric generators allowed inside Kociemba phase 2:
 /// U/U2/U', D/D2/D', and half turns of the four side faces.
 pub const G1_ACTIONS: [usize; 10] = [0, 1, 2, 9, 10, 11, 4, 13, 7, 16];
@@ -477,10 +476,7 @@ impl Cube {
 fn rank_perm(values: &[u8]) -> usize {
     let mut rank = 0usize;
     for i in 0..values.len() {
-        let smaller_right = values[i + 1..]
-            .iter()
-            .filter(|&&x| x < values[i])
-            .count();
+        let smaller_right = values[i + 1..].iter().filter(|&&x| x < values[i]).count();
         rank = rank * (values.len() - i) + smaller_right;
     }
     rank
@@ -586,7 +582,6 @@ mod phase2_tests {
         assert_eq!(witnesses, [true, true, true]);
     }
 }
-
 
 #[derive(Clone, Debug, Eq, PartialEq, Hash)]
 pub struct EntryCostSignature {
@@ -756,10 +751,7 @@ mod entry_fiber_tests {
     #[test]
     fn bounded_entry_signature_reproduces_easy_local_witness() {
         let phase2 = phase2_ball(6);
-        let state = Cube::SOLVED
-            .apply(HTM[0])
-            .apply(HTM[3])
-            .apply(HTM[12]);
+        let state = Cube::SOLVED.apply(HTM[0]).apply(HTM[3]).apply(HTM[12]);
         let endpoints = first_hit_g1_endpoints(state, 2);
         let signature = entry_cost_signature(&endpoints, &phase2);
         assert_eq!(signature.endpoint_count, 4);
