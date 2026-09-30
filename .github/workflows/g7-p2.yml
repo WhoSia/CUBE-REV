@@ -110,7 +110,7 @@ jobs:
           node scripts/g7-p2/validate-reco-index-census.mjs /tmp/reco-index-census
           echo G7_P2_RECO_INDEX_CENSUS_CUSTODY_PASS
       - uses: actions/upload-artifact@v4
-        if: \${{ always() }}
+        if: ${{ always() }}
         with:
           name: G7-P2-reco-index-census-${{ github.sha }}
           path: /tmp/reco-index-census
