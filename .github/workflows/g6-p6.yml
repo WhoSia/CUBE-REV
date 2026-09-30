@@ -3,6 +3,12 @@ name: Validate G6-P6 two-phase fiber synthesis
 on:
   push:
     branches: ['research/current']
+  pull_request:
+    paths:
+      - 'crates/search-geometry-core/src/g6.rs'
+      - 'crates/search-geometry-core/src/bin/g6_p6.rs'
+      - 'g6/p6/**'
+      - '.github/workflows/g6-p6.yml'
   workflow_dispatch:
 
 permissions:
@@ -11,6 +17,7 @@ permissions:
 jobs:
   g6-p6:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
