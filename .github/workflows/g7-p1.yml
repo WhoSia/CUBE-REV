@@ -1,0 +1,43 @@
+name: Validate G7-P1 policy bank
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'crates/search-geometry-core/src/g6.rs'
+      - 'crates/search-geometry-core/src/bin/g6_close.rs'
+      - 'crates/search-geometry-core/src/bin/g7_p1.rs'
+      - 'g7/p1/**'
+      - '.github/workflows/g7-p1.yml'
+  pull_request:
+    paths:
+      - 'crates/search-geometry-core/src/g6.rs'
+      - 'crates/search-geometry-core/src/bin/g6_close.rs'
+      - 'crates/search-geometry-core/src/bin/g7_p1.rs'
+      - 'g7/p1/**'
+      - '.github/workflows/g7-p1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  g7-p1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - run: cargo fmt --all --check
+      - run: cargo check --workspace
+      - run: cargo test --workspace
+      - run: mkdir -p g7/p1/build
+      - run: cargo run --release --quiet -p search-geometry-core --bin g6_close > g7/p1/build/g6-close-regression.tsv
+      - run: cargo run --release --quiet -p search-geometry-core --bin g7_p1 | tee g7/p1/build/g7-p1-policy-bank.tsv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P1-policy-bank-${{ github.sha }}
+          path: g7/p1/build/
+          if-no-files-found: error
