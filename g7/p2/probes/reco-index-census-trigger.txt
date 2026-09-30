@@ -1,0 +1,6 @@
+G7-P2 reco.nz index-only census
+date=2026-09-30
+scope=index metadata only; max_pages=400; delay_ms=2000
+solve_body_requests=0
+bulk_solve_mirror_authorized=false
+purpose=population census before any mirror decision
