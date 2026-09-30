@@ -25,6 +25,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - run: node scripts/g7-p2/validate-source-registry.mjs
       - run: node scripts/g7-p2/test-parser.mjs
       - name: Validate JSON schema syntax
@@ -36,3 +39,18 @@ jobs:
           grep -q '^cubedb' g7/p2/manual-intake.tsv
           grep -q '^speedcubing_reconstructions' g7/p2/manual-intake.tsv
           echo G7_P2_MANUAL_INTAKE_MANIFEST_PASS
+      - run: python -m unittest scripts/g7-p2/test-cubesolves-extractor.py
+      - name: Build intake-ready receipt
+        run: |
+          mkdir -p g7/p2/build
+          node scripts/g7-p2/validate-source-registry.mjs > g7/p2/build/source-registry-receipt.txt
+          node scripts/g7-p2/test-parser.mjs > g7/p2/build/parser-receipt.txt
+          python -m unittest scripts/g7-p2/test-cubesolves-extractor.py > g7/p2/build/cubesolves-extractor-receipt.txt 2>&1
+          cp g7/p2/source-registry.json g7/p2/build/
+          cp g7/p2/human-solve-record.schema.json g7/p2/build/
+          cp g7/p2/manual-intake.tsv g7/p2/build/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P2-intake-ready-${{ github.sha }}
+          path: g7/p2/build
+          if-no-files-found: error
