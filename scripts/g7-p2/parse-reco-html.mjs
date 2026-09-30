@@ -95,7 +95,10 @@ export function parseRecoSolveHtml(html, sourceUrl = null) {
   const solveId = solveIdFromUrl ?? solveIdFromCanonical;
 
   const algUrl = firstMatch(html, /href=["'](https:\/\/alg\.cubing\.net\/\?[^"']+)["']/i);
-  const videoUrl = firstMatch(html, /<iframe[^>]+src=["']([^"']+)["']/i);
+  const videoUrl =
+    firstMatch(html, /<iframe[^>]+src=["']([^"']+)["']/i) ??
+    firstMatch(html, /<[^>]+src=["'](https:\/\/www\.youtube\.com\/embed\/[^"']+)["'][^>]*data-original-tag=["']iframe["']/i) ??
+    firstMatch(html, /<[^>]+data-original-tag=["']iframe["'][^>]*src=["'](https:\/\/www\.youtube\.com\/embed\/[^"']+)["']/i);
 
   const statsHtml = firstMatch(html, /<table[^>]+id=["']solvestats["'][^>]*>([\s\S]*?)<\/table>/i);
   const stats = {};
@@ -114,7 +117,7 @@ export function parseRecoSolveHtml(html, sourceUrl = null) {
     }
   }
 
-  const averageNeighborIds = [...String(html).matchAll(/href=["'](?:\.\.\/)?(?:solve\/)?(\d+)["']/gi)]
+  const averageNeighborIds = [...String(html).matchAll(/href=["'](?:(?:https?:\/\/reco\.nz\/)?solve\/|\.\.\/)?(\d+)["']/gi)]
     .map(m => Number(m[1]))
     .filter(Number.isFinite)
     .filter(id => String(id) !== String(solveId));
