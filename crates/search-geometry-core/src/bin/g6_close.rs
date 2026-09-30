@@ -153,6 +153,46 @@ fn main() {
 
     assert_eq!(pairs.len(), 2);
 
+    let mut slack_pairs = Vec::<(Phase1, Record, Record)>::new();
+    let mut q_values = by_q.keys().copied().collect::<Vec<_>>();
+    q_values.sort_by_key(|q| (q.twist, q.flip, q.slice));
+    for q in q_values {
+        let group = &by_q[&q];
+        let mut classes =
+            HashMap::<String, HashMap<String, Vec<Record>>>::new();
+        for record in group {
+            classes
+                .entry(signature_key(&record.shortest))
+                .or_default()
+                .entry(signature_key(&record.slack1))
+                .or_default()
+                .push(record.clone());
+        }
+
+        let mut shortest_keys = classes.keys().cloned().collect::<Vec<_>>();
+        shortest_keys.sort();
+        for shortest_key in shortest_keys {
+            let slack_classes = classes.remove(&shortest_key).unwrap();
+            if slack_classes.len() < 2 {
+                continue;
+            }
+            let mut ordered = slack_classes.into_iter().collect::<Vec<_>>();
+            ordered.sort_by(|a, b| a.0.cmp(&b.0));
+            for (_, states) in &mut ordered {
+                states.sort_by(|a, b| a.path.cmp(&b.path));
+            }
+            for i in 0..ordered.len() {
+                for j in i + 1..ordered.len() {
+                    slack_pairs.push((
+                        q,
+                        ordered[i].1[0].clone(),
+                        ordered[j].1[0].clone(),
+                    ));
+                }
+            }
+        }
+    }
+
     let mut c4_families = HashMap::<String, Vec<usize>>::new();
     for (idx, (_, a, b)) in pairs.iter().enumerate() {
         c4_families
@@ -165,8 +205,21 @@ fn main() {
     println!("SLICE_STATES\t960");
     println!("PHASE1_Q_COUNT\t{}", by_q.len());
     println!("RAW_SAME_Q_DIVERGENT_PAIRS\t{}", pairs.len());
+    let mut slack_c4_families = HashMap::<String, Vec<usize>>::new();
+    for (idx, (_, a, b)) in slack_pairs.iter().enumerate() {
+        slack_c4_families
+            .entry(pair_c4_key(&a.path, &b.path))
+            .or_default()
+            .push(idx + 1);
+    }
+
     println!("C4_MATCHED_PAIR_FAMILIES\t{}", c4_families.len());
     println!("SLACK_ONLY_DIVERGENT_Q\t{slack_only_q}");
+    println!("RAW_SLACK_ONLY_PAIRS\t{}", slack_pairs.len());
+    println!(
+        "C4_SLACK_ONLY_FAMILIES\t{}",
+        slack_c4_families.len()
+    );
 
     for (idx, (q, a, b)) in pairs.iter().enumerate() {
         assert_eq!(a.state.phase1(), b.state.phase1());
@@ -192,6 +245,36 @@ fn main() {
     for (idx, (key, members)) in families.iter().enumerate() {
         println!(
             "C4_FAMILY\t{}\tmembers={:?}\tcanonical={}",
+            idx + 1,
+            members,
+            key
+        );
+    }
+
+    for (idx, (q, a, b)) in slack_pairs.iter().enumerate() {
+        assert_eq!(a.state.phase1(), b.state.phase1());
+        assert_eq!(a.shortest, b.shortest);
+        assert_ne!(a.slack1, b.slack1);
+        println!(
+            "SLACK_PAIR\t{}\tq={},{},{}\tA={}\tshort={}\tA_slack1={}\tB={}\tB_slack1={}\tC4_family={}",
+            idx + 1,
+            q.twist,
+            q.flip,
+            q.slice,
+            word_text(&a.path),
+            signature_key(&a.shortest),
+            signature_key(&a.slack1),
+            word_text(&b.path),
+            signature_key(&b.slack1),
+            pair_c4_key(&a.path, &b.path),
+        );
+    }
+
+    let mut slack_families = slack_c4_families.into_iter().collect::<Vec<_>>();
+    slack_families.sort_by(|a, b| a.0.cmp(&b.0));
+    for (idx, (key, members)) in slack_families.iter().enumerate() {
+        println!(
+            "SLACK_C4_FAMILY\t{}\tmembers={:?}\tcanonical={}",
             idx + 1,
             members,
             key
