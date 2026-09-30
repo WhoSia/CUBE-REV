@@ -61,7 +61,6 @@ jobs:
           if-no-files-found: error
 
   reco-bounded-materialize:
-    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -89,7 +88,6 @@ jobs:
           retention-days: 1
 
   reco-index-census:
-    if: ${{ github.event_name == 'push' }}
     needs: reco-bounded-materialize
     runs-on: ubuntu-latest
     timeout-minutes: 25
