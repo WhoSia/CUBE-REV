@@ -32,8 +32,29 @@ function parseCells(rowHtml) {
 }
 
 export function parseRecoIndexHtml(html) {
-  const ids = [...String(html).matchAll(/href=["'](?:https?:\/\/reco\.nz)?\/?solve\/(\d+)["']/gi)]
+  const rows = [...String(html).matchAll(/<tr[^>]*class=["'][^"']*solve-row[^"']*["'][^>]*data-id=["'](\d+)["'][^>]*>([\s\S]*?)<\/tr>/gi)]
+    .map(m => {
+      const cells=parseCells(m[2]);
+      if(cells.length < 11) return null;
+      return {
+        id:Number(m[1]),
+        puzzle:cells[1],
+        result:cells[2],
+        solver:cells[3],
+        method:cells[4],
+        date:cells[5],
+        competition:cells[6],
+        tags:cells[7],
+        movecount:cells[8] ? Number(cells[8]) : null,
+        tps:cells[9] ? Number(cells[9]) : null,
+        reconstructor:cells[10],
+      };
+    })
+    .filter(Boolean);
+
+  const linkedIds = [...String(html).matchAll(/href=["'](?:https?:\/\/reco\.nz)?\/?solve\/(\d+)["']/gi)]
     .map(m => Number(m[1]));
+  const ids=[...rows.map(r=>r.id),...linkedIds];
   const uniqueIds = [...new Set(ids)].sort((a, b) => a - b);
 
   const pages = [...String(html).matchAll(/[?&]page=(\d+)/g)]
@@ -41,6 +62,7 @@ export function parseRecoIndexHtml(html) {
     .filter(Number.isFinite);
 
   return {
+    rows,
     solve_ids: uniqueIds,
     min_id: uniqueIds.length ? uniqueIds[0] : null,
     max_id: uniqueIds.length ? uniqueIds.at(-1) : null,
