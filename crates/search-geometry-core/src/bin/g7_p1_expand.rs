@@ -144,6 +144,52 @@ fn sig_text(sig: &EntryCostSignature) -> String {
     )
 }
 
+
+fn facelet_string(cube: Cube) -> String {
+    const CORNER_FACELETS: [[usize; 3]; 8] = [
+        [8, 9, 20], [6, 18, 38], [0, 36, 47], [2, 45, 11],
+        [29, 26, 15], [27, 44, 24], [33, 53, 42], [35, 17, 51],
+    ];
+    const CORNER_COLORS: [[char; 3]; 8] = [
+        ['U', 'R', 'F'], ['U', 'F', 'L'], ['U', 'L', 'B'], ['U', 'B', 'R'],
+        ['D', 'F', 'R'], ['D', 'L', 'F'], ['D', 'B', 'L'], ['D', 'R', 'B'],
+    ];
+    const EDGE_FACELETS: [[usize; 2]; 12] = [
+        [5, 10], [7, 19], [3, 37], [1, 46],
+        [32, 16], [28, 25], [30, 43], [34, 52],
+        [23, 12], [21, 41], [50, 39], [48, 14],
+    ];
+    const EDGE_COLORS: [[char; 2]; 12] = [
+        ['U', 'R'], ['U', 'F'], ['U', 'L'], ['U', 'B'],
+        ['D', 'R'], ['D', 'F'], ['D', 'L'], ['D', 'B'],
+        ['F', 'R'], ['F', 'L'], ['B', 'L'], ['B', 'R'],
+    ];
+
+    let mut facelets = ['?'; 54];
+    for (idx, color) in ['U', 'R', 'F', 'D', 'L', 'B'].into_iter().enumerate() {
+        facelets[idx * 9 + 4] = color;
+    }
+    for pos in 0..8 {
+        let cubie = cube.cp[pos] as usize;
+        let ori = cube.co[pos] as usize;
+        for n in 0..3 {
+            facelets[CORNER_FACELETS[pos][(n + ori) % 3]] = CORNER_COLORS[cubie][n];
+        }
+    }
+    for pos in 0..12 {
+        let cubie = cube.ep[pos] as usize;
+        let ori = cube.eo[pos] as usize;
+        for n in 0..2 {
+            facelets[EDGE_FACELETS[pos][(n + ori) % 2]] = EDGE_COLORS[cubie][n];
+        }
+    }
+    assert!(facelets.iter().all(|&x| x != '?'));
+    for color in ['U', 'R', 'F', 'D', 'L', 'B'] {
+        assert_eq!(facelets.iter().filter(|&&x| x == color).count(), 9);
+    }
+    facelets.into_iter().collect()
+}
+
 fn main() {
     let max_depth = 4u8;
     let full = full_ball_with_paths(max_depth);
@@ -232,7 +278,7 @@ fn main() {
         c4.values().map(Vec::len).sum::<usize>()
     );
     println!("MATCHED_C4_FAMILIES\t{}", c4.len());
-    println!("family\tdg\td1\tq\tsolutions\tfirst_mask\tprefix2\tA\tA_slack\tB\tB_slack");
+    println!("family\tdg\td1\tq\tsolutions\tfirst_mask\tprefix2\tA\tA_facelets\tA_slack\tB\tB_facelets\tB_slack");
 
     for (idx, key) in family_keys.iter().enumerate() {
         let mut pairs = c4[key].clone();
@@ -249,7 +295,7 @@ fn main() {
         assert_ne!(a.slack1, b.slack1);
         assert_eq!(a.state.phase1(), b.state.phase1());
         println!(
-            "{}\t{}\t{}\t{},{},{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+            "{}\t{}\t{}\t{},{},{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
             idx + 1,
             a.dg,
             a.d1,
@@ -260,8 +306,10 @@ fn main() {
             a.geo.first_action_mask,
             a.geo.prefix2_count,
             word_text(&a.scramble),
+            facelet_string(a.state),
             sig_text(&a.slack1),
             word_text(&b.scramble),
+            facelet_string(b.state),
             sig_text(&b.slack1),
         );
     }
