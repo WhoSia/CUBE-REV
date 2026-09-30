@@ -1,0 +1,6 @@
+G7-P2 reco.nz bounded corpus materialization
+date=2026-09-30
+scope=index page 1; puzzle=3x3; max_solves=10; delay_ms=2000
+bulk_solve_mirror_authorized=false
+raw_public_release=false
+purpose=materialize bounded research capture for Drive custody
