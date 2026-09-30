@@ -5,3 +5,4 @@ bulk_solve_mirror_authorized=false
 raw_public_release=false
 purpose=materialize bounded research capture for Drive custody
 rerun=2
+combined_lane=3
