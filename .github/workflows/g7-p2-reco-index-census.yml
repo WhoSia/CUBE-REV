@@ -1,0 +1,39 @@
+name: G7-P2 reco.nz index-only census
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p2/probes/reco-index-census-trigger.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  index-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Execute index-only census
+        run: |
+          rm -rf /tmp/reco-index-census
+          node scripts/g7-p2/census-reco-index.mjs --out /tmp/reco-index-census --delay-ms 2000 --max-pages 400 | tee /tmp/reco-index-census.log
+      - name: Seal census evidence
+        run: |
+          cp /tmp/reco-index-census.log /tmp/reco-index-census/derived/execution.log
+          (cd /tmp/reco-index-census && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+          test -s /tmp/reco-index-census/derived/census.json
+          test -s /tmp/reco-index-census/derived/index-rows.jsonl
+          grep -q $'SOLVE_BODY_REQUESTS\\t0' /tmp/reco-index-census/derived/execution.log
+          echo G7_P2_RECO_INDEX_CENSUS_CUSTODY_PASS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P2-reco-index-census-${{ github.sha }}
+          path: /tmp/reco-index-census
+          if-no-files-found: error
+          retention-days: 1
