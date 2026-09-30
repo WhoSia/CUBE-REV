@@ -59,3 +59,61 @@ jobs:
           name: G7-P2-intake-ready-${{ github.sha }}
           path: g7/p2/build
           if-no-files-found: error
+
+  reco-bounded-materialize:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reco-materialize-census]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Execute bounded real capture
+        run: |
+          rm -rf /tmp/reco-bounded-capture
+          node scripts/g7-p2/acquire-reco.mjs --execute --page-start 1 --pages 1 --max-solves 10 --puzzle 3x3 --delay-ms 2000 --out /tmp/reco-bounded-capture
+      - name: Validate capture and custody
+        run: |
+          node scripts/g7-p2/validate-reco-live-probe.mjs /tmp/reco-bounded-capture | tee /tmp/reco-bounded-capture/validation-receipt.txt
+          (cd /tmp/reco-bounded-capture && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+          test "$(find /tmp/reco-bounded-capture/raw/solve -type f -name '*.html' | wc -l)" -eq 10
+          test -s /tmp/reco-bounded-capture/derived/solves.jsonl
+          test -s /tmp/reco-bounded-capture/capture-manifest.json
+          echo G7_P2_RECO_BOUNDED_CUSTODY_PASS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P2-reco-bounded-capture-${{ github.sha }}
+          path: /tmp/reco-bounded-capture
+          if-no-files-found: error
+          retention-days: 1
+
+  reco-index-census:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reco-materialize-census]') }}
+    needs: reco-bounded-materialize
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Execute index-only census
+        run: |
+          rm -rf /tmp/reco-index-census
+          mkdir -p /tmp/reco-index-census
+          node scripts/g7-p2/census-reco-index.mjs --out /tmp/reco-index-census --delay-ms 2000 --max-pages 400 | tee /tmp/reco-index-census/derived/execution.log
+      - name: Seal census evidence
+        run: |
+          (cd /tmp/reco-index-census && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+          test -s /tmp/reco-index-census/derived/census.json
+          test -s /tmp/reco-index-census/derived/index-rows.jsonl
+          grep -q $'SOLVE_BODY_REQUESTS\\t0' /tmp/reco-index-census/derived/execution.log
+          echo G7_P2_RECO_INDEX_CENSUS_CUSTODY_PASS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P2-reco-index-census-${{ github.sha }}
+          path: /tmp/reco-index-census
+          if-no-files-found: error
+          retention-days: 1
+
