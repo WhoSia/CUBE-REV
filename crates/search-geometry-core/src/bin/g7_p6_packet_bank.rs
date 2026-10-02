@@ -59,8 +59,19 @@ fn main(){
             let lb=pdb.lower_bound(q); if !(4..=8).contains(&lb){continue;}
             let h1=best(&moves,&pdb,q,1,0);let h2=best(&moves,&pdb,q,2,0);let h3=best(&moves,&pdb,q,3,0);
             let ts=best(&moves,&pdb,q,1,1);let fs=best(&moves,&pdb,q,1,2);
-            for m in motif(&h1,&h2,&h3,&ts,&fs){
-                if buckets[m].len()<8 {buckets.get_mut(m).unwrap().push((c,serial));}
+            let eligible=motif(&h1,&h2,&h3,&ts,&fs);
+            let mut chosen:Option<&str>=None;
+            let mut best_deficit=0usize;
+            for &m in &motifs {
+                if !eligible.contains(&m) { continue; }
+                let deficit=8usize.saturating_sub(buckets[m].len());
+                if deficit>best_deficit {
+                    best_deficit=deficit;
+                    chosen=Some(m);
+                }
+            }
+            if let Some(m)=chosen {
+                buckets.get_mut(m).unwrap().push((c,serial));
             }
         }
         for m in motifs{
