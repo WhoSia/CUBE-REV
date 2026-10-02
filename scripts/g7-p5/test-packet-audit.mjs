@@ -1,0 +1,14 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import {spawnSync} from "node:child_process";
+const d=fs.mkdtempSync(path.join(os.tmpdir(),"g7-p5-audit-"));
+let p=spawnSync("cargo",["run","-q","-p","search-geometry-core","--bin","g7_p5_packet_generator"],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);fs.writeFileSync(path.join(d,"p.tsv"),p.stdout);
+p=spawnSync(process.execPath,["scripts/g7-p5/compile-packet.mjs",path.join(d,"p.tsv"),path.join(d,"p.json")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+p=spawnSync(process.execPath,["scripts/g7-p5/audit-packet.mjs",path.join(d,"p.json"),path.join(d,"audit.json")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+const a=JSON.parse(fs.readFileSync(path.join(d,"audit.json"),"utf8"));
+if(!a.pass||a.side_condition_counts.A.NEUTRAL!==6||a.side_condition_counts.B.NEUTRAL!==6) throw new Error("BALANCE");
+console.log("G7_P5_PACKET_AUDIT_TEST_PASS");
