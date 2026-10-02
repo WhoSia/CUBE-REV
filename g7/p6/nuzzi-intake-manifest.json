@@ -1,0 +1,49 @@
+{
+  "schema_version": "g7-p6-nuzzi-intake-1",
+  "source": {
+    "repository": "DavideNuzzi/Planning-While-Acting",
+    "commit": "911a6f60ad78f1d908dd50c261eaab69e65bf02f",
+    "paper_doi": "10.1073/pnas.2602504123",
+    "paper_data_statement": "Anonymized Human Behavioral Data deposited in GitHub",
+    "redistribution_authority": "UNVERIFIED_RAW_REDISTRIBUTION_HOLD"
+  },
+  "files": [
+    {
+      "path": "data/LevelsFinal.pkl",
+      "github_blob_sha": "3af66f9a4df77cbe3c8a06b4f1757e4b7d618219",
+      "role": "levels_and_environment_objects"
+    },
+    {
+      "path": "data/ResultsPilot.pkl",
+      "github_blob_sha": "195b67aed613b5c43b2e869d3505db1f14b9ecb2",
+      "role": "pilot_or_development_results"
+    },
+    {
+      "path": "data/ResultsFirstDecision.pkl",
+      "github_blob_sha": "f6b11fe907f171d8a983b21fd3ef14b90c918a10",
+      "role": "first_decision_derived_results"
+    },
+    {
+      "path": "data/ResultsAllDecisions.pkl",
+      "github_blob_sha": "373fab409a5fcd83bf37e08189172c961a951604",
+      "role": "all_decision_derived_results"
+    },
+    {
+      "path": "data/ResultsTime.pkl",
+      "github_blob_sha": "1ecb22d164c81c36d0a2916c6cae3b0e3a0ec454",
+      "role": "timing_results"
+    },
+    {
+      "path": "data/AdditionalInfo.pkl",
+      "github_blob_sha": "efe121f968294ef96bc45f0f3ff56d50d1014951",
+      "role": "additional_metadata"
+    }
+  ],
+  "safety": {
+    "unpickle_during_intake": false,
+    "static_pickle_opcode_audit": true,
+    "raw_public_release": "HOLD",
+    "participant_identifier_export": "FORBIDDEN",
+    "derived_tables_must_replace_source_participant_keys_with_local_opaque_ids": true
+  }
+}
