@@ -10,6 +10,8 @@ on:
 permissions:
   contents: read
 
+# trigger: batch2-authoritative-run
+
 jobs:
   bounded-batch:
     runs-on: ubuntu-latest
