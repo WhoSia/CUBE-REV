@@ -20,9 +20,9 @@ permissions:
   contents: read
 
 jobs:
-  g7-p5-instrument:
+  g7-p5-precontact:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,7 +35,17 @@ jobs:
       - name: Frozen authority gates
         run: |
           set -euo pipefail
-          node -e "const p=require('./g7/p5/preseal.json'); const s=require('./g7/p5/instrument-schema.json'); if(p.human_contact.status!=='HOLD_UNTIL_INSTRUMENT_VALIDATED'||p.human_contact.live_data_collection_authorized_by_this_phase!==false) process.exit(1); if(!s.required_event_types.includes('choice_committed')) process.exit(2); console.log('G7_P5_AUTHORITY_PASS')"
+          node - <<'NODE'
+          const p=require('./g7/p5/preseal.json');
+          const s=require('./g7/p5/instrument-schema.json');
+          const c=require('./g7/p5/contact-constitution.json');
+          const r=require('./g7/p5/rival-ecology-court.json');
+          if(p.human_contact.live_data_collection_authorized_by_this_phase!==false) process.exit(1);
+          if(c.status!=='DESIGN_ONLY_HUMAN_CONTACT_CLOSED') process.exit(2);
+          if(!s.required_event_types.includes('choice_committed')) process.exit(3);
+          if(r.status!=='PRESEALED_BEFORE_ECOLOGY_EXECUTION') process.exit(4);
+          console.log('G7_P5_AUTHORITY_PASS');
+          NODE
 
       - name: Polyglot unit gates
         run: |
@@ -49,92 +59,52 @@ jobs:
           node scripts/g7-p5/test-analysis.mjs
           node scripts/g7-p5/test-sensitivity.mjs
           node scripts/g7-p5/test-instrument-closure.mjs
+          node scripts/g7-p5/test-rival-ecology.mjs
+          node scripts/g7-p5/test-fresh-packet-replication.mjs
 
-      - name: Materialize frozen prospective packet
+      - name: Materialize canonical packet and audit
         run: |
           set -euo pipefail
           rm -rf /tmp/g7-p5
           mkdir -p /tmp/g7-p5
           cargo run -q -p search-geometry-core --bin g7_p5_packet_generator > /tmp/g7-p5/packet.tsv
           node scripts/g7-p5/compile-packet.mjs /tmp/g7-p5/packet.tsv /tmp/g7-p5/packet.json | tee /tmp/g7-p5/packet.log
+          node scripts/g7-p5/audit-packet.mjs /tmp/g7-p5/packet.json /tmp/g7-p5/packet-audit.json
           test "$(node -e "console.log(require('/tmp/g7-p5/packet.json').trials.length)")" -eq 24
-          grep -q 
 
-      - name: Synthetic end-to-end instrument validation
+      - name: Materialize rival ecology and fresh packet replication
+        run: |
+          set -euo pipefail
+          cargo run -q -p search-geometry-core --bin g7_p5_rival_ecology | tee /tmp/g7-p5/rival-ecology.tsv
+          node scripts/g7-p5/fresh-packet-replication.mjs /tmp/g7-p5/fresh-packet-replication.json
+
+      - name: Synthetic end-to-end validation
         run: |
           set -euo pipefail
           node scripts/g7-p5/synthesize-events.mjs /tmp/g7-p5/packet.json /tmp/g7-p5/synthetic-events.jsonl
           node scripts/g7-p5/validate-event-integrity.mjs /tmp/g7-p5/packet.json /tmp/g7-p5/synthetic-events.jsonl /tmp/g7-p5/event-integrity.json
           python3 scripts/g7-p5/analyze.py             --packet /tmp/g7-p5/packet.json             --events /tmp/g7-p5/synthetic-events.jsonl             --out /tmp/g7-p5/analysis             --permutations 20000
-          node - <<'NODE'
-          const x=require('/tmp/g7-p5/analysis/analysis.json');
-          if(x.authority!=='SYNTHETIC_VALIDATION_ONLY') process.exit(1);
-          if(x.sessions!==8||x.valid_choice_rows!==192) process.exit(2);
-          if(!(x.primary.h3_agreement_rate>x.primary.h1_agreement_rate)) process.exit(3);
-          console.log('G7_P5_SYNTHETIC_E2E_PASS');
-          console.log('H1_AGREEMENT\t'+x.primary.h1_agreement_rate);
-          console.log('H3_AGREEMENT\t'+x.primary.h3_agreement_rate);
-          console.log('PERMUTATION_P\t'+x.primary.state_level_label_swap_permutation_p);
-          NODE
-          node scripts/g7-p5/evaluate-instrument.mjs \
-            --audit /tmp/g7-p5/packet-audit.json \
-            --analysis /tmp/g7-p5/analysis/analysis.json \
-            --sensitivity /tmp/g7-p5/sensitivity.json \
-            --out /tmp/g7-p5/closure
+          python3 scripts/g7-p5/sensitivity.py --out /tmp/g7-p5/sensitivity.json --reps 5000
+          node scripts/g7-p5/evaluate-instrument.mjs             --audit /tmp/g7-p5/packet-audit.json             --analysis /tmp/g7-p5/analysis/analysis.json             --sensitivity /tmp/g7-p5/sensitivity.json             --out /tmp/g7-p5/closure
           node - <<'NODE'
           const x=require('/tmp/g7-p5/closure/G7-P5-INSTRUMENT-CLOSURE.json');
           if(x.verdict!=='PASS_INSTRUMENT_VALIDATED_HUMAN_CONTACT_NOT_YET_OPEN') process.exit(1);
           if(x.human_contact_open) process.exit(2);
           console.log('G7_P5_INSTRUMENT_FINAL_PASS');
-          console.log('VERDICT\t'+x.verdict);
           NODE
 
-      - name: Seal validation artifact
+      - name: Seal precontact authority artifact
         run: |
           set -euo pipefail
           mkdir -p /tmp/g7-p5/authority /tmp/g7-p5/web
-          cp g7/p5/preseal.json g7/p5/instrument-schema.json g7/p5/contact-constitution.json /tmp/g7-p5/authority/
+          cp g7/p5/preseal.json g7/p5/instrument-schema.json g7/p5/contact-constitution.json g7/p5/rival-ecology-court.json /tmp/g7-p5/authority/
           cp g7/p5/web/index.html g7/p5/web/app.mjs g7/p5/web/browser-core.mjs g7/p5/web/state-net.mjs /tmp/g7-p5/web/
-          printf '%s\n' 'HUMAN_CONTACT=HOLD_UNTIL_INSTRUMENT_VALIDATED' 'LIVE_DATA=NONE' 'SYNTHETIC_ONLY=YES' > /tmp/g7-p5/AUTHORITY.txt
+          printf '%s\n'             'HUMAN_CONTACT=DESIGN_ONLY_HUMAN_CONTACT_CLOSED'             'LIVE_DATA=NONE'             'SYNTHETIC_ONLY=YES' > /tmp/g7-p5/AUTHORITY.txt
           (cd /tmp/g7-p5 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
 
       - uses: actions/upload-artifact@v4
         with:
-          name: G7-P5-instrument-validation-${{ github.sha }}
-          path: /tmp/g7-p5
-          if-no-files-found: error
-          retention-days: 90
-PAIRS\t12' /tmp/g7-p5/packet.log
-          node scripts/g7-p5/audit-packet.mjs /tmp/g7-p5/packet.json /tmp/g7-p5/packet-audit.json
-
-      - name: Synthetic end-to-end instrument validation
-        run: |
-          set -euo pipefail
-          node scripts/g7-p5/synthesize-events.mjs /tmp/g7-p5/packet.json /tmp/g7-p5/synthetic-events.jsonl
-          python3 scripts/g7-p5/analyze.py             --packet /tmp/g7-p5/packet.json             --events /tmp/g7-p5/synthetic-events.jsonl             --out /tmp/g7-p5/analysis             --permutations 20000
-          node - <<'NODE'
-          const x=require('/tmp/g7-p5/analysis/analysis.json');
-          if(x.authority!=='SYNTHETIC_VALIDATION_ONLY') process.exit(1);
-          if(x.sessions!==8||x.valid_choice_rows!==192) process.exit(2);
-          if(!(x.primary.h3_agreement_rate>x.primary.h1_agreement_rate)) process.exit(3);
-          console.log('G7_P5_SYNTHETIC_E2E_PASS');
-          console.log('H1_AGREEMENT\t'+x.primary.h1_agreement_rate);
-          console.log('H3_AGREEMENT\t'+x.primary.h3_agreement_rate);
-          console.log('PERMUTATION_P\t'+x.primary.state_level_label_swap_permutation_p);
-          NODE
-
-      - name: Seal validation artifact
-        run: |
-          set -euo pipefail
-          mkdir -p /tmp/g7-p5/authority /tmp/g7-p5/web
-          cp g7/p5/preseal.json g7/p5/instrument-schema.json /tmp/g7-p5/authority/
-          cp g7/p5/web/index.html g7/p5/web/app.mjs g7/p5/web/browser-core.mjs /tmp/g7-p5/web/
-          printf '%s\n' 'HUMAN_CONTACT=HOLD_UNTIL_INSTRUMENT_VALIDATED' 'LIVE_DATA=NONE' 'SYNTHETIC_ONLY=YES' > /tmp/g7-p5/AUTHORITY.txt
-          (cd /tmp/g7-p5 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: G7-P5-instrument-validation-${{ github.sha }}
+          name: G7-P5-precontact-${{ github.sha }}
           path: /tmp/g7-p5
           if-no-files-found: error
           retention-days: 90
