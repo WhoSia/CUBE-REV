@@ -8,6 +8,7 @@ for(const m of ["U","R","F","D","L","B","M","E","S","x","y","z","r","u","f","Rw"
 assert.equal(stateSignature(applyAlg(s,"r")),stateSignature(applyAlg(s,"R M'")),"r = R M'");
 assert.equal(stateSignature(applyAlg(s,"u")),stateSignature(applyAlg(s,"U E'")),"u = U E'");
 assert.equal(stateSignature(applyAlg(s,"f")),stateSignature(applyAlg(s,"F S")),"f = F S");
+assert.equal(stateSignature(applyAlg(s,"(r2' y)")),stateSignature(applyAlg(s,"r2' y")),"group punctuation");
 assert.equal(stateSignature(applyAlg(s,"R U R' U' R U R' U' R U R' U' R U R' U' R U R' U' R U R' U'")),sig,"sexy x6");
 assert.equal(isSolvedUpToRotation(applyAlg(s,"x y z")),true);
 assert.equal(isSolvedUpToRotation(applyAlg(s,"R")),false);
