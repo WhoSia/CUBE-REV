@@ -42,6 +42,7 @@ jobs:
           node scripts/g7-p7/test-reco-campaign-manifest.mjs
           node scripts/g7-p7/test-reco-rival-kernel.mjs
           node scripts/g7-p7/test-reco-five-rival-analysis.mjs
+          node scripts/g7-p7/test-reco-statistical-calibration.mjs
           node - <<'NODE'
           const c=require('./g7/p7/reco-campaign-closure.json');
           if(!c.closure.campaign_complete||c.closure.acquisition_pass!==40||c.closure.exact_end_validation_pass!==40) process.exit(1);
@@ -113,6 +114,9 @@ jobs:
           cp /tmp/g7-p7-build/five-rival-features.tsv /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/analysis/five-rival-analysis.json /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/analysis/five-rival-analysis-receipt.md /tmp/g7-p7-seal/derived/
+          cp /tmp/g7-p7-build/calibration/statistical-calibration.json /tmp/g7-p7-seal/derived/
+          cp /tmp/g7-p7-build/calibration/statistical-calibration-receipt.md /tmp/g7-p7-seal/derived/
+          cp g7/p7/reco-statistical-calibration.json /tmp/g7-p7-seal/authority/
           cp /tmp/g7-p7-build/exact/exact-trajectories.json /tmp/g7-p7-seal/derived/
           printf '%s\n'             'SOURCE_CONTACT=NONE'             'SOLVES=60'             'RAW_SOURCE_HTML_PACKAGED=NO'             'RAW_PUBLIC_RELEASE=HOLD'             'AUTHORITY=DESCRIPTIVE_NATURALISTIC_MEASUREMENT'             > /tmp/g7-p7-seal/AUTHORITY.txt
           (cd /tmp/g7-p7-seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
@@ -126,6 +130,11 @@ jobs:
           console.log('FACE_NEXT_STATES\t'+x.all_states.face_next_states);
           console.log('MEAN_RIVAL_DIVERSITY\t'+x.all_states.mean_pairwise_jaccard_distance);
           console.log('BOUNDARY_DELTA\t'+x.within_solve_boundary_contrast.mean_boundary_minus_nonboundary_diversity);
+          const c=require('/tmp/g7-p7-seal/derived/statistical-calibration.json');
+          console.log('CALIBRATION_H1_EXCESS\t'+c.choice_calibration.H1.solve_mean_excess);
+          console.log('CALIBRATION_H3_EXCESS\t'+c.choice_calibration.H3.solve_mean_excess);
+          console.log('CALIBRATION_TS_EXCESS\t'+c.choice_calibration.TS.solve_mean_excess);
+          console.log('PROGRESS_MATCHED_BOUNDARY_DELTA\t'+c.progress_matched_boundary_calibration.mean_matched_delta);
           NODE
 
       - uses: actions/upload-artifact@v4
