@@ -1,0 +1,63 @@
+{
+  "schema_version": "g7-p11-acquisition-closure-1",
+  "phase": "G7-P11",
+  "operation_type": "Fresh-Reconstruction Acquisition Campaign Closure",
+  "status": "CLOSED_PASS",
+  "selection_manifest_sha256": "70057c8868da63b7aaeef9d2a005be163602a667cfe2a675af6e9ec5acbcdee9",
+  "target_solves": 40,
+  "acquired_solves": 40,
+  "exact_end_validation_pass": 40,
+  "total_prefixes": 2257,
+  "batches": [
+    {
+      "batch": 1,
+      "run": 37042536559,
+      "head": "b46c2e6089672ffec6ba69698eb78707585cbe77",
+      "artifact": 11242854238,
+      "sha256": "0bc3c845d0caadcd84a6df4ce8db4a65fae083d6ef01e076f5ce95755676c6ea",
+      "drive": "1yj6sGqwaVy_v7SsXNTIggXTJ3l4nWER3",
+      "prefixes": 607
+    },
+    {
+      "batch": 2,
+      "run": 37043090118,
+      "head": "a50074f0c509468d0e3eabaf313d10e04ced561d",
+      "artifact": 11243410683,
+      "sha256": "c4589ff7955ea3fe7fe1d452f8a137e4f2c799e60cad27e863fa91bfcc7f975e",
+      "drive": "1qOd8Pg6w7SjWqPsuIOMjvdBLvx-2JPxc",
+      "prefixes": 554
+    },
+    {
+      "batch": 3,
+      "run": 37043356999,
+      "head": "8e51e100b6643a9ac02040629323369da725c494",
+      "artifact": 11243041519,
+      "sha256": "82ce3af8a36c0eb3bf8f6192a72db1adb17f2046cf8ef2f602b4d583887ffe38",
+      "drive": "1hhbQAZxkDkMG3aCfJ5AAlMruaOGajJIQ",
+      "prefixes": 509
+    },
+    {
+      "batch": 4,
+      "run": 37043503822,
+      "head": "b36716e9e3632df36f349258c2dcb74559421fdc",
+      "artifact": 11243391026,
+      "sha256": "8575409309eadab60cf5d2145925108c8139a62e75a7f2060785c4de75a3028a",
+      "drive": "1rgcstFARclB5cgvciKxV7qccj0Jef_BN",
+      "prefixes": 587
+    }
+  ],
+  "source_contact_boundary": {
+    "source": "reco.nz",
+    "robots_observation": "ABSENT_404 each batch",
+    "max_solves_per_run": 10,
+    "min_delay_ms": 2000,
+    "bulk_mirror": "HOLD",
+    "raw_public_release": "HOLD",
+    "further_contact_under_p11_primary_replication": false
+  },
+  "analysis_gate": {
+    "fresh_only": true,
+    "prior_60_pooling_before_primary_verdict": false,
+    "next": "materialize exact fresh-40 five-rival geometry and execute frozen replication rule"
+  }
+}
