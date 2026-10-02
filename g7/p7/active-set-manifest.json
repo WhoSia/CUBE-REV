@@ -51,7 +51,12 @@
     "^scripts/run-r3-",
     "^crates/search-geometry-core/src/bin/(g6_|g7_p[1-6]|p5_|p6\\.rs$)",
     "^crates/cuberev-core/src/bin/fixture_emit\\.rs$",
-    "^(package\\.json|package-lock\\.json|tsconfig\\.json)$"
+    "^(package\\.json|package-lock\\.json|tsconfig\\.json)$",
+    "^\\.github/workflows/g7-p7-reco-selection\\.yml$",
+    "^scripts/g7-p7/select-reco-campaign\\.mjs$",
+    "^scripts/g7-p7/test-reco-campaign-selection\\.mjs$",
+    "^scripts/g7-p7/acquire-reco-batch\\.mjs$",
+    "^scripts/g7-p7/test-acquire-reco-batch\\.mjs$"
   ],
   "archive_surfaces": {
     "git_history": true,
