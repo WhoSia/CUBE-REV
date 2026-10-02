@@ -216,5 +216,62 @@
       "the audit localizes provenance support only",
       "no mechanism promotion"
     ]
+  },
+  "source_provenance_recovery_audit": {
+    "operation_type": "Source-Provenance Recovery Audit",
+    "status": "FROZEN_AFTER_INITIAL_EXTERNAL_DISCOVERY_BEFORE_FINAL_CLASSIFICATION",
+    "authority": "POST_SOURCE_WORLD_EXPLORATORY_PROVENANCE_AUDIT",
+    "prior_observation_disclosure": [
+      "US Nationals 2012 source label has an official WCA competition counterpart titled United States National Championships 2012, and Andy Smith has an official 13.22 solve there.",
+      "Yoochan Hong has an official 4.49 3x3 solve at Daejeon Spring 2025.",
+      "Qixian Cao has an official 4.08 3x3 solve at Vietnam Championship 2025.",
+      "Monkey League exposes its own season/standings/shared-scramble competition surface.",
+      "SpeedCubeDB historically hosted solve reconstructions."
+    ],
+    "source_scope": "same frozen 60 reco.nz solves; no new reco.nz body contact",
+    "target_rows": [
+      76,
+      6155,
+      7905,
+      8402,
+      11859,
+      12096,
+      12277,
+      13066,
+      14104
+    ],
+    "support_classes": {
+      "WCA_COMPETITION_ALIAS_PERSON_RESULT_SUPPORTED": [
+        "source competition label is not exact-normalized WCA name",
+        "an official WCA competition page establishes the competition identity/alias context",
+        "same solver and exact result value appear in that official competition"
+      ],
+      "WCA_PERSON_RESULT_SUPPORTED_SCRAMBLE_ASSIGNMENT_CONFLICT": [
+        "same exact source competition name is a WCA competition",
+        "same solver and exact result value appear officially in that competition",
+        "reco scramble exists in WCA export but in a matched round where that solver is absent",
+        "therefore exact attempt linkage remains rejected"
+      ],
+      "EXTERNAL_LEAGUE_SURFACE": [
+        "source label resolves to a distinct organized league/tournament surface with its own match/scramble structure",
+        "not promoted to WCA attempt identity"
+      ],
+      "RECONSTRUCTION_DATABASE_SOURCE_LABEL": [
+        "source label resolves to a reconstruction database/platform rather than a competition identity"
+      ],
+      "SOURCE_DECLARED_UNOFFICIAL": [
+        "reco source itself labels competition field as unofficial"
+      ],
+      "UNRESOLVED": [
+        "available evidence does not support a stronger provenance class"
+      ]
+    },
+    "forbidden": [
+      "convert alias support into exact attempt linkage without scramble identity",
+      "treat official person/result support as proof the reco scramble belongs to that attempt",
+      "call an external league non-WCA solely from absence in exact-name WCA matching",
+      "use fuzzy names as identity authority",
+      "promote any provenance recovery result to a cognitive mechanism"
+    ]
   }
 }
