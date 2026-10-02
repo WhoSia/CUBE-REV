@@ -38,14 +38,15 @@
   "active_set": {
     "manifest": "g7/p7/active-set-manifest.json",
     "blocking_workflow": ".github/workflows/p7-repo-active-set-audit.yml",
-    "sealed_run": 36978513851,
-    "sealed_head": "33488e5b11869801da66822bd272d7c38230f2e7",
-    "tracked_files": 71,
+    "sealed_run": 36981110448,
+    "sealed_head": "61cbec770e46f36c4abf7919e6a8ac3088224ebb",
+    "tracked_files": 66,
     "legacy_candidates": 0,
     "unclassified_files": 0,
-    "artifact_id": 11214009066,
-    "artifact_sha256": "9501d41cc83af89eddc9ecbd71811f257b94505c78ba972387053bd3bdd5eb87",
-    "drive_audit_file_id": "15KxYy2vDCyRqORoIpbnTg3dYYHgBr507",
-    "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI"
+    "artifact_id": 11215198981,
+    "artifact_sha256": "17c21a64c066d7d4eef234c11a903227a6c7b065b5cfba5fa4dabe72129bc2bc",
+    "drive_audit_file_id": "1vnmAK40dAjcvOyAFU2yfvSYBmqhy-jSV",
+    "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI",
+    "note": "This receipt covers the post-campaign active-set state before metadata-only README/archive-pointer refresh."
   }
 }
