@@ -1,0 +1,24 @@
+{
+  "schema_version": "g7-p3-method-ontology-1",
+  "principles": {
+    "preserve_raw_label": true,
+    "unknown_is_error": false,
+    "stage_topology_is_method_specific": true,
+    "automatic_analyzer_truth_authority": false
+  },
+  "raw_label_map": {
+    "CFOP": {"family": "CFOP", "stage_system": "CFOP", "observed_puzzles": ["3x3", "OH"]},
+    "ZB": {"family": "ZB", "stage_system": "ZB", "observed_puzzles": ["3x3", "OH"]},
+    "Roux": {"family": "ROUX", "stage_system": "ROUX", "observed_puzzles": ["3x3", "OH"]},
+    "ZZ": {"family": "ZZ", "stage_system": "ZZ", "observed_puzzles": ["3x3", "OH"]},
+    "Petrus": {"family": "PETRUS", "stage_system": "PETRUS", "observed_puzzles": ["3x3"]},
+    "CEOR": {"family": "CEOR", "stage_system": "CEOR", "observed_puzzles": ["OH"]},
+    "CF": {"family": "UNRESOLVED_CF", "stage_system": "UNKNOWN", "observed_puzzles": ["3x3"]},
+    "Yau": {"family": "YAU_BIG_CUBE", "stage_system": "YAU", "observed_puzzles": ["4x4", "5x5", "6x6", "7x7"]},
+    "Hoya": {"family": "HOYA_BIG_CUBE", "stage_system": "HOYA", "observed_puzzles": ["4x4"]},
+    "Redux": {"family": "REDUCTION_BIG_CUBE", "stage_system": "REDUCTION", "observed_puzzles": ["4x4", "5x5", "6x6", "7x7"]},
+    "Vandenbergh": {"family": "SQ1_VANDENBERGH", "stage_system": "SQ1_VANDENBERGH", "observed_puzzles": ["SQ1"]},
+    "Lin": {"family": "SQ1_LIN", "stage_system": "SQ1_LIN", "observed_puzzles": ["SQ1"]}
+  },
+  "fallback": {"family": "UNKNOWN", "stage_system": "UNKNOWN"}
+}
