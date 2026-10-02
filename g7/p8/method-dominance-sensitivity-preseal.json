@@ -1,0 +1,52 @@
+{
+  "schema_version": "g7-p8-r1-method-dominance-sensitivity-preseal-1",
+  "phase": "G7-P8-R1",
+  "operation_type": "Method-Dominance Sensitivity Stress Test",
+  "formal_name": "CUBE-REV Generation VII G7-P8-R1 — Method-Dominance Sensitivity, CFOP-Dependence Decomposition, Cross-Era Method×Reconstructor Stability, Leave-One-Family Transport, Joint-Support Margin Audit & TS-vs-H1 Robustness Separation Stress Test",
+  "status": "FROZEN_AFTER_P8_COURT_BEFORE_R1_EXECUTION",
+  "observed_before_freeze": {
+    "p8_court_run": 37036234228,
+    "p8_court_head": "c4fc7152a5bdc6b4b12027f979eb43c026040437",
+    "p8_court_artifact": 11239796775,
+    "p8_court_artifact_sha256": "14d18409bf2cc82a0abbe348937097a4bb11a7b49cbb323b55b4cb3129cc67e1",
+    "p8_verdict": "TS_H1_SIGN_ROBUST_ACROSS_METHOD_RECONSTRUCTOR_SUPPORT_AXES",
+    "known_sensitivity": {
+      "method_family_TS_poststrat": 0.04140969489906825,
+      "method_family_H1_poststrat": 0.021374809976864664,
+      "method_family_H1_leave_CFOP_out": -0.011365998771861858,
+      "joint_TS_poststrat": 0.029677618305046432,
+      "joint_H1_poststrat": 0.00624010913406473
+    }
+  },
+  "primary_questions": [
+    "Is TS positive after deleting every supported method family one at a time?",
+    "Which method-family deletions reverse H1, and is CFOP uniquely sign-critical?",
+    "How much of each post-stratified TS/H1 mean is compositionally attributable to each method family?",
+    "Does the TS-vs-H1 robustness separation persist within temporal eras?",
+    "How close are joint method×reconstructor-band TS/H1 results to their adversarial sign-flip thresholds?"
+  ],
+  "readouts": [
+    "per-method leave-one-out effect and sign for TS/H1",
+    "per-method population-weighted contribution to TS/H1 post-stratified mean",
+    "non-CFOP conditional post-stratified TS/H1 mean",
+    "era-specific method-cell supported mass, zero-support mass, TS/H1 post-stratified mean and full-range adversarial sign bound",
+    "era-specific reconstructor-band analogue",
+    "joint-axis adversarial lower bound and margin to sign-flip threshold",
+    "reconstructor surface-agreement mismatch count only; no relabeling"
+  ],
+  "adjudication": [
+    "TS positive under all method deletions and all era-supported post-stratifications => TS composition-robust on observed axes",
+    "H1 sign reversal under one or more method deletions => H1 method-composition sensitive even if aggregate population sign remains positive",
+    "CFOP-only H1 reversal => CFOP-critical H1 composition dependence",
+    "era sign reversals => temporal transport instability",
+    "zero-support era/cell mass is never imputed; use full rival-excess range [-1,17/18] for sign bounds",
+    "no result identifies a cognitive mechanism"
+  ],
+  "inputs": {
+    "p8_court_artifact": 11239796775,
+    "population_3x3": 10591,
+    "body_geometry_solves": 60,
+    "new_source_contact": "NONE"
+  },
+  "human_contact_gate": "CLOSED"
+}
