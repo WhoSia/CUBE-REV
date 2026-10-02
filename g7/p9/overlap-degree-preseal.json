@@ -1,0 +1,36 @@
+{
+  "schema_version":"g7-p9-r1-overlap-degree-preseal-1",
+  "phase":"G7-P9-R1",
+  "operation_type":"TS Overlap-Degree Attribution Audit",
+  "formal_name":"CUBE-REV Generation VII G7-P9-R1 — TS Support Overlap-Degree Attribution, 0→4 Rival-Sharing Spectrum, Degree-Conditional Excess Decomposition, Observed-Match Mass Localization, Pairwise Symmetric-Difference Reconciliation, Method/Provenance Stability & Shared-Support Architecture Audit",
+  "status":"FROZEN_AFTER_P9_BEFORE_R1_OUTCOME",
+  "parent_run":37038855282,
+  "parent_artifact":11240379793,
+  "parent_sha256":"3d399e6cc8759c36418b991ecda9f5e190ed8ada7c877631f7cf3c2330f7277a",
+  "definitions":{
+    "degree_d":"for a move in TS support, number of H1/H2/H3/FS supports also containing that move",
+    "bucket_excess":"indicator(observed move in TS degree-d bucket) minus bucket_size/18",
+    "identity":"sum of degree 0..4 bucket excess equals total TS excess statewise"
+  },
+  "primary_readouts":[
+    "solve-level excess for degrees 0,1,2,3,4",
+    "share of total TS excess attributable to each degree",
+    "observed TS match counts by overlap degree",
+    "TS support-set size mass by overlap degree",
+    "cumulative excess for degree <=1 and degree <=2",
+    "pairwise TS-minus-rival symmetric-difference identity checks"
+  ],
+  "secondary_readouts":[
+    "degree-0/1/2 excess by method family with at least 3 solves",
+    "degree-0/1/2 excess by broad provenance with at least 3 solves",
+    "cohort leave-one-out for low-overlap cumulative excess"
+  ],
+  "adjudication":[
+    "if positive TS excess is concentrated at degree 4, shared generic-support explanation is strengthened",
+    "if positive excess survives primarily at degrees 0-2, partial TS specificity is strengthened",
+    "no overlap-degree result identifies a cognitive mechanism"
+  ],
+  "source_contact":"NONE",
+  "new_body_requests":0,
+  "human_contact_gate":"CLOSED"
+}
