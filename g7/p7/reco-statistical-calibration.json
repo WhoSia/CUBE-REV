@@ -1,0 +1,52 @@
+{
+  "schema_version": "g7-p7-reco-statistical-calibration-1",
+  "operation_type": "Calibration",
+  "status": "FROZEN_AFTER_RAW_DESCRIPTIVE_READOUT_BEFORE_CLUSTER_LEVEL_INFERENCE",
+  "authority": "POST_DESCRIPTIVE_EXPLORATORY_CALIBRATION",
+  "prior_observation_disclosure": [
+    "raw five-rival match rates were observed before this calibration",
+    "aggregate set-size-adjusted excess rates were inspected diagnostically before cluster-level inference",
+    "raw boundary versus non-boundary diversity difference was observed before progress adjustment"
+  ],
+  "independent_unit": "solve",
+  "choice_estimands": {
+    "state_excess_agreement": "I(observed_next_action in rival_best_set) - rival_best_set_size/18",
+    "rival_families": [
+      "H1",
+      "H2",
+      "H3",
+      "TS",
+      "FS"
+    ],
+    "solve_summary": "mean state_excess_agreement over face-turn-next states within solve",
+    "pairwise_comparison": "within-solve difference of solve summaries",
+    "inference": "deterministic sign-flip randomization over solve-level values",
+    "permutations": 100000,
+    "seed": 20261002
+  },
+  "boundary_estimands": {
+    "eligibility": "solve has at least one boundary and one non-boundary state in a shared phase1_lb x is_g1 stratum",
+    "state_outcome": "mean_pairwise_jaccard_distance",
+    "matching_stratum": [
+      "phase1_lb",
+      "is_g1"
+    ],
+    "within_stratum_contrast": "boundary mean minus non-boundary mean",
+    "solve_summary": "weighted mean of available stratum contrasts, weights=min(n_boundary,n_nonboundary)",
+    "inference": "deterministic sign-flip randomization over solve-level matched contrasts",
+    "permutations": 100000,
+    "seed": 20261003
+  },
+  "subgroup_policy": {
+    "method": "report only if at least 5 solves",
+    "reconstructor": "report only if at least 5 solves",
+    "no_subgroup_promotion_to_mechanism_claim": true
+  },
+  "forbidden": [
+    "treat state rows as independent participants",
+    "compare raw match rates across rivals without best-set-size calibration",
+    "interpret unadjusted boundary contrast as stage-boundary effect",
+    "call these post-descriptive p-values preregistered confirmation",
+    "infer latent cognition from reco.nz annotation labels"
+  ]
+}
