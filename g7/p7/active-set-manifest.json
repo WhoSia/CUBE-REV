@@ -29,6 +29,7 @@
     "crates/search-geometry-core/src/phase1.rs",
     "g7/p7/active-set-manifest.json",
     "g7/p7/preseal.json",
+    "g7/p7/closure.json",
     "g7/p7/reco-campaign-closure.json",
     "g7/p7/reco-campaign-constitution.json",
     "g7/p7/reco-campaign-manifest.json",
