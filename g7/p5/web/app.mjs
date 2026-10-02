@@ -1,4 +1,5 @@
 import {verifyPacketBrowser,trialOrder,orderedActions,BrowserEventLog} from "./browser-core.mjs";
+import {renderNet} from "./state-net.mjs";
 const $=id=>document.getElementById(id);
 let packet,trials,idx=0,log;
 $("load").onclick=async()=>{
@@ -10,7 +11,7 @@ $("load").onclick=async()=>{
 };
 async function show(){
   if(idx>=trials.length){log.finish();$("trial").classList.add("hidden");$("export").disabled=false;$("status").textContent="Validation session complete.";return;}
-  const t=trials[idx];$("trial").classList.remove("hidden");$("trialId").textContent=t.trial_id;$("scramble").textContent=t.scramble;
+  const t=trials[idx];$("trial").classList.remove("hidden");$("trialId").textContent=t.trial_id;renderNet($("cube"),t.scramble);
   const box=$("moves");box.replaceChildren();log.present(t);
   const actions=await orderedActions(packet.action_space,t.condition.choice_order_seed); actions.forEach(move=>{const b=document.createElement("button");b.textContent=move;b.onclick=()=>{log.choose(t,move,null);log.complete(t);idx++;show();};box.appendChild(b);});
 }
