@@ -1,12 +1,33 @@
 {
-  "schema_version":"g7-p4-cross-source-replication-1",
+  "schema_version":"g7-p4-cross-source-replication-2",
   "observed_at":"2026-10-02",
   "source":"CubeDB",
   "role":"INDEPENDENT_PUBLIC_RECONSTRUCTION_SURFACE",
-  "observed_pages":[
-    "https://www.cubedb.net/profile.php?id=2052",
-    "https://www.cubedb.net/profile.php?id=1266",
-    "https://cubedb.net/user/571/2"
+  "records":[
+    {
+      "source_id":4160,
+      "url":"https://cubedb.net/solve/4160",
+      "scramble_sha256":"f4befd68813e679fb23521b4bdebe2209ba052aebe38e5a50e00918b57a39cf2",
+      "normalized_reconstruction_sha256":"4b133d3fcee91bd59ab2f6f8cbd52c29c63317c95144b830f559c63869edfcbe",
+      "normalized_move_tokens":55,
+      "exact_extended_replay":"PASS_SOLVED_END"
+    },
+    {
+      "source_id":5140,
+      "url":"https://cubedb.net/solve/5140",
+      "scramble_sha256":"addbd582dda3eb8f7a3d2ac68504da93cd16a491d100f6d46dce07291116cf0d",
+      "normalized_reconstruction_sha256":"78a8bd56768e0b039e93d61081c1d779ac7e1ba3631fa9bea31fc8f12fce9cd3",
+      "normalized_move_tokens":54,
+      "exact_extended_replay":"PASS_SOLVED_END"
+    },
+    {
+      "source_id":21395,
+      "url":"https://www.cubedb.net/solve/21395",
+      "scramble_sha256":"27a998f8f2576838c95b557af867c30b88680ac401453e675d67f5fab04456b3",
+      "normalized_reconstruction_sha256":"76cd99ade00196a97a1de9ebffac1008a484a1ac37b71c9a244c9dafb13b46a2",
+      "normalized_move_tokens":61,
+      "exact_extended_replay":"PASS_SOLVED_END"
+    }
   ],
   "observed_structure":[
     "scramble",
@@ -14,13 +35,13 @@
     "inline_stage_comments",
     "cube_rotations",
     "wide_turns",
-    "slice_turns",
-    "CFOP_examples",
-    "Roux_examples"
+    "slice_turns"
   ],
-  "semantic_structure_replication":"PASS_BOUNDED_SCHEMA",
+  "semantic_structure_replication":"PASS_BOUNDED",
+  "body_level_exact_replay_replication":"PASS_3_OF_3",
   "raw_external_body_copied_into_repo":false,
-  "body_level_exact_replay_replication":"HOLD_NOT_MATERIALIZED",
-  "mechanism_replication":"HOLD",
-  "authority_note":"supports transport of measurement schema only; does not establish frequency equivalence, identical sampling, or the same underlying planning process"
+  "frequency_transport":"NOT_CLAIMED",
+  "identity_transport":"NOT_CLAIMED",
+  "mechanism_replication":"NOT_CLAIMED",
+  "authority_note":"This is bounded trajectory/state-pipeline transport only."
 }
