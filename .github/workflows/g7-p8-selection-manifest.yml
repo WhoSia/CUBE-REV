@@ -78,6 +78,23 @@ jobs:
           test -n "$(find /tmp/g7-p8/p7 -name competition-label-reconciliation-audit-v2.json -print -quit)"
           echo 'G7_P8_P7_REFINED_AUTHORITY_PASS'
 
+      - name: Audit retained index method/reconstructor coverage
+        run: |
+          set -euo pipefail
+          INDEX="$(find /tmp/g7-p8/p3 -name linkage-support.jsonl -print -quit)"
+          mkdir -p /tmp/g7-p8/coverage
+          python3 scripts/g7-p8/audit-index-method-reconstructor.py \
+            --index "$INDEX" \
+            --out /tmp/g7-p8/coverage
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/g7-p8/coverage/index-method-reconstructor-coverage-audit.json'))
+          assert x['rows_all']==12941 and x['rows_3x3']==10591
+          print('G7_P8_INDEX_METHOD_RECONSTRUCTOR_COVERAGE_RESULT_GATE_PASS')
+          print(x['method_3x3'])
+          print(x['reconstructor_3x3'])
+          PY
+
       - name: Seal 200-ID outcome-blind selection manifest
         run: |
           set -euo pipefail
@@ -112,12 +129,14 @@ jobs:
           cp g7/p8/constitution.json /tmp/g7-p8/seal/authority/
           cp /tmp/g7-p8/out/selection-manifest.json /tmp/g7-p8/seal/derived/
           cp /tmp/g7-p8/out/selected-source-ids.txt /tmp/g7-p8/seal/derived/
+          cp /tmp/g7-p8/coverage/index-method-reconstructor-coverage-audit.json /tmp/g7-p8/seal/derived/
           printf '%s\n' \
             'PHASE=G7-P8' \
             'OPERATION=OUTCOME_BLIND_BODY_LIGHT_SELECTION_MANIFEST' \
             'SOURCE_CONTACT=NONE' \
             'SELECTED_IDS=200' \
             'BODY_REQUESTS_PERFORMED=0' \
+            'INDEX_METHOD_RECONSTRUCTOR_COVERAGE_AUDIT=YES' \
             > /tmp/g7-p8/seal/AUTHORITY.txt
           rm -rf /tmp/g7-p8/p3 /tmp/g7-p8/p3.zip /tmp/g7-p8/p7 /tmp/g7-p8/p7.zip
           (cd /tmp/g7-p8/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
