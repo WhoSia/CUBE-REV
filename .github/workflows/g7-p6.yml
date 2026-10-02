@@ -122,6 +122,15 @@ jobs:
           print('G7_P6_NUZZI_DERIVED_COUNTS_PASS')
           print(x['counts'])
           PY
+          python3 scripts/g7-p6/analyze-cross-domain.py             /tmp/g7-p6/external-derived             /tmp/g7-p6/external-analysis | tee /tmp/g7-p6/external-data-audit/cross-domain-analysis.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/g7-p6/external-analysis/cross-domain-analysis.json'))
+          assert x['counts_match_source_notebook'] is True
+          assert x['verdict'] in ('PASS_EXTERNAL_MULTI_CUE_BEHAVIORAL_STRUCTURE','PASS_EXTERNAL_BEHAVIOR_DESCRIPTIVE_ONLY')
+          print('G7_P6_EXTERNAL_TRANSPORT_GATE_PASS')
+          print('VERDICT',x['verdict'])
+          PY
           rm -rf "$RAW" "$SRC"
           test ! -e "$RAW"
           test ! -e "$SRC"
