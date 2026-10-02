@@ -1,0 +1,18 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import {spawnSync} from "node:child_process";
+const d=fs.mkdtempSync(path.join(os.tmpdir(),"g7-p5-inst-"));
+const g=spawnSync("cargo",["run","-q","-p","search-geometry-core","--bin","g7_p5_packet_generator"],{encoding:"utf8"});
+if(g.status!==0) throw new Error(g.stderr||g.stdout);
+fs.writeFileSync(path.join(d,"p.tsv"),g.stdout);
+let p=spawnSync(process.execPath,["scripts/g7-p5/compile-packet.mjs",path.join(d,"p.tsv"),path.join(d,"packet.json")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+p=spawnSync(process.execPath,["scripts/g7-p5/synthesize-events.mjs",path.join(d,"packet.json"),path.join(d,"events.jsonl")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+const packet=JSON.parse(fs.readFileSync(path.join(d,"packet.json"),"utf8"));
+if(packet.trials.length!==24||!packet.packet_sha256) throw new Error("PACKET");
+const lines=fs.readFileSync(path.join(d,"events.jsonl"),"utf8").trim().split(/\r?\n/).map(JSON.parse);
+if(lines.filter(x=>x.event_type==="session_complete").length!==8) throw new Error("SESSIONS");
+if(lines.filter(x=>x.event_type==="choice_committed").length!==192) throw new Error("CHOICES");
+console.log("G7_P5_INSTRUMENT_SYNTHETIC_TEST_PASS");
