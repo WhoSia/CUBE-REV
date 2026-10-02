@@ -77,6 +77,8 @@
     "scripts/g7-p10/cartograph-low-overlap-state-surface.py",
     "scripts/g7-p10/stress-lb7-local-contrast.py",
     "scripts/g7-p11/acquire-fresh-reco-batch.mjs",
+    "scripts/g7-p11/analyze-fresh-replication.py",
+    "scripts/g7-p11/merge-fresh-corpus.mjs",
     "scripts/g7-p11/select-fresh-replication-corpus.py",
     "scripts/g7-p11/test-acquire-fresh-reco-batch.mjs",
     "scripts/g7-p7/analyze-reco-five-rival.mjs",
