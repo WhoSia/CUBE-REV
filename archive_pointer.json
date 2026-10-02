@@ -1,7 +1,6 @@
 {
-  "schema": "CUBE-REV-active-lineage-archive-pointer-v1",
+  "schema": "CUBE-REV-active-lineage-archive-pointer-v2",
   "active_branch": "research/current",
-  "r2_status": "R2_ORACLE_PROVENANCE_HOLD / HOLD_GEOMETRY / REQUIRED_FILE_MISSING / CROSS_LANGUAGE_EQUIVALENCE_NOT_EXECUTED / FULL_CENSUS_NOT_STARTED",
   "archives": [
     {
       "original_path": "g3-cog/** (139 tracked paths at pre-cleanup inventory)",
@@ -24,6 +23,29 @@
       "verification_status": "PARENT_NAME_SIZE_READBACK_VERIFIED",
       "removal_commit": "fad656d024482b6acab9c8838b588a22a0b83bce",
       "pre_reconciliation_commit": "178ae77cc02db4cd894cef0840c51b89bb578f4e"
+    },
+    {
+      "original_path": "pre-P7 closed-phase execution scaffolds and historical runners",
+      "artifact_role": "HISTORY_ONLY",
+      "superseded_by": "P7 active-set manifest plus reusable core/reco/instrument surfaces",
+      "archive_branch": "archive/pre-p7-active-prune-20261002",
+      "drive_audit_file_id": "15KxYy2vDCyRqORoIpbnTg3dYYHgBr507",
+      "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI",
+      "verification_status": "BLOCKING_ACTIVE_SET_AUDIT_PASS"
     }
-  ]
+  ],
+  "active_phase": "G7-P7",
+  "active_set": {
+    "manifest": "g7/p7/active-set-manifest.json",
+    "blocking_workflow": ".github/workflows/p7-repo-active-set-audit.yml",
+    "sealed_run": 36978513851,
+    "sealed_head": "33488e5b11869801da66822bd272d7c38230f2e7",
+    "tracked_files": 71,
+    "legacy_candidates": 0,
+    "unclassified_files": 0,
+    "artifact_id": 11214009066,
+    "artifact_sha256": "9501d41cc83af89eddc9ecbd71811f257b94505c78ba972387053bd3bdd5eb87",
+    "drive_audit_file_id": "15KxYy2vDCyRqORoIpbnTg3dYYHgBr507",
+    "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI"
+  }
 }
