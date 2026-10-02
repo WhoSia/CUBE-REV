@@ -8,14 +8,14 @@ on:
       - 'scripts/g7-p7/acquire-reco-batch.mjs'
       - 'scripts/g7-p7/test-acquire-reco-batch.mjs'
       - 'g7/p7/reco-campaign-manifest.json'
-      - 'g7/p2/reco-acquisition-policy.json'
+      - 'core/reco/reco-acquisition-policy.json'
   pull_request:
     paths:
       - '.github/workflows/g7-p7-reco-batch1.yml'
       - 'scripts/g7-p7/acquire-reco-batch.mjs'
       - 'scripts/g7-p7/test-acquire-reco-batch.mjs'
       - 'g7/p7/reco-campaign-manifest.json'
-      - 'g7/p2/reco-acquisition-policy.json'
+      - 'core/reco/reco-acquisition-policy.json'
   workflow_dispatch:
 
 permissions:
@@ -40,7 +40,7 @@ jobs:
       - name: Exact trajectory replay
         run: |
           set -euo pipefail
-          node scripts/g7-p4/replay-pilot-exact.mjs             --input /tmp/g7-p7-batch01/derived/solves.jsonl             --out /tmp/g7-p7-batch01/exact
+          node scripts/cube/replay-exact-trajectories.mjs             --input /tmp/g7-p7-batch01/derived/solves.jsonl             --out /tmp/g7-p7-batch01/exact
           node - <<'NODE'
           const x=require('/tmp/g7-p7-batch01/exact/exact-trajectories.json');
           if(x.solve_count!==10) process.exit(1);
