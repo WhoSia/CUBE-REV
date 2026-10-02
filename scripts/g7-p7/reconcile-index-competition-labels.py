@@ -128,7 +128,7 @@ def main():
       GROUP BY b.label,b.competition_id,b.competition_name,b.lexical_score,b.source_id
     )
     SELECT label,competition_id,competition_name,lexical_score,
-           count(*) rows,
+           count(*) n_rows,
            sum(support) support_rows
     FROM supported
     GROUP BY label,competition_id,competition_name,lexical_score
@@ -137,8 +137,8 @@ def main():
     cur=con.execute(sql); cols=[d[0] for d in cur.description]
     evidence=defaultdict(list)
     for row in cur.fetchall():
-        x=dict(zip(cols,row)); x["rows"]=int(x["rows"]); x["support_rows"]=int(x["support_rows"])
-        x["support_fraction"]=x["support_rows"]/x["rows"] if x["rows"] else None
+        x=dict(zip(cols,row)); x["n_rows"]=int(x["n_rows"]); x["support_rows"]=int(x["support_rows"])
+        x["support_fraction"]=x["support_rows"]/x["n_rows"] if x["n_rows"] else None
         evidence[x["label"]].append(x)
 
     label_results=[]; counts=Counter(); recovered_rows=0
