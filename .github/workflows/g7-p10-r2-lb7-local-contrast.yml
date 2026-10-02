@@ -1,0 +1,65 @@
+name: G7-P10-R2 LB7 Local-Contrast Stress Test
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p10/lb7-local-contrast-preseal.json'
+      - 'scripts/g7-p10/stress-lb7-local-contrast.py'
+      - '.github/workflows/g7-p10-r2-lb7-local-contrast.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  stress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate preseal
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p10/lb7-local-contrast-preseal.json'))
+          assert x['status']=='FROZEN_AFTER_R1_BEFORE_R2_OUTCOME'
+          assert x['new_body_requests']==0
+          print('G7_P10_R2_PRESEAL_PASS')
+          PY
+      - name: Recover frozen geometry
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          mkdir -p /tmp/p10r2/p7
+          curl --fail --location --silent --show-error             -H "Authorization: Bearer $GH_TOKEN"             -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/$REPO/actions/artifacts/11238382539/zip"             -o /tmp/p10r2/p7.zip
+          echo 'b6e30ab56548e27905dd3b3718c5a3e56d772bff10a744e92180d189a3259a11  /tmp/p10r2/p7.zip' | sha256sum -c -
+          unzip -q /tmp/p10r2/p7.zip -d /tmp/p10r2/p7
+      - name: Execute local contrast
+        run: |
+          FEAT="$(find /tmp/p10r2/p7 -name five-rival-features.tsv -print -quit)"
+          CTX="$(find /tmp/p10r2/p7 -name prefix-context.jsonl -print -quit)"
+          mkdir -p /tmp/p10r2/out
+          python3 scripts/g7-p10/stress-lb7-local-contrast.py             --features "$FEAT" --context "$CTX" --out /tmp/p10r2/out --permutations 100000 | tee /tmp/p10r2/run.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p10r2/out/lb7-local-contrast.json'))
+          print('G7_P10_R2_RESULT_GATE_PASS',x['verdict'])
+          print('PRIMARY',x['exact_support_size']['lb7_minus_lb6_8'])
+          PY
+      - name: Seal
+        run: |
+          mkdir -p /tmp/p10r2/seal/authority /tmp/p10r2/seal/derived
+          cp g7/p10/lb7-local-contrast-preseal.json /tmp/p10r2/seal/authority/
+          cp /tmp/p10r2/out/lb7-local-contrast.json /tmp/p10r2/seal/derived/
+          cp /tmp/p10r2/run.log /tmp/p10r2/seal/derived/execution.log
+          printf '%s\n' 'PHASE=G7-P10-R2' 'OPERATION=LB7_LOCAL_CONTRAST_MATCHING_STRESS_TEST' 'NEW_SOURCE_CONTACT=NONE' > /tmp/p10r2/seal/AUTHORITY.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P10-R2-lb7-local-${{ github.sha }}
+          path: /tmp/p10r2/seal
+          retention-days: 90
