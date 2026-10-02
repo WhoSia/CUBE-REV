@@ -40,6 +40,7 @@
     "g7/p7/reco-campaign-manifest.json",
     "g7/p7/reco-statistical-calibration.json",
     "g7/p7/source-provenance-recovery.json",
+    "g7/p8/closure.json",
     "g7/p8/constitution.json",
     "g7/p8/era-support-depth-audit-preseal.json",
     "g7/p8/index-only-census-amendment.json",
