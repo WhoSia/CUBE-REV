@@ -61,6 +61,7 @@ jobs:
           node scripts/g7-p5/test-instrument-closure.mjs
           node scripts/g7-p5/test-rival-ecology.mjs
           node scripts/g7-p5/test-fresh-packet-replication.mjs
+          node scripts/g7-p5/test-final-precontact.mjs
 
       - name: Materialize canonical packet and audit
         run: |
@@ -86,11 +87,16 @@ jobs:
           python3 scripts/g7-p5/analyze.py             --packet /tmp/g7-p5/packet.json             --events /tmp/g7-p5/synthetic-events.jsonl             --out /tmp/g7-p5/analysis             --permutations 20000
           python3 scripts/g7-p5/sensitivity.py --out /tmp/g7-p5/sensitivity.json --reps 5000
           node scripts/g7-p5/evaluate-instrument.mjs             --audit /tmp/g7-p5/packet-audit.json             --analysis /tmp/g7-p5/analysis/analysis.json             --sensitivity /tmp/g7-p5/sensitivity.json             --out /tmp/g7-p5/closure
+          node scripts/g7-p5/evaluate-final-precontact.mjs             --instrument /tmp/g7-p5/closure/G7-P5-INSTRUMENT-CLOSURE.json             --fresh /tmp/g7-p5/fresh-packet-replication.json             --ecology /tmp/g7-p5/rival-ecology.tsv             --out /tmp/g7-p5/final
           node - <<'NODE'
-          const x=require('/tmp/g7-p5/closure/G7-P5-INSTRUMENT-CLOSURE.json');
-          if(x.verdict!=='PASS_INSTRUMENT_VALIDATED_HUMAN_CONTACT_NOT_YET_OPEN') process.exit(1);
-          if(x.human_contact_open) process.exit(2);
+          const i=require('/tmp/g7-p5/closure/G7-P5-INSTRUMENT-CLOSURE.json');
+          const f=require('/tmp/g7-p5/final/G7-P5-FINAL-PRECONTACT.json');
+          if(i.verdict!=='PASS_INSTRUMENT_VALIDATED_HUMAN_CONTACT_NOT_YET_OPEN') process.exit(1);
+          if(i.human_contact_open) process.exit(2);
+          if(!f.p5_close_recommended||!f.next_phase_permission) process.exit(3);
           console.log('G7_P5_INSTRUMENT_FINAL_PASS');
+          console.log('G7_P5_FINAL_PRECONTACT_PASS');
+          console.log('EXPANDED_ECOLOGY_NEXT_PHASE\t'+f.expanded_rival_ecology_required_next_phase);
           NODE
 
       - name: Seal precontact authority artifact
