@@ -84,65 +84,45 @@ for l in levels:
     })
 write_csv("levels.csv",level_rows,["level_name","level_id","is_flipped","is_training","shortcut","platform_count","decision_point_count"])
 
-decision_fields=[
- "participant_id","level_name","time","choice_small","distance","euclidean_distance",
- "angle_goal_rad","angle_trajectory_rad","distance_diff","angle_goal_diff",
- "angle_trajectory_diff","normalized_trial_time","unique_rock_id",
- "best_path_steps","trajectory_platform_steps","trajectory_samples"
-]
-def decision_rows(xs):
-    out=[]
-    for d in xs:
-        out.append({
-          "participant_id":pid_of(getattr(d,"player_id",None)),
-          "level_name":getattr(d,"level_name",None),
-          "time":getattr(d,"time",None),
-          "choice_small":getattr(d,"neigh_small",None),
-          "distance":getattr(d,"distance",None),
-          "euclidean_distance":getattr(d,"euclidean_distance",None),
-          "angle_goal_rad":getattr(d,"angle_goal",None),
-          "angle_trajectory_rad":getattr(d,"angle_trajectory",None),
-          "distance_diff":getattr(d,"distance_diff",None),
-          "angle_goal_diff":getattr(d,"angle_goal_diff",None),
-          "angle_trajectory_diff":getattr(d,"angle_trajectory_diff",None),
-          "normalized_trial_time":getattr(d,"normalized_trial_time",None),
-          "unique_rock_id":getattr(d,"unique_rock_id",None),
-          "best_path_steps":len(getattr(d,"best_path",[]) or []),
-          "trajectory_platform_steps":len(getattr(d,"trajectory_platforms",[]) or []),
-          "trajectory_samples":len(getattr(d,"trajectory_real",[]) or [])
-        })
-    return out
+def scalarize(v):
+    if hasattr(v,"item"):
+        try: v=v.item()
+        except Exception: pass
+    if v is None or isinstance(v,(str,int,float,bool)):
+        return v
+    return str(v)
 
-first_rows=decision_rows(first)
-all_rows=decision_rows(all_decisions)
-write_csv("first_decisions.csv",first_rows,decision_fields)
-write_csv("all_decisions.csv",all_rows,decision_fields)
-
-# Preserve only scalar timing-table columns, and re-key participant field.
-time_rows=[]
-time_columns=[]
-if hasattr(time_df,"columns"):
-    raw_cols=[str(c) for c in time_df.columns]
+def dataframe_rows(df):
+    if not hasattr(df,"columns"):
+        raise TypeError(f"expected pandas DataFrame, got {type(df)!r}")
+    raw_cols=[str(x) for x in df.columns]
     excluded={"Player","ProlificID","prolific_ID","age","Age","gender","Gender","Name","Email"}
-    scalar_cols=[]
-    for c in raw_cols:
-        if c in excluded or c=="SubjectID": continue
-        series=time_df[c]
-        sample=next((x for x in series.tolist() if x is not None),None)
-        if sample is None or isinstance(sample,(str,int,float,bool)):
-            scalar_cols.append(c)
-    time_columns=["participant_id"]+scalar_cols
-    for _,row in time_df.iterrows():
-        source_id=row["SubjectID"] if "SubjectID" in raw_cols else row.get("Player",None)
-        rec={"participant_id":pid_of(source_id)}
-        for c in scalar_cols:
-            v=row[c]
-            if hasattr(v,"item"):
-                try: v=v.item()
-                except Exception: pass
-            rec[c]=v
-        time_rows.append(rec)
+    participant_col="SubjectID" if "SubjectID" in raw_cols else ("Player" if "Player" in raw_cols else None)
+    keep=[x for x in raw_cols if x not in excluded and x!=participant_col]
+    fields=(["participant_id"] if participant_col else [])+keep
+    rows=[]
+    for _,row in df.iterrows():
+        out={}
+        if participant_col:
+            out["participant_id"]=pid_of(row[participant_col])
+        for col in keep:
+            out[col]=scalarize(row[col])
+        rows.append(out)
+    return rows,fields
+
+first_rows,first_fields=dataframe_rows(first)
+all_rows,all_fields=dataframe_rows(all_decisions)
+write_csv("first_decisions.csv",first_rows,first_fields)
+write_csv("all_decisions.csv",all_rows,all_fields)
+
+time_rows,time_columns=dataframe_rows(time_df)
 write_csv("timing.csv",time_rows,time_columns)
+
+if "PlatformType" not in [str(x) for x in time_df.columns]:
+    raise RuntimeError("TIMING_PLATFORMTYPE_MISSING")
+time_analysis_df=time_df[time_df["PlatformType"]!="FirstPlatform"].copy()
+time_analysis_rows,time_analysis_columns=dataframe_rows(time_analysis_df)
+write_csv("timing_analysis.csv",time_analysis_rows,time_analysis_columns)
 
 def sha(path):
     return hashlib.sha256((OUT/path).read_bytes()).hexdigest()
@@ -161,13 +141,17 @@ report={
     "levels":len(level_rows),
     "first_decisions":len(first_rows),
     "all_decisions":len(all_rows),
-    "timing_rows":len(time_rows)
+    "timing_rows":len(time_rows),
+    "timing_analysis_rows":len(time_analysis_rows)
   },
   "files":{
     x:{"sha256":sha(x),"bytes":(OUT/x).stat().st_size}
-    for x in ["participants.csv","levels.csv","first_decisions.csv","all_decisions.csv","timing.csv"]
+    for x in ["participants.csv","levels.csv","first_decisions.csv","all_decisions.csv","timing.csv","timing_analysis.csv"]
   },
-  "timing_columns":time_columns
+  "first_decision_columns":first_fields,
+  "all_decision_columns":all_fields,
+  "timing_columns":time_columns,
+  "timing_analysis_columns":time_analysis_columns
 }
 (OUT/"derived-receipt.json").write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
 print("G7_P6_NUZZI_DERIVED_PASS")
