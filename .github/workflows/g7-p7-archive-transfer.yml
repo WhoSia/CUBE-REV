@@ -1,0 +1,62 @@
+name: G7-P7 archive branch transfer
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - '.github/workflows/g7-p7-archive-transfer.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout archive branch
+        uses: actions/checkout@v4
+        with:
+          ref: archive/pre-p7-active-prune-20261002
+          fetch-depth: 1
+
+      - name: Package tracked archive branch tree
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/cube-rev-archive
+          HEAD_SHA="$(git rev-parse HEAD)"
+          FILE_COUNT="$(git ls-files | wc -l | tr -d ' ')"
+          git ls-files -z | tar --null -T - -czf /tmp/cube-rev-archive/CUBE-REV-archive-pre-p7-active-prune-20261002.tar.gz
+          ARCHIVE_SHA="$(sha256sum /tmp/cube-rev-archive/CUBE-REV-archive-pre-p7-active-prune-20261002.tar.gz | awk '{print $1}')"
+          ARCHIVE_BYTES="$(stat -c '%s' /tmp/cube-rev-archive/CUBE-REV-archive-pre-p7-active-prune-20261002.tar.gz)"
+          python3 - <<PY
+          import json
+          x={
+            "schema_version":"cube-rev-archive-transfer-1",
+            "repository":"WhoSia/CUBE-REV",
+            "source_branch":"archive/pre-p7-active-prune-20261002",
+            "source_head":"$HEAD_SHA",
+            "tracked_files":int("$FILE_COUNT"),
+            "archive_file":"CUBE-REV-archive-pre-p7-active-prune-20261002.tar.gz",
+            "archive_sha256":"$ARCHIVE_SHA",
+            "archive_bytes":int("$ARCHIVE_BYTES"),
+            "package_scope":"all git-tracked files at source branch head",
+            "git_history_included":False,
+            "reconstruction_note":"content snapshot is immutable by SHA; Git commit identity is preserved in receipt"
+          }
+          open("/tmp/cube-rev-archive/archive-transfer-receipt.json","w").write(json.dumps(x,indent=2)+"\n")
+          print("G7_P7_ARCHIVE_TRANSFER_PASS")
+          print("SOURCE_HEAD\t"+x["source_head"])
+          print("TRACKED_FILES\t"+str(x["tracked_files"]))
+          print("ARCHIVE_SHA256\t"+x["archive_sha256"])
+          print("ARCHIVE_BYTES\t"+str(x["archive_bytes"]))
+          PY
+          (cd /tmp/cube-rev-archive && sha256sum * > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CUBE-REV-archive-pre-p7-active-prune-20261002
+          path: /tmp/cube-rev-archive
+          if-no-files-found: error
+          retention-days: 30
