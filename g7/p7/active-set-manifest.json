@@ -11,6 +11,7 @@
     ".github/workflows/g7-p8-r1-method-dominance.yml",
     ".github/workflows/g7-p8-r2-era-support-depth.yml",
     ".github/workflows/g7-p8-selection-manifest.yml",
+    ".github/workflows/g7-p9-r1-overlap-degree.yml",
     ".github/workflows/g7-p9-rival-overlap-audit.yml",
     ".github/workflows/p7-repo-active-set-audit.yml",
     ".gitignore",
