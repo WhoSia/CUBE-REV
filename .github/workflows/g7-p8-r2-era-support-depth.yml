@@ -1,4 +1,5 @@
 name: G7-P8-R2 era support-depth Audit
+# Exact replay after era-local group-indexing repair.
 
 concurrency:
   group: g7-p8-r2-era-support-depth-${{ github.ref }}
