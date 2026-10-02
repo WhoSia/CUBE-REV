@@ -1,0 +1,162 @@
+name: G7-P12 structural-opportunity mediation audit
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - '.github/workflows/g7-p12-structural-opportunity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Validate P12 preseal
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p12/constitution.json'))
+          c=json.load(open('g7/p11/closure.json'))
+          assert p['status']=='FROZEN_AFTER_P11_BEFORE_P12_OUTCOME'
+          assert p['new_body_requests']==0 and p['source_contact']=='NONE'
+          assert c['status']=='CLOSED'
+          assert c['final_verdict'].startswith('REPLICATED_DIRECTION')
+          print('G7_P12_PRESEAL_PASS')
+          PY
+
+      - name: Recover immutable legacy60 and fresh40 authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p12/legacy /tmp/p12/fresh
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p12/$dir.zip"
+            echo "$expected  /tmp/p12/$dir.zip" | sha256sum -c -
+            mkdir -p "/tmp/p12/$dir"
+            unzip -q "/tmp/p12/$dir.zip" -d "/tmp/p12/$dir"
+          }
+          fetch_artifact 11238382539 legacy b6e30ab56548e27905dd3b3718c5a3e56d772bff10a744e92180d189a3259a11
+          fetch_artifact 11242854238 fresh/b1 0bc3c845d0caadcd84a6df4ce8db4a65fae083d6ef01e076f5ce95755676c6ea
+          fetch_artifact 11243410683 fresh/b2 c4589ff7955ea3fe7fe1d452f8a137e4f2c799e60cad27e863fa91bfcc7f975e
+          fetch_artifact 11243041519 fresh/b3 82ce3af8a36c0eb3bf8f6192a72db1adb17f2046cf8ef2f602b4d583887ffe38
+          fetch_artifact 11243391026 fresh/b4 8575409309eadab60cf5d2145925108c8139a62e75a7f2060785c4de75a3028a
+          echo 'G7_P12_INPUT_AUTHORITY_PASS'
+
+      - name: Reconstitute legacy60 current-core geometry
+        run: |
+          set -euo pipefail
+          LEX="$(find /tmp/p12/legacy -name exact-trajectories.json -print -quit)"
+          LMETA="$(find /tmp/p12/legacy -name solve-metadata.jsonl -print -quit)"
+          test -n "$LEX" && test -n "$LMETA"
+          mkdir -p /tmp/p12/build/legacy
+          node scripts/g7-p7/prefix-context.mjs "$LEX" "$LMETA" \
+            /tmp/p12/build/legacy/prefix-states.tsv /tmp/p12/build/legacy/context.jsonl
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p12/build/legacy/prefix-states.tsv > /tmp/p12/build/legacy/features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p12/build/legacy/prefix-states.tsv > /tmp/p12/build/legacy/shell.tsv
+
+      - name: Reconstitute fresh40 current-core geometry
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p12/build/fresh/corpus
+          node scripts/g7-p11/merge-fresh-corpus.mjs \
+            --source P11_BATCH1=/tmp/p12/fresh/b1 \
+            --source P11_BATCH2=/tmp/p12/fresh/b2 \
+            --source P11_BATCH3=/tmp/p12/fresh/b3 \
+            --source P11_BATCH4=/tmp/p12/fresh/b4 \
+            --out /tmp/p12/build/fresh/corpus
+          node scripts/cube/replay-exact-trajectories.mjs \
+            --input /tmp/p12/build/fresh/corpus/combined-solves.jsonl \
+            --out /tmp/p12/build/fresh/exact
+          node scripts/g7-p7/prefix-context.mjs \
+            /tmp/p12/build/fresh/exact/exact-trajectories.json \
+            /tmp/p12/build/fresh/corpus/solve-metadata.jsonl \
+            /tmp/p12/build/fresh/prefix-states.tsv \
+            /tmp/p12/build/fresh/context.jsonl
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p12/build/fresh/prefix-states.tsv > /tmp/p12/build/fresh/features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p12/build/fresh/prefix-states.tsv > /tmp/p12/build/fresh/shell.tsv
+
+      - name: Combine with explicit ancestry
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p12/build/all
+          cat /tmp/p12/build/legacy/context.jsonl /tmp/p12/build/fresh/context.jsonl > /tmp/p12/build/all/context.jsonl
+          python3 - <<'PY'
+          def combine(a,b,out):
+              A=open(a,encoding='utf-8').read().splitlines()
+              B=open(b,encoding='utf-8').read().splitlines()
+              assert A and B and A[0]==B[0]
+              open(out,'w',encoding='utf-8').write('\n'.join([A[0],*A[1:],*B[1:]])+'\n')
+          combine('/tmp/p12/build/legacy/features.tsv','/tmp/p12/build/fresh/features.tsv','/tmp/p12/build/all/features.tsv')
+          combine('/tmp/p12/build/legacy/shell.tsv','/tmp/p12/build/fresh/shell.tsv','/tmp/p12/build/all/shell.tsv')
+          print('G7_P12_ANCESTRY_COMBINE_PASS')
+          PY
+
+      - name: Execute structural-opportunity mediation audit
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p12/build/out
+          python3 scripts/g7-p12/audit-structural-opportunity-mediation.py \
+            --features /tmp/p12/build/all/features.tsv \
+            --shell /tmp/p12/build/all/shell.tsv \
+            --context /tmp/p12/build/all/context.jsonl \
+            --out /tmp/p12/build/out \
+            --permutations 100000 | tee /tmp/p12/build/run.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p12/build/out/structural-opportunity-mediation.json'))
+          assert x['solves']==100
+          assert x['ancestry_solve_counts']=={'LEGACY60':60,'FRESH40':40}
+          assert x['verdict'] in (
+            'STRUCTURAL_MEDIATION_UNIDENTIFIED_SUPPORT_LIMITED',
+            'STRUCTURAL_OPPORTUNITY_DOMINANT',
+            'RESIDUAL_LB7_ALIGNMENT_AFTER_STRUCTURAL_OPPORTUNITY_MATCHING')
+          print('G7_P12_RESULT_GATE_PASS',x['verdict'])
+          print('FRESH',x['scopes']['FRESH40'])
+          print('LEGACY',x['scopes']['LEGACY60'])
+          print('RATIO',x['fresh_structural_to_parent_abs_ratio'])
+          PY
+
+      - name: Seal P12 derived artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p12/seal/authority /tmp/p12/seal/derived
+          cp g7/p12/constitution.json g7/p11/closure.json /tmp/p12/seal/authority/
+          cp /tmp/p12/build/out/structural-opportunity-mediation.json /tmp/p12/seal/derived/
+          cp /tmp/p12/build/run.log /tmp/p12/seal/derived/execution.log
+          printf '%s\n' \
+            'PHASE=G7-P12' \
+            'OPERATION=STRUCTURAL_OPPORTUNITY_MEDIATION_AUDIT' \
+            'SOLVES=100' \
+            'FRESH_LEGACY_ANCESTRY=PRESERVED' \
+            'NEW_SOURCE_CONTACT=NONE' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p12/seal/AUTHORITY.txt
+          (cd /tmp/p12/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P12-structural-opportunity-${{ github.sha }}
+          path: /tmp/p12/seal
+          retention-days: 90
