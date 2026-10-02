@@ -1,0 +1,16 @@
+{
+  "schema_version": "g7-p3-p2-anchor-1",
+  "workflow_run": 36816629497,
+  "artifact_id": 11141539976,
+  "artifact_name": "G7-P2-reco-index-census-893b47bccd766fed5138e32ce714f9808badc708",
+  "artifact_sha256": "4304f205354a3781837a4f0730e0f03cd98bbc308f0bee7461c44773bd35a31c",
+  "index_rows_sha256": "d6fef3fdb1f47c5ae4744f4624c64d7782563490344ba8ced9b22c819357987c",
+  "expected": {
+    "row_count": 12941,
+    "solver_distinct": 480,
+    "reconstructor_distinct": 227,
+    "unique_pairs": 960,
+    "duplicate_candidate_groups": 48,
+    "ontology_unknown_rows": 0
+  }
+}
