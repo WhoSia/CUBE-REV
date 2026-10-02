@@ -26,7 +26,11 @@ const trials=rows.map((r,i)=>({
     ep:r.ep.split(",").map(Number),eo:r.eo.split(",").map(Number)
   },
   condition:{
-    display_horizon_condition:(i%2===0?"NEUTRAL":"DELIBERATE"),
+    display_horizon_condition:(
+      ((Number(r.pair_id.slice(1))-1)%2===0)
+        ? (r.trial_side==="A"?"NEUTRAL":"DELIBERATE")
+        : (r.trial_side==="A"?"DELIBERATE":"NEUTRAL")
+    ),
     choice_order_seed:`P5-${r.pair_id}-${r.trial_side}`
   }
 }));
