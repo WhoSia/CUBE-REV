@@ -1,5 +1,9 @@
 name: G7-P7 full-index provenance-support Census
 
+concurrency:
+  group: g7-p7-index-provenance-census-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: ['research/current']
