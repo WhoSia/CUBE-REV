@@ -8,6 +8,7 @@
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
     ".github/workflows/g7-p10-r3-cohort-instability.yml",
     ".github/workflows/g7-p10-state-surface.yml",
+    ".github/workflows/g7-p11-fresh-batch1.yml",
     ".github/workflows/g7-p11-fresh-selection.yml",
     ".github/workflows/g7-p7-index-provenance-census.yml",
     ".github/workflows/g7-p7-reco-analysis.yml",
