@@ -29,13 +29,15 @@ export function parseReconstruction(text) {
       .filter(Boolean);
 
     for (const token of tokens) {
-      const kind = classifyToken(token);
+      const normalizedToken = token.replace(/^[([{]+/, "").replace(/[)\]}]+$/, "");
+      if (!normalizedToken) continue;
+      const kind = classifyToken(normalizedToken);
       if (kind === "ROTATION") sawRotation = true;
       if (kind === "WIDE_TURN" || kind === "SLICE_TURN") sawExtended = true;
       if (kind === "UNKNOWN") sawUnknown = true;
       events.push({
         ordinal: ordinal++,
-        raw: token.replace(/[’′]/g, "'"),
+        raw: normalizedToken.replace(/[’′]/g, "'"),
         kind,
         annotation: null,
         line: lineNo,
