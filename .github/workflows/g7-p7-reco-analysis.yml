@@ -102,6 +102,7 @@ jobs:
           node scripts/g7-p7/prefix-context.mjs             /tmp/g7-p7-build/exact/exact-trajectories.json             /tmp/g7-p7-build/corpus/solve-metadata.jsonl             /tmp/g7-p7-build/prefix-states.tsv             /tmp/g7-p7-build/prefix-context.jsonl
           cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals             < /tmp/g7-p7-build/prefix-states.tsv             > /tmp/g7-p7-build/five-rival-features.tsv
           node scripts/g7-p7/analyze-reco-five-rival.mjs             --context /tmp/g7-p7-build/prefix-context.jsonl             --features /tmp/g7-p7-build/five-rival-features.tsv             --out /tmp/g7-p7-build/analysis
+          python3 scripts/g7-p7/calibrate-reco-statistics.py             --context /tmp/g7-p7-build/prefix-context.jsonl             --features /tmp/g7-p7-build/five-rival-features.tsv             --out /tmp/g7-p7-build/calibration             --permutations 100000
 
       - name: Seal derived-only private research artifact
         run: |
