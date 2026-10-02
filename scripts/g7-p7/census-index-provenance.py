@@ -184,6 +184,7 @@ def main():
     sample=[x for x in three if x["source_id"] in sample_ids]
     if len(sample)!=60:
         raise SystemExit("SAMPLE_60_NOT_3X3")
+    broad={str(k):v for k,v in rec["source_id_to_broad_provenance_class"].items()}
 
     def summary(xs):
         return {
@@ -218,6 +219,14 @@ def main():
       "population_3x3":pop,
       "frozen_body_sample_60":samp,
       "sample_transport_source_label":transport,
+      "sample_broad_provenance_x_index_source_label":[
+        {"broad_provenance":k[0],"index_source_label_class":k[1],"count":v}
+        for k,v in sorted(Counter((broad[str(x["source_id"])],x["source_label_class"]) for x in sample).items())
+      ],
+      "sample_broad_provenance_x_index_wca_support":[
+        {"broad_provenance":k[0],"index_wca_context_support":k[1],"count":v}
+        for k,v in sorted(Counter((broad[str(x["source_id"])],x["wca_context_support"]) for x in sample).items())
+      ],
       "source_label_x_wca_support":cross_counts(three,"source_label_class","wca_context_support"),
       "year_x_source_label":cross_counts(three,"year","source_label_class"),
       "top_other_unmatched_source_labels":[{"label":k,"count":v} for k,v in unmatched.most_common(50)],
@@ -227,6 +236,8 @@ def main():
         "automatic WCA matching is exact-normalized only",
         "no fuzzy alias recovery is used in this Census",
         "failure of exact WCA context support is not proof of non-WCA provenance",
+        "index-visible blank competition is not equivalent to body-recovered unofficial provenance",
+        "sample broad provenance and index-visible source labels are reported as separate variables",
         "no new reco.nz solve-body contact occurred"
       ]
     }
