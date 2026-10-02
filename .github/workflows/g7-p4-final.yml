@@ -1,0 +1,122 @@
+name: Seal G7-P4 human policy geometry
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p4/**'
+      - 'scripts/g7-p4/**'
+      - 'crates/search-geometry-core/src/bin/g7_p4_*.rs'
+      - '.github/workflows/g7-p4-final.yml'
+  pull_request:
+    paths:
+      - 'g7/p4/**'
+      - 'scripts/g7-p4/**'
+      - 'crates/search-geometry-core/src/bin/g7_p4_*.rs'
+      - '.github/workflows/g7-p4-final.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  g7-p4-final:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Unit and authority gates
+        run: |
+          set -euo pipefail
+          node scripts/g7-p4/test-pilot-acquisition.mjs
+          node scripts/g7-p4/test-confirmatory-acquisition.mjs
+          node scripts/g7-p4/test-pilot-trajectory.mjs
+          node scripts/g7-p4/test-facelet-kernel.mjs
+          node scripts/g7-p4/test-exact-trajectories.mjs
+          node scripts/g7-p4/test-cubie-bridge.mjs
+          node scripts/g7-p4/test-cubie-transitions.mjs
+          node scripts/g7-p4/test-phase1-batch.mjs
+          node scripts/g7-p4/test-policy-summary.mjs
+          node scripts/g7-p4/test-closure.mjs
+          node scripts/g7-p4/test-exact-replay.mjs
+
+      - name: Recover frozen coverage pilot
+        uses: actions/download-artifact@v4
+        with:
+          name: G7-P4-pilot-348f7c78d5dc59e016cdf2d9fd54cfb95adef7dc
+          path: /tmp/pilot
+          github-token: ${{ github.token }}
+          repository: WhoSia/CUBE-REV
+          run-id: 36955646758
+
+      - name: Recover frozen population confirmatory cohort
+        uses: actions/download-artifact@v4
+        with:
+          name: G7-P4-confirmatory-e872e9bdf39d170406e0f010323889409646c419
+          path: /tmp/confirmatory
+          github-token: ${{ github.token }}
+          repository: WhoSia/CUBE-REV
+          run-id: 36956745304
+
+      - name: Verify frozen source artifacts
+        run: |
+          set -euo pipefail
+          (cd /tmp/pilot && sha256sum -c SHA256SUMS.txt)
+          (cd /tmp/confirmatory && sha256sum -c SHA256SUMS.txt)
+          echo G7_P4_FROZEN_SOURCE_ARTIFACTS_PASS
+
+      - name: Reprocess both cohorts with current exact kernel
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/g7-p4-final
+          mkdir -p /tmp/g7-p4-final/pilot /tmp/g7-p4-final/confirmatory
+
+          node scripts/g7-p4/materialize-exact-trajectories.mjs             --input /tmp/pilot/derived/solves.jsonl             --out /tmp/g7-p4-final/pilot/exact
+          node scripts/g7-p4/materialize-cubie-transitions.mjs             --input /tmp/pilot/derived/solves.jsonl             --out /tmp/g7-p4-final/pilot/cubie
+
+          node scripts/g7-p4/materialize-exact-trajectories.mjs             --input /tmp/confirmatory/derived/solves.jsonl             --out /tmp/g7-p4-final/confirmatory/exact
+          node scripts/g7-p4/materialize-cubie-transitions.mjs             --input /tmp/confirmatory/derived/solves.jsonl             --out /tmp/g7-p4-final/confirmatory/cubie
+
+      - name: Materialize G6 phase1 rival geometry
+        run: |
+          set -euo pipefail
+          cargo run -q -p search-geometry-core --bin g7_p4_phase1_batch             < /tmp/g7-p4-final/pilot/cubie/phase1-single-htm.tsv             > /tmp/g7-p4-final/pilot/phase1-pdb.tsv
+          cargo run -q -p search-geometry-core --bin g7_p4_phase1_batch             < /tmp/g7-p4-final/confirmatory/cubie/phase1-single-htm.tsv             > /tmp/g7-p4-final/confirmatory/phase1-pdb.tsv
+
+      - name: Summarize policy geometry
+        run: |
+          set -euo pipefail
+          node scripts/g7-p4/summarize-policy-geometry.mjs             --pdb-tsv /tmp/g7-p4-final/pilot/phase1-pdb.tsv             --cubie-json /tmp/g7-p4-final/pilot/cubie/cubie-transitions.json             --exact-json /tmp/g7-p4-final/pilot/exact/exact-trajectories.json             --out /tmp/g7-p4-final/pilot/summary
+          node scripts/g7-p4/summarize-policy-geometry.mjs             --pdb-tsv /tmp/g7-p4-final/confirmatory/phase1-pdb.tsv             --cubie-json /tmp/g7-p4-final/confirmatory/cubie/cubie-transitions.json             --exact-json /tmp/g7-p4-final/confirmatory/exact/exact-trajectories.json             --out /tmp/g7-p4-final/confirmatory/summary
+
+      - name: Final presealed court
+        run: |
+          set -euo pipefail
+          node scripts/g7-p4/evaluate-closure.mjs             --pilot-summary /tmp/g7-p4-final/pilot/summary/policy-summary.json             --confirmatory-summary /tmp/g7-p4-final/confirmatory/summary/policy-summary.json             --cross g7/p4/cross-source-replication.json             --preseal g7/p4/preseal.json             --out /tmp/g7-p4-final
+
+          node - <<'NODE'
+          const x=require('/tmp/g7-p4-final/G7-P4-CLOSURE.json');
+          if(x.verdict!=='PASS_DESCRIPTIVE_POLICY_GEOMETRY_ONLY') process.exit(1);
+          if(!x.next_phase_permission) process.exit(2);
+          console.log('G7_P4_FINAL_VERDICT_PASS');
+          console.log('VERDICT\t'+x.verdict);
+          console.log('SEARCH_EVENTS\t'+x.evidence.search_events);
+          console.log('PILOT_REPLAY\t'+x.evidence.pilot_supported_fraction);
+          console.log('CONFIRMATORY_REPLAY\t'+x.evidence.confirmatory_supported_fraction);
+          NODE
+
+          cp g7/p4/preseal.json /tmp/g7-p4-final/preseal.json
+          cp g7/p4/cross-source-replication.json /tmp/g7-p4-final/cross-source-replication.json
+          (cd /tmp/g7-p4-final && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P4-final-${{ github.sha }}
+          path: /tmp/g7-p4-final
+          if-no-files-found: error
+          retention-days: 90
