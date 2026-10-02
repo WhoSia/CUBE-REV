@@ -47,9 +47,22 @@
   "active_set": {
     "manifest": "g7/p7/active-set-manifest.json",
     "blocking_workflow": ".github/workflows/p7-repo-active-set-audit.yml",
-    "target_tracked_files": 42,
+    "sealed_run": 37004765344,
+    "sealed_head": "05f5142d5496d5ba80de81e09801fb274ae374c6",
+    "tracked_files": 42,
+    "allowed_files": 42,
+    "unexpected_files": 0,
+    "missing_active_files": 0,
+    "artifact_id": 11224744123,
+    "artifact_sha256": "b12d426c9448d3571e17527042700422a3ca415d18150c7b7b00088ff4a45f9e",
+    "drive_audit_file_id": "1r8E2AhjFpEHOQutmSWQS51ulZXNdBDvX",
+    "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI",
     "exact_allowlist": true,
-    "predecessor_head": "447b37d9fb25e856848f212661a899ab00d05115",
-    "note": "Receipt pending exact-head audit after second active-only prune."
+    "reco_reproduction": {
+      "run": 37004765361,
+      "artifact_id": 11224783937,
+      "artifact_sha256": "e475e4f964e581889212cbfaa200fe58a886e62235bbd2007f831e4ab86e71fa",
+      "drive_file_id": "1Tf_HL5px2aNYXVfE97RfdrpRicn5TBbM"
+    }
   }
 }

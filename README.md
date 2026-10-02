@@ -90,15 +90,16 @@ Drive archive ledger:
 **CUBE-REV — Repository Active-Set Archive Ledger**
 
 Latest blocking active-set receipt:
-- tracked files: **66**
-- legacy candidates: **0**
-- unclassified files: **0**
-- workflow run: `36981110448` — SUCCESS
-- audit artifact: `11215198981`
-- artifact SHA-256: `17c21a64c066d7d4eef234c11a903227a6c7b065b5cfba5fa4dabe72129bc2bc`
-- Drive audit custody: `1vnmAK40dAjcvOyAFU2yfvSYBmqhy-jSV`
+- tracked files: **42**
+- allowed files: **42**
+- unexpected files: **0**
+- missing required active files: **0**
+- workflow run: `37004765344` — SUCCESS
+- audit artifact: `11224744123`
+- artifact SHA-256: `b12d426c9448d3571e17527042700422a3ca415d18150c7b7b00088ff4a45f9e`
+- Drive audit custody: `1r8E2AhjFpEHOQutmSWQS51ulZXNdBDvX`
 
-The machine-readable allow/retire contract lives at `g7/p7/active-set-manifest.json`. The blocking audit fails if any retired or unclassified path re-enters `research/current`.
+The machine-readable exact allowlist lives at `g7/p7/active-set-manifest.json`. The blocking audit fails if any unexpected file enters the branch **or if any required active file disappears**.
 
 ## Rust workspace
 
@@ -129,7 +130,7 @@ G7-P7 retains `Court` because it independently satisfies that qualification. Fut
 
 The active branch is now governed by an **exact-path allowlist**, not broad directory prefixes.
 
-Target active set after the second P7 prune:
+Verified active set after the second P7 prune:
 - tracked files: **42**
 - unexpected files permitted: **0**
 - required active files may be missing: **0**
@@ -137,3 +138,10 @@ Target active set after the second P7 prune:
 - reusable 3x3 phase-1 kernel: `crates/search-geometry-core/src/phase1.rs`
 
 Historical bytes remain available through Git history, the sealed archive branch, Actions artifacts, and the Drive archive ledger. New temporary/debug files must be explicitly admitted to the manifest or the blocking audit fails.
+
+Latest P7 reco-derived authority after the prune:
+- workflow run: `37004765361` — SUCCESS
+- artifact: `11224783937`
+- artifact SHA-256: `e475e4f964e581889212cbfaa200fe58a886e62235bbd2007f831e4ab86e71fa`
+- Drive custody: `1Tf_HL5px2aNYXVfE97RfdrpRicn5TBbM`
+- science pipeline reproduced unchanged after the core rename/prune.
