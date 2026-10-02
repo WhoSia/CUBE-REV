@@ -1,0 +1,12 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import {spawnSync} from "node:child_process";
+const d=fs.mkdtempSync(path.join(os.tmpdir(),"g7-p5-fresh-test-"));
+const out=path.join(d,"fresh.json");
+const p=spawnSync(process.execPath,["scripts/g7-p5/fresh-packet-replication.mjs",out],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+const r=JSON.parse(fs.readFileSync(out,"utf8"));
+if(r.conclusion!=="PASS_TWO_SEED_PACKET_CONSTITUTION_REPLICATION") throw new Error("CONCLUSION");
+if(r.canonical_sha256===r.fresh_sha256) throw new Error("COLLISION");
+console.log("G7_P5_FRESH_PACKET_REPLICATION_TEST_PASS");
