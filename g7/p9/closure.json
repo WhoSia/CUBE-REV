@@ -1,0 +1,41 @@
+{
+  "schema_version":"g7-p9-closure-1",
+  "phase":"G7-P9",
+  "status":"CLOSED",
+  "final_verdict":"PARTIAL_TS_SPECIFICITY_COMMON_CORE_DOMINANT_WITH_TRANSPORT_STABLE_LOW_OVERLAP_PERIPHERAL_SIGNAL",
+  "formal_name":"CUBE-REV Generation VII G7-P9 — Five-Rival Support-Set Overlap Census, TS-Exclusive/Shared Move Attribution, Conditional Expected-Match Residualization, Pairwise Rival-Contrast Geometry, Method/Provenance Stratification, Leave-One-Rival Overlap Ablation & Rival-Specificity Audit",
+  "authorities":{
+    "p9_overlap_audit":{
+      "run":37038855282,
+      "artifact":11240379793,
+      "sha256":"3d399e6cc8759c36418b991ecda9f5e190ed8ada7c877631f7cf3c2330f7277a",
+      "drive":"1XdasiINjwB8X3wVWuB2aPQVEILNhIhAV"
+    },
+    "p9_r1_overlap_degree":{
+      "run":37039284222,
+      "artifact":11241464337,
+      "sha256":"6266691e95cc00c54b38abbc1fc068bc83349e152fa90334a95d607a0117980a",
+      "drive":"1QHwX43dI1a_HvjFsvH463NnAjhcyXjKL"
+    },
+    "p9_r2_low_overlap_transport":{
+      "run":37039654112,
+      "artifact":11242010545,
+      "sha256":"7381c9bbd1f34a936b1cede0ae1380532738ff883feaeb6b0406c53772ea195a",
+      "drive":"1iKJ2EhYCvJXImxzpj7sIixrBwEkxBZl4"
+    }
+  },
+  "surviving_results":[
+    "TS total solve excess is positive and stronger than H1/H2/H3/FS in all four pairwise solve-level contrasts.",
+    "Strict globally unique TS excess is positive but weak under solve-level sign-flip calibration.",
+    "Five-rival common-core degree-4 support carries 61.2% of total TS excess.",
+    "Cumulative low-overlap degree-0-to-2 TS excess is positive and survives method/provenance/cohort leave-one-group-out direction checks.",
+    "P4 and P7 campaign epochs both have positive low-overlap means, but neither epoch alone supplies strong independent confirmation."
+  ],
+  "interpretation":"TS alignment is neither fully generic nor fully exclusive. It is common-core dominated with a smaller transport-stable peripheral specificity component.",
+  "promotion_boundary":{
+    "rival_specificity":"DESCRIPTIVE_PARTIAL_SUPPORT",
+    "human_cognitive_mechanism":"CLOSED",
+    "human_contact":"CLOSED"
+  },
+  "next_scientific_problem":"Locate the low-overlap TS component on the cube-state geometry itself: phase-1 lower bound, G1 membership, stage/progress position, and distance-to-constraint surfaces, and test whether its localization survives matched-state controls."
+}
