@@ -1,4 +1,4 @@
-name: Acquire frozen G7-P7 reco.nz campaign batch 3
+name: Acquire frozen G7-P7 reco.nz campaign batch 4
 
 on:
   push:
@@ -35,32 +35,32 @@ jobs:
           if(p.naming_preflight.current_suffix!=='Court') process.exit(1);
           if(c.authority.bulk_authorized!==false) process.exit(2);
           if(c.authority.max_solves_per_run!==10||c.authority.campaign_ceiling!==40) process.exit(3);
-          console.log('G7_P7_BATCH3_AUTHORITY_PASS');
+          console.log('G7_P7_BATCH4_AUTHORITY_PASS');
           NODE
-      - name: Acquire frozen batch 3
+      - name: Acquire frozen batch 4
         run: |
           set -euo pipefail
-          rm -rf /tmp/g7-p7-batch03
-          node scripts/g7-p7/acquire-reco-batch.mjs --batch 3 --out /tmp/g7-p7-batch03 --execute
+          rm -rf /tmp/g7-p7-batch04
+          node scripts/g7-p7/acquire-reco-batch.mjs --batch 4 --out /tmp/g7-p7-batch04 --execute
       - name: Exact trajectory replay
         run: |
           set -euo pipefail
-          node scripts/cube/replay-exact-trajectories.mjs --input /tmp/g7-p7-batch03/derived/solves.jsonl --out /tmp/g7-p7-batch03/exact
+          node scripts/cube/replay-exact-trajectories.mjs --input /tmp/g7-p7-batch04/derived/solves.jsonl --out /tmp/g7-p7-batch04/exact
           node - <<'NODE'
-          const x=require('/tmp/g7-p7-batch03/exact/exact-trajectories.json');
+          const x=require('/tmp/g7-p7-batch04/exact/exact-trajectories.json');
           if(x.solve_count!==10||x.exact_end_validation_pass!==10) process.exit(1);
-          console.log('G7_P7_RECO_BATCH3_EXACT_PASS');
+          console.log('G7_P7_RECO_BATCH4_EXACT_PASS');
           console.log('PREFIXES\t'+x.total_prefixes);
           NODE
       - name: Seal batch artifact
         run: |
           set -euo pipefail
-          printf '%s\n' 'BATCH=3' 'SOLVES=10' 'BULK_MIRROR=HOLD' 'RAW_PUBLIC_RELEASE=HOLD' > /tmp/g7-p7-batch03/AUTHORITY.txt
-          (cd /tmp/g7-p7-batch03 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+          printf '%s\n' 'BATCH=4' 'SOLVES=10' 'BULK_MIRROR=HOLD' 'RAW_PUBLIC_RELEASE=HOLD' > /tmp/g7-p7-batch04/AUTHORITY.txt
+          (cd /tmp/g7-p7-batch04 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
       - uses: actions/upload-artifact@v4
         with:
-          name: G7-P7-reco-batch3-${{ github.sha }}
-          path: /tmp/g7-p7-batch03
+          name: G7-P7-reco-batch4-${{ github.sha }}
+          path: /tmp/g7-p7-batch04
           if-no-files-found: error
           retention-days: 90
 
@@ -89,7 +89,7 @@ jobs:
               console.log('MATCHED_PUSH_CONCLUSION\t'+run.conclusion);
               if(run.status==='completed'){
                 if(run.conclusion!=='success') process.exit(2);
-                console.log('G7_P7_BATCH3_PUSH_OBSERVER_PASS');
+                console.log('G7_P7_BATCH4_PUSH_OBSERVER_PASS');
                 process.exit(0);
               }
             }
