@@ -19,3 +19,7 @@ $("export").onclick=()=>{
   const blob=new Blob([log.jsonl()],{type:"application/x-ndjson"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="g7-p5-validation-events.jsonl";a.click();URL.revokeObjectURL(a.href);
 };
+
+document.addEventListener("visibilitychange",()=>{
+  if(log) log.push("visibility_change",{visibility_state:document.visibilityState,trial_id:trials?.[idx]?.trial_id??null});
+});
