@@ -1,0 +1,155 @@
+{
+  "schema_version": "g7-p6-literature-audit-1",
+  "audited_at": "2026-10-02",
+  "drive": {
+    "canonical_commons_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+    "intake_id": "1MLtYh0pv8QUZDReYzRqjDrOjRkSJAD16"
+  },
+  "present": [
+    {
+      "title": "Zhang & Norman (1994) — Representations in Distributed Cognitive Tasks",
+      "drive_id": "10GIMI2Xu4ARqijhdbIKkgvkifJ-TSPjI",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Kirsh & Maglio (1994) — On Distinguishing Epistemic from Pragmatic Action",
+      "drive_id": "1G5fgEClza862ik1YuKMrc5DOhqv_Rd0S",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Gobet et al. (2001) — Chunking Mechanisms in Human Learning",
+      "drive_id": "17lGaD6GTUwaw_-9QBgdd-7cmrAeaCyUe",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Rosenbaum, Kenny & Derr (1983) — Hierarchical Control of Rapid Movement Sequences",
+      "drive_id": "1NweWdqPsx4lv_M4k5m2UNmB3vJ5l4dHQ",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Sutton, Precup & Singh (1999) — Between MDPs and Semi-MDPs",
+      "drive_id": "1_AcKvt5GR8cYYAARM8GYdmQ8ekitJjd9",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Verwey (2001) — Concatenating Familiar Movement Sequences",
+      "drive_id": "1MJGWsUxx53wGe9A6UPutbuqBPgOoiXFw",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Korf (1985) — Macro-Operators",
+      "drive_id": "1v7FALcYObQNdlluBcj6b2_1s5oF-7esh",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Korf (1997) — Finding Optimal Solutions to Rubik's Cube Using Pattern Databases",
+      "drive_id": "1FhscX-H_iCCAdewkiruCO5CAJu2Ce3qD",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Korf & Felner (2002) — Disjoint Pattern Database Heuristics",
+      "drive_id": "1bpxtrmq0cT2FoC_bsIoeMn1kLSAVte-G",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Sakai, Kitaguchi & Hikosaka (2003) — Chunking during human visuomotor sequence learning",
+      "drive_id": "17c1tXeYp7cqhZ3jJ7lA6TDjjHGW4Q5ia",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Nuzzi, Cisek & Pezzulo (2025 preprint) — Planning-while-acting",
+      "drive_id": "1o_-fAm8ssvWiq96nCHvu7YRrVdZtVuft",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Meinz et al. (2023) — Ability and Nonability Predictors of Real-World Skill Acquisition: Rubik's Cube",
+      "drive_id": "1evZEtiF9f1oyg9kjMctEKVZ3VFmec6mA",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Callaway et al. (2022) — Rational Use of Cognitive Resources in Human Planning",
+      "drive_id": "11lmR6cdEBj38-HL8jRh_WJMMkrsJfPr3",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Solway et al. (2014) — Optimal Behavioral Hierarchy",
+      "drive_id": "10wXPdZvQcMKfGVqM8vTLFd0EBTSjpnuJ",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Tomov et al. (2020) — Discovery of Hierarchical Representations for Efficient Planning",
+      "drive_id": "1tcJqryk6qrnirVYCvCZRxEWPa4gjUmf3",
+      "status": "PRESENT"
+    },
+    {
+      "title": "Charness et al. (2001) — Perceptual Aspect of Skilled Performance in Chess",
+      "drive_id": "1eYCeT8u0HElDRRDNK2s69VPgOwdvVfia",
+      "status": "PRESENT"
+    }
+  ],
+  "missing_verified": [
+    {
+      "title": "Cowan (2001) — The magical number 4 in short-term memory: A reconsideration of mental storage capacity",
+      "doi": "10.1017/S0140525X01003922",
+      "status": "MISSING_FROM_DRIVE_SEARCH",
+      "role": "origin working-memory foundation"
+    },
+    {
+      "title": "Chase & Simon (1973) — Perception in chess",
+      "doi": "10.1016/0010-0285(73)90004-2",
+      "status": "MISSING_FROM_DRIVE_SEARCH",
+      "role": "origin expertise/chunking foundation"
+    },
+    {
+      "title": "Ericsson & Kintsch (1995) — Long-Term Working Memory",
+      "doi": "10.1037/0033-295X.102.2.211",
+      "status": "MISSING_FROM_DRIVE_SEARCH",
+      "role": "origin expertise/working-memory foundation"
+    },
+    {
+      "title": "Shepard & Metzler (1971) — Mental Rotation of Three-Dimensional Objects",
+      "doi": "10.1126/science.171.3972.701",
+      "status": "MISSING_FROM_DRIVE_SEARCH",
+      "role": "origin spatial-cognition foundation"
+    },
+    {
+      "title": "Simonelli et al. (2025) — Structuring the environment nudges participants toward hierarchical over shortest path planning",
+      "doi": "10.1016/j.concog.2025.103908",
+      "status": "MISSING_FROM_DRIVE_SEARCH",
+      "role": "P6 hierarchical-planning intervention"
+    },
+    {
+      "title": "Exploring the hierarchical structure of human plans via program generation",
+      "doi": "10.1016/j.cognition.2024.105990",
+      "status": "MISSING_FROM_DRIVE_SEARCH",
+      "role": "P6 human-plan hierarchy"
+    }
+  ],
+  "unresolved": [
+    {
+      "citation": "Yang et al. (2019)",
+      "status": "EXACT_TITLE_UNRESOLVED_FROM_ORIGIN_ROADMAP",
+      "action": "recover exact bibliography before acquisition"
+    },
+    {
+      "citation": "Byrne et al. (2024)",
+      "status": "EXACT_TITLE_UNRESOLVED_FROM_ORIGIN_ROADMAP",
+      "action": "recover exact bibliography before acquisition"
+    },
+    {
+      "citation": "Computational basis of hierarchical and counterfactual information processing",
+      "status": "CURRENT_P6_CANDIDATE_EXACT_BIBLIOGRAPHY_TO_VERIFY",
+      "action": "verify DOI/authors then audit Drive"
+    }
+  ],
+  "duplicate_candidates": [
+    {
+      "title": "Kirsh & Maglio (1994) — On Distinguishing Epistemic from Pragmatic Action",
+      "drive_ids": [
+        "1G5fgEClza862ik1YuKMrc5DOhqv_Rd0S",
+        "1z7JjhJJMBtUhRyk-t-xvYcNJk0TmkO9k"
+      ],
+      "status": "DUPLICATE_CANDIDATE_NOT_DELETED"
+    }
+  ]
+}
