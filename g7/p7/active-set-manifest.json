@@ -11,6 +11,7 @@
     ".github/workflows/g7-p11-fresh-batch1.yml",
     ".github/workflows/g7-p11-fresh-batch2.yml",
     ".github/workflows/g7-p11-fresh-batch3.yml",
+    ".github/workflows/g7-p11-fresh-batch4.yml",
     ".github/workflows/g7-p11-fresh-selection.yml",
     ".github/workflows/g7-p7-index-provenance-census.yml",
     ".github/workflows/g7-p7-reco-analysis.yml",
