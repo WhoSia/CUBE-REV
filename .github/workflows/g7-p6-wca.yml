@@ -6,6 +6,11 @@ on:
     branches: ['research/current']
     paths:
       - '.github/workflows/g7-p6-wca.yml'
+      - 'scripts/g7-p6/census-wca-latest.py'
+  pull_request:
+    paths:
+      - '.github/workflows/g7-p6-wca.yml'
+      - 'scripts/g7-p6/census-wca-latest.py'
 
 permissions:
   contents: read
