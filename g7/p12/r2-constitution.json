@@ -1,0 +1,102 @@
+{
+  "schema_version": "g7-p12-r2-constitution-1",
+  "phase": "G7-P12-R2",
+  "formal_name": "CUBE-REV Generation VII G7-P12-R2 — Opportunity-Representation Coordinate-Projection Lattice, Support–Information Pareto Frontier Census, Exact-Table Quotient Dominance, Fresh↔Legacy Frontier Transport, Common-Support Phase Diagram, Threshold-Free Compression Boundary & Representation Identifiability Census",
+  "operation_type": "Support–Information Pareto Frontier Census",
+  "status": "FROZEN_AFTER_R1_BEFORE_R2_OUTCOME",
+  "parent": {
+    "r1_closure": "g7/p12/r1-closure.json",
+    "r1_verdict": "COMPRESSION_NOT_AUTHORIZED"
+  },
+  "primitive_coordinates": {
+    "K": "low-overlap support size",
+    "D": "total descending-action count",
+    "L": "low-overlap AND descending intersection count",
+    "exact_table_reconstruction": "A=L, B=K-L, C=D-L, Dcell=18-K-D+L"
+  },
+  "lattice": [
+    {
+      "id": "K",
+      "coordinates": [
+        "K"
+      ]
+    },
+    {
+      "id": "D",
+      "coordinates": [
+        "D"
+      ]
+    },
+    {
+      "id": "L",
+      "coordinates": [
+        "L"
+      ]
+    },
+    {
+      "id": "K_D",
+      "coordinates": [
+        "K",
+        "D"
+      ]
+    },
+    {
+      "id": "K_L",
+      "coordinates": [
+        "K",
+        "L"
+      ]
+    },
+    {
+      "id": "D_L",
+      "coordinates": [
+        "D",
+        "L"
+      ]
+    },
+    {
+      "id": "K_D_L",
+      "coordinates": [
+        "K",
+        "D",
+        "L"
+      ]
+    }
+  ],
+  "metrics": {
+    "information_loss": "normalized conditional entropy H(K,D,L | projection) / H(K,D,L)",
+    "support": "number of solves with lb7 and lb6/8 sharing normalized-progress-quintile × projection",
+    "state_collision": "number and mass of distinct exact tuples merged by each projection",
+    "ancestry": [
+      "FRESH40",
+      "LEGACY60"
+    ],
+    "no_behavioral_outcomes": true
+  },
+  "pareto_definition": {
+    "direction": "lower information loss and higher common-support solve count are both better",
+    "dominance": "projection A dominates B in an ancestry iff A loss <= B loss and A support >= B support with at least one strict inequality",
+    "joint_frontier": "projection is joint-Pareto if not dominated under the four-vector (fresh loss↓, fresh support↑, legacy loss↓, legacy support↑)"
+  },
+  "readouts": [
+    "fresh Pareto frontier",
+    "legacy Pareto frontier",
+    "joint fresh↔legacy Pareto frontier",
+    "whether the same projection order is preserved across ancestries",
+    "exact full-table endpoint and singleton-coordinate endpoints",
+    "distance of R1 gates from each lattice point, reported descriptively only"
+  ],
+  "forbidden": [
+    "use observed next-action outcomes",
+    "change R1 thresholds",
+    "select a behavioral matching representation in R2",
+    "introduce result-triggered bins or rounded continuous coordinates"
+  ],
+  "successor_logic": {
+    "if_joint_frontier_has_low_loss_high_support_point": "future behavioral audit may preseal that exact projection in a new operation",
+    "otherwise": "move to soft/partial matching or model-based structural adjustment only under a new prospective constitution"
+  },
+  "source_contact": "NONE",
+  "new_body_requests": 0,
+  "human_contact_gate": "CLOSED"
+}
