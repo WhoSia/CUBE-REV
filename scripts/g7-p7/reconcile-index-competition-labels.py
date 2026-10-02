@@ -89,7 +89,15 @@ def main():
         comps.append({"id":cid,"name":name,"year":int(year) if year is not None else None,"lex":lex_norm(name),"norm":norm_text(name)})
     exact_names={c["norm"] for c in comps}
 
-    target=[r for r in rows if norm_text(r["competition"]) and norm_text(r["competition"]) not in exact_names]
+    platform_labels={"speedcubedb","speed cube database","cubesolv.es","cubesolves","cubedb"}
+    def is_other_unmatched(r):
+        n=norm_text(r["competition"])
+        if not n or n=="unofficial": return False
+        if "monkey league" in n: return False
+        if n in platform_labels: return False
+        if n in exact_names: return False
+        return True
+    target=[r for r in rows if is_other_unmatched(r)]
     grouped=defaultdict(list)
     for r in target: grouped[r["competition"]].append(r)
 
