@@ -43,6 +43,7 @@ jobs:
           node scripts/g7-p5/test-packet-generator.mjs
           node scripts/g7-p5/test-instrument-synthetic.mjs
           node scripts/g7-p5/test-browser-core.mjs
+          node scripts/g7-p5/test-state-net.mjs
           node scripts/g7-p5/test-packet-audit.mjs
           node scripts/g7-p5/test-analysis.mjs
           node scripts/g7-p5/test-sensitivity.mjs
@@ -91,7 +92,7 @@ jobs:
           set -euo pipefail
           mkdir -p /tmp/g7-p5/authority /tmp/g7-p5/web
           cp g7/p5/preseal.json g7/p5/instrument-schema.json g7/p5/contact-constitution.json /tmp/g7-p5/authority/
-          cp g7/p5/web/index.html g7/p5/web/app.mjs g7/p5/web/browser-core.mjs /tmp/g7-p5/web/
+          cp g7/p5/web/index.html g7/p5/web/app.mjs g7/p5/web/browser-core.mjs g7/p5/web/state-net.mjs /tmp/g7-p5/web/
           printf '%s\n' 'HUMAN_CONTACT=HOLD_UNTIL_INSTRUMENT_VALIDATED' 'LIVE_DATA=NONE' 'SYNTHETIC_ONLY=YES' > /tmp/g7-p5/AUTHORITY.txt
           (cd /tmp/g7-p5 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
 
