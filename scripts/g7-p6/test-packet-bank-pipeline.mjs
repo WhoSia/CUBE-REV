@@ -1,0 +1,15 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import {spawnSync} from "node:child_process";
+const d=fs.mkdtempSync(path.join(os.tmpdir(),"g7-p6-bank-"));
+let p=spawnSync("cargo",["run","-q","-p","search-geometry-core","--bin","g7_p6_packet_bank"],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+fs.writeFileSync(path.join(d,"b.tsv"),p.stdout);
+p=spawnSync(process.execPath,["scripts/g7-p6/compile-packet-bank.mjs",path.join(d,"b.tsv"),path.join(d,"b.json")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+p=spawnSync(process.execPath,["scripts/g7-p6/audit-packet-bank.mjs",path.join(d,"b.json"),path.join(d,"a.json")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+const a=JSON.parse(fs.readFileSync(path.join(d,"a.json"),"utf8"));
+if(!a.pass||a.states!==256||a.seeds!==8) throw new Error("AUDIT");
+console.log("G7_P6_PACKET_BANK_PIPELINE_TEST_PASS");
