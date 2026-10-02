@@ -1,0 +1,91 @@
+name: Freeze G7-P7 reco.nz body campaign
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p7/preseal.json'
+      - 'g7/p7/reco-campaign-constitution.json'
+      - 'scripts/g7-p7/select-reco-campaign.mjs'
+      - 'scripts/g7-p7/test-reco-campaign-selection.mjs'
+      - '.github/workflows/g7-p7-reco-selection.yml'
+  pull_request:
+    paths:
+      - 'g7/p7/preseal.json'
+      - 'g7/p7/reco-campaign-constitution.json'
+      - 'scripts/g7-p7/select-reco-campaign.mjs'
+      - 'scripts/g7-p7/test-reco-campaign-selection.mjs'
+      - '.github/workflows/g7-p7-reco-selection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  selection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Naming and source-authority gates
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const p=require('./g7/p7/preseal.json');
+          const c=require('./g7/p7/reco-campaign-constitution.json');
+          if(p.naming_preflight.current_suffix!=='Court') process.exit(1);
+          if(!p.naming_preflight.court_justification.fixed_criteria) process.exit(2);
+          if(c.authority.bulk_authorized!==false) process.exit(3);
+          if(c.authority.max_solves_per_run!==10) process.exit(4);
+          if(c.campaign.total_solve_bodies!==40||c.campaign.batches!==4) process.exit(5);
+          console.log('G7_P7_NAMING_AND_SOURCE_AUTHORITY_PASS');
+          NODE
+
+      - name: Unit test selection
+        run: node scripts/g7-p7/test-reco-campaign-selection.mjs
+
+      - name: Recover exact frozen G7-P2 index artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: G7-P2-reco-index-census-893b47bccd766fed5138e32ce714f9808badc708
+          path: /tmp/g7-p2-census
+          github-token: ${{ github.token }}
+          repository: WhoSia/CUBE-REV
+          run-id: 36816629497
+
+      - name: Verify exact index bytes
+        run: |
+          set -euo pipefail
+          cd /tmp/g7-p2-census
+          sha256sum -c SHA256SUMS.txt
+          test "$(sha256sum derived/index-rows.jsonl | cut -d' ' -f1)" = "d6fef3fdb1f47c5ae4744f4624c64d7782563490344ba8ced9b22c819357987c"
+          echo G7_P7_RECO_INDEX_AUTHORITY_PASS
+
+      - name: Freeze 40-solve campaign without body contact
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/g7-p7-reco-selection
+          node scripts/g7-p7/select-reco-campaign.mjs             --input /tmp/g7-p2-census/derived/index-rows.jsonl             --out /tmp/g7-p7-reco-selection
+          node - <<'NODE'
+          const x=require('/tmp/g7-p7-reco-selection/campaign-manifest.json');
+          if(!x.selection_frozen_before_body_contact) process.exit(1);
+          if(x.total!==40||x.batches.length!==4) process.exit(2);
+          if(x.batches.some(b=>b.records.length!==10)) process.exit(3);
+          console.log('G7_P7_RECO_CAMPAIGN_FREEZE_PASS');
+          console.log('IDS\t'+x.records.map(r=>r.source_id).join(','));
+          console.log('BODY_REQUESTS\t0');
+          NODE
+          cp g7/p7/preseal.json g7/p7/reco-campaign-constitution.json /tmp/g7-p7-reco-selection/
+          (cd /tmp/g7-p7-reco-selection && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P7-reco-selection-${{ github.sha }}
+          path: /tmp/g7-p7-reco-selection
+          if-no-files-found: error
+          retention-days: 90
