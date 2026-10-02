@@ -1,0 +1,13 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import {spawnSync} from "node:child_process";
+const d=fs.mkdtempSync(path.join(os.tmpdir(),"g7-p4-close-"));
+const s={solve_count:10,supported_fraction:0.9,annotation_geometry:{annotation_bearing_solves:8},search_alignment:{n:30,best_rival_tie_rate:0.5,mean_local_regret:0.7}};
+fs.writeFileSync(path.join(d,"p.json"),JSON.stringify(s));fs.writeFileSync(path.join(d,"c.json"),JSON.stringify(s));
+const p=spawnSync(process.execPath,["scripts/g7-p4/evaluate-closure.mjs","--pilot-summary",path.join(d,"p.json"),"--confirmatory-summary",path.join(d,"c.json"),"--out",path.join(d,"o")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+const r=JSON.parse(fs.readFileSync(path.join(d,"o","G7-P4-CLOSURE.json"),"utf8"));
+if(r.verdict!=="PASS_DESCRIPTIVE_POLICY_GEOMETRY_ONLY") throw new Error("VERDICT");
+if(!r.next_phase_permission) throw new Error("NEXT");
+console.log("G7_P4_CLOSURE_TEST_PASS");
