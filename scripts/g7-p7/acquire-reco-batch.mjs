@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
-import {parseRecoSolveHtml} from "../g7-p2/parse-reco-html.mjs";
+import {parseRecoSolveHtml} from "../reco/parse-reco-html.mjs";
 
 const args=process.argv.slice(2);
 const val=(k,d=null)=>{const i=args.indexOf(k);return i>=0&&i+1<args.length?args[i+1]:d;};
@@ -10,7 +10,7 @@ const batchNo=Number(val("--batch"));
 const outDir=val("--out");
 if(!batchNo||!outDir) throw new Error("ARGS");
 const manifest=JSON.parse(fs.readFileSync("g7/p7/reco-campaign-manifest.json","utf8"));
-const policy=JSON.parse(fs.readFileSync("g7/p2/reco-acquisition-policy.json","utf8"));
+const policy=JSON.parse(fs.readFileSync("core/reco/reco-acquisition-policy.json","utf8"));
 const batch=manifest.batches.find(b=>b.batch===batchNo);
 if(!batch) throw new Error("BATCH_NOT_FOUND");
 if(batch.records.length!==10) throw new Error("BATCH_SIZE");
