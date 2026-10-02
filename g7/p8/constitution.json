@@ -1,0 +1,82 @@
+{
+  "schema_version": "g7-p8-constitution-1",
+  "phase": "G7-P8",
+  "formal_name": "CUBE-REV Generation VII G7-P8 — Prospective Method×Reconstructor Support-Surface Census, Outcome-Blind Body-Light Acquisition, Provenance-Stratified Selection-Mechanism Reconstruction, Missing-Covariate Transport Bounds, Geometry Reweighting under Availability Bias, Cross-Year/Source Replication, Source-Contact Firewall & Human-Mechanism Promotion Gate",
+  "status": "PRESEALED_NO_SOURCE_CONTACT",
+  "inherits": {
+    "from": "G7-P7",
+    "closure": "g7/p7/closure.json",
+    "frozen_population_rows_3x3": 10591,
+    "frozen_body_geometry_solves": 60,
+    "human_contact_gate": "CLOSED"
+  },
+  "problem": "G7-P7 identifies TS/H1 provenance-axis population sign robustness, but full-population method_family and reconstructor covariates are unavailable. G7-P8 measures whether body-level method/reconstructor observability is itself selectively distributed across the reco.nz 3x3 index population before any stronger geometry transport or human-mechanism claim.",
+  "acquisition_design": {
+    "operation_type": "Prospective Body-Light Support-Surface Census",
+    "sampling_frame": "same retained 10,591-row 3x3 reco.nz index authority",
+    "selection_before_contact": true,
+    "deterministic_selection": "hash-ranked source_id within frozen index-visible support strata; selection manifest committed before any body request",
+    "primary_strata": [
+      "WCA_CONTEXT_VISIBLE_OR_RECOVERED",
+      "NO_SOURCE_COMPETITION_CONTEXT",
+      "MONKEY_LEAGUE",
+      "RECONSTRUCTION_PLATFORM",
+      "OTHER_OR_UNRESOLVED_SOURCE_LABEL"
+    ],
+    "target_n_total": 200,
+    "target_n_per_primary_stratum": 40,
+    "rare_stratum_policy": "if a primary stratum contains fewer than 40 eligible population rows, census all available rows and deterministically redistribute residual slots across remaining strata before contact",
+    "cross_year_constraint": "within each stratum, deterministic selection is balanced across coarse year bands where support permits",
+    "exclusion": "the frozen 60-body source_ids are excluded from primary acquisition and retained only as an external comparison set"
+  },
+  "contact_firewall": {
+    "new_source_contact": "AUTHORIZED_ONLY_AFTER_SELECTION_MANIFEST_SEAL",
+    "request_scope": "one bounded solve page request per selected source_id",
+    "rate_limit": "serial or conservatively bounded requests; no burst scraping",
+    "raw_html_retention": "NO",
+    "raw_reconstruction_move_retention": "NO",
+    "retain_only": [
+      "source_id",
+      "HTTP/retrieval status",
+      "method_family if exposed",
+      "reconstructor if exposed",
+      "minimal source/provenance labels needed to audit selection",
+      "parser/version receipt",
+      "body-field availability indicators"
+    ],
+    "immediate_discard": "raw page body after field extraction",
+    "failure_is_data": true
+  },
+  "primary_readouts": [
+    "body retrieval availability by frozen population stratum",
+    "method_family observability by stratum and year band",
+    "reconstructor observability by stratum and year band",
+    "joint method×reconstructor support surface",
+    "difference between prospective body-light sample and frozen 60-body corpus",
+    "selection odds / support ratios as descriptive availability quantities, not causal propensities"
+  ],
+  "secondary_readouts": [
+    "whether missing method/reconstructor is concentrated in provenance classes absent from the frozen 60-body geometry corpus",
+    "whether the frozen 60-body method/reconstructor mix lies inside prospective support envelopes",
+    "cross-year stability of availability patterns",
+    "parser/source-surface failure taxonomy"
+  ],
+  "transport_plan": {
+    "allowed_if_support_positive": "post-stratified geometry sensitivity across observed method/reconstructor support cells",
+    "zero_support_policy": "do not impute geometry into method/reconstructor cells with zero prospective body support",
+    "probability_sampling_claim": "FORBIDDEN",
+    "causal_selection_model_claim": "FORBIDDEN unless separately identified"
+  },
+  "promotion_gate": {
+    "provenance_axis": "P7 CLOSED/PASS for TS/H1 sign only",
+    "method_reconstructor_axis": "HOLD until G7-P8 support-surface result",
+    "human_mechanism": "CLOSED",
+    "human_contact": "CLOSED"
+  },
+  "stop_rules": [
+    "stop acquisition at the presealed target or earlier only for source-side safety/rate-limit/access failure",
+    "do not expand target because observed method/reconstructor distributions look interesting",
+    "do not alter strata after body outcomes are observed",
+    "implementation bugs may be repaired only if outcome-independent and must preserve the sealed selection manifest"
+  ]
+}
