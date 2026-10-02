@@ -1,0 +1,73 @@
+{
+  "schema_version": "g7-p12-closure-1",
+  "phase": "G7-P12",
+  "formal_name": "CUBE-REV Generation VII G7-P12 — Replicated LB7 Local-Transition Geometry, One-Move Phase-1 Shell Flow Reconstruction, Low-Overlap Opportunity Concentration, Descent/Plateau/Ascent Action Decomposition, G1-Entry Accessibility, Structural-Opportunity Exact Matching, Legacy↔Fresh Cohort Transport & LB7 Alignment Mediation Audit",
+  "status": "CLOSED",
+  "final_verdict": "STRUCTURAL_MEDIATION_UNIDENTIFIED_SUPPORT_LIMITED__PRESEALED_COARSE_SENSITIVITY_STRONGLY_ATTENUATES_LB7_CONTRAST__MECHANISM_PROMOTION_CLOSED",
+  "authority": {
+    "run": 37044488802,
+    "head": "42cf77393f7e049c328c9fc9bcc9c58d1d27e8a3",
+    "artifact": 11244107123,
+    "sha256": "cff87ef445c45c9d2f1401a2febc71f5c33adc9432f8e3ad13d705fc5edfc6aa",
+    "drive": "1_3Tz7roz4mMOiEEDXWGIW1VAyqxh4F8g"
+  },
+  "reproduction_gate": {
+    "fresh_parent_mean": 0.056231231231231235,
+    "fresh_reproduced_mean": 0.056231231231231235,
+    "legacy_parent_mean": 0.048695054945054946,
+    "legacy_reproduced_mean": 0.048695054945054946,
+    "status": "PASS"
+  },
+  "primary_exact": {
+    "fresh": {
+      "eligible_solves": 6,
+      "mean": 0
+    },
+    "legacy": {
+      "eligible_solves": 19,
+      "mean": -0.07456140350877194
+    },
+    "support_gate_min_fresh_solves": 10,
+    "verdict": "UNIDENTIFIED_SUPPORT_LIMITED"
+  },
+  "presealed_coarse_parallel": {
+    "fresh": {
+      "eligible_solves": 30,
+      "mean": 0.000807613168724281,
+      "parent_mean": 0.056231231231231235
+    },
+    "legacy": {
+      "eligible_solves": 47,
+      "mean": 0.00845153664302601,
+      "parent_mean": 0.048695054945054946
+    },
+    "interpretation": "strong descriptive attenuation in both ancestries; not promoted over the exact support gate"
+  },
+  "structural_surface_summary": {
+    "fresh_lb6": {
+      "support_availability": 0.7668918918918919,
+      "mean_support_size": 1.9054054054054055,
+      "mean_descending_actions": 2.0304054054054053,
+      "mean_low_descending_actions": 0.8656387665198237
+    },
+    "fresh_lb7": {
+      "support_availability": 0.848966613672496,
+      "mean_support_size": 2.70906200317965,
+      "mean_descending_actions": 3.7901430842607313,
+      "mean_low_descending_actions": 1.2228464419475655
+    },
+    "fresh_lb8": {
+      "support_availability": 0.7011494252873564,
+      "mean_support_size": 3.896551724137931,
+      "mean_descending_actions": 10.597701149425287,
+      "mean_low_descending_actions": 4.475409836065574
+    }
+  },
+  "boundary": [
+    "Observed-state one-move geometry is not complete global shell topology.",
+    "Exact matching support is insufficient for mediation identification.",
+    "Presealed coarse sensitivity is evidence about attenuation, not a substitute primary result.",
+    "No cognitive mechanism is identified."
+  ],
+  "successor_problem": "Find an outcome-independent, information-audited lower-dimensional opportunity representation that improves common support without silently discarding action-opportunity distinctions."
+}
