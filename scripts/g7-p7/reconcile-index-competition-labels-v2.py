@@ -85,34 +85,29 @@ def main():
         (r["competition"],r["source_id"],explicit_year(r["competition"]),norm_text(r["solver"]),r["result_cs"])
         for r in target_rows
     ])
-    norm_name_sql="lower(trim(regexp_replace(r.person_name,'\\s+',' ','g')))"
+    norm_name_sql="lower(trim(regexp_replace(r.person_name,'\\\\s+',' ','g')))"
     sql=f"""
-    WITH candidates AS (
-      SELECT q.label,q.source_id,q.label_year,q.solver_norm,q.result_cs,
+    WITH hits AS (
+      SELECT q.label,q.source_id,
              CAST(c.id AS VARCHAR) competition_id,c.name competition_name
       FROM q
-      JOIN comp c ON q.label_year IS NOT NULL AND {year_expr}=q.label_year
-    ),
-    supported AS (
-      SELECT c.label,c.source_id,c.competition_id,c.competition_name,
-             max(CASE WHEN a.value IS NOT NULL THEN 1 ELSE 0 END) support
-      FROM candidates c
-      LEFT JOIN res r
-        ON CAST(r.competition_id AS VARCHAR)=c.competition_id
-       AND r.event_id='333'
-       AND {norm_name_sql}=c.solver_norm
-      LEFT JOIN att a
+      JOIN res r
+        ON r.event_id='333'
+       AND {norm_name_sql}=q.solver_norm
+      JOIN att a
         ON a.result_id=r.id
-       AND c.result_cs IS NOT NULL
-       AND CAST(a.value AS BIGINT)=c.result_cs
-      GROUP BY c.label,c.source_id,c.competition_id,c.competition_name
+       AND q.result_cs IS NOT NULL
+       AND CAST(a.value AS BIGINT)=q.result_cs
+      JOIN comp c
+        ON CAST(c.id AS VARCHAR)=CAST(r.competition_id AS VARCHAR)
+       AND q.label_year IS NOT NULL
+       AND {year_expr}=q.label_year
     )
     SELECT label,competition_id,competition_name,
            count(DISTINCT source_id) candidate_rows,
-           sum(support) support_rows
-    FROM supported
+           count(DISTINCT source_id) support_rows
+    FROM hits
     GROUP BY label,competition_id,competition_name
-    HAVING sum(support)>0
     ORDER BY label,support_rows DESC,competition_id
     """
     cur=con.execute(sql); cols=[d[0] for d in cur.description]
