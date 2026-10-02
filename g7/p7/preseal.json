@@ -63,6 +63,71 @@
   ],
   "linkage_audit": {
     "operation_type": "Linkage Audit",
+    "version": 2,
+    "status": "SEMANTIC_REPAIR_FROZEN_AFTER_V1_BEFORE_V2_EXECUTION",
+    "v1_observed_receipt": {
+      "run": 37006376525,
+      "artifact_id": 11226160747,
+      "artifact_sha256": "9857b22ad0156dfc7ec9fb45f91962326f1155330635b6d5242032a773a7417d",
+      "drive_custody_id": "1xPdoeCmCLtBRo3CDqoaJf1MnQFi_Moov",
+      "class_counts": {
+        "A_EXACT_EXTERNAL": 1,
+        "B_STRONG_EXTERNAL": 0,
+        "C_AMBIGUOUS": 9,
+        "U_UNLINKED": 50
+      },
+      "disclosed_before_v2": true
+    },
+    "semantic_repair": {
+      "bug": "reco unlabeled displayed date had been named solve_date by the parser without source-level semantic authority",
+      "repair": "preserve as source_display_date; official solve_date remains null unless independently grounded",
+      "independent_source_check": "reco solve pages display the date but do not label it as official solve date; v1 exact WCA candidates showed systematic disagreement with official competition dates",
+      "no_silent_reclassification": true
+    },
+    "source_scope": "same frozen 60 reco.nz body solves; no new reco.nz contact",
+    "wca_authority": {
+      "artifact_id": 11210089432,
+      "artifact_zip_sha256": "df733a69f95fe2a6af0d300cd63de591bb072c49fddfb6cdb981a0b74deab94a",
+      "source_zip_sha256": "ac9afd834b6d7e31cb3cdd99f47eb21569fafb5d26d8628528aae2db8867d6a7",
+      "export_format_version": "2.0.2",
+      "role": "official attempt and scramble authority"
+    },
+    "classes": {
+      "A_EXACT_EXTERNAL": [
+        "normalized scramble exact-match",
+        "event 333",
+        "solver/person exact normalized-name match",
+        "same WCA round",
+        "attempt_number equals scramble_num",
+        "source result parses and equals official attempt value",
+        "source competition name exactly matches official WCA competition name after normalization",
+        "one official candidate",
+        "one scramble group in the matched round",
+        "scramble match is globally unique for the reco record"
+      ],
+      "B_STRONG_EXTERNAL": [
+        "one compatible official candidate",
+        "exact scramble and exact solver support",
+        "A blocked only by public group-assignment limitation or unavailable source result/competition field"
+      ],
+      "C_AMBIGUOUS": [
+        "multiple official candidates or conflicting available result/competition context"
+      ],
+      "U_UNLINKED": [
+        "no official candidate after exact scramble+solver+round+attempt crosswalk"
+      ]
+    },
+    "forbidden": [
+      "use source_display_date as official solve-date evidence",
+      "fuzzy solver-name matching",
+      "competition-name-only identity",
+      "result-only identity",
+      "force group assignment not present in WCA public export",
+      "use linkage class as cognitive mechanism evidence"
+    ]
+  },
+  "linkage_audit_v1": {
+    "operation_type": "Linkage Audit",
     "status": "FROZEN_BEFORE_WCA_CROSSWALK_EXECUTION",
     "source_scope": "frozen 60 reco.nz body solves only; no new reco.nz contact",
     "wca_authority": {

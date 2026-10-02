@@ -42,9 +42,10 @@ jobs:
           python3 scripts/g7-p7/link-wca-attempts.py --self-test
           node - <<'NODE'
           const p=require('./g7/p7/preseal.json').linkage_audit;
-          if(p.status!=='FROZEN_BEFORE_WCA_CROSSWALK_EXECUTION') process.exit(1);
+          if(p.status!=='SEMANTIC_REPAIR_FROZEN_AFTER_V1_BEFORE_V2_EXECUTION') process.exit(1);
           if(p.wca_authority.artifact_id!==11210089432) process.exit(2);
-          console.log('G7_P7_WCA_LINKAGE_AUTHORITY_PASS');
+          if(p.version!==2||!p.v1_observed_receipt.disclosed_before_v2) process.exit(3);
+          console.log('G7_P7_WCA_LINKAGE_V2_AUTHORITY_PASS');
           NODE
 
       - name: Recover immutable 60-solve reco corpus

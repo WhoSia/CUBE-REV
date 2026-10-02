@@ -33,12 +33,16 @@ for(const s of sources){
       solver_frequency_band:strata.solver_frequency_band??null,
       reconstructor_frequency_band:strata.reconstructor_frequency_band??null
     };
-    all.push({...x,analysis_meta});
+    const source_display_date=x.parsed?.source_display_date??x.parsed?.solve_date??null;
+    const parsed={...x.parsed,source_display_date,solve_date:null};
+    all.push({...x,parsed,analysis_meta});
     meta.push({
       source_id:id,cohort:s.cohort,
-      solver:x.parsed?.solver??null,reconstructor:x.parsed?.reconstructor??null,
-      result_text:x.parsed?.result_text??null,solve_date:x.parsed?.solve_date??null,
-      competition:x.parsed?.competition??null,
+      solver:parsed?.solver??null,reconstructor:parsed?.reconstructor??null,
+      result_text:parsed?.result_text??null,
+      source_display_date,
+      solve_date:null,
+      competition:parsed?.competition??null,
       ...analysis_meta
     });
   }

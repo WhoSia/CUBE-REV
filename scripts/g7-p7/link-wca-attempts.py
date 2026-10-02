@@ -41,31 +41,27 @@ def qp(p): return str(pathlib.Path(p).resolve()).replace("'","''")
 def classify(rows, reco):
     if not rows:
         return "U_UNLINKED","NO_OFFICIAL_CANDIDATE"
-    strict=[]
     compatible=[]
     for x in rows:
         result_ok = reco["result_cs"] is None or x["attempt_value"]==reco["result_cs"]
-        date_ok = reco["solve_date"] is None or x["date_ok"] is True
-        if result_ok and date_ok:
+        competition_ok = not reco["competition_norm"] or x["competition_ok"] is True
+        if result_ok and competition_ok:
             compatible.append(x)
-            if reco["result_cs"] is not None and reco["solve_date"] is not None:
-                strict.append(x)
-    use = strict if strict else compatible
-    if not use:
+    if not compatible:
         return "C_AMBIGUOUS","CONTEXT_CONFLICT"
-    uniq={(x["competition_id"],x["round_key"],x["person_id"],x["attempt_number"],x["attempt_value"]) for x in use}
+    uniq={(x["competition_id"],x["round_key"],x["person_id"],x["attempt_number"],x["attempt_value"]) for x in compatible}
     if len(uniq)>1:
         return "C_AMBIGUOUS","MULTIPLE_OFFICIAL_CANDIDATES"
-    x=use[0]
-    complete=(reco["result_cs"] is not None and reco["solve_date"] is not None)
+    x=compatible[0]
+    complete=(reco["result_cs"] is not None and bool(reco["competition_norm"]))
     if complete and x["round_group_count"]==1 and x["global_scramble_match_count"]==1:
         return "A_EXACT_EXTERNAL","UNIQUE_SINGLE_GROUP_FULL_CONTEXT"
     return "B_STRONG_EXTERNAL","UNIQUE_CANDIDATE_WITH_PUBLIC_GROUP_OR_FIELD_LIMIT"
 
 def self_test():
-    base={"result_cs":623,"solve_date":"2026-01-01"}
+    base={"result_cs":623,"competition_norm":"comp"}
     row={"competition_id":"C","round_key":"R","person_id":"P","attempt_number":1,"attempt_value":623,
-         "date_ok":True,"round_group_count":1,"global_scramble_match_count":1}
+         "competition_ok":True,"round_group_count":1,"global_scramble_match_count":1}
     assert classify([row],base)[0]=="A_EXACT_EXTERNAL"
     assert classify([{**row,"round_group_count":2}],base)[0]=="B_STRONG_EXTERNAL"
     assert classify([row,{**row,"person_id":"Q"}],base)[0]=="C_AMBIGUOUS"
@@ -102,7 +98,8 @@ def main():
                 "solver_norm":norm_text(p.get("solver")),
                 "result_text":p.get("result_text"),
                 "result_cs":parse_result_cs(p.get("result_text")),
-                "solve_date":parse_date(p.get("solve_date")),
+                "source_display_date":p.get("source_display_date") or p.get("solve_date"),
+                "solve_date":None,
                 "competition":p.get("competition"),
                 "competition_norm":norm_text(p.get("competition")),
                 "cohort":x.get("analysis_meta",{}).get("cohort"),
@@ -134,12 +131,13 @@ def main():
     else:
         end_expr=start_expr
 
-    con.execute("CREATE TABLE reco(source_id BIGINT,scramble_norm VARCHAR,solver_norm VARCHAR,result_cs BIGINT,solve_date DATE)")
-    vals=[(x["source_id"],x["scramble_norm"],x["solver_norm"],x["result_cs"],x["solve_date"]) for x in solves]
+    con.execute("CREATE TABLE reco(source_id BIGINT,scramble_norm VARCHAR,solver_norm VARCHAR,result_cs BIGINT,competition_norm VARCHAR)")
+    vals=[(x["source_id"],x["scramble_norm"],x["solver_norm"],x["result_cs"],x["competition_norm"]) for x in solves]
     con.executemany("INSERT INTO reco VALUES (?,?,?,?,?)",vals)
 
     norm_scr_sql="trim(regexp_replace(replace(replace(s.scramble,'’',''''),'′',''''),'\\s+',' ','g'))"
     norm_name_sql="lower(trim(regexp_replace(r.person_name,'\\s+',' ','g')))"
+    norm_comp_sql="lower(trim(regexp_replace(c.name,'\\s+',' ','g')))" if "name" in cc else "''"
     query=f"""
     WITH sm AS (
       SELECT q.source_id,s.competition_id,s.event_id,{round_key} round_key,
@@ -154,8 +152,8 @@ def main():
            CAST(r.person_id AS VARCHAR) person_id,r.person_name,
            CAST(a.attempt_number AS INTEGER) attempt_number,CAST(a.value AS BIGINT) attempt_value,
            CAST({start_expr} AS VARCHAR) start_date,CAST({end_expr} AS VARCHAR) end_date,
-           CASE WHEN q.solve_date IS NULL THEN NULL
-                WHEN q.solve_date BETWEEN {start_expr} AND {end_expr} THEN TRUE ELSE FALSE END date_ok,
+           CASE WHEN q.competition_norm='' THEN NULL
+                WHEN {norm_comp_sql}=q.competition_norm THEN TRUE ELSE FALSE END competition_ok,
            c.name competition_name
     FROM sm
     JOIN reco q ON q.source_id=sm.source_id
@@ -186,19 +184,19 @@ def main():
                 "round_group_count":x["round_group_count"],
                 "person_id":x["person_id"],"person_name":x["person_name"],
                 "attempt_number":x["attempt_number"],"attempt_value":x["attempt_value"],
-                "date_ok":x["date_ok"],"start_date":x["start_date"],"end_date":x["end_date"],
+                "competition_ok":x["competition_ok"],"start_date":x["start_date"],"end_date":x["end_date"],
                 "global_scramble_match_count":x["global_scramble_match_count"]
             })
         out_rows.append({
             "source_id":r["source_id"],"cohort":r["cohort"],"scramble_sha256":r["scramble_sha256"],
             "solver":r["solver"],"result_text":r["result_text"],"result_cs":r["result_cs"],
-            "solve_date":r["solve_date"],"competition_source":r["competition"],
+            "source_display_date":r["source_display_date"],"solve_date":None,"competition_source":r["competition"],
             "linkage_class":cls,"reason":reason,"official_candidate_count":len(unique_candidates),
             "official_candidates":unique_candidates
         })
 
     report={
-      "schema_version":"g7-p7-reco-wca-linkage-audit-1",
+      "schema_version":"g7-p7-reco-wca-linkage-audit-2",
       "operation_type":"Linkage Audit",
       "authority":"FROZEN_60_RECO_X_FROZEN_WCA_EXPORT",
       "wca_source_sha256":args.wca_source_sha256,
@@ -206,8 +204,8 @@ def main():
       "class_counts":dict(sorted(counts.items())),
       "rows":out_rows,
       "rules":{
-        "A_EXACT_EXTERNAL":"unique full-context candidate, exact solver/result/date, globally exact scramble, and one WCA scramble group in round",
-        "B_STRONG_EXTERNAL":"unique compatible candidate but public group assignment or source-field completeness prevents A",
+        "A_EXACT_EXTERNAL":"unique full-context candidate, exact solver/result/competition, globally exact scramble, and one WCA scramble group in round",
+        "B_STRONG_EXTERNAL":"unique compatible candidate but public group assignment or source result/competition completeness prevents A",
         "C_AMBIGUOUS":"multiple official candidates or context conflict",
         "U_UNLINKED":"no official candidate after exact scramble+solver+round+attempt crosswalk"
       },
@@ -215,6 +213,7 @@ def main():
         "no fuzzy solver-name matching",
         "no new reco.nz source contact",
         "WCA public export does not directly expose competitor group assignment",
+        "reco source_display_date is preserved but not treated as official solve-date evidence",
         "linkage does not identify a cognitive mechanism"
       ]
     }

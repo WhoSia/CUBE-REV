@@ -72,7 +72,8 @@
       "type": [
         "string",
         "null"
-      ]
+      ],
+      "description": "Official solve date only when independently grounded by a source whose semantics establish that meaning; otherwise null."
     },
     "official": {
       "type": [
@@ -219,6 +220,13 @@
         }
       },
       "additionalProperties": false
+    },
+    "source_display_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Date string displayed by the reconstruction source; not assumed to be the official solve or competition date."
     }
   },
   "additionalProperties": false
