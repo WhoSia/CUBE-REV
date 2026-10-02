@@ -1,0 +1,10 @@
+import {spawnSync} from "node:child_process";
+const input="1\t0\t0\t0\t0,1,2,3,4,5,6,7\t0,0,0,0,0,0,0,0\t0,1,2,3,4,5,6,7,8,9,10,11\t0,0,0,0,0,0,0,0,0,0,0,0\n";
+const p=spawnSync("cargo",["run","-q","-p","search-geometry-core","--bin","g7_p4_rival_features"],{input,encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+const lines=p.stdout.trim().split(/\r?\n/);
+if(lines.length!==2) throw new Error("LINES");
+const cols=lines[1].split("\t");
+if(cols[3]!=="0"||cols[6]!=="1") throw new Error("SOLVED_FEATURES");
+if(Number(cols[12])<0||Number(cols[13])<1) throw new Error("RIVAL");
+console.log("G7_P4_RIVAL_FEATURE_TEST_PASS");
