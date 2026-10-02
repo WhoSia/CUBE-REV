@@ -27,3 +27,13 @@ export class BrowserEventLog{
   finish(){return this.push("session_complete",{trial_count:this.packet.trials.length});}
   jsonl(){return this.events.map(JSON.stringify).join("\n")+"\n";}
 }
+
+
+export async function orderedActions(actionSpace,seed){
+  const hex=await sha256Hex(seed);
+  let s=parseInt(hex.slice(0,8),16)>>>0;
+  const rand=()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/2**32;};
+  const a=[...actionSpace];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
