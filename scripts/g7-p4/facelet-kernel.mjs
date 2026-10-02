@@ -18,14 +18,42 @@ function powQuarter(v,axis,q){
   for(let i=0;i<n;i++) out=rot90(out,axis,1);
   return out;
 }
+function surfaceToken(raw){
+  return String(raw).replace(/[’′]/g,"'").trim().replace(/^[()]+|[()]+$/g,"");
+}
 function tokenBase(raw){
-  const t=String(raw).replace(/[’′]/g,"'").trim().replace(/^[()]+|[()]+$/g,"");
+  const t=surfaceToken(raw);
   const m=t.match(/^([URFDLBMESxyz]|[URFDLB]w|[urfdlb])(2'?|'|)?$/);
   if(!m) throw new Error("UNSUPPORTED_TOKEN:"+t);
   let base=m[1], suffix=m[2]||"";
   if(/^[urfdlb]$/.test(base)) base=base.toUpperCase()+"w";
   const power=suffix.startsWith("2")?2:suffix==="'"?3:1;
   return {base,power,raw:t};
+}
+export function expandToken(raw){
+  const t=surfaceToken(raw);
+  try{return [tokenBase(t)];}catch{}
+  const memo=new Map();
+  function rec(i){
+    if(i===t.length) return [[]];
+    if(memo.has(i)) return memo.get(i);
+    const out=[];
+    for(let j=i+1;j<=t.length;j++){
+      const part=t.slice(i,j);
+      let base;
+      try{base=tokenBase(part);}catch{continue;}
+      for(const tail of rec(j)){
+        out.push([base,...tail]);
+        if(out.length>1) break;
+      }
+      if(out.length>1) break;
+    }
+    memo.set(i,out);
+    return out;
+  }
+  const xs=rec(0);
+  if(xs.length!==1 || xs[0].length<2) throw new Error(xs.length>1?"AMBIGUOUS_TOKEN:"+t:"UNSUPPORTED_TOKEN:"+t);
+  return xs[0];
 }
 const BASE = {
   U:{axis:"y",selector:p=>p[1]===1,q:-1},
@@ -65,14 +93,17 @@ export function solvedStickers(){
   return out;
 }
 export function applyToken(stickers,raw){
-  const {base,power}=tokenBase(raw);
-  const spec=BASE[base];
-  if(!spec) throw new Error("UNSUPPORTED_BASE:"+base);
-  const q=spec.q*power;
-  return stickers.map(s=>{
-    if(!spec.selector(s.pos)) return {id:s.id,pos:[...s.pos],normal:[...s.normal],color:s.color};
-    return {id:s.id,pos:powQuarter(s.pos,spec.axis,q),normal:powQuarter(s.normal,spec.axis,q),color:s.color};
-  });
+  let out=stickers;
+  for(const {base,power} of expandToken(raw)){
+    const spec=BASE[base];
+    if(!spec) throw new Error("UNSUPPORTED_BASE:"+base);
+    const q=spec.q*power;
+    out=out.map(s=>{
+      if(!spec.selector(s.pos)) return {id:s.id,pos:[...s.pos],normal:[...s.normal],color:s.color};
+      return {id:s.id,pos:powQuarter(s.pos,spec.axis,q),normal:powQuarter(s.normal,spec.axis,q),color:s.color};
+    });
+  }
+  return out;
 }
 export function applyAlg(stickers,text){
   let out=stickers;
@@ -111,4 +142,4 @@ export function validateStickerState(stickers){
   }
   return true;
 }
-export function normalizeToken(raw){return tokenBase(raw);}
+export function normalizeToken(raw){return expandToken(raw);}
