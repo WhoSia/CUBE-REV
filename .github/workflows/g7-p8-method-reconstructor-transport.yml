@@ -1,0 +1,111 @@
+name: G7-P8 method-reconstructor population transport Court
+
+concurrency:
+  group: g7-p8-method-reconstructor-transport-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p8/method-reconstructor-transport-preseal.json'
+      - 'g7/p8/method-ontology.json'
+      - 'scripts/g7-p8/analyze-method-reconstructor-transport.py'
+      - '.github/workflows/g7-p8-method-reconstructor-transport.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate frozen Court constitution
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p8/method-reconstructor-transport-preseal.json'))
+          assert x['operation_type']=='Method×Reconstructor Population-Support & Geometry Transport Court'
+          assert x['status']=='FROZEN_DURING_INDEX_CENSUS_BEFORE_COVARIATE_RESULTS_OBSERVED'
+          assert x['human_contact_gate']=='CLOSED'
+          print('G7_P8_METHOD_RECONSTRUCTOR_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Download frozen authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/g7-p8/{p3,census,p7}
+          fetch_artifact () {
+            id="$1"; out="$2"; expected="$3"
+            curl --fail --location --silent --show-error               -H "Authorization: Bearer $GH_TOKEN"               -H "Accept: application/vnd.github+json"               -H "X-GitHub-Api-Version: 2022-11-28"               "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip"               -o "$out.zip"
+            echo "$expected  $out.zip" | sha256sum -c -
+            unzip -q "$out.zip" -d "$out"
+          }
+          fetch_artifact 11205587281 /tmp/g7-p8/p3 acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4
+          fetch_artifact 11238930249 /tmp/g7-p8/census 460dc657565541b663f1bc91b6e75490a7591f56946a41c28af60802ee27f16a
+          fetch_artifact 11238382539 /tmp/g7-p8/p7 b6e30ab56548e27905dd3b3718c5a3e56d772bff10a744e92180d189a3259a11
+          echo 'G7_P8_FROZEN_AUTHORITIES_DOWNLOAD_PASS'
+
+      - name: Resolve immutable inputs
+        run: |
+          set -euo pipefail
+          FROZEN="$(find /tmp/g7-p8/p3 -name linkage-support.jsonl -print -quit)"
+          COV="$(find /tmp/g7-p8/census -name frozen-index-covariates.jsonl -print -quit)"
+          CENSUS="$(find /tmp/g7-p8/census -name census.json -print -quit)"
+          CTX="$(find /tmp/g7-p8/p7 -name prefix-context.jsonl -print -quit)"
+          FEAT="$(find /tmp/g7-p8/p7 -name five-rival-features.tsv -print -quit)"
+          for x in "$FROZEN" "$COV" "$CENSUS" "$CTX" "$FEAT"; do test -n "$x" -a -s "$x"; done
+          printf '%s\n' "FROZEN=$FROZEN" "COV=$COV" "CENSUS=$CENSUS" "CTX=$CTX" "FEAT=$FEAT" > /tmp/g7-p8/inputs.env
+          cat /tmp/g7-p8/inputs.env
+
+      - name: Execute presealed Method×Reconstructor transport Court
+        run: |
+          set -euo pipefail
+          source /tmp/g7-p8/inputs.env
+          mkdir -p /tmp/g7-p8/out
+          python3 scripts/g7-p8/analyze-method-reconstructor-transport.py             --covariates "$COV"             --census "$CENSUS"             --frozen-index "$FROZEN"             --ontology g7/p8/method-ontology.json             --context "$CTX"             --features "$FEAT"             --out /tmp/g7-p8/out | tee /tmp/g7-p8/transport.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/g7-p8/out/method-reconstructor-geometry-transport.json'))
+          assert x['frozen_population_rows_3x3']==10591
+          assert x['solve_body_geometry_rows']==60
+          assert x['index_covariate_coverage']['method_3x3_coverage_of_frozen']==1
+          assert x['index_covariate_coverage']['reconstructor_3x3_coverage_of_frozen']==1
+          print('G7_P8_METHOD_RECONSTRUCTOR_TRANSPORT_RESULT_GATE_PASS')
+          print('VERDICT',x['verdict'])
+          for a in ['method_family','reconstructor_frequency_band','method_x_reconstructor_band']:
+              y=x['axes'][a]
+              print(a,'ZERO_SUPPORT_MASS',y['zero_sample_support_population_mass'],'TVD',y['tvd'])
+              print(a,'TS',y['overall']['TS'])
+              print(a,'H1',y['overall']['H1'])
+          PY
+
+      - name: Seal derived-only Court artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/g7-p8/seal/authority /tmp/g7-p8/seal/derived
+          cp g7/p8/method-reconstructor-transport-preseal.json g7/p8/method-ontology.json /tmp/g7-p8/seal/authority/
+          cp /tmp/g7-p8/out/method-reconstructor-geometry-transport.json /tmp/g7-p8/seal/derived/
+          cp /tmp/g7-p8/transport.log /tmp/g7-p8/seal/derived/execution.log
+          printf '%s\n'             'PHASE=G7-P8'             'OPERATION=METHOD_RECONSTRUCTOR_POPULATION_SUPPORT_GEOMETRY_TRANSPORT_COURT'             'FROZEN_POPULATION_3X3=10591'             'FROZEN_BODY_GEOMETRY_SOLVES=60'             'NEW_SOURCE_CONTACT=NONE'             'HUMAN_CONTACT_GATE=CLOSED'             > /tmp/g7-p8/seal/AUTHORITY.txt
+          rm -rf /tmp/g7-p8/p3 /tmp/g7-p8/p3.zip /tmp/g7-p8/census /tmp/g7-p8/census.zip /tmp/g7-p8/p7 /tmp/g7-p8/p7.zip
+          (cd /tmp/g7-p8/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P8-method-reconstructor-transport-${{ github.sha }}
+          path: /tmp/g7-p8/seal
+          if-no-files-found: error
+          retention-days: 90
