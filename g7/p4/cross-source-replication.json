@@ -1,0 +1,26 @@
+{
+  "schema_version":"g7-p4-cross-source-replication-1",
+  "observed_at":"2026-10-02",
+  "source":"CubeDB",
+  "role":"INDEPENDENT_PUBLIC_RECONSTRUCTION_SURFACE",
+  "observed_pages":[
+    "https://www.cubedb.net/profile.php?id=2052",
+    "https://www.cubedb.net/profile.php?id=1266",
+    "https://cubedb.net/user/571/2"
+  ],
+  "observed_structure":[
+    "scramble",
+    "move_stream",
+    "inline_stage_comments",
+    "cube_rotations",
+    "wide_turns",
+    "slice_turns",
+    "CFOP_examples",
+    "Roux_examples"
+  ],
+  "semantic_structure_replication":"PASS_BOUNDED_SCHEMA",
+  "raw_external_body_copied_into_repo":false,
+  "body_level_exact_replay_replication":"HOLD_NOT_MATERIALIZED",
+  "mechanism_replication":"HOLD",
+  "authority_note":"supports transport of measurement schema only; does not establish frequency equivalence, identical sampling, or the same underlying planning process"
+}
