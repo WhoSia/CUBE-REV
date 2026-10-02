@@ -41,6 +41,7 @@
     "crates/search-geometry-core/src/lib.rs",
     "crates/search-geometry-core/src/phase1.rs",
     "g7/p10/batch4-leverage-preseal.json",
+    "g7/p10/closure.json",
     "g7/p10/constitution.json",
     "g7/p10/lb7-cohort-instability-preseal.json",
     "g7/p10/lb7-local-contrast-preseal.json",
