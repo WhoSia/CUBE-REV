@@ -44,6 +44,7 @@ jobs:
           node scripts/g7-p5/test-instrument-synthetic.mjs
           node scripts/g7-p5/test-browser-core.mjs
           node scripts/g7-p5/test-state-net.mjs
+          node scripts/g7-p5/test-event-integrity.mjs
           node scripts/g7-p5/test-packet-audit.mjs
           node scripts/g7-p5/test-analysis.mjs
           node scripts/g7-p5/test-sensitivity.mjs
@@ -63,6 +64,7 @@ jobs:
         run: |
           set -euo pipefail
           node scripts/g7-p5/synthesize-events.mjs /tmp/g7-p5/packet.json /tmp/g7-p5/synthetic-events.jsonl
+          node scripts/g7-p5/validate-event-integrity.mjs /tmp/g7-p5/packet.json /tmp/g7-p5/synthetic-events.jsonl /tmp/g7-p5/event-integrity.json
           python3 scripts/g7-p5/analyze.py             --packet /tmp/g7-p5/packet.json             --events /tmp/g7-p5/synthetic-events.jsonl             --out /tmp/g7-p5/analysis             --permutations 20000
           node - <<'NODE'
           const x=require('/tmp/g7-p5/analysis/analysis.json');
