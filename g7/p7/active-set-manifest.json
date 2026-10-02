@@ -1,0 +1,61 @@
+{
+  "schema_version": "cube-rev.p7.active-set.v1",
+  "phase": "G7-P7",
+  "principle": "research/current contains only active executable/reproducibility surfaces and current data authority; history lives in Git, archive branch, Actions artifacts, Drive, and Notion.",
+  "allowed_prefixes": [
+    ".github/workflows/",
+    "annotation/",
+    "calibration/",
+    "core/instrument/",
+    "core/reco/",
+    "core/sources/",
+    "crates/cuberev-core/",
+    "crates/search-geometry-core/",
+    "g7/p7/",
+    "js/",
+    "research/registry/",
+    "scripts/cube/",
+    "scripts/g7-p7/",
+    "scripts/instrument/",
+    "scripts/reco/",
+    "tests/",
+    "tools/",
+    "web/public/"
+  ],
+  "allowed_root_files": [
+    ".gitignore",
+    "Cargo.lock",
+    "Cargo.toml",
+    "README.md",
+    "REPOSITORY_POLICY.md",
+    "archive_pointer.json",
+    "collector-config.js",
+    "robots.txt",
+    "scripts/build-calibration-host.mjs",
+    "scripts/serve-static.mjs",
+    "scripts/sync-release-identity.mjs",
+    "scripts/validate-calibration.mjs",
+    "scripts/validate-static.mjs"
+  ],
+  "retired_patterns": [
+    "^g[3-6]/",
+    "^g7/p[1-6]/",
+    "^scripts/g7-p[1-6]/",
+    "^scripts/g5_",
+    "^data_frontier/",
+    "^r128-shadow/",
+    "^research/0\\.7\\.12/",
+    "^docs/CUBE-REV_0\\.7\\.",
+    "^instrument/",
+    "^fixtures/r3-",
+    "^scripts/run-r3-",
+    "^crates/search-geometry-core/src/bin/(g6_|g7_p[1-6]|p5_|p6\\.rs$)",
+    "^crates/cuberev-core/src/bin/fixture_emit\\.rs$",
+    "^(package\\.json|package-lock\\.json|tsconfig\\.json)$"
+  ],
+  "archive_surfaces": {
+    "git_history": true,
+    "archive_branch": "archive/pre-p7-active-prune-20261002",
+    "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI"
+  }
+}
