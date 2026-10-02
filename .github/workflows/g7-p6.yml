@@ -1,0 +1,81 @@
+name: Validate G7-P6 expanded rival data bank
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p6/**'
+      - 'scripts/g7-p6/**'
+      - 'crates/search-geometry-core/src/bin/g7_p6_*.rs'
+      - '.github/workflows/g7-p6.yml'
+  pull_request:
+    paths:
+      - 'g7/p6/**'
+      - 'scripts/g7-p6/**'
+      - 'crates/search-geometry-core/src/bin/g7_p6_*.rs'
+      - '.github/workflows/g7-p6.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  g7-p6-data-bank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Freeze P6 authority
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const p=require('./g7/p6/preseal.json');
+          const l=require('./g7/p6/literature-audit.json');
+          const d=require('./g7/p6/data-source-expansion.json');
+          if(p.data_lanes.prospective_human_data.live_data_collection_authorized!==false) process.exit(1);
+          if(p.expanded_rival_ecology.families.length!==5) process.exit(2);
+          if(!l.missing_verified.length) process.exit(3);
+          if(!d.sources.some(x=>x.source_id==='p6_wca_results_v2_273')) process.exit(4);
+          console.log('G7_P6_AUTHORITY_PASS');
+          NODE
+
+      - name: Test packet-bank pipeline
+        run: |
+          set -euo pipefail
+          node scripts/g7-p6/test-packet-bank.mjs
+          node scripts/g7-p6/test-packet-bank-pipeline.mjs
+
+      - name: Materialize exact multi-rival bank
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/g7-p6
+          mkdir -p /tmp/g7-p6/authority
+          cargo run -q -p search-geometry-core --bin g7_p6_packet_bank > /tmp/g7-p6/packet-bank.tsv
+          node scripts/g7-p6/compile-packet-bank.mjs /tmp/g7-p6/packet-bank.tsv /tmp/g7-p6/packet-bank.json
+          node scripts/g7-p6/audit-packet-bank.mjs /tmp/g7-p6/packet-bank.json /tmp/g7-p6/packet-bank-audit.json
+          node - <<'NODE'
+          const a=require('/tmp/g7-p6/packet-bank-audit.json');
+          if(!a.pass||a.states!==256||a.seeds!==8) process.exit(1);
+          for(const m of Object.values(a.motif_counts)) if(m!==64) process.exit(2);
+          console.log('G7_P6_DATA_BANK_PASS');
+          console.log('BANK_SHA256\t'+a.bank_sha256);
+          console.log('PHASE1_LB_COUNTS\t'+JSON.stringify(a.phase1_lb_counts));
+          NODE
+
+      - name: Seal authority and source ledgers
+        run: |
+          set -euo pipefail
+          cp g7/p6/preseal.json g7/p6/literature-audit.json g7/p6/data-source-expansion.json /tmp/g7-p6/authority/
+          printf '%s\n'             'HUMAN_CONTACT=CLOSED_PENDING_P6_CONTACT_GATE'             'LIVE_HUMAN_DATA=NONE'             'EXACT_PACKET_BANK=256_STATES'             'RIVAL_FAMILIES=5' > /tmp/g7-p6/AUTHORITY.txt
+          (cd /tmp/g7-p6 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P6-expanded-data-bank-${{ github.sha }}
+          path: /tmp/g7-p6
+          if-no-files-found: error
+          retention-days: 90
