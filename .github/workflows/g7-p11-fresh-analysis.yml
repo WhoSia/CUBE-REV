@@ -1,0 +1,162 @@
+name: G7-P11 fresh-only replication analysis
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - '.github/workflows/g7-p11-fresh-analysis.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Validate frozen authorities
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          c=json.load(open('g7/p11/constitution.json'))
+          a=json.load(open('g7/p11/acquisition-closure.json'))
+          assert c['status']=='PRESEALED_BEFORE_FRESH_BODY_CONTACT'
+          assert a['status']=='CLOSED_PASS'
+          assert a['acquired_solves']==40 and a['exact_end_validation_pass']==40
+          assert a['analysis_gate']['fresh_only'] is True
+          assert a['analysis_gate']['prior_60_pooling_before_primary_verdict'] is False
+          print('G7_P11_FRESH_ANALYSIS_AUTHORITY_PASS')
+          PY
+
+      - name: Download immutable fresh batches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p11-input
+          fetch_artifact () {
+            id="$1"; name="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p11-input/$name.zip"
+            got="$(sha256sum "/tmp/p11-input/$name.zip" | awk '{print $1}')"
+            test "$got" = "$expected"
+            mkdir -p "/tmp/p11-input/$name"
+            unzip -q "/tmp/p11-input/$name.zip" -d "/tmp/p11-input/$name"
+          }
+          fetch_artifact 11242854238 batch1 0bc3c845d0caadcd84a6df4ce8db4a65fae083d6ef01e076f5ce95755676c6ea
+          fetch_artifact 11243410683 batch2 c4589ff7955ea3fe7fe1d452f8a137e4f2c799e60cad27e863fa91bfcc7f975e
+          fetch_artifact 11243041519 batch3 82ce3af8a36c0eb3bf8f6192a72db1adb17f2046cf8ef2f602b4d583887ffe38
+          fetch_artifact 11243391026 batch4 8575409309eadab60cf5d2145925108c8139a62e75a7f2060785c4de75a3028a
+          echo 'G7_P11_FRESH_BATCH_DOWNLOAD_PASS'
+
+      - name: Merge fresh 40 only
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/p11-build
+          mkdir -p /tmp/p11-build/corpus
+          node scripts/g7-p11/merge-fresh-corpus.mjs \
+            --source P11_BATCH1=/tmp/p11-input/batch1 \
+            --source P11_BATCH2=/tmp/p11-input/batch2 \
+            --source P11_BATCH3=/tmp/p11-input/batch3 \
+            --source P11_BATCH4=/tmp/p11-input/batch4 \
+            --out /tmp/p11-build/corpus
+          node - <<'NODE'
+          const x=require('/tmp/p11-build/corpus/corpus-receipt.json');
+          if(x.solves!==40||x.unique_source_ids!==40||x.fresh_only!==true||x.prior_60_pooled!==false) process.exit(1);
+          console.log('G7_P11_FRESH40_CORPUS_GATE_PASS');
+          console.log('CELLS',JSON.stringify(x.cell_counts));
+          NODE
+
+      - name: Recompute exact trajectories with current active core
+        run: |
+          set -euo pipefail
+          node scripts/cube/replay-exact-trajectories.mjs \
+            --input /tmp/p11-build/corpus/combined-solves.jsonl \
+            --out /tmp/p11-build/exact
+          node - <<'NODE'
+          const x=require('/tmp/p11-build/exact/exact-trajectories.json');
+          if(x.solve_count!==40||x.exact_end_validation_pass!==40) process.exit(1);
+          console.log('G7_P11_FRESH40_EXACT_PASS');
+          console.log('PREFIXES',x.total_prefixes);
+          NODE
+
+      - name: Materialize fresh five-rival geometry
+        run: |
+          set -euo pipefail
+          node scripts/g7-p7/prefix-context.mjs \
+            /tmp/p11-build/exact/exact-trajectories.json \
+            /tmp/p11-build/corpus/solve-metadata.jsonl \
+            /tmp/p11-build/prefix-states.tsv \
+            /tmp/p11-build/prefix-context.jsonl
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p11-build/prefix-states.tsv \
+            > /tmp/p11-build/five-rival-features.tsv
+          node scripts/g7-p7/analyze-reco-five-rival.mjs \
+            --context /tmp/p11-build/prefix-context.jsonl \
+            --features /tmp/p11-build/five-rival-features.tsv \
+            --out /tmp/p11-build/descriptive
+
+      - name: Execute frozen fresh-only replication readout
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p11-build/replication
+          python3 scripts/g7-p11/analyze-fresh-replication.py \
+            --features /tmp/p11-build/five-rival-features.tsv \
+            --context /tmp/p11-build/prefix-context.jsonl \
+            --out /tmp/p11-build/replication \
+            --permutations 100000 | tee /tmp/p11-build/replication.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p11-build/replication/fresh-replication-readout.json'))
+          assert x['fresh_only'] is True and x['prior_60_pooled'] is False
+          assert x['solves']==40
+          assert x['verdict'] in ('SUPPORT_LIMITED','REPLICATED_DIRECTION','NOT_REPLICATED_DIRECTION')
+          print('G7_P11_FRESH_REPLICATION_RESULT_GATE_PASS',x['verdict'])
+          print('G1',x['g1'])
+          print('LB7',x['primary']['lb7_conditional_solve_excess'])
+          print('LOCAL',x['primary']['lb7_minus_lb6_8_exact_local'])
+          print('BY_CELL',x['by_sampling_cell'])
+          print('BY_BATCH',x['by_batch'])
+          print('BY_METHOD',x['by_method'])
+          PY
+
+      - name: Seal derived-only fresh replication artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p11-seal/authority /tmp/p11-seal/derived
+          cp g7/p11/constitution.json g7/p11/acquisition-closure.json /tmp/p11-seal/authority/
+          cp /tmp/p11-build/corpus/corpus-receipt.json /tmp/p11-seal/derived/
+          cp /tmp/p11-build/corpus/solve-metadata.jsonl /tmp/p11-seal/derived/
+          cp /tmp/p11-build/prefix-context.jsonl /tmp/p11-seal/derived/
+          cp /tmp/p11-build/five-rival-features.tsv /tmp/p11-seal/derived/
+          cp /tmp/p11-build/descriptive/five-rival-analysis.json /tmp/p11-seal/derived/
+          cp /tmp/p11-build/replication/fresh-replication-readout.json /tmp/p11-seal/derived/
+          cp /tmp/p11-build/replication.log /tmp/p11-seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P11' \
+            'OPERATION=FRESH_ONLY_STRUCTURAL_LOCALIZATION_REPLICATION' \
+            'SOURCE_CONTACT=NONE' \
+            'FRESH_SOLVES=40' \
+            'PRIOR_60_POOLED=NO' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p11-seal/AUTHORITY.txt
+          (cd /tmp/p11-seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P11-fresh-replication-${{ github.sha }}
+          path: /tmp/p11-seal
+          retention-days: 90
