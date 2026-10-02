@@ -1,0 +1,59 @@
+{
+  "schema_version": "g7-p3-cross-source-transport-1",
+  "observed_at": "2026-10-02",
+  "sources": {
+    "reco_nz": {
+      "role": "PRIMARY_RECONSTRUCTION_POPULATION",
+      "authority": "P2_FROZEN_INDEX_AND_BOUNDED_BODY_EVIDENCE",
+      "status": "PASS"
+    },
+    "cubedb": {
+      "role": "CONTEMPORARY_EXTERNAL_RECONSTRUCTION_WORLD",
+      "bounded_public_surface_examples": [
+        "https://www.cubedb.net/solve/8344",
+        "https://cubedb.net/solve/10115",
+        "https://cubedb.net/solve/17387"
+      ],
+      "observed_semantics": [
+        "puzzle_context",
+        "solver_or_title_context",
+        "result_surface",
+        "scramble_surface_when_present",
+        "move_sequence",
+        "stage_or_technique_comments"
+      ],
+      "semantic_preservation": "PASS_BOUNDED",
+      "provenance_preservation": "PASS_SOURCE_URL",
+      "uncertainty_preservation": "PASS_NO_FORCED_METHOD_OR_ATTEMPT_IDENTITY",
+      "identity_transport": "HOLD_NO_OFFICIAL_ATTEMPT_PROOF",
+      "raw_bulk_acquisition": "NOT_AUTHORIZED_OR_PERFORMED"
+    },
+    "cubesolves_historical": {
+      "role": "HISTORICAL_RECONSTRUCTION_WORLD",
+      "repository": "https://github.com/justinj/reconstruction-database",
+      "evidence": "project documents a reconstruction database and a database dump current as of 2014-02-25",
+      "semantic_preservation": "SCHEMA_AND_PROJECT_ROLE_SUPPORTED",
+      "provenance_preservation": "PASS_REPOSITORY_PROVENANCE",
+      "uncertainty_preservation": "PASS_RAW_DATABASE_BYTES_NOT_CLAIMED",
+      "body_transport": "HOLD_RAW_DB_NOT_MATERIALIZED_IN_P3"
+    },
+    "wca_v2": {
+      "role": "OFFICIAL_ATTEMPT_AUTHORITY_NOT_RECONSTRUCTION_SOURCE",
+      "export_page": "https://www.worldcubeassociation.org/export/results",
+      "observed_export": "v2.0.2_2026-09-30",
+      "tables_relevant": ["persons", "competitions", "results", "result_attempts", "scrambles"],
+      "semantic_preservation": "PASS_ROLE_SEPARATION",
+      "provenance_preservation": "PASS_OFFICIAL_EXPORT",
+      "uncertainty_preservation": "PASS_NO_RECO_TO_WCA_IDENTITY_ASSERTED",
+      "exact_identity_linkage": "HOLD"
+    }
+  },
+  "transport_verdict": "PASS_PARTIAL_WITH_EXPLICIT_BOUNDARY",
+  "claims_not_authorized": [
+    "cross-source frequency equivalence",
+    "reco.nz representativeness of WCA attempts",
+    "exact reco.nz to WCA attempt identity without additional evidence",
+    "full CubeSolv.es body-level transport",
+    "bulk CubeDB mirroring"
+  ]
+}
