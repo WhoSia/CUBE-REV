@@ -374,6 +374,17 @@
         "P3 solver concentration"
       ],
       "forbidden_inference": "do not fabricate or infer full-population provenance×method or provenance×reconstructor cross-tabs"
+    },
+    "post_preseal_semantic_discovery": {
+      "observed_before_full_census_execution": true,
+      "discovery": "P3-retained index metadata competition field is not semantically equivalent to body-page competition provenance. In the frozen 60-body sample, all 32 body-recovered SOURCE_DECLARED_UNOFFICIAL solves appear as NO_SOURCE_COMPETITION_CONTEXT in the retained index metadata.",
+      "required_repair": [
+        "keep index-visible source-label class and body-recovered provenance class as separate variables",
+        "add a 60-sample broad-provenance × index-source-label cross-tab",
+        "never interpret index blank competition as unofficial provenance",
+        "do not backfill full-index blank competition values from the 60-body sample"
+      ],
+      "disclosed_before_revised_census_execution": true
     }
   }
 }
