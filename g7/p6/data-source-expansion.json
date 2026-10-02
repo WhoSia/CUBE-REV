@@ -98,14 +98,14 @@
       "redistribution": "HOLD"
     },
     {
-      "source_id": "p6_wca_results_v2_273",
-      "title": "WCA Results Export v2",
+      "source_id": "p6_wca_results_v2_current_20261002",
+      "title": "WCA Results Export v2 — current 2026-10-02 census",
       "homepage": "https://www.worldcubeassociation.org/export/results",
       "source_class": "official_structured",
-      "status": "CURRENT_EXPORT_VERIFIED",
+      "status": "CURRENT_EXPORT_BYTE_CENSUS_PASS",
       "export_file_prefix": "WCA_export_v2_273_20260930T000036Z",
-      "export_date": "2026-09-30",
-      "export_format_version": "2.0.2",
+      "export_date": "2026-10-02T00:00:43Z",
+      "export_format_version": "v2.0.2",
       "provides": [
         "persons",
         "competitions",
@@ -114,16 +114,44 @@
         "scrambles"
       ],
       "p6_role": "OFFICIAL_ATTEMPT_AND_SCRAMBLE_AUTHORITY",
-      "bulk_acquisition": "AUTOMATIC_ALLOWED_BY_EXISTING_P2_AUTHORITY"
+      "bulk_acquisition": "AUTOMATIC_ALLOWED_BY_EXISTING_P2_AUTHORITY",
+      "archive_sha256": "ac9afd834b6d7e31cb3cdd99f47eb21569fafb5d26d8628528aae2db8867d6a7",
+      "census": {
+        "attempt_rows_333": 9343254,
+        "persons_333": 287133,
+        "competitions_333": 15440,
+        "status_counts": {
+          "VALID": 9148489,
+          "DNF": 190742,
+          "DNS": 4023
+        },
+        "scrambles_333": 746468,
+        "workflow_run": 36968649970,
+        "artifact_id": 11210951056,
+        "artifact_sha256": "874fd8bba194de9b96ed1d8e866259f0c1fb56d4477bc8e11f51b54214f4f0a6",
+        "drive_custody_id": "1pkYsqzut9h_F4i-zt9ZMqc6SDhcB4kgw"
+      },
+      "raw_archive_packaged": false
     },
     {
       "source_id": "p6_cubesolves_original",
       "title": "CubeSolv.es historical reconstruction database",
       "repository": "https://github.com/justinj/reconstruction-database",
       "source_class": "historical_public_reconstruction_project",
-      "status": "PROJECT_VERIFIED_OLD_DUMP_LINK_NOT_YET_RECOVERED",
+      "status": "PROJECT_AND_DUMP_PROVENANCE_VERIFIED_LIVE_DUMP_RETRIEVAL_HOLD",
       "p6_role": "HISTORICAL_MOVE_BY_MOVE_RECONSTRUCTION_WORLD",
-      "raw_mirror_status": "HOLD_PENDING_RECOVERABLE_ARCHIVE_BYTES"
+      "raw_mirror_status": "HOLD_PENDING_RECOVERABLE_ARCHIVE_BYTES",
+      "original_dump_url": "https://dl.dropboxusercontent.com/u/17026863/cubesolv.es/db.sqlite",
+      "original_dump_date": "2014-02-25",
+      "original_dump_live_retrieval": false,
+      "recovery_surfaces": [
+        {
+          "source": "SpeedcubeQuest",
+          "reported_recovered_reconstructions": 3006,
+          "provenance": "recovered from Internet Archive",
+          "status": "DISCOVERY_SURFACE_VERIFIED_NO_BULK_EXPORT_AUTHORITY"
+        }
+      ]
     }
   ],
   "authority_rules": [
