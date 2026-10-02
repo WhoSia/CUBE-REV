@@ -81,11 +81,11 @@ for(let i=0;i<rivals.length;i++) for(let j=i+1;j<rivals.length;j++){
   const [a,ca]=rivals[i],[b,cb]=rivals[j];
   pairwise[a+"__"+b]=rate(rows,x=>x[ca]!==x[cb]);
 }
-const boundary=rows.filter(x=>x.boundary_after===true), non=rows.filter(x=>x.boundary_after===0);
+const boundary=rows.filter(x=>x.boundary_after===true), non=rows.filter(x=>x.boundary_after===false);
 const solveIds=[...new Set(rows.map(x=>x.source_id))].sort((a,b)=>a-b);
 const paired=[];
 for(const id of solveIds){
-  const s=rows.filter(x=>x.source_id===id),b=s.filter(x=>x.boundary_after===true),n=s.filter(x=>x.boundary_after===0);
+  const s=rows.filter(x=>x.source_id===id),b=s.filter(x=>x.boundary_after===true),n=s.filter(x=>x.boundary_after===false);
   if(!b.length||!n.length) continue;
   const rec={
     source_id:id,
