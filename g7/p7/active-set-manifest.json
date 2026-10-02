@@ -47,6 +47,7 @@
     "scripts/g7-p7/test-reco-five-rival-analysis.mjs",
     "scripts/g7-p7/test-reco-rival-kernel.mjs",
     "scripts/g7-p7/test-reco-statistical-calibration.mjs",
+    "scripts/g7-p7/validate-provenance-recovery.py",
     "scripts/instrument/compile-five-rival-packet.mjs",
     "scripts/instrument/evaluate-contact-gate.mjs",
     "scripts/instrument/test-contact-gate.mjs",
