@@ -531,5 +531,42 @@
       "classes with zero sample support define non-transportable population mass rather than being imputed"
     ],
     "promotion_rule": "transport results may bound external validity of the 60-body geometry but may not promote any rival to a cognitive mechanism"
+  },
+  "refined_provenance_geometry_transport_court": {
+    "operation_type": "Refined Provenance-Conditioned Five-Rival Geometry Transport Court",
+    "status": "FROZEN_BEFORE_REFINED_TRANSPORT_RESULT",
+    "authority": "POST_V2_GEOMETRY_TRANSPORT_STRESS",
+    "unit": "solve",
+    "inputs": [
+      "same frozen 60-body five-rival feature artifact",
+      "same frozen 60-body prefix-context artifact",
+      "v2-refined 10,591-row provenance population classes",
+      "same source_id membership; no new reco.nz body contact"
+    ],
+    "primary_readouts": [
+      "TS and H1 solve-level mean excess within each refined provenance class with n>=3",
+      "unweighted 60-solve TS/H1 mean excess",
+      "descriptive post-stratified TS/H1 mean over population classes having positive sample support",
+      "positive-support population mass and unidentified population mass",
+      "leave-one-supported-provenance-class-out range for the post-stratified TS/H1 means"
+    ],
+    "secondary_readouts": [
+      "H2/H3/FS analogues",
+      "refined provenance x method and provenance x reconstructor cells with n>=3",
+      "boundary-vs-nonboundary contrasts retained as exploratory only"
+    ],
+    "weighting_law": [
+      "weights equal population class share / sample class share only for refined classes with positive sample support",
+      "renormalize descriptive weighted means over the positive-support population mass",
+      "never impute geometry into zero-support population classes",
+      "do not call weights inverse-probability weights",
+      "leave-one-class-out is a sensitivity analysis, not a confidence interval"
+    ],
+    "adjudication": [
+      "if TS direction changes under supported-class post-stratification, record transport instability",
+      "if TS direction is stable but unidentified population mass is material, record supported-mass robustness with population-wide hold",
+      "if TS is stable and unidentified mass is negligible, record provenance-axis transport support only",
+      "no result promotes TS/H1/etc. to a cognitive mechanism"
+    ]
   }
 }
