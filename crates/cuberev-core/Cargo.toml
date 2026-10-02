@@ -1,0 +1,8 @@
+[package]
+name = "cuberev-core"
+version = "0.1.0"
+edition = "2021"
+description = "Reusable exact corner-state primitives and symbolic stimulus encoding for CUBE-REV."
+
+[lib]
+path = "src/lib.rs"

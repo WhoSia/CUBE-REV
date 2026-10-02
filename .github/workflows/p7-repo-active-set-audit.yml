@@ -1,0 +1,61 @@
+name: P7 repository active-set audit
+
+on:
+  push:
+    branches: ['research/current']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce exact active-only repository invariant
+        run: |
+          set -euo pipefail
+          git ls-files | sort | tee /tmp/tracked-files.txt
+          node - <<'NODE'
+          const fs=require('fs');
+          const m=require('./g7/p7/active-set-manifest.json');
+          const files=fs.readFileSync('/tmp/tracked-files.txt','utf8').trim().split(/\r?\n/).filter(Boolean);
+          const actual=new Set(files);
+          const allowed=new Set(m.allowed_paths);
+          const unexpected=files.filter(p=>!allowed.has(p));
+          const missing=m.allowed_paths.filter(p=>!actual.has(p));
+          fs.writeFileSync('/tmp/unexpected-files.txt',unexpected.join('\n')+(unexpected.length?'\n':''));
+          fs.writeFileSync('/tmp/missing-active-files.txt',missing.join('\n')+(missing.length?'\n':''));
+          const top={}; for(const p of files){const k=p.split('/')[0];top[k]=(top[k]||0)+1;}
+          const report={
+            schema_version:'cube-rev.p7.active-set-audit.v2',
+            tracked_files:files.length,
+            allowed_files:m.allowed_paths.length,
+            unexpected_files:unexpected,
+            missing_active_files:missing,
+            top_level_counts:Object.fromEntries(Object.entries(top).sort((a,b)=>b[1]-a[1])),
+            pass:unexpected.length===0&&missing.length===0&&files.length===m.allowed_paths.length
+          };
+          fs.writeFileSync('/tmp/active-set-audit.json',JSON.stringify(report,null,2)+'\n');
+          console.log('P7_REPO_ACTIVE_SET_AUDIT_V2');
+          console.log('TRACKED_FILES\t'+files.length);
+          console.log('ALLOWED_FILES\t'+m.allowed_paths.length);
+          console.log('UNEXPECTED_FILES\t'+unexpected.length);
+          console.log('MISSING_ACTIVE_FILES\t'+missing.length);
+          if(unexpected.length) console.log('UNEXPECTED\n'+unexpected.join('\n'));
+          if(missing.length) console.log('MISSING\n'+missing.join('\n'));
+          if(!report.pass) process.exit(1);
+          console.log('P7_REPO_EXACT_ACTIVE_SET_PASS');
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: P7-repo-active-set-audit-${{ github.sha }}
+          path: |
+            /tmp/tracked-files.txt
+            /tmp/unexpected-files.txt
+            /tmp/missing-active-files.txt
+            /tmp/active-set-audit.json
+          retention-days: 30

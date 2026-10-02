@@ -1,0 +1,66 @@
+{
+  "schema_version": "g7-p7-reco-campaign-1",
+  "source": "reco_nz",
+  "role": "CORE_NATURALISTIC_RECONSTRUCTION_SPINE",
+  "predecessor": {
+    "g7_p3_drive_archive_id": "1H1ePv-RkiqSF5QH3n5aop3UHEjpYG9P4",
+    "g7_p3_archive_sha256": "acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4",
+    "g7_p3_sampling_manifest_member": "sampling-manifest.json",
+    "g7_p3_sampling_manifest_sha256": "e5267a0a0d7244d841fdc1f2c5809b9adb671e99b9586d532c916dffb17ab98f"
+  },
+  "campaign": {
+    "total_solve_bodies": 40,
+    "batches": 4,
+    "solves_per_batch": 10,
+    "selection_scope": "frozen G7-P3 3x3 sampling manifest continuation",
+    "exclude_previously_contacted_ids": [
+      12137,
+      2104,
+      11859,
+      1019,
+      6403,
+      5070,
+      12096,
+      12832,
+      2092,
+      3449,
+      3594,
+      8402,
+      3722,
+      1976,
+      785,
+      9332,
+      11750,
+      1164,
+      9693,
+      7905
+    ],
+    "stratum_dimensions": [
+      "method_family",
+      "temporal_era",
+      "solver_frequency_band",
+      "reconstructor_frequency_band"
+    ],
+    "selection_rule": "Consume the first 20 untouched unique records from frozen G7-P3 population_estimation beginning at position 11, then the first 20 untouched unique records from frozen G7-P3 coverage_analysis beginning at position 11, skipping prior P4-contacted IDs and any source_id already selected from population_estimation. Batch as 5 population + 5 coverage per batch.",
+    "seed": "CUBE-REV-G7-P7-RECO-BODY-CAMPAIGN-v1",
+    "body_outcomes_used_in_selection": false,
+    "full_index_reselection": false
+  },
+  "authority": {
+    "source_policy": "core/reco/reco-acquisition-policy.json",
+    "bulk_authorized": false,
+    "max_solves_per_run": 10,
+    "campaign_ceiling": 40,
+    "chaining_beyond_campaign_ceiling": "FORBIDDEN_WITHOUT_NEW_SOURCE_AUTHORITY_OR_NEW_PROSPECTIVE_CONSTITUTION",
+    "min_delay_ms": 2000,
+    "raw_public_release": "HOLD"
+  },
+  "expected_outputs": [
+    "campaign-manifest.json",
+    "batch-01.json",
+    "batch-02.json",
+    "batch-03.json",
+    "batch-04.json",
+    "selection-receipt.md"
+  ]
+}

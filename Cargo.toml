@@ -1,0 +1,3 @@
+[workspace]
+members = ["crates/cuberev-core", "crates/search-geometry-core"]
+resolver = "2"

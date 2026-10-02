@@ -1,0 +1,77 @@
+{
+  "schema": "CUBE-REV-active-lineage-archive-pointer-v2",
+  "active_branch": "research/current",
+  "archives": [
+    {
+      "original_path": "g3-cog/** (139 tracked paths at pre-cleanup inventory)",
+      "sha256": "99F6C345F388BF34B503AD0ED5FF3BC874DA7E7CB4E2C9486D73A8B802297400",
+      "artifact_role": "ARCHIVE_ONLY",
+      "superseded_by": "G3 closure; G4 active implementation boundary",
+      "drive_file_id": "1MfqBv-ZM52KuXn-PgGkhXR0OTsItLjHh",
+      "drive_url": "https://drive.google.com/file/d/1MfqBv-ZM52KuXn-PgGkhXR0OTsItLjHh/view",
+      "verification_status": "PARENT_NAME_SIZE_READBACK_VERIFIED",
+      "removal_commit": "fad656d024482b6acab9c8838b588a22a0b83bce",
+      "pre_reconciliation_commit": "178ae77cc02db4cd894cef0840c51b89bb578f4e"
+    },
+    {
+      "original_path": "root/calibration/r128-shadow/release-snapshots historical HTML snapshots",
+      "sha256": "965067C0A9601E084FD32D384A48C48D79FD5FBBAD778567F5ED02A6C4044A9F",
+      "artifact_role": "ARCHIVE_ONLY",
+      "superseded_by": "thin web/public/index.html shell",
+      "drive_file_id": "1pKm3fR-Nf4NKUkRrBJUwxNxBIwmhwPZx",
+      "drive_url": "https://drive.google.com/file/d/1pKm3fR-Nf4NKUkRrBJUwxNxBIwmhwPZx/view",
+      "verification_status": "PARENT_NAME_SIZE_READBACK_VERIFIED",
+      "removal_commit": "fad656d024482b6acab9c8838b588a22a0b83bce",
+      "pre_reconciliation_commit": "178ae77cc02db4cd894cef0840c51b89bb578f4e"
+    },
+    {
+      "original_path": "pre-P7 closed-phase execution scaffolds and historical runners",
+      "artifact_role": "HISTORY_ONLY",
+      "superseded_by": "P7 active-set manifest plus reusable core/reco/instrument surfaces",
+      "archive_branch": "archive/pre-p7-active-prune-20261002",
+      "drive_audit_file_id": "15KxYy2vDCyRqORoIpbnTg3dYYHgBr507",
+      "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI",
+      "verification_status": "FULL_TREE_AND_GIT_HISTORY_DRIVE_READBACK_VERIFIED",
+      "source_head": "f9fb6e859ea0130aa3a0b0bb7994a7f7060a8183",
+      "tracked_files": 325,
+      "drive_full_history_file_id": "1VjWE0a7V13aBgZRZgngRUvqZVkkkKLG5",
+      "drive_full_history_url": "https://drive.google.com/file/d/1VjWE0a7V13aBgZRZgngRUvqZVkkkKLG5/view",
+      "tree_snapshot_sha256": "a927b6d6a090c4bf4c36d0ad5684dc674e88c0802fff754ae9a9b2edc4e736a3",
+      "git_bundle_sha256": "662605b72beae6182f9fe07c8395af349dd47d3c0a049857dccf2c41e3908f1c",
+      "actions_artifact_id": 11227173209,
+      "actions_artifact_sha256": "4ff74b10d37f2e16290ed3dee90da9a58998750e2d7c8f3139c551baebc4f28a",
+      "branch_closure_ready": true
+    },
+    {
+      "original_path": "P7 calibration/web/annotation/legacy-registry island present at 447b37d9fb25e856848f212661a899ab00d05115",
+      "artifact_role": "HISTORY_ONLY",
+      "superseded_by": "42-file exact P7 active set plus core/instrument contact surface",
+      "archive_branch": "archive/pre-p7-active-prune-20261002",
+      "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI",
+      "verification_status": "PRESERVED_IN_GIT_HISTORY_AND_ARCHIVE_BRANCH",
+      "retired_file_count": 34
+    }
+  ],
+  "active_phase": "G7-P7",
+  "active_set": {
+    "manifest": "g7/p7/active-set-manifest.json",
+    "blocking_workflow": ".github/workflows/p7-repo-active-set-audit.yml",
+    "sealed_run": 37004765344,
+    "sealed_head": "05f5142d5496d5ba80de81e09801fb274ae374c6",
+    "tracked_files": 43,
+    "allowed_files": 43,
+    "unexpected_files": 0,
+    "missing_active_files": 0,
+    "artifact_id": 11224744123,
+    "artifact_sha256": "b12d426c9448d3571e17527042700422a3ca415d18150c7b7b00088ff4a45f9e",
+    "drive_audit_file_id": "1r8E2AhjFpEHOQutmSWQS51ulZXNdBDvX",
+    "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI",
+    "exact_allowlist": true,
+    "reco_reproduction": {
+      "run": 37004765361,
+      "artifact_id": 11224783937,
+      "artifact_sha256": "e475e4f964e581889212cbfaa200fe58a886e62235bbd2007f831e4ab86e71fa",
+      "drive_file_id": "1Tf_HL5px2aNYXVfE97RfdrpRicn5TBbM"
+    }
+  }
+}

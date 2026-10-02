@@ -1,0 +1,28 @@
+{
+  "schema_version": "core-contact-policy-1",
+  "required_packet": {
+    "trials": 32,
+    "rival_families": 5,
+    "unique_states": true,
+    "roles": [
+      "DEVELOPMENT",
+      "CONFIRMATION"
+    ]
+  },
+  "required_context": [
+    "consent_metadata_present",
+    "supervision_or_research_authorization_present",
+    "device_timing_resolution_ms",
+    "visibility_api_supported",
+    "packet_sha256",
+    "participant_set_role"
+  ],
+  "rules": {
+    "max_device_timing_resolution_ms": 5,
+    "role_must_match_packet": true,
+    "direct_identifiers_forbidden": true,
+    "background_trial_invalid": true,
+    "optional_stopping_forbidden": true
+  },
+  "current_status": "CLOSED_PENDING_AUTHORIZED_WORLD_CONTACT"
+}

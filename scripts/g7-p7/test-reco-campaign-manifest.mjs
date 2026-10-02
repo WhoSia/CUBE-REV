@@ -1,0 +1,15 @@
+import fs from "node:fs";
+const x=JSON.parse(fs.readFileSync("g7/p7/reco-campaign-manifest.json","utf8"));
+const c=JSON.parse(fs.readFileSync("g7/p7/reco-campaign-constitution.json","utf8"));
+if(x.total!==40||x.batches.length!==4) throw new Error("SIZE");
+if(x.batches.some(b=>b.records.length!==10)) throw new Error("BATCH");
+const all=x.batches.flatMap(b=>b.records);
+if(new Set(all.map(r=>r.source_id)).size!==40) throw new Error("DUPLICATE_SOURCE_ID");
+const prior=new Set(c.campaign.exclude_previously_contacted_ids);
+if(all.some(r=>prior.has(r.source_id))) throw new Error("PRIOR_CONTACT");
+if(all.filter(r=>r.sampling_role==="population_estimation").length!==20) throw new Error("POP_ROLE");
+if(all.filter(r=>r.sampling_role==="coverage_analysis").length!==20) throw new Error("COV_ROLE");
+if(!x.authority.selection_frozen_before_p7_body_contact||x.authority.body_outcomes_used_in_selection) throw new Error("AUTHORITY");
+if(x.authority.g7_p3_sampling_manifest_sha256!=="e5267a0a0d7244d841fdc1f2c5809b9adb671e99b9586d532c916dffb17ab98f") throw new Error("P3_SHA");
+console.log("G7_P7_RECO_CAMPAIGN_MANIFEST_PASS");
+console.log("IDS\t"+all.map(r=>r.source_id).join(","));

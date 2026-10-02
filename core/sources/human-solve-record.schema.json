@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/WhoSia/CUBE-REV/g7/p2/human-solve-record.schema.json",
+  "title": "CUBE-REV G7-P2 Human Solve Reconstruction Record",
+  "type": "object",
+  "required": [
+    "record_id",
+    "source",
+    "event_id",
+    "scramble_raw",
+    "reconstruction_raw",
+    "provenance",
+    "parse"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "source_id"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string"
+        },
+        "source_record_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "video_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "solver": {
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "wca_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "solve_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Official solve date only when independently grounded by a source whose semantics establish that meaning; otherwise null."
+    },
+    "official": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "time_ms": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "competition": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reconstructor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scramble_raw": {
+      "type": "string"
+    },
+    "reconstruction_raw": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "raw_sha256",
+        "retrieved_at",
+        "rights_status"
+      ],
+      "properties": {
+        "raw_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "retrieved_at": {
+          "type": "string"
+        },
+        "rights_status": {
+          "type": "string"
+        },
+        "raw_file_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "parse": {
+      "type": "object",
+      "required": [
+        "status",
+        "geometry_status",
+        "events"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PARSED",
+            "PARTIAL",
+            "FAILED"
+          ]
+        },
+        "geometry_status": {
+          "enum": [
+            "HTM_READY",
+            "FRAME_CANONICALIZATION_REQUIRED",
+            "EXTENDED_MOVE_KERNEL_REQUIRED",
+            "UNRESOLVED"
+          ]
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "ordinal",
+              "raw",
+              "kind"
+            ],
+            "properties": {
+              "ordinal": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "raw": {
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "FACE_TURN",
+                  "ROTATION",
+                  "WIDE_TURN",
+                  "SLICE_TURN",
+                  "ANNOTATION",
+                  "UNKNOWN"
+                ]
+              },
+              "annotation": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "line": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "duplicate": {
+      "type": "object",
+      "properties": {
+        "exact_content_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cluster_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cross_source_candidate": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "source_display_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Date string displayed by the reconstruction source; not assumed to be the official solve or competition date."
+    }
+  },
+  "additionalProperties": false
+}

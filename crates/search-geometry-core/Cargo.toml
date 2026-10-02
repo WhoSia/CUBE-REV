@@ -1,0 +1,11 @@
+[package]
+name = "search-geometry-core"
+version = "0.1.0"
+edition = "2021"
+description = "Reusable exact cube search geometry, 3x3 phase-1 coordinates, and projected PDB representations."
+
+[dependencies]
+cuberev-core = { path = "../cuberev-core" }
+
+[lib]
+path = "src/lib.rs"

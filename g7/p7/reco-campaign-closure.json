@@ -1,0 +1,74 @@
+{
+  "schema_version": "g7-p7-reco-campaign-closure-1",
+  "phase": "G7-P7",
+  "source": "reco.nz",
+  "role": "CORE_NATURALISTIC_RECONSTRUCTION_SPINE",
+  "authority": {
+    "campaign_constitution_blob_sha": "f8da95560164d991ba53627da54b7eb022cefed5",
+    "campaign_manifest_blob_sha": "0ddad8261350e2343ad608c8855abd66ad746cd0",
+    "total_frozen_solves": 40,
+    "batches": 4,
+    "solves_per_batch": 10,
+    "bulk_authorized": false,
+    "chaining_beyond_campaign_ceiling": "FORBIDDEN_WITHOUT_NEW_SOURCE_AUTHORITY_OR_NEW_PROSPECTIVE_CONSTITUTION",
+    "raw_public_release": "HOLD"
+  },
+  "closure": {
+    "acquisition_pass": 40,
+    "exact_end_validation_pass": 40,
+    "total_prefixes": 2149,
+    "body_requests": 40,
+    "campaign_complete": true,
+    "further_body_contact_under_this_campaign": false,
+    "predecessor_body_corpus": {
+      "phase": "G7-P4",
+      "solves": 20,
+      "combined_body_corpus_after_p7": 60
+    }
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "run_id": 36970851109,
+      "source_head": "f9fb6e859ea0130aa3a0b0bb7994a7f7060a8183",
+      "artifact_id": 11211556529,
+      "artifact_sha256": "9781d3e436b383ae5cb8cb8410a85ea5114a94ad4a7d5f9a8f34a743df3347c4",
+      "prefixes": 553,
+      "drive_custody_id": "19k0tqojIfUd2PIk1s9A_efxg3RzZ3J0M"
+    },
+    {
+      "batch": 2,
+      "run_id": 36979030131,
+      "source_head": "4be0288a804e2d11632091d46843812492ac946b",
+      "artifact_id": 11215205073,
+      "artifact_sha256": "943a763bb58b23cf67618e393b8590887d28a619cc1e3f36837ec94825df1a66",
+      "prefixes": 555,
+      "drive_custody_id": "1waqMWecOEYMU5yh9j_-fcWN4nIuN41bZ"
+    },
+    {
+      "batch": 3,
+      "run_id": 36979289490,
+      "source_head": "5be0ddda39edcf398a6ae3698d5267630b29a103",
+      "artifact_id": 11215270269,
+      "artifact_sha256": "7fc32a24b95c5bd15dd65bddea985e5da1f59006d8934fad80031a69be8ffba8",
+      "prefixes": 530,
+      "drive_custody_id": "1IR2646M0kCgP0z_5M5SdI6fqLz_KRT4i"
+    },
+    {
+      "batch": 4,
+      "run_id": 36980654098,
+      "source_head": "5f17f3f73fded5928dd612b2efc4be8461eff43a",
+      "artifact_id": 11215332190,
+      "artifact_sha256": "5113f6c9a7903463a24fce2ced503eda5e5d535148a28d5ec7ceb669a6a63f68",
+      "prefixes": 511,
+      "drive_custody_id": "17REOcLojlrk5bcqnlRp6nD3gLAxokMJd"
+    }
+  ],
+  "interpretation_boundary": [
+    "The 40 bodies are a prospectively frozen bounded campaign, not a bulk mirror.",
+    "Reconstruction annotations remain measurements and are not latent cognitive-state ground truth.",
+    "Drive custody is private research custody; raw public redistribution remains HOLD.",
+    "Any additional reco.nz body contact requires new source authority or a new prospective constitution."
+  ],
+  "next_active_operation": "Materialize five-rival exact-state geometry over the 60-solve body corpus and analyze solver/reconstructor/method/stage-conditioned structure."
+}

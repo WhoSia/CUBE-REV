@@ -1,0 +1,161 @@
+{
+  "schema_version": "g7-p2-source-registry-1",
+  "frozen_at": "2026-09-30",
+  "sources": [
+    {
+      "source_id": "wca_results_v2",
+      "title": "World Cube Association Results Export v2",
+      "source_class": "official_structured",
+      "homepage": "https://www.worldcubeassociation.org/export/results",
+      "discovery_endpoint": "https://www.worldcubeassociation.org/api/v0/export/public",
+      "event_scope": [
+        "333"
+      ],
+      "provides": [
+        "competition_metadata",
+        "official_attempt_time",
+        "official_scramble"
+      ],
+      "move_by_move": false,
+      "access_status": "PUBLIC_EXPORT",
+      "bulk_acquisition": "AUTOMATIC_ALLOWED",
+      "data_rights_status": "EXPLICIT_EXPORT_TERMS",
+      "redistribution_status": "ALLOWED_WITH_REQUIRED_NOTICE",
+      "code_license": null,
+      "priority": "HIGH",
+      "notes": "Join authority for official competition attempts; not a human move-sequence source."
+    },
+    {
+      "source_id": "cubesolves_2014_dump",
+      "title": "CubeSolv.es historical database dump (2014-02-25 snapshot)",
+      "source_class": "public_download_snapshot",
+      "homepage": "https://github.com/justinj/reconstruction-database",
+      "raw_url": "https://dl.dropboxusercontent.com/u/17026863/cubesolv.es/db.sqlite",
+      "event_scope": [
+        "333",
+        "other_puzzles_possible"
+      ],
+      "provides": [
+        "scramble",
+        "solution_reconstruction",
+        "solver",
+        "time",
+        "competition",
+        "video_or_source",
+        "reconstructor",
+        "step_annotations"
+      ],
+      "move_by_move": true,
+      "access_status": "PUBLIC_DOWNLOAD_LINK_PUBLISHED_BY_PROJECT",
+      "bulk_acquisition": "PUBLIC_DOWNLOAD",
+      "data_rights_status": "DATABASE_RIGHTS_UNSPECIFIED",
+      "redistribution_status": "RAW_PUBLIC_RELEASE_HOLD",
+      "code_license": "MIT",
+      "priority": "HIGH",
+      "notes": "MIT applies to repository code; do not infer that it licenses database content. Internal raw mirror and derived analysis are separated."
+    },
+    {
+      "source_id": "reco_nz",
+      "title": "reco.nz reconstruction database",
+      "source_class": "public_reconstruction_site_ssr",
+      "homepage": "https://reco.nz/",
+      "index_url": "https://reco.nz/solve/index",
+      "solve_url_template": "https://reco.nz/solve/{id}",
+      "event_scope": [
+        "333",
+        "other_events"
+      ],
+      "provides": [
+        "scramble",
+        "solution_reconstruction",
+        "solver",
+        "result",
+        "date",
+        "competition",
+        "reconstructor",
+        "method_context",
+        "stage_annotations",
+        "stage_stats",
+        "video_url",
+        "average_neighbor_ids"
+      ],
+      "move_by_move": true,
+      "access_status": "PUBLIC_SSR_HTML",
+      "bulk_acquisition": "BOUNDED_ONLY_PENDING_RIGHTS",
+      "data_rights_status": "UNSPECIFIED",
+      "redistribution_status": "RAW_PUBLIC_RELEASE_HOLD",
+      "code_license": null,
+      "priority": "VERY_HIGH",
+      "notes": "Index and /solve/{id} pages are server-rendered HTML. About page explicitly describes large-scale analysis as a purpose. Live 2026-09-30 check found robots.txt absent (404) and no dedicated terms/privacy/export/API page in site map. No explicit bulk export or redistribution terms are grounded; keep bounded-only acquisition and raw public release HOLD."
+    },
+    {
+      "source_id": "speedcubing_reconstructions",
+      "title": "speedcubing.com Reconstructions",
+      "source_class": "public_reconstruction_site",
+      "homepage": "https://www.speedcubing.com/Reconstructions.html",
+      "event_scope": [
+        "333",
+        "other_events"
+      ],
+      "provides": [
+        "scramble",
+        "solution_reconstruction",
+        "expert_world_class_context"
+      ],
+      "move_by_move": true,
+      "access_status": "PUBLIC_PAGES",
+      "bulk_acquisition": "NO_BULK_EXPORT_CONFIRMED",
+      "data_rights_status": "UNSPECIFIED",
+      "redistribution_status": "HOLD",
+      "code_license": null,
+      "priority": "HIGH",
+      "notes": "Site states that Brest produced 2000+ and Stuart Clark 5000+ reconstructions. Treat as discovery/source pages until export or permission is grounded."
+    },
+    {
+      "source_id": "cubedb",
+      "title": "CubeDB reconstruction pages",
+      "source_class": "public_reconstruction_site",
+      "homepage": "https://www.cubedb.net/",
+      "event_scope": [
+        "333",
+        "other_events"
+      ],
+      "provides": [
+        "scramble",
+        "solution_reconstruction",
+        "solver_profile",
+        "time",
+        "date",
+        "method_annotations"
+      ],
+      "move_by_move": true,
+      "access_status": "PUBLIC_PAGES",
+      "bulk_acquisition": "NO_BULK_API_CONFIRMED",
+      "data_rights_status": "UNSPECIFIED",
+      "redistribution_status": "HOLD",
+      "code_license": null,
+      "priority": "HIGH",
+      "notes": "Individual pages expose reconstruction text and profile solve counts. Do not bulk scrape without an explicit export/API or permission."
+    },
+    {
+      "source_id": "manual_reconstruction_intake",
+      "title": "CUBE-REV manual reconstruction intake",
+      "source_class": "user_supplied_raw",
+      "homepage": null,
+      "event_scope": [
+        "333"
+      ],
+      "provides": [
+        "source_dependent"
+      ],
+      "move_by_move": true,
+      "access_status": "DRIVE_00_RAW_BYTE_MIRROR_INTAKE",
+      "bulk_acquisition": "MANUAL",
+      "data_rights_status": "MUST_BE_RECORDED_PER_FILE",
+      "redistribution_status": "PER_FILE",
+      "code_license": null,
+      "priority": "HIGH",
+      "notes": "User places inaccessible/download-blocked source files in CUBE-REV 00_RAW_BYTE_MIRROR_INTAKE. Each file is audited before canonical movement."
+    }
+  ]
+}
