@@ -1,4 +1,4 @@
-use search_geometry_core::g6::{Cube, Phase1, Phase1Moves, Phase1Pdb};
+use search_geometry_core::phase1::{Cube, Phase1, Phase1Moves, Phase1Pdb};
 use std::collections::BTreeSet;
 use std::io::{self, BufRead};
 

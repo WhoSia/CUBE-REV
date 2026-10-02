@@ -2,7 +2,7 @@
 name = "cuberev-core"
 version = "0.1.0"
 edition = "2021"
-description = "R3-R3 exact 2x2 state and symbolic-stimulus boundary; not an R2 oracle."
+description = "Reusable exact corner-state primitives and symbolic stimulus encoding for CUBE-REV."
 
 [lib]
 path = "src/lib.rs"

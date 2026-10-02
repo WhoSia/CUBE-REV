@@ -1,5 +1,5 @@
-//! Exact 2x2 corner-state primitives for the R3-R3 instrument boundary.
-//! This crate deliberately does not make an R2 census or oracle-equivalence claim.
+//! Reusable exact corner-state primitives for CUBE-REV.
+//! Historical generation-specific claims live in archived receipts rather than the active API surface.
 
 pub const PERMUTATIONS: u32 = 5_040; // 7!
 pub const ORIENTATIONS: u32 = 729; // 3^6

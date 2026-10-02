@@ -1,12 +1,9 @@
-//! CUBE-REV Generation V G5-P5 exact search-representation geometry.
+//! Reusable CUBE-REV exact search-representation geometry.
 //!
-//! Authority ceiling:
-//! - exact 2x2 rotation-quotiented corner state space;
-//! - anchored R/U/F half-turn metric only;
-//! - no claim of equivalence to the ordinary six-face HTM until separately proved;
-//! - Kociemba is a design donor, not a priority claim or cognitive model.
+//! Historical 2x2 exact-search primitives and the active 3x3 phase-1/PDB kernel
+//! are retained here without generation-labelled API names.
 
-pub mod g6;
+pub mod phase1;
 
 use cuberev_core::{CornerState, ORIENTATIONS, PERMUTATIONS, STATE_DOMAIN};
 use std::collections::VecDeque;

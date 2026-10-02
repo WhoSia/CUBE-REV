@@ -123,3 +123,17 @@ Stage suffixes are operation-sensitive, not lineage defaults.
 Use `Court` only when live alternatives, fixed adjudication criteria, binding verdicts, and downstream authority changes are all present. Otherwise prefer the actual operation: `Campaign`, `Census`, `Compiler`, `Materialization`, `Replication`, `Gate`, `Audit`, `Validation`, `Seal`, etc.
 
 G7-P7 retains `Court` because it independently satisfies that qualification. Future phase names must classify the operation before choosing the suffix.
+
+
+## Active-set v2 prune
+
+The active branch is now governed by an **exact-path allowlist**, not broad directory prefixes.
+
+Target active set after the second P7 prune:
+- tracked files: **42**
+- unexpected files permitted: **0**
+- required active files may be missing: **0**
+- calibration/web/annotation/legacy-registry island: **archive-only**
+- reusable 3x3 phase-1 kernel: `crates/search-geometry-core/src/phase1.rs`
+
+Historical bytes remain available through Git history, the sealed archive branch, Actions artifacts, and the Drive archive ledger. New temporary/debug files must be explicitly admitted to the manifest or the blocking audit fails.
