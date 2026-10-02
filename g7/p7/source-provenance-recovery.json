@@ -1,0 +1,148 @@
+{
+  "schema_version": "g7-p7-source-provenance-recovery-1",
+  "phase": "G7-P7",
+  "operation_type": "Source-Provenance Recovery Audit",
+  "authority": "POST_SOURCE_WORLD_EXTERNAL_EVIDENCE_AUDIT",
+  "source_scope": "same frozen 60 reco.nz body solves; no new reco.nz body contact",
+  "generated_after_preseal_commit": "73146d72c35104ac0f536bc8dac78e12c18b2082",
+  "broad_provenance_support_census": {
+    "WCA_EXACT_ATTEMPT_LINKED": 10,
+    "WCA_CONTEXT_SUPPORTED_SCRAMBLE_UNSUPPORTED": 9,
+    "WCA_MANUAL_CONTEXT_RECOVERED_NOT_EXACT_LINKAGE": 4,
+    "EXTERNAL_LEAGUE_SURFACE": 3,
+    "RECONSTRUCTION_DATABASE_SOURCE_LABEL": 1,
+    "SOURCE_DECLARED_UNOFFICIAL": 32,
+    "NO_SOURCE_COMPETITION_CONTEXT": 1,
+    "total": 60
+  },
+  "manual_recovery_rows": [
+    {
+      "source_id": 76,
+      "source_label": "US Nationals 2012",
+      "solver": "Andy Smith",
+      "result_text": "13.22",
+      "recovery_class": "WCA_COMPETITION_ALIAS_PERSON_RESULT_SUPPORTED",
+      "evidence": {
+        "official_competition_title": "United States National Championships 2012",
+        "official_competition_id": "USNationals2012",
+        "official_result_support": "Andy Smith, 3x3 Final, 13.22 appears as an official solve",
+        "url": "https://www.worldcubeassociation.org/competitions/USNationals2012/results/by_person"
+      },
+      "boundary": "alias/person/result support only; reco scramble remains unsupported in frozen WCA scramble export"
+    },
+    {
+      "source_id": 6155,
+      "source_label": "Monkey League Season 4",
+      "solver": "Dylan Miller",
+      "result_text": "6.91",
+      "recovery_class": "EXTERNAL_LEAGUE_SURFACE",
+      "evidence": {
+        "support": "legacy SpeedCubeDB reconstruction pages explicitly label Dylan Miller solves as Monkey League Season 4; Monkey League is a distinct organized head-to-head/shared-scramble league surface",
+        "urls": [
+          "https://www.v2.speedcubedb.com/r/5704",
+          "https://monkeyleague.org/i/standing-result"
+        ]
+      },
+      "boundary": "league-surface provenance support; not WCA attempt identity"
+    },
+    {
+      "source_id": 7905,
+      "source_label": "SpeedcubeDB",
+      "solver": "Kyle Santucci",
+      "result_text": "6.46",
+      "recovery_class": "RECONSTRUCTION_DATABASE_SOURCE_LABEL",
+      "evidence": {
+        "support": "SpeedCubeDB historically hosted solve reconstructions; source label is platform provenance rather than a competition identity",
+        "urls": [
+          "https://www.speedcubedb.com/",
+          "https://www.v2.speedcubedb.com/r/5704"
+        ]
+      },
+      "boundary": "platform-source support only; does not identify a specific official attempt"
+    },
+    {
+      "source_id": 8402,
+      "source_label": "unofficial",
+      "solver": "Seung Hyuk Nahm",
+      "result_text": "6.26",
+      "recovery_class": "SOURCE_DECLARED_UNOFFICIAL",
+      "evidence": {
+        "support": "reco source competition field explicitly says unofficial"
+      },
+      "boundary": "source-side provenance label only"
+    },
+    {
+      "source_id": 11859,
+      "source_label": "Daejeon Spring 2025",
+      "solver": "Yoochan Hong",
+      "result_text": "4.49",
+      "recovery_class": "WCA_PERSON_RESULT_SUPPORTED_SCRAMBLE_ASSIGNMENT_CONFLICT",
+      "evidence": {
+        "official_result_support": "Yoochan Hong, 3x3 First round, official 4.49 solve",
+        "url": "https://www.worldcubeassociation.org/persons/2016HONG03"
+      },
+      "boundary": "reco scramble exists in frozen WCA export but matched to a round where solver is absent; exact attempt linkage remains rejected"
+    },
+    {
+      "source_id": 12096,
+      "source_label": "Vietnam Championship 2025",
+      "solver": "Qixian Cao",
+      "result_text": "4.08",
+      "recovery_class": "WCA_PERSON_RESULT_SUPPORTED_SCRAMBLE_ASSIGNMENT_CONFLICT",
+      "evidence": {
+        "official_result_support": "Qixian Cao, 3x3 Semi Final, official 4.08 solve",
+        "url": "https://www.worldcubeassociation.org/competitions/VietnamChampionship2025/results/by_person"
+      },
+      "boundary": "reco scramble exists in frozen WCA export but matched to a round where solver is absent; exact attempt linkage remains rejected"
+    },
+    {
+      "source_id": 12277,
+      "source_label": "Hefei Open 2025",
+      "solver": "Yiheng Wang",
+      "result_text": "4.15",
+      "recovery_class": "WCA_PERSON_RESULT_SUPPORTED_NAME_VARIANT_SCRAMBLE_UNSUPPORTED",
+      "evidence": {
+        "official_result_support": "Yiheng Wang, 3x3 Second round, official 4.15 solve",
+        "url": "https://www.worldcubeassociation.org/persons/2019WANY36"
+      },
+      "boundary": "manual public-page support resolves person/result context but does not create exact scramble linkage"
+    },
+    {
+      "source_id": 13066,
+      "source_label": "Monkey League Season 6",
+      "solver": "Yiheng Wang",
+      "result_text": "4.57",
+      "recovery_class": "EXTERNAL_LEAGUE_SURFACE",
+      "evidence": {
+        "support": "Monkey League Season 6 has a distinct standings/match/shared-scramble surface",
+        "url": "https://monkeyleague.org/i/standing-result"
+      },
+      "boundary": "league-surface provenance support; not WCA attempt identity"
+    },
+    {
+      "source_id": 14104,
+      "source_label": "Monkey League Season 6",
+      "solver": "Yiheng Wang",
+      "result_text": "3.93",
+      "recovery_class": "EXTERNAL_LEAGUE_SURFACE",
+      "evidence": {
+        "support": "Monkey League Season 6 has a distinct standings/match/shared-scramble surface",
+        "url": "https://monkeyleague.org/i/standing-result"
+      },
+      "boundary": "league-surface provenance support; not WCA attempt identity"
+    }
+  ],
+  "inherited_nonmanual_support": {
+    "wca_exact_attempt_linked": 10,
+    "wca_attempt_context_supported_scramble_unsupported": 9,
+    "source_declared_unofficial_inside_no_exact_context": 31,
+    "no_source_competition_context": 1
+  },
+  "boundary": [
+    "manual provenance recovery is not exact attempt linkage",
+    "official same-person same-result support does not prove reco scramble belongs to that attempt",
+    "external league/platform support is not WCA authority",
+    "no fuzzy join is inserted into the automatic linkage pipeline",
+    "no provenance class promotes a cognitive mechanism"
+  ]
+}
