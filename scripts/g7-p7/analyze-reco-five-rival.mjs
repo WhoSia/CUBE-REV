@@ -13,7 +13,7 @@ const numeric=new Set(["prefix_index","phase1_lb","ts_lb","fs_lb","is_g1","bound
 const rows=lines.filter(Boolean).map(line=>{
   const v=line.split("\t"), f={}; head.forEach((h,i)=>f[h]=numeric.has(h)?Number(v[i]):v[i]);
   const c=context.get(Number(f.source_id)+"|"+f.prefix_index); if(!c) throw new Error("CTX:"+f.source_id+":"+f.prefix_index);
-  return {...f,...c,source_id:Number(f.source_id)};
+  return {...f,...c,source_id:Number(f.source_id),boundary_after:Boolean(c.boundary_after)};
 });
 if(rows.length!==ctx.length) throw new Error("ROW_MISMATCH");
 
@@ -58,7 +58,7 @@ function summarize(xs){
     states:xs.length,
     solves:new Set(xs.map(x=>x.source_id)).size,
     face_next_states:face.length,
-    boundary_rate:rate(xs,x=>x.boundary_after===1),
+    boundary_rate:rate(xs,x=>x.boundary_after===true),
     mean_phase1_lb:mean(xs.map(x=>x.phase1_lb)),
     g1_rate:rate(xs,x=>x.is_g1===1),
     mean_rival_unique_sets:mean(xs.map(x=>x.rival_unique_sets)),
@@ -81,11 +81,11 @@ for(let i=0;i<rivals.length;i++) for(let j=i+1;j<rivals.length;j++){
   const [a,ca]=rivals[i],[b,cb]=rivals[j];
   pairwise[a+"__"+b]=rate(rows,x=>x[ca]!==x[cb]);
 }
-const boundary=rows.filter(x=>x.boundary_after===1), non=rows.filter(x=>x.boundary_after===0);
+const boundary=rows.filter(x=>x.boundary_after===true), non=rows.filter(x=>x.boundary_after===0);
 const solveIds=[...new Set(rows.map(x=>x.source_id))].sort((a,b)=>a-b);
 const paired=[];
 for(const id of solveIds){
-  const s=rows.filter(x=>x.source_id===id),b=s.filter(x=>x.boundary_after===1),n=s.filter(x=>x.boundary_after===0);
+  const s=rows.filter(x=>x.source_id===id),b=s.filter(x=>x.boundary_after===true),n=s.filter(x=>x.boundary_after===0);
   if(!b.length||!n.length) continue;
   const rec={
     source_id:id,
