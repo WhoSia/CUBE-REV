@@ -174,6 +174,21 @@ jobs:
           print('H1',x['overall']['H1'])
           PY
 
+      - name: Adversarial unidentified-provenance-mass Sign-Bound Court
+        run: |
+          set -euo pipefail
+          python3 scripts/g7-p7/bound-unidentified-provenance-mass.py \
+            --transport /tmp/g7-p7-build/refined-geometry-transport/refined-provenance-five-rival-geometry-transport.json \
+            --out /tmp/g7-p7-build/unidentified-bound | tee /tmp/g7-p7-build/unidentified-bound.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/g7-p7-build/unidentified-bound/adversarial-unidentified-mass-sign-bound.json'))
+          print('G7_P7_ADVERSARIAL_UNIDENTIFIED_MASS_RESULT_GATE_PASS')
+          print('VERDICT',x['verdict'])
+          print('TS',x['rivals']['TS'])
+          print('H1',x['rivals']['H1'])
+          PY
+
       - name: Seal derived-only private research artifact
         run: |
           set -euo pipefail
@@ -189,6 +204,7 @@ jobs:
           cp /tmp/g7-p7-build/calibration/statistical-calibration-receipt.md /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/recovered-provenance/recovered-provenance-five-rival-geometry.json /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/refined-geometry-transport/refined-provenance-five-rival-geometry-transport.json /tmp/g7-p7-seal/derived/
+          cp /tmp/g7-p7-build/unidentified-bound/adversarial-unidentified-mass-sign-bound.json /tmp/g7-p7-seal/derived/
           cp g7/p7/reco-statistical-calibration.json /tmp/g7-p7-seal/authority/
           cp /tmp/g7-p7-build/exact/exact-trajectories.json /tmp/g7-p7-seal/derived/
           printf '%s\n'             'SOURCE_CONTACT=NONE'             'SOLVES=60'             'RAW_SOURCE_HTML_PACKAGED=NO'             'RAW_PUBLIC_RELEASE=HOLD'             'AUTHORITY=DESCRIPTIVE_NATURALISTIC_MEASUREMENT'             > /tmp/g7-p7-seal/AUTHORITY.txt
@@ -216,6 +232,10 @@ jobs:
           console.log('REFINED_TRANSPORT_VERDICT\t'+t.verdict);
           console.log('REFINED_TRANSPORT_TS_POSTSTRAT\t'+t.overall.TS.poststrat_supported_mass_mean_excess);
           console.log('REFINED_TRANSPORT_H1_POSTSTRAT\t'+t.overall.H1.poststrat_supported_mass_mean_excess);
+          const b=require('/tmp/g7-p7-seal/derived/adversarial-unidentified-mass-sign-bound.json');
+          console.log('UNIDENTIFIED_BOUND_VERDICT\t'+b.verdict);
+          console.log('UNIDENTIFIED_BOUND_TS_LOW\t'+b.rivals.TS.full_population_lower_bound);
+          console.log('UNIDENTIFIED_BOUND_H1_LOW\t'+b.rivals.H1.full_population_lower_bound);
           NODE
 
       - uses: actions/upload-artifact@v4
