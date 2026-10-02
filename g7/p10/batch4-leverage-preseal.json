@@ -1,0 +1,27 @@
+{
+  "schema_version":"g7-p10-r3-batch4-leverage-preseal-1",
+  "phase":"G7-P10-R3",
+  "operation_type":"P7-Batch4 LB7 Leverage Fragility Audit",
+  "formal_name":"CUBE-REV Generation VII G7-P10-R3 — P7-Batch4 LB7 Leverage Decomposition, Method×Provenance Composition Matching, Reconstructor/Source Influence Mapping, Leave-One-Solve Jackknife, Cross-Cohort Standardization & Local-Hotspot Fragility Audit",
+  "status":"FROZEN_AFTER_R2_BEFORE_R3_OUTCOME",
+  "parent_run":37040890646,
+  "parent_artifact":11242586686,
+  "parent_sha256":"b091ece027a665932e03831932ce2c4daaa463c605d016bfb42b36eaf510c071",
+  "target":"exact-matched lb7-minus-{lb6,lb8} per-solve delta",
+  "primary_readouts":[
+    "P7_BATCH4 eligible-solve count and mean delta versus all other eligible solves",
+    "Batch4 and non-Batch4 method/provenance/reconstructor composition",
+    "method×broad-provenance common-support standardized Batch4-minus-other delta",
+    "leave-one-Batch4-solve-out overall mean range",
+    "largest absolute per-solve influence on the overall mean"
+  ],
+  "adjudication":{
+    "composition_explained":"common-support standardized Batch4-minus-other difference is near zero while raw difference is positive",
+    "cohort_residual":"standardized Batch4-minus-other difference remains positive",
+    "sparse_leverage":"one-solve deletion changes overall sign or removes most of the raw cohort difference",
+    "boundary":"post-hoc fragility audit only; no causal cohort interpretation"
+  },
+  "source_contact":"NONE",
+  "new_body_requests":0,
+  "human_contact_gate":"CLOSED"
+}
