@@ -1,5 +1,9 @@
 name: Materialize G7-P7 reco.nz five-rival corpus
 
+concurrency:
+  group: g7-p7-reco-five-rival-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: ['research/current']
