@@ -47,6 +47,7 @@
     "scripts/g7-p7/merge-reco-corpus.mjs",
     "scripts/g7-p7/prefix-context.mjs",
     "scripts/g7-p7/reconcile-index-competition-labels.py",
+    "scripts/g7-p7/reconcile-index-competition-labels-v2.py",
     "scripts/g7-p7/test-reco-campaign-manifest.mjs",
     "scripts/g7-p7/test-reco-five-rival-analysis.mjs",
     "scripts/g7-p7/test-reco-rival-kernel.mjs",
