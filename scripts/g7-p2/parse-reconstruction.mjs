@@ -23,13 +23,22 @@ export function parseReconstruction(text) {
     const movePart = marker >= 0 ? line.slice(0, marker) : line;
     const annotation = marker >= 0 ? line.slice(marker + 2).trim() : "";
 
-    const tokens = movePart
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean);
+    const normalizedMovePart = movePart.replace(/[’′]/g, "'");
+    const tokens = [];
+    let cursor = 0;
+    while (cursor < normalizedMovePart.length) {
+      const rest = normalizedMovePart.slice(cursor);
+      const skip = rest.match(/^[\s()\[\]{}]+/);
+      if (skip) { cursor += skip[0].length; continue; }
+      const move = rest.match(/^(?:[URFDLB]w|[urfdlb]|[MESxyz]|[URFDLB])(?:2'?|'|)?/);
+      if (move) { tokens.push(move[0]); cursor += move[0].length; continue; }
+      const unknown = rest.match(/^[^\s()\[\]{}]+/);
+      tokens.push(unknown ? unknown[0] : rest[0]);
+      cursor += unknown ? unknown[0].length : 1;
+    }
 
     for (const token of tokens) {
-      const normalizedToken = token.replace(/^[([{]+/, "").replace(/[)\]}]+$/, "");
+      const normalizedToken = token;
       if (!normalizedToken) continue;
       const kind = classifyToken(normalizedToken);
       if (kind === "ROTATION") sawRotation = true;
