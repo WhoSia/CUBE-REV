@@ -1,0 +1,30 @@
+{
+  "schema_version": "core-instrument-events-1",
+  "required_event_types": [
+    "session_start",
+    "trial_presented",
+    "choice_committed",
+    "trial_complete",
+    "session_complete"
+  ],
+  "optional_event_types": [
+    "visibility_change"
+  ],
+  "privacy": {
+    "direct_identifier_fields_forbidden": [
+      "name",
+      "email",
+      "phone",
+      "school_id",
+      "ip_address"
+    ],
+    "participant_key": "opaque_session_local_or_study_pseudonym_only"
+  },
+  "timing": {
+    "clock": "performance.now monotonic browser clock",
+    "latency_origin": "trial_visible event completion",
+    "latency_end": "choice input handler",
+    "background_trial_policy": "invalidate before primary analysis"
+  },
+  "authority": "LIVE_COLLECTION_REQUIRES_CONTACT_GATE"
+}
