@@ -3,15 +3,16 @@
   "source": "reco_nz",
   "role": "CORE_NATURALISTIC_RECONSTRUCTION_SPINE",
   "predecessor": {
-    "p2_index_run": 36816629497,
-    "p2_index_artifact_name": "G7-P2-reco-index-census-893b47bccd766fed5138e32ce714f9808badc708",
-    "index_rows_sha256": "d6fef3fdb1f47c5ae4744f4624c64d7782563490344ba8ced9b22c819357987c"
+    "g7_p3_drive_archive_id": "1H1ePv-RkiqSF5QH3n5aop3UHEjpYG9P4",
+    "g7_p3_archive_sha256": "acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4",
+    "g7_p3_sampling_manifest_member": "sampling-manifest.json",
+    "g7_p3_sampling_manifest_sha256": "e5267a0a0d7244d841fdc1f2c5809b9adb671e99b9586d532c916dffb17ab98f"
   },
   "campaign": {
     "total_solve_bodies": 40,
     "batches": 4,
     "solves_per_batch": 10,
-    "selection_scope": "3x3 only",
+    "selection_scope": "frozen G7-P3 3x3 sampling manifest continuation",
     "exclude_previously_contacted_ids": [
       12137,
       2104,
@@ -40,9 +41,10 @@
       "solver_frequency_band",
       "reconstructor_frequency_band"
     ],
-    "selection_rule": "From frozen P2 index bytes, exclude prior contacted IDs, construct the same P3 strata, order strata by ascending residual stratum size then deterministic SHA256 of stratum under seed, choose one deterministic record from each stratum, continue round-robin across strata until 40 unique records are selected.",
+    "selection_rule": "Consume the first 20 untouched unique records from frozen G7-P3 population_estimation beginning at position 11, then the first 20 untouched unique records from frozen G7-P3 coverage_analysis beginning at position 11, skipping prior P4-contacted IDs and any source_id already selected from population_estimation. Batch as 5 population + 5 coverage per batch.",
     "seed": "CUBE-REV-G7-P7-RECO-BODY-CAMPAIGN-v1",
-    "body_outcomes_used_in_selection": false
+    "body_outcomes_used_in_selection": false,
+    "full_index_reselection": false
   },
   "authority": {
     "source_policy": "g7/p2/reco-acquisition-policy.json",
