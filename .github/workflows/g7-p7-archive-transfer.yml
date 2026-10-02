@@ -5,6 +5,9 @@ on:
     branches: ['research/current']
     paths:
       - '.github/workflows/g7-p7-archive-transfer.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/g7-p7-archive-transfer.yml'
   workflow_dispatch:
 
 permissions:
