@@ -175,8 +175,9 @@ jobs:
           CTX="$(find /tmp/g7-p7-link/reco-derived -name prefix-context.jsonl -print -quit)"
           FEAT="$(find /tmp/g7-p7-link/reco-derived -name five-rival-features.tsv -print -quit)"
           test -n "$CTX"; test -n "$FEAT"
-          python3 scripts/g7-p7/calibrate-reco-statistics.py             --context "$CTX"             --features "$FEAT"             --linkage /tmp/g7-p7-link/out/reco-wca-linkage.json             --out /tmp/g7-p7-link/stress             --permutations 100000
+          python3 scripts/g7-p7/calibrate-reco-statistics.py             --context "$CTX"             --features "$FEAT"             --linkage /tmp/g7-p7-link/out/reco-wca-linkage.json             --source-world-audit /tmp/g7-p7-link/out/source-world-support-audit.json             --out /tmp/g7-p7-link/stress             --permutations 100000
           cp /tmp/g7-p7-link/stress/external-linkage-stratified-stress.json /tmp/g7-p7-link/out/
+          cp /tmp/g7-p7-link/stress/source-world-stratified-stress.json /tmp/g7-p7-link/out/
           python3 - <<'PY'
           import json
           x=json.load(open('/tmp/g7-p7-link/out/external-linkage-stratified-stress.json'))
