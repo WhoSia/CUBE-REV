@@ -60,5 +60,49 @@
     "PASS_PROSPECTIVE_MULTI_RIVAL_BEHAVIORAL_DISCRIMINATION",
     "PASS_BEHAVIORAL_SIGNAL_WITH_MECHANISM_PROMOTION_HOLD",
     "HOLD_WORLD_CONTACT_OR_IDENTIFICATION_INSUFFICIENT"
-  ]
+  ],
+  "linkage_audit": {
+    "operation_type": "Linkage Audit",
+    "status": "FROZEN_BEFORE_WCA_CROSSWALK_EXECUTION",
+    "source_scope": "frozen 60 reco.nz body solves only; no new reco.nz contact",
+    "wca_authority": {
+      "artifact_id": 11210089432,
+      "artifact_zip_sha256": "df733a69f95fe2a6af0d300cd63de591bb072c49fddfb6cdb981a0b74deab94a",
+      "source_zip_sha256": "ac9afd834b6d7e31cb3cdd99f47eb21569fafb5d26d8628528aae2db8867d6a7",
+      "export_format_version": "2.0.2",
+      "role": "official attempt and scramble authority"
+    },
+    "classes": {
+      "A_EXACT_EXTERNAL": [
+        "normalized scramble exact-match",
+        "event 333",
+        "solver/person exact normalized-name match",
+        "same WCA round",
+        "attempt_number equals scramble_num",
+        "source result parses and equals official attempt value",
+        "source solve date lies inside official competition dates",
+        "one official candidate",
+        "one scramble group in the matched round",
+        "scramble match is globally unique for the reco record"
+      ],
+      "B_STRONG_EXTERNAL": [
+        "one compatible official candidate",
+        "exact scramble and exact solver support",
+        "A blocked only by public group-assignment limitation or unavailable source result/date field"
+      ],
+      "C_AMBIGUOUS": [
+        "multiple official candidates or conflicting available context"
+      ],
+      "U_UNLINKED": [
+        "no official candidate after exact scramble+solver+round+attempt crosswalk"
+      ]
+    },
+    "forbidden": [
+      "fuzzy solver-name matching",
+      "competition-name-only identity",
+      "result-only identity",
+      "force group assignment not present in WCA public export",
+      "use linkage class as cognitive mechanism evidence"
+    ]
+  }
 }

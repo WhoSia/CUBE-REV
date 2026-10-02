@@ -4,6 +4,7 @@
   "principle": "research/current is an exact executable/reproducibility allowlist, not a historical archive.",
   "allowed_paths": [
     ".github/workflows/g7-p7-reco-analysis.yml",
+    ".github/workflows/g7-p7-wca-linkage.yml",
     ".github/workflows/p7-repo-active-set-audit.yml",
     ".gitignore",
     "Cargo.lock",
@@ -34,6 +35,7 @@
     "scripts/cube/sticker-cube.mjs",
     "scripts/g7-p7/analyze-reco-five-rival.mjs",
     "scripts/g7-p7/calibrate-reco-statistics.py",
+    "scripts/g7-p7/link-wca-attempts.py",
     "scripts/g7-p7/merge-reco-corpus.mjs",
     "scripts/g7-p7/prefix-context.mjs",
     "scripts/g7-p7/test-reco-campaign-manifest.mjs",
@@ -68,5 +70,5 @@
     "archive_branch": "archive/pre-p7-active-prune-20261002",
     "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI"
   },
-  "reusable_core_note": "Historical generation-labelled search kernel g6.rs is renamed phase1.rs; P7-specific executable remains phase-labelled."
+  "reusable_core_note": "Historical generation-labelled search kernel g6.rs is renamed phase1.rs; P7-specific executable remains phase-labelled. WCA linkage audit script is current P7 data-authority code."
 }
