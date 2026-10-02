@@ -1,11 +1,9 @@
 name: P7 repository active-set audit
-# active-tree inventory
 
 on:
   push:
     branches: ['research/current']
-    paths:
-      - '.github/workflows/p7-repo-active-set-audit.yml'
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -19,14 +17,18 @@ jobs:
       - name: Inventory tracked files
         run: |
           set -euo pipefail
-          echo 'P7_REPO_ACTIVE_SET_AUDIT'
           git ls-files | sort | tee /tmp/tracked-files.txt
+          echo 'P7_REPO_ACTIVE_SET_AUDIT'
           echo '--- COUNT ---'
           wc -l /tmp/tracked-files.txt
           echo '--- TOP LEVEL COUNTS ---'
           awk -F/ '{print $1}' /tmp/tracked-files.txt | sort | uniq -c | sort -nr
+          echo '--- LEGACY CANDIDATES ---'
+          grep -E '^(g4/|g5/|g6/|g7/p[1-6]/|scripts/g7-p[1-6]/|g3-cog/|data_frontier/BRANCH_RETIREMENT_AUDIT_|\.github/workflows/(g3-|p14-r1-|validate-static))' /tmp/tracked-files.txt | tee /tmp/legacy-candidates.txt || true
       - uses: actions/upload-artifact@v4
         with:
           name: P7-repo-active-set-audit-${{ github.sha }}
-          path: /tmp/tracked-files.txt
+          path: |
+            /tmp/tracked-files.txt
+            /tmp/legacy-candidates.txt
           retention-days: 7
