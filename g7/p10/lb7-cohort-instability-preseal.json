@@ -1,0 +1,58 @@
+{
+  "schema_version": "g7-p10-r3-cohort-instability-preseal-1",
+  "phase": "G7-P10-R3",
+  "operation_type": "LB7 Cohort-Instability Decomposition Audit",
+  "formal_name": "CUBE-REV Generation VII G7-P10-R3 — LB7 Cohort-Instability Decomposition, Matched-Stratum Composition Reweighting, Common-Support Progress×Support-Size Restriction, P7-BATCH4↔Pooled-Cohort Conditional-Choice Contrast, Method-Composition Sensitivity & Localization-Transport Audit",
+  "status": "FROZEN_AFTER_R2_BEFORE_R3_OUTCOME",
+  "parent_run": 37040890646,
+  "parent_artifact": 11242586686,
+  "parent_sha256": "b091ece027a665932e03831932ce2c4daaa463c605d016bfb42b36eaf510c071",
+  "observed_before_freeze": {
+    "primary_exact_lb7_vs_lb6_8": {
+      "n_solves": 52,
+      "mean": 0.048695054945054946,
+      "signflip_p": 0.19280807191928082
+    },
+    "leave_one_cohort_out": {
+      "P4_CONFIRMATORY": 0.05694905869324474,
+      "P4_PILOT": 0.057494588744588744,
+      "P7_BATCH1": 0.08905895691609977,
+      "P7_BATCH2": 0.04282879818594104,
+      "P7_BATCH3": 0.048162525879917185,
+      "P7_BATCH4": -0.001688815060908082
+    },
+    "method_exact_matched_means": {
+      "CFOP": 0.04019607843137255,
+      "ROUX": 0.12299783549783551
+    }
+  },
+  "focal_contrast": "P7_BATCH4 versus pooled other cohorts",
+  "state_eligibility": "nonempty d<=2 TS support, non-G1, phase1_lb in {6,7,8}",
+  "stratum": [
+    "normalized progress quintile",
+    "exact low-overlap support-set size"
+  ],
+  "decomposition": [
+    "report cohort-specific target/comparator eligible-state counts and matched solve deltas",
+    "construct common-support strata present with both lb7 and neighbor comparison support in P7_BATCH4 and pooled-other cohorts",
+    "estimate cohort-specific within-stratum lb7-minus-neighbor excess",
+    "re-express both cohorts under the same pooled common-support stratum weights",
+    "compare raw matched difference with common-weight difference",
+    "report stratum-distribution total-variation distance as composition shift",
+    "repeat within CFOP where support permits; ROUX and other methods descriptive if sparse"
+  ],
+  "adjudication": {
+    "composition_dominant": "raw cohort contrast materially shrinks toward zero or changes sign after common-support common-weight re-expression",
+    "conditional_choice_drift": "same-direction cohort contrast persists under common-support common-weight re-expression",
+    "unidentified": "common support is too sparse for stable decomposition"
+  },
+  "inference_boundary": [
+    "post-R2 exploratory audit; no confirmatory p-value claim",
+    "cohort is acquisition ancestry, not a randomized treatment",
+    "common-weight decomposition is descriptive standardization, not causal adjustment",
+    "no mechanism promotion"
+  ],
+  "source_contact": "NONE",
+  "new_body_requests": 0,
+  "human_contact_gate": "CLOSED"
+}
