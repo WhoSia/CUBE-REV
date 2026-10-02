@@ -406,5 +406,47 @@
       "no between-class causal interpretation",
       "no mechanism promotion"
     ]
+  },
+  "competition_label_reconciliation_audit": {
+    "operation_type": "Competition-Label Reconciliation Audit",
+    "status": "FROZEN_AFTER_FULL_INDEX_CENSUS_BEFORE_EXECUTION",
+    "authority": "POST_POPULATION_CENSUS_PROVENANCE_RECONCILIATION",
+    "source_scope": "same retained 12,941-row reco.nz index metadata and same frozen WCA export; no new solve-body contact",
+    "target": "3x3 rows currently classified OTHER_UNMATCHED_SOURCE_LABEL under exact-normalized WCA competition-name matching",
+    "observed_before_freeze": {
+      "target_rows": 232,
+      "largest_labels": {
+        "US Nationals 2012": 81,
+        "Cubing Clash 2025": 80,
+        "Thailand Championship 2012\"": 10,
+        "Geelong says So-Long 2021": 8,
+        "PSL - Berkeley": 7
+      }
+    },
+    "candidate_discovery": [
+      "lexical similarity is discovery-only and may not itself change provenance class",
+      "if a four-digit year appears in the source label, candidate WCA competitions are restricted to that year",
+      "candidate ranking may use normalized sequence/token similarity",
+      "retain multiple candidates when discovery is non-unique"
+    ],
+    "authoritative_recovery": [
+      "source solver must exactly match official WCA person_name after Unicode/case/whitespace normalization",
+      "source result must parse and exactly equal an official 3x3 attempt value in the candidate competition",
+      "competition-label reconciliation never creates exact scramble or exact attempt linkage",
+      "automatic strong alias recovery requires at least 3 supported source rows and at least 80% support among parseable rows for one candidate, with no competing candidate reaching comparable support"
+    ],
+    "outputs": [
+      "row and label counts by reconciliation class",
+      "candidate evidence table",
+      "recovered competition aliases with WCA competition IDs",
+      "unresolved labels retained without forced assignment"
+    ],
+    "forbidden": [
+      "promote by fuzzy string similarity alone",
+      "use row source_display_date as official competition-date authority",
+      "convert competition alias recovery into exact attempt identity",
+      "backfill solve-body provenance beyond available evidence",
+      "use alias recovery as cognitive mechanism evidence"
+    ]
   }
 }
