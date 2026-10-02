@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse, csv, json, math, random, statistics
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 RIVALS = {
     "H1": ("h1_best","observed_match_h1"),
