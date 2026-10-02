@@ -104,11 +104,43 @@ jobs:
           node scripts/g7-p7/analyze-reco-five-rival.mjs             --context /tmp/g7-p7-build/prefix-context.jsonl             --features /tmp/g7-p7-build/five-rival-features.tsv             --out /tmp/g7-p7-build/analysis
           python3 scripts/g7-p7/calibrate-reco-statistics.py             --context /tmp/g7-p7-build/prefix-context.jsonl             --features /tmp/g7-p7-build/five-rival-features.tsv             --out /tmp/g7-p7-build/calibration             --permutations 100000
 
+      - name: Validate 60-ID recovered provenance registry
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/g7-p7-provenance-authority
+          curl --fail --location --silent --show-error \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$REPO/actions/artifacts/11228144174/zip" \
+            -o /tmp/g7-p7-provenance-authority.zip
+          echo '02515d1bd946a7eec7e72823c170c12fc7e41ea69bb7aa88a58964127c2fad2d  /tmp/g7-p7-provenance-authority.zip' | sha256sum -c -
+          unzip -q /tmp/g7-p7-provenance-authority.zip -d /tmp/g7-p7-provenance-authority
+          SW="$(find /tmp/g7-p7-provenance-authority -name source-world-support-audit.json -print -quit)"
+          test -n "$SW"
+          python3 scripts/g7-p7/validate-provenance-recovery.py \
+            --source-world "$SW" \
+            --recovery g7/p7/source-provenance-recovery.json
+          rm -rf /tmp/g7-p7-provenance-authority /tmp/g7-p7-provenance-authority.zip
+
+      - name: Recovered-provenance five-rival geometry Stress Test
+        run: |
+          set -euo pipefail
+          python3 scripts/g7-p7/analyze-recovered-provenance-geometry.py \
+            --context /tmp/g7-p7-build/prefix-context.jsonl \
+            --features /tmp/g7-p7-build/five-rival-features.tsv \
+            --recovery g7/p7/source-provenance-recovery.json \
+            --out /tmp/g7-p7-build/recovered-provenance \
+            --permutations 100000
+
       - name: Seal derived-only private research artifact
         run: |
           set -euo pipefail
           mkdir -p /tmp/g7-p7-seal/authority /tmp/g7-p7-seal/derived
-          cp g7/p7/preseal.json g7/p7/reco-campaign-constitution.json g7/p7/reco-campaign-manifest.json g7/p7/reco-campaign-closure.json /tmp/g7-p7-seal/authority/
+          cp g7/p7/preseal.json g7/p7/reco-campaign-constitution.json g7/p7/reco-campaign-manifest.json g7/p7/reco-campaign-closure.json g7/p7/source-provenance-recovery.json /tmp/g7-p7-seal/authority/
           cp /tmp/g7-p7-build/corpus/corpus-receipt.json /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/corpus/solve-metadata.jsonl /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/prefix-context.jsonl /tmp/g7-p7-seal/derived/
@@ -117,6 +149,7 @@ jobs:
           cp /tmp/g7-p7-build/analysis/five-rival-analysis-receipt.md /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/calibration/statistical-calibration.json /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/calibration/statistical-calibration-receipt.md /tmp/g7-p7-seal/derived/
+          cp /tmp/g7-p7-build/recovered-provenance/recovered-provenance-five-rival-geometry.json /tmp/g7-p7-seal/derived/
           cp g7/p7/reco-statistical-calibration.json /tmp/g7-p7-seal/authority/
           cp /tmp/g7-p7-build/exact/exact-trajectories.json /tmp/g7-p7-seal/derived/
           printf '%s\n'             'SOURCE_CONTACT=NONE'             'SOLVES=60'             'RAW_SOURCE_HTML_PACKAGED=NO'             'RAW_PUBLIC_RELEASE=HOLD'             'AUTHORITY=DESCRIPTIVE_NATURALISTIC_MEASUREMENT'             > /tmp/g7-p7-seal/AUTHORITY.txt
@@ -136,6 +169,10 @@ jobs:
           console.log('CALIBRATION_H3_EXCESS\t'+c.choice_calibration.H3.solve_mean_excess);
           console.log('CALIBRATION_TS_EXCESS\t'+c.choice_calibration.TS.solve_mean_excess);
           console.log('PROGRESS_MATCHED_BOUNDARY_DELTA\t'+c.progress_matched_boundary_calibration.mean_matched_delta);
+          const p=require('/tmp/g7-p7-seal/derived/recovered-provenance-five-rival-geometry.json');
+          if(p.solves!==60) process.exit(3);
+          console.log('RECOVERED_PROVENANCE_CLASSES\t'+Object.keys(p.groups).length);
+          console.log('RECOVERED_PROVENANCE_TS_UNOFFICIAL\t'+p.groups.SOURCE_DECLARED_UNOFFICIAL.rivals.TS.mean_excess);
           NODE
 
       - uses: actions/upload-artifact@v4
