@@ -42,9 +42,10 @@
     "repeat within CFOP where support permits; ROUX and other methods descriptive if sparse"
   ],
   "adjudication": {
-    "composition_dominant": "raw cohort contrast materially shrinks toward zero or changes sign after common-support common-weight re-expression",
-    "conditional_choice_drift": "same-direction cohort contrast persists under common-support common-weight re-expression",
-    "unidentified": "common support is too sparse for stable decomposition"
+    "unidentified": "fewer than 3 common-support strata or fewer than 5 R2-style eligible solves in either focal group",
+    "composition_dominant": "otherwise, common-weight cohort-difference changes sign relative to raw cohort-difference or has absolute magnitude <= 0.5 times the raw absolute difference",
+    "conditional_choice_drift": "otherwise, common-weight cohort-difference retains the raw sign and absolute magnitude > 0.5 times the raw absolute difference",
+    "mixed": "use only if raw cohort-difference is exactly zero or numerical edge cases prevent the above partition"
   },
   "inference_boundary": [
     "post-R2 exploratory audit; no confirmatory p-value claim",
