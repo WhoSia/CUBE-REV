@@ -568,5 +568,46 @@
       "if TS is stable and unidentified mass is negligible, record provenance-axis transport support only",
       "no result promotes TS/H1/etc. to a cognitive mechanism"
     ]
+  },
+  "unidentified_mass_adversarial_bound_court": {
+    "operation_type": "Adversarial Unidentified-Mass Sign-Bound Court",
+    "status": "FROZEN_AFTER_GEOMETRY_TRANSPORT_BEFORE_BOUND_EXECUTION",
+    "authority": "POST_TRANSPORT_DETERMINISTIC_BOUND",
+    "observed_before_freeze": {
+      "geometry_transport_run": 37030542791,
+      "geometry_transport_head": "d4cf738f8677583744e80052ece58f660fa3c924",
+      "geometry_transport_artifact_id": 11237112152,
+      "geometry_transport_artifact_sha256": "c096f411e6c42a9773c26474dc9f12a9998aba4294ccdada65a9cc68b04270d7",
+      "supported_population_mass": 0.9879142668303277,
+      "unidentified_population_mass": 0.012085733169672364,
+      "TS_supported_poststrat_mean": 0.05037151112497663,
+      "H1_supported_poststrat_mean": 0.02746757026257758
+    },
+    "metric_bound": {
+      "definition": "per-state rival excess = observed_match - |rival_set|/18",
+      "lower": -1,
+      "upper": "17/18",
+      "justification": [
+        "observed_match is 0 or 1 for evaluated states",
+        "rival-set cardinality is between 0 and 18",
+        "when observed_match=1 the observed action belongs to the rival set, hence cardinality is at least 1",
+        "solve-level and class-level arithmetic means inherit the same closed bounds"
+      ]
+    },
+    "primary_question": "whether the 1.21% zero-sample-support provenance mass can reverse the population-wide sign of TS or H1 even if every unidentified solve is adversarially assigned the minimum possible excess",
+    "readouts": [
+      "full-population worst-case lower and upper mean bounds for H1/H2/H3/TS/FS",
+      "sign identified or unidentified under the full theoretical metric range",
+      "maximum unidentified population mass compatible with guaranteed positive sign at the observed supported-mass mean",
+      "margin between current unidentified mass and sign-flip threshold"
+    ],
+    "adjudication": [
+      "lower_bound > 0 => population-wide positive sign identified under full-range adversarial completion",
+      "lower_bound <= 0 <= upper_bound => population-wide sign unidentified",
+      "TS and H1 are primary; other rivals are secondary",
+      "a sign bound does not identify magnitude in the unidentified mass",
+      "no sign-bound result licenses a human cognitive-mechanism claim"
+    ],
+    "source_contact": "NONE"
   }
 }
