@@ -8,6 +8,7 @@
     ".github/workflows/g7-p7-wca-linkage.yml",
     ".github/workflows/g7-p8-index-covariate-census.yml",
     ".github/workflows/g7-p8-method-reconstructor-transport.yml",
+    ".github/workflows/g7-p8-r1-method-dominance.yml",
     ".github/workflows/g7-p8-selection-manifest.yml",
     ".github/workflows/p7-repo-active-set-audit.yml",
     ".gitignore",
