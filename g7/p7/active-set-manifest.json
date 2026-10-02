@@ -3,6 +3,7 @@
   "phase": "G7-P7",
   "principle": "research/current is an exact executable/reproducibility allowlist, not a historical archive.",
   "allowed_paths": [
+    ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-state-surface.yml",
     ".github/workflows/g7-p7-index-provenance-census.yml",
     ".github/workflows/g7-p7-reco-analysis.yml",
