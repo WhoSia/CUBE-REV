@@ -1,0 +1,67 @@
+{
+  "schema_version": "g7-p11-constitution-1",
+  "phase": "G7-P11",
+  "formal_name": "CUBE-REV Generation VII G7-P11 — Prospective Fresh-Reconstruction State-Surface Replication, Outcome-Blind Method×Reconstructor Cell Balancing, Exact-State Replay, Low-Overlap Support-Availability/Conditional-Choice Reconstitution, LB7↔Neighbor Matched-Contrast Replication, Cross-Batch/Method Transport, Cohort-Composition Firewall & Structural-Localization Replication Campaign",
+  "operation_type": "Fresh-Reconstruction State-Surface Replication Campaign",
+  "status": "PRESEALED_BEFORE_FRESH_BODY_CONTACT",
+  "inherits": {
+    "p10_closure": "g7/p10/closure.json",
+    "frozen_population_3x3": 10591,
+    "prior_body_solves": 60,
+    "human_contact_gate": "CLOSED"
+  },
+  "scientific_problem": "P10 found positive lb7 conditional low-overlap alignment but local-neighbor matching was acquisition-cohort sensitive and partly composition-driven. P11 tests the frozen P10 grammar on a fresh reconstruction corpus selected before body outcomes are observed.",
+  "sampling_design": {
+    "frame": "G7-P8 frozen 10,591-row index-covariate authority",
+    "exclude": "all 60 G7-P7 body source_ids",
+    "target_total": 40,
+    "cells": {
+      "CFOP__DOMINANT_RECONSTRUCTOR": 10,
+      "CFOP__NONDOMINANT_RECONSTRUCTOR": 10,
+      "NONCFOP__DOMINANT_RECONSTRUCTOR": 10,
+      "NONCFOP__NONDOMINANT_RECONSTRUCTOR": 10
+    },
+    "dominant_reconstructor_definition": "raw reconstructor label frequency >=200 among the frozen 10,591 3x3 population",
+    "within_cell_selection": "coarse-era round-robin balancing followed by deterministic SHA-256 ranking",
+    "seed": "CUBE_REV_G7_P11_FRESH_REPLICATION_V1",
+    "replacement_policy": "no outcome-triggered replacement; retrieval failures remain failures and any replacement requires a separately presealed amendment before observing geometry"
+  },
+  "acquisition": {
+    "source": "reco.nz",
+    "max_solves_per_run": 10,
+    "batches": 4,
+    "min_delay_ms": 2000,
+    "robots_policy": "CHECK_AT_EXECUTION",
+    "raw_public_release": "HOLD",
+    "body_contact": "AUTHORIZED_ONLY_AFTER_SELECTION_MANIFEST_SEAL",
+    "reuse_prior_60": false
+  },
+  "frozen_analysis": {
+    "independent_unit": "solve",
+    "primary": [
+      "G1 low-overlap support availability",
+      "lb7 conditional d<=2 TS solve-level excess among nonempty-support non-G1 states",
+      "exact within-solve lb7 minus union(lb6,lb8) contrast matched on normalized progress quintile × exact low-overlap support-set size"
+    ],
+    "secondary": [
+      "lb7 minus lb6 and lb7 minus lb8",
+      "four sampling-cell readouts",
+      "four acquisition-batch readouts",
+      "CFOP vs non-CFOP transport",
+      "boundary contrast as negative-control continuation"
+    ],
+    "replication_rule": {
+      "support_limited": "fewer than 10 fresh solves eligible for the exact lb7-vs-neighbor primary contrast",
+      "replicated_direction": "otherwise both fresh lb7 conditional solve excess > 0 and fresh exact lb7-vs-neighbor matched solve mean > 0",
+      "not_replicated_direction": "otherwise"
+    },
+    "p_values": "solve-clustered sign-flip diagnostics reported descriptively; no threshold required for directional replication verdict"
+  },
+  "forbidden": [
+    "change selected IDs after seeing body geometry",
+    "pool old 60 with fresh 40 before the fresh-only primary verdict",
+    "interpret reconstruction method or reconstructor as latent cognition",
+    "promote TS/PDB geometry to a human cognitive mechanism",
+    "exceed bounded acquisition policy"
+  ]
+}
