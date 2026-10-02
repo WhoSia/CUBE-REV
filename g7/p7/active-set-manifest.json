@@ -37,6 +37,7 @@
     "scripts/cube/sticker-cube.mjs",
     "scripts/g7-p7/analyze-reco-five-rival.mjs",
     "scripts/g7-p7/analyze-source-world-geometry.py",
+    "scripts/g7-p7/analyze-recovered-provenance-geometry.py",
     "scripts/g7-p7/audit-source-world-support.py",
     "scripts/g7-p7/calibrate-reco-statistics.py",
     "scripts/g7-p7/diagnose-linkage-failures.py",
