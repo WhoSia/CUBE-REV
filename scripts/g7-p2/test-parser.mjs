@@ -35,3 +35,7 @@ const grouped = parseReconstruction("(r2' y) // grouped notation");
 assert.equal(grouped.status, "PARSED");
 assert.deepEqual(grouped.events.filter(e=>e.kind!=="ANNOTATION").map(e=>e.raw), ["r2'","y"]);
 assert.equal(grouped.geometry_status, "EXTENDED_MOVE_KERNEL_REQUIRED");
+
+const adjacent = parseReconstruction("U' L' U' l'U R' // cross");
+assert.equal(adjacent.status, "PARSED");
+assert.deepEqual(adjacent.events.filter(e=>e.kind!=="ANNOTATION").map(e=>e.raw), ["U'","L'","U'","l'","U","R'"]);
