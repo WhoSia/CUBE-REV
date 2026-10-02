@@ -50,7 +50,10 @@ struct Candidate{
 fn main(){
     let moves=Phase1Moves::build();
     let pdb=Phase1Pdb::build(&moves);
-    let mut seed=0xC0BE_5A17_2026_1002u64;
+    let mut seed=std::env::var("G7_P5_PACKET_SEED_HEX")
+        .ok()
+        .and_then(|s|u64::from_str_radix(s.trim_start_matches("0x"),16).ok())
+        .unwrap_or(0xC0BE_5A17_2026_1002u64);
     let mut by_lb:BTreeMap<u8,Vec<Candidate>>=BTreeMap::new();
     let mut seen=BTreeSet::new();
 
