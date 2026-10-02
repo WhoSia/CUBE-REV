@@ -32,6 +32,7 @@
     "g7/p7/reco-campaign-constitution.json",
     "g7/p7/reco-campaign-manifest.json",
     "g7/p7/reco-statistical-calibration.json",
+    "g7/p7/source-provenance-recovery.json",
     "scripts/cube/replay-exact-trajectories.mjs",
     "scripts/cube/sticker-cube.mjs",
     "scripts/g7-p7/analyze-reco-five-rival.mjs",
