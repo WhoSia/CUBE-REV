@@ -28,6 +28,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
       - name: Freeze P6 authority
         run: |
@@ -65,6 +68,23 @@ jobs:
           console.log('BANK_SHA256\t'+a.bank_sha256);
           console.log('PHASE1_LB_COUNTS\t'+JSON.stringify(a.phase1_lb_counts));
           NODE
+
+      - name: Audit pinned external planning-data bytes without unpickling
+        run: |
+          set -euo pipefail
+          SRC_COMMIT=911a6f60ad78f1d908dd50c261eaab69e65bf02f
+          RAW=/tmp/g7-p6-nuzzi-raw
+          mkdir -p "$RAW" /tmp/g7-p6/external-data-audit
+          for f in LevelsFinal.pkl ResultsPilot.pkl ResultsFirstDecision.pkl ResultsAllDecisions.pkl ResultsTime.pkl AdditionalInfo.pkl; do
+            curl --fail --location --silent --show-error               "https://raw.githubusercontent.com/DavideNuzzi/Planning-While-Acting/$SRC_COMMIT/data/$f"               -o "$RAW/$f"
+            test -s "$RAW/$f"
+          done
+          python3 scripts/g7-p6/audit-nuzzi-pickles.py "$RAW" | tee /tmp/g7-p6/external-data-audit/nuzzi-audit.log
+          cp "$RAW/static-audit.json" /tmp/g7-p6/external-data-audit/nuzzi-static-audit.json
+          cp g7/p6/nuzzi-intake-manifest.json /tmp/g7-p6/external-data-audit/
+          rm -rf "$RAW"
+          test ! -e "$RAW"
+          echo 'RAW_BYTES_NOT_PACKAGED=YES' > /tmp/g7-p6/external-data-audit/AUTHORITY.txt
 
       - name: Seal authority and source ledgers
         run: |
