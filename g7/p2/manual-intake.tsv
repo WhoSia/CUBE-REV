@@ -1,6 +1,0 @@
-source_id	expected_name_or_pattern	required_for	status	action
-cubesolves_2014_dump	cubesolves_2014_db.sqlite	HIGH	MANUAL_INTAKE	Place original SQLite dump in CUBE-REV/00_RAW_BYTE_MIRROR_INTAKE; preserve bytes and filename provenance.
-wca_results_v2	WCA_export_v2_*.tsv.zip	MEDIUM	AUTO_OR_EXISTING	Prefer current WCA export/API or existing CUBE-REV WCA raw snapshot; do not duplicate if current-enough snapshot exists.
-speedcubing_reconstructions	speedcubing_reconstructions_export.*	HIGH	PERMISSION_OR_EXPORT_REQUIRED	Only ingest an explicit export/dump or owner-provided archive; do not bulk scrape public pages.
-cubedb	cubedb_reconstructions_export.*	HIGH	PERMISSION_OR_EXPORT_REQUIRED	Only ingest an explicit export/API result or owner-provided archive; do not bulk scrape public pages.
-manual_reconstruction_intake	*.sqlite|*.csv|*.tsv|*.json|*.jsonl|*.zip|*.txt	OPTIONAL	AUDIT_PER_FILE	Record source URL/rights note next to each manually supplied file when possible.
