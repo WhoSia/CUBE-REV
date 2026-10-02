@@ -448,5 +448,43 @@
       "backfill solve-body provenance beyond available evidence",
       "use alias recovery as cognitive mechanism evidence"
     ]
+  },
+  "competition_label_reconciliation_audit_v2": {
+    "operation_type": "Competition-Label Reconciliation Audit",
+    "version": 2,
+    "status": "FROZEN_AFTER_V1_BEFORE_EVIDENCE_FIRST_EXECUTION",
+    "authority": "POST_V1_DISCOVERY_REPAIR_AUDIT",
+    "v1_observed_receipt": {
+      "run": 37018711396,
+      "artifact_id": 11232066768,
+      "artifact_sha256": "a080e385f3ca8bcbc4a96759e6cf89caafbc81c6a29179db2c29e7afc7ad2ba8",
+      "target_rows": 232,
+      "row_class_counts": {
+        "NO_WCA_ALIAS_CONTEXT_SUPPORT": 196,
+        "WCA_COMPETITION_ALIAS_CANDIDATE": 18,
+        "WCA_COMPETITION_ALIAS_STRONG_CONTEXT_RECOVERED": 18
+      }
+    },
+    "discovered_v1_limitation": "lexical top-5 candidate generation can miss semantically valid aliases; US Nationals 2012 is a known example because the independently recovered official context is United States National Championships 2012",
+    "source_scope": "same frozen 232 OTHER_UNMATCHED_SOURCE_LABEL 3x3 rows and same frozen WCA export; no new reco.nz body contact",
+    "candidate_generation": [
+      "if the source label contains an explicit four-digit year, scan all official WCA competitions in that year for exact normalized solver plus exact official 3x3 attempt-result support",
+      "do not use lexical similarity to decide which competitions are eligible for evidence search",
+      "lexical similarity may be reported after evidence recovery only",
+      "labels without an explicit year are not automatically strong-recovered by v2"
+    ],
+    "authoritative_recovery": [
+      "aggregate distinct supported source rows by candidate WCA competition",
+      "strong alias requires at least 3 exact solver+result-supported source rows",
+      "strong alias requires at least 80% of parseable source rows to support one candidate competition",
+      "second-best supported candidate must have fewer than 50% of the best candidate's supported rows",
+      "alias recovery changes competition-context support only; it never creates exact scramble or exact-attempt linkage"
+    ],
+    "forbidden": [
+      "use reconstruction/index date as official competition-year authority",
+      "promote lexical similarity alone",
+      "force a no-year label into a WCA competition",
+      "turn competition alias recovery into solve identity or cognitive-mechanism evidence"
+    ]
   }
 }
