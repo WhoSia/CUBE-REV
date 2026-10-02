@@ -486,5 +486,50 @@
       "force a no-year label into a WCA competition",
       "turn competition alias recovery into solve identity or cognitive-mechanism evidence"
     ]
+  },
+  "population_provenance_reconstitution_transport": {
+    "operation_type": "Population Provenance Reconstitution & Selection-Transport Stress Test",
+    "status": "FROZEN_AFTER_LABEL_AUDIT_V2_BEFORE_EXECUTION",
+    "authority": "POST_V2_POPULATION_TRANSPORT_STRESS",
+    "observed_before_freeze": {
+      "v2_run": 37019739170,
+      "v2_head": "8057a9d01465fbc6505dbade7e12528e859ba9da",
+      "v2_artifact_id": 11232718297,
+      "v2_artifact_sha256": "943cf1f70a1d59757c9d12f0adf2f7651e33d9447c8462e2043aa16433383fa9",
+      "v2_row_class_counts": {
+        "NO_EXPLICIT_YEAR_NO_AUTO_RECOVERY": 8,
+        "NO_WCA_YEAR_WIDE_PERSON_RESULT_SUPPORT": 19,
+        "WCA_COMPETITION_ALIAS_EVIDENCE_CANDIDATE_V2": 101,
+        "WCA_COMPETITION_ALIAS_STRONG_CONTEXT_RECOVERED_V2": 104
+      },
+      "strong_alias_examples": {
+        "US Nationals 2011": "5/5 -> United States National Championships 2011",
+        "US Nationals 2012": "67/81 supporting rows; alias class covers 81 rows -> United States National Championships 2012",
+        "Cube4fun Warsaw 2022": "5/5",
+        "Geelong says So-Long 2021": "8/8",
+        "Vancouver Open, Winter 2013": "4/5"
+      }
+    },
+    "frozen_reclassification": [
+      "retain all original index-visible source-label classes",
+      "split OTHER_UNMATCHED_SOURCE_LABEL into STRONG_WCA_ALIAS_RECOVERED_V2, EVIDENCE_CANDIDATE_V2, NO_YEAR_NO_AUTO_RECOVERY, and NO_YEAR_WIDE_SUPPORT",
+      "strong alias is a competition-context class, not exact attempt identity",
+      "candidate-only rows remain non-recovered"
+    ],
+    "transport_readouts": [
+      "population and frozen-60 shares under the refined provenance classes",
+      "total-variation distance before versus after refinement",
+      "sample coverage of every refined population class",
+      "population mass in classes absent from the 60-body sample",
+      "WCA competition-context support before versus after strong-alias recovery",
+      "exact person+result support lower bound after alias recovery"
+    ],
+    "weighting_boundary": [
+      "do not use inverse-probability weighting because the frozen 60 corpus was not probability-sampled",
+      "do not weight on method or reconstructor because those covariates are unavailable for the full 10,591-row population",
+      "post-stratified descriptive re-expression is permitted only for observed provenance classes with positive sample support",
+      "classes with zero sample support define non-transportable population mass rather than being imputed"
+    ],
+    "promotion_rule": "transport results may bound external validity of the 60-body geometry but may not promote any rival to a cognitive mechanism"
   }
 }
