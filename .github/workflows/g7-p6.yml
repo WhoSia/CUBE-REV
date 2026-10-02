@@ -54,6 +54,7 @@ jobs:
           node scripts/g7-p6/test-packet-bank-pipeline.mjs
           node scripts/g7-p6/test-packet-selection.mjs
           node scripts/g7-p6/test-contact-gate.mjs
+          node scripts/g7-p6/test-final-court.mjs
 
       - name: Materialize exact multi-rival bank
         run: |
@@ -145,7 +146,15 @@ jobs:
       - name: Seal authority and source ledgers
         run: |
           set -euo pipefail
-          cp g7/p6/preseal.json g7/p6/literature-audit.json g7/p6/data-source-expansion.json /tmp/g7-p6/authority/
+          cp g7/p6/preseal.json g7/p6/literature-audit.json g7/p6/data-source-expansion.json g7/p6/current-contact-context.json /tmp/g7-p6/authority/
+          node scripts/g7-p6/evaluate-final-court.mjs /tmp/g7-p6/final
+          node - <<'NODE'
+          const x=require('/tmp/g7-p6/final/G7-P6-FINAL-COURT.json');
+          if(x.verdict!=='HOLD_WORLD_CONTACT_OR_IDENTIFICATION_INSUFFICIENT') process.exit(1);
+          if(!x.phase_closed||!x.next_phase_permission||x.mechanism_promotion) process.exit(2);
+          console.log('G7_P6_FINAL_CLOSURE_GATE_PASS');
+          console.log('VERDICT\t'+x.verdict);
+          NODE
           printf '%s\n'             'HUMAN_CONTACT=CLOSED_PENDING_P6_CONTACT_GATE'             'LIVE_HUMAN_DATA=NONE'             'EXACT_PACKET_BANK=256_STATES'             'RIVAL_FAMILIES=5'             'EXTERNAL_PLANNING_DERIVED=DEIDENTIFIED'             'EXTERNAL_RAW_BYTES_PACKAGED=NO' > /tmp/g7-p6/AUTHORITY.txt
           (cd /tmp/g7-p6 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
 
