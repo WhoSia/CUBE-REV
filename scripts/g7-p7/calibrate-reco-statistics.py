@@ -221,12 +221,71 @@ def direction_stability(grouped):
         }
     return out
 
+
+def linkage_stratified_stress(choice, linkage_path, permutations):
+    linkage=json.load(open(linkage_path,encoding="utf-8"))
+    classes={int(x["source_id"]):x["linkage_class"] for x in linkage["rows"]}
+    grouped=defaultdict(list)
+    for sid,x in choice.items():
+        grouped[classes.get(sid,"MISSING")].append(x)
+    out={}
+    seed=20263000
+    for cls,xs in sorted(grouped.items()):
+        rivals={}
+        for name in RIVALS:
+            vals=[x[name] for x in xs if x[name] is not None]
+            rivals[name]={
+                "solves":len(vals),
+                "mean_excess":mean(vals),
+                "median_excess":median(vals),
+                "positive":sum(v>0 for v in vals),
+                "zero":sum(v==0 for v in vals),
+                "negative":sum(v<0 for v in vals),
+                "signflip_p":signflip_p(vals,permutations,seed)
+            }
+            seed+=1
+        methods=Counter((x.get("method_family") or "NULL") for x in xs)
+        reconstructors=Counter((x.get("reconstructor") or "NULL") for x in xs)
+        cohorts=Counter((x.get("cohort") or "NULL") for x in xs)
+        out[cls]={
+            "solves":len(xs),
+            "rivals":rivals,
+            "method_counts":dict(sorted(methods.items())),
+            "reconstructor_counts":dict(sorted(reconstructors.items())),
+            "cohort_counts":dict(sorted(cohorts.items()))
+        }
+    exact=out.get("A_EXACT_EXTERNAL")
+    unlinked=out.get("U_UNLINKED")
+    contrasts={}
+    if exact and unlinked:
+        for name in RIVALS:
+            contrasts[name]={
+                "exact_minus_unlinked_mean_excess":
+                    exact["rivals"][name]["mean_excess"]-unlinked["rivals"][name]["mean_excess"],
+                "same_sign":
+                    (exact["rivals"][name]["mean_excess"]>0)==(unlinked["rivals"][name]["mean_excess"]>0)
+            }
+    return {
+        "schema_version":"g7-p7-external-linkage-stratified-stress-1",
+        "authority":"POST_LINKAGE_EXPLORATORY_STRESS_TEST",
+        "linkage_schema_version":linkage.get("schema_version"),
+        "groups":out,
+        "exact_vs_unlinked":contrasts,
+        "boundary":[
+            "Linkage status is not random assignment.",
+            "Exact-linked solves are not assumed representative of reco.nz or WCA.",
+            "Within-group sign-flip values are exploratory stress diagnostics, not independent confirmation.",
+            "No linkage-stratified result may promote a computational rival to a cognitive mechanism."
+        ]
+    }
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--context",required=True)
     ap.add_argument("--features",required=True)
     ap.add_argument("--out",required=True)
     ap.add_argument("--permutations",type=int,default=100000)
+    ap.add_argument("--linkage")
     args=ap.parse_args()
 
     ctx=load_context(args.context)
@@ -324,6 +383,13 @@ def main():
     os.makedirs(args.out,exist_ok=True)
     with open(os.path.join(args.out,"statistical-calibration.json"),"w",encoding="utf-8") as f:
         json.dump(report,f,indent=2,ensure_ascii=False);f.write("\n")
+    if args.linkage:
+        stress=linkage_stratified_stress(choice,args.linkage,args.permutations)
+        with open(os.path.join(args.out,"external-linkage-stratified-stress.json"),"w",encoding="utf-8") as f:
+            json.dump(stress,f,indent=2,ensure_ascii=False);f.write("\n")
+        print("G7_P7_EXTERNAL_LINKAGE_STRATIFIED_STRESS_PASS")
+        for cls,x in stress["groups"].items():
+            print("LINKAGE_GROUP\t"+cls+"\t"+str(x["solves"])+"\tTS="+str(x["rivals"]["TS"]["mean_excess"])+"\tH1="+str(x["rivals"]["H1"]["mean_excess"]))
     with open(os.path.join(args.out,"statistical-calibration-receipt.md"),"w",encoding="utf-8") as f:
         f.write("# G7-P7 reco.nz statistical calibration\n\n")
         for name,x in choice_result.items():

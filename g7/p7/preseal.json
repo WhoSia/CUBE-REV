@@ -169,5 +169,23 @@
       "force group assignment not present in WCA public export",
       "use linkage class as cognitive mechanism evidence"
     ]
+  },
+  "linkage_stratified_stress": {
+    "operation_type": "Stress Test",
+    "status": "FROZEN_AFTER_LINKAGE_V2_BEFORE_STRATIFIED_EXECUTION",
+    "authority": "POST_LINKAGE_EXPLORATORY_STRESS_TEST",
+    "prior_observation_disclosure": [
+      "linkage v2 class counts 10 A_EXACT_EXTERNAL / 50 U_UNLINKED were observed",
+      "60-solve global calibration and robustness results were observed",
+      "no linkage-stratified five-rival excess table was computed before this freeze"
+    ],
+    "question": "whether H1/TS calibrated excess retains direction in the 10 exact-linked official attempts versus the 50 unlinked records",
+    "independent_unit": "solve",
+    "inferential_boundary": [
+      "linkage status is selected and not random",
+      "exact-linked subset is not assumed representative of reco.nz or WCA",
+      "no between-group causal interpretation",
+      "no mechanism promotion"
+    ]
   }
 }
