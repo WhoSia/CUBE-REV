@@ -87,44 +87,7 @@
       "status": "PRESENT"
     }
   ],
-  "missing_verified": [
-    {
-      "title": "Cowan (2001) — The magical number 4 in short-term memory: A reconsideration of mental storage capacity",
-      "doi": "10.1017/S0140525X01003922",
-      "status": "MISSING_FROM_DRIVE_SEARCH",
-      "role": "origin working-memory foundation"
-    },
-    {
-      "title": "Chase & Simon (1973) — Perception in chess",
-      "doi": "10.1016/0010-0285(73)90004-2",
-      "status": "MISSING_FROM_DRIVE_SEARCH",
-      "role": "origin expertise/chunking foundation"
-    },
-    {
-      "title": "Ericsson & Kintsch (1995) — Long-Term Working Memory",
-      "doi": "10.1037/0033-295X.102.2.211",
-      "status": "MISSING_FROM_DRIVE_SEARCH",
-      "role": "origin expertise/working-memory foundation"
-    },
-    {
-      "title": "Shepard & Metzler (1971) — Mental Rotation of Three-Dimensional Objects",
-      "doi": "10.1126/science.171.3972.701",
-      "status": "MISSING_FROM_DRIVE_SEARCH",
-      "role": "origin spatial-cognition foundation"
-    },
-    {
-      "title": "Simonelli et al. (2025) — Structuring the environment nudges participants toward hierarchical over shortest path planning",
-      "doi": "10.1016/j.concog.2025.103908",
-      "status": "MISSING_FROM_DRIVE_SEARCH",
-      "role": "P6 hierarchical-planning intervention"
-    },
-    {
-      "title": "Exploring the hierarchical structure of human plans via program generation",
-      "doi": "10.1016/j.cognition.2024.105990",
-      "status": "MISSING_FROM_DRIVE_SEARCH",
-      "role": "P6 human-plan hierarchy"
-    }
-  ],
+  "missing_verified": [],
   "unresolved": [
     {
       "citation": "Yang et al. (2019)",
@@ -151,5 +114,61 @@
       ],
       "status": "DUPLICATE_CANDIDATE_NOT_DELETED"
     }
-  ]
+  ],
+  "normalization_receipt": {
+    "normalized_at": "2026-10-02",
+    "intake_folder_id": "1MLtYh0pv8QUZDReYzRqjDrOjRkSJAD16",
+    "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+    "intake_empty_after_move": true,
+    "canonicalized": [
+      {
+        "drive_id": "1vMFBXMHsnP6RJgn-Gx5BpxE9_Vf2ll2T",
+        "title": "Cowan (2001) — The Magical Number 4 in Short-Term Memory - A Reconsideration of Mental Storage Capacity.pdf"
+      },
+      {
+        "drive_id": "1DXWLAaRTiu7T4Oq7EMrh6_pOrjn9oMtk",
+        "title": "Chase & Simon (1973) — Perception in Chess.pdf"
+      },
+      {
+        "drive_id": "1wt_agWvpATDEoWSVYlMkbiprElvZXX58",
+        "title": "Ericsson & Kintsch (1995) — Long-Term Working Memory.pdf"
+      },
+      {
+        "drive_id": "11ausR-FCE8NvlyZ84EAj13h0CU3Xyrl_",
+        "title": "Shepard & Metzler (1971) — Mental Rotation of Three-Dimensional Objects.pdf"
+      },
+      {
+        "drive_id": "1o2lkvaIEv4kQfwfGl9xz5zuWl0t02dPI",
+        "title": "Correa et al. (2025) — Exploring the Hierarchical Structure of Human Plans via Program Generation.pdf"
+      },
+      {
+        "drive_id": "19b4qRlzn1omxPtkzxLSYAg2AVaoPwp9V",
+        "title": "Simonelli et al. (2025) — Structuring the Environment Nudges Participants toward Hierarchical over Shortest Path Planning.pdf"
+      },
+      {
+        "drive_id": "1Jg4WRAdgp3aRBTkwRt0zGUPtGJmAh3KD",
+        "title": "Ramadan et al. (2025) — Computational Basis of Hierarchical and Counterfactual Information Processing.pdf"
+      },
+      {
+        "drive_id": "1EvzTe4wGWrk1mDEkVUcNTPytktBOrhK2",
+        "title": "Gopen & Swan (1990) — The Science of Scientific Writing.pdf"
+      },
+      {
+        "drive_id": "1UwMpTYcPvzNgew3Q368Q-SY34cYuYeoZ",
+        "title": "Mensh & Kording (2017) — Ten Simple Rules for Structuring Papers.pdf"
+      },
+      {
+        "drive_id": "1eW1mhRxBKbaVgd0pW6xSDePDQo8Hj-4p",
+        "title": "Vera, Guerrero & Illanes (2011) — Determination of the Transgalactosylation Activity of Aspergillus oryzae β-Galactosidase — Effect of pH, Temperature, and Galactose and Glucose Concentrations.pdf"
+      },
+      {
+        "drive_id": "1URoBhRKsdqhNvZd13i4p30E2Ho1NaGWT",
+        "title": "Wang et al. (2009) — An Acidophilic β-Galactosidase from Bispora sp. MEY-1 with High Lactose Hydrolytic Activity under Simulated Gastric Conditions.pdf"
+      },
+      {
+        "drive_id": "1RvddwiSAstKp1SEsy-maS3gEA9mO5dwE",
+        "title": "Tanaka et al. (1975) — Purification and Properties of β-Galactosidase from Aspergillus oryzae.pdf"
+      }
+    ]
+  }
 }
