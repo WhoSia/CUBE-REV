@@ -41,28 +41,29 @@ def era_audit(axis,thresholds):
     pops,groups=parse_axis(axis)
     out={}
     for era,pop in sorted(pops.items()):
+        era_groups=groups.get(era,{})
         total=sum(pop.values())
-        all_supported=[c for c in pop if c in groups and groups[c]["sample_n"]>0]
-        zero=[c for c in pop if c not in groups or groups[c]["sample_n"]==0]
+        all_supported=[c for c in pop if c in era_groups and era_groups[c]["sample_n"]>0]
+        zero=[c for c in pop if c not in era_groups or era_groups[c]["sample_n"]==0]
         thresholds_out={}
         for k in thresholds:
-            eligible=[c for c in all_supported if groups[c]["sample_n"]>=k]
+            eligible=[c for c in all_supported if era_groups[c]["sample_n"]>=k]
             thresholds_out[str(k)]={
               "eligible_cells":eligible,
               "omitted_cells":[c for c in pop if c not in eligible],
-              "rivals":{r:weighted(eligible,pop,groups,r,total) for r in RIVALS}
+              "rivals":{r:weighted(eligible,pop,era_groups,r,total) for r in RIVALS}
             }
 
         leverage={}
         for r in RIVALS:
             rows=[]
             for c in all_supported:
-                m=groups[c]["rivals"][r]["mean_excess"]
+                m=era_groups[c]["rivals"][r]["mean_excess"]
                 rows.append({
                   "cell":c,
                   "population_n":pop[c],
                   "population_share_within_era":pop[c]/total,
-                  "sample_n":groups[c]["sample_n"],
+                  "sample_n":era_groups[c]["sample_n"],
                   "cell_mean":m,
                   "signed_population_contribution":(pop[c]/total)*m,
                   "absolute_population_contribution":abs((pop[c]/total)*m)
@@ -74,8 +75,8 @@ def era_audit(axis,thresholds):
             keep=[c for c in all_supported if c!=drop]
             loo[drop]={
               "dropped_population_n":pop[drop],
-              "dropped_sample_n":groups[drop]["sample_n"],
-              "rivals":{r:weighted(keep,pop,groups,r,total) for r in RIVALS}
+              "dropped_sample_n":era_groups[drop]["sample_n"],
+              "rivals":{r:weighted(keep,pop,era_groups,r,total) for r in RIVALS}
             }
 
         out[era]={
