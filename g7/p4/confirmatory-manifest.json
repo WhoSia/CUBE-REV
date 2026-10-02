@@ -1,0 +1,19 @@
+{
+  "schema_version":"g7-p4-confirmatory-manifest-1",
+  "source":"reco_nz",
+  "derived_from_g7_p3_artifact":11205587281,
+  "sampling_role":"population_estimation",
+  "selection_frozen_before_first_body_contact":true,
+  "records":[
+    {"source_id":3594,"method_family":"CFOP","temporal_era":"E2_2017_2020","solver_frequency_band":"high","reconstructor_frequency_band":"dominant"},
+    {"source_id":8402,"method_family":"CFOP","temporal_era":"E3_2021_2024","solver_frequency_band":"dominant","reconstructor_frequency_band":"dominant"},
+    {"source_id":3722,"method_family":"CFOP","temporal_era":"E2_2017_2020","solver_frequency_band":"dominant","reconstructor_frequency_band":"dominant"},
+    {"source_id":1976,"method_family":"CFOP","temporal_era":"E1_2013_2016","solver_frequency_band":"mid","reconstructor_frequency_band":"sparse"},
+    {"source_id":785,"method_family":"CFOP","temporal_era":"E1_2013_2016","solver_frequency_band":"mid","reconstructor_frequency_band":"mid"},
+    {"source_id":9332,"method_family":"CFOP","temporal_era":"E3_2021_2024","solver_frequency_band":"high","reconstructor_frequency_band":"dominant"},
+    {"source_id":11750,"method_family":"CFOP","temporal_era":"E4_2025_2026","solver_frequency_band":"mid","reconstructor_frequency_band":"high"},
+    {"source_id":1164,"method_family":"CFOP","temporal_era":"E1_2013_2016","solver_frequency_band":"mid","reconstructor_frequency_band":"dominant"},
+    {"source_id":9693,"method_family":"CFOP","temporal_era":"E3_2021_2024","solver_frequency_band":"dominant","reconstructor_frequency_band":"dominant"},
+    {"source_id":7905,"method_family":"CFOP","temporal_era":"E3_2021_2024","solver_frequency_band":"high","reconstructor_frequency_band":"dominant"}
+  ]
+}
