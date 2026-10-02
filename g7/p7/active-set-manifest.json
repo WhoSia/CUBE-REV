@@ -40,6 +40,7 @@
     "scripts/g7-p7/analyze-source-world-geometry.py",
     "scripts/g7-p7/analyze-recovered-provenance-geometry.py",
     "scripts/g7-p7/analyze-refined-population-transport.py",
+    "scripts/g7-p7/analyze-refined-provenance-geometry-transport.py",
     "scripts/g7-p7/audit-source-world-support.py",
     "scripts/g7-p7/calibrate-reco-statistics.py",
     "scripts/g7-p7/census-index-provenance.py",
