@@ -1,0 +1,31 @@
+name: P7 repository active-set audit
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - '.github/workflows/p7-repo-active-set-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inventory tracked files
+        run: |
+          set -euo pipefail
+          echo 'P7_REPO_ACTIVE_SET_AUDIT'
+          git ls-files | sort | tee /tmp/tracked-files.txt
+          echo '--- COUNT ---'
+          wc -l /tmp/tracked-files.txt
+          echo '--- TOP LEVEL COUNTS ---'
+          awk -F/ '{print $1}' /tmp/tracked-files.txt | sort | uniq -c | sort -nr
+      - uses: actions/upload-artifact@v4
+        with:
+          name: P7-repo-active-set-audit-${{ github.sha }}
+          path: /tmp/tracked-files.txt
+          retention-days: 7
