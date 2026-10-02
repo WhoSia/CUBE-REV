@@ -1,0 +1,117 @@
+{
+  "schema_version": "g7-p12-r1-constitution-1",
+  "phase": "G7-P12-R1",
+  "formal_name": "CUBE-REV Generation VII G7-P12-R1 — Action-Opportunity 2×2 Contingency Representation, Exact-Tuple Collision Census, Outcome-Blind Compression Candidate Tournament, Fresh↔Legacy Common-Support Recovery, Representation-Loss Bounds, Cross-Ancestry Stability & Structural-Opportunity Sufficiency Audit",
+  "operation_type": "Opportunity-Representation Compression & Sufficiency Audit",
+  "status": "FROZEN_AFTER_P12_BEFORE_R1_OUTCOME",
+  "parent": {
+    "p12_closure": "g7/p12/closure.json",
+    "exact_fresh_eligible": 6,
+    "coarse_fresh_eligible": 30,
+    "p11_fresh_local_mean": 0.056231231231231235
+  },
+  "primitive_table": {
+    "universe_actions": 18,
+    "cells": [
+      "A = low_overlap AND descending",
+      "B = low_overlap AND non_descending",
+      "C = non_low_overlap AND descending",
+      "D = non_low_overlap AND non_descending"
+    ],
+    "exact_tuple": "(A,B,C,D), equivalently (low_support_size, descending_count, low_descending_count)"
+  },
+  "candidate_representations": [
+    {
+      "id": "K_D",
+      "coordinates": [
+        "low_support_size",
+        "descending_count"
+      ],
+      "omitted": "low_descending intersection"
+    },
+    {
+      "id": "K_L",
+      "coordinates": [
+        "low_support_size",
+        "low_descending_count"
+      ],
+      "omitted": "total descending margin beyond low-overlap intersection"
+    },
+    {
+      "id": "D_L",
+      "coordinates": [
+        "descending_count",
+        "low_descending_count"
+      ],
+      "omitted": "total low-overlap margin beyond descending intersection"
+    },
+    {
+      "id": "K_D_BINARY_INTERSECTION",
+      "coordinates": [
+        "low_support_size",
+        "descending_count",
+        "indicator(low_descending_count>0)"
+      ],
+      "omitted": "intersection multiplicity above zero"
+    },
+    {
+      "id": "K_L_BINARY_NONLOW_DESC",
+      "coordinates": [
+        "low_support_size",
+        "low_descending_count",
+        "indicator(nonlow_descending_count>0)"
+      ],
+      "omitted": "non-low descending multiplicity above zero"
+    }
+  ],
+  "selection_stage": {
+    "behavioral_outcome_blind": true,
+    "allowed_inputs": [
+      "phase1_lb shell label",
+      "normalized solve progress quintile",
+      "opportunity 2x2 table",
+      "fresh/legacy ancestry",
+      "solve identity"
+    ],
+    "forbidden_inputs": [
+      "observed next action",
+      "low-overlap match indicator",
+      "behavioral excess",
+      "P12 behavioral residuals by candidate representation"
+    ],
+    "loss_metric": "normalized conditional entropy H(full_exact_tuple | compressed_representation) / H(full_exact_tuple), computed on eligible lb6/7/8 states separately in fresh and legacy",
+    "common_support_metric": "number of solves with at least one lb7 and lb6/8 state sharing progress quintile × compressed representation",
+    "gate": {
+      "max_normalized_conditional_entropy_fresh": 0.2,
+      "max_normalized_conditional_entropy_legacy": 0.2,
+      "min_fresh_common_support_solves": 10,
+      "min_legacy_common_support_solves": 20
+    },
+    "selection_rule": "among candidates passing all gates, select minimum coordinate count; break ties by lower max(fresh,legacy) normalized conditional entropy, then candidate order listed above",
+    "no_candidate_passes": "COMPRESSION_NOT_AUTHORIZED"
+  },
+  "behavioral_stage": {
+    "execute_only_for_selected_representation": true,
+    "target": "lb7 minus union(lb6,lb8) low-overlap excess",
+    "matching": [
+      "solve",
+      "normalized progress quintile",
+      "selected opportunity representation"
+    ],
+    "weighting": "minimum target/comparator state count within matched stratum",
+    "adjudication": {
+      "support_limited": "selected representation has fewer than 10 fresh eligible solves at behavioral stage",
+      "structural_opportunity_sufficient": "fresh residual changes sign or abs(residual) <= 0.5 * 0.056231231231231235",
+      "residual_alignment": "fresh residual remains positive and abs(residual) > 0.5 * 0.056231231231231235"
+    }
+  },
+  "inference_boundary": [
+    "Representation selection is based only on structural opportunity data, never human next-action outcomes.",
+    "Entropy retention is an observed-support information audit, not proof of universal sufficiency.",
+    "Any selected quotient is descriptive for the observed lb6/7/8 state surface.",
+    "No causal or cognitive mechanism promotion."
+  ],
+  "source_contact": "NONE",
+  "new_body_requests": 0,
+  "human_contact_gate": "CLOSED"
+}
