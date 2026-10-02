@@ -1,4 +1,5 @@
-// G7-P4 final-seal provenance trigger; no decision rule changes.\nimport fs from "node:fs";
+// G7-P4 final-seal provenance trigger; no decision rule changes.
+import fs from "node:fs";
 import path from "node:path";
 const args=process.argv.slice(2);
 const val=(k,d=null)=>{const i=args.indexOf(k);return i>=0&&i+1<args.length?args[i+1]:d;};
