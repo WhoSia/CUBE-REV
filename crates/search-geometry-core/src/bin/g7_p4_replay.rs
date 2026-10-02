@@ -61,7 +61,10 @@ fn main() {
     println!("SCRAMBLE_MOVES\t{}", scramble_moves.len());
     println!("SOLUTION_MOVES\t{}", solution_moves.len());
     println!("START_PHASE1_RANK\t{}", cube.phase1().rank());
-    println!("START_STATE\t{}", state_signature(cube));\n\n    let phase1_moves = Phase1Moves::build();\n    let phase1_pdb = Phase1Pdb::build(&phase1_moves);
+    println!("START_STATE\t{}", state_signature(cube));
+
+    let phase1_moves = Phase1Moves::build();
+    let phase1_pdb = Phase1Pdb::build(&phase1_moves);
 
     for (i, (raw, mv)) in solution_moves.iter().enumerate() {
         let before = cube.phase1();
