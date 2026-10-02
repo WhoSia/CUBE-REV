@@ -43,7 +43,7 @@ jobs:
           if(p.expanded_rival_ecology.families.length!==5) process.exit(2);
           if(!l.normalization_receipt||l.normalization_receipt.intake_empty_after_move!==true) process.exit(3);
           if((l.missing_verified||[]).length!==0) process.exit(5);
-          if(!d.sources.some(x=>x.source_id==='p6_wca_results_v2_273')) process.exit(4);
+          if(!d.sources.some(x=>x.source_id==='p6_wca_results_v2_current_20261002' && x.status==='CURRENT_EXPORT_BYTE_CENSUS_PASS')) process.exit(4);
           console.log('G7_P6_AUTHORITY_PASS');
           NODE
 
