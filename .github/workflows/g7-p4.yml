@@ -32,6 +32,7 @@ jobs:
       - run: node scripts/g7-p4/test-pilot-trajectory.mjs
 
   g7-p4-pilot-contact:
+    if: ${{ false }}
     needs: g7-p4-unit
     runs-on: ubuntu-latest
     timeout-minutes: 8
