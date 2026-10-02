@@ -53,6 +53,7 @@
     "g7/p10/lb7-local-contrast-preseal.json",
     "g7/p10/support-choice-factorization-preseal.json",
     "g7/p11/acquisition-closure.json",
+    "g7/p11/closure.json",
     "g7/p11/constitution.json",
     "g7/p7/active-set-manifest.json",
     "g7/p7/closure.json",
