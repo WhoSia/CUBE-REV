@@ -19,7 +19,7 @@ function powQuarter(v,axis,q){
   return out;
 }
 function tokenBase(raw){
-  const t=String(raw).replace(/[’′]/g,"'").trim();
+  const t=String(raw).replace(/[’′]/g,"'").trim().replace(/^[()]+|[()]+$/g,"");
   const m=t.match(/^([URFDLBMESxyz]|[URFDLB]w|[urfdlb])(2'?|'|)?$/);
   if(!m) throw new Error("UNSUPPORTED_TOKEN:"+t);
   let base=m[1], suffix=m[2]||"";
