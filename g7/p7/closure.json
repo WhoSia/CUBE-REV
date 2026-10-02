@@ -1,0 +1,101 @@
+{
+  "schema_version": "g7-p7-closure-1",
+  "phase": "G7-P7",
+  "status": "CLOSED",
+  "closure_verdict": "PASS_PROVENANCE_AXIS_TS_H1_POPULATION_SIGN_ROBUST__METHOD_RECONSTRUCTOR_POPULATION_SUPPORT_HOLD__HUMAN_MECHANISM_UNIDENTIFIED",
+  "scientific_authority": {
+    "refined_population_transport": {
+      "run": 37029484078,
+      "head": "426182d6a241926ffb7c4e01f06f1f47812d8b7a",
+      "artifact_id": 11236528187,
+      "sha256": "33d6f25b4426cb938dee7dd970a2adc5940ed521db1ece836a8bd65d9aa9fe7b",
+      "drive_id": "1cQhbI3wChxZprPuY_UH2TzJqRv-Xxe23"
+    },
+    "refined_geometry_transport": {
+      "run": 37030542791,
+      "head": "d4cf738f8677583744e80052ece58f660fa3c924",
+      "artifact_id": 11237112152,
+      "sha256": "c096f411e6c42a9773c26474dc9f12a9998aba4294ccdada65a9cc68b04270d7",
+      "drive_id": "1hppUEI0FqG5q5pYvniRwm6FYnI-4TjU2"
+    },
+    "adversarial_unidentified_mass_bound": {
+      "run": 37031028983,
+      "head": "d38f40ae0c1eb5d44c722b237da5fd854a35806f",
+      "artifact_id": 11237452759,
+      "sha256": "2043a7557ad5cf222e9fb4bdc18a33e44c0ff5da05829c3c47b54bc3b9898a9c",
+      "drive_id": "1mgdpK_wRIKrjQLwASDpgAHfOAnoE0Z3t"
+    }
+  },
+  "frozen_corpus": {
+    "solves": 60,
+    "exact_prefix_states": 3329,
+    "stage_boundary_states": 421,
+    "face_next_states": 2725,
+    "mean_five_rival_diversity": 0.5764366944037214
+  },
+  "population_support": {
+    "reco_3x3_index_rows": 10591,
+    "refined_provenance_supported_mass": 0.9879142668303277,
+    "refined_provenance_unidentified_mass": 0.012085733169672364,
+    "coarse_tvd": 0.021471060334246103,
+    "refined_tvd": 0.028318068800553972
+  },
+  "primary_results": {
+    "TS": {
+      "unweighted_excess": 0.04996105656370762,
+      "supported_mass_poststrat_excess": 0.05037151112497663,
+      "leave_one_supported_class_out": [
+        0.044250431341685194,
+        0.054612988458334864
+      ],
+      "full_population_adversarial_bound": [
+        0.037677001312494615,
+        0.061177038031301985
+      ],
+      "population_sign": "POSITIVE_IDENTIFIED"
+    },
+    "H1": {
+      "unweighted_excess": 0.027013939569983235,
+      "supported_mass_poststrat_excess": 0.02746757026257758,
+      "leave_one_supported_class_out": [
+        0.019708408360161942,
+        0.03429344314846738
+      ],
+      "full_population_adversarial_bound": [
+        0.01504987136789248,
+        0.038549908086699856
+      ],
+      "population_sign": "POSITIVE_IDENTIFIED"
+    }
+  },
+  "secondary_results": {
+    "H2_population_sign": "UNIDENTIFIED",
+    "H3_population_sign": "POSITIVE_IDENTIFIED_NEAR_BOUNDARY",
+    "FS_population_sign": "POSITIVE_IDENTIFIED",
+    "stage_boundary_progress_matched_delta": -0.004918066359852422,
+    "stage_boundary_simple_spike_supported": false
+  },
+  "claims_allowed": [
+    "Within the retained reco.nz 3x3 population provenance axis, the sign of TS and H1 naturalistic next-action alignment is robust to refined provenance post-stratification.",
+    "The TS and H1 population-wide sign remains positive even under full-range adversarial completion of the 1.21% provenance mass with zero body-sample support.",
+    "Stage annotation boundaries do not show a general progress-matched rival-diversity spike in the frozen 60-solve corpus."
+  ],
+  "claims_forbidden": [
+    "TS or H1 is thereby identified as the human planning mechanism.",
+    "The 60-body corpus is probability-representative of the reco.nz population.",
+    "Population transport has been established over method or reconstructor.",
+    "Exact WCA competition-context recovery implies exact attempt or scramble identity.",
+    "The H2 population-wide sign is identified."
+  ],
+  "unresolved_blockers": [
+    "full-population method_family covariate unavailable",
+    "full-population reconstructor covariate unavailable",
+    "selection mechanism for body-level reconstruction availability is not identified",
+    "human-contact causal/mechanistic discrimination remains unopened"
+  ],
+  "next_route": {
+    "phase": "G7-P8",
+    "target": "prospective method/reconstructor support-surface acquisition and selection-transport audit before any human-contact promotion",
+    "human_contact_gate": "CLOSED"
+  }
+}
