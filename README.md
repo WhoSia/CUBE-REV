@@ -20,8 +20,12 @@ Active authority:
 Current P7 campaign:
 - 40 prospectively frozen solve bodies;
 - 4 batches × 10;
-- Batch 1 complete: 10/10 acquisition and exact replay;
-- existing P4 body corpus remains predecessor evidence.
+- campaign complete: **40/40 acquisition + 40/40 exact replay**;
+- exact move-prefix states across P7 campaign: **2,149**;
+- private batch artifacts are sealed in Drive custody;
+- P4 predecessor body corpus: 20 solves;
+- combined body-level naturalistic corpus available to current analysis: **60 solves**;
+- this campaign is CLOSED to further source contact. Any additional reco.nz body acquisition requires new source authority or a new prospective constitution.
 
 ### exact cube / search geometry
 The reusable exact authority is kept independently of its historical generation labels:
