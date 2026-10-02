@@ -1,0 +1,34 @@
+{
+  "schema_version":"g7-p9-constitution-1",
+  "phase":"G7-P9",
+  "operation_type":"Five-Rival Support-Overlap Specificity Audit",
+  "status":"PRESEALED_BEFORE_P9_OUTCOME",
+  "parent":"g7/p8/closure.json",
+  "formal_name":"CUBE-REV Generation VII G7-P9 — Five-Rival Support-Set Overlap Census, TS-Exclusive/Shared Move Attribution, Conditional Expected-Match Residualization, Pairwise Rival-Contrast Geometry, Method/Provenance Stratification, Leave-One-Rival Overlap Ablation & Rival-Specificity Audit",
+  "frozen_geometry_artifact":11238382539,
+  "frozen_geometry_sha256":"b6e30ab56548e27905dd3b3718c5a3e56d772bff10a744e92180d189a3259a11",
+  "frozen_solves":60,
+  "set_definitions":{
+    "TS_unique":"TS minus union(H1,H2,H3,FS)",
+    "TS_shared":"TS intersect union(H1,H2,H3,FS)",
+    "other_only":"union(H1,H2,H3,FS) minus TS"
+  },
+  "primary_readouts":[
+    "solve-level TS_unique excess",
+    "solve-level TS_shared excess",
+    "pairwise TS-minus-H1/H2/H3/FS excess",
+    "observed TS matches split unique versus shared",
+    "TS support redundancy share"
+  ],
+  "secondary_readouts":[
+    "TS_unique by method family",
+    "TS_unique by broad provenance",
+    "leave-one-other-rival-out TS uniqueness",
+    "cohort leave-one-out TS_unique mean"
+  ],
+  "falsifier":"TS_unique mean excess is nonpositive while total TS alignment is carried by shared support",
+  "source_contact":"NONE",
+  "new_body_requests":0,
+  "human_contact_gate":"CLOSED",
+  "mechanism_promotion":"FORBIDDEN"
+}
