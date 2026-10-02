@@ -1,0 +1,77 @@
+name: Validate G7-P3 reconstruction population geometry
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p3/**'
+      - 'scripts/g7-p3/**'
+      - '.github/workflows/g7-p3.yml'
+  pull_request:
+    paths:
+      - 'g7/p3/**'
+      - 'scripts/g7-p3/**'
+      - '.github/workflows/g7-p3.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  g7-p3-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate frozen JSON authorities
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('g7/p3/preseal.json','utf8')); JSON.parse(require('fs').readFileSync('g7/p3/method-ontology.json','utf8')); JSON.parse(require('fs').readFileSync('g7/p3/p2-anchor.json','utf8')); console.log('G7_P3_JSON_AUTHORITY_PASS')"
+      - name: Population geometry regression
+        run: node scripts/g7-p3/test-population-geometry.mjs
+
+  g7-p3-population-materialization:
+    needs: g7-p3-unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Recover exact frozen G7-P2 census artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: G7-P2-reco-index-census-893b47bccd766fed5138e32ce714f9808badc708
+          path: /tmp/g7-p2-census
+          github-token: ${{ github.token }}
+          repository: WhoSia/CUBE-REV
+          run-id: 36816629497
+      - name: Verify frozen artifact contents
+        run: |
+          cd /tmp/g7-p2-census
+          sha256sum -c SHA256SUMS.txt
+          test "$(sha256sum derived/index-rows.jsonl | cut -d' ' -f1)" = "d6fef3fdb1f47c5ae4744f4624c64d7782563490344ba8ced9b22c819357987c"
+          test -s derived/census.json
+          echo G7_P3_P2_EXACT_BYTES_PASS
+      - name: Materialize population geometry
+        run: |
+          node scripts/g7-p3/analyze-population.mjs \
+            --input /tmp/g7-p2-census/derived/index-rows.jsonl \
+            --preseal g7/p3/preseal.json \
+            --ontology g7/p3/method-ontology.json \
+            --out /tmp/g7-p3
+      - name: Validate exact materialization
+        run: |
+          node scripts/g7-p3/validate-materialization.mjs \
+            --report /tmp/g7-p3/population-geometry.json \
+            --anchor g7/p3/p2-anchor.json
+          sha256sum /tmp/g7-p3/population-geometry.json /tmp/g7-p3/population-geometry-receipt.md > /tmp/g7-p3/SHA256SUMS.txt
+          echo G7_P3_POPULATION_MATERIALIZATION_PASS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P3-population-geometry-${{ github.sha }}
+          path: /tmp/g7-p3
+          if-no-files-found: error
+          retention-days: 90
