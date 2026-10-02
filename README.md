@@ -85,6 +85,17 @@ Historical bytes remain recoverable through:
 Drive archive ledger:
 **CUBE-REV — Repository Active-Set Archive Ledger**
 
+Latest blocking active-set receipt:
+- tracked files: **71**
+- legacy candidates: **0**
+- unclassified files: **0**
+- workflow run: `36978513851` — SUCCESS
+- audit artifact: `11214009066`
+- artifact SHA-256: `9501d41cc83af89eddc9ecbd71811f257b94505c78ba972387053bd3bdd5eb87`
+- Drive audit custody: `15KxYy2vDCyRqORoIpbnTg3dYYHgBr507`
+
+The machine-readable allow/retire contract lives at `g7/p7/active-set-manifest.json`. The blocking audit fails if any retired or unclassified path re-enters `research/current`.
+
 ## Rust workspace
 
 ```text
