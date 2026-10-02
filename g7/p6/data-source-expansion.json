@@ -7,7 +7,7 @@
       "title": "Nuzzi, Cisek & Pezzulo — Planning-while-acting",
       "repository": "https://github.com/DavideNuzzi/Planning-While-Acting",
       "source_class": "public_human_planning_dataset",
-      "status": "SCHEMA_AND_REPRODUCIBILITY_SURFACE_VERIFIED",
+      "status": "BYTE_VERIFIED_STATIC_PICKLE_AUDIT_PASS",
       "provides": [
         "participant_level_metadata",
         "full_trajectory_time_series",
@@ -27,7 +27,46 @@
       ],
       "p6_role": "CROSS_DOMAIN_PROSPECTIVE_PLANNING_BEHAVIOR_TRANSPORT",
       "raw_mirror_status": "NOT_YET_MATERIALIZED",
-      "identity_policy": "do not import direct participant identifiers into CUBE-REV canonical derived tables"
+      "identity_policy": "do not import direct participant identifiers into CUBE-REV canonical derived tables",
+      "source_commit": "911a6f60ad78f1d908dd50c261eaab69e65bf02f",
+      "byte_audit": {
+        "raw_packaged_in_cube_rev_artifact": false,
+        "static_parse_pass": 6,
+        "files": 6,
+        "total_bytes": 36895322
+      },
+      "file_receipts": [
+        {
+          "path": "data/LevelsFinal.pkl",
+          "bytes": 602905,
+          "sha256": "53d6b65e3247244a66fb860dada9c3d1e6136b20dc6a0b26fcaeffdd17dc8611"
+        },
+        {
+          "path": "data/ResultsPilot.pkl",
+          "bytes": 34099405,
+          "sha256": "d260185a04f06159d563b66abcc06c0c2e7d99d230e4bde8f6ebad00940d3a07"
+        },
+        {
+          "path": "data/ResultsFirstDecision.pkl",
+          "bytes": 66462,
+          "sha256": "0da37d5fb317979f688fd3e479ae1b569e8d7910f35af4d6cf9559794c9ad970"
+        },
+        {
+          "path": "data/ResultsAllDecisions.pkl",
+          "bytes": 599175,
+          "sha256": "bb41da9df4b8d6fb6d65b9fb933a6d4276740213aca9584c20be4d95506f32ee"
+        },
+        {
+          "path": "data/ResultsTime.pkl",
+          "bytes": 1525961,
+          "sha256": "1aa3d2fa549f0e90b00622bdebaa1e2e0edfafdec6cf329a55c665691045b951"
+        },
+        {
+          "path": "data/AdditionalInfo.pkl",
+          "bytes": 1414,
+          "sha256": "2498c03571eee780c103eabbc195364c480df6aca97595344b36c26cdfa4c907"
+        }
+      ]
     },
     {
       "source_id": "p6_simonelli_hierarchical_planning",
