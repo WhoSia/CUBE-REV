@@ -30,3 +30,8 @@ assert.equal(d.geometry_status, "UNRESOLVED");
 assert.equal(d.events.at(-1).kind, "UNKNOWN");
 
 console.log("G7_P2_RECONSTRUCTION_PARSER_PASS");
+
+const grouped = parseReconstruction("(r2' y) // grouped notation");
+assert.equal(grouped.status, "PARSED");
+assert.deepEqual(grouped.events.filter(e=>e.kind!=="ANNOTATION").map(e=>e.raw), ["r2'","y"]);
+assert.equal(grouped.geometry_status, "EXTENDED_MOVE_KERNEL_REQUIRED");
