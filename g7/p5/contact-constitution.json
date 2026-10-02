@@ -56,9 +56,12 @@
     "multiple_primary_endpoints":"choice contrast is primary; latency is supporting"
   },
   "stopping_rule":{
-    "status":"NOT_OPEN_UNTIL_SENSITIVITY_TABLE_FROZEN",
+    "status":"FIXED_COMPLETE_SESSION_TARGET_FROZEN",
+    "valid_complete_sessions":24,
+    "sensitivity_authority":"scripts/g7-p5/sensitivity.py",
     "outcome_blind":true,
-    "no_optional_stopping":true
+    "no_optional_stopping":true,
+    "recruitment_stop":"stop when 24 valid complete sessions are obtained"
   },
   "privacy_and_custody":{
     "network_upload_in_base_instrument":false,
