@@ -1,0 +1,16 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import {spawnSync} from "node:child_process";
+const d=fs.mkdtempSync(path.join(os.tmpdir(),"g7-p5-integrity-"));
+let p=spawnSync("cargo",["run","-q","-p","search-geometry-core","--bin","g7_p5_packet_generator"],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);fs.writeFileSync(path.join(d,"p.tsv"),p.stdout);
+p=spawnSync(process.execPath,["scripts/g7-p5/compile-packet.mjs",path.join(d,"p.tsv"),path.join(d,"packet.json")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+p=spawnSync(process.execPath,["scripts/g7-p5/synthesize-events.mjs",path.join(d,"packet.json"),path.join(d,"events.jsonl")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+p=spawnSync(process.execPath,["scripts/g7-p5/validate-event-integrity.mjs",path.join(d,"packet.json"),path.join(d,"events.jsonl"),path.join(d,"integrity.json")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+const r=JSON.parse(fs.readFileSync(path.join(d,"integrity.json"),"utf8"));
+if(!r.pass||r.sessions!==8) throw new Error("INTEGRITY");
+console.log("G7_P5_EVENT_INTEGRITY_TEST_PASS");
