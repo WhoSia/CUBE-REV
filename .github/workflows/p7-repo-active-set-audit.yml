@@ -68,7 +68,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: archive/pre-p7-active-prune-20261002
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Package immutable tracked-tree snapshot
         run: |
@@ -77,8 +77,11 @@ jobs:
           HEAD_SHA="$(git rev-parse HEAD)"
           FILE_COUNT="$(git ls-files | wc -l | tr -d ' ')"
           git ls-files -z | tar --null -T - -czf /tmp/cube-rev-archive/CUBE-REV-archive-pre-p7-active-prune-20261002.tar.gz
+          git bundle create /tmp/cube-rev-archive/CUBE-REV-archive-pre-p7-active-prune-20261002.bundle archive/pre-p7-active-prune-20261002
           ARCHIVE_SHA="$(sha256sum /tmp/cube-rev-archive/CUBE-REV-archive-pre-p7-active-prune-20261002.tar.gz | awk '{print $1}')"
           ARCHIVE_BYTES="$(stat -c '%s' /tmp/cube-rev-archive/CUBE-REV-archive-pre-p7-active-prune-20261002.tar.gz)"
+          BUNDLE_SHA="$(sha256sum /tmp/cube-rev-archive/CUBE-REV-archive-pre-p7-active-prune-20261002.bundle | awk '{print $1}')"
+          BUNDLE_BYTES="$(stat -c '%s' /tmp/cube-rev-archive/CUBE-REV-archive-pre-p7-active-prune-20261002.bundle)" 
           python3 - <<PY
           import json
           x={
@@ -90,8 +93,11 @@ jobs:
             "archive_file":"CUBE-REV-archive-pre-p7-active-prune-20261002.tar.gz",
             "archive_sha256":"$ARCHIVE_SHA",
             "archive_bytes":int("$ARCHIVE_BYTES"),
-            "package_scope":"all git-tracked files at source branch head",
-            "git_history_included":False,
+            "git_bundle_file":"CUBE-REV-archive-pre-p7-active-prune-20261002.bundle",
+            "git_bundle_sha256":"$BUNDLE_SHA",
+            "git_bundle_bytes":int("$BUNDLE_BYTES"),
+            "package_scope":"all git-tracked files at source branch head plus complete branch history bundle",
+            "git_history_included":True,
             "base_main_commit":"a5b16ad3f64c7f3de31b891e439c40e902d582bf",
             "branch_ahead_of_base_commits":421
           }
@@ -101,6 +107,8 @@ jobs:
           print("TRACKED_FILES\t"+str(x["tracked_files"]))
           print("ARCHIVE_SHA256\t"+x["archive_sha256"])
           print("ARCHIVE_BYTES\t"+str(x["archive_bytes"]))
+          print("GIT_BUNDLE_SHA256\t"+x["git_bundle_sha256"])
+          print("GIT_BUNDLE_BYTES\t"+str(x["git_bundle_bytes"]))
           PY
           (cd /tmp/cube-rev-archive && sha256sum * > SHA256SUMS.txt)
 
