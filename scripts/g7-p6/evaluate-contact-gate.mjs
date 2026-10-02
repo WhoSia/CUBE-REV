@@ -1,0 +1,27 @@
+import fs from "node:fs";
+const packet=JSON.parse(fs.readFileSync(process.argv[2],"utf8"));
+const context=JSON.parse(fs.readFileSync(process.argv[3],"utf8"));
+const out=process.argv[4]; if(!out) throw new Error("output");
+const blockers=[];
+if(packet.human_contact_authority!=="CLOSED_PENDING_P6_CONTACT_GATE") blockers.push("PACKET_AUTHORITY");
+if(packet.trials.length!==32) blockers.push("TRIAL_COUNT");
+if(new Set(packet.trials.map(x=>x.state_id)).size!==32) blockers.push("STATE_DUPLICATE");
+if(packet.rival_families.length!==5) blockers.push("RIVAL_FAMILY_COUNT");
+if(context.consent_metadata_present!==true) blockers.push("CONSENT_METADATA");
+if(context.supervision_or_research_authorization_present!==true) blockers.push("SUPERVISION_OR_AUTHORIZATION");
+if(context.device_timing_resolution_ms==null || context.device_timing_resolution_ms>5) blockers.push("DEVICE_TIMING");
+if(context.visibility_api_supported!==true) blockers.push("VISIBILITY_API");
+if(context.packet_sha256!==packet.sha256) blockers.push("PACKET_HASH");
+if(context.participant_set_role!=="DEVELOPMENT" && context.participant_set_role!=="CONFIRMATION") blockers.push("PARTICIPANT_ROLE");
+if(context.participant_set_role!==packet.role) blockers.push("ROLE_MISMATCH");
+const report={
+ schema_version:"g7-p6-contact-gate-1",
+ open:blockers.length===0,
+ blockers,
+ packet_role:packet.role,
+ packet_sha256:packet.sha256
+};
+fs.writeFileSync(out,JSON.stringify(report,null,2)+"\n");
+console.log("G7_P6_CONTACT_GATE_EVALUATED");
+console.log("OPEN\t"+(report.open?"YES":"NO"));
+if(report.open) console.log("G7_P6_CONTACT_GATE_PASS");
