@@ -82,15 +82,46 @@ jobs:
           python3 scripts/g7-p6/audit-nuzzi-pickles.py "$RAW" | tee /tmp/g7-p6/external-data-audit/nuzzi-audit.log
           cp "$RAW/static-audit.json" /tmp/g7-p6/external-data-audit/nuzzi-static-audit.json
           cp g7/p6/nuzzi-intake-manifest.json /tmp/g7-p6/external-data-audit/
-          rm -rf "$RAW"
-          test ! -e "$RAW"
           echo 'RAW_BYTES_NOT_PACKAGED=YES' > /tmp/g7-p6/external-data-audit/AUTHORITY.txt
+
+      - name: Materialize deidentified external planning tables in no-network container
+        run: |
+          set -euo pipefail
+          RAW=/tmp/g7-p6-nuzzi-raw
+          SRC=/tmp/g7-p6-nuzzi-source
+          OUT=/tmp/g7-p6/external-derived
+          SRC_COMMIT=911a6f60ad78f1d908dd50c261eaab69e65bf02f
+          mkdir -p "$SRC" "$OUT"
+          chmod 0777 "$OUT"
+          curl --fail --location --silent --show-error             "https://raw.githubusercontent.com/DavideNuzzi/Planning-While-Acting/$SRC_COMMIT/CrossTheRiver.py"             -o "$SRC/CrossTheRiver.py"
+          cat > /tmp/g7-p6-nuzzi.Dockerfile <<'DOCKER'
+          FROM python:3.12-slim
+          RUN pip install --no-cache-dir numpy==2.4.2 pandas==2.3.3
+          USER 65534:65534
+          ENTRYPOINT ["python3","/script/materialize-nuzzi-derived.py"]
+          DOCKER
+          docker build -q -t g7-p6-nuzzi-derived -f /tmp/g7-p6-nuzzi.Dockerfile .
+          docker run --rm             --network none             --read-only             --cap-drop ALL             --security-opt no-new-privileges             --pids-limit 128             --memory 2g             -v "$RAW:/input:ro"             -v "$SRC:/source:ro"             -v "$GITHUB_WORKSPACE/scripts/g7-p6:/script:ro"             -v "$OUT:/output:rw"             g7-p6-nuzzi-derived | tee /tmp/g7-p6/external-data-audit/nuzzi-derived.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/g7-p6/external-derived/derived-receipt.json'))
+          assert x['counts']['participants']==40, x['counts']
+          assert x['counts']['first_decisions']==1549, x['counts']
+          assert x['counts']['timing_rows']==31444, x['counts']
+          assert x['security']['raw_source_ids_written'] is False
+          assert x['security']['age_gender_exported'] is False
+          print('G7_P6_NUZZI_DERIVED_COUNTS_PASS')
+          print(x['counts'])
+          PY
+          rm -rf "$RAW" "$SRC"
+          test ! -e "$RAW"
+          test ! -e "$SRC"
 
       - name: Seal authority and source ledgers
         run: |
           set -euo pipefail
           cp g7/p6/preseal.json g7/p6/literature-audit.json g7/p6/data-source-expansion.json /tmp/g7-p6/authority/
-          printf '%s\n'             'HUMAN_CONTACT=CLOSED_PENDING_P6_CONTACT_GATE'             'LIVE_HUMAN_DATA=NONE'             'EXACT_PACKET_BANK=256_STATES'             'RIVAL_FAMILIES=5' > /tmp/g7-p6/AUTHORITY.txt
+          printf '%s\n'             'HUMAN_CONTACT=CLOSED_PENDING_P6_CONTACT_GATE'             'LIVE_HUMAN_DATA=NONE'             'EXACT_PACKET_BANK=256_STATES'             'RIVAL_FAMILIES=5'             'EXTERNAL_PLANNING_DERIVED=DEIDENTIFIED'             'EXTERNAL_RAW_BYTES_PACKAGED=NO' > /tmp/g7-p6/AUTHORITY.txt
           (cd /tmp/g7-p6 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
 
       - uses: actions/upload-artifact@v4
