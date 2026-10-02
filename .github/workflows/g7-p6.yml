@@ -52,6 +52,7 @@ jobs:
           set -euo pipefail
           node scripts/g7-p6/test-packet-bank.mjs
           node scripts/g7-p6/test-packet-bank-pipeline.mjs
+          node scripts/g7-p6/test-packet-selection.mjs
 
       - name: Materialize exact multi-rival bank
         run: |
@@ -61,11 +62,16 @@ jobs:
           cargo run -q -p search-geometry-core --bin g7_p6_packet_bank > /tmp/g7-p6/packet-bank.tsv
           node scripts/g7-p6/compile-packet-bank.mjs /tmp/g7-p6/packet-bank.tsv /tmp/g7-p6/packet-bank.json
           node scripts/g7-p6/audit-packet-bank.mjs /tmp/g7-p6/packet-bank.json /tmp/g7-p6/packet-bank-audit.json
+          node scripts/g7-p6/select-prospective-packets.mjs /tmp/g7-p6/packet-bank.json /tmp/g7-p6/prospective-packets
           node - <<'NODE'
           const a=require('/tmp/g7-p6/packet-bank-audit.json');
           if(!a.pass||a.states!==256||a.seeds!==8) process.exit(1);
           for(const m of Object.values(a.motif_counts)) if(m!==64) process.exit(2);
+          const s=require('/tmp/g7-p6/prospective-packets/selection-receipt.json');
+          if(s.development_states!==32||s.confirmation_states!==32||s.reserve_states!==192) process.exit(3);
+          if(s.exact_state_overlap_dev_confirm!==0||s.state_id_overlap_dev_confirm!==0) process.exit(4);
           console.log('G7_P6_DATA_BANK_PASS');
+          console.log('G7_P6_PACKET_SPLIT_PASS');
           console.log('BANK_SHA256\t'+a.bank_sha256);
           console.log('PHASE1_LB_COUNTS\t'+JSON.stringify(a.phase1_lb_counts));
           NODE
