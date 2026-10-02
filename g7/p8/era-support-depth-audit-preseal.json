@@ -1,0 +1,52 @@
+{
+  "schema_version": "g7-p8-r2-era-support-depth-audit-preseal-1",
+  "phase": "G7-P8-R2",
+  "operation_type": "Era×Composition Support-Depth Audit",
+  "formal_name": "CUBE-REV Generation VII G7-P8-R2 — Era×Composition Zero-Support Reconstitution, Minimum-Geometry-Support Threshold Sweep, Dominant-Cell Leverage Deletion, Full-Range Sign Bounds, R1 Era-Aggregation Repair & TS–H1 Temporal-Instability Audit",
+  "status": "FROZEN_AFTER_R1_BEFORE_R2_EXECUTION",
+  "parent_authorities": {
+    "p8_court_run": 37036234228,
+    "p8_court_artifact": 11239796775,
+    "p8_court_sha256": "14d18409bf2cc82a0abbe348937097a4bb11a7b49cbb323b55b4cb3129cc67e1",
+    "r1_run": 37036745942,
+    "r1_artifact": 11240900495,
+    "r1_sha256": "308d629754c8438a9b5f0d7c0d5887d4007c9ecab4ff453f37e570e223deecf0"
+  },
+  "known_r1_accounting_issue": {
+    "description": "R1 era_reports iterated only parent-Court groups, but parent axis_report materializes groups only for sample-observed classes. Therefore zero-sample population cells were absent from R1 era denominators.",
+    "known_zero_sample_cells": {
+      "era_x_method": {
+        "E3_2021_2024::ZB": 71
+      },
+      "era_x_reconstructor_band": {
+        "E2_2017_2020::high": 127,
+        "E3_2021_2024::sparse": 22,
+        "E4_2025_2026::sparse": 11
+      }
+    }
+  },
+  "frozen_thresholds": [1, 2, 3, 5],
+  "primary_readouts": [
+    "true era population denominator from parent population_counts, including zero-sample cells",
+    "sample-supported population mass and full-range [-1,17/18] adversarial sign bound within each era",
+    "minimum geometry-support threshold sweep at sample_n >= 1,2,3,5",
+    "cell leverage ranked by absolute population-share-times-cell-mean contribution",
+    "leave-one-supported-cell-out era means and adversarial bounds",
+    "explicit E2 reconstructor dominant-band deletion",
+    "explicit E4 method ZB deletion",
+    "R1 era-sign classification before versus repaired classification"
+  ],
+  "adjudication": [
+    "A supported-cell negative mean with an adversarial full-era interval crossing zero is UNIDENTIFIED, not negative population sign.",
+    "A sign that disappears or becomes unidentified after requiring sample_n >=3 is sparse-cell sensitive.",
+    "TS temporal instability requires at least one era with an identified nonpositive full-era sign after zero-support repair; supported-cell negativity alone is insufficient.",
+    "H1 method-composition sensitivity from CFOP deletion remains a separate P8-R1 result and is not erased by era repair.",
+    "No temporal pattern is interpreted as cognitive change without independent evidence."
+  ],
+  "authority_boundary": {
+    "new_source_contact": "NONE",
+    "new_solve_body_requests": 0,
+    "human_contact_gate": "CLOSED",
+    "mechanism_promotion": "FORBIDDEN"
+  }
+}
