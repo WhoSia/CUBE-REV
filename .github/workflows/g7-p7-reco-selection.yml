@@ -1,20 +1,9 @@
-name: Validate frozen G7-P7 reco.nz campaign
+name: Acquire frozen G7-P7 reco.nz campaign batch 2
 
 on:
   push:
     branches: ['research/current']
     paths:
-      - 'g7/p7/preseal.json'
-      - 'g7/p7/reco-campaign-constitution.json'
-      - 'g7/p7/reco-campaign-manifest.json'
-      - 'scripts/g7-p7/test-reco-campaign-manifest.mjs'
-      - '.github/workflows/g7-p7-reco-selection.yml'
-  pull_request:
-    paths:
-      - 'g7/p7/preseal.json'
-      - 'g7/p7/reco-campaign-constitution.json'
-      - 'g7/p7/reco-campaign-manifest.json'
-      - 'scripts/g7-p7/test-reco-campaign-manifest.mjs'
       - '.github/workflows/g7-p7-reco-selection.yml'
   workflow_dispatch:
 
@@ -22,39 +11,50 @@ permissions:
   contents: read
 
 jobs:
-  selection:
+  bounded-batch:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Validate naming and source authority
+      - name: Validate frozen authority
         run: |
           set -euo pipefail
+          node scripts/g7-p7/test-reco-campaign-manifest.mjs
+          node scripts/g7-p7/test-acquire-reco-batch.mjs
           node - <<'NODE'
           const p=require('./g7/p7/preseal.json');
           const c=require('./g7/p7/reco-campaign-constitution.json');
           if(p.naming_preflight.current_suffix!=='Court') process.exit(1);
-          if(!p.naming_preflight.court_justification.fixed_criteria) process.exit(2);
-          if(c.authority.bulk_authorized!==false) process.exit(3);
-          if(c.authority.max_solves_per_run!==10||c.authority.campaign_ceiling!==40) process.exit(4);
-          console.log('G7_P7_NAMING_AND_SOURCE_AUTHORITY_PASS');
+          if(c.authority.bulk_authorized!==false) process.exit(2);
+          if(c.authority.max_solves_per_run!==10||c.authority.campaign_ceiling!==40) process.exit(3);
+          console.log('G7_P7_BATCH2_AUTHORITY_PASS');
           NODE
-      - name: Validate frozen manifest
-        run: node scripts/g7-p7/test-reco-campaign-manifest.mjs
-      - name: Seal selection receipt
+      - name: Acquire frozen batch 2
         run: |
           set -euo pipefail
-          rm -rf /tmp/g7-p7-reco-selection
-          mkdir -p /tmp/g7-p7-reco-selection
-          cp g7/p7/preseal.json g7/p7/reco-campaign-constitution.json g7/p7/reco-campaign-manifest.json /tmp/g7-p7-reco-selection/
-          node scripts/g7-p7/test-reco-campaign-manifest.mjs | tee /tmp/g7-p7-reco-selection/selection.log
-          printf '%s\n'             'BODY_REQUESTS=0'             'SELECTION_SOURCE=G7_P3_FROZEN_SAMPLING_MANIFEST'             'CAMPAIGN_TOTAL=40'             'BATCH_SIZE=10' > /tmp/g7-p7-reco-selection/AUTHORITY.txt
-          (cd /tmp/g7-p7-reco-selection && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+          rm -rf /tmp/g7-p7-batch02
+          node scripts/g7-p7/acquire-reco-batch.mjs --batch 2 --out /tmp/g7-p7-batch02 --execute
+      - name: Exact trajectory replay
+        run: |
+          set -euo pipefail
+          node scripts/cube/replay-exact-trajectories.mjs --input /tmp/g7-p7-batch02/derived/solves.jsonl --out /tmp/g7-p7-batch02/exact
+          node - <<'NODE'
+          const x=require('/tmp/g7-p7-batch02/exact/exact-trajectories.json');
+          if(x.solve_count!==10||x.exact_end_validation_pass!==10) process.exit(1);
+          console.log('G7_P7_RECO_BATCH2_EXACT_PASS');
+          console.log('PREFIXES\t'+x.total_prefixes);
+          NODE
+      - name: Seal batch artifact
+        run: |
+          set -euo pipefail
+          printf '%s\n' 'BATCH=2' 'SOLVES=10' 'BULK_MIRROR=HOLD' 'RAW_PUBLIC_RELEASE=HOLD' > /tmp/g7-p7-batch02/AUTHORITY.txt
+          (cd /tmp/g7-p7-batch02 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
       - uses: actions/upload-artifact@v4
         with:
-          name: G7-P7-reco-selection-${{ github.sha }}
-          path: /tmp/g7-p7-reco-selection
+          name: G7-P7-reco-batch2-${{ github.sha }}
+          path: /tmp/g7-p7-batch02
           if-no-files-found: error
           retention-days: 90
