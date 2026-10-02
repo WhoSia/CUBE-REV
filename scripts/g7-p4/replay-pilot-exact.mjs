@@ -63,11 +63,23 @@ fs.mkdirSync(outDir,{recursive:true});
 fs.writeFileSync(path.join(outDir,"exact-trajectories.json"),JSON.stringify(report,null,2)+"\n");
 const stateRows=[];
 for(const r of records){
-  stateRows.push(JSON.stringify({source_id:r.source_id,prefix_index:0,observed_action_index:null,boundary_after:false,cubie:r.start_cubie}));
-  for(const p of r.prefixes) stateRows.push(JSON.stringify({
-    source_id:r.source_id,prefix_index:p.prefix_index,observed_action_index:p.face_action_index,
-    boundary_after:p.boundary_after,annotation_after:p.annotation_after,move_kind:p.kind,raw:p.raw,cubie:p.cubie
+  const next0=r.prefixes[0]??null;
+  stateRows.push(JSON.stringify({
+    source_id:r.source_id,prefix_index:0,
+    observed_next_action_index:next0?.face_action_index??null,
+    observed_next_kind:next0?.kind??null,
+    boundary_after:false,cubie:r.start_cubie
   }));
+  for(let i=0;i<r.prefixes.length;i++){
+    const p=r.prefixes[i], next=r.prefixes[i+1]??null;
+    stateRows.push(JSON.stringify({
+      source_id:r.source_id,prefix_index:p.prefix_index,
+      observed_next_action_index:next?.face_action_index??null,
+      observed_next_kind:next?.kind??null,
+      boundary_after:p.boundary_after,annotation_after:p.annotation_after,
+      move_kind:p.kind,raw:p.raw,cubie:p.cubie
+    }));
+  }
 }
 fs.writeFileSync(path.join(outDir,"prefix-states.jsonl"),stateRows.join("\n")+"\n");
 if(exactSolved!==records.length) throw new Error("P4_END_STATE_VALIDATION");
