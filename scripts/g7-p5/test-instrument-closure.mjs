@@ -1,0 +1,16 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import {spawnSync} from "node:child_process";
+const d=fs.mkdtempSync(path.join(os.tmpdir(),"g7-p5-close-"));
+const audit={pass:true,trials:24,pairs:12,distinct_phase1_lb:3,side_condition_counts:{A:{NEUTRAL:6,DELIBERATE:6},B:{NEUTRAL:6,DELIBERATE:6}}};
+const analysis={authority:"SYNTHETIC_VALIDATION_ONLY",packet_sha256:"x",sessions:8,valid_choice_rows:192,primary:{h1_agreement_rate:.4,h3_agreement_rate:.9,state_level_label_swap_permutation_p:.001}};
+const sens={authority:"DESIGN_CALIBRATION_ONLY",frozen_complete_session_target:24,reference_cell:{estimated_sensitivity:.9}};
+fs.writeFileSync(path.join(d,"a.json"),JSON.stringify(audit));
+fs.writeFileSync(path.join(d,"r.json"),JSON.stringify(analysis));
+fs.writeFileSync(path.join(d,"s.json"),JSON.stringify(sens));
+const p=spawnSync(process.execPath,["scripts/g7-p5/evaluate-instrument.mjs","--audit",path.join(d,"a.json"),"--analysis",path.join(d,"r.json"),"--sensitivity",path.join(d,"s.json"),"--out",path.join(d,"o")],{encoding:"utf8"});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+const x=JSON.parse(fs.readFileSync(path.join(d,"o","G7-P5-INSTRUMENT-CLOSURE.json"),"utf8"));
+if(x.verdict!=="PASS_INSTRUMENT_VALIDATED_HUMAN_CONTACT_NOT_YET_OPEN"||x.human_contact_open) throw new Error("VERDICT");
+console.log("G7_P5_INSTRUMENT_CLOSURE_TEST_PASS");
