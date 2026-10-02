@@ -14,21 +14,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inventory tracked files
+      - name: Enforce active-only repository invariant
         run: |
           set -euo pipefail
           git ls-files | sort | tee /tmp/tracked-files.txt
-          echo 'P7_REPO_ACTIVE_SET_AUDIT'
-          echo '--- COUNT ---'
-          wc -l /tmp/tracked-files.txt
-          echo '--- TOP LEVEL COUNTS ---'
-          awk -F/ '{print $1}' /tmp/tracked-files.txt | sort | uniq -c | sort -nr
-          echo '--- LEGACY CANDIDATES ---'
-          grep -E '^(g4/|g5/|g6/|g7/p[1-6]/|scripts/g7-p[1-6]/|g3-cog/|data_frontier/BRANCH_RETIREMENT_AUDIT_|\.github/workflows/(g3-|p14-r1-|validate-static))' /tmp/tracked-files.txt | tee /tmp/legacy-candidates.txt || true
+          node - <<'NODE'
+          const fs=require('fs');
+          const m=require('./g7/p7/active-set-manifest.json');
+          const files=fs.readFileSync('/tmp/tracked-files.txt','utf8').trim().split(/\r?\n/).filter(Boolean);
+          const retired=m.retired_patterns.map(x=>new RegExp(x));
+          const legacy=files.filter(p=>retired.some(r=>r.test(p)));
+          const unclassified=files.filter(p=>{
+            if(m.allowed_root_files.includes(p)) return false;
+            return !m.allowed_prefixes.some(prefix=>p.startsWith(prefix));
+          });
+          fs.writeFileSync('/tmp/legacy-candidates.txt',legacy.join('\n')+(legacy.length?'\n':''));
+          fs.writeFileSync('/tmp/unclassified-files.txt',unclassified.join('\n')+(unclassified.length?'\n':''));
+          const top={};
+          for(const p of files){const k=p.split('/')[0];top[k]=(top[k]||0)+1;}
+          const report={
+            schema_version:'cube-rev.p7.active-set-audit.v1',
+            tracked_files:files.length,
+            legacy_candidates:legacy,
+            unclassified_files:unclassified,
+            top_level_counts:Object.fromEntries(Object.entries(top).sort((a,b)=>b[1]-a[1])),
+            pass:legacy.length===0&&unclassified.length===0
+          };
+          fs.writeFileSync('/tmp/active-set-audit.json',JSON.stringify(report,null,2)+'\n');
+          console.log('P7_REPO_ACTIVE_SET_AUDIT');
+          console.log('TRACKED_FILES\t'+files.length);
+          console.log('LEGACY_CANDIDATES\t'+legacy.length);
+          console.log('UNCLASSIFIED_FILES\t'+unclassified.length);
+          if(legacy.length) console.log('LEGACY\n'+legacy.join('\n'));
+          if(unclassified.length) console.log('UNCLASSIFIED\n'+unclassified.join('\n'));
+          if(!report.pass) process.exit(1);
+          console.log('P7_REPO_ACTIVE_SET_PASS');
+          NODE
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: P7-repo-active-set-audit-${{ github.sha }}
           path: |
             /tmp/tracked-files.txt
             /tmp/legacy-candidates.txt
-          retention-days: 7
+            /tmp/unclassified-files.txt
+            /tmp/active-set-audit.json
+          retention-days: 14
