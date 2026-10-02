@@ -38,7 +38,7 @@ fn main(){
     println!("source_id\tprefix_index\tphase1_lb\tts_lb\tfs_lb\tis_g1\tboundary_after\tnext_action\th1_best\th2_best\th3_best\tts_best\tfs_best\trival_unique_sets\tmean_pairwise_jaccard_distance\tobserved_match_h1\tobserved_match_h2\tobserved_match_h3\tobserved_match_ts\tobserved_match_fs");
     for line in io::stdin().lock().lines(){
         let line=line.expect("line");
-        if line.trim().is_empty(){continue;}
+        if line.trim().is_empty() || line.starts_with("source_id\t"){continue;}
         let f:Vec<&str>=line.split('\t').collect();
         assert_eq!(f.len(),8);
         let source=f[0]; let prefix=f[1]; let boundary=f[2];
