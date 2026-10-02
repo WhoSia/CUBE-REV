@@ -1,0 +1,57 @@
+{
+  "schema_version": "g7-p12-r1-closure-1",
+  "phase": "G7-P12-R1",
+  "status": "CLOSED",
+  "final_verdict": "COMPRESSION_NOT_AUTHORIZED__SUPPORT_INFORMATION_TRADEOFF_EXPOSED__BEHAVIORAL_STAGE_NOT_OPENED",
+  "authority": {
+    "run": 37045165530,
+    "head": "ea510927891401091a805b94a4a32f9f1bf72ee6",
+    "artifact": 11243643303,
+    "sha256": "ce6aece3d12cd8a7f6c5c5782c73f98ee38cade841593d7630e0b328c3ad5327",
+    "drive": "1SEC3Elt6eQFl9lGkB6xeB1_Tw3KyD2R0"
+  },
+  "key_results": {
+    "K_D": {
+      "fresh_loss": 0.11316363209673791,
+      "legacy_loss": 0.11613159854879042,
+      "fresh_support": 9,
+      "legacy_support": 23,
+      "passes": false
+    },
+    "K_L": {
+      "fresh_loss": 0.361609395650411,
+      "legacy_loss": 0.36558645443104204,
+      "fresh_support": 32,
+      "legacy_support": 48,
+      "passes": false
+    },
+    "D_L": {
+      "fresh_loss": 0.27811025405196754,
+      "legacy_loss": 0.2708976893950766,
+      "fresh_support": 20,
+      "legacy_support": 33,
+      "passes": false
+    },
+    "K_D_BINARY_INTERSECTION": {
+      "fresh_loss": 0.03299968434611825,
+      "legacy_loss": 0.03541588144494987,
+      "fresh_support": 6,
+      "legacy_support": 19,
+      "passes": false
+    },
+    "K_L_BINARY_NONLOW_DESC": {
+      "fresh_loss": 0.26628045847138315,
+      "legacy_loss": 0.2669407027972212,
+      "fresh_support": 26,
+      "legacy_support": 42,
+      "passes": false
+    }
+  },
+  "behavioral_stage": "NOT_OPENED",
+  "boundary": [
+    "No support threshold was relaxed after observing K_D fresh support=9.",
+    "No behavioral residual was computed for a representation that failed structural selection gates.",
+    "Observed-support entropy is not universal sufficiency."
+  ],
+  "successor_problem": "Map the complete nonempty coordinate-projection lattice of K=low-support size, D=descending-action count, L=low-descending intersection count and its fresh/legacy support-information Pareto frontier without behavioral outcomes."
+}
