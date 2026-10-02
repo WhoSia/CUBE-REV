@@ -1,0 +1,35 @@
+{
+  "schema_version":"g7-p10-r2-lb7-local-contrast-preseal-1",
+  "phase":"G7-P10-R2",
+  "operation_type":"LB7 Local-Contrast Matching Stress Test",
+  "formal_name":"CUBE-REV Generation VII G7-P10-R2 — LB7 Local-Contrast Matching, Neighbor-LB6/8 Counterfactual Comparison, Progress×Support-Size Exact Stratification, Within-Solve Conditional-Choice Differencing, Cohort/Method Stability & Phase-1 Structural-Spike Stress Test",
+  "status":"FROZEN_AFTER_R1_BEFORE_R2_OUTCOME",
+  "parent_run":37040480361,
+  "parent_artifact":11241691856,
+  "parent_sha256":"c02db8881e0f3370cff6058a49d64f6f589679be9fa42fb24e97a57473557a16",
+  "target":"conditional d<=2 TS excess at phase1_lb=7",
+  "primary_matching":{
+    "unit":"solve",
+    "eligible_states":"nonempty low-overlap support and non-G1",
+    "exact_strata":["normalized progress quintile","exact low-overlap support-set size"],
+    "contrasts":["lb7 minus union(lb6,lb8)","lb7 minus lb6","lb7 minus lb8"],
+    "within_stratum_weight":"minimum target/comparator state count"
+  },
+  "secondary_matching":{
+    "coarse_support_size_bins":["1","2","3+"],
+    "reason":"parallel sensitivity readout, not result-triggered fallback"
+  },
+  "secondary_readouts":[
+    "leave-one-cohort-out matched delta",
+    "method-family matched delta for groups with at least 5 eligible solves",
+    "lb3 minus union(lb4,lb5) negative-spike contrast"
+  ],
+  "adjudication":{
+    "lb7_localized":"primary lb7-vs-neighbor matched solve mean is positive",
+    "lb7_not_localized":"primary matched mean is nonpositive",
+    "boundary":"post-R1 stress test only; no confirmatory or cognitive-mechanism promotion"
+  },
+  "source_contact":"NONE",
+  "new_body_requests":0,
+  "human_contact_gate":"CLOSED"
+}
