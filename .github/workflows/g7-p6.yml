@@ -53,6 +53,7 @@ jobs:
           node scripts/g7-p6/test-packet-bank.mjs
           node scripts/g7-p6/test-packet-bank-pipeline.mjs
           node scripts/g7-p6/test-packet-selection.mjs
+          node scripts/g7-p6/test-contact-gate.mjs
 
       - name: Materialize exact multi-rival bank
         run: |
@@ -63,6 +64,8 @@ jobs:
           node scripts/g7-p6/compile-packet-bank.mjs /tmp/g7-p6/packet-bank.tsv /tmp/g7-p6/packet-bank.json
           node scripts/g7-p6/audit-packet-bank.mjs /tmp/g7-p6/packet-bank.json /tmp/g7-p6/packet-bank-audit.json
           node scripts/g7-p6/select-prospective-packets.mjs /tmp/g7-p6/packet-bank.json /tmp/g7-p6/prospective-packets
+          node scripts/g7-p6/compile-instrument-packet.mjs             /tmp/g7-p6/prospective-packets/development-packet.json             DEVELOPMENT             /tmp/g7-p6/prospective-packets/development-instrument.json
+          node scripts/g7-p6/compile-instrument-packet.mjs             /tmp/g7-p6/prospective-packets/confirmation-packet.json             FRESH_CONFIRMATION             /tmp/g7-p6/prospective-packets/confirmation-instrument.json
           node - <<'NODE'
           const a=require('/tmp/g7-p6/packet-bank-audit.json');
           if(!a.pass||a.states!==256||a.seeds!==8) process.exit(1);
@@ -70,6 +73,10 @@ jobs:
           const s=require('/tmp/g7-p6/prospective-packets/selection-receipt.json');
           if(s.development_states!==32||s.confirmation_states!==32||s.reserve_states!==192) process.exit(3);
           if(s.exact_state_overlap_dev_confirm!==0||s.state_id_overlap_dev_confirm!==0) process.exit(4);
+          const d=require('/tmp/g7-p6/prospective-packets/development-instrument.json');
+          const c=require('/tmp/g7-p6/prospective-packets/confirmation-instrument.json');
+          if(d.trials.length!==32||c.trials.length!==32) process.exit(5);
+          if(d.human_contact_authority!=='CLOSED_PENDING_P6_CONTACT_GATE'||c.human_contact_authority!=='CLOSED_PENDING_P6_CONTACT_GATE') process.exit(6);
           console.log('G7_P6_DATA_BANK_PASS');
           console.log('G7_P6_PACKET_SPLIT_PASS');
           console.log('BANK_SHA256\t'+a.bank_sha256);
