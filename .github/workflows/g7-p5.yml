@@ -46,6 +46,7 @@ jobs:
           node scripts/g7-p5/test-packet-audit.mjs
           node scripts/g7-p5/test-analysis.mjs
           node scripts/g7-p5/test-sensitivity.mjs
+          node scripts/g7-p5/test-instrument-closure.mjs
 
       - name: Materialize frozen prospective packet
         run: |
@@ -71,6 +72,18 @@ jobs:
           console.log('H1_AGREEMENT\t'+x.primary.h1_agreement_rate);
           console.log('H3_AGREEMENT\t'+x.primary.h3_agreement_rate);
           console.log('PERMUTATION_P\t'+x.primary.state_level_label_swap_permutation_p);
+          NODE
+          node scripts/g7-p5/evaluate-instrument.mjs \
+            --audit /tmp/g7-p5/packet-audit.json \
+            --analysis /tmp/g7-p5/analysis/analysis.json \
+            --sensitivity /tmp/g7-p5/sensitivity.json \
+            --out /tmp/g7-p5/closure
+          node - <<'NODE'
+          const x=require('/tmp/g7-p5/closure/G7-P5-INSTRUMENT-CLOSURE.json');
+          if(x.verdict!=='PASS_INSTRUMENT_VALIDATED_HUMAN_CONTACT_NOT_YET_OPEN') process.exit(1);
+          if(x.human_contact_open) process.exit(2);
+          console.log('G7_P5_INSTRUMENT_FINAL_PASS');
+          console.log('VERDICT\t'+x.verdict);
           NODE
 
       - name: Seal validation artifact
