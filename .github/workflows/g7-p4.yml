@@ -30,6 +30,7 @@ jobs:
           node -e "for (const p of ['g7/p4/preseal.json','g7/p4/pilot-manifest.json']) JSON.parse(require('fs').readFileSync(p,'utf8')); console.log('G7_P4_JSON_AUTHORITY_PASS')"
       - run: node scripts/g7-p4/test-pilot-acquisition.mjs
       - run: node scripts/g7-p4/test-pilot-trajectory.mjs
+      - run: node scripts/g7-p4/test-exact-replay.mjs
 
   g7-p4-pilot-contact:
     if: ${{ false }}
