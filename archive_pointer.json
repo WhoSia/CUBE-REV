@@ -31,7 +31,16 @@
       "archive_branch": "archive/pre-p7-active-prune-20261002",
       "drive_audit_file_id": "15KxYy2vDCyRqORoIpbnTg3dYYHgBr507",
       "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI",
-      "verification_status": "BLOCKING_ACTIVE_SET_AUDIT_PASS"
+      "verification_status": "FULL_TREE_AND_GIT_HISTORY_DRIVE_READBACK_VERIFIED",
+      "source_head": "f9fb6e859ea0130aa3a0b0bb7994a7f7060a8183",
+      "tracked_files": 325,
+      "drive_full_history_file_id": "1VjWE0a7V13aBgZRZgngRUvqZVkkkKLG5",
+      "drive_full_history_url": "https://drive.google.com/file/d/1VjWE0a7V13aBgZRZgngRUvqZVkkkKLG5/view",
+      "tree_snapshot_sha256": "a927b6d6a090c4bf4c36d0ad5684dc674e88c0802fff754ae9a9b2edc4e736a3",
+      "git_bundle_sha256": "662605b72beae6182f9fe07c8395af349dd47d3c0a049857dccf2c41e3908f1c",
+      "actions_artifact_id": 11227173209,
+      "actions_artifact_sha256": "4ff74b10d37f2e16290ed3dee90da9a58998750e2d7c8f3139c551baebc4f28a",
+      "branch_closure_ready": true
     },
     {
       "original_path": "P7 calibration/web/annotation/legacy-registry island present at 447b37d9fb25e856848f212661a899ab00d05115",
@@ -49,8 +58,8 @@
     "blocking_workflow": ".github/workflows/p7-repo-active-set-audit.yml",
     "sealed_run": 37004765344,
     "sealed_head": "05f5142d5496d5ba80de81e09801fb274ae374c6",
-    "tracked_files": 42,
-    "allowed_files": 42,
+    "tracked_files": 43,
+    "allowed_files": 43,
     "unexpected_files": 0,
     "missing_active_files": 0,
     "artifact_id": 11224744123,
