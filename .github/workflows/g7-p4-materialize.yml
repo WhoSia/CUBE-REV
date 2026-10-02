@@ -1,0 +1,70 @@
+name: Materialize G7-P4 exact pilot trajectories
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p4/**'
+      - 'scripts/g7-p4/**'
+      - 'crates/search-geometry-core/src/bin/g7_p4_replay.rs'
+      - '.github/workflows/g7-p4-materialize.yml'
+  pull_request:
+    paths:
+      - 'g7/p4/**'
+      - 'scripts/g7-p4/**'
+      - 'crates/search-geometry-core/src/bin/g7_p4_replay.rs'
+      - '.github/workflows/g7-p4-materialize.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  exact-pilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Unit gates
+        run: |
+          set -euo pipefail
+          node scripts/g7-p4/test-facelet-kernel.mjs
+          node scripts/g7-p4/test-exact-trajectories.mjs
+          node scripts/g7-p4/test-exact-replay.mjs
+      - name: Recover frozen pilot artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: G7-P4-pilot-348f7c78d5dc59e016cdf2d9fd54cfb95adef7dc
+          path: /tmp/g7-p4-pilot
+          github-token: ${{ github.token }}
+          repository: WhoSia/CUBE-REV
+          run-id: 36955646758
+      - name: Verify pilot evidence and materialize exact trajectories
+        run: |
+          set -euo pipefail
+          cd /tmp/g7-p4-pilot
+          sha256sum -c SHA256SUMS.txt
+          cd -
+          rm -rf /tmp/g7-p4-exact
+          node scripts/g7-p4/materialize-exact-trajectories.mjs             --input /tmp/g7-p4-pilot/derived/solves.jsonl             --out /tmp/g7-p4-exact
+          node - <<'NODE'
+          const x=require('/tmp/g7-p4-exact/exact-trajectories.json');
+          const p=require('./g7/p4/preseal.json');
+          if(x.solve_count!==10) process.exit(1);
+          if(x.supported_fraction < p.closure_thresholds.descriptive_exact_replay_fraction_min) process.exit(2);
+          console.log('G7_P4_EXACT_REPLAY_THRESHOLD_PASS');
+          console.log('SUPPORTED_FRACTION\t'+x.supported_fraction);
+          console.log('SUPPORTED\t'+(x.replay_status_counts.SUPPORTED||0));
+          console.log('UNSUPPORTED_TOKEN\t'+(x.replay_status_counts.UNSUPPORTED_TOKEN||0));
+          console.log('END_STATE_NOT_SOLVED\t'+(x.replay_status_counts.END_STATE_NOT_SOLVED||0));
+          NODE
+          (cd /tmp/g7-p4-exact && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P4-exact-pilot-${{ github.sha }}
+          path: /tmp/g7-p4-exact
+          if-no-files-found: error
+          retention-days: 90
