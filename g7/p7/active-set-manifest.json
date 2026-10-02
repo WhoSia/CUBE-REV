@@ -40,6 +40,7 @@
     "scripts/g7-p7/analyze-recovered-provenance-geometry.py",
     "scripts/g7-p7/audit-source-world-support.py",
     "scripts/g7-p7/calibrate-reco-statistics.py",
+    "scripts/g7-p7/census-index-provenance.py",
     "scripts/g7-p7/diagnose-linkage-failures.py",
     "scripts/g7-p7/link-wca-attempts.py",
     "scripts/g7-p7/merge-reco-corpus.mjs",
