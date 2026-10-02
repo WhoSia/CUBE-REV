@@ -1,231 +1,99 @@
 # CUBE-REV — research/current
 
-> This branch is the active research lineage of CUBE-REV.  
-> The public 0.7.12 deployment lives on `main`. Do not treat `research/current` as the GitHub Pages release branch.
+> Active research branch. Historical execution scaffolds are intentionally pruned from this branch.
 
-CUBE-REV studies recovery, search, representation, and bounded executability in exact reversible state spaces, using the 2×2×2 Rubik's Cube as the principal proof instrument.
+CUBE-REV studies exact reversible state spaces, search/representation geometry, and human planning. The current active phase is **Generation VII G7-P7**.
 
-The project began from a human-facing question — when a person is shown only the final cube state, what makes recovery possible or difficult? — but the current research branch deliberately separates several objects that were easy to conflate:
+## Active scientific spine
 
-- generation history;
-- terminal-state geometry;
-- exact shortest-path search;
-- phase/subgroup representations;
-- observation and memory;
-- executable controller state;
-- externalized state and viewpoint;
-- learned or human representations.
+### reco.nz — naturalistic reconstruction spine
+Current P7 treats reco.nz as the core naturalistic human-solve source.
 
-The cube is not treated as the endpoint. It is the exact world in which these distinctions can be proved, falsified, and transported.
+Active authority:
+- frozen 12,941-row index population;
+- bounded body acquisition only;
+- max 10 solve bodies per run;
+- no de-facto bulk mirror by chaining unlimited runs;
+- raw public redistribution remains HOLD;
+- annotations are preserved as measurements, not treated as latent cognition.
 
-## Branch roles
+Current P7 campaign:
+- 40 prospectively frozen solve bodies;
+- 4 batches × 10;
+- Batch 1 complete: 10/10 acquisition and exact replay;
+- existing P4 body corpus remains predecessor evidence.
 
-### `main`
-Public/deployment lineage.
+### exact cube / search geometry
+The reusable exact authority is kept independently of its historical generation labels:
 
-It contains the participant-facing 0.7.12 host, browser instrumentation, collector integration, deployment documentation, and the public README.
+`crates/cuberev-core/`
+`crates/search-geometry-core/`
+`scripts/cube/`
 
-### `research/current`
-Active mathematical/computational research lineage.
+The search core contains the exact 3×3 cubie representation, phase-1 geometry, projected PDBs, phase-2 support, and five-rival planning representations used by G7.
 
-It contains:
-- exact state-space code;
-- recovery-game and controller theory;
-- search-geometry experiments;
-- deterministic scientific courts;
-- GitHub Actions used as reproducible execution authority;
-- Generation V stage documents under `g5/`.
+### active reconstruction core
 
-Human world contact is currently **CLOSED** on this branch unless explicitly reauthorized by a later court.
+`core/reco/`
+- reco.nz bounded-acquisition policy
+- reconstruction method ontology
+- frozen sampling geometry
 
-## Current Generation V state
+`scripts/reco/`
+- reco.nz HTML parsing
+- reconstruction move/annotation lexing
 
-### G5-P3 — recovery surfaces
-P3 separated target sufficiency, observation structure, resource semantics, reversibility, and transport.
+### current phase
 
-Important inherited rule:
+`g7/p7/`
+- P7 preseal
+- reco.nz campaign constitution/manifest
+- current Court criteria and source boundaries
 
-[
-q(s)=q(s') 
-otRightarrow q(T_a(s))=q(T_a(s')).
-]
+`scripts/g7-p7/`
+- current bounded campaign selection/acquisition/tests
 
-Static sufficiency and action congruence are different claims.
+`.github/workflows/`
+- only workflows that may still execute in P7 or its immediate successor should remain here.
 
-### G5-P4 — recovery protocol synthesis
-P4 introduced exact adaptive recovery protocols and vector-valued resources rather than a canonical scalar cost.
+## Current inference boundary
 
-Executed results include:
-- Pareto-incomparable exact recovery protocols;
-- unsupported Pareto protocols that can still be uniquely executable under coordinate-wise budgets;
-- minimal finite recovery controllers;
-- internal ↔ external state-transfer constructions;
-- multi-bit controller allocation laws;
-- exact cube-derived controller transport.
+P7 may compare:
+- naturalistic reconstruction trajectories;
+- exact cube states and five-rival search geometry;
+- WCA official attempt/scramble context;
+- future authorized prospective participant behavior.
 
-P4-R4 remains a presealed execution debt rather than a completed court.
+It must not equate reconstruction annotations with internal cognitive states, reconstruction frequencies with WCA frequencies, or computational representations with human representations without behavioral evidence.
 
-### G5-P5 — search-representation geometry
-P5 promoted pure cube mathematics/search to a first-class research axis, using Kociemba/Korf/Rokicki-style subgroup, coordinate, symmetry, and heuristic ideas as prior art rather than as novelty claims.
+## Repository active-set policy
 
-P5 is now **terminally closed at R3**.
+Files belong on `research/current` only if they are one of:
 
-#### R0 — exact anchored-RUF geometry
-On the rotation-quotiented 2×2 corner state space
+1. **ACTIVE_CORE** — reusable executable code/schema used by current or immediate-next work;
+2. **ACTIVE_PHASE** — current P7 constitution, manifests, tests, and workflows;
+3. **ACTIVE_DATA_AUTHORITY** — current source/linkage definitions that are still consumed.
 
-[
-7!,3^6 = 3{,}674{,}160,
-]
+Closed-phase workflows, one-off materializers, phase-specific closure tests, and superseded prose are removed from the active branch after their authority is preserved.
 
-the research branch materialized:
-- anchored-RUF Cayley geometry;
-- orientation-layer distance;
-- the orientation-solved subgroup generated by (langle U,R^2,F^2angle);
-- first-hit two-phase search with explicit Phase-1 slack.
+Historical bytes remain recoverable through:
+- Git history;
+- archive branch `archive/pre-p7-active-prune-20261002`;
+- GitHub Actions artifacts;
+- Google Drive scientific custody receipts.
 
-The unrestricted two-phase metric was found to be vacuous and retained as a failure witness.
+Drive archive ledger:
+**CUBE-REV — Repository Active-Set Archive Ledger**
 
-#### R1 — entry surfaces and symmetry breaking
-For zero slack,
-
-[
-d_{2P}^{(0)}(s)
-=
-d_O(s)
-+
-min_{hin E_0(s)} d_H(h).
-]
-
-The largest observed distortion was (+12) moves. Extremal states were localized to forced shortest-orientation entry surfaces whose phase-2 distance was already at the restricted diameter.
-
-A generator-cycle (C_3) graph automorphism preserves geodesic distance exactly, while phase distortion varies on most (C_3) orbits. Thus the distortion is representation-relative, not an intrinsic scalar of the underlying graph state.
-
-#### R2 — claim-relative quotient compression
-The class-minimal structural representation in the frozen primitive dictionary that preserves the statewise distortion target is
-
-[
-q_{346}(s)
-=
-(d_G(s),d_O(s),entryMin(s)),
-]
-
-with **346 classes**.
-
-A (C_3)-invariant representation cannot preserve the original unsymmetrized distortion target because that target itself changes within (C_3) orbits.
-
-After explicitly changing the target to a (C_3)-orbit gap profile, symmetry-restored structural quotients become possible.
-
-#### R3 — representation-to-controller closure
-The 346-class quotient is static, not predictive.
-
-Exact R3 results:
-- q346 classes: **346**;
-- q346 action-congruence violations: **30,751,764**;
-- exact full-action predictive refinement: **3,674,160 classes**;
-- distinct nonterminal first-hit optimal policy masks: **246**;
-- q346 classes split by policy output: **343 / 346**;
-- ((q346,	ext{policyMask})) classes: **9,284**.
-
-Therefore:
-
-> **Static claim sufficiency is not controller sufficiency.**
-
-Under the full anchored-RUF move algebra, exact predictive closure of q346 collapses to full state identity.
-
-This is the terminal scientific boundary of P5. Additional policy-quotient taxonomies belong in a new P-stage, not P5-R4/R5.
-
-### G5-P6 — representation ecology synthesis
-P6 synthesizes the Generation-V search, controller, symmetry, and prospective cognition axes on the same exact 3,674,160-state world.
-
-Exact representation class counts:
-- GEO `dG`: **12**
-- PDB `(dO,dP)`: **56**
-- PHASE `q346=(dG,dO,entryMin)`: **346**
-- POLICY `(q346,optimalPolicyMask)`: **9,284**
-- C3SYM: **1,046**
-- FULL: **3,674,160**
-
-The exact representation × preserved-claim court establishes a crossed ecology rather than a total order:
-
-- GEO preserves exact geodesic distance but not phase distortion, policy, symmetry-orbit target, or full transitions.
-- PDB is a valid search abstraction but does not exactly determine any of the five tested targets.
-- PHASE preserves geodesic distance and `Delta0`, but not exact action policy or dynamics.
-- POLICY additionally preserves the exact first-hit optimal action set, but not full transitions.
-- C3SYM preserves geodesic distance and the symmetrized `Psi` target, while intentionally losing unsymmetrized `Delta0`.
-- FULL preserves every tested exact claim.
-
-Therefore:
-
-> **Representation quality is claim-relative. There is no representation-independent total ordering across search, explanation, policy, symmetry, and predictive dynamics.**
-
-P6 freezes four matched-state human-precontact contrasts:
-- same `dG`, different `Delta0`;
-- same PDB coordinate, different entry/phase distortion;
-- same `q346`, different exact optimal policy;
-- same exact C3 graph orbit and `dG`, different phase distortion.
-
-The viewpoint-externalization contrast remains blocked until the interface viewpoint-state semantics are authoritative.
-Human world contact remains **CLOSED**.
-
-
-## Current Generation VI state
-
-Generation VI lifts the representation program from the complete 2×2 world into exact 3×3 Kociemba phase geometry.
-
-- G6-P1 defines the 3×3 phase-1 coordinate `(twist, flip, UD-slice)` over the 2,217,093,120-state quotient domain.
-- G6-P2 makes the 18-HTM phase-1 transition oracle executable and separates abstract phase policy from full-cube optimal policy.
-- G6-P3 quantifies the gap between the weak projected PDB and exact phase-1 distance.
-- G6-P4 lifts within-G1 endpoint identity to exact phase-2 coordinates and establishes the local necessity of all three natural phase-2 coordinate families.
-- G6-P5 shows that shortest phase-1 entry does not determine downstream phase-2 cost and that +1 phase-1 slack can sharply improve non-vacuous total cost.
-- **G6-P6 executable synthesis:** on the exact `dG=3,d1=2` 960-state slice, shortest entry-cost fibers form 3 classes, one-slack frontiers form 4 classes, 928 states have shortest-entry regret, 32 are hard-entry states, and C4 symmetry compresses the slice to 248 orbits with zero cost-signature conflicts.
-
-The current 3×3 representation ladder is:
-
-`weak projected PDB → exact q/d1 → shortest endpoint-cost fiber → slack frontier → full state`
-
-The mathematical axis is intended to generate sharper cognitive-science experiments, not to replace them. Same-q / different-fiber states are treated as future matched-state planning stimuli; no machine coordinate is identified with a human cognitive representation without behavioral world contact.
-
-Strict executable G6-P6 science HEAD: `2a58f8abb8154310493107486a5461d176938884`.
-Human world contact remains **CLOSED**.
-
-## Repository structure
-
-The research branch keeps legacy deployment files because it descends from the public repository, but current scientific authority lives mainly in:
+## Rust workspace
 
 ```text
 crates/
-├─ cuberev-core/              # exact 2×2 corner-state authority
-├─ recovery-game-core/        # recovery-game semantics and frozen P3 core
-├─ recovery-synthesis-core/   # P4 protocol/controller synthesis
-└─ search-geometry-core/      # P5 Cayley/phase/quotient geometry
-
-g5/
-├─ p3/
-├─ p4/
-│  ├─ CONSTITUTION.md
-│  ├─ R1.md
-│  ├─ R2.md
-│  └─ R3.md
-├─ p5/
-│  ├─ R0.md
-│  ├─ R1.md
-│  ├─ R2.md
-│  └─ R3.md
-└─ p6/
-   └─ CONSTITUTION.md
-
-.github/workflows/
-├─ g5-p4-synthesis.yml
-├─ g5-p5-search-geometry.yml
-├─ g5-p5-r1.yml
-├─ g5-p5-r2.yml
-├─ g5-p5-r3.yml
-└─ ...
+├─ cuberev-core/
+└─ search-geometry-core/
 ```
 
-## Reproducibility
-
-The Rust workspace is the primary executable authority for current exact courts.
+Validation:
 
 ```bash
 cargo fmt --all --check
@@ -233,141 +101,10 @@ cargo check --workspace
 cargo test --workspace
 ```
 
-Current P5 courts can be materialized with:
+## Naming doctrine
 
-```bash
-cargo run --release --quiet -p search-geometry-core --bin p5_r0
-cargo run --release --quiet -p search-geometry-core --bin p5_r1
-cargo run --release --quiet -p search-geometry-core --bin p5_r2
-cargo run --release --quiet -p search-geometry-core --bin p5_r3
-cargo run --release --quiet -p search-geometry-core --bin p6
-```
+Stage suffixes are operation-sensitive, not lineage defaults.
 
-GitHub Actions are used as reproducible execution receipts. A scientific result is not treated as closed merely because code exists locally; canonical courts are re-run at the exact branch head and inherited P3/P4 gates are checked for regression.
+Use `Court` only when live alternatives, fixed adjudication criteria, binding verdicts, and downstream authority changes are all present. Otherwise prefer the actual operation: `Campaign`, `Census`, `Compiler`, `Materialization`, `Replication`, `Gate`, `Audit`, `Validation`, `Seal`, etc.
 
-## Current canonical Generation-V synthesis
-
-P6 canonical strict-seal commit:
-
-```text
-7c6f5808a63208bf229e79a9f74e67d8d62eab55
-```
-
-Strict P6 run:
-
-```text
-36534719743 — SUCCESS
-```
-
-Artifact:
-
-```text
-g5-p6-representation-ecology
-artifact id: 11017018939
-sha256: 6276ce94d970412c418fff473c4e1375390ff8e9cb6e317df312db3ac8e28ab9
-```
-
-At the same head, P5-R3, P5-R2, P5-R1, P5-R0, P4, and P3 all passed.
-
-The earlier P5-R3 science/seal commit remains the terminal authority for P5 itself; P6 is the cross-layer Generation-V synthesis above it.
-
-## Current canonical P5 closure
-
-P5-R3 science/seal commit:
-
-```text
-dfc0d8c8fac13f1e676d4a3bdde759ca20f33baf
-```
-
-Strict P5-R3 run:
-
-```text
-36532923015 — SUCCESS
-```
-
-Artifact:
-
-```text
-g5-p5-r3-closure-court
-artifact id: 11017102597
-sha256: 702b6994365d3fb8d3c612fdb298d6c7baa828a41b23a69eebdf2272d6b51723
-```
-
-At that same scientific head, inherited P5-R2, P5-R1, P5-R0, P4, and P3 workflows all passed.
-
-## Literature and mathematical lineage
-
-CUBE-REV does not claim generic novelty for:
-- Kociemba two-phase search;
-- subgroup/coset coordinates;
-- IDA*;
-- pattern databases;
-- cube symmetry reduction;
-- automata minimization;
-- finite-state controllers;
-- generic epistemic/external action.
-
-Those are prior-art foundations and comparison classes.
-
-The current research interest is narrower: how exact search/recovery claims change under different representations, which quotient structures preserve which claims, when those quotients fail dynamically, and how those mathematical distinctions can later be tested against learned or human recovery behavior without assuming equivalence.
-
-Important source families include:
-- Herbert Kociemba's Two-Phase / Cube Explorer technical material;
-- Richard Korf on macro-operators and pattern databases;
-- Rokicki–Kociemba–Davidson–Dethridge on cube diameter and symmetry/coset methods;
-- exact state abstraction / bisimulation / finite-controller literature;
-- external representation and epistemic-action work for the future cognition bridge.
-
-## Human cognition boundary
-
-The original human question remains active, but exact machine quantities are **not** human cognitive measurements.
-
-In particular:
-- (d_G) is not “human difficulty”;
-- a Kociemba coordinate is not a human mental representation;
-- q346 classes are not human chunks;
-- controller-state bits are not working-memory bits.
-
-Future human work must treat these as explicit rival explanatory variables and earn any bridge through prospective behavioral or interventional evidence.
-
-## Research governance
-
-Current constraints:
-- **Human world contact: CLOSED**
-- **G4-R2 provenance hold: unchanged**
-- **P4-R4 execution debt: retained**
-- no silent retrofit of failed courts;
-- failed or vacuous constructions remain in the lineage as negative evidence;
-- all branch movement is fast-forward only;
-- machine representation and human representation authority remain separate.
-
-## Public deployment
-
-If you are looking for the live/public participant-facing experiment, use the `main` branch.
-
-The deployment instructions, browser controls, participant flow, collection protocol, and public privacy notes belong there rather than in this research README.
-
----
-
-## 한국어 요약
-
-`research/current`는 배포 브랜치가 아니라 **CUBE-REV의 현재 연구 계보**입니다.
-
-현재 연구는 2×2×2 큐브의 정확한 상태공간에서
-- 최단경로 기하,
-- Kociemba식 phase/subgroup 표현,
-- quotient와 symmetry,
-- recovery protocol,
-- controller state,
-- 외부화된 기억,
-- 이후의 인간 인지 표현
-
-을 서로 구분해 비교하는 방향으로 진행됩니다.
-
-P5는 R3에서 종료되었습니다. 가장 중요한 결론은 다음입니다.
-
-> `(dG,dO,entryMin)`으로 만든 346-class 표현은 정적인 distortion 값은 정확히 보존하지만, 실제 큐브 move dynamics를 예측하는 controller state로는 충분하지 않다.
-
-full-action exact predictive closure에서는 결국 **3,674,160개 전체 상태를 다시 구분해야** 했고, first-hit optimal policy만 보아도 346개 class 중 343개가 서로 다른 행동 출력을 요구했습니다.
-
-따라서 다음 연구 단계는 P5를 더 잘게 늘리는 것이 아니라, 이 결과를 새로운 P-stage의 질문으로 넘기는 것이 원칙입니다.
+G7-P7 retains `Court` because it independently satisfies that qualification. Future phase names must classify the operation before choosing the suffix.
