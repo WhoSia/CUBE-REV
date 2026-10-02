@@ -1,0 +1,31 @@
+{
+  "schema_version":"g7-p9-r2-low-overlap-transport-preseal-1",
+  "phase":"G7-P9-R2",
+  "operation_type":"Low-Overlap TS Specificity Transport Stress Test",
+  "formal_name":"CUBE-REV Generation VII G7-P9-R2 — Low-Overlap TS Specificity Transport, Method/Provenance/Cohort Concentration Audit, Leave-One-Stratum-Out Sign Stability, Campaign-Epoch Replication, Support-Density Calibration & Peripheral-Signal Robustness Stress Test",
+  "status":"FROZEN_AFTER_R1_BEFORE_R2_OUTCOME",
+  "parent_run":37039284222,
+  "parent_artifact":11241464337,
+  "parent_sha256":"6266691e95cc00c54b38abbc1fc068bc83349e152fa90334a95d607a0117980a",
+  "target":"TS overlap-degree 0+1+2 cumulative excess",
+  "independent_unit":"solve",
+  "subgroup_min_n":3,
+  "inference_min_n":5,
+  "primary_readouts":[
+    "low-overlap solve excess by method_family",
+    "low-overlap solve excess by broad provenance",
+    "low-overlap solve excess by cohort and campaign epoch",
+    "leave-one-method-out mean",
+    "leave-one-provenance-out mean",
+    "leave-one-cohort-out mean",
+    "P4 predecessor versus P7 fresh campaign direction"
+  ],
+  "adjudication":{
+    "robust":"all eligible leave-one-group-out means remain positive and both campaign epochs are positive",
+    "concentrated":"one or more eligible leave-one-group-out means are nonpositive or one campaign epoch is nonpositive",
+    "boundary":"subgroup stress cannot promote a cognitive mechanism"
+  },
+  "source_contact":"NONE",
+  "new_body_requests":0,
+  "human_contact_gate":"CLOSED"
+}
