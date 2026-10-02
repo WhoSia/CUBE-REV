@@ -1,0 +1,73 @@
+{
+  "schema_version": "g7-p8-closure-1",
+  "phase": "G7-P8",
+  "status": "CLOSED",
+  "formal_name": "CUBE-REV Generation VII G7-P8 — Frozen-Population Index-Covariate Recovery, Method-Family×Reconstructor-Frequency Support Geometry, Zero-Support Cell Accounting, Descriptive Post-Stratified Five-Rival Transport, Cross-Era Stability & Missing-Covariate Adversarial Bound Court",
+  "final_verdict": "PASS_TS_COMPOSITION_ROBUST_METHOD_RECONSTRUCTOR_POPULATION_TRANSPORT__H1_AGGREGATE_POSITIVE_BUT_CFOP_AND_SPARSE_ERA_SENSITIVE__NO_IDENTIFIED_TS_TEMPORAL_REVERSAL__BODY_LIGHT_FALLBACK_NOT_ACTIVATED",
+  "authorities": {
+    "index_covariate_census": {
+      "run": 37033109120,
+      "artifact": 11238930249,
+      "sha256": "460dc657565541b663f1bc91b6e75490a7591f56946a41c28af60802ee27f16a",
+      "drive": "1tooqEL07_pRJoYUPIV9JP_wdv6QEzFAy"
+    },
+    "method_reconstructor_transport_court": {
+      "run": 37036234228,
+      "artifact": 11239796775,
+      "sha256": "14d18409bf2cc82a0abbe348937097a4bb11a7b49cbb323b55b4cb3129cc67e1",
+      "drive": "1Q0SvyJ1mlirCSQC_UMPEXkEQKGqGHmKb"
+    },
+    "r1_method_dominance_stress": {
+      "run": 37036745942,
+      "artifact": 11240900495,
+      "sha256": "308d629754c8438a9b5f0d7c0d5887d4007c9ecab4ff453f37e570e223deecf0",
+      "drive": "1umu-8UpMLVsV6HWnY4npfUVHvMd2ndqX"
+    },
+    "r2_era_support_depth_audit": {
+      "run": 37037932662,
+      "head": "05e616cd2c29d29190c1592025a5a5f753d43e30",
+      "artifact": 11240468346,
+      "sha256": "27d42383372052f4f3f181cf2dba77126da3fc41b2794b2ba868b8ceaac1c254",
+      "drive": "12S_3ltgV4eFy3mj-K0oxQbaNZ3aDCIP6"
+    }
+  },
+  "population": {
+    "frozen_3x3_rows": 10591,
+    "body_geometry_solves": 60,
+    "index_method_coverage": 1.0,
+    "index_reconstructor_coverage": 1.0,
+    "new_solve_body_requests": 0
+  },
+  "surviving_results": {
+    "TS": [
+      "positive population sign under P7 provenance-axis adversarial transport",
+      "positive under P8 method-family post-stratification and every leave-one-method-family-out deletion",
+      "positive under reconstructor-frequency post-stratification and every leave-one-band-out deletion",
+      "positive under joint method×reconstructor-band transport with full-range adversarial zero-support bound",
+      "no identified temporal nonpositive population sign after R2 zero-support repair"
+    ],
+    "H1": [
+      "positive aggregate population sign under P7 provenance transport and P8 primary method/reconstructor transport axes",
+      "method-family leave-CFOP-out sign is negative, establishing method-composition sensitivity",
+      "E4 method-axis negative supported result is sparse-geometry-support sensitive and is not promoted to a stable temporal reversal"
+    ]
+  },
+  "retired_or_repaired_interpretations": [
+    "R1 apparent E2 reconstructor temporal negative sign is repaired to UNIDENTIFIED after restoring 127 zero-sample high-band population rows to the era denominator",
+    "R1 temporal-instability verdict is not retained as a population-level TS sign reversal",
+    "stage-boundary ambiguity remains unsupported as a universal planning-boundary effect"
+  ],
+  "fallback_disposition": {
+    "body_light_200_manifest": "SEALED_BUT_NOT_EXECUTED",
+    "activation_condition": "index-only census insufficient for method/reconstructor coverage",
+    "observed_condition": "FALSE because both covariates reached 100% frozen-population coverage",
+    "source_contact": "NOT_AUTHORIZED_BY_FALLBACK_CONDITION"
+  },
+  "promotion_boundary": {
+    "TS": "ROBUST_DESCRIPTIVE_ALIGNMENT_NOT_COGNITIVE_MECHANISM",
+    "H1": "DESCRIPTIVE_ALIGNMENT_WITH_METHOD_COMPOSITION_SENSITIVITY",
+    "human_contact": "CLOSED",
+    "human_mechanism": "CLOSED"
+  },
+  "next_scientific_problem": "Determine whether TS robustness is genuinely rival-specific or is carried by support-set overlap/shared move restrictions with H1/H2/H3/FS, using the frozen 60-solve state-level geometry before any stronger mechanism claim."
+}
