@@ -1,0 +1,28 @@
+{
+  "schema_version":"g7-p10-closure-1",
+  "phase":"G7-P10",
+  "status":"CLOSED",
+  "formal_name":"CUBE-REV Generation VII G7-P10 — TS Low-Overlap State-Surface Cartography, Phase-1 Lower-Bound×G1 Localization, Normalized Solve-Progress Matching, Boundary/Stage Decoupling, Support-Density Residualization, Within-Solve Matched-State Contrasts, Cross-Cohort/Method Transport & Structural-Specificity Stress Test",
+  "final_verdict":"MIXED_SUPPORT_AVAILABILITY_AND_CONDITIONAL_CHOICE_LOCALIZATION__LB7_CONDITIONAL_SIGNAL_PRESENT_BUT_LOCAL_NEIGHBOR_CONTRAST_BATCH4_SENSITIVE__FRESH_REPLICATION_REQUIRED",
+  "authorities":{
+    "cartography":{"run":37040070023,"artifact":11241666385,"sha256":"ab81e5f2102fe914a46c3b68f94c1d1058cff1d56911d987af1797e667072ac5","drive":"1wB3BA6dXl8SwOXBe0RG5_gqVjrCNJRp0"},
+    "r1_factorization":{"run":37040480361,"artifact":11241691856,"sha256":"c02db8881e0f3370cff6058a49d64f6f589679be9fa42fb24e97a57473557a16","drive":"1rvrFzxccO99d11xQE7xO0-k8B7HMoHyz"},
+    "r2_local_contrast":{"run":37040890646,"artifact":11242586686,"sha256":"b091ece027a665932e03831932ce2c4daaa463c605d016bfb42b36eaf510c071","drive":"1EL4Yf460DeG_83ytPi6P02kJ17MiSKZZ"},
+    "r3_batch4_leverage":{"run":37041282340,"artifact":11242397900,"sha256":"ca9100c1a894afebcddf38604c6d13553e57caf3500d32dbf92e7d91d780123b","drive":"1otSpC_vZoX_jLrabbeAWpJMoB82jzWuL"}
+  },
+  "surviving_results":[
+    "Low-overlap TS support is structurally absent inside G1.",
+    "At phase1_lb=7, nonempty-support conditional solve excess is positive with solve-level sign-flip support.",
+    "Annotation boundary remains nonpositive and unsupported after structural and availability matching.",
+    "lb7-minus-neighbor local contrast is directionally positive but not strong and is cohort-sensitive.",
+    "P7_BATCH4 carries a large positive lb7 local residual that survives method×broad-provenance standardization and is not controlled by one solve."
+  ],
+  "retired_or_limited_interpretations":[
+    "G1 zero excess is not behavioral neutrality; conditional preference is undefined because low-overlap support availability is zero.",
+    "P10 hotspot ranking is exploratory and cannot be treated as confirmatory localization.",
+    "The lb7 local-neighbor advantage is not transport-stable across existing acquisition cohorts."
+  ],
+  "next_scientific_problem":"Fresh outcome-blind naturalistic replication of low-overlap and lb7 conditional/local-contrast signals on solves selected before body outcomes are observed.",
+  "human_contact_gate":"CLOSED",
+  "mechanism_promotion":"FORBIDDEN"
+}
