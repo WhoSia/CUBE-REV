@@ -114,7 +114,9 @@ jobs:
           x=json.load(open('/tmp/g7-p6/external-derived/derived-receipt.json'))
           assert x['counts']['participants']==40, x['counts']
           assert x['counts']['first_decisions']==1549, x['counts']
-          assert x['counts']['timing_rows']==31444, x['counts']
+          assert x['counts']['all_decisions']==4778, x['counts']
+          assert x['counts']['timing_rows']==33029, x['counts']
+          assert x['counts']['timing_analysis_rows']==31444, x['counts']
           assert x['security']['raw_source_ids_written'] is False
           assert x['security']['age_gender_exported'] is False
           print('G7_P6_NUZZI_DERIVED_COUNTS_PASS')
