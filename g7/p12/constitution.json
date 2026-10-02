@@ -1,0 +1,75 @@
+{
+  "schema_version": "g7-p12-constitution-1",
+  "phase": "G7-P12",
+  "formal_name": "CUBE-REV Generation VII G7-P12 — Replicated LB7 Local-Transition Geometry, One-Move Phase-1 Shell Flow Reconstruction, Low-Overlap Opportunity Concentration, Descent/Plateau/Ascent Action Decomposition, G1-Entry Accessibility, Structural-Opportunity Exact Matching, Legacy↔Fresh Cohort Transport & LB7 Alignment Mediation Audit",
+  "operation_type": "Structural-Opportunity Mediation Audit",
+  "status": "FROZEN_AFTER_P11_BEFORE_P12_OUTCOME",
+  "parent": {
+    "p11_closure": "g7/p11/closure.json",
+    "p11_fresh_local_mean": 0.056231231231231235,
+    "p11_fresh_conditional_mean": 0.01928750220190438,
+    "p11_verdict": "REPLICATED_DIRECTION"
+  },
+  "population": {
+    "legacy": "frozen prior 60 body solves",
+    "fresh": "P11 outcome-blind balanced fresh 40",
+    "pooled_use": "allowed only after P11 fresh-only verdict; all P12 readouts preserve legacy/fresh ancestry"
+  },
+  "state_eligibility": "face-next exact states; primary shell surfaces restricted to non-G1 phase1_lb in {6,7,8}",
+  "one_move_geometry": [
+    "18-action next phase1 lower-bound vector",
+    "count of descending, plateau, and ascending actions",
+    "count of one-move G1 entries",
+    "d<=2 TS low-overlap support size",
+    "low-overlap actions that descend phase1_lb",
+    "low-overlap-descending fraction of low-overlap support",
+    "low-overlap share of all descending actions"
+  ],
+  "primary_mediation": {
+    "target": "lb7 minus union(lb6,lb8) conditional low-overlap excess",
+    "unit": "solve",
+    "exact_strata": [
+      "normalized progress quintile",
+      "exact low-overlap support size",
+      "exact total descending-action count",
+      "exact low-overlap-descending-action count"
+    ],
+    "within_stratum_weight": "minimum target/comparator state count",
+    "fresh_first": true,
+    "legacy_parallel": true,
+    "pooled_secondary": true
+  },
+  "parallel_sensitivity": {
+    "support_size_bins": [
+      "1",
+      "2",
+      "3+"
+    ],
+    "descending_action_bins": [
+      "0-2",
+      "3-5",
+      "6+"
+    ],
+    "low_overlap_descending_bins": [
+      "0",
+      "1",
+      "2+"
+    ],
+    "status": "PRESEALED_PARALLEL_NOT_FALLBACK"
+  },
+  "adjudication": {
+    "support_limited": "fresh exact-structural matched eligible solves < 10",
+    "structural_opportunity_dominant": "otherwise fresh residual changes sign relative to P11 fresh local mean or abs(residual) <= 0.5 * abs(P11 fresh local mean)",
+    "residual_alignment": "otherwise residual retains positive sign and abs(residual) > 0.5 * abs(P11 fresh local mean)"
+  },
+  "inference_boundary": [
+    "Observed-state local transition geometry is not the complete global phase1 shell topology.",
+    "The audit is post-P11 explanatory analysis, not an independent replication.",
+    "Structural standardization is descriptive mediation diagnostics, not causal identification.",
+    "Phase1/PDB/TS coordinates remain computational representations, not latent cognitive states.",
+    "No human mechanism promotion."
+  ],
+  "source_contact": "NONE",
+  "new_body_requests": 0,
+  "human_contact_gate": "CLOSED"
+}
