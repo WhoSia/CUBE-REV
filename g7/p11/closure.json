@@ -1,0 +1,79 @@
+{
+  "schema_version": "g7-p11-closure-1",
+  "phase": "G7-P11",
+  "formal_name": "CUBE-REV Generation VII G7-P11 — Prospective Fresh-Reconstruction State-Surface Replication, Outcome-Blind Method×Reconstructor Cell Balancing, Exact-State Replay, Low-Overlap Support-Availability/Conditional-Choice Reconstitution, LB7↔Neighbor Matched-Contrast Replication, Cross-Batch/Method Transport, Cohort-Composition Firewall & Structural-Localization Replication Campaign",
+  "status": "CLOSED",
+  "final_verdict": "REPLICATED_DIRECTION__STRUCTURAL_SIGNATURE_PROSPECTIVELY_REPRODUCED__INFERENTIAL_STRENGTH_MODEST__MECHANISM_PROMOTION_CLOSED",
+  "authority": {
+    "selection": {
+      "run": 37042187843,
+      "artifact": 11242753632,
+      "sha256": "45145487febf4d9fc975299ffe567a9e20ae63cb744a6205bd53f661941f8a67",
+      "drive": "1kp6bqy6jSJ6bimiaD4smMwO94x25ZA_F",
+      "manifest_sha256": "70057c8868da63b7aaeef9d2a005be163602a667cfe2a675af6e9ec5acbcdee9"
+    },
+    "acquisition_closure": "g7/p11/acquisition-closure.json",
+    "fresh_replication": {
+      "run": 37043759376,
+      "head": "d5d5ab46475e136f6dc316e72ab70518ed9b70d1",
+      "artifact": 11243112192,
+      "sha256": "3e78e2080156c4a8db82a889269456d98fd0aa01fced7335cf3e96963d8bdade",
+      "drive": "1E8B3Je4Vlk_aTayzn4wFf26_Ov1WgnqA"
+    }
+  },
+  "fresh_primary_results": {
+    "g1_low_overlap_support": {
+      "states": 98,
+      "availability": 0
+    },
+    "lb7_conditional_solve_excess": {
+      "n_solves": 40,
+      "mean": 0.01928750220190438,
+      "median": 0.020487682252388152,
+      "positive": 23,
+      "negative": 17,
+      "signflip_p": 0.25521744782552175
+    },
+    "lb7_minus_lb6_8_exact_local": {
+      "n_solves": 37,
+      "mean": 0.056231231231231235,
+      "median": 0,
+      "positive": 9,
+      "zero": 24,
+      "negative": 4,
+      "signflip_p": 0.13186868131318688
+    }
+  },
+  "transport_readouts": {
+    "all_sampling_cells_lb7_conditional_positive": true,
+    "all_sampling_cells_local_contrast_positive": true,
+    "all_four_batches_lb7_conditional_positive": true,
+    "all_four_batches_local_contrast_positive": true,
+    "cfop": {
+      "conditional": 0.019799380971322583,
+      "local": 0.02587719298245614
+    },
+    "noncfop": {
+      "conditional": 0.01877562343248618,
+      "local": 0.08827160493827162
+    }
+  },
+  "interpretation": [
+    "The G1 low-overlap support absence reproduced exactly in the fresh corpus.",
+    "The lb7 conditional d<=2 TS next-action excess remained positive in the fresh 40.",
+    "The exact within-solve lb7-minus-neighbor contrast remained positive in 37 eligible fresh solves.",
+    "The frozen directional replication rule therefore returns REPLICATED_DIRECTION.",
+    "Solve-clustered sign-flip diagnostics are modest and do not justify a confirmatory significance claim.",
+    "Balanced method×reconstructor acquisition cells all retain positive directional readouts, arguing against the P10 effect being solely a composition artifact.",
+    "This is a prospective replication of a naturalistic computational-structural signature, not identification of a human planning mechanism."
+  ],
+  "retired_or_forbidden": [
+    "Do not treat TS or phase1_lb as direct latent cognitive variables.",
+    "Do not treat directional replication as causal mechanism confirmation.",
+    "Do not retroactively change the fresh sampling or verdict rule.",
+    "No further P11 source contact is authorized."
+  ],
+  "successor_problem": "Explain why the replicated lb7 shell carries elevated low-overlap conditional/local alignment: reconstruct exact lb6/7/8 shell topology, support-emergence geometry, transition structure, and opportunity concentration before any stronger cognitive interpretation.",
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
