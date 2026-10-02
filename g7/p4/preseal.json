@@ -1,35 +1,51 @@
 {
-  "schema_version":"g7-p4-preseal-1",
-  "phase":"CUBE-REV Generation VII G7-P4",
-  "predecessor":{
-    "source_head":"301140b9261dd87dc67577179bcc09343b314704",
-    "workflow_run":36954817112,
-    "artifact_id":11205587281,
-    "artifact_sha256":"acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4",
-    "verdict":"PASS_CONDITIONAL_CORPUS_WITH_EXPLICIT_SUPPORT_BOUNDARY"
+  "schema_version": "g7-p4-preseal-1",
+  "phase": "CUBE-REV Generation VII G7-P4",
+  "predecessor": {
+    "source_head": "301140b9261dd87dc67577179bcc09343b314704",
+    "workflow_run": 36954817112,
+    "artifact_id": 11205587281,
+    "artifact_sha256": "acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4",
+    "verdict": "PASS_CONDITIONAL_CORPUS_WITH_EXPLICIT_SUPPORT_BOUNDARY"
   },
-  "human_policy_authority":{
-    "source_annotation_is_latent_cognition":false,
-    "stage_comment_is_observed_annotation":true,
-    "exact_cube_state_is_mechanical_authority":true,
-    "rival_search_policy_is_counterfactual_model_not_human_intent":true,
-    "causal_planning_claim_requires_independent_identification":true
+  "human_policy_authority": {
+    "source_annotation_is_latent_cognition": false,
+    "stage_comment_is_observed_annotation": true,
+    "exact_cube_state_is_mechanical_authority": true,
+    "rival_search_policy_is_counterfactual_model_not_human_intent": true,
+    "causal_planning_claim_requires_independent_identification": true
   },
-  "pilot_contact":{
-    "source":"reco_nz",
-    "sampling_role":"coverage_analysis",
-    "selection_rule":"first 10 records of frozen G7-P3 coverage-analysis manifest",
-    "max_solve_bodies":10,
-    "bulk_mirror":"HOLD",
-    "raw_public_release":"HOLD",
-    "ids":[12137,2104,11859,1019,6403,5070,12096,12832,2092,3449]
+  "pilot_contact": {
+    "source": "reco_nz",
+    "sampling_role": "coverage_analysis",
+    "selection_rule": "first 10 records of frozen G7-P3 coverage-analysis manifest",
+    "max_solve_bodies": 10,
+    "bulk_mirror": "HOLD",
+    "raw_public_release": "HOLD",
+    "ids": [
+      12137,
+      2104,
+      11859,
+      1019,
+      6403,
+      5070,
+      12096,
+      12832,
+      2092,
+      3449
+    ]
   },
-  "trajectory_unit":{
-    "atomic_action":"parsed legal cube move",
-    "boundary_candidates":["source_comment_boundary","method_stage_boundary","rotation_boundary","pause_proxy_if_available"],
-    "state_authority":"deterministic exact cube replay from scramble plus action prefix"
+  "trajectory_unit": {
+    "atomic_action": "parsed legal cube move",
+    "boundary_candidates": [
+      "source_comment_boundary",
+      "method_stage_boundary",
+      "rotation_boundary",
+      "pause_proxy_if_available"
+    ],
+    "state_authority": "deterministic exact cube replay from scramble plus action prefix"
   },
-  "measurement_layers":[
+  "measurement_layers": [
     "raw_source_annotation",
     "normalized_notation",
     "exact_state_trajectory",
@@ -37,8 +53,14 @@
     "search_representation_features",
     "rival_policy_features"
   ],
-  "deconfounding_axes":["reconstructor","method_family","temporal_era","solver_frequency_band","reconstructor_frequency_band"],
-  "primary_descriptive_estimands":[
+  "deconfounding_axes": [
+    "reconstructor",
+    "method_family",
+    "temporal_era",
+    "solver_frequency_band",
+    "reconstructor_frequency_band"
+  ],
+  "primary_descriptive_estimands": [
     "chunk_length_distribution",
     "comment_boundary_alignment_with_state_features",
     "stage_conditioned_move_count",
@@ -46,16 +68,45 @@
     "prefix_state_search_slack_proxy",
     "human_action_vs_rival_action_divergence"
   ],
-  "forbidden_shortcuts":[
+  "forbidden_shortcuts": [
     "treat_source_comment_as_direct_cognitive_state",
     "infer_lookahead_from_move sequence alone",
     "collapse reconstructor effects into solver behavior",
     "declare exact WCA attempt identity without proof",
     "expand beyond frozen bounded contact to improve results"
   ],
-  "terminal_verdicts":[
+  "terminal_verdicts": [
     "PASS_MECHANISM_SUPPORT_WITH_MEASUREMENT_BOUNDARY",
     "PASS_DESCRIPTIVE_POLICY_GEOMETRY_ONLY",
     "HOLD_MECHANISM_IDENTIFICATION_INSUFFICIENT"
-  ]
+  ],
+  "confirmatory_contact": {
+    "source": "reco_nz",
+    "sampling_role": "population_estimation",
+    "selection_rule": "first 10 records of frozen G7-P3 population-estimation manifest",
+    "execute_independently_of_pilot_outcome": true,
+    "max_solve_bodies": 10,
+    "bulk_mirror": "HOLD",
+    "raw_public_release": "HOLD",
+    "ids": [
+      3594,
+      8402,
+      3722,
+      1976,
+      785,
+      9332,
+      11750,
+      1164,
+      9693,
+      7905
+    ]
+  },
+  "closure_thresholds": {
+    "descriptive_exact_replay_fraction_min": 0.8,
+    "annotation_bearing_solves_min": 6,
+    "mechanism_support_requires_independent_source_replication": true,
+    "mechanism_support_requires_reconstructor_conditioned_robustness": true,
+    "mechanism_support_requires_search_alignment_beyond_mechanical_replay": true,
+    "descriptive_pass_may_survive_mechanism_hold": true
+  }
 }
