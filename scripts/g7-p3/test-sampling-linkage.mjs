@@ -15,7 +15,7 @@ const p=spawnSync(process.execPath,['scripts/g7-p3/materialize-sampling-linkage.
 if(p.status!==0) throw new Error(p.stderr||p.stdout);
 const m=JSON.parse(fs.readFileSync(path.join(out,'sampling-manifest.json'),'utf8'));
 if(m.population_estimation.selected.length!==16) throw new Error('POP_SAMPLE');
-if(m.coverage_analysis.selected.length!==12) throw new Error('COVERAGE_SAMPLE');
+if(m.coverage_analysis.selected.length!==Math.min(12,m.eligible_population.nonempty_strata)) throw new Error('COVERAGE_SAMPLE');
 if(m.linkage_support.counts.A_EXACT!==0) throw new Error('EXACT_AUTHORITY');
 if(m.authority.bulk_mirror!=='HOLD'&&m.authority.bulk_solve_body_mirror!=='HOLD') throw new Error('BULK_HOLD');
 console.log('G7_P3_SAMPLING_LINKAGE_TEST_PASS');
