@@ -126,6 +126,24 @@ jobs:
             --recovery g7/p7/source-provenance-recovery.json
           rm -rf /tmp/g7-p7-provenance-authority /tmp/g7-p7-provenance-authority.zip
 
+      - name: Download refined population transport authority
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/g7-p7-refined-transport
+          curl --fail --location --silent --show-error \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$REPO/actions/artifacts/11236528187/zip" \
+            -o /tmp/g7-p7-refined-transport.zip
+          echo '33d6f25b4426cb938dee7dd970a2adc5940ed521db1ece836a8bd65d9aa9fe7b  /tmp/g7-p7-refined-transport.zip' | sha256sum -c -
+          unzip -q /tmp/g7-p7-refined-transport.zip -d /tmp/g7-p7-refined-transport
+          test -n "$(find /tmp/g7-p7-refined-transport -name refined-population-provenance-transport.json -print -quit)"
+          echo 'G7_P7_REFINED_POPULATION_TRANSPORT_AUTHORITY_PASS'
+
       - name: Recovered-provenance five-rival geometry Stress Test
         run: |
           set -euo pipefail
@@ -135,6 +153,26 @@ jobs:
             --recovery g7/p7/source-provenance-recovery.json \
             --out /tmp/g7-p7-build/recovered-provenance \
             --permutations 100000
+
+      - name: Refined provenance-conditioned five-rival geometry Transport Court
+        run: |
+          set -euo pipefail
+          TP="$(find /tmp/g7-p7-refined-transport -name refined-population-provenance-transport.json -print -quit)"
+          python3 scripts/g7-p7/analyze-refined-provenance-geometry-transport.py \
+            --context /tmp/g7-p7-build/prefix-context.jsonl \
+            --features /tmp/g7-p7-build/five-rival-features.tsv \
+            --transport "$TP" \
+            --out /tmp/g7-p7-build/refined-geometry-transport | tee /tmp/g7-p7-build/refined-geometry-transport.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/g7-p7-build/refined-geometry-transport/refined-provenance-five-rival-geometry-transport.json'))
+          assert x['solves']==60 and x['population_rows']==10591
+          assert 0 <= x['unidentified_population_mass'] <= 1
+          print('G7_P7_REFINED_PROVENANCE_GEOMETRY_TRANSPORT_RESULT_GATE_PASS')
+          print('VERDICT',x['verdict'])
+          print('TS',x['overall']['TS'])
+          print('H1',x['overall']['H1'])
+          PY
 
       - name: Seal derived-only private research artifact
         run: |
@@ -150,6 +188,7 @@ jobs:
           cp /tmp/g7-p7-build/calibration/statistical-calibration.json /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/calibration/statistical-calibration-receipt.md /tmp/g7-p7-seal/derived/
           cp /tmp/g7-p7-build/recovered-provenance/recovered-provenance-five-rival-geometry.json /tmp/g7-p7-seal/derived/
+          cp /tmp/g7-p7-build/refined-geometry-transport/refined-provenance-five-rival-geometry-transport.json /tmp/g7-p7-seal/derived/
           cp g7/p7/reco-statistical-calibration.json /tmp/g7-p7-seal/authority/
           cp /tmp/g7-p7-build/exact/exact-trajectories.json /tmp/g7-p7-seal/derived/
           printf '%s\n'             'SOURCE_CONTACT=NONE'             'SOLVES=60'             'RAW_SOURCE_HTML_PACKAGED=NO'             'RAW_PUBLIC_RELEASE=HOLD'             'AUTHORITY=DESCRIPTIVE_NATURALISTIC_MEASUREMENT'             > /tmp/g7-p7-seal/AUTHORITY.txt
@@ -173,6 +212,10 @@ jobs:
           if(p.solves!==60) process.exit(3);
           console.log('RECOVERED_PROVENANCE_CLASSES\t'+Object.keys(p.groups).length);
           console.log('RECOVERED_PROVENANCE_TS_UNOFFICIAL\t'+p.groups.SOURCE_DECLARED_UNOFFICIAL.rivals.TS.mean_excess);
+          const t=require('/tmp/g7-p7-seal/derived/refined-provenance-five-rival-geometry-transport.json');
+          console.log('REFINED_TRANSPORT_VERDICT\t'+t.verdict);
+          console.log('REFINED_TRANSPORT_TS_POSTSTRAT\t'+t.overall.TS.poststrat_supported_mass_mean_excess);
+          console.log('REFINED_TRANSPORT_H1_POSTSTRAT\t'+t.overall.H1.poststrat_supported_mass_mean_excess);
           NODE
 
       - uses: actions/upload-artifact@v4
