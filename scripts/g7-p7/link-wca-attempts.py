@@ -124,7 +124,7 @@ def main():
     required_res={"id","competition_id","event_id","person_id","person_name"}
     if not required_scr.issubset(sc) or not required_res.issubset(rc):
         raise SystemExit("WCA_SCHEMA_MISMATCH")
-    round_join = "s.round_id=r.round_id" if "round_id" in sc and "round_id" in rc else "s.round_type_id=r.round_type_id"
+    round_join = "sm.round_key=CAST(r.round_id AS VARCHAR)" if "round_id" in sc and "round_id" in rc else "sm.round_key=CAST(r.round_type_id AS VARCHAR)"
     round_key = "CAST(s.round_id AS VARCHAR)" if "round_id" in sc else "CAST(s.round_type_id AS VARCHAR)"
     start_expr = "CAST(c.start_date AS DATE)" if "start_date" in cc else "make_date(CAST(c.year AS INTEGER),CAST(c.month AS INTEGER),CAST(c.day AS INTEGER))"
     if "end_date" in cc:
