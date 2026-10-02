@@ -1,0 +1,61 @@
+{
+  "schema_version": "g7-p8-index-only-census-amendment-1",
+  "phase": "G7-P8",
+  "status": "PRESEALED_BEFORE_ANY_G7_P8_SOURCE_CONTACT",
+  "parent_constitution": "g7/p8/constitution.json",
+  "rationale": "The active reco.nz index parser exposes both method and reconstructor fields on index rows. The retained G7-P3 linkage artifact intentionally stripped these fields, while archived G7-P2/P3 code proves they were previously used in population geometry. Therefore a full index-only recovery is strictly less invasive and more informative than 200 solve-body requests.",
+  "authority_boundary": {
+    "frozen_population": "the same 12,941-row / 10,591 3x3 G7-P3 source_id universe",
+    "live_index_role": "covariate backfill only; current live rows do not redefine the frozen population",
+    "new_live_ids": "record aggregate drift counts only; exclude from P8 transport analyses",
+    "missing_frozen_ids": "retain as explicit live-availability failures",
+    "solve_body_requests": 0
+  },
+  "acquisition_policy": {
+    "endpoint": "https://reco.nz/?page={page}",
+    "mode": "INDEX_CENSUS_ONLY",
+    "max_pages": 400,
+    "min_delay_ms": 2000,
+    "sequential": true,
+    "robots_check_required": true,
+    "stop_on_first_short_or_empty_page": true,
+    "repeated_page_fingerprint_is_fatal": true,
+    "user_agent": "CUBE-REV-research/0.1 (+https://github.com/WhoSia/CUBE-REV)"
+  },
+  "retention_policy": {
+    "raw_html": false,
+    "solve_body_html": false,
+    "reconstruction_moves": false,
+    "retained_fields": [
+      "source_id",
+      "frozen_puzzle",
+      "live_present",
+      "live_index_page",
+      "method_raw",
+      "reconstructor"
+    ],
+    "retained_aggregates": [
+      "pages_fetched",
+      "live_rows_seen",
+      "frozen_ids_matched",
+      "frozen_ids_missing",
+      "frozen_3x3_method_coverage",
+      "frozen_3x3_reconstructor_coverage",
+      "method_counts",
+      "reconstructor_counts",
+      "new_live_id_count"
+    ]
+  },
+  "fallback": {
+    "selection_manifest_artifact": 11237384145,
+    "selection_manifest_sha256": "01cb5260a41d94f84f6de118f2e396837352aad8c2c32ad17175d32aefc4c7ae",
+    "body_light_200_status": "SEALED_BUT_NOT_EXECUTED",
+    "activation_condition": "only if index-only census cannot provide sufficient method/reconstructor coverage for the frozen population",
+    "no_result_dependent_resampling": true
+  },
+  "promotion_gate": {
+    "method_reconstructor_transport": "HOLD until index-only census and downstream population transport court",
+    "human_contact": "CLOSED",
+    "human_mechanism": "CLOSED"
+  }
+}
