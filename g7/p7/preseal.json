@@ -301,5 +301,55 @@
       "manual WCA context recovery remains below exact-attempt linkage authority",
       "no provenance contrast can identify or promote a human cognitive mechanism"
     ]
+  },
+  "full_index_provenance_support_census": {
+    "operation_type": "Full-Index Provenance-Support Census",
+    "status": "FROZEN_BEFORE_FULL_INDEX_PROVENANCE_EXECUTION",
+    "authority": "POPULATION_METADATA_CENSUS_ONLY",
+    "source_scope": {
+      "reco_index_authority": "G7-P2 final index census artifact; no solve-body requests",
+      "expected_rows": 12941,
+      "expected_3x3_rows": 10591,
+      "wca_authority": "same frozen 2026-10-02 v2.0.2 WCA export used by P7 linkage"
+    },
+    "unit": "reco.nz index reconstruction row",
+    "primary_population": "3x3 rows; all-puzzle totals retained separately",
+    "source_label_classes": [
+      "SOURCE_DECLARED_UNOFFICIAL",
+      "NO_SOURCE_COMPETITION_CONTEXT",
+      "MONKEY_LEAGUE_LABEL",
+      "RECONSTRUCTION_PLATFORM_LABEL",
+      "EXACT_NORMALIZED_WCA_COMPETITION_NAME",
+      "OTHER_UNMATCHED_SOURCE_LABEL"
+    ],
+    "wca_context_support_ladder": [
+      "WCA_COMPETITION_SOLVER_RESULT_EXACT_CONTEXT",
+      "WCA_COMPETITION_SOLVER_EXACT_CONTEXT",
+      "WCA_COMPETITION_EXACT_ONLY",
+      "NO_EXACT_WCA_COMPETITION_CONTEXT"
+    ],
+    "exact_matching_rules": [
+      "competition names: Unicode NFKC + casefold + whitespace normalization, then exact equality",
+      "solver names: same exact normalized equality only",
+      "result support: exact centisecond value for valid timed 3x3 rows",
+      "no fuzzy aliases in the automatic census",
+      "manual P7 recovery classes remain separate and are not used to alter population labels"
+    ],
+    "required_strata": [
+      "year",
+      "method",
+      "reconstructor",
+      "solver-frequency band",
+      "reconstructor-frequency band",
+      "source-label class"
+    ],
+    "sample_transport_question": "compare frozen 60 body solves against the full 3x3 index population on source-support class composition without reweighting after observing results",
+    "forbidden": [
+      "new reco.nz solve-body contact",
+      "infer non-WCA provenance solely from failure of exact-name WCA matching",
+      "use fuzzy solver or competition matching",
+      "retroactively alter the frozen 60-body sampling constitution",
+      "promote population provenance patterns to cognitive mechanism evidence"
+    ]
   }
 }
