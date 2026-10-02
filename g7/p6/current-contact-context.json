@@ -1,0 +1,10 @@
+{
+  "schema_version":"g7-p6-current-contact-context-1",
+  "status":"NO_LIVE_CUBE_PARTICIPANT_DATA",
+  "consent_metadata_present":false,
+  "supervision_or_research_authorization_present":false,
+  "live_cube_behavior_rows":0,
+  "development_participants":0,
+  "confirmation_participants":0,
+  "reason":"P6 completed precontact instrumentation, data expansion, and external transport without opening live cube-participant collection."
+}
