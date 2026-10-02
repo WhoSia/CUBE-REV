@@ -35,6 +35,7 @@
     "scripts/cube/sticker-cube.mjs",
     "scripts/g7-p7/analyze-reco-five-rival.mjs",
     "scripts/g7-p7/calibrate-reco-statistics.py",
+    "scripts/g7-p7/diagnose-linkage-failures.py",
     "scripts/g7-p7/link-wca-attempts.py",
     "scripts/g7-p7/merge-reco-corpus.mjs",
     "scripts/g7-p7/prefix-context.mjs",
@@ -68,7 +69,10 @@
   "archive_surfaces": {
     "git_history": true,
     "archive_branch": "archive/pre-p7-active-prune-20261002",
-    "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI"
+    "drive_ledger_id": "1OPuOHUHSLTXSaQOcKgJOrC1ebJ4z-HdKTLCC16InACI",
+    "drive_full_history_file_id": "1VjWE0a7V13aBgZRZgngRUvqZVkkkKLG5",
+    "archive_branch_head": "f9fb6e859ea0130aa3a0b0bb7994a7f7060a8183",
+    "branch_closure_ready": true
   },
-  "reusable_core_note": "Historical generation-labelled search kernel g6.rs is renamed phase1.rs; P7-specific executable remains phase-labelled. WCA linkage audit script is current P7 data-authority code."
+  "reusable_core_note": "Historical generation-labelled search kernel g6.rs is renamed phase1.rs; P7-specific executable remains phase-labelled. WCA linkage audit and provenance-preserving linkage failure diagnostic are current P7 data-authority code. Historical archive branch has full-tree and full-history Drive custody."
 }
