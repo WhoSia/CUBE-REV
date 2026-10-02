@@ -1,0 +1,97 @@
+{
+  "schema_version": "g7-p6-data-source-expansion-1",
+  "observed_at": "2026-10-02",
+  "sources": [
+    {
+      "source_id": "p6_nuzzi_planning_while_acting",
+      "title": "Nuzzi, Cisek & Pezzulo — Planning-while-acting",
+      "repository": "https://github.com/DavideNuzzi/Planning-While-Acting",
+      "source_class": "public_human_planning_dataset",
+      "status": "SCHEMA_AND_REPRODUCIBILITY_SURFACE_VERIFIED",
+      "provides": [
+        "participant_level_metadata",
+        "full_trajectory_time_series",
+        "camera_angle_time_series",
+        "platform_event_times",
+        "choice_at_decision_points",
+        "path_distance_contrasts",
+        "goal_angle_contrasts",
+        "incoming_trajectory_angle_contrasts",
+        "normalized_trial_time"
+      ],
+      "experiments": 3,
+      "data_format": "pickle custom Python classes",
+      "analysis_stack": [
+        "Python",
+        "R via pymer4"
+      ],
+      "p6_role": "CROSS_DOMAIN_PROSPECTIVE_PLANNING_BEHAVIOR_TRANSPORT",
+      "raw_mirror_status": "NOT_YET_MATERIALIZED",
+      "identity_policy": "do not import direct participant identifiers into CUBE-REV canonical derived tables"
+    },
+    {
+      "source_id": "p6_simonelli_hierarchical_planning",
+      "title": "Simonelli et al. (2025) — Structuring the environment nudges participants toward hierarchical over shortest path planning",
+      "doi": "10.1016/j.concog.2025.103908",
+      "repository_reported_by_paper": "https://github.com/DavideNuzzi/Hierarchical-Planning",
+      "source_class": "public_human_hierarchical_planning_dataset",
+      "participants_reported": 42,
+      "status": "PAPER_AND_DATA_AVAILABILITY_CLAIM_VERIFIED_REPOSITORY_IDENTITY_CONNECTOR_HOLD",
+      "provides_expected": [
+        "hierarchical_vs_shortest_path_choices",
+        "structured_vs_unstructured_environment_condition",
+        "self_reported_strategy"
+      ],
+      "p6_role": "EXTERNAL_HIERARCHICAL_STRATEGY_POSITIVE_CONTROL",
+      "raw_mirror_status": "HOLD_UNTIL_REPOSITORY_IDENTITY_RESOLVED"
+    },
+    {
+      "source_id": "p6_speedcubequest_reconstruction_archive",
+      "title": "SpeedcubeQuest reconstruction aggregation",
+      "homepage": "https://speedcube.quest/",
+      "source_class": "public_reconstruction_aggregation",
+      "status": "DISCOVERY_SURFACE_VERIFIED_NO_BULK_EXPORT_AUTHORITY",
+      "reported_cubesolves_reconstructions": 3006,
+      "reported_total_reconstruction_analysis": "10000+",
+      "provenance_note": "credits state 3,006 cubesolv.es reconstructions were recovered from Internet Archive; reco.nz reconstructions also aggregated",
+      "p6_role": "HISTORICAL_RECONSTRUCTION_RECOVERY_AND_ALGORITHM_USAGE_DISCOVERY",
+      "bulk_acquisition": "HOLD_NO_EXPORT_OR_API_CONFIRMED",
+      "redistribution": "HOLD"
+    },
+    {
+      "source_id": "p6_wca_results_v2_273",
+      "title": "WCA Results Export v2",
+      "homepage": "https://www.worldcubeassociation.org/export/results",
+      "source_class": "official_structured",
+      "status": "CURRENT_EXPORT_VERIFIED",
+      "export_file_prefix": "WCA_export_v2_273_20260930T000036Z",
+      "export_date": "2026-09-30",
+      "export_format_version": "2.0.2",
+      "provides": [
+        "persons",
+        "competitions",
+        "results",
+        "result_attempts",
+        "scrambles"
+      ],
+      "p6_role": "OFFICIAL_ATTEMPT_AND_SCRAMBLE_AUTHORITY",
+      "bulk_acquisition": "AUTOMATIC_ALLOWED_BY_EXISTING_P2_AUTHORITY"
+    },
+    {
+      "source_id": "p6_cubesolves_original",
+      "title": "CubeSolv.es historical reconstruction database",
+      "repository": "https://github.com/justinj/reconstruction-database",
+      "source_class": "historical_public_reconstruction_project",
+      "status": "PROJECT_VERIFIED_OLD_DUMP_LINK_NOT_YET_RECOVERED",
+      "p6_role": "HISTORICAL_MOVE_BY_MOVE_RECONSTRUCTION_WORLD",
+      "raw_mirror_status": "HOLD_PENDING_RECOVERABLE_ARCHIVE_BYTES"
+    }
+  ],
+  "authority_rules": [
+    "No source with unspecified redistribution rights is promoted to public raw mirror.",
+    "Public human datasets are imported only after schema and direct-identifier audit.",
+    "Cross-domain planning data are comparison worlds, not cube-mechanism ground truth.",
+    "WCA remains official attempt authority, not reconstruction authority.",
+    "Discovery surfaces do not become frequency authority without export-level support."
+  ]
+}
