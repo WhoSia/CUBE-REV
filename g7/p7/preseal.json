@@ -350,6 +350,30 @@
       "use fuzzy solver or competition matching",
       "retroactively alter the frozen 60-body sampling constitution",
       "promote population provenance patterns to cognitive mechanism evidence"
-    ]
+    ],
+    "data_availability_deviation": {
+      "observed_before_census_execution": true,
+      "missing": "retained P3 population artifact does not preserve row-level method/reconstructor fields for all 12,941 rows; expired P2 census artifact is not recoverable from Actions and no matching Drive copy was found",
+      "preserved_row_level_fields": [
+        "source_id",
+        "puzzle",
+        "solver",
+        "date",
+        "competition",
+        "result",
+        "legacy P3 linkage-support tier"
+      ],
+      "revised_required_strata": [
+        "year",
+        "source-label class",
+        "exact WCA competition/solver/result context support"
+      ],
+      "retained_noncross_marginals": [
+        "P3 population method distribution",
+        "P3 population reconstructor distribution",
+        "P3 solver concentration"
+      ],
+      "forbidden_inference": "do not fabricate or infer full-population provenance×method or provenance×reconstructor cross-tabs"
+    }
   }
 }
