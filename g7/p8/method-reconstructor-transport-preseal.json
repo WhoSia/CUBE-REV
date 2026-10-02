@@ -1,0 +1,111 @@
+{
+  "schema_version": "g7-p8-method-reconstructor-transport-preseal-1",
+  "phase": "G7-P8",
+  "operation_type": "Method×Reconstructor Population-Support & Geometry Transport Court",
+  "formal_name": "CUBE-REV Generation VII G7-P8 — Frozen-Population Index-Covariate Recovery, Method-Family×Reconstructor-Frequency Support Geometry, Zero-Support Cell Accounting, Descriptive Post-Stratified Five-Rival Transport, Cross-Era Stability & Missing-Covariate Adversarial Bound Court",
+  "status": "FROZEN_DURING_INDEX_CENSUS_BEFORE_COVARIATE_RESULTS_OBSERVED",
+  "inputs": {
+    "frozen_population": "12,941 G7-P3 source IDs / 10,591 frozen 3x3 rows",
+    "frozen_geometry": "same 60 G7-P7 body solves and solve-level five-rival excess",
+    "new_contact": "index pages only; no solve-body pages",
+    "method_ontology": "G7-P3 method ontology, unchanged",
+    "reconstructor_frequency_bands": {
+      "singleton": [
+        1,
+        1
+      ],
+      "sparse": [
+        2,
+        9
+      ],
+      "mid": [
+        10,
+        49
+      ],
+      "high": [
+        50,
+        199
+      ],
+      "dominant": [
+        200,
+        null
+      ]
+    },
+    "temporal_eras": [
+      {
+        "id": "E1_2013_2016",
+        "start_year": 2013,
+        "end_year": 2016
+      },
+      {
+        "id": "E2_2017_2020",
+        "start_year": 2017,
+        "end_year": 2020
+      },
+      {
+        "id": "E3_2021_2024",
+        "start_year": 2021,
+        "end_year": 2024
+      },
+      {
+        "id": "E4_2025_2026",
+        "start_year": 2025,
+        "end_year": 2026
+      }
+    ]
+  },
+  "coverage_gate": {
+    "primary": "report method and reconstructor nonempty coverage over the frozen 10,591 3x3 IDs",
+    "high_coverage_lane": "both >= 0.95 of frozen 3x3 population",
+    "partial_coverage_lane": "either < 0.95; retain missing as explicit support class and activate the already-sealed 200-ID body-light manifest only as a missingness diagnostic, not as a replacement population",
+    "live_missing_ids": "explicit FROZEN_ID_NOT_LIVE; never replace with new live IDs"
+  },
+  "population_axes": [
+    "canonical method_family",
+    "raw reconstructor label",
+    "reconstructor frequency band",
+    "method_family × reconstructor_frequency_band",
+    "temporal_era × method_family",
+    "temporal_era × reconstructor_frequency_band"
+  ],
+  "primary_readouts": [
+    "population counts and shares on each support axis",
+    "60-body counts and shares on the same axes",
+    "population mass in zero-sample-support classes/cells",
+    "descriptive post-stratified TS and H1 mean excess on method-family axis",
+    "descriptive post-stratified TS and H1 on reconstructor-frequency-band axis",
+    "descriptive post-stratified TS and H1 on method×reconstructor-band joint cells",
+    "unweighted vs each post-stratified mean",
+    "leave-one-supported-class/cell-out sensitivity"
+  ],
+  "secondary_readouts": [
+    "H2/H3/FS analogues",
+    "raw-reconstructor support mass diagnostic",
+    "cross-era support stability",
+    "difference from P7 provenance-only post-stratified results"
+  ],
+  "weighting_law": [
+    "descriptive population-share/sample-share factors only; never inverse-probability weights",
+    "renormalize post-stratified means over positive-sample-support population mass",
+    "zero-support cells are never imputed",
+    "missing method/reconstructor is retained as an explicit population class",
+    "new live IDs outside the frozen population contribute zero weight"
+  ],
+  "adversarial_bound": {
+    "metric_range": [
+      -1,
+      "17/18"
+    ],
+    "apply_to": "zero-sample-support population mass separately for each support axis",
+    "sign_rule": "population lower bound > 0 identifies positive sign under full-range adversarial completion",
+    "magnitude_rule": "sign identification does not identify missing-cell magnitude"
+  },
+  "adjudication": [
+    "TS/H1 sign reversal after method or reconstructor adjustment => transport instability",
+    "same sign but material zero-support mass => supported-cell robustness with population-wide sign bound",
+    "same sign and adversarial lower bound > 0 => population sign robust on that support axis",
+    "raw reconstructor-label failure does not invalidate frequency-band transport if the band axis has positive support",
+    "no result identifies a human cognitive mechanism"
+  ],
+  "human_contact_gate": "CLOSED"
+}
