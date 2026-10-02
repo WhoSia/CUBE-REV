@@ -386,5 +386,25 @@
       ],
       "disclosed_before_revised_census_execution": true
     }
+  },
+  "source_world_stratified_stress": {
+    "operation_type": "Stress Test",
+    "status": "FROZEN_AFTER_SOURCE_WORLD_AUDIT_BEFORE_EXECUTION",
+    "authority": "POST_SOURCE_WORLD_AUDIT_EXPLORATORY_STRESS_TEST",
+    "observed_before_freeze": [
+      "source-world support counts: 10 exact-linked, 3 scramble-present/solver-absent, 9 WCA attempt-context-supported scramble-unsupported, 1 WCA competition-context-only scramble-unsupported, 36 no exact WCA competition-context match, 1 no source competition context",
+      "global five-rival calibration and linkage-stratified results were already observed"
+    ],
+    "question": "whether the previously observed TS/H1 naturalistic alignment retains direction across provenance-support strata rather than being concentrated in one source-world support class",
+    "independent_unit": "solve",
+    "min_inference_group": 5,
+    "rules": [
+      "reuse the frozen 60-solve prefix-context and five-rival feature artifact",
+      "join source-world class by source_id only",
+      "report all classes descriptively",
+      "compute within-class sign-flip diagnostics only for strata with at least 5 solves",
+      "no between-class causal interpretation",
+      "no mechanism promotion"
+    ]
   }
 }
