@@ -1,0 +1,88 @@
+name: G7-P8-R1 method-dominance sensitivity Stress Test
+
+concurrency:
+  group: g7-p8-r1-method-dominance-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p8/method-dominance-sensitivity-preseal.json'
+      - 'scripts/g7-p8/analyze-method-dominance-sensitivity.py'
+      - '.github/workflows/g7-p8-r1-method-dominance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  stress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate R1 preseal
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p8/method-dominance-sensitivity-preseal.json'))
+          assert x['status']=='FROZEN_AFTER_P8_COURT_BEFORE_R1_EXECUTION'
+          assert x['operation_type']=='Method-Dominance Sensitivity Stress Test'
+          assert x['human_contact_gate']=='CLOSED'
+          print('G7_P8_R1_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Recover frozen P8 Court artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/g7-p8-r1/court
+          curl --fail --location --silent --show-error             -H "Authorization: Bearer $GH_TOKEN"             -H "Accept: application/vnd.github+json"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/$REPO/actions/artifacts/11239796775/zip"             -o /tmp/g7-p8-r1/court.zip
+          echo '14d18409bf2cc82a0abbe348937097a4bb11a7b49cbb323b55b4cb3129cc67e1  /tmp/g7-p8-r1/court.zip' | sha256sum -c -
+          unzip -q /tmp/g7-p8-r1/court.zip -d /tmp/g7-p8-r1/court
+          test -n "$(find /tmp/g7-p8-r1/court -name method-reconstructor-geometry-transport.json -print -quit)"
+          echo 'G7_P8_R1_PARENT_AUTHORITY_PASS'
+
+      - name: Execute method-dominance sensitivity decomposition
+        run: |
+          set -euo pipefail
+          COURT="$(find /tmp/g7-p8-r1/court -name method-reconstructor-geometry-transport.json -print -quit)"
+          mkdir -p /tmp/g7-p8-r1/out
+          python3 scripts/g7-p8/analyze-method-dominance-sensitivity.py             --court "$COURT"             --out /tmp/g7-p8-r1/out | tee /tmp/g7-p8-r1/stress.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/g7-p8-r1/out/method-dominance-sensitivity.json'))
+          print('G7_P8_R1_RESULT_GATE_PASS')
+          print('VERDICT',x['verdict'])
+          print('TS_REVERSALS',x['method_sign_reversals']['TS'])
+          print('H1_REVERSALS',x['method_sign_reversals']['H1'])
+          print('NON_CFOP',x['non_cfop_conditional'])
+          print('ERA_NONPOSITIVE',x['era_nonpositive'])
+          PY
+
+      - name: Seal derived-only R1 artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/g7-p8-r1/seal/authority /tmp/g7-p8-r1/seal/derived
+          cp g7/p8/method-dominance-sensitivity-preseal.json /tmp/g7-p8-r1/seal/authority/
+          cp /tmp/g7-p8-r1/out/method-dominance-sensitivity.json /tmp/g7-p8-r1/seal/derived/
+          cp /tmp/g7-p8-r1/stress.log /tmp/g7-p8-r1/seal/derived/execution.log
+          printf '%s\n'             'PHASE=G7-P8-R1'             'OPERATION=METHOD_DOMINANCE_SENSITIVITY_STRESS_TEST'             'PARENT_P8_COURT_ARTIFACT=11239796775'             'NEW_SOURCE_CONTACT=NONE'             'HUMAN_CONTACT_GATE=CLOSED'             > /tmp/g7-p8-r1/seal/AUTHORITY.txt
+          rm -rf /tmp/g7-p8-r1/court /tmp/g7-p8-r1/court.zip
+          (cd /tmp/g7-p8-r1/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P8-R1-method-dominance-${{ github.sha }}
+          path: /tmp/g7-p8-r1/seal
+          if-no-files-found: error
+          retention-days: 90
