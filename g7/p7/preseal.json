@@ -273,5 +273,33 @@
       "use fuzzy names as identity authority",
       "promote any provenance recovery result to a cognitive mechanism"
     ]
+  },
+  "recovered_provenance_geometry_stress": {
+    "operation_type": "Recovered-Provenance Geometry Stress Test",
+    "status": "FROZEN_AFTER_REGISTRY_SUPERSESSION_BEFORE_GEOMETRY_EXECUTION",
+    "authority": "POST_SOURCE_PROVENANCE_EXPLORATORY_STRESS_TEST",
+    "prior_observation_disclosure": [
+      "source-world conditional geometry has already been observed",
+      "manual provenance evidence for the nine recovery-target rows has already been observed",
+      "the initial 60-ID manual registry binding contained ID-class errors and was superseded before any recovered-provenance geometry execution",
+      "no recovered-provenance geometry table has been observed at this freeze"
+    ],
+    "registry_authority": "g7/p7/source-provenance-recovery.json",
+    "independent_unit": "solve",
+    "groups": "all seven broad provenance classes; no outcome-dependent merging",
+    "minimum_subgroup_n": 3,
+    "required_outputs": [
+      "all-rival solve-level mean/median excess by broad provenance class",
+      "world×method groups with at least 3 solves",
+      "world×reconstructor groups with at least 3 solves",
+      "within-solve boundary-minus-nonboundary excess by broad provenance class"
+    ],
+    "inferential_boundary": [
+      "broad provenance classes are observational support strata, not randomized treatments",
+      "N<3 classes are descriptive only",
+      "sign-flip p-values are exploratory diagnostics only",
+      "manual WCA context recovery remains below exact-attempt linkage authority",
+      "no provenance contrast can identify or promote a human cognitive mechanism"
+    ]
   }
 }
