@@ -1,0 +1,38 @@
+{
+  "schema_version":"g7-p10-constitution-1",
+  "phase":"G7-P10",
+  "operation_type":"TS Low-Overlap State-Surface Cartography & Matched-State Stress Test",
+  "formal_name":"CUBE-REV Generation VII G7-P10 — TS Low-Overlap State-Surface Cartography, Phase-1 Lower-Bound×G1 Localization, Normalized Solve-Progress Matching, Boundary/Stage Decoupling, Support-Density Residualization, Within-Solve Matched-State Contrasts, Cross-Cohort/Method Transport & Structural-Specificity Stress Test",
+  "status":"PRESEALED_BEFORE_P10_OUTCOME",
+  "parent":"g7/p9/closure.json",
+  "frozen_geometry_artifact":11238382539,
+  "frozen_geometry_sha256":"b6e30ab56548e27905dd3b3718c5a3e56d772bff10a744e92180d189a3259a11",
+  "target":"TS degree-0-to-2 cumulative excess",
+  "coordinates":[
+    "phase1_lb",
+    "is_g1",
+    "normalized solve progress quintile",
+    "annotation boundary status"
+  ],
+  "primary_readouts":[
+    "solve-clustered low-overlap excess by phase1_lb",
+    "solve-clustered low-overlap excess by G1 membership",
+    "solve-clustered low-overlap excess by progress quintile",
+    "phase1_lb x G1 x progress cells with at least 5 solves",
+    "within-solve boundary-minus-nonboundary contrast matched on phase1_lb, G1, progress quintile and low-overlap support-size bin"
+  ],
+  "secondary_readouts":[
+    "hotspot concentration share of positive low-overlap excess",
+    "leave-one-cohort-out hotspot direction",
+    "method-family hotspot transport for cells with at least 3 solves"
+  ],
+  "adjudication":{
+    "localized":"one or more predeclared structural cells show positive solve-clustered excess and direction survives cohort deletion",
+    "diffuse":"positive excess is spread without a stable structural hotspot",
+    "boundary_rule":"boundary effect is reported only after structural matching; unmatched annotation differences are not planning evidence"
+  },
+  "source_contact":"NONE",
+  "new_body_requests":0,
+  "human_contact_gate":"CLOSED",
+  "mechanism_promotion":"FORBIDDEN"
+}
