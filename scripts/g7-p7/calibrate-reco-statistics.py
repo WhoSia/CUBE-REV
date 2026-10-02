@@ -16,6 +16,14 @@ def mean(xs):
 def median(xs):
     return statistics.median(xs) if xs else None
 
+def campaign_epoch(cohort):
+    c=str(cohort or "")
+    if c.startswith("P4_"):
+        return "P4_PREDECESSOR"
+    if c.startswith("P7_"):
+        return "P7_FRESH_CAMPAIGN"
+    return "OTHER"
+
 def signflip_p(values, permutations, seed):
     vals=[float(v) for v in values if v is not None and math.isfinite(float(v))]
     if not vals:
@@ -85,6 +93,8 @@ def solve_choice_summaries(rows):
         out[sid]["n_face_states"]=len(xs)
         out[sid]["method_family"]=xs[0].get("method_family")
         out[sid]["reconstructor"]=xs[0].get("reconstructor")
+        out[sid]["cohort"]=xs[0].get("cohort")
+        out[sid]["campaign_epoch"]=campaign_epoch(xs[0].get("cohort"))
     return out
 
 def boundary_matched(rows):
@@ -112,7 +122,9 @@ def boundary_matched(rows):
                 "matched_weight":den,
                 "matched_strata":details,
                 "method_family":xs[0].get("method_family"),
-                "reconstructor":xs[0].get("reconstructor")
+                "reconstructor":xs[0].get("reconstructor"),
+                "cohort":xs[0].get("cohort"),
+                "campaign_epoch":campaign_epoch(xs[0].get("cohort"))
             }
     return solve_out
 
@@ -140,6 +152,73 @@ def subgroup_boundary(summaries, field, min_solves=5):
             continue
         vals=[x["matched_delta"] for x in xs]
         out[k]={"solves":len(xs),"mean_matched_delta":mean(vals),"median_matched_delta":median(vals)}
+    return out
+
+
+def subgroup_choice_inference(summaries, field, permutations, seed_base, min_solves=5):
+    values=defaultdict(list)
+    for sid,x in summaries.items():
+        values[x.get(field) or "NULL"].append(x)
+    out={}
+    seed=seed_base
+    for k,xs in sorted(values.items()):
+        if len(xs)<min_solves:
+            continue
+        rivals={}
+        for name in RIVALS:
+            vals=[x[name] for x in xs if x[name] is not None]
+            rivals[name]={
+                "mean_excess":mean(vals),
+                "median_excess":median(vals),
+                "signflip_p":signflip_p(vals,permutations,seed),
+                "positive":sum(v>0 for v in vals),
+                "zero":sum(v==0 for v in vals),
+                "negative":sum(v<0 for v in vals),
+            }
+            seed+=1
+        out[k]={"solves":len(xs),"rivals":rivals}
+    return out
+
+def leave_one_group_choice(summaries, field, permutations, seed_base, min_group=5):
+    groups=defaultdict(list)
+    for sid,x in summaries.items():
+        groups[x.get(field) or "NULL"].append(sid)
+    eligible={k:v for k,v in groups.items() if len(v)>=min_group}
+    out={}
+    seed=seed_base
+    for held,ids in sorted(eligible.items()):
+        blocked=set(ids)
+        remaining=[x for sid,x in summaries.items() if sid not in blocked]
+        rivals={}
+        for name in RIVALS:
+            vals=[x[name] for x in remaining if x[name] is not None]
+            rivals[name]={
+                "remaining_solves":len(vals),
+                "mean_excess":mean(vals),
+                "median_excess":median(vals),
+                "signflip_p":signflip_p(vals,permutations,seed),
+            }
+            seed+=1
+        out[held]={"held_out_solves":len(ids),"rivals":rivals}
+    return out
+
+def direction_stability(grouped):
+    out={}
+    for name in RIVALS:
+        vals=[]
+        for group,x in grouped.items():
+            r=x["rivals"][name]
+            if r["mean_excess"] is not None:
+                vals.append((group,r["mean_excess"]))
+        out[name]={
+            "groups":len(vals),
+            "positive_groups":sum(v>0 for _,v in vals),
+            "zero_groups":sum(v==0 for _,v in vals),
+            "negative_groups":sum(v<0 for _,v in vals),
+            "min_group_mean":min((v for _,v in vals),default=None),
+            "max_group_mean":max((v for _,v in vals),default=None),
+            "group_means":{g:v for g,v in vals}
+        }
     return out
 
 def main():
@@ -214,17 +293,33 @@ def main():
         "subgroups":{
             "choice_by_method_min5":subgroup_choice(choice,"method_family",5),
             "choice_by_reconstructor_min5":subgroup_choice(choice,"reconstructor",5),
+            "choice_by_cohort_min5":subgroup_choice(choice,"cohort",5),
+            "choice_by_campaign_epoch_min5":subgroup_choice(choice,"campaign_epoch",5),
             "boundary_by_method_min5":subgroup_boundary(boundary,"method_family",5),
-            "boundary_by_reconstructor_min5":subgroup_boundary(boundary,"reconstructor",5)
+            "boundary_by_reconstructor_min5":subgroup_boundary(boundary,"reconstructor",5),
+            "boundary_by_cohort_min5":subgroup_boundary(boundary,"cohort",5),
+            "boundary_by_campaign_epoch_min5":subgroup_boundary(boundary,"campaign_epoch",5)
+        },
+        "robustness_stress":{
+            "authority":"POST_CALIBRATION_EXPLORATORY_STRESS_TEST",
+            "choice_by_cohort":subgroup_choice_inference(choice,"cohort",args.permutations,20262000,5),
+            "choice_by_campaign_epoch":subgroup_choice_inference(choice,"campaign_epoch",args.permutations,20262100,5),
+            "leave_one_cohort_out":leave_one_group_choice(choice,"cohort",args.permutations,20262200,5),
+            "leave_one_method_out":leave_one_group_choice(choice,"method_family",args.permutations,20262300,5),
+            "leave_one_reconstructor_out":leave_one_group_choice(choice,"reconstructor",args.permutations,20262400,5)
         },
         "inference_boundary":[
             "This calibration was frozen after raw descriptive readout and is not preregistered confirmation.",
+            "The cohort/leave-one-group-out robustness extension was frozen after v1 calibration and subgroup means had been observed; it is a stress test, not independent confirmation.",
             "Solve, not state row, is the independent unit for sign-flip inference.",
             "Uniform set coverage is a calibration baseline, not a psychological random-choice model.",
             "Boundary matching controls only observed phase1_lb and G1 membership; residual progress and reconstruction-label confounding may remain.",
             "No computational rival is promoted to a human internal representation by this result."
         ]
     }
+    report["robustness_stress"]["direction_stability_by_cohort"]=direction_stability(report["robustness_stress"]["choice_by_cohort"])
+    report["robustness_stress"]["direction_stability_by_campaign_epoch"]=direction_stability(report["robustness_stress"]["choice_by_campaign_epoch"])
+
     import os
     os.makedirs(args.out,exist_ok=True)
     with open(os.path.join(args.out,"statistical-calibration.json"),"w",encoding="utf-8") as f:

@@ -1,5 +1,5 @@
 {
-  "schema_version": "g7-p7-reco-statistical-calibration-1",
+  "schema_version": "g7-p7-reco-statistical-calibration-2",
   "operation_type": "Calibration",
   "status": "FROZEN_AFTER_RAW_DESCRIPTIVE_READOUT_BEFORE_CLUSTER_LEVEL_INFERENCE",
   "authority": "POST_DESCRIPTIVE_EXPLORATORY_CALIBRATION",
@@ -48,5 +48,24 @@
     "interpret unadjusted boundary contrast as stage-boundary effect",
     "call these post-descriptive p-values preregistered confirmation",
     "infer latent cognition from reco.nz annotation labels"
-  ]
+  ],
+  "robustness_extension": {
+    "operation_type": "Stress Test",
+    "status": "FROZEN_AFTER_V1_CALIBRATION_AND_SUBGROUP_MEANS_BEFORE_ROBUSTNESS_EXECUTION",
+    "authority": "POST_CALIBRATION_EXPLORATORY_STRESS_TEST",
+    "prior_observation_disclosure": [
+      "v1 solve-clustered calibration results were observed",
+      "v1 method and reconstructor subgroup mean excess tables were observed",
+      "no cohort-level or leave-one-group-out robustness table had been computed before this extension was frozen"
+    ],
+    "axes": [
+      "six acquisition cohorts",
+      "P4 predecessor vs P7 fresh campaign epoch",
+      "leave-one-cohort-out",
+      "leave-one-method-out for groups with at least 5 solves",
+      "leave-one-reconstructor-out for groups with at least 5 solves"
+    ],
+    "criterion": "report sign and magnitude stability only; no robustness result can promote a computational rival to a cognitive mechanism",
+    "independent_unit": "solve"
+  }
 }
