@@ -1,4 +1,4 @@
-use search_geometry_core::g6::{Cube, Face, Move};
+use search_geometry_core::g6::{Cube, Face, Move, HTM, Phase1Moves, Phase1Pdb};
 
 fn arg_value(args: &[String], key: &str) -> Option<String> {
     args.iter().position(|x| x == key).and_then(|i| args.get(i + 1)).cloned()
@@ -61,18 +61,37 @@ fn main() {
     println!("SCRAMBLE_MOVES\t{}", scramble_moves.len());
     println!("SOLUTION_MOVES\t{}", solution_moves.len());
     println!("START_PHASE1_RANK\t{}", cube.phase1().rank());
-    println!("START_STATE\t{}", state_signature(cube));
+    println!("START_STATE\t{}", state_signature(cube));\n\n    let phase1_moves = Phase1Moves::build();\n    let phase1_pdb = Phase1Pdb::build(&phase1_moves);
 
     for (i, (raw, mv)) in solution_moves.iter().enumerate() {
+        let before = cube.phase1();
+        let h_before = phase1_pdb.lower_bound(before);
+        let mut best_h = u8::MAX;
+        let mut best_count = 0usize;
+        for &rival in &HTM {
+            let h = phase1_pdb.lower_bound(cube.apply(rival).phase1());
+            if h < best_h {
+                best_h = h;
+                best_count = 1;
+            } else if h == best_h {
+                best_count += 1;
+            }
+        }
+
         cube = cube.apply(*mv);
         assert!(cube.validate(), "invalid prefix state");
+        let h_after = phase1_pdb.lower_bound(cube.phase1());
         println!(
-            "PREFIX\t{}\t{}\t{}\t{}\t{}",
+            "PREFIX\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
             i + 1,
             raw,
             cube.phase1().rank(),
             if cube.is_g1() { 1 } else { 0 },
-            if cube.is_solved() { 1 } else { 0 }
+            if cube.is_solved() { 1 } else { 0 },
+            h_before,
+            h_after,
+            best_h,
+            best_count
         );
     }
     println!("FINAL_SOLVED\t{}", if cube.is_solved() { 1 } else { 0 });
