@@ -19,6 +19,7 @@ for(const [sid,es] of sessions){
   if(es.at(-1)?.event_type!=="session_complete") failures.push("NO_SESSION_COMPLETE:"+sid);
   let active=null;
   for(const e of es){
+    if(e.event_type==="visibility_change" && e.visibility_state==="hidden" && active!==null) failures.push("BACKGROUND_DURING_TRIAL:"+sid+":"+active);
     if(e.event_type==="trial_presented"){
       if(active!==null) failures.push("NESTED_TRIAL:"+sid);
       active=e.trial_id;
