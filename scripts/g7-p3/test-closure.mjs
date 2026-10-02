@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+const d=fs.mkdtempSync(path.join(os.tmpdir(),'g7-p3-close-'));
+const geom={row_count:12941,solver_concentration:{distinct:480},reconstructor_concentration:{distinct:227,top_k_share:{'1':0.5564}},duplicate_identity_court:{candidate_groups:48},ontology_unknown_rows:0};
+const samp={eligible_population:{n:10591},population_estimation:{selected:Array(64).fill({})},coverage_analysis:{selected:Array(96).fill({})},linkage_support:{counts:{A_EXACT:0,B_STRONG_SUPPORT:6068,C_CANDIDATE:140,U_UNRESOLVED:6733}},authority:{bulk_mirror:'HOLD'}};
+fs.writeFileSync(path.join(d,'g.json'),JSON.stringify(geom));fs.writeFileSync(path.join(d,'s.json'),JSON.stringify(samp));
+const p=spawnSync(process.execPath,['scripts/g7-p3/evaluate-closure.mjs','--geometry',path.join(d,'g.json'),'--sampling',path.join(d,'s.json'),'--transport','g7/p3/cross-source-transport.json','--preseal','g7/p3/preseal.json','--out',path.join(d,'o')],{encoding:'utf8'});
+if(p.status!==0) throw new Error(p.stderr||p.stdout);
+const r=JSON.parse(fs.readFileSync(path.join(d,'o','G7-P3-CLOSURE.json'),'utf8'));
+if(r.verdict!=='PASS_CONDITIONAL_CORPUS_WITH_EXPLICIT_SUPPORT_BOUNDARY') throw new Error('VERDICT');
+if(!r.next_generation_permission) throw new Error('NEXT_GEN');
+console.log('G7_P3_CLOSURE_TEST_PASS');
