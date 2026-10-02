@@ -47,7 +47,7 @@
     "full_index_reselection": false
   },
   "authority": {
-    "source_policy": "g7/p2/reco-acquisition-policy.json",
+    "source_policy": "core/reco/reco-acquisition-policy.json",
     "bulk_authorized": false,
     "max_solves_per_run": 10,
     "campaign_ceiling": 40,
