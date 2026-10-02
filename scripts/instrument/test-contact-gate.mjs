@@ -1,0 +1,15 @@
+import fs from "node:fs";import os from "node:os";import path from "node:path";import {spawnSync} from "node:child_process";
+const d=fs.mkdtempSync(path.join(os.tmpdir(),"core-contact-"));
+const rivals={H1_MAX_PDB_GREEDY:[0],H2_MAX_PDB_LOOKAHEAD:[1],H3_MAX_PDB_LOOKAHEAD:[2],H1_TWIST_SLICE_COMPONENT:[3],H1_FLIP_SLICE_COMPONENT:[4]};
+const src={records:Array.from({length:32},(_,i)=>({state_id:"S"+i,seed_id:"Q"+(i%8),motif:"M"+(i%4),phase1_lb:7,cube:{cp:[0,1,2,3,4,5,6,7],co:Array(8).fill(0),ep:[0,1,2,3,4,5,6,7,8,9,10,11],eo:Array(12).fill(0)},rivals}))};
+fs.writeFileSync(path.join(d,"src.json"),JSON.stringify(src));
+let p=spawnSync(process.execPath,["scripts/instrument/compile-five-rival-packet.mjs",path.join(d,"src.json"),"DEVELOPMENT",path.join(d,"packet.json")],{encoding:"utf8"});if(p.status!==0)throw new Error(p.stderr||p.stdout);
+const packet=JSON.parse(fs.readFileSync(path.join(d,"packet.json"),"utf8"));
+const closed={consent_metadata_present:false,supervision_or_research_authorization_present:false,device_timing_resolution_ms:1,visibility_api_supported:true,packet_sha256:packet.sha256,participant_set_role:"DEVELOPMENT"};
+fs.writeFileSync(path.join(d,"closed.json"),JSON.stringify(closed));
+p=spawnSync(process.execPath,["scripts/instrument/evaluate-contact-gate.mjs",path.join(d,"packet.json"),path.join(d,"closed.json"),path.join(d,"g.json")],{encoding:"utf8"});if(p.status!==0)throw new Error(p.stderr||p.stdout);
+if(JSON.parse(fs.readFileSync(path.join(d,"g.json"),"utf8")).open)throw new Error("CLOSED_EXPECTED");
+const open={...closed,consent_metadata_present:true,supervision_or_research_authorization_present:true};fs.writeFileSync(path.join(d,"open.json"),JSON.stringify(open));
+p=spawnSync(process.execPath,["scripts/instrument/evaluate-contact-gate.mjs",path.join(d,"packet.json"),path.join(d,"open.json"),path.join(d,"g2.json")],{encoding:"utf8"});if(p.status!==0)throw new Error(p.stderr||p.stdout);
+if(!JSON.parse(fs.readFileSync(path.join(d,"g2.json"),"utf8")).open)throw new Error("OPEN_EXPECTED");
+console.log("CORE_CONTACT_GATE_TEST_PASS");
