@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {spawnSync} from "node:child_process";
-import {verifyPacketBrowser,trialOrder} from "../g7/p5/web/browser-core.mjs";
+import {verifyPacketBrowser,trialOrder} from "../../g7/p5/web/browser-core.mjs";
 const d=fs.mkdtempSync(path.join(os.tmpdir(),"g7-p5-web-"));
 let p=spawnSync("cargo",["run","-q","-p","search-geometry-core","--bin","g7_p5_packet_generator"],{encoding:"utf8"});
 if(p.status!==0) throw new Error(p.stderr||p.stdout);
