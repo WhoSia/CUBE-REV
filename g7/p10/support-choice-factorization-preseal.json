@@ -1,0 +1,30 @@
+{
+  "schema_version":"g7-p10-r1-factorization-preseal-1",
+  "phase":"G7-P10-R1",
+  "operation_type":"Low-Overlap Support-Emergence vs Conditional-Choice Factorization Audit",
+  "formal_name":"CUBE-REV Generation VII G7-P10-R1 — Low-Overlap Support-Emergence vs Conditional-Choice Factorization, Availability-Surface Census, Nonempty-Support Conditioning, Set-Size Exposure Calibration, G1/LB/Progress Reconstitution, Matched-Boundary Reaudit & Structural-Localization Attribution Audit",
+  "status":"FROZEN_AFTER_P10_BEFORE_R1_OUTCOME",
+  "parent_run":37040070023,
+  "parent_artifact":11241666385,
+  "parent_sha256":"ab81e5f2102fe914a46c3b68f94c1d1058cff1d56911d987af1797e667072ac5",
+  "target":"TS overlap-degree 0+1+2 support",
+  "factorization":"state mean excess = nonempty-support rate * conditional state mean excess because absent-support states have exact excess zero",
+  "primary_readouts":[
+    "support availability rate by phase1_lb, G1 and progress quintile",
+    "solve-clustered conditional excess given nonempty support by the same coordinates",
+    "conditional observed-match rate and conditional uniform set-size baseline",
+    "exact state-weighted factorization residual",
+    "targeted re-read of lb=3, lb=7, non-G1, G1, progress Q3 and Q4",
+    "boundary-minus-nonboundary contrast restricted to nonempty support and structurally matched states"
+  ],
+  "adjudication":{
+    "availability_driven":"P10 localization largely disappears after conditioning on nonempty support",
+    "choice_conditioned":"targeted positive P10 surfaces retain positive conditional solve-level excess",
+    "mixed":"both availability and conditional excess vary materially across structural coordinates",
+    "g1_rule":"if G1 availability is zero, G1 behavioral preference is undefined rather than zero"
+  },
+  "source_contact":"NONE",
+  "new_body_requests":0,
+  "human_contact_gate":"CLOSED",
+  "mechanism_promotion":"FORBIDDEN"
+}
