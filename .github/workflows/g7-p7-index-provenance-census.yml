@@ -9,6 +9,7 @@ on:
       - 'g7/p7/active-set-manifest.json'
       - 'scripts/g7-p7/census-index-provenance.py'
       - 'scripts/g7-p7/reconcile-index-competition-labels.py'
+      - 'scripts/g7-p7/reconcile-index-competition-labels-v2.py'
       - '.github/workflows/g7-p7-index-provenance-census.yml'
   pull_request:
     paths:
@@ -17,6 +18,7 @@ on:
       - 'g7/p7/active-set-manifest.json'
       - 'scripts/g7-p7/census-index-provenance.py'
       - 'scripts/g7-p7/reconcile-index-competition-labels.py'
+      - 'scripts/g7-p7/reconcile-index-competition-labels-v2.py'
       - '.github/workflows/g7-p7-index-provenance-census.yml'
   workflow_dispatch:
 
@@ -126,6 +128,23 @@ jobs:
           print(x['row_class_counts'])
           PY
 
+      - name: Execute evidence-first competition-label reconciliation Audit v2
+        run: |
+          set -euo pipefail
+          INDEX="$(find /tmp/g7-p7-index/p3 -name linkage-support.jsonl -print -quit)"
+          python3 scripts/g7-p7/reconcile-index-competition-labels-v2.py \
+            --index "$INDEX" \
+            --wca-dir /tmp/g7-p7-index/wca \
+            --out /tmp/g7-p7-index/out | tee /tmp/g7-p7-index/label-reconciliation-v2.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/g7-p7-index/out/competition-label-reconciliation-audit-v2.json'))
+          assert x['target_rows']==232
+          assert sum(x['row_class_counts'].values())==232
+          print('G7_P7_COMPETITION_LABEL_RECONCILIATION_V2_RESULT_GATE_PASS')
+          print(x['row_class_counts'])
+          PY
+
       - name: Remove raw authorities and seal derived Census only
         run: |
           set -euo pipefail
@@ -135,6 +154,7 @@ jobs:
           cp /tmp/g7-p7-index/out/full-index-provenance-support-census.json /tmp/g7-p7-index/seal/derived/
           cp /tmp/g7-p7-index/out/full-index-provenance-rows.jsonl /tmp/g7-p7-index/seal/derived/
           cp /tmp/g7-p7-index/out/competition-label-reconciliation-audit.json /tmp/g7-p7-index/seal/derived/
+          cp /tmp/g7-p7-index/out/competition-label-reconciliation-audit-v2.json /tmp/g7-p7-index/seal/derived/
           printf '%s\n' \
             'OPERATION=FULL_INDEX_PROVENANCE_SUPPORT_CENSUS' \
             'RECO_INDEX_ROWS=12941' \
@@ -143,6 +163,7 @@ jobs:
             'WCA_RAW_PACKAGED=NO' \
             'P2_EXPIRED_ARTIFACT_RECONSTITUTED_FROM_P3_DERIVED_METADATA=YES' \
             'COMPETITION_LABEL_RECONCILIATION=YES' \
+            'COMPETITION_LABEL_RECONCILIATION_V2_EVIDENCE_FIRST=YES' \
             > /tmp/g7-p7-index/seal/AUTHORITY.txt
           rm -rf /tmp/g7-p7-index/wca /tmp/g7-p7-index/wca.tsv.zip /tmp/g7-p7-index/wca-authority /tmp/g7-p7-index/wca-authority.zip /tmp/g7-p7-index/p3 /tmp/g7-p7-index/p3.zip
           (cd /tmp/g7-p7-index/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
