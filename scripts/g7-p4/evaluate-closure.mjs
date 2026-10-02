@@ -16,7 +16,8 @@ if(pilot.supported_fraction<th.descriptive_exact_replay_fraction_min) failures.p
 if(conf.supported_fraction<th.descriptive_exact_replay_fraction_min) failures.push("CONFIRMATORY_REPLAY_SUPPORT");
 const annotationBearing=pilot.annotation_geometry.annotation_bearing_solves+conf.annotation_geometry.annotation_bearing_solves;
 if(annotationBearing<th.annotation_bearing_solves_min) failures.push("ANNOTATION_SUPPORT");
-if(cross.semantic_structure_replication!=="PASS_BOUNDED_SCHEMA") failures.push("CROSS_SOURCE_SCHEMA");
+if(!["PASS_BOUNDED_SCHEMA","PASS_BOUNDED"].includes(cross.semantic_structure_replication)) failures.push("CROSS_SOURCE_SCHEMA");
+if(cross.body_level_exact_replay_replication && cross.body_level_exact_replay_replication!=="PASS_3_OF_3") failures.push("CROSS_SOURCE_EXACT_REPLAY");
 
 const searchEvents=(pilot.search_alignment.n||0)+(conf.search_alignment.n||0);
 const searchMaterialized=searchEvents>0;
@@ -50,6 +51,7 @@ const report={
     pilot_mean_local_regret:pilot.search_alignment.mean_local_regret??null,
     confirmatory_mean_local_regret:conf.search_alignment.mean_local_regret??null,
     cross_source_semantic_replication:cross.semantic_structure_replication,
+    cross_source_exact_replay:cross.body_level_exact_replay_replication??null,
     cross_source_mechanism_replication:cross.mechanism_replication
   },
   mechanism_gate:{
