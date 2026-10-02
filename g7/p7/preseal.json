@@ -35,7 +35,7 @@
     "role": "CORE_NATURALISTIC_RECONSTRUCTION_SPINE",
     "index_population_rows": 12941,
     "existing_body_authority": "G7-P4 bounded pilot plus confirmatory captures",
-    "source_policy": "g7/p2/reco-acquisition-policy.json",
+    "source_policy": "core/reco/reco-acquisition-policy.json",
     "current_bulk_authorized": false,
     "max_solves_per_run": 10,
     "raw_public_release": "HOLD",
