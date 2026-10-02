@@ -1,6 +1,0 @@
-G7-P2 reco.nz bounded live probe
-date=2026-09-30
-scope=index page 1; puzzle=3x3; max_solves=5; delay_ms=2000
-bulk_authorized=false
-raw_public_release=false
-purpose=validate live SSR parser and acquisition pipeline
