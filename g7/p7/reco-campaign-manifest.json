@@ -1,0 +1,395 @@
+{
+  "schema_version": "g7-p7-reco-campaign-manifest-2",
+  "source": "reco_nz",
+  "authority": {
+    "derived_from_g7_p3_drive_archive_id": "1H1ePv-RkiqSF5QH3n5aop3UHEjpYG9P4",
+    "g7_p3_archive_sha256": "acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4",
+    "g7_p3_sampling_manifest_sha256": "e5267a0a0d7244d841fdc1f2c5809b9adb671e99b9586d532c916dffb17ab98f",
+    "selection_rule": "Consume the first 20 untouched unique records from frozen G7-P3 population_estimation beginning at position 11, then the first 20 untouched unique records from frozen G7-P3 coverage_analysis beginning at position 11, skipping prior P4-contacted IDs and any source_id already selected from population_estimation. Batch as 5 population + 5 coverage per batch.",
+    "selection_frozen_before_p7_body_contact": true,
+    "body_outcomes_used_in_selection": false
+  },
+  "total": 40,
+  "batches": [
+    {
+      "batch": 1,
+      "records": [
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 11,
+          "source_id": 2042,
+          "method_family": "CFOP",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "sparse",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 12,
+          "source_id": 13066,
+          "method_family": "CFOP",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 13,
+          "source_id": 11849,
+          "method_family": "ZB",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 14,
+          "source_id": 5034,
+          "method_family": "ROUX",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "high",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 15,
+          "source_id": 6155,
+          "method_family": "CFOP",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "high"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 11,
+          "source_id": 3016,
+          "method_family": "CFOP",
+          "temporal_era": "E2_2017_2020",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "singleton"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 12,
+          "source_id": 7286,
+          "method_family": "CFOP",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "high",
+          "reconstructor_frequency_band": "singleton"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 13,
+          "source_id": 11451,
+          "method_family": "CFOP",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "high",
+          "reconstructor_frequency_band": "mid"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 14,
+          "source_id": 169,
+          "method_family": "UNRESOLVED_CF",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "sparse",
+          "reconstructor_frequency_band": "mid"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 15,
+          "source_id": 2418,
+          "method_family": "ROUX",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "mid",
+          "reconstructor_frequency_band": "singleton"
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "records": [
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 16,
+          "source_id": 11752,
+          "method_family": "ROUX",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "mid",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 17,
+          "source_id": 14104,
+          "method_family": "CFOP",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 18,
+          "source_id": 8581,
+          "method_family": "CFOP",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "mid",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 19,
+          "source_id": 6848,
+          "method_family": "CFOP",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 20,
+          "source_id": 6899,
+          "method_family": "CFOP",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 16,
+          "source_id": 1803,
+          "method_family": "ROUX",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "sparse",
+          "reconstructor_frequency_band": "high"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 17,
+          "source_id": 2247,
+          "method_family": "UNRESOLVED_CF",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "sparse",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 18,
+          "source_id": 11211,
+          "method_family": "ZZ",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 19,
+          "source_id": 3647,
+          "method_family": "CFOP",
+          "temporal_era": "E2_2017_2020",
+          "solver_frequency_band": "high",
+          "reconstructor_frequency_band": "mid"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 20,
+          "source_id": 1947,
+          "method_family": "CFOP",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "high",
+          "reconstructor_frequency_band": "high"
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "records": [
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 21,
+          "source_id": 13023,
+          "method_family": "CFOP",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 22,
+          "source_id": 1428,
+          "method_family": "CFOP",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "mid",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 23,
+          "source_id": 5523,
+          "method_family": "PETRUS",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "mid",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 24,
+          "source_id": 76,
+          "method_family": "CFOP",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "mid",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 25,
+          "source_id": 4887,
+          "method_family": "ROUX",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "sparse",
+          "reconstructor_frequency_band": "high"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 21,
+          "source_id": 9172,
+          "method_family": "ROUX",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "high",
+          "reconstructor_frequency_band": "mid"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 22,
+          "source_id": 5509,
+          "method_family": "ZZ",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "singleton",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 23,
+          "source_id": 2069,
+          "method_family": "ROUX",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "sparse",
+          "reconstructor_frequency_band": "mid"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 24,
+          "source_id": 12206,
+          "method_family": "CFOP",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "singleton",
+          "reconstructor_frequency_band": "high"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 26,
+          "source_id": 1583,
+          "method_family": "ZZ",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "mid",
+          "reconstructor_frequency_band": "dominant"
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "records": [
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 26,
+          "source_id": 12277,
+          "method_family": "CFOP",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 27,
+          "source_id": 2934,
+          "method_family": "CFOP",
+          "temporal_era": "E2_2017_2020",
+          "solver_frequency_band": "singleton",
+          "reconstructor_frequency_band": "mid"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 28,
+          "source_id": 12483,
+          "method_family": "CFOP",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "mid",
+          "reconstructor_frequency_band": "mid"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 29,
+          "source_id": 10661,
+          "method_family": "CFOP",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "dominant",
+          "reconstructor_frequency_band": "mid"
+        },
+        {
+          "sampling_role": "population_estimation",
+          "frozen_position": 30,
+          "source_id": 4829,
+          "method_family": "CFOP",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "high",
+          "reconstructor_frequency_band": "dominant"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 27,
+          "source_id": 2651,
+          "method_family": "ROUX",
+          "temporal_era": "E2_2017_2020",
+          "solver_frequency_band": "high",
+          "reconstructor_frequency_band": "sparse"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 28,
+          "source_id": 6402,
+          "method_family": "CFOP",
+          "temporal_era": "E3_2021_2024",
+          "solver_frequency_band": "sparse",
+          "reconstructor_frequency_band": "sparse"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 29,
+          "source_id": 12564,
+          "method_family": "CFOP",
+          "temporal_era": "E4_2025_2026",
+          "solver_frequency_band": "mid",
+          "reconstructor_frequency_band": "singleton"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 30,
+          "source_id": 1652,
+          "method_family": "CFOP",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "singleton",
+          "reconstructor_frequency_band": "high"
+        },
+        {
+          "sampling_role": "coverage_analysis",
+          "frozen_position": 31,
+          "source_id": 1344,
+          "method_family": "ROUX",
+          "temporal_era": "E1_2013_2016",
+          "solver_frequency_band": "singleton",
+          "reconstructor_frequency_band": "dominant"
+        }
+      ]
+    }
+  ]
+}
