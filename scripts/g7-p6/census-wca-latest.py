@@ -32,7 +32,7 @@ con.execute(f"""
 CREATE VIEW a333 AS
 SELECT r.id result_id,r.competition_id,{date_expr} competition_date,
        CAST(r.person_id AS VARCHAR) person_id,
-       a.attempt_number,CAST(a.value AS BIGINT) value,
+       a.attempt_number,CAST(a.value AS BIGINT) AS attempt_value,
        CASE WHEN a.value>0 THEN 'VALID' WHEN a.value=-1 THEN 'DNF'
             WHEN a.value=-2 THEN 'DNS' WHEN a.value=0 THEN 'NO_RESULT'
             ELSE 'UNEXPECTED_VALUE' END status
