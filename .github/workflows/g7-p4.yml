@@ -31,6 +31,8 @@ jobs:
       - run: node scripts/g7-p4/test-pilot-acquisition.mjs
       - run: node scripts/g7-p4/test-pilot-trajectory.mjs
       - run: node scripts/g7-p4/test-exact-replay.mjs
+      - run: node scripts/g7-p4/test-facelet-kernel.mjs
+      - run: node scripts/g7-p4/test-exact-trajectories.mjs
 
   g7-p4-pilot-contact:
     if: ${{ false }}
