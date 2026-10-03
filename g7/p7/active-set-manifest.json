@@ -110,6 +110,8 @@
     "scripts/g7-p12/census-opportunity-pareto.py",
     "scripts/g7-p12/stress-fixed-r1-robustness.py",
     "scripts/g7-p13/acquire-fresh80-reco-batch.mjs",
+    "scripts/g7-p13/analyze-fresh80-method-progress.py",
+    "scripts/g7-p13/merge-fresh80-corpus.mjs",
     "scripts/g7-p13/select-fresh80-method-progress.py",
     "scripts/g7-p13/test-acquire-fresh80-reco-batch.mjs",
     "scripts/g7-p7/analyze-reco-five-rival.mjs",
