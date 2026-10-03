@@ -5,6 +5,8 @@ on:
     branches: ['research/current']
     paths:
       - '.github/workflows/g7-p12-r2-pareto-census.yml'
+      - 'scripts/g7-p12/census-opportunity-pareto.py'
+      - 'g7/p12/r2-constitution.json'
   workflow_dispatch:
 
 permissions:
