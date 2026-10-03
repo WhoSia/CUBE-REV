@@ -1,0 +1,144 @@
+{
+  "schema_version": "g7-p12-r3-constitution-1",
+  "phase": "G7-P12-R3",
+  "formal_name": "CUBE-REV Generation VII G7-P12-R3 — Prospective Soft Opportunity-Matching Constitution, 2×2 Action-Opportunity Total-Variation Geometry, Radius/Kernel Common-Support Recovery, Approximation-Error Calibration, Outcome-Blind Balance Selection, Fresh↔Legacy Transport, Residual LB7 Alignment Sensitivity, Negative-Control Geometry & Partial-Identification Audit",
+  "operation_type": "Soft Structural-Matching Partial-Identification Audit",
+  "status": "FROZEN_AFTER_R2_BEFORE_R3_OUTCOME",
+  "parent": {
+    "r2_closure": "g7/p12/r2-closure.json",
+    "r2_verdict": "REPRESENTATION_IDENTIFIABILITY_BOUNDARY_TRANSPORTS_ACROSS_FRESH_AND_LEGACY__NO_COORDINATE_PROJECTION_CROSSES_R1_DUAL_GATE__BEHAVIORAL_STAGE_REMAINS_CLOSED",
+    "p11_fresh_parent_local_mean": 0.056231231231231235,
+    "p10_legacy_parent_local_mean": 0.048695054945054946
+  },
+  "structural_representation": {
+    "primitive": "exact 2x2 action-opportunity table derived from K,D,L",
+    "cells": {
+      "A": "low-overlap AND descending = L",
+      "B": "low-overlap AND non-descending = K-L",
+      "C": "non-low-overlap AND descending = D-L",
+      "Dcell": "non-low-overlap AND non-descending = 18-K-D+L"
+    },
+    "distance": "total-variation distance between 4-cell action-count distributions = L1(cell-count difference)/(2*18)",
+    "interpretation": "distance 1/18 corresponds to one unit of action mass transferred between opportunity categories"
+  },
+  "analysis_population": {
+    "eligibility": "same face-next, non-G1, phase1_lb in {6,7,8}, low-overlap-support-positive population as canonical P12/R1/R2",
+    "exact_within_solve_progress_control": "normalized progress quintile must match exactly",
+    "target": "lb7 states",
+    "comparator": "union(lb6,lb8) states",
+    "ancestry": [
+      "FRESH40",
+      "LEGACY60"
+    ],
+    "fresh_first": true
+  },
+  "candidate_family": [
+    {
+      "id": "R0",
+      "type": "hard_radius",
+      "radius_units": 0
+    },
+    {
+      "id": "R1",
+      "type": "hard_radius",
+      "radius_units": 1
+    },
+    {
+      "id": "R2",
+      "type": "hard_radius",
+      "radius_units": 2
+    },
+    {
+      "id": "R3",
+      "type": "hard_radius",
+      "radius_units": 3
+    },
+    {
+      "id": "R4",
+      "type": "hard_radius",
+      "radius_units": 4
+    },
+    {
+      "id": "NN1",
+      "type": "nearest_neighbor",
+      "max_neighbors": 1
+    },
+    {
+      "id": "NN3",
+      "type": "nearest_neighbor",
+      "max_neighbors": 3
+    },
+    {
+      "id": "EXP1",
+      "type": "exponential_kernel",
+      "tau_units": 1
+    },
+    {
+      "id": "EXP2",
+      "type": "exponential_kernel",
+      "tau_units": 2
+    }
+  ],
+  "structural_selection_stage": {
+    "behavioral_outcome_blind": true,
+    "forbidden_inputs": [
+      "observed next-action identity",
+      "low-overlap match indicator",
+      "behavioral excess",
+      "candidate-specific behavioral residual"
+    ],
+    "support_metrics": [
+      "eligible solve count with positive target and comparator matching mass",
+      "matched target-state count",
+      "effective comparator mass"
+    ],
+    "approximation_metrics": [
+      "weighted mean TV distance",
+      "weighted 90th-percentile TV distance",
+      "weighted maximum TV distance"
+    ],
+    "gate": {
+      "min_fresh_eligible_solves": 20,
+      "min_legacy_eligible_solves": 30,
+      "max_fresh_mean_distance_units": 1,
+      "max_legacy_mean_distance_units": 1,
+      "max_fresh_p90_distance_units": 2,
+      "max_legacy_p90_distance_units": 2
+    },
+    "selection_rule": "among candidates passing all gates, select lowest maximum ancestry mean-distance units; ties by greater minimum ancestry eligible-solve fraction; then candidate order listed above",
+    "no_candidate_passes": "SOFT_MATCHING_NOT_AUTHORIZED"
+  },
+  "matching_semantics": {
+    "hard_radius": "within solve×progress quintile, each target state is compared with all comparator states within radius; comparator contribution is uniform over admitted states",
+    "nearest_neighbor": "within solve×progress quintile, use up to k nearest comparator states; ties at the kth distance are all retained with equal distance-level normalization",
+    "exponential_kernel": "within solve×progress quintile, all comparator states receive weight exp(-distance/tau), normalized within target state",
+    "target_aggregation": "each target state contributes one target excess minus its weighted comparator excess; solve is the independent unit via equal-weight mean across its eligible target states"
+  },
+  "behavioral_stage": {
+    "execute_only_after_structural_candidate_is_selected": true,
+    "primary": "fresh solve-level mean lb7 minus softly matched lb6/8 low-overlap excess",
+    "legacy_parallel": true,
+    "sign_flip": "100000 solve-clustered sign flips, descriptive only",
+    "adjudication": {
+      "support_limited": "selected candidate yields fewer than 20 fresh eligible solves at behavioral stage",
+      "structural_opportunity_sufficient": "otherwise fresh residual changes sign or abs(residual) <= 0.5 * abs(0.056231231231231235)",
+      "residual_alignment": "otherwise fresh residual remains positive and abs(residual) > 0.5 * abs(0.056231231231231235)"
+    }
+  },
+  "negative_controls": {
+    "shell_label_permutation": "within solve×progress quintile, deterministically rotate lb labels among eligible states while preserving structural tables and state counts; report whether selected-family attenuation is specific to true lb7 targeting",
+    "behavior_usage": "negative-control family is evaluated only after primary structural selection is frozen and cannot alter selected candidate"
+  },
+  "inference_boundary": [
+    "Soft matching relaxes exact structural identity and therefore supports partial, not exact, structural adjustment.",
+    "Candidate selection is fully outcome-blind.",
+    "Approximation budgets are expressed in action-category mass units and fixed before behavioral residuals are opened.",
+    "Attenuation after soft matching is descriptive mediation evidence, not causal identification.",
+    "No TS/PDB coordinate or selected soft-match family is a latent cognitive state.",
+    "Human-contact and mechanism-promotion gates remain closed."
+  ],
+  "source_contact": "NONE",
+  "new_body_requests": 0,
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
