@@ -1,0 +1,160 @@
+{
+  "schema_version": "g7-p12-r4-closure-1",
+  "phase": "G7-P12-R4",
+  "formal_name": "CUBE-REV Generation VII G7-P12-R4 — Fixed-R1 Soft-Matching Robustness, Progress-Granularity Perturbation, Target/Stratum Aggregation Duality, Caliper-Edge Inclusion Stress, Fresh-Batch/Method/Composition Leave-Out Transport, Negative-Control Stability & Structural-Attenuation Robustness Stress Test",
+  "status": "CLOSED",
+  "final_verdict": "R1_ATTENUATION_FRAGILE_UNDER_PRESEALED_PERTURBATIONS__Q5_NEAR_ZERO_DEPENDS_ON_PROGRESS_AND_COMPOSITION_CANCELLATION__STRUCTURAL_SUFFICIENCY_NOT_GLOBALLY_STABLE",
+  "authority": {
+    "run": 37115840748,
+    "head": "709240765607460f08ca6874f5f9e7b2e4fb77f4",
+    "artifact": 11271690502,
+    "sha256": "ab5403ff700b624e7955c2e1b4f5235410f7a233025c429c88d82d63661faf6c",
+    "drive": "1uSel7FkETtt2-QIWgW64KS-TpiJ2smf9"
+  },
+  "parent": {
+    "r3_closure": "g7/p12/r3-closure.json",
+    "r1_reselected": false,
+    "independent_replication": false
+  },
+  "variant_summary": {
+    "fresh": {
+      "BASE_Q5_TARGET_EQUAL": {
+        "n": 26,
+        "mean": -0.0014245014245014228,
+        "ratio": 0.02533292252918418,
+        "attenuated": true
+      },
+      "Q4_TARGET_EQUAL": {
+        "n": 31,
+        "mean": 0.044257410252033905,
+        "ratio": 0.7870610207704828,
+        "attenuated": false
+      },
+      "Q6_TARGET_EQUAL": {
+        "n": 23,
+        "mean": 0.04069377348362855,
+        "ratio": 0.7236863321788147,
+        "attenuated": false
+      },
+      "Q10_TARGET_EQUAL": {
+        "n": 15,
+        "mean": 0.047530864197530866,
+        "ratio": 0.8452751817237798,
+        "attenuated": false
+      },
+      "Q5_STRATUM_EQUAL": {
+        "n": 26,
+        "mean": -0.000178062678062677,
+        "ratio": 0.003166615316148007,
+        "attenuated": true
+      },
+      "Q5_EDGE_EXCLUDED": {
+        "n": 6,
+        "mean": 0,
+        "support_limited": true
+      }
+    },
+    "legacy": {
+      "BASE_Q5_TARGET_EQUAL": {
+        "n": 44,
+        "mean": 0.018244949494949494,
+        "ratio": 0.3746776652277357,
+        "attenuated": true
+      },
+      "Q4_TARGET_EQUAL": {
+        "n": 49,
+        "mean": 0.006848387503149411,
+        "ratio": 0.1406382539433786,
+        "attenuated": true
+      },
+      "Q6_TARGET_EQUAL": {
+        "n": 42,
+        "mean": 0.004109977324263043,
+        "ratio": 0.08440235520630453,
+        "attenuated": true
+      },
+      "Q10_TARGET_EQUAL": {
+        "n": 30,
+        "mean": 0.049845679012345684,
+        "ratio": 1.0236291768966899,
+        "attenuated": false
+      },
+      "Q5_STRATUM_EQUAL": {
+        "n": 44,
+        "mean": 0.02137696408529742,
+        "ratio": 0.43899661083488073,
+        "attenuated": true
+      },
+      "Q5_EDGE_EXCLUDED": {
+        "n": 19,
+        "mean": -0.07894736842105263,
+        "support_limited": true
+      }
+    }
+  },
+  "presealed_adjudication_counts": {
+    "fresh_attenuated_alt_count": 1,
+    "legacy_attenuated_alt_count": 3,
+    "fresh_leave_one_batch_parent_exceed_count": 2
+  },
+  "fresh_transport": {
+    "leave_out_P11_BATCH1": {
+      "n": 18,
+      "mean": -0.013888888888888886
+    },
+    "leave_out_P11_BATCH2": {
+      "n": 20,
+      "mean": 0.05995370370370371,
+      "parent_magnitude_exceeded": true
+    },
+    "leave_out_P11_BATCH3": {
+      "n": 20,
+      "mean": 0.031712962962962964
+    },
+    "leave_out_P11_BATCH4": {
+      "n": 20,
+      "mean": -0.08472222222222223,
+      "parent_magnitude_exceeded": true
+    },
+    "method_CFOP": {
+      "n": 14,
+      "mean": -0.07308201058201058
+    },
+    "method_NONCFOP": {
+      "n": 12,
+      "mean": 0.08217592592592593
+    },
+    "cells": {
+      "CFOP_DOMINANT": {
+        "n": 8,
+        "mean": 0.02662037037037037
+      },
+      "CFOP_NONDOMINANT": {
+        "n": 6,
+        "mean": -0.20601851851851852
+      },
+      "NONCFOP_DOMINANT": {
+        "n": 6,
+        "mean": -0.11188271604938271
+      },
+      "NONCFOP_NONDOMINANT": {
+        "n": 6,
+        "mean": 0.2762345679012346
+      }
+    }
+  },
+  "interpretation": [
+    "The R3 Q5 near-zero residual reproduces exactly and is stable to target-vs-stratum aggregation at Q5.",
+    "Fresh attenuation is not stable to progress granularity: Q4, Q6 and Q10 all recover substantial positive residuals above the half-parent attenuation threshold.",
+    "Legacy attenuation is more stable at Q4 and Q6 but fails at Q10, showing ancestry asymmetry.",
+    "Fresh leave-one-batch-out and method splits reveal sign-changing composition sensitivity, with Batch2/Batch4 exclusions and CFOP/non-CFOP producing large opposite residuals.",
+    "Therefore the R3 structural-sufficiency interpretation is local to a particular progress/composition representation and cannot be promoted as a globally stable explanation."
+  ],
+  "boundary": [
+    "R4 is post-result robustness analysis, not independent replication.",
+    "Subgroup extremes are diagnostic and not standalone discoveries.",
+    "Fragility does not restore lb7 as a cognitive primitive; it shows that the soft structural attenuation itself is representation- and composition-sensitive.",
+    "Mechanism promotion remains forbidden."
+  ],
+  "successor_problem": "Prospectively test the newly exposed heterogeneity rather than further slicing the same 100 solves: acquire a fresh method-balanced reconstruction sample and preseal method×progress interaction readouts before body outcomes are observed."
+}
