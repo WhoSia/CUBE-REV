@@ -63,6 +63,7 @@
     "g7/p12/constitution.json",
     "g7/p12/opportunity-compression-preseal.json",
     "g7/p12/r1-closure.json",
+    "g7/p12/r2-closure.json",
     "g7/p12/r2-constitution.json",
     "g7/p7/active-set-manifest.json",
     "g7/p7/closure.json",
