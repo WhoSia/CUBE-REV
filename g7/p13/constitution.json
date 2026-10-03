@@ -28,7 +28,8 @@
     "dominant_reconstructor_definition": "raw reconstructor frequency >=200 in frozen 10,591 population",
     "within_cell_selection": "coarse-era round-robin followed by deterministic SHA-256 rank",
     "seed": "CUBE_REV_G7_P13_METHOD_PROGRESS_FRESH80_V1",
-    "replacement_policy": "no outcome-triggered replacement; retrieval failures remain failures unless a separately presealed replacement amendment is committed before geometry is observed"
+    "replacement_policy": "no outcome-triggered replacement; retrieval failures remain failures unless a separately presealed replacement amendment is committed before geometry is observed",
+    "batch_assignment": "8 batches × 10; rotating cell quota schedule [3,3,2,2] across the four cells so each cell totals 20 while acquisition batch is not cell-pure; deterministic within-cell era-round-robin order"
   },
   "acquisition": {
     "source": "reco.nz",
