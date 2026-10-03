@@ -1,0 +1,111 @@
+{
+  "schema_version": "g7-p12-r4-constitution-1",
+  "phase": "G7-P12-R4",
+  "formal_name": "CUBE-REV Generation VII G7-P12-R4 — Fixed-R1 Soft-Matching Robustness, Progress-Granularity Perturbation, Target/Stratum Aggregation Duality, Caliper-Edge Inclusion Stress, Fresh-Batch/Method/Composition Leave-Out Transport, Negative-Control Stability & Structural-Attenuation Robustness Stress Test",
+  "operation_type": "Structural-Attenuation Robustness Stress Test",
+  "status": "FROZEN_AFTER_R3_BEFORE_R4_VARIANT_OUTCOMES",
+  "parent": {
+    "r3_closure": "g7/p12/r3-closure.json",
+    "selected_candidate": "R1",
+    "selected_candidate_locked": true,
+    "fresh_primary_residual": -0.0014245014245014228,
+    "legacy_primary_residual": 0.018244949494949494
+  },
+  "scope": {
+    "independent_replication": false,
+    "purpose": "stress the already-observed R3 attenuation without reopening structural candidate selection",
+    "source_contact": "NONE",
+    "new_body_requests": 0
+  },
+  "fixed_geometry": {
+    "distance": "2x2 action-opportunity TV distance in action-mass units",
+    "caliper": "R1 <=1 unit",
+    "no_candidate_reselection": true
+  },
+  "perturbation_family": [
+    {
+      "id": "BASE_Q5_TARGET_EQUAL",
+      "progress_bins": 5,
+      "caliper_rule": "distance <= 1",
+      "aggregation": "equal target-state weight within solve"
+    },
+    {
+      "id": "Q4_TARGET_EQUAL",
+      "progress_bins": 4,
+      "caliper_rule": "distance <= 1",
+      "aggregation": "equal target-state weight within solve"
+    },
+    {
+      "id": "Q6_TARGET_EQUAL",
+      "progress_bins": 6,
+      "caliper_rule": "distance <= 1",
+      "aggregation": "equal target-state weight within solve"
+    },
+    {
+      "id": "Q10_TARGET_EQUAL",
+      "progress_bins": 10,
+      "caliper_rule": "distance <= 1",
+      "aggregation": "equal target-state weight within solve"
+    },
+    {
+      "id": "Q5_STRATUM_EQUAL",
+      "progress_bins": 5,
+      "caliper_rule": "distance <= 1",
+      "aggregation": "equal progress-stratum weight within solve after target averaging"
+    },
+    {
+      "id": "Q5_EDGE_EXCLUDED",
+      "progress_bins": 5,
+      "caliper_rule": "distance < 1",
+      "aggregation": "equal target-state weight within solve",
+      "expected_boundary": "equivalent to exact-table matching because action-mass distance is integer-valued"
+    }
+  ],
+  "transport_slices": {
+    "fresh": [
+      "leave each P11 acquisition batch out one at a time",
+      "CFOP only",
+      "NONCFOP only",
+      "each of four prebalanced sampling cells"
+    ],
+    "legacy": [
+      "CFOP only",
+      "NONCFOP only",
+      "leave each historical acquisition cohort out one at a time where cohort labels exist"
+    ]
+  },
+  "fixed_readouts": {
+    "primary_variant_metric": "solve-level residual mean under each perturbation",
+    "parent_reference": {
+      "fresh": 0.056231231231231235,
+      "legacy": 0.048695054945054946
+    },
+    "attenuation_threshold": "abs(residual) <= 0.5 * abs(parent reference)",
+    "support_floor": {
+      "fresh_variant": 15,
+      "legacy_variant": 25,
+      "subgroup": 5
+    },
+    "sign_flip": "100000 solve-clustered sign flips; descriptive only"
+  },
+  "adjudication": {
+    "robust": "BASE reproduction passes; at least 3 of Q4/Q6/Q10/Q5_STRATUM_EQUAL have adequate support and meet attenuation threshold in fresh; legacy has at least 3 analogous attenuated variants; no fresh leave-one-batch-out adequate-support variant exceeds parent magnitude",
+    "fragile": "otherwise, if two or more adequate-support fresh perturbations exceed half-parent magnitude or change attenuation conclusion",
+    "mixed": "all other cases",
+    "exact_edge_note": "Q5_EDGE_EXCLUDED is a support diagnostic only and cannot by itself make the verdict fragile because it intentionally collapses to the exact sparse regime"
+  },
+  "negative_control": {
+    "construction": "same deterministic rotated-lb-label control as R3 under BASE and Q4/Q6/Q10 perturbations",
+    "purpose": "assess whether attenuation pattern is generically induced by smoothing across progress partitions",
+    "cannot_change_selected_candidate": true
+  },
+  "inference_boundary": [
+    "R4 is post-result robustness analysis, not independent confirmation.",
+    "R1 is fixed and never reselected.",
+    "Subgroup and leave-out analyses are robustness diagnostics, not new discovery surfaces.",
+    "Attenuation stability supports descriptive structural explanation only.",
+    "No causal or cognitive mechanism promotion."
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
