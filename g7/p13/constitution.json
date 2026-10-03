@@ -1,0 +1,92 @@
+{
+  "schema_version": "g7-p13-constitution-1",
+  "phase": "G7-P13",
+  "formal_name": "CUBE-REV Generation VII G7-P13 — Prospective Method×Progress Heterogeneity Replication, Outcome-Blind CFOP↔Non-CFOP Balanced Reconstruction Acquisition, Reconstructor×Era Composition Firewall, Fixed-R1 Q4/Q5/Q6/Q10 Residual-Surface Reconstitution, Fresh-Only Sign-Divergence Replication, Composition-Cancellation Test & Structural-Attenuation Heterogeneity Replication Campaign",
+  "operation_type": "Fresh Method×Progress Heterogeneity Replication Campaign",
+  "status": "PRESEALED_BEFORE_FRESH80_SELECTION_AND_BODY_CONTACT",
+  "parent": {
+    "r4_closure": "g7/p12/r4-closure.json",
+    "motivating_observations": {
+      "fresh_CFOP_q5": -0.07308201058201058,
+      "fresh_NONCFOP_q5": 0.08217592592592593,
+      "fresh_q5_pooled": -0.0014245014245014228,
+      "fresh_q4": 0.044257410252033905,
+      "fresh_q6": 0.04069377348362855,
+      "fresh_q10": 0.047530864197530866
+    }
+  },
+  "sampling_design": {
+    "frame": "frozen P8 10,591-row 3x3 index-covariate authority",
+    "exclude": "all prior 100 body solves: legacy60 + P11 fresh40",
+    "target_total": 80,
+    "cells": {
+      "CFOP__DOMINANT_RECONSTRUCTOR": 20,
+      "CFOP__NONDOMINANT_RECONSTRUCTOR": 20,
+      "NONCFOP__DOMINANT_RECONSTRUCTOR": 20,
+      "NONCFOP__NONDOMINANT_RECONSTRUCTOR": 20
+    },
+    "dominant_reconstructor_definition": "raw reconstructor frequency >=200 in frozen 10,591 population",
+    "within_cell_selection": "coarse-era round-robin followed by deterministic SHA-256 rank",
+    "seed": "CUBE_REV_G7_P13_METHOD_PROGRESS_FRESH80_V1",
+    "replacement_policy": "no outcome-triggered replacement; retrieval failures remain failures unless a separately presealed replacement amendment is committed before geometry is observed"
+  },
+  "acquisition": {
+    "source": "reco.nz",
+    "max_solves_per_run": 10,
+    "batches": 8,
+    "min_delay_ms": 2000,
+    "robots_policy": "CHECK_AT_EXECUTION",
+    "raw_public_release": "HOLD",
+    "bulk_mirror": "HOLD"
+  },
+  "fixed_analysis": {
+    "structural_match": "R1 hard caliper on exact 2x2 action-opportunity TV distance <=1 action-mass unit",
+    "candidate_reselection": "FORBIDDEN",
+    "progress_partitions": [
+      4,
+      5,
+      6,
+      10
+    ],
+    "aggregation": "target-state equal within solve",
+    "fresh_only_primary": true,
+    "prior100_pooling_before_verdict": "FORBIDDEN"
+  },
+  "primary_predictions": {
+    "method_sign_divergence": {
+      "q": 5,
+      "rule": "CFOP mean < 0 AND NONCFOP mean > 0 AND (NONCFOP mean - CFOP mean) >= 1/18",
+      "min_method_support": 20
+    },
+    "q5_composition_cancellation": {
+      "rule": "abs(pooled Q5 mean) <= 0.5 * mean(abs(CFOP Q5 mean), abs(NONCFOP Q5 mean))",
+      "min_pooled_support": 40
+    },
+    "progress_fragility": {
+      "rule": "among Q4,Q6,Q10 pooled means, at least two differ from pooled Q5 mean by >= 1/36 in absolute value",
+      "min_variant_support": 30
+    }
+  },
+  "terminal_adjudication": {
+    "replicated_heterogeneity": "all three primary predictions pass",
+    "partial_replication": "exactly one or two primary predictions pass",
+    "not_replicated": "none pass",
+    "support_limited": "any primary prediction cannot be evaluated because its frozen support floor is not met"
+  },
+  "secondary_readouts": [
+    "four sampling-cell Q5 residuals",
+    "eight acquisition-batch Q5 residuals",
+    "method-specific Q4/Q6/Q10 residuals",
+    "solve-clustered sign-flip diagnostics",
+    "fresh80 vs P11 fresh40 effect-direction comparison after fresh-only verdict"
+  ],
+  "forbidden": [
+    "change selected IDs after observing body geometry",
+    "change R1 caliper or progress partitions",
+    "pool prior100 before fresh-only terminal verdict",
+    "use secondary readouts to redefine primary success",
+    "promote method labels or computational geometry to latent cognition"
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
