@@ -1,0 +1,115 @@
+name: G7-P13 fresh80 method-progress selection seal
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p13/constitution.json'
+      - 'scripts/g7-p13/select-fresh80-method-progress.py'
+      - '.github/workflows/g7-p13-fresh80-selection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Validate P13 constitution
+        run: |
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p13/constitution.json'))
+          assert x['status']=='PRESEALED_BEFORE_FRESH80_SELECTION_AND_BODY_CONTACT'
+          assert x['sampling_design']['target_total']==80
+          assert sum(x['sampling_design']['cells'].values())==80
+          assert x['acquisition']['max_solves_per_run']==10
+          assert x['acquisition']['batches']==8
+          assert x['fixed_analysis']['candidate_reselection']=='FORBIDDEN'
+          print('G7_P13_CONSTITUTION_GATE_PASS')
+          PY
+
+      - name: Recover frozen P8/P3/P11 authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p13/p8 /tmp/p13/p3 /tmp/p13/p11
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p13/$dir.zip"
+            echo "$expected  /tmp/p13/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p13/$dir.zip" -d "/tmp/p13/$dir"
+          }
+          fetch_artifact 11238930249 p8 460dc657565541b663f1bc91b6e75490a7591f56946a41c28af60802ee27f16a
+          fetch_artifact 11205587281 p3 acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4
+          fetch_artifact 11242753632 p11 45145487febf4d9fc975299ffe567a9e20ae63cb744a6205bd53f661941f8a67
+          test -n "$(find /tmp/p13/p8 -name frozen-index-covariates.jsonl -print -quit)"
+          test -n "$(find /tmp/p13/p3 -name linkage-support.jsonl -print -quit)"
+          test -n "$(find /tmp/p13/p11 -name selection-manifest.json -print -quit)"
+          echo 'G7_P13_FROZEN_INPUTS_PASS'
+
+      - name: Materialize fresh80 outcome-blind selection
+        run: |
+          set -euo pipefail
+          COV="$(find /tmp/p13/p8 -name frozen-index-covariates.jsonl -print -quit)"
+          IDX="$(find /tmp/p13/p3 -name linkage-support.jsonl -print -quit)"
+          P11="$(find /tmp/p13/p11 -name selection-manifest.json -print -quit)"
+          mkdir -p /tmp/p13/out
+          python3 scripts/g7-p13/select-fresh80-method-progress.py \
+            --covariates "$COV" \
+            --frozen-index "$IDX" \
+            --legacy60 g7/p7/source-provenance-recovery.json \
+            --p11-manifest "$P11" \
+            --out /tmp/p13/out | tee /tmp/p13/selection.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p13/out/selection-manifest.json'))
+          assert x['status']=='SEALED_BEFORE_FRESH80_BODY_CONTACT'
+          assert x['target_total']==80 and len(x['rows'])==80
+          assert x['prior_body_excluded']==100
+          assert all(v==20 for v in x['selected_cell_counts'].values())
+          assert all(len(x['batches'][str(i)])==10 for i in range(1,9))
+          print('G7_P13_SELECTION_RESULT_GATE_PASS')
+          print('MANIFEST_SHA256',x['selection_manifest_sha256'])
+          print('CELLS',x['selected_cell_counts'])
+          print('ERAS',x['selected_era_counts'])
+          print('BATCHES',x['selected_batch_counts'])
+          PY
+
+      - name: Seal selection authority only
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p13/seal/authority /tmp/p13/seal/derived
+          cp g7/p13/constitution.json /tmp/p13/seal/authority/
+          cp /tmp/p13/out/selection-manifest.json /tmp/p13/seal/derived/
+          cp /tmp/p13/out/batch-*-source-ids.txt /tmp/p13/seal/derived/
+          cp /tmp/p13/selection.log /tmp/p13/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P13' \
+            'OPERATION=FRESH80_METHOD_PROGRESS_SELECTION_SEAL' \
+            'BODY_CONTACT=NONE' \
+            'TARGET=80' \
+            'BATCHES=8x10' \
+            'PRIOR100_EXCLUDED=YES' \
+            'OUTCOME_BLIND=YES' \
+            > /tmp/p13/seal/AUTHORITY.txt
+          (cd /tmp/p13/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P13-fresh80-selection-${{ github.sha }}
+          path: /tmp/p13/seal
+          retention-days: 90
