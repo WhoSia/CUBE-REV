@@ -1,0 +1,117 @@
+{
+  "schema_version": "g7-p12-r3-closure-1",
+  "phase": "G7-P12-R3",
+  "formal_name": "CUBE-REV Generation VII G7-P12-R3 — Prospective Soft Opportunity-Matching Constitution, 2×2 Action-Opportunity Total-Variation Geometry, Radius/Kernel Common-Support Recovery, Approximation-Error Calibration, Outcome-Blind Balance Selection, Fresh↔Legacy Transport, Residual LB7 Alignment Sensitivity, Negative-Control Geometry & Partial-Identification Audit",
+  "status": "CLOSED",
+  "final_verdict": "STRUCTURAL_OPPORTUNITY_SUFFICIENT_UNDER_PRESEALED_SOFT_MATCHING__CROSS_ANCESTRY_ATTENUATION__NEGATIVE_CONTROL_SPECIFICITY_PARTIAL__MECHANISM_PROMOTION_CLOSED",
+  "authority": {
+    "canonical_run": 37115494655,
+    "head": "3568c008aac3279cbbd9169567627fc1154947d9",
+    "artifact": 11270999709,
+    "sha256": "d166a7acd4c360521b3ed3e5cd0a212a1191b7d1e6e12510d4b2acb175febf5b",
+    "drive": "1Pjn4s_kgMiRlb0wg8KHkdPR-5gGGQLDo",
+    "active_set_audit_run": 37115494681,
+    "active_set_audit": "SUCCESS",
+    "precursor_run": {
+      "run": 37115417457,
+      "status": "PRIMARY_RESULT_REPRODUCED_BUT_NEGATIVE_CONTROL_BASELINE_INCOMPLETE",
+      "note": "primary structural selection and behavioral verdict were unchanged in canonical completion"
+    }
+  },
+  "selected_soft_match": {
+    "id": "R1",
+    "type": "hard_radius",
+    "distance_geometry": "2x2 action-opportunity table total-variation distance",
+    "radius_units": 1,
+    "interpretation": "at most one unit of action mass transferred between opportunity categories"
+  },
+  "structural_selection": {
+    "behavioral_outcome_blind": true,
+    "fresh": {
+      "eligible_solves": 26,
+      "matched_target_states": 54,
+      "effective_comparator_mass_sum": 79,
+      "mean_distance_units": 0.9058641975308641,
+      "p90_distance_units": 1,
+      "max_distance_units": 1
+    },
+    "legacy": {
+      "eligible_solves": 44,
+      "matched_target_states": 118,
+      "effective_comparator_mass_sum": 157,
+      "mean_distance_units": 0.7655367231638418,
+      "p90_distance_units": 1,
+      "max_distance_units": 1
+    },
+    "gates": {
+      "fresh_min_solves": 20,
+      "legacy_min_solves": 30,
+      "max_mean_distance_units": 1,
+      "max_p90_distance_units": 2
+    },
+    "other_candidates": {
+      "R0": "support-limited",
+      "R2": "mean approximation distance exceeds 1 action-mass unit",
+      "R3": "approximation budget exceeded",
+      "R4": "approximation budget exceeded",
+      "NN1": "approximation budget exceeded",
+      "NN3": "approximation budget exceeded",
+      "EXP1": "approximation budget exceeded",
+      "EXP2": "approximation budget exceeded"
+    }
+  },
+  "behavioral_primary": {
+    "fresh": {
+      "n_solves": 26,
+      "mean": -0.0014245014245014228,
+      "median": 0,
+      "positive": 12,
+      "zero": 5,
+      "negative": 9,
+      "signflip_p": 0.987350126498735,
+      "parent_mean": 0.056231231231231235,
+      "abs_ratio_to_parent": 0.02533292252918418
+    },
+    "legacy": {
+      "n_solves": 44,
+      "mean": 0.018244949494949494,
+      "median": 0,
+      "positive": 16,
+      "zero": 10,
+      "negative": 18,
+      "signflip_p": 0.7457525424745752,
+      "parent_mean": 0.048695054945054946,
+      "abs_ratio_to_parent": 0.3746776652277357
+    }
+  },
+  "negative_control": {
+    "construction": "deterministic within-solve×progress-quintile rotation of lb labels; selected R1 family held fixed",
+    "fresh": {
+      "unadjusted_rotated_mean": 0.012955752131099355,
+      "adjusted_rotated_mean": -0.001512269845603177,
+      "abs_ratio": 0.11672574701186832
+    },
+    "legacy": {
+      "unadjusted_rotated_mean": -0.019106071087632397,
+      "adjusted_rotated_mean": -0.020556437389770723,
+      "abs_ratio": 1.0759112794821102
+    },
+    "interpretation": "specificity is partial: true-lb7 attenuation transports across both ancestries, while rotated-label attenuation appears in fresh but not legacy"
+  },
+  "interpretation": [
+    "A one-action-mass TV caliper was selected without behavioral outcomes and passed the presealed approximation/support gates in both ancestries.",
+    "Under that selected family, the fresh lb7 residual nearly vanishes and reverses sign, satisfying the presealed structural-opportunity-sufficient rule.",
+    "The legacy residual is also attenuated below half of its parent magnitude, providing cross-ancestry directional support.",
+    "Solve-clustered sign-flip diagnostics are weak and are not used as promotion thresholds.",
+    "The rotated-label negative control rules out a universal shrink-to-zero artifact across ancestries, but fresh-only control attenuation prevents a claim of complete specificity.",
+    "The result therefore supports structural opportunity as a sufficient descriptive explanation under the presealed soft-matching family, not causal mediation or a cognitive mechanism."
+  ],
+  "boundary": [
+    "Soft matching is approximate structural adjustment, not exact state identity.",
+    "The R1 caliper was selected before behavioral outcomes were opened.",
+    "Fresh and legacy parent estimands are not numerically identical to the target-state soft-matching estimand, so attenuation ratios are diagnostic rather than causal effect fractions.",
+    "Negative-control specificity is partial rather than definitive.",
+    "Human-contact and mechanism-promotion gates remain closed."
+  ],
+  "successor_problem": "Stress whether the R1 attenuation is stable to outcome-blind perturbations of distance geometry, target aggregation, progress granularity, ancestry composition and caliper-edge inclusion, without reopening candidate selection or tuning to behavioral residuals."
+}
