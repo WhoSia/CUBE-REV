@@ -103,13 +103,15 @@ def main():
         for x in csv.DictReader(f,delimiter="\t"):
             sid=int(x["source_id"]);pi=int(x["prefix_index"])
             sh=shell[(sid,pi)]
+            c=ctx[(sid,pi)]
+            # Preserve the R1/P12 face-next analysis population without reading action identity.
+            # Eligibility uses only whether a next face action exists; its value is never accessed.
+            if c.get("next_action_index") is None:continue
             if sh["g1"] or sh["lb"] not in (6,7,8):continue
-            # R2 uses only structural support geometry. next_action is intentionally not read.
             rivals={r:S(x[r.lower()+"_best"]) for r in ("H1","H2","H3","FS")}
             ts=S(x["ts_best"])
             low={m for m in ts if sum(m in rivals[r] for r in rivals)<=2}
             if not low:continue
-            c=ctx[(sid,pi)]
             ancestry="FRESH40" if str(c.get("cohort") or "").startswith("P11_") else "LEGACY60"
             rows.append({
               "sid":sid,"pi":pi,"lb":sh["lb"],"q":qbin(pi/allmax[sid] if allmax[sid]>0 else 0),
