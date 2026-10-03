@@ -94,6 +94,7 @@ def structural_eval(rows,name):
     }
 
 def behavior_eval(rows,name,nperm,seed,override_lb=None):
+
     by=defaultdict(list)
     for r in rows:by[(r["sid"],r["q"])].append(r)
     per=defaultdict(list)
@@ -111,6 +112,21 @@ def behavior_eval(rows,name,nperm,seed,override_lb=None):
     out=stat(list(vals.values()),nperm,seed)
     out["eligible_solve_ids"]=sorted(vals)
     out["per_solve_delta"]={str(k):v for k,v in sorted(vals.items())}
+    return out
+
+def baseline_unadjusted(rows,nperm,seed,override_lb=None):
+    by=defaultdict(list)
+    for r in rows:by[(r["sid"],r["q"])].append(r)
+    per=defaultdict(list)
+    for key,grp in by.items():
+        def lab(r): return override_lb.get((r["sid"],r["pi"]),r["lb"]) if override_lb else r["lb"]
+        targets=[r for r in grp if lab(r)==7]
+        comps=[r for r in grp if lab(r) in (6,8)]
+        if not targets or not comps:continue
+        per[key[0]].append(M([t["ex"] for t in targets])-M([c["ex"] for c in comps]))
+    vals={sid:M(xs) for sid,xs in per.items() if xs}
+    out=stat(list(vals.values()),nperm,seed)
+    out["eligible_solve_ids"]=sorted(vals)
     return out
 
 def rotated_labels(rows):
@@ -213,7 +229,10 @@ def main():
         negative={}
         for i,anc in enumerate(("FRESH40","LEGACY60")):
             rot=rotated_labels(bscopes[anc])
-            negative[anc]=behavior_eval(bscopes[anc],selected,z.permutations,20271511+i,rot)
+            base=baseline_unadjusted(bscopes[anc],z.permutations,20271521+i,rot)
+            adj=behavior_eval(bscopes[anc],selected,z.permutations,20271511+i,rot)
+            ratio=(abs(adj["mean"])/abs(base["mean"])) if base["mean"] not in (None,0) else None
+            negative[anc]={"unadjusted_rotated_baseline":base,"soft_adjusted_rotated":adj,"abs_ratio":ratio}
         f=behavioral["FRESH40"]
         if f["n_solves"]<20:
             verdict="SELECTED_SOFT_MATCH_BEHAVIOR_SUPPORT_LIMITED"
