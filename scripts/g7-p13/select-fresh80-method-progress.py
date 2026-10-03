@@ -100,16 +100,28 @@ def main():
     counts={k:len(pool[k]) for k in CELLS}
     if any(counts[k]<20 for k in CELLS):raise SystemExit("CELL_SUPPORT_LT20_"+json.dumps(counts,sort_keys=True))
 
-    selected=[]
-    # 20 per cell; split each selected cell deterministically into two 10-solve acquisition batches.
-    for ci,c in enumerate(CELLS):
+    # Select 20 per cell in outcome-blind era-round-robin order.
+    chosen_by_cell={}
+    for c in CELLS:
         chosen=balanced(pool[c],20,SEED+"|"+c)
         if len(chosen)!=20:raise SystemExit("CELL_SELECTION_FAIL_"+c)
-        ordered=sorted(chosen,key=lambda r:(r["era"],h(SEED+"|BATCH|"+c,r["source_id"]),r["source_id"]))
-        for j,r in enumerate(ordered):
-            r["batch"]=ci*2+(1 if j<10 else 2)
-            selected.append(r)
+        chosen_by_cell[c]=chosen
 
+    # Eight 10-solve batches. Rotate [3,3,2,2] quotas across cells:
+    # each batch is composition-mixed and every cell contributes exactly 20 overall.
+    ptr={c:0 for c in CELLS};selected=[]
+    base=[3,3,2,2]
+    for b in range(1,9):
+        rot=(b-1)%4
+        quotas=base[-rot:]+base[:-rot] if rot else base[:]
+        for c,q in zip(CELLS,quotas):
+            start=ptr[c];end=start+q
+            part=chosen_by_cell[c][start:end]
+            if len(part)!=q:raise SystemExit("BATCH_QUOTA_EXHAUSTED_"+c)
+            ptr[c]=end
+            for r in part:
+                rr=dict(r);rr["batch"]=b;selected.append(rr)
+    if any(ptr[c]!=20 for c in CELLS):raise SystemExit("CELL_BATCH_TOTAL_NOT20_"+json.dumps(ptr,sort_keys=True))
     if len(selected)!=80 or len({r["source_id"] for r in selected})!=80:raise SystemExit("SELECT80_FAIL")
     if {r["source_id"] for r in selected}&exclude:raise SystemExit("PRIOR100_LEAK")
 
