@@ -1,0 +1,160 @@
+{
+  "schema_version": "g7-p12-r2-closure-1",
+  "phase": "G7-P12-R2",
+  "formal_name": "CUBE-REV Generation VII G7-P12-R2 — Opportunity-Representation Coordinate-Projection Lattice, Support–Information Pareto Frontier Census, Exact-Table Quotient Dominance, Fresh↔Legacy Frontier Transport, Common-Support Phase Diagram, Threshold-Free Compression Boundary & Representation Identifiability Census",
+  "status": "CLOSED",
+  "final_verdict": "REPRESENTATION_IDENTIFIABILITY_BOUNDARY_TRANSPORTS_ACROSS_FRESH_AND_LEGACY__NO_COORDINATE_PROJECTION_CROSSES_R1_DUAL_GATE__BEHAVIORAL_STAGE_REMAINS_CLOSED",
+  "authority": {
+    "run": 37114914439,
+    "head": "8c5dc490a9eb00710a351bac8c2ed69a9b03427c",
+    "artifact": 11271083693,
+    "sha256": "d3430d0edac1de71d0a8b5d89915bddb78886eec421d67e508fe0b0ad99cf9bd",
+    "drive": "1NwqtNtABj1SOm_WouSyhlvNXWoldOqwc",
+    "active_set_audit_run": 37114914383,
+    "active_set_audit": "SUCCESS"
+  },
+  "invalidated_precanonical_run": {
+    "run": 37114849449,
+    "reason": "population mismatch: included non-face-next/terminal structural states, making R1 gate-distance support non-comparable",
+    "status": "NONCANONICAL_DIAGNOSTIC_ONLY"
+  },
+  "canonical_population": {
+    "eligibility": "same face-next lb6/7/8 low-overlap-support-positive state population as R1/P12; action identity not read",
+    "behavioral_outcomes_used": false
+  },
+  "frontier": {
+    "fresh": [
+      "K",
+      "L",
+      "K_D",
+      "K_L",
+      "D_L",
+      "K_D_L"
+    ],
+    "legacy": [
+      "K",
+      "L",
+      "K_D",
+      "K_L",
+      "D_L",
+      "K_D_L"
+    ],
+    "joint": [
+      "K",
+      "L",
+      "K_D",
+      "K_L",
+      "D_L",
+      "K_D_L"
+    ],
+    "excluded_as_dominated": [
+      "D"
+    ]
+  },
+  "transport": {
+    "fresh_order": [
+      "K_D_L",
+      "K_D",
+      "D_L",
+      "K_L",
+      "D",
+      "K",
+      "L"
+    ],
+    "legacy_order": [
+      "K_D_L",
+      "K_D",
+      "D_L",
+      "K_L",
+      "D",
+      "K",
+      "L"
+    ],
+    "kendall_tau": 1,
+    "same_order": true
+  },
+  "key_points": {
+    "K_D": {
+      "fresh": {
+        "loss": 0.11316363209673791,
+        "support": 9,
+        "loss_gate_margin": 0.0868363679032621,
+        "support_gate_margin": -1
+      },
+      "legacy": {
+        "loss": 0.11613159854879042,
+        "support": 23,
+        "loss_gate_margin": 0.08386840145120959,
+        "support_gate_margin": 3
+      },
+      "interpretation": "best low-loss two-coordinate quotient; misses fresh R1 support gate by one solve"
+    },
+    "K_D_L": {
+      "fresh": {
+        "loss": 0,
+        "support": 6
+      },
+      "legacy": {
+        "loss": 0,
+        "support": 19
+      },
+      "interpretation": "exact-table endpoint; zero information loss but sparse common support"
+    },
+    "K_L": {
+      "fresh": {
+        "loss": 0.361609395650411,
+        "support": 32
+      },
+      "legacy": {
+        "loss": 0.36558645443104204,
+        "support": 48
+      }
+    },
+    "D_L": {
+      "fresh": {
+        "loss": 0.27811025405196754,
+        "support": 20
+      },
+      "legacy": {
+        "loss": 0.2708976893950766,
+        "support": 33
+      }
+    },
+    "K": {
+      "fresh": {
+        "loss": 0.5806152177543313,
+        "support": 37
+      },
+      "legacy": {
+        "loss": 0.5867131891412405,
+        "support": 52
+      }
+    },
+    "L": {
+      "fresh": {
+        "loss": 0.6738125884129963,
+        "support": 39
+      },
+      "legacy": {
+        "loss": 0.6655198365418721,
+        "support": 53
+      }
+    }
+  },
+  "r1_dual_gate": {
+    "max_loss": 0.2,
+    "min_fresh_support": 10,
+    "min_legacy_support": 20,
+    "any_lattice_point_passes": false
+  },
+  "interpretation": [
+    "The support-information tradeoff is not peculiar to one ancestry: the complete projection ordering is identical in fresh and legacy data.",
+    "No exact coordinate projection of K,D,L simultaneously satisfies R1 information-retention and common-support gates.",
+    "K_D lies closest to the dual gate but its fresh support remains 9, so the presealed threshold is not relaxed.",
+    "The exact K_D_L representation preserves all opportunity information but leaves only 6 fresh and 19 legacy common-support solves.",
+    "R2 therefore identifies a transported representation-identifiability boundary rather than an admissible behavioral matching quotient."
+  ],
+  "successor_problem": "Move beyond exact coordinate projection matching. Prospectively compare outcome-blind soft/partial structural adjustment families that trade exact-match sparsity for controlled approximation, while preserving fresh/legacy ancestry and preventing outcome-tuned representation choice.",
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
