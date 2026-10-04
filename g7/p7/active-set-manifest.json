@@ -160,6 +160,7 @@
     "scripts/g7-p15/acquire-fresh96-reco-batch.mjs",
     "scripts/g7-p15/analyze-fresh96-regime-state.py",
     "scripts/g7-p15/merge-fresh96-corpus.mjs",
+    "scripts/g7-p15/repair-fresh96-replay-invalid.py",
     "scripts/g7-p15/select-fresh96-regime-state.py",
     "scripts/g7-p7/analyze-reco-five-rival.mjs",
     "scripts/g7-p7/analyze-recovered-provenance-geometry.py",
