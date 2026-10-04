@@ -12,7 +12,7 @@ const outDir=val("--out");
 if(!manifestPath||!batchNo||!outDir) throw new Error("ARGS");
 const manifest=JSON.parse(fs.readFileSync(manifestPath,"utf8"));
 const policy=JSON.parse(fs.readFileSync("core/reco/reco-acquisition-policy.json","utf8"));
-if(manifest.phase!=="G7-P14"||manifest.status!=="SEALED_BEFORE_CONFIRM80_BODY_CONTACT") throw new Error("P14_MANIFEST_NOT_SEALED");
+if(manifest.phase!=="G7-P14"||!["SEALED_BEFORE_CONFIRM80_BODY_CONTACT","SEALED_AFTER_PRE_GEOMETRY_REPLAY_INVALID_REPLACEMENT"].includes(manifest.status)) throw new Error("P14_MANIFEST_NOT_SEALED");
 if(manifest.target_total!==80||manifest.prior_body_contacted_excluded!==183) throw new Error("P14_TARGET_AUTHORITY");
 if(batchNo<1||batchNo>8) throw new Error("BATCH_RANGE");
 const ids=manifest.batches?.[String(batchNo)];
