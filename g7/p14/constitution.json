@@ -1,0 +1,94 @@
+{
+  "schema_version": "g7-p14-constitution-1",
+  "phase": "G7-P14",
+  "formal_name": "CUBE-REV Generation VII G7-P14 — Prospective Reconstructor-Frequency-Band Composition Coordinate Confirmation, Method×Era-Balanced Fresh80 Reconstruction Acquisition, Dominant↔Nondominant Q5 R1 Residual Sign Separation, Within-Era Gap Transport, Method-Invariance Challenge, Reconstructor×Era Interaction Rival, Composition-Cancellation Reconstitution & Independent Coordinate Confirmation Campaign",
+  "operation_type": "Independent Composition-Coordinate Confirmation Campaign",
+  "status": "PRESEALED_BEFORE_FRESH80_SELECTION_AND_BODY_CONTACT",
+  "parent": {
+    "p13_closure": "g7/p13/closure.json",
+    "d1_closure": "g7/p14/d1-closure.json"
+  },
+  "sampling_design": {
+    "frame": "frozen P8 10,591-row live-present 3x3 index-covariate authority",
+    "exclude": "all prior body-contacted source IDs: legacy60 + P11 fresh40 + P13 original80 + P13 three replay-repair replacements = 183 unique IDs",
+    "target_total": 80,
+    "cell_axes": [
+      "method_family",
+      "reconstructor_frequency_band",
+      "selection_era"
+    ],
+    "cells": "2 methods × 2 reconstructor bands × 4 eras = 16 cells",
+    "per_cell": 5,
+    "method_definition": "CFOP if frozen method_raw upper == CFOP, otherwise NONCFOP",
+    "dominant_reconstructor_definition": "raw reconstructor frequency >=200 in frozen 10,591 population",
+    "era_definition": {
+      "E1": "<=2016",
+      "E2": "2017-2020",
+      "E3": "2021-2024",
+      "E4": ">=2025"
+    },
+    "within_cell_selection": "deterministic SHA-256 rank under fixed seed",
+    "seed": "CUBE_REV_G7_P14_RECONSTRUCTOR_ERA_CONFIRM80_V1",
+    "batch_assignment": "8 batches ×10; selected rows spread across batches with round-dependent rotation so no 16-cell is batch-pure"
+  },
+  "acquisition": {
+    "source": "reco.nz",
+    "max_solves_per_run": 10,
+    "batches": 8,
+    "min_delay_ms": 2000,
+    "robots_policy": "CHECK_AT_EXECUTION",
+    "raw_public_release": "HOLD",
+    "bulk_mirror": "HOLD",
+    "replacement_policy": "only pre-geometry replay-invalid replacement by separately sealed amendment preserving method×reconstructor-band×era cell and batch"
+  },
+  "fixed_analysis": {
+    "structural_adjustment": "R1 hard caliper on 2x2 action-opportunity TV distance <=1 action-mass unit",
+    "progress_partition": "Q5 only",
+    "candidate_reselection": "FORBIDDEN",
+    "fresh_only_primary": true,
+    "prior180_analysis_pooling_before_verdict": "FORBIDDEN"
+  },
+  "primary_predictions": {
+    "reconstructor_band_sign_separation": {
+      "rule": "dominant mean > 0 AND nondominant mean < 0 AND dominant-minus-nondominant gap >= 1/18",
+      "min_band_support": 20
+    },
+    "method_invariant_band_direction": {
+      "rule": "within both CFOP and NONCFOP, dominant-minus-nondominant gap > 0; at least one method gap >=1/18 and both method gaps >=1/36",
+      "min_method_band_support": 8
+    },
+    "within_era_band_transport": {
+      "rule": "among four eras, dominant-minus-nondominant gap >0 in at least 3 eras and gap >=1/18 in at least 2 eras",
+      "min_band_by_era_support": 5
+    }
+  },
+  "secondary_readouts": [
+    "reconstructor×era eight-cell means",
+    "method×reconstructor four-cell means",
+    "method×era eight-cell means",
+    "pooled Q5 composition cancellation",
+    "eight acquisition-batch residual means",
+    "solve-clustered sign-flip diagnostics"
+  ],
+  "terminal_adjudication": {
+    "CONFIRMED_RECONSTRUCTOR_BAND_COORDINATE": "all three primary predictions pass",
+    "PARTIAL_CONFIRMATION": "exactly two primary predictions pass",
+    "NOT_CONFIRMED": "zero or one primary prediction passes",
+    "SUPPORT_LIMITED": "any primary prediction cannot be evaluated because frozen support floor is not met"
+  },
+  "forbidden": [
+    "use D1 fresh80 in the fresh P14 terminal verdict",
+    "change R1 or Q5",
+    "change thresholds after body contact",
+    "promote reconstructor identity/frequency to cognition",
+    "let the interaction rival rescue a failed primary coordinate",
+    "outcome-triggered source replacement"
+  ],
+  "inference_boundary": [
+    "Reconstructor frequency is a corpus/composition coordinate, not a property of the solver's cognitive state.",
+    "Confirmation would establish transport of a descriptive composition coordinate only.",
+    "No causal mediation or human planning mechanism promotion is authorized."
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
