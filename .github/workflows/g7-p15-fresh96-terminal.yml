@@ -103,19 +103,36 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p /tmp/p15/build/corpus
+          ROOT () {
+            file="$(find "$1" -path '*/derived/solves.jsonl' -print -quit)"
+            test -n "$file"
+            dirname "$(dirname "$file")"
+          }
+          B1="$(ROOT /tmp/p15/b1)"
+          B2="$(ROOT /tmp/p15/b2)"
+          B3="$(ROOT /tmp/p15/b3)"
+          B4="$(ROOT /tmp/p15/b4)"
+          B5="$(ROOT /tmp/p15/b5)"
+          B6="$(ROOT /tmp/p15/b6)"
+          B7="$(ROOT /tmp/p15/b7)"
+          B8="$(ROOT /tmp/p15/b8)"
+          B9="$(ROOT /tmp/p15/b9)"
+          B10="$(ROOT /tmp/p15/b10)"
+          B11="$(ROOT /tmp/p15/b11)"
+          B12="$(ROOT /tmp/p15/b12)"
           node scripts/g7-p15/merge-fresh96-corpus.mjs \
-            --source P15_BATCH1=/tmp/p15/b1 \
-            --source P15_BATCH2=/tmp/p15/b2 \
-            --source P15_BATCH3=/tmp/p15/b3 \
-            --source P15_BATCH4=/tmp/p15/b4 \
-            --source P15_BATCH5=/tmp/p15/b5 \
-            --source P15_BATCH6=/tmp/p15/b6 \
-            --source P15_BATCH7=/tmp/p15/b7 \
-            --source P15_BATCH8=/tmp/p15/b8 \
-            --source P15_BATCH9=/tmp/p15/b9 \
-            --source P15_BATCH10=/tmp/p15/b10 \
-            --source P15_BATCH11=/tmp/p15/b11 \
-            --source P15_BATCH12=/tmp/p15/b12 \
+            --source P15_BATCH1="$B1" \
+            --source P15_BATCH2="$B2" \
+            --source P15_BATCH3="$B3" \
+            --source P15_BATCH4="$B4" \
+            --source P15_BATCH5="$B5" \
+            --source P15_BATCH6="$B6" \
+            --source P15_BATCH7="$B7" \
+            --source P15_BATCH8="$B8" \
+            --source P15_BATCH9="$B9" \
+            --source P15_BATCH10="$B10" \
+            --source P15_BATCH11="$B11" \
+            --source P15_BATCH12="$B12" \
             --out /tmp/p15/build/corpus
 
       - name: Reconstitute exact fresh96 geometry
