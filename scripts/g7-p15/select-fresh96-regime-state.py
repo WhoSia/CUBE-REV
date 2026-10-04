@@ -105,15 +105,15 @@ def main():
         chosen[c]=sorted(pools[c],key=lambda r:(h(SEED+"|"+c,r["source_id"]),r["source_id"]))[:6]
 
     # Six rounds; each cell contributes exactly one row per round.
-    # Batch map is frozen arithmetic: ((5*cell_index + 7*round_index) mod 12)+1.
+    # Batch map is frozen arithmetic: ((9*cell_index + 7*round_index) mod 12)+1.
     # It yields 12x8 exact counts; every batch contains both methods, both bands,
-    # and at least two eras, preventing batch purity on any selection axis.
+    # and exactly two eras, preventing batch purity on any selection axis.
     selected=[]
     for ri in range(6):
         for ci,c in enumerate(CELLS):
             r=dict(chosen[c][ri])
             r["selection_round"]=ri+1
-            r["batch"]=((5*ci+7*ri)%12)+1
+            r["batch"]=((9*ci+7*ri)%12)+1
             selected.append(r)
 
     if len(selected)!=96 or len({r["source_id"] for r in selected})!=96:raise SystemExit("SELECT96_FAIL")
