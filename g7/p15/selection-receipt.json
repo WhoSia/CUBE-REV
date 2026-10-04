@@ -1,0 +1,32 @@
+{
+  "schema_version": "g7-p15-fresh96-selection-receipt-1",
+  "phase": "G7-P15",
+  "operation_type": "Outcome-Blind Fresh96 Regime-State Selection Seal",
+  "status": "SEALED",
+  "authority": {
+    "run": 37213902825,
+    "head": "f6c6fcd3605764d2487c7d937562c07053735e06",
+    "artifact": 11307447864,
+    "artifact_sha256": "cf557f0d60a53d07742b5cc31eb3a606f2a7b5478dc5d8018ff02ee48bbc4b72",
+    "drive_file_id": "1anOBZJNARbrTwk4kirBB4GVh_LLEf4Dj",
+    "selection_manifest_sha256": "03451dd222771fbe94d8b3d46333e9226f2bb48873cc69a6fc9b1eaaff262984"
+  },
+  "invariants": {
+    "target_total": 96,
+    "prior_body_contacted_excluded": 267,
+    "prior_contact_breakdown": {
+      "legacy60": 60,
+      "p11": 40,
+      "p13_original_plus_repairs_unique": 83,
+      "p14_original_plus_repairs_unique": 84
+    },
+    "cells": "16x6 method×reconstructor-band×era",
+    "batches": "12x8",
+    "batch_axis_firewall": "every batch contains both methods, both reconstructor bands, and at least two eras"
+  },
+  "body_contact_at_selection": 0,
+  "acquisition_authorized": true,
+  "raw_public_release": "HOLD",
+  "bulk_mirror": "HOLD",
+  "human_contact_gate": "CLOSED"
+}
