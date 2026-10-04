@@ -1,0 +1,135 @@
+name: G7-P14-D1 composition sign-exchange rival map
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - '.github/workflows/g7-p14-d1-composition-map.yml'
+      - 'g7/p14/d1-constitution.json'
+      - 'scripts/g7-p14/map-composition-sign-exchange.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Validate development-only constitution
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p14/d1-constitution.json'))
+          p=json.load(open('g7/p13/closure.json'))
+          assert x['status']=='FROZEN_POST_P13_FOR_DEVELOPMENT_ONLY'
+          assert x['authority_boundary']['development_only'] is True
+          assert x['authority_boundary']['may_promote_explanatory_coordinate'] is False
+          assert p['status']=='CLOSED'
+          print('G7_P14_D1_PRESEAL_PASS')
+          PY
+
+      - name: Recover fresh80 immutable batches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14
+          fetch_artifact () {
+            b="$1"; id="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p14/b$b.zip"
+            echo "$expected  /tmp/p14/b$b.zip" | sha256sum -c -
+            mkdir -p "/tmp/p14/b$b"
+            unzip -q "/tmp/p14/b$b.zip" -d "/tmp/p14/b$b"
+          }
+          fetch_artifact 1 11301352851 965a18ca9969be65469e52c92d8d1a1a21cd2e022ec4ae7431ae500113e45051
+          fetch_artifact 2 11301148487 183b58f8c596872c816f5ef93e51251d984f55761a0dfd35f280c4487c40c746
+          fetch_artifact 3 11301576955 a3a1fcec681ee94d5a9724ee3ac8feb21e8deed8578808e0eaedf0e9afe2af2a
+          fetch_artifact 4 11300573510 0938a546d123d915942ee67e18dabfc212c90afa2a44c7b7197d03ad4e61b81e
+          fetch_artifact 5 11301551669 731d668e88ede7d61a9d73ea4d45ed19b1b13a36a0172b4b2c2239fdd15daa7c
+          fetch_artifact 6 11301123162 a6ffff8bdb75437593f4cf99d7b1d36f281531868f82edb7b677c7b20f77f2f8
+          fetch_artifact 7 11300877650 14448550881dbc0966fb447f5fdae92482ea54086d0eb5dab142fe4801d3ee14
+          fetch_artifact 8 11301252675 9900a87195dec52002e5aecabbdc7a357163e4d20f7a590a0241fc6bb76ad519
+
+      - name: Reconstitute fresh80 geometry
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14/build/corpus /tmp/p14/build/geometry
+          node scripts/g7-p13/merge-fresh80-corpus.mjs \
+            --source P13_BATCH1=/tmp/p14/b1 \
+            --source P13_BATCH2=/tmp/p14/b2 \
+            --source P13_BATCH3=/tmp/p14/b3 \
+            --source P13_BATCH4=/tmp/p14/b4 \
+            --source P13_BATCH5=/tmp/p14/b5 \
+            --source P13_BATCH6=/tmp/p14/b6 \
+            --source P13_BATCH7=/tmp/p14/b7 \
+            --source P13_BATCH8=/tmp/p14/b8 \
+            --out /tmp/p14/build/corpus
+          node scripts/cube/replay-exact-trajectories.mjs \
+            --input /tmp/p14/build/corpus/combined-solves.jsonl \
+            --out /tmp/p14/build/exact
+          node scripts/g7-p7/prefix-context.mjs \
+            /tmp/p14/build/exact/exact-trajectories.json \
+            /tmp/p14/build/corpus/solve-metadata.jsonl \
+            /tmp/p14/build/geometry/prefix-states.tsv \
+            /tmp/p14/build/geometry/context.jsonl
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p14/build/geometry/prefix-states.tsv > /tmp/p14/build/geometry/features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p14/build/geometry/prefix-states.tsv > /tmp/p14/build/geometry/shell.tsv
+
+      - name: Build development-only composition rival map
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14/build/out
+          python3 scripts/g7-p14/map-composition-sign-exchange.py \
+            --features /tmp/p14/build/geometry/features.tsv \
+            --shell /tmp/p14/build/geometry/shell.tsv \
+            --context /tmp/p14/build/geometry/context.jsonl \
+            --out /tmp/p14/build/out | tee /tmp/p14/build/map.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p14/build/out/composition-sign-exchange-map.json'))
+          assert x['development_only'] is True
+          assert x['fresh80_only'] is True
+          assert x['r1_reselected'] is False
+          print('G7_P14_D1_RESULT_GATE_PASS')
+          print('TOP',x['top_candidate'])
+          print('RANKING',x['ranking'])
+          PY
+
+      - name: Seal map artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14/seal/authority /tmp/p14/seal/derived
+          cp g7/p14/d1-constitution.json g7/p13/closure.json /tmp/p14/seal/authority/
+          cp /tmp/p14/build/out/composition-sign-exchange-map.json /tmp/p14/seal/derived/
+          cp /tmp/p14/build/map.log /tmp/p14/seal/derived/execution.log
+          printf '%s\n' \
+            'PHASE=G7-P14-D1' \
+            'OPERATION=COMPOSITION_SIGN_EXCHANGE_RIVAL_MAP' \
+            'DEVELOPMENT_ONLY=YES' \
+            'PROMOTION_AUTHORIZED=NO' \
+            'NEW_SOURCE_CONTACT=NONE' \
+            > /tmp/p14/seal/AUTHORITY.txt
+          (cd /tmp/p14/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P14-D1-composition-map-${{ github.sha }}
+          path: /tmp/p14/seal
+          retention-days: 90
