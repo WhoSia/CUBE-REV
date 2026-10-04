@@ -1,0 +1,36 @@
+{
+  "schema_version": "g7-p13-fresh80-selection-receipt-1",
+  "phase": "G7-P13",
+  "operation_type": "Outcome-Blind Fresh80 Selection Seal",
+  "status": "SEALED",
+  "authority": {
+    "run": 37116479252,
+    "head": "978074b069b1fe19d5603b7c4e0ac8035a253aca",
+    "artifact": 11272225709,
+    "artifact_sha256": "d41f3c558fd8b9fa8d595f146a225e462732d49e5fca8a67f52802b64e34d6c6",
+    "drive_file_id": "1c-YHPXNTEGYpnSFbH2glP1u_4OOp-23v",
+    "selection_manifest_sha256": "d63f292547f38e206e39d58c6e4e7eab0025e9f6fccbb45efe52c7a7e183e4bf"
+  },
+  "invariants": {
+    "target_total": 80,
+    "prior100_excluded": true,
+    "unique_source_ids": 80,
+    "selected_cells": {
+      "CFOP__DOMINANT_RECONSTRUCTOR": 20,
+      "CFOP__NONDOMINANT_RECONSTRUCTOR": 20,
+      "NONCFOP__DOMINANT_RECONSTRUCTOR": 20,
+      "NONCFOP__NONDOMINANT_RECONSTRUCTOR": 20
+    },
+    "selected_eras": {
+      "E1_2013_2016_OR_EARLIER": 20,
+      "E2_2017_2020": 20,
+      "E3_2021_2024": 20,
+      "E4_2025_2026": 20
+    },
+    "batches": "8x10 composition-mixed rotating 3/3/2/2 cell quotas"
+  },
+  "body_contact_at_selection": 0,
+  "acquisition_authorized": true,
+  "raw_public_release": "HOLD",
+  "bulk_mirror": "HOLD"
+}
