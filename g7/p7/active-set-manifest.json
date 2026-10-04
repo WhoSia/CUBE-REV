@@ -19,6 +19,7 @@
     ".github/workflows/g7-p12-r3-soft-structural-matching.yml",
     ".github/workflows/g7-p12-r4-fixed-r1-robustness.yml",
     ".github/workflows/g7-p12-structural-opportunity.yml",
+    ".github/workflows/g7-p13-fresh80-analysis.yml",
     ".github/workflows/g7-p13-fresh80-batch1.yml",
     ".github/workflows/g7-p13-fresh80-batch2.yml",
     ".github/workflows/g7-p13-fresh80-batch3.yml",
