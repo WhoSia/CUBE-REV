@@ -1,0 +1,112 @@
+{
+  "schema_version": "g7-p13-closure-1",
+  "phase": "G7-P13",
+  "formal_name": "CUBE-REV Generation VII G7-P13 — Prospective Method×Progress Heterogeneity Replication, Outcome-Blind CFOP↔Non-CFOP Balanced Reconstruction Acquisition, Reconstructor×Era Composition Firewall, Fixed-R1 Q4/Q5/Q6/Q10 Residual-Surface Reconstitution, Fresh-Only Sign-Divergence Replication, Composition-Cancellation Test & Structural-Attenuation Heterogeneity Replication Campaign",
+  "operation_type": "Fresh Method×Progress Heterogeneity Replication Campaign",
+  "status": "CLOSED",
+  "final_verdict": "PARTIAL_REPLICATION__COMPOSITION_CANCELLATION_REPLICATES__METHOD_SIGN_DIVERGENCE_AND_PROGRESS_FRAGILITY_DO_NOT__METHOD_LABEL_NOT_STABLE_EXPLANATORY_AXIS",
+  "authority": {
+    "terminal_run": 37197069046,
+    "head": "9077bb63ff6b84b9c6e9f712cba40a92a4a9ed7d",
+    "artifact": 11300538986,
+    "artifact_sha256": "e23dfe7b46c55f87320b14e13687a62475323f5c1dfc4eaf68a371c1ba43fed5",
+    "drive": "1I13UH5HT_FAF-Cs2ewSl7pbgOtLP7BBZ",
+    "repaired_selection_run": 37196824292,
+    "repaired_selection_artifact": 11301332731,
+    "repaired_selection_manifest_sha256": "bde808a0735242d6525ed4622846b4f16c166e76f2267e56cd5207377c880639",
+    "original_selection_manifest_sha256": "d63f292547f38e206e39d58c6e4e7eab0025e9f6fccbb45efe52c7a7e183e4bf"
+  },
+  "acquisition": {
+    "fresh_solves": 80,
+    "exact_replay_pass": 80,
+    "prior100_excluded": true,
+    "batches": 8,
+    "batch_size": 10,
+    "selected_cells_each": 20,
+    "selected_eras_each": 20,
+    "pre_geometry_replay_invalid_replacements": {
+      "11370": 8913,
+      "11962": 11693,
+      "13073": 12026
+    },
+    "replacement_boundary": "same sampling cell × same era × same batch; frozen before any P13 geometry"
+  },
+  "primary_predictions": {
+    "method_sign_divergence": {
+      "rule": "Q5 CFOP < 0; NONCFOP > 0; NONCFOP-CFOP gap >= 1/18",
+      "support": {
+        "CFOP": 27,
+        "NONCFOP": 29
+      },
+      "observed": {
+        "CFOP": 0.03222107910379515,
+        "NONCFOP": -0.01610791826309068,
+        "gap": -0.04832899736688583
+      },
+      "pass": false,
+      "interpretation": "predicted sign ordering reversed; CFOP/non-CFOP label is not a stable transported explanatory axis"
+    },
+    "q5_composition_cancellation": {
+      "support": 56,
+      "pooled_q5": 0.007193562610229273,
+      "lhs": 0.007193562610229273,
+      "rhs": 0.012082249341721458,
+      "pass": true,
+      "interpretation": "pooled Q5 remains small relative to opposing method-stratum magnitudes, so composition cancellation itself replicates even though the specific method sign assignment does not"
+    },
+    "progress_fragility": {
+      "pooled": {
+        "Q4": {
+          "n": 63,
+          "mean": 0.023807774138461968
+        },
+        "Q5": {
+          "n": 56,
+          "mean": 0.007193562610229273
+        },
+        "Q6": {
+          "n": 56,
+          "mean": 0.030102434492315443
+        },
+        "Q10": {
+          "n": 39,
+          "mean": 0.02102722380500158
+        }
+      },
+      "abs_differences_from_q5": {
+        "Q4": 0.016614211528232694,
+        "Q6": 0.02290887188208617,
+        "Q10": 0.013833661194772306
+      },
+      "threshold": 0.027777777777777776,
+      "qualifying_count": 0,
+      "pass": false,
+      "interpretation": "R4 progress-granularity fragility did not transport to fresh80"
+    }
+  },
+  "scientific_interpretation": [
+    "P13 rejects the strong R4 story that CFOP versus non-CFOP carries a stable sign-specific residual surface.",
+    "P13 also rejects the prediction that the Q5 near-zero property is strongly fragile to Q4/Q6/Q10 progress partitioning in a fresh balanced sample.",
+    "What does transport is the weaker phenomenon that pooled residuals can be small while constituent strata oppose each other; the cancellation phenomenon survives without stable ownership by the CFOP label.",
+    "Therefore the next object should be the geometry of sign-exchanging composition strata, not further promotion of method labels or a fixed progress partition.",
+    "No cognitive mechanism, latent planning state, or causal mediation is identified."
+  ],
+  "retired_or_demoted": [
+    "CFOP/non-CFOP as a stable signed explanatory axis for the R1 residual",
+    "R4's Q4/Q6/Q10 progress fragility as a transported population property",
+    "global structural-opportunity sufficiency from R3"
+  ],
+  "retained": [
+    "R1 remains a useful descriptive local structural adjustment operator",
+    "composition cancellation as a fresh-replicated descriptive phenomenon",
+    "fresh80 balanced reconstruction corpus as current independent naturalistic authority"
+  ],
+  "boundary": [
+    "PARTIAL_REPLICATION means exactly one of three presealed primary predictions passed.",
+    "Sign-flip p-values are descriptive and did not define the verdict.",
+    "Prior100 was not pooled before the fresh80 terminal verdict.",
+    "Replay-invalid replacements were frozen before any P13 geometry and preserved cell/era/batch quotas.",
+    "Human-contact and mechanism-promotion gates remain closed."
+  ],
+  "successor_problem": "Prospectively identify whether the replicated cancellation is carried by a more stable composition coordinate than method label—especially reconstructor band, era, and their interaction—using fresh80-predeclared secondary surfaces only to generate rivals, followed by a new independent sample for confirmation rather than post hoc promotion."
+}
