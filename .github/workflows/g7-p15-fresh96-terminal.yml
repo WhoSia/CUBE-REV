@@ -1,0 +1,188 @@
+name: G7-P15 fresh96 terminal regime-state adjudication
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p15/analysis-implementation-preseal.json'
+      - 'scripts/g7-p15/merge-fresh96-corpus.mjs'
+      - 'scripts/g7-p15/analyze-fresh96-regime-state.py'
+      - '.github/workflows/g7-p15-fresh96-terminal.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  adjudicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Zero-bot and frozen-analysis gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p15-fresh96-terminal.yml'
+          python3 - <<'PY'
+          import json
+          c=json.load(open('g7/p15/constitution.json'))
+          p=json.load(open('g7/p15/analysis-implementation-preseal.json'))
+          assert p['status']=='FROZEN_BEFORE_ANY_P15_GEOMETRY'
+          assert c['frozen_measurement']['candidate_reselection']=='FORBIDDEN'
+          assert c['frozen_measurement']['prior_corpora_pooling_before_verdict']=='FORBIDDEN'
+          print('G7_P15_TERMINAL_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Recover immutable final batch authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p15
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            mkdir -p "/tmp/p15/$dir"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" -o "/tmp/p15/$dir.zip"
+            echo "$expected  /tmp/p15/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p15/$dir.zip" -d "/tmp/p15/$dir"
+          }
+          fetch_artifact 11308256128 b1 8bae1261d1479f9d8e0570df4a448707893054ca801486b2b485500249dbf3f8
+          fetch_artifact 11308055254 b2 c0f0556b3cf9899f0912a81783c3749a8700f01a413ea95adf575cb4554b1bd9
+          fetch_artifact 11307558080 b3 76d647d131dea35acd2dcc09797fd0d523997e2c5367e00f7ef58aa85ac0228d
+          fetch_artifact 11307722609 b4 7904a95284f5cd64f6fa062f1560fa0ecd9ca281940bfd54a8ce7007370f0d16
+          fetch_artifact 11308075168 b5 89f3d4bfb1188280143d083f6e0c424776240d4cf451850a5474ed47a0468a2f
+          fetch_artifact 11307990571 b6 8f3eb62796cf3ae59fda24d93664763312b8e1492dfad1e119801901fde53e85
+          fetch_artifact 11307533260 b7 3413ffb6792bc6988abdab3a0822739cd3c87fde35428cc13d8b2aed74e1c1b0
+          fetch_artifact 11307224714 b8 6d8204f7e70342edf67f341237ce113b14561a471f05e5d5f38705e059a795cb
+          fetch_artifact 11307178834 b9 307a6b72df17bcb146622527194a7d69ba98d2618454b8bc5381b7e88b103284
+          fetch_artifact 11307966560 b10 c6d725ca24686012ecc1986f113c47bb15bcc3a50f8d7353ced80936d78de7d5
+          fetch_artifact 11308165106 b11 767aabe7425ce4b9e618740c4669049e9ec5844a2ceae23126d37b93fb787091
+          fetch_artifact 11307559284 b12 6b8c988933fe3776a14d88dfb50dccc9ecbe51ff181eb87b8a67f149dce09120
+          echo 'G7_P15_FINAL_BATCH_AUTHORITY_DOWNLOAD_PASS'
+
+      - name: Verify final manifest against 12 batch bodies
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,glob
+          mf=glob.glob('/tmp/p15/b1/**/selection-manifest-final.json',recursive=True)
+          assert len(mf)==1,mf
+          m=json.load(open(mf[0]))
+          assert m['selection_manifest_sha256']=='62a4339a3589540d91c42ea7af842977bb6dc1496255863e0d746bd96192ff51'
+          expected={int(r['source_id']) for r in m['rows']}
+          assert len(expected)==96
+          observed=set()
+          for i in range(1,13):
+              fs=glob.glob(f'/tmp/p15/b{i}/**/derived/solves.jsonl',recursive=True)
+              assert len(fs)==1,(i,fs)
+              rows=[json.loads(x) for x in open(fs[0]) if x.strip()]
+              assert len(rows)==8,(i,len(rows))
+              ids={int(x['source_id']) for x in rows}
+              assert len(ids)==8
+              observed |= ids
+              ex=glob.glob(f'/tmp/p15/b{i}/**/exact/exact-trajectories.json',recursive=True)
+              assert len(ex)==1,(i,ex)
+              e=json.load(open(ex[0]))
+              assert e['solve_count']==8 and e['exact_end_validation_pass']==8,(i,e.get('solve_count'),e.get('exact_end_validation_pass'))
+          assert observed==expected,(len(observed),len(expected),sorted(expected-observed),sorted(observed-expected))
+          print('G7_P15_FINAL_96_ID_EXACT_AUTHORITY_PASS')
+          print('FINAL_MANIFEST_SHA256',m['selection_manifest_sha256'])
+          PY
+
+      - name: Merge fresh96 corpus
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p15/build/corpus
+          node scripts/g7-p15/merge-fresh96-corpus.mjs \
+            --source P15_BATCH1=/tmp/p15/b1 \
+            --source P15_BATCH2=/tmp/p15/b2 \
+            --source P15_BATCH3=/tmp/p15/b3 \
+            --source P15_BATCH4=/tmp/p15/b4 \
+            --source P15_BATCH5=/tmp/p15/b5 \
+            --source P15_BATCH6=/tmp/p15/b6 \
+            --source P15_BATCH7=/tmp/p15/b7 \
+            --source P15_BATCH8=/tmp/p15/b8 \
+            --source P15_BATCH9=/tmp/p15/b9 \
+            --source P15_BATCH10=/tmp/p15/b10 \
+            --source P15_BATCH11=/tmp/p15/b11 \
+            --source P15_BATCH12=/tmp/p15/b12 \
+            --out /tmp/p15/build/corpus
+
+      - name: Reconstitute exact fresh96 geometry
+        run: |
+          set -euo pipefail
+          node scripts/cube/replay-exact-trajectories.mjs \
+            --input /tmp/p15/build/corpus/combined-solves.jsonl \
+            --out /tmp/p15/build/exact
+          node scripts/g7-p7/prefix-context.mjs \
+            /tmp/p15/build/exact/exact-trajectories.json \
+            /tmp/p15/build/corpus/solve-metadata.jsonl \
+            /tmp/p15/build/prefix-states.tsv /tmp/p15/build/context.jsonl
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p15/build/prefix-states.tsv > /tmp/p15/build/features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p15/build/prefix-states.tsv > /tmp/p15/build/shell.tsv
+          node - <<'NODE'
+          const x=require('/tmp/p15/build/exact/exact-trajectories.json');
+          if(x.solve_count!==96||x.exact_end_validation_pass!==96) process.exit(1);
+          console.log('G7_P15_FRESH96_EXACT_RECONSTITUTION_PASS');
+          console.log('PREFIXES\t'+x.total_prefixes);
+          NODE
+
+      - name: Execute fresh-only terminal adjudication
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p15/build/out
+          python3 scripts/g7-p15/analyze-fresh96-regime-state.py \
+            --features /tmp/p15/build/features.tsv \
+            --shell /tmp/p15/build/shell.tsv \
+            --context /tmp/p15/build/context.jsonl \
+            --preseal g7/p15/analysis-implementation-preseal.json \
+            --out /tmp/p15/build/out \
+            --permutations 100000 | tee /tmp/p15/build/terminal.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p15/build/out/fresh96-regime-state-terminal.json'))
+          assert x['fresh_only'] is True and x['prior_corpora_pooled'] is False
+          assert x['r1_reselected'] is False and x['q5_fixed'] is True
+          assert x['verdict'] in {'REGIME_CONFIRMED','STATE_LOCAL_TRANSPORT','MIXED_OR_PARTIAL','NONSTATIONARY_MIXTURE_SUPPORTED','SUPPORT_LIMITED'}
+          print('G7_P15_TERMINAL_RESULT_GATE_PASS',x['verdict'])
+          print('REGIME',x['H_REGIME_STEP'])
+          print('STATE',x['H_STATE_LOCAL'])
+          PY
+
+      - name: Seal terminal artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p15/seal/authority /tmp/p15/seal/derived
+          cp g7/p15/constitution.json g7/p15/analysis-implementation-preseal.json /tmp/p15/seal/authority/
+          cp /tmp/p15/b1/**/selection-manifest-final.json /tmp/p15/seal/authority/ 2>/dev/null || cp "$(find /tmp/p15/b1 -name selection-manifest-final.json -print -quit)" /tmp/p15/seal/authority/
+          cp /tmp/p15/build/corpus/corpus-receipt.json /tmp/p15/seal/derived/
+          cp /tmp/p15/build/out/fresh96-regime-state-terminal.json /tmp/p15/seal/derived/
+          cp /tmp/p15/build/terminal.log /tmp/p15/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P15' \
+            'OPERATION=NATURALISTIC_RESIDUAL_NONSTATIONARITY_CONFIRMATION_CAMPAIGN' \
+            'FRESH_SOLVES=96' \
+            'PRIOR_CORPORA_POOLED=NO' \
+            'R1_RESELECTED=NO' \
+            'Q5_FIXED=YES' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p15/seal/AUTHORITY.txt
+          (cd /tmp/p15/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P15-fresh96-terminal-${{ github.sha }}
+          path: /tmp/p15/seal
+          retention-days: 90
