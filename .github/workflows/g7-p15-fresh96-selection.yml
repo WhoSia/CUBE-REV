@@ -1,0 +1,142 @@
+name: G7-P15 fresh96 regime-state selection seal
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p15/constitution.json'
+      - 'scripts/g7-p15/select-fresh96-regime-state.py'
+      - '.github/workflows/g7-p15-fresh96-selection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Zero-bot and P15 constitution gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p15-fresh96-selection.yml'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p15/constitution.json'))
+          assert x['status']=='PRESEALED_BEFORE_FRESH96_SELECTION_AND_BODY_CONTACT'
+          assert x['sampling_design']['target_total']==96
+          assert x['sampling_design']['per_cell']==6
+          assert x['acquisition']['max_solves_per_run']==8
+          assert x['acquisition']['batches']==12
+          assert x['frozen_measurement']['candidate_reselection']=='FORBIDDEN'
+          assert x['frozen_measurement']['prior_corpora_pooling_before_verdict']=='FORBIDDEN'
+          print('G7_P15_CONSTITUTION_GATE_PASS')
+          print('G7_P15_ZERO_BOT_WRITEBACK_PATTERN_PASS')
+          PY
+
+      - name: Recover frozen population and all prior-contact authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p15/p8 /tmp/p15/p3 /tmp/p15/p11 /tmp/p15/p13o /tmp/p15/p13r /tmp/p15/p14o /tmp/p15/p14r
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p15/$dir.zip"
+            echo "$expected  /tmp/p15/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p15/$dir.zip" -d "/tmp/p15/$dir"
+          }
+          fetch_artifact 11238930249 p8 460dc657565541b663f1bc91b6e75490a7591f56946a41c28af60802ee27f16a
+          fetch_artifact 11205587281 p3 acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4
+          fetch_artifact 11242753632 p11 45145487febf4d9fc975299ffe567a9e20ae63cb744a6205bd53f661941f8a67
+          fetch_artifact 11272225709 p13o d41f3c558fd8b9fa8d595f146a225e462732d49e5fca8a67f52802b64e34d6c6
+          fetch_artifact 11301332731 p13r 550bdfb59023aeb6e1804afb4c1ca358c397892a5785e08d07fcabe0915442e2
+          fetch_artifact 11301404290 p14o 71faa1be721940b670c871a79a9af5bac63f84dc751b08b3a8098ff19025a46f
+          fetch_artifact 11301826265 p14r aef35848ce24010b22ffcda96739b2503bed808e0196687ddf4988cf43f05440
+          echo 'G7_P15_SELECTION_INPUT_AUTHORITY_PASS'
+
+      - name: Materialize outcome-blind fresh96 selection
+        run: |
+          set -euo pipefail
+          COV="$(find /tmp/p15/p8 -name frozen-index-covariates.jsonl -print -quit)"
+          IDX="$(find /tmp/p15/p3 -name linkage-support.jsonl -print -quit)"
+          P11="$(find /tmp/p15/p11 -name selection-manifest.json -print -quit)"
+          P13O="$(find /tmp/p15/p13o -name selection-manifest.json -print -quit)"
+          P13R="$(find /tmp/p15/p13r -name selection-manifest-repaired.json -print -quit)"
+          P14O="$(find /tmp/p15/p14o -name selection-manifest.json -print -quit)"
+          P14R="$(find /tmp/p15/p14r -name selection-manifest-repaired.json -print -quit)"
+          test -n "$COV"; test -n "$IDX"; test -n "$P11"; test -n "$P13O"; test -n "$P13R"; test -n "$P14O"; test -n "$P14R"
+          mkdir -p /tmp/p15/out
+          python3 scripts/g7-p15/select-fresh96-regime-state.py \
+            --covariates "$COV" \
+            --frozen-index "$IDX" \
+            --legacy60 g7/p7/source-provenance-recovery.json \
+            --p11-manifest "$P11" \
+            --p13-original "$P13O" \
+            --p13-repaired "$P13R" \
+            --p14-original "$P14O" \
+            --p14-repaired "$P14R" \
+            --out /tmp/p15/out | tee /tmp/p15/selection.log
+
+      - name: Frozen selection result gate
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p15/out/selection-manifest.json'))
+          assert x['status']=='SEALED_BEFORE_FRESH96_BODY_CONTACT'
+          assert x['prior_body_contacted_excluded']==267
+          assert x['target_total']==96 and len(x['rows'])==96
+          assert len(x['selected_cell_counts'])==16
+          assert all(v==6 for v in x['selected_cell_counts'].values())
+          assert all(len(x['batches'][str(i)])==8 for i in range(1,13))
+          for m in x['batch_axis_mix'].values():
+              assert len(m['method_families'])==2
+              assert len(m['reconstructor_bands'])==2
+              assert len(m['eras'])>=2
+          print('G7_P15_SELECTION_RESULT_GATE_PASS')
+          print('PRIOR_CONTACTED_EXCLUDED',x['prior_body_contacted_excluded'])
+          print('CONTACT_BREAKDOWN',x['prior_contact_breakdown'])
+          print('MANIFEST_SHA256',x['selection_manifest_sha256'])
+          print('SELECTED_CELLS',x['selected_cell_counts'])
+          print('BATCHES',x['selected_batch_counts'])
+          print('BATCH_MIX',x['batch_axis_mix'])
+          PY
+
+      - name: Seal selection authority only
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p15/seal/authority /tmp/p15/seal/derived
+          cp g7/p15/constitution.json /tmp/p15/seal/authority/
+          cp /tmp/p15/out/selection-manifest.json /tmp/p15/seal/derived/
+          cp /tmp/p15/out/batch-*-source-ids.txt /tmp/p15/seal/derived/
+          cp /tmp/p15/selection.log /tmp/p15/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P15' \
+            'OPERATION=FRESH96_REGIME_STATE_SELECTION_SEAL' \
+            'BODY_CONTACT=NONE' \
+            'TARGET=96' \
+            'CELLS=16x6' \
+            'BATCHES=12x8' \
+            'PRIOR_BODY_CONTACTED_EXCLUDED=267' \
+            'OUTCOME_BLIND=YES' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p15/seal/AUTHORITY.txt
+          (cd /tmp/p15/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P15-fresh96-selection-${{ github.sha }}
+          path: /tmp/p15/seal
+          retention-days: 90
