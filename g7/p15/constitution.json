@@ -1,0 +1,119 @@
+{
+  "schema_version": "g7-p15-constitution-1",
+  "phase": "G7-P15",
+  "formal_name": "CUBE-REV Generation VII G7-P15 — Cross-Sample Naturalistic Planning-Residual Nonstationarity, Historical-Regime Sign Exchange, Named-Composition Coordinate Defeat, State-Local Opportunity Geometry vs Archive-Mixture Rivalry, Era×Method×Reconstructor-Balanced Fresh96 Acquisition, Cross-Regime Residual Transport & Naturalistic Nonstationarity Confirmation Campaign",
+  "operation_type": "Naturalistic Residual Nonstationarity Confirmation Campaign",
+  "status": "PRESEALED_BEFORE_FRESH96_SELECTION_AND_BODY_CONTACT",
+  "origin_lock": {
+    "core_question": "Which aspects of human planning behavior transport across changing reconstruction populations: a state-local geometric law, a historical regime interaction, or neither?",
+    "explanandum": "R1-adjusted low-overlap next-action residual after repeated failure of method and reconstructor metadata to own a stable sign.",
+    "not_licensed": [
+      "human cognitive mechanism",
+      "causal effect of era, method, or reconstructor",
+      "latent planning state",
+      "population-general law beyond the sampled reconstruction archive"
+    ]
+  },
+  "parent": {
+    "p14_closure": "g7/p14/closure.json",
+    "p14_verdict": "NOT_CONFIRMED__RECONSTRUCTOR_BAND_PRIMARY_COORDINATE_DEFEATED__METHOD_INVARIANCE_FAILS__ERA_TRANSPORT_SPLITS_2_OF_4__NAMED_COMPOSITION_SIGN_OWNERSHIP_NONSTABLE",
+    "motivating_secondary": {
+      "early_era_band_gaps": {
+        "E1": 0.10201719576719576,
+        "E2": 0.09682539682539681
+      },
+      "late_era_band_gaps": {
+        "E3": -0.2793889623750735,
+        "E4": -0.2019483024691358
+      }
+    },
+    "authority_note": "P14 era interaction was secondary and may generate P15 predictions but did not rescue P14."
+  },
+  "sampling_design": {
+    "frame": "frozen P8 10,591-row live-present 3x3 index/covariate authority",
+    "exclude": "all prior body-contacted source IDs through P14, including replay-repair replacements; expected exclusion count 267 unique IDs and must be verified before selection",
+    "target_total": 96,
+    "cells": "2 method families × 2 reconstructor-frequency bands × 4 eras = 16 cells",
+    "per_cell": 6,
+    "seed": "CUBE_REV_G7_P15_REGIME_STATE_FRESH96_V1",
+    "within_cell_selection": "deterministic SHA-256 rank after exact prior-contact exclusion",
+    "batch_assignment": "12 bounded batches ×8 solves; rotate 16-cell assignments so batch is not pure in method, band, or era",
+    "replacement_policy": "replay-invalid replacement only by separately sealed pre-geometry amendment preserving exact method×band×era cell and batch"
+  },
+  "acquisition": {
+    "source": "reco.nz",
+    "max_solves_per_run": 8,
+    "batches": 12,
+    "min_delay_ms": 2000,
+    "robots_policy": "CHECK_AT_EXECUTION",
+    "raw_public_release": "HOLD",
+    "bulk_mirror": "HOLD"
+  },
+  "frozen_measurement": {
+    "structural_adjustment": "R1 hard caliper on exact 2x2 action-opportunity TV distance <=1 action-mass unit",
+    "progress_partition": "Q5",
+    "candidate_reselection": "FORBIDDEN",
+    "primary_unit": "solve",
+    "fresh_only_terminal_verdict": true,
+    "prior_corpora_pooling_before_verdict": "FORBIDDEN"
+  },
+  "rival_ecology": {
+    "H_REGIME_STEP": {
+      "statement": "The dominant-minus-nondominant residual gap changes historical regime: positive in early eras E1/E2 and negative in late eras E3/E4.",
+      "primary_predictions": [
+        "mean(E1_gap,E2_gap) > 0",
+        "mean(E3_gap,E4_gap) < 0",
+        "early_mean_gap - late_mean_gap >= 1/18",
+        "at least 3 of 4 era gap signs match the presealed early-positive/late-negative pattern"
+      ]
+    },
+    "H_STATE_LOCAL": {
+      "statement": "After R1 state-local adjustment, residual structure is stable across eras and apparent metadata sign exchange is mixture noise.",
+      "primary_predictions": [
+        "absolute early-minus-late pooled residual difference <= 1/36",
+        "leave-one-era-out pooled residual signs are invariant",
+        "method and reconstructor-band marginal gaps remain below 1/18 in absolute value"
+      ]
+    },
+    "H_NONSTATIONARY_MIXTURE": {
+      "statement": "Neither a stable historical step nor a stable state-local residual law transports; observed sign ownership is archive/population mixture-sensitive.",
+      "role": "fallback scientific conclusion if both structured rivals fail; not tuned as an alternative predictive model"
+    }
+  },
+  "adjudication": {
+    "REGIME_CONFIRMED": "all H_REGIME_STEP primary predictions pass and H_STATE_LOCAL early-late invariance fails",
+    "STATE_LOCAL_TRANSPORT": "all H_STATE_LOCAL primary predictions pass and H_REGIME_STEP does not fully pass",
+    "MIXED_OR_PARTIAL": "at least one structured rival has some but not all primary predictions pass",
+    "NONSTATIONARY_MIXTURE_SUPPORTED": "neither structured rival passes any complete primary package while frozen support floors are met",
+    "SUPPORT_LIMITED": "any terminal package is non-evaluable because support floors fail"
+  },
+  "support_floors": {
+    "per_era_band": 8,
+    "early_late_pooled": 20,
+    "method_marginal": 20,
+    "band_marginal": 20
+  },
+  "ravel": {
+    "methods_selected": [
+      "Explanandum Lock Before Explanation",
+      "Freshness ≠ Information Value",
+      "No Midstream Epistemic Retrofit",
+      "Cross-Level Authority Separation",
+      "Epistemic Ratchet by Next-Step Mutation"
+    ],
+    "strongest_attack": "Repeated sign reversal of named metadata coordinates means P15 must discriminate transport structure itself rather than nominate another metadata owner.",
+    "authority_ceiling": "fresh naturalistic descriptive transport/nonstationarity only",
+    "core_enabling_fork": "CORE",
+    "return_edge": "use naturalistic reconstruction data to decide whether any state-local planning law survives historical archive shifts before reopening human mechanism contact",
+    "debt": "CLEAR"
+  },
+  "forbidden": [
+    "promote P14 secondary era interaction before P15 fresh outcome",
+    "change R1, Q5, era definitions, thresholds, or support floors after body contact",
+    "use prior corpora in fresh96 terminal verdict",
+    "add new metadata axes to rescue a failed primary package",
+    "interpret era/method/reconstructor labels causally or cognitively"
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
