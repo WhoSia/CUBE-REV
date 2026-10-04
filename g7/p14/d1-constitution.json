@@ -1,0 +1,56 @@
+{
+  "schema_version": "g7-p14-d1-constitution-1",
+  "phase": "G7-P14-D1",
+  "formal_name": "CUBE-REV Generation VII G7-P14-D1 — Fresh80 Composition Sign-Exchange Atlas, Method×Reconstructor×Era Residual Decomposition, Cell/Batch Stability Mapping, Interaction-Rival Generation, Simpson-Surface Diagnostics, Support-Aware Coordinate Ranking & Independent-Confirmation Candidate Map",
+  "operation_type": "Composition Sign-Exchange Rival Map",
+  "status": "FROZEN_POST_P13_FOR_DEVELOPMENT_ONLY",
+  "parent": {
+    "p13_closure": "g7/p13/closure.json",
+    "p13_verdict": "PARTIAL_REPLICATION__COMPOSITION_CANCELLATION_REPLICATES__METHOD_SIGN_DIVERGENCE_AND_PROGRESS_FRAGILITY_DO_NOT__METHOD_LABEL_NOT_STABLE_EXPLANATORY_AXIS"
+  },
+  "authority_boundary": {
+    "development_only": true,
+    "may_generate_rivals": true,
+    "may_promote_explanatory_coordinate": false,
+    "independent_confirmation_required": true,
+    "no_new_source_contact": true
+  },
+  "fixed_measurement": {
+    "structural_adjustment": "P13 fixed R1 hard caliper, Q5 only",
+    "candidate_reselection": "FORBIDDEN",
+    "solve_level_residual": true
+  },
+  "candidate_axes": [
+    "method_family",
+    "reconstructor_frequency_band",
+    "selection_era",
+    "method_family × reconstructor_frequency_band",
+    "method_family × selection_era",
+    "reconstructor_frequency_band × selection_era",
+    "method_family × reconstructor_frequency_band × selection_era"
+  ],
+  "diagnostics": {
+    "minimum_cell_support": 5,
+    "primary_descriptors": [
+      "cell n",
+      "cell mean residual",
+      "sign",
+      "between-level maximum absolute mean gap",
+      "weighted within-axis variance explained descriptively"
+    ],
+    "stability": [
+      "leave-one-acquisition-batch-out sign/gap direction",
+      "collapse-vs-stratify sign reversal flags",
+      "zero/low-support cells explicitly retained"
+    ]
+  },
+  "ranking_rule": "Development ranking only: among axes with every compared retained level n>=5, rank by maximum absolute between-level mean gap; ties by greater leave-one-batch-out directional stability, then fewer levels. Ranking grants no scientific promotion.",
+  "forbidden": [
+    "call the top-ranked axis causal",
+    "interpret the top-ranked axis as a latent cognitive state",
+    "tune R1 or Q5 after inspecting the map",
+    "treat same-fresh80 ranking as confirmation",
+    "pool prior100 to rescue a weak fresh80 rival"
+  ],
+  "successor_rule": "At most one primary composition coordinate plus one generic interaction rival may be carried into a new independent-sample P14 confirmation constitution. If no axis has adequate support/stability, close with NO_STABLE_COMPOSITION_COORDINATE and do not force a successor."
+}
