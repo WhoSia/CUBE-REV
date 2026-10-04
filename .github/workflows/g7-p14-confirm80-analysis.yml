@@ -1,0 +1,121 @@
+name: G7-P14 confirm80 terminal composition-coordinate analysis
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - '.github/workflows/g7-p14-confirm80-analysis.yml'
+      - 'scripts/g7-p14/analyze-confirm80-reconstructor-band.py'
+      - 'scripts/g7-p14/merge-confirm80-corpus.mjs'
+      - 'g7/p14/constitution.json'
+      - 'g7/p14/replay-invalid-replacement-amendment.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate frozen confirmation authority
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          c=json.load(open('g7/p14/constitution.json'))
+          a=json.load(open('g7/p14/replay-invalid-replacement-amendment.json'))
+          assert c['fixed_analysis']['candidate_reselection']=='FORBIDDEN'
+          assert c['fixed_analysis']['progress_partition']=='Q5 only'
+          assert c['fixed_analysis']['prior180_analysis_pooling_before_verdict']=='FORBIDDEN'
+          assert a['status']=='FROZEN_BEFORE_ANY_P14_GEOMETRY'
+          print('G7_P14_TERMINAL_PRESEAL_PASS')
+          PY
+      - name: Recover eight immutable confirm80 batches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14
+          fetch_artifact () {
+            b="$1"; id="$2"; expected="$3"
+            curl --fail --location --silent --show-error -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" -o "/tmp/p14/b$b.zip"
+            echo "$expected  /tmp/p14/b$b.zip" | sha256sum -c -
+            mkdir -p "/tmp/p14/b$b"; unzip -q "/tmp/p14/b$b.zip" -d "/tmp/p14/b$b"
+          }
+          fetch_artifact 1 11301434538 10b056559d6486a7bf3153353cd2a93d609cfd37974adf9071996033ecca0262
+          fetch_artifact 2 11301686530 bb5919026b03e5d45e36e7d60f54981559924bb98b780747a9808627556a05bb
+          fetch_artifact 3 11301935198 c85beed299f73e059f5293d38b642e605b5f22c5c44034a88ed1cd98443b2216
+          fetch_artifact 4 11301439628 47913670114c1f7bc715bb9ff20bbaa456f945c614fcf2e34d44889a1ca6b13c
+          fetch_artifact 5 11301504923 c989ea28d5fd70fce9b8cf373fb1f3b0b560525a66c716a3e718f8259e0bd970
+          fetch_artifact 6 11302415570 db2d5fced477a412e97c9e5f20e6dcdef138f805275870e0a4bc5a55ab186d88
+          fetch_artifact 7 11301995531 d62e24a1d9af8383d9ba477c2022eda5ae1c046c7eeafcaf90fe8ca9bbe9acf5
+          fetch_artifact 8 11301483305 fdad7d0ff7be88595c8465d79a1e81169223d3a46615ce7d2f6e9838575eb588
+          echo G7_P14_EIGHT_BATCH_AUTHORITY_PASS
+      - name: Merge and exact-replay confirm80
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14/build/corpus
+          node scripts/g7-p14/merge-confirm80-corpus.mjs \
+            --source P14_BATCH1=/tmp/p14/b1 --source P14_BATCH2=/tmp/p14/b2 \
+            --source P14_BATCH3=/tmp/p14/b3 --source P14_BATCH4=/tmp/p14/b4 \
+            --source P14_BATCH5=/tmp/p14/b5 --source P14_BATCH6=/tmp/p14/b6 \
+            --source P14_BATCH7=/tmp/p14/b7 --source P14_BATCH8=/tmp/p14/b8 \
+            --out /tmp/p14/build/corpus
+          node scripts/cube/replay-exact-trajectories.mjs --input /tmp/p14/build/corpus/combined-solves.jsonl --out /tmp/p14/build/exact
+          node - <<'NODE'
+          const x=require('/tmp/p14/build/exact/exact-trajectories.json');
+          if(x.solve_count!==80||x.exact_end_validation_pass!==80) process.exit(1);
+          console.log('G7_P14_CONFIRM80_EXACT_PASS'); console.log('PREFIXES\t'+x.total_prefixes);
+          NODE
+      - name: Reconstitute frozen Q5 R1 geometry
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14/build/geometry
+          node scripts/g7-p7/prefix-context.mjs /tmp/p14/build/exact/exact-trajectories.json /tmp/p14/build/corpus/solve-metadata.jsonl \
+            /tmp/p14/build/geometry/prefix-states.tsv /tmp/p14/build/geometry/context.jsonl
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals < /tmp/p14/build/geometry/prefix-states.tsv > /tmp/p14/build/geometry/features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow < /tmp/p14/build/geometry/prefix-states.tsv > /tmp/p14/build/geometry/shell.tsv
+      - name: Execute fresh-only confirmation adjudication
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14/build/out
+          python3 scripts/g7-p14/analyze-confirm80-reconstructor-band.py \
+            --features /tmp/p14/build/geometry/features.tsv --shell /tmp/p14/build/geometry/shell.tsv \
+            --context /tmp/p14/build/geometry/context.jsonl --out /tmp/p14/build/out --permutations 100000 | tee /tmp/p14/build/terminal.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p14/build/out/confirm80-reconstructor-band.json'))
+          assert x['fresh_only'] and not x['prior_development_samples_pooled'] and not x['r1_reselected']
+          assert x['verdict'] in ('CONFIRMED_RECONSTRUCTOR_BAND_COORDINATE','PARTIAL_CONFIRMATION','NOT_CONFIRMED','SUPPORT_LIMITED')
+          print('G7_P14_TERMINAL_RESULT_GATE_PASS',x['verdict'])
+          print('PREDICTIONS',x['primary_predictions'])
+          print('BAND',x['readouts']['band'])
+          print('METHOD_BAND',x['readouts']['method_band'])
+          print('ERA_BAND',x['readouts']['era_band'])
+          PY
+      - name: Seal terminal artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14/seal/authority /tmp/p14/seal/derived
+          cp g7/p14/constitution.json g7/p14/d1-closure.json g7/p14/replay-invalid-replacement-amendment.json /tmp/p14/seal/authority/
+          cp /tmp/p14/build/corpus/corpus-receipt.json /tmp/p14/seal/derived/
+          cp /tmp/p14/build/out/confirm80-reconstructor-band.json /tmp/p14/seal/derived/
+          cp /tmp/p14/build/terminal.log /tmp/p14/seal/derived/execution.log
+          printf '%s\n' 'PHASE=G7-P14' 'OPERATION=INDEPENDENT_COMPOSITION_COORDINATE_CONFIRMATION_CAMPAIGN' \
+            'FRESH_SOLVES=80' 'DEVELOPMENT_SAMPLES_POOLED=NO' 'R1_RESELECTED=NO' 'HUMAN_CONTACT_GATE=CLOSED' > /tmp/p14/seal/AUTHORITY.txt
+          (cd /tmp/p14/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P14-confirm80-terminal-${{ github.sha }}
+          path: /tmp/p14/seal
+          retention-days: 90
