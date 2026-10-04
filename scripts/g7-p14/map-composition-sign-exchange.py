@@ -79,9 +79,9 @@ def main():
         levels={k:{"n":len(v),"mean":M(v),"sign":0 if M(v)==0 else (1 if M(v)>0 else -1)} for k,v in sorted(groups.items())}
         eligible={k:v for k,v in levels.items() if v["n"]>=5}
         pairs=[]
-        for a,b in itertools.combinations(sorted(eligible),2):
-            gap=abs(eligible[a]["mean"]-eligible[b]["mean"])
-            pairs.append((gap,a,b))
+        for la,lb in itertools.combinations(sorted(eligible),2):
+            gap=abs(eligible[la]["mean"]-eligible[lb]["mean"])
+            pairs.append((gap,la,lb))
         top=max(pairs,default=(None,None,None))
         return {"levels":levels,"eligible_level_count":len(eligible),
                 "max_abs_gap":top[0],"max_gap_pair":[top[1],top[2]] if top[1] else None,
