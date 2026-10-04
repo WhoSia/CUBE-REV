@@ -120,6 +120,8 @@
     "g7/p15/replay-invalid-replacement-amendment.json",
     "g7/p15/selection-receipt.json",
     "g7/p15/terminal-receipt.json",
+    "g7/p16/constitution.json",
+    "g7/p16/readiness-census-v0.json",
     "g7/p7/active-set-manifest.json",
     "g7/p7/closure.json",
     "g7/p7/preseal.json",
