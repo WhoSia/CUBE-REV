@@ -1,0 +1,56 @@
+{
+  "schema_version": "g7-p16-r2-multicohort-latent-transport-preseal-1",
+  "phase": "G7-P16-R2",
+  "formal_name": "CUBE-REV Generation VII G7-P16-R2 — Multi-Cohort Development Reservoir Reconstitution, Fixed-Rank Exact-State Latent Policy Transport, Stage-Held-Out Likelihood Benchmarking, Metadata-Input Firewall, Archive-Shift Generalization, Fresh-Authority Preservation & Representation-Fork Qualification Stress Test",
+  "operation_type": "Multi-Cohort Development Representation Transport Stress Test",
+  "status": "FROZEN_BEFORE_R2_MULTICOHORT_FIT",
+  "parent": {
+    "r1_receipt": "g7/p16/r1-receipt.json",
+    "fixed_rank": 8,
+    "architecture": "R1 exact cubie-token low-rank policy model",
+    "reason": "R1 compiler passed only weakly; broader development transport is required before fresh confirmation"
+  },
+  "development_reservoir": {
+    "stages": {
+      "P11": 40,
+      "P13": 80,
+      "P14": 80,
+      "P15": 96
+    },
+    "expected_unique_solves": 296,
+    "authority": "development-only",
+    "fresh_confirmation_consumed": false,
+    "new_body_contact": 0
+  },
+  "fixed_model": {
+    "rank": 8,
+    "epochs": 30,
+    "learning_rate": 0.06,
+    "l2": 0.0001,
+    "seed": "CUBE_REV_G7_P16_R1_LATENT_POLICY_V1",
+    "rank_reselection": "FORBIDDEN",
+    "metadata_model_input": "FORBIDDEN"
+  },
+  "validation": {
+    "primary": "leave-one-stage-out across P11/P13/P14/P15; train on other 3 stages",
+    "baseline": "training-stage Laplace-smoothed action-frequency prior",
+    "transport_qualified": "mean delta NLL versus prior > 0 AND at least 3 of 4 held-out stages have delta NLL > 0",
+    "transport_hold": "otherwise",
+    "secondary": [
+      "held-out top1 accuracy",
+      "per-stage state count",
+      "full-296 development fit after verdict for artifact materialization only"
+    ]
+  },
+  "forbidden": [
+    "retune rank using R2 held-out results",
+    "use era/method/reconstructor/solver as model inputs",
+    "treat any P11/P13/P14/P15 stage as fresh P16 confirmation",
+    "open new reco body contact",
+    "promote latent axes to cognition"
+  ],
+  "successor_rule": {
+    "if_qualified": "open a direct handcrafted-vs-latent development tournament before any fresh acquisition",
+    "if_hold": "do not spend fresh confirmation authority on this raw-state latent family; return to other P16 forks"
+  }
+}
