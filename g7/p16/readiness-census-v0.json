@@ -1,0 +1,53 @@
+{
+  "schema_version": "g7-p16-readiness-census-v0-1",
+  "phase": "G7-P16",
+  "status": "PRELIMINARY_CENSUS_FROM_CANONICAL_READBACK",
+  "observed": {
+    "G7_NATURALISTIC_EXACT_STATE": {
+      "class": "READY_EXECUTABLE",
+      "evidence": [
+        "P15 fresh96 terminal workflow 37215681892 SUCCESS",
+        "research/current exact replay/search geometry pipelines active",
+        "P15 terminal artifact 11308800635 sealed"
+      ]
+    },
+    "LEARNED_LATENT_POLICY": {
+      "class": "READY_DEVELOPMENT_ONLY",
+      "evidence": [
+        "large contacted naturalistic development corpus exists",
+        "no canonical learned-latent compiler/model found in current active implementation"
+      ]
+    },
+    "R1_SENSOR_TIMING": {
+      "class": "SEMANTIC_AUTHORITY_BYTE_CUSTODY_GAP",
+      "evidence": [
+        "R1.42 and R1.53 semantic authority recovered in Notion",
+        "R1.53 frozen construct CUBE-REV-R153-TRANSITION-EXCESS-V1 survives",
+        "Drive search did not recover R153_SUMMARY.json / R153_TRANSITION_EXCESS_CONSTRUCT_V1.json / R153_SHA256SUMS",
+        "active research/current code search exposes instrument timing schema but not historical sensor corpus"
+      ]
+    },
+    "R1_PUBLIC_TIMING": {
+      "class": "SEMANTIC_AUTHORITY_BYTE_CUSTODY_GAP",
+      "evidence": [
+        "R1.47/R1.48 corrected semantic receipt recovered",
+        "908-row discovery and 805/822 endpoint alignment survive",
+        "original three-phase interpretation partly retired",
+        "Drive search did not recover named R148 semantic-audit artifacts"
+      ]
+    },
+    "OBSERVATION_FIBER_EXACT": {
+      "class": "HISTORICAL_EXACT_AUTHORITY_EXECUTION_NOT_RECOVERED",
+      "evidence": [
+        "Grand Doctrine and ancestor registry retain exact observation/aliasing authority",
+        "research/current code search found no NET-24 / ideal-observer / observation-fiber / aliasing implementation"
+      ]
+    }
+  },
+  "provisional_priority": [
+    "1. learned-latent development compiler using old contacted cohorts only",
+    "2. timing/observation artifact recovery in parallel as custody work",
+    "3. fresh confirmation only after representation is frozen"
+  ],
+  "no_scientific_outcome_claim": "This census classifies readiness only; it does not adjudicate which representation is true or cognitively used."
+}
