@@ -1,0 +1,68 @@
+{
+  "schema_version": "g7-p16-r1-learned-policy-compiler-preseal-1",
+  "phase": "G7-P16-R1",
+  "formal_name": "CUBE-REV Generation VII G7-P16-R1 — Development-Only Exact-State Latent Policy Compiler, Cubie-Token Low-Rank Action Embedding, Metadata-Input Exclusion, Solve/Batch Leakage Firewall, Deterministic Rank Selection, Held-Out Policy-Likelihood Validation & Fresh-Confirmation Freeze",
+  "operation_type": "Development-Only Learned Policy Representation Compiler",
+  "status": "FROZEN_BEFORE_P16_R1_MODEL_FIT",
+  "source_authority": {
+    "corpus": "P15 final fresh96 corpus reclassified as development-only for successor representation design",
+    "confirmation_authority": "NONE",
+    "new_body_contact": 0
+  },
+  "input_contract": {
+    "allowed": [
+      "exact cubie corner permutation tokens",
+      "exact cubie corner orientation tokens",
+      "exact cubie edge permutation tokens",
+      "exact cubie edge orientation tokens"
+    ],
+    "forbidden": [
+      "era",
+      "method",
+      "reconstructor",
+      "solver identity",
+      "competition",
+      "source provenance",
+      "P15 residual outcome",
+      "R1 residual",
+      "future/fresh cohort labels as model features"
+    ],
+    "target": "observed next HTM face-action index among 18 actions"
+  },
+  "model_family": {
+    "form": "z(s)=mean token embeddings; score(a|s)=bias[a]+u[a]^T z(s); softmax over 18 actions",
+    "ranks": [
+      2,
+      4,
+      8
+    ],
+    "optimizer": "deterministic full-softmax SGD",
+    "epochs": 30,
+    "learning_rate": 0.06,
+    "l2": 0.0001,
+    "seed": "CUBE_REV_G7_P16_R1_LATENT_POLICY_V1"
+  },
+  "validation": {
+    "primary": "6-fold batch-blocked CV; pair P15 acquisition batches by deterministic fold map so no solve appears in train and validation",
+    "secondary": [
+      "leave-one-era-out descriptive transport",
+      "action-frequency prior baseline"
+    ],
+    "selection": "lowest mean held-out negative log likelihood; ties within 1e-6 choose lower rank",
+    "no_threshold_tuning": true
+  },
+  "promotion_boundary": {
+    "compiler_pass": "all folds execute, finite likelihoods, latent model beats action-frequency prior on mean held-out NLL",
+    "compiler_hold": "otherwise",
+    "scientific_interpretation": "development readiness only",
+    "mechanism_promotion": "FORBIDDEN",
+    "fresh_confirmation_required": true
+  },
+  "forbidden": [
+    "use metadata as latent model features",
+    "relabel P15 as fresh confirmation for P16-R1",
+    "select rank on a future fresh cohort",
+    "call latent dimensions cognitive variables",
+    "open new reco body contact before representation freeze"
+  ]
+}
