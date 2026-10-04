@@ -1,0 +1,119 @@
+name: G7-P14 confirm80 reconstructor-era selection seal
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p14/constitution.json'
+      - 'scripts/g7-p14/select-confirm80-reconstructor-era.py'
+      - '.github/workflows/g7-p14-confirm80-selection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Validate P14 constitution
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p14/constitution.json'))
+          d=json.load(open('g7/p14/d1-closure.json'))
+          assert x['status']=='PRESEALED_BEFORE_FRESH80_SELECTION_AND_BODY_CONTACT'
+          assert x['sampling_design']['target_total']==80
+          assert x['sampling_design']['per_cell']==5
+          assert x['fixed_analysis']['candidate_reselection']=='FORBIDDEN'
+          assert d['status']=='CLOSED'
+          print('G7_P14_CONSTITUTION_GATE_PASS')
+          PY
+
+      - name: Recover frozen population and prior-contact authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14/p8 /tmp/p14/p3 /tmp/p14/p11 /tmp/p14/p13o /tmp/p14/p13r
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p14/$dir.zip"
+            echo "$expected  /tmp/p14/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p14/$dir.zip" -d "/tmp/p14/$dir"
+          }
+          fetch_artifact 11238930249 p8 460dc657565541b663f1bc91b6e75490a7591f56946a41c28af60802ee27f16a
+          fetch_artifact 11205587281 p3 acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4
+          fetch_artifact 11242753632 p11 45145487febf4d9fc975299ffe567a9e20ae63cb744a6205bd53f661941f8a67
+          fetch_artifact 11272225709 p13o d41f3c558fd8b9fa8d595f146a225e462732d49e5fca8a67f52802b64e34d6c6
+          fetch_artifact 11301332731 p13r 550bdfb59023aeb6e1804afb4c1ca358c397892a5785e08d07fcabe0915442e2
+          echo G7_P14_SELECTION_INPUT_AUTHORITY_PASS
+
+      - name: Materialize outcome-blind confirm80 selection
+        run: |
+          set -euo pipefail
+          COV="$(find /tmp/p14/p8 -name frozen-index-covariates.jsonl -print -quit)"
+          IDX="$(find /tmp/p14/p3 -name linkage-support.jsonl -print -quit)"
+          P11="$(find /tmp/p14/p11 -name selection-manifest.json -print -quit)"
+          P13O="$(find /tmp/p14/p13o -name selection-manifest.json -print -quit)"
+          P13R="$(find /tmp/p14/p13r -name selection-manifest-repaired.json -print -quit)"
+          mkdir -p /tmp/p14/out
+          python3 scripts/g7-p14/select-confirm80-reconstructor-era.py \
+            --covariates "$COV" \
+            --frozen-index "$IDX" \
+            --legacy60 g7/p7/source-provenance-recovery.json \
+            --p11-manifest "$P11" \
+            --p13-original "$P13O" \
+            --p13-repaired "$P13R" \
+            --out /tmp/p14/out | tee /tmp/p14/selection.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p14/out/selection-manifest.json'))
+          assert x['status']=='SEALED_BEFORE_CONFIRM80_BODY_CONTACT'
+          assert x['prior_body_contacted_excluded']==183
+          assert x['target_total']==80 and len(x['rows'])==80
+          assert len(x['selected_cell_counts'])==16
+          assert all(v==5 for v in x['selected_cell_counts'].values())
+          assert all(len(x['batches'][str(i)])==10 for i in range(1,9))
+          print('G7_P14_SELECTION_RESULT_GATE_PASS')
+          print('MANIFEST_SHA256',x['selection_manifest_sha256'])
+          print('SELECTED_CELLS',x['selected_cell_counts'])
+          print('BATCHES',x['selected_batch_counts'])
+          PY
+
+      - name: Seal selection authority
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p14/seal/authority /tmp/p14/seal/derived
+          cp g7/p14/constitution.json g7/p14/d1-closure.json /tmp/p14/seal/authority/
+          cp /tmp/p14/out/selection-manifest.json /tmp/p14/seal/derived/
+          cp /tmp/p14/out/batch-*-source-ids.txt /tmp/p14/seal/derived/
+          cp /tmp/p14/selection.log /tmp/p14/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P14' \
+            'OPERATION=CONFIRM80_RECONSTRUCTOR_ERA_SELECTION_SEAL' \
+            'BODY_CONTACT=NONE' \
+            'TARGET=80' \
+            'CELLS=16x5' \
+            'PRIOR_BODY_CONTACTED_EXCLUDED=183' \
+            'OUTCOME_BLIND=YES' \
+            > /tmp/p14/seal/AUTHORITY.txt
+          (cd /tmp/p14/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P14-confirm80-selection-${{ github.sha }}
+          path: /tmp/p14/seal
+          retention-days: 90
