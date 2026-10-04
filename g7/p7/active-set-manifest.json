@@ -45,6 +45,7 @@
     ".github/workflows/g7-p15-batch1-admissibility-repair.yml",
     ".github/workflows/g7-p15-fresh96-acquisition.yml",
     ".github/workflows/g7-p15-fresh96-selection.yml",
+    ".github/workflows/g7-p15-fresh96-terminal.yml",
     ".github/workflows/g7-p15-repaired-batches.yml",
     ".github/workflows/g7-p15-repaired-v2-batch1.yml",
     ".github/workflows/g7-p15-replay-replacement-selection-v2.yml",
