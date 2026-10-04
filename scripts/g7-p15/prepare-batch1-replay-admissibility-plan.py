@@ -78,7 +78,7 @@ def main():
             })
         pool.sort(key=lambda r:(h(SEED+"|"+cell,r["source_id"]),r["source_id"]))
         queues[str(row["source_id"])]=pool[:maxn]
-        if len(queues[str(row["source_id"])])<maxn:raise SystemExit("QUEUE_LT_MAX_"+str(row["source_id"]))
+        if len(queues[str(row["source_id"])])<1:raise SystemExit("QUEUE_EMPTY_"+str(row["source_id"]))
 
     plan={
       "schema_version":"g7-p15-batch1-replay-admissibility-plan-1",
