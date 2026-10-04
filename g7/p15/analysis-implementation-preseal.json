@@ -1,0 +1,50 @@
+{
+  "schema_version": "g7-p15-analysis-implementation-preseal-1",
+  "phase": "G7-P15",
+  "status": "FROZEN_BEFORE_ANY_P15_GEOMETRY",
+  "parent_constitution": "g7/p15/constitution.json",
+  "fixed_measurement": {
+    "r1_caliper": "2x2 action-opportunity TV distance <=1 action-mass unit",
+    "progress_partition": "Q5",
+    "primary_unit": "solve",
+    "fresh_only": true,
+    "prior_pooling": false
+  },
+  "operationalization": {
+    "era_band_gap": "mean R1 residual among DOMINANT solves minus mean R1 residual among NONDOMINANT solves within era",
+    "early_gap": "arithmetic mean of E1 and E2 era-band gaps",
+    "late_gap": "arithmetic mean of E3 and E4 era-band gaps",
+    "era_sign_match": "E1/E2 gap >0 and E3/E4 gap <0, counted era-wise",
+    "early_late_pooled_residual_difference": "mean R1 residual over all early-era solves (E1/E2 pooled) minus mean over all late-era solves (E3/E4 pooled)",
+    "leave_one_era_sign_invariance": "PASS iff all four adequate-support leave-one-era pooled residual means are strictly positive or all four are strictly negative; any exact zero or mixed signs fails",
+    "method_marginal_gap": "CFOP pooled R1 residual minus NONCFOP pooled R1 residual",
+    "band_marginal_gap": "DOMINANT pooled R1 residual minus NONDOMINANT pooled R1 residual"
+  },
+  "package_logic": {
+    "regime_package": "all four H_REGIME_STEP predictions pass",
+    "state_package": "all three H_STATE_LOCAL predictions pass",
+    "REGIME_CONFIRMED": "regime_package PASS and early_late_pooled_invariance FAIL",
+    "STATE_LOCAL_TRANSPORT": "state_package PASS and regime_package FAIL",
+    "MIXED_OR_PARTIAL": "no terminal full-package verdict applies and at least one but not all predictions pass in either structured rival",
+    "NONSTATIONARY_MIXTURE_SUPPORTED": "support adequate, neither structured rival package passes, and zero primary predictions pass across both structured rivals",
+    "SUPPORT_LIMITED": "any prediction required for terminal package is non-evaluable under frozen support floors"
+  },
+  "diagnostics": {
+    "sign_flip_permutations": 100000,
+    "sign_flip_role": "descriptive only",
+    "secondary_surfaces": [
+      "method×era residuals",
+      "band×era residuals",
+      "16-cell residuals",
+      "12-batch residuals"
+    ],
+    "secondary_cannot_rescue_primary": true
+  },
+  "forbidden": [
+    "change package logic after fresh96 geometry",
+    "redefine zero as favorable sign post hoc",
+    "add metadata axes",
+    "pool prior corpora before fresh terminal verdict",
+    "promote causal or cognitive mechanism claims"
+  ]
+}
