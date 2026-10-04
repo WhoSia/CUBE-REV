@@ -1,0 +1,58 @@
+{
+  "schema_version": "g7-p15-replay-invalid-replacement-amendment-2",
+  "phase": "G7-P15",
+  "operation_type": "Second Pre-Geometry Fresh96 Replay-Invalid Replacement Amendment",
+  "status": "FROZEN_BEFORE_ANY_P15_GEOMETRY",
+  "supersedes_amendment": "g7/p15/replay-invalid-replacement-amendment.json",
+  "base_manifest_sha256": "74d1b5becd25d5dd66028dce46cf73a95b9fc68a53ff6bb51d8366c97fb117cc",
+  "trigger": {
+    "batch1": {
+      "run": 37214780479,
+      "source_id": 2013,
+      "failure": "UNRESOLVED_AFTER_NORMALIZATION"
+    }
+  },
+  "contacted_but_inadmissible_or_replaced": [
+    69,
+    823,
+    2013
+  ],
+  "already_repaired_and_admissible": [
+    624
+  ],
+  "not_observed_before_amendment": [
+    "P15 R1/Q5 geometry",
+    "era-band residuals",
+    "early-vs-late residuals",
+    "method/band marginal residuals",
+    "leave-one-era readouts",
+    "terminal rival predictions or verdict"
+  ],
+  "replacement_rule": {
+    "replace_only": [
+      2013
+    ],
+    "preserve_other_95": true,
+    "same_method_family": true,
+    "same_reconstructor_frequency_band": true,
+    "same_selection_era": true,
+    "same_acquisition_batch": true,
+    "exclude_all_contacted_ids": [
+      69,
+      823,
+      2013
+    ],
+    "candidate_pool": "frozen P8 10,591 live-present 3x3 frame minus prior267 minus all current fresh96 rows minus every previously contacted invalid/replaced source",
+    "deterministic_rank": "ascending SHA256(CUBE_REV_G7_P15_REGIME_STATE_FRESH96_V1|cell|source_id), then source_id",
+    "repeated_failure": "new separately sealed pre-geometry amendment required"
+  },
+  "invariants": [
+    "96 total rows",
+    "16 method×band×era cells ×6",
+    "12 batches ×8",
+    "prior267 overlap zero",
+    "no geometry/outcome-dependent selection"
+  ],
+  "authority_boundary": "Replay admissibility only; no scientific re-selection.",
+  "human_contact_gate": "CLOSED"
+}
