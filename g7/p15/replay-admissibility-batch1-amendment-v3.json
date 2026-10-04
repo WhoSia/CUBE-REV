@@ -1,0 +1,53 @@
+{
+  "schema_version": "g7-p15-replay-admissibility-batch1-amendment-3",
+  "phase": "G7-P15",
+  "operation_type": "Pre-Geometry Batch1 Full Replay-Admissibility Scan & Deterministic Cell-Preserving Repair",
+  "status": "FROZEN_BEFORE_ANY_P15_GEOMETRY",
+  "base_manifest_sha256": "7e7d99682436c7b75bb6a7d2cd28eac54bbb87d3d3cef163e7ceacb7c16c3bb6",
+  "motivating_failure": {
+    "run": 37215062271,
+    "combined_replay_first_failure": {
+      "source_id": 11708,
+      "failure": "UNRESOLVED_AFTER_NORMALIZATION"
+    },
+    "interpretation": "combined replay stops at first unresolved solve, so downstream batch1 replay validity remains unobserved"
+  },
+  "scan_rule": {
+    "scope": "all 8 current batch1 source IDs, individually",
+    "admissibility_only": [
+      "HTML capture succeeds",
+      "source ID matches",
+      "normalized solve parses",
+      "exact end-state replay validates"
+    ],
+    "geometry_or_behavior_opened": false
+  },
+  "repair_rule": {
+    "trigger": "replace each current batch1 row that independently fails replay admissibility",
+    "preserve_valid_rows": true,
+    "preserve_method_family": true,
+    "preserve_reconstructor_frequency_band": true,
+    "preserve_selection_era": true,
+    "preserve_acquisition_batch": true,
+    "candidate_order": "ascending SHA256(CUBE_REV_G7_P15_REGIME_STATE_FRESH96_V1|cell|source_id), then source_id",
+    "exclude": "prior267 + every current fresh96 row + all previously contacted/rejected repair IDs + candidates already tested in this scan",
+    "max_candidates_per_invalid_row": 12,
+    "stop": "first exact-replay PASS candidate for that row",
+    "failure_if_exhausted": "SUPPORT/ADMISSIBILITY_HOLD; do not open P15 geometry"
+  },
+  "previously_contacted_repair_ids": [
+    69,
+    823,
+    2013,
+    624,
+    66
+  ],
+  "forbidden": [
+    "inspect R1/Q5 geometry during scan",
+    "inspect any residual or terminal rival readout",
+    "choose among multiple replay-valid candidates using behavior",
+    "change cell, era, batch, R1, Q5, thresholds or support floors"
+  ],
+  "authority_boundary": "Replay/parser admissibility only.",
+  "human_contact_gate": "CLOSED"
+}
