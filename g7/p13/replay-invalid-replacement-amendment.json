@@ -1,0 +1,59 @@
+{
+  "schema_version": "g7-p13-replay-invalid-replacement-amendment-1",
+  "phase": "G7-P13",
+  "operation_type": "Pre-Geometry Replay-Invalid Replacement Amendment",
+  "status": "FROZEN_BEFORE_ANY_P13_GEOMETRY",
+  "trigger": {
+    "batch1": {
+      "run": 37196651184,
+      "source_id": 11370,
+      "failure": "UNRESOLVED_AFTER_NORMALIZATION"
+    },
+    "batch2": {
+      "run": 37196654259,
+      "source_id": 11962,
+      "failure": "UNRESOLVED_AFTER_NORMALIZATION"
+    },
+    "batch3": {
+      "run": 37196657668,
+      "source_id": 13073,
+      "failure": "UNRESOLVED_AFTER_NORMALIZATION"
+    }
+  },
+  "observed_before_amendment": [
+    "HTTP/body capture success",
+    "parser output sufficient to enter exact replay",
+    "exact replay normalization failure identity"
+  ],
+  "not_observed_before_amendment": [
+    "P13 rival geometry",
+    "R1 residuals",
+    "Q4/Q5/Q6/Q10 readouts",
+    "method-specific outcomes",
+    "terminal predictions"
+  ],
+  "replacement_rule": {
+    "preserve_77_original_ids": true,
+    "replace_only": [
+      11370,
+      11962,
+      13073
+    ],
+    "same_sampling_cell": true,
+    "same_selection_era": true,
+    "same_acquisition_batch": true,
+    "candidate_pool": "frozen P8 10,591-row live-present 3x3 covariate frame minus prior100 minus original80",
+    "deterministic_rank": "ascending SHA256(CUBE_REV_G7_P13_METHOD_PROGRESS_FRESH80_V1|cell|era|source_id), then source_id",
+    "choose": "first remaining candidate in the invalid row's exact cell×era stratum",
+    "repeated_failure": "if replacement itself is replay-invalid, a new separately sealed amendment is required before any P13 geometry; no automatic cascading substitution"
+  },
+  "invariants": [
+    "80 total selected rows remain required",
+    "four sampling cells remain 20 each",
+    "four eras remain 20 each",
+    "eight acquisition batches remain 10 each",
+    "prior100 overlap remains zero",
+    "no geometry-dependent selection"
+  ],
+  "authority_boundary": "Acquisition/replay admissibility repair only; does not change scientific predictions or analysis grammar."
+}
