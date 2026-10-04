@@ -95,7 +95,10 @@ def main():
               "cell":c.get("sampling_cell"),
               "batch":c.get("cohort")
             })
-    if len({r["sid"] for r in rows})!=96:raise SystemExit("FRESH96_SOLVES_REQUIRED")
+    context_solve_ids={sid for sid,_ in ctx}
+    if len(context_solve_ids)!=96:raise SystemExit("FRESH96_CONTEXT_SOLVES_REQUIRED")
+    analytic_solve_ids={r["sid"] for r in rows}
+    if not analytic_solve_ids.issubset(context_solve_ids):raise SystemExit("ANALYTIC_ID_OUTSIDE_FRESH96")
 
     out={}
     out["pooled"]=residual(rows,z.permutations,20275000)
