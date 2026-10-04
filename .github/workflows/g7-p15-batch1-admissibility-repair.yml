@@ -1,0 +1,117 @@
+name: G7-P15 batch1 full replay-admissibility repair
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p15/replay-admissibility-batch1-amendment-v3.json'
+      - 'scripts/g7-p15/prepare-batch1-replay-admissibility-plan.py'
+      - 'scripts/g7-p15/execute-batch1-replay-admissibility-scan.mjs'
+      - '.github/workflows/g7-p15-batch1-admissibility-repair.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Zero-bot and v3 amendment gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p15-batch1-admissibility-repair.yml'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p15/replay-admissibility-batch1-amendment-v3.json'))
+          assert x['status']=='FROZEN_BEFORE_ANY_P15_GEOMETRY'
+          assert x['repair_rule']['max_candidates_per_invalid_row']==12
+          assert x['scan_rule']['geometry_or_behavior_opened'] is False
+          print('G7_P15_V3_AMENDMENT_GATE_PASS')
+          PY
+
+      - name: Recover base-v2 and frozen frame authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p15/base /tmp/p15/p8 /tmp/p15/p3 /tmp/p15/p11 /tmp/p15/p13o /tmp/p15/p13r /tmp/p15/p14o /tmp/p15/p14r
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" -o "/tmp/p15/$dir.zip"
+            echo "$expected  /tmp/p15/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p15/$dir.zip" -d "/tmp/p15/$dir"
+          }
+          fetch_artifact 11308150998 base 6df4279900442557b5c63e94986cb8690535b0b3f0487978284ad59616607bdd
+          fetch_artifact 11238930249 p8 460dc657565541b663f1bc91b6e75490a7591f56946a41c28af60802ee27f16a
+          fetch_artifact 11205587281 p3 acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4
+          fetch_artifact 11242753632 p11 45145487febf4d9fc975299ffe567a9e20ae63cb744a6205bd53f661941f8a67
+          fetch_artifact 11272225709 p13o d41f3c558fd8b9fa8d595f146a225e462732d49e5fca8a67f52802b64e34d6c6
+          fetch_artifact 11301332731 p13r 550bdfb59023aeb6e1804afb4c1ca358c397892a5785e08d07fcabe0915442e2
+          fetch_artifact 11301404290 p14o 71faa1be721940b670c871a79a9af5bac63f84dc751b08b3a8098ff19025a46f
+          fetch_artifact 11301826265 p14r aef35848ce24010b22ffcda96739b2503bed808e0196687ddf4988cf43f05440
+
+      - name: Freeze batch1 candidate queues
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p15/plan
+          python3 scripts/g7-p15/prepare-batch1-replay-admissibility-plan.py \
+            --amendment g7/p15/replay-admissibility-batch1-amendment-v3.json \
+            --base-manifest "$(find /tmp/p15/base -name selection-manifest-repaired-v2.json -print -quit)" \
+            --covariates "$(find /tmp/p15/p8 -name frozen-index-covariates.jsonl -print -quit)" \
+            --frozen-index "$(find /tmp/p15/p3 -name linkage-support.jsonl -print -quit)" \
+            --legacy60 g7/p7/source-provenance-recovery.json \
+            --p11-manifest "$(find /tmp/p15/p11 -name selection-manifest.json -print -quit)" \
+            --p13-original "$(find /tmp/p15/p13o -name selection-manifest.json -print -quit)" \
+            --p13-repaired "$(find /tmp/p15/p13r -name selection-manifest-repaired.json -print -quit)" \
+            --p14-original "$(find /tmp/p15/p14o -name selection-manifest.json -print -quit)" \
+            --p14-repaired "$(find /tmp/p15/p14r -name selection-manifest-repaired.json -print -quit)" \
+            --out /tmp/p15/plan | tee /tmp/p15/plan.log
+
+      - name: Execute bounded replay-admissibility scan
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p15/final-b1
+          node scripts/g7-p15/execute-batch1-replay-admissibility-scan.mjs \
+            --plan /tmp/p15/plan/batch1-replay-plan.json \
+            --base-manifest "$(find /tmp/p15/base -name selection-manifest-repaired-v2.json -print -quit)" \
+            --out /tmp/p15/final-b1 | tee /tmp/p15/scan.log
+
+      - name: Whole-batch exact replay gate
+        run: |
+          set -euo pipefail
+          node scripts/cube/replay-exact-trajectories.mjs \
+            --input /tmp/p15/final-b1/derived/solves.jsonl --out /tmp/p15/final-b1/exact
+          node - <<'NODE'
+          const x=require('/tmp/p15/final-b1/exact/exact-trajectories.json');
+          if(x.solve_count!==8||x.exact_end_validation_pass!==8) process.exit(1);
+          console.log('G7_P15_FINAL_BATCH1_EXACT_PASS');
+          console.log('PREFIXES\t'+x.total_prefixes);
+          NODE
+
+      - name: Seal final batch1 authority
+        run: |
+          set -euo pipefail
+          cp /tmp/p15/plan/batch1-replay-plan.json /tmp/p15/final-b1/
+          cp /tmp/p15/plan.log /tmp/p15/final-b1/
+          cp /tmp/p15/scan.log /tmp/p15/final-b1/
+          cp g7/p15/replay-admissibility-batch1-amendment-v3.json /tmp/p15/final-b1/
+          printf '%s\n' 'PHASE=G7-P15' 'BATCH=1' 'SOLVES=8'             'OPERATION=FULL_REPLAY_ADMISSIBILITY_REPAIR'             'GEOMETRY_OPENED=NO' 'RAW_PUBLIC_RELEASE=HOLD' > /tmp/p15/final-b1/AUTHORITY.txt
+          (cd /tmp/p15/final-b1 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P15-final-admissible-batch1-${{ github.sha }}
+          path: /tmp/p15/final-b1
+          retention-days: 90
