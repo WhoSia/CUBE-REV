@@ -1,0 +1,124 @@
+{
+  "schema_version": "g7-p14-closure-1",
+  "phase": "G7-P14",
+  "formal_name": "CUBE-REV Generation VII G7-P14 — Prospective Reconstructor-Frequency-Band Composition Coordinate Confirmation, Method×Era-Balanced Fresh80 Reconstruction Acquisition, Dominant↔Nondominant Q5 R1 Residual Sign Separation, Within-Era Gap Transport, Method-Invariance Challenge, Reconstructor×Era Interaction Rival, Composition-Cancellation Reconstitution & Independent Coordinate Confirmation Campaign",
+  "operation_type": "Independent Composition-Coordinate Confirmation Campaign",
+  "status": "CLOSED",
+  "final_verdict": "NOT_CONFIRMED__RECONSTRUCTOR_BAND_PRIMARY_COORDINATE_DEFEATED__METHOD_INVARIANCE_FAILS__ERA_TRANSPORT_SPLITS_2_OF_4__NAMED_COMPOSITION_SIGN_OWNERSHIP_NONSTABLE",
+  "authority": {
+    "terminal_run": 37198435840,
+    "head": "1dc7466da1b0de5ddd2f48e382b7d80ce8ecef97",
+    "artifact": 11301677382,
+    "artifact_sha256": "90d25c363b59c10408b85cf3d786548cab50796990170e163ea7ae0fa6e3ff1d",
+    "drive": "1kLtmRIIyu7HWmoZBGHntkGXu51vGjfYg",
+    "selection_run": 37197762300,
+    "selection_manifest_sha256": "39fa29383ab3b61fb8f2969861ee531a04e50762eaae4fcea4f4144ee8078658",
+    "replay_repair": "g7/p14/replay-invalid-replacement-amendment.json"
+  },
+  "acquisition": {
+    "fresh_solves": 80,
+    "exact_replay_pass": 80,
+    "total_prefixes": 4495,
+    "cells": "16x5 method×reconstructor-band×era",
+    "prior_body_contacted_excluded": 183,
+    "development_samples_pooled_before_verdict": false
+  },
+  "primary_predictions": {
+    "reconstructor_band_sign_separation": {
+      "expected": "dominant > 0; nondominant < 0; dominant-minus-nondominant >= 1/18",
+      "observed": {
+        "dominant": {
+          "n": 31,
+          "mean": -0.04937275985663083
+        },
+        "nondominant": {
+          "n": 33,
+          "mean": 0.03187763882208327
+        },
+        "gap": -0.0812503986787141
+      },
+      "pass": false
+    },
+    "method_invariant_band_direction": {
+      "expected": "dominant-minus-nondominant > 0 within both CFOP and NONCFOP; at least one >=1/18 and both >=1/36",
+      "observed": {
+        "CFOP": {
+          "dominant": {
+            "n": 16,
+            "mean": -0.016242283950617286
+          },
+          "nondominant": {
+            "n": 18,
+            "mean": 0.01638986870468352
+          },
+          "gap": -0.032632152655300804
+        },
+        "NONCFOP": {
+          "dominant": {
+            "n": 15,
+            "mean": -0.08471193415637861
+          },
+          "nondominant": {
+            "n": 15,
+            "mean": 0.050462962962962966
+          },
+          "gap": -0.13517489711934158
+        }
+      },
+      "pass": false
+    },
+    "within_era_band_transport": {
+      "expected": "positive dominant-minus-nondominant gap in >=3 eras and >=1/18 in >=2 eras",
+      "observed": {
+        "E1": 0.10201719576719576,
+        "E2": 0.09682539682539681,
+        "E3": -0.2793889623750735,
+        "E4": -0.2019483024691358,
+        "positive_eras": 2,
+        "large_eras": 2
+      },
+      "pass": false
+    }
+  },
+  "interpretation": [
+    "The simple reconstructor-frequency-band coordinate discovered in P14-D1 does not independently confirm.",
+    "Its sign reverses at the pooled level in confirm80 relative to the development fresh80.",
+    "The reversal is not rescued by method stratification: both CFOP and NONCFOP show negative dominant-minus-nondominant gaps.",
+    "Era stratification reveals a strong sign split: E1/E2 positive, E3/E4 negative. Because this interaction was secondary in P14, it is hypothesis-generating only and cannot rescue the failed primary verdict.",
+    "Across P13 and P14, named metadata axes repeatedly fail stable sign ownership while composition cancellation/heterogeneity persists. The surviving object is therefore nonstationary mixture structure rather than a promoted method or reconstructor label."
+  ],
+  "retired_or_demoted": [
+    "reconstructor_frequency_band as a stable signed explanatory coordinate",
+    "method-invariant dominant-versus-nondominant direction",
+    "any claim that the P14-D1 top-ranked metadata coordinate independently transports"
+  ],
+  "retained": [
+    "composition cancellation and sign-exchange as a recurring descriptive phenomenon",
+    "R1 as a local descriptive structural adjustment operator, not a mechanism",
+    "era-conditioned sign reversal as a fresh hypothesis-generating interaction",
+    "two independent fresh80 corpora plus prior100 as a large development authority after terminal verdicts"
+  ],
+  "boundary": [
+    "NOT_CONFIRMED is the presealed terminal verdict and is not softened by secondary interaction patterns.",
+    "Era sign reversal is development evidence only until independently confirmed.",
+    "Reconstructor frequency is a corpus coordinate, not cognition.",
+    "No causal mediation, latent planning state, or mechanism promotion is authorized.",
+    "Human-contact gate remains closed."
+  ],
+  "ravel_footer": {
+    "EXPLANANDUM": "Does the naturalistic R1-adjusted human next-move residual have a stable population/composition coordinate, or is its sign carried by nonstationary sample/regime mixtures?",
+    "METHODS_SELECTED": [
+      "Explanandum Lock Before Explanation",
+      "Freshness ≠ Information Value",
+      "No Midstream Epistemic Retrofit",
+      "Cross-Level Authority Separation",
+      "Epistemic Ratchet by Next-Step Mutation"
+    ],
+    "RAVEL_CHANGING_ATTACK": "The top development coordinate reversed sign in the independent confirm80, so the roadmap must stop promoting named metadata coordinates and test nonstationarity versus state-local geometry.",
+    "AUTHORITY_CEILING": "Independent naturalistic descriptive confirmation failure; no causal/cognitive authority.",
+    "CORE_ENABLING_FORK": "CORE",
+    "RETURN_EDGE": "Return from archive-composition labels to the founding planning-representation question by asking whether stable state-local structure survives regime changes.",
+    "DEBT": "CLEAR"
+  },
+  "successor_problem": "Separate historical/population nonstationarity from genuinely state-local behavioral geometry. Use the now-authorized prior corpora only for development, freeze a minimal rival set, then require a fresh independent era-balanced sample before any transport claim."
+}
