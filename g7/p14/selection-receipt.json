@@ -1,0 +1,24 @@
+{
+  "schema_version": "g7-p14-confirm80-selection-receipt-1",
+  "phase": "G7-P14",
+  "operation_type": "Outcome-Blind Confirm80 Selection Seal",
+  "status": "SEALED",
+  "authority": {
+    "run": 37197762300,
+    "head": "15046169695f1e6f1124b655e62a9d9f7d53fdd2",
+    "artifact": 11301404290,
+    "artifact_sha256": "71faa1be721940b670c871a79a9af5bac63f84dc751b08b3a8098ff19025a46f",
+    "drive_file_id": "1ydUW8xzZ15QT8dTRxC-tvzgSHyorXk1J",
+    "selection_manifest_sha256": "39fa29383ab3b61fb8f2969861ee531a04e50762eaae4fcea4f4144ee8078658"
+  },
+  "invariants": {
+    "target_total": 80,
+    "prior_body_contacted_excluded": 183,
+    "cells": "16x5",
+    "batches": "8x10"
+  },
+  "body_contact_at_selection": 0,
+  "acquisition_authorized": true,
+  "raw_public_release": "HOLD",
+  "bulk_mirror": "HOLD"
+}
