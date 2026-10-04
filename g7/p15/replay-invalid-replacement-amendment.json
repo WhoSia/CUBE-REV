@@ -1,0 +1,55 @@
+{
+  "schema_version": "g7-p15-replay-invalid-replacement-amendment-1",
+  "phase": "G7-P15",
+  "operation_type": "Pre-Geometry Fresh96 Replay-Invalid Replacement Amendment",
+  "status": "FROZEN_BEFORE_ANY_P15_GEOMETRY",
+  "trigger": {
+    "batch1": {
+      "run": 37214058403,
+      "source_id": 823,
+      "failure": "UNRESOLVED_AFTER_NORMALIZATION"
+    },
+    "batch12": {
+      "run": 37214058403,
+      "source_id": 69,
+      "failure": "UNRESOLVED_AFTER_NORMALIZATION"
+    }
+  },
+  "observed_before_amendment": [
+    "HTTP/body capture success",
+    "parser output sufficient to enter exact replay",
+    "exact replay normalization failure identity",
+    "exact replay PASS/FAIL status for each acquisition batch"
+  ],
+  "not_observed_before_amendment": [
+    "P15 R1/Q5 geometry",
+    "era-band residuals",
+    "early-vs-late residuals",
+    "method/band marginal residuals",
+    "leave-one-era readouts",
+    "terminal rival predictions or verdict"
+  ],
+  "replacement_rule": {
+    "replace_only": [
+      69,
+      823
+    ],
+    "preserve_other_94": true,
+    "same_method_family": true,
+    "same_reconstructor_frequency_band": true,
+    "same_selection_era": true,
+    "same_acquisition_batch": true,
+    "candidate_pool": "frozen P8 10,591-row live-present 3x3 frame minus prior267 body-contacted minus original fresh96/current repaired set",
+    "deterministic_rank": "ascending SHA256(CUBE_REV_G7_P15_REGIME_STATE_FRESH96_V1|cell|source_id), then source_id",
+    "repeated_failure": "requires a new separately sealed pre-geometry amendment; no automatic cascade"
+  },
+  "invariants": [
+    "96 total rows remain required",
+    "16 method×band×era cells remain exactly 6 each",
+    "12 acquisition batches remain exactly 8 each",
+    "prior267 overlap remains zero",
+    "no outcome/geometry-dependent selection"
+  ],
+  "authority_boundary": "Replay admissibility repair only; P15 rival ecology, thresholds, support floors and terminal analysis grammar remain untouched.",
+  "human_contact_gate": "CLOSED"
+}
