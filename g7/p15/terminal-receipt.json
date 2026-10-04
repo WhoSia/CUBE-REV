@@ -1,0 +1,83 @@
+{
+  "schema_version": "g7-p15-terminal-receipt-1",
+  "phase": "G7-P15",
+  "operation_type": "Naturalistic Residual Nonstationarity Confirmation Campaign",
+  "status": "TERMINAL_ADJUDICATION_SEALED",
+  "authority": {
+    "run": 37215681892,
+    "head": "2e5ec22a4c183c24873b06792105db1a0ec10e1a",
+    "artifact": 11308800635,
+    "artifact_sha256": "53b6036fec997048d7f3deb441beaaed9783b392e71bd08dada2df87b99eb365",
+    "drive_file_id": "1YbbrtYM3e4-J_CB6Daxae7m2vI4ab9VQ"
+  },
+  "corpus": {
+    "fresh_solves": 96,
+    "prior_corpora_pooled": false,
+    "r1_reselected": false,
+    "q5_fixed": true
+  },
+  "verdict": "NONSTATIONARY_MIXTURE_SUPPORTED",
+  "primary": {
+    "H_REGIME_STEP": {
+      "early_mean_gap_positive": {
+        "pass": false,
+        "value": -0.25543124142661183
+      },
+      "late_mean_gap_negative": {
+        "pass": false,
+        "value": 0.022700166345999685
+      },
+      "early_minus_late_gap": {
+        "pass": false,
+        "value": -0.2781314077726115
+      },
+      "era_sign_pattern": {
+        "pass": false,
+        "matching_eras": 1,
+        "era_gaps": {
+          "E1": -0.33956618655692733,
+          "E2": -0.17129629629629634,
+          "E3": -0.03130070546737213,
+          "E4": 0.0767010381593715
+        }
+      }
+    },
+    "H_STATE_LOCAL": {
+      "early_late_pooled_invariance": {
+        "pass": false,
+        "difference": 0.12149716368028692
+      },
+      "leave_one_era_sign_invariance": {
+        "pass": false,
+        "signs": {
+          "E1": -1,
+          "E2": -1,
+          "E3": -1,
+          "E4": 1
+        }
+      },
+      "small_marginal_gaps": {
+        "pass": false,
+        "method_gap": -0.07433430702527925,
+        "band_gap": -0.10363163071496405
+      }
+    }
+  },
+  "descriptive": {
+    "early_mean_residual": 0.06218908859840231,
+    "early_n": 34,
+    "late_mean_residual": -0.059308075081884605,
+    "late_n": 42,
+    "cfop_mean": -0.04016506834215168,
+    "noncfop_mean": 0.03416923868312757,
+    "dominant_mean": -0.05540632207298874,
+    "nondominant_mean": 0.04822530864197531
+  },
+  "boundary": [
+    "P15 confirms neither a stable historical regime-step law nor a state-local residual transport law.",
+    "The supported conclusion is archive/population mixture-sensitive nonstationarity under the frozen naturalistic measurement.",
+    "Era, method and reconstructor-band remain descriptive archive coordinates, not causal or cognitive states.",
+    "No human mechanism promotion is authorized."
+  ],
+  "human_contact_gate": "CLOSED"
+}
