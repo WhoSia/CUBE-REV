@@ -1,0 +1,124 @@
+{
+  "schema_version": "g7-p14-d1-closure-1",
+  "phase": "G7-P14-D1",
+  "formal_name": "CUBE-REV Generation VII G7-P14-D1 — Fresh80 Composition Sign-Exchange Atlas, Method×Reconstructor×Era Residual Decomposition, Cell/Batch Stability Mapping, Interaction-Rival Generation, Simpson-Surface Diagnostics, Support-Aware Coordinate Ranking & Independent-Confirmation Candidate Map",
+  "operation_type": "Composition Sign-Exchange Rival Map",
+  "status": "CLOSED",
+  "final_verdict": "DEVELOPMENT_MAP_CLOSED__RECONSTRUCTOR_BAND_PRIMARY_RIVAL__RECONSTRUCTOR_X_ERA_INTERACTION_RIVAL__METHOD_AXIS_DEMOTED__INDEPENDENT_CONFIRMATION_REQUIRED",
+  "authority": {
+    "run": 37197481392,
+    "head": "b2a564d932423dac60b164acb0cc040969ff11bf",
+    "artifact": 11301800069,
+    "artifact_sha256": "521c6e636046dbe6cc7f96604d12da6c5d953d687fe95f22fafba446ed4a1bf6",
+    "drive": "1b-scrdfFCrINsXGGOE4RaPFdKgS66vJy"
+  },
+  "fresh80_q5_support": 56,
+  "ranking": [
+    {
+      "rank": 1,
+      "axis": "reconstructor_x_era",
+      "max_abs_gap": 0.3373456790123457,
+      "directional_stability": 1,
+      "levels": 8
+    },
+    {
+      "rank": 2,
+      "axis": "method_x_era",
+      "max_abs_gap": 0.2619135802469136,
+      "directional_stability": 1,
+      "levels": 8
+    },
+    {
+      "rank": 3,
+      "axis": "method_x_reconstructor",
+      "max_abs_gap": 0.1988690476190476,
+      "directional_stability": 1,
+      "levels": 4
+    },
+    {
+      "rank": 4,
+      "axis": "reconstructor_frequency_band",
+      "max_abs_gap": 0.1587169312169312,
+      "directional_stability": 1,
+      "levels": 2
+    },
+    {
+      "rank": 5,
+      "axis": "selection_era",
+      "max_abs_gap": 0.12401903651903654,
+      "directional_stability": 1,
+      "levels": 4
+    },
+    {
+      "rank": 6,
+      "axis": "method_family",
+      "max_abs_gap": 0.04832899736688583,
+      "directional_stability": 0.875,
+      "levels": 2
+    }
+  ],
+  "simple_reconstructor_band": {
+    "dominant": {
+      "n": 28,
+      "mean": 0.08655202821869488
+    },
+    "nondominant": {
+      "n": 28,
+      "mean": -0.07216490299823633
+    },
+    "absolute_gap": 0.1587169312169312
+  },
+  "method_invariance_development_witness": {
+    "CFOP": {
+      "dominant": {
+        "n": 14,
+        "mean": 0.09244929453262786
+      },
+      "nondominant": {
+        "n": 13,
+        "mean": -0.0326400759734093
+      }
+    },
+    "NONCFOP": {
+      "dominant": {
+        "n": 14,
+        "mean": 0.08065476190476191
+      },
+      "nondominant": {
+        "n": 15,
+        "mean": -0.10641975308641975
+      }
+    }
+  },
+  "reconstructor_x_era_development_witness": {
+    "dominant": {
+      "E1": 0.06954089506172839,
+      "E2": 0.1287037037037037,
+      "E3": 0.02048611111111111,
+      "E4": 0.15138888888888888
+    },
+    "nondominant": {
+      "E1": -0.15404761904761904,
+      "E2": -0.18595679012345678,
+      "E3": 0.01989026063100137,
+      "E4": -0.0009259259259259247
+    }
+  },
+  "interpretation": [
+    "Method family is demoted as a stable sign-owning coordinate after P13 and ranks last among adequately supported D1 axes.",
+    "Reconstructor frequency band is the simplest development rival with opposite pooled signs and the same dominant-minus-nondominant direction within both method families.",
+    "Reconstructor×era generates the largest supported gap and is retained only as an interaction rival, not as a promoted explanation.",
+    "Because all ranking was generated on the same fresh80 used to discover the surface, no coordinate receives confirmation authority."
+  ],
+  "successor_binding": {
+    "primary_coordinate": "reconstructor_frequency_band",
+    "interaction_rival": "reconstructor_frequency_band × selection_era",
+    "method_family_role": "balancing/transport firewall rather than primary explanatory coordinate",
+    "new_independent_sample_required": true
+  },
+  "boundary": [
+    "D1 is development-only and cannot promote a coordinate.",
+    "Leave-one-batch stability is descriptive, not independent replication.",
+    "The successor must freeze thresholds and selection before new body contact."
+  ]
+}
