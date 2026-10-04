@@ -1,0 +1,26 @@
+{
+  "schema_version": "g7-p15-closure-1",
+  "phase": "G7-P15",
+  "status": "CLOSED",
+  "verdict": "NONSTATIONARY_MIXTURE_SUPPORTED",
+  "terminal_receipt": "g7/p15/terminal-receipt.json",
+  "scientific_closure": {
+    "H_REGIME_STEP": "DEFEATED_ON_ALL_4_PRIMARY_PREDICTIONS",
+    "H_STATE_LOCAL": "DEFEATED_ON_ALL_3_PRIMARY_PREDICTIONS",
+    "H_NONSTATIONARY_MIXTURE": "SUPPORTED_BY_PRESEALED_FALLBACK_RULE"
+  },
+  "interpretation": [
+    "The P14 era sign exchange did not transport to an independent balanced fresh96 sample.",
+    "Named composition axes do not own a stable residual sign across fresh cohorts.",
+    "The residual itself is not invariant enough to justify a simple state-local transport claim.",
+    "Future work should stop axis-chasing on era/method/reconstructor labels and move to representation-level or cross-observable discrimination."
+  ],
+  "authority_ceiling": "fresh naturalistic descriptive nonstationarity only",
+  "mechanism_promotion": "FORBIDDEN",
+  "human_contact_gate": "CLOSED",
+  "successor_constraint": [
+    "Do not nominate another metadata owner without an independent representation-level rationale.",
+    "Prefer cross-reservoir experiments that can discriminate handcrafted state geometry, learned latent representation, and multi-observable behavioral structure.",
+    "Keep prior P13/P14/P15 corpora as development/negative-legacy evidence; new confirmation authority must remain fresh."
+  ]
+}
