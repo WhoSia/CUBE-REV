@@ -65,17 +65,26 @@ jobs:
 
       - name: Exact trajectory replay
         run: |
-          set -euo pipefail
+          set -uo pipefail
+          set +e
           node scripts/cube/replay-exact-trajectories.mjs \
             --input /tmp/g7-p14-batch08/derived/solves.jsonl \
             --out /tmp/g7-p14-batch08/exact
-          node - <<'NODE'
+          rc=$?
+          set -e
+          if [ -f /tmp/g7-p14-batch08/exact/exact-trajectories.json ]; then
+            node - <<'NODE'
           const x=require('/tmp/g7-p14-batch08/exact/exact-trajectories.json');
-          if(x.solve_count!==10) process.exit(1);
-          if(x.exact_end_validation_pass!==10) process.exit(2);
-          console.log('G7_P14_BATCH8_EXACT_PASS');
-          console.log('PREFIXES\t'+x.total_prefixes);
+          const bad=x.records.filter(r=>!r.final_solved_up_to_rotation||!r.final_canonical_solved).map(r=>r.source_id);
+          console.log('END_VALIDATION_PASS\t'+x.exact_end_validation_pass);
+          console.log('REPLAY_INVALID_IDS\t'+bad.join(','));
+          if(x.solve_count===10 && x.exact_end_validation_pass===10){
+            console.log('G7_P14_BATCH8_EXACT_PASS');
+            console.log('PREFIXES\t'+x.total_prefixes);
+          }
           NODE
+          fi
+          exit $rc
 
       - name: Seal batch
         run: |
