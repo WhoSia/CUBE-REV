@@ -93,13 +93,13 @@ def main():
         base=eval_axis(keys)
         loo={b:eval_axis(keys,b) for b in batches}
         if base["max_gap_pair"]:
-            a,b=base["max_gap_pair"];base_dir=None
-            # signed direction of b-a based on base pair labels
-            lev=base["levels"];base_dir=1 if lev[b]["mean"]-lev[a]["mean"]>0 else -1
+            label_a,label_b=base["max_gap_pair"];base_dir=None
+            # signed direction of label_b-label_a based on base pair labels
+            lev=base["levels"];base_dir=1 if lev[label_b]["mean"]-lev[label_a]["mean"]>0 else -1
             stable=0;den=0
             for z in loo.values():
-                if a in z["levels"] and b in z["levels"] and z["levels"][a]["n"]>=5 and z["levels"][b]["n"]>=5:
-                    d=z["levels"][b]["mean"]-z["levels"][a]["mean"]
+                if label_a in z["levels"] and label_b in z["levels"] and z["levels"][label_a]["n"]>=5 and z["levels"][label_b]["n"]>=5:
+                    d=z["levels"][label_b]["mean"]-z["levels"][label_a]["mean"]
                     if d!=0:
                         den+=1;stable+=((1 if d>0 else -1)==base_dir)
             stability=stable/den if den else None
