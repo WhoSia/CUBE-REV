@@ -1,0 +1,43 @@
+{
+  "schema_version": "g7-p16-r2-receipt-1",
+  "phase": "G7-P16-R2",
+  "operation_type": "Multi-Cohort Development Representation Transport Stress Test",
+  "status": "CLOSED_TRANSPORT_QUALIFIED_DEVELOPMENT_ONLY",
+  "authority": {
+    "run": 37218460623,
+    "head": "dd7fe3d1b48409993471d7b0b7679ba0c3b78e09",
+    "artifact": 11309690676,
+    "artifact_sha256": "08f67913e7989d02552d8c1dee63577b7421f5725402ecb8ebe2772381d49b20",
+    "drive_file_id": "1YABA6F0wPaUZKBi-dV0Bpy1uJufjmSuE"
+  },
+  "development": {
+    "solves": 296,
+    "stage_solves": {
+      "P11": 40,
+      "P13": 80,
+      "P14": 80,
+      "P15": 96
+    },
+    "fixed_rank": 8,
+    "rank_reselected": false,
+    "fresh_confirmation_consumed": false,
+    "new_body_contact": 0
+  },
+  "heldout_stage_delta_nll_vs_prior": {
+    "P11": 0.03788229873162274,
+    "P13": 0.040673693031226144,
+    "P14": 0.05143615063439455,
+    "P15": 0.03453062038960786
+  },
+  "mean_delta_nll_vs_prior": 0.041130690696712824,
+  "positive_heldout_stages": 4,
+  "verdict": "TRANSPORT_QUALIFIED_DEVELOPMENT_ONLY",
+  "interpretation": [
+    "The rank-8 raw exact-state latent policy family generalizes above an action-frequency prior across all four previously contacted development stages.",
+    "This is stronger than the single-corpus R1 result but remains development evidence.",
+    "The next legal discriminator is a direct equal-rank representation tournament against handcrafted exact-search coordinates and a hybrid representation.",
+    "No fresh acquisition is yet justified until that development tournament is complete."
+  ],
+  "scientific_authority": "DEVELOPMENT_TRANSPORT_ONLY",
+  "mechanism_promotion": "FORBIDDEN"
+}
