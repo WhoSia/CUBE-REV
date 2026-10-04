@@ -1,0 +1,58 @@
+{
+  "schema_version": "g7-p16-r1-receipt-1",
+  "phase": "G7-P16-R1",
+  "operation_type": "Development-Only Learned Policy Representation Compiler",
+  "status": "CLOSED_COMPILER_PASS_DEVELOPMENT_READY",
+  "authority": {
+    "run": 37218047332,
+    "head": "724d8b21441ff842c52914fbedbd0e88964a970c",
+    "artifact": 11308169634,
+    "artifact_sha256": "ba73debf6ec2fe102525412326d891ba5ed4b596368002c3cf9309a799098fc9",
+    "drive_file_id": "17Ch4mW7y7VxxY4FEjGcRx0uwE0YZfvjB"
+  },
+  "development": {
+    "solves": 96,
+    "states": 4489,
+    "new_body_contact": 0,
+    "fresh_confirmation_consumed": false,
+    "metadata_input_excluded": true
+  },
+  "selected_rank": 8,
+  "cv": [
+    {
+      "rank": 2,
+      "mean_nll": 2.2430288122486712,
+      "mean_prior_nll": 2.238656900757491,
+      "delta_nll_vs_prior": -0.00437191149117977,
+      "top1": 0.19474749134509636
+    },
+    {
+      "rank": 4,
+      "mean_nll": 2.2381921694672506,
+      "mean_prior_nll": 2.238656900757491,
+      "delta_nll_vs_prior": 0.0004647312902408274,
+      "top1": 0.19795653626403956
+    },
+    {
+      "rank": 8,
+      "mean_nll": 2.2373809965779605,
+      "mean_prior_nll": 2.238656900757491,
+      "delta_nll_vs_prior": 0.001275904179530718,
+      "top1": 0.2005089235232432
+    }
+  ],
+  "leave_one_era_delta_nll_vs_prior": {
+    "E1": -0.00133670010342124,
+    "E2": -0.0038000140392346893,
+    "E3": -0.0004901934856369472,
+    "E4": 0.0074788044088900385
+  },
+  "interpretation": [
+    "The compiler is executable and rank-8 is the development-selected candidate under the frozen rule.",
+    "The gain over an action-frequency prior is very small and does not transport positively in three of four leave-one-era diagnostics.",
+    "This is insufficient to spend fresh confirmation authority yet.",
+    "Next legal action is broader development-only cross-cohort validation and direct comparison to handcrafted exact-state rivals."
+  ],
+  "scientific_authority": "DEVELOPMENT_READINESS_ONLY",
+  "mechanism_promotion": "FORBIDDEN"
+}
