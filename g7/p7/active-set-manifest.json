@@ -30,6 +30,7 @@
     ".github/workflows/g7-p13-fresh80-batch8.yml",
     ".github/workflows/g7-p13-fresh80-selection.yml",
     ".github/workflows/g7-p13-replay-replacement-selection.yml",
+    ".github/workflows/g7-p14-confirm80-analysis.yml",
     ".github/workflows/g7-p14-confirm80-batch1.yml",
     ".github/workflows/g7-p14-confirm80-batch2.yml",
     ".github/workflows/g7-p14-confirm80-batch3.yml",
