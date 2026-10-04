@@ -1,0 +1,151 @@
+name: G7-P16-R1 development-only latent policy compiler
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p16/r1-learned-policy-compiler-preseal.json'
+      - 'scripts/g7-p16/compile-latent-policy.py'
+      - '.github/workflows/g7-p16-r1-latent-policy-compiler.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Zero-bot and development-only gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p16-r1-latent-policy-compiler.yml'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p16/r1-learned-policy-compiler-preseal.json'))
+          assert p['status']=='FROZEN_BEFORE_P16_R1_MODEL_FIT'
+          assert p['source_authority']['confirmation_authority']=='NONE'
+          assert p['source_authority']['new_body_contact']==0
+          assert 'era' in p['input_contract']['forbidden']
+          assert 'method' in p['input_contract']['forbidden']
+          assert 'reconstructor' in p['input_contract']['forbidden']
+          print('G7_P16_R1_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Recover immutable P15 final development corpus
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p16
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            mkdir -p "/tmp/p16/$dir"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" -o "/tmp/p16/$dir.zip"
+            echo "$expected  /tmp/p16/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p16/$dir.zip" -d "/tmp/p16/$dir"
+          }
+          fetch_artifact 11308256128 b1 8bae1261d1479f9d8e0570df4a448707893054ca801486b2b485500249dbf3f8
+          fetch_artifact 11308055254 b2 c0f0556b3cf9899f0912a81783c3749a8700f01a413ea95adf575cb4554b1bd9
+          fetch_artifact 11307558080 b3 76d647d131dea35acd2dcc09797fd0d523997e2c5367e00f7ef58aa85ac0228d
+          fetch_artifact 11307722609 b4 7904a95284f5cd64f6fa062f1560fa0ecd9ca281940bfd54a8ce7007370f0d16
+          fetch_artifact 11308075168 b5 89f3d4bfb1188280143d083f6e0c424776240d4cf451850a5474ed47a0468a2f
+          fetch_artifact 11307990571 b6 8f3eb62796cf3ae59fda24d93664763312b8e1492dfad1e119801901fde53e85
+          fetch_artifact 11307533260 b7 3413ffb6792bc6988abdab3a0822739cd3c87fde35428cc13d8b2aed74e1c1b0
+          fetch_artifact 11307224714 b8 6d8204f7e70342edf67f341237ce113b14561a471f05e5d5f38705e059a795cb
+          fetch_artifact 11307178834 b9 307a6b72df17bcb146622527194a7d69ba98d2618454b8bc5381b7e88b103284
+          fetch_artifact 11307966560 b10 c6d725ca24686012ecc1986f113c47bb15bcc3a50f8d7353ced80936d78de7d5
+          fetch_artifact 11308165106 b11 767aabe7425ce4b9e618740c4669049e9ec5844a2ceae23126d37b93fb787091
+          fetch_artifact 11307559284 b12 6b8c988933fe3776a14d88dfb50dccc9ecbe51ff181eb87b8a67f149dce09120
+          echo 'G7_P16_R1_DEV_CORPUS_DOWNLOAD_PASS'
+
+      - name: Reconstitute P15 dev96 exact states
+        run: |
+          set -euo pipefail
+          ROOT () {
+            file="$(find "$1" -path '*/derived/solves.jsonl' -print -quit)"
+            test -n "$file"
+            dirname "$(dirname "$file")"
+          }
+          mkdir -p /tmp/p16/build/corpus
+          B1="$(ROOT /tmp/p16/b1)"; B2="$(ROOT /tmp/p16/b2)"; B3="$(ROOT /tmp/p16/b3)"; B4="$(ROOT /tmp/p16/b4)"
+          B5="$(ROOT /tmp/p16/b5)"; B6="$(ROOT /tmp/p16/b6)"; B7="$(ROOT /tmp/p16/b7)"; B8="$(ROOT /tmp/p16/b8)"
+          B9="$(ROOT /tmp/p16/b9)"; B10="$(ROOT /tmp/p16/b10)"; B11="$(ROOT /tmp/p16/b11)"; B12="$(ROOT /tmp/p16/b12)"
+          node scripts/g7-p15/merge-fresh96-corpus.mjs \
+            --source P15_BATCH1="$B1" --source P15_BATCH2="$B2" --source P15_BATCH3="$B3" --source P15_BATCH4="$B4" \
+            --source P15_BATCH5="$B5" --source P15_BATCH6="$B6" --source P15_BATCH7="$B7" --source P15_BATCH8="$B8" \
+            --source P15_BATCH9="$B9" --source P15_BATCH10="$B10" --source P15_BATCH11="$B11" --source P15_BATCH12="$B12" \
+            --out /tmp/p16/build/corpus
+          node scripts/cube/replay-exact-trajectories.mjs \
+            --input /tmp/p16/build/corpus/combined-solves.jsonl --out /tmp/p16/build/exact
+          node scripts/g7-p7/prefix-context.mjs \
+            /tmp/p16/build/exact/exact-trajectories.json \
+            /tmp/p16/build/corpus/solve-metadata.jsonl \
+            /tmp/p16/build/prefix-states.tsv /tmp/p16/build/context.jsonl
+          node - <<'NODE'
+          const x=require('/tmp/p16/build/exact/exact-trajectories.json');
+          if(x.solve_count!==96||x.exact_end_validation_pass!==96) process.exit(1);
+          console.log('G7_P16_R1_DEV96_EXACT_PASS');
+          console.log('PREFIXES\t'+x.total_prefixes);
+          NODE
+
+      - name: Fit and validate latent representation compiler
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p16/build/out
+          python3 scripts/g7-p16/compile-latent-policy.py \
+            --states /tmp/p16/build/prefix-states.tsv \
+            --context /tmp/p16/build/context.jsonl \
+            --preseal g7/p16/r1-learned-policy-compiler-preseal.json \
+            --out /tmp/p16/build/out | tee /tmp/p16/build/compiler.log
+          python3 - <<'PY'
+          import json,math
+          x=json.load(open('/tmp/p16/build/out/latent-policy-compiler-readout.json'))
+          assert x['development_only'] is True
+          assert x['fresh_confirmation_consumed'] is False
+          assert x['new_body_contact']==0
+          assert x['metadata_input_excluded'] is True
+          assert x['solves']==96
+          assert x['verdict'] in ('COMPILER_PASS_DEVELOPMENT_READY','COMPILER_HOLD')
+          assert all(math.isfinite(q['mean_nll']) for q in x['candidate_cv'])
+          print('G7_P16_R1_COMPILER_RESULT_GATE_PASS')
+          print('SELECTED_RANK',x['selected_rank'])
+          print('VERDICT',x['verdict'])
+          print('CV',[(q['rank'],q['mean_nll'],q['mean_prior_nll'],q['mean_delta_nll_vs_prior']) for q in x['candidate_cv']])
+          PY
+
+      - name: Seal development-only compiler artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p16/seal/authority /tmp/p16/seal/derived
+          cp g7/p16/constitution.json g7/p16/r1-learned-policy-compiler-preseal.json /tmp/p16/seal/authority/
+          cp /tmp/p16/build/out/latent-policy-compiler-readout.json /tmp/p16/seal/derived/
+          cp /tmp/p16/build/out/latent-policy-model.json /tmp/p16/seal/derived/
+          cp /tmp/p16/build/compiler.log /tmp/p16/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P16-R1' \
+            'OPERATION=DEVELOPMENT_ONLY_LEARNED_POLICY_REPRESENTATION_COMPILER' \
+            'SOURCE=P15_DEV96' \
+            'FRESH_CONFIRMATION_CONSUMED=NO' \
+            'NEW_BODY_CONTACT=0' \
+            'METADATA_MODEL_INPUT=FORBIDDEN' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p16/seal/AUTHORITY.txt
+          (cd /tmp/p16/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P16-R1-latent-policy-compiler-${{ github.sha }}
+          path: /tmp/p16/seal
+          retention-days: 90
