@@ -1,0 +1,73 @@
+{
+  "schema_version": "g7-p16-constitution-1",
+  "phase": "G7-P16",
+  "formal_name": "CUBE-REV Generation VII G7-P16 — Cross-Reservoir Behavioral-Evidence Linkability, Naturalistic Exact-State Replay Readiness, Transition-Timing Byte-Custody Recovery, Handcrafted↔Learned Representation Development Authority, Observation-Fiber Re-entry Support & Multi-Observable Successor Readiness Census",
+  "operation_type": "Cross-Reservoir Successor Readiness Census",
+  "status": "OPEN_PRESEALED",
+  "parent": {
+    "p15_closure": "g7/p15/closure.json",
+    "p15_verdict": "NONSTATIONARY_MIXTURE_SUPPORTED",
+    "binding_negative_legacy": "STOP_CHASING_METADATA_SIGN_OWNERS"
+  },
+  "core_question": "Which existing CUBE-REV evidence reservoirs are actually executable, linkable, and authority-compatible enough to support the next highest-information discriminator without unnecessary fresh acquisition?",
+  "census_axes": [
+    "semantic authority",
+    "byte custody / replayability",
+    "measurement-operator clarity",
+    "exact-state link key availability",
+    "development-vs-confirmation authority",
+    "compiler/model readiness",
+    "fresh-contact requirement"
+  ],
+  "readiness_classes": [
+    "READY_EXECUTABLE",
+    "READY_DEVELOPMENT_ONLY",
+    "SEMANTIC_AUTHORITY_BYTE_CUSTODY_GAP",
+    "HISTORICAL_EXACT_AUTHORITY_EXECUTION_NOT_RECOVERED",
+    "BLOCKED_LINK_KEY",
+    "RETIRED_OR_TOMBSTONED"
+  ],
+  "reservoirs": {
+    "G7_NATURALISTIC_EXACT_STATE": {
+      "expected_class": "READY_EXECUTABLE",
+      "authority": "current exact replay + search geometry + fresh naturalistic cohorts",
+      "current_limit": "P13/P14/P15 contacted cohorts are development/negative-legacy, not fresh confirmation"
+    },
+    "LEARNED_LATENT_POLICY": {
+      "expected_class": "READY_DEVELOPMENT_ONLY",
+      "authority": "can train/freeze on prior contacted naturalistic corpora",
+      "current_limit": "no canonical representation compiler/model yet; fresh confirmation remains required"
+    },
+    "R1_SENSOR_TIMING": {
+      "expected_class": "SEMANTIC_AUTHORITY_BYTE_CUSTODY_GAP",
+      "authority": "R1.42/R1.53 sealed timing microstructure and transition-excess semantic receipts",
+      "current_limit": "historical artifacts point to local /mnt/data; current Drive/active repo search has not recovered replay bytes"
+    },
+    "R1_PUBLIC_TIMING": {
+      "expected_class": "SEMANTIC_AUTHORITY_BYTE_CUSTODY_GAP",
+      "authority": "R1.47/R1.48 corrected public timing semantic surface",
+      "current_limit": "mixed annotation semantics; corrected raw/derived artifacts not currently recovered in canonical byte custody"
+    },
+    "OBSERVATION_FIBER_EXACT": {
+      "expected_class": "HISTORICAL_EXACT_AUTHORITY_EXECUTION_NOT_RECOVERED",
+      "authority": "2x2 exact-state/ideal-observer/aliasing lineage retained by doctrine and Notion",
+      "current_limit": "NET-24/observation-fiber implementation is absent from active research/current code search after repository pruning"
+    }
+  },
+  "successor_forks": {
+    "P17_A": "Handcrafted exact geometry ↔ learned latent representation tournament",
+    "P17_B": "Choice × timing multi-observable bridge, only after timing byte custody/link keys are recovered",
+    "P17_C": "Observation-fiber × naturalistic behavior bridge, only after exact observation compiler recovery",
+    "P17_D": "Recovery-target reconstitution if next-action prediction is judged the wrong target"
+  },
+  "decision_rule": [
+    "Prefer the successor with the strongest discriminator and smallest fresh-contact cost.",
+    "Do not let historical sample size substitute for confirmation authority.",
+    "Do not launch timing bridge from semantic summaries alone; byte-level replayability is required.",
+    "Do not train learned latent representation on any sample later claimed as fresh confirmation.",
+    "Do not revive metadata owner hypotheses defeated by P15 without a genuinely new representation-level discriminator."
+  ],
+  "human_contact_gate": "CLOSED",
+  "new_body_contact": "FORBIDDEN_DURING_CENSUS",
+  "mechanism_promotion": "FORBIDDEN"
+}
