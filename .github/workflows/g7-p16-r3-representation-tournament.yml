@@ -1,0 +1,111 @@
+name: G7-P16-R3 raw-vs-handcrafted representation tournament
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p16/r3-representation-tournament-preseal.json'
+      - 'scripts/g7-p16/reconstitute-dev296.sh'
+      - 'scripts/g7-p16/tournament-raw-vs-handcrafted.py'
+      - '.github/workflows/g7-p16-r3-representation-tournament.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  tournament:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Zero-bot and tournament preseal gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p16-r3-representation-tournament.yml'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p16/r3-representation-tournament-preseal.json'))
+          r=json.load(open('g7/p16/r2-receipt.json'))
+          assert p['status']=='FROZEN_BEFORE_R3_HANDCRAFTED_FIT'
+          assert p['parent']['raw_latent_retraining']=='FORBIDDEN'
+          assert r['verdict']=='TRANSPORT_QUALIFIED_DEVELOPMENT_ONLY'
+          assert r['development']['fixed_rank']==8
+          print('G7_P16_R3_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Reconstitute immutable dev296 reservoir
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          bash scripts/g7-p16/reconstitute-dev296.sh /tmp/p16r3
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p16r3/build/multicohort/reservoir-receipt.json'))
+          assert x['unique_solves']==296 and x['cross_stage_source_overlap']==0
+          assert x['stages']=={'P11':40,'P13':80,'P14':80,'P15':96}
+          print('G7_P16_R3_DEV296_GATE_PASS')
+          PY
+
+      - name: Materialize handcrafted exact-search representation
+        run: |
+          set -euo pipefail
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p16r3/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p16r3/build/multicohort/five-rival-features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p16r3/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p16r3/build/multicohort/shell.tsv
+          echo G7_P16_R3_HANDCRAFTED_FEATURES_PASS
+
+      - name: Execute equal-rank representation tournament
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p16r3/build/out
+          python3 scripts/g7-p16/tournament-raw-vs-handcrafted.py \
+            --features /tmp/p16r3/build/multicohort/five-rival-features.tsv \
+            --shell /tmp/p16r3/build/multicohort/shell.tsv \
+            --context /tmp/p16r3/build/multicohort/multicohort-context.jsonl \
+            --preseal g7/p16/r3-representation-tournament-preseal.json \
+            --r2-receipt g7/p16/r2-receipt.json \
+            --out /tmp/p16r3/build/out | tee /tmp/p16r3/build/tournament.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p16r3/build/out/representation-tournament.json'))
+          assert x['solves']==296 and x['rank']==8
+          assert x['fresh_confirmation_consumed'] is False and x['new_body_contact']==0
+          assert x['verdict'] in ('LATENT_DOMINANCE_DEVELOPMENT','HANDCRAFTED_DOMINANCE_DEVELOPMENT','NO_CLEAR_REPRESENTATION_WINNER')
+          print('G7_P16_R3_RESULT_GATE_PASS')
+          print('DIRECT',x['direct_comparison'])
+          print('MEAN_HAND_MINUS_RAW_NLL',x['mean_hand_minus_raw_nll'])
+          print('VERDICT',x['verdict'])
+          PY
+
+      - name: Seal development-only tournament
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p16r3/seal/authority /tmp/p16r3/seal/derived
+          cp g7/p16/r2-receipt.json g7/p16/r3-representation-tournament-preseal.json /tmp/p16r3/seal/authority/
+          cp /tmp/p16r3/build/multicohort/reservoir-receipt.json /tmp/p16r3/seal/derived/
+          cp /tmp/p16r3/build/out/representation-tournament.json /tmp/p16r3/seal/derived/
+          cp /tmp/p16r3/build/tournament.log /tmp/p16r3/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P16-R3' \
+            'OPERATION=DEVELOPMENT_ONLY_REPRESENTATION_TOURNAMENT' \
+            'DEVELOPMENT_SOLVES=296'             'FIXED_RANK=8'             'RAW_RETRAINED=NO'             'FRESH_CONFIRMATION_CONSUMED=NO'             'NEW_BODY_CONTACT=0'             > /tmp/p16r3/seal/AUTHORITY.txt
+          (cd /tmp/p16r3/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P16-R3-representation-tournament-${{ github.sha }}
+          path: /tmp/p16r3/seal
+          retention-days: 90
