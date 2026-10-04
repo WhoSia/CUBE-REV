@@ -1,0 +1,62 @@
+{
+  "schema_version": "g7-p14-replay-invalid-replacement-amendment-1",
+  "phase": "G7-P14",
+  "operation_type": "Pre-Geometry Confirm80 Replay-Invalid Replacement Amendment",
+  "status": "FROZEN_BEFORE_ANY_P14_GEOMETRY",
+  "trigger": {
+    "batch5": {
+      "run": 37197973973,
+      "source_id": 3276,
+      "failure": "UNRESOLVED_AFTER_NORMALIZATION"
+    },
+    "batch6": {
+      "run": 37198126346,
+      "source_id": 11912,
+      "failure": "END_STATE_VALIDATION"
+    },
+    "batch7": {
+      "run": 37198129073,
+      "source_id": 14005,
+      "failure": "END_STATE_VALIDATION"
+    },
+    "batch8": {
+      "run": 37198132442,
+      "source_id": 7309,
+      "failure": "END_STATE_VALIDATION"
+    }
+  },
+  "observed_before_amendment": [
+    "HTTP/body capture success",
+    "replay admissibility/failure identity only"
+  ],
+  "not_observed_before_amendment": [
+    "P14 Q5/R1 geometry",
+    "band residuals",
+    "method×band residuals",
+    "era×band residuals",
+    "terminal predictions"
+  ],
+  "replacement_rule": {
+    "replace_only": [
+      3276,
+      11912,
+      14005,
+      7309
+    ],
+    "preserve_other_76": true,
+    "same_method_family": true,
+    "same_reconstructor_frequency_band": true,
+    "same_selection_era": true,
+    "same_acquisition_batch": true,
+    "candidate_pool": "frozen P8 frame minus prior183 body-contacted minus original confirm80",
+    "deterministic_rank": "same fixed cell seed rank used by P14 selector; choose first not previously selected/contacted candidate after selected top-5 set",
+    "repeated_failure": "requires separate new pre-geometry amendment; no automatic cascade"
+  },
+  "invariants": [
+    "16 cells remain exactly 5 each",
+    "8 batches remain exactly 10 each",
+    "prior183 overlap remains zero",
+    "no outcome/geometry-dependent selection"
+  ],
+  "authority_boundary": "Replay admissibility repair only; P14 predictions and thresholds remain untouched."
+}
