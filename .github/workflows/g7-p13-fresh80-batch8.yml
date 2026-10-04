@@ -1,0 +1,103 @@
+name: G7-P13 fresh80 reco batch 8
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - '.github/workflows/g7-p13-fresh80-batch8.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  batch8:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+
+      - name: Recover sealed P13 fresh80 selection
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p13-selection
+          curl --fail --location --silent --show-error \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO/actions/artifacts/11272225709/zip" \
+            -o /tmp/p13-selection.zip
+          echo 'd41f3c558fd8b9fa8d595f146a225e462732d49e5fca8a67f52802b64e34d6c6  /tmp/p13-selection.zip' | sha256sum -c -
+          unzip -q /tmp/p13-selection.zip -d /tmp/p13-selection
+          MANIFEST="$(find /tmp/p13-selection -name selection-manifest.json -print -quit)"
+          test -n "$MANIFEST"
+          node - "$MANIFEST" <<'NODE'
+          const fs=require('fs');
+          const x=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
+          if(x.status!=='SEALED_BEFORE_FRESH80_BODY_CONTACT') process.exit(1);
+          if(x.selection_manifest_sha256!=='d63f292547f38e206e39d58c6e4e7eab0025e9f6fccbb45efe52c7a7e183e4bf') process.exit(2);
+          if(x.batches['8'].length!==10) process.exit(3);
+          if(x.prior_body_excluded!==100) process.exit(4);
+          console.log('G7_P13_BATCH8_SELECTION_AUTHORITY_PASS');
+          console.log('IDS\t'+x.batches['8'].join(','));
+          NODE
+
+      - name: Dry-run bounded acquisition authority
+        run: |
+          set -euo pipefail
+          MANIFEST="$(find /tmp/p13-selection -name selection-manifest.json -print -quit)"
+          node scripts/g7-p13/acquire-fresh80-reco-batch.mjs \
+            --manifest "$MANIFEST" \
+            --batch 8 \
+            --out /tmp/unused
+
+      - name: Acquire frozen fresh80 batch 8
+        run: |
+          set -euo pipefail
+          MANIFEST="$(find /tmp/p13-selection -name selection-manifest.json -print -quit)"
+          rm -rf /tmp/g7-p13-batch08
+          node scripts/g7-p13/acquire-fresh80-reco-batch.mjs \
+            --manifest "$MANIFEST" \
+            --batch 8 \
+            --out /tmp/g7-p13-batch08 \
+            --execute | tee /tmp/g7-p13-batch08-execution.log
+
+      - name: Exact trajectory replay
+        run: |
+          set -euo pipefail
+          node scripts/cube/replay-exact-trajectories.mjs \
+            --input /tmp/g7-p13-batch08/derived/solves.jsonl \
+            --out /tmp/g7-p13-batch08/exact
+          node - <<'NODE'
+          const x=require('/tmp/g7-p13-batch08/exact/exact-trajectories.json');
+          if(x.solve_count!==10) process.exit(1);
+          if(x.exact_end_validation_pass!==10) process.exit(2);
+          console.log('G7_P13_BATCH8_EXACT_PASS');
+          console.log('PREFIXES\t'+x.total_prefixes);
+          NODE
+
+      - name: Seal batch
+        run: |
+          set -euo pipefail
+          cp /tmp/g7-p13-batch08-execution.log /tmp/g7-p13-batch08/
+          printf '%s\n' \
+            'PHASE=G7-P13' \
+            'BATCH=8' \
+            'SOLVES=10' \
+            'SELECTION_MANIFEST_SHA256=d63f292547f38e206e39d58c6e4e7eab0025e9f6fccbb45efe52c7a7e183e4bf' \
+            'PRIOR100_EXCLUDED=YES' \
+            'BULK_MIRROR=HOLD' \
+            'RAW_PUBLIC_RELEASE=HOLD' \
+            > /tmp/g7-p13-batch08/AUTHORITY.txt
+          (cd /tmp/g7-p13-batch08 && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P13-fresh80-batch8-${{ github.sha }}
+          path: /tmp/g7-p13-batch08
+          retention-days: 90
