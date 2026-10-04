@@ -1,0 +1,54 @@
+{
+  "schema_version": "g7-p16-r3-representation-tournament-preseal-1",
+  "phase": "G7-P16-R3",
+  "formal_name": "CUBE-REV Generation VII G7-P16-R3 — Fixed-Rank Raw Exact-State Latent vs Handcrafted Search-Coordinate Policy Representation Tournament, Stage-Held-Out Cross-Cohort Likelihood, Equal-Rank Capacity Control, Representation-Specific Information Gain, Metadata Firewall & Fresh-Confirmation Qualification Tournament",
+  "operation_type": "Development-Only Representation Tournament",
+  "status": "FROZEN_BEFORE_R3_HANDCRAFTED_FIT",
+  "parent": {
+    "r2_receipt": "g7/p16/r2-receipt.json",
+    "raw_latent_results": "immutable R2 leave-one-stage-out rank-8 readout",
+    "raw_latent_retraining": "FORBIDDEN"
+  },
+  "representations": {
+    "RAW_LATENT": {
+      "input": "cubie permutation/orientation tokens",
+      "rank": 8,
+      "authority": "R2"
+    },
+    "HANDCRAFTED_SEARCH": {
+      "input": [
+        "H1 best-set action membership",
+        "H2 best-set action membership",
+        "H3 best-set action membership",
+        "FS best-set action membership",
+        "TS best-set action membership",
+        "phase1 lower-bound token",
+        "G1 token",
+        "descent-action membership"
+      ],
+      "rank": 8,
+      "optimizer": "same deterministic full-softmax SGD as R2",
+      "epochs": 30,
+      "learning_rate": 0.06,
+      "l2": 0.0001
+    }
+  },
+  "development_reservoir": "same P11/P13/P14/P15 unique296 reservoir as R2",
+  "validation": {
+    "folds": "leave one full stage out: P11/P13/P14/P15",
+    "primary_metric": "held-out next-action NLL",
+    "latent_win": "RAW_LATENT NLL < HANDCRAFTED_SEARCH NLL",
+    "handcrafted_win": "HANDCRAFTED_SEARCH NLL < RAW_LATENT NLL",
+    "LATENT_DOMINANCE_DEVELOPMENT": "latent wins >=3/4 stages AND mean(HAND NLL - RAW NLL)>0",
+    "HANDCRAFTED_DOMINANCE_DEVELOPMENT": "handcrafted wins >=3/4 stages AND mean(RAW NLL - HAND NLL)>0",
+    "NO_CLEAR_REPRESENTATION_WINNER": "otherwise"
+  },
+  "boundaries": [
+    "All data are prior-contacted development evidence.",
+    "Equal latent rank does not make the feature spaces causally comparable; it is a capacity-control convenience.",
+    "A development winner only qualifies a representation for frozen fresh confirmation.",
+    "No latent dimension or handcrafted coordinate is promoted to a human cognitive mechanism."
+  ],
+  "new_body_contact": 0,
+  "fresh_confirmation_consumed": false
+}
