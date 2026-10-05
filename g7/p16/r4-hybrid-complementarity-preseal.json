@@ -1,0 +1,52 @@
+{
+  "schema_version": "g7-p16-r4-hybrid-preseal-1",
+  "phase": "G7-P16-R4",
+  "formal_name": "CUBE-REV Generation VII G7-P16-R4 — Handcrafted Search-Coordinate vs Raw+Handcrafted Hybrid Policy Representation Complementarity, Fixed-Rank Joint Token Compiler, Stage-Held-Out Cross-Cohort Incremental Information Gain, Metadata Firewall, Capacity-Asymmetry Disclosure & Fresh-Confirmation Candidate Freeze",
+  "operation_type": "Development-Only Hybrid Representation Complementarity Stress Test",
+  "status": "FROZEN_BEFORE_R4_HYBRID_FIT",
+  "parent": {
+    "r3_receipt": "g7/p16/r3-receipt.json",
+    "r3_verdict": "HANDCRAFTED_DOMINANCE_DEVELOPMENT"
+  },
+  "fixed": {
+    "rank": 8,
+    "epochs": 30,
+    "learning_rate": 0.06,
+    "l2": 0.0001,
+    "stages": [
+      "P11",
+      "P13",
+      "P14",
+      "P15"
+    ]
+  },
+  "hybrid_inputs": [
+    "raw cubie state tokens",
+    "H1/H2/H3/FS/TS action-set tokens",
+    "phase1_lb",
+    "G1",
+    "descent-action tokens"
+  ],
+  "forbidden_inputs": [
+    "era",
+    "method",
+    "reconstructor",
+    "solver identity",
+    "source provenance"
+  ],
+  "adjudication": {
+    "HYBRID_COMPLEMENTARITY_DEVELOPMENT": "hybrid wins >=3/4 held-out stages and mean(HAND NLL - HYBRID NLL)>0",
+    "HANDCRAFTED_SUFFICIENT_DEVELOPMENT": "handcrafted wins >=3/4 held-out stages and mean(HYBRID NLL - HAND NLL)>0",
+    "NO_CLEAR_COMPLEMENTARITY": "otherwise"
+  },
+  "capacity_note": "Hybrid has more input-token parameters at equal rank; any win means incremental held-out predictive information, not capacity-matched superiority.",
+  "successor": {
+    "HYBRID_COMPLEMENTARITY_DEVELOPMENT": "freeze HYBRID for later untouched confirmation",
+    "HANDCRAFTED_SUFFICIENT_DEVELOPMENT": "freeze HANDCRAFTED for later untouched confirmation",
+    "NO_CLEAR_COMPLEMENTARITY": "do not spend untouched confirmation authority yet"
+  },
+  "development_only": true,
+  "new_body_contact": 0,
+  "fresh_confirmation_consumed": false,
+  "mechanism_promotion": "FORBIDDEN"
+}
