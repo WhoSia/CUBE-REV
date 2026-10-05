@@ -1,0 +1,27 @@
+{
+  "schema_version": "g7-p17-p1-prior-contact-census-preseal-1",
+  "phase": "G7-P17-P1",
+  "formal_name": "CUBE-REV Generation VII G7-P17-P1 — Prior-Body-Contact Exhaustiveness Census, Replay-Repair Attempt Union, Original/Repaired Manifest Reconciliation, Freshness Exclusion-Set Materialization & Untouched-Confirmation Eligibility Gate",
+  "operation_type": "Prior-Contact Exhaustiveness Census",
+  "status": "FROZEN_BEFORE_P17_FRESH_SELECTION",
+  "parent": "g7/p17/p0-receipt.json",
+  "rule": "Every source ID whose solve body was fetched in any CUBE-REV naturalistic acquisition or replay-admissibility repair through P15 is excluded from P17 fresh selection, whether or not it entered a final scientific corpus.",
+  "authorities": {
+    "base_prior267": "legacy60 + P11 original + P13 original/repair union + P14 original/repair union",
+    "p15_original": "canonical fresh96 selection artifact",
+    "p15_repair_history": "P15 replay amendments plus final batch1 replay-admissibility audit"
+  },
+  "expected_lower_bound": 363,
+  "exact_count": "COMPUTE_NOT_ASSUME",
+  "outputs": [
+    "sorted contacted source IDs",
+    "stage/source provenance classes",
+    "sha256 of exclusion list"
+  ],
+  "forbidden": [
+    "infer freshness from final corpus membership only",
+    "omit failed repair candidates",
+    "open P17 body contact before census seal"
+  ],
+  "fresh_contact": 0
+}
