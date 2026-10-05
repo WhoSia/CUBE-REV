@@ -1,0 +1,39 @@
+{
+  "schema_version": "g7-p17-closure-1",
+  "phase": "G7-P17",
+  "formal_name": "CUBE-REV Generation VII G7-P17 — Untouched-Fresh Frozen-Representation Confirmation, Exhaustive Prior-Contact Exclusion, Minimal Fresh48 Contact, Replay-Admissibility Repair, No-Retrain Handcrafted-vs-Raw Policy Evaluation & Representation Transport Confirmation Campaign",
+  "status": "CLOSED",
+  "final_verdict": "HANDCRAFTED_SEARCH_DIRECTION_PERSISTS_ON_UNTOUCHED_FRESH48__BOOTSTRAP_CONFIRMATION_NOT_REACHED__HYBRID_FRESH_SECONDARY_REVERSAL_OPENS_COMPLEMENTARITY_RIVAL__MECHANISM_PROMOTION_CLOSED",
+  "terminal_stage": "G7-P17-P4",
+  "receipts": [
+    "g7/p17/p0-receipt.json",
+    "g7/p17/p1-receipt.json",
+    "g7/p17/p2-receipt.json",
+    "g7/p17/p3-receipt.json",
+    "g7/p17/p4-receipt.json"
+  ],
+  "terminal": {
+    "verdict": "DIRECTION_ONLY",
+    "hand_minus_raw_mean": -0.01580261076543865,
+    "bootstrap_p95": 0.007975479846802552,
+    "fresh_solves": 48,
+    "exact_replay_valid": 48
+  },
+  "retained": [
+    "HANDCRAFTED_SEARCH remains a live predictive rival because its fresh primary direction matches development.",
+    "HYBRID complementarity becomes a live successor rival because the frozen full-development HYBRID outperforms both HAND and RAW on untouched fresh48, but this observation is secondary/development-only from now on.",
+    "Composition-sensitive representation performance remains live: CFOP and NONCFOP show opposite HAND-minus-RAW directions."
+  ],
+  "demoted": [
+    "HANDCRAFTED_SEARCH as independently fresh-confirmed superior to RAW_LATENT",
+    "any claim of representation ordering invariant across method/era/composition",
+    "P16-R4 development-only demotion of HYBRID as sufficient reason to retire hybrid complementarity"
+  ],
+  "freshness": {
+    "cumulative_unique_body_contacted_through_p17": 418,
+    "next_fresh_selection_floor": "exclude all 418 actual contacted IDs plus any later diagnostic contacts"
+  },
+  "successor_problem": "Reconcile the stage-held-out P16-R4 HAND>HYBRID ordering with the untouched-fresh P17 HYBRID>HAND ordering. Test whether the reversal is explained by training-sample scale, representation complementarity, cohort composition, or model-estimation variance using existing development evidence before authorizing any new fresh contact.",
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
