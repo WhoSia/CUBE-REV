@@ -1,0 +1,28 @@
+{
+  "schema_version": "g7-p17-p2-receipt-1",
+  "phase": "G7-P17-P2",
+  "formal_name": "CUBE-REV Generation VII G7-P17-P2 — Untouched Fresh48 Confirmation Selection, Exhaustive Prior-Contact Exclusion, 16-Cell Method×Reconstructor×Era Balance, Deterministic Minimal-Contact Sampling, Batch-Axis Firewall & Frozen-Representation Confirmation Entry Gate",
+  "operation_type": "Outcome-Blind Fresh48 Confirmation Selection Seal",
+  "status": "CLOSED_SELECTION_SEALED",
+  "authority": {
+    "run": 37276032678,
+    "head": "2806acfa4e0eda47aab7f7a019a91dd29654c8a1",
+    "artifact": 11329429708,
+    "artifact_sha256": "5e5742addf74930935ea2b30414adad6a036cf788ed240a9a9fd2b27130b6c56",
+    "drive_file_id": "18PHIqzHvUa1abFxu6cCvKeANRJWPrOZR",
+    "selection_manifest_sha256": "4c315f97f5cb80476734d28f20f97716ded859e40f63b5ee0fb6e6d4e771ae1b"
+  },
+  "invariants": {
+    "target_total": 48,
+    "prior_contacted_excluded": 368,
+    "cells": "16x3 method×reconstructor-band×era",
+    "batches": "6x8",
+    "body_contact_at_selection": 0
+  },
+  "frozen_candidate": {
+    "name": "HANDCRAFTED_SEARCH",
+    "sha256": "b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2",
+    "retraining": "FORBIDDEN"
+  },
+  "successor_constraint": "P17-P3 may contact only the 48 selected IDs under bounded acquisition; replay-invalid replacements require a separately frozen pre-evaluation amendment."
+}
