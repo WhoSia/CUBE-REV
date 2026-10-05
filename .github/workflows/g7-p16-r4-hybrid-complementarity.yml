@@ -1,0 +1,116 @@
+name: G7-P16-R4 hybrid representation complementarity stress
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p16/r4-hybrid-complementarity-preseal.json'
+      - 'g7/p16/r3-receipt.json'
+      - 'scripts/g7-p16/reconstitute-dev296.sh'
+      - 'scripts/g7-p16/stress-hybrid-complementarity.py'
+      - '.github/workflows/g7-p16-r4-hybrid-complementarity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  stress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Zero-bot and R4 preseal gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p16-r4-hybrid-complementarity.yml'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p16/r4-hybrid-complementarity-preseal.json'))
+          r=json.load(open('g7/p16/r3-receipt.json'))
+          assert p['status']=='FROZEN_BEFORE_R4_HYBRID_FIT'
+          assert r['verdict']=='HANDCRAFTED_DOMINANCE_DEVELOPMENT'
+          assert r['development']['rank']==8
+          print('G7_P16_R4_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Reconstitute immutable dev296 reservoir
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          bash scripts/g7-p16/reconstitute-dev296.sh /tmp/p16r4
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p16r4/build/multicohort/reservoir-receipt.json'))
+          assert x['unique_solves']==296 and x['cross_stage_source_overlap']==0
+          assert x['stages']=={'P11':40,'P13':80,'P14':80,'P15':96}
+          print('G7_P16_R4_DEV296_GATE_PASS')
+          PY
+
+      - name: Materialize handcrafted exact-search representation
+        run: |
+          set -euo pipefail
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p16r4/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p16r4/build/multicohort/five-rival-features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p16r4/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p16r4/build/multicohort/shell.tsv
+          echo G7_P16_R4_FEATURES_PASS
+
+      - name: Execute hybrid complementarity stress
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p16r4/build/out
+          python3 scripts/g7-p16/stress-hybrid-complementarity.py \
+            --states /tmp/p16r4/build/multicohort/multicohort-prefix-states.tsv \
+            --features /tmp/p16r4/build/multicohort/five-rival-features.tsv \
+            --shell /tmp/p16r4/build/multicohort/shell.tsv \
+            --context /tmp/p16r4/build/multicohort/multicohort-context.jsonl \
+            --preseal g7/p16/r4-hybrid-complementarity-preseal.json \
+            --r3-receipt g7/p16/r3-receipt.json \
+            --out /tmp/p16r4/build/out | tee /tmp/p16r4/build/stress.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p16r4/build/out/hybrid-complementarity.json'))
+          assert x['solves']==296 and x['rank']==8
+          assert x['fresh_confirmation_consumed'] is False and x['new_body_contact']==0
+          assert x['verdict'] in ('HYBRID_COMPLEMENTARITY_DEVELOPMENT','HANDCRAFTED_SUFFICIENT_DEVELOPMENT','NO_CLEAR_COMPLEMENTARITY')
+          print('G7_P16_R4_RESULT_GATE_PASS')
+          print('DIRECT',x['direct_comparison'])
+          print('MEAN',x['mean_hybrid_minus_hand_nll'])
+          print('VERDICT',x['verdict'])
+          PY
+
+      - name: Seal R4 development artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p16r4/seal/authority /tmp/p16r4/seal/derived
+          cp g7/p16/r3-receipt.json g7/p16/r4-hybrid-complementarity-preseal.json /tmp/p16r4/seal/authority/
+          cp /tmp/p16r4/build/multicohort/reservoir-receipt.json /tmp/p16r4/seal/derived/
+          cp /tmp/p16r4/build/out/hybrid-complementarity.json /tmp/p16r4/seal/derived/
+          cp /tmp/p16r4/build/stress.log /tmp/p16r4/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P16-R4' \
+            'OPERATION=HYBRID_REPRESENTATION_COMPLEMENTARITY_STRESS_TEST' \
+            'DEVELOPMENT_SOLVES=296' \
+            'FIXED_RANK=8' \
+            'FRESH_CONFIRMATION_CONSUMED=NO' \
+            'NEW_BODY_CONTACT=0' \
+            > /tmp/p16r4/seal/AUTHORITY.txt
+          (cd /tmp/p16r4/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P16-R4-hybrid-complementarity-${{ github.sha }}
+          path: /tmp/p16r4/seal
+          retention-days: 90
