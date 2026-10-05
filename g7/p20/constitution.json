@@ -1,0 +1,71 @@
+{
+  "schema_version": "g7-p20-constitution-1",
+  "phase": "G7-P20",
+  "formal_name": "CUBE-REV Generation VII G7-P20 — Independent-Fresh Cohort Effect-Size Heterogeneity, P17↔P19 Frozen HYBRID Complementarity Transport, Solve-Bootstrap Cohort-Difference Estimation, Fresh96 Descriptive Pooling, Era×Method×Reconstructor Interaction Stability & Successor-Contact Necessity Audit",
+  "operation_type": "Cross-Fresh-Cohort Representation Heterogeneity Audit",
+  "status": "FROZEN_AFTER_P17_P19_AGGREGATE_RESULTS_BEFORE_SOLVE_LEVEL_HETEROGENEITY_READOUT",
+  "parent": {
+    "p17_closure": "g7/p17/closure.json",
+    "p18_closure": "g7/p18/closure.json",
+    "p19_closure": "g7/p19/closure.json",
+    "known_aggregate_before_p20": {
+      "p17_hybrid_minus_hand": -0.019312695212367597,
+      "p19_hybrid_minus_hand": -0.006052532451365032,
+      "dev296_hybrid_minus_hand": -0.011161350016443021
+    }
+  },
+  "evidence_boundary": {
+    "p17_role": "independent fresh48 for P16 HAND-vs-RAW primary; HYBRID secondary, development-only after P17",
+    "p19_role": "independent untouched fresh48 primary HYBRID-vs-HAND confirmation attempt",
+    "p20_role": "post-result heterogeneity audit only; no fresh confirmation authority",
+    "new_body_contact": 0,
+    "retraining": false
+  },
+  "readouts": {
+    "cohort_difference": {
+      "statistic": "mean(P19 HYBRID-HAND) - mean(P17 HYBRID-HAND)",
+      "bootstrap_unit": "solve independently within cohort",
+      "bootstrap_repetitions": 100000,
+      "seed": "CUBE_REV_G7_P20_COHORT_DIFF_V1",
+      "interpretation": "CI excluding zero supports fresh-cohort effect-size nonstationarity; CI crossing zero leaves magnitude instability unresolved"
+    },
+    "pooled_fresh96": {
+      "statistic": "equal-solve mean HYBRID-HAND across P17+P19",
+      "bootstrap_unit": "solve pooled across 96",
+      "bootstrap_repetitions": 100000,
+      "seed": "CUBE_REV_G7_P20_POOLED96_V1",
+      "authority": "descriptive only because P17 generated the hybrid successor rival"
+    },
+    "interaction_stability": {
+      "axes": [
+        "method_family",
+        "reconstructor_frequency_band",
+        "selection_era"
+      ],
+      "statistic": "within-level mean(P19)-mean(P17) HYBRID-HAND",
+      "requirements": "report all level-wise deltas and sign concordance; do not select a favorable subgroup",
+      "era_localization_test": "compare early E1/E2 versus late E3/E4 cohort-difference means descriptively"
+    }
+  },
+  "adjudication": {
+    "STABLE_DIRECTION_VARIABLE_MAGNITUDE": "both cohort aggregate effects favor HYBRID; cohort-difference CI may or may not exclude zero; subgroup sign ownership is not uniform",
+    "EFFECT_SIZE_NONSTATIONARY": "cohort-difference 90% bootstrap interval excludes zero in either direction",
+    "STABLE_COMPLEMENTARITY_SURFACE": "cohort-difference 90% interval includes zero AND at least 2/3 named axes have all level-wise cohort-difference signs mixed around zero without a consistent localized displacement",
+    "HETEROGENEITY_LOCALIZED": "one named axis shows a coherent level-structured displacement that explains the aggregate cohort difference, while other axes do not",
+    "SUPPORT_LIMITED": "either fresh cohort has fewer than 48 solve-level rows or required metadata levels are absent"
+  },
+  "successor_rule": {
+    "authorize_new_fresh_contact": false,
+    "default_if_nonstationary": "do not spend more fresh contact on the same aggregate HYBRID-vs-HAND contrast; either freeze a localized successor rival prospectively or return to another evidence reservoir",
+    "default_if_stable_surface": "only then consider whether a larger untouched sample has enough information value to test the same frozen contrast"
+  },
+  "forbidden": [
+    "retrain HAND or HYBRID",
+    "change subgroup axes after reading solve-level results",
+    "treat pooled fresh96 as independent confirmation",
+    "use subgroup discovery to retroactively rescue P19",
+    "mechanism promotion"
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
