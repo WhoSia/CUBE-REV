@@ -1,0 +1,24 @@
+{
+  "schema_version": "g7-p19-p2-fresh48-selection-preseal-1",
+  "phase": "G7-P19-P2",
+  "formal_name": "CUBE-REV Generation VII G7-P19-P2 — Untouched Fresh48 Hybrid-Confirmation Selection, Exhaustive Prior418 Exclusion, 16-Cell Method×Reconstructor×Era Balance, Deterministic Minimal-Contact Sampling, Batch-Axis Firewall & Frozen-Model Evaluation Entry Gate",
+  "operation_type": "Outcome-Blind Fresh48 Confirmation Selection Seal",
+  "status": "FROZEN_BEFORE_P19_FRESH48_SELECTION",
+  "parent": "g7/p19/p1-receipt.json",
+  "target_total": 48,
+  "per_cell": 3,
+  "cells": 16,
+  "batches": 6,
+  "max_per_batch": 8,
+  "seed": "CUBE_REV_G7_P19_HYBRID_CONFIRMATION_V1",
+  "exclusion_count": 418,
+  "exclusion_list_sha256": "da2b4ac80970ee77fe64c15ac60745afa24d29995291438bb05026e8220fd1cc",
+  "selection_rule": "within each method×reconstructor-band×era cell, ascending SHA-256(seed|cell|source_id), then source_id; choose first 3 after exclusion",
+  "batch_rule": "same deterministic six-batch axis-mixing map as P17, with 8 solves per batch and no batch pure on method/band/era",
+  "body_contact": 0,
+  "forbidden": [
+    "inspect solve bodies before seal",
+    "replace IDs based on model outcome",
+    "change balance axes or target N"
+  ]
+}
