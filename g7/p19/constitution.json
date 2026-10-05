@@ -1,0 +1,73 @@
+{
+  "schema_version": "g7-p19-constitution-1",
+  "phase": "G7-P19",
+  "formal_name": "CUBE-REV Generation VII G7-P19 — Untouched-Fresh Hybrid Complementarity Confirmation, Exhaustive Prior-Contact Exclusion, Minimal Fresh48 Acquisition, Frozen Full296 HAND↔HYBRID No-Retrain Evaluation, Solve-Clustered NLL Confirmation, 16-Cell Transport Diagnostics & Representation Complementarity Confirmation Campaign",
+  "operation_type": "Untouched-Fresh Frozen-Representation Complementarity Confirmation Campaign",
+  "status": "PRESEALED_BEFORE_P19_FRESH_SELECTION_AND_BODY_CONTACT",
+  "parents": {
+    "p18_closure": "g7/p18/closure.json",
+    "p19_p0": "g7/p19/p0-receipt.json",
+    "p19_p1": "g7/p19/p1-receipt.json"
+  },
+  "frozen_models": {
+    "HANDCRAFTED_SEARCH": {
+      "sha256": "b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2",
+      "role": "primary comparator"
+    },
+    "HYBRID": {
+      "sha256": "c1c3939b99663e124610fc9adafbd3559af291d8bae3dbd6fac13517b422cb9a",
+      "role": "primary candidate"
+    },
+    "training_authority": "P16-R5 full-development freeze on dev296",
+    "retraining": "FORBIDDEN",
+    "representation_reselection": "FORBIDDEN"
+  },
+  "fresh_design": {
+    "target_total": 48,
+    "frame": "frozen P8 10,591 live-present 3x3 population",
+    "prior_body_contacted_excluded": 418,
+    "exclusion_list_sha256": "da2b4ac80970ee77fe64c15ac60745afa24d29995291438bb05026e8220fd1cc",
+    "cells": "2 method ×2 reconstructor-band ×4 era =16 cells",
+    "per_cell": 3,
+    "batches": "6x8",
+    "seed": "CUBE_REV_G7_P19_HYBRID_CONFIRMATION_V1",
+    "replacement_policy": "replay-invalid replacement only under separately frozen pre-evaluation cell/batch-preserving amendment"
+  },
+  "primary": {
+    "estimand": "solve-equal mean NLL(HYBRID)-NLL(HANDCRAFTED_SEARCH)",
+    "desired_direction": "<0",
+    "bootstrap_unit": "solve",
+    "bootstrap_repetitions": 100000,
+    "bootstrap_seed": "CUBE_REV_G7_P19_PRIMARY_BOOTSTRAP_V1",
+    "confirmed_rule": "mean < 0 AND bootstrap upper 95th percentile < 0",
+    "direction_only_rule": "mean < 0 AND upper 95th percentile >= 0",
+    "not_confirmed_rule": "mean >= 0",
+    "support_rule": "48 exact-replay-valid solves required after pre-evaluation repair"
+  },
+  "secondary": [
+    "mean top1 HYBRID and HAND",
+    "method-specific HYBRID-minus-HAND margins",
+    "reconstructor-band-specific margins",
+    "era-specific margins",
+    "16-cell margins",
+    "batch margins",
+    "comparison to P17 development-only effect after primary verdict"
+  ],
+  "forbidden": [
+    "retrain or refit either model",
+    "change rank/token grammar/optimizer",
+    "add RAW_LATENT to primary adjudication",
+    "change sample size after selection",
+    "pool P17 or dev296 into P19 primary evaluation",
+    "use secondary subgroup results to rescue a failed primary",
+    "claim cognitive mechanism from predictive representation performance"
+  ],
+  "terminal_verdicts": [
+    "HYBRID_FRESH_CONFIRMED",
+    "HYBRID_DIRECTION_ONLY",
+    "HYBRID_NOT_CONFIRMED",
+    "SUPPORT_LIMITED"
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
