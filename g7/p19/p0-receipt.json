@@ -1,0 +1,30 @@
+{
+  "schema_version": "g7-p19-p0-receipt-1",
+  "phase": "G7-P19-P0",
+  "formal_name": "CUBE-REV Generation VII G7-P19-P0 — Frozen Full296 HYBRID-vs-HAND Untouched-Fresh Contact-Budget Planning, P17 Development-Only Solve-Margin Reconstitution, 16-Cell Stratified Bootstrap Assurance, Prior-Contact Floor Accounting & Minimal Complementarity-Confirmation Contact Audit",
+  "operation_type": "Pre-Contact Fresh-Sample Budget Planning Audit",
+  "status": "CLOSED_ASSURANCE_REACHED",
+  "authority": {
+    "run": 37283816984,
+    "head": "36aa2c2865a6836d130b52e47e15e9dd9e9924c0",
+    "artifact": 11333900384,
+    "artifact_sha256": "ac2296fb8168cb5485904a2a6c8bf6f03633aee22c3053b8f216a3f2f474b2f9",
+    "drive_file_id": "1_kTe21BJP_jFhh71v6la0MIY72ZuAKCR"
+  },
+  "development": {
+    "source": "P17 fresh48 converted to development-only",
+    "observed_mean_hybrid_minus_hand": -0.019312695212367597,
+    "mean_states_per_solve": 47.1875,
+    "fresh_contact": 0
+  },
+  "selected_fresh_solves": 48,
+  "selected_per_16cell": 3,
+  "planning_48": {
+    "bootstrap_mean": -0.019297752776943344,
+    "bootstrap_p05": -0.028597181993245648,
+    "bootstrap_p95": -0.010061634954772691,
+    "assurance_pass": true
+  },
+  "verdict": "ASSURANCE_REACHED",
+  "boundary": "Development bootstrap selected contact budget only; no P19 fresh confirmation evidence exists yet."
+}
