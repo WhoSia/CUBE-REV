@@ -1,0 +1,183 @@
+name: G7-P19-P4 frozen fresh48 hybrid confirmation
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p19/p3-receipt.json'
+      - 'g7/p19/p4-frozen-hybrid-confirmation-preseal.json'
+      - 'scripts/g7-p19/merge-fresh48-corpus.mjs'
+      - 'scripts/g7-p19/evaluate-frozen-hybrid-fresh48.py'
+      - '.github/workflows/g7-p19-p4-frozen-hybrid-confirmation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  confirm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Preseal and zero-bot gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p19-p4-frozen-hybrid-confirmation.yml'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p19/p4-frozen-hybrid-confirmation-preseal.json'))
+          r=json.load(open('g7/p19/p3-receipt.json'))
+          assert p['status']=='FROZEN_BEFORE_FRESH48_MODEL_EVALUATION'
+          assert r['status']=='CLOSED_FRESH48_EXACT_REPLAY_READY'
+          assert r['final_corpus']['solves']==48 and r['final_corpus']['all_exact_replay_valid'] is True
+          assert r['repair']['repaired_manifest_sha256']=='9c620e0a3377ad3f80774e3d571d90ef329a00dd91746071bf02fbfddb300f75'
+          print('G7_P19_P4_PRESEAL_GATE_PASS')
+          print('G7_P19_P4_ZERO_BOT_WRITEBACK_PATTERN_PASS')
+          PY
+
+      - name: Recover fresh48 acquisition, repair and frozen model authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p19p4/{b1,b2,b3,b4,b5,repair,models}
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p19p4/$dir.zip"
+            echo "$expected  /tmp/p19p4/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p19p4/$dir.zip" -d "/tmp/p19p4/$dir"
+          }
+          fetch_artifact 11333429242 b1 92640918c444ba295c8ca3456ea1b471e8feffc113a22907f5918fc314731bcf
+          fetch_artifact 11334152334 b2 2c44102ecd19c54167defcd074f9b44f11589a522e2d40a0aca757e217b9cf74
+          fetch_artifact 11333304383 b3 bed25984e43a3d1265266ccfdd67ad8fa1017a14c320a8315c211bfed126b854
+          fetch_artifact 11333389532 b4 794ab3cbee56bc06160adda80bd95652858a35ab83af9161a8008b3d645dd314
+          fetch_artifact 11333793768 b5 78f2e105ccb8c4709a261a4c085e1723eb6487c488c6cf7365b41f2a38b8a533
+          fetch_artifact 11333594418 repair 5e8c6f39a9a0e0fea1b4d95649f61de888fddef2f0d3d2046153588be0dd45df
+          fetch_artifact 11327619543 models 36cd1c59a594c4175413c0b16530c1109ae993e7a7df3cea41386dfea96dfc5d
+          echo G7_P19_P4_INPUT_AUTHORITY_PASS
+
+      - name: Merge repaired untouched fresh48 corpus
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p19p4/build/corpus
+          batch_root () {
+            local base="$1"; local pattern="$2"; local f
+            f="$(find "$base" -path "$pattern" -print -quit)"
+            test -n "$f"
+            dirname "$(dirname "$f")"
+          }
+          B1="$(batch_root /tmp/p19p4/b1 '*/derived/solves.jsonl')"
+          B2="$(batch_root /tmp/p19p4/b2 '*/derived/solves.jsonl')"
+          B3="$(batch_root /tmp/p19p4/b3 '*/derived/solves.jsonl')"
+          B4="$(batch_root /tmp/p19p4/b4 '*/derived/solves.jsonl')"
+          B5="$(batch_root /tmp/p19p4/b5 '*/derived/solves.jsonl')"
+          B6="$(batch_root /tmp/p19p4/repair '*/batch6/derived/solves.jsonl')"
+          node scripts/g7-p19/merge-fresh48-corpus.mjs \
+            --source P19_BATCH1="$B1" \
+            --source P19_BATCH2="$B2" \
+            --source P19_BATCH3="$B3" \
+            --source P19_BATCH4="$B4" \
+            --source P19_BATCH5="$B5" \
+            --source P19_BATCH6="$B6" \
+            --out /tmp/p19p4/build/corpus
+
+      - name: Reconstitute exact fresh48 state geometry
+        run: |
+          set -euo pipefail
+          node scripts/cube/replay-exact-trajectories.mjs \
+            --input /tmp/p19p4/build/corpus/combined-solves.jsonl \
+            --out /tmp/p19p4/build/exact
+          node scripts/g7-p7/prefix-context.mjs \
+            /tmp/p19p4/build/exact/exact-trajectories.json \
+            /tmp/p19p4/build/corpus/solve-metadata.jsonl \
+            /tmp/p19p4/build/prefix-states.tsv \
+            /tmp/p19p4/build/context.jsonl
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p19p4/build/prefix-states.tsv > /tmp/p19p4/build/features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p19p4/build/prefix-states.tsv > /tmp/p19p4/build/shell.tsv
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p19p4/build/exact/exact-trajectories.json'))
+          assert x['solve_count']==48 and x['exact_end_validation_pass']==48
+          print('G7_P19_P4_FRESH48_EXACT_GATE_PASS',x['total_prefixes'])
+          PY
+
+      - name: Locate and verify frozen P16-R5 model bytes
+        run: |
+          set -euo pipefail
+          HAND="$(find /tmp/p19p4/models -name handcrafted_search.json -print -quit)"
+          HYB="$(find /tmp/p19p4/models -name hybrid.json -print -quit)"
+          test -n "$HAND"; test -n "$HYB"
+          echo 'b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2  '"$HAND" | sha256sum -c -
+          echo 'c1c3939b99663e124610fc9adafbd3559af291d8bae3dbd6fac13517b422cb9a  '"$HYB" | sha256sum -c -
+          printf '%s\n' "$HAND" > /tmp/p19p4/HAND_PATH
+          printf '%s\n' "$HYB" > /tmp/p19p4/HYB_PATH
+          echo G7_P19_P4_FROZEN_MODEL_BYTES_PASS
+
+      - name: Execute untouched-fresh frozen HYBRID-vs-HAND confirmation
+        run: |
+          set -euo pipefail
+          HAND="$(cat /tmp/p19p4/HAND_PATH)"
+          HYB="$(cat /tmp/p19p4/HYB_PATH)"
+          mkdir -p /tmp/p19p4/build/out
+          python3 scripts/g7-p19/evaluate-frozen-hybrid-fresh48.py \
+            --states /tmp/p19p4/build/prefix-states.tsv \
+            --features /tmp/p19p4/build/features.tsv \
+            --shell /tmp/p19p4/build/shell.tsv \
+            --metadata /tmp/p19p4/build/corpus/solve-metadata.jsonl \
+            --hand-model "$HAND" \
+            --hybrid-model "$HYB" \
+            --preseal g7/p19/p4-frozen-hybrid-confirmation-preseal.json \
+            --out /tmp/p19p4/build/out | tee /tmp/p19p4/build/evaluation.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p19p4/build/out/fresh48-frozen-hybrid-confirmation.json'))
+          assert x['fresh_only'] is True and x['retrained'] is False
+          assert x['solves']==48
+          assert x['verdict'] in ('HYBRID_FRESH_CONFIRMED','HYBRID_DIRECTION_ONLY','HYBRID_NOT_CONFIRMED','SUPPORT_LIMITED')
+          print('G7_P19_P4_RESULT_GATE_PASS',x['verdict'])
+          print('PRIMARY',x['primary'])
+          print('SECONDARY',x['secondary'])
+          print('METHOD',x['transport_groups']['method_family'])
+          print('BAND',x['transport_groups']['reconstructor_frequency_band'])
+          print('ERA',x['transport_groups']['selection_era'])
+          PY
+
+      - name: Seal fresh confirmation artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p19p4/seal/authority /tmp/p19p4/seal/derived
+          cp g7/p19/p3-receipt.json g7/p19/p4-frozen-hybrid-confirmation-preseal.json /tmp/p19p4/seal/authority/
+          cp /tmp/p19p4/build/corpus/corpus-receipt.json /tmp/p19p4/seal/derived/
+          cp /tmp/p19p4/build/out/fresh48-frozen-hybrid-confirmation.json /tmp/p19p4/seal/derived/
+          cp /tmp/p19p4/build/evaluation.log /tmp/p19p4/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P19-P4' \
+            'OPERATION=UNTOUCHED_FRESH_FROZEN_HYBRID_CONFIRMATION' \
+            'FRESH_SOLVES=48' \
+            'PRIMARY=HYBRID_MINUS_HAND_SOLVE_NLL' \
+            'RETRAINED=NO' \
+            'DEVELOPMENT_POOLING=NO' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p19p4/seal/AUTHORITY.txt
+          (cd /tmp/p19p4/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P19-P4-frozen-hybrid-confirmation-${{ github.sha }}
+          path: /tmp/p19p4/seal
+          retention-days: 90
