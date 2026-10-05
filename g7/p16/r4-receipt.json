@@ -1,0 +1,61 @@
+{
+  "schema_version": "g7-p16-r4-receipt-1",
+  "phase": "G7-P16-R4",
+  "formal_name": "CUBE-REV Generation VII G7-P16-R4 — Handcrafted Search-Coordinate vs Raw+Handcrafted Hybrid Policy Representation Complementarity, Fixed-Rank Joint Token Compiler, Stage-Held-Out Cross-Cohort Incremental Information Gain, Metadata Firewall, Capacity-Asymmetry Disclosure & Fresh-Confirmation Candidate Freeze",
+  "operation_type": "Development-Only Hybrid Representation Complementarity Stress Test",
+  "status": "CLOSED_HANDCRAFTED_SUFFICIENT_DEVELOPMENT",
+  "authority": {
+    "run": 37270565346,
+    "head": "091ee850e6793fd330ece33bf8dc583db5a2554e",
+    "artifact": 11328472211,
+    "artifact_sha256": "dd98baa2fb67c0f8c06b9312a5c87de530181d456d2bfcf4046f0ade295c5c0d",
+    "drive_file_id": "1yWqNHd7Z_bkeY4aLYqi6bZ5UTEKEKkGw"
+  },
+  "development": {
+    "solves": 296,
+    "rank": 8,
+    "stages": {
+      "P11": 40,
+      "P13": 80,
+      "P14": 80,
+      "P15": 96
+    },
+    "fresh_confirmation_consumed": false,
+    "new_body_contact": 0
+  },
+  "direct_comparison": {
+    "P11": {
+      "handcrafted_nll": 2.1789807924402202,
+      "hybrid_nll": 2.1798747301072727,
+      "hybrid_minus_hand": 0.0008939376670524801,
+      "winner": "HANDCRAFTED_SEARCH"
+    },
+    "P13": {
+      "handcrafted_nll": 2.157875435605382,
+      "hybrid_nll": 2.1699930991230736,
+      "hybrid_minus_hand": 0.01211766351769139,
+      "winner": "HANDCRAFTED_SEARCH"
+    },
+    "P14": {
+      "handcrafted_nll": 2.186074542515284,
+      "hybrid_nll": 2.1915073754875456,
+      "hybrid_minus_hand": 0.005432832972261714,
+      "winner": "HANDCRAFTED_SEARCH"
+    },
+    "P15": {
+      "handcrafted_nll": 2.1810077281447464,
+      "hybrid_nll": 2.1952487042296807,
+      "hybrid_minus_hand": 0.014240976084934243,
+      "winner": "HANDCRAFTED_SEARCH"
+    }
+  },
+  "mean_hybrid_minus_hand_nll": 0.008171352560484957,
+  "verdict": "HANDCRAFTED_SUFFICIENT_DEVELOPMENT",
+  "interpretation": [
+    "Adding raw cubie-state token capacity to the handcrafted search/action-support representation fails to improve held-out prediction on any of the four development stages.",
+    "The handcrafted representation is therefore the current lowest-complexity qualified candidate for untouched fresh confirmation.",
+    "This is predictive representation selection only; it does not imply that the handcrafted coordinates are cognitively represented."
+  ],
+  "candidate_for_freeze": "HANDCRAFTED_SEARCH",
+  "mechanism_promotion": "FORBIDDEN"
+}
