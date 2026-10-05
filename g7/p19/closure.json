@@ -1,0 +1,82 @@
+{
+  "schema_version": "g7-p19-closure-1",
+  "phase": "G7-P19",
+  "formal_name": "CUBE-REV Generation VII G7-P19 — Untouched-Fresh Hybrid Complementarity Confirmation, Exhaustive Prior-Contact Exclusion, Minimal Fresh48 Acquisition, Frozen Full296 HAND↔HYBRID No-Retrain Evaluation, Solve-Clustered NLL Confirmation, 16-Cell Transport Diagnostics & Representation Complementarity Confirmation Campaign",
+  "operation_type": "Untouched-Fresh Frozen-Representation Complementarity Confirmation Campaign",
+  "status": "CLOSED",
+  "final_verdict": "HYBRID_DIRECTION_ONLY__INDEPENDENT_FRESH_DIRECTION_REPLICATED__BOOTSTRAP_CONFIRMATION_NOT_REACHED__COMPLEMENTARITY_REMAINS_LIVE_BUT_NOT_CONFIRMED",
+  "authority": {
+    "terminal_run": 37286253459,
+    "head": "90406e4099a1203298b7c014cfac6317569e6087",
+    "artifact": 11333858846,
+    "artifact_sha256": "82a145b4a8d6d0ce70a0cb5eaef97e8ca78d5c6802b3acc080065a70d274461b",
+    "drive": "1fBpAMtkdVtJdPVqgqJd6E-roAtmiAV1J"
+  },
+  "freshness": {
+    "prior_contacted_before_p19": 418,
+    "original_fresh48_contacted": 48,
+    "replay_invalid_current": 12906,
+    "repair_replacement": 12341,
+    "cumulative_unique_contacted_through_p19": 467
+  },
+  "repaired_corpus": {
+    "solves": 48,
+    "exact_replay_valid": 48,
+    "cells": "16x3",
+    "batches": "6x8",
+    "repaired_manifest_sha256": "9c620e0a3377ad3f80774e3d571d90ef329a00dd91746071bf02fbfddb300f75"
+  },
+  "primary": {
+    "estimand": "solve-equal mean NLL(HYBRID)-NLL(HANDCRAFTED_SEARCH)",
+    "n_solves": 48,
+    "mean": -0.006052532451365032,
+    "bootstrap_repetitions": 100000,
+    "p05": -0.018784205661836247,
+    "p95": 0.00662669741716178,
+    "verdict": "HYBRID_DIRECTION_ONLY"
+  },
+  "secondary": {
+    "mean_nll": {
+      "HANDCRAFTED_SEARCH": 2.154464303826406,
+      "HYBRID": 2.1484117713750415
+    },
+    "mean_top1": {
+      "HANDCRAFTED_SEARCH": 0.24134481085031234,
+      "HYBRID": 0.2531396991170161
+    },
+    "method": {
+      "CFOP": -0.002780171695785797,
+      "NONCFOP": -0.009324893206944268
+    },
+    "reconstructor_band": {
+      "DOMINANT": -0.009838630503415416,
+      "NONDOMINANT": -0.0022664343993146485
+    },
+    "era": {
+      "E1_2013_2016_OR_EARLIER": 0.0017669627091911888,
+      "E2_2017_2020": -0.0005339653644181689,
+      "E3_2021_2024": -0.013916041368099171,
+      "E4_2025_2026": -0.01152708578213398
+    }
+  },
+  "interpretation": [
+    "The HYBRID-versus-HAND direction generated in P17 and attributed to scale-mediated complementarity in P18 reappears on a second independently selected untouched fresh48 sample.",
+    "The effect is materially smaller than in P17 and the solve-bootstrap upper 95th percentile crosses zero, so the presealed full confirmation criterion is not met.",
+    "HYBRID has lower mean NLL and higher mean top-1 than HAND on this fresh sample, but this remains direction-only evidence.",
+    "Method and reconstructor-band marginals both retain the HYBRID-favoring direction; the era surface is heterogeneous, with E1 slightly HAND-favoring, E2 near zero, and E3/E4 more strongly HYBRID-favoring.",
+    "P19 therefore strengthens the case that raw-state information can complement handcrafted search structure, while simultaneously showing that the magnitude is not yet stable enough for a population-general confirmation claim."
+  ],
+  "retained": [
+    "HYBRID complementarity remains a LIVE_RIVAL.",
+    "HANDCRAFTED_SEARCH remains a LIVE_RIVAL and cannot be demoted by P19.",
+    "The representation comparison is predictive only; neither model receives cognitive-mechanism authority."
+  ],
+  "demoted_or_forbidden": [
+    "claim that HYBRID superiority is fresh-confirmed",
+    "claim that the P17 effect magnitude transports unchanged",
+    "mechanism interpretation of raw-state latent features"
+  ],
+  "successor_problem": "Before spending more untouched contact on the same aggregate contrast, use the two independent fresh48 cohorts and development authority to determine whether HYBRID complementarity is stable, era-localized, or effect-size nonstationary; freeze any successor contact rule only after that heterogeneity audit.",
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
