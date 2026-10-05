@@ -216,6 +216,8 @@
     "scripts/g7-p16/tournament-raw-vs-handcrafted.py",
     "scripts/g7-p17/acquire-fresh48-reco-batch.mjs",
     "scripts/g7-p17/census-prior-contacted-ids.py",
+    "scripts/g7-p17/evaluate-frozen-fresh48.py",
+    "scripts/g7-p17/merge-fresh48-corpus.mjs",
     "scripts/g7-p17/plan-fresh-contact-budget.py",
     "scripts/g7-p17/select-fresh48-confirmation.py",
     "scripts/g7-p7/analyze-reco-five-rival.mjs",
