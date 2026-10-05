@@ -20,7 +20,13 @@
     "definition": "per solve mean state-level [NLL(HANDCRAFTED_SEARCH) - NLL(RAW_LATENT)], then equal-weight mean across solves",
     "desired_direction": "<0",
     "bootstrap": "100000 solve-level resamples with replacement; percentile 95% interval",
-    "confirmation_rule": "mean < 0 AND bootstrap 95th percentile < 0"
+    "confirmation_rule": "mean < 0 AND bootstrap 95th percentile < 0",
+    "bootstrap_seed": "CUBE_REV_G7_P17_P4_SOLVE_BOOTSTRAP_V1",
+    "bootstrap_repetitions": 100000,
+    "bootstrap_percentiles": [
+      5,
+      95
+    ]
   },
   "terminal_adjudication": {
     "FRESH_CONFIRMED": "adequate support and primary confirmation_rule passes",
