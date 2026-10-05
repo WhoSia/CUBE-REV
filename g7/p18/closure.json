@@ -1,0 +1,73 @@
+{
+  "schema_version": "g7-p18-closure-1",
+  "phase": "G7-P18",
+  "formal_name": "CUBE-REV Generation VII G7-P18 — Frozen Hybrid-Reversal Attribution, Training-Scale Learning-Curve Reconstitution, Seed-Variance Decomposition, Fresh48 Composition Reweighting, Raw↔Search Complementarity Localization, P16 Stage-Held-Out↔P17 Untouched-Fresh Ordering Reconciliation & Successor-Freshness Gate Audit",
+  "operation_type": "Development-Only Hybrid-Reversal Attribution Audit",
+  "status": "CLOSED",
+  "final_verdict": "TRAINING_SCALE_MEDIATED_HYBRID_COMPLEMENTARITY_DEVELOPMENT__COMPOSITION_NOT_SUPPORTED__SEED_VARIANCE_NOT_DOMINANT__NEW_FRESH_CONFIRMATION_REQUIRES_CONTACT_BUDGET_GATE",
+  "authority": {
+    "run": 37281089562,
+    "head": "a982a02d985b82ced717f3ecfe39e5edcfe01a17",
+    "artifact": 11333460220,
+    "artifact_sha256": "ba801a3c765b48af07bd451e049bc045a04ad829f559348e2d14060dbb72ad90",
+    "drive": "1Q55swfdr-3dyEexsGewFdD3zDp52Sfsw"
+  },
+  "development_scope": {
+    "dev296": "P11+P13+P14+P15",
+    "p17_fresh48": "development-only in P18",
+    "total_development_solves": 344,
+    "new_body_contact": 0
+  },
+  "rivals": {
+    "H_SCALE": true,
+    "H_VARIANCE": false,
+    "H_COMPOSITION": false,
+    "H_COMPLEMENTARITY": true
+  },
+  "scale_learning_curve": {
+    "n160": 0.03527762864994316,
+    "n224": 0.0041735499952558625,
+    "n296": -0.011161350016443021,
+    "metric": "median HYBRID-minus-HAND fresh48 solve-level NLL across four controlled seeds"
+  },
+  "full296_seed_means": [
+    -0.01238892071487901,
+    -0.007681712050259822,
+    -0.01732779842805397,
+    -0.009933779318007032
+  ],
+  "complementarity_localization": {
+    "raw_better_n": 25,
+    "hand_better_n": 23,
+    "mean_hand_minus_hybrid_when_raw_better": 0.0478685476986644,
+    "mean_hand_minus_hybrid_when_hand_better": -0.011726274881433277,
+    "difference": 0.05959482258009768
+  },
+  "interpretation": [
+    "The HYBRID-versus-HAND reversal is consistent with training-sample scale: HYBRID is worse at n=160, nearly tied at n=224, and better at n=296.",
+    "All four full296 controlled seeds favor HYBRID over HAND, so seed variance is not a sufficient explanation.",
+    "Post-stratification to historical method/band/era marginals does not trigger the presealed composition criterion.",
+    "RAW contributes incremental predictive information primarily on solves where RAW already outperforms HAND, supporting localized complementarity rather than uniform superiority.",
+    "Because P17 fresh48 generated the reversal hypothesis, P18 remains development-only and cannot confirm HYBRID."
+  ],
+  "retained": [
+    "Full296 HYBRID versus HAND becomes the single successor predictive rival eligible for a fresh-confirmation budget audit.",
+    "HAND remains a live rival because P17 primary HAND-vs-RAW only reached direction-only confirmation.",
+    "RAW_LATENT alone remains demoted relative to HAND in the fresh primary contrast, but raw tokens remain useful as a complementary component inside HYBRID."
+  ],
+  "freshness": {
+    "cumulative_unique_body_contacted_through_p18": 418,
+    "p18_new_body_contact": 0,
+    "new_fresh_contact_authorized": false,
+    "reopen_condition": "A successor contact-budget audit must show that existing 344 development solves cannot resolve the frozen full296 HYBRID-vs-HAND rival and must determine a minimal untouched fresh sample."
+  },
+  "boundary": [
+    "Predictive representation ordering is not cognitive mechanism identification.",
+    "P17 fresh48 is development evidence in P18.",
+    "No P18 model is eligible for confirmation or deployment without a successor preseal.",
+    "No causal authority attaches to method, era, or reconstructor reweighting."
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN",
+  "successor_problem": "Prospectively budget the smallest untouched fresh sample that can discriminate the frozen full296 HYBRID-versus-HAND representation ordering without retraining or representation reselection."
+}
