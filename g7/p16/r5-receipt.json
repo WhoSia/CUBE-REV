@@ -1,0 +1,53 @@
+{
+  "schema_version": "g7-p16-r5-receipt-1",
+  "phase": "G7-P16-R5",
+  "formal_name": "CUBE-REV Generation VII G7-P16-R5 — Full-Development Representation Model Freeze, Handcrafted/Raw/Hybrid Policy Compiler, Immutable Token-Schema & Weight Custody, Fresh-Confirmation No-Retrain Firewall, Candidate-Hierarchy Seal & Generation-VII Representation Readiness Compiler",
+  "operation_type": "Fresh-Confirmation Model Freeze Compiler",
+  "status": "CLOSED_MODEL_PACKAGE_FROZEN",
+  "authority": {
+    "run": 37271428020,
+    "head": "43888ec56d3909db642ff2f37c2d5f7f4a15198e",
+    "artifact": 11327619543,
+    "artifact_sha256": "36cd1c59a594c4175413c0b16530c1109ae993e7a7df3cea41386dfea96dfc5d",
+    "drive_file_id": "1lrU5mOWN0K4VEncG85TWvKRroprZDvd-"
+  },
+  "development": {
+    "solves": 296,
+    "states": 13944,
+    "rank": 8,
+    "fresh_confirmation_consumed": false,
+    "new_body_contact": 0
+  },
+  "frozen_models": {
+    "RAW_LATENT": {
+      "sha256": "7051407917d14efadfba0115f6f3f9d7f987e4d407f3dfe006af9040a68ce8f4",
+      "development_nll": 2.1325636776256514,
+      "top1": 0.2429718875502008
+    },
+    "HANDCRAFTED_SEARCH": {
+      "sha256": "b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2",
+      "development_nll": 2.1266296864772563,
+      "top1": 0.2546615031554791
+    },
+    "HYBRID": {
+      "sha256": "c1c3939b99663e124610fc9adafbd3559af291d8bae3dbd6fac13517b422cb9a",
+      "development_nll": 2.105769585777394,
+      "top1": 0.28112449799196787
+    }
+  },
+  "selected_candidate": "HANDCRAFTED_SEARCH",
+  "fresh_contract": [
+    "evaluate frozen model bytes only",
+    "no fitting or fine-tuning on fresh data",
+    "no rank reselection",
+    "no token-schema changes",
+    "no metadata feature additions",
+    "all three frozen families may be evaluated as predeclared comparators"
+  ],
+  "interpretation": [
+    "Full-development in-sample fit is not a model-selection criterion and does not override R3/R4 held-out results.",
+    "HYBRID has the best in-sample development fit but lost to HANDCRAFTED_SEARCH on all four held-out development stages.",
+    "HANDCRAFTED_SEARCH remains the frozen fresh-confirmation candidate by prospective development selection."
+  ],
+  "mechanism_promotion": "FORBIDDEN"
+}
