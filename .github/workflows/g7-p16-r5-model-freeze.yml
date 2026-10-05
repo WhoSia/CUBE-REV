@@ -1,0 +1,115 @@
+name: G7-P16-R5 full-development model freeze
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p16/r5-model-freeze-preseal.json'
+      - 'g7/p16/r4-receipt.json'
+      - 'scripts/g7-p16/reconstitute-dev296.sh'
+      - 'scripts/g7-p16/freeze-full-development-models.py'
+      - '.github/workflows/g7-p16-r5-model-freeze.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Zero-bot and R5 preseal gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p16-r5-model-freeze.yml'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p16/r5-model-freeze-preseal.json'))
+          r=json.load(open('g7/p16/r4-receipt.json'))
+          assert p['status']=='FROZEN_BEFORE_FULL_DEV296_MODEL_FIT'
+          assert r['verdict']=='HANDCRAFTED_SUFFICIENT_DEVELOPMENT'
+          assert p['parents']['selected_candidate']=='HANDCRAFTED_SEARCH'
+          print('G7_P16_R5_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Reconstitute immutable dev296 reservoir
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          bash scripts/g7-p16/reconstitute-dev296.sh /tmp/p16r5
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p16r5/build/multicohort/reservoir-receipt.json'))
+          assert x['unique_solves']==296 and x['cross_stage_source_overlap']==0
+          assert x['stages']=={'P11':40,'P13':80,'P14':80,'P15':96}
+          print('G7_P16_R5_DEV296_GATE_PASS')
+          PY
+
+      - name: Materialize exact-search features
+        run: |
+          set -euo pipefail
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p16r5/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p16r5/build/multicohort/five-rival-features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p16r5/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p16r5/build/multicohort/shell.tsv
+          echo G7_P16_R5_FEATURES_PASS
+
+      - name: Compile and freeze full-development models
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p16r5/build/out
+          python3 scripts/g7-p16/freeze-full-development-models.py \
+            --states /tmp/p16r5/build/multicohort/multicohort-prefix-states.tsv \
+            --features /tmp/p16r5/build/multicohort/five-rival-features.tsv \
+            --shell /tmp/p16r5/build/multicohort/shell.tsv \
+            --context /tmp/p16r5/build/multicohort/multicohort-context.jsonl \
+            --preseal g7/p16/r5-model-freeze-preseal.json \
+            --out /tmp/p16r5/build/out | tee /tmp/p16r5/build/freeze.log
+          python3 - <<'PY'
+          import json,hashlib,pathlib
+          x=json.load(open('/tmp/p16r5/build/out/model-freeze-receipt.json'))
+          assert x['solves']==296 and x['selected_candidate']=='HANDCRAFTED_SEARCH'
+          assert x['fresh_confirmation_consumed'] is False and x['new_body_contact']==0
+          for name,m in x['models'].items():
+              p=pathlib.Path('/tmp/p16r5/build/out')/m['file']
+              assert hashlib.sha256(p.read_bytes()).hexdigest()==m['sha256']
+          print('G7_P16_R5_MODEL_HASH_GATE_PASS')
+          print('MODELS',x['models'])
+          PY
+
+      - name: Seal frozen model package
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p16r5/seal/authority /tmp/p16r5/seal/models /tmp/p16r5/seal/derived
+          cp g7/p16/r4-receipt.json g7/p16/r5-model-freeze-preseal.json /tmp/p16r5/seal/authority/
+          cp /tmp/p16r5/build/out/*.json /tmp/p16r5/seal/models/
+          cp /tmp/p16r5/build/multicohort/reservoir-receipt.json /tmp/p16r5/seal/derived/
+          cp /tmp/p16r5/build/freeze.log /tmp/p16r5/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P16-R5' \
+            'OPERATION=FRESH_CONFIRMATION_MODEL_FREEZE_COMPILER' \
+            'DEVELOPMENT_SOLVES=296' \
+            'SELECTED_CANDIDATE=HANDCRAFTED_SEARCH' \
+            'FRESH_CONFIRMATION_CONSUMED=NO' \
+            'NEW_BODY_CONTACT=0' \
+            > /tmp/p16r5/seal/AUTHORITY.txt
+          (cd /tmp/p16r5/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P16-R5-model-freeze-${{ github.sha }}
+          path: /tmp/p16r5/seal
+          retention-days: 90
