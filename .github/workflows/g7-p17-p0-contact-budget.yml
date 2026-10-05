@@ -1,0 +1,111 @@
+name: G7-P17-P0 fresh-contact budget planning audit
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p17/p0-contact-budget-preseal.json'
+      - 'scripts/g7-p17/plan-fresh-contact-budget.py'
+      - 'scripts/g7-p16/reconstitute-dev296.sh'
+      - '.github/workflows/g7-p17-p0-contact-budget.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Zero-bot and P17-P0 preseal gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p17-p0-contact-budget.yml'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p17/p0-contact-budget-preseal.json'))
+          c=json.load(open('g7/p16/closure.json'))
+          assert p['status']=='FROZEN_BEFORE_P17_FRESH_SELECTION_OR_BODY_CONTACT'
+          assert c['status']=='CLOSED'
+          assert c['selected_candidate']['name']=='HANDCRAFTED_SEARCH'
+          assert c['fresh_authority_consumed'] is False
+          print('G7_P17_P0_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Reconstitute immutable dev296 planning reservoir
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          bash scripts/g7-p16/reconstitute-dev296.sh /tmp/p17p0
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p17p0/build/multicohort/reservoir-receipt.json'))
+          assert x['unique_solves']==296
+          assert x['cross_stage_source_overlap']==0
+          print('G7_P17_P0_DEV296_GATE_PASS')
+          PY
+
+      - name: Materialize exact-search features
+        run: |
+          set -euo pipefail
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p17p0/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p17p0/build/multicohort/five-rival-features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p17p0/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p17p0/build/multicohort/shell.tsv
+
+      - name: Execute solve-clustered contact-budget audit
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p17p0/build/out
+          python3 scripts/g7-p17/plan-fresh-contact-budget.py \
+            --states /tmp/p17p0/build/multicohort/multicohort-prefix-states.tsv \
+            --features /tmp/p17p0/build/multicohort/five-rival-features.tsv \
+            --shell /tmp/p17p0/build/multicohort/shell.tsv \
+            --context /tmp/p17p0/build/multicohort/multicohort-context.jsonl \
+            --preseal g7/p17/p0-contact-budget-preseal.json \
+            --out /tmp/p17p0/build/out | tee /tmp/p17p0/build/planning.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p17p0/build/out/contact-budget-planning.json'))
+          assert x['fresh_contact']==0
+          assert x['selected_fresh_solves'] in (48,64,80,96)
+          assert x['selected_fresh_solves']%16==0
+          print('G7_P17_P0_RESULT_GATE_PASS')
+          print('PLANNING',x['candidate_planning'])
+          print('SELECTED',x['selected_fresh_solves'])
+          print('VERDICT',x['verdict'])
+          PY
+
+      - name: Seal planning artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p17p0/seal/authority /tmp/p17p0/seal/derived
+          cp g7/p16/closure.json g7/p17/p0-contact-budget-preseal.json /tmp/p17p0/seal/authority/
+          cp /tmp/p17p0/build/out/contact-budget-planning.json /tmp/p17p0/seal/derived/
+          cp /tmp/p17p0/build/planning.log /tmp/p17p0/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P17-P0' \
+            'OPERATION=PRE_CONTACT_FRESH_SAMPLE_BUDGET_PLANNING_AUDIT' \
+            'DEVELOPMENT_SOLVES=296' \
+            'FRESH_CONTACT=0' \
+            > /tmp/p17p0/seal/AUTHORITY.txt
+          (cd /tmp/p17p0/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P17-P0-contact-budget-${{ github.sha }}
+          path: /tmp/p17p0/seal
+          retention-days: 90
