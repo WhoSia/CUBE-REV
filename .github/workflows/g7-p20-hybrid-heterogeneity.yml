@@ -1,0 +1,98 @@
+name: G7-P20 cross-fresh hybrid heterogeneity audit
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p20/constitution.json'
+      - 'g7/p20/implementation-preseal.json'
+      - 'scripts/g7-p20/audit-fresh-cohort-hybrid-heterogeneity.py'
+      - '.github/workflows/g7-p20-hybrid-heterogeneity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Zero-bot and preseal gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p20-hybrid-heterogeneity.yml'
+          python3 - <<'PY'
+          import json
+          c=json.load(open('g7/p20/constitution.json'))
+          p=json.load(open('g7/p20/implementation-preseal.json'))
+          assert c['status'].startswith('FROZEN_AFTER_P17_P19')
+          assert p['status']=='FROZEN_BEFORE_SOLVE_LEVEL_P17_P19_HETEROGENEITY_READOUT'
+          assert c['evidence_boundary']['new_body_contact']==0
+          assert c['evidence_boundary']['retraining'] is False
+          print('G7_P20_PRESEAL_PASS')
+          PY
+
+      - name: Recover sealed P17 and P19 terminal artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p20/p17 /tmp/p20/p19
+          curl --fail --location --silent --show-error             -H "Authorization: Bearer $GH_TOKEN"             -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/$REPO/actions/artifacts/11331570322/zip"             -o /tmp/p20/p17.zip
+          echo '8de7b27a3ead242520137049c49f2a4733ae93716dd36eff12d0d259af3ae44e  /tmp/p20/p17.zip' | sha256sum -c -
+          unzip -q /tmp/p20/p17.zip -d /tmp/p20/p17
+
+          curl --fail --location --silent --show-error             -H "Authorization: Bearer $GH_TOKEN"             -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/$REPO/actions/artifacts/11333858846/zip"             -o /tmp/p20/p19.zip
+          echo '82a145b4a8d6d0ce70a0cb5eaef97e8ca78d5c6802b3acc080065a70d274461b  /tmp/p20/p19.zip' | sha256sum -c -
+          unzip -q /tmp/p20/p19.zip -d /tmp/p20/p19
+
+          P17="$(find /tmp/p20/p17 -name fresh48-frozen-representation-confirmation.json -print -quit)"
+          P19="$(find /tmp/p20/p19 -name fresh48-frozen-hybrid-confirmation.json -print -quit)"
+          test -n "$P17"; test -n "$P19"
+          echo "P17=$P17" >> "$GITHUB_ENV"
+          echo "P19=$P19" >> "$GITHUB_ENV"
+          echo 'G7_P20_INPUT_AUTHORITY_PASS'
+
+      - name: Execute cross-fresh heterogeneity audit
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p20/out
+          python3 scripts/g7-p20/audit-fresh-cohort-hybrid-heterogeneity.py             --p17 "$P17" --p19 "$P19"             --preseal g7/p20/implementation-preseal.json             --out /tmp/p20/out | tee /tmp/p20/run.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p20/out/p20-heterogeneity-audit.json'))
+          assert x['new_body_contact']==0 and x['retrained'] is False
+          assert x['verdict'] in (
+            'SUPPORT_LIMITED',
+            'HETEROGENEITY_LOCALIZED',
+            'EFFECT_SIZE_NONSTATIONARY',
+            'STABLE_COMPLEMENTARITY_SURFACE',
+            'STABLE_DIRECTION_VARIABLE_MAGNITUDE')
+          print('G7_P20_RESULT_GATE_PASS',x['verdict'])
+          print('COHORT',x['cohort'])
+          print('POOLED96',x['pooled_fresh96'])
+          print('COHERENT_AXES',x['coherent_axes'])
+          PY
+
+      - name: Seal P20 audit artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p20/seal/authority /tmp/p20/seal/derived
+          cp g7/p20/constitution.json g7/p20/implementation-preseal.json /tmp/p20/seal/authority/
+          cp /tmp/p20/out/p20-heterogeneity-audit.json /tmp/p20/seal/derived/
+          cp /tmp/p20/run.log /tmp/p20/seal/derived/execution.log
+          printf '%s\n'             'PHASE=G7-P20'             'OPERATION=CROSS_FRESH_COHORT_REPRESENTATION_HETEROGENEITY_AUDIT'             'NEW_BODY_CONTACT=0'             'RETRAINING=NO'             'P17_ARTIFACT=11331570322'             'P19_ARTIFACT=11333858846'             'HUMAN_CONTACT_GATE=CLOSED'             > /tmp/p20/seal/AUTHORITY.txt
+          (cd /tmp/p20/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P20-hybrid-heterogeneity-${{ github.sha }}
+          path: /tmp/p20/seal
+          retention-days: 90
