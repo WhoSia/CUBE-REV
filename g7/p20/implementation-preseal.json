@@ -1,0 +1,41 @@
+{
+  "schema_version": "g7-p20-implementation-preseal-1",
+  "phase": "G7-P20",
+  "status": "FROZEN_BEFORE_SOLVE_LEVEL_P17_P19_HETEROGENEITY_READOUT",
+  "parent": "g7/p20/constitution.json",
+  "bootstrap": {
+    "cohort_difference_interval": [
+      0.05,
+      0.95
+    ],
+    "pooled_fresh96_interval": [
+      0.05,
+      0.95
+    ],
+    "repetitions": 100000
+  },
+  "axis_logic": {
+    "axes": [
+      "method_family",
+      "reconstructor_frequency_band",
+      "selection_era"
+    ],
+    "level_delta": "mean P19 HYBRID-HAND minus mean P17 HYBRID-HAND within the same metadata level",
+    "coherent_axis": "all evaluable level deltas are strictly nonzero and have the same sign as the aggregate cohort difference",
+    "mixed_axis": "otherwise",
+    "era_early_late": "arithmetic mean of E1/E2 level deltas versus arithmetic mean of E3/E4 level deltas"
+  },
+  "verdict_hierarchy": [
+    "SUPPORT_LIMITED if either cohort lacks exactly 48 solve rows or any required axis level is absent",
+    "If cohort-difference 90% interval excludes zero: HETEROGENEITY_LOCALIZED iff exactly one axis is coherent; otherwise EFFECT_SIZE_NONSTATIONARY",
+    "If cohort-difference 90% interval includes zero: STABLE_COMPLEMENTARITY_SURFACE iff zero axes are coherent; otherwise STABLE_DIRECTION_VARIABLE_MAGNITUDE"
+  ],
+  "known_before_readout": {
+    "p17_mean": -0.019312695212367597,
+    "p19_mean": -0.006052532451365032,
+    "both_direction_hybrid_favoring": true
+  },
+  "no_new_contact": true,
+  "no_retraining": true,
+  "mechanism_promotion": "FORBIDDEN"
+}
