@@ -102,7 +102,7 @@ const finalManifest={
   rows:finalRows,
   batches,
   repair_audit:audit,
-  newly_contacted_during_repair:sorted([...contacted]),
+  newly_contacted_during_repair:[...contacted].sort((a,b)=>a-b),
   selection_rule:plan.selection_rule
 };
 const canonical=JSON.stringify(finalManifest,Object.keys(finalManifest).sort());
