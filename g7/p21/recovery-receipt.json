@@ -1,0 +1,125 @@
+{
+  "schema_version": "g7-p21-recovery-receipt-1",
+  "phase": "G7-P21",
+  "status": "RECOVERY_SEARCH_COMPLETE",
+  "searched_authorities": {
+    "current_branch": "research/current",
+    "archive_branch": {
+      "name": "archive/pre-p7-active-prune-20261002",
+      "head": "f9fb6e859ea0130aa3a0b0bb7994a7f7060a8183"
+    },
+    "full_history": {
+      "drive_file_id": "1VjWE0a7V13aBgZRZgngRUvqZVkkkKLG5",
+      "zip_size_bytes": 59126859,
+      "zip_sha256": "4ff74b10d37f2e16290ed3dee90da9a58998750e2d7c8f3139c551baebc4f28a",
+      "git_bundle_sha256": "662605b72beae6182f9fe07c8395af349dd47d3c0a049857dccf2c41e3908f1c",
+      "tree_snapshot_sha256": "a927b6d6a090c4bf4c36d0ad5684dc674e88c0802fff754ae9a9b2edc4e736a3",
+      "reachable_commits": 465,
+      "reachable_objects": 2823,
+      "relevant_path_hits": 0,
+      "relevant_commit_message_hits": 0
+    },
+    "drive_exact_name_searches": [
+      "R153_SUMMARY",
+      "R153_TRANSITION_EXCESS_CONSTRUCT_V1",
+      "R153_SHA256SUMS",
+      "CUBE_REV_R1_53",
+      "CUBE-REV-R153",
+      "R1_53",
+      "R153",
+      "CUBE-REV_0.3_Bundle",
+      "CUBE-REV_0.3_Exact_Structural_Visual_Atlas",
+      "CUBE-REV_0.3_Visual_Atlas_Metadata",
+      "CUBE-REV_0.3_VisualAtlasBuilder",
+      "NET-24 Rendering",
+      "Task-conditioned Ideal-observer"
+    ],
+    "archaeology_sources": [
+      {
+        "drive_file_id": "1Y2gn7IKf-xDwVMmXYPePnLwDlRU2n-5Y",
+        "title": "9.md",
+        "role": "R1 timing semantic/provenance index only"
+      },
+      {
+        "drive_file_id": "1uJrTBPgt3PCHYH2XYoyFEhAv0KaIUBoU",
+        "title": "1.md",
+        "role": "0.3/0.4 NET-24 semantic/provenance index only"
+      }
+    ]
+  },
+  "recovered_semantic_authority": {
+    "R1_SENSOR_TIMING": {
+      "construct": "CUBE-REV-R153-TRANSITION-EXCESS-V1",
+      "R142": {
+        "timing_LOSO_AUROC": 0.879,
+        "timing_LOSO_AUPRC": 0.202,
+        "boundary_prevalence": 0.0378,
+        "held_out_sessions_above_chance": "30/30",
+        "interpretation": "predictive ranking PASS / standalone detector FAIL"
+      },
+      "R153": {
+        "Cross_ms": 1199.75,
+        "OLL_ms": 1062.25,
+        "F2L_ms": 320,
+        "PLL_AUF_ms": 43.5,
+        "exact_pair_baseline_ms": {
+          "Cross": 1169.5,
+          "OLL": 1077.8,
+          "F2L": 275,
+          "PLL_AUF": 1
+        },
+        "nonboundary_long_imi_count": 472,
+        "nonboundary_long_imi_fraction": 0.1814,
+        "boundary_near_fraction": 0.1227,
+        "enrichment_OR": 0.707,
+        "note": "Archaeology source reports 14 local /mnt/data/r153 artifacts with SHA recheck PASS at the time, but those bytes are not currently recovered."
+      }
+    },
+    "R1_PUBLIC_TIMING": {
+      "R148": {
+        "annotation_total": 908,
+        "corrected_OLL_PLL_rows": 644,
+        "corrected_OLL_PLL_solves": 408,
+        "solvers": 9,
+        "reconstructors": 8,
+        "median_OLL_s": 0.6,
+        "median_PLL_s": 0.817,
+        "paired_solves": 236,
+        "median_PLL_over_OLL": 1.428,
+        "PLL_gt_OLL": "200/236",
+        "retired_claim": "R1.47 mixed F2L/OLL/PLL seconds-per-move concordance"
+      }
+    },
+    "OBSERVATION_FIBER_EXACT": {
+      "atlas_states": 3674160,
+      "net24_record_bytes": 12,
+      "atlas_payload_bytes": 44089920,
+      "atlas_FNV1a64": "fa8af77a5c65b9d3",
+      "net24_canvas_px": "544x416",
+      "key_exact_result": "U+F+R+D 16 visible stickers are injective over the anchored 2x2 state space",
+      "recovered_artifact_names": [
+        "CUBE-REV_0.3_Exact_Structural_Visual_Atlas.bin",
+        "CUBE-REV_0.3_Visual_Atlas_Metadata.json",
+        "CUBE-REV_0.3_VisualAtlasBuilder.cpp",
+        "CUBE-REV_0.3_VisualAtlasAnalysis.py",
+        "CUBE-REV_0.3_Structurally_Matched_Stimuli.csv",
+        "CUBE-REV_0.3_Reduced_Bridge_Stimuli.csv"
+      ]
+    }
+  },
+  "custody_results": {
+    "R1_SENSOR_TIMING": "SEMANTIC_ONLY_CUSTODY_GAP_CONFIRMED",
+    "R1_PUBLIC_TIMING": "SEMANTIC_ONLY_CUSTODY_GAP_CONFIRMED",
+    "OBSERVATION_FIBER_EXACT": "SEMANTIC_AND_MATHEMATICAL_SPEC_RECOVERED__ORIGINAL_BYTES_NOT_RECOVERED__DETERMINISTIC_RECONSTRUCTION_PLAUSIBLE"
+  },
+  "bridge_readiness": {
+    "choice_pause_bridge": "BLOCKED_BY_TIMING_BYTE_CUSTODY_AND_LINK_KEYS",
+    "observation_behavior_bridge": "NOT_ORIGINAL_BYTE_RECOVERED__MAY_OPEN_NEW_DETERMINISTIC_RECONSTRUCTION_LANE"
+  },
+  "boundary": [
+    "Archaeology chat exports are provenance indexes, not executable scientific authority.",
+    "No row-level timing data were reconstructed from prose summaries.",
+    "Absence from current branch, archive branch, full Git history and Drive exact-name search strongly supports a real historical custody gap.",
+    "A future observation-fiber compiler rebuilt from exact current cube mathematics would be a new reconstruction, not recovery of original bytes."
+  ]
+}
