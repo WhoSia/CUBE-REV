@@ -1,0 +1,62 @@
+{
+  "schema_version": "g7-p16-r5-model-freeze-preseal-1",
+  "phase": "G7-P16-R5",
+  "formal_name": "CUBE-REV Generation VII G7-P16-R5 — Full-Development Representation Model Freeze, Handcrafted/Raw/Hybrid Policy Compiler, Immutable Token-Schema & Weight Custody, Fresh-Confirmation No-Retrain Firewall, Candidate-Hierarchy Seal & Generation-VII Representation Readiness Compiler",
+  "operation_type": "Fresh-Confirmation Model Freeze Compiler",
+  "status": "FROZEN_BEFORE_FULL_DEV296_MODEL_FIT",
+  "parents": {
+    "r3": "g7/p16/r3-receipt.json",
+    "r4": "g7/p16/r4-receipt.json",
+    "selected_candidate": "HANDCRAFTED_SEARCH"
+  },
+  "development_reservoir": {
+    "solves": 296,
+    "stages": {
+      "P11": 40,
+      "P13": 80,
+      "P14": 80,
+      "P15": 96
+    }
+  },
+  "fixed_models": {
+    "RAW_LATENT": {
+      "rank": 8,
+      "token_schema": "exact cubie permutation/orientation tokens",
+      "seed": "CUBE_REV_G7_P16_R5_RAW_FULL_V1"
+    },
+    "HANDCRAFTED_SEARCH": {
+      "rank": 8,
+      "token_schema": "H1/H2/H3/FS/TS + phase1_lb + G1 + descent-action tokens",
+      "seed": "CUBE_REV_G7_P16_R5_HAND_FULL_V1"
+    },
+    "HYBRID": {
+      "rank": 8,
+      "token_schema": "RAW_LATENT union HANDCRAFTED_SEARCH token spaces",
+      "seed": "CUBE_REV_G7_P16_R5_HYBRID_FULL_V1"
+    }
+  },
+  "optimizer": {
+    "epochs": 30,
+    "learning_rate": 0.06,
+    "l2": 0.0001,
+    "full_softmax": true
+  },
+  "freeze_contract": [
+    "fit on dev296 only",
+    "no metadata inputs",
+    "no fresh data during fitting",
+    "no rank reselection",
+    "serialize token schema, weights and action biases",
+    "publish cryptographic hashes in receipt",
+    "fresh confirmation must evaluate these bytes without retraining"
+  ],
+  "candidate_hierarchy": [
+    "HANDCRAFTED_SEARCH",
+    "RAW_LATENT",
+    "HYBRID"
+  ],
+  "scientific_outcome": "NONE_MODEL_MATERIALIZATION_ONLY",
+  "new_body_contact": 0,
+  "fresh_confirmation_consumed": false,
+  "mechanism_promotion": "FORBIDDEN"
+}
