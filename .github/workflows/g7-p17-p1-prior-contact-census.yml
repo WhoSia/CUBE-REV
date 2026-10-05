@@ -1,0 +1,105 @@
+name: G7-P17-P1 prior-contact exhaustiveness census
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p17/p1-prior-contact-census-preseal.json'
+      - 'scripts/g7-p17/census-prior-contacted-ids.py'
+      - '.github/workflows/g7-p17-p1-prior-contact-census.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Zero-bot and P17-P1 preseal gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p17-p1-prior-contact-census.yml'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p17/p1-prior-contact-census-preseal.json'))
+          assert x['status']=='FROZEN_BEFORE_P17_FRESH_SELECTION'
+          assert x['fresh_contact']==0
+          print('G7_P17_P1_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Recover prior contact authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p17c/{p11,p13o,p13r,p14o,p14r,p15o,p15v3}
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" -o "/tmp/p17c/$dir.zip"
+            echo "$expected  /tmp/p17c/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p17c/$dir.zip" -d "/tmp/p17c/$dir"
+          }
+          fetch_artifact 11242753632 p11 45145487febf4d9fc975299ffe567a9e20ae63cb744a6205bd53f661941f8a67
+          fetch_artifact 11272225709 p13o d41f3c558fd8b9fa8d595f146a225e462732d49e5fca8a67f52802b64e34d6c6
+          fetch_artifact 11301332731 p13r 550bdfb59023aeb6e1804afb4c1ca358c397892a5785e08d07fcabe0915442e2
+          fetch_artifact 11301404290 p14o 71faa1be721940b670c871a79a9af5bac63f84dc751b08b3a8098ff19025a46f
+          fetch_artifact 11301826265 p14r aef35848ce24010b22ffcda96739b2503bed808e0196687ddf4988cf43f05440
+          fetch_artifact 11307447864 p15o cf557f0d60a53d07742b5cc31eb3a606f2a7b5478dc5d8018ff02ee48bbc4b72
+          fetch_artifact 11308256128 p15v3 8bae1261d1479f9d8e0570df4a448707893054ca801486b2b485500249dbf3f8
+          echo G7_P17_P1_CONTACT_AUTHORITIES_RECOVERED
+
+      - name: Compile exhaustive contact exclusion set
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p17c/out
+          python3 scripts/g7-p17/census-prior-contacted-ids.py \
+            --legacy60 g7/p7/source-provenance-recovery.json \
+            --p11 "$(find /tmp/p17c/p11 -name selection-manifest.json -print -quit)" \
+            --p13-original "$(find /tmp/p17c/p13o -name selection-manifest.json -print -quit)" \
+            --p13-repaired "$(find /tmp/p17c/p13r -name selection-manifest-repaired.json -print -quit)" \
+            --p14-original "$(find /tmp/p17c/p14o -name selection-manifest.json -print -quit)" \
+            --p14-repaired "$(find /tmp/p17c/p14r -name selection-manifest-repaired.json -print -quit)" \
+            --p15-original "$(find /tmp/p17c/p15o -name selection-manifest.json -print -quit)" \
+            --p15-v3-amendment g7/p15/replay-admissibility-batch1-amendment-v3.json \
+            --p15-v3-audit "$(find /tmp/p17c/p15v3 -name replay-admissibility-audit.json -print -quit)" \
+            --out /tmp/p17c/out | tee /tmp/p17c/census.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p17c/out/prior-contact-census.json'))
+          assert x['fresh_contact']==0
+          assert x['counts']['all_prior_contacted_through_p15']>=363
+          print('G7_P17_P1_RESULT_GATE_PASS')
+          print('COUNTS',x['counts'])
+          print('P15_EXTRA',x['p15_extra_beyond_original'])
+          print('SHA256',x['exclusion_list_sha256'])
+          PY
+
+      - name: Seal contact census
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p17c/seal/authority /tmp/p17c/seal/derived
+          cp g7/p17/p1-prior-contact-census-preseal.json /tmp/p17c/seal/authority/
+          cp /tmp/p17c/out/* /tmp/p17c/seal/derived/
+          cp /tmp/p17c/census.log /tmp/p17c/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P17-P1' \
+            'OPERATION=PRIOR_CONTACT_EXHAUSTIVENESS_CENSUS' \
+            'FRESH_CONTACT=0' \
+            > /tmp/p17c/seal/AUTHORITY.txt
+          (cd /tmp/p17c/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P17-P1-prior-contact-census-${{ github.sha }}
+          path: /tmp/p17c/seal
+          retention-days: 90
