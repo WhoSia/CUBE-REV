@@ -1,0 +1,77 @@
+{
+  "schema_version": "g7-p17-p4-receipt-1",
+  "phase": "G7-P17-P4",
+  "formal_name": "CUBE-REV Generation VII G7-P17-P4 — Frozen Handcrafted-Search Representation Untouched-Fresh Confirmation, Solve-Clustered NLL Margin, Raw-Latent Primary Rival, Hybrid Secondary Comparator, No-Retrain Model-Byte Evaluation, 16-Cell Transport Diagnostics & Representation Confirmation Gate",
+  "operation_type": "Untouched-Fresh Frozen-Representation Confirmation",
+  "status": "CLOSED",
+  "verdict": "DIRECTION_ONLY",
+  "authority": {
+    "run": 37278056577,
+    "head": "491b4019f2993c46be9dc9451df774257a182e56",
+    "artifact": 11331570322,
+    "artifact_sha256": "8de7b27a3ead242520137049c49f2a4733ae93716dd36eff12d0d259af3ae44e",
+    "drive_file_id": "1TMRwTehdcrO544eR8LZv_ky_T5rO_YLi"
+  },
+  "corpus": {
+    "fresh_solves": 48,
+    "exact_replay_pass": 48,
+    "prior_contacted_excluded_before_selection": 368,
+    "cumulative_unique_contacted_through_p17_acquisition_and_repair": 418,
+    "development_pooling": false,
+    "retraining": false
+  },
+  "frozen_models": {
+    "HANDCRAFTED_SEARCH": "b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2",
+    "RAW_LATENT": "7051407917d14efadfba0115f6f3f9d7f987e4d407f3dfe006af9040a68ce8f4",
+    "HYBRID": "c1c3939b99663e124610fc9adafbd3559af291d8bae3dbd6fac13517b422cb9a"
+  },
+  "primary": {
+    "estimand": "solve-equal mean NLL(HANDCRAFTED_SEARCH)-NLL(RAW_LATENT)",
+    "n_solves": 48,
+    "mean": -0.01580261076543865,
+    "bootstrap_repetitions": 100000,
+    "bootstrap_p05": -0.03981996897134734,
+    "bootstrap_p95": 0.007975479846802552,
+    "rule": "FRESH_CONFIRMED iff mean<0 and p95<0",
+    "verdict": "DIRECTION_ONLY"
+  },
+  "secondary": {
+    "mean_hand_minus_hybrid": 0.019312695212367597,
+    "mean_nll": {
+      "HANDCRAFTED_SEARCH": 2.142692164599409,
+      "RAW_LATENT": 2.1584947753648476,
+      "HYBRID": 2.1233794693870416
+    },
+    "mean_top1": {
+      "HANDCRAFTED_SEARCH": 0.26398670923869394,
+      "RAW_LATENT": 0.24081083285714958,
+      "HYBRID": 0.28461556013190664
+    },
+    "method_hand_minus_raw": {
+      "CFOP": 0.03938010591316155,
+      "NONCFOP": -0.07098532744403886
+    },
+    "band_hand_minus_raw": {
+      "DOMINANT": 0.0007317309118827683,
+      "NONDOMINANT": -0.032336952442760074
+    },
+    "era_hand_minus_raw": {
+      "E1": 0.015754876533938755,
+      "E2": -0.09989560045238577,
+      "E3": 0.014427549744609894,
+      "E4": 0.006502731112082512
+    },
+    "authority": "HYPOTHESIS_GENERATING_ONLY"
+  },
+  "interpretation": [
+    "The frozen handcrafted-search representation retains the development-favored direction against frozen raw latent on untouched fresh48, but the presealed bootstrap upper bound crosses zero.",
+    "Therefore P17 does not independently confirm HANDCRAFTED_SEARCH superiority over RAW_LATENT.",
+    "The frozen HYBRID model has the lowest fresh mean NLL and highest fresh mean top-1 accuracy, reversing the P16-R4 held-out-development ordering; because HYBRID was secondary here, this cannot rescue the P17 primary verdict.",
+    "Method-level HAND-minus-RAW margins have opposite signs, indicating representation performance is not composition-invariant on this fresh sample."
+  ],
+  "boundary": [
+    "Predictive representation performance is not a cognitive mechanism.",
+    "Secondary hybrid and subgroup readouts cannot redefine the primary verdict.",
+    "Fresh48 may now be used as development evidence for successor hypothesis generation, but not as fresh confirmation for hypotheses first noticed here."
+  ]
+}
