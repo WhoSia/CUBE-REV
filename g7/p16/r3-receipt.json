@@ -1,0 +1,63 @@
+{
+  "schema_version": "g7-p16-r3-receipt-1",
+  "phase": "G7-P16-R3",
+  "formal_name": "CUBE-REV Generation VII G7-P16-R3 — Fixed-Rank Raw Exact-State Latent vs Handcrafted Search-Coordinate Policy Representation Tournament, Stage-Held-Out Cross-Cohort Likelihood, Equal-Rank Capacity Control, Representation-Specific Information Gain, Metadata Firewall & Fresh-Confirmation Qualification Tournament",
+  "operation_type": "Development-Only Representation Tournament",
+  "status": "CLOSED_HANDCRAFTED_DOMINANCE_DEVELOPMENT",
+  "authority": {
+    "run": 37218975865,
+    "head": "a2d0bae4753e0979b09ef3889c94967e044a1ade",
+    "artifact": 11310155457,
+    "artifact_sha256": "b38e459860ff80fcf1549e1544274a73cf54b5d792171f92bd27c8a2c7e055db",
+    "drive_file_id": "1ZYhgFZqGvzZin-dyqRDBNTvpw9sko1Tu"
+  },
+  "development": {
+    "solves": 296,
+    "stages": {
+      "P11": 40,
+      "P13": 80,
+      "P14": 80,
+      "P15": 96
+    },
+    "rank": 8,
+    "raw_latent_retrained": false,
+    "fresh_confirmation_consumed": false,
+    "new_body_contact": 0
+  },
+  "direct_comparison": {
+    "P11": {
+      "raw_nll": 2.200782093217985,
+      "handcrafted_nll": 2.1789807924402202,
+      "hand_minus_raw": -0.021801300777764876,
+      "winner": "HANDCRAFTED_SEARCH"
+    },
+    "P13": {
+      "raw_nll": 2.181012889155994,
+      "handcrafted_nll": 2.157875435605382,
+      "hand_minus_raw": -0.02313745355061192,
+      "winner": "HANDCRAFTED_SEARCH"
+    },
+    "P14": {
+      "raw_nll": 2.1900652549208046,
+      "handcrafted_nll": 2.186074542515284,
+      "hand_minus_raw": -0.0039907124055207355,
+      "winner": "HANDCRAFTED_SEARCH"
+    },
+    "P15": {
+      "raw_nll": 2.2044924238223502,
+      "handcrafted_nll": 2.1810077281447464,
+      "hand_minus_raw": -0.023484695677603806,
+      "winner": "HANDCRAFTED_SEARCH"
+    }
+  },
+  "mean_hand_minus_raw_nll": -0.018103540602875334,
+  "verdict": "HANDCRAFTED_DOMINANCE_DEVELOPMENT",
+  "interpretation": [
+    "Handcrafted exact-search coordinates outperform the equal-rank raw cubie-state latent representation on all four held-out development stages.",
+    "The result favors search/action-support structure as a more transport-efficient representation than the current raw-state embedding family.",
+    "This remains development evidence and does not imply that humans explicitly compute H1/H2/H3/FS/TS or phase1 quantities.",
+    "Before spending fresh confirmation authority, test whether raw-state information adds complementary predictive value when combined with handcrafted coordinates."
+  ],
+  "scientific_authority": "DEVELOPMENT_REPRESENTATION_SELECTION_ONLY",
+  "mechanism_promotion": "FORBIDDEN"
+}
