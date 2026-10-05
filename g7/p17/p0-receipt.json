@@ -1,0 +1,34 @@
+{
+  "schema_version": "g7-p17-p0-receipt-1",
+  "phase": "G7-P17-P0",
+  "formal_name": "CUBE-REV Generation VII G7-P17-P0 — Untouched-Fresh Contact-Budget Planning, Stage-Held-Out Solve-Clustered Representation-Margin Reconstruction, 16-Cell Balance-Compatible Sample-Size Ladder, Conservative Bootstrap Assurance, Prior-Contact Exclusion Accounting & Minimal Confirmation Contact Audit",
+  "operation_type": "Pre-Contact Fresh-Sample Budget Planning Audit",
+  "status": "CLOSED_ASSURANCE_REACHED",
+  "authority": {
+    "run": 37272424807,
+    "head": "abf609d53f9becc9dd6db172b5c4c6f48de4a8c2",
+    "artifact": 11328029583,
+    "artifact_sha256": "0735dd7dcb8f50f123fcc782acf81bca337cdcf47d5c0f83a68781fa6a56232f",
+    "drive_file_id": "1tbJCaQTExFACulitgi5HfDKnkCibSO80"
+  },
+  "development": {
+    "solves": 296,
+    "fresh_contact": 0
+  },
+  "stage_mean_hand_minus_raw": {
+    "P11": -0.027205701617215326,
+    "P13": -0.02761362475278174,
+    "P14": -0.007208441486734346,
+    "P15": -0.036089542778597807
+  },
+  "selected_fresh_solves": 48,
+  "selected_per_16cell": 3,
+  "planning_48": {
+    "bootstrap_mean": -0.025028577182997124,
+    "bootstrap_p05": -0.049815805422641725,
+    "bootstrap_p95": -0.0005772033599223542,
+    "assurance_pass": true
+  },
+  "verdict": "ASSURANCE_REACHED",
+  "boundary": "Development bootstrap selected contact budget only; it is not fresh confirmation evidence."
+}
