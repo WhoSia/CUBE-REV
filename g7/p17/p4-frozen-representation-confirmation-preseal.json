@@ -1,0 +1,46 @@
+{
+  "schema_version": "g7-p17-p4-confirmation-preseal-1",
+  "phase": "G7-P17-P4",
+  "formal_name": "CUBE-REV Generation VII G7-P17-P4 — Frozen Handcrafted-Search Representation Untouched-Fresh Confirmation, Solve-Clustered NLL Margin, Raw-Latent Primary Rival, Hybrid Secondary Comparator, No-Retrain Model-Byte Evaluation, 16-Cell Transport Diagnostics & Representation Confirmation Gate",
+  "operation_type": "Untouched-Fresh Frozen-Representation Confirmation",
+  "status": "FROZEN_BEFORE_FRESH48_MODEL_EVALUATION",
+  "parents": {
+    "p16_closure": "g7/p16/closure.json",
+    "p16_model_freeze": "g7/p16/r5-receipt.json",
+    "p17_budget": "g7/p17/p0-receipt.json",
+    "p17_selection": "g7/p17/p2-receipt.json"
+  },
+  "frozen_models": {
+    "HANDCRAFTED_SEARCH": "b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2",
+    "RAW_LATENT": "7051407917d14efadfba0115f6f3f9d7f987e4d407f3dfe006af9040a68ce8f4",
+    "HYBRID": "c1c3939b99663e124610fc9adafbd3559af291d8bae3dbd6fac13517b422cb9a"
+  },
+  "primary_estimand": {
+    "unit": "solve",
+    "definition": "per solve mean state-level [NLL(HANDCRAFTED_SEARCH) - NLL(RAW_LATENT)], then equal-weight mean across solves",
+    "desired_direction": "<0",
+    "bootstrap": "100000 solve-level resamples with replacement; percentile 95% interval",
+    "confirmation_rule": "mean < 0 AND bootstrap 95th percentile < 0"
+  },
+  "terminal_adjudication": {
+    "FRESH_CONFIRMED": "adequate support and primary confirmation_rule passes",
+    "DIRECTION_ONLY": "adequate support and mean <0 but bootstrap upper95 >=0",
+    "NOT_CONFIRMED": "adequate support and mean >=0",
+    "SUPPORT_LIMITED": "fewer than 40 replay-valid selected solves after all separately sealed pre-evaluation repairs"
+  },
+  "secondary": {
+    "hybrid_margin": "HANDCRAFTED_SEARCH minus HYBRID solve-clustered NLL margin",
+    "cell_transport": "16-cell mean primary margins, descriptive only",
+    "method_band_era_margins": "descriptive transport diagnostics only",
+    "top1_accuracy": "descriptive only"
+  },
+  "forbidden": [
+    "retrain or fine-tune any frozen model",
+    "change rank, token schema, optimizer or model bytes",
+    "use fresh data to choose between frozen model variants",
+    "let HYBRID or subgroup results rescue a failed primary confirmation",
+    "pool development296 into the fresh terminal estimand"
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
