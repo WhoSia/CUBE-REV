@@ -1,0 +1,39 @@
+{
+  "schema_version": "g7-p17-p2-selection-preseal-1",
+  "phase": "G7-P17-P2",
+  "formal_name": "CUBE-REV Generation VII G7-P17-P2 — Untouched Fresh48 Confirmation Selection, Exhaustive Prior-Contact Exclusion, 16-Cell Method×Reconstructor×Era Balance, Deterministic Minimal-Contact Sampling, Batch-Axis Firewall & Frozen-Representation Confirmation Entry Gate",
+  "operation_type": "Outcome-Blind Fresh48 Confirmation Selection Seal",
+  "status": "FROZEN_BEFORE_P17_FRESH48_BODY_CONTACT",
+  "parent": {
+    "p0": "g7/p17/p0-receipt.json",
+    "p1": "g7/p17/p1-receipt.json",
+    "frozen_candidate": "HANDCRAFTED_SEARCH",
+    "model_sha256": "b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2"
+  },
+  "frame": "frozen P8 10,591-row live-present 3x3 frame",
+  "exclusion": {
+    "exact_prior_contacted": 368,
+    "exclusion_list_sha256": "f714bec91222c7232eb1138a3a42caaf52f93abe75381aa0b448fe2cc1afa550"
+  },
+  "target": {
+    "total": 48,
+    "cells": "2 method ×2 reconstructor-band ×4 era =16",
+    "per_cell": 3,
+    "seed": "CUBE_REV_G7_P17_FRESH48_CONFIRMATION_V1"
+  },
+  "batch_plan": {
+    "batches": 6,
+    "solves_per_batch": 8,
+    "rule": "deterministic arithmetic rotation; every batch must contain both methods, both reconstructor bands, and at least two eras"
+  },
+  "forbidden": [
+    "use any body content or frozen-model prediction in selection",
+    "change sample size after P2 seal",
+    "reuse any of 368 contacted IDs",
+    "add new balancing axes",
+    "change frozen model bytes or rank"
+  ],
+  "body_contact": 0,
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
