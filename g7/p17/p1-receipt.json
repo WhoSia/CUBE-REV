@@ -1,0 +1,38 @@
+{
+  "schema_version": "g7-p17-p1-receipt-1",
+  "phase": "G7-P17-P1",
+  "formal_name": "CUBE-REV Generation VII G7-P17-P1 — Prior-Body-Contact Exhaustiveness Census, Replay-Repair Attempt Union, Original/Repaired Manifest Reconciliation, Freshness Exclusion-Set Materialization & Untouched-Confirmation Eligibility Gate",
+  "operation_type": "Prior-Contact Exhaustiveness Census",
+  "status": "CLOSED_CONTACT_EXCLUSION_SET_SEALED",
+  "authority": {
+    "run": 37273430189,
+    "head": "4baf85811fd73421c38a77cba4a272697186c83d",
+    "artifact": 11329256436,
+    "artifact_sha256": "80d20fcd2206cb6d99d993c20590bfec9b4b5f5f14d0bad48e562fc9234886c5",
+    "drive_file_id": "1xSkcMiT6vCmNGTcekV6quVh-DEkvd_Es"
+  },
+  "counts": {
+    "all_prior_contacted_through_p15": 368,
+    "legacy60": 60,
+    "p11": 40,
+    "p13_contact_union": 83,
+    "p14_contact_union": 84,
+    "p15_contact_union": 101,
+    "prior_through_p14": 267
+  },
+  "p15_extra_beyond_original": [
+    26,
+    66,
+    624,
+    2013,
+    12843
+  ],
+  "exclusion_list_sha256": "f714bec91222c7232eb1138a3a42caaf52f93abe75381aa0b448fe2cc1afa550",
+  "fresh_contact": 0,
+  "interpretation": [
+    "Freshness is defined by actual body contact, not final-corpus membership.",
+    "Replay-invalid and replacement candidates count as contacted once their solve body was fetched.",
+    "P17 fresh selection must exclude all 368 IDs exactly."
+  ],
+  "successor_constraint": "P17-P2 may select the P0-budgeted fresh48 only from the frozen 10,591-row 3x3 frame after exact exclusion of this sealed 368-ID list."
+}
