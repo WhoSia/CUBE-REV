@@ -1,0 +1,76 @@
+{
+  "schema_version": "g7-p20-closure-1",
+  "phase": "G7-P20",
+  "formal_name": "CUBE-REV Generation VII G7-P20 — Independent-Fresh Cohort Effect-Size Heterogeneity, P17↔P19 Frozen HYBRID Complementarity Transport, Solve-Bootstrap Cohort-Difference Estimation, Fresh96 Descriptive Pooling, Era×Method×Reconstructor Interaction Stability & Successor-Contact Necessity Audit",
+  "operation_type": "Cross-Fresh-Cohort Representation Heterogeneity Audit",
+  "status": "CLOSED",
+  "final_verdict": "STABLE_DIRECTION_VARIABLE_MAGNITUDE__FRESH96_DESCRIPTIVE_HYBRID_DIRECTION_PERSISTS__COHORT_DIFFERENCE_UNRESOLVED__NO_NEW_CONTACT_AUTHORIZED",
+  "authority": {
+    "run": 37288013831,
+    "head": "7043adcbad1c2f85ca3acc9c3afd7b562c2ef939",
+    "artifact": 11335605371,
+    "artifact_sha256": "5d49889c109d95622f16a9ce5f4857fb8961b72e8bef54900aa0a227bf56079b",
+    "drive": "15LepCc_ok5nKOiAnuOzWqLsxnD-XRYQd"
+  },
+  "cohort_effect": {
+    "p17_mean": -0.019312695212367597,
+    "p19_mean": -0.006052532451365032,
+    "difference_p19_minus_p17": 0.013260162761002565,
+    "bootstrap90": {
+      "p05": -0.00484556247468034,
+      "p95": 0.031186924150418825
+    },
+    "excludes_zero": false
+  },
+  "pooled_fresh96": {
+    "authority": "DESCRIPTIVE_ONLY",
+    "mean": -0.012682613831866314,
+    "bootstrap90": {
+      "p05": -0.021638148127644467,
+      "p95": -0.0036613308665524786
+    }
+  },
+  "axis_diagnostics": {
+    "coherent_axis": [
+      "reconstructor_frequency_band"
+    ],
+    "method_family": {
+      "CFOP_delta": 0.028958603586986358,
+      "NONCFOP_delta": -0.002438278064981231
+    },
+    "reconstructor_frequency_band": {
+      "DOMINANT_delta": 0.023937801526703828,
+      "NONDOMINANT_delta": 0.0025825239953012986
+    },
+    "selection_era": {
+      "E1_delta": 0.04588151739435359,
+      "E2_delta": -0.02105392268825899,
+      "E3_delta": 0.009770935611968309,
+      "E4_delta": 0.018442120725947343,
+      "early_delta": 0.012413797353047299,
+      "late_delta": 0.014106528168957827
+    }
+  },
+  "interpretation": [
+    "Both independent fresh48 cohorts favor HYBRID over HAND, but the magnitude difference is not resolved by the presealed 90% solve-bootstrap interval.",
+    "The pooled fresh96 descriptive interval remains HYBRID-favoring, but cannot be treated as independent confirmation because P17 generated the HYBRID successor rival.",
+    "Reconstructor-frequency band shows a coherent attenuation from P17 to P19 in both levels, but this is a post-result axis diagnostic rather than a confirmed causal or stable population coordinate.",
+    "Method and era surfaces do not show a single coherent localization that explains the cohort difference.",
+    "The correct decision is not to spend more untouched contact on the same aggregate HYBRID-vs-HAND contrast."
+  ],
+  "retained": [
+    "HYBRID complementarity remains LIVE_RIVAL.",
+    "HANDCRAFTED_SEARCH remains LIVE_RIVAL.",
+    "Frozen predictive representation evidence is strong enough to justify moving to a different evidence channel rather than repeating aggregate confirmation."
+  ],
+  "demoted_or_forbidden": [
+    "fresh-confirmed HYBRID superiority",
+    "stable effect-size transport across fresh cohorts",
+    "causal interpretation of reconstructor-frequency-band displacement",
+    "additional fresh contact for the same aggregate contrast without a new discriminator"
+  ],
+  "successor_problem": "Return to the evidence-reservoir map. Recover semantic byte custody for the historical timing/public-stage reservoirs and test whether state/search representation effects transport across a second behavioral channel (transition-pause/timing) before reopening any human mechanism claim.",
+  "new_body_contact": 0,
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
