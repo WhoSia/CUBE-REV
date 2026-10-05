@@ -1,0 +1,53 @@
+{
+  "schema_version": "g7-p19-p4-frozen-hybrid-confirmation-preseal-1",
+  "phase": "G7-P19-P4",
+  "formal_name": "CUBE-REV Generation VII G7-P19-P4 — Frozen Full296 HYBRID Complementarity Untouched-Fresh Confirmation, Solve-Clustered NLL Margin, Handcrafted-Search Comparator, No-Retrain Model-Byte Evaluation, 16-Cell Transport Diagnostics & Representation Complementarity Confirmation Gate",
+  "operation_type": "Untouched-Fresh Frozen-Representation Complementarity Confirmation",
+  "status": "FROZEN_BEFORE_FRESH48_MODEL_EVALUATION",
+  "parent": "g7/p19/p3-receipt.json",
+  "fresh_corpus": {
+    "solves": 48,
+    "exact_replay_valid": 48,
+    "repaired_manifest_sha256": "9c620e0a3377ad3f80774e3d571d90ef329a00dd91746071bf02fbfddb300f75",
+    "cumulative_unique_contacted": 467
+  },
+  "frozen_models": {
+    "HANDCRAFTED_SEARCH": "b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2",
+    "HYBRID": "c1c3939b99663e124610fc9adafbd3559af291d8bae3dbd6fac13517b422cb9a"
+  },
+  "primary_estimand": {
+    "statistic": "solve-equal mean NLL(HYBRID)-NLL(HANDCRAFTED_SEARCH)",
+    "desired_direction": "<0",
+    "bootstrap_unit": "solve",
+    "bootstrap_repetitions": 100000,
+    "bootstrap_seed": "CUBE_REV_G7_P19_PRIMARY_BOOTSTRAP_V1",
+    "confirmed_rule": "mean < 0 and bootstrap p95 < 0",
+    "direction_only_rule": "mean < 0 and bootstrap p95 >= 0",
+    "not_confirmed_rule": "mean >= 0",
+    "minimum_solves": 48
+  },
+  "secondary": [
+    "mean top1 HYBRID and HAND",
+    "method-specific HYBRID-minus-HAND",
+    "reconstructor-band-specific HYBRID-minus-HAND",
+    "era-specific HYBRID-minus-HAND",
+    "16-cell and six-batch margins",
+    "P17 development-only comparison after primary verdict"
+  ],
+  "forbidden": [
+    "retrain or fine-tune either frozen model",
+    "load RAW_LATENT as a primary rival",
+    "change representation/token grammar/rank",
+    "pool P17 or dev296 into primary evaluation",
+    "use subgroup diagnostics to redefine terminal verdict",
+    "mechanism promotion"
+  ],
+  "terminal_verdicts": [
+    "HYBRID_FRESH_CONFIRMED",
+    "HYBRID_DIRECTION_ONLY",
+    "HYBRID_NOT_CONFIRMED",
+    "SUPPORT_LIMITED"
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
