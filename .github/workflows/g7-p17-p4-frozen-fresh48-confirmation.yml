@@ -68,22 +68,30 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p /tmp/p17p4/build/corpus
-          python3 - <<'PY'
-          import pathlib
-          required={
-            'b1':'/tmp/p17p4/b1',
-            'b2':'/tmp/p17p4/repair/repaired/batch2',
-            'b3':'/tmp/p17p4/repair/repaired/batch3',
-            'b4':'/tmp/p17p4/b4',
-            'b5':'/tmp/p17p4/b5',
-            'b6':'/tmp/p17p4/b6',
+          batch_root () {
+            local base="$1"
+            local pattern="$2"
+            local f
+            f="$(find "$base" -path "$pattern" -print -quit)"
+            test -n "$f"
+            dirname "$(dirname "$f")"
           }
-          for k,p in required.items():
-              f=pathlib.Path(p)/'derived'/'solves.jsonl'
-              assert f.exists(),(k,f)
-          print('G7_P17_P4_SIX_SOURCE_PATHS_PASS')
-          PY
-          node scripts/g7-p17/merge-fresh48-corpus.mjs             --source P17_BATCH1=/tmp/p17p4/b1             --source P17_BATCH2=/tmp/p17p4/repair/repaired/batch2             --source P17_BATCH3=/tmp/p17p4/repair/repaired/batch3             --source P17_BATCH4=/tmp/p17p4/b4             --source P17_BATCH5=/tmp/p17p4/b5             --source P17_BATCH6=/tmp/p17p4/b6             --out /tmp/p17p4/build/corpus
+          B1="$(batch_root /tmp/p17p4/b1 '*/derived/solves.jsonl')"
+          B2="$(batch_root /tmp/p17p4/repair '*/batch2/derived/solves.jsonl')"
+          B3="$(batch_root /tmp/p17p4/repair '*/batch3/derived/solves.jsonl')"
+          B4="$(batch_root /tmp/p17p4/b4 '*/derived/solves.jsonl')"
+          B5="$(batch_root /tmp/p17p4/b5 '*/derived/solves.jsonl')"
+          B6="$(batch_root /tmp/p17p4/b6 '*/derived/solves.jsonl')"
+          printf 'BATCH_ROOTS\\n1=%s\\n2=%s\\n3=%s\\n4=%s\\n5=%s\\n6=%s\\n' "$B1" "$B2" "$B3" "$B4" "$B5" "$B6"
+          echo G7_P17_P4_SIX_SOURCE_PATHS_PASS
+          node scripts/g7-p17/merge-fresh48-corpus.mjs \
+            --source P17_BATCH1="$B1" \
+            --source P17_BATCH2="$B2" \
+            --source P17_BATCH3="$B3" \
+            --source P17_BATCH4="$B4" \
+            --source P17_BATCH5="$B5" \
+            --source P17_BATCH6="$B6" \
+            --out /tmp/p17p4/build/corpus
 
       - name: Reconstitute exact fresh48 state geometry
         run: |
