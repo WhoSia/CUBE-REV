@@ -1,0 +1,102 @@
+{
+  "schema_version": "g7-p18-constitution-1",
+  "phase": "G7-P18",
+  "formal_name": "CUBE-REV Generation VII G7-P18 — Frozen Hybrid-Reversal Attribution, Training-Scale Learning-Curve Reconstitution, Seed-Variance Decomposition, Fresh48 Composition Reweighting, Raw↔Search Complementarity Localization, P16 Stage-Held-Out↔P17 Untouched-Fresh Ordering Reconciliation & Successor-Freshness Gate Audit",
+  "operation_type": "Development-Only Hybrid-Reversal Attribution Audit",
+  "status": "FROZEN_AFTER_P17_BEFORE_P18_OUTCOME",
+  "parents": {
+    "p16_closure": "g7/p16/closure.json",
+    "p17_closure": "g7/p17/closure.json",
+    "p16_r4_development_ordering": "HANDCRAFTED_SEARCH beats HYBRID on all four stage-held-out development cohorts",
+    "p17_secondary_ordering": "HYBRID beats HANDCRAFTED_SEARCH on untouched fresh48",
+    "p17_primary_verdict": "DIRECTION_ONLY for HANDCRAFTED_SEARCH vs RAW_LATENT"
+  },
+  "authority": {
+    "development_296": "P11+P13+P14+P15 prior-contacted exact-replay reservoir",
+    "p17_fresh48": "converted to DEVELOPMENT_ONLY after P17 terminal verdict",
+    "new_body_contact": 0,
+    "fresh_confirmation_consumed": false
+  },
+  "fixed_model_grammar": {
+    "rank": 8,
+    "epochs": 30,
+    "learning_rate": 0.06,
+    "l2": 0.0001,
+    "handcrafted_tokens": "P16-R3/R5 exact search-coordinate grammar",
+    "raw_tokens": "P16-R2/R5 exact cubie-state token grammar",
+    "hybrid_tokens": "raw + handcrafted concatenation",
+    "metadata_as_model_input": false
+  },
+  "rival_ecology": {
+    "H_SCALE": {
+      "statement": "HYBRID needs more training solves than HAND because its larger token family has higher estimation burden; full296 exposes complementarity that 200–256-solve stage-held-out fits miss.",
+      "controlled_scales": [
+        160,
+        224,
+        296
+      ],
+      "replicate_seeds": 4,
+      "rule": "median HYBRID-minus-HAND fresh48 NLL decreases monotonically with scale; n=296 median <0; n=160 minus n=296 >=0.01"
+    },
+    "H_VARIANCE": {
+      "statement": "The P17 HYBRID win is mainly fit/seed variance.",
+      "rule": "at n=296, fewer than 3 of 4 controlled seeds have HYBRID-minus-HAND <0 OR sign range spans both <=-0.01 and >=+0.01"
+    },
+    "H_COMPOSITION": {
+      "statement": "Fresh48 evaluation composition makes HYBRID look better even without a global representation reversal.",
+      "rule": "reweighting fresh48 per-solve HYBRID-minus-HAND margins to at least one historical development-stage marginal distribution over method/band/era changes sign or shifts the mean by >=0.01"
+    },
+    "H_COMPLEMENTARITY": {
+      "statement": "RAW contributes incremental information specifically where HAND is weak.",
+      "rule": "among P17 fresh48 solves, mean HAND-minus-HYBRID is >0 in RAW-better-than-HAND solves and exceeds the same quantity in HAND-better-than-RAW solves by >=0.01"
+    }
+  },
+  "sampling_and_training": {
+    "scale_subsampling_unit": "solve",
+    "scale_selection": "deterministic SHA-256 rank within development stage, with proportional stage quotas summing exactly to each frozen scale",
+    "seed_texts": [
+      "CUBE_REV_G7_P18_SEED_A",
+      "CUBE_REV_G7_P18_SEED_B",
+      "CUBE_REV_G7_P18_SEED_C",
+      "CUBE_REV_G7_P18_SEED_D"
+    ],
+    "evaluation_target": "fixed P17 exact-valid 48 solves",
+    "retraining_scope": "development audit only; no model from P18 may be promoted or evaluated on new fresh data without a successor preseal"
+  },
+  "composition_reweighting": {
+    "target": "P17 per-solve HYBRID-minus-HAND NLL",
+    "axes": [
+      "method_family",
+      "reconstructor_frequency_band",
+      "selection_era"
+    ],
+    "reference_distributions": [
+      "P11",
+      "P13",
+      "P14",
+      "P15"
+    ],
+    "weighting": "post-stratify P17 solve-equal margins to each historical stage marginal distribution on one axis at a time; unsupported levels => non-evaluable, never imputed"
+  },
+  "adjudication": {
+    "mixed_scale_composition": "H_SCALE passes AND H_COMPOSITION passes",
+    "training_scale_mediated": "H_SCALE passes AND H_VARIANCE fails",
+    "estimation_variance_dominant": "H_VARIANCE passes AND H_SCALE fails",
+    "composition_mediated": "H_COMPOSITION passes AND H_SCALE fails AND H_VARIANCE fails",
+    "localized_complementarity_unresolved": "H_COMPLEMENTARITY passes but none of the above resolves the reversal",
+    "unresolved": "otherwise"
+  },
+  "successor_freshness_gate": {
+    "new_fresh_contact_authorized": false,
+    "reopen_only_if": "P18 yields one pre-specifiable rival whose success/failure changes representation selection and a new contact-budget audit shows that existing 344 development solves cannot resolve it"
+  },
+  "inference_boundary": [
+    "P17 fresh48 is development evidence in P18 because the reversal hypothesis was generated from it.",
+    "P18 can explain or fail to explain the reversal; it cannot independently confirm HYBRID.",
+    "Predictive representation ordering is not cognitive mechanism identification.",
+    "No metadata coordinate receives causal authority from reweighting.",
+    "No new body contact is permitted in P18."
+  ],
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
