@@ -1,0 +1,51 @@
+{
+  "schema_version": "g7-p19-p3-replay-repair-amendment-1",
+  "phase": "G7-P19-P3",
+  "formal_name": "CUBE-REV Generation VII G7-P19-P3-R1 — Fresh48 Replay-Admissibility Repair, Failed-Batch Full-Row Exact-Replay Scan, Cell/Batch-Preserving Deterministic Replacement, Contact-Union Expansion Ledger & Pre-Evaluation Corpus Repair Compiler",
+  "operation_type": "Pre-Evaluation Replay-Admissibility Repair",
+  "status": "FROZEN_BEFORE_ANY_P19_MODEL_EVALUATION",
+  "parent_selection_manifest_sha256": "671e230314aed38ed68e9c8337c2e64b3f57e2bddca181405d08f5805c78d15e",
+  "failed_batches": [
+    6
+  ],
+  "known_failures": {
+    "batch6": "aggregate P4_END_STATE_VALIDATION; offending row unresolved"
+  },
+  "observed_before_amendment": [
+    "HTTP/body capture success for all six P19 acquisition batches",
+    "batch-level replay PASS/FAIL",
+    "batches 1-5 exact PASS",
+    "batch6 aggregate exact end-state validation failure",
+    "no HAND/HYBRID model outputs"
+  ],
+  "not_observed_before_amendment": [
+    "HANDCRAFTED_SEARCH fresh NLL",
+    "HYBRID fresh NLL",
+    "primary HYBRID-minus-HAND solve margin",
+    "bootstrap confirmation interval",
+    "transport subgroup margins"
+  ],
+  "repair_rule": {
+    "scan_all_current_rows_in_failed_batches": true,
+    "retain_current_if_exact_replay_pass": true,
+    "replace_only_replay_invalid": true,
+    "preserve_method_family": true,
+    "preserve_reconstructor_frequency_band": true,
+    "preserve_selection_era": true,
+    "preserve_sampling_cell": true,
+    "preserve_acquisition_batch": true,
+    "candidate_pool": "frozen P8 live-present 3x3 frame minus P19-P1 prior418 minus original P19 fresh48 selected IDs",
+    "deterministic_rank": "ascending SHA256(CUBE_REV_G7_P19_HYBRID_CONFIRMATION_V1|cell|source_id), then source_id",
+    "max_candidates_per_invalid_row": 6,
+    "repeated_failure": "first exact-replay PASS in frozen queue; queue exhaustion => repair HOLD, no model evaluation"
+  },
+  "invariants": [
+    "48 final solves",
+    "16 cells remain exactly 3 each",
+    "6 batches remain exactly 8 each",
+    "no prior418 ID enters repaired sample",
+    "no model outcome influences replacement"
+  ],
+  "fresh_model_evaluation": "CLOSED_UNTIL_REPAIR_SEAL",
+  "mechanism_promotion": "FORBIDDEN"
+}
