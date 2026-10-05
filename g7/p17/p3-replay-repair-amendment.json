@@ -1,0 +1,53 @@
+{
+  "schema_version": "g7-p17-p3-replay-repair-amendment-1",
+  "phase": "G7-P17-P3",
+  "formal_name": "CUBE-REV Generation VII G7-P17-P3-R1 — Fresh48 Replay-Admissibility Repair, Failed-Batch Full-Row Exact-Replay Scan, Cell/Batch-Preserving Deterministic Replacement, Contact-Union Expansion Ledger & Pre-Evaluation Corpus Repair Compiler",
+  "operation_type": "Pre-Evaluation Replay-Admissibility Repair",
+  "status": "FROZEN_BEFORE_ANY_P17_MODEL_EVALUATION",
+  "parent_selection_manifest_sha256": "4c315f97f5cb80476734d28f20f97716ded859e40f63b5ee0fb6e6d4e771ae1b",
+  "failed_batches": [
+    2,
+    3
+  ],
+  "known_failures": {
+    "batch2": "aggregate P4_END_STATE_VALIDATION; offending row unresolved",
+    "batch3": "UNRESOLVED_AFTER_NORMALIZATION:11026"
+  },
+  "observed_before_amendment": [
+    "HTTP/body capture success for all six P17 acquisition batches",
+    "batch-level replay PASS/FAIL",
+    "batch3 invalid source_id 11026",
+    "no frozen-model outputs"
+  ],
+  "not_observed_before_amendment": [
+    "HANDCRAFTED_SEARCH fresh NLL",
+    "RAW_LATENT fresh NLL",
+    "HYBRID fresh NLL",
+    "primary solve-clustered margin",
+    "bootstrap confirmation interval",
+    "transport subgroup margins"
+  ],
+  "repair_rule": {
+    "scan_all_current_rows_in_failed_batches": true,
+    "retain_current_if_exact_replay_pass": true,
+    "replace_only_replay_invalid": true,
+    "preserve_method_family": true,
+    "preserve_reconstructor_frequency_band": true,
+    "preserve_selection_era": true,
+    "preserve_sampling_cell": true,
+    "preserve_acquisition_batch": true,
+    "candidate_pool": "frozen P8 live-present 3x3 frame minus P17-P1 prior368 minus original fresh48 selected IDs",
+    "deterministic_rank": "ascending SHA256(CUBE_REV_G7_P17_FRESH48_CONFIRMATION_V1|cell|source_id), then source_id",
+    "max_candidates_per_invalid_row": 6,
+    "repeated_failure": "first exact-replay PASS in frozen queue; queue exhaustion => repair HOLD, no model evaluation"
+  },
+  "invariants": [
+    "48 final solves",
+    "16 cells remain exactly 3 each",
+    "6 batches remain exactly 8 each",
+    "no prior368 ID enters repaired sample",
+    "no model outcome influences replacement"
+  ],
+  "fresh_model_evaluation": "CLOSED_UNTIL_REPAIR_SEAL",
+  "mechanism_promotion": "FORBIDDEN"
+}
