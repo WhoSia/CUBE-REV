@@ -1,0 +1,27 @@
+{
+  "schema_version": "g7-p19-p1-prior-contact-census-preseal-1",
+  "phase": "G7-P19-P1",
+  "formal_name": "CUBE-REV Generation VII G7-P19-P1 — Prior-Body-Contact Exhaustiveness Re-Census, P17 Original/Repair Contact Union, Freshness Exclusion-Set Expansion to 418 & Untouched-Hybrid-Confirmation Eligibility Gate",
+  "operation_type": "Prior-Contact Exhaustiveness Census",
+  "status": "FROZEN_BEFORE_P19_FRESH_SELECTION",
+  "parent": "g7/p19/p0-receipt.json",
+  "rule": "Every source ID whose solve body was fetched through P17 counts as contacted, including replay-invalid originals and replacements; P18/P19-P0 add zero body contact.",
+  "expected": {
+    "prior_through_p15": 368,
+    "p17_original_selected": 48,
+    "p17_unique_repair_replacements": 2,
+    "cumulative_unique_through_p17": 418
+  },
+  "outputs": [
+    "sorted contacted source IDs",
+    "contact provenance tags",
+    "SHA-256 exclusion list"
+  ],
+  "forbidden": [
+    "infer freshness from final P17 corpus membership only",
+    "omit P17 replay-invalid originals",
+    "omit P17 replacement contacts",
+    "open P19 body contact before census seal"
+  ],
+  "fresh_contact": 0
+}
