@@ -1,0 +1,59 @@
+{
+  "schema_version": "g7-p19-p0-contact-budget-preseal-1",
+  "phase": "G7-P19-P0",
+  "formal_name": "CUBE-REV Generation VII G7-P19-P0 — Frozen Full296 HYBRID-vs-HAND Untouched-Fresh Contact-Budget Planning, P17 Development-Only Solve-Margin Reconstitution, 16-Cell Stratified Bootstrap Assurance, Prior-Contact Floor Accounting & Minimal Complementarity-Confirmation Contact Audit",
+  "operation_type": "Pre-Contact Fresh-Sample Budget Planning Audit",
+  "status": "FROZEN_BEFORE_P19_FRESH_SELECTION_OR_BODY_CONTACT",
+  "parent": {
+    "p18_closure": "g7/p18/closure.json",
+    "successor_rival": "Frozen full296 HYBRID vs frozen HANDCRAFTED_SEARCH",
+    "p18_verdict": "TRAINING_SCALE_MEDIATED_HYBRID_COMPLEMENTARITY_DEVELOPMENT",
+    "p17_report_artifact": 11331570322,
+    "frozen_models": {
+      "HANDCRAFTED_SEARCH": "b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2",
+      "HYBRID": "c1c3939b99663e124610fc9adafbd3559af291d8bae3dbd6fac13517b422cb9a"
+    }
+  },
+  "development_only": true,
+  "new_body_contact": 0,
+  "cumulative_unique_body_contacted_before_p19": 418,
+  "planning_evidence": {
+    "source": "P17 untouched fresh48, converted to DEVELOPMENT_ONLY after P17 terminal verdict and used to generate/attribute the HYBRID rival in P18",
+    "solves": 48,
+    "cells": "2 method ×2 reconstructor-band ×4 era =16 cells ×3",
+    "statistic": "per-solve mean NLL(HYBRID)-NLL(HANDCRAFTED_SEARCH)",
+    "desired_direction": "HYBRID minus HAND < 0",
+    "bootstrap_unit": "solve",
+    "bootstrap_scheme": "within each of the 16 frozen cells, resample solves with replacement to the candidate per-cell count; equal total weight across sampled solves",
+    "repetitions": 100000,
+    "seed": "CUBE_REV_G7_P19_P0_HYBRID_HAND_BOOTSTRAP_V1"
+  },
+  "candidate_sizes": [
+    48,
+    64,
+    80,
+    96
+  ],
+  "balance_constraint": "candidate N must be divisible by 16, giving 3/4/5/6 solves per frozen method×band×era cell",
+  "selection_rule": {
+    "assurance": "upper 95th percentile of bootstrap mean HYBRID-minus-HAND < 0",
+    "choose": "smallest candidate N satisfying assurance",
+    "if_none": "choose 96 as predeclared contact-budget ceiling and mark ASSURANCE_NOT_REACHED_AT_CEILING"
+  },
+  "secondary_planning": [
+    "bootstrap mean and p05/p95 at each candidate N",
+    "cell-specific mean HYBRID-minus-HAND margins",
+    "method/band/era marginal development diagnostics",
+    "expected states-per-solve from P17 report"
+  ],
+  "forbidden": [
+    "retrain HAND or HYBRID",
+    "change representation tokens/rank/optimizer",
+    "use any P19 body data in planning",
+    "change candidate ladder after planning outcome",
+    "treat bootstrap assurance as confirmation evidence"
+  ],
+  "freshness_rule": "Any later P19 selector must exhaustively exclude all 418 unique body-contacted IDs through P17 plus any later diagnostic contacts; P18/P19-P0 add zero body contact.",
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
