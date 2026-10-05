@@ -1,0 +1,112 @@
+name: G7-P19-P0 hybrid fresh-contact budget audit
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p19/p0-contact-budget-preseal.json'
+      - 'scripts/g7-p19/plan-hybrid-fresh-contact-budget.py'
+      - '.github/workflows/g7-p19-p0-contact-budget.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Preseal and zero-bot gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p19-p0-contact-budget.yml'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p19/p0-contact-budget-preseal.json'))
+          c=json.load(open('g7/p18/closure.json'))
+          assert p['status']=='FROZEN_BEFORE_P19_FRESH_SELECTION_OR_BODY_CONTACT'
+          assert p['new_body_contact']==0
+          assert p['cumulative_unique_body_contacted_before_p19']==418
+          assert c['status']=='CLOSED'
+          assert c['final_verdict'].startswith('TRAINING_SCALE_MEDIATED_HYBRID_COMPLEMENTARITY_DEVELOPMENT')
+          print('G7_P19_P0_PRESEAL_PASS')
+          print('G7_P19_P0_ZERO_BOT_WRITEBACK_PATTERN_PASS')
+          PY
+
+      - name: Recover immutable P17 fresh48 terminal report
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p19p0/p17
+          curl --fail --location --silent --show-error \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO/actions/artifacts/11331570322/zip" \
+            -o /tmp/p19p0/p17.zip
+          echo '8de7b27a3ead242520137049c49f2a4733ae93716dd36eff12d0d259af3ae44e  /tmp/p19p0/p17.zip' | sha256sum -c -
+          unzip -q /tmp/p19p0/p17.zip -d /tmp/p19p0/p17
+          REPORT="$(find /tmp/p19p0/p17 -name fresh48-frozen-representation-confirmation.json -print -quit)"
+          test -n "$REPORT"
+          python3 - "$REPORT" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x['solves']==48 and x['verdict']=='DIRECTION_ONLY'
+          assert len(x['per_solve'])==48
+          assert len({r['sampling_cell'] for r in x['per_solve']})==16
+          print('G7_P19_P0_P17_REPORT_AUTHORITY_PASS')
+          PY
+          printf '%s\n' "$REPORT" > /tmp/p19p0/P17_REPORT_PATH
+
+      - name: Execute contact-budget planning
+        run: |
+          set -euo pipefail
+          REPORT="$(cat /tmp/p19p0/P17_REPORT_PATH)"
+          mkdir -p /tmp/p19p0/out
+          python3 scripts/g7-p19/plan-hybrid-fresh-contact-budget.py \
+            --p17-report "$REPORT" \
+            --preseal g7/p19/p0-contact-budget-preseal.json \
+            --out /tmp/p19p0/out | tee /tmp/p19p0/out/planning.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p19p0/out/contact-budget-planning.json'))
+          assert x['development_only'] is True and x['new_body_contact']==0
+          assert x['selected_fresh_solves'] in (48,64,80,96)
+          assert x['selected_per_16cell'] in (3,4,5,6)
+          assert x['verdict'] in ('ASSURANCE_REACHED','ASSURANCE_NOT_REACHED_AT_CEILING')
+          print('G7_P19_P0_RESULT_GATE_PASS',x['verdict'])
+          print('OBSERVED',x['source_report'])
+          print('PLANNING',x['candidate_planning'])
+          print('SELECTED',x['selected_fresh_solves'])
+          PY
+
+      - name: Seal contact-budget artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p19p0/seal/authority /tmp/p19p0/seal/derived
+          cp g7/p19/p0-contact-budget-preseal.json /tmp/p19p0/seal/authority/
+          cp g7/p18/closure.json /tmp/p19p0/seal/authority/p18-closure.json
+          cp /tmp/p19p0/out/contact-budget-planning.json /tmp/p19p0/seal/derived/
+          cp /tmp/p19p0/out/planning.log /tmp/p19p0/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P19-P0' \
+            'OPERATION=HYBRID_FRESH_CONTACT_BUDGET_PLANNING_AUDIT' \
+            'NEW_BODY_CONTACT=0' \
+            'PRIOR_CONTACTED=418' \
+            'FROZEN_MODELS=HAND+HYBRID' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p19p0/seal/AUTHORITY.txt
+          (cd /tmp/p19p0/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P19-P0-hybrid-contact-budget-${{ github.sha }}
+          path: /tmp/p19p0/seal
+          retention-days: 90
