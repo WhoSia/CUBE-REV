@@ -1,0 +1,106 @@
+name: G7-P19-P1 prior-contact exhaustiveness census
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p19/p1-prior-contact-census-preseal.json'
+      - 'scripts/g7-p19/census-prior-contacted-ids.py'
+      - '.github/workflows/g7-p19-p1-prior-contact-census.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Preseal and zero-bot gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p19-p1-prior-contact-census.yml'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p19/p1-prior-contact-census-preseal.json'))
+          r=json.load(open('g7/p19/p0-receipt.json'))
+          assert p['status']=='FROZEN_BEFORE_P19_FRESH_SELECTION'
+          assert p['fresh_contact']==0
+          assert r['status']=='CLOSED_ASSURANCE_REACHED'
+          assert r['selected_fresh_solves']==48
+          print('G7_P19_P1_PRESEAL_PASS')
+          print('G7_P19_P1_ZERO_BOT_WRITEBACK_PATTERN_PASS')
+          PY
+
+      - name: Recover prior368 and P17 selection authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p19p1/prior368 /tmp/p19p1/p17sel
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p19p1/$dir.zip"
+            echo "$expected  /tmp/p19p1/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p19p1/$dir.zip" -d "/tmp/p19p1/$dir"
+          }
+          fetch_artifact 11329256436 prior368 80d20fcd2206cb6d99d993c20590bfec9b4b5f5f14d0bad48e562fc9234886c5
+          fetch_artifact 11329429708 p17sel 5e5742addf74930935ea2b30414adad6a036cf788ed240a9a9fd2b27130b6c56
+          echo G7_P19_P1_AUTHORITIES_RECOVERED
+
+      - name: Compile cumulative 418-contact exclusion set
+        run: |
+          set -euo pipefail
+          PRIOR="$(find /tmp/p19p1/prior368 -name prior-contact-census.json -print -quit)"
+          SEL="$(find /tmp/p19p1/p17sel -name selection-manifest.json -print -quit)"
+          test -n "$PRIOR"; test -n "$SEL"
+          mkdir -p /tmp/p19p1/out
+          python3 scripts/g7-p19/census-prior-contacted-ids.py \
+            --prior368-census "$PRIOR" \
+            --p17-selection "$SEL" \
+            --p17-p3-receipt g7/p17/p3-receipt.json \
+            --out /tmp/p19p1/out | tee /tmp/p19p1/census.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p19p1/out/prior-contact-census.json'))
+          assert x['counts']['all_prior_contacted_through_p17']==418
+          assert x['fresh_contact']==0
+          assert len(x['contacted_ids'])==418
+          print('G7_P19_P1_RESULT_GATE_PASS')
+          print('COUNTS',x['counts'])
+          print('REPAIRS',x['p17_repair_replacement_ids'])
+          print('SHA256',x['exclusion_list_sha256'])
+          PY
+
+      - name: Seal contact census
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p19p1/seal/authority /tmp/p19p1/seal/derived
+          cp g7/p19/p1-prior-contact-census-preseal.json /tmp/p19p1/seal/authority/
+          cp /tmp/p19p1/out/* /tmp/p19p1/seal/derived/
+          cp /tmp/p19p1/census.log /tmp/p19p1/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P19-P1' \
+            'OPERATION=PRIOR_CONTACT_EXHAUSTIVENESS_CENSUS' \
+            'PRIOR_CONTACTED=418' \
+            'FRESH_CONTACT=0' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p19p1/seal/AUTHORITY.txt
+          (cd /tmp/p19p1/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P19-P1-prior-contact-census-${{ github.sha }}
+          path: /tmp/p19p1/seal
+          retention-days: 90
