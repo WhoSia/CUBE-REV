@@ -1,0 +1,86 @@
+{
+  "schema_version": "g7-p19-p3-receipt-1",
+  "phase": "G7-P19-P3",
+  "formal_name": "CUBE-REV Generation VII G7-P19-P3 — Untouched Fresh48 Bounded Reconstruction Acquisition, Six-Batch Contact Firewall, Exact-Trajectory Replay Gate, Replay-Admissibility Repair Integration, Actual-Contact Ledger Expansion & Frozen-Hybrid Evaluation Entry Seal",
+  "operation_type": "Bounded Fresh Acquisition & Replay-Admissibility Seal",
+  "status": "CLOSED_FRESH48_EXACT_REPLAY_READY",
+  "selection": {
+    "receipt": "g7/p19/p2-receipt.json",
+    "original_manifest_sha256": "671e230314aed38ed68e9c8337c2e64b3f57e2bddca181405d08f5805c78d15e"
+  },
+  "original_acquisition": {
+    "run": 37285026077,
+    "head": "582b866420050984e94463c7cfdd66cc2c3109ac",
+    "batch_artifacts": {
+      "1": {
+        "id": 11333429242,
+        "sha256": "92640918c444ba295c8ca3456ea1b471e8feffc113a22907f5918fc314731bcf",
+        "status": "EXACT_PASS"
+      },
+      "2": {
+        "id": 11334152334,
+        "sha256": "2c44102ecd19c54167defcd074f9b44f11589a522e2d40a0aca757e217b9cf74",
+        "status": "EXACT_PASS"
+      },
+      "3": {
+        "id": 11333304383,
+        "sha256": "bed25984e43a3d1265266ccfdd67ad8fa1017a14c320a8315c211bfed126b854",
+        "status": "EXACT_PASS"
+      },
+      "4": {
+        "id": 11333389532,
+        "sha256": "794ab3cbee56bc06160adda80bd95652858a35ab83af9161a8008b3d645dd314",
+        "status": "EXACT_PASS"
+      },
+      "5": {
+        "id": 11333793768,
+        "sha256": "78f2e105ccb8c4709a261a4c085e1723eb6487c488c6cf7365b41f2a38b8a533",
+        "status": "EXACT_PASS"
+      },
+      "6": {
+        "status": "REPLAY_FAIL_REPAIRED"
+      }
+    }
+  },
+  "repair": {
+    "operation": "G7-P19-P3-R1",
+    "run": 37285683206,
+    "head": "f1ebc0d11c2173e96d66bf862aa0cf1ffec04f24",
+    "artifact": 11333594418,
+    "artifact_sha256": "5e8c6f39a9a0e0fea1b4d95649f61de888fddef2f0d3d2046153588be0dd45df",
+    "drive_file_id": "15wXHUYV7T7H4rdNR0WXbbNti641P_LQk",
+    "repaired_manifest_sha256": "9c620e0a3377ad3f80774e3d571d90ef329a00dd91746071bf02fbfddb300f75",
+    "invalid_current": [
+      {
+        "source_id": 12906,
+        "batch": 6,
+        "reason": "END_STATE_FAIL",
+        "replacement": 12341
+      }
+    ],
+    "repaired_batch_prefixes": {
+      "6": 440
+    },
+    "repaired_batch_exact_pass": {
+      "6": "8/8"
+    }
+  },
+  "final_corpus": {
+    "solves": 48,
+    "unique_source_ids": 48,
+    "cells": "16x3",
+    "batches": "6x8",
+    "all_exact_replay_valid": true,
+    "frozen_model_evaluation_opened_before_repair": false
+  },
+  "freshness_ledger": {
+    "prior_contacted_before_p19": 418,
+    "original_p19_selected_contacted": 48,
+    "new_unique_repair_candidates_contacted": [
+      12341
+    ],
+    "cumulative_unique_contacted_through_p19_acquisition": 467,
+    "rule": "Repeated fetches of already-contacted selected rows during replay scan do not increase the unique-contact count."
+  },
+  "successor_constraint": "P19-P4 may evaluate only frozen P16-R5 HANDCRAFTED_SEARCH and HYBRID model bytes on this repaired exact-valid fresh48 corpus; no retraining, no development pooling, RAW_LATENT not primary."
+}
