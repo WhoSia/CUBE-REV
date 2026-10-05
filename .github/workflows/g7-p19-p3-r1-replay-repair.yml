@@ -1,0 +1,141 @@
+name: G7-P19-P3-R1 fresh48 replay repair
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p19/p3-replay-repair-amendment.json'
+      - 'scripts/g7-p19/prepare-fresh48-replay-plan.py'
+      - 'scripts/g7-p19/execute-fresh48-replay-scan.mjs'
+      - '.github/workflows/g7-p19-p3-r1-replay-repair.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Pre-evaluation amendment and zero-bot gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p19-p3-r1-replay-repair.yml'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p19/p3-replay-repair-amendment.json'))
+          assert x['status']=='FROZEN_BEFORE_ANY_P19_MODEL_EVALUATION'
+          assert x['failed_batches']==[6]
+          assert x['fresh_model_evaluation']=='CLOSED_UNTIL_REPAIR_SEAL'
+          print('G7_P19_P3_R1_AMENDMENT_GATE_PASS')
+          PY
+
+      - name: Recover selection, exclusion and frozen frame authorities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p19r/{p2,p1,p8,p3}
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p19r/$dir.zip"
+            echo "$expected  /tmp/p19r/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p19r/$dir.zip" -d "/tmp/p19r/$dir"
+          }
+          fetch_artifact 11333473475 p2 131bb5b3c5ef2b8176b04dc97684e000e0afcdedd651fe75e2a7f0b4418237da
+          fetch_artifact 11333467367 p1 d4363e807492333d299fe4140d710f611f4a3c496854dfed704bc31f0060b3de
+          fetch_artifact 11238930249 p8 460dc657565541b663f1bc91b6e75490a7591f56946a41c28af60802ee27f16a
+          fetch_artifact 11205587281 p3 acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4
+          echo G7_P19_P3_R1_INPUT_AUTHORITY_PASS
+
+      - name: Freeze batch6 candidate queues
+        run: |
+          set -euo pipefail
+          BASE="$(find /tmp/p19r/p2 -name selection-manifest.json -print -quit)"
+          CENSUS="$(find /tmp/p19r/p1 -name prior-contact-census.json -print -quit)"
+          COV="$(find /tmp/p19r/p8 -name frozen-index-covariates.jsonl -print -quit)"
+          IDX="$(find /tmp/p19r/p3 -name linkage-support.jsonl -print -quit)"
+          mkdir -p /tmp/p19r/plan
+          python3 scripts/g7-p19/prepare-fresh48-replay-plan.py \
+            --amendment g7/p19/p3-replay-repair-amendment.json \
+            --base-manifest "$BASE" \
+            --covariates "$COV" \
+            --frozen-index "$IDX" \
+            --exclusion-census "$CENSUS" \
+            --out /tmp/p19r/plan | tee /tmp/p19r/plan.log
+
+      - name: Execute exact-replay admissibility scan
+        run: |
+          set -euo pipefail
+          BASE="$(find /tmp/p19r/p2 -name selection-manifest.json -print -quit)"
+          node scripts/g7-p19/execute-fresh48-replay-scan.mjs \
+            --plan /tmp/p19r/plan/fresh48-replay-plan.json \
+            --base-manifest "$BASE" \
+            --out /tmp/p19r/repaired | tee /tmp/p19r/scan.log
+
+      - name: Exact replay repaired batch6
+        run: |
+          set -euo pipefail
+          IN="/tmp/p19r/repaired/batch6/derived/solves.jsonl"
+          OUT="/tmp/p19r/repaired/batch6/exact"
+          node scripts/cube/replay-exact-trajectories.mjs --input "$IN" --out "$OUT"
+          node - "$OUT/exact-trajectories.json" <<'NODE'
+          const fs=require('fs');
+          const x=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
+          if(x.solve_count!==8||x.exact_end_validation_pass!==8)process.exit(1);
+          console.log('G7_P19_P3_R1_REPAIRED_BATCH_EXACT_PASS',x.total_prefixes);
+          NODE
+
+      - name: Repair result gate
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          m=json.load(open('/tmp/p19r/repaired/selection-manifest-repaired.json'))
+          a=json.load(open('/tmp/p19r/repaired/replay-admissibility-audit.json'))
+          assert m['target_total']==48 and len(m['rows'])==48
+          assert len(m['selected_cell_counts'])==16 and all(v==3 for v in m['selected_cell_counts'].values())
+          assert all(len(m['batches'][str(i)])==8 for i in range(1,7))
+          bad=[x for x in a if x['role']=='current' and x['replay']!='PASS']
+          assert len(bad)>=1
+          print('G7_P19_P3_R1_REPAIR_GATE_PASS')
+          print('INVALID_CURRENT',bad)
+          print('AUDIT',a)
+          print('FINAL_MANIFEST_SHA256',m['selection_manifest_sha256'])
+          print('REPAIR_CONTACTED',m['newly_contacted_during_repair'])
+          PY
+
+      - name: Seal repair authority
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p19r/seal/authority /tmp/p19r/seal/repaired
+          cp g7/p19/p3-replay-repair-amendment.json /tmp/p19r/seal/authority/
+          cp /tmp/p19r/plan/fresh48-replay-plan.json /tmp/p19r/seal/authority/
+          cp -r /tmp/p19r/repaired/* /tmp/p19r/seal/repaired/
+          cp /tmp/p19r/plan.log /tmp/p19r/scan.log /tmp/p19r/seal/
+          printf '%s\n' \
+            'PHASE=G7-P19-P3-R1' \
+            'OPERATION=PRE_EVALUATION_REPLAY_ADMISSIBILITY_REPAIR' \
+            'MODEL_EVALUATION_OPENED=NO' \
+            'FAILED_BATCHES=6' \
+            > /tmp/p19r/seal/AUTHORITY.txt
+          (cd /tmp/p19r/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P19-P3-R1-replay-repair-${{ github.sha }}
+          path: /tmp/p19r/seal
+          retention-days: 90
