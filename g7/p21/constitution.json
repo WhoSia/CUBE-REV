@@ -1,0 +1,93 @@
+{
+  "schema_version": "g7-p21-constitution-1",
+  "phase": "G7-P21",
+  "formal_name": "CUBE-REV Generation VII G7-P21 — Historical Timing & Observation Byte-Custody Recovery, R1.42/R1.48/R1.53 Semantic-to-Executable Authority Reconciliation, NET-24/Ideal-Observer Artifact Archaeology, Git-History/Drive Provenance Search, Link-Key Recovery, Choice×Pause Multi-Observable Bridge Readiness & Recovery Gate Audit",
+  "operation_type": "Byte-Custody Recovery & Multi-Observable Bridge Readiness Audit",
+  "status": "OPEN_PRESEALED",
+  "parent": {
+    "p20_closure": "g7/p20/closure.json",
+    "p20_verdict": "STABLE_DIRECTION_VARIABLE_MAGNITUDE__FRESH96_DESCRIPTIVE_HYBRID_DIRECTION_PERSISTS__COHORT_DIFFERENCE_UNRESOLVED__NO_NEW_CONTACT_AUTHORIZED",
+    "p16_readiness": "g7/p16/readiness-census-v0.json"
+  },
+  "core_question": "Can historical timing and observation-fiber reservoirs be restored to byte-level replay authority strongly enough to support a cross-observable state/representation discriminator without new human or reco body contact?",
+  "recovery_targets": {
+    "R1_SENSOR_TIMING": {
+      "semantic_objects": [
+        "R1.42 transition-pause microstructure and LOSO boundary ranking",
+        "R1.53 CUBE-REV-R153-TRANSITION-EXCESS-V1"
+      ],
+      "byte_targets": [
+        "R153_SUMMARY.json",
+        "R153_TRANSITION_EXCESS_CONSTRUCT_V1.json",
+        "R153_SHA256SUMS",
+        "historical sensor/session rows sufficient to recompute transition excess"
+      ],
+      "required_for_executable_recovery": [
+        "raw or minimally derived timing rows",
+        "state/milestone or event alignment key",
+        "within-session baseline inputs",
+        "replayable code or fully specified deterministic compiler"
+      ]
+    },
+    "R1_PUBLIC_TIMING": {
+      "semantic_objects": [
+        "R1.48 corrected timing-semantics audit",
+        "corrected OLL/PLL same-unit surface"
+      ],
+      "byte_targets": [
+        "R148 corrected row ledger",
+        "semantic classification ledger",
+        "same-solve/source keys"
+      ]
+    },
+    "OBSERVATION_FIBER_EXACT": {
+      "semantic_objects": [
+        "CUBE-REV 0.3 exact visual-state atlas",
+        "CUBE-REV 0.4 canonical NET-24 renderer",
+        "task-conditioned ideal-observer information surfaces"
+      ],
+      "byte_targets": [
+        "CUBE-REV_0.3_Exact_Structural_Visual_Atlas.bin",
+        "CUBE-REV_0.3_Visual_Atlas_Metadata.json",
+        "CUBE-REV_0.3_VisualAtlasBuilder.cpp",
+        "CUBE-REV 0.4 renderer / ideal-observer executable package"
+      ]
+    }
+  },
+  "recovery_sources": [
+    "current research/current branch",
+    "archive/pre-p7-active-prune-20261002 branch",
+    "59MB full Git-history bundle",
+    "Google Drive canonical and archive folders",
+    "Notion semantic receipts",
+    "archaeology chat exports 9.md and 1.md as provenance indexes only"
+  ],
+  "authority_rules": [
+    "Archaeology prose may recover names, hashes, definitions and failure witnesses, but cannot itself restore executable authority.",
+    "Git/Drive byte identity or deterministic reconstruction from independently sufficient canonical inputs is required for BYTE_CUSTODY_RECOVERED_EXECUTABLE.",
+    "Semantic summaries cannot be used to manufacture row-level data.",
+    "If exact bytes are absent but a fully specified exact finite-world compiler can be rebuilt from surviving mathematical authority, that must be a new reconstruction lane, not a claim of original-byte recovery."
+  ],
+  "terminal_classes": [
+    "BYTE_CUSTODY_RECOVERED_EXECUTABLE",
+    "PARTIAL_CUSTODY_RECOVERY",
+    "SEMANTIC_ONLY_CUSTODY_GAP_CONFIRMED",
+    "LINK_KEY_BLOCKED"
+  ],
+  "bridge_gate": {
+    "choice_pause_bridge_requires": [
+      "R1 timing executable bytes or deterministically reconstructible timing rows",
+      "stable source/session/state link key into an exact-state behavioral representation",
+      "measurement semantics preserved after R1.48 correction"
+    ],
+    "observation_behavior_bridge_requires": [
+      "recovered or independently reconstructed exact observation compiler",
+      "mapping from naturalistic exact states to observation signatures",
+      "freshness/authority boundary for any behavioral comparison"
+    ]
+  },
+  "no_new_contact": true,
+  "no_retraining": true,
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
