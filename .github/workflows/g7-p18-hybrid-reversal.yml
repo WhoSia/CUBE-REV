@@ -185,7 +185,9 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p /tmp/p18seal/authority /tmp/p18seal/derived
-          cp g7/p18/constitution.json g7/p17/closure.json g7/p16/closure.json /tmp/p18seal/authority/
+          cp g7/p18/constitution.json /tmp/p18seal/authority/
+          cp g7/p17/closure.json /tmp/p18seal/authority/p17-closure.json
+          cp g7/p16/closure.json /tmp/p18seal/authority/p16-closure.json
           cp /tmp/p18out/hybrid-reversal-attribution.json /tmp/p18seal/derived/
           cp /tmp/p18out/audit.log /tmp/p18seal/derived/
           printf '%s\n' \
