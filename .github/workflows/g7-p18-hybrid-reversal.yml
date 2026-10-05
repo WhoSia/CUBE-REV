@@ -1,0 +1,205 @@
+name: G7-P18 hybrid-reversal attribution audit
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p18/constitution.json'
+      - 'scripts/g7-p18/audit-hybrid-reversal.py'
+      - '.github/workflows/g7-p18-hybrid-reversal.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 95
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Preseal and zero-bot gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p18-hybrid-reversal.yml'
+          python3 - <<'PY'
+          import json
+          p=json.load(open('g7/p18/constitution.json'))
+          r=json.load(open('g7/p17/closure.json'))
+          assert p['status']=='FROZEN_AFTER_P17_BEFORE_P18_OUTCOME'
+          assert p['authority']['new_body_contact']==0
+          assert p['successor_freshness_gate']['new_fresh_contact_authorized'] is False
+          assert r['status']=='CLOSED'
+          assert r['terminal']['verdict']=='DIRECTION_ONLY'
+          print('G7_P18_PRESEAL_GATE_PASS')
+          print('G7_P18_ZERO_BOT_WRITEBACK_PATTERN_PASS')
+          PY
+
+      - name: Reconstitute immutable dev296 reservoir
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          bash scripts/g7-p16/reconstitute-dev296.sh /tmp/p18dev
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p18dev/build/multicohort/reservoir-receipt.json'))
+          assert x['unique_solves']==296 and x['cross_stage_source_overlap']==0
+          assert x['stages']=={'P11':40,'P13':80,'P14':80,'P15':96}
+          print('G7_P18_DEV296_GATE_PASS')
+          PY
+
+      - name: Materialize dev296 exact-search geometry
+        run: |
+          set -euo pipefail
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p18dev/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p18dev/build/multicohort/five-rival-features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p18dev/build/multicohort/multicohort-prefix-states.tsv \
+            > /tmp/p18dev/build/multicohort/shell.tsv
+          echo G7_P18_DEV_GEOMETRY_PASS
+
+      - name: Recover repaired P17 fresh48 and terminal report
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p18fresh/{b1,b4,b5,b6,repair,p4}
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" \
+              -o "/tmp/p18fresh/$dir.zip"
+            echo "$expected  /tmp/p18fresh/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p18fresh/$dir.zip" -d "/tmp/p18fresh/$dir"
+          }
+          fetch_artifact 11330910083 b1 f5eb140c540d23a6c38578915e15c01037c20413b6ce26d2a9ede9fb544480b9
+          fetch_artifact 11329998700 b4 33bfa2facea91d8bcd08cad777ca429cacd0ebea57a33942a5a8408b95c70be2
+          fetch_artifact 11330247860 b5 b9c690df4e5a7cf4c6955a9d65fb015d49e15582fd2ca25e9a435a82dcf27897
+          fetch_artifact 11329998824 b6 340d25b90a88b24516b2574f5cd9e6099e85c0428b1f34e5b09eea8f60e2fa97
+          fetch_artifact 11330354293 repair 07c2d1c4f7ff3a99a9e5797462bac23db01f20e1ca324d17c98689a695f1cdca
+          fetch_artifact 11331570322 p4 8de7b27a3ead242520137049c49f2a4733ae93716dd36eff12d0d259af3ae44e
+          echo G7_P18_P17_AUTHORITY_PASS
+
+      - name: Reconstitute repaired P17 fresh48
+        run: |
+          set -euo pipefail
+          batch_root () {
+            local base="$1"; local pattern="$2"; local f
+            f="$(find "$base" -path "$pattern" -print -quit)"
+            test -n "$f"; dirname "$(dirname "$f")"
+          }
+          B1="$(batch_root /tmp/p18fresh/b1 '*/derived/solves.jsonl')"
+          B2="$(batch_root /tmp/p18fresh/repair '*/batch2/derived/solves.jsonl')"
+          B3="$(batch_root /tmp/p18fresh/repair '*/batch3/derived/solves.jsonl')"
+          B4="$(batch_root /tmp/p18fresh/b4 '*/derived/solves.jsonl')"
+          B5="$(batch_root /tmp/p18fresh/b5 '*/derived/solves.jsonl')"
+          B6="$(batch_root /tmp/p18fresh/b6 '*/derived/solves.jsonl')"
+          mkdir -p /tmp/p18fresh/build/corpus
+          node scripts/g7-p17/merge-fresh48-corpus.mjs \
+            --source P17_BATCH1="$B1" --source P17_BATCH2="$B2" --source P17_BATCH3="$B3" \
+            --source P17_BATCH4="$B4" --source P17_BATCH5="$B5" --source P17_BATCH6="$B6" \
+            --out /tmp/p18fresh/build/corpus
+          node scripts/cube/replay-exact-trajectories.mjs \
+            --input /tmp/p18fresh/build/corpus/combined-solves.jsonl \
+            --out /tmp/p18fresh/build/exact
+          node scripts/g7-p7/prefix-context.mjs \
+            /tmp/p18fresh/build/exact/exact-trajectories.json \
+            /tmp/p18fresh/build/corpus/solve-metadata.jsonl \
+            /tmp/p18fresh/build/prefix-states.tsv \
+            /tmp/p18fresh/build/context.jsonl
+          cargo run -q -p search-geometry-core --bin g7_p7_reco_rivals \
+            < /tmp/p18fresh/build/prefix-states.tsv > /tmp/p18fresh/build/features.tsv
+          cargo run -q -p search-geometry-core --bin g7_p12_shell_flow \
+            < /tmp/p18fresh/build/prefix-states.tsv > /tmp/p18fresh/build/shell.tsv
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p18fresh/build/exact/exact-trajectories.json'))
+          assert x['solve_count']==48 and x['exact_end_validation_pass']==48
+          print('G7_P18_FRESH48_REPLAY_GATE_PASS',x['total_prefixes'])
+          PY
+
+      - name: Locate immutable P17 per-solve report
+        run: |
+          set -euo pipefail
+          REPORT="$(find /tmp/p18fresh/p4 -name fresh48-frozen-representation-confirmation.json -print -quit)"
+          test -n "$REPORT"
+          python3 - "$REPORT" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x['solves']==48 and x['verdict']=='DIRECTION_ONLY'
+          assert len(x['per_solve'])==48
+          print('G7_P18_P17_REPORT_GATE_PASS')
+          PY
+          printf '%s\n' "$REPORT" > /tmp/p18fresh/P17_REPORT_PATH
+
+      - name: Execute reversal attribution audit
+        run: |
+          set -euo pipefail
+          REPORT="$(cat /tmp/p18fresh/P17_REPORT_PATH)"
+          mkdir -p /tmp/p18out
+          python3 scripts/g7-p18/audit-hybrid-reversal.py \
+            --dev-states /tmp/p18dev/build/multicohort/multicohort-prefix-states.tsv \
+            --dev-features /tmp/p18dev/build/multicohort/five-rival-features.tsv \
+            --dev-shell /tmp/p18dev/build/multicohort/shell.tsv \
+            --dev-context /tmp/p18dev/build/multicohort/multicohort-context.jsonl \
+            --fresh-states /tmp/p18fresh/build/prefix-states.tsv \
+            --fresh-features /tmp/p18fresh/build/features.tsv \
+            --fresh-shell /tmp/p18fresh/build/shell.tsv \
+            --fresh-metadata /tmp/p18fresh/build/corpus/solve-metadata.jsonl \
+            --p17-report "$REPORT" \
+            --preseal g7/p18/constitution.json \
+            --out /tmp/p18out | tee /tmp/p18out/audit.log
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p18out/hybrid-reversal-attribution.json'))
+          assert x['development_only'] is True and x['new_body_contact']==0
+          assert x['verdict'] in (
+            'MIXED_SCALE_COMPOSITION_REVERSAL_DEVELOPMENT',
+            'TRAINING_SCALE_MEDIATED_HYBRID_COMPLEMENTARITY_DEVELOPMENT',
+            'ESTIMATION_VARIANCE_DOMINANT_DEVELOPMENT',
+            'COMPOSITION_MEDIATED_FRESH_REVERSAL_DEVELOPMENT',
+            'LOCALIZED_COMPLEMENTARITY_WITH_UNRESOLVED_REVERSAL',
+            'REVERSAL_ATTRIBUTION_UNRESOLVED'
+          )
+          print('G7_P18_RESULT_GATE_PASS',x['verdict'])
+          print('SCALE',x['scale_median_by_n'])
+          print('SEEDS296',x['full296_seed_means'])
+          print('RIVALS',x['rivals'])
+          print('COMP',x['complementarity_localization'])
+          PY
+
+      - name: Seal P18 development artifact
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p18seal/authority /tmp/p18seal/derived
+          cp g7/p18/constitution.json g7/p17/closure.json g7/p16/closure.json /tmp/p18seal/authority/
+          cp /tmp/p18out/hybrid-reversal-attribution.json /tmp/p18seal/derived/
+          cp /tmp/p18out/audit.log /tmp/p18seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P18' \
+            'OPERATION=DEVELOPMENT_ONLY_HYBRID_REVERSAL_ATTRIBUTION_AUDIT' \
+            'DEVELOPMENT_SOLVES=344' \
+            'NEW_BODY_CONTACT=0' \
+            'FRESH_CONFIRMATION_CONSUMED=NO' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p18seal/AUTHORITY.txt
+          (cd /tmp/p18seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P18-hybrid-reversal-attribution-${{ github.sha }}
+          path: /tmp/p18seal
+          retention-days: 90
