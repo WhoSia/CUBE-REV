@@ -1,0 +1,78 @@
+{
+  "schema_version": "g7-p22-constitution-1",
+  "phase": "G7-P22",
+  "formal_name": "CUBE-REV Generation VII G7-P22 — Anchored 2×2 Observation-Fiber Deterministic Reconstruction, NET-24 Face-Code Compiler Materialization, Historical UFR/UFRD Invariant Replay, Partial-Face Quotient Collision Census, Exact Observation Identifiability Reconstitution, Original-Byte Nonidentity Boundary & Observation-Bridge Re-entry Audit",
+  "operation_type": "Deterministic Observation-Compiler Reconstruction & Historical-Invariant Replay Audit",
+  "status": "PRESEALED_BEFORE_RECONSTRUCTION_OUTCOME",
+  "parent": {
+    "p21_closure": "g7/p21/closure.json",
+    "p21_verdict": "TIMING_SEMANTIC_ONLY_CUSTODY_GAP_CONFIRMED__CHOICE_PAUSE_BRIDGE_BLOCKED__OBSERVATION_MATH_SPEC_SURVIVES_WITH_ORIGINAL_BYTES_ABSENT__NEW_DETERMINISTIC_RECONSTRUCTION_LANE_AUTHORIZED"
+  },
+  "reconstruction_identity": {
+    "source_math": "current crates/cuberev-core anchored 2x2 corner-state domain",
+    "state_domain": 3674160,
+    "historical_original_bytes_recovered": false,
+    "new_namespace": "G7P22_NET24_RECON_V1",
+    "record_encoding": "24 face-sticker color codes in face order U,R,F,D,L,B; four deterministic corner slots per face; two 4-bit color codes packed per byte = 12 bytes/state",
+    "rank_order": "current cuberev-core CornerState rank order 0..3,674,159",
+    "historical_hash_equality_required": false
+  },
+  "primary_historical_replay": [
+    {
+      "id": "STATE_DOMAIN",
+      "expected": 3674160,
+      "rule": "exact equality"
+    },
+    {
+      "id": "UFRD_16_INJECTIVE",
+      "visible_faces": [
+        "U",
+        "F",
+        "R",
+        "D"
+      ],
+      "visible_stickers": 16,
+      "expected_unique_observations": 3674160,
+      "rule": "exact equality to state domain"
+    },
+    {
+      "id": "UFR_12_UNIQUE",
+      "visible_faces": [
+        "U",
+        "F",
+        "R"
+      ],
+      "visible_stickers": 12,
+      "expected_unique_observations": 2906280,
+      "rule": "exact equality",
+      "implied_uniform_map_accuracy": 0.7909984649555285
+    }
+  ],
+  "secondary_readouts": [
+    "UFR observation-fiber multiplicity histogram",
+    "UFR maximum fiber cardinality",
+    "new full-atlas 12-byte record FNV-1a64 and SHA-256",
+    "new UFR/UFRD quotient-key hashes",
+    "rank/unrank boundary and sampled full-domain legality checks"
+  ],
+  "adjudication": {
+    "RECONSTRUCTION_VALIDATED": "all three primary historical replay gates pass",
+    "RECONSTRUCTION_MISMATCH": "state-domain gate passes but either observation invariant fails",
+    "CORE_STATE_MISMATCH": "state-domain/rank legality gate fails"
+  },
+  "bridge_gate": {
+    "if_validated": "authorize a later mapping audit from 3x3 exact corner states into the anchored 2x2 observation quotient; do not yet claim direct naturalistic linkability",
+    "if_mismatch": "return to historical semantics/orientation convention recovery before any bridge work"
+  },
+  "inference_boundary": [
+    "This is a new deterministic materialization, not recovered historical byte identity.",
+    "Historical FNV-1a64 is not an equality target because historical packing/order bytes are absent.",
+    "Reproducing observation-fiber mathematics does not validate historical human/perceptual experiments.",
+    "2x2 anchored observation geometry is not automatically identical to 3x3 naturalistic observation geometry.",
+    "No human mechanism promotion."
+  ],
+  "source_contact": "NONE",
+  "new_human_contact": 0,
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
