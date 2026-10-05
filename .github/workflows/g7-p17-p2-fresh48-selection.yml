@@ -1,0 +1,99 @@
+name: G7-P17-P2 fresh48 selection seal
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p17/p2-fresh48-selection-preseal.json'
+      - 'scripts/g7-p17/select-fresh48-confirmation.py'
+      - '.github/workflows/g7-p17-p2-fresh48-selection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Preseal and zero-bot gate
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p17-p2-fresh48-selection.yml'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p17/p2-fresh48-selection-preseal.json'))
+          assert x['status']=='FROZEN_BEFORE_P17_FRESH48_BODY_CONTACT'
+          assert x['target']['total']==48 and x['target']['per_cell']==3
+          assert x['exclusion']['exact_prior_contacted']==368
+          assert x['body_contact']==0
+          print('G7_P17_P2_PRESEAL_GATE_PASS')
+          PY
+
+      - name: Recover frozen frame and P17-P1 exclusion authority
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p17p2/{p8,p3,p1}
+          fetch_artifact () {
+            id="$1"; dir="$2"; expected="$3"
+            curl --fail --location --silent --show-error               -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json"               "https://api.github.com/repos/$REPO/actions/artifacts/$id/zip" -o "/tmp/p17p2/$dir.zip"
+            echo "$expected  /tmp/p17p2/$dir.zip" | sha256sum -c -
+            unzip -q "/tmp/p17p2/$dir.zip" -d "/tmp/p17p2/$dir"
+          }
+          fetch_artifact 11238930249 p8 460dc657565541b663f1bc91b6e75490a7591f56946a41c28af60802ee27f16a
+          fetch_artifact 11205587281 p3 acb3dff14bbdb33fe4be3550e64eeba55dcb1879b85d6b8c1eacca7d9408c4e4
+          fetch_artifact 11329256436 p1 80d20fcd2206cb6d99d993c20590bfec9b4b5f5f14d0bad48e562fc9234886c5
+          echo G7_P17_P2_INPUT_AUTHORITY_PASS
+
+      - name: Materialize untouched fresh48 selection
+        run: |
+          set -euo pipefail
+          COV="$(find /tmp/p17p2/p8 -name frozen-index-covariates.jsonl -print -quit)"
+          IDX="$(find /tmp/p17p2/p3 -name linkage-support.jsonl -print -quit)"
+          CENSUS="$(find /tmp/p17p2/p1 -name prior-contact-census.json -print -quit)"
+          test -n "$COV"; test -n "$IDX"; test -n "$CENSUS"
+          mkdir -p /tmp/p17p2/out
+          python3 scripts/g7-p17/select-fresh48-confirmation.py             --covariates "$COV"             --frozen-index "$IDX"             --exclusion-census "$CENSUS"             --out /tmp/p17p2/out | tee /tmp/p17p2/selection.log
+
+      - name: Result gate
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/p17p2/out/selection-manifest.json'))
+          assert x['status']=='SEALED_BEFORE_FRESH48_BODY_CONTACT'
+          assert x['target_total']==48
+          assert x['prior_body_contacted_excluded']==368
+          assert len(x['selected_cell_counts'])==16 and all(v==3 for v in x['selected_cell_counts'].values())
+          assert len(x['selected_batch_counts'])==6 and all(v==8 for v in x['selected_batch_counts'].values())
+          print('G7_P17_P2_RESULT_GATE_PASS')
+          print('MANIFEST_SHA256',x['selection_manifest_sha256'])
+          print('CELLS',x['selected_cell_counts'])
+          print('BATCHES',x['selected_batch_counts'])
+          print('MIX',x['batch_axis_mix'])
+          PY
+
+      - name: Seal selection
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p17p2/seal/authority /tmp/p17p2/seal/derived
+          cp g7/p17/p2-fresh48-selection-preseal.json /tmp/p17p2/seal/authority/
+          cp /tmp/p17p2/out/* /tmp/p17p2/seal/derived/
+          cp /tmp/p17p2/selection.log /tmp/p17p2/seal/derived/
+          printf '%s\n'             'PHASE=G7-P17-P2'             'OPERATION=UNTOUCHED_FRESH48_SELECTION_SEAL'             'FRESH_BODY_CONTACT=0'             'PRIOR_CONTACT_EXCLUDED=368'             'TARGET=48'             > /tmp/p17p2/seal/AUTHORITY.txt
+          (cd /tmp/p17p2/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P17-P2-fresh48-selection-${{ github.sha }}
+          path: /tmp/p17p2/seal
+          retention-days: 90
