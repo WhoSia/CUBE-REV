@@ -1,0 +1,49 @@
+{
+  "schema_version": "g7-p17-p0-contact-budget-preseal-1",
+  "phase": "G7-P17-P0",
+  "formal_name": "CUBE-REV Generation VII G7-P17-P0 — Untouched-Fresh Contact-Budget Planning, Stage-Held-Out Solve-Clustered Representation-Margin Reconstruction, 16-Cell Balance-Compatible Sample-Size Ladder, Conservative Bootstrap Assurance, Prior-Contact Exclusion Accounting & Minimal Confirmation Contact Audit",
+  "operation_type": "Pre-Contact Fresh-Sample Budget Planning Audit",
+  "status": "FROZEN_BEFORE_P17_FRESH_SELECTION_OR_BODY_CONTACT",
+  "parent": {
+    "p16_closure": "g7/p16/closure.json",
+    "frozen_candidate": "HANDCRAFTED_SEARCH",
+    "frozen_model_sha256": "b0cf867f0dcfb1eac65bfb19b92ea34226874c6c2c04c7fa0d0bd711c08412f2"
+  },
+  "development_only": true,
+  "fresh_contact": 0,
+  "candidate_sizes": [
+    48,
+    64,
+    80,
+    96
+  ],
+  "balance_constraint": "2 method ×2 reconstructor-band ×4 era =16 cells; candidate N must divide evenly across 16 cells",
+  "planning_evidence": {
+    "reservoir": "unique dev296 P11/P13/P14/P15",
+    "statistic": "per-solve held-out mean NLL difference HANDCRAFTED_SEARCH minus RAW_LATENT",
+    "stage_models": "leave-one-stage-out, same rank-8 model family and optimizer as R3",
+    "bootstrap_unit": "solve",
+    "bootstrap_scheme": "stage-stratified resampling preserving development stage proportions",
+    "repetitions": 20000
+  },
+  "selection_rule": {
+    "desired_direction": "HAND minus RAW < 0",
+    "assurance": "upper 95th percentile of bootstrap mean < 0",
+    "choose": "smallest candidate N satisfying assurance",
+    "if_none": "choose 96 as predeclared contact-budget ceiling and mark ASSURANCE_NOT_REACHED_AT_CEILING"
+  },
+  "secondary_planning": [
+    "HAND minus action-frequency prior margin",
+    "stage-specific solve-level margin summaries",
+    "expected face-next state count from development states-per-solve distribution"
+  ],
+  "forbidden": [
+    "use any P17 body data in planning",
+    "change frozen model family/rank/token schema",
+    "choose N after P17 selection/body contact",
+    "treat bootstrap assurance as inferential proof"
+  ],
+  "prior_contact_rule": "P17 selector must independently reconstruct and exclude every body-contacted source ID through P15, including replay-invalid original IDs and all replacements; P16 added zero contact.",
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
