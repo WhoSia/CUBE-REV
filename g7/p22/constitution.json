@@ -45,7 +45,7 @@
       "visible_stickers": 12,
       "expected_unique_observations": 2906280,
       "rule": "exact equality",
-      "implied_uniform_map_accuracy": 0.7909984649555285
+      "implied_uniform_map_accuracy": 0.791005291005291
     }
   ],
   "secondary_readouts": [
