@@ -1,0 +1,28 @@
+{
+  "schema_version": "g7-p21-closure-1",
+  "phase": "G7-P21",
+  "formal_name": "CUBE-REV Generation VII G7-P21 — Historical Timing & Observation Byte-Custody Recovery, R1.42/R1.48/R1.53 Semantic-to-Executable Authority Reconciliation, NET-24/Ideal-Observer Artifact Archaeology, Git-History/Drive Provenance Search, Link-Key Recovery, Choice×Pause Multi-Observable Bridge Readiness & Recovery Gate Audit",
+  "operation_type": "Byte-Custody Recovery & Multi-Observable Bridge Readiness Audit",
+  "status": "CLOSED",
+  "final_verdict": "TIMING_SEMANTIC_ONLY_CUSTODY_GAP_CONFIRMED__CHOICE_PAUSE_BRIDGE_BLOCKED__OBSERVATION_MATH_SPEC_SURVIVES_WITH_ORIGINAL_BYTES_ABSENT__NEW_DETERMINISTIC_RECONSTRUCTION_LANE_AUTHORIZED",
+  "authority": {
+    "recovery_receipt": "g7/p21/recovery-receipt.json",
+    "p20_closure": "g7/p20/closure.json"
+  },
+  "terminal_classes": {
+    "R1_SENSOR_TIMING": "SEMANTIC_ONLY_CUSTODY_GAP_CONFIRMED",
+    "R1_PUBLIC_TIMING": "SEMANTIC_ONLY_CUSTODY_GAP_CONFIRMED",
+    "OBSERVATION_FIBER_EXACT": "PARTIAL_CUSTODY_RECOVERY"
+  },
+  "interpretation": [
+    "R1.42/R1.48/R1.53 semantic definitions, corrections and summary results are recoverable, but the row-level timing bytes and deterministic replay package are not.",
+    "The full pre-prune Git-history bundle contains no timing/R153/R148/NET-24 paths or commit messages, so the missing timing bytes were not simply lost during the P7 active-set prune.",
+    "The 0.3/0.4 observation line retains enough exact mathematical specification to motivate a new deterministic reconstruction from current exact cube mathematics.",
+    "That reconstruction must be labeled as a new compiler/materialization and cannot claim byte identity with the historical 0.3/0.4 artifacts.",
+    "Choice×pause multi-observable analysis remains blocked until actual timing bytes or independently sufficient row-level timing inputs are recovered."
+  ],
+  "successor_problem": "Rebuild the 2x2 anchored exact observation compiler and NET-24/partial-face quotient surfaces from current exact cube mathematics, validate recovered historical invariants where independently specified, and only then test observation-fiber×naturalistic-behavior linkability.",
+  "no_new_contact": true,
+  "human_contact_gate": "CLOSED",
+  "mechanism_promotion": "FORBIDDEN"
+}
