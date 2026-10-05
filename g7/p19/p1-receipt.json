@@ -1,0 +1,27 @@
+{
+  "schema_version": "g7-p19-p1-receipt-1",
+  "phase": "G7-P19-P1",
+  "formal_name": "CUBE-REV Generation VII G7-P19-P1 — Prior-Body-Contact Exhaustiveness Re-Census, P17 Original/Repair Contact Union, Freshness Exclusion-Set Expansion to 418 & Untouched-Hybrid-Confirmation Eligibility Gate",
+  "operation_type": "Prior-Contact Exhaustiveness Census",
+  "status": "CLOSED_CONTACT_EXCLUSION_SET_SEALED",
+  "authority": {
+    "run": 37284307281,
+    "head": "bd3a43587e396b5317c1ca0deead03e4c23933e6",
+    "artifact": 11333467367,
+    "artifact_sha256": "d4363e807492333d299fe4140d710f611f4a3c496854dfed704bc31f0060b3de",
+    "drive_file_id": "1n3zFvFqUXJXxbREd-jVqpBhzUNprIy-N"
+  },
+  "counts": {
+    "prior_through_p15": 368,
+    "p17_original_selection_contacted": 48,
+    "p17_unique_repair_replacements": 2,
+    "all_prior_contacted_through_p17": 418
+  },
+  "p17_repair_replacement_ids": [
+    7865,
+    12695
+  ],
+  "exclusion_list_sha256": "da2b4ac80970ee77fe64c15ac60745afa24d29995291438bb05026e8220fd1cc",
+  "fresh_contact": 0,
+  "successor_constraint": "P19-P2 may select exactly 48 solves from the frozen 10,591-row frame after exact exclusion of this sealed 418-ID list."
+}
