@@ -1,0 +1,96 @@
+name: G7-P22 deterministic observation-fiber reconstruction
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p22/constitution.json'
+      - 'crates/cuberev-core/src/bin/g7_p22_observation_atlas.rs'
+      - '.github/workflows/g7-p22-observation-reconstruction.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  reconstruct:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-rust@v1
+        with:
+          rust-version: stable
+
+      - name: Validate preseal and zero-bot firewall
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p22-observation-reconstruction.yml'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p22/constitution.json'))
+          assert x['status']=='PRESEALED_BEFORE_RECONSTRUCTION_OUTCOME'
+          assert x['reconstruction_identity']['historical_original_bytes_recovered'] is False
+          assert x['source_contact']=='NONE'
+          print('G7_P22_PRESEAL_PASS')
+          PY
+
+      - name: Build and execute full-domain compiler
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p22
+          cargo run --release -q -p cuberev-core --bin g7_p22_observation_atlas -- /tmp/p22/G7P22_NET24_RECON_V1.bin | tee /tmp/p22/run.log
+          test "$(stat -c %s /tmp/p22/G7P22_NET24_RECON_V1.bin)" = "44089920"
+          sha256sum /tmp/p22/G7P22_NET24_RECON_V1.bin | tee /tmp/p22/atlas.sha256
+
+      - name: Historical invariant replay gate
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re
+          s=open('/tmp/p22/run.log').read()
+          def v(k):
+              m=re.search(r'^'+re.escape(k)+r'\t(.+)$',s,re.M)
+              assert m,k
+              return m.group(1).strip()
+          assert int(v('STATE_DOMAIN'))==3674160
+          assert int(v('ATLAS_RECORD_BYTES'))==12
+          assert int(v('ATLAS_PAYLOAD_BYTES'))==44089920
+          assert int(v('UFR_UNIQUE'))==2906280
+          assert int(v('UFRD_UNIQUE'))==3674160
+          assert v('UFRD_INJECTIVE')=='true'
+          mapv=float(v('UFR_MAP_UNIFORM'))
+          assert abs(mapv-(2906280/3674160))<1e-12
+          print('G7_P22_HISTORICAL_INVARIANT_REPLAY_PASS')
+          print('NEW_FNV',v('ATLAS_FNV1A64_NEW_NAMESPACE'))
+          print('UFR_MAX_FIBER',v('UFR_MAX_FIBER'))
+          print('UFR_FIBER_HIST',v('UFR_FIBER_HIST'))
+          PY
+
+      - name: Seal reconstructed authority
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p22/seal/authority /tmp/p22/seal/derived
+          cp g7/p22/constitution.json /tmp/p22/seal/authority/
+          cp /tmp/p22/G7P22_NET24_RECON_V1.bin /tmp/p22/seal/derived/
+          cp /tmp/p22/run.log /tmp/p22/seal/derived/
+          cp /tmp/p22/atlas.sha256 /tmp/p22/seal/derived/
+          printf '%s\n' \
+            'PHASE=G7-P22' \
+            'OPERATION=DETERMINISTIC_OBSERVATION_COMPILER_RECONSTRUCTION' \
+            'NAMESPACE=G7P22_NET24_RECON_V1' \
+            'HISTORICAL_ORIGINAL_BYTE_IDENTITY=NO' \
+            'STATE_DOMAIN=3674160' \
+            'ATLAS_BYTES=44089920' \
+            'UFR_UNIQUE=2906280' \
+            'UFRD_UNIQUE=3674160' \
+            'HUMAN_CONTACT_GATE=CLOSED' \
+            > /tmp/p22/seal/AUTHORITY.txt
+          (cd /tmp/p22/seal && find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P22-observation-reconstruction-${{ github.sha }}
+          path: /tmp/p22/seal
+          retention-days: 90
