@@ -1,0 +1,71 @@
+name: G7-P23-R1 exact orientation-gauge quotient census
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'g7/p23-r1/constitution.json'
+      - 'crates/cuberev-core/src/bin/g7_p23_r1_quotient_census.rs'
+      - '.github/workflows/g7-p23-r1-orientation-gauge-census.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  exact-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Validate preseal and read-only automation firewall
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\\[bot\\]' '.github/workflows/g7-p23-r1-orientation-gauge-census.yml'
+          python3 - <<'PY'
+          import json
+          x=json.load(open('g7/p23-r1/constitution.json'))
+          assert x['phase']=='G7-P23-R1'
+          assert x['status']=='PRESEALED_BEFORE_R1_EXECUTION'
+          assert x['source_domain']['legal_corner_projections']==88179840
+          assert x['quotient']['target_domain']==3674160
+          assert x['historical_p22_fnv'].endswith('not equality gate')
+          assert x['actions_authority'].startswith('contents:read')
+          print('G7_P23_R1_PRESEAL_PASS')
+          PY
+
+      - name: Compile and run two independent exact censuses
+        run: |
+          set -euo pipefail
+          cargo test --release -p cuberev-core
+          mkdir -p /tmp/p23-r1/one /tmp/p23-r1/two /tmp/p23-r1/seal
+          cargo run --release -q -p cuberev-core --bin g7_p23_r1_quotient_census -- /tmp/p23-r1/one/receipt.txt
+          sha256sum /tmp/p23-r1/one/receipt.txt | tee /tmp/p23-r1/one/receipt.sha256
+          cargo run --release -q -p cuberev-core --bin g7_p23_r1_quotient_census -- /tmp/p23-r1/two/receipt.txt
+          sha256sum /tmp/p23-r1/two/receipt.txt | tee /tmp/p23-r1/two/receipt.sha256
+          cmp /tmp/p23-r1/one/receipt.txt /tmp/p23-r1/two/receipt.txt
+          cmp /tmp/p23-r1/one/receipt.sha256 /tmp/p23-r1/two/receipt.sha256
+          grep -q '^SOURCE_DOMAIN[[:space:]]88179840$' /tmp/p23-r1/one/receipt.txt
+          grep -q '^UNIQUE_SOURCE_INDICES[[:space:]]88179840$' /tmp/p23-r1/one/receipt.txt
+          grep -q '^FIBER_MULTIPLICITY[[:space:]]24_every_target$' /tmp/p23-r1/one/receipt.txt
+          grep -q '^REPRESENTATIVE_INVARIANCE[[:space:]]all_88179840_source_members$' /tmp/p23-r1/one/receipt.txt
+          grep -q '^UFRD_UNIQUE[[:space:]]3674160$' /tmp/p23-r1/one/receipt.txt
+          grep -q '^UFR_UNIQUE[[:space:]]2906280$' /tmp/p23-r1/one/receipt.txt
+          grep -q '^UFR_FIBER_HIST[[:space:]]1:2177280,2:719280,6:9720$' /tmp/p23-r1/one/receipt.txt
+          ! grep -q '^FIXED_CENTER_NONINVARIANT_QUOTIENT_FIBERS[[:space:]]0$' /tmp/p23-r1/one/receipt.txt
+          cp g7/p23-r1/constitution.json /tmp/p23-r1/seal/
+          cp /tmp/p23-r1/one/receipt.txt /tmp/p23-r1/seal/
+          cp /tmp/p23-r1/one/receipt.sha256 /tmp/p23-r1/seal/
+          cp /tmp/p23-r1/two/receipt.txt /tmp/p23-r1/seal/receipt-rerun.txt
+          cp /tmp/p23-r1/two/receipt.sha256 /tmp/p23-r1/seal/receipt-rerun.sha256
+          (cd /tmp/p23-r1/seal && sha256sum constitution.json receipt.txt receipt.sha256 receipt-rerun.txt receipt-rerun.sha256 > SHA256SUMS.txt)
+          cat /tmp/p23-r1/one/receipt.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P23-R1-orientation-gauge-census-${{ github.sha }}
+          path: /tmp/p23-r1/seal
+          retention-days: 90
