@@ -1,5 +1,5 @@
 use cuberev_core::{CornerState, STATE_DOMAIN};
-use std::{collections::HashMap, env, fs::File, io::{BufWriter, Write}};
+use std::{collections::{HashMap, HashSet}, env, fs::File, io::{BufWriter, Write}};
 
 const N_SOURCE: usize = 88_179_840;
 const NONANCHOR: [usize; 7] = [0, 1, 2, 3, 4, 5, 7];
@@ -137,16 +137,14 @@ fn main() {
     let out_path=env::args().nth(1).expect("usage: g7_p23_r1_quotient_census <receipt.txt>");
     assert_eq!(STATE_DOMAIN,3_674_160);
     let rs=rotations();
-    let mut canonical_rot=[[[0usize;3];8];1]; // populated below as a small fixed lookup
     let mut pose_to_anchor=[[0usize;3];8];
     for p in 0..8 { for o in 0..3u8 {
         let mut found=None;
         for (ri,&r) in rs.iter().enumerate() { if twist_for_piece_at(r,p,6,o)==(6,0) { assert!(found.is_none()); found=Some(ri); }}
         pose_to_anchor[p][o as usize]=found.expect("pose rotation");
     }}
-    canonical_rot[0]=pose_to_anchor;
     let mut seen=vec![0u8;(N_SOURCE+7)/8];
-    let mut unique_source=0usize; let mut ufr:HashMap<u64,u32>=HashMap::with_capacity(3_100_000);
+    let mut unique_source=0usize; let mut ufr:HashMap<u64,u32>=HashMap::with_capacity(3_100_000); let mut ufrd=HashSet::with_capacity(3_800_000);
     let mut stream_hash=0xcbf29ce484222325u64;
     let mut varying_fixed=0u32; let mut max_fixed=0usize;
     let mut witness:Option<(usize,usize,usize,u64,u64,u32)>=None;
@@ -154,7 +152,7 @@ fn main() {
         let anchor=full_from_target(target_rank);
         let ast=corner_state(anchor); assert_eq!(ast.rank().unwrap(),target_rank);
         let ac=face_codes(anchor); let akd=obs(&ac,&[b'U',b'F',b'R',b'D']); let aku=obs(&ac,&[b'U',b'F',b'R']);
-        *ufr.entry(aku).or_insert(0)+=1;
+        *ufr.entry(aku).or_insert(0)+=1; ufrd.insert(akd);
         let mut orbit=Vec::with_capacity(24);
         let mut fixed=Vec::with_capacity(24);
         for (ri,&r) in rs.iter().enumerate() {
@@ -165,7 +163,7 @@ fn main() {
             let canon=rotate(src,rs[pose_to_anchor[src.cp.iter().position(|&c|c==6).unwrap()][src.co[src.cp.iter().position(|&c|c==6).unwrap()] as usize]]);
             let cr=corner_state(canon).rank().unwrap();
             assert_eq!(cr,target_rank,"representative invariance: raw={idx}, rot={ri}");
-            assert_eq!(obs(&face_codes(canon),&[b'U',b'F',b'R',b'D']),akd);
+            let cc=face_codes(canon); assert_eq!(obs(&cc,&[b'U',b'F',b'R',b'D']),akd); assert_eq!(obs(&cc,&[b'U',b'F',b'R']),aku);
             let fk=obs(&face_codes(src),&[b'U',b'F',b'R',b'D']);
             orbit.push((idx,ri,cr)); fixed.push((idx,ri,fk));
             for v in [idx as u64,target_rank as u64,ri as u64,fk] { stream_hash=fnv(stream_hash,&v.to_le_bytes()); }
@@ -184,7 +182,7 @@ fn main() {
     }
     assert_eq!(unique_source,N_SOURCE);
     assert!(seen.iter().all(|&x|x==255));
-    assert_eq!(ufr.len(),2_906_280);
+    assert_eq!(ufrd.len(),3_674_160); assert_eq!(ufr.len(),2_906_280);
     let mut hist:HashMap<u32,u32>=HashMap::new(); for &n in ufr.values(){*hist.entry(n).or_insert(0)+=1;}
     assert_eq!(hist.get(&1),Some(&2_177_280)); assert_eq!(hist.get(&2),Some(&719_280)); assert_eq!(hist.get(&6),Some(&9_720)); assert_eq!(hist.len(),3);
     assert!(varying_fixed>0,"fixed-center nontransport counterexample absent");
