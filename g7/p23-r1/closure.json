@@ -1,0 +1,101 @@
+{
+  "schema_version": "g7-p23-r1-closure-1",
+  "phase": "G7-P23-R1",
+  "verdict": "CLOSED / PASS",
+  "execution_authority": {
+    "branch": "research/current",
+    "exact_science_head": "ab3c6d857723d086ea29f8634cf56cb43105fabf",
+    "workflow": "/.github/workflows/g7-p23-r1-orientation-gauge-census.yml",
+    "run_id": 37573665425,
+    "attempt": 1,
+    "event": "push",
+    "conclusion": "success"
+  },
+  "source_domain": {
+    "target_states": 3674160,
+    "legal_corner_projections": 88179840,
+    "unique_source_indices": 88179840
+  },
+  "quotient": {
+    "proper_rotations": 24,
+    "every_fiber_multiplicity": 24,
+    "all_source_members_canonicalize_to_generating_target": true,
+    "representative_invariance": "PASS across all 88,179,840 source members"
+  },
+  "observables": {
+    "UFRD_unique": 3674160,
+    "UFR_unique": 2906280,
+    "UFR_fiber_histogram": {
+      "1": 2177280,
+      "2": 719280,
+      "6": 9720
+    }
+  },
+  "fixed_center_nontransport": {
+    "quotient_fibers_with_multiple_fixed_frame_UFRD_keys": 3674160,
+    "quotient_fibers_total": 3674160,
+    "max_distinct_fixed_frame_UFRD_keys_per_fiber": 24,
+    "witness": {
+      "quotient_rank": 0,
+      "source_a": 0,
+      "rotation_a": 23,
+      "key_a": "37529710572339",
+      "source_b": 4570549,
+      "rotation_b": 15,
+      "key_b": "1229764173821527108"
+    }
+  },
+  "deterministic_rerun": {
+    "independent_same_head_executions": 2,
+    "byte_identical_receipts": true,
+    "receipt_sha256": "639b6665f1f7f4b10b4c31ac9185f27da4ca098c0b82e9f0c909aed6a5e1be19",
+    "transcript_fnv1a64_diagnostic_only": "54ac5c132647a371"
+  },
+  "artifact": {
+    "id": 11461892552,
+    "name": "G7-P23-R1-orientation-gauge-census-ab3c6d857723d086ea29f8634cf56cb43105fabf",
+    "size_bytes": 3103,
+    "archive_sha256": "2a52d1b06eda12d34d8c75c9a25e7ff83ea9b1e03b66efb0320ff051ea951c4f",
+    "expired": false,
+    "download_retrieved": true
+  },
+  "prior_p22_authority": {
+    "namespace": "G7P22_NET24_RECON_V1",
+    "run_id": 37572043757,
+    "artifact_id": 11461277151,
+    "artifact_sha256": "1753014ca421cacb42a8b31e9f1e6a639cdb1c3c5e96fe560b2591c2333e2fb4",
+    "historical_fnv_gate": false
+  },
+  "failed_nonadmitted_attempts": [
+    {
+      "head": "1fd595b08cdf12140712c3cc441c2a39206d904e",
+      "reason": "matrix iteration order was not lexicographic as frozen; result excluded"
+    },
+    {
+      "head": "f6d96ec36ddf2ecfa89e8292229a23e172c228fb",
+      "reason": "compile-time type errors; no scientific result"
+    },
+    {
+      "head": "514e0ee5702f5101efa40456d6b50f7f16df95d6",
+      "reason": "workflow compared sha256sum sidecar paths as well as digest; execution receipts matched but run did not pass gate"
+    }
+  ],
+  "authority_changes": [
+    "Exact 24:1 orientation-gauge quotient gains full executable census support.",
+    "Post-canonicalization anchored 2x2 corner observation partitions pass exact quotient consistency.",
+    "Fixed-center 3x3 UFRD semantics fail invariance on every quotient fiber."
+  ],
+  "remaining_hold": [
+    "No historical P22 byte recovery.",
+    "No full 3x3 group/dynamics/edge enumeration, solver equivalence, or human/naturalistic/perceptual/timing transport.",
+    "P24 requires fresh explicit PI judgment and is not authorized by this closure.",
+    "Human/world contact remains CLOSED."
+  ],
+  "action_authority": "read-only compute/test/log/artifact; no Actions repository writes",
+  "default_branch_zero_bot_author_committer_audit": {
+    "branch": "research/current",
+    "github_actions_bot_authors": 0,
+    "github_actions_bot_committers": 0
+  },
+  "closure_promotion": "human-authored repository commit; Actions did not author repository history"
+}
