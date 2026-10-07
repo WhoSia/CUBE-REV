@@ -1,0 +1,64 @@
+{
+  "schema_version": "g7-p23-r1-executable-quotient-census-1",
+  "phase": "G7-P23-R1",
+  "status": "PRESEALED_BEFORE_R1_EXECUTION",
+  "source_head": "b981ca460027a09a7702aeb359d83ce8d5ddb15a",
+  "mapping_preseal": "Notion G7-P23 page 3f2ef561-cf92-81fb-98b5-c01f74dfdece; analytic mapping section plus appended G7-P23-R1 executable exact replay preseal",
+  "source_domain": {
+    "legal_corner_projections": 88179840,
+    "definition": "8! * 3^7; cp[position]=cubie; co twists sum to 0 mod 3; edges existentially completed then discarded"
+  },
+  "quotient": {
+    "group": "24 determinant +1 signed-permutation matrices; no reflections; cubie/color labels fixed; rotate positions and sticker normals",
+    "target_domain": 3674160,
+    "representative": "unique rotated source with cubie 6 at position 6, twist 0; map remaining positions/IDs [0,1,2,3,4,5,7] in order to anchored indices [0,1,2,3,4,5,6]; current CornerState rank"
+  },
+  "required_gates": [
+    {
+      "id": "SOURCE_COVERAGE",
+      "expected": 88179840,
+      "each_raw_source_seen_exactly_once": true
+    },
+    {
+      "id": "TARGET_COVERAGE",
+      "expected": 3674160
+    },
+    {
+      "id": "FIBER_MULTIPLICITY",
+      "expected": 24
+    },
+    {
+      "id": "REPRESENTATIVE_INVARIANCE",
+      "all_source_members_canonicalize_to_generating_target": true
+    },
+    {
+      "id": "UFRD_UNIQUE",
+      "expected": 3674160
+    },
+    {
+      "id": "UFR_UNIQUE",
+      "expected": 2906280
+    },
+    {
+      "id": "UFR_HISTOGRAM",
+      "expected": "1:2177280,2:719280,6:9720"
+    },
+    {
+      "id": "FIXED_CENTER_NONTRANSPORT",
+      "at_least_one_same_quotient_fiber_has_distinct_fixed_frame_UFRD_keys": true
+    },
+    {
+      "id": "DETERMINISTIC_RERUN",
+      "two_same_head_runs_byte_identical_receipt_and_transcript_sha256": true
+    }
+  ],
+  "forbidden_claims": [
+    "historical P22 byte recovery",
+    "human/naturalistic/timing transport",
+    "full 3x3 cube group enumeration",
+    "full 3x3 dynamics or solver claims"
+  ],
+  "historical_p22_fnv": "provenance-only; not equality gate",
+  "actions_authority": "contents:read, actions:read; compute/test/log/upload only; no repository history writes",
+  "p24": "unauthorized unless every R1 gate passes and fresh PI judgment separately authorizes"
+}
