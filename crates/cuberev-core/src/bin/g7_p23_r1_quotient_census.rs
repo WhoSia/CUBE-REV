@@ -94,7 +94,7 @@ fn anchor_rotation(s:State,rs:&[Rot])->usize {
 fn corner_state(s:State)->CornerState {
     assert_eq!(s.cp[6],6); assert_eq!(s.co[6],0);
     let mut perm=[0u8;7]; let mut ori=[0u8;7];
-    for i in 0..7 { perm[i]=NONANCHOR.iter().position(|&p|p==s.cp[NONANCHOR[i]]).expect("anchored cubie") as u8; ori[i]=s.co[NONANCHOR[i]]; }
+    for i in 0..7 { perm[i]=NONANCHOR.iter().position(|&p|p==s.cp[NONANCHOR[i]] as usize).expect("anchored cubie") as u8; ori[i]=s.co[NONANCHOR[i]]; }
     CornerState{perm,ori}
 }
 fn full_from_target(rank:u32)->State {
@@ -148,7 +148,7 @@ fn main() {
     let mut unique_source=0usize; let mut ufr:HashMap<u64,u32>=HashMap::with_capacity(3_100_000); let mut ufrd=HashSet::with_capacity(3_800_000);
     let mut stream_hash=0xcbf29ce484222325u64;
     let mut varying_fixed=0u32; let mut max_fixed=0usize;
-    let mut witness:Option<(usize,usize,usize,u64,u64,u32)>=None;
+    let mut witness:Option<(usize,usize,usize,usize,u64,u64,u32)>=None;
     for target_rank in 0..STATE_DOMAIN {
         let anchor=full_from_target(target_rank);
         let ast=corner_state(anchor); assert_eq!(ast.rank().unwrap(),target_rank);
