@@ -195,7 +195,7 @@ fn main() {
     writeln!(f,"UNIQUE_SOURCE_INDICES\t{}",unique_source).unwrap();
     writeln!(f,"FIBER_MULTIPLICITY\t24_every_target").unwrap();
     writeln!(f,"REPRESENTATIVE_INVARIANCE\tall_88179840_source_members").unwrap();
-    writeln!(f,"UFRD_UNIQUE\t{}",STATE_DOMAIN).unwrap();
+    writeln!(f,"UFRD_UNIQUE\t{}",ufrd.len()).unwrap();
     writeln!(f,"UFR_UNIQUE\t{}",ufr.len()).unwrap();
     writeln!(f,"UFR_FIBER_HIST\t1:2177280,2:719280,6:9720").unwrap();
     writeln!(f,"FIXED_CENTER_NONINVARIANT_QUOTIENT_FIBERS\t{}",varying_fixed).unwrap();
