@@ -47,7 +47,7 @@ jobs:
           cargo run --release -q -p cuberev-core --bin g7_p23_r1_quotient_census -- /tmp/p23-r1/two/receipt.txt
           sha256sum /tmp/p23-r1/two/receipt.txt | tee /tmp/p23-r1/two/receipt.sha256
           cmp /tmp/p23-r1/one/receipt.txt /tmp/p23-r1/two/receipt.txt
-          cmp /tmp/p23-r1/one/receipt.sha256 /tmp/p23-r1/two/receipt.sha256
+          test "$(cut -d' ' -f1 /tmp/p23-r1/one/receipt.sha256)" = "$(cut -d' ' -f1 /tmp/p23-r1/two/receipt.sha256)"
           grep -q '^SOURCE_DOMAIN[[:space:]]88179840$' /tmp/p23-r1/one/receipt.txt
           grep -q '^UNIQUE_SOURCE_INDICES[[:space:]]88179840$' /tmp/p23-r1/one/receipt.txt
           grep -q '^FIBER_MULTIPLICITY[[:space:]]24_every_target$' /tmp/p23-r1/one/receipt.txt
