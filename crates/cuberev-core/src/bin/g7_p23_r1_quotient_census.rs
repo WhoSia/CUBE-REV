@@ -37,6 +37,7 @@ fn rotations() -> Vec<Rot> {
             out.push(Rot{m});
         }
     }}}}
+    out.sort_by_key(|r| (r.m[0][0],r.m[0][1],r.m[0][2],r.m[1][0],r.m[1][1],r.m[1][2],r.m[2][0],r.m[2][1],r.m[2][2]));
     assert_eq!(out.len(),24); out
 }
 fn face_for_vec(v:[i8;3])->u8 {
