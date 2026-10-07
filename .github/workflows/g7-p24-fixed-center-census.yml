@@ -1,0 +1,197 @@
+name: G7-P24 exact fixed-center operator census
+
+concurrency:
+  group: g7-p24-fixed-center-${{ github.sha }}-${{ github.run_id }}
+  cancel-in-progress: false
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'crates/cuberev-core/src/bin/g7_p24_fixed_center_census.rs'
+      - '.github/workflows/g7-p24-fixed-center-census.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  census:
+    name: independent census ${{ matrix.replica }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        replica: [1, 2]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate read-only authority and frozen source artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' '.github/workflows/g7-p24-fixed-center-census.yml'
+          test "$GITHUB_REF" = "refs/heads/research/current"
+          mkdir -p /tmp/p24/p7 /tmp/p24/p23 /tmp/p24/input /tmp/p24/output
+          curl --fail --location --silent --show-error \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$REPO/actions/artifacts/11379869118/zip" \
+            -o /tmp/p24/p7.zip
+          echo '10b78a4a9c2daa0762619b8c23293fe71e110a71eb019076efe5c10fd18ca3f3  /tmp/p24/p7.zip' | sha256sum -c -
+          unzip -q /tmp/p24/p7.zip -d /tmp/p24/p7
+          EXACT="$(find /tmp/p24/p7 -name exact-trajectories.json -print -quit)"
+          CORPUS="$(find /tmp/p24/p7 -name corpus-receipt.json -print -quit)"
+          test -n "$EXACT" && test -n "$CORPUS"
+          python3 - "$EXACT" "$CORPUS" <<'PY'
+          import json, sys
+          exact=json.load(open(sys.argv[1], encoding='utf-8'))
+          corpus=json.load(open(sys.argv[2], encoding='utf-8'))
+          assert exact['solve_count']==60 and exact['exact_end_validation_pass']==60
+          assert corpus['solves']==60 and corpus['unique_source_ids']==60
+          assert corpus['source_contact_performed'] is False
+          print('G7_P7_ADMITTED_EXACT_REPLAY_ARTIFACT_PASS')
+          PY
+
+          curl --fail --location --silent --show-error \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$REPO/actions/artifacts/11461892552/zip" \
+            -o /tmp/p24/p23.zip
+          echo '2a52d1b06eda12d34d8c75c9a25e7ff83ea9b1e03b66efb0320ff051ea951c4f  /tmp/p24/p23.zip' | sha256sum -c -
+          unzip -q /tmp/p24/p23.zip -d /tmp/p24/p23
+          P23_RECEIPT="$(find /tmp/p24/p23 -name receipt.txt -print -quit)"
+          test -n "$P23_RECEIPT"
+          grep -q '^SOURCE_DOMAIN[[:space:]]88179840$' "$P23_RECEIPT"
+          grep -q '^UNIQUE_SOURCE_INDICES[[:space:]]88179840$' "$P23_RECEIPT"
+          grep -q '^FIBER_MULTIPLICITY[[:space:]]24_every_target$' "$P23_RECEIPT"
+          grep -q '^FIXED_CENTER_NONINVARIANT_QUOTIENT_FIBERS[[:space:]]3674160$' "$P23_RECEIPT"
+          echo 'G7_P23_Q24_COMPARATOR_ARTIFACT_PASS'
+
+      - name: Deterministically serialize every admitted exact state row
+        run: |
+          set -euo pipefail
+          EXACT="$(find /tmp/p24/p7 -name exact-trajectories.json -print -quit)"
+          node - "$EXACT" /tmp/p24/input/corpus.tsv <<'NODE'
+          const fs=require('node:fs');
+          const input=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
+          if(input.solve_count!==60 || input.exact_end_validation_pass!==60) throw new Error('ADMITTED_CORPUS_GATE');
+          const records=[...input.records].sort((a,b)=>Buffer.compare(Buffer.from(String(a.source_id),'utf8'),Buffer.from(String(b.source_id),'utf8')));
+          if(records.length!==60 || new Set(records.map(x=>x.source_id)).size!==60) throw new Error('SOURCE_ID_GATE');
+          const lines=[];
+          for(const r of records){
+            const id=Buffer.from(String(r.source_id),'utf8').toString('hex');
+            const states=[{prefix_index:0,cubie:r.start_cubie},...r.prefixes.map(p=>({prefix_index:p.prefix_index,cubie:p.cubie}))];
+            for(let i=0;i<states.length;i++){
+              const x=states[i];
+              if(x.prefix_index!==i || !x.cubie || x.cubie.cp?.length!==8 || x.cubie.co?.length!==8) throw new Error('PREFIX_OR_CUBIE_SCHEMA:'+r.source_id+':'+i);
+              if([...x.cubie.cp,...x.cubie.co].some(v=>!Number.isInteger(v))) throw new Error('NONINTEGER_CUBIE');
+              lines.push(`${id}\t${i}\t${x.cubie.cp.join(',')}\t${x.cubie.co.join(',')}`);
+            }
+          }
+          fs.writeFileSync(process.argv[3],lines.join('\n')+'\n',{encoding:'utf8'});
+          console.log('NATURALISTIC_SOURCE_IDS\t'+records.length);
+          console.log('NATURALISTIC_ROWS\t'+lines.length);
+          NODE
+          sha256sum /tmp/p24/input/corpus.tsv | awk '{print $1}' > /tmp/p24/input/corpus.sha256
+
+      - name: Test, build, and execute full exact census
+        env:
+          P24_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          P24_CORPUS_INPUT_SHA256="$(cat /tmp/p24/input/corpus.sha256)"
+          export P24_CORPUS_INPUT_SHA256
+          cargo test --release -p cuberev-core --bin g7_p24_fixed_center_census
+          cargo run --release -q -p cuberev-core --bin g7_p24_fixed_center_census -- /tmp/p24/input/corpus.tsv /tmp/p24/output
+          python3 - <<'PY'
+          import json, os
+          p='/tmp/p24/output/receipt.json'
+          x=json.load(open(p,encoding='utf-8'))
+          n=88_179_840
+          assert x['schema']=='g7-p24-fixed-center-census-v1'
+          assert x['science_head']==os.environ['P24_HEAD']
+          assert x['source_domain']==n
+          a=x['FC6_C']; assert a['unique_keys']==n and a['singleton_fibers']==n and a['inverse_roundtrips']==n and a['inverse_consistency']
+          for name in ('FC4_C','FC3_C'):
+              z=x[name]; h={int(k):v for k,v in z['fiber_histogram'].items()}
+              assert sum(k*v for k,v in h.items())==n
+              assert sum(h.values())==z['unique_keys']
+              assert max(h)==z['max_fiber'] and z['max_fiber']>1
+              w=z['first_collision']; assert w['rank_a']<w['rank_b'] and w['key_hex']
+          assert x['presealed_witness_regression']['PASS'] is True
+          assert x['refinement']['FC6_equal_implies_FC4_equal']
+          assert x['refinement']['FC6_equal_implies_FC3_equal']
+          assert x['refinement']['FC4_equal_implies_FC3_equal']
+          assert x['refinement']['FC3_fibers_with_multiple_FC4_keys']>0
+          q=x['Q24_C_comparator']; assert q['source_fiber_size']==24 and q['fixed_center_FC4_noninvariant_classes']==3_674_160
+          nat=x['naturalistic']; assert nat['serialization_success'] and nat['source_ids']==60 and nat['rows']>60
+          assert nat['source_contact']=='NONE' and nat['input_sha256']==os.environ['P24_CORPUS_INPUT_SHA256']
+          assert nat['FC6_multistate_keys']==0 and nat['FC6_distinct_state_pairs']==0 and not nat['FC6_distinct_state_collision_present']
+          assert nat['unique_FC6']<=nat['rows'] and nat['unique_FC4']<=nat['rows'] and nat['unique_FC3']<=nat['rows']
+          print('G7_P24_EXACT_CENSUS_RECEIPT_PASS')
+          print('FC4_UNIQUE',x['FC4_C']['unique_keys'],'MAX',x['FC4_C']['max_fiber'],'HIST',x['FC4_C']['fiber_histogram'])
+          print('FC3_UNIQUE',x['FC3_C']['unique_keys'],'MAX',x['FC3_C']['max_fiber'],'HIST',x['FC3_C']['fiber_histogram'])
+          print('NATURALISTIC_ROWS',nat['rows'],'FC4_COLLISION_ROWS',nat['FC4_rows_in_multistate_fibers'],'FC3_COLLISION_ROWS',nat['FC3_rows_in_multistate_fibers'])
+          PY
+          (cd /tmp/p24/output && sha256sum receipt.json observations.tsv > SHA256SUMS.txt)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P24-census-replica-${{ matrix.replica }}-${{ github.sha }}
+          path: /tmp/p24/output
+          if-no-files-found: error
+          retention-days: 90
+
+  compare:
+    name: compare independent same-head receipts
+    runs-on: ubuntu-latest
+    needs: census
+    timeout-minutes: 10
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: G7-P24-census-replica-1-${{ github.sha }}
+          path: /tmp/p24/one
+      - uses: actions/download-artifact@v4
+        with:
+          name: G7-P24-census-replica-2-${{ github.sha }}
+          path: /tmp/p24/two
+      - name: Require byte-identical receipt and row serialization
+        run: |
+          set -euo pipefail
+          cmp /tmp/p24/one/receipt.json /tmp/p24/two/receipt.json
+          cmp /tmp/p24/one/observations.tsv /tmp/p24/two/observations.tsv
+          cmp /tmp/p24/one/SHA256SUMS.txt /tmp/p24/two/SHA256SUMS.txt
+          (cd /tmp/p24/one && sha256sum -c SHA256SUMS.txt)
+          (cd /tmp/p24/two && sha256sum -c SHA256SUMS.txt)
+          mkdir -p /tmp/p24/final
+          cp /tmp/p24/one/receipt.json /tmp/p24/final/
+          cp /tmp/p24/one/observations.tsv /tmp/p24/final/
+          cp /tmp/p24/one/SHA256SUMS.txt /tmp/p24/final/
+          sha256sum /tmp/p24/final/receipt.json /tmp/p24/final/observations.tsv > /tmp/p24/final/FINAL_SHA256SUMS.txt
+          echo "HEAD=$GITHUB_SHA" > /tmp/p24/final/TWO_RUN_COMPARISON.txt
+          echo 'REPLICAS=1,2' >> /tmp/p24/final/TWO_RUN_COMPARISON.txt
+          echo "RECEIPT_SHA256=$(sha256sum /tmp/p24/final/receipt.json | cut -d' ' -f1)" >> /tmp/p24/final/TWO_RUN_COMPARISON.txt
+          echo "OBSERVATIONS_SHA256=$(sha256sum /tmp/p24/final/observations.tsv | cut -d' ' -f1)" >> /tmp/p24/final/TWO_RUN_COMPARISON.txt
+          cat /tmp/p24/final/TWO_RUN_COMPARISON.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: G7-P24-fixed-center-census-${{ github.sha }}
+          path: /tmp/p24/final
+          if-no-files-found: error
+          retention-days: 90
+
