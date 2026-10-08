@@ -1,0 +1,25 @@
+name: CUBE-REV 0.11 — Face-Word Algebra Regression
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'scripts/cube/simple-face-word-normal-form.mjs'
+      - 'scripts/cube/test-simple-face-word-normal-form.mjs'
+      - '.github/workflows/cuberev-011-face-word-regression.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  algebra-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Face-word rewrite unit regressions
+        run: node scripts/cube/test-simple-face-word-normal-form.mjs
+      - name: Assert read-only workflow
+        run: |
+          ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' .github/workflows/cuberev-011-face-word-regression.yml
