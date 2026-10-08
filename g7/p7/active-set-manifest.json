@@ -311,7 +311,9 @@
     "scripts/instrument/evaluate-contact-gate.mjs",
     "scripts/instrument/test-contact-gate.mjs",
     "scripts/reco/parse-reco-html.mjs",
-    "scripts/reco/parse-reconstruction.mjs"
+    "scripts/reco/parse-reconstruction.mjs",
+    "scripts/cuberev-011/bigram-euler-null.mjs",
+    "scripts/cuberev-011/test-bigram-euler-null.mjs"
   ],
   "retired_surfaces": [
     "calibration/**",
