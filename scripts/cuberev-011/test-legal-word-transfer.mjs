@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {transferObservedWord} from './legal-word-transfer.mjs';
+const a=['U2','M','U2','R'];
+const b=['R','U2','M','U2'];
+const prefix=a.map(raw=>({raw,annotation_after:'',boundary_after:false}));
+assert.deepEqual(transferObservedWord(prefix,0,a,b),b);
+assert.deepEqual(transferObservedWord(b,0,b,a),a);
+assert.throws(()=>transferObservedWord(prefix,0,a,['R','U','M','U2']),/OPERATOR_NOT_EQUIVALENT/);
+assert.throws(()=>transferObservedWord(prefix,0,a,['U2','M','U2']),/LENGTH_MISMATCH/);
+assert.throws(()=>transferObservedWord(prefix,1,a,b),/BOUNDS/);
+assert.throws(()=>transferObservedWord([{...prefix[0],annotation_after:'stage'},...prefix.slice(1)],0,a,b),/STAGE_BOUNDARY_CROSSED/);
+assert.throws(()=>transferObservedWord(prefix,0,['U','M','U2','R'],b),/OBSERVED_WORD_MISMATCH/);
+console.log('CUBE_REV_011_LEGAL_WORD_TRANSFER_PASS');
