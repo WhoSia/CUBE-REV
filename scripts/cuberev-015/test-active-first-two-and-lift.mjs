@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {radiusSixActiveMinimax,dCrossPhysicalLiftObstruction} from './active-first-two-and-lift.mjs';
+const x=radiusSixActiveMinimax();
+assert.equal(x.states,190080);
+assert.equal(x.shell6,97254);
+assert.equal(x.first_minimax_worst,62752);
+assert.equal(x.best_two_step_minimax_worst,39649);
+assert.equal(x.sharpened_minimum,12);
+assert.equal(x.previous_constructive_upper,42);
+assert.deepEqual(x.best_first_moves,['R',"R'",'F',"F'",'L',"L'",'B',"B'"]);
+assert.deepEqual(x.rows[3].first_counts.slice(5,8),[18279,62752,16223]);
+for(const row of x.rows)assert.equal(row.first_counts.reduce((a,b)=>a+b,0),97254);
+const w=dCrossPhysicalLiftObstruction();
+assert.deepEqual(w.d_index,[69760,69760]);
+assert.deepEqual(w.d_distances,[0,0]);
+assert.deepEqual(w.u_distances,[0,1]);
+console.log('CUBE_REV_015_ACTIVE_MINIMAX_AND_LIFT_PASS');
