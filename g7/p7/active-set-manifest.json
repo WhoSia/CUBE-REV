@@ -214,8 +214,14 @@
     "scripts/cube/sticker-cube.mjs",
     "scripts/cube/test-full-notation-normal-form.mjs",
     "scripts/cube/test-simple-face-word-normal-form.mjs",
+    "scripts/cuberev-011/bigram-euler-null.mjs",
+    "scripts/cuberev-011/legal-word-transfer.mjs",
     "scripts/cuberev-011/operator-permutation.mjs",
+    "scripts/cuberev-011/test-bigram-euler-null.mjs",
+    "scripts/cuberev-011/test-legal-word-transfer.mjs",
     "scripts/cuberev-011/test-operator-permutation.mjs",
+    "scripts/cuberev-013/cross4-pdb.mjs",
+    "scripts/cuberev-013/test-cross4-pdb.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -311,11 +317,7 @@
     "scripts/instrument/evaluate-contact-gate.mjs",
     "scripts/instrument/test-contact-gate.mjs",
     "scripts/reco/parse-reco-html.mjs",
-    "scripts/reco/parse-reconstruction.mjs",
-    "scripts/cuberev-011/bigram-euler-null.mjs",
-    "scripts/cuberev-011/test-bigram-euler-null.mjs",
-    "scripts/cuberev-011/legal-word-transfer.mjs",
-    "scripts/cuberev-011/test-legal-word-transfer.mjs"
+    "scripts/reco/parse-reconstruction.mjs"
   ],
   "retired_surfaces": [
     "calibration/**",
