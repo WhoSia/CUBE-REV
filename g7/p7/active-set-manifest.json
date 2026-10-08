@@ -313,7 +313,9 @@
     "scripts/reco/parse-reco-html.mjs",
     "scripts/reco/parse-reconstruction.mjs",
     "scripts/cuberev-011/bigram-euler-null.mjs",
-    "scripts/cuberev-011/test-bigram-euler-null.mjs"
+    "scripts/cuberev-011/test-bigram-euler-null.mjs",
+    "scripts/cuberev-011/legal-word-transfer.mjs",
+    "scripts/cuberev-011/test-legal-word-transfer.mjs"
   ],
   "retired_surfaces": [
     "calibration/**",
