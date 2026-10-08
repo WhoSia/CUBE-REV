@@ -19,6 +19,8 @@ on:
       - 'scripts/cuberev-013/test-cross-goal-candidates.mjs'
       - 'scripts/cuberev-014/goal-posterior.mjs'
       - 'scripts/cuberev-014/test-goal-posterior.mjs'
+      - 'scripts/cuberev-014/finite-observation-channel.mjs'
+      - 'scripts/cuberev-014/test-finite-observation-channel.mjs'
       - '.github/workflows/cuberev-011-face-word-regression.yml'
   workflow_dispatch:
 permissions:
@@ -42,6 +44,7 @@ jobs:
           node scripts/cuberev-013/test-cross4-pdb.mjs
           node scripts/cuberev-013/test-cross-goal-candidates.mjs
           node scripts/cuberev-014/test-goal-posterior.mjs
+          node scripts/cuberev-014/test-finite-observation-channel.mjs
       - name: Assert read-only workflow
         run: |
           ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' .github/workflows/cuberev-011-face-word-regression.yml
