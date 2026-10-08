@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {simpleFaceWordNormalForm as nf, classifySimpleFaceWordPair as classify} from './simple-face-word-normal-form.mjs';
+const eq=(a,b)=>assert.equal(nf(a),nf(b));
+const ne=(a,b)=>assert.notEqual(nf(a),nf(b));
+eq(['U','U'],['U2']);
+eq(['R','L'],['L','R']);
+eq(['R',"R'"],[]);
+eq(['U','D','U'],['D','U2']);
+eq(['U','U','U','U'],[]);
+ne(['R','U'],['U','R']);
+ne(['U','R','U'],['R','U2']);
+assert.equal(classify(['R','M'],['R']),'EXTENDED_GRAMMAR_UNCLASSIFIED');
+assert.equal(classify(['R2',"R2'"],[]),'SIMPLE_REWRITE_EQUIVALENT');
+assert.equal(classify(['U','R'],['R','U']),'REQUIRES_ADDITIONAL_CUBE_RELATION');
+assert.throws(()=>nf('U'),TypeError);
+console.log('CUBE_REV_011_SIMPLE_FACE_REWRITE_PASS 11');
