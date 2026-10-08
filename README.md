@@ -2,11 +2,18 @@
 
 > Active research branch. Historical execution scaffolds are intentionally pruned from this branch.
 
-CUBE-REV studies exact reversible state spaces, search/representation geometry, and human planning. The current scientific program is **CUBE-REV 0.13 — Subgoal-Conditioned Action Opportunity, Progress Measurement & Independent Transport**. Prior 0.11 and 0.12 are CLOSED as constructive mathematical and measurement-identification studies, **not** as positive human method-effect findings. Historical Generation/P numbering remains in Notion and provenance receipts; the early G7-P7 narrative below is historical, not current live research status.
+CUBE-REV studies exact reversible state spaces, search/representation geometry, and human planning. The current scientific program is **CUBE-REV 0.14 — Set-Valued Goal Inference, Proper-Scoring Calibration & Independent Behavioral Transport**. Previous 0.13 is CLOSED, not treated as independent confirmation. Prior 0.11 and 0.12 are CLOSED as constructive mathematical and measurement-identification studies, **not** as positive human method-effect findings. Historical Generation/P numbering remains in Notion and provenance receipts; the early G7-P7 narrative below is historical, not current live research status.
 
-## CUBE-REV 0.13 — active subgoal-conditioned geometry research (2026-10-08)
+## CUBE-REV 0.14 — active uncertainty-aware goal inference (2026-10-09)
 
-- [CUBE-REV 0.13 canonical Notion](https://app.notion.com/p/3f3ef561cf9281ab959afae8d1a751d6) — OPEN. Predefine eligible physical piece-set/subgoal predicates, verify face-frame and legal action opportunities, then compare **observed human choices** with that *pre-action* opportunity geometry. Whole-solver/reconstructor/era support and outcome leakage are non-negotiable gates.
+- [0.14 canonical Notion](https://app.notion.com/p/3f3ef561cf9281449bc0eee1a2636c24) — OPEN. Six-face Cross goal forecast from first-two recorded outer turns; full 18-action normalized PDB likelihood, log loss/Brier score and honest set-valued coverage/size.
+- [0.13 terminal Notion](https://app.notion.com/p/3f3ef561cf9281ab959afae8d1a751d6) — CLOSED. The target face belongs to the two-turn maximizer set for 143/161 selected archival annotated solves; 56/161 have multiple equally supported target faces. U-first tie-breaking is not reliable unique-goal identification.
+- No new human-independent experiment or corpus is implied. The historical 451 semantic reconstruction contents are development-only. Solver-name, cohort, annotation and reconstructor leakage must be audited.
+- Code lives in `scripts/cuberev-014/` when tests have passed. Keep CI read-only, commits human-authored as `WhoSia`, private source records in Drive/Library.
+
+## CUBE-REV 0.13 — closed subgoal-conditioned geometry research (2026-10-08)
+
+- [CUBE-REV 0.13 canonical Notion](https://app.notion.com/p/3f3ef561cf9281ab959afae8d1a751d6) — CLOSED. Predefine eligible physical piece-set/subgoal predicates, verify face-frame and legal action opportunities, then compare **observed human choices** with that *pre-action* opportunity geometry. Whole-solver/reconstructor/era support and outcome leakage are non-negotiable gates.
 - [CUBE-REV 0.12 terminal Notion](https://app.notion.com/p/3f3ef561cf92812b8171ef055e881bba) — CLOSED. Of 8,083 recorded 18-class moves increasing global center-color mismatch, 464 increased fully correctly placed/oriented cubies, 2,066 did not change that count, 5,553 decreased it. Conversely, 554/10,680 color-improving moves decreased fully correct cubies. These global proxies demonstrably disagree but do **not** establish human intended subgoals.
 - Terminal reproducibility: `CUBE_REV_0.12_TERMINAL_METRIC_COURT_PRIVATE_20261008.zip`, SHA-256 `56dc8ea1b9ea5de4d2b86126aee2bc4bf0241fa1353a85aff01e2faef964c17e`. Private data remain in Drive; avoid committing source-level records or human name labels. Standalone Node and independent Python full-event replay agreed for all 451 unique source contents.
 - Do not recreate artificial human-participant study designs for this phase. New independent confirmation requires genuinely new permitted source evidence; all existing G7 cohorts remain **development-only**, irrespective of split names.
