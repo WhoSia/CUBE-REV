@@ -214,6 +214,8 @@
     "scripts/cube/sticker-cube.mjs",
     "scripts/cube/test-full-notation-normal-form.mjs",
     "scripts/cube/test-simple-face-word-normal-form.mjs",
+    "scripts/cuberev-011/operator-permutation.mjs",
+    "scripts/cuberev-011/test-operator-permutation.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
