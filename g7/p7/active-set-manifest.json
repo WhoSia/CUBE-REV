@@ -3,6 +3,7 @@
   "phase": "G7-P7",
   "principle": "research/current is an exact executable/reproducibility allowlist, not a historical archive.",
   "allowed_paths": [
+    ".github/workflows/cuberev-011-face-word-regression.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -205,7 +206,9 @@
     "g7/p9/low-overlap-transport-preseal.json",
     "g7/p9/overlap-degree-preseal.json",
     "scripts/cube/replay-exact-trajectories.mjs",
+    "scripts/cube/simple-face-word-normal-form.mjs",
     "scripts/cube/sticker-cube.mjs",
+    "scripts/cube/test-simple-face-word-normal-form.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -328,5 +331,16 @@
     "archive_branch_head": "f9fb6e859ea0130aa3a0b0bb7994a7f7060a8183",
     "branch_closure_ready": true
   },
-  "reusable_core_note": "Historical generation-labelled search kernel g6.rs is renamed phase1.rs; P7-specific executable remains phase-labelled. WCA linkage audit and provenance-preserving linkage failure diagnostic are current P7 data-authority code. Historical archive branch has full-tree and full-history Drive custody."
+  "reusable_core_note": "Historical generation-labelled search kernel g6.rs is renamed phase1.rs; P7-specific executable remains phase-labelled. WCA linkage audit and provenance-preserving linkage failure diagnostic are current P7 data-authority code. Historical archive branch has full-tree and full-history Drive custody.",
+  "active_reentry": {
+    "name": "CUBE-REV 0.11",
+    "role": "Data-first reproducible exact-state and recorded-action analysis",
+    "canonical_notion": "https://app.notion.com/p/3f3ef561cf928196a4ccea71bd1fa0cc",
+    "newly_admitted_code": [
+      ".github/workflows/cuberev-011-face-word-regression.yml",
+      "scripts/cube/simple-face-word-normal-form.mjs",
+      "scripts/cube/test-simple-face-word-normal-form.mjs"
+    ],
+    "retirement_rule": "Existing historical dependency-bearing G7 workflows remain until per-path use/archival audit; no bot-authored commits or unlicensed raw datasets"
+  }
 }
