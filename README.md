@@ -2,9 +2,15 @@
 
 > Active research branch. Historical execution scaffolds are intentionally pruned from this branch.
 
-CUBE-REV studies exact reversible state spaces, search/representation geometry, and human planning. The current scientific program is **CUBE-REV 0.11 — Matched-State Human Action Choice, Strategy-Conditioned Policy Divergence & Independent Behavioral Replication**. Historical Generation/P numbering remains in Notion and provenance receipts; the early G7-P7 narrative below is historical, not current live research status.
+CUBE-REV studies exact reversible state spaces, search/representation geometry, and human planning. The current scientific program is **CUBE-REV 0.12 — State-Conditioned Path Opportunity, Solve-Preserving Alternatives & Independent Behavioral Transport**. The preceding 0.11 is CLOSED as an identification-boundary and constructive mathematical study, **not** as a positive human method-effect finding. Historical Generation/P numbering remains in Notion and provenance receipts; the early G7-P7 narrative below is historical, not current live research status.
 
-## CUBE-REV 0.11 — active data-first entry (2026-10-08)
+## CUBE-REV 0.12 — active state-conditioned opportunity research (2026-10-08)
+
+- [CUBE-REV 0.12 in Notion](https://app.notion.com/p/3f3ef561cf92812b8171ef055e881bba) is OPEN. It tests legal solve-preserving alternatives against actual, stage/frame-matched naturalistic continuation with rigorous solver- and source-level independence controls.
+- [CUBE-REV 0.11 in Notion](https://app.notion.com/p/3f3ef561cf928196a4ccea71bd1fa0cc) is CLOSED: 20/20 bidirectional visible-state-changing, solve-preserving synthetic word substitutions verified, but independent human strategy-conditioned next-action causality was NOT established. Legacy source records are development-only.
+- 0.11 executable math cores remain maintained in `scripts/cuberev-011/`; private source-level reconstruction bytes remain in Drive, not Git. No bot-authored commits or mass reco.nz scraping.
+
+## CUBE-REV 0.11 — closed evidence lineage (2026-10-08)
 
 The program has returned to the historical NAPKIN principle: obtain substantive, falsifiable results from already available exact cube-state and naturally reconstructed human move trajectories, not unidentifiable small prospective human experiments.
 
