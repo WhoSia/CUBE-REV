@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {ACTIONS} from '../cuberev-013/cross4-pdb.mjs';
+import {GOALS,actionChannel,observationLeakage} from './finite-observation-channel.mjs';
+const base=()=>Object.fromEntries(GOALS.map(f=>[f,Array(18).fill(0)]));
+const all=base(),R=ACTIONS.indexOf('R'),Ri=ACTIONS.indexOf("R'"),L=ACTIONS.indexOf('L');
+all.U[R]=-1;all.D[Ri]=-1;all.R[L]=-1;
+const c=actionChannel(all,2);
+for(const p of c)assert.ok(Math.abs(p.reduce((a,b)=>a+b,0)-1)<1e-12);
+const q=observationLeakage(all,2);
+assert.ok(q.full>q.face&&q.full>q.power);
+const zero=observationLeakage(all,0);
+assert.ok(Math.abs(zero.full)<1e-12);
+assert.ok(Math.abs(zero.face)<1e-12);
+assert.ok(Math.abs(zero.power)<1e-12);
+assert.throws(()=>actionChannel(all,-1));
+assert.throws(()=>actionChannel({},1));
+console.log('CUBE_REV_014_FINITE_OBSERVATION_CHANNEL_PASS');
