@@ -71,6 +71,8 @@
     ".github/workflows/g7-p19-p4-frozen-hybrid-confirmation.yml",
     ".github/workflows/g7-p20-hybrid-heterogeneity.yml",
     ".github/workflows/g7-p22-observation-reconstruction.yml",
+    ".github/workflows/g7-p23-r1-orientation-gauge-census.yml",
+    ".github/workflows/g7-p24-fixed-center-census.yml",
     ".github/workflows/g7-p7-index-provenance-census.yml",
     ".github/workflows/g7-p7-reco-analysis.yml",
     ".github/workflows/g7-p7-wca-linkage.yml",
@@ -99,6 +101,8 @@
     "core/sources/source-registry.json",
     "crates/cuberev-core/Cargo.toml",
     "crates/cuberev-core/src/bin/g7_p22_observation_atlas.rs",
+    "crates/cuberev-core/src/bin/g7_p23_r1_quotient_census.rs",
+    "crates/cuberev-core/src/bin/g7_p24_fixed_center_census.rs",
     "crates/cuberev-core/src/lib.rs",
     "crates/search-geometry-core/Cargo.toml",
     "crates/search-geometry-core/src/bin/g7_p12_shell_flow.rs",
@@ -186,6 +190,8 @@
     "g7/p21/constitution.json",
     "g7/p21/recovery-receipt.json",
     "g7/p22/constitution.json",
+    "g7/p23-r1/closure.json",
+    "g7/p23-r1/constitution.json",
     "g7/p7/active-set-manifest.json",
     "g7/p7/closure.json",
     "g7/p7/preseal.json",
@@ -341,6 +347,14 @@
       "scripts/cube/simple-face-word-normal-form.mjs",
       "scripts/cube/test-simple-face-word-normal-form.mjs"
     ],
-    "retirement_rule": "Existing historical dependency-bearing G7 workflows remain until per-path use/archival audit; no bot-authored commits or unlicensed raw datasets"
+    "retirement_rule": "Existing historical dependency-bearing G7 workflows remain until per-path use/archival audit; no bot-authored commits or unlicensed raw datasets",
+    "prior_unlisted_reproducibility_anchors_restored": [
+      ".github/workflows/g7-p23-r1-orientation-gauge-census.yml",
+      ".github/workflows/g7-p24-fixed-center-census.yml",
+      "crates/cuberev-core/src/bin/g7_p23_r1_quotient_census.rs",
+      "crates/cuberev-core/src/bin/g7_p24_fixed_center_census.rs",
+      "g7/p23-r1/closure.json",
+      "g7/p23-r1/constitution.json"
+    ]
   }
 }
