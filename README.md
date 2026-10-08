@@ -2,11 +2,19 @@
 
 > Active research branch. Historical execution scaffolds are intentionally pruned from this branch.
 
-CUBE-REV studies exact reversible state spaces, search/representation geometry, and human planning. The current scientific program is **CUBE-REV 0.12 — State-Conditioned Path Opportunity, Solve-Preserving Alternatives & Independent Behavioral Transport**. The preceding 0.11 is CLOSED as an identification-boundary and constructive mathematical study, **not** as a positive human method-effect finding. Historical Generation/P numbering remains in Notion and provenance receipts; the early G7-P7 narrative below is historical, not current live research status.
+CUBE-REV studies exact reversible state spaces, search/representation geometry, and human planning. The current scientific program is **CUBE-REV 0.13 — Subgoal-Conditioned Action Opportunity, Progress Measurement & Independent Transport**. Prior 0.11 and 0.12 are CLOSED as constructive mathematical and measurement-identification studies, **not** as positive human method-effect findings. Historical Generation/P numbering remains in Notion and provenance receipts; the early G7-P7 narrative below is historical, not current live research status.
 
-## CUBE-REV 0.12 — active state-conditioned opportunity research (2026-10-08)
+## CUBE-REV 0.13 — active subgoal-conditioned geometry research (2026-10-08)
 
-- [CUBE-REV 0.12 in Notion](https://app.notion.com/p/3f3ef561cf92812b8171ef055e881bba) is OPEN. It tests legal solve-preserving alternatives against actual, stage/frame-matched naturalistic continuation with rigorous solver- and source-level independence controls.
+- [CUBE-REV 0.13 canonical Notion](https://app.notion.com/p/3f3ef561cf9281ab959afae8d1a751d6) — OPEN. Predefine eligible physical piece-set/subgoal predicates, verify face-frame and legal action opportunities, then compare **observed human choices** with that *pre-action* opportunity geometry. Whole-solver/reconstructor/era support and outcome leakage are non-negotiable gates.
+- [CUBE-REV 0.12 terminal Notion](https://app.notion.com/p/3f3ef561cf92812b8171ef055e881bba) — CLOSED. Of 8,083 recorded 18-class moves increasing global center-color mismatch, 464 increased fully correctly placed/oriented cubies, 2,066 did not change that count, 5,553 decreased it. Conversely, 554/10,680 color-improving moves decreased fully correct cubies. These global proxies demonstrably disagree but do **not** establish human intended subgoals.
+- Terminal reproducibility: `CUBE_REV_0.12_TERMINAL_METRIC_COURT_PRIVATE_20261008.zip`, SHA-256 `56dc8ea1b9ea5de4d2b86126aee2bc4bf0241fa1353a85aff01e2faef964c17e`. Private data remain in Drive; avoid committing source-level records or human name labels. Standalone Node and independent Python full-event replay agreed for all 451 unique source contents.
+- Do not recreate artificial human-participant study designs for this phase. New independent confirmation requires genuinely new permitted source evidence; all existing G7 cohorts remain **development-only**, irrespective of split names.
+- Repository policy: preserve existing reproducibility code and human-authored commit history; old workflows are retired only after validated source/dependency and archive custody audits, never by uncontrolled mass deletion.
+
+## CUBE-REV 0.12 — closed state-conditioned opportunity research (2026-10-08)
+
+- [CUBE-REV 0.12 in Notion](https://app.notion.com/p/3f3ef561cf92812b8171ef055e881bba) is CLOSED. It tested legal solve-preserving alternatives against actual, stage/frame-matched naturalistic continuation with rigorous solver- and source-level independence controls.
 - [CUBE-REV 0.11 in Notion](https://app.notion.com/p/3f3ef561cf928196a4ccea71bd1fa0cc) is CLOSED: 20/20 bidirectional visible-state-changing, solve-preserving synthetic word substitutions verified, but independent human strategy-conditioned next-action causality was NOT established. Legacy source records are development-only.
 - 0.11 executable math cores remain maintained in `scripts/cuberev-011/`; private source-level reconstruction bytes remain in Drive, not Git. No bot-authored commits or mass reco.nz scraping.
 
