@@ -5,6 +5,8 @@ on:
     paths:
       - 'scripts/cube/simple-face-word-normal-form.mjs'
       - 'scripts/cube/test-simple-face-word-normal-form.mjs'
+      - 'scripts/cube/full-notation-normal-form.mjs'
+      - 'scripts/cube/test-full-notation-normal-form.mjs'
       - '.github/workflows/cuberev-011-face-word-regression.yml'
   workflow_dispatch:
 permissions:
@@ -19,7 +21,9 @@ jobs:
         with:
           node-version: '22'
       - name: Face-word rewrite unit regressions
-        run: node scripts/cube/test-simple-face-word-normal-form.mjs
+        run: |
+          node scripts/cube/test-simple-face-word-normal-form.mjs
+          node scripts/cube/test-full-notation-normal-form.mjs
       - name: Assert read-only workflow
         run: |
           ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' .github/workflows/cuberev-011-face-word-regression.yml

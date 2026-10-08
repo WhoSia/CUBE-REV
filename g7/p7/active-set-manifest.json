@@ -208,9 +208,11 @@
     "g7/p9/constitution.json",
     "g7/p9/low-overlap-transport-preseal.json",
     "g7/p9/overlap-degree-preseal.json",
+    "scripts/cube/full-notation-normal-form.mjs",
     "scripts/cube/replay-exact-trajectories.mjs",
     "scripts/cube/simple-face-word-normal-form.mjs",
     "scripts/cube/sticker-cube.mjs",
+    "scripts/cube/test-full-notation-normal-form.mjs",
     "scripts/cube/test-simple-face-word-normal-form.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
@@ -342,7 +344,9 @@
     "newly_admitted_code": [
       ".github/workflows/cuberev-011-face-word-regression.yml",
       "scripts/cube/simple-face-word-normal-form.mjs",
-      "scripts/cube/test-simple-face-word-normal-form.mjs"
+      "scripts/cube/test-simple-face-word-normal-form.mjs",
+      "scripts/cube/full-notation-normal-form.mjs",
+      "scripts/cube/test-full-notation-normal-form.mjs"
     ],
     "retirement_rule": "Existing historical dependency-bearing G7 workflows remain until per-path use/archival audit; no bot-authored commits or unlicensed raw datasets",
     "prior_unlisted_reproducibility_anchors_restored": [
@@ -358,6 +362,7 @@
       ".github/workflows/g7-p7-index-provenance-census.yml",
       ".github/workflows/g7-p7-wca-linkage.yml"
     ],
-    "reproducibility_preservation_parent_sha": "aab276d2952b462afb3ee0e87155c9cd959f301e"
+    "reproducibility_preservation_parent_sha": "aab276d2952b462afb3ee0e87155c9cd959f301e",
+    "expanded_engine_parity": "24 orientations / 274 exact-engine parity checks / 11 algebra checks"
   }
 }
