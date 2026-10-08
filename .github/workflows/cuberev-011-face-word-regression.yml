@@ -11,6 +11,8 @@ on:
       - 'scripts/cuberev-011/test-operator-permutation.mjs'
       - 'scripts/cuberev-011/bigram-euler-null.mjs'
       - 'scripts/cuberev-011/test-bigram-euler-null.mjs'
+      - 'scripts/cuberev-011/legal-word-transfer.mjs'
+      - 'scripts/cuberev-011/test-legal-word-transfer.mjs'
       - '.github/workflows/cuberev-011-face-word-regression.yml'
   workflow_dispatch:
 permissions:
@@ -30,6 +32,7 @@ jobs:
           node scripts/cube/test-full-notation-normal-form.mjs
           node scripts/cuberev-011/test-operator-permutation.mjs
           node scripts/cuberev-011/test-bigram-euler-null.mjs
+          node scripts/cuberev-011/test-legal-word-transfer.mjs
       - name: Assert read-only workflow
         run: |
           ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' .github/workflows/cuberev-011-face-word-regression.yml
