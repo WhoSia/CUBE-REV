@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {goalPosterior,properGoalScores,GOALS} from './goal-posterior.mjs';
+import {ACTIONS} from '../cuberev-013/cross4-pdb.mjs';
+const base=()=>Object.fromEntries(GOALS.map(f=>[f,Array(18).fill(0)]));
+const a=base();a.U[ACTIONS.indexOf('R')]=-1;
+const turns=[{observed:'R',deltas:a},{observed:'U',deltas:base()}];
+const u=goalPosterior(turns,0);
+for(const f of GOALS)assert.ok(Math.abs(u[f]-1/6)<1e-12);
+const q=goalPosterior(turns,2);
+assert.ok(q.U>q.D);
+assert.ok(Math.abs(GOALS.reduce((s,f)=>s+q[f],0)-1)<1e-12);
+const prior={U:0.5,D:0.1,R:0.1,L:0.1,F:0.1,B:0.1};
+const zero=goalPosterior(turns,0,prior);
+for(const f of GOALS)assert.ok(Math.abs(zero[f]-prior[f])<1e-12);
+assert.ok(properGoalScores(u,'U').logLoss>0);
+assert.throws(()=>goalPosterior(turns,-1));
+assert.throws(()=>goalPosterior(turns.slice(0,1),1));
+console.log('CUBE_REV_014_GOAL_POSTERIOR_PASS');
