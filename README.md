@@ -2,11 +2,19 @@
 
 > Active research branch. Historical execution scaffolds are intentionally pruned from this branch.
 
-CUBE-REV studies exact reversible state spaces, search/representation geometry, and human planning. The current scientific program is **CUBE-REV 0.14 — Set-Valued Goal Inference, Proper-Scoring Calibration & Independent Behavioral Transport**. Previous 0.13 is CLOSED, not treated as independent confirmation. Prior 0.11 and 0.12 are CLOSED as constructive mathematical and measurement-identification studies, **not** as positive human method-effect findings. Historical Generation/P numbering remains in Notion and provenance receipts; the early G7-P7 narrative below is historical, not current live research status.
+CUBE-REV studies exact reversible state spaces, search/representation geometry, and human planning. The current scientific program is **CUBE-REV 0.15 — Quotient Sufficiency, Fiber-Aware Inference & Information-Limited Reversibility**. Prior 0.14 and 0.13 are CLOSED, with historical behavior evidence retained as development rather than fresh replication. Prior 0.11 and 0.12 are CLOSED as constructive mathematical and measurement-identification studies, **not** as positive human method-effect findings. Historical Generation/P numbering remains in Notion and provenance receipts; the early G7-P7 narrative below is historical, not current live research status.
 
-## CUBE-REV 0.14 — active uncertainty-aware goal inference (2026-10-09)
+## CUBE-REV 0.15 — active quotient-sufficient reversible inference (2026-10-09)
 
-- [0.14 canonical Notion](https://app.notion.com/p/3f3ef561cf9281449bc0eee1a2636c24) — OPEN. Six-face Cross goal forecast from first-two recorded outer turns; full 18-action normalized PDB likelihood, log loss/Brier score and honest set-valued coverage/size.
+- [0.15 canonical Notion](https://app.notion.com/p/3f3ef561cf928151a50be8d6c8155289) — OPEN. Target: coarsest observation-sufficient quotient refinements that also preserve action-labeled dynamics, hidden-fiber prior identifiability and bounded information-limited reversibility.
+- [0.14 terminal Notion](https://app.notion.com/p/3f3ef561cf9281449bc0eee1a2636c24) — CLOSED. Exact P5 counterexample: solved e and U turn share Kociemba Phase-1 G1 coset, yet their six-Cross-goal 18-action mathematical likelihoods and synthetic information values differ. No full-channel function on that coset can reproduce both.
+- [P5 verified private math-only bundle](https://drive.google.com/file/d/1TUzop1YQEJvMf0lTZHZAz0hVQ6v6_nX4/view) SHA-256 `b017a02264474559cc4bfa49cc7c34a265a0f209572726ff495b318cd7e3c47a` — 15 file entries, six exact 190080-state PDBs, independent sticker audits, Python reproduction and theorem statement.
+- The one-step minimal channel-sufficient refinement is defined by (Phase-1 coset, reference-action-normalized 18-action distance-change vectors for every goal); a transition-sufficient representation requires further finite-state partition refinement. **Do not** conflate coset sets with normal-subgroup quotient groups, mathematical toy distinguishing games with cryptographic security, or annotation-prediction with human latent intention.
+- No new independent behavioral cohort. Human-authored `WhoSia` commits, public math code/tests and read-only CI only; original source traces private.
+
+## CUBE-REV 0.14 — closed uncertainty-aware goal inference (2026-10-09)
+
+- [0.14 canonical Notion](https://app.notion.com/p/3f3ef561cf9281449bc0eee1a2636c24) — CLOSED. Six-face Cross goal forecast from first-two recorded outer turns; full 18-action normalized PDB likelihood, log loss/Brier score and honest set-valued coverage/size.
 - [0.13 terminal Notion](https://app.notion.com/p/3f3ef561cf9281ab959afae8d1a751d6) — CLOSED. The target face belongs to the two-turn maximizer set for 143/161 selected archival annotated solves; 56/161 have multiple equally supported target faces. U-first tie-breaking is not reliable unique-goal identification.
 - No new human-independent experiment or corpus is implied. The historical 451 semantic reconstruction contents are development-only. Solver-name, cohort, annotation and reconstructor leakage must be audited.
 - Code lives in `scripts/cuberev-014/` when tests have passed. Keep CI read-only, commits human-authored as `WhoSia`, private source records in Drive/Library.
