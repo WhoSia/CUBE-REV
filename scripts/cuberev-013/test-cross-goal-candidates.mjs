@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {inferCrossGoalSet} from './cross-goal-candidates.mjs';
+const s=x=>({scores:x});
+const a=s({U:6,D:6,R:6,L:6,F:6,B:6});
+const b=s({U:5,D:5,R:6,L:6,F:6,B:6});
+const c=s({U:4,D:4,R:6,L:6,F:6,B:6});
+const check=(f,x)=>x.scores[f];
+const turns=[{kind:'FACE_TURN',before:a,after:b},{kind:'FACE_TURN',before:b,after:c}];
+assert.deepEqual(inferCrossGoalSet(turns,check).candidateFaces,['U','D']);
+assert.equal(inferCrossGoalSet(turns,check).unique,false);
+console.log('CROSS_GOAL_CANDIDATE_SET_PASS');
