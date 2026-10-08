@@ -11,4 +11,17 @@ for(const [face,sha] of Object.entries({
  assert.equal(r.distances[indexOfFourEdges(ep,eo,FACE_EDGE_IDS[face])],0);
  assert.equal(r.sha256,sha,'cross PDB engine parity: '+face);
 }
+// Constructive witnesses that piece-count progress and exact goal distance disagree.
+import {solvedStickerCube,applyAlgorithm,toCubieState} from '../cube/sticker-cube.mjs';
+const D=buildCrossPDB('D').distances;
+function crossState(word){
+ const cube=solvedStickerCube();applyAlgorithm(cube,word);
+ const {ep,eo}=toCubieState(cube);
+ return [D[indexOfFourEdges(ep,eo,FACE_EDGE_IDS.D)],
+   FACE_EDGE_IDS.D.reduce((n,i)=>n+Number(ep[i]===i&&eo[i]===0),0)];
+}
+assert.deepEqual(crossState('D L'),[2,0]);
+assert.deepEqual(crossState("D L L'"),[1,0]);
+assert.deepEqual(crossState("R' F'"),[2,2]);
+assert.deepEqual(crossState("R' F' R"),[3,3]);
 console.log('CUBE_REV_013_EXACT_CROSS_PDB_PASS');
