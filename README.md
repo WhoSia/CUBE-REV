@@ -39,6 +39,8 @@ The `L=7,8,9` values have independent **local** physical replays and a separate 
 - Observation-dependent adaptive full-12-state identification: computed worst-case minimum **7** in the ideal 24-state belief-system recurrence (local replay; not a human result).
 - Standard fractional set-cover optimum at L5: **16/3 exactly** (rational primal/dual proof), whereas the true binary dictionary size remains integer 6, 7 or 8. Fractional experiment weights are **not fractional cube turns**.
 
+**P6 update — collision-hypergraph approach:** [P6 mathematical court](docs/0.19/P6_RESTRICTED_PERFECT_HASH_COLLISION_KERNEL_AND_L6_THREE_COURT.md) relates the original problem to **physically constrained restricted perfect hash families**. In a *restricted* physical L6 candidate census (3–5 flip-capable actions, output rank≥5), sound collision-pair dominance reduces **53,528 observed partitions to 18,813**; all three-word choices among the 196 rank≥8 candidates still miss at least four requirements. **This is not an M*(6)=4 proof**: low-rank / other flip-action classes have not been proved irrelevant. Next gate is completeness-preserving k3 search and independently checked negative proof.
+
 ## Current active mathematical questions
 
 1. **L6 three-versus-four:** model each word by the graph of pairs of starting positions that its complete output history fails to distinguish. For selected words `w_1,...,w_k`, the dictionary fails iff their collision graphs admit one edge each whose union fits in one permitted source set. This exact **collision-hypergraph criterion** exposes higher-order obstructions while retaining the original problem.
