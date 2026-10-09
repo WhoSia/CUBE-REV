@@ -6,6 +6,8 @@ on:
       - 'docs/0.16/P10_50_BY_116.json'
       - 'docs/0.16/P10_COMPONENT_THEOREM.md'
       - 'scripts/cuberev-016/test-p10-small-core.py'
+      - 'scripts/cuberev-016/test-p11-integrality-overlap.py'
+      - 'docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md'
       - '.github/workflows/cuberev-016-small-core.yml'
   workflow_dispatch:
 permissions:
@@ -17,3 +19,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check exact 50-target component proof
         run: python3 scripts/cuberev-016/test-p10-small-core.py
+      - name: Check P11 exact fractional cover and overlap law
+        run: python3 scripts/cuberev-016/test-p11-integrality-overlap.py
