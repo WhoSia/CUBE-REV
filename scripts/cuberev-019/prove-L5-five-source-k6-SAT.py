@@ -109,6 +109,10 @@ subprocess.run([sys.executable,str(root/'scripts/cuberev-019/verify-L5-R5-rank-s
 p11=json.loads(p11_report.read_text())
 assert p11['result']=='CUBE_REV_019_P11_R5_RANK_AND_SYMMETRY_INTEGER_PAIR_GATE_PASS'
 assert p11['safe_high_rank_first_column_orbit_representatives']==69
+assert p11['minimum_rank6_or_higher_experiments_for_k6']==3
+assert p11['raw_high_pairs_checked']==690900
+assert p11['two_high_pairs_excluded_by_4x64_volume']==680500
+assert p11['two_high_pairs_excluded_by_4x_best_missing_gain']==10400
 assert p11['r5_k6_forbidden_pair_count']==747883
 
 if a.prepare_only:
@@ -118,7 +122,7 @@ from pysat.formula import CNF,IDPool
 from pysat.card import CardEnc,EncType
 from pysat.solvers import Glucose4
 cnf=CNF()
-# P11 proves any k<=6 R5 cover has >=2 rank>=6 selected physical words.
+# P11 proves any k<=6 R5 cover has >=3 rank>=6 selected physical words.
 # Any chosen high-rank word may be relabeled to one of 69 high-rank orbit
 # representatives (all 16 proven physical incidence automorphisms preserve rank).
 cnf.append(high_reps)
@@ -154,7 +158,7 @@ for j in range(480):
  clause=[i+1 for i,m in enumerate(keep) if m>>j&1];assert clause;cnf.append(clause)
 pool=IDPool(start_from=len(keep)+1)
 cnf.extend(CardEnc.atleast(lits=[i+1 for i,m in enumerate(keep)
-                                if rank_by_mask[m]>=6],bound=2,
+                                if rank_by_mask[m]>=6],bound=3,
                             encoding=EncType.totalizer,vpool=pool).clauses)
 cnf.extend(CardEnc.atmost(lits=list(range(1,len(keep)+1)),bound=6,encoding=EncType.seqcounter,vpool=pool).clauses)
 fn=out/'R5_k6_physical_with_sound_symmetry.cnf';cnf.to_file(str(fn))
