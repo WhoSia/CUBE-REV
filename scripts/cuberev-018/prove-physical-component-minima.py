@@ -50,7 +50,9 @@ assert len(c['representative_original_candidate_ids'])==168
 original=[int(x['mask'],16) for x in d['candidates']]
 out=Path(a.output);out.mkdir(parents=True,exist_ok=True)
 results=[]
-for component in q['components']:
+# Prove the tiny four-slot component first, preserving its DRUP receipt even
+# if the harder five-slot k26 search later hits its conflict budget.
+for component in sorted(q['components'], key=lambda c:c['source_rows']):
     slot=component['slot_count']
     k=26 if slot==5 else 6
     rows=component['original_source_row_indices']
