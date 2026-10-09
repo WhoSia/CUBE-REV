@@ -33,6 +33,8 @@ on:
       - 'scripts/cuberev-015/test-five-edge-fiber.mjs'
       - 'scripts/cuberev-015/ur-fiber-tomography.mjs'
       - 'scripts/cuberev-015/test-ur-fiber-tomography.mjs'
+      - 'scripts/cuberev-015/noisy-fiber-experiment.mjs'
+      - 'scripts/cuberev-015/test-noisy-fiber-experiment.mjs'
       - '.github/workflows/cuberev-011-face-word-regression.yml'
   workflow_dispatch:
 permissions:
@@ -63,6 +65,7 @@ jobs:
           node scripts/cuberev-015/test-active-first-two-and-lift.mjs
           node scripts/cuberev-015/test-five-edge-fiber.mjs
           node scripts/cuberev-015/test-ur-fiber-tomography.mjs
+          node scripts/cuberev-015/test-noisy-fiber-experiment.mjs
       - name: Assert read-only workflow
         run: |
           ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' .github/workflows/cuberev-011-face-word-regression.yml
