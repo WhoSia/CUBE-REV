@@ -29,3 +29,6 @@ for(let z=0;z<H;z++){
 assert.equal(partitions.size,14938,'Changed physical partition count: STOP');
 fs.writeFileSync(target,[...partitions.values()].join('\n')+'\n');
 console.log('CUBE_REV_019_PHYSICAL_L5_1889568_WORDS_14938_PARTITIONS_PASS',JSON.stringify({literal:H,partitions:partitions.size,sha256:crypto.createHash('sha256').update(fs.readFileSync(target)).digest('hex')}));
+
+fs.writeFileSync(target+'.maps.json',JSON.stringify(maps)+'\n');
+console.log('CUBE_REV_019_STICKER_DERIVED_ALL_18_24_STATE_MAPS_EXPORTED',target+'.maps.json');
