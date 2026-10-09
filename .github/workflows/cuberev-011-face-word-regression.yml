@@ -39,6 +39,8 @@ on:
       - 'scripts/cuberev-015/test-robust-ur-probes.mjs'
       - 'scripts/cuberev-016/active-belief-geometry.mjs'
       - 'scripts/cuberev-016/test-active-belief-geometry.mjs'
+      - 'scripts/cuberev-016/two-step-belief-census.mjs'
+      - 'scripts/cuberev-016/test-two-step-belief-census.mjs'
       - '.github/workflows/cuberev-011-face-word-regression.yml'
   workflow_dispatch:
 permissions:
@@ -72,6 +74,7 @@ jobs:
           node scripts/cuberev-015/test-noisy-fiber-experiment.mjs
           node scripts/cuberev-015/test-robust-ur-probes.mjs
           node scripts/cuberev-016/test-active-belief-geometry.mjs
+          node scripts/cuberev-016/test-two-step-belief-census.mjs
       - name: Assert read-only workflow
         run: |
           ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' .github/workflows/cuberev-011-face-word-regression.yml
