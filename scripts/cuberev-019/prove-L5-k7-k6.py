@@ -210,6 +210,58 @@ print('CUBE_REV_019_EXACT_RATIONAL_LP_OPTIMUM_16_OVER_3_ALL_1192_ROWS_PASS',
                   'min_original_requirement_weight':min(weighted_cover)}),flush=True)
 
 
+# Physically restricted perfect-hash subcourt: can FIVE 5-turn words
+# jointly distinguish every admitted FIVE-STATE source? This is a smaller
+# necessary subproblem of any full dictionary. Its UNSAT certificate, if
+# externally checked, implies a full k<=6 dictionary can contain NO rank-4
+# experiment (such a word covers no five-state source and leaves <=5 words).
+# The court is a separate proof obligation; an UNKNOWN leaves M*(5) unchanged.
+five_positions=[k for k,original_i in enumerate(keep_rows)
+                if bases[original_i].bit_count()==5]
+assert len(five_positions)==480
+five_bits=sum(1<<j for j in five_positions)
+five_candidates=[j for j,x in enumerate(projected_maxima) if x&five_bits]
+assert len(five_candidates)==2403,('FIVE_SOURCE_SUBPROBLEM_LINEAGE_CHANGED',len(five_candidates))
+five_cnf=CNF()
+for pos in five_positions:
+    clause=[k+1 for k,j in enumerate(five_candidates) if projected_maxima[j]>>pos&1]
+    assert clause
+    five_cnf.append(clause)
+five_pool=IDPool(start_from=len(five_candidates)+1)
+five_cnf.extend(CardEnc.atmost(lits=list(range(1,len(five_candidates)+1)),bound=5,
+                            encoding=EncType.seqcounter,vpool=five_pool).clauses)
+five_stem='cube_L5_five_k5'
+five_path=out/(five_stem+'.cnf')
+five_cnf.to_file(str(five_path))
+five_result={'scope':'Only original 480 five-state sources, not all original 1192',
+ 'k':5,'columns':len(five_candidates),'rows':480,
+ 'cnf_sha256':hashlib.sha256(five_path.read_bytes()).hexdigest(),
+ 'state':'UNKNOWN','external_check':'NOT_CHECKED'}
+with Glucose4(bootstrap_with=five_cnf.clauses,with_proof=True) as solver:
+    solver.conf_budget(a.conflicts)
+    ans=solver.solve_limited(expect_interrupt=False)
+    if ans is True:
+        model=set(solver.get_model())
+        selected=[j for k,j in enumerate(five_candidates) if (k+1) in model]
+        assert len(selected)<=5
+        for pos in five_positions:
+            assert any(projected_maxima[j]>>pos&1 for j in selected)
+        five_result['state']='SAT_FIVE_SOURCE_ONLY_PHYSICAL_QUOTIENT_REPLAY_PASS'
+        five_result['columns_selected']=selected
+    elif ans is False:
+        proof=solver.get_proof()
+        assert proof and proof[-1].strip()=='0'
+        pf=out/(five_stem+'.drup')
+        pf.write_text(chr(10).join(proof)+chr(10))
+        five_result['state']='UNSAT_EXTERNAL_DRUP_CHECK_PENDING'
+        five_result['proof_sha256']=hashlib.sha256(pf.read_bytes()).hexdigest()
+        five_result['proof_lines']=len(proof)
+    else:
+        five_result['state']='UNKNOWN_CONFLICT_BUDGET'
+(out/(five_stem+'.receipt.json')).write_text(json.dumps(five_result,indent=2)+chr(10))
+print('CUBE_REV_019_L5_480_FIVE_SOURCE_K5_SEPARATE_COURT',
+      json.dumps(five_result),flush=True)
+
 # First court: 7-SAT. If SAT, court 6-SAT. If UNSAT, DRUP certificate.
 summary={'schema':'cube-rev.019.L5.SAT-court.v1',
  'baseline_physical_sha256':hashlib.sha256(raw).hexdigest(),
