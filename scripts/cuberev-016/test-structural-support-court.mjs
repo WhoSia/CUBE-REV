@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {urMoveAutomaton} from '../cuberev-015/ur-fiber-tomography.mjs';
+import {exactH4SupportStructure} from './structural-support-court.mjs';
+const r=exactH4SupportStructure(urMoveAutomaton());
+assert.equal(r.totalSupports,4095);
+assert.equal(r.sourcePartitionTypes,1913);
+assert.equal(r.countVectorClasses,124);
+assert.equal(r.categoryValueContradictions,0);
+assert.equal(r.closedFormContradictions,0);
+assert.equal(r.strictFeedbackSupports,1331);
+assert.equal(r.minimalAntichainCount,216);
+assert.equal(r.allMinimalSetsHaveSize6,true);
+assert.equal(r.upwardClosureCount,1331);
+assert.equal(r.upwardClosureMismatches,0);
+assert.equal(r.combinatorialCount,1331);
+assert.deepEqual(r.winnersBySize,
+ {'6':216,'7':432,'8':396,'9':208,'10':66,'11':12,'12':1});
+assert.deepEqual(r.faceClasses,{F:[1,5,8,9],B:[3,7,10,11],other:[0,2,4,6]});
+assert.equal(r.minimalMasks[0],175);
+console.log('CUBE_REV_016_INTERNAL_P4_EXACT_216_ANTICHAIN_124_CLASS_IFF_PASS');
