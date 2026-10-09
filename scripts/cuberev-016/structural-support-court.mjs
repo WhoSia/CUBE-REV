@@ -59,3 +59,56 @@ export function exactH4SupportStructure(moves){
    other:[...OTHER].sort((a,b)=>a-b)}
  };
 }
+/** 0.16 internal P5: the shorter proof's STATIC construction certificate.
+ * The upper bounds are proved from physical face-incidence geometry.
+ * These 36 exact action words prove the lower bounds by covering ONLY
+ * 220 triples, 492 admissible quadruples and 480 admissible quintuples;
+ * unlike the predecessor P4 court, no 104976-word search is required.
+ */
+export const FOUR_TURN_36_WORDS=Object.freeze([
+ "B F U F",
+ "B F U2 F",
+ "B F U B",
+ "F' U' B F",
+ "B' U' B F",
+ "B F' R2 F",
+ "B F R F",
+ "B' R' B F",
+ "B' F L B",
+ "B F L' F",
+ "B' F' U2 F",
+ "B' F R B",
+ "B' F R2 F",
+ "F L B F",
+ "B D' B F",
+ "F D' B F",
+ "B F' U F",
+ "B' L' B F",
+ "B F D B",
+ "B F' D' F",
+ "B U' B F",
+ "F' R' B F",
+ "F' D B F",
+ "F U B F",
+ "B' D B F",
+ "B F R2 F",
+ "B L B F",
+ "B F R B",
+ "U' F U F",
+ "R' F' R F",
+ "U' B U B",
+ "D' B D B",
+ "U2 F U F",
+ "D F' U F",
+ "D2 B U2 F",
+ "L2 B' R2 F"
+]);
+export const FOUR_TURN_FIVE_BASES=Object.freeze([[0,2,3],[2,0,3],[1,2,2],[2,1,2],[2,2,1]]);
+export function fourTurnRankFormula(counts){
+ if(!Array.isArray(counts)||counts.length!==3||counts.some(v=>!Number.isInteger(v)||v<0||v>4)||counts.every(v=>v===0))throw Error('BAD_NONEMPTY_INCIDENCE_TRIPLE');
+ const n=counts.reduce((x,y)=>x+y,0);
+ let fixed=Math.min(n,3);
+ if(n>=4&&counts.filter(v=>v>0).length>=2)fixed=4;
+ if(FOUR_TURN_FIVE_BASES.some(t=>t.every((v,i)=>counts[i]>=v)))fixed=5;
+ return {fixed,adaptive:fixed+Number(counts.every(v=>v>=2))};
+}
