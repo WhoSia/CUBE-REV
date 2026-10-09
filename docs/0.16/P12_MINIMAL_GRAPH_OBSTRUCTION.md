@@ -52,6 +52,16 @@ Every vertex cover of G must choose at least one endpoint from each edge, so ANY
 
 **Proof boundary:** The graph argument is a human-length proof *conditional on the verified completeness of the 17-profile list*. Deriving that exact list directly from the 18-HTM cubie action grammar without finite enumeration is STILL OPEN. Calling the whole theorem completely noncomputational would be a logical overstatement.
 
+## Stronger triangle-pair uniqueness theorem (follow-up audit)
+
+The ten-edge missing-pair graph splits **EXACTLY** into two vertex-disjoint triangles with vertices `{1,3,7}` and `{2,4,6}` (three edges each), plus the four exterior edges `{0,2},{0,4},{1,5},{5,7}`.
+
+**Hand proof that the size-four vertex cover is UNIQUE.** Every vertex cover must choose at least two vertices from each triangle, so a four-vertex cover has exactly two in each and no exterior vertex `0` or `5`. The exterior edges incident to `0` then force `2,4`; those incident to `5` force `1,7`. Thus every four-vertex cover equals **`{1,2,4,7}`**, and direct substitution verifies that it covers all ten edges. This replaces the earlier matching-only minimality argument by a strictly stronger uniqueness result, with no finite enumeration in the graph proof.
+
+**Further affine structure of the seven size-four light profiles.** Label the eight light indices by three-bit vectors `i∈F₂³`. For each `a∈{001,011,101,111}` and parity `b∈{0,1}`, let the affine hyperplane be `H_(a,b)={i:a·i=b mod2}`. These four normals yield eight affine four-subsets; the EXACT observed seven size-four light profiles are ALL except **`H_(111,1)`**, whose eight-bit mask is `150`. The complementary `H_(111,0)` has mask `105`. This identifies the four-target blocker also as the SINGLE missing member of this eight-hyperplane family. Independent stdlib integer verification is in [test-p12-triangle-uniqueness.py](../../scripts/cuberev-016/test-p12-triangle-uniqueness.py); Lean source adds finite unique-cover Boolean reflection but has NOT been compiler-certified.
+
+**Precise authority boundary:** The two-triangle argument and affine classification are analytical *conditional on the ten-edge/17-mask input*. The claim that ONLY these seventeen profiles arise from the 80 legal near-tight masks still depends on exhaustive 24,040,016-combination checking. No claim that the entire physical Rubik-edge classification is now non-enumerative; exact original dictionary minimum remains `25≤M*≤34`.
+
 ## Relationship to the original M* open problem
 
 The full universal four-action dictionary must separate **1,192** source bases. Its verified optimum interval remains
