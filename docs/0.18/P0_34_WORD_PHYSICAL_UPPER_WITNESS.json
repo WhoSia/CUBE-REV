@@ -1,8 +1,7 @@
 {
-  "schema": "cube-rev.018.exact-34-word-original-physical-witness",
+  "schema": "cube-rev.018.legacy-P6-34-candidate-PHYSICAL-REPLAY-FAIL",
   "origin": "CUBE_REV_016_P6_UNIVERSAL_DICTIONARY_BOUNDS_PRIVATE_20261009.zip/P6_tight_milp_catalogue.json, original 34 exact legal HTM words, math only",
   "target": "1192 original legal source bases, same 24-coordinate Rubik UR-edge oracle and four post-action bits",
-  "k": 34,
   "words": [
     [
       "L2",
@@ -208,5 +207,9 @@
       "U2",
       "F"
     ]
-  ]
+  ],
+  "status": "REJECTED_PHYSICAL_UPPER_WITNESS",
+  "evidence": "GitHub Actions run 37947421965 fails physical sticker-based 18 HTM model: missing original 12-slot source masks 2105, 1082, 2154, 740. The independent P6 direct verifier passes a hand-coded edge move ring oracle, NOT the actual sticker-derived oracle. Do not cite Mstar<=34 until independently reconstructed for the same physical semantics.",
+  "repair": "docs/0.18/P0_REPAIRED_37_WORD_PHYSICAL_WITNESS.json",
+  "historical_k": 34
 }
