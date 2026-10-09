@@ -10,6 +10,7 @@ on:
       - 'docs/0.16/P12_CORE_CERTIFICATE.json'
       - 'docs/0.16/P12_MINIMAL_GRAPH_OBSTRUCTION.md'
       - 'scripts/cuberev-016/test-p12-graph-core.py'
+      - 'scripts/cuberev-016/test-p12-triangle-uniqueness.py'
       - 'scripts/cuberev-016/test-p12-80-candidates.cpp'
       - 'docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md'
       - '.github/workflows/cuberev-016-small-core.yml'
@@ -27,6 +28,8 @@ jobs:
         run: python3 scripts/cuberev-016/test-p11-integrality-overlap.py
       - name: Verify P12 minimal 24-target graph core and emit exact 80 candidates
         run: python3 scripts/cuberev-016/test-p12-graph-core.py --emit /tmp/p12-mask80.txt
+      - name: Verify unique triangle cover and affine seven-of-eight profiles
+        run: python3 scripts/cuberev-016/test-p12-triangle-uniqueness.py
       - name: Compile and exhaust all 24,040,016 five-word choices
         run: |
           c++ -std=c++20 -O3 -Wall -Wextra -pedantic scripts/cuberev-016/test-p12-80-candidates.cpp -o /tmp/p12-core
