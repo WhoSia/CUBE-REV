@@ -198,7 +198,7 @@ print('CUBE_REV_019_ORDER_INVARIANT_FULL_AND_FIVE_SOURCE_FRACTIONAL_LP_PROOF_PAS
 # 480 admitted five-position original source subsets. Reproduce the complete
 # physical 14938-partition finite proof BEFORE any k6 rank filter.
 physical_maps_txt=out/'P9_physical_maps.txt'
-physical_maps_txt.write_text('\\n'.join(' '.join(str(v) for v in row) for row in moves)+'\\n')
+physical_maps_txt.write_text('\n'.join(' '.join(str(v) for v in row) for row in moves)+'\n')
 p9receipt=out/'P9_five_source_k5_exact_receipt.json'
 subprocess.run([
  sys.executable,str(root/'scripts/cuberev-019/prove-L5-five-source-k5-impossibility.py'),
