@@ -47,6 +47,8 @@ on:
       - 'scripts/cuberev-016/test-horizon-feedback-court.mjs'
       - 'scripts/cuberev-016/cost-frontier.mjs'
       - 'scripts/cuberev-016/test-cost-frontier.mjs'
+      - 'scripts/cuberev-016/structural-support-court.mjs'
+      - 'scripts/cuberev-016/test-structural-support-court.mjs'
       - '.github/workflows/cuberev-011-face-word-regression.yml'
   workflow_dispatch:
 permissions:
@@ -84,6 +86,7 @@ jobs:
           node scripts/cuberev-016/test-three-read-feedback-census.mjs
           node scripts/cuberev-016/test-horizon-feedback-court.mjs
           node scripts/cuberev-016/test-cost-frontier.mjs
+          node scripts/cuberev-016/test-structural-support-court.mjs
       - name: Assert read-only workflow
         run: |
           ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' .github/workflows/cuberev-011-face-word-regression.yml
