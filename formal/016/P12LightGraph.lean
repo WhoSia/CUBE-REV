@@ -72,4 +72,22 @@ theorem p12_three_light_sets_not_enough :
            !(Nat.testBit t i) || Nat.testBit p i))))) = true := by
   decide
 
+/-- A direct finite representation of the ten-edge missing-pair graph. -/
+def p12CoversAllTenEdges (t : Nat) : Bool :=
+  p12MissingEdges.all
+    (fun e => Nat.testBit t e.1 || Nat.testBit t e.2)
+
+/-- Number of the eight light vertices selected by a mask is exactly four. -/
+def p12HasExactlyFourBits (t : Nat) : Bool :=
+  decide (((List.range 8).filter (fun i => Nat.testBit t i)).length = 4)
+
+/-- UNIQUE size-four vertex cover, as the two-disjoint-triangles and
+four exterior spokes prove by hand. Finite Boolean reflection is only
+the graph stage; 17-profile completeness is still an external premise. -/
+theorem p12_unique_four_cover :
+    (List.range 256).all (fun t =>
+      (!(p12HasExactlyFourBits t && p12CoversAllTenEdges t)) ||
+      t == 150) = true := by
+  decide
+
 end CubeRev016
