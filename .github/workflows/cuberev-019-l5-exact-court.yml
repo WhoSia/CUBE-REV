@@ -38,7 +38,7 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check 'python-sat==1.9.dev15'
           python -m pip show python-sat
-      - name: Derive exact all-k quotient and attack k7 then k6
+      - name: Derive exact quotient, court five-source k5, and attack full k7 then k6
         run: |
           python -u scripts/cuberev-019/prove-L5-k7-k6.py \
             --physical /tmp/cuberev019/physical.json \
@@ -50,8 +50,8 @@ jobs:
           git clone --quiet https://github.com/marijnheule/drat-trim.git /tmp/cuberev019/drat-trim
           git -C /tmp/cuberev019/drat-trim checkout --quiet 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
           make -C /tmp/cuberev019/drat-trim
-          for k in 7 6; do
-            file="/tmp/cuberev019/court/cube_L5_k${k}"
+          for stem in cube_L5_five_k5 cube_L5_k7 cube_L5_k6; do
+            file="/tmp/cuberev019/court/${stem}"
             if test -f "${file}.drup"; then
               /tmp/cuberev019/drat-trim/drat-trim "${file}.cnf" "${file}.drup" | tee "${file}.external_check.log"
               grep -Fq 's VERIFIED' "${file}.external_check.log"
@@ -63,6 +63,13 @@ jobs:
           from pathlib import Path
           import json
           p=Path('/tmp/cuberev019/court')
+          five=json.loads((p/'cube_L5_five_k5.receipt.json').read_text())
+          five_log=p/'cube_L5_five_k5.external_check.log'
+          if five['state']=='UNSAT_EXTERNAL_DRUP_CHECK_PENDING' and five_log.exists() and 's VERIFIED' in five_log.read_text():
+              print('CUBE_REV_019_L5_FIVE_SOURCE_NO_FIVE_WORD_DICTIONARY_INDEPENDENT_DRUP_PASS')
+              print('CONSEQUENCE: any full six-word L5 dictionary, if one exists, cannot select rank-four words')
+          else:
+              print('CUBE_REV_019_L5_FIVE_SOURCE_K5_CERTIFICATE_PENDING',five['state'])
           a=json.loads((p/'all_courts.json').read_text())
           rows={z['k']:z for z in a['decisions']}
           def valid_unsat(k):
