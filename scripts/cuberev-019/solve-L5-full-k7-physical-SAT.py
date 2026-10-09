@@ -13,6 +13,7 @@ from pysat.solvers import Glucose4
 P=argparse.ArgumentParser()
 for x in ('physical','maps','prepared','output'):P.add_argument('--'+x,required=True)
 P.add_argument('--conflicts',type=int,default=10000000)
+P.add_argument('--exact-high-count',type=int,choices=range(2,8),default=None,help='Optional disjoint high-rank-count branch. UNSAT excludes only this branch until every t=2..7 is checked.')
 a=P.parse_args();out=Path(a.output);out.mkdir(parents=True,exist_ok=True)
 raw=Path(a.physical).read_bytes();sha=hashlib.sha256(raw).hexdigest();bases=json.loads(raw)['bases']
 try:maps=json.loads(Path(a.maps).read_text())
@@ -55,7 +56,10 @@ for pair in d['dual_derived_forbidden_pair_literals']:
 pool=IDPool(start_from=N+1)
 cnf.extend(CardEnc.atleast(lits=high,bound=2,encoding=EncType.totalizer,vpool=pool).clauses)
 cnf.extend(CardEnc.atmost(lits=list(range(1,N+1)),bound=7,encoding=EncType.seqcounter,vpool=pool).clauses)
-cnff=out/'P13_full_original_k7_physical.cnf';cnf.to_file(str(cnff))
+if a.exact_high_count is not None:
+ cnf.extend(CardEnc.equals(lits=high,bound=a.exact_high_count,encoding=EncType.totalizer,vpool=pool).clauses)
+stem='P13_full_original_k7_physical'+(f'_high{a.exact_high_count}' if a.exact_high_count is not None else '')
+cnff=out/(stem+'.cnf');cnf.to_file(str(cnff))
 cnfsha=hashlib.sha256(cnff.read_bytes()).hexdigest()
 print('P13_FULL_ORIGINAL_SOURCE_SEVEN_CNF_READY',json.dumps({'variables':cnf.nv,'clauses':len(cnf.clauses),'cnf_sha256':cnfsha,'seconds':round(time.monotonic()-start,1)}),flush=True)
 receipt={'schema':'cube-rev.019.P13.full-original-L5-k7-SAT-proof-protocol.v1','state':'UNKNOWN',
@@ -64,7 +68,8 @@ receipt={'schema':'cube-rev.019.P13.full-original-L5-k7-SAT-proof-protocol.v1','
  'cover_rows_original_544':544,'real_word_choices':N,'cardinality_at_most':7,
  'at_least_two_high_rank_words_proven_by_P13_integer_court':True,
  'representative_high_orbit_clause_size':69,'sound_original_dual_pair_conflicts':102979,
- 'conflict_budget':a.conflicts,'independent_external_unsat_proof_check':'NOT_YET'}
+ 'conflict_budget':a.conflicts,'high_rank_exactly':a.exact_high_count,
+ 'independent_external_unsat_proof_check':'NOT_YET'}
 try:
  with Glucose4(bootstrap_with=cnf.clauses,with_proof=True) as solver:
   solver.conf_budget(a.conflicts)
@@ -83,12 +88,12 @@ try:
     'selected_full_physical_source_cover_hex':[hex(cols[i]) for i in selected],
     'original_all_1192_source_union_count':original.bit_count(),
     'selected_reduced_column_indices':selected,'private_five_source_witness_original_indices':private}
-   (out/'P13_SEVEN_FULL_SOURCE_PHYSICAL_SAT_WITNESS.json').write_text(json.dumps(witness,indent=2)+'\n')
+   (out/('P13_SEVEN_FULL_SOURCE_PHYSICAL_SAT_WITNESS.json' if a.exact_high_count is None else stem+'.sat_witness.json')).write_text(json.dumps(witness,indent=2)+'\n')
    receipt['state']='SAT_SEVEN_REAL_PHYSICAL_WORDS_INDEPENDENTLY_REPLAYED'
    print('CUBE_REV_019_P13_PHYSICAL_SEVEN_FULL_SOURCE_SAT_WITNESS_PASS',flush=True)
   elif answer is False:
    proof=solver.get_proof();assert proof
-   proof_path=out/'P13_full_original_k7_physical.drup'
+   proof_path=out/(stem+'.drup')
    proof_path.write_text('\n'.join(proof)+'\n')
    receipt['state']='UNSAT_DRUP_EMITTED_EXTERNAL_CHECK_PENDING'
    receipt['drup_sha256']=hashlib.sha256(proof_path.read_bytes()).hexdigest()
@@ -98,4 +103,4 @@ try:
    print('CUBE_REV_019_P13_SEVEN_FULL_SOURCE_STILL_UNKNOWN',flush=True)
 finally:
  receipt['elapsed_seconds']=round(time.monotonic()-start,2)
- (out/'P13_full_original_k7_SAT_decision_receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+ (out/('P13_full_original_k7_SAT_decision_receipt.json' if a.exact_high_count is None else stem+'.receipt.json')).write_text(json.dumps(receipt,indent=2)+'\n')
