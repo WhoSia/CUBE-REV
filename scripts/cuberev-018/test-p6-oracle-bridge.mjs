@@ -58,6 +58,24 @@ function coverage(words,model,alpha){
  }
  return bases.filter((_,i)=>!all[i]).sort((a,b)=>a-b);
 }
+const dIndex=ACTIONS.indexOf('D'),dpIndex=ACTIONS.indexOf("D'");
+assert(dIndex>=0&&dpIndex>=0);
+assert.deepEqual(prior[oldAlpha.indexOf('D')],real[dpIndex],
+ 'Old D must equal true sticker-derived D-prime as a 24-state map');
+assert.deepEqual(prior[oldAlpha.indexOf("D'")],real[dIndex],
+ 'Old D-prime must equal true sticker-derived D');
+for(const word of oldAlpha){
+ if(word==='D'||word==="D'")continue;
+ assert.deepEqual(prior[oldAlpha.indexOf(word)],real[ACTIONS.indexOf(word)]);
+}
+const correctedWords=old.words.map(word=>word.map(tok=>
+ tok==='D'?"D'":tok==="D'"?'D':tok));
+const convertedMissing=coverage(correctedWords,real,ACTIONS);
+assert.deepEqual(convertedMissing,[],
+ 'Alphabet D/D-prime translation must preserve all 1192 P6 source-cover witnesses');
+console.log('CUBE_REV_018_P6_D_DIRECTION_RELABEL_EQUIVALENCE_PASS',
+ JSON.stringify({changedActionSymbols:['D',"D'"],stateMismatchesPerSymbol:8,
+ correctedWordCount:correctedWords.length,coveredSourceBases:1192}));
 const oldLegacyMissing=coverage(old.words,prior,oldAlpha);
 const oldPhysicalMissing=coverage(old.words,real,ACTIONS);
 const repairedPhysicalMissing=coverage(fixed.words,real,ACTIONS);
