@@ -26,7 +26,7 @@ def run(path):
     assert sum(w[k] for k in other)==276
     bit={k:1<<i for i,k in enumerate(other)}
     weights=[w[k] for k in other]
-    masks=list(set(sum(bit[k] for k in p) for p in patterns))
+    masks=sorted(set(sum(bit[k] for k in p) for p in patterns))
     assert len(masks)==116
     target=(1<<50)-1
     options=[[m for m in masks if (m>>i)&1] for i in range(50)]
