@@ -1,0 +1,61 @@
+name: CUBE-REV 0.19 Original-Source Fractional Cover Certificate
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-019/verify-L5-order-invariant-LP.py'
+      - 'docs/0.19/P8_ORDER_INVARIANT_L5_FULL_LP_CERT.json'
+      - 'docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json'
+      - 'scripts/cuberev-019/export-L5-physical.mjs'
+      - '.github/workflows/cuberev-019-l5-fractional-court.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-exact-rational-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Reconstruct 0.18 original real physical-source requirements
+        run: |
+          mkdir -p /tmp/cuberev019-p8
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev019-p8/physical.json
+      - name: Independently enumerate 1889568 real five-HTM words and 14938 observation partitions
+        run: |
+          node scripts/cuberev-019/export-L5-physical.mjs /tmp/cuberev019-p8/physical.json /tmp/cuberev019-p8/partitions.tsv
+          test "$(wc -l < /tmp/cuberev019-p8/partitions.tsv)" -eq 14938
+      - name: Independently verify rational primal and dual with original 1192-bit physical cover identities
+        run: |
+          python -u scripts/cuberev-019/verify-L5-order-invariant-LP.py \
+            --physical /tmp/cuberev019-p8/physical.json \
+            --partitions /tmp/cuberev019-p8/partitions.tsv \
+            --full_cert docs/0.19/P8_ORDER_INVARIANT_L5_FULL_LP_CERT.json \
+            --five_cert docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json \
+            --output /tmp/cuberev019-p8/EXACT_L5_RATIONAL_PRIMAL_DUAL_RECEIPT.json \
+            | tee /tmp/cuberev019-p8/proof.log
+          grep -q 'CUBE_REV_019_L5_ORDER_INVARIANT_EXACT_FRACTIONAL_PROOF_PASS ALL_1192' /tmp/cuberev019-p8/proof.log
+          grep -q 'CUBE_REV_019_L5_ORDER_INVARIANT_EXACT_FRACTIONAL_PROOF_PASS FIVE_ONLY_480' /tmp/cuberev019-p8/proof.log
+          grep -q 'CUBE_REV_019_L5_64_FOUR_STATE_RESTRICTIONS_RAISE_EXACT_FRACTIONAL_OPTIMUM_BY_23_OVER_39_PASS' /tmp/cuberev019-p8/proof.log
+      - name: Hash all physical inputs and machine-checked theorem receipts
+        run: |
+          sha256sum /tmp/cuberev019-p8/physical.json \
+            /tmp/cuberev019-p8/partitions.tsv \
+            /tmp/cuberev019-p8/EXACT_L5_RATIONAL_PRIMAL_DUAL_RECEIPT.json \
+            docs/0.19/P8_ORDER_INVARIANT_L5_FULL_LP_CERT.json \
+            docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json \
+            > /tmp/cuberev019-p8/sha256sums.txt
+          cat /tmp/cuberev019-p8/sha256sums.txt
+      - name: Upload exact source-identity rational proof artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-019-p8-exact-rational-l5-source-identity
+          path: /tmp/cuberev019-p8/
+          retention-days: 90
+          if-no-files-found: warn
