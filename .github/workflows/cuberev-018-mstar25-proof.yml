@@ -1,0 +1,80 @@
+name: CUBE-REV 0.18 physical M-star 25 PB-SAT proof court
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-018/**'
+      - 'docs/0.18/**'
+      - '.github/workflows/cuberev-018-mstar25-proof.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  physical-pb-sat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Rebuild 104976 real Rubik words and all 1323 maximal coverage sets
+        run: |
+          mkdir -p /tmp/cube-rev-018
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cube-rev-018/physical_instance.json
+      - name: Install published SAT and pseudo-Boolean encoder
+        run: |
+          python -m pip install --disable-pip-version-check 'python-sat[pblib]'
+          python -m pip show python-sat pypblib
+      - name: Exact 25-word PB-SAT attempt with auditable DIMACS
+        run: |
+          python scripts/cuberev-018/solve-mstar25-pb.py \
+            --instance /tmp/cube-rev-018/physical_instance.json \
+            --out /tmp/cube-rev-018/result --conflicts 250000
+      - name: Independently replay any returned 25-word model on the cube
+        run: |
+          node scripts/cuberev-018/verify-sat-witness-physical.mjs \
+            /tmp/cube-rev-018/result/sat_witness.json
+      - name: Independently verify any UNSAT DRUP proof against emitted DIMACS
+        run: |
+          if test ! -f /tmp/cube-rev-018/result/exact_k25.drup; then
+            echo 'NO_UNSAT_PROOF_TO_CHECK: SAT or UNKNOWN; no new lower-bound claim'
+          else
+            git clone --quiet https://github.com/marijnheule/drat-trim.git /tmp/cube-rev-018/drat-trim
+            git -C /tmp/cube-rev-018/drat-trim checkout --quiet 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+            make -C /tmp/cube-rev-018/drat-trim
+            /tmp/cube-rev-018/drat-trim/drat-trim \
+              /tmp/cube-rev-018/result/exact_k25.cnf \
+              /tmp/cube-rev-018/result/exact_k25.drup \
+              | tee /tmp/cube-rev-018/result/independent_proof_checker.log
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          f=Path('/tmp/cube-rev-018/result/receipt.json')
+          d=json.loads(f.read_text())
+          if Path('/tmp/cube-rev-018/result/exact_k25.drup').exists():
+              log=Path('/tmp/cube-rev-018/result/independent_proof_checker.log').read_text()
+              assert 'VERIFIED' in log, log[-2000:]
+              d['status']='UNSAT_DRUP_INDEPENDENT_CHECK_PASS'
+              d['checker']='drat-trim @ 2e3b2dc0ecf938addbd779d42877b6ed69d9a985'
+              f.write_text(json.dumps(d,indent=2)+'\\n')
+              print('MSTAR25_UNSAT_CERTIFICATE_INDEPENDENTLY_VERIFIED')
+          else:
+              print('MSTAR25_NO_UNSAT_CLAIM')
+          PY
+          fi
+      - name: Upload machine-readable receipts, instance and optional proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-018-mstar25-proof-court
+          path: |
+            /tmp/cube-rev-018/physical_instance.json
+            /tmp/cube-rev-018/result/
+          retention-days: 30
+          if-no-files-found: warn
