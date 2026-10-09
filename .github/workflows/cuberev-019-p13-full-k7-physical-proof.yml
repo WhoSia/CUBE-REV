@@ -7,6 +7,7 @@ on:
       - 'scripts/cuberev-019/prepare-L5-full-k7-physical-CNF.py'
       - 'scripts/cuberev-019/verify-L5-full-k7-at-least-two-high.py'
       - 'scripts/cuberev-019/solve-L5-full-k7-physical-SAT.py'
+      - 'scripts/cuberev-019/verify-L5-full-k7-rank7-count5-6-7.py'
       - 'docs/0.19/P13_K7_AT_LEAST_TWO_HIGH_PHYSICAL_INTEGER_DUALS.json'
       - 'docs/0.19/P0_L5_INTEGER_LOWER6_DUAL.json'
       - '.github/workflows/cuberev-019-p13-full-k7-physical-proof.yml'
@@ -135,12 +136,21 @@ jobs:
             --output /tmp/cuberev019-p13/p13 \
             | tee /tmp/cuberev019-p13/P13_source_locked_preparation.log
           grep -q 'CUBE_REV_019_P13_SOURCE_LOCKED_FULL_K7_544x2403_PREPARED_NOT_DECIDED' /tmp/cuberev019-p13/P13_source_locked_preparation.log
+      - name: Exclude rank-seven-count five six seven using original 1192-source finite proof
+        run: |
+          python -u scripts/cuberev-019/verify-L5-full-k7-rank7-count5-6-7.py \
+            --physical /tmp/cuberev019-p13/physical.json \
+            --partitions /tmp/cuberev019-p13/partitions.tsv \
+            --output /tmp/cuberev019-p13/p13/P13_RANK7_FIVE_SIX_SEVEN_GATE.json \
+            | tee /tmp/cuberev019-p13/P13_rank7_567_original_full_source.log
+          grep -q 'CUBE_REV_019_P13_ORIGINAL_SEVEN_RANK7_COUNT_5_6_7_ALL_EXCLUDED_INTEGER_PASS' /tmp/cuberev019-p13/P13_rank7_567_original_full_source.log
       - name: Try a proof-producing real seven-word SAT or UNSAT court, never promote a budget timeout
         run: |
           python -u scripts/cuberev-019/solve-L5-full-k7-physical-SAT.py \
             --physical /tmp/cuberev019-p13/physical.json \
             --maps /tmp/cuberev019-p13/maps.txt \
             --prepared /tmp/cuberev019-p13/p13/P13_full_k7_physical_kernel.json \
+            --rank7_gate /tmp/cuberev019-p13/p13/P13_RANK7_FIVE_SIX_SEVEN_GATE.json \
             --conflicts 10000000 \
             --output /tmp/cuberev019-p13/p13 \
             | tee /tmp/cuberev019-p13/P13_SAT_decision.log
