@@ -112,6 +112,7 @@
     "crates/search-geometry-core/src/bin/g7_p7_reco_rivals.rs",
     "crates/search-geometry-core/src/lib.rs",
     "crates/search-geometry-core/src/phase1.rs",
+    "docs/0.16/RESEARCH_SCOPE.md",
     "g7/p10/batch4-leverage-preseal.json",
     "g7/p10/closure.json",
     "g7/p10/constitution.json",
