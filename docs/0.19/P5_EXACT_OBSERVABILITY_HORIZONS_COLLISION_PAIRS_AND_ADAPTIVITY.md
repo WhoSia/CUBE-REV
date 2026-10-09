@@ -46,6 +46,14 @@ Fix any f. The homogeneous quartet containing f is unique, so every e in B(w) mu
 
 **Two-word dictionary iff:** (a) one word already fully distinguishes 12, OR (b) each word has exactly one collided pair and the two pairs partition an excluded homogeneous F/B/N quartet. In case (b) both words have exactly 11 distinct observation histories. This is a mathematical combinatorial characterization, not a numerical SAT claim.
 
+## General collision-hypergraph characterization for arbitrary dictionary size
+
+Let B(w) denote the graph of all distinct initial slot pairs that produce **identical complete observation transcripts** under a physical word w. A source A is distinguished by w if and only if A is an independent vertex subset of B(w). Therefore a dictionary D succeeds on the fixed source family R if and only if there **does not exist** an admitted source A and one chosen collided pair e_w from every w in D such that the union of all chosen pairs is a subset of A. Formally:
+
+`D valid <=> NOT EXISTS A in R, (e_w in B(w))_(w in D): (UNION_(w in D) e_w) SUBSET A.`
+
+This is an exact equivalence for any L and any dictionary size and does not rely on an integer-program encoding. The preceding two-word criterion is its first nontrivial closed-form case, obtained from the source family's all-triples and three excluded homogeneous quartets. For k=3, a prospective three-word obstruction is a collision-edge triple with a union contained in an admitted source set of at most five elements. This points to a **constraint-preserving collision-hypergraph attack** on the remaining M*(6)=3-versus-4 and M*(5)=6/7/8 problems; it does not resolve either yet. Crucially, unlike column-orbit aggregation, the collision graphs retain which exact initial-state pairs overlap.
+
 ## M*(8)=2 constructive upper
 
 ```text
