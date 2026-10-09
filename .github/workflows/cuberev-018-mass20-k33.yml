@@ -1,0 +1,74 @@
+name: CUBE-REV 0.18 Exact Full-Mass k33 Obstruction Certificate
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-018/certify-mass20-k33.py'
+      - '.github/workflows/cuberev-018-mass20-k33.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cube-mass20-k33:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build physical 1192-source, 1323-maximal-mask Rubik incidence
+        run: |
+          mkdir -p /tmp/cuberev018-mass20
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev018-mass20/physical.json
+      - name: Install pinned independent SAT engine
+        run: python -m pip install --disable-pip-version-check 'python-sat==1.9.dev15'
+      - name: Test unstrengthened 162-column c20 physical subfamily at k33
+        run: |
+          python scripts/cuberev-018/certify-mass20-k33.py \
+            --instance /tmp/cuberev018-mass20/physical.json \
+            --out /tmp/cuberev018-mass20/receipt --conflicts 1200000
+      - name: Independently replay any SAT model on actual Rubik face actions
+        run: |
+          node scripts/cuberev-018/verify-sat-witness-physical.mjs \
+            /tmp/cuberev018-mass20/receipt/sat_witness.json
+      - name: Independently verify any UNSAT DRUP proof on the exact restricted CNF
+        run: |
+          if test -f /tmp/cuberev018-mass20/receipt/mass20_k33_original_1192.drup; then
+            git clone --quiet https://github.com/marijnheule/drat-trim.git /tmp/cuberev018-mass20/drat-trim
+            git -C /tmp/cuberev018-mass20/drat-trim checkout --quiet 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+            make -C /tmp/cuberev018-mass20/drat-trim
+            /tmp/cuberev018-mass20/drat-trim/drat-trim \
+              /tmp/cuberev018-mass20/receipt/mass20_k33_original_1192.cnf \
+              /tmp/cuberev018-mass20/receipt/mass20_k33_original_1192.drup \
+              | tee /tmp/cuberev018-mass20/receipt/checker.log
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          d=Path('/tmp/cuberev018-mass20/receipt')
+          assert 's VERIFIED' in (d/'checker.log').read_text()
+          p=d/'receipt.json'
+          o=json.loads(p.read_text())
+          assert o['state']=='UNSAT_NEEDS_EXTERNAL_DRUP_VERIFICATION'
+          assert o['subfamily_exact_mass20_candidates']==162
+          o['state']='MASS20_ONLY_K33_UNSAT_DRUP_INDEPENDENT_VERIFIED'
+          o['not_full_k33_certified']=True
+          p.write_text(json.dumps(o,indent=2)+'\n')
+          print('MSTAR33_FULL_MASS_SUBFAMILY_ONLY_EXACT_UNSAT_VERIFIED')
+          PY
+          else
+            echo 'NO_RESTRICTED_UNSAT_CERTIFICATE (SAT or UNKNOWN)'
+          fi
+      - name: Retain independently checkable restricted proof or candidate witness
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-018-mass20-k33-subfamily-proof
+          path: /tmp/cuberev018-mass20/
+          retention-days: 30
+          if-no-files-found: warn
