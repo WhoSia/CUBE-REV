@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """CUBE-REV 0.18: integer set-cover search with an independently proved
-34-word Rubik witness as a full CP-SAT hint.  An incumbent smaller than34
+37-word Rubik witness as a full CP-SAT hint.  An incumbent smaller than37
 is an UPPER bound ONLY after separate physical HTM word replay.  A solver
 bound/status without an independently verified UNSAT certificate is NOT
 a new mathematical lower bound.
@@ -10,7 +10,7 @@ from pathlib import Path
 from ortools.sat.python import cp_model
 
 if len(sys.argv)!=4:
-    raise SystemExit("Usage: improve-mstar-hinted.py <physical_instance.json> <physical_34_hints.json> <output_dir>")
+    raise SystemExit("Usage: improve-mstar-hinted.py <physical_instance.json> <physical_37_hints.json> <output_dir>")
 instance=Path(sys.argv[1])
 d=json.loads(instance.read_text())
 h=json.loads(Path(sys.argv[2]).read_text())
@@ -18,8 +18,8 @@ assert d['schema']=='cube-rev.018.cube-physical-mstar-maximal-v1'
 assert d['counts']['bases']==1192 and d['counts']['maximal']==1323
 columns=[int(x['mask'],16) for x in d['candidates']]
 seed=list(map(int,h['candidates']))
-assert len(seed)==h['newCount']==34
-assert all(0<=j<1323 for j in seed) and len(set(seed))==34
+assert len(seed)==h['newCount']<=37
+assert all(0<=j<1323 for j in seed) and len(set(seed))==len(seed)
 union=0
 for j in seed:union|=columns[j]
 assert union.bit_count()==1192
@@ -31,7 +31,7 @@ for base_index in range(1192):
     assert hits
     model.Add(sum(hits)>=1)
 sumx=sum(x)
-model.Add(sumx<=34)
+model.Add(sumx<=len(seed))
 model.Add(sumx>=30)  # independently verified original k29 UNSAT, not a solver guess
 model.Minimize(sumx)
 seedset=set(seed)
@@ -51,7 +51,7 @@ receipt={
  'source_sha256':hashlib.sha256(instance.read_bytes()).hexdigest(),
  'n_variables':1323,'n_coverage_constraints':1192,
  'lower_side_external_drup_k29':30,
- 'upper_seed_exact_replayed':34,
+ 'upper_seed_exact_replayed':len(seed),
  'seed_count':len(seed),
  'wall_seconds':round(secs,3),
  'ortools_version':__import__('ortools').__version__,
@@ -60,7 +60,7 @@ receipt={
 }
 if status in (cp_model.OPTIMAL,cp_model.FEASIBLE):
     chosen=[j for j in range(1323) if solver.Value(x[j])]
-    assert len(chosen)<=34
+    assert len(chosen)<=len(seed)
     cover=0
     for j in chosen:cover|=columns[j]
     assert cover.bit_count()==1192
