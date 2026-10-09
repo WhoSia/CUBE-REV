@@ -6,6 +6,7 @@
     ".github/workflows/cuberev-011-face-word-regression.yml",
     ".github/workflows/cuberev-016-lean.yml",
     ".github/workflows/cuberev-016-small-core.yml",
+    ".github/workflows/cuberev-017-invariants.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
