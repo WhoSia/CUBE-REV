@@ -22,7 +22,7 @@ struct Candidate {
  array<int,6> moves;
 };
 int main(int argc,char**argv){
- if(argc!=3){cerr<<"usage: P6-collision-kernel candidates.tsv retained.tsv\n";return 2;}
+ if(argc!=4){cerr<<"usage: P6-collision-kernel candidates.tsv retained.tsv witnesses.tsv\n";return 2;}
  ifstream input(argv[1]);assert(input);
  int pair_id[12][12]={},pair_index=0;
  for(int i=0;i<12;i++)for(int j=i+1;j<12;j++)pair_id[i][j]=pair_index++;
@@ -44,22 +44,25 @@ int main(int argc,char**argv){
   return make_tuple(a.collision_edges,a.collision_lo,a.collision_hi)
        < make_tuple(b.collision_edges,b.collision_lo,b.collision_hi);
  });
- vector<Candidate> keep;map<int,pair<int,int>> counts;
+ vector<Candidate> keep;vector<pair<uint64_t,uint64_t>> witnesses;map<int,pair<int,int>> counts;
  for(const auto &word:words){
-  bool dominated=false;
+  bool dominated=false;uint64_t parent=word.partition;
   for(const auto &retained:keep){
    if(retained.collision_edges>word.collision_edges)break;
    if((retained.collision_lo & ~word.collision_lo)==0
       && (retained.collision_hi & ~word.collision_hi)==0){
-    dominated=true;break;
+    dominated=true;parent=retained.partition;break;
    }
   }
+  witnesses.push_back({word.partition,parent});
   counts[word.collision_edges].first++;
   if(!dominated){keep.push_back(word);counts[word.collision_edges].second++;}
  }
  assert(keep.size()==18813);
  ofstream output(argv[2]);assert(output);
  for(auto &c:keep){output<<c.partition;for(int a:c.moves)output<<" "<<a;output<<"\n";}
+ ofstream cert(argv[3]);assert(cert);
+ for(auto [source,parent]:witnesses)cert<<source<<" "<<parent<<"\n";
  cout<<"CUBE_REV_019_L6_COLLISION_EDGE_REFINEMENT_53528_TO_18813_PASS\n";
  for(auto [degree,ct]:counts)
   cout<<"collisionEdges="<<degree<<" source="<<ct.first<<" retained="<<ct.second<<"\n";
