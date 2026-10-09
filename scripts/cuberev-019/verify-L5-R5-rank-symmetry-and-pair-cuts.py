@@ -55,7 +55,31 @@ for m in byrank[7]:
  assert 5*max_gain<uncovered.bit_count()
  rank7_audit.append((m.bit_count(),max_gain))
 assert 132+5*64<480
-# Therefore a six-word full five-source cover requires >=2 words with output rank>=6.
+# Strengthen the raw-physical bound to THREE high-rank words.  Having proved
+# a k<=6 cover cannot use <=1 word of rank>=6, rule out exactly two such
+# words and four words of rank 5 (rank<5 words cover no R5 requirements).
+# This is checked on the ENTIRE 3344 real physical coverage family, not just
+# the 2023 undominated kernel.  The four remaining rank5 words can add at
+# most four times the single best gain outside the high pair's union.
+high_raw=sorted(byrank[6]|byrank[7])
+assert len(high_raw)==1176
+rank5_raw=list(byrank[5]);assert len(rank5_raw)==2168
+raw_high_pairs_checked=0
+pair_count_volume_pruned=0
+pair_count_residual_pruned=0
+for ia,c in enumerate(high_raw):
+ for d in high_raw[ia+1:]:
+  raw_high_pairs_checked+=1
+  missing=full&~(c|d)
+  if missing.bit_count()>4*64:
+   pair_count_volume_pruned+=1
+   continue
+  g=max((x&missing).bit_count() for x in rank5_raw)
+  assert 4*g<missing.bit_count(), ('TWO_HIGH_PLUS_FOUR_LOW_MAY_WORK',g)
+  pair_count_residual_pruned+=1
+assert (raw_high_pairs_checked,pair_count_volume_pruned,pair_count_residual_pruned)==(690900,680500,10400)
+# Therefore every physically realized R5 covering dictionary with <=6
+# experiments requires >=3 different words with >=6 output histories.
 
 # Reconstruct all-k maximal original five-only coverage family.
 ordered=sorted(all_masks,key=lambda m:(-m.bit_count(),m))
@@ -132,7 +156,11 @@ receipt={'schema':'cube-rev.019.P11.five-only-physical-rank-symmetry-k6-cut.v1',
  'rank5_masks':len(byrank[5]),'rank6_masks':len(byrank[6]),'rank7_masks':len(byrank[7]),
  'max_covered_R5_sources_rank5':64,'max_covered_R5_sources_rank6':132,
  'rank7_original_source_count_vs_rank5_max_gain':sorted(set(rank7_audit)),
- 'theorem':'Every full 480-five-source six-word dictionary must include at least TWO real words of output partition rank >=6.',
+ 'theorem':'Every full 480-five-source six-word dictionary must include at least THREE real words of output partition rank >=6.',
+ 'minimum_rank6_or_higher_experiments_for_k6':3,
+ 'raw_high_pairs_checked':raw_high_pairs_checked,
+ 'two_high_pairs_excluded_by_4x64_volume':pair_count_volume_pruned,
+ 'two_high_pairs_excluded_by_4x_best_missing_gain':pair_count_residual_pruned,
  'physical_incidence_symmetries_checked':16,'maximal_column_orbits_by_rank':dict(orb_count),
  'safe_high_rank_first_column_orbit_representatives':69,
  'r5_dual_total_weight':1480,'r5_single_word_max_weight':312,
