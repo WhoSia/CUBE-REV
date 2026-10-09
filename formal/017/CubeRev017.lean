@@ -1,3 +1,5 @@
+import Init
+
 /-!
 CUBE-REV 0.17: Action-congruent deterministic observation partitions.
 
@@ -6,7 +8,6 @@ a successful independently inspected runner receipt. Congruence itself is
 classical automata theory; human cognition, full-cube perception and adaptive
 optimality for the 0.16 24-state physical sensor are NOT proved here.
 -/
-import Init
 
 namespace CubeRev017
 
