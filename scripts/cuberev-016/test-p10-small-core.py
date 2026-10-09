@@ -48,6 +48,8 @@ assert 8*20<180
 P20=[q for q in QB if mass(q)==20]
 P16=[q for q in QB if mass(q)==16]
 assert (len(P20),len(P16))==(74,6)
+assert min(mass(P20[i]&P20[j]) for i in range(74) for j in range(i+1,74)
+    if P20[i]&P20[j])>=4
 quads=extend16=extend20=0
 for a in range(74):
     for b in range(a+1,74):
