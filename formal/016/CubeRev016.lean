@@ -10,6 +10,7 @@ status is LEAN_SOURCE_PENDING_COMPILATION, not LEAN_KERNEL_PASS.
 -/
 import Init
 import P11Fractional
+import P12LightGraph
 
 namespace CubeRev016
 
