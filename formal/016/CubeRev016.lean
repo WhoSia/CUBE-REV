@@ -9,6 +9,7 @@ an independent obligation. Until an actual Lean runner passes this file,
 status is LEAN_SOURCE_PENDING_COMPILATION, not LEAN_KERNEL_PASS.
 -/
 import Init
+import P11Fractional
 
 namespace CubeRev016
 
