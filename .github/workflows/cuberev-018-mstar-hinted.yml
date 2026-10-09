@@ -7,6 +7,8 @@ on:
       - 'scripts/cuberev-018/improve-mstar-hinted.py'
       - 'scripts/cuberev-018/export-known34-hints.mjs'
       - 'scripts/cuberev-018/test-p6-oracle-bridge.mjs'
+      - 'scripts/cuberev-018/test-two-physical34-witnesses.py'
+      - 'docs/0.18/P2_CP_SAT_34_INDEPENDENT_HTM_PASS.json'
       - 'scripts/cuberev-018/verify-sat-witness-physical.mjs'
       - 'docs/0.18/P0_REPAIRED_37_WORD_PHYSICAL_WITNESS.json'
       - 'docs/0.18/P1_35_WORD_PHYSICAL_COVER_WITNESS.json'
@@ -39,6 +41,8 @@ jobs:
           node scripts/cuberev-018/verify-sat-witness-physical.mjs docs/0.18/P1_NEW_34_WORD_PHYSICAL_COVER_WITNESS.json
           node scripts/cuberev-018/export-known34-hints.mjs \
             /tmp/cuberev018-hint/physical.json /tmp/cuberev018-hint/hints.json
+      - name: Recompute two distinct physical 34-word certificates and private target geometry
+        run: python scripts/cuberev-018/test-two-physical34-witnesses.py /tmp/cuberev018-hint/physical.json
       - name: Differentially certify historical P6 oracle failure and real-cube 37 repair
         run: node scripts/cuberev-018/test-p6-oracle-bridge.mjs /tmp/cuberev018-hint/physical.json
       - name: Install exact integer CP-SAT solver
