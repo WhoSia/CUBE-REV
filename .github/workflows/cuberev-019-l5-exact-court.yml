@@ -1,0 +1,93 @@
+name: CUBE-REV 0.19 Five-Turn Physical M-star SAT/DRUP Court
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-019/**'
+      - 'docs/0.19/P0_L5_INTEGER_LOWER6_DUAL.json'
+      - '.github/workflows/cuberev-019-l5-exact-court.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  l5-physical-exact-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reconstruct original four-HTM physical source from sticker oracle
+        run: |
+          mkdir -p /tmp/cuberev019
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev019/physical.json
+      - name: Independently enumerate all 1889568 physical five-HTM experiments
+        run: |
+          node scripts/cuberev-019/export-L5-physical.mjs \
+            /tmp/cuberev019/physical.json /tmp/cuberev019/partitions.tsv
+      - name: Install pinned SAT proof-producing engine
+        run: |
+          python -m pip install --disable-pip-version-check 'python-sat==1.9.dev15'
+          python -m pip show python-sat
+      - name: Derive exact all-k quotient and attack k7 then k6
+        run: |
+          python -u scripts/cuberev-019/prove-L5-k7-k6.py \
+            --physical /tmp/cuberev019/physical.json \
+            --partitions /tmp/cuberev019/partitions.tsv \
+            --maps /tmp/cuberev019/partitions.tsv.maps.json \
+            --output /tmp/cuberev019/court --conflicts 4500000
+      - name: Independently verify every UNSAT proof using pinned drat-trim
+        run: |
+          git clone --quiet https://github.com/marijnheule/drat-trim.git /tmp/cuberev019/drat-trim
+          git -C /tmp/cuberev019/drat-trim checkout --quiet 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+          make -C /tmp/cuberev019/drat-trim
+          for k in 7 6; do
+            file="/tmp/cuberev019/court/cube_L5_k${k}"
+            if test -f "${file}.drup"; then
+              /tmp/cuberev019/drat-trim/drat-trim "${file}.cnf" "${file}.drup" | tee "${file}.external_check.log"
+              grep -Fq 's VERIFIED' "${file}.external_check.log"
+            fi
+          done
+      - name: Promote exact L5 optimum only after independent proof verification
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path('/tmp/cuberev019/court')
+          a=json.loads((p/'all_courts.json').read_text())
+          rows={z['k']:z for z in a['decisions']}
+          def valid_unsat(k):
+              z=rows.get(k,{})
+              log=p/f'cube_L5_k{k}.external_check.log'
+              return z.get('state')=='UNSAT_EXTERNAL_DRUP_CHECK_PENDING' and log.is_file() and 's VERIFIED' in log.read_text()
+          exact=None
+          if valid_unsat(7): exact=8
+          elif rows.get(7,{}).get('state')=='SAT_PHYSICAL_WITNESS_VALIDATED':
+              if valid_unsat(6): exact=7
+              elif rows.get(6,{}).get('state')=='SAT_PHYSICAL_WITNESS_VALIDATED': exact=6
+          if exact is None:
+              print('CUBE_REV_019_L5_EXACT_OPTIMUM_STILL_OPEN',[(k,z['state']) for k,z in rows.items()])
+          else:
+              receipt={'result':f'CUBE_REV_019_EXACT_PHYSICAL_MSTAR_L5_{exact}',
+                 'physical_original_row_count':1192,'source_L4_sha256':a['baseline_physical_sha256'],
+                 'reduced_rows':544,'reduced_columns':2887,
+                 'independently_verified_unsat': [k for k in (7,6) if valid_unsat(k)],
+                 'physical_cover_upper':8,'dual_certified_lower':6,
+                 'scope':'five fixed HTM actions, five orientation bits, original 1192 source requirements, unit dictionary cost'}
+              (p/'EXACT_L5_MSTAR_THEOREM_RECEIPT.json').write_text(json.dumps(receipt,indent=2)+'\n')
+              print('CUBE_REV_019_L5_EXACT_THEOREM_EXTERNAL_PROOF_GATE_PASS',exact)
+          PY
+      - name: Retain physical source, partitions, exact-k CNFs, witnesses and proof logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-019-five-turn-exact-court
+          path: /tmp/cuberev019/
+          retention-days: 30
+          if-no-files-found: warn
