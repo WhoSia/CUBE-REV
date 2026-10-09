@@ -1,0 +1,52 @@
+{
+  "schema": "cube-rev.019.L5.exact-fractional-orbit-primal.v1",
+  "physical_source_sha256": "9f2119738f92f56485897c1894d2cb721a3d6b0498c5aa14832c71f18b20e2f1",
+  "group_order": 16,
+  "orbit_row_count": 42,
+  "orbit_column_count": 196,
+  "scale_denominator": 168,
+  "objective_scaled_numerator": 896,
+  "assignments": [
+    {
+      "representative": 0,
+      "orbit_size": 8,
+      "weight_numerator": 15
+    },
+    {
+      "representative": 4,
+      "orbit_size": 8,
+      "weight_numerator": 21
+    },
+    {
+      "representative": 112,
+      "orbit_size": 16,
+      "weight_numerator": 3
+    },
+    {
+      "representative": 236,
+      "orbit_size": 8,
+      "weight_numerator": 20
+    },
+    {
+      "representative": 298,
+      "orbit_size": 16,
+      "weight_numerator": 8
+    },
+    {
+      "representative": 300,
+      "orbit_size": 16,
+      "weight_numerator": 8
+    },
+    {
+      "representative": 305,
+      "orbit_size": 16,
+      "weight_numerator": 8
+    },
+    {
+      "representative": 1199,
+      "orbit_size": 8,
+      "weight_numerator": 2
+    }
+  ],
+  "validation": "Each of all 1192 original source rows receives at least 168 weighted coverage points; sum of weighted selected experiment variables equals 896. This certifies an exact fractional primal cost 896/168=16/3, matching the independent dual 384/72=16/3. This is not an integer seven-word cover."
+}
