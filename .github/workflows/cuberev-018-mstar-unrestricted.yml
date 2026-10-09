@@ -1,0 +1,97 @@
+name: CUBE-REV 0.18 unrestricted original M-star certificate court
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-018/**'
+      - 'docs/0.18/**'
+      - '.github/workflows/cuberev-018-mstar-unrestricted.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  plain-original-cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Rebuild all 104976 exact Rubik four-turn experiments
+        run: |
+          mkdir -p /tmp/cuberev018
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev018/physical.json
+      - name: Install PySAT solver without pseudo-Boolean dependencies
+        run: |
+          python -m pip install --disable-pip-version-check 'python-sat==1.9.dev15'
+          python -m pip show python-sat
+      - name: Positive-dual 60-base k25 SAT positive control
+        run: |
+          python scripts/cuberev-018/solve-mstar-unrestricted.py \
+            --instance /tmp/cuberev018/physical.json \
+            --target dual --k 25 --conflicts 150000 \
+            --out /tmp/cuberev018/dual25
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/cuberev018/dual25/receipt.json'))
+          assert d['state']=='SAT_WITNESS_FOUND_PENDING_ACTION_REPLAY',d
+          print('MSTAR_DUAL_ONLY_25_EXPECTED_SAT_CONTROL_PASS')
+          PY
+      - name: Unrestricted original 1192-base k25..k29 decision attempts
+        run: |
+          for k in 25 26 27 28 29; do
+            echo "MSTAR_ORIGINAL_UNRESTRICTED_K=$k"
+            python scripts/cuberev-018/solve-mstar-unrestricted.py \
+              --instance /tmp/cuberev018/physical.json \
+              --target full --k "$k" --conflicts 300000 \
+              --out "/tmp/cuberev018/full$k"
+          done
+      - name: Independently verify EVERY UNSAT certificate using pinned DRAT checker
+        run: |
+          git clone --quiet https://github.com/marijnheule/drat-trim.git /tmp/cuberev018/drat-trim
+          git -C /tmp/cuberev018/drat-trim checkout --quiet 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+          make -C /tmp/cuberev018/drat-trim
+          for k in 25 26 27 28 29; do
+            if test -f "/tmp/cuberev018/full$k/original_cover.drup"; then
+              /tmp/cuberev018/drat-trim/drat-trim \
+                "/tmp/cuberev018/full$k/original_cover.cnf" \
+                "/tmp/cuberev018/full$k/original_cover.drup" \
+                | tee "/tmp/cuberev018/full$k/independent_checker.log"
+              python - "$k" <<'PY'
+          import json,sys
+          from pathlib import Path
+          k=int(sys.argv[1]);d=Path(f'/tmp/cuberev018/full{k}')
+          log=(d/'independent_checker.log').read_text()
+          assert 'VERIFIED' in log,log[-2000:]
+          receipt=json.loads((d/'receipt.json').read_text())
+          assert receipt['state']=='UNSAT_PROOF_PENDING_EXTERNAL_CHECK'
+          receipt['state']='UNSAT_DRUP_VERIFIED_ON_UNRESTRICTED_ORIGINAL_CNF'
+          receipt['independent_certificate']=True
+          receipt['drat_trim_pin']='2e3b2dc0ecf938addbd779d42877b6ed69d9a985'
+          (d/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          print('MSTAR_UNRESTRICTED_EXTERNAL_UNSAT_CERTIFICATE_PASS',k)
+          PY
+            else
+              echo "MSTAR_NO_UNSAT_PROOF_K=$k (SAT or budget UNKNOWN)"
+            fi
+          done
+      - name: Independently replay any SAT witness on physical cube model
+        run: |
+          for k in 25 26 27 28 29; do
+            node scripts/cuberev-018/verify-sat-witness-physical.mjs \
+              "/tmp/cuberev018/full$k/sat_witness.json"
+          done
+      - name: Upload exact original CNFs, physical instance, solver output and checkers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-018-unrestricted-mstar-certificate-suite
+          path: /tmp/cuberev018/
+          retention-days: 30
+          if-no-files-found: warn
