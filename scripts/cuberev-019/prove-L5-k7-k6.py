@@ -222,6 +222,43 @@ for k in (7,6):
  cnf=CNF()
  # Sound automorphism symmetry breaker: retain ALL 2887 column variables.
  cnf.append(orbit_representatives)
+ if k==7:
+    # Exact two-column integer-cover obstruction from the verified original
+    # 70-row dual: total weight 384, maximum per physical word 72.
+    # With <=7 selected, if two selected words jointly cover <24 weight,
+    # the other five contribute <=5*72=360, so coverage is impossible.
+    # These clauses are sound CONSEQUENCES of physical coverage and the
+    # cardinality <=7, not arbitrary cuts. Keep all column variables.
+    weighted_rows=sorted(wt.items())
+    masks70=[]; masses70=[]
+    for candidate in candidate_original:
+        qmask=0; qmass=0
+        for z,(source_row,weight) in enumerate(weighted_rows):
+            if candidate>>source_row&1:
+                qmask|=1<<z; qmass+=weight
+        masks70.append(qmask);masses70.append(qmass)
+    low=[j for j in range(len(candidate_original)) if masses70[j]<24]
+    cuts=0
+    for pos,i in enumerate(low):
+        for j in low[pos+1:]:
+            if masses70[i]+masses70[j]<24:
+                incompatible=True
+            else:
+                common=masks70[i]&masks70[j]
+                overlap=0
+                while common:
+                    bit=common&-common
+                    overlap+=weighted_rows[bit.bit_length()-1][1]
+                    common-=bit
+                incompatible=(masses70[i]+masses70[j]-overlap)<24
+            if incompatible:
+                cnf.append([-(i+1),-(j+1)])
+                cuts+=1
+    assert cuts==247348,('INCORRECT_OR_UNSOUND_K7_PAIR_CUTS',cuts)
+    print('CUBE_REV_019_EXACT_DUAL_DERIVED_K7_PAIR_INCOMPATIBILITY_CLAUSES_PASS',
+          json.dumps({'bound_k':7,'physical_70row_weight_sum':384,
+                      'max_one_experiment':72,'threshold_for_two_selected':24,
+                      'disallowed_pairs':cuts}),flush=True)
  for i in range(len(keep_rows)):
   clause=[j+1 for j,v in enumerate(projected_maxima) if (v>>i)&1]
   assert clause
