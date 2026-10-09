@@ -1,0 +1,189 @@
+name: CUBE-REV 0.19 P13 Last Full-Source Seven-Word SAT DRUP Court
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-019/prepare-L5-full-k7-physical-CNF.py'
+      - 'scripts/cuberev-019/verify-L5-full-k7-at-least-two-high.py'
+      - 'scripts/cuberev-019/solve-L5-full-k7-physical-SAT.py'
+      - 'docs/0.19/P13_K7_AT_LEAST_TWO_HIGH_PHYSICAL_INTEGER_DUALS.json'
+      - 'docs/0.19/P0_L5_INTEGER_LOWER6_DUAL.json'
+      - '.github/workflows/cuberev-019-p13-full-k7-physical-proof.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-full-seven-versus-eight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore original immutable source and all physical 5-HTM partitions
+        run: |
+          mkdir -p /tmp/cuberev019-p13/p12 /tmp/cuberev019-p13/p13
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev019-p13/physical.json
+          node scripts/cuberev-019/export-L5-physical.mjs /tmp/cuberev019-p13/physical.json /tmp/cuberev019-p13/partitions.tsv
+          test "$(wc -l < /tmp/cuberev019-p13/partitions.tsv)" -eq 14938
+      - name: Independently reexport actual sticker-derived 18x24 edge moves
+        run: |
+          node --input-type=module > /tmp/cuberev019-p13/maps.txt <<'JS'
+          import {urMoveAutomaton} from './scripts/cuberev-015/ur-fiber-tomography.mjs';
+          for (const action of urMoveAutomaton()) console.log(action.join(' '));
+          JS
+          test "$(wc -l < /tmp/cuberev019-p13/maps.txt)" -eq 18
+      - name: Verify the existing original 8-word full-source physical positive witness
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('/tmp/cuberev019-p13')
+          bases=json.loads((p/'physical.json').read_text())['bases']
+          maps=[list(map(int,l.split())) for l in (p/'maps.txt').read_text().splitlines()]
+          A=[f+s for f in 'URFDLB' for s in ('',"'",'2')]
+          texts=["F' B' L F B","F' B' R F B","F' B' D F B","F L2 B' D2 F","F U2 B R2 F","F' B' U F B","F B L F B","F B R F B"]
+          union=0
+          for txt in texts:
+              states=[2*i for i in range(12)];observ=[0]*12
+              for t,act in enumerate(txt.split()):
+                  states=[maps[A.index(act)][s] for s in states]
+                  observ=[v|((states[i]&1)<<t) for i,v in enumerate(observ)]
+              for j,b in enumerate(bases):
+                  z=[observ[i] for i in range(12) if b>>i&1]
+                  if len(set(z))==len(z):union|=1<<j
+          assert len(bases)==1192 and union.bit_count()==1192
+          print('CUBE_REV_019_P13_EIGHT_PHYSICAL_FULL_SOURCE_UPPER_PASS')
+          PY
+      - name: Install pinned candidate generator and SAT proof logger
+        run: |
+          python -m pip install --disable-pip-version-check 'numpy==2.2.6' 'scipy==1.15.3' 'python-sat==1.9.dev15'
+      - name: Independent P9 original physical five-source five-word impossibility
+        run: |
+          python -u scripts/cuberev-019/prove-L5-five-source-k5-impossibility.py \
+            --physical /tmp/cuberev019-p13/physical.json \
+            --maps /tmp/cuberev019-p13/maps.txt \
+            --partitions /tmp/cuberev019-p13/partitions.tsv \
+            --dual docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json \
+            --output /tmp/cuberev019-p13/p12/P9.json \
+            | tee /tmp/cuberev019-p13/P9.log
+          grep -q 'CUBE_REV_019_L5_480_FIVE_SOURCE_K5_EXACT_FINITE_UNSAT_PASS' /tmp/cuberev019-p13/P9.log
+      - name: Regenerate P12 restricted-source complete integer certificates, only candidates
+        run: |
+          OPENBLAS_NUM_THREADS=1 python -u scripts/cuberev-019/generate-L5-R5-integer-dual-candidates.py \
+            --physical /tmp/cuberev019-p13/physical.json \
+            --partitions /tmp/cuberev019-p13/partitions.tsv \
+            --output /tmp/cuberev019-p13/p12 \
+            | tee /tmp/cuberev019-p13/P12_regeneration.log
+      - name: Independent standard-library exact P12 integer dual court
+        run: |
+          python -u scripts/cuberev-019/verify-L5-R5-k6-integer-duals.py \
+            --physical /tmp/cuberev019-p13/physical.json \
+            --maps /tmp/cuberev019-p13/maps.txt \
+            --partitions /tmp/cuberev019-p13/partitions.tsv \
+            --duals_first /tmp/cuberev019-p13/p12/P12_rank_sensitive_integer_duals.json \
+            --duals_rank6 /tmp/cuberev019-p13/p12/P12_raw_rank6_70_integer_duals.json \
+            --duals_rank7 /tmp/cuberev019-p13/p12/P12_rank7_pair_triple_integer_duals.json \
+            --output /tmp/cuberev019-p13/p12/DUAL_CHECK.json \
+            | tee /tmp/cuberev019-p13/P12_integer_check.log
+          grep -q 'CUBE_REV_019_P12_ALL_445_INTEGER_DUAL_ORBIT_COURTS_PASS' /tmp/cuberev019-p13/P12_integer_check.log
+      - name: Independently exhaust all 4 5 and 6 rank-seven physical cases and verify seven-word R5 upper
+        run: |
+          python -u scripts/cuberev-019/verify-L5-R5-k6-high-rank-finite.py \
+            --physical /tmp/cuberev019-p13/physical.json \
+            --maps /tmp/cuberev019-p13/maps.txt \
+            --partitions /tmp/cuberev019-p13/partitions.tsv \
+            --duals_first /tmp/cuberev019-p13/p12/P12_rank_sensitive_integer_duals.json \
+            --duals_rank6 /tmp/cuberev019-p13/p12/P12_raw_rank6_70_integer_duals.json \
+            --duals_rank7 /tmp/cuberev019-p13/p12/P12_rank7_pair_triple_integer_duals.json \
+            --output /tmp/cuberev019-p13/p12/HIGH_CHECK.json \
+            | tee /tmp/cuberev019-p13/P12_high_check.log
+          grep -q 'CUBE_REV_019_P12_RANK7_FOUR_FIVE_SIX_EXHAUSTIVE_AND_7WORD_WITNESS_PASS' /tmp/cuberev019-p13/P12_high_check.log
+      - name: Independently compile physical R5 exact seven theorem BEFORE applying any k7 reductions
+        run: |
+          python -u scripts/cuberev-019/compile-L5-R5-exact-seven-receipt.py \
+            --physical /tmp/cuberev019-p13/physical.json \
+            --p9 /tmp/cuberev019-p13/p12/P9.json \
+            --duals /tmp/cuberev019-p13/p12/DUAL_CHECK.json \
+            --rank7 /tmp/cuberev019-p13/p12/HIGH_CHECK.json \
+            --output /tmp/cuberev019-p13/p12/R5_EXACT_SEVEN.json \
+            | tee /tmp/cuberev019-p13/P12_theorem.log
+          grep -q 'CUBE_REV_019_R5_PHYSICAL_EXACT_SEVEN_INDEPENDENT_FINITE_COURTS_PASS' /tmp/cuberev019-p13/P12_theorem.log
+      - name: Independently verify P13 real physical rank-seven k7 at-least-two-high theorem by exact original-source weights
+        run: |
+          python -u scripts/cuberev-019/verify-L5-full-k7-at-least-two-high.py \
+            --physical /tmp/cuberev019-p13/physical.json \
+            --partitions /tmp/cuberev019-p13/partitions.tsv \
+            --certificates docs/0.19/P13_K7_AT_LEAST_TWO_HIGH_PHYSICAL_INTEGER_DUALS.json \
+            --output /tmp/cuberev019-p13/p13/P13_HIGH_RANK_GATE.json \
+            | tee /tmp/cuberev019-p13/P13_original_integer_check.log
+          grep -q 'CUBE_REV_019_P13_R5_K7_AT_LEAST_TWO_HIGH_RANK_PHYSICAL_INTEGER_PASS' /tmp/cuberev019-p13/P13_original_integer_check.log
+      - name: Rebuild and certify all 1192 original physical k7 set-cover requirements, 16 automorphisms and dual pair constraints
+        run: |
+          python -u scripts/cuberev-019/prepare-L5-full-k7-physical-CNF.py \
+            --physical /tmp/cuberev019-p13/physical.json \
+            --maps /tmp/cuberev019-p13/maps.txt \
+            --partitions /tmp/cuberev019-p13/partitions.tsv \
+            --p13_gate /tmp/cuberev019-p13/p13/P13_HIGH_RANK_GATE.json \
+            --dual docs/0.19/P0_L5_INTEGER_LOWER6_DUAL.json \
+            --output /tmp/cuberev019-p13/p13 \
+            | tee /tmp/cuberev019-p13/P13_source_locked_preparation.log
+          grep -q 'CUBE_REV_019_P13_SOURCE_LOCKED_FULL_K7_544x2403_PREPARED_NOT_DECIDED' /tmp/cuberev019-p13/P13_source_locked_preparation.log
+      - name: Try a proof-producing real seven-word SAT or UNSAT court, never promote a budget timeout
+        run: |
+          python -u scripts/cuberev-019/solve-L5-full-k7-physical-SAT.py \
+            --physical /tmp/cuberev019-p13/physical.json \
+            --maps /tmp/cuberev019-p13/maps.txt \
+            --prepared /tmp/cuberev019-p13/p13/P13_full_k7_physical_kernel.json \
+            --conflicts 10000000 \
+            --output /tmp/cuberev019-p13/p13 \
+            | tee /tmp/cuberev019-p13/P13_SAT_decision.log
+      - name: Verify UNSAT proof independently against the exact generated CNF (if and ONLY if one was emitted)
+        run: |
+          dir=/tmp/cuberev019-p13/p13
+          if test -s "$dir/P13_full_original_k7_physical.drup"; then
+            git clone --quiet https://github.com/marijnheule/drat-trim.git /tmp/cuberev019-p13/drat-trim
+            git -C /tmp/cuberev019-p13/drat-trim checkout --quiet 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+            make -C /tmp/cuberev019-p13/drat-trim
+            /tmp/cuberev019-p13/drat-trim/drat-trim "$dir/P13_full_original_k7_physical.cnf" "$dir/P13_full_original_k7_physical.drup" \
+              | tee "$dir/INDEPENDENT_DRUP_CHECK.log"
+            grep -Fq 's VERIFIED' "$dir/INDEPENDENT_DRUP_CHECK.log"
+          else
+            echo "P13_NO_UNSAT_PROOF_EMITTED_DO_NOT_CLAIM_UNSAT"
+          fi
+      - name: Promote exactly 7 or 8 ONLY after positive physical SAT or checked negative DRUP
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          p=Path('/tmp/cuberev019-p13')
+          proof=json.loads((p/'p13/P13_full_original_k7_SAT_decision_receipt.json').read_text())
+          r5=json.loads((p/'p12/R5_EXACT_SEVEN.json').read_text())
+          assert proof['physical_sha256']==hashlib.sha256((p/'physical.json').read_bytes()).hexdigest()
+          state=proof['state']
+          if state=='SAT_SEVEN_REAL_PHYSICAL_WORDS_INDEPENDENTLY_REPLAYED':
+              assert (p/'p13/P13_SEVEN_FULL_SOURCE_PHYSICAL_SAT_WITNESS.json').exists()
+              result='EXACT_ORIGINAL_MSTAR5_SEVEN_PHYSICAL_SAT_AND_R5_FINITE_PROOF_PASS'
+          elif state=='UNSAT_DRUP_EMITTED_EXTERNAL_CHECK_PENDING':
+              check=p/'p13/INDEPENDENT_DRUP_CHECK.log'
+              assert check.exists() and 's VERIFIED' in check.read_text()
+              result='EXACT_ORIGINAL_MSTAR5_EIGHT_INDEPENDENT_DRUP_AND_PHYSICAL_UPPER_PASS'
+          else:
+              result='P13_FULL_ORIGINAL_MSTAR5_STILL_SEVEN_OR_EIGHT_UNKNOWN'
+          (p/'p13/P13_PROMOTION_RECEIPT.json').write_text(json.dumps({'conclusion':result,'SAT_cnf_sha256':proof['cnf_sha256'],'full_original_physical_sha256':proof['physical_sha256']},indent=2)+'\n')
+          print(result)
+          PY
+      - name: Preserve complete model, original physical source, proof trace and exact receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-019-p13-actual-original-1192-seven-versus-eight-proof
+          path: /tmp/cuberev019-p13/
+          retention-days: 90
+          if-no-files-found: warn
