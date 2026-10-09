@@ -54,14 +54,15 @@ theorem p12_matching_is_in_edge_list :
 
 /-- The four matching edges exhaust the eight distinct light coordinates. -/
 theorem p12_matching_covers_all_eight :
-    (p12PerfectMatching.flatMap (fun e => [e.1,e.2])).mergeSort (· ≤ ·)
-       = [0,1,2,3,4,5,6,7] := by
+    (p12PerfectMatching.flatMap (fun e => [e.1,e.2])).length = 8 ∧
+    (List.range 8).all (fun i =>
+      (p12PerfectMatching.flatMap (fun e => [e.1,e.2])).contains i) = true := by
   decide
 
 /-- Finite confirmation that no 0-, 1-, 2-, or 3-light set can block
 the ten six-light patterns. The hand proof uses the perfect matching. -/
 def p12HasAtMostThreeBits (t : Nat) : Bool :=
-  ((List.range 8).filter (fun i => Nat.testBit t i)).length ≤ 3
+  decide (((List.range 8).filter (fun i => Nat.testBit t i)).length ≤ 3)
 
 theorem p12_three_light_sets_not_enough :
     (List.range 256).all (fun t =>
