@@ -51,6 +51,9 @@ on:
       - 'scripts/cuberev-016/test-structural-support-court.mjs'
       - 'scripts/cuberev-016/reversal-information-court.mjs'
       - 'scripts/cuberev-016/test-reversal-information-court.mjs'
+      - 'scripts/cuberev-016/spectral-history-court.mjs'
+      - 'scripts/cuberev-016/test-spectral-history-court.mjs'
+      - 'docs/0.16/P8_SPECTRAL_HISTORY_THEOREM.md'
       - 'docs/0.16/REVERSIBILITY_OBSERVABILITY_THEOREM.md'
       - '.github/workflows/cuberev-011-face-word-regression.yml'
   workflow_dispatch:
@@ -91,6 +94,7 @@ jobs:
           node scripts/cuberev-016/test-cost-frontier.mjs
           node scripts/cuberev-016/test-structural-support-court.mjs
           node scripts/cuberev-016/test-reversal-information-court.mjs
+          node scripts/cuberev-016/test-spectral-history-court.mjs
       - name: Assert read-only workflow
         run: |
           ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' .github/workflows/cuberev-011-face-word-regression.yml
