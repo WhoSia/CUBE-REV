@@ -52,6 +52,7 @@ coverage_map={}
 partitions=0
 for line in Path(a.partitions).read_text().splitlines():
  act,blk=line.split('|'); blocks=tuple(map(int,blk.split()))
+ assert blocks_for_word(tuple(map(int,act.split())))==blocks, 'physical-map-to-partition lineage mismatch'
  assert len(act.split())==5
  assert len(blocks)==len(set(blocks)) and sum(b.bit_count() for b in blocks)==12
  x=0
@@ -62,6 +63,15 @@ for line in Path(a.partitions).read_text().splitlines():
  partitions+=1
 assert partitions==14938 and len(coverage_map)==14446, (partitions,len(coverage_map))
 print('CUBE_REV_019_14938_PHYSICAL_PARTITIONS_14446_COVERAGE_TYPES_PASS',round(time.time()-t0,1),flush=True)
+dual_path=Path(__file__).resolve().parents[2]/'docs/0.19/P0_L5_INTEGER_LOWER6_DUAL.json'
+dc=json.loads(dual_path.read_text())
+assert dc['source_L4_sha256']==hashlib.sha256(raw).hexdigest()
+wt={int(i):int(w) for i,w in dc['row_index_weight_numerator'].items()}
+assert len(wt)==70 and sum(wt.values())==384 and dc['denominator']==72
+dualmax=max(sum(w for i,w in wt.items() if (mask>>i)&1) for mask in coverage_map)
+assert dualmax==72
+print('CUBE_REV_019_ALL_14938_PHYSICAL_PARTITIONS_DUAL_LOWER6_PASS',json.dumps({'mass':sum(wt.values()),'max_per_experiment':dualmax}),flush=True)
+
 
 def maxima(items):
  ranked=sorted(items,key=int.bit_count,reverse=True)
