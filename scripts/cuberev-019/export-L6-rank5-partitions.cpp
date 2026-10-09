@@ -3,6 +3,7 @@
  * Only q=3..5 F/F'/B/B' flip-capable actions and output rank>=5 are emitted.
  * Excluded actions have rank<=4 by 2^q and all-F/B confinement.
  */
+#include <algorithm>
 #include <array>
 #include <cassert>
 #include <cstdint>
