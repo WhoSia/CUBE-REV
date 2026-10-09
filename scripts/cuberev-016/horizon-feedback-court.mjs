@@ -56,7 +56,7 @@ export function exactH4FixedPartitions(moves){
 }
 export function exactH4AllBeliefs(moves){
  const groups=exactH4FixedPartitions(moves),dp=makeFeedbackDP(moves);
- const hist={},strict=[],all=(1<<12)-1;
+ const hist={},strict=[],values=[],all=(1<<12)-1;
  for(let s=1;s<=all;s++){
   let fixed=1;const ceiling=Math.min(16,countBits(s));
   for(const part of groups){
@@ -67,10 +67,12 @@ export function exactH4AllBeliefs(moves){
   const adaptive=dp.value(stateMask,4);
   if(adaptive<fixed)throw Error('FIXED_POLICY_EXCEEDS_FEEDBACK');
   const key=adaptive+','+fixed;hist[key]=(hist[key]||0)+1;
+  values.push({mask:s,adaptive,fixed});
   if(adaptive>fixed)strict.push({mask:s,adaptive,fixed});
  }
  return {supports:4095,allFixedWords:18**4,distinctFixedPartitions:groups.length,
   histogram:hist,strictCount:strict.length,firstStrict:strict.slice(0,10),
+  allPolicyValues:values,
   memoStates:dp.cache.size};
 }
 /** Full 18^5 exhaustive fixed enumeration, no heuristic stop or approximation. */
