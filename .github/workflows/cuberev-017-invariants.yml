@@ -20,3 +20,7 @@ jobs:
         run: python3 scripts/cuberev-017/test-observation-congruence.py
       - name: Rebuild original physical 104976-action all-k M-star domination quotient
         run: node scripts/cuberev-017/test-global-dominance-court.mjs
+      - name: Prove necessary k25 singleton rigidity from exact public 50x116 UNSAT
+        run: python3 scripts/cuberev-017/test-mstar25-rigidity.py
+      - name: Check three structural signature families of all 17 light profiles
+        run: python3 scripts/cuberev-017/test-profile-signatures.py
