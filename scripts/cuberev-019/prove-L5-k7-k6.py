@@ -194,6 +194,23 @@ subprocess.run([
  '--output',str(out/'P8_L5_order_invariant_LP_receipt.json')],check=True)
 print('CUBE_REV_019_ORDER_INVARIANT_FULL_AND_FIVE_SOURCE_FRACTIONAL_LP_PROOF_PASS',flush=True)
 
+# P9 exact no-SAT proof: FIVE physical 5-HTM words cannot distinguish all
+# 480 admitted five-position original source subsets. Reproduce the complete
+# physical 14938-partition finite proof BEFORE any k6 rank filter.
+physical_maps_txt=out/'P9_physical_maps.txt'
+physical_maps_txt.write_text('\\n'.join(' '.join(str(v) for v in row) for row in moves)+'\\n')
+p9receipt=out/'P9_five_source_k5_exact_receipt.json'
+subprocess.run([
+ sys.executable,str(root/'scripts/cuberev-019/prove-L5-five-source-k5-impossibility.py'),
+ '--physical',a.physical,'--maps',str(physical_maps_txt),
+ '--partitions',a.partitions,
+ '--dual',str(root/'docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json'),
+ '--output',str(p9receipt)],check=True)
+p9=json.loads(p9receipt.read_text())
+assert p9['state']=='K5_UNSAT_LOCAL_COMPLETE_INTEGER_BRANCHING_PASS'
+assert p9['k5_dual_eligible_maximal_columns']==396
+print('CUBE_REV_019_P9_FIVE_SOURCE_K5_FINITE_UNSAT_PHYSICAL_GATE_PASS',flush=True)
+
 # Physically restricted perfect-hash subcourt: can FIVE 5-turn words
 # jointly distinguish every admitted FIVE-STATE source? This is a smaller
 # necessary subproblem of any full dictionary. Its UNSAT certificate, if
@@ -296,26 +313,31 @@ for k in (7,6):
                       'max_one_experiment':72,'threshold_for_two_selected':24,
                       'disallowed_pairs':cuts}),flush=True)
  if k==6:
-    # For a 6-word dictionary every chosen word must have weighted capacity
-    # at least 384-5*72=24. Every selected pair must cover at least
-    # 384-4*72=96 distinct weighted source demand. These unit/binary cuts
-    # are necessary logical consequences of the SAME original 70-row dual.
+    # P9 certified k5 five-source UNSAT => all six selected words in any
+    # valid six-word original-1192-source cover MUST distinguish >=5 states.
+    # Otherwise remaining five cannot cover the 480 admitted five-sets.
+    # The original 70-row exact integer dual additionally forces each
+    # selected word to score >=384-5*72=24; each selected pair union >=96.
     weighted_rows=sorted(wt.items())
-    masses=[]; hit_masks=[]
+    masses=[];hit_masks=[]
     for wordmask in candidate_original:
-        mass=0;bits=0
+        bits=0;word_mass=0
         for j,(original_row,weight) in enumerate(weighted_rows):
             if (wordmask>>original_row)&1:
-                bits|=1<<j;mass+=weight
-        masses.append(mass);hit_masks.append(bits)
+                bits|=1<<j;word_mass+=weight
+        masses.append(word_mass);hit_masks.append(bits)
+    ranks=[len(coverage_map[wordmask][1]) for wordmask in candidate_original]
+    assert len(ranks)==2887
+    assert sum(r<5 for r in ranks)==484
     eligible=[]
-    for j,mass in enumerate(masses):
-        if mass<24:cnf.append([-(j+1)])
+    for j in range(2887):
+        if masses[j]<24 or ranks[j]<5:
+            cnf.append([-(j+1)])
         else:eligible.append(j)
-    assert len(eligible)==1877
+    assert len(eligible)==1724,('INCORRECT_P9_K6_RANK_AND_DUAL_KERNEL',len(eligible))
     forbidden=0
-    for p,i in enumerate(eligible):
-        for j in eligible[p+1:]:
+    for pos,i in enumerate(eligible):
+        for j in eligible[pos+1:]:
             common=hit_masks[i]&hit_masks[j]
             shared=0
             while common:
@@ -325,11 +347,12 @@ for k in (7,6):
             if masses[i]+masses[j]-shared<96:
                 cnf.append([-(i+1),-(j+1)])
                 forbidden+=1
-    assert forbidden==1194707,('K6_PAIR_DUAL_AUDIT_FAILED',forbidden)
-    print('CUBE_REV_019_K6_EXACT_WEIGHTED_PAIR_CUTS_PASS',
-          json.dumps({'k':6,'eligible_words':len(eligible),
-                      'forbidden_pair_choices':forbidden,
-                      'pair_union_mass_minimum':96}),flush=True)
+    assert forbidden==947894,('K6_P9_REDUCED_PAIR_DUAL_AUDIT_FAILED',forbidden)
+    print('CUBE_REV_019_K6_P9_EXACT_FIVE_SOURCE_RANK_AND_DUAL_PAIR_CUTS_PASS',
+          json.dumps({'k':6,'eligible_words':1724,
+                      'rank4_excluded':484,
+                      'pairwise_forbidden_after_rank_gate':forbidden,
+                      'physical_five_source_k5_independently_refuted':True}),flush=True)
  for i in range(len(keep_rows)):
   clause=[j+1 for j,v in enumerate(projected_maxima) if (v>>i)&1]
   assert clause
