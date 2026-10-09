@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""CUBE-REV 0.19 exact-k SAT court on original real 3x3 sticker-derived L5 HTM.
+No unsat claim unless external drat-trim independently checks Glucose4 DRUP.
+Reconstructs exact all-k row/column quotient. Full physical 8-word upper replay.
+"""
+import argparse, json, hashlib, time
+from pathlib import Path
+from pysat.formula import CNF, IDPool
+from pysat.card import CardEnc, EncType
+from pysat.solvers import Glucose4
+
+p=argparse.ArgumentParser()
+for v in ('physical','partitions','maps','output'):p.add_argument('--'+v,required=True)
+p.add_argument('--conflicts',type=int,default=4500000)
+a=p.parse_args()
+out=Path(a.output);out.mkdir(parents=True,exist_ok=True)
+raw=Path(a.physical).read_bytes()
+physical=json.loads(raw)
+assert hashlib.sha256(raw).hexdigest()=='9f2119738f92f56485897c1894d2cb721a3d6b0498c5aa14832c71f18b20e2f1'
+bases=physical['bases'];assert len(bases)==1192
+moves=json.loads(Path(a.maps).read_text())
+assert len(moves)==18 and all(len(x)==24 and len(set(x))==24 for x in moves)
+ACTIONS=[f+s for f in 'URFDLB' for s in ('',"'",'2')]
+WITNESSES=[
+ "F' B' L F B","F' B' R F B","F' B' D F B",
+ "F L2 B' D2 F","F U2 B R2 F","F' B' U F B",
+ "F B L F B","F B R F B"]
+def blocks_for_word(word):
+ states=[2*i for i in range(12)];observ=[0]*12
+ for t,x in enumerate(word):
+  for j in range(12):
+   states[j]=moves[x][states[j]]
+   observ[j]|=(states[j]&1)<<t
+ d={}
+ for j,o in enumerate(observ):d[o]=d.get(o,0)|(1<<j)
+ return tuple(sorted(d.values()))
+def coverage(blocks):
+ mask=0
+ for i,base in enumerate(bases):
+  if all((base&b).bit_count()<=1 for b in blocks):mask|=1<<i
+ return mask
+full=(1<<1192)-1
+witness_words=[[ACTIONS.index(t) for t in w.split()] for w in WITNESSES]
+assert all(len(w)==5 for w in witness_words)
+covered=0
+for w in witness_words:covered|=coverage(blocks_for_word(w))
+assert covered==full, ('PHYSICAL_8_UPPER_FAILED',covered.bit_count())
+print('CUBE_REV_019_PHYSICAL_8_WORD_UPPER_REPLAY_PASS',flush=True)
+
+t0=time.time()
+coverage_map={}
+partitions=0
+for line in Path(a.partitions).read_text().splitlines():
+ act,blk=line.split('|'); blocks=tuple(map(int,blk.split()))
+ assert len(act.split())==5
+ assert len(blocks)==len(set(blocks)) and sum(b.bit_count() for b in blocks)==12
+ x=0
+ for b in blocks:assert x&b==0; x|=b
+ assert x==4095
+ mask=coverage(blocks)
+ coverage_map.setdefault(mask,(tuple(map(int,act.split())),blocks))
+ partitions+=1
+assert partitions==14938 and len(coverage_map)==14446, (partitions,len(coverage_map))
+print('CUBE_REV_019_14938_PHYSICAL_PARTITIONS_14446_COVERAGE_TYPES_PASS',round(time.time()-t0,1),flush=True)
+
+def maxima(items):
+ ranked=sorted(items,key=int.bit_count,reverse=True)
+ keep=[]
+ for mask in ranked:
+  if not any(mask&~k==0 for k in keep):keep.append(mask)
+ return keep
+max_columns=maxima(coverage_map)
+assert len(max_columns)==8807,len(max_columns)
+assert __import__('functools').reduce(int.__or__,max_columns,0)==full
+print('CUBE_REV_019_8807_MAXIMUM_COVERAGE_TYPES_PASS',round(time.time()-t0,1),flush=True)
+
+# All-k row implication, restricted to undominated columns.
+support=[0]*1192
+for j,mask in enumerate(max_columns):
+ bit=1<<j
+ while mask:
+  lb=mask&-mask
+  support[lb.bit_length()-1]|=bit
+  mask-=lb
+assert all(support)
+row_order=sorted(range(1192),key=lambda i:support[i].bit_count())
+keep_rows=[]; row_implies={}
+for i in row_order:
+ parent=next((j for j in keep_rows if support[j]&~support[i]==0),None)
+ if parent is None:keep_rows.append(i)
+ else:row_implies[i]=parent
+assert len(keep_rows)==544,(len(keep_rows),len(row_implies))
+assert sorted(set(bases[i].bit_count() for i in keep_rows))==[4,5]
+assert sum(bases[i].bit_count()==5 for i in keep_rows)==480
+print('CUBE_REV_019_ALL_K_544_ROW_REDUCTION_PASS',round(time.time()-t0,1),flush=True)
+
+projected_map={}
+for orig_mask in max_columns:
+ short=0
+ for k,i in enumerate(keep_rows):
+  if (orig_mask>>i)&1:short|=1<<k
+ projected_map.setdefault(short,orig_mask)
+projected_maxima=maxima(projected_map)
+assert len(projected_maxima)==2887,len(projected_maxima)
+candidate_original=[projected_map[m] for m in projected_maxima]
+assert __import__('functools').reduce(int.__or__,candidate_original,0)==full
+print('CUBE_REV_019_ALL_K_2887_COLUMN_REDUCTION_PASS',round(time.time()-t0,1),flush=True)
+
+# Independently replay a 70-row integer dual lower bound from previous frozen analysis?
+# First court: 7-SAT. If SAT, court 6-SAT. If UNSAT, DRUP certificate.
+summary={'schema':'cube-rev.019.L5.SAT-court.v1',
+ 'baseline_physical_sha256':hashlib.sha256(raw).hexdigest(),
+ 'partition_file_sha256':hashlib.sha256(Path(a.partitions).read_bytes()).hexdigest(),
+ 'original_rows':1192,'physical_words':18**5,'unique_partitions':14938,
+ 'maximal_physical_columns':8807,'row_core':544,'final_candidates':2887,
+ 'physical_8_word_upper':True,'decisions':[],
+ 'status':'EXACT_MSTAR5_NOT_YET_PROVEN'}
+for k in (7,6):
+ cnf=CNF()
+ for i in range(len(keep_rows)):
+  clause=[j+1 for j,v in enumerate(projected_maxima) if (v>>i)&1]
+  assert clause
+  cnf.append(clause)
+ pool=IDPool(start_from=len(projected_maxima)+1)
+ cnf.extend(CardEnc.atmost(lits=list(range(1,len(projected_maxima)+1)),
+                       bound=k,encoding=EncType.seqcounter,vpool=pool).clauses)
+ stem=f'cube_L5_k{k}'
+ cnff=out/(stem+'.cnf');cnf.to_file(str(cnff))
+ record={'k':k,'cnf_sha256':hashlib.sha256(cnff.read_bytes()).hexdigest(),
+         'variables':cnf.nv,'clauses':len(cnf.clauses),'state':'UNKNOWN',
+         'conflict_budget':a.conflicts}
+ print('CUBE_REV_019_SAT_COURT_START',record,flush=True)
+ started=time.time()
+ with Glucose4(bootstrap_with=cnf.clauses,with_proof=True) as solver:
+  solver.conf_budget(a.conflicts)
+  answer=solver.solve_limited(expect_interrupt=False)
+  record['elapsed_seconds']=round(time.time()-started,3)
+  if answer is True:
+   selected=[j for j in range(len(projected_maxima)) if j+1 in set(solver.get_model())]
+   cover=0
+   for j in selected:cover|=candidate_original[j]
+   assert cover==full and len(selected)<=k
+   record.update(state='SAT_PHYSICAL_WITNESS_VALIDATED',
+                 selected_original_source_masks_sha256=hashlib.sha256(','.join(str(j) for j in selected).encode()).hexdigest(),
+                 selected_original_word_representatives=[list(coverage_map[x][0]) for x in (candidate_original[j] for j in selected)])
+   assert all(len(w)==5 for w in record['selected_original_word_representatives'])
+   trace=0
+   for w in record['selected_original_word_representatives']:
+    trace|=coverage(blocks_for_word(w))
+   assert trace==full,'Independent sticker transition witness replay failed'
+   (out/(stem+'.witness.json')).write_text(json.dumps(record,indent=2)+'\n')
+   print('CUBE_REV_019_K_SAT_PHYSICAL_REPLAY_PASS',k,len(selected),flush=True)
+  elif answer is False:
+   proof=solver.get_proof()
+   assert proof and proof[-1].strip()=='0'
+   pf=out/(stem+'.drup');pf.write_text('\n'.join(proof)+'\n')
+   record.update(state='UNSAT_EXTERNAL_DRUP_CHECK_PENDING',
+                 proof_lines=len(proof),proof_sha256=hashlib.sha256(pf.read_bytes()).hexdigest())
+   print('CUBE_REV_019_UNSAT_DRUP_EMITTED_EXTERNAL_CHECK_PENDING',k,len(proof),flush=True)
+  else:
+   record['state']='UNKNOWN_CONFLICT_BUDGET'
+   print('CUBE_REV_019_K_UNRESOLVED',k,flush=True)
+ summary['decisions'].append(record)
+ (out/(stem+'.receipt.json')).write_text(json.dumps(record,indent=2)+'\n')
+ (out/'all_courts.json').write_text(json.dumps(summary,indent=2)+'\n')
+ if answer is not True:break
+print('CUBE_REV_019_LOCAL_COURT_RECORDED_NO_PREMATURE_THEOREM',flush=True)
