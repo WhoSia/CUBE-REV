@@ -180,6 +180,36 @@ symmetry_receipt={'group_order':16,'physical_maximal_columns_checked':8807,
 print('CUBE_REV_019_16_INCIDENCE_AUTOMORPHISMS_196_ORBIT_REPS_PASS',
       json.dumps(symmetry_receipt),flush=True)
 
+# Solver-free, exact integer validation of the 16/3 fractional primal
+# against ALL 1192 original source rows; the previously checked integer
+# dual of 384/72 gives the matching lower bound.
+primal_path=Path(__file__).resolve().parents[2]/'docs/0.19/P3_L5_EXACT_FRACTIONAL_PRIMAL_16_OVER_3.json'
+frac=json.loads(primal_path.read_text())
+assert frac['physical_source_sha256']==hashlib.sha256(raw).hexdigest()
+assert frac['scale_denominator']==168 and frac['objective_scaled_numerator']==896
+weighted_cover=[0]*1192
+fractional_cost_scaled=0
+for item in frac['assignments']:
+    rep=item['representative']
+    orbit=set(g[rep] for g in group_column_maps)
+    assert len(orbit)==item['orbit_size']
+    numerator=item['weight_numerator']
+    fractional_cost_scaled+=len(orbit)*numerator
+    for j in orbit:
+        mask=candidate_original[j]
+        while mask:
+            bit=mask&-mask
+            weighted_cover[bit.bit_length()-1]+=numerator
+            mask-=bit
+assert fractional_cost_scaled==896
+assert min(weighted_cover)>=168
+assert dualmax==72 and sum(wt.values())==384
+print('CUBE_REV_019_EXACT_RATIONAL_LP_OPTIMUM_16_OVER_3_ALL_1192_ROWS_PASS',
+      json.dumps({'fractional_numerator':896,'denominator':168,
+                  'dual_numerator':384,'dual_denominator':72,
+                  'min_original_requirement_weight':min(weighted_cover)}),flush=True)
+
+
 # First court: 7-SAT. If SAT, court 6-SAT. If UNSAT, DRUP certificate.
 summary={'schema':'cube-rev.019.L5.SAT-court.v1',
  'baseline_physical_sha256':hashlib.sha256(raw).hexdigest(),
