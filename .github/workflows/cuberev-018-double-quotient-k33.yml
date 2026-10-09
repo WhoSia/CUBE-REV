@@ -1,0 +1,97 @@
+name: CUBE-REV 0.18 Proof-Carrying Exact 398x168 Cube k33 Court
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-018/reduce-by-physical-double-quotient.py'
+      - 'scripts/cuberev-018/solve-double-quotient-k33.py'
+      - '.github/workflows/cuberev-018-double-quotient-k33.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-real-cube:
+    runs-on: ubuntu-latest
+    timeout-minutes: 27
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recreate sticker-derived Rubik HTM action and history geometry
+        run: |
+          mkdir -p /tmp/cuberev018-double
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev018-double/physical.json
+      - name: Prove each original cube source clause follows from the 398-row core
+        run: |
+          python scripts/cuberev-018/reduce-by-source-implication.py \
+            --physical /tmp/cuberev018-double/physical.json \
+            --output /tmp/cuberev018-double/row_certificate.json
+      - name: Prove all-k column dominance of 168 legal four-turn cube words
+        run: |
+          python scripts/cuberev-018/reduce-by-physical-double-quotient.py \
+            --physical /tmp/cuberev018-double/physical.json \
+            --row-core /tmp/cuberev018-double/row_certificate.json \
+            --output /tmp/cuberev018-double/column_certificate.json
+      - name: Install exact-version proof-producing SAT solver
+        run: |
+          python -m pip install --disable-pip-version-check 'python-sat==1.9.dev15'
+          python -m pip show python-sat
+      - name: Solve original Cube k33 on certified exactly equivalent 398x168 model
+        run: |
+          python scripts/cuberev-018/solve-double-quotient-k33.py \
+            --physical /tmp/cuberev018-double/physical.json \
+            --rows /tmp/cuberev018-double/row_certificate.json \
+            --columns /tmp/cuberev018-double/column_certificate.json \
+            --output /tmp/cuberev018-double/k33 \
+            --conflicts 4000000
+      - name: Independently replay every SAT witness on original 18-HTM cube turns
+        run: |
+          node scripts/cuberev-018/verify-sat-witness-physical.mjs \
+            /tmp/cuberev018-double/k33/sat_witness.json
+      - name: Accept UNSAT only after pinned third-party DRUP checker verifies exact CNF
+        run: |
+          if test ! -f /tmp/cuberev018-double/k33/cube_original_398x168_k33.drup; then
+            echo 'MSTAR_EXACT_PENDING: SAT or UNKNOWN; no uncertified bound promotion'
+          else
+            git clone --quiet https://github.com/marijnheule/drat-trim.git /tmp/cuberev018-double/drat-trim
+            git -C /tmp/cuberev018-double/drat-trim checkout --quiet 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+            make -C /tmp/cuberev018-double/drat-trim
+            /tmp/cuberev018-double/drat-trim/drat-trim \
+              /tmp/cuberev018-double/k33/cube_original_398x168_k33.cnf \
+              /tmp/cuberev018-double/k33/cube_original_398x168_k33.drup \
+              | tee /tmp/cuberev018-double/k33/drat_checker.log
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('/tmp/cuberev018-double/k33')
+          log=(root/'drat_checker.log').read_text()
+          assert 's VERIFIED' in log, log[-2500:]
+          path=root/'receipt.json'
+          r=json.loads(path.read_text())
+          assert r['state']=='UNSAT_EXPLICIT_DRUP_NEEDS_EXTERNAL_CHECK'
+          assert r['k']==33 and r['reduced_original_source_rows']==398
+          assert r['reduced_actual_HTM_words']==168
+          assert r['equivalent_full_original_source_rows']==1192
+          assert r['equivalent_full_original_maximal_word_candidates']==1323
+          r['state']='EXACT_CUBE_K33_UNSAT_DRUP_INDEPENDENTLY_VERIFIED'
+          r['external_proof_checked']=True
+          r['exact_mathematical_optimum_certified']=True
+          r['independent_checker_sha']='2e3b2dc0ecf938addbd779d42877b6ed69d9a985'
+          path.write_text(json.dumps(r,indent=2)+'\n')
+          print('CUBE_REV_018_EXACT_PHYSICAL_MSTAR_34_CERTIFICATE_CHAIN_PASS')
+          PY
+          fi
+      - name: Save physical cube source, two all-k reduction certificates, CNF, DRUP and log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev018-exact-398x168-k33-proof-or-witness
+          path: /tmp/cuberev018-double/
+          if-no-files-found: warn
+          retention-days: 30
