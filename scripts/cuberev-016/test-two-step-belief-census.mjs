@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {ACTIONS} from '../cuberev-013/cross4-pdb.mjs';
+import {urMoveAutomaton} from '../cuberev-015/ur-fiber-tomography.mjs';
+import {ACTIONS_016} from './active-belief-geometry.mjs';
+import {twoStepBeliefCensus} from './two-step-belief-census.mjs';
+assert.deepEqual(ACTIONS_016,ACTIONS);
+const res=twoStepBeliefCensus(urMoveAutomaton());
+assert.equal(res.totalSubsets,4095);
+assert.equal(res.summaryClasses,43);
+assert.equal(res.supportFormulaMismatches,0);
+assert.equal(res.adaptivityImprovementSubsets,0);
+assert.equal(res.noGapSubsets,4095);
+assert.equal(res.horizon2SummaryConflict,null);
+assert.equal(res.maxAdaptiveLeaves,3);
+assert.deepEqual(res.adaptiveFixedLeafHistogram,{'1,1':12,'2,2':708,'3,3':3375});
+console.log('CUBE_REV_016_P1_COMPLETE_4095_STICKER_AUTHORITY_PASS');
+console.log(JSON.stringify(res));
