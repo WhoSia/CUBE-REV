@@ -1,0 +1,129 @@
+name: CUBE-REV 0.19 Exact Six-Turn Collision Hypergraph Proof
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-019/export-L6-rank5-partitions.cpp'
+      - 'scripts/cuberev-019/prove-L6-two-word-five-core.cpp'
+      - 'scripts/cuberev-019/L6_collision_refinement_kernel.cpp'
+      - 'scripts/cuberev-019/prove-L6-three-impossibility.py'
+      - 'scripts/cuberev-019/verify-L6-to-L9-dictionaries.py'
+      - 'docs/0.19/P7_L6_INTEGER_DUAL_FOR_REDUCED_LOW_RANK.json'
+      - '.github/workflows/cuberev-019-l6-exact-court.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-L6-Mstar-four:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Rebuild original sticker-derived 1192 physical sources
+        run: |
+          mkdir -p /tmp/cuberev019-l6
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev019-l6/physical.json
+      - name: Produce the exact eighteen 24-state physical edge maps
+        run: |
+          node --input-type=module > /tmp/cuberev019-l6/maps.txt <<'JS'
+          import {urMoveAutomaton} from './scripts/cuberev-015/ur-fiber-tomography.mjs';
+          for (const action of urMoveAutomaton()) console.log(action.join(' '));
+          JS
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('/tmp/cuberev019-l6')
+          maps=[list(map(int,line.split())) for line in (p/'maps.txt').read_text().splitlines()]
+          assert len(maps)==18 and all(len(m)==24 and len(set(m))==24 for m in maps)
+          (p/'maps.json').write_text(json.dumps(maps)+chr(10))
+          d=json.loads((p/'physical.json').read_text())
+          assert len(d['bases'])==1192
+          (p/'sources.txt').write_text(chr(10).join(map(str,d['bases']))+chr(10))
+          PY
+      - name: Compile independent finite C++ courts
+        run: |
+          for name in export-L6-rank5-partitions prove-L6-two-word-five-core L6_collision_refinement_kernel; do
+            g++ -std=c++17 -O3 -Wall -Wextra -o "/tmp/cuberev019-l6/${name}" "scripts/cuberev-019/${name}.cpp"
+          done
+      - name: Enumerate physically possible six-turn candidates and canonical observation partitions
+        run: |
+          /tmp/cuberev019-l6/export-L6-rank5-partitions < /tmp/cuberev019-l6/maps.txt > /tmp/cuberev019-l6/candidates.tsv 2> /tmp/cuberev019-l6/export.log
+          grep -q 'CUBE_REV_019_L6_PHYSICAL_Q3TO5_RANK5_PARTITIONS_53528_PASS' /tmp/cuberev019-l6/export.log
+          test "$(wc -l < /tmp/cuberev019-l6/candidates.tsv)" -eq 53528
+      - name: Independently exclude any two-word cover of all 480 five-slot sources
+        run: |
+          /tmp/cuberev019-l6/prove-L6-two-word-five-core /tmp/cuberev019-l6/sources.txt /tmp/cuberev019-l6/candidates.tsv | tee /tmp/cuberev019-l6/five-source-two-word.log
+          grep -q 'CUBE_REV_019_L6_ALL_53528_PHYSICAL_RANK5_PAIR_FIVE_SOURCE_UNSAT_PASS' /tmp/cuberev019-l6/five-source-two-word.log
+      - name: Reduce to collision-edge undominated candidates and retain every individual parent witness
+        run: |
+          /tmp/cuberev019-l6/L6_collision_refinement_kernel /tmp/cuberev019-l6/candidates.tsv /tmp/cuberev019-l6/retained.tsv /tmp/cuberev019-l6/dominance.tsv | tee /tmp/cuberev019-l6/refinement.log
+          grep -q 'CUBE_REV_019_L6_COLLISION_EDGE_REFINEMENT_53528_TO_18813_PASS' /tmp/cuberev019-l6/refinement.log
+          test "$(wc -l < /tmp/cuberev019-l6/retained.tsv)" -eq 18813
+          test "$(wc -l < /tmp/cuberev019-l6/dominance.tsv)" -eq 53528
+      - name: Install pinned numerical bit-array library (no floating point proof steps)
+        run: |
+          python -m pip install --disable-pip-version-check 'numpy==2.2.6'
+          python -m pip show numpy
+      - name: Independently verify every physical partition, dual weight, orbit and three-word obstruction
+        run: |
+          OPENBLAS_NUM_THREADS=1 python -u scripts/cuberev-019/prove-L6-three-impossibility.py \
+            --physical /tmp/cuberev019-l6/physical.json \
+            --maps /tmp/cuberev019-l6/maps.json \
+            --partitions /tmp/cuberev019-l6/candidates.tsv \
+            --kernel /tmp/cuberev019-l6/retained.tsv \
+            --dominance /tmp/cuberev019-l6/dominance.tsv \
+            --dual docs/0.19/P7_L6_INTEGER_DUAL_FOR_REDUCED_LOW_RANK.json \
+            --output /tmp/cuberev019-l6/k3-finite-exhaustion.json | tee /tmp/cuberev019-l6/k3-finite-exhaustion.log
+          grep -q 'CUBE_REV_019_L6_K3_NO_THREE_WORDS_LOCAL_FINITE_PROOF_PASS' /tmp/cuberev019-l6/k3-finite-exhaustion.log
+      - name: Replay real physical four-word upper against all original 1192 sources
+        run: |
+          python scripts/cuberev-019/verify-L6-to-L9-dictionaries.py \
+            --physical /tmp/cuberev019-l6/physical.json \
+            --maps /tmp/cuberev019-l6/maps.json | tee /tmp/cuberev019-l6/physical-four-upper.log
+          grep -q 'CUBE_REV_019_ALL_1192_L6_TO_L9_PHYSICAL_DICTIONARY_WITNESSES_PASS' /tmp/cuberev019-l6/physical-four-upper.log
+      - name: Promote exact L6 four only after all independent verification gates
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('/tmp/cuberev019-l6')
+          r=json.loads((p/'k3-finite-exhaustion.json').read_text())
+          assert r['result']=='CUBE_REV_019_L6_K3_FINITE_UNSAT_LOCAL_PASS'
+          assert r['collision_inclusion_kernel_candidates']==18813
+          assert r['k3_at_least_two_high_pairs_checked']==19110
+          assert r['k3_exactly_one_high_second_word_cases_checked']==297872
+          for fname,needle in [('export.log','CUBE_REV_019_L6_PHYSICAL_Q3TO5_RANK5_PARTITIONS_53528_PASS'),
+             ('five-source-two-word.log','CUBE_REV_019_L6_ALL_53528_PHYSICAL_RANK5_PAIR_FIVE_SOURCE_UNSAT_PASS'),
+             ('refinement.log','CUBE_REV_019_L6_COLLISION_EDGE_REFINEMENT_53528_TO_18813_PASS'),
+             ('physical-four-upper.log','CUBE_REV_019_ALL_1192_L6_TO_L9_PHYSICAL_DICTIONARY_WITNESSES_PASS')]:
+              assert needle in (p/fname).read_text(),fname
+          receipt={'result':'CUBE_REV_019_EXACT_PHYSICAL_MSTAR6_4_FINITE_PROOF_VERIFIED',
+              'scope':'12 original flip-zero UR-edge positions, six sticker-derived HTM turns, 1192 frozen source requirements',
+              'physical_sha256':r['physical_sha256'],
+              'original_six_word_count':34012224,
+              'rank5_realized_partitions':53528,
+              'collision_kernel':18813,
+              'physical_symmetry_order':16,'high_column_orbits':16,
+              'lower_bound':'No 3-word dictionary: full physical source + five-source two-word gate + integer dual + all high-word cases',
+              'upper_bound':'Four physical L6 words replayed against all 1192 source requirements',
+              'proof_style':'Exact finite case exhaustion with independently checked physical and dominance witnesses; no heuristic UNSAT assumption',
+              'inputs_sha256':{f:hashlib.sha256((p/f).read_bytes()).hexdigest() for f in ('physical.json','maps.json','candidates.tsv','retained.tsv','dominance.tsv')}}
+          (p/'EXACT_MSTAR6_4_THEOREM_RECEIPT.json').write_text(json.dumps(receipt,indent=2)+chr(10))
+          print('CUBE_REV_019_EXACT_PHYSICAL_MSTAR6_FOUR_ALL_GATES_PASS')
+          PY
+      - name: Retain full physical six-turn source, candidate lineage, dual court and theorem receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-019-mstar6-four-finite-exact-proof-package
+          path: /tmp/cuberev019-l6/
+          retention-days: 90
+          if-no-files-found: warn
