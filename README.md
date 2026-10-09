@@ -45,42 +45,16 @@ CUBE-REV studies exact reversible state spaces, search/representation geometry, 
 - [0.15 P0–P2 mathematical reproducibility bundle](https://app.notion.com/p/3f3ef561cf928151a50be8d6c8155289) — canonical 0.15 Notion, sections 8–13, exact full finite-state receipts and independent source code in the private Library `/CUBE-REV/0.15/`. Original human observations are not used in these finite-state proofs. The public executors are `scripts/cuberev-015/future-distance-refinement.mjs` and `scripts/cuberev-015/single-history-observability.mjs`, with read-only regression tests.
 
 
-## CUBE-REV 0.14 — closed uncertainty-aware goal inference (2026-10-09)
+## Closed-version READMEs — archived without rewriting
 
-- [0.14 canonical Notion](https://app.notion.com/p/3f3ef561cf9281449bc0eee1a2636c24) — CLOSED. Six-face Cross goal forecast from first-two recorded outer turns; full 18-action normalized PDB likelihood, log loss/Brier score and honest set-valued coverage/size.
-- [0.13 terminal Notion](https://app.notion.com/p/3f3ef561cf9281ab959afae8d1a751d6) — CLOSED. The target face belongs to the two-turn maximizer set for 143/161 selected archival annotated solves; 56/161 have multiple equally supported target faces. U-first tie-breaking is not reliable unique-goal identification.
-- No new human-independent experiment or corpus is implied. The historical 451 semantic reconstruction contents are development-only. Solver-name, cohort, annotation and reconstructor leakage must be audited.
-- Code lives in `scripts/cuberev-014/` when tests have passed. Keep CI read-only, commits human-authored as `WhoSia`, private source records in Drive/Library.
-- **0.14 P1–P4 (historical development; NOT new independent replication):** leave-one-cohort-out with recorded solver-name purge (161 labelled solves, 82 solver name strings). Exact 18-action Cross PDB posterior plus training-only target-color prior: log loss **0.3670** and multiclass Brier **0.1791**, versus fixed downward-anchor-only 1.1616 and 0.5279. Labelled target is a reconstructed Cross completion, **not** directly observed subjective intention.
-- **Finite-information theorem:** for a synthetic uniform six-face goal and fixed beta=2 exact action channel, mean conditional goal information across the same 161 states is **0.62154 bits** for full 18-token observation, **0.36854** for face-only and **0.09758** for turn-power-only; each is a model value, **not measured human cognition or cryptographic security**.
-- [0.14 P1–P4 private reproducibility bundle](https://drive.google.com/file/d/1P58gFsKv82GsBAYVhaeJJw2vqGn99ZWx/view), SHA-256 `4eb7935dfb134a727f55057114687c75160d46f97dd37b5819b47e5f2679b229`. All four aggregate receipts reexecute byte-identically with the already-held original source corpus. Public GitHub contains math kernels/tests only, not reconstructed human source rows.
-- July 24 origin: [Cognitive Reversibility on Finite Transformation Groups / Origin Audit](https://app.notion.com/p/3c8ef561cf9281ffbc50c9d04403aa9e); [pre-Research-OS roadmap](https://app.notion.com/p/3ceef561cf92815095d4f32d88785afb). Kociemba phase subgroup/cosets, mathematical action-channel observational equivalence, and human intentionality are distinct objects; cross-domain reductions remain research targets.
+The 0.11–0.14 sections formerly embedded here are preserved **verbatim** at their original historical dates, with original source blob `e8fb9dba0cde096ab219566429b2fa51916711d1`:
 
+- [0.11 archived README](archive/versions/0.11/README_HISTORY.md) — prior naturalistic reconstruction and scope/evidence limits.
+- [0.12 archived README](archive/versions/0.12/README_HISTORY.md) — state-conditioned opportunity; CLOSED.
+- [0.13 archived README](archive/versions/0.13/README_HISTORY.md) — subgoal-conditioned geometry; CLOSED.
+- [0.14 archived README](archive/versions/0.14/README_HISTORY.md) — Cross-goal/channel sufficiency counterexample; CLOSED.
 
-## CUBE-REV 0.13 — closed subgoal-conditioned geometry research (2026-10-08)
-
-- [CUBE-REV 0.13 canonical Notion](https://app.notion.com/p/3f3ef561cf9281ab959afae8d1a751d6) — CLOSED. Predefine eligible physical piece-set/subgoal predicates, verify face-frame and legal action opportunities, then compare **observed human choices** with that *pre-action* opportunity geometry. Whole-solver/reconstructor/era support and outcome leakage are non-negotiable gates.
-- [CUBE-REV 0.12 terminal Notion](https://app.notion.com/p/3f3ef561cf92812b8171ef055e881bba) — CLOSED. Of 8,083 recorded 18-class moves increasing global center-color mismatch, 464 increased fully correctly placed/oriented cubies, 2,066 did not change that count, 5,553 decreased it. Conversely, 554/10,680 color-improving moves decreased fully correct cubies. These global proxies demonstrably disagree but do **not** establish human intended subgoals.
-- Terminal reproducibility: `CUBE_REV_0.12_TERMINAL_METRIC_COURT_PRIVATE_20261008.zip`, SHA-256 `56dc8ea1b9ea5de4d2b86126aee2bc4bf0241fa1353a85aff01e2faef964c17e`. Private data remain in Drive; avoid committing source-level records or human name labels. Standalone Node and independent Python full-event replay agreed for all 451 unique source contents.
-- Do not recreate artificial human-participant study designs for this phase. New independent confirmation requires genuinely new permitted source evidence; all existing G7 cohorts remain **development-only**, irrespective of split names.
-- Repository policy: preserve existing reproducibility code and human-authored commit history; old workflows are retired only after validated source/dependency and archive custody audits, never by uncontrolled mass deletion.
-
-## CUBE-REV 0.12 — closed state-conditioned opportunity research (2026-10-08)
-
-- [CUBE-REV 0.12 in Notion](https://app.notion.com/p/3f3ef561cf92812b8171ef055e881bba) is CLOSED. It tested legal solve-preserving alternatives against actual, stage/frame-matched naturalistic continuation with rigorous solver- and source-level independence controls.
-- [CUBE-REV 0.11 in Notion](https://app.notion.com/p/3f3ef561cf928196a4ccea71bd1fa0cc) is CLOSED: 20/20 bidirectional visible-state-changing, solve-preserving synthetic word substitutions verified, but independent human strategy-conditioned next-action causality was NOT established. Legacy source records are development-only.
-- 0.11 executable math cores remain maintained in `scripts/cuberev-011/`; private source-level reconstruction bytes remain in Drive, not Git. No bot-authored commits or mass reco.nz scraping.
-
-## CUBE-REV 0.11 — closed evidence lineage (2026-10-08)
-
-The program has returned to the historical NAPKIN principle: obtain substantive, falsifiable results from already available exact cube-state and naturally reconstructed human move trajectories, not unidentifiable small prospective human experiments.
-
-- **Canonical scientific ledger:** [CUBE-REV 0.11 in Notion](https://app.notion.com/p/3f3ef561cf928196a4ccea71bd1fa0cc), sections 18–28.
-- **Private derived data:** previously acquired **452 source records**, one exact-content duplicate (451 distinct recorded reconstructions), **25,320 move events**, 25,772 exact-state rows. Full derivative stored in private Google Drive under `CUBE-REV/20_SECONDARY_DATA_FRONTIER/20_DERIVED_TABLES/G7_P2_HUMAN_SOLVE_RECONSTRUCTIONS`; no Git copy or public dataset license is implied.
-- **Provenance/rights:** [Drive manifest](https://drive.google.com/file/d/1kUY2dKaK7wC9Kt8ZZC0sbU5meZpn1Zcf/view). Source-ID disjointness is **not** semantic record or solver independence. Historical cohorts are development-only for 0.11.
-- **Scientific result:** after exact full-state + frame + recent-history + annotator matching, observed action divergence becomes sparse; a face-only algebraic rewrite audit explained **all 15** observed short local preterminal face-only reunion events by same/opposite-face elementary rewrites. The other 39 events require full rotation/wide/slice grammar auditing, **not** an automatic strategy interpretation.
-- **Coding direction:** retain shared `scripts/cube` exact replay and Rust search geometry; add self-contained 0.11 classifiers after offline tests. Historical workflows are archive candidates only after their live references and reproducibility are checked.
-- **Write discipline:** no `github-actions[bot]` authored commits; GitHub Actions is read-only; archive via Drive and Git history, not branch proliferation.
+The current research focus is **0.16**; **0.15 is CLOSED** and retains its math certificates and explicit open problems above. Source-level human reconstruction content remains PRIVATE. No executable historical source files were removed by this README documentation-only migration.
 
 ## Historical scientific spine
 
