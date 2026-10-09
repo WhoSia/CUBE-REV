@@ -48,3 +48,16 @@ Scientific priority: externally reproduce the L5 computation in CI; settle k<=7 
 
 **Notion research record:** https://app.notion.com/p/3f4ef561cf92813d9edfff4911db39d2
 **Harvest/re-entry candidates:** https://app.notion.com/p/3f4ef561cf928151977ce781f267d650
+
+## Further physical mechanism: flip-capable action budget is nonmonotonic
+
+Independent full enumeration over every 4- and 5-HTM word, grouping by the count (q) of tokens among `F, F', B, B'` (the only actions that can change the intrinsic edge-orientation bit). The maximum numbers of distinct histories across the 12 initial zero-flip positions are:
+
+| Full physical word length | q=0 | q=1 | q=2 | q=3 | q=4 | q=5 |
+|---|---:|---:|---:|---:|---:|---:|
+| L=4 | 1 | 2 | 4 | 5 | 3 | — |
+| L=5 | 1 | 2 | 4 | 7 | 7 | 3 |
+
+For L=4 there are precisely 768 physical words distinguishing at least 5 initial states, all with q=3. For L=5 there are 43,584 with q=3 and 6,912 with q=4, and **none** with q=5. Every other action can transport edge position without immediately changing the orientation output, thereby enabling later separating signals. Thus merely maximizing the count of actions that might change the sensor bit is *not* an information-optimal strategy. Trivial general inequality: the whole output trace is determined by q possible changes from initial bit zero, hence the number of different traces is <=2^q. The much sharper observed limits (5 and 7, and the q=L collapse) still require a separate structural proof beyond exhaustive verification.
+
+The **8-word** L=5 cover, exact integer **lower bound 6**, and suffix-access 13/12/8 constructive bounds are preserved as **local deterministic verification** outputs, not newly GitHub-CI-certified and not a claim that M*(5)=8.
