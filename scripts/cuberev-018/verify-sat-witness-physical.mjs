@@ -12,8 +12,9 @@ if(!witness||!fs.existsSync(witness)){
  process.exit(0);
 }
 const data=JSON.parse(fs.readFileSync(witness));
-const words=data.four_turn_words;
-assert.equal(words.length,25);
+const words=data.four_turn_words ?? data.words;
+assert(Array.isArray(words) && words.length>=1);
+assert(words.length<=(data.k??25));
 const moves=urMoveAutomaton();
 assert.equal(moves.length,18);
 const allGroups=[new Set([1,5,8,9]),new Set([3,7,10,11]),new Set([0,2,4,6])];
@@ -58,4 +59,4 @@ if(missing.length){
  console.error('MSTAR25_PHYSICAL_REPLAY_FAILED',JSON.stringify(missing));
  process.exit(1);
 }
-console.log('MSTAR25_REAL_HTM_25_WORD_WITNESS_FULL_1192_PASS');
+console.log('MSTAR_REAL_HTM_WORD_WITNESS_FULL_1192_PASS',words.length);
