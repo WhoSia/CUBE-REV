@@ -1,0 +1,6 @@
+name = "CubeRev016"
+version = "0.1.0"
+defaultTargets = ["CubeRev016"]
+
+[[lean_lib]]
+name = "CubeRev016"
