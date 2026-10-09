@@ -5,6 +5,7 @@ on:
     branches: [research/current]
     paths:
       - 'scripts/cuberev-018/reduce-by-source-implication.py'
+      - 'scripts/cuberev-018/audit-rowcore-highs-k33.py'
       - 'scripts/cuberev-018/solve-rowcore-k33.py'
       - '.github/workflows/cuberev-018-rowcore-k33.yml'
   workflow_dispatch:
@@ -32,6 +33,14 @@ jobs:
           python scripts/cuberev-018/reduce-by-source-implication.py \
             --physical /tmp/cuberev018-rowcore/physical.json \
             --output /tmp/cuberev018-rowcore/row-implication.json
+      - name: Independently reproduce numerical HiGHS k33 court (not a formal proof)
+        run: |
+          python -m pip install --disable-pip-version-check 'scipy==1.17.0'
+          python scripts/cuberev-018/audit-rowcore-highs-k33.py \
+            --physical /tmp/cuberev018-rowcore/physical.json \
+            --core /tmp/cuberev018-rowcore/row-implication.json \
+            --output /tmp/cuberev018-rowcore/highs-numerical-receipt.json \
+            --seconds 45
       - name: Install pinned proof-capable SAT solver
         run: |
           python -m pip install --disable-pip-version-check 'python-sat==1.9.dev15'
