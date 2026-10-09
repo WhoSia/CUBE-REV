@@ -120,8 +120,13 @@ print('P13_16_FULL_PHYSICAL_AUTOMORPHISMS_164_RANKED_ORBITS_69_HIGH_FIRST_ORBITS
 # k=7, choose t=2 => U(two selected) >= W-5B = 24.
 # All 2403 projected columns retain the exact 1192-source physical cover.
 prior=json.loads(Path(a.dual).read_text())
-assert prior['denominator']==72 and prior['max_column_weight_numerator']==72 and prior['sum_row_weight_numerator']==384
-weights={int(k):int(v)for k,v in prior['selected_original_rows_weights_numerator'].items()}
+assert prior['denominator']==72
+if 'row_index_weight_numerator' in prior:
+ assert prior['source_L4_sha256']==sha and prior['expected_max_column_weight_numerator']==72 and prior['expected_weight_total']==384
+ weights={int(k):int(v) for k,v in prior['row_index_weight_numerator'].items()}
+else:
+ assert prior['max_column_weight_numerator']==72 and prior['sum_row_weight_numerator']==384
+ weights={int(k):int(v) for k,v in prior['selected_original_rows_weights_numerator'].items()}
 assert len(weights)==70 and sum(weights.values())==384
 scores=[sum(v for k,v in weights.items() if o>>k&1)for p,o in actual]
 assert max(scores)==72
