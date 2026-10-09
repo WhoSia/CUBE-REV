@@ -11,7 +11,7 @@ from pysat.formula import CNF,IDPool
 from pysat.card import CardEnc,EncType
 from pysat.solvers import Glucose4
 P=argparse.ArgumentParser()
-for x in ('physical','maps','prepared','output'):P.add_argument('--'+x,required=True)
+for x in ('physical','maps','prepared','rank7_gate','output'):P.add_argument('--'+x,required=True)
 P.add_argument('--conflicts',type=int,default=10000000)
 P.add_argument('--exact-high-count',type=int,choices=range(2,8),default=None,help='Optional disjoint high-rank-count branch. UNSAT excludes only this branch until every t=2..7 is checked.')
 a=P.parse_args();out=Path(a.output);out.mkdir(parents=True,exist_ok=True)
@@ -24,6 +24,10 @@ assert d['original_requirement_count']==1192 and d['original_all_k_reduced_row_c
 assert d['selected_full_original_k7_physical_column_count']==2403
 assert d['first_high_count']==69 and d['rank_at_least_6_minimum_for_k7']==2
 assert d['dual_derived_forbidden_pair_count']==102979
+rank7_gate=json.loads(Path(a.rank7_gate).read_text())
+assert rank7_gate['state']=='CUBE_REV_019_P13_ORIGINAL_SEVEN_RANK7_COUNT_5_6_7_ALL_EXCLUDED_INTEGER_PASS'
+assert rank7_gate['source_sha256']==sha and rank7_gate['rank7_count5_symmetry_reps']==12717
+assert rank7_gate['rank7_count6_original_combinations']==906192 and rank7_gate['rank7_count7_original_combinations']==3365856
 rows=d['source_core_row_indices'];proj=list(map(lambda s:int(s,16),d['candidate_core_cover_hex']))
 cols=list(map(lambda s:int(s,16),d['candidate_original_source_cover_hex']))
 ranks=d['candidate_partition_ranks'];words=d['candidate_move_words'];high=[i+1 for i,k in enumerate(ranks) if k>=6]
