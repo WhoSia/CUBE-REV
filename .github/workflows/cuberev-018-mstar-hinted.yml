@@ -1,0 +1,58 @@
+name: CUBE-REV 0.18 hinted integer M-star upper-bound improvement
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-018/improve-mstar-hinted.py'
+      - 'scripts/cuberev-018/export-known34-hints.mjs'
+      - 'scripts/cuberev-018/verify-sat-witness-physical.mjs'
+      - 'docs/0.18/P0_34_WORD_PHYSICAL_UPPER_WITNESS.json'
+      - '.github/workflows/cuberev-018-mstar-hinted.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seeded-set-cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build exact 1192-target incidence from physical cube turns
+        run: |
+          mkdir -p /tmp/cuberev018-hint
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev018-hint/physical.json
+      - name: Reconstruct all 34 P6 witness word actions independently
+        run: |
+          node scripts/cuberev-018/verify-sat-witness-physical.mjs docs/0.18/P0_34_WORD_PHYSICAL_UPPER_WITNESS.json
+          node scripts/cuberev-018/export-known34-hints.mjs \
+            /tmp/cuberev018-hint/physical.json /tmp/cuberev018-hint/hints.json
+      - name: Install exact integer CP-SAT solver
+        run: |
+          python -m pip install --disable-pip-version-check 'ortools==9.11.4210'
+          python -m pip show ortools
+      - name: Minimize dictionary with physically sound 34-word hint
+        run: |
+          python scripts/cuberev-018/improve-mstar-hinted.py \
+            /tmp/cuberev018-hint/physical.json \
+            /tmp/cuberev018-hint/hints.json \
+            /tmp/cuberev018-hint/result
+      - name: Independently replay any smaller incumbent on real Rubik actions
+        run: |
+          node scripts/cuberev-018/verify-sat-witness-physical.mjs \
+            /tmp/cuberev018-hint/result/sat_witness.json
+      - name: Preserve transparent optimization receipt and exact move witnesses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-018-mstar-hinted-solution-court
+          path: /tmp/cuberev018-hint/
+          retention-days: 30
+          if-no-files-found: warn
