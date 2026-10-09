@@ -1,0 +1,14 @@
+<!-- Exact archived excerpt of research/current/README.md, source Git blob e8fb9dba0cde096ab219566429b2fa51916711d1. Excerpt follows unchanged, including its historical dates/status. -->
+
+## CUBE-REV 0.14 — closed uncertainty-aware goal inference (2026-10-09)
+
+- [0.14 canonical Notion](https://app.notion.com/p/3f3ef561cf9281449bc0eee1a2636c24) — CLOSED. Six-face Cross goal forecast from first-two recorded outer turns; full 18-action normalized PDB likelihood, log loss/Brier score and honest set-valued coverage/size.
+- [0.13 terminal Notion](https://app.notion.com/p/3f3ef561cf9281ab959afae8d1a751d6) — CLOSED. The target face belongs to the two-turn maximizer set for 143/161 selected archival annotated solves; 56/161 have multiple equally supported target faces. U-first tie-breaking is not reliable unique-goal identification.
+- No new human-independent experiment or corpus is implied. The historical 451 semantic reconstruction contents are development-only. Solver-name, cohort, annotation and reconstructor leakage must be audited.
+- Code lives in `scripts/cuberev-014/` when tests have passed. Keep CI read-only, commits human-authored as `WhoSia`, private source records in Drive/Library.
+- **0.14 P1–P4 (historical development; NOT new independent replication):** leave-one-cohort-out with recorded solver-name purge (161 labelled solves, 82 solver name strings). Exact 18-action Cross PDB posterior plus training-only target-color prior: log loss **0.3670** and multiclass Brier **0.1791**, versus fixed downward-anchor-only 1.1616 and 0.5279. Labelled target is a reconstructed Cross completion, **not** directly observed subjective intention.
+- **Finite-information theorem:** for a synthetic uniform six-face goal and fixed beta=2 exact action channel, mean conditional goal information across the same 161 states is **0.62154 bits** for full 18-token observation, **0.36854** for face-only and **0.09758** for turn-power-only; each is a model value, **not measured human cognition or cryptographic security**.
+- [0.14 P1–P4 private reproducibility bundle](https://drive.google.com/file/d/1P58gFsKv82GsBAYVhaeJJw2vqGn99ZWx/view), SHA-256 `4eb7935dfb134a727f55057114687c75160d46f97dd37b5819b47e5f2679b229`. All four aggregate receipts reexecute byte-identically with the already-held original source corpus. Public GitHub contains math kernels/tests only, not reconstructed human source rows.
+- July 24 origin: [Cognitive Reversibility on Finite Transformation Groups / Origin Audit](https://app.notion.com/p/3c8ef561cf9281ffbc50c9d04403aa9e); [pre-Research-OS roadmap](https://app.notion.com/p/3ceef561cf92815095d4f32d88785afb). Kociemba phase subgroup/cosets, mathematical action-channel observational equivalence, and human intentionality are distinct objects; cross-domain reductions remain research targets.
+
+
