@@ -18,32 +18,18 @@ CUBE-REV studies exact reversible state spaces, search/representation geometry, 
 - **P2 decision-sufficient-summary obstruction:** P1's horizon≤2 43-class summary `(|S|, occupied F/B/other slot types)` ceases to preserve **horizon-three adaptive or fixed optimum**: **9 of 43** categories each have differing adaptive values and 9 have differing fixed values; explicit equal-summary sets `S={0,1,2,3}` versus `S={0,1,3,5}` have adaptive 3 versus4 leaves. This does not establish minimal full-belief representation at h3.
 - **P2 hypothetical BSC robustness (NOT measured human/device error):** for the precommitted two witnesses, when each of three observations is independently flipped at assumed ε=.05, exact finite Bayes optimization gives **90.25% optimal adaptive versus 69.94375% best fixed**, a **20.30625 percentage point gap**. At ε=.50 both are 25%. Only four frozen supports and six epsilon values were evaluated under noisy sensing, not all 4,095 supports. Crucial output convention: internal flip indicator `f` has actual P0 sensor report `o=1−f`; illustrative branching policies must use the correct sensor labels.
 - **P2 executable custody:** public `scripts/cuberev-016/three-read-feedback-census.mjs` and `test-three-read-feedback-census.mjs`, strictly read-only Actions workflow registration and active-set admission. Private finite-reproduction ZIP in Library `/CUBE-REV/0.16/CUBE_REV_016_P2_THREE_READ_ADAPTIVE_ADVANTAGE_PRIVATE_20261009.zip` SHA-256 `72678dadcb87f932d958582eb8c98c77d28570098f7f170373f40041af687128`; clean extracted ZIP CRC, file SHA, C++/Python/Node and noisy-policy quick verifier PASS. Original reco.nz human source bodies are excluded.
+- **Internal P3 — horizon / feedback finite census (verified; NOT a separate formal title):** all 4,095 uniform nonempty known-flip0 initial-position beliefs, all 18⁴=104,976 fixed words (1,913 exact partition types) and all feedback policies at h4: **1,331 supports** have adaptive 6-leaf vs fixed 5-leaf strict advantage, while the other 2,764 tie. Full histogram `(adaptive,fixed)=(1,1):12,(2,2):66,(3,3):223,(4,4):901,(5,5):1562,(6,5):1331`. Independently replicated by C++, Python+NumPy, and Node; the h3 advantage was restricted to two supports, so the feedback value frontier changes sharply with horizon.
+- **Internal P3 — entire 18⁵ horizon-five word census:** full 12 original flip0 positions give adaptive/fixed **8/7** distinguishable transcripts; full 24 position+flip hypotheses (no gratuitous initial observation) give **12/10**. Original four-position h3 witnesses become **4/4 at h4**; unknown-flip eight-state versions become **8/8 at h4/h5**. Thus feedback advantage can appear, disappear, and reappear as horizon and prior geometry change. Independent C++ and vectorized NumPy enumerated **all 1,889,568 fixed length-five words**, without negative heuristic inference.
+- **Internal P3 — exact action/read cost frontier:** for either frozen P2 four-state h3 witness, allow optional branch stopping to both fixed and adaptive policies, utility `MAP_accuracy − (motion_cost + read_cost) × expected_number_of_turn_read_pairs`. Full rational policy-line enumeration yields strict adaptive gain **max(0,¼ − motion_cost − read_cost)**; threshold **¼**, exact. With one mandatory read per action, individual motion and sensor costs are mathematically unidentifiable; a genuine sensor-only read needs a separately stated experiment.
+- **Scientific originality caveat:** feedback sensing advantage per se predates CUBE-REV: Nitinawarat–Atia–Veeravalli (2013, DOI `10.1109/TAC.2013.2261188`) give multihypothesis open-loop/causal contrasts; Golovin–Krause (2011, DOI `10.1613/JAIR.3278`) give *conditional* adaptive-submodular results, not a theorem automatically applicable to this cube model. New candidate paper contribution is the **exact action-equivariant cube-constrained transition/cost/uncertainty frontier**, not a human cognitive fact.
+- **Public mathematics:** `scripts/cuberev-016/horizon-feedback-court.mjs`, `cost-frontier.mjs` and regression tests are admitted in `g7/p7/active-set-manifest.json` and registered to a read-only Actions workflow. Independent Python/C++ physical-model audits and SHA-fixed private P3 archive are tracked in the 0.16 canonical Notion; do not label remote CI PASS without a checked run.
 - **Research boundary:** partial identifiability in an ideal mathematical sensor is not human mental representation, human-vision calibration, full 3×3 solve recovery, or cryptographic security. Classical antecedents: Smallwood–Sondik (1973, doi:10.1287/opre.21.5.1071), Blackwell (1953, doi:10.1214/aoms/1177729032). P1 must test **decision-dependent posterior equivalence** rather than assert entropy is a complete controller state.
 
-## CUBE-REV 0.15 — CLOSED finite observability, fiber geometry and robust codes (2026-10-09)
+## CUBE-REV 0.15 — CLOSED (mathematical predecessor)
 
-- [0.15 canonical Notion](https://app.notion.com/p/3f3ef561cf928151a50be8d6c8155289) — **CLOSED**, terminal §§55–56. Original scope: finite observation/action-dynamics refinements, action-equivariant hidden fibers, information-limited single-history recovery and exact model-relative noisy diagnosis. Mathematical closure does NOT settle human cognition, full 3×3 state recovery, or all optimization questions.
-- [0.14 terminal Notion](https://app.notion.com/p/3f3ef561cf9281449bc0eee1a2636c24) — CLOSED. Exact P5 counterexample: solved e and U turn share Kociemba Phase-1 G1 coset, yet their six-Cross-goal 18-action mathematical likelihoods and synthetic information values differ. No full-channel function on that coset can reproduce both.
-- [P5 verified private math-only bundle](https://drive.google.com/file/d/1TUzop1YQEJvMf0lTZHZAz0hVQ6v6_nX4/view) SHA-256 `b017a02264474559cc4bfa49cc7c34a265a0f209572726ff495b318cd7e3c47a` — 15 file entries, six exact 190080-state PDBs, independent sticker audits, Python reproduction and theorem statement.
-- The one-step minimal channel-sufficient refinement is defined by (Phase-1 coset, reference-action-normalized 18-action distance-change vectors for every goal); a transition-sufficient representation requires further finite-state partition refinement. **Do not** conflate coset sets with normal-subgroup quotient groups, mathematical toy distinguishing games with cryptographic security, or annotation-prediction with human latent intention.
-- No new independent behavioral cohort. Human-authored `WhoSia` commits, public math code/tests and read-only CI only; original source traces private.
-- **0.15 P0 exact automata result:** on the complete, closed **190,080-state four-D-Cross-edge** abstract system, exact full-18-action future-distance observational partitions have **9→153,252→190,077→190,080** classes at horizons 0–3. Thus all possible three-action response tables distinguish every abstract state, while two-action tables leave exactly three unresolved pairs. C++20 and independent JavaScript transition/partition engines agree for all **3,421,440** transitions.
-- **0.15 P1 one actual history is a weaker experiment:** conditional on initial exact distance 6, 97,254 states are possible and each next distance has only three values; hence every observation-adaptive single-history protocol needs **≥11 turns** to guarantee recovery. The frozen nonadaptive xorshift32 seed 2026100901 first distinguishes all 190,080 states after **42 turns**, separately certified in C++ and JavaScript. This is a bound, NOT an optimal 42-turn claim.
-- **0.15 P2 decision theory:** under an explicitly hypothetical uniform state prior, the frozen word gives uniform-prior MAP success 94.716% after 20 turns, 99.999474% after 40 turns (still one unresolved pair), 100% after 42. Prior-dependent accuracy is not worst-case identification or human memory.
-- **0.15 P3A verified:** exact first-response minimax over the 97,254 radius-six Q4 states yields worst surviving cell 62,752 (best among 18 first moves), greater than 3^10=59,049. Thus the adaptive recovery bound is now **12 ≤ L* ≤ 42** on the 190,080-state D-Cross abstract observer. Exact two-action size-minimax leaves 39,649; that does not prove 12 turns suffice. Independent full sticker e vs U has identical D-Cross abstract coordinate.
-- **0.15 P3B verified finite lift:** track original four D-Cross edges plus UR only: **3,041,280** reachable five-edge states, exact HTM diameter **9**, all **54,743,040** directed transitions inverse/triangle/projection checked. Every Q4 state has **16** distinct Q5 lifts, action-equivariantly; a D-Cross-distance-only adaptive observer cannot distinguish these, with uniform-Q5 exact recovery success ≤1/16 for any horizon. This additional UR edge resolves e/U, but the eleven-face-turn word `F U' F U F U F U' F' U' F2` leaves all five edge coordinates fixed while changing U-Cross exact distance 0→5.
-- **P3B archive:** `/CUBE-REV/0.15/CUBE_REV_0.15_P3B_FIVE_EDGE_FIBER_PRIVATE_20261009.zip` in personal Library, SHA-256 `f1305383c2441ee5ccf4aee252fc494cc520f97bec49d187e352633e33bdbd75`; exact 3,041,280-byte PDB SHA-256 `9eb33ddb8d5d929a361faf683a44564457513274c6b2016f54a1256494843a05`. C++ cleanroom + independent Python tests PASS; public Node fiber module/test in `scripts/cuberev-015/`. Google Drive direct P3B custody NOT verified (Library ref is not accepted by Drive connector).
-
-- **P3C/P3D:** tracked UR edge ideal intrinsic flip-bit tomography (24 coordinate hypotheses across 495 hidden fibers); exact BSC/Bayes, robust risk and Blackwell comparisons are **model-conditional**. No actual human orientation sensor is measured.
-- **P3E–P3H — global one-error optimum:** for fixed nonadaptive all-18 HTM action alphabet with one ideal intrinsic-flip bit before and after every move and up to one *arbitrarily* corrupted read, **t_opt^(1)=13 HTM actions / 14 reads**. Exhaustive computer-assisted impossibility for t≤12; independent 24-hypothesis certificate for `F' L2 B' F' R B F' D' R2 F' B' U2 B` (all 276 pair distances≥3 and 360 disjoint radius-one received strings).
-- **P3I — two-error global interval:** for up to TWO arbitrarily corrupted reads, a complete three-range finite court proves **t_opt^(2)≥15** (no t≤14), while independent full24 verification certifies `B' F' R B U2 F' R B F' D B L2 F' D B F` (16 HTM actions, 17 reads, min distance5 and **3,696** disjoint radius-two received strings), hence **15≤t_opt^(2)≤16**.
-- **P3J terminal — length15 STILL OPEN:** all **75,844,044** prefix8 transitions passed a complete new necessary-condition census over **254** three-future-read equality masks (from all 18³=5,832 action triples); 61,454,140 eliminated and 14,389,904 survive. A separately encoded SMT model calibrates SAT on known t16 but did **not** resolve t15. This necessary filter is **not** a global t15 UNSAT proof. Its rigorously bounded result closes P3J execution, **not** the outstanding mathematical question.
-- **P3F evidence boundary:** 452 historical reco.nz source IDs contained one exact-content duplicate; analysis of **451 unique reconstructions / 25,723 exact prefix-state rows** concerns only naturalistic cube-state occupancy and hypothetical sensor-noise priors, not measured human perception or new independent replication. No new reco.nz body acquisition; rights/robots gate remains HOLD.
-- **Private reproducibility:** Library `/CUBE-REV/0.15/` retains P3C–P3J source/certificates, including `CUBE_REV_015_P3H_EXACT_OPTIMUM13_PRIVATE_20261009.zip`, `CUBE_REV_015_P3I_TWO_BIT_OPTIMUM_BOUND_20261009.zip`, and `CUBE_REV_015_P3J_FINITE_FRONTIER_PRIVATE_20261009.zip` (SHA-256 `f38db2686d5e32993e8eb76beb192508f87c7b871bc74ca348260032bef5f467`). Quick P3J verifier PASS; five original separate range jobs COMPLETE; a later bundled full reexecution timed out and is **not** claimed PASS. Original source-level human reconstruction traces are privately held, never publicly relicensed.
-- **Deferred after 0.15:** length15 two-error SAT/UNSAT; Q4 single-history minimax (currently **12≤L*≤42**, not exact); scaled full-group partition and rights-cleared human studies. These are explicitly OPEN as separate investigations; **do not reopen 0.15 or invent new prospective subjects by default**.
-
-- [0.15 P0–P2 mathematical reproducibility bundle](https://app.notion.com/p/3f3ef561cf928151a50be8d6c8155289) — canonical 0.15 Notion, sections 8–13, exact full finite-state receipts and independent source code in the private Library `/CUBE-REV/0.15/`. Original human observations are not used in these finite-state proofs. The public executors are `scripts/cuberev-015/future-distance-refinement.mjs` and `scripts/cuberev-015/single-history-observability.mjs`, with read-only regression tests.
-
+- [0.15 terminal canonical Notion](https://app.notion.com/p/3f3ef561cf928151a50be8d6c8155289) — P0–P3J complete as a research version. All inherited 0.15 claims must be read under their stated finite-state/ideal-sensor contracts; no human perceptual or cryptographic inference.
+- **Exact 1-error optimum:** tracked UR ideal orientation-bit recovery `t_opt^(1)=13` HTM actions (14 binary observations). **2-error global interval:** `15≤t_opt^(2)≤16`; length15 existence remains OPEN as a distinct mathematical problem, despite 0.15 being CLOSED.
+- **Permanent historical README:** [0.15 exact original source prose](archive/versions/0.15/README_HISTORY.md), preserved before archival with predecessor source blob `04a5e54fe4fa17fef066e40446d3b28392843d8e`. Complete proof/custody receipts remain on 0.15 Notion and in private Library `/CUBE-REV/0.15/`.
 
 ## Closed-version READMEs — archived without rewriting
 
@@ -53,74 +39,15 @@ The 0.11–0.14 sections formerly embedded here are preserved **verbatim** at th
 - [0.12 archived README](archive/versions/0.12/README_HISTORY.md) — state-conditioned opportunity; CLOSED.
 - [0.13 archived README](archive/versions/0.13/README_HISTORY.md) — subgoal-conditioned geometry; CLOSED.
 - [0.14 archived README](archive/versions/0.14/README_HISTORY.md) — Cross-goal/channel sufficiency counterexample; CLOSED.
+- [0.15 archived README](archive/versions/0.15/README_HISTORY.md) — finite state/UR sensor exact math; CLOSED.
+- [G7 archived README](archive/versions/G7/README_HISTORY.md) — earlier reco.nz campaign/source-rights inference boundary.
 
 The current research focus is **0.16**; **0.15 is CLOSED** and retains its math certificates and explicit open problems above. Source-level human reconstruction content remains PRIVATE. No executable historical source files were removed by this README documentation-only migration.
 
-## Historical scientific spine
+## Historical G7 / reco.nz source authority (archived)
 
-### reco.nz — naturalistic reconstruction spine
-Current P7 treats reco.nz as the core naturalistic human-solve source.
-
-Active authority:
-- frozen 12,941-row index population;
-- bounded body acquisition only;
-- max 10 solve bodies per run;
-- no de-facto bulk mirror by chaining unlimited runs;
-- raw public redistribution remains HOLD;
-- annotations are preserved as measurements, not treated as latent cognition.
-
-Current P7 campaign:
-- 40 prospectively frozen solve bodies;
-- 4 batches × 10;
-- campaign complete: **40/40 acquisition + 40/40 exact replay**;
-- exact move-prefix states across P7 campaign: **2,149**;
-- private batch artifacts are sealed in Drive custody;
-- P4 predecessor body corpus: 20 solves;
-- combined body-level naturalistic corpus available to current analysis: **60 solves**;
-- this campaign is CLOSED to further source contact. Any additional reco.nz body acquisition requires new source authority or a new prospective constitution.
-
-### exact cube / search geometry
-The reusable exact authority is kept independently of its historical generation labels:
-
-`crates/cuberev-core/`
-`crates/search-geometry-core/`
-`scripts/cube/`
-
-The search core contains the exact 3×3 cubie representation, phase-1 geometry, projected PDBs, phase-2 support, and five-rival planning representations used by G7.
-
-### active reconstruction core
-
-`core/reco/`
-- reco.nz bounded-acquisition policy
-- reconstruction method ontology
-- frozen sampling geometry
-
-`scripts/reco/`
-- reco.nz HTML parsing
-- reconstruction move/annotation lexing
-
-### current phase
-
-`g7/p7/`
-- P7 preseal
-- reco.nz campaign constitution/manifest
-- current Court criteria and source boundaries
-
-`scripts/g7-p7/`
-- current bounded campaign selection/acquisition/tests
-
-`.github/workflows/`
-- only workflows that may still execute in P7 or its immediate successor should remain here.
-
-## Current inference boundary
-
-P7 may compare:
-- naturalistic reconstruction trajectories;
-- exact cube states and five-rival search geometry;
-- WCA official attempt/scramble context;
-- future authorized prospective participant behavior.
-
-It must not equate reconstruction annotations with internal cognitive states, reconstruction frequencies with WCA frequencies, or computational representations with human representations without behavioral evidence.
+- [Exact historical G7-P7 README excerpts](archive/versions/G7/README_HISTORY.md) — previously embedded data acquisition/provenance and inference limits, preserved verbatim. The historical contacts and rights gates are **not** a newly authorized data collection program.
+- Current source policy remains `core/reco/reco-acquisition-policy.json`: `BOUNDED_ONLY_PENDING_RIGHTS`, verify current robots/terms before any new acquisition, and **no raw public redistribution**. Past 451 semantic-unique reconstructions are DEVELOPMENT ONLY, not independent confirmation.
 
 ## Repository active-set policy
 
