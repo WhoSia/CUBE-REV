@@ -1,0 +1,35 @@
+name: CUBE-REV 0.18 Cube Action D-Direction Correspondence Court
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-018/test-p6-oracle-bridge.mjs'
+      - '.github/workflows/cuberev-018-d-face-bridge.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  physical-isomorphism:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Generate Rubik 18-action physical instance from sticker cube
+        run: |
+          mkdir -p /tmp/cuberev018
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev018/physical.json
+      - name: Check 24-state transition correspondence for each real cube face action
+        run: node scripts/cuberev-018/test-p6-oracle-bridge.mjs /tmp/cuberev018/physical.json
+      - name: Preserve source-verification receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-018-physical-action-direction-bridge
+          path: /tmp/cuberev018/physical.json
+          if-no-files-found: warn
+          retention-days: 30
