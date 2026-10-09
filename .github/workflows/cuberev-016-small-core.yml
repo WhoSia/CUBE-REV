@@ -12,6 +12,9 @@ on:
       - 'scripts/cuberev-016/test-p12-graph-core.py'
       - 'scripts/cuberev-016/test-p12-triangle-uniqueness.py'
       - 'scripts/cuberev-016/test-p12-80-candidates.cpp'
+      - 'scripts/cuberev-016/p13-emit80.py'
+      - 'scripts/cuberev-016/p13-17-profiles-mitm.cpp'
+      - 'docs/0.16/P13_MITM_PROFILE_CERTIFICATE.md'
       - 'docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md'
       - '.github/workflows/cuberev-016-small-core.yml'
   workflow_dispatch:
@@ -34,3 +37,9 @@ jobs:
         run: |
           c++ -std=c++20 -O3 -Wall -Wextra -pedantic scripts/cuberev-016/test-p12-80-candidates.cpp -o /tmp/p12-core
           /tmp/p12-core /tmp/p12-mask80.txt
+
+      - name: Verify 17 profiles independently by indexed triple-pair joins
+        run: |
+          python3 scripts/cuberev-016/p13-emit80.py > /tmp/p13-80-columns.txt
+          c++ -std=c++20 -O3 -Wall -Wextra -pedantic scripts/cuberev-016/p13-17-profiles-mitm.cpp -o /tmp/p13-mitm
+          /tmp/p13-mitm /tmp/p13-80-columns.txt
