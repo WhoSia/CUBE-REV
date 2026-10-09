@@ -38,21 +38,21 @@ jobs:
           p=Path('/tmp/cuberev019-horizon')
           actions=[list(map(int,line.split())) for line in (p/'physical-maps.txt').read_text().splitlines()]
           assert len(actions)==18 and all(len(a)==24 for a in actions)
-          (p/'maps.json').write_text(json.dumps(actions)+'\\n')
+          (p/'maps.json').write_text(json.dumps(actions)+'\n')
           PY
       - name: Independently replay all L6 to L9 dictionaries against frozen source
         run: |
-          python scripts/cuberev-019/verify-L6-to-L9-dictionaries.py \\
-            --physical /tmp/cuberev019-horizon/physical.json \\
+          python scripts/cuberev-019/verify-L6-to-L9-dictionaries.py \
+            --physical /tmp/cuberev019-horizon/physical.json \
             --maps /tmp/cuberev019-horizon/maps.json
       - name: Exhaustively reject a two-word cover at seven-turn horizon
         run: |
-          g++ -std=c++17 -O3 -Wall -Wextra -o /tmp/cuberev019-horizon/L7-check \\
+          g++ -std=c++17 -O3 -Wall -Wextra -o /tmp/cuberev019-horizon/L7-check \
             scripts/cuberev-019/prove-fixed-horizon-L7.cpp
-          /tmp/cuberev019-horizon/L7-check \\
-            < /tmp/cuberev019-horizon/physical-maps.txt \\
+          /tmp/cuberev019-horizon/L7-check \
+            < /tmp/cuberev019-horizon/physical-maps.txt \
             | tee /tmp/cuberev019-horizon/L7-rank-histogram.log
-          grep -q 'CUBE_REV_019_ALL_L7_114852864_RELEVANT_WORDS_MAX_RANK10_PASS' \\
+          grep -q 'CUBE_REV_019_ALL_L7_114852864_RELEVANT_WORDS_MAX_RANK10_PASS' \
             /tmp/cuberev019-horizon/L7-rank-histogram.log
       - name: Exhaustively verify eight-turn physical nonidentifiability
         run: |
