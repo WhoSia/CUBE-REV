@@ -16,3 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Exact integer tests of even-horizon return and odd-horizon countermodel
         run: python3 scripts/cuberev-017/test-return-maximality.py
+      - name: Test action-congruence and PSD coarse-partition countermodels
+        run: python3 scripts/cuberev-017/test-observation-congruence.py
+      - name: Rebuild original physical 104976-action all-k M-star domination quotient
+        run: node scripts/cuberev-017/test-global-dominance-court.mjs
