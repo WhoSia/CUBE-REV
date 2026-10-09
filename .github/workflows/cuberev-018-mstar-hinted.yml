@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/cuberev-018/improve-mstar-hinted.py'
       - 'scripts/cuberev-018/export-known34-hints.mjs'
+      - 'scripts/cuberev-018/test-p6-oracle-bridge.mjs'
       - 'scripts/cuberev-018/verify-sat-witness-physical.mjs'
       - 'docs/0.18/P0_REPAIRED_37_WORD_PHYSICAL_WITNESS.json'
       - '.github/workflows/cuberev-018-mstar-hinted.yml'
@@ -34,6 +35,8 @@ jobs:
           node scripts/cuberev-018/verify-sat-witness-physical.mjs docs/0.18/P0_REPAIRED_37_WORD_PHYSICAL_WITNESS.json
           node scripts/cuberev-018/export-known34-hints.mjs \
             /tmp/cuberev018-hint/physical.json /tmp/cuberev018-hint/hints.json
+      - name: Differentially certify historical P6 oracle failure and real-cube 37 repair
+        run: node scripts/cuberev-018/test-p6-oracle-bridge.mjs /tmp/cuberev018-hint/physical.json
       - name: Install exact integer CP-SAT solver
         run: |
           python -m pip install --disable-pip-version-check 'ortools==9.11.4210'
