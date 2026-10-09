@@ -51,9 +51,10 @@ theorem p11_five_cover_obstructed_by_eight_overlap
     80 + (fifth - intersection) < 96 := by
   omega
 
-/-- The finite integer success threshold exceeds the fractional optimum. -/
-theorem p11_integrality_gap_arithmetic :
-    (6 : Nat) * 4 = 5 * (24 / 5) := by
+/-- Closed arithmetic check: the lower mass 96/20 is exactly 24/5,
+which is STRICTLY below six integral selected sets. -/
+theorem p11_fractional_below_integer_six :
+    96 < (6 : Nat) * 20 := by
   decide
 
 end CubeRev016
