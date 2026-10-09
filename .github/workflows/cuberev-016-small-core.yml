@@ -1,0 +1,19 @@
+name: CUBE-REV 0.16 exact reduced-cover certificate
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'docs/0.16/P10_50_BY_116.json'
+      - 'docs/0.16/P10_COMPONENT_THEOREM.md'
+      - 'scripts/cuberev-016/test-p10-small-core.py'
+      - '.github/workflows/cuberev-016-small-core.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p10-finite-certificate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check exact 50-target component proof
+        run: python3 scripts/cuberev-016/test-p10-small-core.py
