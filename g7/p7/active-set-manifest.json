@@ -244,6 +244,8 @@
     "scripts/cuberev-015/test-single-history-observability.mjs",
     "scripts/cuberev-015/test-ur-fiber-tomography.mjs",
     "scripts/cuberev-015/ur-fiber-tomography.mjs",
+    "scripts/cuberev-016/active-belief-geometry.mjs",
+    "scripts/cuberev-016/test-active-belief-geometry.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
