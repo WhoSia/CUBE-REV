@@ -26,15 +26,15 @@ assert.equal(result.summaryFixedDisagreementClasses,9);
 assert.equal(result.summaryValueDisagreementSupports,970);
 const a=Object.fromEntries(ACTIONS.map((x,i)=>[x,i]));
 const read=x=>Number((x&1)===0);
-function witnessRead(initialSlot){
+function witnessRead(initialSlot,supportMask){
  let state=m[a.F][2*initialSlot],y1=read(state);
- state=m[y1===0?a.R:a.U][state];
+ state=m[supportMask===170?(y1===0?a.R:a.U):(y1===0?a.U:a.R)][state];
  let y2=read(state);
  const finalAct=y1===0&&y2===0?a.F:y1===1&&y2===1?a.B:a.U;
  state=m[finalAct][state];
  return `${y1}${y2}${read(state)}`;
 }
-for(const support of [[1,3,5,7],[8,9,10,11]])
- assert.equal(new Set(support.map(witnessRead)).size,4);
+for(const [supportMask,support] of [[170,[1,3,5,7]],[3840,[8,9,10,11]]])
+ assert.equal(new Set(support.map(p=>witnessRead(p,supportMask))).size,4);
 console.log('CUBE_REV_016_P2_EXACT_4095_AND_TWO_ADAPTIVE_WITNESSES_PASS');
 console.log(JSON.stringify(result));
