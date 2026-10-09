@@ -49,6 +49,9 @@ on:
       - 'scripts/cuberev-016/test-cost-frontier.mjs'
       - 'scripts/cuberev-016/structural-support-court.mjs'
       - 'scripts/cuberev-016/test-structural-support-court.mjs'
+      - 'scripts/cuberev-016/reversal-information-court.mjs'
+      - 'scripts/cuberev-016/test-reversal-information-court.mjs'
+      - 'docs/0.16/REVERSIBILITY_OBSERVABILITY_THEOREM.md'
       - '.github/workflows/cuberev-011-face-word-regression.yml'
   workflow_dispatch:
 permissions:
@@ -87,6 +90,7 @@ jobs:
           node scripts/cuberev-016/test-horizon-feedback-court.mjs
           node scripts/cuberev-016/test-cost-frontier.mjs
           node scripts/cuberev-016/test-structural-support-court.mjs
+          node scripts/cuberev-016/test-reversal-information-court.mjs
       - name: Assert read-only workflow
         run: |
           ! grep -E 'git +(commit|push|tag)|contents: *write|github-actions\[bot\]' .github/workflows/cuberev-011-face-word-regression.yml
