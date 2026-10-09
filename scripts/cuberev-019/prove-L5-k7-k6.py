@@ -117,6 +117,69 @@ assert __import__('functools').reduce(int.__or__,candidate_original,0)==full
 print('CUBE_REV_019_ALL_K_2887_COLUMN_REDUCTION_PASS',round(time.time()-t0,1),flush=True)
 
 # Independently replay a 70-row integer dual lower bound from previous frozen analysis?
+
+# A full 16-element signed-coordinate incidence automorphism group.
+# Includes eight orientation-reversing relabelings: these are NOT moves.
+# Group actions are used only after certifying closure of the physical
+# source requirement family AND all 8807 realized maximal L5 experiments.
+from itertools import product
+coords=[(1,1,0),(0,1,1),(-1,1,0),(0,1,-1),
+        (1,-1,0),(0,-1,1),(-1,-1,0),(0,-1,-1),
+        (1,0,1),(-1,0,1),(-1,0,-1),(1,0,-1)]
+coord_index={v:i for i,v in enumerate(coords)}
+base_index={v:i for i,v in enumerate(bases)}
+core_index={v:i for i,v in enumerate(keep_rows)}
+all_maximal=set(max_columns)
+reduced_index={v:i for i,v in enumerate(projected_maxima)}
+group_column_maps=[]
+for axes in ((0,1,2),(1,0,2)):
+    for signs in product((-1,1), repeat=3):
+        perm=[coord_index[tuple(signs[k]*pos[axes[k]]
+                for k in range(3))] for pos in coords]
+        transformed_bases=[]
+        for b in bases:
+            b2=sum(1<<perm[i] for i in range(12) if b>>i&1)
+            assert b2 in base_index
+            transformed_bases.append(base_index[b2])
+        transformed_core=[core_index[transformed_bases[i]] for i in keep_rows]
+        assert set(transformed_core)==set(range(544))
+        # Important: exact closure on full physically realized (pre-quotient) cover family.
+        for mask in max_columns:
+            z=0; remaining=mask
+            while remaining:
+                bit=remaining&-remaining
+                z|=1<<transformed_bases[bit.bit_length()-1]
+                remaining-=bit
+            assert z in all_maximal, ('SOURCE_AUTOMORPHISM_NOT_PHYSICAL',axes,signs)
+        perm_cols=[]
+        for mask in projected_maxima:
+            z=0; remaining=mask
+            while remaining:
+                bit=remaining&-remaining
+                z|=1<<transformed_core[bit.bit_length()-1]
+                remaining-=bit
+            assert z in reduced_index, ('REDUCED_COL_AUTOMORPHISM_FAIL',axes,signs)
+            perm_cols.append(reduced_index[z])
+        group_column_maps.append(perm_cols)
+assert len(group_column_maps)==16
+unseen=set(range(len(projected_maxima)))
+orbit_representatives=[];orbit_hist={}
+while unseen:
+    seed=min(unseen)
+    orbit=set(g[seed] for g in group_column_maps)
+    assert seed in orbit and orbit<=unseen
+    unseen-=orbit
+    orbit_representatives.append(seed+1)
+    orbit_hist[len(orbit)]=orbit_hist.get(len(orbit),0)+1
+assert len(orbit_representatives)==196
+symmetry_receipt={'group_order':16,'physical_maximal_columns_checked':8807,
+   'row_core':544,'column_core':2887,'column_orbits':196,
+   'orbit_histogram':orbit_hist,'symmetry_break_clause_size':196,
+   'validity':'Any nonempty cover can be globally relabeled to contain at least one orbit representative; cannot identify orbit variables.'}
+(out/'symmetry_exact_incidence_receipt.json').write_text(json.dumps(symmetry_receipt,indent=2)+'\n')
+print('CUBE_REV_019_16_INCIDENCE_AUTOMORPHISMS_196_ORBIT_REPS_PASS',
+      json.dumps(symmetry_receipt),flush=True)
+
 # First court: 7-SAT. If SAT, court 6-SAT. If UNSAT, DRUP certificate.
 summary={'schema':'cube-rev.019.L5.SAT-court.v1',
  'baseline_physical_sha256':hashlib.sha256(raw).hexdigest(),
@@ -127,6 +190,8 @@ summary={'schema':'cube-rev.019.L5.SAT-court.v1',
  'status':'EXACT_MSTAR5_NOT_YET_PROVEN'}
 for k in (7,6):
  cnf=CNF()
+ # Sound automorphism symmetry breaker: retain ALL 2887 column variables.
+ cnf.append(orbit_representatives)
  for i in range(len(keep_rows)):
   clause=[j+1 for j,v in enumerate(projected_maxima) if (v>>i)&1]
   assert clause
