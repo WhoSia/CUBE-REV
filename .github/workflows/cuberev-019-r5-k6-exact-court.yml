@@ -5,6 +5,8 @@ on:
     branches: [research/current]
     paths:
       - 'scripts/cuberev-019/prove-L5-five-source-k6-SAT.py'
+      - 'scripts/cuberev-019/verify-L5-R5-rank-symmetry-and-pair-cuts.py'
+      - 'docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json'
       - 'scripts/cuberev-019/verify-L5-seven-five-source-and-extension.py'
       - 'scripts/cuberev-019/export-L5-physical.mjs'
       - '.github/workflows/cuberev-019-r5-k6-exact-court.yml'
@@ -46,6 +48,16 @@ jobs:
             --output /tmp/cuberev019-p10/R5_seven_word_physical_witness.json \
             | tee /tmp/cuberev019-p10/R5_seven_word_physical_witness.log
           grep -q 'CUBE_REV_019_P10_SEVEN_WORD_EXTENSION_ONE_WORD_IMPOSSIBLE_PHYSICAL_14938_PARTITIONS_MAX36_PASS' /tmp/cuberev019-p10/R5_seven_word_physical_witness.log
+      - name: Independently verify rank>=6 twice, rank-preserving 16-symmetry and 747883 integer pair cuts
+        run: |
+          python -u scripts/cuberev-019/verify-L5-R5-rank-symmetry-and-pair-cuts.py \
+            --physical /tmp/cuberev019-p10/physical.json \
+            --maps /tmp/cuberev019-p10/maps.txt \
+            --partitions /tmp/cuberev019-p10/partitions.tsv \
+            --dual docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json \
+            --output /tmp/cuberev019-p10/P11_R5_rank_symmetry_dual_cuts_receipt.json \
+            | tee /tmp/cuberev019-p10/P11_original_physical_integer_audit.log
+          grep -q 'CUBE_REV_019_P11_R5_RANK_AND_SYMMETRY_INTEGER_PAIR_GATE_PASS' /tmp/cuberev019-p10/P11_original_physical_integer_audit.log
       - name: Install pinned proof-producing SAT engine
         run: |
           python -m pip install --disable-pip-version-check 'python-sat==1.9.dev15'
