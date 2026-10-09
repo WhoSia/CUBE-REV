@@ -1,12 +1,12 @@
 # CUBE-REV 0.17 — Reversible Observation Automata, Reconstruction Complexity & Proof-Carrying Information Bounds
 
-**FORMAL VERSION: OPEN / PROGRAM ENTRY (2026-10-09).** The sole official 0.17 title is the title of this charter. Its [canonical Notion page](https://app.notion.com/p/3f4ef561cf92811e8da1dde0478bfd1e) is confirmed OPEN. It has no independently completed 0.17 theorem yet. P0/P1/etc are only **internal divisions**, never additional version-title proposals.
+**FORMAL VERSION: OPEN / SINGLE ACTIVE CUBE-REV STAGE (2026-10-09).** The sole official 0.17 title is the title of this charter. Its [canonical Notion page](https://app.notion.com/p/3f4ef561cf92811e8da1dde0478bfd1e) is confirmed OPEN. It now has exact structural finite results and a successful generic Lean kernel build; these do not certify original full-cube theorems. P0/P1/etc are only **internal divisions**, never additional version-title proposals.
 
-## Why a new version can begin while 0.16 stays OPEN
+## One scientific flow: formal 0.16 CLOSED, 0.17 OPEN
 
 [Research OS Cross-Lab Doctrine](https://app.notion.com/p/3cbef561cf928195b228ec7316db0fea) rejects keeping an independent scientific mainline buried indefinitely in bounded P-suffixes, and its October residual-descent rule demands returning to a larger explanandum when successive local residuals shrink the scientific question. The actual [NOMOS-0.872 canonical opening](https://app.notion.com/p/3f4ef561cf9281f5bf45d72d2274f4a6) explicitly states that consecutive formal versions index evolving questions and do **not** require forced predecessor closure.
 
-Accordingly [CUBE-REV 0.16](https://app.notion.com/p/3f4ef561cf928161b4bfc5960f97ae8a) REMAINS OPEN as owner of all exact **frozen tracked-UR-edge** proofs, its incomplete minimum-word dictionary M* and its actual manuscript preparation. 0.17 widens the scientific target from that finite cube automaton to a mathematically meaningful CLASS of reversible observation systems. This is not a pretense that 0.16 has no debts.
+**2026-10-09 binding flow correction:** [0.16](https://app.notion.com/p/3f4ef561cf928161b4bfc5960f97ae8a) is CLOSED, while this 0.17 is the SOLE OPEN official version. 0.16's exact finite results are frozen and all remaining work (M*, nonenumerative 17-profile classification, publication, Lean semantic bridge) belongs to 0.17. Opening a new version is an organic move of one research flow, not multiple parallel OPEN programmes. Failure debts are preserved, not converted into false passes.
 
 ## Explanandum lock
 
@@ -49,4 +49,4 @@ The 0.16 paper candidate [draft architecture](../0.16/P12_PAPER_ARCHITECTURE.md)
 
 A 0.17 research cycle must always say what larger uncertainty was reduced. More commits, fixed test scripts and newly named micro-residuals alone are NOT valid progress. It is acceptable to archive a failed conjecture with a counterexample; avoid becoming a self-perpetuating theorem-engineering bureaucracy.
 
-**Current evidence status:** `0.17_OPEN_PROGRAM_ONLY / 0.16_OPEN_MATH_AND_MANUSCRIPT / LEAN_KERNEL_PENDING / ORIGINAL_MSTAR_OPEN`.
+**Current evidence status (superseding original entry):** `0.17_OPEN_SOLE_ACTIVE / 0.16_CLOSED / GENERIC_LEAN017_KERNEL_BUILD_PASS_RUN_37941314665 / PHYSICAL_LEAN_BRIDGE_OPEN / ORIGINAL_MSTAR_OPEN`. Abstract congruence Lean theorem built on pinned 4.34.1; this does NOT certify 17 profiles, 8/10 optima, or exact M*.
