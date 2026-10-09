@@ -29,6 +29,8 @@ cols=list(map(lambda s:int(s,16),d['candidate_original_source_cover_hex']))
 ranks=d['candidate_partition_ranks'];words=d['candidate_move_words'];high=[i+1 for i,k in enumerate(ranks) if k>=6]
 assert len(rows)==544 and len(cols)==len(proj)==len(words)==len(ranks)==2403
 assert sum(r==5 for r in ranks)==1355 and len(high)==1048
+rank7_variables=[i+1 for i,r in enumerate(ranks) if r==7]
+assert len(rank7_variables)==32
 assert len(set(d['first_high_representative_1based']))==69
 assert all(ranks[z-1]>=6 for z in d['first_high_representative_1based'])
 assert all(len(w)==5 and all(0<=i<18 for i in w) for w in words)
@@ -55,6 +57,9 @@ for pair in d['dual_derived_forbidden_pair_literals']:
  cnf.append(pair)
 pool=IDPool(start_from=N+1)
 cnf.extend(CardEnc.atleast(lits=high,bound=2,encoding=EncType.totalizer,vpool=pool).clauses)
+# Independently source-verified P13 exact rank-seven 5/6/7 case census.
+# This k<=7 clause is valid only after the separate raw-source gate has PASSed.
+cnf.extend(CardEnc.atmost(lits=rank7_variables,bound=4,encoding=EncType.seqcounter,vpool=pool).clauses)
 cnf.extend(CardEnc.atmost(lits=list(range(1,N+1)),bound=7,encoding=EncType.seqcounter,vpool=pool).clauses)
 if a.exact_high_count is not None:
  cnf.extend(CardEnc.equals(lits=high,bound=a.exact_high_count,encoding=EncType.totalizer,vpool=pool).clauses)
@@ -67,6 +72,7 @@ receipt={'schema':'cube-rev.019.P13.full-original-L5-k7-SAT-proof-protocol.v1','
  'cnf_sha256':cnfsha,'cnf_variables':cnf.nv,'cnf_clauses':len(cnf.clauses),
  'cover_rows_original_544':544,'real_word_choices':N,'cardinality_at_most':7,
  'at_least_two_high_rank_words_proven_by_P13_integer_court':True,
+ 'at_most_four_rank7_words_proven_by_P13_source_census':True,
  'representative_high_orbit_clause_size':69,'sound_original_dual_pair_conflicts':102979,
  'conflict_budget':a.conflicts,'high_rank_exactly':a.exact_high_count,
  'independent_external_unsat_proof_check':'NOT_YET'}
