@@ -12,6 +12,31 @@ const raw=fs.readFileSync(new URL('../../docs/0.18/P0_60_POSITIVE_DUAL_WEIGHTS.j
 // For one-word coverage, full 12-state injectivity implies every subset is identified.
 assert.equal(maps.length,18);
 assert(maps.every(m=>m.length===24&&new Set(m).size===24));
+const F=new Set([1,5,8,9]), B=new Set([3,7,10,11]);
+const N=new Set([...Array(12).keys()].filter(p=>!F.has(p)&&!B.has(p)));
+for(let a=0;a<18;a++){
+ const tok=ACTIONS[a],groups=[F,B,N], support=new Set();
+ for(let p=0;p<12;p++){
+  assert.equal(maps[a][2*p+1],maps[a][2*p]^1);
+  if(maps[a][2*p]&1)support.add(p);
+ }
+ const expected=(tok==='F'||tok==="F'")?F:(tok==='B'||tok==="B'")?B:new Set();
+ assert.equal(support.size,expected.size);
+ for(const p of expected)assert(support.has(p));
+ if('FB'.includes(tok[0])){
+  for(const group of groups){
+   const moved=new Set([...group].map(p=>Math.floor(maps[a][2*p]/2)));
+   assert.equal(moved.size,group.size);
+   for(const p of group)assert(moved.has(p));
+  }
+ }
+}
+// Each flip-producing action tests exactly FOUR of the original 12 slots.
+// Twelve distinct binary codes of length 4 require at least 19 total ones;
+// any four transported flip cuts provide exactly 16 ones.
+const popBits=v=>{let z=0;while(v){v&=v-1;z++;}return z};
+assert.equal([...Array(16).keys()].map(popBits).sort((x,y)=>x-y).slice(0,12).reduce((x,y)=>x+y,0),19);
+console.log('CUBE_REV_019_Q_AT_MOST4_WEIGHT_BARRIER_AND_FB_CONFINEMENT_PASS');
 const W=['F','B','U','R2','F',"B'",'U','F','B'];
 let states=Array.from({length:12},(_,i)=>2*i),history=Array(12).fill(0);
 const prefixes=[];
