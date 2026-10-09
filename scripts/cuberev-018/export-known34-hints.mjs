@@ -1,6 +1,6 @@
-/** Reconstruct independent 34-word P6 cube witness and map each
+/** Reconstruct independent 37-word physically repaired candidate and map each
  * word's actual physical coverage to an inclusion-maximal M-star column.
- * The 34 seed is a genuine cube upper bound, NOT an assumed solver result.
+ * The historical P6 34 list failed physical validation; add three genuine HTM words.
  */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -8,9 +8,9 @@ import {urMoveAutomaton} from '../cuberev-015/ur-fiber-tomography.mjs';
 import {ACTIONS} from '../cuberev-013/cross4-pdb.mjs';
 const physical=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
 const source=JSON.parse(fs.readFileSync(new URL(
- '../../docs/0.18/P0_34_WORD_PHYSICAL_UPPER_WITNESS.json',import.meta.url),'utf8'));
+ '../../docs/0.18/P0_REPAIRED_37_WORD_PHYSICAL_WITNESS.json',import.meta.url),'utf8'));
 assert.equal(physical.counts.maximal,1323);
-assert.equal(source.words.length,34);
+assert.equal(source.words.length,37);
 const moves=urMoveAutomaton(),bases=physical.bases;
 const columns=physical.candidates.map(x=>BigInt('0x'+x.mask));
 const chosen=[];
@@ -40,11 +40,11 @@ for(const word of source.words){
 const unique=[...new Set(chosen)];
 let union=0n;for(let i of unique)union|=columns[i];
 assert.equal(union.toString(2).replaceAll('0','').length,1192);
-const out={schema:'cube-rev.018.physical-34-hint-v1',
- candidates:unique,originalCount:34,newCount:unique.length,
+const out={schema:'cube-rev.018.physical-37-hint-v1',
+ candidates:unique,originalCount:37,newCount:unique.length,
  physicalAll1192Verified:true,
  initialHTMWords:source.words};
 if(process.argv[3])fs.writeFileSync(process.argv[3],JSON.stringify(out)+'\n');
-console.log('MSTAR34_SEEDED_REAL_CUBE_PHYSICAL_COVER_PASS',
- JSON.stringify({original34:source.words.length,maximalRepresentativeCount:unique.length,
+console.log('MSTAR37_REPAIRED_REAL_CUBE_PHYSICAL_COVER_PASS',
+ JSON.stringify({candidate37:source.words.length,maximalRepresentativeCount:unique.length,
  allCovered:true}));
