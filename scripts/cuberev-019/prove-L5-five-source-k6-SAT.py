@@ -3,7 +3,7 @@
 Preprocessing can be locally audited WITHOUT any SAT package (--prepare-only).
 Solver UNSAT must pass separately pinned drat-trim; numerical MIP is not a proof.
 """
-import argparse, hashlib, itertools, json, time
+import argparse, hashlib, itertools, json, time, subprocess, sys
 from pathlib import Path
 p=argparse.ArgumentParser()
 for x in ('physical','maps','partitions','output'):p.add_argument('--'+x,required=True)
@@ -62,7 +62,9 @@ for axes in ((0,1,2),(1,0,2)):
    assert t in idx, 'false physical-source symmetry'
   actions.append(src_perm)
 assert len(actions)==16
-remaining=set(keep);reps=[];sizes=[]
+rank_by_mask={m:len(physical_blocks(actual[m])) for m in keep}
+assert __import__('collections').Counter(rank_by_mask.values())=={5:975,6:1016,7:32}
+remaining=set(keep);reps=[];high_reps=[];sizes=[];orbit_ranks={}
 while remaining:
  m=min(remaining);orbit=set()
  for perm in actions:
@@ -71,8 +73,11 @@ while remaining:
    bit=v&-v;j=bit.bit_length()-1;t|=1<<perm[j];v-=bit
   orbit.add(t)
  assert orbit<=remaining and m in orbit
+ assert all(rank_by_mask[x]==rank_by_mask[m] for x in orbit), 'SYMMETRY_MUST_PRESERVE_PHYSICAL_RANK'
  remaining-=orbit;reps.append(idx[m]+1);sizes.append(len(orbit))
-assert len(reps)==137
+ orbit_ranks[rank_by_mask[m]]=orbit_ranks.get(rank_by_mask[m],0)+1
+ if rank_by_mask[m]>=6:high_reps.append(idx[m]+1)
+assert len(reps)==137 and len(high_reps)==69 and orbit_ranks=={5:68,6:66,7:3}
 # Source positive witness is independently replayed in a standalone physical court.
 known_seven=[(7,16,0,6,15),(7,15,9,6,15),(6,16,12,6,15),(6,16,9,6,15),(6,16,3,6,15),(6,15,0,6,15),(6,16,2,14,6)]
 positive=0
@@ -90,16 +95,67 @@ receipt={'schema':'cube-rev.019.P10.R5-k6-physical-SAT-court.v1','source_sha256'
 # 1192-source cover-equivalent columns.
 (out/'R5_five_source_reduced_cover_masks_hex.tsv').write_text(''.join(f'{m:x}\t{list(actual[m])}\n' for m in keep))
 print('CUBE_REV_019_P10_R5_3344_TO_2023_PHYSICAL_COVER_COLUMNS_16_SYMMETRIES_137_ORBITS_PASS',flush=True)
+
+# Independent physical k6 rank/symmetry/integer pair audit, not a MIP result.
+# Before using 69 high-rank orbit representatives or any derived clauses,
+# prove the necessary rank>=6 twice theorem directly on the ORIGINAL
+# fourteen-thousand physical observation partitions and 480 source masks.
+root=Path(__file__).resolve().parents[2]
+p11_report=out/'P11_rank_symmetry_dual_pair_report.json'
+five_dual=root/'docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json'
+subprocess.run([sys.executable,str(root/'scripts/cuberev-019/verify-L5-R5-rank-symmetry-and-pair-cuts.py'),
+ '--physical',a.physical,'--maps',a.maps,'--partitions',a.partitions,
+ '--dual',str(five_dual),'--output',str(p11_report)],check=True)
+p11=json.loads(p11_report.read_text())
+assert p11['result']=='CUBE_REV_019_P11_R5_RANK_AND_SYMMETRY_INTEGER_PAIR_GATE_PASS'
+assert p11['safe_high_rank_first_column_orbit_representatives']==69
+assert p11['r5_k6_forbidden_pair_count']==747883
+
 if a.prepare_only:
  print('CUBE_REV_019_P10_R5_K6_PREPARE_ONLY_NO_SAT_OR_UNSAT_CLAIM',flush=True)
  raise SystemExit(0)
 from pysat.formula import CNF,IDPool
 from pysat.card import CardEnc,EncType
 from pysat.solvers import Glucose4
-cnf=CNF();cnf.append(reps) # sound: globally relabel nonempty dictionary to contain one representative
+cnf=CNF()
+# P11 proves any k<=6 R5 cover has >=2 rank>=6 selected physical words.
+# Any chosen high-rank word may be relabeled to one of 69 high-rank orbit
+# representatives (all 16 proven physical incidence automorphisms preserve rank).
+cnf.append(high_reps)
+# The next 747883 binary clauses follow from the ORIGINAL 80-row P8 dual:
+# total weighted demand=1480, per-word <=312, so among k<=6 selected
+# experiments any two must jointly cover >=1480-4*312=232.
+p8=json.loads(five_dual.read_text())
+original_pos=[i for i,b in enumerate(bases) if b.bit_count()==5]
+weights={int(k):int(v) for k,v in p8['dual_original_source_rows_scaled'].items()}
+weighted=[(j,weights[i]) for j,i in enumerate(original_pos) if i in weights]
+assert len(weighted)==80 and sum(v for j,v in weighted)==1480
+chunks=[weighted[i:i+10] for i in range(0,80,10)]
+mass_table=[
+ [sum(v for k,(r,v) in enumerate(ch) if (z>>k)&1) for z in range(1<<len(ch))]
+ for ch in chunks]
+witness_bits=[]
+for mask in keep:
+ hit=sum(1<<k for k,(r,w) in enumerate(weighted) if (mask>>r)&1)
+ witness_bits.append(hit)
+assert max(sum(tab[(hit>>(10*j))&1023] for j,tab in enumerate(mass_table))
+           for hit in witness_bits)==312
+forbidden_pairs=0
+for i in range(len(keep)):
+ for j in range(i+1,len(keep)):
+  union=witness_bits[i]|witness_bits[j]
+  union_mass=sum(tab[(union>>(10*k))&1023] for k,tab in enumerate(mass_table))
+  if union_mass<232:
+   cnf.append([-(i+1),-(j+1)])
+   forbidden_pairs+=1
+assert forbidden_pairs==747883
+print('CUBE_REV_019_P11_R5_K6_69_HIGH_ORBITS_AND_747883_DUAL_PAIR_CUTS_PASS',flush=True)
 for j in range(480):
  clause=[i+1 for i,m in enumerate(keep) if m>>j&1];assert clause;cnf.append(clause)
 pool=IDPool(start_from=len(keep)+1)
+cnf.extend(CardEnc.atleast(lits=[i+1 for i,m in enumerate(keep)
+                                if rank_by_mask[m]>=6],bound=2,
+                            encoding=EncType.totalizer,vpool=pool).clauses)
 cnf.extend(CardEnc.atmost(lits=list(range(1,len(keep)+1)),bound=6,encoding=EncType.seqcounter,vpool=pool).clauses)
 fn=out/'R5_k6_physical_with_sound_symmetry.cnf';cnf.to_file(str(fn))
 receipt['cnf_sha256']=hashlib.sha256(fn.read_bytes()).hexdigest()
