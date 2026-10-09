@@ -1,0 +1,40 @@
+name: CUBE-REV 0.18 Standalone Four-Slot Exhaustive Minimum Seven
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-018/prove-four-slot-minimum-seven-stdlib.py'
+      - '.github/workflows/cuberev-018-four-slot-stdlib.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pure-python-exhaustive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Generate original physical sticker-derived Cube HTM incidence
+        run: |
+          mkdir -p /tmp/cuberev018-four
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev018-four/physical.json
+      - name: Independently exhaust all 64-source by 88-word k6 states
+        run: |
+          python3 scripts/cuberev-018/prove-four-slot-minimum-seven-stdlib.py \
+            --physical /tmp/cuberev018-four/physical.json \
+            --witness docs/0.18/P2_CP_SAT_34_INDEPENDENT_HTM_PASS.json \
+            | tee /tmp/cuberev018-four/proof_log.txt
+          grep -F 'CUBE_REV_018_FOUR_SLOT_MINIMUM_SEVEN_EXHAUSTIVE_PASS' /tmp/cuberev018-four/proof_log.txt
+      - name: Save reproducibility log and untouched original cube instance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-018-four-slot-k6-exhaustive-stdlib-proof
+          path: /tmp/cuberev018-four/
+          retention-days: 30
+          if-no-files-found: warn
