@@ -1,6 +1,6 @@
 # CUBE-REV 0.17 Lean formalization
 
-**Status: SOURCE_WRITTEN / COMPILER_PENDING / KERNEL_PENDING.** Actual Lean4 v4.34.1 compiler run has NOT yet been independently inspected. This is a separate Lake package from `formal/016`.
+**Status: SOURCE_WRITTEN / COMPILER_PASS / LEAN_KERNEL_BUILD_PASS (GENERIC SUBMODULE ONLY).** GitHub Actions [run 37941314665](https://github.com/WhoSia/CUBE-REV/actions/runs/37941314665) successfully compiled this Lean4 v4.34.1 module after adding a dependency-free Lake manifest and moving the import to the top of the source. Real compiler output: Built CubeRev017; Build completed successfully (3 jobs). This PASS does NOT cover full physical Rubik action semantics, 17 light-profile completeness, or exact M*. This is a separate Lake package from `formal/016`.
 
 ```bash
 cd formal/017
