@@ -1,0 +1,78 @@
+name: CUBE-REV 0.18 Exact M-star k33 Proof-or-Witness Court
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - '.github/workflows/cuberev-018-exact-k33.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-k33:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate original Cube 18-HTM four-turn physical incidence
+        run: |
+          mkdir -p /tmp/cuberev-018-k33
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev-018-k33/physical.json
+      - name: Install pinned SAT engine
+        run: |
+          python -m pip install --disable-pip-version-check 'python-sat==1.9.dev15'
+          python -m pip show python-sat
+      - name: Solve unstrengthened 1192-target, 1323-candidate k33 CNF
+        run: |
+          python scripts/cuberev-018/solve-mstar-unrestricted.py \
+            --instance /tmp/cuberev-018-k33/physical.json \
+            --out /tmp/cuberev-018-k33/k33 \
+            --k 33 --target full --conflicts 1800000
+      - name: Independently replay any SAT result on physical Rubik actions
+        run: |
+          node scripts/cuberev-018/verify-sat-witness-physical.mjs \
+            /tmp/cuberev-018-k33/k33/sat_witness.json
+      - name: Externally check complete UNSAT trace against byte-identical CNF
+        run: |
+          if test ! -f /tmp/cuberev-018-k33/k33/original_cover.drup; then
+            echo 'K33_UNRESTRICTED_UNKNOWN_OR_SAT_NO_UNSAT_PROOF'
+          else
+            git clone --quiet https://github.com/marijnheule/drat-trim.git /tmp/cuberev-018-k33/drat-trim
+            git -C /tmp/cuberev-018-k33/drat-trim checkout --quiet 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+            make -C /tmp/cuberev-018-k33/drat-trim
+            /tmp/cuberev-018-k33/drat-trim/drat-trim \
+              /tmp/cuberev-018-k33/k33/original_cover.cnf \
+              /tmp/cuberev-018-k33/k33/original_cover.drup \
+              | tee /tmp/cuberev-018-k33/k33/independent_checker.log
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('/tmp/cuberev-018-k33/k33')
+          log=(p/'independent_checker.log').read_text()
+          assert 's VERIFIED' in log, log[-3000:]
+          d=json.loads((p/'receipt.json').read_text())
+          assert d['state']=='UNSAT_PROOF_PENDING_EXTERNAL_CHECK'
+          assert d['mode']=='UNRESTRICTED_FULL_1192'
+          assert d['k']==33
+          d['state']='K33_UNRESTRICTED_DRUP_INDEPENDENT_VERIFIED'
+          d['independent_certificate']=True
+          d['checker_git_sha']='2e3b2dc0ecf938addbd779d42877b6ed69d9a985'
+          (p/'receipt.json').write_text(json.dumps(d,indent=2)+'\n')
+          print('K33_CUBE_PHYSICAL_EXACT_UNSAT_INDEPENDENT_CHECK_PASS')
+          PY
+          fi
+      - name: Preserve full original CNF, solver result and optional physical or UNSAT receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube-rev-018-exact-k33-proof-or-witness
+          path: /tmp/cuberev-018-k33/
+          if-no-files-found: warn
+          retention-days: 30
