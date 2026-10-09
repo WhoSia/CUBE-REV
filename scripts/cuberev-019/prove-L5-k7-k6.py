@@ -180,35 +180,19 @@ symmetry_receipt={'group_order':16,'physical_maximal_columns_checked':8807,
 print('CUBE_REV_019_16_INCIDENCE_AUTOMORPHISMS_196_ORBIT_REPS_PASS',
       json.dumps(symmetry_receipt),flush=True)
 
-# Solver-free, exact integer validation of the 16/3 fractional primal
-# against ALL 1192 original source rows; the previously checked integer
-# dual of 384/72 gives the matching lower bound.
-primal_path=Path(__file__).resolve().parents[2]/'docs/0.19/P3_L5_EXACT_FRACTIONAL_PRIMAL_16_OVER_3.json'
-frac=json.loads(primal_path.read_text())
-assert frac['physical_source_sha256']==hashlib.sha256(raw).hexdigest()
-assert frac['scale_denominator']==168 and frac['objective_scaled_numerator']==896
-weighted_cover=[0]*1192
-fractional_cost_scaled=0
-for item in frac['assignments']:
-    rep=item['representative']
-    orbit=set(g[rep] for g in group_column_maps)
-    assert len(orbit)==item['orbit_size']
-    numerator=item['weight_numerator']
-    fractional_cost_scaled+=len(orbit)*numerator
-    for j in orbit:
-        mask=candidate_original[j]
-        while mask:
-            bit=mask&-mask
-            weighted_cover[bit.bit_length()-1]+=numerator
-            mask-=bit
-assert fractional_cost_scaled==896
-assert min(weighted_cover)>=168
-assert dualmax==72 and sum(wt.values())==384
-print('CUBE_REV_019_EXACT_RATIONAL_LP_OPTIMUM_16_OVER_3_ALL_1192_ROWS_PASS',
-      json.dumps({'fractional_numerator':896,'denominator':168,
-                  'dual_numerator':384,'dual_denominator':72,
-                  'min_original_requirement_weight':min(weighted_cover)}),flush=True)
-
+# Order-invariant original-1192-source fractional certificate gate.
+# Reduced-column IDs depend on candidate iteration order. The sealed P8
+# certificates instead identify actual physical coverage masks on ALL original
+# 1192 source rows and verify the group orbit as a set, not an index array.
+import subprocess,sys
+root=Path(__file__).resolve().parents[2]
+subprocess.run([
+ sys.executable,str(root/'scripts/cuberev-019/verify-L5-order-invariant-LP.py'),
+ '--physical',a.physical,'--partitions',a.partitions,
+ '--full_cert',str(root/'docs/0.19/P8_ORDER_INVARIANT_L5_FULL_LP_CERT.json'),
+ '--five_cert',str(root/'docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json'),
+ '--output',str(out/'P8_L5_order_invariant_LP_receipt.json')],check=True)
+print('CUBE_REV_019_ORDER_INVARIANT_FULL_AND_FIVE_SOURCE_FRACTIONAL_LP_PROOF_PASS',flush=True)
 
 # Physically restricted perfect-hash subcourt: can FIVE 5-turn words
 # jointly distinguish every admitted FIVE-STATE source? This is a smaller
@@ -311,6 +295,41 @@ for k in (7,6):
           json.dumps({'bound_k':7,'physical_70row_weight_sum':384,
                       'max_one_experiment':72,'threshold_for_two_selected':24,
                       'disallowed_pairs':cuts}),flush=True)
+ if k==6:
+    # For a 6-word dictionary every chosen word must have weighted capacity
+    # at least 384-5*72=24. Every selected pair must cover at least
+    # 384-4*72=96 distinct weighted source demand. These unit/binary cuts
+    # are necessary logical consequences of the SAME original 70-row dual.
+    weighted_rows=sorted(wt.items())
+    masses=[]; hit_masks=[]
+    for wordmask in candidate_original:
+        mass=0;bits=0
+        for j,(original_row,weight) in enumerate(weighted_rows):
+            if (wordmask>>original_row)&1:
+                bits|=1<<j;mass+=weight
+        masses.append(mass);hit_masks.append(bits)
+    eligible=[]
+    for j,mass in enumerate(masses):
+        if mass<24:cnf.append([-(j+1)])
+        else:eligible.append(j)
+    assert len(eligible)==1877
+    forbidden=0
+    for p,i in enumerate(eligible):
+        for j in eligible[p+1:]:
+            common=hit_masks[i]&hit_masks[j]
+            shared=0
+            while common:
+                bit=common&-common
+                shared+=weighted_rows[bit.bit_length()-1][1]
+                common-=bit
+            if masses[i]+masses[j]-shared<96:
+                cnf.append([-(i+1),-(j+1)])
+                forbidden+=1
+    assert forbidden==1194707,('K6_PAIR_DUAL_AUDIT_FAILED',forbidden)
+    print('CUBE_REV_019_K6_EXACT_WEIGHTED_PAIR_CUTS_PASS',
+          json.dumps({'k':6,'eligible_words':len(eligible),
+                      'forbidden_pair_choices':forbidden,
+                      'pair_union_mass_minimum':96}),flush=True)
  for i in range(len(keep_rows)):
   clause=[j+1 for j,v in enumerate(projected_maxima) if (v>>i)&1]
   assert clause
