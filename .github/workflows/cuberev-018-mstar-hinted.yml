@@ -9,6 +9,7 @@ on:
       - 'scripts/cuberev-018/test-p6-oracle-bridge.mjs'
       - 'scripts/cuberev-018/verify-sat-witness-physical.mjs'
       - 'docs/0.18/P0_REPAIRED_37_WORD_PHYSICAL_WITNESS.json'
+      - 'docs/0.18/P1_35_WORD_PHYSICAL_COVER_WITNESS.json'
       - '.github/workflows/cuberev-018-mstar-hinted.yml'
   workflow_dispatch:
 
@@ -30,9 +31,10 @@ jobs:
         run: |
           mkdir -p /tmp/cuberev018-hint
           node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev018-hint/physical.json
-      - name: Verify physical 37-word repair and build exact maximal-index seed
+      - name: Independently replay repaired 37 and newly discovered 35 real HTM words
         run: |
           node scripts/cuberev-018/verify-sat-witness-physical.mjs docs/0.18/P0_REPAIRED_37_WORD_PHYSICAL_WITNESS.json
+          node scripts/cuberev-018/verify-sat-witness-physical.mjs docs/0.18/P1_35_WORD_PHYSICAL_COVER_WITNESS.json
           node scripts/cuberev-018/export-known34-hints.mjs \
             /tmp/cuberev018-hint/physical.json /tmp/cuberev018-hint/hints.json
       - name: Differentially certify historical P6 oracle failure and real-cube 37 repair
@@ -41,7 +43,7 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check 'ortools==9.11.4210'
           python -m pip show ortools
-      - name: Minimize dictionary with physically verified 37-word hint
+      - name: Minimize dictionary with physically verified 35-word hint
         run: |
           python scripts/cuberev-018/improve-mstar-hinted.py \
             /tmp/cuberev018-hint/physical.json \
