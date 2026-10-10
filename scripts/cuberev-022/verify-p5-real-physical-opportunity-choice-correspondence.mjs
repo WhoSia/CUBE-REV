@@ -101,6 +101,15 @@ function exactCourt({h,k,lambda}){
       strictly_better_physically_feasible_actions_that_must_be_EXCLUDED_from_menu:excluded.map(x=>x.action),
       no_better_other_physically_feasible_actions:optional.map(x=>x.action),
       exactly_consistent_consideration_menus: num,
+      physically_legal_first_turn_ontology_18_menus:{
+        total_legal_first_turns:18,
+        budget_infeasible_first_turns:18-feasible.length,
+        strictly_better_completable_moves_that_must_be_excluded:excluded.length,
+        compatible_menus_including_the_selected_move:2**(17-excluded.length),
+        sharp_legal_move_consideration_set_size_bounds:[1,18-excluded.length],
+        invalid_to_compare_legal_menu_count_with_completable_menu_count_without_fixing_ontology:true,
+        qualified_model:'Unavailable eventual identification is assigned infinite ideal task value, still a physically LEGAL face turn; no claim a real human recognizes that impossibility.'
+      },
       tight_considered_move_count_bounds:[1,1+optional.length],
       witness_minimal_menu:[target.action],
       witness_larger_menu:[target.action,competitor.action],
@@ -207,6 +216,12 @@ const pi=court[2].root_physical_optimum;
 assert.equal(pi.aggregate_T,74);
 assert.equal(pi.aggregate_Q,44);
 assert(court[2].sharp_root_choice_correspondence_under_HYPOTHETICAL_consideration.exactly_consistent_consideration_menus>=2);
+assert.equal(court[2].feasible_root_face_turns,4);
+assert.deepEqual(court[2].full_physical_root_optimal_action_names,["F","F'","B","B'"]);
+assert.equal(court[2].sharp_root_choice_correspondence_under_HYPOTHETICAL_consideration.exactly_consistent_consideration_menus,8);
+assert.equal(court[2].sharp_root_choice_correspondence_under_HYPOTHETICAL_consideration.physically_legal_first_turn_ontology_18_menus.compatible_menus_including_the_selected_move,131072);
+assert(court[2].selected_optimal_policy_branch_opportunity_court.internal_with_feasible_but_strictly_inferior_face_turns>0);
+
 const src=JSON.parse(fs.readFileSync('data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json','utf8'));
 assert(src.schema==='cuberev-022-p3-fmc-matched-scramble-retrospective-v1');
 assert(src.controls.unreported_candidate_counts_are_unknown_not_zero);
