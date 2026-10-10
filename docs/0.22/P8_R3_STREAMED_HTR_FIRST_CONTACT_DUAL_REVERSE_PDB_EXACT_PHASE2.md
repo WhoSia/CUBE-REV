@@ -60,3 +60,11 @@ The quotient does NOT preserve distance to the solved identity: solved and U2 li
 All code and workflows remain on actual default branch research/current under human WhoSia authorship; Actions has contents: read with no GitHub writeback. The historic active-set CI failure remains unrelated. The historical nondefault main branch has one bot-authored deployment commit; preserve for separately authorized custody-safe repair. Retain older P7 and P8 run failures and artifacts. No video/VFMC acquisition, no new human recruitment, no speculative human attention or knowledge scalar.
 
 **Next precise question:** materialize/independently validate full 29,400-coset Schreier graph and decide whether Other #3 first reaches H at 9, 10, 11, 12 or 13. Separately test 18-move post-DR unrestricted minima against the present fixed-10 grammar, keeping source-side and user consent boundaries.
+
+## R3.4 — Stage-greedy counterexample verified by physical group-contact traces
+
+A new source-specific original whole-cube replay checks HTR membership after every move of each physically solved shortest phase-two continuation. The HTR-contact step indices are: Miao main 9 only, Riabov main 9 only, Miao alternative 7–12, Riabov Other #1 10–13, and Riabov Other #3 13 only (the last two still under P7 source-concatenation assumptions).
+
+A shortest route to HTR need not produce the shortest completion: Riabov Other #1 has earliest HTR at depth 7 with shortest HTR-square suffix 9 (cost 16 after DR), but another real completion first enters HTR at depth 10 and finishes using 3 half turns (total 13, independently exact by PDB/IDA). For main Miao/Riabov the shortest HTR depth is 5 but a shortest nine-turn completion enters HTR only at its final turn; a compulsory depth-five HTR-square route needs 11 turns after DR. These facts falsify a stage-greedy rule in these fixed physical settings, not human individual planning or all HTR strategies.
+
+[Read-only independent original full-cubie group-contact CI PASS #38078222050](https://github.com/WhoSia/CUBE-REV/actions/runs/38078222050); [actual source-by-source contact receipt #11678693061](https://github.com/WhoSia/CUBE-REV/actions/runs/38078222050/artifacts/11678693061). Artifact ZIP SHA-256 1f3bc5a6a4a23c6f757a1252be9fa0b548940219e6df5581679f7c35fbb4593d. Historical R3-runs preserved.
