@@ -1,14 +1,21 @@
 # CUBE-REV — research/current
 
-> **Active programme: CUBE-REV 0.21 — Active Reconstruction of the Rubik's Cube: Observation-Driven Action Selection, Belief-State Dynamics, Physical Information Access & the Limits of Adaptive Solving.** 0.21 continues, rather than replaces, all 0.18–0.20 original physical results, mathematical records, receipts, mistakes and open obligations. Earlier versions remain scientific evidence, not obsolete material.
+> **Active programme: CUBE-REV 0.22 — Cost-Sensitive Physical Identification & Finite-State Decision Semantics: Exact Turn–Observation Pareto Geometry, Task-Relative History Sufficiency, Observation-Automaton Structure & Evidence-Constrained Human Search.** The owner confirmed the complete title on 2026-10-10. [Canonical Notion 0.22](https://app.notion.com/p/3f5ef561cf9281d8b77ede12f15718d3) is a child of the preserved 0.21 page. Earlier 0.21, 0.18–0.20, 0.11/G7 and Generation III evidence and original proof grades remain intact. Video/VFMC engineering and new human recruitment remain HOLD.
 
 CUBE-REV studies exact identification in physically constrained reversible systems and the boundaries of transferring ideal observation models to human cognition. The current exact mathematics uses a **real 3×3 Rubik's Cube-derived tracked-edge sensor**; it does **not** claim to determine complete cube state, human memory capacity, or optimal speedsolving / FMC moves.
+
+## Active continuous 0.22 research entry
+
+- **[0.22 formal Notion working home](https://app.notion.com/p/3f5ef561cf9281d8b77ede12f15718d3)** — exact user-approved title, 0.21 lineage, research constitution, P0 results and P1 boundary.
+- **[0.22 P0 — task-relative physical belief sufficiency, four real Rubik one-turn action profiles, and a same-support/disjoint-optimal-turn Bayesian witness](docs/0.22/P0_TASK_RELATIVE_PHYSICAL_BELIEF_SUFFICIENCY_ACTION_CONGRUENCE_AND_PRIOR_COUNTEREXAMPLES.md).** [Original sticker action verifier](scripts/cuberev-022/verify-p0-physical-task-history-counterexamples.mjs) / [external P0 Actions SUCCESS](https://github.com/WhoSia/CUBE-REV/actions/runs/38051049160) / [proof receipt](https://github.com/WhoSia/CUBE-REV/actions/runs/38051049160/artifacts/11668824627). Exactly 66 2-source beliefs: 16 F-only, 16 B-only, 16 F-or-B, 18 one-turn unsplittable. For support {0,1,3}, priors (0.05,.90,.05) vs (.05,.05,.90) have disjoint optimal first turn sets F vs B despite both optimal expected cost 1.1. **Not a new general POMDP sufficiency theorem; inherited G3-P23/P26/P27/P29 authority respected; belief-controller minimality HOLD.**
+
+## 0.21 historical research entry (preserved)
 
 ## 0.21 empirical direction — historical correction (Chat Archive 1–24)
 
 **Use existing human solve evidence before designing new participants.** [1–24 historical consensus and Drive/GitHub evidence restoration](docs/0.21/EMPIRICAL_CONTINUITY_RESTORATION_ARCHIVE_01_TO_24_SECONDARY_DATA_FIRST.md) is the binding empirical-method note. Existing 452 reco.nz-derived naturalistic trajectories, WCA outcome/scramble spine, historical FACTORY QC, and qualified FMC/video behavioral traces are primary; recruiting fresh participants is a dormant fallback only. The correct 0.21 P2 physical sticker-camera/24-trial generator is preserved as **auxiliary instrument code**, **not** permission to promote a new human pilot to the research mainline. Original 0.18–0.20 exact proofs remain unchanged.
 
-## Active continuous 0.21 research entry
+## 0.21 original active-era entries (historical preserved)
 
 - [0.21 P3 — original P24/P25 exact 3,329-row rejoin, 451 unique naturalistic solve-content FC3 census and FMC source/label-evidence audit](docs/0.21/P3_NATURALISTIC_451_P25_EXACT_REJOIN_AND_FMC_PROCESS_EVIDENCE.md). **Historical 60-source ΔD=-0.1333 replicated; 451-content descriptive ΔD=+0.0207; cognitive mechanism and fresh validation NOT established; actual FMC written annotations already usable, video not acquired.**
 - [0.21 P4 — 270 FC3 exact naturalistic collision support/conditioning court; FMC prior-process logs and video escalation boundary](docs/0.21/P4_NATURALISTIC_BEHAVIORAL_STATE_SUFFICIENCY_SOURCE_CONFOUNDS_AND_FMC_SEARCH_TRACE_TRIAGE.md): **1,442 → 151 → 62 → 10 → 1** comparable row pairs after progressively matching recorded orientation frame, latest author stage and recent actions; no matched SAME-vs-DIFFERENT-state contrast after stage; real FMC author retrospective reports and original VFMC command history serialization verified, continuous real-attempt video not established. The P4 private-input computation was run locally twice with byte-identical aggregate receipts; **new 451-source hosted CI not executed**.
