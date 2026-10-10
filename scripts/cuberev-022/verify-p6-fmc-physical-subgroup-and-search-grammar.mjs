@@ -213,6 +213,88 @@ const groupPhysicalSignature={
  HTR_not_solved_witness:'U2',
  final_same_state_different_words:sameEndDifferentHistory
 };
+// Representation-relative source DR opportunities after the authentic A1 EO.
+// Freeze FB EO frame from independent physical source-prefix verification.
+// Search a *bounded* exact menu of legal physical EO-preserving face moves.
+// We never assert this is the whole historical set the author considered.
+const fbRotation=stickerAfter(['x']),oldFaceToConjugatedFace={};
+for(const s of fbRotation)if(s.p.every((v,i)=>v===s.n[i])){
+  oldFaceToConjugatedFace[s.c]=normalFace[s.n.join(',')];
+}
+assert.equal(Object.keys(oldFaceToConjugatedFace).length,6);
+const conjugateFaceMove=token=>oldFaceToConjugatedFace[token[0]]+token.slice(1);
+const EO_FB_ALLOWED=ACTIONS.filter(token=>FACE_MOVES[conjugateFaceMove(token)].eo.every(x=>x===0));
+assert.equal(EO_FB_ALLOWED.length,14);
+const sourceDR=normalized('L2 F2 B L B2 L');
+for(const action of sourceDR)assert(EO_FB_ALLOWED.includes(action),'real sourced DR path must be admitted to this frozen EO-preserving generator alphabet');
+const initialFB=phaseState(stickerAfter([...scr,...eoA1]),'FB');
+assert(isEO(initialFB));
+const sourceDRstate=sourceDR.reduce((cur,a)=>compose(cur,FACE_MOVES[conjugateFaceMove(a)]),initialFB);
+const independentSourceDR=phaseState(stickerAfter([...scr,...eoA1,...sourceDR]),'FB');
+assert.equal(stateKey(sourceDRstate),stateKey(independentSourceDR));
+assert(isDR(sourceDRstate));
+const stagePaths=[
+ [],
+ ['B'],['U2'],['L','R'],
+ ['B','F2','R'],sourceDR
+];
+for(const word of stagePaths){
+ const viaGroup=word.reduce((cur,a)=>compose(cur,FACE_MOVES[conjugateFaceMove(a)]),initialFB);
+ const viaOriginal=phaseState(stickerAfter([...scr,...eoA1,...word]),'FB');
+ assert.equal(stateKey(viaGroup),stateKey(viaOriginal),
+  'axis-conjugation must agree with original full-sticker moves on actual scramble+EO+prefix');
+}
+let frontier=[{s:initialFB,w:''}],wordCumulative=1,collisionWitness=null;
+const boundedFrontier=[];
+for(let depth=0;depth<=4;depth++){
+ const unique=new Map();let DRcount=0,HTRcount=0;
+ for(const p of frontier){
+  assert(isEO(p.s),'Only physical EO-preserving path words admitted');
+  const k=stateKey(p.s);
+  if(unique.has(k)&&!collisionWitness&&unique.get(k)!==p.w){
+   collisionWitness={depth,same_physical_state_first_word:unique.get(k),same_physical_state_second_word:p.w,
+    stage_axis:'FB',given_the_same_true_scramble_and_authored_EO_prefix:true};
+  }
+  if(!unique.has(k))unique.set(k,p.w);
+  if(isDR(p.s))DRcount++;
+  if(isHTR(p.s))HTRcount++;
+ }
+ boundedFrontier.push({
+  additional_turns_from_real_authored_FB_EO_prefix:depth,
+  exact_generator_word_paths:frontier.length,
+  distinct_full_physical_cube_endpoints:unique.size,
+  full_DR_membership_word_paths:DRcount,
+  full_HTR_membership_word_paths:HTRcount,
+  total_words_over_all_depths_through_here:wordCumulative,
+  full_retro_human_EO_candidates_evaluated:'NOT_OBSERVED'
+ });
+ if(depth===4)break;
+ const next=[];
+ for(const p of frontier)for(const action of EO_FB_ALLOWED){
+   const s=compose(p.s,FACE_MOVES[conjugateFaceMove(action)]);
+   next.push({s,w:p.w?p.w+' '+action:action});
+ }
+ frontier=next;wordCumulative+=frontier.length;
+}
+assert(boundedFrontier[4].exact_generator_word_paths===14**4);
+assert(boundedFrontier[4].distinct_full_physical_cube_endpoints<=14**4);
+assert(collisionWitness,'mathematically distinct EO-preserving words must sometimes reach the same cube');
+const budgetedOpportunity={
+ source_attempt:'Qijun Miao FMCWorld2026 Attempt 1, authored normal-side four-move EO prefix',
+ original_scramble:db.competitors[0].attempts[0].official_scramble,
+ base_word:eoA1.join(' '),
+ explicit_axis:'FB',
+ legal_EO_preserving_HTM_actions:EO_FB_ALLOWED,
+ preserving_HTM_generator_count:EO_FB_ALLOWED.length,
+ stage_target:'full-cubie DR FB subgroup membership, not a psychological consideration label',
+ exact_up_to_four_added_HTM_depth_frontier:boundedFrontier,
+ measured_DO_NOT_infer_time_or_attention_from_word_counts:true,
+ author's_known_six_move_EO_to_DR_completion:sourceDR.join(' '),
+ completed_stage_certificate_verified:true,
+ distinct_word_same_physical_state_witness:collisionWitness,
+ note:'The 14-move generated universe is one mathematical grammar; we did not verify the historical human considered any of these exhaustively.'
+};
+
 const report={
  marker:'CUBE_REV_022_P6_REAL_FULL_CUBE_FMC_GRAMMAR_AND_SQUARE_SUBGROUP_PASS',
  physical_engine:'CUBE-REV original 54-sticker transformations and complete corner/edge permutation/orientation derived states; not a 24-state tagged-edge abstraction',
@@ -239,6 +321,7 @@ const report={
   ]
  },
  phase_subgroup_certificate:groupPhysicalSignature,
+ bounded_source_relative_fmc_DR_opportunity_grammar:budgetedOpportunity,
  HTR_depth_histogram:group.depthHistogram,
  source_based_authored_Miao_first_attempt_normal_prefix_verification:maybePhase,
  full_actual_competition_scramble_plus_19_HTM_solution_verified_solved:true,
