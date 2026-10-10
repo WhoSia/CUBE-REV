@@ -1,66 +1,84 @@
-# CUBE-REV 0.20 — PREPARATORY CHARTER ONLY (NOT OPENED)
+# CUBE-REV 0.20 — Preparatory Charter (Proposal, Not Yet Activated)
 
-## Formal-name proposal — awaiting 0.19 closure
+## Formal name — proposed
 
-**CUBE-REV 0.20 — Laws of Physically Constrained Identification: Restricted Perfect Hash Families, Action-Transported Observation Codes & Certified Covering Complexity**
+**CUBE-REV 0.20 — Structural Laws of Physical Identifiability: Action-Transported Observation Codes, Restricted Perfect Hash Families & Proof-Carrying Covering Complexity**
 
-**Authority status: PROPOSED / NOT ACTIVATED.** This document exists to avoid losing 0.19's conceptual findings. It must not supersede active 0.19, cannot claim an exact physical \(M^*(5)\) yet, and must not promote a new version before the original 1192-source k7 SAT or k7 UNSAT proof is independently checked.
+**Status: PROPOSED / PREPARED / NOT ACTIVATED.** Version 0.19 now has a complete **local** finite-proof horizon profile for its *frozen physical UR-edge source family*, including the P13 local result \(M^*(5)=8\). The exact P13 theorem remains subject to independently checked external CI/other proof receipts. This draft **does not** count as opening 0.20 or as establishing any of its proposed general statements beyond those explicitly marked as elementary derived lemmas.
 
-## The primitive research question
+## Primitive question
 
-> For a reversible physical transducer with a bounded sensor and an admissible family of candidate initial states, which structural invariants determine when identification becomes possible, how the minimum size of a nonadaptive experiment dictionary changes with observation length, and which additional information access rights reduce that cost?
+**When does the geometry of physically executable actions, rather than the raw sensor alphabet size, determine the cost of identifying an initially ambiguous physical state?**
 
-General finite ontology (a formal **proposal**, not yet a theorem):
+Distinguish four costs that are frequently but wrongly conflated: (i) size of a resettable **fixed nonadaptive experiment dictionary**; (ii) length of one preset experiment that identifies every hypothesis; (iii) minimax number of actions in an **adaptive feedback** strategy; (iv) actual physical action, memory, observation, measurement-noise and human cognitive costs.
 
-- Finite physical transition system \(T=(Q,\Sigma,\delta,o)\) with actual state set Q, executable action alphabet \(\Sigma\), deterministic transition \(\delta\), sensor output o and **initial hypotheses** \(S\subseteq Q\).
-- Source-family contract \(\mathcal R\subseteq 2^S\), potentially nonuniform and with constraints inherited from geometry.
-- Fixed preset word w of length L gives an actual **ordered** physical output trace \(h_w:S\to Y^L\) and corresponding observation partition \(\pi_w\).
-- Physically constrained restricted perfect-hash covering number \(M_T(\mathcal R,L)=\min\{|D|:D\subseteq\Sigma^L,\forall A\in\mathcal R,\exists w\in D\text{ s.t. }h_w|_A\text{ injective}\}\), infinite if impossible. A reset or no-reset policy is part of the contract.
-- Other incomparable costs (worst preset universal length, adaptive minimax policy depth, sensor memory, total action count, expected action count) must never be conflated with dictionary cardinality.
+## Finite object and exact notation
 
-## Existing 0.19 evidence to carry as **frozen baseline**, not universal conclusions
+Let a *physical observation transducer* be \(\mathsf T=(Q,\Sigma,\delta,o,S)\), where Q is finite, \(\Sigma\) legal executable actions, \(\delta:Q\times\Sigma\to Q\) a deterministic transition, \(o:Q\to Y\) a physical sensor, and \(S\subseteq Q\) the admissible initial states. Fixed word \(w\in\Sigma^L\) determines \(h_w:S\to Y^L\). Given a restricted, explicitly specified source family \(\mathcal R\subseteq2^S\), define
 
-- Current full physical fixed-source horizon profile (local finite computer-assisted evidence): no dictionary for L<=3, \(M^*(4)=34\) externally checked, \(M^*(6)=4\), \(M^*(7)=3\), \(M^*(8)=2\), \(M^*(L>=9)=1\); original full \(M^*(5)\) **still exactly one of 7 or 8**.
-- Restricting the 1192 original source requests to its admitted 480 five-source subfamily at L5 gives exact **seven** experiment words by P12 locally checked 445 integer weight certificates and finite exhaustion. This is a proper restricted-family theorem, not full original M*=7.
-- Standard fractional covering LP for all original five-HTM sources is exactly \(16/3\), and for original five-element sources alone exactly \(185/39\). Difference \(23/39\), *not* fractional turns. The ordinary fractional bound is exhausted and integer combinatorial structure is essential.
-- L5 original physical all-k quotient is 544x2887; for original k7 the source-validated rank gate gives 544x2403, 16 incidence automorphisms give 69 high-rank first-word orbit representatives, and original dual weighted-mass yields 102979 valid pair exclusions on the rank-eligible columns.
-- 0.19 P13 proved independently that any seven-word R5 dictionary requires at least two words with rank>=6, by 1144 source-volume cases and 32 source-original exact integer dual exceptions. Empirical R7/rank7 class proof branches may be added only after all original source and group-closure checks pass.
-- Fixed universal identification first horizon9; adaptive full 12-state minimax horizon7 on the same *ideal* orientation-bit sensor. No transfer to human perception or full cube-state recovery is asserted.
+\[
+M_{\mathsf T}(\mathcal R,L)=\min\{ |\mathcal D| : \mathcal D\subseteq\Sigma^L,\ \forall A\in\mathcal R\ \exists w\in\mathcal D\text{ with }h_w|_A\text{ injective}\}.
+\]
 
-## Proposed mathematically substantive 0.20 work packages
+If no dictionary works, define \(M=\infty\). Dictionary cost is one per complete experimental word, not number of turns spent executing a selected word. The source set and reset/feedback/measurement convention are always part of the theorem statement.
 
-### A. Representation theorem for transported physical observation cuts
+## Frozen CUBE-REV 0.19 reference experiment (not a universal theory)
 
-Write each legal move on tracked states as \((p,b)\mapsto(\sigma_a(p),b\oplus f_a(p))\). Derive exact conditions on the transported support sets \((\sigma_{a_1}\cdots\sigma_{a_{t-1}})^{-1}(\operatorname{supp}f_{a_t})\) that force a first identifiable horizon. The concrete 0.19 four-slot support and Hamming-mass proof are worked examples, not an unrestricted theorem for every transducer.
+The exact **local computer-assisted finite** fixed-oracle horizon profile is: \(M^*(0\ldots3)=\infty,\ M^*(4)=34,\ M^*(5)=8,\ M^*(6)=4,\ M^*(7)=3,\ M^*(8)=2,\ M^*(L\ge9)=1\). The L4 value has independent external DRUP proof; L5 closure has separate integer certificates, exhaustive physical branches and original physical eight-word witness, while new independent external CI completion remains to be checked. The physical oracle tracks only one edge orientation from 12 initial slots, not 3×3 cube-state identification.
 
-### B. Restricted perfect-hash-family bounds specific to realized transducers
+The original 480 permitted five-element sources at L5 have exact local integer optimum **7**, but the full original 1192 permitted sources have exact local integer optimum **8**. The actual *integer source-extension penalty* is **1 additional dictionary word**. The corresponding ordinary fractional optimum difference is **23/39** (full LP 16/3, restricted-five LP 185/39). Thus the full original L5 integer integrality ratio is **3/2**, and the original restricted-five L5 ratio is **273/185**. These are fixed-instance parameters requiring structural explanation; not general bounds or novelty claims.
 
-Formalize \(M_T(\mathcal R,L)\) with a source-specific collision hypergraph and derive a necessary/sufficient hyperedge-transversal condition for a k-word dictionary. Characterize when source-family extension \(\mathcal R\subset\mathcal R'\) strictly raises the **integer** minimum, despite identical alphabet and number of observations. Compare with existing perfect/separating hash families, covering arrays and separating systems; explicitly state prior art versus new physical constraints.
+## Fundamental proof targets
 
-### C. A proof-carrying hierarchy for integer covering obstructions
+### T0 — The physical observation-cut weight bound (derive before experiments)
 
-Move beyond the exhausted ordinary row-weight LP optimum using validity-preserving conditional duals, high-order collision edge unions, symmetry with explicit witness permutations, and pseudo-Boolean integer cutting-plane certificates. Formalize the exact reduction lineage: physical word -> observation partition -> original source coverage -> support implication -> dominance quotient -> group orbit -> k-specific cuts -> external proof. Study VeriPB/CakePB for proof logging rather than overinterpret MIP timeouts.
+For finite hypothesis set \(S\) of size n and action-induced incremental binary sensor observations whose informative cuts have (after transporting through preceding physical permutations) sizes \(s_1,\ldots,s_q\), all hypotheses generate q-bit increment codes with total Hamming weight exactly \(\sum_j s_j\). If the n codes are pairwise distinct, the total must be at least \(W(n,q)\), the sum of the Hamming weights of the n lightest distinct q-bit strings, filling binomial layers \(\binom qr\) from small r upward. Hence the elementary **necessary** condition
 
-### D. Feedback versus preset separation as an automata result
+\[
+\sum_{j=1}^{q}s_j\ge W(n,q).
+\]
 
-Specify admissible sensing and control access rights. Compare preset words of finite length, resettable nonadaptive dictionaries, observation-dependent adaptive policies and memory-limited controllers with identical physical state and source contracts. Establish theorem hypotheses before considering attention, memory or human cognitive claims.
+In the tracked-edge instance, each flip-capable physical action yields an exactly four-slot cut, so \(q=4\) gives total 16 while \(W(12,4)=19\): full identification is impossible even with sixteen possible 4-bit signatures. This elementary inequality is a clean starting point, **not** a sufficient condition for physical identifiability and not automatically a novel mathematical result. **0.20's genuine challenge** is to strengthen it with *joint reachability/conjugacy constraints* to account for the specific nine-turn preset threshold.
 
-### E. External validity and falsification
+### T1 — Collision-hypergraph and source-extension laws
 
-Pre-register a *separate* physical sensor/sticker validation and controlled orientation convention counter-tests. FTC? Avoid transferring partial edge orientation to the full cube's 43 quintillion state ontology. Optional FMC, WCA, video transcription and human timing data remain **auxiliary**. Do not treat behavioral recordings as proof of a deterministic cube-state combinatorial theorem.
+For each realized word w, let \(B(w)\) be the graph of indistinguishable pairs of initial hypotheses. A fixed dictionary \(D\) fails exactly when there exists admitted \(A\in\mathcal R\) containing some edge of \(B(w)\) for **every** w in D. Equivalently, there exist selected collision edges \(e_w\in B(w)\) whose union lies inside an A in \(\mathcal R\). Characterize which source extensions \(\mathcal R\subsetneq\mathcal R'\) necessarily increase the **integer** minimum, and when fractional and integer extension costs diverge. The frozen L5 example with integer increment 1 and fractional increment 23/39 is a certified test instance, not a universal theorem.
 
-## Gate to activate 0.20
+### T2 — Proof-carrying quotient and symmetry theorem
 
-1. Obtain a physically replayed **seven-word full-original** L5 dictionary (thus M*(5)=7), OR source-linked and independently DRUP/VeriPB checked full-original **k<=7 UNSAT** plus real eight-word upper (thus M*(5)=8).
-2. Preserve the original 1192-source SHA256, complete P12 restricted-seven proof, P13 final source-court CNF/proof/witness, independent verifier logs, and exact version-specific README/Notion/Drive receipts.
-3. Explicitly freeze what 0.19 proved (scope, quantifiers, L length convention, source-family membership, action alphabet, noise/reset/adaptivity). A method that only times out or has a candidate unsat numerical MIP is insufficient.
-4. Then and only then activate the formal 0.20 name, specify falsifiable P0 targets and a self-contained reader's theorem/limitations outline.
+Specify sufficient conditions under which (a) original-source support implication, (b) source-specific collision inclusion dominance, (c) source-incidence automorphisms, and (d) k-specific conditional integer dual cuts preserve satisfiability/UNSAT of the original experiment-selection problem. Crucial failure mode: **cross-rank dominance cannot be reused unchanged when a case split restricts the admissible ranks**. Deliver a small independent checker for each preservation step rather than relying on unverifiable long solver logs.
 
-## Literature to read before novelty claims
+### T3 — Preset versus adaptive feedback and sensor access rights
 
-- Bogaerts, Gocht, McCreesh & Nordström, *Certified Dominance and Symmetry Breaking for Combinatorial Optimisation* (JAIR 2023), https://doi.org/10.1613/jair.1.14296
-- Koops et al., *Practically Feasible Proof Logging for Pseudo-Boolean Optimization* (CP 2025), https://doi.org/10.4230/LIPIcs.CP.2025.21
-- Shangguan & Ge, *Separating Hash Families: A Johnson-type bound and New Constructions* (SIAM J. Discrete Math. 2016), https://doi.org/10.1137/15M103827X
-- Procacci & Sanchis, *Perfect and separating hash families: new bounds via the algorithmic cluster expansion local lemma* (2017), https://doi.org/10.4171/AIHPD/51
+Place the fixed-preset nine-action full-12-hypothesis threshold and locally exact adaptive minimax seven-action policy into the same finite-state observability formalism. Prove any claimed policy separation under **identical initial-state and sensor conventions**, explicitly distinguishing the resettable dictionary size M from single-word identification depth. Introduce bounded memory or missing observation histories as an explicit, independently falsifiable model change, not as a claim about human attention.
 
-**Do not cite this proposed charter as established 0.20 results.** Its purpose is to keep mathematics and evidence boundaries ready for the next formal generation.
+### T4 — Cross-transducer falsification and literature novelty court
+
+Choose at least one distinct reversible finite transducer or a controlled alternative cube observation convention, preregister what changes and what is invariant, and test which candidate structural bounds survive. Maintain a rival-baseline table covering classical perfect/separating hash families, covering designs/arrays, adaptive and preset automata distinguishing sequences, and certified symmetry/dominance proof systems. The objective is a genuine theorem with hypotheses and counterexamples, not a renamed finite enumeration.
+
+## Proposed phase labels and falsifiable gates
+
+- **0.20-P0 — Theorem Contract & Prior-Art Rival Audit.** Freeze the transducer/source/sensor/cost ontology and literature countermodels. Reject any new term if classical theory already gives the claimed statement.
+- **0.20-P1 — Action-Transported Cut Geometry & Finite Code-Weight Bound.** Prove necessary conditions, construct sharp physical counterexamples where mere bit counts fail, test on at least two systems.
+- **0.20-P2 — Restricted Perfect-Hash Source-Extension Certificates.** Characterize when source extension forces a dictionary-cost jump, and separate fractionally visible from purely integer obstructions.
+- **0.20-P3 — Proof-Carrying Physical-Quotient and Integer Branch Certification.** Machine-check original physical transitions, dominance/symmetry reweighting and every case-specific source rank.
+- **0.20-P4 — Feedback, Memory & Counterexample Ecology.** Derive and adversarially test accessibility hierarchies and boundaries to human inference.
+
+At P4 closure, demand at least **one theorem beyond the frozen twelve-edge model** or an explicitly negative result that shows the generalization fails. A second enormous brute-force census by itself does not qualify.
+
+## Research integrity and activation gate
+
+1. Do not promote new 0.20 claims from the 0.19 source-family benchmark alone.
+2. Freeze the P13 eight-word physical witness, the original exact source SHA, independent per-t exclusion receipts, completeness of the t=0..7 partition and a reproducible end-to-end proof package.
+3. Confirm actual independent GitHub CI/proof checker receipts for the exact frozen P13 claim before administrative closure of 0.19. Locally checked finite arithmetic is an important but distinct grade.
+4. Explicitly decide/approve 0.20's formal name and P0 contract; **a proposed charter is not an activated version**.
+5. FMC/YouTube/WCA human reconstructions remain optional auxiliary datasets and cannot certify the finite deterministic physical cube theorem.
+
+## Key prior research (novelty baselines)
+
+- Bogaerts, Gocht, McCreesh & Nordström, *Certified Dominance and Symmetry Breaking for Combinatorial Optimisation*, JAIR 77 (2023), DOI 10.1613/jair.1.14296.
+- Shangguan & Ge, *Separating Hash Families: A Johnson-type bound and New Constructions*, SIAM J. Discrete Math. (2016), DOI 10.1137/15M103827X.
+- Xin Wei, Xiande Zhang & Gennian Ge, *Separating Hash Families with Large Universe*, JCTA 216 (2025), DOI 10.1016/j.jcta.2025.106075.
+- Proof logging / VeriPB references curated at https://veripb.org/publications.html.
+
+**No claim of original authorship of perfect-hash families, standard automata distinction, LP duality, basic Hamming-weight bounds, symmetry groups or proof logging.** New 0.20 claims must be formulated as genuinely distinct physical or source-specific hypotheses and checked against competitors.
