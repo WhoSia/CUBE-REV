@@ -142,7 +142,7 @@ def audit():
             "unordered_event_pairs":total-ordered,
             "possible_pairs":total,
             "longest_certified_reported_precedence_chain":max(longest.values()),
-            "minimum_possible_parallel_poset_width":width,
+            "max_set_of_currently_incomparable_events":width,
             "original_timeline_is_direct_video_ground_truth":False
         }
         total_temporal+=len(precedences)
