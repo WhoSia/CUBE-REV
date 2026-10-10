@@ -1,0 +1,127 @@
+{
+  "schema": "cuberev-022-p7-fmc-authored-physical-candidate-ledger-v1",
+  "source_method": "Human-written FMC World 2026 authors' retrospective reconstruction pages, lines read 2026-10-11. Source citation is a statement about authored reconstruction, NOT necessarily chronological on-site move sequence.",
+  "attempt": "FMCWorld2026 Final Attempt1",
+  "normal_scramble": "R' U' F L2 D' L2 U' R U F' D R L' F U2 D2 F L2 F' R2 F2 D R' U' F",
+  "submitted_final_19": "L2 F' L D L2 F2 B L B2 R2 L B' R2 U2 B U2 L2 F B",
+  "source_refs": [
+    {
+      "author": "Qijun Miao",
+      "wca_id": "2014MIAO02",
+      "url": "https://333.fm/wca/reconstruction/FMCWorld2026/2014MIAO02",
+      "line_span": "L29-L53"
+    },
+    {
+      "author": "Yurii Riabov",
+      "wca_id": "2018RIAB01",
+      "url": "https://333.fm/wca/reconstruction/FMCWorld2026/2018RIAB01",
+      "line_span": "L29-L57"
+    }
+  ],
+  "eo_dr_pairs": [
+    {
+      "id": "miao_main",
+      "author": "Qijun Miao",
+      "source_lines": "L39-L40",
+      "eo_prefix": "L2 F' L D",
+      "dr_extension": "L2 F2 B L B2 L",
+      "reported_label": "DR 4b2 4E",
+      "declared_mode": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME"
+    },
+    {
+      "id": "riabov_main",
+      "author": "Yurii Riabov",
+      "source_lines": "L41-L44",
+      "eo_prefix": "L2 F' L D",
+      "dr_extension": "L2 B F2 L B2 L",
+      "reported_label": "10 4b2 4e",
+      "declared_mode": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME"
+    },
+    {
+      "id": "miao_alternative_from_same_eo",
+      "author": "Qijun Miao",
+      "source_lines": "L45",
+      "eo_prefix": "L2 F' L D",
+      "dr_extension": "L2 F2 L' B' L2 B L",
+      "reported_label": "11 to 4a1",
+      "declared_mode": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "author_calls_it": "extend from the EO"
+    },
+    {
+      "id": "riabov_other_1",
+      "author": "Yurii Riabov",
+      "source_lines": "L48-L50",
+      "eo_prefix": "L F2 L2 D'",
+      "dr_extension": "B' L B L' F",
+      "reported_label": "9 2c3 4e",
+      "declared_mode": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME"
+    },
+    {
+      "id": "riabov_other_2",
+      "author": "Yurii Riabov",
+      "source_lines": "L52-L53",
+      "eo_prefix": "B L R2 U'",
+      "dr_extension": "F B L B' R B",
+      "reported_label": "10 4b3",
+      "declared_mode": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME"
+    },
+    {
+      "id": "riabov_other_3",
+      "author": "Yurii Riabov",
+      "source_lines": "L55-L56",
+      "eo_prefix": "F L' F D",
+      "dr_extension": "L B2 L U2 R F",
+      "reported_label": "10 2c4",
+      "declared_mode": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME"
+    }
+  ],
+  "deliberately_unparsed": [
+    {
+      "source_author": "Qijun Miao",
+      "attempt": 1,
+      "source_lines": "L46-L53",
+      "kind": "COMMA_SEPARATED_DR_NOTATION",
+      "count_authored_lines": 7,
+      "reason": "Comma separates partial candidates or stage notations; not automatically consecutive normal-side full-cube word; defer semantic parse."
+    },
+    {
+      "source_author": "Qijun Miao",
+      "attempt": 1,
+      "source_lines": "L41-L43",
+      "kind": "INSERTION_BRACKETS",
+      "reason": "Square brackets denote insertions; not a one-sided linear prefix."
+    },
+    {
+      "source_author": "Qijun Miao",
+      "attempt": 2,
+      "source_lines": "L75-L83",
+      "kind": "PARENTHESIZED_INVERSE_WITH_INSERTION_AND_REJECTED_VARIANT",
+      "reason": "Only an unambiguous bare parenthesized alternate move group may be treated as typed inverse-side segment; the stage-relative physical sequence and exact human ordering are not given."
+    }
+  ],
+  "niss_authored_inverse_segment": {
+    "attempt": 2,
+    "source_author": "Qijun Miao",
+    "source_url": "https://333.fm/wca/reconstruction/FMCWorld2026/2014MIAO02",
+    "scramble": "R' U' F L2 D' L' B' R B2 R' B2 R' U2 F2 L D F' R' B' F' D U R' U' F",
+    "normal_EO_prefix": "D' R2 U' L",
+    "normal_JZP": "D",
+    "inverse_side_alt_DR_after_JZP": "F2 R2 D R2 D",
+    "source_lines": "L74-L83",
+    "source_parentheses": true,
+    "grade": "RETROSPECTIVE_TYPED_SIDE_NOT_CONTEMPORANEOUS_TIMELINE"
+  },
+  "cautions": {
+    "different_people_not_two_alternatives_from_one_mind": true,
+    "physical_equivalence_not_human_cognitive_equivalence": true,
+    "insertions_not_parsed_as_simple_concatenation": true,
+    "missing_exhaustive_consideration_set": true,
+    "not_a_full_timestamped_search_log": true
+  }
+}
