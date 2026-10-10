@@ -8,6 +8,7 @@ CUBE-REV studies exact identification in physically constrained reversible syste
 
 - [0.21 Notion formal research home](https://app.notion.com/p/3f5ef561cf92815e86efc7d923b6ffa8)
 - [0.21 P0 continuity charter and physical feedback-state definition](docs/0.21/P0_CONTINUITY_CHARTER_AND_PHYSICAL_ADAPTIVE_BELIEF_COURT.md)
+- [0.21 P1 matched fixed 9 versus adaptive 7, physical silent transport, and cognitive/behavioral hypothesis court](docs/0.21/P1_COST_OF_FEEDBACK_SILENT_TRANSPORT_AND_RESOURCE_BOUNDED_HUMAN_RECONSTRUCTION.md): [P1 external physical replay PASS](https://github.com/WhoSia/CUBE-REV/actions/runs/38040188831) and [full 12-start machine receipt](https://github.com/WhoSia/CUBE-REV/actions/runs/38040188831/artifacts/11665274078); **human validation not performed**.
 - [Physical 0.21 adaptive-vs-0.15 finite oracle regression](scripts/cuberev-021/audit-physical-adaptive-beliefs.mjs) and [read-only CI](.github/workflows/cuberev-021-physical-adaptive-belief.yml).
 - [0.20 P1-E external finite theorem PASS](https://github.com/WhoSia/CUBE-REV/actions/runs/38039068732) and [unchanged 0.20 canonical record](https://app.notion.com/p/3f5ef561cf92812cb9bad19f515b2c8b).
 - The prior 0.15 adaptive depth procedure is a **predecessor** for reuse and critical comparison; 0.18/0.19 `M*(4)=34`, `M*(5)=8` are unit-cost resettable *preset dictionaries*, not adaptive move counts.
