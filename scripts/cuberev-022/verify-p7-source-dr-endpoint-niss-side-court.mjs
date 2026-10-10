@@ -30,7 +30,7 @@ const scramble=tok(ledger.normal_scramble),solution=tok(ledger.submitted_final_1
 assert.equal(solution.length,19);
 assert(solvedUpToRotation(sticker([...scramble,...solution])));
 const certified=ledger.eo_dr_pairs.map(c=>{
- assert(c.declared_mode==='CONTIGUOUS_NORMAL_SIDE_PREFIX');
+ assert(['CONTIGUOUS_NORMAL_SIDE_PREFIX','ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY'].includes(c.declared_mode));
  const E=tok(c.eo_prefix),D=tok(c.dr_extension);
  const ec=sticker([...scramble,...E]),dc=sticker([...scramble,...E,...D]);
  return {id:c.id,author:c.author,source_lines:c.source_lines,
@@ -42,6 +42,7 @@ const certified=ledger.eo_dr_pairs.map(c=>{
   reported_process_NOT_live_timestamps:true};
 });
 assert.equal(certified.length,6);
+assert.equal(certified.filter(x=>x.declared_mode==='ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY').length,3);
 const byId=new Map(certified.map(c=>[c.id,c]));
 const mainA=byId.get('miao_main'),mainB=byId.get('riabov_main');
 assert.deepEqual(mainA.EO_axes,['FB']);assert.deepEqual(mainB.EO_axes,['FB']);
@@ -54,6 +55,13 @@ for(const c of certified){if(!classes.has(c.dr_hash))classes.set(c.dr_hash,[]);c
 const endpointClasses=[...classes].map(([sha,ids])=>({full_cube_endpoint_SHA256:sha,members:ids,member_authors:[...new Set(ids.map(id=>byId.get(id).author))]}));
 const sourceDRPassing=certified.filter(c=>c.DR_axes.length>0);
 const invalidForStage=certified.filter(c=>c.DR_axes.length===0);
+assert.equal(sourceDRPassing.length,5);
+assert.equal(invalidForStage.length,1);
+assert.equal(invalidForStage[0].id,'riabov_other_2');
+assert.equal(classes.size,5);
+const certifiedDRGroups=new Set(sourceDRPassing.map(x=>x.dr_hash));
+assert.equal(certifiedDRGroups.size,4);
+
 function niss(S,A,B){
  // Group law: N(B,A)=B^{-1} S A ; inverse-view N^{-1}=A^{-1} S^{-1} B.
  const n=cubie([...inv(B),...S,...A]);
@@ -104,6 +112,15 @@ const report={
  source_typed_DR_membership_NOT_CONFIRMED:invalidForStage.map(x=>x.id),
  same_physical_DR_endpoint_classes:endpointClasses,
  distinct_full_cube_DR_endpoints:classes.size,
+ distinct_source_backed_DR_certified_endpoints:certifiedDRGroups.size,
+ concatenation_assumptions_for_ria_other_candidates_are_explicit:true,
+ unmatched_source_case:{
+   id:'riabov_other_2',
+   physical_EO_axes_under_chosen_concatenation:byId.get('riabov_other_2').EO_axes,
+   physical_DR_axes_under_chosen_concatenation:byId.get('riabov_other_2').DR_axes,
+   reason:'Source presents alternative as Other; direct consecutive normal-side transcription fails all three axis checks. Could require distinct side/context or different syntax; NO author-error claim.',
+   status:'SOURCE_CONTEXT_SEMANTICS_HOLD'
+ },
  different_EO_prefix_physical_state_count:allEoHashes.size,
  matched_authored_main_DR_commutation_collision:{
   author1:'Qijun Miao',author2:'Yurii Riabov',
