@@ -1,0 +1,36 @@
+name: CUBE-REV 0.21 — Shared Cubies and Real Sticker View
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-021/verify-p2-shared-edges-and-real-face-colours.mjs'
+      - '.github/workflows/cuberev-021-P2-joint-physical-cubies-and-native-stickers.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  shared-real-cube-and-ecological-face:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check all coupled cubies against real sticker-turn oracle and view window
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-021/verify-p2-shared-edges-and-real-face-colours.mjs | tee cuberev021-P2-real-view-receipt.json
+          grep -F 'CUBE_REV_021_P2_SHARED_EDGE_AND_NATIVE_STICKER_FRONT_CAMERA_PASS' cuberev021-P2-real-view-receipt.json
+      - name: Preserve reproducible coupled-cubie and sticker camera proof receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-021-P2-coupled-132-and-real-sticker-camera
+          path: cuberev021-P2-real-view-receipt.json
+          retention-days: 30
+          if-no-files-found: warn
