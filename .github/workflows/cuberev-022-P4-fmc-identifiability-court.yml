@@ -1,0 +1,49 @@
+name: CUBE-REV 0.22 P4 — FMC Process Identifiability Bounds
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p4-fmc-process-identifiability-court.py'
+      - 'data/cuberev-021/p5_fmc_existing_search_event_seed.json'
+      - 'data/cuberev-021/p6_fmc_partial_order_extension.json'
+      - 'data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json'
+      - '.github/workflows/cuberev-022-P4-fmc-identifiability-court.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-grounded-epistemic-bounds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recreate unchanged P6 event graphs and audit exact source poset bounds
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/cuberev-021/verify-p6-fmc-source-grounded-partial-order.py --outdir p4-output
+          python scripts/cuberev-022/verify-p4-fmc-process-identifiability-court.py --output p4-output/p4_exact_process_identifiability_receipt.json | tee p4-output/p4-summary.txt
+          grep -F 'CUBE_REV_022_P4_EXACT_FMC_PARTIAL_ORDER_PROCESS_IDENTIFIABILITY_PASS' p4-output/p4-summary.txt
+          python - <<'PY'
+          import json
+          x=json.load(open('p4-output/p4_exact_process_identifiability_receipt.json'))
+          assert x['linear_extensions_product_not_real_human_histories']==288000
+          assert len(x['all_34_ambiguous_pairs_with_opposite_order_extension_counts'])==34
+          assert x['curated_edge_withdrawal_sensitivity']['all_direct_precedence_edges']==27
+          assert x['matched_FMC_branch_coverage_partial_identification']['conditional_if_cardinalities_exact_70_and_30']['written_but_not_tested_lower']==40
+          assert x['strict_evidence_limits']['no_measured_human_cognitive_cost']
+          print('P4_SOURCE_GROUNDED_FINITE_PROOF_SHAPE_PASS')
+          PY
+      - name: Archive original frozen graph and P4 uncertainty witnesses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P4-fmc-process-partial-identification-exact
+          path: p4-output/*.json
+          retention-days: 90
+          if-no-files-found: warn
