@@ -2,7 +2,7 @@
  * CUBE-REV 0.22 P8: real authored DR -> HTR -> half-turn-complete bounded geometry.
  * This is exact finite physical search, not a reconstruction of human thought.
  * Assumption: fixed physical DR axis, DR-preserving 10-face-turn alphabet,
- * then exactly six physical half-turn moves. Bound D=6 applies to DR stage only.
+ * then exactly six physical half-turn moves. Bound D=7 applies to DR stage only.
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -92,7 +92,7 @@ assert(solvedUpToRotation(stickerAfter([...scramble,...submitted])));
 const submittedIsLiteralPrefix=[];
 const VALID_IDS=new Set(['miao_main','riabov_main','miao_alternative_from_same_eo','riabov_other_1','riabov_other_3']);
 const results=[];
-const DMAX=6;
+const DMAX=7;
 for(const candidate of ledger.eo_dr_pairs){
  const prefix=[...tokenize(candidate.eo_prefix),...tokenize(candidate.dr_extension)];
  const baseStickers=stickerAfter([...scramble,...prefix]);
@@ -161,7 +161,7 @@ for(const candidate of ledger.eo_dr_pairs){
   source_status:candidate.declared_mode==='CONTIGUOUS_NORMAL_SIDE_PREFIX'?'SOURCED_LINEAR_PREFIX':'CONDITIONAL_ON_CONTIGUOUS_NORMAL_SIDE',
   first_exact_DR_to_HTR_minimum_within_bound:firstHit,
   exact_minimum_DR_to_HTR_proved:firstHit!==null,
-  layers,best_two_phase_continuation_with_DR_depth_at_most_6:best,
+  layers,best_two_phase_continuation_with_DR_depth_at_most_7:best,
   candidate_total_prefix_plus_bounded_two_phase_best:best?prefix.length+best.phase2_total_moves:null,
   no_claim_of_unrestricted_solution_optimality:true
  };
@@ -177,8 +177,8 @@ assert.equal(aliases.size,4);
 const a=results.find(x=>x.id==='miao_main'),b=results.find(x=>x.id==='riabov_main');
 assert.deepEqual(a.layers,b.layers);
 assert.equal(a.DR_endpoint_sha256,b.DR_endpoint_sha256);
-assert.equal(a.best_two_phase_continuation_with_DR_depth_at_most_6?.phase2_total_moves,
-  b.best_two_phase_continuation_with_DR_depth_at_most_6?.phase2_total_moves);
+assert.equal(a.best_two_phase_continuation_with_DR_depth_at_most_7?.phase2_total_moves,
+  b.best_two_phase_continuation_with_DR_depth_at_most_7?.phase2_total_moves);
 assert.equal(submittedIsLiteralPrefix.find(x=>x.id==='miao_main').first_mismatch_1based,10);
 assert.equal(submittedIsLiteralPrefix.find(x=>x.id==='miao_main').is_literal_prefix_of_submitted_solution,false);
 const result={
