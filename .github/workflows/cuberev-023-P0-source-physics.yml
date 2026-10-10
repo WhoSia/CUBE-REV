@@ -1,0 +1,49 @@
+name: CUBE-REV 0.23 P0 — Sourced Human FMC Original-Cube Evidence
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p0_source_evidence_contract.json'
+      - 'scripts/cuberev-023/verify-p0-source-grade-and-full-cube.mjs'
+      - '.github/workflows/cuberev-023-P0-source-physics.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  full_source_and_cube:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independent physical original source and negative-control certificate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-023/verify-p0-source-grade-and-full-cube.mjs | tee CUBE_REV_023_P0_actual_source_physical_certificate.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_023_P0_actual_source_physical_certificate.json','utf8'));
+          assert.equal(z.marker,'CUBE_REV_023_P0_ACTIVATED_SOURCE_EVIDENCE_ORIGINAL_FULL_CUBE');
+          assert.equal(z.exact_human_written_word_count,6);
+          assert.equal(z.original_full_cubie_distinct_endpoint_count,5);
+          assert.equal(z.DR_valid_source_word_count,5);
+          assert.equal(z.DR_valid_distinct_phase_endpoints,4);
+          assert.deepEqual(z.independent_author_alias_record_pair,['miao_main','riabov_main']);
+          assert.equal(z.source_ambiguous_riabov_other2_status,'PARSE_HOLD_NOT_AUTHOR_ERROR');
+          assert(z.physical_F2_B_commutes_negative_control);
+          assert.equal(z.human_process_causal_identification,'NOT_IDENTIFIED');
+          console.log('CUBE_REV_023_P0_SOURCE_PHYSICS_INDEPENDENT_COURT_PASS');
+          JS
+      - name: Preserve exact grade and original sticker witness certificate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-023-P0-human-source-full-cubie-origin-contract
+          path: CUBE_REV_023_P0_actual_source_physical_certificate.json
+          retention-days: 90
+          if-no-files-found: warn
