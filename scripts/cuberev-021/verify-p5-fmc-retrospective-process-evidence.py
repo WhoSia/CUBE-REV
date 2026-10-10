@@ -86,7 +86,7 @@ assert alternative_explicit == 3
 time_anchors = [e for e in total_events if "time_anchor" in e]
 assert len(time_anchors) == 7
 quantities = [e["candidate_quantity"] for e in total_events if "candidate_quantity" in e]
-assert len(quantities) == 4
+assert len(quantities) == 5
 assert any(q["n"] == 42 and q["unit"] == "EO_candidates_written" for q in quantities)
 assert any(q["n"] == 38 and q["unit"] == "EO_candidate_test_index" for q in quantities)
 assert any(q["n"] == 2 and q["unit"] == "new_NISS_EO_candidates" for q in quantities)
