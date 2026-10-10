@@ -19,6 +19,46 @@
     ".github/workflows/cuberev-018-mstar-unrestricted.yml",
     ".github/workflows/cuberev-018-mstar25-proof.yml",
     ".github/workflows/cuberev-018-rowcore-k33.yml",
+    ".github/workflows/cuberev-019-horizon-theorems.yml",
+    ".github/workflows/cuberev-019-l5-exact-court.yml",
+    ".github/workflows/cuberev-019-l5-five-source-k5-court.yml",
+    ".github/workflows/cuberev-019-l5-fractional-court.yml",
+    ".github/workflows/cuberev-019-l6-exact-court.yml",
+    ".github/workflows/cuberev-019-p13-exact-eight-consolidated-manual.yml",
+    ".github/workflows/cuberev-019-p13-full-k7-physical-proof.yml",
+    ".github/workflows/cuberev-019-r5-exact-seven-finite-court.yml",
+    ".github/workflows/cuberev-019-r5-k6-exact-court.yml",
+    ".github/workflows/cuberev-020-real-L5-transport-census-manual.yml",
+    ".github/workflows/cuberev-021-P1-matched-feedback-silent-action.yml",
+    ".github/workflows/cuberev-021-P2-joint-physical-cubies-and-native-stickers.yml",
+    ".github/workflows/cuberev-021-P5-fmc-process-evidence.yml",
+    ".github/workflows/cuberev-021-P6-fmc-partial-order-court.yml",
+    ".github/workflows/cuberev-021-P7-fmc-poset-completion.yml",
+    ".github/workflows/cuberev-021-P7-turn-query-minimax.yml",
+    ".github/workflows/cuberev-021-P8-exact-turn-query-cost-frontier.yml",
+    ".github/workflows/cuberev-021-physical-adaptive-belief.yml",
+    ".github/workflows/cuberev-022-P0-real-belief-decision-counterexamples.yml",
+    ".github/workflows/cuberev-022-P1-physical-belief-congruence.yml",
+    ".github/workflows/cuberev-022-P2-costed-belief-model-attack.yml",
+    ".github/workflows/cuberev-022-P3-predictive-state-fmc-court.yml",
+    ".github/workflows/cuberev-022-P4-fmc-identifiability-court.yml",
+    ".github/workflows/cuberev-022-P5-opportunity-choice-court.yml",
+    ".github/workflows/cuberev-022-P6-fmc-subgroup-grammar.yml",
+    ".github/workflows/cuberev-022-P7-source-DR-NISS-court.yml",
+    ".github/workflows/cuberev-022-P8-R3-phase2-PDB-exact-minima.yml",
+    ".github/workflows/cuberev-022-P8-R3-solved-path-HTR-contact.yml",
+    ".github/workflows/cuberev-022-P8-R3-streamed-LR-HTR-depth8.yml",
+    ".github/workflows/cuberev-022-P8-R4-Schreier-29400.yml",
+    ".github/workflows/cuberev-022-P8-R4-general-18-HTM-MITM.yml",
+    ".github/workflows/cuberev-022-P8-R5-Miao-sameEO-mechanism.yml",
+    ".github/workflows/cuberev-022-P8-R5-Riabov-18HTM-depth12.yml",
+    ".github/workflows/cuberev-022-P8-R6-matched-DR-branch.yml",
+    ".github/workflows/cuberev-022-P8-R6-matched-HTR-Schreier.yml",
+    ".github/workflows/cuberev-022-P8-source-DR-HTR-continuation.yml",
+    ".github/workflows/cuberev-023-P0-source-physics.yml",
+    ".github/workflows/cuberev-023-P1-full18-two-ties.yml",
+    ".github/workflows/cuberev-023-P1-radius2-tie.yml",
+    ".github/workflows/cuberev-023-P2-boundary-rewrite.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -103,6 +143,10 @@
     "Cargo.toml",
     "README.md",
     "REPOSITORY_POLICY.md",
+    "archive/readme/README_RESEARCH_CURRENT_BEFORE_P13_EXACT_EIGHT_20261010.md",
+    "archive/readme/README_RESEARCH_CURRENT_P13_BEFORE_EXACT_EIGHT_20261010.md",
+    "archive/readme/README_RESEARCH_CURRENT_PRE_019_20261010.md",
+    "archive/readme/README_RESEARCH_CURRENT_PRE_P13_20261010.md",
     "archive/versions/0.11/README_HISTORY.md",
     "archive/versions/0.12/README_HISTORY.md",
     "archive/versions/0.13/README_HISTORY.md",
@@ -127,6 +171,15 @@
     "crates/search-geometry-core/src/bin/g7_p7_reco_rivals.rs",
     "crates/search-geometry-core/src/lib.rs",
     "crates/search-geometry-core/src/phase1.rs",
+    "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
+    "data/cuberev-021/p6_fmc_partial_order_extension.json",
+    "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
+    "data/cuberev-022/p7_fmc_source_anchored_candidate_ledger.json",
+    "data/cuberev-022/p8_r3_source_anchored_phase2_exact_witness_fixtures.json",
+    "data/cuberev-023/p0_source_evidence_contract.json",
+    "data/cuberev-023/p1_certified_matched_tie_DR_witnesses.json",
+    "data/cuberev-023/p1_matched_radius2_preregistration.json",
+    "data/cuberev-023/p2_P1_all18_four_word_authority_fixture.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -157,6 +210,64 @@
     "docs/0.18/P6_ROW_IMPLICATION_398_AND_K33_PROOF_COURT.md",
     "docs/0.18/P7_COMPONENT_FACTORISATION_FOUR_SLOT_EXHAUSTION.md",
     "docs/0.18/PROGRAM_CHARTER.md",
+    "docs/0.19/P0_EXHAUSTIVE_L5_OBSERVABILITY_AND_MODEL_ACCESS.md",
+    "docs/0.19/P0_L5_INTEGER_LOWER6_DUAL.json",
+    "docs/0.19/P10_SEVEN_SOURCE_WITNESS_EXTENSION_OBSTRUCTION_AND_R5_K6_COURT.md",
+    "docs/0.19/P11_R5_K6_HIGH_RANK_RIGIDITY_AND_DUAL_PAIR_CUTS.md",
+    "docs/0.19/P12_EXACT_PHYSICAL_FIVE_SOURCE_SEVEN_BY_RANK_CERTIFICATES.md",
+    "docs/0.19/P12_R5_RANK_SENSITIVE_INTEGER_DUALS.json",
+    "docs/0.19/P13_EXACT_FULL_MSTAR5_EIGHT_FINITE_PROOF_CLOSURE.md",
+    "docs/0.19/P13_EXACT_MSTAR5_EIGHT_LOCAL_FINITE_RECEIPT.json",
+    "docs/0.19/P13_FINAL_EXACT_PHYSICAL_MSTAR5_EIGHT.md",
+    "docs/0.19/P13_FULL_1192_SOURCE_K7_LAST_INTEGER_DECISION.md",
+    "docs/0.19/P13_K7_AT_LEAST_TWO_HIGH_PHYSICAL_INTEGER_DUALS.json",
+    "docs/0.19/P13_OFFLINE_COMPLETE_REEXECUTION_RECEIPT.json",
+    "docs/0.19/P13_SOURCE_544_ANTICHAIN_EXACT_GEOMETRY_RECEIPT.json",
+    "docs/0.19/P13_SOURCE_MAXIMAL_544_ANTICHAIN_THEOREM.md",
+    "docs/0.19/P1_EARLIEST_OBSERVABILITY_HORIZON_AND_TRANSPORTED_CUT_THEOREM.md",
+    "docs/0.19/P3_GEOMETRIC_SYMMETRY_EXACT_LP_GAP_AND_K7_METHOD.md",
+    "docs/0.19/P3_L5_EXACT_FRACTIONAL_PRIMAL_16_OVER_3.json",
+    "docs/0.19/P4_CONDITIONAL_INTEGER_DUALS_AND_K7_HIGHER_ORDER_CUTS.md",
+    "docs/0.19/P5_EXACT_OBSERVABILITY_HORIZONS_COLLISION_PAIRS_AND_ADAPTIVITY.md",
+    "docs/0.19/P6_RESTRICTED_PERFECT_HASH_COLLISION_KERNEL_AND_L6_THREE_COURT.md",
+    "docs/0.19/P7_EXACT_MSTAR6_FOUR_COLLISION_HYPERGRAPH_PROOF.md",
+    "docs/0.19/P7_L6_INTEGER_DUAL_FOR_REDUCED_LOW_RANK.json",
+    "docs/0.19/P8_ORDER_INVARIANT_FRACTIONAL_COST_AND_K6_DUAL_PAIR_COURT.md",
+    "docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json",
+    "docs/0.19/P8_ORDER_INVARIANT_L5_FULL_LP_CERT.json",
+    "docs/0.19/P9_EXACT_FIVE_SOURCE_K5_UNSAT_AND_FULL_K6_RANK_GATE.md",
+    "docs/0.20/P0_ARCHIVE24_REAL_RUBIK_CENSUS_LITERATURE_AUDIT.md",
+    "docs/0.20/P0_P2_TRANSPORTED_CUTS_AND_NONNESTED_DICTIONARY_EXTENSION.md",
+    "docs/0.20/P1_E_EXACT_REAL_RUBIK_FACE_GRAMMAR_EQUATORIAL_OPACITY_AND_RANK7_EIGHT.md",
+    "docs/0.20/PREPARATORY_CHARTER_NOT_ACTIVATED.md",
+    "docs/0.21/EMPIRICAL_CONTINUITY_RESTORATION_ARCHIVE_01_TO_24_SECONDARY_DATA_FIRST.md",
+    "docs/0.21/P0_CONTINUITY_CHARTER_AND_PHYSICAL_ADAPTIVE_BELIEF_COURT.md",
+    "docs/0.21/P1_COST_OF_FEEDBACK_SILENT_TRANSPORT_AND_RESOURCE_BOUNDED_HUMAN_RECONSTRUCTION.md",
+    "docs/0.21/P2_ECOLOGICAL_HUMAN_CUBE_INSPECTION_SHARED_EDGE_COUPLING_AND_STICKER_PILOT.md",
+    "docs/0.21/P3_NATURALISTIC_451_P25_EXACT_REJOIN_AND_FMC_PROCESS_EVIDENCE.md",
+    "docs/0.21/P4_NATURALISTIC_BEHAVIORAL_STATE_SUFFICIENCY_SOURCE_CONFOUNDS_AND_FMC_SEARCH_TRACE_TRIAGE.md",
+    "docs/0.21/P5_EXISTING_FMC_RETROSPECTIVE_PROCESS_HISTORIES_AND_VIDEO_EVIDENCE_THRESHOLDS.md",
+    "docs/0.21/P6_FMC_SOURCE_GROUNDED_SEARCH_PARTIAL_ORDER_AND_VISUAL_EVIDENCE_ESCALATION.md",
+    "docs/0.21/P7_JOINT_TURN_QUERY_OPTIMALITY_REAL_RUBIK_AND_EXACT_FMC_EVENT_POSET_COMPLETIONS.md",
+    "docs/0.21/P8_EXACT_TURN_QUERY_MEAN_COST_PARETO_MOORE_MINIMALITY_AND_BELIEF_SUFFICIENCY.md",
+    "docs/0.22/P0_TASK_RELATIVE_PHYSICAL_BELIEF_SUFFICIENCY_ACTION_CONGRUENCE_AND_PRIOR_COUNTEREXAMPLES.md",
+    "docs/0.22/P1_TASK_CONDITIONED_BELIEF_CONGRUENCE_PHYSICAL_PAIR_MINIMALITY_AND_SILENT_PROTOCOL_SEPARATION.md",
+    "docs/0.22/P2_OPTIMAL_POLICY_QUOTIENT_AND_ADVERSARIAL_BELIEF_STATE_AUDIT.md",
+    "docs/0.22/P3_MODEL_ROBUST_PREDICTIVE_SUFFICIENCY_RESOURCE_MEMORY_AND_FMC_COGNITIVE_BARRIER.md",
+    "docs/0.22/P4_COGNITIVE_SEARCH_BARRIER_OBSERVATION_LIMITED_POLICY_IDENTIFIABILITY.md",
+    "docs/0.22/P5_DECISION_RELATIVE_SEARCH_IDENTIFIABILITY_COGNITIVE_OPPORTUNITY_FRONTIERS.md",
+    "docs/0.22/P6_FMC_FULL_CUBE_SEARCH_GRAMMAR_SOURCE_RELATIVE_EO_DR_HTR_MINIMALITY.md",
+    "docs/0.22/P7_SOURCE_ANCHORED_FMC_DR_ENDPOINT_QUOTIENT_NISS_SEMANTICS.md",
+    "docs/0.22/P8_R3_STREAMED_HTR_FIRST_CONTACT_DUAL_REVERSE_PDB_EXACT_PHASE2.md",
+    "docs/0.22/P8_R4_FULL_SCHREIER_29400_AND_18_HTM_PREFIX_DOMINANCE.md",
+    "docs/0.22/P8_R5_ALL18_RIABOV_EXACT_AND_MIAO_JOINT_CONSTRAINT_BRANCH.md",
+    "docs/0.22/P8_R6_MATCHED_BRANCH_INTERVENTIONS_AND_JOINT_CONSTRAINT_CERTIFICATES.md",
+    "docs/0.22/P8_SOURCE_RELATIVE_FMC_DR_HTR_CONTINUATION_GEOMETRY_AND_BOUNDED_DOMINANCE.md",
+    "docs/0.23/00_PROPOSED_TRANSITION_FROM_022_P8_R6.md",
+    "docs/0.23/P0_SOURCE_EVIDENCE_AND_ORIGINAL_FULL_CUBE_COURT.md",
+    "docs/0.23/P1_MATCHED_RADIUS2_REAL_CUBE_TIES_AND_ALL18_NORMALIZATION_ADVERSARY.md",
+    "docs/0.23/P2_BOUNDARY_LOCALIZED_SOURCE_STAGE_COST_AND_FMC_NORMAL_FORM.md",
+    "docs/0.23/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
     "formal/016/P12LightGraph.lean",
@@ -353,6 +464,79 @@
     "scripts/cuberev-018/test-p6-oracle-bridge.mjs",
     "scripts/cuberev-018/test-two-physical34-witnesses.py",
     "scripts/cuberev-018/verify-sat-witness-physical.mjs",
+    "scripts/cuberev-019/L6_collision_refinement_kernel.cpp",
+    "scripts/cuberev-019/compile-L5-R5-exact-seven-receipt.py",
+    "scripts/cuberev-019/compile-L5-full-original-exact-eight-receipt.py",
+    "scripts/cuberev-019/compile-P13-original-full-exact-eight.py",
+    "scripts/cuberev-019/export-L5-physical.mjs",
+    "scripts/cuberev-019/export-L6-rank5-partitions.cpp",
+    "scripts/cuberev-019/generate-L5-R5-integer-dual-candidates.py",
+    "scripts/cuberev-019/generate-L5-full-k7-rank7-1to3-duals.py",
+    "scripts/cuberev-019/generate-L5-full-k7-rank7-zero-integer-duals.py",
+    "scripts/cuberev-019/generate-L5-full-k7-rank7-zero-remaining-filters.py",
+    "scripts/cuberev-019/prepare-L5-full-k7-physical-CNF.py",
+    "scripts/cuberev-019/prove-L5-five-source-k5-impossibility.py",
+    "scripts/cuberev-019/prove-L5-five-source-k6-SAT.py",
+    "scripts/cuberev-019/prove-L5-k7-k6.py",
+    "scripts/cuberev-019/prove-L6-three-impossibility.py",
+    "scripts/cuberev-019/prove-L6-two-word-five-core.cpp",
+    "scripts/cuberev-019/prove-fixed-horizon-L7.cpp",
+    "scripts/cuberev-019/prove-fixed-horizon-L8.cpp",
+    "scripts/cuberev-019/solve-L5-full-k7-physical-SAT.py",
+    "scripts/cuberev-019/verify-L5-R5-k6-high-rank-finite.py",
+    "scripts/cuberev-019/verify-L5-R5-k6-integer-duals.py",
+    "scripts/cuberev-019/verify-L5-R5-rank-symmetry-and-pair-cuts.py",
+    "scripts/cuberev-019/verify-L5-full-k7-at-least-two-high.py",
+    "scripts/cuberev-019/verify-L5-full-k7-rank7-1to3-duals.py",
+    "scripts/cuberev-019/verify-L5-full-k7-rank7-count5-6-7.py",
+    "scripts/cuberev-019/verify-L5-full-k7-rank7-four-disjoint-chunks.py",
+    "scripts/cuberev-019/verify-L5-full-k7-rank7-four-three-low.py",
+    "scripts/cuberev-019/verify-L5-full-k7-rank7-zero-complete-finite.py",
+    "scripts/cuberev-019/verify-L5-order-invariant-LP.py",
+    "scripts/cuberev-019/verify-L5-seven-five-source-and-extension.py",
+    "scripts/cuberev-019/verify-L6-to-L9-dictionaries.py",
+    "scripts/cuberev-019/verify-P13-exact-eight-offline-package.py",
+    "scripts/cuberev-019/verify-original-source-antichain-544.py",
+    "scripts/cuberev-019/verify-physical-horizon.mjs",
+    "scripts/cuberev-019/verify-universal-and-adaptive-horizon.mjs",
+    "scripts/cuberev-020/census-L5-transport-cuts.cpp",
+    "scripts/cuberev-020/emit-L5-rank7-geometry.cpp",
+    "scripts/cuberev-020/falsify-L5-phase-by-noncube-R-cycle.py",
+    "scripts/cuberev-020/verify-L5-census-source.py",
+    "scripts/cuberev-020/verify-L5-rank7-grammar.py",
+    "scripts/cuberev-020/verify-L5-rank7-phase-cover.py",
+    "scripts/cuberev-020/verify-transport-partition-product.mjs",
+    "scripts/cuberev-021/audit-physical-adaptive-beliefs.mjs",
+    "scripts/cuberev-021/build-p2-24-real-sticker-camera-pilot.mjs",
+    "scripts/cuberev-021/verify-p1-feedback-silent-action.mjs",
+    "scripts/cuberev-021/verify-p2-shared-edges-and-real-face-colours.mjs",
+    "scripts/cuberev-021/verify-p5-fmc-retrospective-process-evidence.py",
+    "scripts/cuberev-021/verify-p6-fmc-source-grounded-partial-order.py",
+    "scripts/cuberev-021/verify-p7-fmc-poset-linear-extensions.py",
+    "scripts/cuberev-021/verify-p7-physical-seven-turn-four-query-optimum.mjs",
+    "scripts/cuberev-021/verify-p8-physical-cost-frontier-and-minimal-moore.mjs",
+    "scripts/cuberev-022/verify-p0-physical-task-history-counterexamples.mjs",
+    "scripts/cuberev-022/verify-p1-physical-pair-belief-costed-congruence.mjs",
+    "scripts/cuberev-022/verify-p2-costed-policy-belief-model-audit.mjs",
+    "scripts/cuberev-022/verify-p3-predictive-rank-provenance-cost-fmc.mjs",
+    "scripts/cuberev-022/verify-p4-fmc-process-identifiability-court.py",
+    "scripts/cuberev-022/verify-p5-real-physical-opportunity-choice-correspondence.mjs",
+    "scripts/cuberev-022/verify-p6-fmc-physical-subgroup-and-search-grammar.mjs",
+    "scripts/cuberev-022/verify-p7-source-dr-endpoint-niss-side-court.mjs",
+    "scripts/cuberev-022/verify-p8-r3-exact-solution-HTR-first-contact-audit.mjs",
+    "scripts/cuberev-022/verify-p8-r3-reverse-pdb-exact-phase2-ida.mjs",
+    "scripts/cuberev-022/verify-p8-r3-streamed-first-htr-depth8.mjs",
+    "scripts/cuberev-022/verify-p8-r4-general-18-htm-mitm.mjs",
+    "scripts/cuberev-022/verify-p8-r4-schreier-29400-left-cosets.mjs",
+    "scripts/cuberev-022/verify-p8-r5-Miao-sameEO-physical-projection-contrast.mjs",
+    "scripts/cuberev-022/verify-p8-r5-riabov-general18-middle-two.mjs",
+    "scripts/cuberev-022/verify-p8-r6-matched-DR-HTR-Schreier-contacts.mjs",
+    "scripts/cuberev-022/verify-p8-r6-matched-DR-neighborhood-geodesics.mjs",
+    "scripts/cuberev-022/verify-p8-source-relative-dr-htr-continuations.mjs",
+    "scripts/cuberev-023/verify-p0-source-grade-and-full-cube.mjs",
+    "scripts/cuberev-023/verify-p1-matched-radius2-tie.mjs",
+    "scripts/cuberev-023/verify-p1-two-ties-full18-mitm.mjs",
+    "scripts/cuberev-023/verify-p2-original-cube-staged-vs-normalized-fmc.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -502,6 +686,953 @@
       ".github/workflows/g7-p7-wca-linkage.yml"
     ],
     "reproducibility_preservation_parent_sha": "aab276d2952b462afb3ee0e87155c9cd959f301e",
-    "expanded_engine_parity": "24 orientations / 274 exact-engine parity checks / 11 algebra checks"
+    "expanded_engine_parity": "24 orientations / 274 exact-engine parity checks / 11 algebra checks",
+    "current_version": "CUBE-REV 0.23 ACTIVE (user approved 2026-10-11), 0.22 predecessor physically sourced.",
+    "active_charter": "docs/0.23/PROGRAM_CHARTER.md",
+    "path_admission_rule": "Explicit individually named blob files only; maintain single research/current branch. Group classes are review labels, not wildcard allow-rules.",
+    "legacy_active_set_2026_10_11_reconciliation": {
+      "reviewed_at": "2026-10-11 KST",
+      "method": "GitHub API full non-truncated tree + preexisting exact active allowlist; no rewrite/removal of existing files, explicit restricted-stage paths plus archived tiny README snapshots only",
+      "prior_manifest_allowlist_count": 446,
+      "previously_unlisted_reproducibility_files": 184,
+      "admitted_by_class": {
+        "executable-read-only-CI": 40,
+        "small-provenance-readme": 4,
+        "source-grade-machine-fixture": 9,
+        "versioned-scientific-proof": 58,
+        "replayable-physical-source": 73
+      },
+      "checked_git_HEAD": "5e2f18996df517c5fcd854cc791fc7741617782e",
+      "checked_git_tree_sha": "777fc9886e289360390e923cc1d0975be9e537c9",
+      "newly_admitted_entries": [
+        {
+          "path": ".github/workflows/cuberev-019-horizon-theorems.yml",
+          "original_blob_sha": "a6ad47702837c96db898952d82a07b286b73d1a3",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-019-l5-exact-court.yml",
+          "original_blob_sha": "6b1a4b4e32e27eb590d460430a2636b0b0d4f690",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-019-l5-five-source-k5-court.yml",
+          "original_blob_sha": "c65dca8874142d873c786d306229e43e6bbfd949",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-019-l5-fractional-court.yml",
+          "original_blob_sha": "62ce1ead0ab3898d14000315989f9265b79a4f8c",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-019-l6-exact-court.yml",
+          "original_blob_sha": "48b0547a6adeb23aeff47f3b59955722286efe44",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-019-p13-exact-eight-consolidated-manual.yml",
+          "original_blob_sha": "2fe42d928f7abcb6cf34bb7847a8a94dbe3f3cc4",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-019-p13-full-k7-physical-proof.yml",
+          "original_blob_sha": "46cf54c00a7cfdfebfeec0f37bacc0c3fbe256b6",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-019-r5-exact-seven-finite-court.yml",
+          "original_blob_sha": "0f23ab63f67b9267b0e50efd8da7ba16b62de36a",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-019-r5-k6-exact-court.yml",
+          "original_blob_sha": "1f9c520eeea3f2361f32bbd4ca8bd9c35f2a8bd2",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-020-real-L5-transport-census-manual.yml",
+          "original_blob_sha": "a5af7012d8f7d786489b12825ee68ad906673ad7",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-021-P1-matched-feedback-silent-action.yml",
+          "original_blob_sha": "e397880b0de5f083967f67bd05910d1bf76a8687",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-021-P2-joint-physical-cubies-and-native-stickers.yml",
+          "original_blob_sha": "9d66e8153d6b9dd9a1e933483a7443e20ced5b1b",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-021-P5-fmc-process-evidence.yml",
+          "original_blob_sha": "575ac4ce0f96fa1782bffb084ea81f6db104ef59",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-021-P6-fmc-partial-order-court.yml",
+          "original_blob_sha": "ea8fd26b9ff8718acf815f10a0a08c56f3c17e4a",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-021-P7-fmc-poset-completion.yml",
+          "original_blob_sha": "e229a9cd80dac7347a7eb8d46b0520c27560ae6e",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-021-P7-turn-query-minimax.yml",
+          "original_blob_sha": "9338d78fb460a0f99e4543ca8e77fb1f9088b120",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-021-P8-exact-turn-query-cost-frontier.yml",
+          "original_blob_sha": "d593c49f065024762f985605a47f9218e6f4ac38",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-021-physical-adaptive-belief.yml",
+          "original_blob_sha": "d9d3edac1bdaec03004bdfed307d964aa1d80826",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P0-real-belief-decision-counterexamples.yml",
+          "original_blob_sha": "cc005e589146518b2f2dc4d0bf67ffd33d08a185",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P1-physical-belief-congruence.yml",
+          "original_blob_sha": "f5cc9cd96a06f52be14a51c9a9eb1ed5e1787dda",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P2-costed-belief-model-attack.yml",
+          "original_blob_sha": "cdb76eace9d3f7ae4c6c705eb2a159d12ddf9b74",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P3-predictive-state-fmc-court.yml",
+          "original_blob_sha": "ce211feab2d0e1741e91804de4683b067c7f8599",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P4-fmc-identifiability-court.yml",
+          "original_blob_sha": "ba139f0fc984841274e41d99eeb22716cf68176e",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P5-opportunity-choice-court.yml",
+          "original_blob_sha": "3aa98f22460db21c85ae437a5f1c0921e2f2c995",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P6-fmc-subgroup-grammar.yml",
+          "original_blob_sha": "90b6e2c03f2c4fbce1f91cb1da7b44b1a5a9ead6",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P7-source-DR-NISS-court.yml",
+          "original_blob_sha": "363683dc3217c50f221f7ccd72af6f4d341ef17f",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-R3-phase2-PDB-exact-minima.yml",
+          "original_blob_sha": "36d71d2e6eff2932d38ae3ee3947277ebf133fa6",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-R3-solved-path-HTR-contact.yml",
+          "original_blob_sha": "448afa30a325c730df96de247b5c595b50fe22da",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-R3-streamed-LR-HTR-depth8.yml",
+          "original_blob_sha": "fe0222d0fd83ef821f2281a93c6e1d5830bd641d",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-R4-Schreier-29400.yml",
+          "original_blob_sha": "b6b8dd3bb8904eb2eb4054dd362456626a710540",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-R4-general-18-HTM-MITM.yml",
+          "original_blob_sha": "ef7324afee6b061f7333cfa476a82c3826a67494",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-R5-Miao-sameEO-mechanism.yml",
+          "original_blob_sha": "497bb3b0972d0fac261bf08c29a8decccdf378dc",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-R5-Riabov-18HTM-depth12.yml",
+          "original_blob_sha": "81b8e437ff04c36ee1de1dbb98b377d2b82dfa74",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-R6-matched-DR-branch.yml",
+          "original_blob_sha": "f7169fc1c0370e3592056ecc6502216868b518ae",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-R6-matched-HTR-Schreier.yml",
+          "original_blob_sha": "2ff6b6f088118fe2c87264fd3814e5ad8d8dd652",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-022-P8-source-DR-HTR-continuation.yml",
+          "original_blob_sha": "5b886e881fd14c5d4891ffe142779453bec85114",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P0-source-physics.yml",
+          "original_blob_sha": "573f0d8ba915c753716c6ba1886345f26ab3f48b",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P1-full18-two-ties.yml",
+          "original_blob_sha": "c565132cce6a6f4194c537670237e54901ecd09e",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P1-radius2-tie.yml",
+          "original_blob_sha": "3f31f08bc443e45befea80d5150f8fd73bab4835",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P2-boundary-rewrite.yml",
+          "original_blob_sha": "adc1fded9772d9bcfc296d36259086130ec5c42c",
+          "mode": "100644"
+        },
+        {
+          "path": "archive/readme/README_RESEARCH_CURRENT_BEFORE_P13_EXACT_EIGHT_20261010.md",
+          "original_blob_sha": "ae3ca64dac24c453b2a01311095478b76c15f018",
+          "mode": "100644"
+        },
+        {
+          "path": "archive/readme/README_RESEARCH_CURRENT_P13_BEFORE_EXACT_EIGHT_20261010.md",
+          "original_blob_sha": "c19fddcaaad49f4331beb19a53996dc940cf72bc",
+          "mode": "100644"
+        },
+        {
+          "path": "archive/readme/README_RESEARCH_CURRENT_PRE_019_20261010.md",
+          "original_blob_sha": "5b034ce572c9c755a99ee86977571c57648dbd57",
+          "mode": "100644"
+        },
+        {
+          "path": "archive/readme/README_RESEARCH_CURRENT_PRE_P13_20261010.md",
+          "original_blob_sha": "834795f72b93dbac3279796c10c021c6f2766a1f",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
+          "original_blob_sha": "e2e00a7581d2d5022ac5b3312cf557c70c06ad6a",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-021/p6_fmc_partial_order_extension.json",
+          "original_blob_sha": "890283a41ceb384f829481c9be2ba5d1c49a046f",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
+          "original_blob_sha": "0f6e73997a8be49bca013a78e0b5c2c45640fa4d",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-022/p7_fmc_source_anchored_candidate_ledger.json",
+          "original_blob_sha": "dec9b7bb9f948749f92bb4ec5f6876208860289b",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-022/p8_r3_source_anchored_phase2_exact_witness_fixtures.json",
+          "original_blob_sha": "a1a30d2cb400f01b3633f7bfcfffdce02e34ff08",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-023/p0_source_evidence_contract.json",
+          "original_blob_sha": "078852f98552f25b98bec1f3a58318520a747b55",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-023/p1_certified_matched_tie_DR_witnesses.json",
+          "original_blob_sha": "7915819edda9163a7220e360c4cedc9b224935f0",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-023/p1_matched_radius2_preregistration.json",
+          "original_blob_sha": "07a64b00484f033acd66cea8fb4601039cfda087",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-023/p2_P1_all18_four_word_authority_fixture.json",
+          "original_blob_sha": "709168a36281f5d5a93736cdac45fb447732e312",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P0_EXHAUSTIVE_L5_OBSERVABILITY_AND_MODEL_ACCESS.md",
+          "original_blob_sha": "598367ae3dbdb01427ce341aa1d21d79db42b656",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P0_L5_INTEGER_LOWER6_DUAL.json",
+          "original_blob_sha": "3f3f3eb19935d1f69aaf9774a5dfd171b94c6414",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P10_SEVEN_SOURCE_WITNESS_EXTENSION_OBSTRUCTION_AND_R5_K6_COURT.md",
+          "original_blob_sha": "fc62af796bf43d83dd6a2984f71a80ddbbe08f1b",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P11_R5_K6_HIGH_RANK_RIGIDITY_AND_DUAL_PAIR_CUTS.md",
+          "original_blob_sha": "cd7f7ff75d9457d3d4b4547e5d3c32570564de35",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P12_EXACT_PHYSICAL_FIVE_SOURCE_SEVEN_BY_RANK_CERTIFICATES.md",
+          "original_blob_sha": "22c3b55821983ca466c6bf95611e236df151e381",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P12_R5_RANK_SENSITIVE_INTEGER_DUALS.json",
+          "original_blob_sha": "28c683b832abca8beb52971053310d7192e4ede7",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P13_EXACT_FULL_MSTAR5_EIGHT_FINITE_PROOF_CLOSURE.md",
+          "original_blob_sha": "6509813b0dc8ff74988d9fc2fa218417821df501",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P13_EXACT_MSTAR5_EIGHT_LOCAL_FINITE_RECEIPT.json",
+          "original_blob_sha": "9347d34f3b028ffbd41c402d318ee58addf98ba7",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P13_FINAL_EXACT_PHYSICAL_MSTAR5_EIGHT.md",
+          "original_blob_sha": "1e056a8c78d208612d066ba5e07656b1be471314",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P13_FULL_1192_SOURCE_K7_LAST_INTEGER_DECISION.md",
+          "original_blob_sha": "4fbb0ed4b0fe7892269f65cee8b61cad352624da",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P13_K7_AT_LEAST_TWO_HIGH_PHYSICAL_INTEGER_DUALS.json",
+          "original_blob_sha": "9cfb22515be91ef90a7a58b63b8b63a9b5cc8040",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P13_OFFLINE_COMPLETE_REEXECUTION_RECEIPT.json",
+          "original_blob_sha": "8545db00a79911449300d547deaa865a47704675",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P13_SOURCE_544_ANTICHAIN_EXACT_GEOMETRY_RECEIPT.json",
+          "original_blob_sha": "3f0978a775e26959fd6d75aaf9399c381aa7e741",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P13_SOURCE_MAXIMAL_544_ANTICHAIN_THEOREM.md",
+          "original_blob_sha": "c8d2f830eedb2ef0cb00e76b9011660ed8ed9269",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P1_EARLIEST_OBSERVABILITY_HORIZON_AND_TRANSPORTED_CUT_THEOREM.md",
+          "original_blob_sha": "6ff97ac115db81379333507d627c9f958b82d218",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P3_GEOMETRIC_SYMMETRY_EXACT_LP_GAP_AND_K7_METHOD.md",
+          "original_blob_sha": "c5edc7c774f1907ea2a33929b81418042c9829bc",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P3_L5_EXACT_FRACTIONAL_PRIMAL_16_OVER_3.json",
+          "original_blob_sha": "076bdfda232cc2aeb5782b170408363ed8d238bb",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P4_CONDITIONAL_INTEGER_DUALS_AND_K7_HIGHER_ORDER_CUTS.md",
+          "original_blob_sha": "5f7191fb3c6b35b73cc027170ecb8e885d038ac5",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P5_EXACT_OBSERVABILITY_HORIZONS_COLLISION_PAIRS_AND_ADAPTIVITY.md",
+          "original_blob_sha": "09f458bb88a28a8b143d9869fd0bc861f72eccb4",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P6_RESTRICTED_PERFECT_HASH_COLLISION_KERNEL_AND_L6_THREE_COURT.md",
+          "original_blob_sha": "7d9c981a84c4f02f1a9542592530065c3f088a93",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P7_EXACT_MSTAR6_FOUR_COLLISION_HYPERGRAPH_PROOF.md",
+          "original_blob_sha": "49d16c3cc02f0149ad1ac980a72c075e621bd3d1",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P7_L6_INTEGER_DUAL_FOR_REDUCED_LOW_RANK.json",
+          "original_blob_sha": "fee4e001d3681bb0c79c00ed0776a9c9345d856d",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P8_ORDER_INVARIANT_FRACTIONAL_COST_AND_K6_DUAL_PAIR_COURT.md",
+          "original_blob_sha": "ad3281fe69b50345a895e142b6ad73c332fb1475",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json",
+          "original_blob_sha": "48a2216ee9a8a0445972be67ceaff7d4e0f83a78",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P8_ORDER_INVARIANT_L5_FULL_LP_CERT.json",
+          "original_blob_sha": "3b43f750afb1fe316aa87a8ac2feb1b2ad39626f",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.19/P9_EXACT_FIVE_SOURCE_K5_UNSAT_AND_FULL_K6_RANK_GATE.md",
+          "original_blob_sha": "9377afff249208ab0efe5d0f41221e7b661b9ad0",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.20/P0_ARCHIVE24_REAL_RUBIK_CENSUS_LITERATURE_AUDIT.md",
+          "original_blob_sha": "0b423eed58aef2e55de33dcf850187853c6f2211",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.20/P0_P2_TRANSPORTED_CUTS_AND_NONNESTED_DICTIONARY_EXTENSION.md",
+          "original_blob_sha": "c37b84f90c32c0b956ba691a92c13694a9f2ba52",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.20/P1_E_EXACT_REAL_RUBIK_FACE_GRAMMAR_EQUATORIAL_OPACITY_AND_RANK7_EIGHT.md",
+          "original_blob_sha": "49d44ab8afc8521a2adb41e827924197076b8108",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.20/PREPARATORY_CHARTER_NOT_ACTIVATED.md",
+          "original_blob_sha": "23ac375443cbb4db71d22afbce981df2ef80463e",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/EMPIRICAL_CONTINUITY_RESTORATION_ARCHIVE_01_TO_24_SECONDARY_DATA_FIRST.md",
+          "original_blob_sha": "81d0080c69aba074944032b985000c24a86bcab4",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/P0_CONTINUITY_CHARTER_AND_PHYSICAL_ADAPTIVE_BELIEF_COURT.md",
+          "original_blob_sha": "d37a5e5997693d64fbab63321381f279519ec5c4",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/P1_COST_OF_FEEDBACK_SILENT_TRANSPORT_AND_RESOURCE_BOUNDED_HUMAN_RECONSTRUCTION.md",
+          "original_blob_sha": "cc10aa41457dd3ae15c79132ece8a768eb12d218",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/P2_ECOLOGICAL_HUMAN_CUBE_INSPECTION_SHARED_EDGE_COUPLING_AND_STICKER_PILOT.md",
+          "original_blob_sha": "baaed82e1f6c23e419ec37aa02a6114408d450cf",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/P3_NATURALISTIC_451_P25_EXACT_REJOIN_AND_FMC_PROCESS_EVIDENCE.md",
+          "original_blob_sha": "011d08552561c8b5f4309e1c19ad2177e00f1a0a",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/P4_NATURALISTIC_BEHAVIORAL_STATE_SUFFICIENCY_SOURCE_CONFOUNDS_AND_FMC_SEARCH_TRACE_TRIAGE.md",
+          "original_blob_sha": "80f28e42646e59b3b528068c4baae91bd7c422b3",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/P5_EXISTING_FMC_RETROSPECTIVE_PROCESS_HISTORIES_AND_VIDEO_EVIDENCE_THRESHOLDS.md",
+          "original_blob_sha": "41e3457ecd5d10bef2f76699507d207d711ba5b0",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/P6_FMC_SOURCE_GROUNDED_SEARCH_PARTIAL_ORDER_AND_VISUAL_EVIDENCE_ESCALATION.md",
+          "original_blob_sha": "e8e156b0daf2a06e0e678ab317974eefa37ee103",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/P7_JOINT_TURN_QUERY_OPTIMALITY_REAL_RUBIK_AND_EXACT_FMC_EVENT_POSET_COMPLETIONS.md",
+          "original_blob_sha": "d82c1cbd4ff8eff5ca5ed4c2ee8ba5766173d5f6",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.21/P8_EXACT_TURN_QUERY_MEAN_COST_PARETO_MOORE_MINIMALITY_AND_BELIEF_SUFFICIENCY.md",
+          "original_blob_sha": "0f08e7b1413a95cbf7d2897c345c3918e908fc10",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P0_TASK_RELATIVE_PHYSICAL_BELIEF_SUFFICIENCY_ACTION_CONGRUENCE_AND_PRIOR_COUNTEREXAMPLES.md",
+          "original_blob_sha": "377c00d1a3f4641fe1dc379ecfa48bf7d6c82bb5",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P1_TASK_CONDITIONED_BELIEF_CONGRUENCE_PHYSICAL_PAIR_MINIMALITY_AND_SILENT_PROTOCOL_SEPARATION.md",
+          "original_blob_sha": "e3fac7521300dbdf74733545dbd5118ea269e8d7",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P2_OPTIMAL_POLICY_QUOTIENT_AND_ADVERSARIAL_BELIEF_STATE_AUDIT.md",
+          "original_blob_sha": "edfca64540e65e5d66649d8bebc95119cec363da",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P3_MODEL_ROBUST_PREDICTIVE_SUFFICIENCY_RESOURCE_MEMORY_AND_FMC_COGNITIVE_BARRIER.md",
+          "original_blob_sha": "9648f1d094e9a03429fe72904eaf2b908663c34c",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P4_COGNITIVE_SEARCH_BARRIER_OBSERVATION_LIMITED_POLICY_IDENTIFIABILITY.md",
+          "original_blob_sha": "0fcec03977944b9f4605c7fdf196ad25dd2f3e64",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P5_DECISION_RELATIVE_SEARCH_IDENTIFIABILITY_COGNITIVE_OPPORTUNITY_FRONTIERS.md",
+          "original_blob_sha": "de12f54ab265e37f7ebc77f2f25c1616894e6b58",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P6_FMC_FULL_CUBE_SEARCH_GRAMMAR_SOURCE_RELATIVE_EO_DR_HTR_MINIMALITY.md",
+          "original_blob_sha": "226e2ac817921113714e46b5a6062e8ac03985dd",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P7_SOURCE_ANCHORED_FMC_DR_ENDPOINT_QUOTIENT_NISS_SEMANTICS.md",
+          "original_blob_sha": "461f138e1f79068631f7e9bc264f7a0c943363aa",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P8_R3_STREAMED_HTR_FIRST_CONTACT_DUAL_REVERSE_PDB_EXACT_PHASE2.md",
+          "original_blob_sha": "7654ee88c2d93d620fb8e2e439105d3504d9ba1c",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P8_R4_FULL_SCHREIER_29400_AND_18_HTM_PREFIX_DOMINANCE.md",
+          "original_blob_sha": "5031e7868acda8cf35de51476c127f09548ab855",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P8_R5_ALL18_RIABOV_EXACT_AND_MIAO_JOINT_CONSTRAINT_BRANCH.md",
+          "original_blob_sha": "37e72ec4d1ba4a166dccd0a9a0deb90ff7133354",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P8_R6_MATCHED_BRANCH_INTERVENTIONS_AND_JOINT_CONSTRAINT_CERTIFICATES.md",
+          "original_blob_sha": "f4c1b168c9a60c7c039d3e61ff5d640453e004f6",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.22/P8_SOURCE_RELATIVE_FMC_DR_HTR_CONTINUATION_GEOMETRY_AND_BOUNDED_DOMINANCE.md",
+          "original_blob_sha": "e7295fa6d1c2d990eb485fa8df69a8abab182d90",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.23/00_PROPOSED_TRANSITION_FROM_022_P8_R6.md",
+          "original_blob_sha": "bf067cabdf260e2e2d9653d70f0f7450b78fdeed",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.23/P0_SOURCE_EVIDENCE_AND_ORIGINAL_FULL_CUBE_COURT.md",
+          "original_blob_sha": "87bca17982e9c7601900b4b676a0eae333d64963",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.23/P1_MATCHED_RADIUS2_REAL_CUBE_TIES_AND_ALL18_NORMALIZATION_ADVERSARY.md",
+          "original_blob_sha": "b9808851e5fa0d88f86226ccb936e3f85da598a7",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.23/P2_BOUNDARY_LOCALIZED_SOURCE_STAGE_COST_AND_FMC_NORMAL_FORM.md",
+          "original_blob_sha": "eb1b53e01fa76b8d5545180d0ba9e8bcb71ae536",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.23/PROGRAM_CHARTER.md",
+          "original_blob_sha": "4142a3dae9f5a85fb6377cf345b68a2ce18fa1ca",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/L6_collision_refinement_kernel.cpp",
+          "original_blob_sha": "b1b56c765336fe698e04f2faeb9e0e291c0565f0",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/compile-L5-R5-exact-seven-receipt.py",
+          "original_blob_sha": "d01fd20b1c4cdefd1c32abc88d7988918a7ca292",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/compile-L5-full-original-exact-eight-receipt.py",
+          "original_blob_sha": "d9343d773a40aace8bbbde74e46868ba05a05fd0",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/compile-P13-original-full-exact-eight.py",
+          "original_blob_sha": "baa9407e27b11e88ae3a1b1a9ec7d44ca3384fae",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/export-L5-physical.mjs",
+          "original_blob_sha": "2e8fdc50d1cc3643a4f82a152d529e819d3dd15a",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/export-L6-rank5-partitions.cpp",
+          "original_blob_sha": "27081f7357a5a84d44e1fce15f23cb7e0f01c6f8",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/generate-L5-R5-integer-dual-candidates.py",
+          "original_blob_sha": "d7b1b278b6d1e052242b3c02e7e17c2caac6818c",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/generate-L5-full-k7-rank7-1to3-duals.py",
+          "original_blob_sha": "6fa7c7823bc75eb36daaa4ed65d687e0eb982771",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/generate-L5-full-k7-rank7-zero-integer-duals.py",
+          "original_blob_sha": "d17f5749cb5a7bda183b37b52477eff0d18337bb",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/generate-L5-full-k7-rank7-zero-remaining-filters.py",
+          "original_blob_sha": "c3a4aaa3d58c3f5209d85ff0e2d5b814f25eb23a",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/prepare-L5-full-k7-physical-CNF.py",
+          "original_blob_sha": "d759f7636eb6e5698bd1bd9335bfce5d087b1bfa",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/prove-L5-five-source-k5-impossibility.py",
+          "original_blob_sha": "3cf2b420324d13d27c96866022c6adf0069d0389",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/prove-L5-five-source-k6-SAT.py",
+          "original_blob_sha": "f62f5a41234eec743d0d93dec5f51c63f6953c8c",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/prove-L5-k7-k6.py",
+          "original_blob_sha": "15c50cda7a5a08059e80dc96178cdea7dd22dea1",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/prove-L6-three-impossibility.py",
+          "original_blob_sha": "8d00b8e43d418a379d36843dc546029b8fe812f6",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/prove-L6-two-word-five-core.cpp",
+          "original_blob_sha": "64ee97d954d024f3b089eaaac5f2b5aadd00cbb0",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/prove-fixed-horizon-L7.cpp",
+          "original_blob_sha": "779922e07d2892242f6bcd94d41ecc6fae02380c",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/prove-fixed-horizon-L8.cpp",
+          "original_blob_sha": "d582f7640ba17cd1e63a4b2075f1608d1c8abebd",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/solve-L5-full-k7-physical-SAT.py",
+          "original_blob_sha": "e05c220911aafd45da4bd2a0e753e014e838e93b",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-R5-k6-high-rank-finite.py",
+          "original_blob_sha": "020fc1de24034a1878a70ab3d09912479a125aa6",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-R5-k6-integer-duals.py",
+          "original_blob_sha": "7f905ddfe120cda6ca342be9045ab01893ecb7b9",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-R5-rank-symmetry-and-pair-cuts.py",
+          "original_blob_sha": "1f131861b62b71bed51ee15540bf8dbed1cd6e9a",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-full-k7-at-least-two-high.py",
+          "original_blob_sha": "325a14395aaed5bc9a20715129ca0e1b9da4ff4a",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-full-k7-rank7-1to3-duals.py",
+          "original_blob_sha": "41b61eec40a3cd46859fd3a7e4ca3f15571f4030",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-full-k7-rank7-count5-6-7.py",
+          "original_blob_sha": "24ce9aeb6abce20a2e3077a462277f13d08894c1",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-full-k7-rank7-four-disjoint-chunks.py",
+          "original_blob_sha": "9dfe43555b6d18abb6db7e9b25f2c897a5079635",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-full-k7-rank7-four-three-low.py",
+          "original_blob_sha": "40e9d05aceb16ce8c10df98bbe0b6e721ef7171a",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-full-k7-rank7-zero-complete-finite.py",
+          "original_blob_sha": "892e4e1548bec9baec607601439d4719b83c8906",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-order-invariant-LP.py",
+          "original_blob_sha": "9ae7db47e92a9d6bb412bc9af9b5416e6ee3225d",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L5-seven-five-source-and-extension.py",
+          "original_blob_sha": "5a3a3e83dcb10c725876ecd4a71311c6a5f2f59f",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-L6-to-L9-dictionaries.py",
+          "original_blob_sha": "4d37942ea3633aa8ee53959403970fee9aa5b25a",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-P13-exact-eight-offline-package.py",
+          "original_blob_sha": "9e740db4a9bd66ddecb3ae97ba73ef2c2d00f6ac",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-original-source-antichain-544.py",
+          "original_blob_sha": "473af4bc01d182704f4bd1f3ae06bdd2c9576190",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-physical-horizon.mjs",
+          "original_blob_sha": "504de57abae1aa8e5b595dc605e8e620083c201d",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-019/verify-universal-and-adaptive-horizon.mjs",
+          "original_blob_sha": "69a4f96d27a9931119ccee7f3c359aed6b2d45e4",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-020/census-L5-transport-cuts.cpp",
+          "original_blob_sha": "eb67ecd410f95ac7f78a9d6f883c17d5158a0f0a",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-020/emit-L5-rank7-geometry.cpp",
+          "original_blob_sha": "b96b9ddc48755cef0558a82e40f493ef0a07e009",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-020/falsify-L5-phase-by-noncube-R-cycle.py",
+          "original_blob_sha": "c5425e4c55d80211fcc60d125d9f71964fb917a8",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-020/verify-L5-census-source.py",
+          "original_blob_sha": "0dd7a4f735fb9246927c221c2fc5d1f001170891",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-020/verify-L5-rank7-grammar.py",
+          "original_blob_sha": "b734f0e29dcecc9602744ebfaf7feecf5c503169",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-020/verify-L5-rank7-phase-cover.py",
+          "original_blob_sha": "461e43e055deca3438b497754984644b24d004eb",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-020/verify-transport-partition-product.mjs",
+          "original_blob_sha": "2e51321ca17105ad048354c27271ea29901d7e83",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-021/audit-physical-adaptive-beliefs.mjs",
+          "original_blob_sha": "c88d6eca695c32870a06faaba21236b4427ef669",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-021/build-p2-24-real-sticker-camera-pilot.mjs",
+          "original_blob_sha": "d7da57f51c55e0740ba2336022e5785c9f69e26c",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-021/verify-p1-feedback-silent-action.mjs",
+          "original_blob_sha": "91556b5b8b067b0712e28c2551358b7ef603ae10",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-021/verify-p2-shared-edges-and-real-face-colours.mjs",
+          "original_blob_sha": "2346abf8b8e5a447c1da4dbc9f47fc77042b90d0",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-021/verify-p5-fmc-retrospective-process-evidence.py",
+          "original_blob_sha": "447ddcee14489f06ba4f1dea4533f19fa2edbc8a",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-021/verify-p6-fmc-source-grounded-partial-order.py",
+          "original_blob_sha": "c7f58b9bd35577f3afe9c4ee589ef0383ad67e4d",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-021/verify-p7-fmc-poset-linear-extensions.py",
+          "original_blob_sha": "bdaa4c492396b92cfbf80901902631504df7f782",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-021/verify-p7-physical-seven-turn-four-query-optimum.mjs",
+          "original_blob_sha": "52ed9224d032835db92c8324d40effd93965203c",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-021/verify-p8-physical-cost-frontier-and-minimal-moore.mjs",
+          "original_blob_sha": "0d6d8889bd1eecc9e5c41835f2740b06a68caa66",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p0-physical-task-history-counterexamples.mjs",
+          "original_blob_sha": "b9e2a4c42f7ea96af45efc3d0a303dfa633a37c7",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p1-physical-pair-belief-costed-congruence.mjs",
+          "original_blob_sha": "5536d8b9654073fd9d942578d5af94b811355aa9",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p2-costed-policy-belief-model-audit.mjs",
+          "original_blob_sha": "2af2f2eb3d4b76b8caa59954b1ef212ea149fdef",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p3-predictive-rank-provenance-cost-fmc.mjs",
+          "original_blob_sha": "f1dd6e3fbfff35efd35471316b9b6496e7562462",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p4-fmc-process-identifiability-court.py",
+          "original_blob_sha": "a6af676876e2645cb0c8336734bc2e449b7b01b8",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p5-real-physical-opportunity-choice-correspondence.mjs",
+          "original_blob_sha": "fed4f3a1bdc4de5559b14e6d0063af049fc19efe",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p6-fmc-physical-subgroup-and-search-grammar.mjs",
+          "original_blob_sha": "57f02be4950fa25f996efa19edc934c951320843",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p7-source-dr-endpoint-niss-side-court.mjs",
+          "original_blob_sha": "08a053ed61f27038daadc0f0d4f10955179354c4",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-r3-exact-solution-HTR-first-contact-audit.mjs",
+          "original_blob_sha": "0bcd386c5b5c6e01e3a0dc17d3387e63b3f3492e",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-r3-reverse-pdb-exact-phase2-ida.mjs",
+          "original_blob_sha": "e02fc8277adb1d746c1bcc3ac1daa9961fddde49",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-r3-streamed-first-htr-depth8.mjs",
+          "original_blob_sha": "3717ed3ed9c818b92cc043a809748166b934f61d",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-r4-general-18-htm-mitm.mjs",
+          "original_blob_sha": "621baf399bd64db6f3aa2484f07e5d21eb1b6743",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-r4-schreier-29400-left-cosets.mjs",
+          "original_blob_sha": "67775fbe3c9eb603fdd50caa9a9e1eb9252292d8",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-r5-Miao-sameEO-physical-projection-contrast.mjs",
+          "original_blob_sha": "3c7d7e578bfc9dbf742ab293bb06582a208497c6",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-r5-riabov-general18-middle-two.mjs",
+          "original_blob_sha": "46d38225cf5ef55f8f9827d4c8f277c8df1672c5",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-r6-matched-DR-HTR-Schreier-contacts.mjs",
+          "original_blob_sha": "f1e2228b360f08ac9fb75c6701a906d9bbce33e0",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-r6-matched-DR-neighborhood-geodesics.mjs",
+          "original_blob_sha": "d796d01b39426cbbf017906142a78dc168ea940b",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-022/verify-p8-source-relative-dr-htr-continuations.mjs",
+          "original_blob_sha": "72b7700673f27bce990443f48851f128bb51ca03",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p0-source-grade-and-full-cube.mjs",
+          "original_blob_sha": "073604001ac1287e909d9399717c77a529751178",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p1-matched-radius2-tie.mjs",
+          "original_blob_sha": "6ddad5db74e63cd6ff87ea3dac8211e068cb1cca",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p1-two-ties-full18-mitm.mjs",
+          "original_blob_sha": "cf418c41bc34d6a642b48dff5419fbc0a91985ed",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p2-original-cube-staged-vs-normalized-fmc.mjs",
+          "original_blob_sha": "5020358218bd37d50f08a708827a7c1c19bf7f58",
+          "mode": "100644"
+        }
+      ],
+      "absent_retired_surface_collisions": true,
+      "prior_allowed_files_preserved": true,
+      "excluded_unrecognized_files_count": 0,
+      "history_rewrite_or_deletion": false,
+      "limitations": "Accepting a science artifact into the exact file-path allowlist does not independently certify its physical science, permission safety, rights, or deployability; those remain separate audits. CUBE-REV 0.23 active source and P2 CI independently verified.",
+      "verified_readme_reentry_path": "README.md",
+      "original_P7_failed_audit_preserved": "https://github.com/WhoSia/CUBE-REV/actions/runs/38083612017"
+    }
   }
 }
