@@ -30,7 +30,9 @@ jobs:
           const r=JSON.parse(fs.readFileSync('CUBE_REV_023_P1_matched_radius2_tie_receipt.json','utf8'));
           assert.equal(r.marker,'CUBE_REV_023_P1_PREREG_SOURCE_MATCHED_2STEP_EXACT_DR_TIE_COURT');
           assert.equal(r.all_ordered_two_action_words,100);
-          assert.equal(r.unique_new_geodesic_distance_two_actions,74);
+          assert.equal(r.unique_actual_action_endpoints,74);
+          assert.equal(r.unique_new_geodesic_distance_two_actions,67);
+          assert.equal(r.complete_ball_radius_two_states,78);
           assert.equal(r.exact_full_alphabet_first_move_tie_exclusion_count,70);
           assert.equal(r.selected_conditionally_possible_ordered_words,30);
           assert.equal(r.selected_source_full_cubie_pairs,30);
