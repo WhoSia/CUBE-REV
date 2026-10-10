@@ -34,6 +34,14 @@ whereas the corresponding **fractional linear-program covering cost** increases 
 
 The shortest **single fixed physical experiment word** distinguishing all 12 initial edge slots has nine turns; the best **adaptive action policy with feedback** has worst-case seven steps under the same ideal deterministic sensor. These are incomparable policy classes and not values of \(M^*(7)\) or human memory cost.
 
+## New P0 source-antichain theorem: 480+64=544 without physical search
+
+The frozen original 1,192 permitted source sets have a **unique 544-element inclusion-maximal antichain**: all **480 admissible five-position source requirements** and exactly **64 four-position requirements**, each comprising a three-element subset of the front or back edge-position quartet together with one off-face position. The source-family-only independent checker verifies this directly from the original SHA-locked source masks, without SAT, LP, physical word enumeration or source-dependent solver column ordering.
+
+Exactly 72 original sources are outside the downward shadow of the original 480 five-source demands: these 64 primitive quartets and eight face-homogeneous triples; each of the eight triples is contained in eight of the primitive quartets. Therefore the full 1,192-source experiment-covering condition is equivalent to its inclusion-maximal 544-row core **for every observation horizon, executable word family and deterministic physical transducer**, simply because injectivity of any observation word on B implies injectivity on A⊆B. This is an elementary finite-poset antichain law, **not a claim of originality**, but it identifies precisely the 64 logically new source constraints responsible for the original-R5-to-full source-extension question. The exact +1 dictionary cost requires separate P12/P13 physical certificates; it cannot be deduced from source inclusion alone.
+
+[Exact mathematical proof and source-geometry checker](../0.19/P13_SOURCE_MAXIMAL_544_ANTICHAIN_THEOREM.md). **0.20's new research** begins where this classical antichain reduction ends: structural conditions for further **physically realizable observation-dependent** quotient reductions, source-extension cost gaps and certified integer obstructions. The original four-action optimum's additional 398-row quotient was physical-candidate-dependent, unlike the generic 544-row source antichain.
+
 ## Primitive mathematical question
 
 **Which invariants of a reversible physical action transducer, its sensor partition and its admissible family of sources determine the least cardinality of an experiment dictionary, the first distinguishing horizon, and the effect of observation-dependent action policies?**
