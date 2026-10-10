@@ -1,0 +1,46 @@
+name: CUBE-REV 0.22 P8-R4 — Exact Schreier 29400 Left Cosets
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p8-r4-schreier-29400-left-cosets.mjs'
+      - '.github/workflows/cuberev-022-P8-R4-Schreier-29400.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  schreier_physical_full_cosets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaustively build and independently validate 29400 real Schreier cosets
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=4096 scripts/cuberev-022/verify-p8-r4-schreier-29400-left-cosets.mjs | tee CUBE_REV_022_P8_R4_schreier_full_coset_receipt.json
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const r=JSON.parse(fs.readFileSync('CUBE_REV_022_P8_R4_schreier_full_coset_receipt.json','utf8'));
+          assert.equal(r.marker,'CUBE_REV_022_P8_R4_ACTUAL_FULL_DR_GROUP_29400_LEFT_COSET_SCHREIER_BFS');
+          assert.equal(r.left_coset_count,29400);
+          assert.equal(r.HTR_actual_subgroup_size,663552);
+          assert.equal(r.graph_directed_generator_edges,294000);
+          assert.equal(r.source_certs.length,5);
+          assert(r.original_full_cube_verified);
+          console.log('R4_29400_REAL_LEFT_COSET_SCHREIER_CERTIFICATE_PASS');
+          JS
+      - name: Preserve Schreier physical and source receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P8-R4-schreier-29400-source-certificate
+          path: CUBE_REV_022_P8_R4_schreier_full_coset_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
