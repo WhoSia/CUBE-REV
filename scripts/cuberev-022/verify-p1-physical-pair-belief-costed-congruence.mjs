@@ -103,6 +103,62 @@ for(let i=0;i<roots.length;i++)for(let j=i+1;j<roots.length;j++){
    second_slots:[states[b].u/2,states[b].v/2]});
  }
 }
+// Independent direct finite *experiment* signature check, not based on partition
+// refinement itself. Query intrinsic bit after every turn, but stop immediately
+// if the first bit already distinguishes both candidates.
+// For each fixed legal action word of length 1 or 2, retain the UNORDERED set
+// of possible read transcripts (and termination flag) for the two sources.
+const directOneReadTrace=(p,a)=>{
+ const x=moves[a][p.u]&1,y=moves[a][p.v]&1;
+ return x!==y?'0:GOAL|1:GOAL':(String(x)+':PAIR');
+};
+const directTwoReadTrace=(p,a,b)=>{
+ let x=moves[a][p.u],y=moves[a][p.v];
+ if((x&1)!==(y&1))return '0:GOAL|1:GOAL';
+ const first=x&1;
+ x=moves[b][x];y=moves[b][y];
+ if((x&1)!==(y&1))return first+'0:GOAL|'+first+'1:GOAL';
+ return first+String(x&1)+':PAIR';
+};
+const directSignatures=new Map();
+const experimentSignaturesByID=new Map();
+for(const id of ids){
+ const p=states[id],v=[];
+ for(let a=0;a<18;a++){
+  v.push(directOneReadTrace(p,a));
+  for(let b=0;b<18;b++)v.push(directTwoReadTrace(p,a,b));
+ }
+ const key=v.join(';');
+ experimentSignaturesByID.set(id,key);
+ if(!directSignatures.has(key))directSignatures.set(key,[]);
+ directSignatures.get(key).push(id);
+}
+const directNumClasses=directSignatures.size;
+// All 18 actions and all 18x18 two-action read protocols are physically legal.
+// Their outcomes already separate each of the reachable pair beliefs.
+assert.equal(directNumClasses,ids.length);
+assert.equal(directNumClasses,264);
+// For every possible *different* pair-belief task, provide a direct bounded
+// experiment with different transcripts. 24-move geometry not approximate.
+let oneActionSeparated=0,twoActionsNeeded=0;
+for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++){
+ const p=states[ids[i]],q=states[ids[j]];
+ let d=3;
+ for(let a=0;a<18&&d>1;a++){
+  if(directOneReadTrace(p,a)!==directOneReadTrace(q,a))d=1;
+ }
+ if(d>1){
+  outer:for(let a=0;a<18;a++)for(let b=0;b<18;b++){
+   if(directTwoReadTrace(p,a,b)!==directTwoReadTrace(q,a,b)){d=2;break outer;}
+  }
+ }
+ assert(d<=2,'all distinct legal original pair-beliefs require <=two turn-read actions for some separating experiment');
+ if(d===1)oneActionSeparated++;else twoActionsNeeded++;
+}
+assert.equal(oneActionSeparated+twoActionsNeeded,264*263/2);
+const minimumFixedWidthStateBits=Math.ceil(Math.log2(ids.length+1));
+assert.equal(minimumFixedWidthStateBits,9); // + singleton terminal
+
 const output={
  marker:'CUBE_REV_022_P1_PHYSICAL_TWO_SOURCE_ACTION_LABELLED_QUOTIENT_PASS',
  model:'original legal 18 HTM sticker-derived Rubik action permutations; binary intrinsic orientation read after turn',
@@ -116,6 +172,15 @@ const output={
   stabilization_round:levels.at(-1).depth,
   stable_minimum_number_of_classes_for_defined_action_observation_interface:minClasses,
   physical_labelled_transition_bisimulation_explicitly_checked:true,
+  direct_short_experiment_certificate:{
+    one_turn_read_protocols:18,
+    two_turn_read_protocols:324,
+    fully_distinct_reachable_belief_transcript_signatures:directNumClasses,
+    distinct_pair_belief_comparisons_separated_by_one_action:oneActionSeparated,
+    additional_pair_belief_comparisons_requiring_two_action_experiment:twoActionsNeeded,
+    full_unordered_264_state_pair_comparisons:264*263/2,
+    exact_logical_fixed_width_bits_for_264_nonterminal_and_one_terminal:minimumFixedWidthStateBits
+  },
   initial_equal_cost_but_incompatible_first_action_pairs:[[0,1],[0,3]],
   separation_depth_of_p0_scalar_equivalence_counterexample:firstDifferent(r0,r1),
   initial_action_split_profile_histogram:histogram,
