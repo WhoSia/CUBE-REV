@@ -2,9 +2,15 @@
 
 ## Proposed formal name
 
-**CUBE-REV 0.20 — Structural Laws of Action-Transported Observation: Physically Restricted Perfect-Hash Families, Collision-Hypergraph Obstructions & Certified Identification Horizons**
+**CUBE-REV 0.20 — Structural Laws of Physical Identifiability: Action-Transported Observation Codes, Restricted Perfect Hash Families & Proof-Carrying Covering Complexity**
 
-**Status: READY FOR FORMAL OPENING, NOT YET ACTIVATED.** CUBE-REV 0.19 now has a **locally complete SHA-locked computer-assisted exact five-turn theorem**, \(M^*(5)=8\). All original fixed-horizon integer gaps \(L=0,\ldots,9\) are classified under the same frozen physical ontology. But a new independently read GitHub Actions execution receipt and final version-custody seals still need to be collected before formal lifecycle promotion. Do not label P0 of 0.20 CLOSED or claim new 0.20 results before independent execution.
+**Status: 0.20 MATHEMATICAL RESEARCH P0 OPENED; EXTERNAL/ADMINISTRATIVE ACTIVATION PENDING.** CUBE-REV 0.19 now has a **locally complete SHA-locked computer-assisted exact five-turn theorem**, \(M^*(5)=8\). All original fixed-horizon integer gaps \(L=0,\ldots,9\) are classified under the same frozen physical ontology. But a new independently read GitHub Actions execution receipt and final version-custody seals still need to be collected before formal lifecycle promotion. Do not label P0 of 0.20 CLOSED or claim new 0.20 results before independent execution.
+
+**Historical title proposal (retained without endorsement):** CUBE-REV 0.20 — Structural Laws of Action-Transported Observation: Physically Restricted Perfect-Hash Families, Collision-Hypergraph Obstructions & Certified Identification Horizons.
+
+**Formal user-approved title:** CUBE-REV 0.20 — Structural Laws of Physical Identifiability: Action-Transported Observation Codes, Restricted Perfect Hash Families & Proof-Carrying Covering Complexity.
+
+**New research authority:** [P0–P2 transported-cut theorem and exact physically non-nested extension witness](P0_P2_TRANSPORTED_CUTS_AND_NONNESTED_DICTIONARY_EXTENSION.md). Notion 0.20 canonical research page: https://app.notion.com/p/3f5ef561cf92812cb9bad19f515b2c8b . This opens mathematical study, not the external proof certification gate. Existing P13 proofs and historical charter alternatives remain available through Git history.
 
 ## Preamble: what 0.19 actually proved
 
