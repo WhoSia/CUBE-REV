@@ -1,0 +1,48 @@
+name: CUBE-REV 0.22 P8-R5 — Riabov Conditional All-18 HTM 12-turn Decision
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p8-r5-riabov-general18-middle-two.mjs'
+      - '.github/workflows/cuberev-022-P8-R5-Riabov-18HTM-depth12.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real_Riabov_physical_midpoint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact 18-HTM 12-turn completion via full-cubie two-move midpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=5000 scripts/cuberev-022/verify-p8-r5-riabov-general18-middle-two.mjs | tee CUBE_REV_022_P8_R5_Riabov_all18_exact_length12.json
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_022_P8_R5_Riabov_all18_exact_length12.json','utf8'));
+          assert.equal(z.marker,'CUBE_REV_022_P8_R5_RIABOV_EXACT_GENERAL18_LENGTH12_JOIN');
+          assert.equal(z.original_goal_radius5_layer,574908);
+          assert.equal(z.proofs.length,2);
+          for(const p of z.proofs) {
+           assert(p.no_depth_11 && p.no_depth_at_most_10);
+           assert([12,13].includes(p.exact_all18_HTM_post_prefix));
+           assert(p.exact_physical_witness.replay_solved_full_original_stickers);
+          }
+          console.log('R5_REAL_RIABOV_BIDIRECTIONAL_LENGTH_12_EXACT_CERTIFICATE_PASS');
+          JS
+      - name: Preserve source-graded whole-cubie proof receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P8-R5-Riabov-all18-exact-12-13
+          path: CUBE_REV_022_P8_R5_Riabov_all18_exact_length12.json
+          retention-days: 90
+          if-no-files-found: warn
