@@ -78,12 +78,22 @@ for(const item of input.rows){
  const allChangeDetails=combined.changes.map(x=>({...x,stages_at_transition:x.left_provenance.concat(x.right_provenance)}));
  const sourceUntouched=combined.tokens.slice(0,p.length).every((t,i)=>t===p[i]);
  assert.equal(sourceUntouched,item.authored_prefix_remains_literal);
+ const exactUnrestrictedDistanceFromLiteralAuthoredSource=item.source_id==='miao_main'?9:12;
+ const exactSourcePrefixConditionedNormalizedGlobalWithinPrefix=p.length+exactUnrestrictedDistanceFromLiteralAuthoredSource;
+ // Frozen P8-R4/P8-R5 whole-cubie exact d18 from the original authored prefix;
+ // any full word retaining the entire literal prefix must require >= d18 further HTM moves.
+ assert(combined.tokens.length>=exactSourcePrefixConditionedNormalizedGlobalWithinPrefix);
+ const attainsLiteralPrefixConditionedOptimum=combined.tokens.length===exactSourcePrefixConditionedNormalizedGlobalWithinPrefix;
+ const gapAboveLiteralPrefixConditionedOptimum=combined.tokens.length-exactSourcePrefixConditionedNormalizedGlobalWithinPrefix;
  const reducedWholeIsSubmitted=combined.tokens.join(' ')===source.submitted_final_19;
  const row={
   source_id:item.source_id,source_grade:'HUMAN_RETROSPECTIVE_PREFIX_ONLY',
   synthetic_FB_axis_word:item.synthetic_FBDR_actions,
   original_synthetic_face_word:item.synthetic_original_face_word,
   original_source_prefix_HTM:p.length,synthetic_action_HTM:2,certified_exact_all18_suffix_HTM:suffix.length,
+  exact_literal_source_prefix_preserving_optimum_all18_HTM:exactSourcePrefixConditionedNormalizedGlobalWithinPrefix,
+  this_reduced_witness_attains_literal_prefix_conditioned_optimum:attainsLiteralPrefixConditionedOptimum,
+  this_reduced_witness_excess_over_literal_prefix_optimum_HTM:gapAboveLiteralPrefixConditionedOptimum,
   raw_stage_cost_HTM:whole.length,
   independent_stage_savings_HTM:savedWithin,
   cross_stage_boundary_savings_HTM:savedAtBoundary,
@@ -103,6 +113,9 @@ for(const item of input.rows){
 assert.deepEqual(results.map(x=>x.raw_stage_cost_HTM),[23,23,23,23]);
 assert.deepEqual(results.map(x=>x.normalized_submitted_form_witness_HTM),[19,23,21,23]);
 assert.deepEqual(results.map(x=>x.cross_stage_boundary_savings_HTM),[4,0,2,0]);
+assert.deepEqual(results.map(x=>x.exact_literal_source_prefix_preserving_optimum_all18_HTM),[19,23,19,23]);
+assert.deepEqual(results.map(x=>x.this_reduced_witness_attains_literal_prefix_conditioned_optimum),[true,true,false,true]);
+assert.deepEqual(results.map(x=>x.this_reduced_witness_excess_over_literal_prefix_optimum_HTM),[0,0,2,0]);
 assert(results.every(x=>x.independent_stage_savings_HTM===0));
 assert(results.every(x=>x.fully_unchanged_human_source_prefix));
 const paired=['D B2',"D' F2"].map(word=>{
@@ -131,6 +144,9 @@ console.log(JSON.stringify({
  authors_computed_or_chosen_synthetic_actions_NOT_observed:true,
  original_human_cognition_NOT_identified:true,
  full_18_post_intervention_geodesic_minima_imported_from_P1_PROVEN:true,
+ source_literal_prefix_conditioned_exact_final_word_optima_from_frozen_R4_R5:[19,23],
+ four_witness_source_prefix_exact_optimum_attainment:[true,true,false,true],
+ second_main_21_HTM_is_provably_not_optimal_even_under_its_original_ten_turn_prefix:true,
  paired_contrasts:paired,
  complete_physical_four_way_rewrite_evidence:results
 },null,2));
