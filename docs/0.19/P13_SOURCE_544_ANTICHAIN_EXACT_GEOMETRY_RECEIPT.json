@@ -1,0 +1,18 @@
+{
+  "result": "CUBE_REV_019_ORIGINAL_SOURCE_MAXIMAL_544_480PLUS64_ANTICHAIN_EXACT_GEOMETRY_PASS",
+  "physical_source_sha256": "9f2119738f92f56485897c1894d2cb721a3d6b0498c5aa14832c71f18b20e2f1",
+  "original_source_count": 1192,
+  "unique_inclusion_maximal_count": 544,
+  "maximal_cardinality_histogram": {
+    "5": 480,
+    "4": 64
+  },
+  "outside_original_R5_downward_shadow": {
+    "3": 8,
+    "4": 64
+  },
+  "eight_face_triples_each_contained_in_exactly_eight_primitive_quartets": true,
+  "quartet_pattern": "three of four edge positions from F={1,5,8,9} or B={3,7,10,11}, plus one of 8 off-face positions",
+  "all_dictionary_lengths_and_executable_word_families_preserved": true,
+  "reason": "injectivity of a word on any source B implies its injectivity on every A subset B; finite inclusion-maximal generators form a unique antichain"
+}
