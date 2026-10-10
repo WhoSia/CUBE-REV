@@ -27,7 +27,7 @@ const twoSteps=pairProfiles.filter(x=>x.split_action_count===0);
 assert(oneStep.length>0 && twoSteps.length>0);
 for(const p of twoSteps){
  const [u,v]=p.slots.map(i=>2*i);
- assert(maps.some(a=>maps.some(b=>split(b,maps[a][u],maps[a][v]))));
+ assert(maps.some((_,a)=>maps.some((_,b)=>split(b,maps[a][u],maps[a][v]))));
 }
 const profileGroups=new Map();
 for(const p of pairProfiles){
