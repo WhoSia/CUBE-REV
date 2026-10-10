@@ -1,0 +1,46 @@
+name: CUBE-REV 0.21 P7 — Exact FMC Poset Completion Court
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'data/cuberev-021/p5_fmc_existing_search_event_seed.json'
+      - 'data/cuberev-021/p6_fmc_partial_order_extension.json'
+      - 'scripts/cuberev-021/verify-p6-fmc-source-grounded-partial-order.py'
+      - 'scripts/cuberev-021/verify-p7-fmc-poset-linear-extensions.py'
+      - '.github/workflows/cuberev-021-P7-fmc-poset-completion.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-source-partial-order-extension:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild P6 graphs from preserved historical published cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/cuberev-021/verify-p6-fmc-source-grounded-partial-order.py --outdir p7-poset-output
+      - name: Prove each incomplete chronology admits explicit opposite linear extensions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/cuberev-021/verify-p7-fmc-poset-linear-extensions.py \
+            --graph p7-poset-output/p6_fmc_source_grounded_event_graph.json \
+            --output p7-poset-output/p7_exact_poset_extension_receipt.json
+          grep -F '288000' p7-poset-output/p7_exact_poset_extension_receipt.json
+      - name: Archive exact numerical proof receipt and source DAG
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-021-P7-source-poset-288000-exact-completions
+          path: p7-poset-output/*.json
+          retention-days: 90
+          if-no-files-found: warn
