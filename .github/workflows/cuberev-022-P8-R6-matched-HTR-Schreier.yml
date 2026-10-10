@@ -1,0 +1,45 @@
+name: CUBE-REV 0.22 P8-R6 — Matched DR HTR Schreier Sensitivity
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p8-r6-matched-DR-HTR-Schreier-contacts.mjs'
+      - '.github/workflows/cuberev-022-P8-R6-matched-HTR-Schreier.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  matched_schreier_sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact HTR quotient sensitivity of ten paired physical source interventions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=4096 scripts/cuberev-022/verify-p8-r6-matched-DR-HTR-Schreier-contacts.mjs | tee CUBE_REV_022_P8_R6_matched_HTR_Schreier.json
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const x=JSON.parse(fs.readFileSync('CUBE_REV_022_P8_R6_matched_HTR_Schreier.json','utf8'));
+          assert.equal(x.marker,'CUBE_REV_022_P8_R6_MATCHED_SOURCE_DR_FULL_SCHREIER_HTR_CONTACT_NEIGHBORS');
+          assert.equal(x.complete_left_coset_count,29400);
+          assert.equal(x.matched_pairs.length,10);
+          assert(x.all_matched_physical_state_replays_verified);
+          assert(x.subgroup_quotient_is_NOT_solved_distance_proof);
+          console.log('R6_PHYSICAL_MATCHED_SCHREIER_HTR_DISTANCE_PASS');
+          JS
+      - name: Save full HTR neighborhood sensitivity proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P8-R6-matched-Schreier-HTR-neighbors
+          path: CUBE_REV_022_P8_R6_matched_HTR_Schreier.json
+          retention-days: 90
+          if-no-files-found: warn
