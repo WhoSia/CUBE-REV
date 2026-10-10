@@ -151,6 +151,73 @@ def main():
     optimal_question=min(all_ambiguities,key=lambda r:(r["global_worst_remaining_completions"],
         r["case"],r["first_reported_event_id"],r["second_reported_event_id"]))
     assert total_original-optimal_question["global_worst_remaining_completions"]>0
+    # NEW 0.22-P4 PROCESS-DOMAIN CORRECTION:
+    # Guido g04 is another author's later *documentary annotation*, not a
+    # cognitive decision by the original FMC solver. Historical P7's 288000
+    # count includes its source-document placement; preserve 288000 as
+    # a source-MIXED document-poset count, NOT a searcher-only count.
+    solver_cases={}
+    solver_ambiguities=[]
+    solver_event_total=0
+    solver_pair_total=0
+    solver_ordered_total=0
+    solver_product=1
+    omitted_documentary=[]
+    for case in sorted(nodes_by):
+        original=nodes_by[case]
+        kept=[n for n in original if n["reported_event_kind"]!="OTHER_AUTHOR_POSTHOC_NOTE"]
+        dropped=[n for n in original if n["reported_event_kind"]=="OTHER_AUTHOR_POSTHOC_NOTE"]
+        omitted_documentary.extend({"case":case,"event_id":n["event_id"],
+          "reason":"separate author's later documentary improvement; not original solver cognition"} for n in dropped)
+        idx={z["id"]:i for i,z in enumerate(kept)}
+        n=len(kept)
+        arcs=[(idx[e["src"]],idx[e["dst"]]) for e in edges_by[case]
+              if e["src"] in idx and e["dst"] in idx]
+        L=count_extensions(n,arcs)
+        assert L>0
+        reach=closure(n,arcs)
+        events=0
+        for a in range(n):
+            for b in range(a+1,n):
+                if reach[a]>>b&1 or reach[b]>>a&1:continue
+                up=count_extensions(n,arcs+[(a,b)])
+                dn=count_extensions(n,arcs+[(b,a)])
+                assert up>0 and dn>0 and up+dn==L
+                solver_ambiguities.append({
+                  "case":case,
+                  "first_solver_event":kept[a]["event_id"],
+                  "second_solver_event":kept[b]["event_id"],
+                  "solver_case_completions":L,
+                  "first_before_second":up,
+                  "second_before_first":dn,
+                  "maximum_surviving_case_orders_after_true_binary_report":max(up,dn),
+                  "not_a_human_posterior_probability":True
+                })
+                events+=1
+        solver_product*=L
+        solver_event_total+=n
+        solver_pair_total+=comb(n,2)
+        solver_ordered_total+=comb(n,2)-events
+        solver_cases[case]={"original_author_reported_events":n,
+            "completions_without_other_author_posthoc_nodes":L,
+            "ambiguous_relative_order_pairs":events,
+            "comparable_pairs":comb(n,2)-events}
+    assert len(omitted_documentary)==1
+    assert omitted_documentary[0]["event_id"]=="g04"
+    assert solver_event_total==40
+    assert solver_pair_total==102
+    assert solver_ordered_total==71
+    assert len(solver_ambiguities)==31
+    assert solver_product==72000
+    for record in solver_ambiguities:
+        L=record["solver_case_completions"]
+        factor=solver_product//L
+        record["global_first_before_second"]=factor*record["first_before_second"]
+        record["global_second_before_first"]=factor*record["second_before_first"]
+        record["global_minimax_worst_remaining"]=factor*record["maximum_surviving_case_orders_after_true_binary_report"]
+        assert record["global_first_before_second"]+record["global_second_before_first"]==solver_product
+    best_solver_only=min(solver_ambiguities,key=lambda a:(
+       a["global_minimax_worst_remaining"],a["case"],a["first_solver_event"],a["second_solver_event"]))
     essential=[e for e in edge_ablations if not e["transitively_redundant_under_other_curated_edges"]]
     redundant=[e for e in edge_ablations if e["transitively_redundant_under_other_curated_edges"]]
     worst_edge=max(edge_ablations,key=lambda e:(e["inflation_ratio_vs_case_base"],e["case"]))
@@ -220,6 +287,20 @@ def main():
         "unidentified_relative_order_pairs":len(all_ambiguities),
         "linear_extensions_product_not_real_human_histories":total_original,
         "global_one_extra_supported_binary_order_fact_minimax_query":optimal_question,
+        "critical_no_other_author_cognitive_conflation_correction":{
+           "historical_mixed_documentary_poset_completions":total_original,
+           "reported_original_solver_event_nodes":solver_event_total,
+           "excluded_separately_authored_posthoc_event_nodes":omitted_documentary,
+           "within_solver_episode_node_pairs":solver_pair_total,
+           "solver_reported_temporal_comparable_pairs":solver_ordered_total,
+           "solver_reported_temporal_ambiguous_pairs":len(solver_ambiguities),
+           "original_solver_only_poset_completions":solver_product,
+           "best_single_same_solver_order_question_by_minimax_remaining_order_count":best_solver_only,
+           "all_31_same_solver_binary_order_splits":solver_ambiguities,
+           "per_episode":solver_cases,
+           "do_not_report_288000_as_one_person_search_process":True,
+           "old_288000_correct_as_mixed_documentary_node_count_only":True
+        },
         "all_34_ambiguous_pairs_with_opposite_order_extension_counts":all_ambiguities,
         "case_exact_bounds":cases,
         "curated_edge_withdrawal_sensitivity":{
