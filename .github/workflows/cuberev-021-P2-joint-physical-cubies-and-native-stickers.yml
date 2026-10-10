@@ -5,6 +5,7 @@ on:
       - research/current
     paths:
       - 'scripts/cuberev-021/verify-p2-shared-edges-and-real-face-colours.mjs'
+      - 'scripts/cuberev-021/build-p2-24-real-sticker-camera-pilot.mjs'
       - '.github/workflows/cuberev-021-P2-joint-physical-cubies-and-native-stickers.yml'
   workflow_dispatch:
 permissions:
@@ -26,11 +27,19 @@ jobs:
           set -euo pipefail
           node scripts/cuberev-021/verify-p2-shared-edges-and-real-face-colours.mjs | tee cuberev021-P2-real-view-receipt.json
           grep -F 'CUBE_REV_021_P2_SHARED_EDGE_AND_NATIVE_STICKER_FRONT_CAMERA_PASS' cuberev021-P2-real-view-receipt.json
+      - name: Compile 24 six-camera real-sticker experimental pilot tasks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-021/build-p2-24-real-sticker-camera-pilot.mjs | tee cuberev021-P2H-24-real-camera-trials.json
+          grep -F 'CUBE_REV_021_P2H_24_REAL_STICKER_TRIALS_READY' cuberev021-P2H-24-real-camera-trials.json
       - name: Preserve reproducible coupled-cubie and sticker camera proof receipt
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cuberev-021-P2-coupled-132-and-real-sticker-camera
-          path: cuberev021-P2-real-view-receipt.json
+          path: |
+            cuberev021-P2-real-view-receipt.json
+            cuberev021-P2H-24-real-camera-trials.json
           retention-days: 30
           if-no-files-found: warn
