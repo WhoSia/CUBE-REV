@@ -34,6 +34,9 @@ jobs:
           assert(p.observed_rewrite_intervention_suffix_boundary_only);
           assert.deepEqual(p.paired_contrasts.map(x=>x.canonical_final_witness_gap_alt_minus_main),[4,2]);
           assert(p.authors_computed_or_chosen_synthetic_actions_NOT_observed);
+          assert.deepEqual(p.source_literal_prefix_conditioned_exact_final_word_optima_from_frozen_R4_R5,[19,23]);
+          assert.deepEqual(p.four_witness_source_prefix_exact_optimum_attainment,[true,true,false,true]);
+          assert(p.second_main_21_HTM_is_provably_not_optimal_even_under_its_original_ten_turn_prefix);
           console.log('CUBE_REV_023_P2_BOUNDARY_COST_PHYSICAL_PASS');
           JS
       - name: Preserve full legal face-turn boundary operation attribution
