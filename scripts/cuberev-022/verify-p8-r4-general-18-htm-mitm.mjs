@@ -131,6 +131,9 @@ function inspect(source,side,label) {
  return {best,intersectionChecks};
 }
 const scramble=tokenize(ledger.normal_scramble);
+const restricted=JSON.parse(fs.readFileSync('data/cuberev-022/p8_r3_source_anchored_phase2_exact_witness_fixtures.json','utf8'));
+assert.equal(restricted.schema,'cuberev-022-p8-r3-verified-physical-phase2-source-prefix-fixtures-v1');
+assert.equal(restricted.rows.length,5);
 const rows=[],cache=new Map();
 for(const item of ledger.eo_dr_pairs.filter(x=>x.id!=='riabov_other_2')){
  const authored=[...tokenize(item.eo_prefix),...tokenize(item.dr_extension)];
@@ -187,11 +190,31 @@ for(const item of ledger.eo_dr_pairs.filter(x=>x.id!=='riabov_other_2')){
  const suffix=res.actual_18_move_continuation?tokenize(res.actual_18_move_continuation):null;
  const joint=suffix?[...authored,...suffix]:null;
  const normalized=joint?adjacentNormalized(joint):null;
+ const prior=restricted.rows.find(x=>x.id===item.id);
+ assert(prior&&prior.axis===axes[0]&&prior.source_parse===item.declared_mode);
+ const restrictedWitness=[...authored,...tokenize(prior.actual_phase2_word)];
+ assert.equal(prior.exact_minimum_DR_to_solved,tokenize(prior.actual_phase2_word).length);
+ assert(solvedUpToRotation(stickerAfter([...scramble,...restrictedWitness])),'Earlier exact DR-phase source oracle does not solve full cube');
+ const upper=prior.exact_minimum_DR_to_solved;
+ const lower=res.lower_bound_HTM;
+ assert(lower<=upper,'18 legal HTM superset cannot exceed earlier restricted shortest witness');
+ const certifiedExact=lower===upper?lower:res.full_18_HTM_minimum;
+ const certifiedWord=certifiedExact!==null?(joint??restrictedWitness):null;
+ const certifiedReduced=certifiedWord?adjacentNormalized(certifiedWord):null;
+ if(certifiedReduced)assert(solvedUpToRotation(stickerAfter([...scramble,...certifiedReduced])));
+
  if(joint)assert(solvedUpToRotation(stickerAfter([...scramble,...joint])));
  if(normalized)assert(solvedUpToRotation(stickerAfter([...scramble,...normalized])));
  rows.push({id:item.id,axis:axes[0],source_parse_grade:item.declared_mode,
   original_literal_source_prefix_HTM:authored.length,
   ...res,
+  independent_R3_restricted_minimum_as_physical_18_HTM_upper:upper,
+  prior_source_specific_upper_witness_replayed_on_original_54_stickers:true,
+  certified_18_HTM_distance_interval:[lower,upper],
+  certified_18_HTM_exact:certifiedExact,
+  certified_18_HTM_fixed_authored_prefix_raw_total:certifiedExact===null?null:authored.length+certifiedExact,
+  certified_18_HTM_complete_physical_witness_word:certifiedReduced?.join(' ')??null,
+  certified_source_prefix_preserved_after_adjacent_reduction:certifiedReduced?authored.every((x,i)=>certifiedReduced[i]===x):null,
   full_18_HTM_raw_total_when_witness:joint?.length??null,
   full_18_HTM_normalized_witness_length:normalized?.length??null,
   original_source_prefix_retained_in_normalized_word:normalized?authored.every((x,i)=>x===normalized[i]):null,
@@ -201,18 +224,23 @@ for(const item of ledger.eo_dr_pairs.filter(x=>x.id!=='riabov_other_2')){
 const main=rows.find(x=>x.id==='miao_main'),alt=rows.find(x=>x.id==='miao_alternative_from_same_eo');
 assert(main.full_18_HTM_minimum===rows.find(x=>x.id==='riabov_main').full_18_HTM_minimum);
 const comparison={
- main_raw_total_upper_bound:main.full_18_HTM_minimum===null?null:main.original_literal_source_prefix_HTM+main.full_18_HTM_minimum,
- alternative_raw_total_lower_bound:alt.original_literal_source_prefix_HTM+alt.lower_bound_HTM,
- strict_main_better_proved:(main.full_18_HTM_minimum!==null)&&main.original_literal_source_prefix_HTM+main.full_18_HTM_minimum<alt.original_literal_source_prefix_HTM+alt.lower_bound_HTM,
- exact_both_full_18_HTM:(main.full_18_HTM_minimum!==null&&alt.full_18_HTM_minimum!==null)
+ main_exact_18_HTM_total:main.certified_18_HTM_fixed_authored_prefix_raw_total,
+ alternative_exact_18_HTM_total:alt.certified_18_HTM_fixed_authored_prefix_raw_total,
+ exact_full_18_HTM_gap:alt.certified_18_HTM_fixed_authored_prefix_raw_total-main.certified_18_HTM_fixed_authored_prefix_raw_total,
+ strict_main_better_proved:main.certified_18_HTM_fixed_authored_prefix_raw_total<alt.certified_18_HTM_fixed_authored_prefix_raw_total,
+ exact_both_full_18_HTM:main.certified_18_HTM_exact!==null&&alt.certified_18_HTM_exact!==null,
+ only_given_authored_prefix_and_all_18_post_prefix_moves:true
 };
+assert.deepEqual([comparison.main_exact_18_HTM_total,comparison.alternative_exact_18_HTM_total,comparison.exact_full_18_HTM_gap],[19,23,4]);
+assert(main.certified_source_prefix_preserved_after_adjacent_reduction);
+assert(alt.certified_source_prefix_preserved_after_adjacent_reduction);
 console.log(JSON.stringify({
  marker:'CUBE_REV_022_P8_R4_FULL_18_HTM_MEET_IN_MIDDLE_SOURCE_PREFIX_COMPARISON',
  true_3x3_model:'Full sticker cube original 18 HTM outer turns, not DR-preserving or mandatory HTR',
  backward_solved_radius_HTM:5,
  backward_bfs_counts:G.hist,
  backward_bfs_states:G.visited.size,
- source_bound_method:'For all paths length <=9: source radius4 / goal radius5 intersection. For <=10: source radius5 / goal radius5 intersection. For exact 11: one streamed legal goal-side step from goal depth5 against source depth5, without materializing the goal depth6 layer. Prune adjacent same-face and reversed opposite commuting turns without losing a shortest canonical representative.',
+ source_bound_method:'For all paths length <=9: source radius4 / goal radius5 intersection. For <=10: source radius5 / goal radius5 intersection. For exact 11: one streamed legal goal-side step from goal depth5 against source depth5, without materializing the goal depth6 layer. Compose lower bound with independent original-sticker-replayed restricted ten-generator upper witness. Prune adjacent same-face and reversed opposite commuting turns without losing a shortest canonical representative.',
  source_results:rows,
  same_EO_main_vs_alternative:comparison,
  historical_source_words_not_assumed_actual_search_traces:true,
