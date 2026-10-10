@@ -1,0 +1,45 @@
+name: CUBE-REV 0.22 P3 — Predictive State and FMC Matched Case Court
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p3-predictive-rank-provenance-cost-fmc.mjs'
+      - 'data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json'
+      - '.github/workflows/cuberev-022-P3-predictive-state-fmc-court.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physically-grounded-predictive-state:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact legal Rubik predictive rank, original-source and nonstationary policy certificate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-022/verify-p3-predictive-rank-provenance-cost-fmc.mjs | tee CUBE_REV_022_P3_predictive_and_FMC_matched_receipt.json
+          grep -F 'CUBE_REV_022_P3_REAL_PHYSICAL_PREDICTIVE_STATE_AND_FMC_COGNITIVE_BARRIER_COURT_PASS' CUBE_REV_022_P3_predictive_and_FMC_matched_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const c=JSON.parse(fs.readFileSync('CUBE_REV_022_P3_predictive_and_FMC_matched_receipt.json'));
+          if(c.predictive_linear_tests.state_coordinates!==24)throw Error('WRONG_PHYSICAL_STATES');
+          if(!c.historical_original_source_decoding.distinct_original_source_labels_require_history_or_provenance)throw Error('PROVENANCE_TEST_MISSING');
+          if(!c.nonstationary_cost_control.disjoint_first_action_sets)throw Error('PRICE_SWITCH_NOT_PROVEN');
+          if(c.fmc_source_graded_match.matched_official_scrambles!==3||!c.fmc_source_graded_match.identical_solution_lengths_all_three_attempts)throw Error('UNMATCHED_HUMAN_DATA');
+          console.log('P3_EXPLICIT_PHYSICAL_AND_RETROSPECTIVE_SCOPE_PASS');
+          JS
+      - name: Upload exact numerical rank and genuinely sourced FMC contrast receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P3-exact-predictive-state-provenance-FMC-matched-case
+          path: CUBE_REV_022_P3_predictive_and_FMC_matched_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
