@@ -1,0 +1,36 @@
+name: CUBE-REV 0.21 P7 — Exact Turn Query Tradeoff
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-021/verify-p7-physical-seven-turn-four-query-optimum.mjs'
+      - '.github/workflows/cuberev-021-P7-turn-query-minimax.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physical-observation-information-law:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recompute real physical sticker-move belief DAG and audit 12 query codes
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-021/verify-p7-physical-seven-turn-four-query-optimum.mjs | tee p7-physical-turn-query-receipt.json
+          grep -F 'CUBE_REV_021_P7_REAL_RUBIK_JOINT_TURN_QUERY_MINIMUM_PASS' p7-physical-turn-query-receipt.json
+      - name: Archive 12 real-Rubik initial-slot witnesses and exact information bound
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-021-P7-physical-7-turn-4-observation-minimax
+          path: p7-physical-turn-query-receipt.json
+          retention-days: 90
+          if-no-files-found: warn
