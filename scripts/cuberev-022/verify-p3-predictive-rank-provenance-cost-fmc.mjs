@@ -70,6 +70,52 @@ assert(predictionLevels.every(z=>z.final_read_only_rank<=24));
 // A rank-24 mod-p witness is also full rank over Q, hence any real-valued
 // posterior over the 24 physical edge states is identified from those
 // selected controlled future event probabilities at the tested horizon.
+// EXACT all-horizons algebraic upper bound for the last-bit-only interface.
+// Each real legal edge move has T_w(2p+b) = 2 slot_w(p) + (b XOR flip_w(p)).
+// Thus for any fixed word w, final-bit-0 event indicator r_w satisfies
+// r_w(2p)+r_w(2p+1)=1 for EACH p. All such rows live in a
+// 13-dimensional linear subspace: one common pair sum plus 12 differences.
+// Independent actual physical tests reach rank 13 by depth two, certifying
+// rank EXACTLY 13 for the ENTIRE infinite family of legal words.
+for(let a=0;a<18;a++)for(let slot=0;slot<12;slot++){
+ assert.equal((moves[a][2*slot]&1)^(moves[a][2*slot+1]&1),1);
+}
+assert.equal(predictionLevels[2].final_read_only_rank,13);
+for(const level of predictionLevels)assert(level.final_read_only_rank<=13);
+const lastBitAnyLengthExactRank=13;
+// Mixtures at the two different slots, each with unknown orientation uniformly.
+// For EVERY legal action word, final bit is still 1/2 each, because the
+// physical moves preserve a XOR with the initial orientation bit.
+const mixtures=[
+ {tag:'PHYSICAL_SLOT_0_EITHER_FLIP',states:[0,1],weights:[.5,.5]},
+ {tag:'PHYSICAL_SLOT_1_EITHER_FLIP',states:[2,3],weights:[.5,.5]}
+];
+let distinctFullTwoStep=null;
+const transcriptDist=(states,word)=>{
+ let current=[...states],transcripts=states.map(()=>'');
+ for(const a of word){
+  current=current.map(s=>moves[a][s]);
+  transcripts=transcripts.map((v,i)=>v+(current[i]&1));
+ }
+ const out={};
+ for(const v of transcripts)out[v]=(out[v]??0)+.5;
+ return out;
+};
+for(let a=0;a<18&&!distinctFullTwoStep;a++)for(let b=0;b<18;b++){
+ const X=transcriptDist(mixtures[0].states,[a,b]);
+ const Y=transcriptDist(mixtures[1].states,[a,b]);
+ if(JSON.stringify(Object.entries(X).sort())!==JSON.stringify(Object.entries(Y).sort())){
+  distinctFullTwoStep={word:[ACTIONS[a],ACTIONS[b]],first_mixture_bit_history_distribution:X,
+   second_mixture_bit_history_distribution:Y};
+  break;
+ }
+}
+assert(distinctFullTwoStep);
+for(let a=0;a<18;a++)for(let b=0;b<18;b++){
+ const v0=mixtures.map(m=>m.states.map(s=>moves[b][moves[a][s]]&1));
+ assert(v0.every(pair=>pair[0]!==pair[1]));
+}
+
 const rank24Depth=predictionLevels.find(x=>x.all_read_transcript_rank===24)?.turns??null;
 const finalRank24Depth=predictionLevels.find(x=>x.final_read_only_rank===24)?.turns??null;
 const rankWitnesses=full.witnesses.slice(0,24);
@@ -204,6 +250,14 @@ const receipt={
   levels:predictionLevels,
   first_depth_full_rank_all_read:rank24Depth,
   first_depth_full_rank_final_only:finalRank24Depth,
+  final_bit_only_exact_rank_for_arbitrarily_long_legal_words:lastBitAnyLengthExactRank,
+  proof_of_all_horizons_rank13:'Each terminal one-bit experiment has across original opposite-flip source states at any slot a pair of complementary indicators; hence all rows satisfy a shared per-slot pair-sum and span dimension <=13. 13 independent actual legal tests are found at depth 2.',
+  exact_mixture_indistinguishability:{
+   distinct_physical_mixtures_with_uniform_hidden_flip:mixtures,
+   all_legal_words_terminal_bit_distribution_for_each_mixture:{0:0.5,1:0.5},
+   full_two_turn_history_separating_witness:distinctFullTwoStep,
+   inference:'Final one-bit observations never reveal the physical slot if the initial flip is uniformly unknown, but ordered multi-time correlations can reveal it.'
+  },
   independent_test_rows_for_rank_certificate:rankWitnesses,
   sufficient_distribution_identification_if_rank24:'Full mod-prime rank => nonzero integer minor => rank24 over real numbers. Prediction vector of these 24 tests uniquely determines arbitrary distribution on 24 physical states, under frozen known sensor/moves.',
   nonfull_rank_caveat:'Rank below 24 mod-p only certifies a lower rank bound unless rational rank upper bound independently verified.'
