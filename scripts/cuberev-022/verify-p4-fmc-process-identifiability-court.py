@@ -331,6 +331,14 @@ def main():
     target=Path(x.output);target.parent.mkdir(parents=True,exist_ok=True)
     target.write_text(json.dumps(receipt,ensure_ascii=False,indent=2,sort_keys=True)+"\n")
     print(receipt["marker"])
+    print("P4_ORIGINAL_SOLVER_ONLY_CORRECTION",json.dumps({
+      "source_mixed_reported_nodes":41,
+      "source_mixed_completions":total_original,
+      "solver_only_nodes":solver_event_total,
+      "solver_only_completions":solver_product,
+      "solver_only_unresolved_order_pairs":len(solver_ambiguities),
+      "best_solver_only_true_binary_order_review":best_solver_only
+    },ensure_ascii=False))
     print(json.dumps({"completions":total_original,"best_order_query":optimal_question,
       "essential_edges":len(essential),"redundant_edges":len(redundant),
       "worst_edge":worst_edge,"conditional_70_30":exact_scenario,
