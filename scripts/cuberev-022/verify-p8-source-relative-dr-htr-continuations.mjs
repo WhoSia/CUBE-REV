@@ -54,7 +54,7 @@ for(const a of Object.keys(ROT))for(const t of ACTIONS){
  assert.equal(key(phaseState(stickerAfter([t]),a)),key(FACE[f]),'axis conjugacy check '+a+'/'+t);
 }
 const start=enc(solved);
-const groupDist=new Map([[start,0]]), queue=[start], hist=[1];
+const groupDist=new Map([[start,0]]), groupParents=new Map(), queue=[start], hist=[1];
 let head=0;
 while(head<queue.length) {
  const current=queue[head++],d=groupDist.get(current);
@@ -63,7 +63,7 @@ while(head<queue.length) {
   for(let i=0;i<8;i++)next+=current[m.cp[i]];
   for(let i=0;i<12;i++)next+=current[8+m.ep[i]];
   if(groupDist.has(next))continue;
-  groupDist.set(next,d+1);queue.push(next);
+  groupDist.set(next,d+1);groupParents.set(next,[current,t]);queue.push(next);
   hist[d+1]=(hist[d+1]??0)+1;
   if(queue.length>663552)throw Error('HTR_SUBGROUP_OVERSHOT');
  }
@@ -73,6 +73,19 @@ assert.equal(hist.length-1,15); // BFS levels are contiguous; no spread over 663
 assert.equal(hist.reduce((a,b)=>a+b,0),663552);
 function checksum(s){return crypto.createHash('sha256').update(key(s)).digest('hex');}
 function htrDistance(s){return dr(s)?groupDist.get(enc(s)):undefined;}
+function exactReturnFromHTR(s){
+ const path=[];let state=enc(s);
+ assert(groupDist.has(state),'HTR state not in exact subgroup');
+ while(state!==start){
+  const parent=groupParents.get(state);
+  assert(parent,'Subgroup BFS parent missing');
+  path.push(parent[1]);state=parent[0];
+ }
+ assert.equal(path.length,groupDist.get(enc(s)),'Shortest HTR suffix does not match BFS certificate');
+ let c=s;for(const t of path)c=compose(c,FACE[t]);
+ assert.equal(key(c),key(solved),'Actual half-turns must solve canonical cube');
+ return path;
+}
 const scramble=tokenize(ledger.normal_scramble), submitted=tokenize(ledger.submitted_final_19);
 assert.equal(submitted.length,19);
 assert(solvedUpToRotation(stickerAfter([...scramble,...submitted])));
@@ -104,14 +117,23 @@ for(const candidate of ledger.eo_dr_pairs){
    if(tail===undefined)continue;
    htrMembers++;
    const actualSuffix=p.w.map(actualFromCanonical);
-   // Each representative is independently checked using the real 54-sticker engine.
+   // Verify both the phase-2 prefix and entire reconstructed solution by full stickers.
    const full=phaseState(stickerAfter([...scramble,...prefix,...actualSuffix]),axis);
    assert.equal(key(full),key(p.s),'Original physical sticker cross-check');
+   const halfCanonical=exactReturnFromHTR(p.s);
+   const halfActual=halfCanonical.map(actualFromCanonical);
+   const fullPhysicalSolution=[...prefix,...actualSuffix,...halfActual];
+   const actualSolved=stickerAfter([...scramble,...fullPhysicalSolution]);
+   assert(solvedUpToRotation(actualSolved),'P8 complete witness fails real physical cube');
+   assert.equal(key(phaseState(actualSolved,axis)),key(solved),'HTR return must produce exact canonical solved');
    const cost=depth+tail;
    if(!layerBest||cost<layerBest.phase2_total_moves)layerBest={
     depth_from_DR:depth,HTR_to_solved_half_turns:tail,phase2_total_moves:cost,
     canonical_DR_preserving_turns:p.w.join(' '),
     actual_face_turns:actualSuffix.join(' '),
+    HTR_to_solved_actual_half_turns:halfActual.join(' '),
+    complete_legal_original_face_turn_solution:fullPhysicalSolution.join(' '),
+    physically_solves_original_scramble_with_original_54_sticker_oracle:true,
     HTR_endpoint_sha256:checksum(p.s)
    };
    if(firstHit===null)firstHit=depth;
