@@ -1,0 +1,44 @@
+name: CUBE-REV 0.22 P6 — Full Cube FMC Subgroup Grammar
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p6-fmc-physical-subgroup-and-search-grammar.mjs'
+      - 'data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json'
+      - '.github/workflows/cuberev-022-P6-fmc-subgroup-grammar.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  full_cube_group_and_source_grammar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original full Rubik sticker group; exhaustive 663552 square subgroup; author-source prefixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=4096 scripts/cuberev-022/verify-p6-fmc-physical-subgroup-and-search-grammar.mjs | tee CUBE_REV_022_P6_full_cube_physical_grammar_receipt.json
+          grep -F 'CUBE_REV_022_P6_REAL_FULL_CUBE_FMC_GRAMMAR_AND_SQUARE_SUBGROUP_PASS' CUBE_REV_022_P6_full_cube_physical_grammar_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const v=JSON.parse(fs.readFileSync('CUBE_REV_022_P6_full_cube_physical_grammar_receipt.json','utf8'));
+          if(v.phase_subgroup_certificate.exact_HTR_square_subgroup_order!==663552)throw Error('INCOMPLETE_HALF_TURN_GROUP');
+          if(!v.full_actual_competition_scramble_plus_19_HTM_solution_verified_solved)throw Error('NOT_ACTUAL_SOLVE');
+          if(!v.stage_grammar.candidate_types.includes('AUTHOR_REPORTED_EVENT'))throw Error('EVENT_ONTOLOGY_MISSING');
+          console.log('P6_REAL_FULL_CUBE_SUBGROUP_AND_SOURCE_PHYSICAL_REPLAY_PASS');
+          JS
+      - name: Preserve proof receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P6-full-cube-EO-DR-HTR-group-search-grammar
+          path: CUBE_REV_022_P6_full_cube_physical_grammar_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
