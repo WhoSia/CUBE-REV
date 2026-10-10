@@ -16,7 +16,7 @@ Authentic frozen P7 source ledger: `data/cuberev-022/p7_fmc_source_anchored_cand
 
 For each genuine source-conditional Riabov Other #1 and Other #3 DR endpoint, reconstruct the original 3×3 physical cube after the author's two source lines, keep the source-grade assumption attached, then permit **all 18 original legal outer-face HTM moves**, with no DR preservation or compulsory HTR contact.
 
-Let B5(e) be all states within five legal outer-face turns from solved and B5(s) all states within five turns from the source endpoint. Both spheres have exactly **619,649** full cubie states including levels 0–5; the exact depth-5 layer contains **574,908** states. These are full corner+edge positions and orientations, not a projection.
+Let B5(e) be all states within five legal outer-face turns from solved and B5(s) all states within five turns from the source endpoint. Both spheres have exactly **621,649** full cubie states including levels 0–5; the exact depth-5 layer contains **574,908** states. These are full corner+edge positions and orientations, not a projection.
 
 - 0–10 turns: test direct B5(e) and B5(s) state intersection.
 - 11 turns: test all 18 legal one-edge extensions of exact goal-depth-5 states for membership in B5(s): **10,348,344** tests per source.
