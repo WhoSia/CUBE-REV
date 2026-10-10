@@ -1,0 +1,46 @@
+name: CUBE-REV 0.22 P8-R6 — Matched Physical DR Branch Interventions
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p8-r6-matched-DR-neighborhood-geodesics.mjs'
+      - '.github/workflows/cuberev-022-P8-R6-matched-DR-branch.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source_matched_intervention:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify actual sourced branches under same ten physical DR interventions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=5000 scripts/cuberev-022/verify-p8-r6-matched-DR-neighborhood-geodesics.mjs | tee CUBE_REV_022_P8_R6_matched_DR_source_neighborhood.json
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const x=JSON.parse(fs.readFileSync('CUBE_REV_022_P8_R6_matched_DR_source_neighborhood.json','utf8'));
+          assert.equal(x.marker,'CUBE_REV_022_P8_R6_SOURCE_ANCHORED_MATCHED_DR_PHYSICAL_NEIGHBORHOOD');
+          assert.equal(x.matched_one_step_pair_count,10);
+          assert.equal(x.actual_synthetic_physical_states_examined,20);
+          assert(x.matched_interventions.every(z=>z.arms.every(a=>a.DR10_total_authored_plus_synthetic_plus_solve_exact_or_interval.length===2)));
+          assert(x.matched_interventions.every(z=>z.matched_DR10_total_difference_interval_alternative_minus_main[0]>=2));
+          assert(x.all18_exact_neighbor_values_NOT_calculated);
+          console.log('R6_SOURCE_AUTHORED_VS_SYNTHETIC_MATCHED_DR10_PHYSICAL_PASS');
+          JS
+      - name: Preserve branch experiment proof and HOLD records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P8-R6-matched-branch-neighborhood
+          path: CUBE_REV_022_P8_R6_matched_DR_source_neighborhood.json
+          retention-days: 90
+          if-no-files-found: warn
