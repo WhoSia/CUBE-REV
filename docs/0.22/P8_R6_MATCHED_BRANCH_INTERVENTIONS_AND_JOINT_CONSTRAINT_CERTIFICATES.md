@@ -21,7 +21,7 @@ For each child state record independent reverse 967,680-state corner×E-slice an
 
 ## 2. Exact matched DR-geodesic results
 
-All **20/20** physical interventions have exact shortest DR-preserving solved distances, and **zero** resource holds were encountered (each search used an explicit 6-million-visit upper limit, not exhausted). The resulting exact shortest physical continuation costs, including the actual source-prefix lengths and added intervention, are:
+All **20/20** physical interventions have exact shortest DR-preserving solved distances, **20 distinct original full-cubie SHA-256 state digests**, **20 physically replayed optimal-suffix witnesses**, **688,811 total bounded IDA node visits** across the twenty children, and **zero** resource holds were encountered (each search used an explicit 6-million-visit upper limit, not exhausted). The resulting exact shortest physical continuation costs, including the actual source-prefix lengths and added intervention, are:
 
 | Common synthetic DR turn (axis frame) | Main child's exact continuation | Alternative child's exact continuation | Extra raw completed actions (alternative – main) |
 | --- | ---: | ---: | ---: |
