@@ -1,0 +1,393 @@
+{
+  "schema": "cuberev-021-p6-source-qualified-partial-order-v1",
+  "inherits_p5_dataset": "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
+  "explicit_controls": {
+    "no_total_order_from_sequence_index": true,
+    "no_expansion_of_reported_candidate_pool_counts_to_events": true,
+    "every_temporal_edge_is_separately_asserted": true,
+    "video_link_attestation_not_frame_review": true,
+    "contradictory_or_unobservable_timings_remain_unknown": true,
+    "inferential_strength": "retrospective author narratives and authored retrospective personal notes only",
+    "no_new_participants": true
+  },
+  "case_edges": [
+    {
+      "episode_id": "WHEELER_SEFMC2026_A1",
+      "temporal": [
+        [
+          "w01",
+          "w02",
+          "author describes written pool then first branch"
+        ],
+        [
+          "w02",
+          "w04",
+          "author orders tested first and later backup branch"
+        ],
+        [
+          "w04",
+          "w06",
+          "backup must be available before written"
+        ],
+        [
+          "w05",
+          "w06",
+          "self-report about 30min vs 55min"
+        ],
+        [
+          "w06",
+          "w07",
+          "self-report about 55min vs 56min"
+        ],
+        [
+          "w07",
+          "w08",
+          "reported inverse revisit before forward continuation"
+        ],
+        [
+          "w08",
+          "w09",
+          "reported continuation before finishing refinements"
+        ],
+        [
+          "w09",
+          "w10",
+          "reported final check precedes final write"
+        ]
+      ],
+      "references": [
+        [
+          "w07",
+          "w01",
+          "REVISTS_ORIGINAL_POOL_UNSPECIFIED_MEMBER",
+          "links to earlier pool only; does NOT equate w03 deferred candidate with w07"
+        ],
+        [
+          "w06",
+          "w04",
+          "RETURNS_TO_BACKUP",
+          "writer says previously created 25 turn backup was written"
+        ]
+      ]
+    },
+    {
+      "episode_id": "QURAISHI_FMCWORLD2026_A3",
+      "temporal": [
+        [
+          "q01",
+          "q02",
+          "initial 5-move EO family precedes unproductive period"
+        ],
+        [
+          "q02",
+          "q03",
+          "author describes returning after about 50 minutes"
+        ],
+        [
+          "q03",
+          "q04",
+          "new EO enables RZP/DR continuation"
+        ],
+        [
+          "q04",
+          "q05",
+          "author describes DR variations following DR formation"
+        ],
+        [
+          "q05",
+          "q06",
+          "comparisons precede final route"
+        ]
+      ],
+      "references": [
+        [
+          "q03",
+          "q01",
+          "RETURNS_TO_EO_FAMILY",
+          "search returns to EO stage, not necessarily identical EO candidate"
+        ]
+      ]
+    },
+    {
+      "episode_id": "DONG_FMCWORLD2026_A1",
+      "temporal": [
+        [
+          "d101",
+          "d102",
+          "earlier candidate before later reconsideration"
+        ],
+        [
+          "d102",
+          "d103",
+          "writer reports improvement after late revisit"
+        ]
+      ],
+      "references": [
+        [
+          "d102",
+          "d101",
+          "REVISITS_CANDIDATE",
+          "same reported earlier candidate"
+        ]
+      ]
+    },
+    {
+      "episode_id": "DONG_FMCWORLD2026_A2",
+      "temporal": [
+        [
+          "d201",
+          "d202",
+          "written set before selecting a trialled member"
+        ],
+        [
+          "d202",
+          "d203",
+          "chosen EO continuation before reported final"
+        ]
+      ],
+      "references": [
+        [
+          "d202",
+          "d201",
+          "SELECTS_FROM_REPORTED_POOL",
+          "42 written, 38th tested distinct denominators"
+        ]
+      ]
+    },
+    {
+      "episode_id": "PIETRUSIAK_WARSZAWA2026_F2",
+      "temporal": [
+        [
+          "p01",
+          "p02",
+          "author describes subsequent NISS adaptation"
+        ],
+        [
+          "p02",
+          "p03",
+          "revised route before final"
+        ]
+      ],
+      "references": [
+        [
+          "p02",
+          "p01",
+          "REFORMULATES_PRIOR_CANDIDATE",
+          "reconstructs previous candidate in alternate representation"
+        ]
+      ]
+    },
+    {
+      "episode_id": "GUIDO_ARCHIVE_REWRITE_24",
+      "temporal": [
+        [
+          "g01",
+          "g02",
+          "author describes rewrite of draft"
+        ],
+        [
+          "g02",
+          "g03",
+          "new expression led to improved personal result"
+        ]
+      ],
+      "documentary_after": [
+        [
+          "g03",
+          "g04",
+          "separately attributed other author's later improvement"
+        ]
+      ],
+      "references": [
+        [
+          "g02",
+          "g01",
+          "REWRITES_PRIOR_DRAFT",
+          "same author own draft"
+        ],
+        [
+          "g04",
+          "g03",
+          "OTHER_AUTHOR_LATER_IMPROVEMENT",
+          "separate author; never merge as same person's sequential choice"
+        ]
+      ]
+    }
+  ],
+  "added_public_episodes": [
+    {
+      "id": "UTOMO_FMCWORLD2026_A2",
+      "author": "Vincent Hartanto Utomo",
+      "attempt": "FMC World 2026 Final / Attempt 2",
+      "source_url": "https://04.498620.ga.2409.cdf.002.333.fm/wca/reconstruction/FMCWorld2026/2010UTOM01",
+      "official_result_page": "https://www.worldcubeassociation.org/competitions/FMCWorld2026",
+      "source_type": "public_author_retrospective_writeup",
+      "chronology_grade": "AUTHOR_REPORTED_PARTIAL_ORDER_ONLY",
+      "notes": "Author describes considered versus not-tried branches and an approximately 35-minute subjective threshold; not a synced camera clock.",
+      "events": [
+        {
+          "event_id": "v01",
+          "sequence_index": 1,
+          "kind": "INITIAL_DR_CANDIDATE",
+          "author_paraphrase_ko": "후보 DR을 검토하고 기존의 한 DR로 되돌아갔다고 회고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "v02",
+          "sequence_index": 2,
+          "kind": "REVISIT_PRIOR_DR",
+          "author_paraphrase_ko": "새 후보를 살피기 전 초기 DR을 재검토했다고 설명",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "v03",
+          "sequence_index": 3,
+          "kind": "ALTERNATIVE_CONTINUATION_TEST",
+          "author_paraphrase_ko": "9회전 진행 상태에서 다른 경로를 검토하고 하나의 후속 경로를 선택",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "v04",
+          "sequence_index": 4,
+          "kind": "DEFERRED_UNEVALUATED",
+          "author_paraphrase_ko": "시간이 부족할 것으로 판단해 눈에 띄던 연장 수열을 아예 시도하지 않았다고 회고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "v05",
+          "sequence_index": 5,
+          "kind": "CANDIDATE_NOT_WRITTEN",
+          "author_paraphrase_ko": "EO 대안 하나를 기록조차 하지 않았다고 설명",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "v06",
+          "sequence_index": 6,
+          "kind": "FINAL_ROUTE_SELECTED",
+          "author_paraphrase_ko": "공식 결과와 대응하는 19회전 해법이 서면으로 남음",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        }
+      ],
+      "temporal": [
+        [
+          "v01",
+          "v02",
+          "previous DR predates revisit"
+        ],
+        [
+          "v02",
+          "v03",
+          "writer explicitly says then from 9-to-4a3 branch selected"
+        ],
+        [
+          "v03",
+          "v06",
+          "candidate exploration precedes final recorded solution"
+        ]
+      ],
+      "references": [
+        [
+          "v02",
+          "v01",
+          "REVISITS_DR_CANDIDATE",
+          "source explicitly says prior DR revisited"
+        ],
+        [
+          "v04",
+          "v03",
+          "ALTERNATIVE_TO_EVALUATED_BRANCH",
+          "mentioned option withheld because of predicted time burden; not known to be infeasible"
+        ]
+      ]
+    },
+    {
+      "id": "WONG_DDDSINGAPORE2025_A3",
+      "author": "Wong Chong Wen",
+      "attempt": "Don't DNF December Singapore 2025 Final / Attempt 3",
+      "source_url": "https://333.fm/wca/reconstruction/DDDSingapore2025/2014WENW01",
+      "official_result_page": "https://www.worldcubeassociation.org/competitions/DDDSingapore2025",
+      "source_type": "public_author_retrospective_writeup",
+      "chronology_grade": "AUTHOR_REPORTED_PARTIAL_ORDER_ONLY",
+      "notes": "Exact episode has author-linked YouTube video ftj2Mh0dEpw but raw frames, continuity, video metadata and synchronicity NOT independently observed. WCA result third attempt 20 moves.",
+      "author_linked_video": "https://www.youtube.com/watch?v=ftj2Mh0dEpw",
+      "video_evidence_grade": "URL_IN_AUTHOR_RECONSTRUCTION__NOT_FRAME_REVIEWED",
+      "events": [
+        {
+          "event_id": "t01",
+          "sequence_index": 1,
+          "kind": "REPORTED_LATE_EO_GROUP_CHECK",
+          "author_paraphrase_ko": "3회전 EO 후보군을 약 30분이 지나서야 확인했다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "time_anchor": {
+            "kind": "self_report_approx_elapsed_min",
+            "minutes": 30
+          }
+        },
+        {
+          "event_id": "t02",
+          "sequence_index": 2,
+          "kind": "EXAMINED_8_PLUS_1_BRANCH",
+          "author_paraphrase_ko": "8+1 경로를 한동안 검토했다고 서술",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "t03",
+          "sequence_index": 3,
+          "kind": "REPORTED_UNPRODUCTIVE_DR",
+          "author_paraphrase_ko": "다른 DR 후보에서 적절한 후속해법을 찾지 못했다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "t04",
+          "sequence_index": 4,
+          "kind": "LATE_REPRESENTATION_DISCOVERY",
+          "author_paraphrase_ko": "약 45분에 L2 확장 방식이 DR을 유지한다는 점을 발견했다고 회고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "time_anchor": {
+            "kind": "self_report_approx_elapsed_min",
+            "minutes": 45
+          }
+        },
+        {
+          "event_id": "t05",
+          "sequence_index": 5,
+          "kind": "DEFERRED_UNEVALUATED",
+          "author_paraphrase_ko": "다른 18회전 후보로 돌아가 다시 검토하지 않았다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "t06",
+          "sequence_index": 6,
+          "kind": "FINAL_ROUTE_SELECTED",
+          "author_paraphrase_ko": "20회전 해법을 제출했고 작성자가 이 시도를 촬영했다고 게시물에 링크",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        }
+      ],
+      "temporal": [
+        [
+          "t01",
+          "t04",
+          "author-reported 30min versus 45min"
+        ],
+        [
+          "t03",
+          "t04",
+          "new insight about DR after earlier unproductive branch"
+        ],
+        [
+          "t04",
+          "t06",
+          "author reports final after late discovery"
+        ]
+      ],
+      "references": [
+        [
+          "t05",
+          "t02",
+          "NON_REVISIT_OF_PRIOR_BRANCH",
+          "writer says 18-turn slice route not revisited; absence of revisiting is a report, not a negative sensor observation"
+        ]
+      ]
+    }
+  ]
+}
