@@ -75,7 +75,7 @@ Despite all 10 exact solved-state DR cost comparisons favoring main, **four matc
 
 ### Independent proof receipts
 
-- [Matched ten-DR exact geodesics CI PASS #38082163320](https://github.com/WhoSia/CUBE-REV/actions/runs/38082163320) / [entire 20-state source-graded physical receipt #11680976082](https://github.com/WhoSia/CUBE-REV/actions/runs/38082163320/artifacts/11680976082), ZIP SHA-256 `b9560e881885cec98e1cd2b71075530e07a`.
+- [Matched ten-DR exact geodesics CI PASS #38082163320](https://github.com/WhoSia/CUBE-REV/actions/runs/38082163320) / [entire 20-state source-graded physical receipt #11680976082](https://github.com/WhoSia/CUBE-REV/actions/runs/38082163320/artifacts/11680976082), ZIP SHA-256 `b9560e881885cec98e1cd2b71075530f316e158b9b03f010c47efe41ba30e07a`.
 - [Matched full-Schreier exact HTR sensitivity CI PASS #38082213361](https://github.com/WhoSia/CUBE-REV/actions/runs/38082213361) / [complete 20-state physical subgroup receipt #11681370457](https://github.com/WhoSia/CUBE-REV/actions/runs/38082213361/artifacts/11681370457), ZIP SHA-256 `6c7d085640d16ca0a118612ebacfee82c1930ac40e5c7577e04e8821bf55697f`.
 - Reproducible code: `scripts/cuberev-022/verify-p8-r6-matched-DR-neighborhood-geodesics.mjs`, `scripts/cuberev-022/verify-p8-r6-matched-DR-HTR-Schreier-contacts.mjs`; two read-only GitHub Actions workflow files, `contents: read`.
 
