@@ -207,7 +207,9 @@ assert.equal(noncritical,70);
 assert.equal(possible.length,30);
 // Genuine radius-two sphere is the 74 new group states outside identity and 10 one-move states.
 const genuinelyNew=[...actionProducts.keys()].filter(x=>x!==root&&!oneMove.has(x));
-assert.equal(genuinelyNew.length,74,'Original P8 physical DR 0..2 census');
+assert.equal(actionProducts.size,74,'Exactly-two-token physical images');
+assert.equal(genuinelyNew.length,67,'Actual new physical geodesic distance-two states');
+assert.equal(1+oneMove.size+genuinelyNew.length,78,'Closed physical ball radius at most two');
 let matchedPhysicalPairs=[],possibleTies=[],pairHolds=[];
 for(const [first,second,relativeKey] of possible){
  const intervention=[first,second],entry={word:intervention.join(' '),physical_relative_action_hash:crypto.createHash('sha256').update(relativeKey).digest('hex'),arms:[]};
@@ -241,6 +243,7 @@ console.log(JSON.stringify({
  all_ordered_two_action_words:ordered,
  unique_actual_action_endpoints:[...actionProducts.keys()].length,
  unique_new_geodesic_distance_two_actions:genuinelyNew.length,
+ complete_ball_radius_two_states:1+oneMove.size+genuinelyNew.length,
  normalized_to_identity_or_one_turn_words:reducedOrIdentity,
  exact_full_alphabet_first_move_tie_exclusion_count:noncritical,
  necessary_first_step_set:[...possibleFirst],
