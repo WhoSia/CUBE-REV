@@ -1,0 +1,46 @@
+name: CUBE-REV 0.23 P2 — Authored Stage vs Final FMC HTM Boundary Rewrites
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-023/verify-p2-original-cube-staged-vs-normalized-fmc.mjs'
+      - 'data/cuberev-023/p2_P1_all18_four_word_authority_fixture.json'
+      - '.github/workflows/cuberev-023-P2-boundary-rewrite.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original_full_cube_boundary_rewrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Strict independent source-phase-vs-final-cube HTM cancellation attribution
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-023/verify-p2-original-cube-staged-vs-normalized-fmc.mjs | tee CUBE_REV_023_P2_original_full_cube_boundary_rewrite.json
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';import fs from 'node:fs';
+          const p=JSON.parse(fs.readFileSync('CUBE_REV_023_P2_original_full_cube_boundary_rewrite.json','utf8'));
+          assert.equal(p.marker,'CUBE_REV_023_P2_ORIGINAL_CUBE_BOUNDARY_REWRITE_AND_STAGE_COST_SPLIT');
+          assert(p.all_four_physical_replays_pass && p.all_source_literal_prefixes_preserved);
+          assert(p.all_four_individual_components_have_zero_internal_adjacent_savings);
+          assert(p.observed_rewrite_intervention_suffix_boundary_only);
+          assert.deepEqual(p.paired_contrasts.map(x=>x.canonical_final_witness_gap_alt_minus_main),[4,2]);
+          assert(p.authors_computed_or_chosen_synthetic_actions_NOT_observed);
+          console.log('CUBE_REV_023_P2_BOUNDARY_COST_PHYSICAL_PASS');
+          JS
+      - name: Preserve full legal face-turn boundary operation attribution
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-023-P2-original-cube-boundary-cost-rewrites
+          path: CUBE_REV_023_P2_original_full_cube_boundary_rewrite.json
+          retention-days: 90
+          if-no-files-found: warn
