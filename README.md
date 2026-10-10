@@ -4,6 +4,10 @@
 
 CUBE-REV studies exact identification in physically constrained reversible systems and the boundaries of transferring ideal observation models to human cognition. The current exact mathematics uses a **real 3×3 Rubik's Cube-derived tracked-edge sensor**; it does **not** claim to determine complete cube state, human memory capacity, or optimal speedsolving / FMC moves.
 
+## 0.21 empirical direction — historical correction (Chat Archive 1–24)
+
+**Use existing human solve evidence before designing new participants.** [1–24 historical consensus and Drive/GitHub evidence restoration](docs/0.21/EMPIRICAL_CONTINUITY_RESTORATION_ARCHIVE_01_TO_24_SECONDARY_DATA_FIRST.md) is the binding empirical-method note. Existing 452 reco.nz-derived naturalistic trajectories, WCA outcome/scramble spine, historical FACTORY QC, and qualified FMC/video behavioral traces are primary; recruiting fresh participants is a dormant fallback only. The correct 0.21 P2 physical sticker-camera/24-trial generator is preserved as **auxiliary instrument code**, **not** permission to promote a new human pilot to the research mainline. Original 0.18–0.20 exact proofs remain unchanged.
+
 ## Active continuous 0.21 research entry
 
 - [0.21 Notion formal research home](https://app.notion.com/p/3f5ef561cf92815e86efc7d923b6ffa8)
