@@ -1,0 +1,49 @@
+name: CUBE-REV 0.22 P8 — Bounded Source-Relative DR to HTR Continuation Census
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p8-source-relative-dr-htr-continuations.mjs'
+      - 'data/cuberev-022/p7_fmc_source_anchored_candidate_ledger.json'
+      - '.github/workflows/cuberev-022-P8-source-DR-HTR-continuation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original_full_cube_four_endpoint_continuation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact original 54-sticker P7-derived DR to HTR continuation geometry
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=4096 scripts/cuberev-022/verify-p8-source-relative-dr-htr-continuations.mjs | tee CUBE_REV_022_P8_bounded_DR_HTR_receipt.json
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_022_P8_bounded_DR_HTR_receipt.json','utf8'));
+          assert.equal(z.marker,'CUBE_REV_022_P8_BOUNDED_SOURCE_RELATIVE_DR_HTR_CONTINUATION_PHYSICAL_CENSUS');
+          assert.equal(z.HTR_subgroup_exact_order,663552);
+          assert.equal(z.HTR_square_generator_Cayley_diameter,15);
+          assert.equal(z.candidates.length,6);
+          assert.equal(z.physically_distinct_DR_endpoints.length,4);
+          assert(z.authored_stage_words_are_NOT_a_literal_prefix_of_final_solution.some(x=>x.id==='miao_main' && x.first_mismatch_1based===10));
+          assert(z.candidates.some(x=>x.id==='riabov_other_2'&&x.source_status==='NO_DR_UNDER_PROVISIONAL_PARSE'));
+          assert(z.human_process_not_observed&&z.exact_minimum_is_ONLY_FOR_FIXED_AXIS_DR_PRESERVING_GRAMMAR);
+          console.log('P8_BOUNDED_FULL_CUBE_PHASE2_SOURCE_AND_LIMITS_PASS');
+          JS
+      - name: Retain full physical-geometry certificate and source grades
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P8-bounded-real-FMC-DR-HTR-continuations
+          path: CUBE_REV_022_P8_bounded_DR_HTR_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
