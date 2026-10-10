@@ -1,0 +1,120 @@
+{
+  "schema": "cuberev-023-p1-preregistered-matched-radius2-v1",
+  "stage": "0.23 P1 — Source-Faithful Matched Radius-Two Physical Interventions",
+  "status": "PREDECLARED_BEFORE_P1_RESULT",
+  "derived_from_P0": "data/cuberev-023/p0_source_evidence_contract.json",
+  "source_competitor": "Qijun Miao",
+  "source_words": [
+    "miao_main",
+    "miao_alternative_from_same_eo"
+  ],
+  "source_axis": "FB",
+  "source_prefix_HTM": [
+    10,
+    11
+  ],
+  "known_exact_10_DR_post_prefix_solve": [
+    9,
+    12
+  ],
+  "known_exact_all_18_HTM_post_prefix_solve": [
+    9,
+    12
+  ],
+  "inherited_radius1_exact_DR_costs": {
+    "U": [
+      10,
+      12
+    ],
+    "U2": [
+      10,
+      12
+    ],
+    "U'": [
+      10,
+      13
+    ],
+    "D": [
+      10,
+      11
+    ],
+    "D2": [
+      10,
+      12
+    ],
+    "D'": [
+      10,
+      11
+    ],
+    "R2": [
+      8,
+      12
+    ],
+    "L2": [
+      10,
+      11
+    ],
+    "F2": [
+      10,
+      12
+    ],
+    "B2": [
+      10,
+      13
+    ]
+  },
+  "intervention_alphabet": [
+    "U",
+    "U2",
+    "U'",
+    "D",
+    "D2",
+    "D'",
+    "R2",
+    "L2",
+    "F2",
+    "B2"
+  ],
+  "ordered_two_action_word_count": 100,
+  "expected_distinct_identity_relative_DR_action_states": 74,
+  "normalized_duplicate_and_inverse_policy": "Enumerate all 100 ordered literal two-move words, compute actual full cube endpoint and quotient by exact physical end state. Preserve count and a canonical representative per quotient; an action sequence reducible to <=1 HTM move is a negative control, not novel radius-two physical intervention.",
+  "necessary_condition_for_raw_tie": {
+    "base_gap_in_raw_source_prefix_plus_10DR_solution": 4,
+    "metric_one_step_tie_possible_only_if_first_move": [
+      "D",
+      "D'",
+      "L2"
+    ],
+    "reason": "To equalize after two same moves, main geodesic must increase twice from 9 to 11, alt geodesic decrease twice from 12 to 10. An initial move must have main d=10 and alt d=11; R6 exact ten-generator census certifies only D,Dprime,L2.",
+    "complete_candidate_first_move_actions": [
+      "D",
+      "D'",
+      "L2"
+    ],
+    "complete_candidate_ordered_two_action_words": 30,
+    "other_70_words_exclusion_by_exact_R6_1_step_triangle_only": true
+  },
+  "primary_endpoint": "Does any physically legal matched exactly two-action DR-preserving word yield raw original-prefix-plus-two-actions-plus-exact-10DR-solve tie (cost_gap 0)?",
+  "secondary_endpoint": "If non-tie, measure exact minimum raw gap for remaining candidate words and identify successful first-step exclusion mechanism.",
+  "resource_budget": {
+    "per_unique_endpoint_IDA_nodes": 3500000,
+    "max_aggregate_IDA_nodes": 45000000,
+    "max_wallclock_seconds_per_workflow": 1500,
+    "no_assumed_exact_if_limit_hit": true
+  },
+  "grade": "SYNTHETIC_PHYSICAL_INTERVENTION_NOT_AUTHOR_REPORTED",
+  "scope_limitations": [
+    "18-general-move child-state exact distances are not computed by this DR-grammar study",
+    "real human future or past consideration and choice not identified",
+    "source literal prefix and two synthetic actions must stay visible even if final normalized FMC word cancels"
+  ],
+  "controls": [
+    "Enumerate all 100 ordered pairs, 74 expected unique physical action endpoints",
+    "R6 exact single-move distance preconditions independently compare",
+    "same-face or inverse moves cannot count as genuine distance-two physical neighbors",
+    "opposite face commuting moves yield equivalent original physical cube states",
+    "full original sticker cross-check every unique candidate",
+    "original author Miao actual two prefixes only; Riabov main alias remains separate author negative control"
+  ],
+  "stop_rule": "After testing and physically verifying all necessary boundary candidates, report PASS/FAIL/HOLD for existence of tie; any untested candidate under budget is COMPUTE_HOLD not absence. Do not extrapolate to all18 shortest child-cost or global FMC optimum."
+}
