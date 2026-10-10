@@ -1,0 +1,106 @@
+{
+  "schema": "cuberev-022-p3-fmc-matched-scramble-retrospective-v1",
+  "provenance": "Two independently published 333.fm competition-specific author's written accounts, FMC World 2026 Final attempts 1-3, read 2026-10-10.",
+  "official_event": "FMC World 2026 Final",
+  "official_results": "https://www.worldcubeassociation.org/competitions/FMCWorld2026/results/all",
+  "controls": {
+    "no_hidden_choices_imputed": true,
+    "no_retrospective_psychological_causality_claims": true,
+    "no_video_or_audio_substitution": true,
+    "unreported_candidate_counts_are_unknown_not_zero": true,
+    "comparing_exactly_matching_official_scrambles": true
+  },
+  "competitors": [
+    {
+      "id": "2018RIAB01",
+      "author": "Yurii Riabov",
+      "source_url": "https://333.fm/wca/reconstruction/FMCWorld2026/2018RIAB01",
+      "attempts": [
+        {
+          "attempt": 1,
+          "official_scramble": "R' U' F L2 D' L2 U' R U F' D R L' F U2 D2 F L2 F' R2 F2 D R' U' F",
+          "solution_htm": 19,
+          "checked_EO_candidates_about": 45,
+          "written_EO_candidates_about": null,
+          "reported_elapsed_to_found_about_min": 20,
+          "author_report_process_kind": "EXPLICIT_APPROX_EO_CHECK_COUNT_AND_TIME",
+          "author_report_ko": "약 45개 EO 후보를 확인하고 약 20분에 해법을 발견했다고 저자가 회고",
+          "basis": "AUTHOR_RETROSPECTIVE_EXPLANATION"
+        },
+        {
+          "attempt": 2,
+          "official_scramble": "R' U' F L2 D' L' B' R B2 R' B2 R' U2 F2 L D F' R' B' F' D U R' U' F",
+          "solution_htm": 19,
+          "checked_EO_candidates_about": 55,
+          "written_EO_candidates_about": null,
+          "reported_elapsed_to_found_about_min": 15,
+          "author_report_process_kind": "EXPLICIT_APPROX_EO_CHECK_COUNT_AND_TIME",
+          "author_report_ko": "약 55개 EO 후보를 확인하고 약 15분에 해법을 발견했다고 저자가 회고",
+          "basis": "AUTHOR_RETROSPECTIVE_EXPLANATION"
+        },
+        {
+          "attempt": 3,
+          "official_scramble": "R' U' F U' R2 D2 R2 F2 U2 B U2 F' D' L' R' U' B' L' F' L2 B D R' U' F",
+          "solution_htm": 23,
+          "checked_EO_candidates_about": 30,
+          "written_EO_candidates_about": 70,
+          "reported_elapsed_to_found_about_min": 25,
+          "author_report_process_kind": "WRITTEN_VS_TESTED_CANDIDATE_POOL_AND_UNCERTAIN_REVISIT",
+          "author_report_ko": "EO 약 70개를 작성하고 약 30개만 확인. HTR 방향 전환을 실제 수행했는지 저자도 불확실하다고 명시",
+          "basis": "AUTHOR_RETROSPECTIVE_EXPLANATION",
+          "own_memory_uncertainty_reported": true
+        }
+      ]
+    },
+    {
+      "id": "2014MIAO02",
+      "author": "Qijun Miao",
+      "source_url": "https://333.fm/wca/reconstruction/FMCWorld2026/2014MIAO02",
+      "attempts": [
+        {
+          "attempt": 1,
+          "official_scramble": "R' U' F L2 D' L2 U' R U F' D R L' F U2 D2 F L2 F' R2 F2 D R' U' F",
+          "solution_htm": 19,
+          "checked_EO_candidates_about": null,
+          "written_EO_candidates_about": null,
+          "author_report_process_kind": "COVERAGE_HEURISTIC_WITH_ALTERNATIVE_DR_LIST",
+          "author_report_ko": "coverage를 주요 설명으로 제시하고 다른 짧은 DR들을 병기. EO 전체 검토 수 미기재",
+          "basis": "AUTHOR_RETROSPECTIVE_EXPLANATION"
+        },
+        {
+          "attempt": 2,
+          "official_scramble": "R' U' F L2 D' L' B' R B2 R' B2 R' U2 F2 L D F' R' B' F' D U R' U' F",
+          "solution_htm": 19,
+          "checked_EO_candidates_about": null,
+          "written_EO_candidates_about": null,
+          "author_report_process_kind": "SELF_REPORTED_DETOUR_AND_INITIAL_WRONG_VARIATION",
+          "author_report_ko": "첫 DR 변형 선택을 사후에 우회라고 평가. 실제 전체 탐색 순서는 불명",
+          "basis": "AUTHOR_RETROSPECTIVE_EXPLANATION"
+        },
+        {
+          "attempt": 3,
+          "official_scramble": "R' U' F U' R2 D2 R2 F2 U2 B U2 F' D' L' R' U' B' L' F' L2 B D R' U' F",
+          "solution_htm": 23,
+          "checked_EO_candidates_about": null,
+          "written_EO_candidates_about": null,
+          "author_report_process_kind": "SELF_REPORTED_LIMITED_SEARCH_UNDER_RESULT_PRESSURE",
+          "author_report_ko": "19회전 결과 두 건으로 압박을 느껴 추가 탐색을 많이 하지 않았다는 자기보고",
+          "basis": "AUTHOR_RETROSPECTIVE_EXPLANATION",
+          "self_report_limited_search_under_result_pressure": true
+        }
+      ]
+    }
+  ],
+  "comparison_invariants": {
+    "exact_attempt_index_match": true,
+    "same_three_scrambles_transcribed_from_both_authors_pages": true,
+    "equal_HTM_outcomes_both_authors": [
+      19,
+      19,
+      23
+    ],
+    "equal_outcome_not_equal_search": true,
+    "text_only": true
+  },
+  "caveat": "These are author's retrospective narrative notes and estimated self-report counts, not a complete real-time event log, physiological measurement, or proof of an individual psychological cause."
+}
