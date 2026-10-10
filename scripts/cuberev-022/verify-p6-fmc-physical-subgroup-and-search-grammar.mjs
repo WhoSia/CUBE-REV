@@ -276,6 +276,49 @@ for(let depth=0;depth<=4;depth++){
  }
  frontier=next;wordCumulative+=frontier.length;
 }
+// Source-context exact fifth-turn frontier, using a *weighted* quotient:
+// carry how many different legal length-four WORDS reach each full cubie state.
+// This removes 14^4 repeated prefixes without losing path multiplicities.
+// It does NOT assert these 537824 candidates were personally generated.
+const weightedDepth4=new Map();
+for(const p of frontier){
+ const k=stateKey(p.s);
+ if(!weightedDepth4.has(k))weightedDepth4.set(k,{s:p.s,number_of_legal_words:0,witness:p.w});
+ weightedDepth4.get(k).number_of_legal_words++;
+}
+assert.equal(weightedDepth4.size,boundedFrontier[4].distinct_full_physical_cube_endpoints);
+const weightedDepth5=new Map();let drFiveWords=0,htrFiveWords=0,rawFiveWords=0,DR5Witness=null;
+for(const p of weightedDepth4.values())for(const a of EO_FB_ALLOWED){
+ const st=compose(p.s,FACE_MOVES[conjugateFaceMove(a)]);
+ const k=stateKey(st),weight=p.number_of_legal_words;
+ rawFiveWords+=weight;
+ if(isDR(st)){drFiveWords+=weight;if(!DR5Witness)DR5Witness=p.witness+' '+a;}
+ if(isHTR(st))htrFiveWords+=weight;
+ if(!weightedDepth5.has(k))weightedDepth5.set(k,{number_of_legal_words:0});
+ weightedDepth5.get(k).number_of_legal_words+=weight;
+}
+assert.equal(rawFiveWords,14**5);
+assert.equal([...weightedDepth5.values()].reduce((v,x)=>v+x.number_of_legal_words,0),14**5);
+assert(htrFiveWords<=drFiveWords);
+boundedFrontier.push({
+ additional_turns_from_real_authored_FB_EO_prefix:5,
+ exact_generator_word_paths:rawFiveWords,
+ distinct_full_physical_cube_endpoints:weightedDepth5.size,
+ full_DR_membership_word_paths:drFiveWords,
+ full_HTR_membership_word_paths:htrFiveWords,
+ total_words_over_all_depths_through_here:wordCumulative+rawFiveWords,
+ full_retro_human_EO_candidates_evaluated:'NOT_OBSERVED',
+ exact_collapse_using_weighted_physical_endpoint_quotient:true
+});
+const sourceRelativeDRDepthBound={
+  no_DR_certificate_with_4_or_fewer_additional_EO_preserving_HTM_moves:true,
+  exists_5_step_DR_witness:DR5Witness!==null,
+  first_found_5_step_DR_witness:DR5Witness,
+  source_actual_6_step_DR_path_verified:true,
+  minimum_extra_moves_under_this_frozen_14_generator_grammar:DR5Witness?5:6,
+  human_actual_solution_optimality_not_inferred:true
+};
+
 assert(boundedFrontier[4].exact_generator_word_paths===14**4);
 assert(boundedFrontier[4].distinct_full_physical_cube_endpoints<=14**4);
 assert(collisionWitness,'mathematically distinct EO-preserving words must sometimes reach the same cube');
@@ -287,6 +330,7 @@ const budgetedOpportunity={
  legal_EO_preserving_HTM_actions:EO_FB_ALLOWED,
  preserving_HTM_generator_count:EO_FB_ALLOWED.length,
  stage_target:'full-cubie DR FB subgroup membership, not a psychological consideration label',
+ source_relative_DR_minimum_additional_HTM_certificate:sourceRelativeDRDepthBound,
  exact_up_to_four_added_HTM_depth_frontier:boundedFrontier,
  measured_DO_NOT_infer_time_or_attention_from_word_counts:true,
  author_known_six_move_EO_to_DR_completion:sourceDR.join(' '),
