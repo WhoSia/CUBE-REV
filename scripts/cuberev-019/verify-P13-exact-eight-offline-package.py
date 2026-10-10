@@ -81,6 +81,7 @@ with tempfile.TemporaryDirectory(prefix='cuberev019_p13_') as tmp:
       'physical_source_sha256':manifest['source_physical_sha256'],
       'rechecked_orbits':2361,'rechecked_first_low_trials':359004}
   (out/'T4.json').write_text(json.dumps(t4)+'\n')
+  t4=out/'T4.json'
   p12,t0,t123,t567=out/'P12_EXACT.json',out/'T0.json',out/'T123.json',out/'T567.json'
  else:
   p12=root/'PRIOR/p12/P12_final_exact_R5_7_receipt.json'
