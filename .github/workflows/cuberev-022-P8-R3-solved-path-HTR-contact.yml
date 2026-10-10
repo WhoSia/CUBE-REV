@@ -18,7 +18,9 @@ jobs:
         with:
           node-version: '22'
       - name: Original full-cube source and HTR-group audit
-        run: node scripts/cuberev-022/verify-p8-r3-exact-solution-HTR-first-contact-audit.mjs > p8_r3_path_HTR_receipt.json
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-022/verify-p8-r3-exact-solution-HTR-first-contact-audit.mjs | tee p8_r3_path_HTR_receipt.json
       - name: Save exact physical receipt
         if: always()
         uses: actions/upload-artifact@v4
