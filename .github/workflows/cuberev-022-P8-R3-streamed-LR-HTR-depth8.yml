@@ -1,0 +1,49 @@
+name: CUBE-REV 0.22 P8-R3 — Source Other3 Streamed Eight-Turn HTR Contact
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p8-r3-streamed-first-htr-depth8.mjs'
+      - '.github/workflows/cuberev-022-P8-R3-streamed-LR-HTR-depth8.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original_cube_streamed_other3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust source-relative eighth-turn HTR contacts without eighth frontier materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=4096 scripts/cuberev-022/verify-p8-r3-streamed-first-htr-depth8.mjs | tee CUBE_REV_022_P8_R3_streamed_LR_H8_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_022_P8_R3_streamed_LR_H8_receipt.json','utf8'));
+          assert.equal(z.marker,'CUBE_REV_022_P8_R3_LR_SOURCE_OTHER3_EIGHT_TURN_QUOTIENT_CONTACT_CENSUS');
+          assert.equal(z.source_id,'riabov_other_3');
+          assert.equal(z.full_cube_axis,'LR');
+          assert.equal(z.seventh_layer_unique_full_states,883454);
+          assert.equal(z.quarter_only_eighth_layer_raw_membership_tests,3533816);
+          assert(z.eighth_layer_full_states_NOT_materialized);
+          assert.equal(z.bounded_target_HTR_subgroup_exact_elements,663552);
+          if(z.strict_exact_minimum_DR_to_HTR===8)assert(z.optimal_bounded_8_depth_two_phase_from_source.verified_original_full_54_sticker_solution);
+          else assert.equal(z.eighth_layer_unique_HTR_endpoints_contacted,0);
+          console.log('P8_R3_AUTHORED_OTHER3_DEPTH8_SOURCE_FULL_CUBE_CONTRACT_PASS');
+          JS
+      - name: Preserve HTR first-contact census certificate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P8-R3-LR-source-Other3-streamed-H8
+          path: CUBE_REV_022_P8_R3_streamed_LR_H8_receipt.json
+          if-no-files-found: warn
+          retention-days: 90
