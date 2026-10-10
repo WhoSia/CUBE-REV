@@ -10,6 +10,9 @@ CUBE-REV studies exact identification in physically constrained reversible syste
 
 ## Active continuous 0.21 research entry
 
+- [0.21 P3 — original P24/P25 exact 3,329-row rejoin, 451 unique naturalistic solve-content FC3 census and FMC source/label-evidence audit](docs/0.21/P3_NATURALISTIC_451_P25_EXACT_REJOIN_AND_FMC_PROCESS_EVIDENCE.md). **Historical 60-source ΔD=-0.1333 replicated; 451-content descriptive ΔD=+0.0207; cognitive mechanism and fresh validation NOT established; actual FMC written annotations already usable, video not acquired.**
+
+
 - [0.21 Notion formal research home](https://app.notion.com/p/3f5ef561cf92815e86efc7d923b6ffa8)
 - [0.21 P0 continuity charter and physical feedback-state definition](docs/0.21/P0_CONTINUITY_CHARTER_AND_PHYSICAL_ADAPTIVE_BELIEF_COURT.md)
 - [0.21 P1 matched fixed 9 versus adaptive 7, physical silent transport, and cognitive/behavioral hypothesis court](docs/0.21/P1_COST_OF_FEEDBACK_SILENT_TRANSPORT_AND_RESOURCE_BOUNDED_HUMAN_RECONSTRUCTION.md): [P1 external physical replay PASS](https://github.com/WhoSia/CUBE-REV/actions/runs/38040188831) and [full 12-start machine receipt](https://github.com/WhoSia/CUBE-REV/actions/runs/38040188831/artifacts/11665274078); **human validation not performed**.
