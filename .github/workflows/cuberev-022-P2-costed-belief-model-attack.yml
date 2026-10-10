@@ -1,0 +1,45 @@
+name: CUBE-REV 0.22 P2 — Physical Policy Cost and Belief-Model Attack
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-022/verify-p2-costed-policy-belief-model-audit.mjs'
+      - '.github/workflows/cuberev-022-P2-costed-belief-model-attack.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-physical-policy-and-model-assumption-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild original 18 physical HTM maps and certify actual chosen policy witnesses
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-022/verify-p2-costed-policy-belief-model-audit.mjs | tee CUBE_REV_022_P2_costed_policy_belief_model_receipt.json
+          grep -F 'CUBE_REV_022_P2_COST_DEPENDENT_OPTIMAL_POLICY_AND_BELIEF_MODEL_ATTACK_PASS' CUBE_REV_022_P2_costed_policy_belief_model_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const v=JSON.parse(fs.readFileSync('CUBE_REV_022_P2_costed_policy_belief_model_receipt.json'));
+          if(v.policies[0].total_T!==71 || v.policies[0].total_Q!==45)throw Error('ORIGINAL_TURN_OPT_BREAK');
+          if(v.policies[3].total_T!==74 || v.policies[3].total_Q!==44)throw Error('PRICE_POLICY_BREAK');
+          if(v.policies[4].queryCap!==4 || v.policies[4].total_T!==74)throw Error('CAPPED_POLICY_BREAK');
+          if(!v.joint_sensor_channel_counterexample)throw Error('MARGINAL_BELIEF_TEST_ABSENT');
+          console.log('P2_COMPUTATIONAL_WARRANT_SHAPE_PASS');
+          JS
+      - name: Archive exact decision trees and scientific-model vulnerability receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P2-costed-policy-tree-and-belief-model-attack
+          path: CUBE_REV_022_P2_costed_policy_belief_model_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
