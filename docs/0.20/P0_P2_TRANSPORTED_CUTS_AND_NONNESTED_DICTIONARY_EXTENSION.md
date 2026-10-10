@@ -54,3 +54,24 @@ The eight-word P13 positive witness is *itself irredundant on R5*: deleting each
 ## Custody and authorship
 
 Preserve all 0.19 proofs, previous charter title as history, no deletion or rewriting of obsolete status logs. The source repository is `WhoSia/CUBE-REV`; publication and commit attribution must remain solely `WhoSia`, with no bot coauthor or coauthor trailers.
+
+
+## P1-C — Exact transporter-by-partition product automaton (complete, suffix-sound)
+
+**Theorem.** For the same reversible bit-flip system, write `G=<sigma_a:a in Sigma>` as the reachable permutation group on S and `Part(S)` as the set of set partitions. The exact information state of an experiment prefix is the ordered pair `(g,Pi)`, where `g` is its action-prefix permutation and `Pi` is its observed initial-source partition. The symbolic transition
+
+`(g,Pi) --a--> (sigma_a o g, refine(Pi, g^{-1}(C_a)))`
+
+reproduces the observation partition of every physical word, at every horizon. Two prefixes with identical pairs yield identical final initial-source partitions after **every common suffix**.
+
+**Proof.** Base state is `(id,{S})`. Under next action a, the current state position of an initial candidate s is g(s), so its next flip increment is the Boolean indicator of `g^{-1}(C_a)`. This adds exactly one cut to the already accumulated Boolean signature partition. The position transporter updates to `sigma_a o g`. Induction on word length proves equality. All later transitions depend only on the pair, proving suffix soundness. QED.
+
+**Finite consequence.** A breadth-first graph search over at most `|G| B_|S|` pairs (B_n the n-th Bell number) exactly tests if a universal preset distinguishing word exists. When one exists, a shortest one has length at most `|G| B_|S| - 1`. At a *fixed final* horizon, experiments inducing the same Pi have the same source-family coverage. **During prefix extension, discarding g is unsound in general.**
+
+**Minimal explicit falsifier.** In the independent four-position reversible toy defined above, prefixes `FF` and `FP` have the same partition `{{0,1},{2,3}}` but different permutations. Appending the same F yields rank 2 for `FFF` and rank 4 for `FPF`. An exhaustive independent ECMAScript checker compared the product automaton against direct cumulative-bit physical replay for all `1+3+9+27+81+243+729=1093` action words through length six, all PASS. Reachable pair-state counts by lengths 0..6 are `1,3,8,17,28,35,35`; maximal ranks are `1,2,3,4,4,4,4`. See [standalone independent JS falsifier](../../scripts/cuberev-020/verify-transport-partition-product.mjs).
+
+**Novelty boundary:** This is an explicit specialization of known automata-product/refinement ideas and is not asserted as a new general automata theorem. Its methodological value is a *provably suffix-sound quotient* and a concrete falsifier for the tempting partition-only prefix quotient in physically constrained identification models.
+
+## P0 focused replication record (not full P13 from scratch)
+
+The independent P0 recomputation also checked every original `SHA256_MANIFEST.json` entry, reproduced the seven-word P10 uncovered 72 sources, rescanned all 14,938 physical L5 partitions for the sharp residual single-word maximum **36**, replayed eight P13 physical words, and confirmed that removing any one destroys R5 coverage. These are NEW focused independent checks in 0.20, while the frozen archive's full all-branches rerun remains a PREVIOUS local receipt; a successful NEW remote P13 GitHub Actions run is not established.
