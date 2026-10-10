@@ -1,0 +1,58 @@
+{
+  "schema": "cuberev-022-p8-r3-verified-physical-phase2-source-prefix-fixtures-v1",
+  "source": "GitHub Actions run 38077785735, original source ledger p7, independent whole-cube solved replay",
+  "exact_solved_grammar": "ten genuine DR-preserving original face HTM; fixed original-source axis",
+  "human_real_time_search_not_inferred": true,
+  "rows": [
+    {
+      "id": "miao_main",
+      "axis": "FB",
+      "source_DR_endpoint_SHA256": "9f7884c98044cb18b7f427c0356f9c1884c56f94655980e69e0b4b50e7be0314",
+      "exact_minimum_DR_to_solved": 9,
+      "canonical_phase2_word": "R2 D' R2 B2 D B2 L2 D U",
+      "actual_phase2_word": "R2 B' R2 U2 B U2 L2 B F",
+      "source_parse": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "raw_full_solution_HTM": 19
+    },
+    {
+      "id": "riabov_main",
+      "axis": "FB",
+      "source_DR_endpoint_SHA256": "9f7884c98044cb18b7f427c0356f9c1884c56f94655980e69e0b4b50e7be0314",
+      "exact_minimum_DR_to_solved": 9,
+      "canonical_phase2_word": "R2 D' R2 B2 D B2 L2 D U",
+      "actual_phase2_word": "R2 B' R2 U2 B U2 L2 B F",
+      "source_parse": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "raw_full_solution_HTM": 19
+    },
+    {
+      "id": "miao_alternative_from_same_eo",
+      "axis": "FB",
+      "source_DR_endpoint_SHA256": "82715e0056993179f8261c930ca50028955ac1503e6d2a5d67afa9f1bd55eebe",
+      "exact_minimum_DR_to_solved": 12,
+      "canonical_phase2_word": "D B2 L2 B2 D B2 U B2 R2 F2 R2 D2",
+      "actual_phase2_word": "B U2 L2 U2 B U2 F U2 R2 D2 R2 B2",
+      "source_parse": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "raw_full_solution_HTM": 23
+    },
+    {
+      "id": "riabov_other_1",
+      "axis": "LR",
+      "source_DR_endpoint_SHA256": "8eedff9ce30dc49f3185336a464cc3e82a43542725d25d519f487d96a0df74fe",
+      "exact_minimum_DR_to_solved": 13,
+      "canonical_phase2_word": "F2 R2 U' B2 F2 R2 D' B2 L2 U' F2 U2 F2",
+      "actual_phase2_word": "F2 U2 L' B2 F2 U2 R' B2 D2 L' F2 L2 F2",
+      "source_parse": "ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY",
+      "raw_full_solution_HTM": 22
+    },
+    {
+      "id": "riabov_other_3",
+      "axis": "LR",
+      "source_DR_endpoint_SHA256": "d41b419c0ea5b797c51dc1672852c311de4dd4fc1c536cd43aeaae97771a41bf",
+      "exact_minimum_DR_to_solved": 13,
+      "canonical_phase2_word": "R2 D B2 D' L2 U B2 D2 L2 F2 R2 B2 U'",
+      "actual_phase2_word": "U2 R B2 R' D2 L B2 R2 D2 F2 U2 B2 L'",
+      "source_parse": "ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY",
+      "raw_full_solution_HTM": 23
+    }
+  ]
+}
