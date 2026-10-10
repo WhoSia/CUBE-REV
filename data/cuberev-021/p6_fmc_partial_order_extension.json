@@ -216,14 +216,14 @@
   ],
   "added_public_episodes": [
     {
-      "id": "UTOMO_FMCWORLD2026_A2",
+      "id": "UTOMO_FMCWORLD2026_A3",
       "author": "Vincent Hartanto Utomo",
-      "attempt": "FMC World 2026 Final / Attempt 2",
-      "source_url": "https://04.498620.ga.2409.cdf.002.333.fm/wca/reconstruction/FMCWorld2026/2010UTOM01",
+      "attempt": "FMC World 2026 Final / Attempt 3",
+      "source_url": "https://333.fm/wca/reconstruction/FMCWorld2026/2010UTOM01",
       "official_result_page": "https://www.worldcubeassociation.org/competitions/FMCWorld2026",
       "source_type": "public_author_retrospective_writeup",
       "chronology_grade": "AUTHOR_REPORTED_PARTIAL_ORDER_ONLY",
-      "notes": "Author describes considered versus not-tried branches and an approximately 35-minute subjective threshold; not a synced camera clock.",
+      "notes": "Author's account of third attempt resulting in 24 HTM, including revisit and untried branches; approximate 35-minute subjective timing is in the posthoc narrative and NOT a synced clock.",
       "events": [
         {
           "event_id": "v01",
@@ -264,7 +264,7 @@
           "event_id": "v06",
           "sequence_index": 6,
           "kind": "FINAL_ROUTE_SELECTED",
-          "author_paraphrase_ko": "공식 결과와 대응하는 19회전 해법이 서면으로 남음",
+          "author_paraphrase_ko": "공식 결과와 대응하는 24회전 세 번째 시도 해법이 서면으로 남음",
           "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
         }
       ],
