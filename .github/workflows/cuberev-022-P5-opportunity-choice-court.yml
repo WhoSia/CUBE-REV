@@ -1,0 +1,47 @@
+name: CUBE-REV 0.22 P5 — Physical Opportunity and Human Evidence Court
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p5-real-physical-opportunity-choice-correspondence.mjs'
+      - 'data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json'
+      - '.github/workflows/cuberev-022-P5-opportunity-choice-court.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-physical-resource-conditional-choice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact physical HTM Bellman action opportunity and choice correspondence proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-022/verify-p5-real-physical-opportunity-choice-correspondence.mjs | tee CUBE_REV_022_P5_opportunity_choice_receipt.json
+          grep -F 'CUBE_REV_022_P5_REAL_PHYSICAL_FIRST_ACTION_OPPORTUNITY_AND_FMC_CHOICE_CORRESPONDENCE_PASS' CUBE_REV_022_P5_opportunity_choice_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const r=JSON.parse(fs.readFileSync('CUBE_REV_022_P5_opportunity_choice_receipt.json'));
+          if(r.rooted_resource_opportunity_frontiers.length!==6)throw Error('REGIME_COUNT');
+          const a=r.rooted_resource_opportunity_frontiers;
+          if(a[0].root_physical_optimum.aggregate_T!==71 || a[0].root_physical_optimum.aggregate_Q!==45) throw Error('P8_UNCAPPED_INCONSISTENT');
+          if(a[2].root_physical_optimum.aggregate_T!==74 || a[2].root_physical_optimum.aggregate_Q!==44) throw Error('P8_CAPPED_INCONSISTENT');
+          if(a[4].feasible_complete_identification || a[5].feasible_complete_identification) throw Error('INFEASIBILITY_GATE');
+          if(r.retrospective_matched_fmc_source_audit.independent_people!==2)throw Error('HUMAN_PSEUDOREPLICATION');
+          console.log('P5_EXACT_PHYSICAL_VS_HUMAN_SOURCE_BOUNDARY_PASS');
+          JS
+      - name: Retain detailed action-conditioned cost frontier and source audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P5-real-physical-opportunity-limited-consideration
+          path: CUBE_REV_022_P5_opportunity_choice_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
