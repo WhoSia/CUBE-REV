@@ -76,8 +76,8 @@
     "B2"
   ],
   "ordered_two_action_word_count": 100,
-  "expected_distinct_identity_relative_DR_action_states": 74,
-  "normalized_duplicate_and_inverse_policy": "Enumerate all 100 ordered literal two-move words, compute actual full cube endpoint and quotient by exact physical end state. Preserve count and a canonical representative per quotient; an action sequence reducible to <=1 HTM move is a negative control, not novel radius-two physical intervention.",
+  "expected_distinct_identity_relative_DR_action_states": null,
+  "normalized_duplicate_and_inverse_policy": "Enumerate all 100 ordered literal two-move words, compute actual full cube endpoint and quotient by exact physical end state. Preserve count and a canonical representative per quotient; an action sequence reducible to <=1 HTM move is a negative control, not novel radius-two physical intervention. Full 100 ordered literal words may include identity or geodesic-one-turn states; 74 is the genuinely new distance-two sphere only, not the count of unique images of the 100 exact-two-token words.",
   "necessary_condition_for_raw_tie": {
     "base_gap_in_raw_source_prefix_plus_10DR_solution": 4,
     "metric_one_step_tie_possible_only_if_first_move": [
@@ -116,5 +116,7 @@
     "full original sticker cross-check every unique candidate",
     "original author Miao actual two prefixes only; Riabov main alias remains separate author negative control"
   ],
-  "stop_rule": "After testing and physically verifying all necessary boundary candidates, report PASS/FAIL/HOLD for existence of tie; any untested candidate under budget is COMPUTE_HOLD not absence. Do not extrapolate to all18 shortest child-cost or global FMC optimum."
+  "stop_rule": "After testing and physically verifying all necessary boundary candidates, report PASS/FAIL/HOLD for existence of tie; any untested candidate under budget is COMPUTE_HOLD not absence. Do not extrapolate to all18 shortest child-cost or global FMC optimum.",
+  "expected_distinct_geodesic_distance_exactly_two_action_states": 74,
+  "expected_physical_union_ball_radius2": 85
 }
