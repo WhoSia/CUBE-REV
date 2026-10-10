@@ -44,7 +44,7 @@ The eight-word P13 positive witness is *itself irredundant on R5*: deleting each
 
 ## Prior-art boundaries and next falsification
 
-- Perfect hash families: Stinson, *Perfect Hash Families: Probabilistic Methods and Explicit Constructions*, JCTA (2000), DOI 10.1006/jcta.1999.3050.
+- Perfect hash families: **Simon R. Blackburn** (not Stinson), *Perfect Hash Families: Probabilistic Methods and Explicit Constructions*, JCTA (2000), DOI 10.1006/jcta.1999.3050. This bibliographic attribution was corrected after primary-publisher metadata review in the P0 24.md literature audit.
 - Finite-state distinguishing-sequence complexity: Lee and Yannakakis, *Testing finite-state machines: state identification and verification*, IEEE TC (1994), DOI 10.1109/12.272431.
 - Separation of adaptive versus preset observability: *A survey on observability of Boolean control networks*, Control Theory and Technology (2022), https://link.springer.com/article/10.1007/s11768-022-00122-x .
 - Proof-log competitor: VeriPB, https://veripb.org/ . Verify source-locked external artifacts before upgrading evidence grade.
