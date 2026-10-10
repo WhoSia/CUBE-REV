@@ -37,7 +37,7 @@ The `L=6,7,8,9` values have independent **local** physical replays and a separat
 
 - Fixed-word universal 12-state identification: first possible length **9**.
 - Observation-dependent adaptive full-12-state identification: computed worst-case minimum **7** in the ideal 24-state belief-system recurrence (local replay; not a human result).
-- Standard fractional set-cover optimum at L5: **16/3 exactly** (rational primal/dual proof), whereas the true binary dictionary size remains integer 6, 7 or 8. Fractional experiment weights are **not fractional cube turns**.
+- Standard fractional set-cover optimum at L5: **16/3 exactly** (rational primal/dual proof), whereas the **now-completely-proved original physical integer optimum is eight fixed five-HTM words** (P13). Fractional experiment weights are **not fractional cube turns**.
 
 **P6→P7 update — physical restricted perfect hashing:** [P6 preparatory kernel](docs/0.19/P6_RESTRICTED_PERFECT_HASH_COLLISION_KERNEL_AND_L6_THREE_COURT.md) introduced source-independent collision dominance and honestly left M*(6) open. [P7](docs/0.19/P7_EXACT_MSTAR6_FOUR_COLLISION_HYPERGRAPH_PROOF.md) subsequently proved the omitted low-rank cases cannot appear in any three-word solution and finished all exact integer and symmetry cases. **The current local complete finite theorem is M*(6)=4; P6's older OPEN status is historical.**
 
@@ -55,7 +55,7 @@ For the **frozen 1,192 original admitted source subsets** of twelve initially in
 
 **Control/sensor separation:** one preset full-12-hypothesis observation experiment first identifies all twelve starts at length **9**, whereas ideal fully adaptive minimax identification has locally proved worst-case depth **7**. This does **not** measure human cognition or full-cube state identification.
 
-**Proof history and custody:** [P12 restricted-seven proof](docs/0.19/P12_EXACT_PHYSICAL_FIVE_SOURCE_SEVEN_BY_RANK_CERTIFICATES.md); [P13 pre-closure seven-versus-eight court](docs/0.19/P13_FULL_1192_SOURCE_K7_LAST_INTEGER_DECISION.md); [verbatim archived root README before P13 closure](archive/readme/README_RESEARCH_CURRENT_BEFORE_P13_EXACT_EIGHT_20261010.md). Older OPEN/UNKNOWN labels remain as historical records, not current proof status. [Google Drive original physical proof package](https://drive.google.com/file/d/1jzxgLyNaLcYYJ1OoeQW-Qxev36Tp2KMD/view), package SHA-256 `c84e020b47348e3f8c60ca9b180c365789bf89f2e937b20c5c44145a6a93929d`.
+**Proof history and custody:** [P12 restricted-seven proof](docs/0.19/P12_EXACT_PHYSICAL_FIVE_SOURCE_SEVEN_BY_RANK_CERTIFICATES.md); [P13 pre-closure seven-versus-eight court](docs/0.19/P13_FULL_1192_SOURCE_K7_LAST_INTEGER_DECISION.md); [verbatim archived root README before P13 closure](archive/readme/README_RESEARCH_CURRENT_BEFORE_P13_EXACT_EIGHT_20261010.md). Older OPEN/UNKNOWN labels remain as historical records, not current proof status. [Google Drive original physical proof package](https://drive.google.com/file/d/1jzxgLyNaLcYYJ1OoeQW-Qxev36Tp2KMD/view), package SHA-256 `c84e020b47348e3f8c60ca9b180c365789bf89f2e937b20c5c44145a6a93929d`. A separately recomputed [49-file complete P13 case-court package](https://drive.google.com/file/d/1gJhhHSViXOEoQy6fskH0YgKQGKYatDpk/view) has ZIP SHA-256 `22e4bdef544b73117174c7311078af1baaabf0987de227039b570462e51720a4` and the [long-form original-source proof](docs/0.19/P13_EXACT_FULL_MSTAR5_EIGHT_FINITE_PROOF_CLOSURE.md).
 
 ## Research questions following mathematical closure
 
@@ -68,7 +68,7 @@ For the **frozen 1,192 original admitted source subsets** of twelve initially in
 
 [**CUBE-REV 0.20 — preparatory research charter**](docs/0.20/PREPARATORY_CHARTER_NOT_ACTIVATED.md):
 
-**Structural Laws of Physical Identifiability: Action-Transported Observation Codes, Restricted Perfect Hash Families & Proof-Carrying Covering Complexity**
+**Structural Laws of Action-Transported Observation: Physically Restricted Perfect-Hash Families, Collision-Hypergraph Obstructions & Certified Identification Horizons**
 
 Mathematical 0.19 is **locally closed**; preserve its exact frozen physical scope and secure independent external verification receipts before administratively closing 0.19 and activating 0.20. The proposed 0.20 programme must produce an actual new theorem under explicit hypotheses and adversarial counterexamples, not merely another large finite cube enumeration. The charter is a **proposal**, not an already established 0.20 result.
 
