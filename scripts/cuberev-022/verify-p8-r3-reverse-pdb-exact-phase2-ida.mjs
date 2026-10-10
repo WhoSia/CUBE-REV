@@ -142,9 +142,19 @@ for(const row of ledger.eo_dr_pairs.filter(x=>permitted.has(x.id))){
   };
   solveCache.set(str,proof);
  }
+ // A reused physical-state certificate never supplies the earlier author's literal prefix.
+ // Reconstruct and independently replay each person's own authentic source word.
+ const reusedSuffix=proof.actual_legal_face_turns?tokenize(proof.actual_legal_face_turns):null;
+ const sourceSpecificSolution=reusedSuffix?[...authored,...reusedSuffix]:null;
+ if(sourceSpecificSolution)assert(solvedUpToRotation(stickerAfter([...scramble,...sourceSpecificSolution])));
+ const joinMayMerge=!!(reusedSuffix?.length&&authored.at(-1)[0]===reusedSuffix[0][0]);
  reports.push({id:row.id,source_parse:row.declared_mode,axis,source_prefix_HTM:authored.length,
   source_DR_hash:crypto.createHash('sha256').update(str).digest('hex'),
   ...proof,
+  full_source_prefix_plus_continuation_solution:sourceSpecificSolution?.join(' ')??null,
+  complete_original_full_sticker_solves:sourceSpecificSolution!==null,
+  prefix_continuation_boundary_has_adjacent_same_face:joinMayMerge,
+  raw_action_count_not_necessarily_normalized_FMC_HTM:joinMayMerge,
   exact_total_HTM_restricted:proof.exact_minimum_DR_preserving_continuation_to_solved===null?null:authored.length+proof.exact_minimum_DR_preserving_continuation_to_solved});
 }
 assert.equal(reports.length,5);
