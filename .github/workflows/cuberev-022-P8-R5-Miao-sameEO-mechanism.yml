@@ -1,0 +1,45 @@
+name: CUBE-REV 0.22 P8-R5 — Same-EO Physical Branch Mechanism Audit
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p8-r5-Miao-sameEO-physical-projection-contrast.mjs'
+      - '.github/workflows/cuberev-022-P8-R5-Miao-sameEO-mechanism.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real_source_same_EO:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independently verify source branch and dual reverse PDB physical projection differences
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=4096 scripts/cuberev-022/verify-p8-r5-Miao-sameEO-physical-projection-contrast.mjs | tee CUBE_REV_022_P8_R5_Miao_branch_physical_receipt.json
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_022_P8_R5_Miao_branch_physical_receipt.json','utf8'));
+          assert.equal(z.marker,'CUBE_REV_022_P8_R5_MIAO_SAME_EO_BRANCH_PHYSICAL_PROJECTION_CROSS_EXAM');
+          assert.equal(z.longest_common_actual_authored_prefix_HTM,6);
+          assert.equal(z.verified_source_states.length,2);
+          assert.equal(z.exact_total_cost_difference,4);
+          assert(z.human_search_timeline_unobserved);
+          console.log('P8_R5_TWO_ACTUAL_SAME_EO_BRANCH_PHYSICAL_PROJECTIONS_PASS');
+          JS
+      - name: Preserve original source physical mechanism audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P8-R5-Miao-same-EO-physical-contrast
+          path: CUBE_REV_022_P8_R5_Miao_branch_physical_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
