@@ -1,0 +1,45 @@
+name: CUBE-REV 0.22 P8-R4 — General Eighteen-HTM Source Frontier
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p8-r4-general-18-htm-mitm.mjs'
+      - '.github/workflows/cuberev-022-P8-R4-general-18-HTM-MITM.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  authentic_source_18_htm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify bounded unrestricted-after-DR original full-cubie meet-in-middle
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=6000 scripts/cuberev-022/verify-p8-r4-general-18-htm-mitm.mjs | tee CUBE_REV_022_P8_R4_18_HTM_source_MITM.json
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const r=JSON.parse(fs.readFileSync('CUBE_REV_022_P8_R4_18_HTM_source_MITM.json','utf8'));
+          assert.equal(r.marker,'CUBE_REV_022_P8_R4_FULL_18_HTM_MEET_IN_MIDDLE_SOURCE_PREFIX_COMPARISON');
+          assert.equal(r.backward_solved_radius_HTM,5);
+          assert.equal(r.source_results.length,5);
+          assert(r.source_results.every(x=>x.full_18_HTM_minimum===null||x.all_18_continuations_original_sticker_physically_valid));
+          assert(r.historical_source_words_not_assumed_actual_search_traces);
+          console.log('P8_R4_REAL_18_HTM_BIDIRECTIONAL_SOURCE_CHECK_PASS');
+          JS
+      - name: Preserve complete source-graded all-HTM search receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P8-R4-all18-HTM-physical-MITM
+          path: CUBE_REV_022_P8_R4_18_HTM_source_MITM.json
+          retention-days: 90
+          if-no-files-found: warn
