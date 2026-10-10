@@ -111,7 +111,7 @@ for(const p of source.rows){
   assert.equal(key(current),key(phaseState(originalStickers,axis)),'real sticker versus group mismatch at prefix turn '+(i+1));
   if(groupDist.has(enc(current)))exactEarly.push(i+1);
  }
- assert(cubieSolved(current));
+ assert.equal(key(current),key(solved));
  assert(solvedUpToRotation(stickerAfter([...scramble,...authored,...physical])));
  const first=exactEarly.length?exactEarly[0]:null;
  if(p.id==='riabov_other_3')assert(first===null||first>=9);
