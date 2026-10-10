@@ -1,0 +1,36 @@
+name: CUBE-REV 0.22 P0 — Task-Relative Belief and Decision Counterexample Court
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-022/verify-p0-physical-task-history-counterexamples.mjs'
+      - '.github/workflows/cuberev-022-P0-real-belief-decision-counterexamples.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physical-task-decision-semantics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust original 66 pair beliefs and find physical three-source prior counterexample
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-022/verify-p0-physical-task-history-counterexamples.mjs | tee CUBE_REV_022_P0_source_graded_counterexamples.json
+          grep -F 'CUBE_REV_022_P0_PHYSICAL_TASK_RELATIVE_DECISION_SUFFICIENCY_COUNTEREXAMPLES_PASS' CUBE_REV_022_P0_source_graded_counterexamples.json
+      - name: Archive exact legal-move and posterior-support counterexamples
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P0-real-physical-belief-minimality-counterexamples
+          path: CUBE_REV_022_P0_source_graded_counterexamples.json
+          retention-days: 90
+          if-no-files-found: warn
