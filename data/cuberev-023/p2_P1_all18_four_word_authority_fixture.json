@@ -1,0 +1,52 @@
+{
+  "schema": "cuberev-023-p2-independent-P1-all18-witness-source-replay-v1",
+  "upstream": {
+    "source": "Original full-cubie P1 all18 MITM, GitHub CI #38083422301",
+    "artifact": 11681492366,
+    "sha256": "47ffeb7283ecb00c54a66c464de960f6ca43f40cc42f39eb838698881259aa34"
+  },
+  "original_scramble": "R' U' F L2 D' L2 U' R U F' D R L' F U2 D2 F L2 F' R2 F2 D R' U' F",
+  "source_ledger": "data/cuberev-022/p7_fmc_source_anchored_candidate_ledger.json",
+  "rows": [
+    {
+      "source_id": "miao_main",
+      "synthetic_FBDR_actions": "D B2",
+      "synthetic_original_face_word": "B U2",
+      "full_18_exact_shortest_suffix": "U2 B' R2 B' R2 U2 B U2 L2 B F",
+      "post_intervention_all18_exact_length": 11,
+      "raw_actions": 23,
+      "adjacent_reduced_actions": 19,
+      "authored_prefix_remains_literal": true
+    },
+    {
+      "source_id": "miao_alternative_from_same_eo",
+      "synthetic_FBDR_actions": "D B2",
+      "synthetic_original_face_word": "B U2",
+      "full_18_exact_shortest_suffix": "L2 U2 B U2 F U2 R2 D2 R2 B2",
+      "post_intervention_all18_exact_length": 10,
+      "raw_actions": 23,
+      "adjacent_reduced_actions": 23,
+      "authored_prefix_remains_literal": true
+    },
+    {
+      "source_id": "miao_main",
+      "synthetic_FBDR_actions": "D' F2",
+      "synthetic_original_face_word": "B' D2",
+      "full_18_exact_shortest_suffix": "D2 F D2 B2 F L2 D2 F L2 D2 F2",
+      "post_intervention_all18_exact_length": 11,
+      "raw_actions": 23,
+      "adjacent_reduced_actions": 21,
+      "authored_prefix_remains_literal": true
+    },
+    {
+      "source_id": "miao_alternative_from_same_eo",
+      "synthetic_FBDR_actions": "D' F2",
+      "synthetic_original_face_word": "B' D2",
+      "full_18_exact_shortest_suffix": "R2 D2 B' U2 F U2 B2 R2 D2 R2",
+      "post_intervention_all18_exact_length": 10,
+      "raw_actions": 23,
+      "adjacent_reduced_actions": 23,
+      "authored_prefix_remains_literal": true
+    }
+  ]
+}
