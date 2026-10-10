@@ -104,7 +104,9 @@ const oneHotActionsFor=(target)=>{
  const i=selected.slots.indexOf(target);
  return ACTIONS.filter((_,a)=>{
   const outs=selected.slots.map(slot=>maps[a][2*slot]&1);
-  return outs.filter(b=>b===outs[i]).length===1;
+  if(outs.filter(b=>b===outs[i]).length!==1)return false;
+  const otherStates=selected.slots.filter(slot=>slot!==target).map(slot=>maps[a][2*slot]);
+  return maps.some((_,b)=>split(b,otherStates[0],otherStates[1]));
  });
 };
 const optimalClassesA=oneHotActionsFor(planA.isolated_initial_slot);
