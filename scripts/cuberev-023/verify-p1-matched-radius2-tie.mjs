@@ -124,7 +124,7 @@ function solve10(state,arm,intervention) {
  const low=Math.max(firstTriangle,h);
  const provenUpper=[...intervention].reverse().map(invert).concat(original.certifiedOriginalSuffix);
  assert.equal(provenUpper.length,upper);
- const upperReal=signedWord([...original.prefix,...intervention,...provenUpper]);
+ const upperReal=[...original.prefix,...signedWord([...intervention,...provenUpper])];
  assert(solvedUpToRotation(stickerAfter([...scramble,...upperReal])),'simple inverse + known original solve upper bound must always solve');
  actualReplays++;
  const path=[],attempts=[];let nodes=0,found=null,exhausted=true;
@@ -160,7 +160,7 @@ function solve10(state,arm,intervention) {
  if(exact!==null){
   assert(found&&found.length===exact);
   const fullOriginal=[...original.prefix,...intervention,...found];
-  assert(solvedUpToRotation(stickerAfter([...scramble,...signedWord(fullOriginal)])),'exact newly computed witness physically solves original scramble');
+  assert(solvedUpToRotation(stickerAfter([...scramble,...original.prefix,...signedWord([...intervention,...found])])),'exact newly computed witness physically solves original scramble');
   actualSuffix=signedWord(found).join(' ');actualReplays++;
  }
  const proof={
