@@ -47,3 +47,11 @@ Never change 0.18–0.20 exact results to make the new problem seem novel. Keep 
 **Canonical live Notion 0.21:** https://app.notion.com/p/3f5ef561cf92815e86efc7d923b6ffa8
 
 **Open research question:** what changes first when an observer switches from an open-loop fixed physical manipulation to a closed-loop state-contingent physical manipulation, and how much of this advantage survives the transition from one tracked UR edge to the joint actual cube state?
+
+## P0 first completed external regression — historical conservation PASS
+
+The actual read-only GitHub Actions [run #38039499979](https://github.com/WhoSia/CUBE-REV/actions/runs/38039499979) completed **SUCCESS** (commit `10a4ce42e832c17a3bde5b02eb475016ffc5610e`), including a machine-readable [finite receipt #11665297656](https://github.com/WhoSia/CUBE-REV/actions/runs/38039499979/artifacts/11665297656), artifact digest `sha256:ead3d65b6920d1d60584123793f1ac31e269da2c50ccdaad90a2e785d298f3d1`. The physical action oracle was regenerated from real 3×3 sticker permutations, not an idealised 24-state toy transition table. An independently formulated finite-horizon Bellman recursion was checked against the *unaltered* 0.15 `adaptiveOrientationDepth` implementation on **37 tested belief masks** at depth cap 10; all applicable comparisons passed, and branch partition/cardinality invariants passed.
+
+The original twelve zero-orientation edge locations `B=0x555555` give **worst-case adaptive orientation identification depth 7 legal HTM actions**, confirmed by both implementations; the first chosen physical action in the new witness uses action index 6 in the original 18-action registry. This is an **inherited independently reconfirmed physical result, NOT a newly discovered optimum**. Its quantity counts turns along a single feedback-adaptive trajectory, not preset dictionary cardinality: it must **never** be compared directly as if `7 < M*(5)=8` were an efficiency theorem. It also does not solve the entire cube or observe all cubies.
+
+The old P7 active-set allowlist audit is still failed for newly tracked science files, a separate governance issue from this successful physically scoped scientific P0 court. Next research: a *matched same-B* optimal preset fixed-word depth against policy depth with replayed branch witnesses, and a physical greedy-first vs minimax-depth comparison.
