@@ -1,6 +1,12 @@
 name: CUBE-REV 0.20 — Independent Real Rubik L5 Transport-Cut Census
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - research/current
+    paths:
+      - '.github/workflows/cuberev-020-real-L5-transport-census-manual.yml'
+      - 'scripts/cuberev-020/**'
 permissions:
   contents: read
 jobs:
