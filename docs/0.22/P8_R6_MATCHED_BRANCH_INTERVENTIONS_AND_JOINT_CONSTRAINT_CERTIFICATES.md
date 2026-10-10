@@ -52,6 +52,18 @@ The **positive advantage survives every listed matched one-step move even if ANY
 
 R6 therefore has two different scientific claims: exact 2–5 action contrast in the ten-generator DR grammar (20 exact search outcomes), and rigorous but non-exact 2–6 lower/upper contrast in the broader 18-move continuation grammar (metric inequality). Do not conflate their epistemic grades.
 
+### Matched radius-r all-18 geodesic robustness threshold (deduced, not enumerated)
+
+The same physical one-step metric fact generalizes to a **matched length-r legal face-turn word w**, applied to BOTH genuine source DR endpoints (the word may leave DR if the study permits general all-18 continuations). Because any legal path of r HTM moves changes solved distance by at most r, the actual base d18 values 9/12 imply
+
+`d18(main·w,e)∈[max(0,9−r),9+r]`; `d18(alt·w,e)∈[max(0,12−r),12+r]`.
+
+When **the same r additional raw actions** are appended to the preserved literal authored prefixes (10 main, 11 alternate), their total raw action cost gap `Δ_r=(11+r+d18(alt·w,e))−(10+r+d18(main·w,e))` satisfies for r≤9
+
+`4−2r ≤ Δ_r ≤ 4+2r`.
+
+This is a certified **interval for every** matched feasible length-r intervention, not a claim that either endpoint's actual geodesic takes an interval endpoint, nor a statistical confidence interval. At r=1 the proven strict gap is [2,6] and the R6 ten real DR-generator comparisons sharpen the DR-grammar gap to exact 2–5. At **r=2 the all-18 metric guarantee first permits equality** (lower bound 0); at r≥3 it no longer rules out a complete ranking reversal. **Whether an actual legally feasible matched radius-two or radius-three branch meets these bounds is OPEN.** The logical boundary gives 0.23's first sharp negative-control/falsification target and avoids expanding neighborhoods without a clearly discriminating hypothesis. A normalized final word can cancel turns at authored/synthetic boundaries, and then this raw source-prefix cost comparison is not directly an irreducible FMC length theorem.
+
 ## 4. Independent projected-PDB falsification and independently measured HTR contact
 
 Across **all ten** matched pairs, the exact backward-projection PDB `h=max(h_corner+E,h_UDedge+E)` assigns a **smaller admissible lower bound to the alternative**, even though full physical DR solution cost is **larger** in all ten matched pairs. Thus the R5 rank reversal is robust across this entire predeclared finite one-step intervention alphabet; it is not just a single source state artifact. But these ten interventions are connected moves on only two sourced states, not independent stochastic samples. Do not attach a sampling p-value or describe them as a broadly representative population.
