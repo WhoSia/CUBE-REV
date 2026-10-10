@@ -89,3 +89,21 @@ Exhaustive 18^5 words on this perturbed **NONCUBE** 18x24 model yield **28** q3 
 - New independent Python 82+588 phase-exclusive original-source 12-row covering court: `scripts/cuberev-020/verify-L5-rank7-phase-cover.py`.
 - Old original P13 exact theorem: [P13 proof](../0.19/P13_FINAL_EXACT_PHYSICAL_MSTAR5_EIGHT.md). No old P13 frozen source or case receipts overwritten.
 - The next *mathematical* attack is to replace even the complete five-step face-grammar enumeration by a small symbolic proof from genuine cube turn cycles, and then connect the 12-row obstruction to a more general conditional finite covering theorem on transported cut systems. The previous q3 vs q4 distinction derives from actual Rubik edge transport rather than abstract binary-output capacity alone.
+
+
+## 7. Independent external physical finite court PASS (2026-10-10)
+
+The initial local-only research grade above is retained as the **historical preregistration state**; it has now been upgraded for **P1-E** by a successfully completed *independent GitHub Actions run*, not just a workflow file or pending queue.
+
+- [GitHub Actions independent physical P1-E run #38039068732](https://github.com/WhoSia/CUBE-REV/actions/runs/38039068732): `completed / success`, head `570c7053a3218cdc449c916cad942f93740297b4`, all relevant steps `success`.
+- [Immutable run artifact #11664997367 (11 files)](https://github.com/WhoSia/CUBE-REV/actions/runs/38039068732/artifacts/11664997367): original physical source, 18x24 sticker-derived original maps, all 14,938 original partitions, independent physical C++ transcript census, 640 rank-seven witnesses, independent Python face-grammar+orbit proof, 12-row restricted covering court and labelled noncube negative control.
+- Artifact ZIP SHA-256 independently rechecked after download: `cf39f0c8fffb1535d499943cd6c1fb2121e3ac3b8c30ee1fbaf7447c7a560e1d`; 11 exact files; ZIP integrity check passed.
+- [Long-lived Drive mirror of external CI artifact](https://drive.google.com/file/d/1ZRiScfCiR3cVk6p75ZQ0lsj0494fnYdI/view) inside the original `10_CANONICAL_PROOF_COURTS` folder, original artifact bytes and GitHub ZIP SHA preserved.
+- Original source SHA-256 independently verified inside CI `9f2119738f92f56485897c1894d2cb721a3d6b0498c5aa14832c71f18b20e2f1`. Original `18^4=104,976` map export and `18^5=1,889,568` map export PASS. Independent all 14,938 actual partition-key equality PASS.
+- `CUBE_REV_020_P1E_REAL_CUBE_RANK7_GRAMMAR_ORBITS_PASS` PASS: 128+512 physical rank7 words, 16+16 disjoint partitions, three source-symmetry orbits, transported-cut profiles.
+- `CUBE_REV_020_P1E_RANK7_ONLY_MSTAR5_EIGHT_EXACT_LOCAL_PASS` PASS in external Actions: 82+588 phase-exclusive original requirements, 12-source court, all 4,368 q4 five-column selections rejected, original physical 2+6 eight-word positive witness.
+- `NONCUBE_16_PLUS_16_UNIVERSALITY_FALSIFIED_PASS`: mutant R four-cycle countermodel does change q3 to 28 distinct maximum-rank partitions while preserving original F/B sensing supports.
+- Initial CI attempt [#38039042408](https://github.com/WhoSia/CUBE-REV/actions/runs/38039042408) failed solely at `-Werror=misleading-indentation` in preexisting P1-D C++ census formatting. Corrected in WhoSia commit `570c7053a3218cdc449c916cad942f93740297b4`; full rerun #38039068732 passed. Both runs preserved.
+- No GitHub Actions writeback, no bot commits or coauthors; read-only workflow permission `contents: read`. Author and committer of the correction are WhoSia.
+
+**Scientific claim grade:** independent *execution-certified finite physical P1-E rank7 theorem*; NOT a Lean formalisation and NOT a new external whole-P13 `k=7` mixed-rank UNSAT certificate. The latter remains the pre-existing local finite P13 proof and requires separately graded external verification.
