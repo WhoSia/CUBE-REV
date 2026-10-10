@@ -1,0 +1,50 @@
+name: CUBE-REV 0.22 P8-R3 — Dual PDB Exact DR-Phase Solution Audit
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p8-r3-reverse-pdb-exact-phase2-ida.mjs'
+      - '.github/workflows/cuberev-022-P8-R3-phase2-PDB-exact-minima.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact_source_conditioned_phase2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compute dual reverse PDB and exact source-anchored phase2 shortest completions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=4096 scripts/cuberev-022/verify-p8-r3-reverse-pdb-exact-phase2-ida.mjs | tee CUBE_REV_022_P8_R3_phase2_PDB_IDA_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_022_P8_R3_phase2_PDB_IDA_receipt.json','utf8'));
+          assert.equal(z.marker,'CUBE_REV_022_P8_R3_DUAL_BACKWARD_PROJECTION_PDB_SOURCE_PHASE2_EXACT_IDA');
+          assert.equal(z.dual_backward_PDB.length,2);
+          for(const x of z.dual_backward_PDB)assert.equal(x.size,967680);
+          assert.equal(z.results.length,5);
+          assert.equal(z.results.filter(x=>x.id==='riabov_other_3').length,1);
+          for(const x of z.results)if(x.exact_minimum_DR_preserving_continuation_to_solved!==null){
+            assert.equal(x.bounded_exhaustion_warrant,'PASS');
+            assert(x.complete_original_full_sticker_solves);
+          }
+          assert(z.entire_unrestricted_FMC_minimum_NOT_proven);
+          console.log('R3_EXACT_REVERSE_PDB_FWD_IDA_ADMISSIBLE_SOURCE_AUDIT_PASS');
+          JS
+      - name: Save projection tables statistics and exact search proof receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P8-R3-dual-reverse-PDB-exact-phase2-receipt
+          path: CUBE_REV_022_P8_R3_phase2_PDB_IDA_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
