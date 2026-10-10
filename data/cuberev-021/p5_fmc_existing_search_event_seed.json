@@ -1,0 +1,335 @@
+{
+  "schema": "cuberev-021-p5-fmc-retrospective-process-v1",
+  "compiled_date": "2026-10-10",
+  "rights": "Curation of short paraphrases and source URLs only; no reproduced full algorithms or copyrighted prose.",
+  "source_acquisition": "PUBLIC_TEXT_PAGES_FETCHED_OR_GITHUB_REPO_READ; NO VIDEO; NO PRIVATE .VFMC FILE",
+  "assertions": {
+    "no_claim_that_written_pool_equals_tested_pool": true,
+    "no_claim_of_video_ground_truth": true,
+    "no_claim_posthoc_as_real_time": true
+  },
+  "episodes": [
+    {
+      "id": "WHEELER_SEFMC2026_A1",
+      "author": "Alexander Wheeler",
+      "attempt": "CubingUSA Southeast FMC Championship 2026 / Final / Attempt 1",
+      "source_url": "https://www.api.333.fm/wca/reconstruction/SoutheastFMCChampionship2026/2014WHEE01",
+      "source_type": "public_author_retrospective_writeup",
+      "events": [
+        {
+          "event_id": "w01",
+          "sequence_index": 1,
+          "kind": "CANDIDATE_POOL_WRITTEN",
+          "author_paraphrase_ko": "50개 초과 EO 후보를 적어 두었으나 전부 시험하지 않았다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "candidate_quantity": {
+            "kind": "more_than",
+            "n": 50,
+            "unit": "EO_candidates_written"
+          }
+        },
+        {
+          "event_id": "w02",
+          "sequence_index": 2,
+          "kind": "REPORTED_BRANCH_ENUMERATION",
+          "author_paraphrase_ko": "첫 번째 후속 후보에서 둘 이상의 대안을 제시",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "candidate_quantity": {
+            "kind": "at_least",
+            "n": 2,
+            "unit": "branch_variants_written"
+          }
+        },
+        {
+          "event_id": "w03",
+          "sequence_index": 3,
+          "kind": "DEFERRED_UNEVALUATED",
+          "author_paraphrase_ko": "두 번째 후속 후보는 바로 평가하지 않고 결국 검토하지 않았다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "w04",
+          "sequence_index": 4,
+          "kind": "BACKUP_FOUND",
+          "author_paraphrase_ko": "세 번째 후속 후보에서 25회전 임시해법을 마련",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "w05",
+          "sequence_index": 5,
+          "kind": "SEARCH_REGION_SWITCH",
+          "author_paraphrase_ko": "약 30분에 다른 후보군의 변형 탐색으로 이동",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "time_anchor": {
+            "kind": "self_report_approx_elapsed_min",
+            "minutes": 30
+          }
+        },
+        {
+          "event_id": "w06",
+          "sequence_index": 6,
+          "kind": "BACKUP_WRITTEN",
+          "author_paraphrase_ko": "약 55분에 기존 25회전 예비해법을 제출용지에 기입",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "time_anchor": {
+            "kind": "self_report_approx_elapsed_min",
+            "minutes": 55
+          }
+        },
+        {
+          "event_id": "w07",
+          "sequence_index": 7,
+          "kind": "REVISIT_INVERSE",
+          "author_paraphrase_ko": "약 56분에 앞서 살피지 않았던 역방향 후보를 재검토",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "time_anchor": {
+            "kind": "self_report_approx_elapsed_min",
+            "minutes": 56
+          }
+        },
+        {
+          "event_id": "w08",
+          "sequence_index": 8,
+          "kind": "REPRESENTATION_SWITCH",
+          "author_paraphrase_ko": "역방향 후보로부터 정상 방향의 후속 연결을 검토",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "w09",
+          "sequence_index": 9,
+          "kind": "EDIT_AND_RECHECK",
+          "author_paraphrase_ko": "종료 약 2분 30초 전 조각 연결 및 회전 수 계산을 반복 확인",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "time_anchor": {
+            "kind": "self_report_approx_elapsed_min",
+            "minutes": 57.5
+          }
+        },
+        {
+          "event_id": "w10",
+          "sequence_index": 10,
+          "kind": "FINAL_WRITTEN",
+          "author_paraphrase_ko": "작성자에 따르면 59분 57초에 기입 완료; 실제 결과 20회전",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "time_anchor": {
+            "kind": "self_report_elapsed_min",
+            "minutes": 59.95
+          }
+        }
+      ],
+      "chronology_grade": "AUTHOR_REPORTED_PARTIAL_ORDER_ONLY",
+      "notes": "No machine-time-verified complete search trajectory or actual continuous performance footage in this record."
+    },
+    {
+      "id": "QURAISHI_FMCWORLD2026_A3",
+      "author": "Ibrahim Quraishi",
+      "attempt": "FMC World 2026 / Final / Attempt 3",
+      "source_url": "https://www.api.333.fm/wca/reconstruction/FMCWorld2026/2018QURA01",
+      "source_type": "public_author_retrospective_writeup",
+      "events": [
+        {
+          "event_id": "q01",
+          "sequence_index": 1,
+          "kind": "INITIAL_SEARCH_SET",
+          "author_paraphrase_ko": "처음에는 5회전 길이 EO 후보를 다수 기록했으나 NISS 유형을 놓쳤다고 설명",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "q02",
+          "sequence_index": 2,
+          "kind": "REPORTED_UNPRODUCTIVE_SEARCH",
+          "author_paraphrase_ko": "약 50분 동안 앞서 적은 EO 후보군에서 만족할 만한 후속 해법을 못 찾았다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "time_anchor": {
+            "kind": "self_report_approx_elapsed_min",
+            "minutes": 50
+          }
+        },
+        {
+          "event_id": "q03",
+          "sequence_index": 3,
+          "kind": "REVISIT_PRIOR_CANDIDATE_POOL",
+          "author_paraphrase_ko": "다시 EO 탐색으로 돌아가 새 NISS 4회전 EO 두 개를 발견",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "candidate_quantity": {
+            "kind": "exact_reported",
+            "n": 2,
+            "unit": "new_NISS_EO_candidates"
+          }
+        },
+        {
+          "event_id": "q04",
+          "sequence_index": 4,
+          "kind": "SEARCH_STAGE_ADVANCE",
+          "author_paraphrase_ko": "새 EO 하나로부터 RZP 및 DR로 이어지는 경로를 검사",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "q05",
+          "sequence_index": 5,
+          "kind": "ALTERNATIVE_CONTINUATION_TEST",
+          "author_paraphrase_ko": "서로 다른 DR 변형의 HTR 결과를 비교하고 일부는 부적합했다고 회고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "q06",
+          "sequence_index": 6,
+          "kind": "FINAL_ROUTE_SELECTED",
+          "author_paraphrase_ko": "마지막으로 좋은 HTR로 이어진 후보를 선택해 21회전 해법 제출",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        }
+      ],
+      "chronology_grade": "AUTHOR_REPORTED_PARTIAL_ORDER_ONLY",
+      "notes": "No machine-time-verified complete search trajectory or actual continuous performance footage in this record."
+    },
+    {
+      "id": "DONG_FMCWORLD2026_A1",
+      "author": "Baiqiang Dong",
+      "attempt": "FMC World 2026 / Final / Attempt 1",
+      "source_url": "https://18.333.fm/wca/reconstruction/FMCWorld2026/2008DONG06",
+      "source_type": "public_author_retrospective_writeup",
+      "events": [
+        {
+          "event_id": "d101",
+          "sequence_index": 1,
+          "kind": "EARLIER_BACKUP",
+          "author_paraphrase_ko": "슬라이스 삽입으로 21회전 후보를 먼저 만들었다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "d102",
+          "sequence_index": 2,
+          "kind": "LATE_REVISIT",
+          "author_paraphrase_ko": "마지막 약 10분에 해당 후보를 다시 살펴보았다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "time_anchor": {
+            "kind": "self_report_relative_to_end",
+            "minutes_before_end": 10
+          }
+        },
+        {
+          "event_id": "d103",
+          "sequence_index": 3,
+          "kind": "FINAL_ROUTE_SELECTED",
+          "author_paraphrase_ko": "재검토 후 19회전 해법을 제출",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        }
+      ],
+      "chronology_grade": "AUTHOR_REPORTED_PARTIAL_ORDER_ONLY",
+      "notes": "No machine-time-verified complete search trajectory or actual continuous performance footage in this record."
+    },
+    {
+      "id": "DONG_FMCWORLD2026_A2",
+      "author": "Baiqiang Dong",
+      "attempt": "FMC World 2026 / Final / Attempt 2",
+      "source_url": "https://18.333.fm/wca/reconstruction/FMCWorld2026/2008DONG06",
+      "source_type": "public_author_retrospective_writeup",
+      "events": [
+        {
+          "event_id": "d201",
+          "sequence_index": 1,
+          "kind": "CANDIDATE_POOL_WRITTEN",
+          "author_paraphrase_ko": "EO 후보 42개를 작성했다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "candidate_quantity": {
+            "kind": "exact_reported",
+            "n": 42,
+            "unit": "EO_candidates_written"
+          }
+        },
+        {
+          "event_id": "d202",
+          "sequence_index": 2,
+          "kind": "CANDIDATE_INDEX_CHOSEN",
+          "author_paraphrase_ko": "검토한 후보 중 38번째 EO에서 후속 해법을 찾았다고 보고; 앞선 37개의 평가 상세는 없음",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT",
+          "candidate_quantity": {
+            "kind": "author_reported_ordinal",
+            "n": 38,
+            "unit": "EO_candidate_test_index"
+          }
+        },
+        {
+          "event_id": "d203",
+          "sequence_index": 3,
+          "kind": "FINAL_ROUTE_SELECTED",
+          "author_paraphrase_ko": "19회전 결과를 제출",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        }
+      ],
+      "chronology_grade": "AUTHOR_REPORTED_PARTIAL_ORDER_ONLY",
+      "notes": "No machine-time-verified complete search trajectory or actual continuous performance footage in this record."
+    },
+    {
+      "id": "PIETRUSIAK_WARSZAWA2026_F2",
+      "author": "Krzysztof Pietrusiak",
+      "attempt": "FMC Warszawa 2026 / Final / Attempt 2",
+      "source_url": "https://www.api.333.fm/wca/reconstruction/FMCWarszawa2026/2019PIET01",
+      "source_type": "public_author_retrospective_writeup",
+      "events": [
+        {
+          "event_id": "p01",
+          "sequence_index": 1,
+          "kind": "EARLY_CANDIDATE",
+          "author_paraphrase_ko": "작성자가 먼저 검토한 HTR 후보와 이어진 해법을 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "p02",
+          "sequence_index": 2,
+          "kind": "NISS_REFORMULATION",
+          "author_paraphrase_ko": "해당 후보에서 역방향 NISS 접근으로 HTR를 다시 구성했다고 보고",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "p03",
+          "sequence_index": 3,
+          "kind": "FINAL_ROUTE_SELECTED",
+          "author_paraphrase_ko": "최종 21회전 서면 해법 제출",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        }
+      ],
+      "chronology_grade": "AUTHOR_REPORTED_PARTIAL_ORDER_ONLY",
+      "notes": "No machine-time-verified complete search trajectory or actual continuous performance footage in this record."
+    },
+    {
+      "id": "GUIDO_ARCHIVE_REWRITE_24",
+      "author": "Guido Dipietro",
+      "attempt": "Personal archived FMC solution / 24 with DR and neat stuff",
+      "source_url": "https://github.com/GuidoDipietro/FMC/blob/master/solutions/24%20with%20DR%20and%20neat%20stuff.txt",
+      "source_type": "public_archived_personal_working_note",
+      "events": [
+        {
+          "event_id": "g01",
+          "sequence_index": 1,
+          "kind": "DRAFT_SOLUTION_WRITTEN",
+          "author_paraphrase_ko": "처음 계산해 둔 해법은 27회전으로 기록",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "g02",
+          "sequence_index": 2,
+          "kind": "REPRESENTATION_REWRITE",
+          "author_paraphrase_ko": "회전 표기를 없앤 뒤 비효율적 부분을 발견해 다시 쓰기로 결정",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "g03",
+          "sequence_index": 3,
+          "kind": "SELF_REVISED_RESULT",
+          "author_paraphrase_ko": "회전 치환과 상쇄를 이용해 24회전 해법으로 수정",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        },
+        {
+          "event_id": "g04",
+          "sequence_index": 4,
+          "kind": "OTHER_AUTHOR_POSTHOC_NOTE",
+          "author_paraphrase_ko": "파일 끝에 다른 풀이자가 별도로 23회전 개선을 추가했음을 기록; 원작성자의 최초 탐색 행동과 분리",
+          "basis": "AUTHOR_RETROSPECTIVE_STATEMENT"
+        }
+      ],
+      "chronology_grade": "AUTHOR_REPORTED_PARTIAL_ORDER_ONLY",
+      "notes": "No machine-time-verified complete search trajectory or actual continuous performance footage in this record."
+    }
+  ]
+}
