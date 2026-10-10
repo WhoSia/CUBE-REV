@@ -30,6 +30,9 @@ jobs:
           const z=JSON.parse(fs.readFileSync('CUBE_REV_022_P7_source_DR_NISS_receipt.json','utf8'));
           if(z.marker!=='CUBE_REV_022_P7_SOURCE_REAL_DR_ENDPOINT_ALIAS_AND_TYPED_NISS_PASS')throw Error('P7_MARKER');
           if(z.six_source_authored_normal_side_pairs.length!==6)throw Error('NOT_FULL_SOURCE_LEDGER');
+          if(z.source_typed_DR_membership_PASS.length!==5 || z.distinct_source_backed_DR_certified_endpoints!==4)throw Error('SOURCE_DR_ENDSTATE_QUOTIENT_MISMATCH');
+          if(z.source_typed_DR_membership_NOT_CONFIRMED.length!==1 || z.source_typed_DR_membership_NOT_CONFIRMED[0]!=='riabov_other_2')throw Error('UNRESOLVED_SOURCE_CONTEXT_NOT_RETAINED');
+          if(!z.concatenation_assumptions_for_ria_other_candidates_are_explicit)throw Error('MISSING_GRAMMAR_ASSUMPTION');
           if(!z.matched_authored_main_DR_commutation_collision.same_staged_full_cubie_DR)throw Error('NO_REAL_DR_MATCH');
           if(!z.NISS.sourced_Miao_A2_parenthesized_inverse_alternative.different_physical_states)throw Error('NISS_GRAMMAR_LEAK');
           if(!z.procedural_constraints.complete_search_chronology_not_observed)throw Error('HUMAN_PROCESS_INVENTED');
