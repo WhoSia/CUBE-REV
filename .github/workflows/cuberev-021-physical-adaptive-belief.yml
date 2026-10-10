@@ -1,0 +1,36 @@
+name: CUBE-REV 0.21 — Physical Adaptive Belief Baseline
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-021/**'
+      - '.github/workflows/cuberev-021-physical-adaptive-belief.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-physical-p0:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Physical 24-state UR edge adaptive vs 0.15 baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-021/audit-physical-adaptive-beliefs.mjs | tee /tmp/cube021-P0-physical-belief.json
+          grep -F 'CUBE_REV_021_P0_PHYSICAL_ADAPTIVE_BELIEF_BASELINE_PASS' /tmp/cube021-P0-physical-belief.json
+      - name: Retain finite replay receipt without repository writeback
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-021-P0-physical-adaptive-oracle-audit
+          path: /tmp/cube021-P0-physical-belief.json
+          retention-days: 30
+          if-no-files-found: warn
