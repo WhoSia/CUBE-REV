@@ -77,7 +77,7 @@ for(const move of witness){
  oneRanks.push(new Set(oneHist).size);
 }
 assert.equal(new Set(oneHist).size,12);
-assert.deepEqual(oneRanks,[2,4,6,7,9,10,11,12]);
+assert.deepEqual(oneRanks,[2,4,6,8,9,10,11,12]);
 let pairs=sourceStates.map(s=>[...s]);
 const pairHist=sourceStates.map(()=>''),pairRanks=[];
 for(const move of witness){
