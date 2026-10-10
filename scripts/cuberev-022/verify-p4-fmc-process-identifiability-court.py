@@ -209,6 +209,68 @@ def main():
     assert solver_ordered_total==71
     assert len(solver_ambiguities)==31
     assert solver_product==72000
+    # A second, stricter scenario excludes reported ABSENCES from the
+    # affirmative event chronology. "Did not write" is not a dated
+    # performance step. Deferred evaluations are retrospective choices
+    # which MAY occur cognitively, but absence alone cannot be timed. This
+    # projection is a defensible stricter reporting convention, not an
+    # ontological judgment that the author had no deferral thought.
+    nonperformed_kinds={"DEFERRED_UNEVALUATED","CANDIDATE_NOT_WRITTEN"}
+    positive_cases={}
+    positive_ambiguities=[]
+    positive_event_total=positive_pair_total=positive_ordered_total=0
+    positive_product=1
+    omitted_nonperformed=[]
+    for case in sorted(nodes_by):
+        original=nodes_by[case]
+        original_idx={z["id"]:i for i,z in enumerate(original)}
+        orig_arcs=[(original_idx[e["src"]],original_idx[e["dst"]]) for e in edges_by[case]]
+        original_reach=closure(len(original),orig_arcs)
+        kept=[v for v in original
+              if v["reported_event_kind"]!="OTHER_AUTHOR_POSTHOC_NOTE"
+              and v["reported_event_kind"] not in nonperformed_kinds]
+        skipped=[v for v in original if v not in kept]
+        omitted_nonperformed.extend({"case":case,"event_id":n["event_id"],"kind":n["reported_event_kind"]} for n in skipped)
+        n=len(kept)
+        # Keep original logically implied precedence EVEN IF an omitted
+        # negative report was on a provenance chain between positives.
+        arcs=[(a,b) for a in range(n) for b in range(n) if a!=b and
+              original_reach[original_idx[kept[a]["id"]]]>>original_idx[kept[b]["id"]]&1]
+        L=count_extensions(n,arcs)
+        reach=closure(n,arcs)
+        unresolved=0
+        for a in range(n):
+            for b in range(a+1,n):
+                if reach[a]>>b&1 or reach[b]>>a&1:continue
+                u=count_extensions(n,arcs+[(a,b)])
+                v=count_extensions(n,arcs+[(b,a)])
+                assert u>0 and v>0 and u+v==L
+                positive_ambiguities.append({"case":case,
+                  "first_positive_reported_action":kept[a]["event_id"],
+                  "second_positive_reported_action":kept[b]["event_id"],
+                  "case_completions":L,
+                  "first_precedes_second":u,"second_precedes_first":v})
+                unresolved+=1
+        positive_product*=L
+        positive_event_total+=n
+        positive_pair_total+=comb(n,2)
+        positive_ordered_total+=comb(n,2)-unresolved
+        positive_cases[case]={"positive_reported_action_nodes":n,
+          "positive_projection_order_completions":L,
+          "unknown_positive_pair_orders":unresolved}
+    assert positive_event_total==36
+    assert len(omitted_nonperformed)==5
+    assert len([x for x in omitted_nonperformed if x["kind"]=="DEFERRED_UNEVALUATED"])==3
+    assert len([x for x in omitted_nonperformed if x["kind"]=="CANDIDATE_NOT_WRITTEN"])==1
+    assert len([x for x in omitted_nonperformed if x["kind"]=="OTHER_AUTHOR_POSTHOC_NOTE"])==1
+    for v in positive_ambiguities:
+        factor=positive_product//v["case_completions"]
+        v["global_first_precedes_second"]=factor*v["first_precedes_second"]
+        v["global_second_precedes_first"]=factor*v["second_precedes_first"]
+        v["global_worst_remaining"]=max(v["global_first_precedes_second"],v["global_second_precedes_first"])
+        assert v["global_first_precedes_second"]+v["global_second_precedes_first"]==positive_product
+    best_positive=min(positive_ambiguities,
+      key=lambda z:(z["global_worst_remaining"],z["case"],z["first_positive_reported_action"],z["second_positive_reported_action"]))
     for record in solver_ambiguities:
         L=record["solver_case_completions"]
         factor=solver_product//L
@@ -310,6 +372,19 @@ def main():
           "max_effect_single_edge_withdrawal":worst_edge,
           "per_edge":edge_ablations
         },
+        "strict_affirmative_reported_actions_only_projection":{
+            "scope":"Documentary-other-author node and reported NONPERFORMANCE statements excluded as chronology events; does NOT deny authors made decisions about deferral.",
+            "remaining_positive_reported_actions":positive_event_total,
+            "excluded_separate_author_and_negative_report_nodes":omitted_nonperformed,
+            "within_episode_recorded_positive_action_pairs":positive_pair_total,
+            "pairs_with_documentary_supported_order":positive_ordered_total,
+            "pairs_without_supported_order":len(positive_ambiguities),
+            "positive_only_order_completions":positive_product,
+            "best_new_true_order_fact_among_positive_actions":best_positive,
+            "all_ambiguous_positive_pair_queries":positive_ambiguities,
+            "by_case":positive_cases,
+            "cannot_promote_these_reports_to_live_verified_action_timestamps":True
+        },
         "matched_FMC_branch_coverage_partial_identification":source_grade,
         "identifiability_theorems":[
           "Each incomparable pair of recorded events has at least two source-compatible relative orders, explicitly counted. This is about curator-warranted source DAGs, not hidden cognitive truth.",
@@ -331,6 +406,13 @@ def main():
     target=Path(x.output);target.parent.mkdir(parents=True,exist_ok=True)
     target.write_text(json.dumps(receipt,ensure_ascii=False,indent=2,sort_keys=True)+"\n")
     print(receipt["marker"])
+    print("P4_POSITIVE_REPORTED_ACTION_PROJECTION",json.dumps({
+      "positive_action_nodes":positive_event_total,
+      "excluded_negative_or_other_author":len(omitted_nonperformed),
+      "compatible_positive_action_orders":positive_product,
+      "unresolved_positive_relative_orders":len(positive_ambiguities),
+      "best_positive_chronological_fact":best_positive
+    },ensure_ascii=False))
     print("P4_ORIGINAL_SOLVER_ONLY_CORRECTION",json.dumps({
       "source_mixed_reported_nodes":41,
       "source_mixed_completions":total_original,
