@@ -35,6 +35,13 @@ for(const p of pairProfiles){
  if(!profileGroups.has(code))profileGroups.set(code,[]);
  profileGroups.get(code).push(p.slots);
 }
+const histogram=Object.fromEntries([...profileGroups].map(([signature,items])=>[signature||'NO_ONE_TURN_SPLITTER',items.length]));
+assert.deepEqual(histogram,{
+  "F,F'":16,
+  "F,F',B,B'":16,
+  "B,B'":16,
+  "NO_ONE_TURN_SPLITTER":18
+});
 const firstPair=pairProfiles.find(p=>p.split_action_count>0);
 const secondPair=pairProfiles.find(p=>p.split_action_count>0 &&
  p.actions.join(',')!==firstPair.actions.join(','));
@@ -125,6 +132,7 @@ const tuple={
   separable_by_one_real_turn_and_one_read:oneStep.length,
   requiring_at_least_two_real_turns_before_a_read_can_separate:twoSteps.length,
   distinct_one_turn_action_labelled_split_profiles:profileGroups.size,
+  one_turn_action_profile_histogram:histogram,
   same_scalar_cost_but_incompatible_action_labelled_observation_protocol:witnessPair,
   previous_P8_counterexample_0_1_one_turn:splitActions(0,2).length>0,
   previous_P8_counterexample_0_2_one_turn:splitActions(0,4).length>0
