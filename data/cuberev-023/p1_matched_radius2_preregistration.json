@@ -77,7 +77,7 @@
   ],
   "ordered_two_action_word_count": 100,
   "expected_distinct_identity_relative_DR_action_states": null,
-  "normalized_duplicate_and_inverse_policy": "Enumerate all 100 ordered literal two-move words, compute actual full cube endpoint and quotient by exact physical end state. Preserve count and a canonical representative per quotient; an action sequence reducible to <=1 HTM move is a negative control, not novel radius-two physical intervention. Full 100 ordered literal words may include identity or geodesic-one-turn states; 74 is the genuinely new distance-two sphere only, not the count of unique images of the 100 exact-two-token words.",
+  "normalized_duplicate_and_inverse_policy": "Exhaust 100 ordered literal two-move words. Distinct endpoint images of EXACT TWO tokens =74. Seven of those images have geodesic distance <2 (one identity, six U/D face turns); genuinely new geodesic distance 2 endpoints =67. Ball radius<=2 has 1+10+67=78 actual group states; of the ten one-step generators the four side-half-turn endpoints are not images of an exact-two-token word. Preserve exact-token versus shortest-word counts and counterchecks.",
   "necessary_condition_for_raw_tie": {
     "base_gap_in_raw_source_prefix_plus_10DR_solution": 4,
     "metric_one_step_tie_possible_only_if_first_move": [
@@ -117,6 +117,8 @@
     "original author Miao actual two prefixes only; Riabov main alias remains separate author negative control"
   ],
   "stop_rule": "After testing and physically verifying all necessary boundary candidates, report PASS/FAIL/HOLD for existence of tie; any untested candidate under budget is COMPUTE_HOLD not absence. Do not extrapolate to all18 shortest child-cost or global FMC optimum.",
-  "expected_distinct_geodesic_distance_exactly_two_action_states": 74,
-  "expected_physical_union_ball_radius2": 85
+  "expected_distinct_geodesic_distance_exactly_two_action_states": 67,
+  "expected_physical_union_ball_radius2": 78,
+  "expected_distinct_images_of_exact_two_token_words": 74,
+  "prereg_repair_provenance": "Corrected AFTER pre-result CI #38083187924 failed on conflating exact-two-token layer image count 74 with shortest geodesic radius-two new states 67. Original P8 reports 74 exact two-token physical endpoints without global prior layers removed. 7 of 74 are identity/one-turn endpoints; geodesic distance-two sphere 67; entire 0..2 ball 78. No tie result inspected before this repair."
 }
