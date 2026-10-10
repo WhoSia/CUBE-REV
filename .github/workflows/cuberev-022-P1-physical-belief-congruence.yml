@@ -1,0 +1,44 @@
+name: CUBE-REV 0.22 P1 — Physical Belief Quotient and Action Congruence
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-022/verify-p1-physical-pair-belief-costed-congruence.mjs'
+      - '.github/workflows/cuberev-022-P1-physical-belief-congruence.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-cube-action-congruence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust genuine Rubik two-source reachable belief read/silent congruence
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-022/verify-p1-physical-pair-belief-costed-congruence.mjs | tee P1_costed_belief_action_congruence_receipt.json
+          grep -F 'CUBE_REV_022_P1_PHYSICAL_TWO_SOURCE_ACTION_LABELLED_QUOTIENT_PASS' P1_costed_belief_action_congruence_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const o=JSON.parse(fs.readFileSync('P1_costed_belief_action_congruence_receipt.json','utf8'));
+          if(o.states.all_unordered_24_edge_state_pairs!==276||o.states.initial_zero_flip_two_slot_pairs!==66) throw Error('PAIR_FRAME_ERROR');
+          if(!o.labelled_congruence.physical_labelled_transition_bisimulation_explicitly_checked) throw Error('QUOTIENT_UNVERIFIED');
+          if(o.labelled_congruence.quotient_class_counts_by_refinement.at(-1).reachable_pair_classes!==o.labelled_congruence.stable_minimum_number_of_classes_for_defined_action_observation_interface)throw Error('FIXPOINT_MISMATCH');
+          console.log('P1_QUOTIENT_PROOF_RECEIPT_OK');
+          JS
+      - name: Publish numerical partition and class-preserving transition certificate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P1-physical-costed-action-labelled-belief-quotient
+          path: P1_costed_belief_action_congruence_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
