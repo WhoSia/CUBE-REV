@@ -1,0 +1,155 @@
+{
+  "schema": "cuberev-023-p0-source-evidence-contract-v1",
+  "status": "P0_SOURCE_FROZEN_PHYSICAL_CI_UNTIL_VERIFIED",
+  "attempt": "FMC World 2026 final attempt 1; original same scramble for all source entries",
+  "original_scramble": "R' U' F L2 D' L2 U' R U F' D R L' F U2 D2 F L2 F' R2 F2 D R' U' F",
+  "source_ledger": "data/cuberev-022/p7_fmc_source_anchored_candidate_ledger.json",
+  "authority_physics": [
+    "scripts/cuberev-022/verify-p8-r4-schreier-29400-left-cosets.mjs",
+    "scripts/cuberev-022/verify-p8-r4-general-18-htm-mitm.mjs",
+    "scripts/cuberev-022/verify-p8-r5-riabov-general18-middle-two.mjs",
+    "scripts/cuberev-022/verify-p8-r6-matched-DR-neighborhood-geodesics.mjs"
+  ],
+  "source_grades": {
+    "authored": "SOURCED_AUTHOR_RETROSPECTIVE",
+    "synthetic": "MODEL_GENERATED_NOT_HUMAN_CONSIDERED",
+    "computed": "EXACT_PHYSICAL_ALGORITHM",
+    "human_process": "NOT_IDENTIFIED"
+  },
+  "sources": [
+    {
+      "author": "Qijun Miao",
+      "wca_id": "2014MIAO02",
+      "url": "https://333.fm/wca/reconstruction/FMCWorld2026/2014MIAO02",
+      "line_span": "L29-L53",
+      "attempt": 1,
+      "type": "AUTHOR_RETROSPECTIVE_WEB_TEXT",
+      "original_page_verified_by_independent_public_read_2026_10_11": true
+    },
+    {
+      "author": "Yurii Riabov",
+      "wca_id": "2018RIAB01",
+      "url": "https://333.fm/wca/reconstruction/FMCWorld2026/2018RIAB01",
+      "line_span": "L29-L57",
+      "attempt": 1,
+      "type": "AUTHOR_RETROSPECTIVE_WEB_TEXT",
+      "original_page_verified_by_independent_public_read_2026_10_11": true
+    }
+  ],
+  "candidate_words": [
+    {
+      "id": "miao_main",
+      "author": "Qijun Miao",
+      "source_lines": "L39-L40",
+      "eo_prefix": "L2 F' L D",
+      "dr_extension": "L2 F2 B L B2 L",
+      "literal_total_HTM": 10,
+      "grammar_authority": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "word_grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "side_context": "LITERAL_SOURCE_LINEAR_PREFIX",
+      "fixed_axis_that_physically_replays_as_DR": "FB",
+      "post_prefix_exact_all18_HTM": 9,
+      "raw_source_stage_plus_optimal_all18_HTM": 19,
+      "warning": null
+    },
+    {
+      "id": "riabov_main",
+      "author": "Yurii Riabov",
+      "source_lines": "L41-L44",
+      "eo_prefix": "L2 F' L D",
+      "dr_extension": "L2 B F2 L B2 L",
+      "literal_total_HTM": 10,
+      "grammar_authority": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "word_grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "side_context": "LITERAL_SOURCE_LINEAR_PREFIX",
+      "fixed_axis_that_physically_replays_as_DR": "FB",
+      "post_prefix_exact_all18_HTM": 9,
+      "raw_source_stage_plus_optimal_all18_HTM": 19,
+      "warning": null
+    },
+    {
+      "id": "miao_alternative_from_same_eo",
+      "author": "Qijun Miao",
+      "source_lines": "L45",
+      "eo_prefix": "L2 F' L D",
+      "dr_extension": "L2 F2 L' B' L2 B L",
+      "literal_total_HTM": 11,
+      "grammar_authority": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
+      "word_grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "side_context": "LITERAL_SOURCE_LINEAR_PREFIX",
+      "fixed_axis_that_physically_replays_as_DR": "FB",
+      "post_prefix_exact_all18_HTM": 12,
+      "raw_source_stage_plus_optimal_all18_HTM": 23,
+      "warning": null
+    },
+    {
+      "id": "riabov_other_1",
+      "author": "Yurii Riabov",
+      "source_lines": "L48-L50",
+      "eo_prefix": "L F2 L2 D'",
+      "dr_extension": "B' L B L' F",
+      "literal_total_HTM": 9,
+      "grammar_authority": "ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY",
+      "word_grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "side_context": "AUXILIARY_PHYSICAL_REPLAY_HYPOTHESIS_NOT_INDEPENDENTLY_DOCUMENTED_SIDE_STATE",
+      "fixed_axis_that_physically_replays_as_DR": "LR",
+      "post_prefix_exact_all18_HTM": 13,
+      "raw_source_stage_plus_optimal_all18_HTM": 22,
+      "warning": null
+    },
+    {
+      "id": "riabov_other_2",
+      "author": "Yurii Riabov",
+      "source_lines": "L52-L53",
+      "eo_prefix": "B L R2 U'",
+      "dr_extension": "F B L B' R B",
+      "literal_total_HTM": 10,
+      "grammar_authority": "ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY",
+      "word_grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "side_context": "AUXILIARY_PHYSICAL_REPLAY_HYPOTHESIS_NOT_INDEPENDENTLY_DOCUMENTED_SIDE_STATE",
+      "fixed_axis_that_physically_replays_as_DR": null,
+      "post_prefix_exact_all18_HTM": null,
+      "raw_source_stage_plus_optimal_all18_HTM": null,
+      "warning": "HOLD_SOURCE_SIDE_OR_CONCATENATION_CONTEXT_NOT_AUTHOR_ERROR"
+    },
+    {
+      "id": "riabov_other_3",
+      "author": "Yurii Riabov",
+      "source_lines": "L55-L56",
+      "eo_prefix": "F L' F D",
+      "dr_extension": "L B2 L U2 R F",
+      "literal_total_HTM": 10,
+      "grammar_authority": "ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY",
+      "word_grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "side_context": "AUXILIARY_PHYSICAL_REPLAY_HYPOTHESIS_NOT_INDEPENDENTLY_DOCUMENTED_SIDE_STATE",
+      "fixed_axis_that_physically_replays_as_DR": "LR",
+      "post_prefix_exact_all18_HTM": 13,
+      "raw_source_stage_plus_optimal_all18_HTM": 23,
+      "warning": null
+    }
+  ],
+  "negative_controls": [
+    "miao_main and riabov_main same full cubie endpoint despite source word difference",
+    "the F2 and B turns commute and can produce same physical endpoint",
+    "riabov_other_2 provisional linear concatenation fails all DR axes; source grammar HOLD not author error",
+    "same author miao main vs alternative explicitly source authored; not two participants",
+    "source retrospectively authored alternatives are not contemporaneous candidate evaluation timestamps",
+    "full-sticker solved does not mean original stage word was human final 19 HTM prefix",
+    "source-stage+continuation raw action count may exceed reduced final face-turn count"
+  ],
+  "known_distinctions": {
+    "literal_words": 6,
+    "linear_physical_endpoints_expected": 5,
+    "DR_valid_linear_words_expected": 5,
+    "distinct_DR_physical_endpoints_expected": 4,
+    "source_author_count": 2,
+    "provenance_conditional_other_word_ids": [
+      "riabov_other_1",
+      "riabov_other_2",
+      "riabov_other_3"
+    ],
+    "human_comparison_19_vs_23_NOT_IDENTIFIED": true
+  },
+  "human_process_identification": "HOLD",
+  "scope": "Original full-cube physical counterfactuals conditional on frozen source-word grammar, no global FMC optimum or neural-choice claim"
+}
