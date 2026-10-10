@@ -1,0 +1,167 @@
+name: CUBE-REV 0.19 P13 Frozen Physical Mstar5 Eight — Independent Finite Proof
+
+# Run deliberately ONCE after reviewed code has accumulated; avoid push-run spam.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-original-1192-mstar5-eight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate original sticker-derived physical source and 18^5 real word partition classes
+        run: |
+          mkdir -p /tmp/cuberev019-p13-final
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cuberev019-p13-final/original_physical.json
+          node scripts/cuberev-019/export-L5-physical.mjs /tmp/cuberev019-p13-final/original_physical.json /tmp/cuberev019-p13-final/original_L5_partitions.tsv
+          node --input-type=module > /tmp/cuberev019-p13-final/original_move_maps.txt <<'JS'
+          import {urMoveAutomaton} from './scripts/cuberev-015/ur-fiber-tomography.mjs';
+          for (const action of urMoveAutomaton()) console.log(action.join(' '));
+          JS
+          test "$(wc -l < /tmp/cuberev019-p13-final/original_L5_partitions.tsv)" -eq 14938
+          test "$(wc -l < /tmp/cuberev019-p13-final/original_move_maps.txt)" -eq 18
+          echo '9f2119738f92f56485897c1894d2cb721a3d6b0498c5aa14832c71f18b20e2f1  /tmp/cuberev019-p13-final/original_physical.json' | sha256sum --check
+      - name: Install numerical generators, never used as proof checkers
+        run: |
+          python -m pip install --disable-pip-version-check 'numpy==2.2.6' 'scipy==1.15.3'
+      - name: P9 reprove no five physical words cover all original 480 five-source subsets
+        run: |
+          D=/tmp/cuberev019-p13-final
+          python -u scripts/cuberev-019/prove-L5-five-source-k5-impossibility.py \
+            --physical "$D/original_physical.json" --maps "$D/original_move_maps.txt" \
+            --partitions "$D/original_L5_partitions.tsv" \
+            --dual docs/0.19/P8_ORDER_INVARIANT_L5_FIVE_ONLY_LP_CERT.json \
+            --output "$D/P12_P9_receipt.json" | tee "$D/P9.log"
+          grep -q 'CUBE_REV_019_L5_480_FIVE_SOURCE_K5_EXACT_FINITE_UNSAT_PASS' "$D/P9.log"
+      - name: P12 regenerate 445 rank-specific original-five-source integer duals
+        run: |
+          D=/tmp/cuberev019-p13-final
+          OPENBLAS_NUM_THREADS=1 python -u scripts/cuberev-019/generate-L5-R5-integer-dual-candidates.py \
+            --physical "$D/original_physical.json" --partitions "$D/original_L5_partitions.tsv" \
+            --output "$D" | tee "$D/P12_candidate_generation_only.log"
+      - name: P12 independently verify all 445 source-locked integer certificates, without SAT or LP
+        run: |
+          D=/tmp/cuberev019-p13-final
+          python -u scripts/cuberev-019/verify-L5-R5-k6-integer-duals.py \
+            --physical "$D/original_physical.json" --maps "$D/original_move_maps.txt" \
+            --partitions "$D/original_L5_partitions.tsv" \
+            --duals_first "$D/P12_rank_sensitive_integer_duals.json" \
+            --duals_rank6 "$D/P12_raw_rank6_70_integer_duals.json" \
+            --duals_rank7 "$D/P12_rank7_pair_triple_integer_duals.json" \
+            --output "$D/P13_fresh_P12_integer_duals_receipt.json" | tee "$D/P12_integer_verify.log"
+          grep -q 'CUBE_REV_019_P12_ALL_445_INTEGER_DUAL_ORBIT_COURTS_PASS' "$D/P12_integer_verify.log"
+      - name: P12 exhaust raw physical four-five-six rank-seven cases and 7-word restricted upper
+        run: |
+          D=/tmp/cuberev019-p13-final
+          python -u scripts/cuberev-019/verify-L5-R5-k6-high-rank-finite.py \
+            --physical "$D/original_physical.json" --maps "$D/original_move_maps.txt" \
+            --partitions "$D/original_L5_partitions.tsv" \
+            --duals_first "$D/P12_rank_sensitive_integer_duals.json" \
+            --duals_rank6 "$D/P12_raw_rank6_70_integer_duals.json" \
+            --duals_rank7 "$D/P12_rank7_pair_triple_integer_duals.json" \
+            --output "$D/P13_fresh_P12_high_rank_receipt.json" | tee "$D/P12_high_finite_verify.log"
+          grep -q 'CUBE_REV_019_P12_RANK7_FOUR_FIVE_SIX_EXHAUSTIVE_AND_7WORD_WITNESS_PASS' "$D/P12_high_finite_verify.log"
+      - name: P12 independent original R5 exact seven theorem gate
+        run: |
+          D=/tmp/cuberev019-p13-final
+          python -u scripts/cuberev-019/compile-L5-R5-exact-seven-receipt.py \
+            --physical "$D/original_physical.json" \
+            --p9 "$D/P12_P9_receipt.json" \
+            --duals "$D/P13_fresh_P12_integer_duals_receipt.json" \
+            --rank7 "$D/P13_fresh_P12_high_rank_receipt.json" \
+            --output "$D/P12_final_exact_R5_7_receipt.json"
+      - name: P13 generate 74 first-rank-six orbit conditional duals — numerical proposals only
+        run: |
+          D=/tmp/cuberev019-p13-final
+          for pair in '0 24' '24 49' '49 74'; do
+            set -- $pair
+            P13_DATA_ROOT="$D" P13_BEGIN="$1" P13_END="$2" OPENBLAS_NUM_THREADS=1 \
+              python -u scripts/cuberev-019/generate-L5-full-k7-rank7-zero-integer-duals.py
+          done
+          P13_DATA_ROOT="$D" OPENBLAS_NUM_THREADS=1 python -u \
+            scripts/cuberev-019/generate-L5-full-k7-rank7-zero-remaining-filters.py
+      - name: P13 independently reject all 74 rank-seven-zero orbits via 65 integer weights and nine finite trees
+        run: |
+          D=/tmp/cuberev019-p13-final
+          python -u scripts/cuberev-019/verify-L5-full-k7-rank7-zero-complete-finite.py \
+            --physical "$D/original_physical.json" --partitions "$D/original_L5_partitions.tsv" \
+            --cert0 "$D/P13_t0_conditional_integer_duals_0_24.json" \
+            --cert1 "$D/P13_t0_conditional_integer_duals_24_49.json" \
+            --cert2 "$D/P13_t0_conditional_integer_duals_49_74.json" \
+            --nine "$D/P13_t0_nine_open_weight_filters.json" \
+            --output "$D/P13_t0_exact_integer_finite_receipt.json" | tee "$D/P13_t0_integer_finite_verify.log"
+          grep -q 'CUBE_REV_019_P13_RANK7_ZERO_ALL_74_ORBITS_65_INTEGER_DUALS_9_FINITE_BRANCHES_PASS' "$D/P13_t0_integer_finite_verify.log"
+      - name: P13 reconstruct original source k7 core, without using its SAT verdict
+        run: |
+          D=/tmp/cuberev019-p13-final
+          python -u scripts/cuberev-019/verify-L5-full-k7-at-least-two-high.py \
+            --physical "$D/original_physical.json" --partitions "$D/original_L5_partitions.tsv" \
+            --certificates docs/0.19/P13_K7_AT_LEAST_TWO_HIGH_PHYSICAL_INTEGER_DUALS.json \
+            --output "$D/P13_high_rank_gate.json"
+          python -u scripts/cuberev-019/prepare-L5-full-k7-physical-CNF.py \
+            --physical "$D/original_physical.json" --maps "$D/original_move_maps.txt" \
+            --partitions "$D/original_L5_partitions.tsv" \
+            --p13_gate "$D/P13_high_rank_gate.json" \
+            --dual docs/0.19/P0_L5_INTEGER_LOWER6_DUAL.json \
+            --output "$D"
+      - name: P13 generate rank-seven-count 1-to-3 integer certificate proposals
+        run: |
+          D=/tmp/cuberev019-p13-final
+          OPENBLAS_NUM_THREADS=1 python -u scripts/cuberev-019/generate-L5-full-k7-rank7-1to3-duals.py \
+            --physical "$D/original_physical.json" --partitions "$D/original_L5_partitions.tsv" \
+            --prepared "$D/P13_full_k7_physical_kernel.json" \
+            --output "$D/P13_rank7_1to3_source_mask_integer_certificates.json" \
+            | tee "$D/P13_t123_dual_generation_only.log"
+      - name: P13 independently check all 374 rank-seven-count 1-to-3 integer certificates
+        run: |
+          D=/tmp/cuberev019-p13-final
+          python -u scripts/cuberev-019/verify-L5-full-k7-rank7-1to3-duals.py \
+            --physical "$D/original_physical.json" --partitions "$D/original_L5_partitions.tsv" \
+            --certificates "$D/P13_rank7_1to3_source_mask_integer_certificates.json" \
+            --output "$D/p13_rank7_123_fresh_receipt.json" | tee "$D/P13_t123_integer_verify.log"
+          grep -q 'CUBE_REV_019_P13_ALL_374_RAW_PHYSICAL_RANK7_1_2_3_INTEGER_DUAL_ORBITS_PASS' "$D/P13_t123_integer_verify.log"
+      - name: P13 independently verify all 2361 exact rank-seven-four orbits with 14 exhaustive chunks
+        run: |
+          D=/tmp/cuberev019-p13-final
+          prev=0
+          for end in 120 300 480 660 840 1020 1200 1380 1560 1740 1920 2100 2280 2361; do
+            P13_BEGIN="$prev" P13_END="$end" python -u \
+              scripts/cuberev-019/verify-L5-full-k7-rank7-four-disjoint-chunks.py \
+              --physical "$D/original_physical.json" --partitions "$D/original_L5_partitions.tsv" \
+              --output "$D/P13_t4_chunk_${prev}_${end}.json" >> "$D/P13_t4_chunks.log"
+            prev="$end"
+          done
+          test "$prev" -eq 2361
+      - name: P13 independently exclude all rank-seven-five-six-seven original-source cases
+        run: |
+          D=/tmp/cuberev019-p13-final
+          python -u scripts/cuberev-019/verify-L5-full-k7-rank7-count5-6-7.py \
+            --physical "$D/original_physical.json" --partitions "$D/original_L5_partitions.tsv" \
+            --output "$D/P13_t567_fresh_receipt.json" | tee "$D/P13_t567_finite_verify.log"
+          grep -q 'CUBE_REV_019_P13_ORIGINAL_SEVEN_RANK7_COUNT_5_6_7_ALL_EXCLUDED_INTEGER_PASS' "$D/P13_t567_finite_verify.log"
+      - name: Promote exact physical Mstar5 EIGHT only after complete eight-case exhaustive original-source check and eight-word replay
+        run: |
+          D=/tmp/cuberev019-p13-final
+          python -u scripts/cuberev-019/compile-L5-full-original-exact-eight-receipt.py \
+            --workdir "$D" --output "$D/P13_FINAL_EXACT_FULL_MSTAR5_EIGHT_RECEIPT.json" \
+            | tee "$D/P13_FINAL_EXACTNESS.log"
+          grep -q 'CUBE_REV_019_FULL_ORIGINAL_PHYSICAL_MSTAR5_EXACT_EIGHT_LOCAL_FINITE_PROOF_PASS' "$D/P13_FINAL_EXACTNESS.log"
+          sha256sum "$D/original_physical.json" "$D/original_L5_partitions.tsv" \
+            "$D/P13_FINAL_EXACT_FULL_MSTAR5_EIGHT_RECEIPT.json" > "$D/SHA256_PROOF_FILES.txt"
+      - name: Preserve independent source-frozen original physical finite theorem and all component receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev019-p13-exact-mstar5-eight-original-1192-source-finite-proof
+          path: /tmp/cuberev019-p13-final/
+          retention-days: 90
+          if-no-files-found: warn
