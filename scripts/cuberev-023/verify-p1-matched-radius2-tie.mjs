@@ -217,7 +217,7 @@ for(const [first,second,relativeKey] of possible){
   const original=starts[arm];
   const child=compose(compose(original.state,FACE[first]),FACE[second]);
   assert(dr(child),'Every two-action synthetic state stays in true DR subgroup');
-  const actual=phaseState(stickerAfter([...scramble,...signedWord([...original.prefix,...intervention])]),'FB');
+  const actual=phaseState(stickerAfter([...scramble,...original.prefix,...signedWord(intervention)]),'FB');
   assert.equal(key(actual),key(child),'Source original sticker vs cubie action');
   actualReplays++;
   const solved=solve10(child,arm,intervention);
