@@ -142,22 +142,43 @@ for(const item of ledger.eo_dr_pairs.filter(x=>x.id!=='riabov_other_2')){
  if(!res){
   let forward=bfs(source,4,item.id+'_radius4'),scan=inspect(source,forward,item.id);
   const examinedLayers=[...forward.hist];
+  let streamed11=0,found11=null;
   if(scan.best===null){
    forward=bfs(source,5,item.id+'_radius5');
    scan=inspect(source,forward,item.id);
    examinedLayers.splice(0,examinedLayers.length,...forward.hist);
+   if(scan.best===null){
+    // Every path length 11 intersects the source radius-5 sphere
+    // and the goal radius-5 sphere with one final goal-side edge.
+    // We test that edge without allocating the ~7.6M-state radius-six layer.
+    search11:for(const [goalState,goalWord] of G.visited){
+     if(goalWord.length!==5)continue;
+     for(let a=0;a<18;a++){
+      const newState=advance(goalState,move[a]);streamed11++;
+      const forwardWord=forward.visited.get(newState);
+      if(forwardWord===undefined)continue;
+      const candidate=forwardWord+inverse[chars[a]]+invertWord(goalWord);
+      assert.equal(candidate.length,11);
+      found11={length:11,continuationChars:candidate,forward:forwardWord,backward:goalWord};
+      break search11;
+     }
+    }
+    if(found11)scan.best=found11;
+   }
   }
   const b=scan.best;
   const shortest=b?.length??null;
-  if(shortest!==null)assert(shortest<=10);
+  if(shortest!==null)assert(shortest<=11);
   // Every legal word length <=9 has a midpoint radius4 from source and radius5 from solved.
   // If no word at <=9, radius5 each covers all length <=10.
-  const certificate=shortest===null?'>=11':shortest<=9?'EXACT_LE_9':'EXACT_10';
+  const certificate=shortest===null?'>=12':shortest<=9?'EXACT_LE_9':shortest===10?'EXACT_10':'EXACT_11';
   const turns=b?decodeWord(b.continuationChars):null;
   const path=turns?[...authored,...turns]:null;
   if(path)assert(solvedUpToRotation(stickerAfter([...scramble,...path])));
   res={full_18_HTM_minimum:shortest,full_18_HTM_warrant:certificate,
-   lower_bound_HTM:shortest??11,upper_bound_HTM:shortest??null,
+   lower_bound_HTM:shortest??12,upper_bound_HTM:shortest??null,
+   depth11_goal5_to_source5_streamed_tests:streamed11,
+   goal_depth_six_layer_NOT_materialized:true,
    source_frontier_depth:examinedLayers.length-1,source_frontier_counts:examinedLayers,
    forward_states:examinedLayers.reduce((a,b)=>a+b,0),intersection_checks:scan.intersectionChecks,
    actual_18_move_continuation:turns?.join(' ')??null};
@@ -191,7 +212,7 @@ console.log(JSON.stringify({
  backward_solved_radius_HTM:5,
  backward_bfs_counts:G.hist,
  backward_bfs_states:G.visited.size,
- source_bound_method:'For every solution of at most 9 there is a source-radius-4/goal-radius-5 intersection; solutions of at most 10 require source-radius-5/goal-radius-5. Prune only same-face consecutive and reversed opposite commuting consecutive moves without losing a shortest canonical representative.',
+ source_bound_method:'For all paths length <=9: source radius4 / goal radius5 intersection. For <=10: source radius5 / goal radius5 intersection. For exact 11: one streamed legal goal-side step from goal depth5 against source depth5, without materializing the goal depth6 layer. Prune adjacent same-face and reversed opposite commuting turns without losing a shortest canonical representative.',
  source_results:rows,
  same_EO_main_vs_alternative:comparison,
  historical_source_words_not_assumed_actual_search_traces:true,
