@@ -289,7 +289,7 @@ const budgetedOpportunity={
  stage_target:'full-cubie DR FB subgroup membership, not a psychological consideration label',
  exact_up_to_four_added_HTM_depth_frontier:boundedFrontier,
  measured_DO_NOT_infer_time_or_attention_from_word_counts:true,
- author's_known_six_move_EO_to_DR_completion:sourceDR.join(' '),
+ author_known_six_move_EO_to_DR_completion:sourceDR.join(' '),
  completed_stage_certificate_verified:true,
  distinct_word_same_physical_state_witness:collisionWitness,
  note:'The 14-move generated universe is one mathematical grammar; we did not verify the historical human considered any of these exhaustively.'
