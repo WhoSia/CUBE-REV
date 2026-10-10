@@ -1,0 +1,45 @@
+name: CUBE-REV 0.21 P8 — Exact Physical Cost Frontier and Moore Minimality
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-021/verify-p8-physical-cost-frontier-and-minimal-moore.mjs'
+      - '.github/workflows/cuberev-021-P8-exact-turn-query-cost-frontier.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  complete-physical-cost-and-minimization-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact 18-real-move Bellman DP and 24-state Moore refinement
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-021/verify-p8-physical-cost-frontier-and-minimal-moore.mjs | tee P8-real-Rubik-cost-frontier-and-Moore-receipt.json
+          grep -F 'CUBE_REV_021_P8_EXACT_REAL_RUBIK_COST_PARETO_AND_MOORE_MINIMIZATION_PASS' P8-real-Rubik-cost-frontier-and-Moore-receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const d=JSON.parse(fs.readFileSync('P8-real-Rubik-cost-frontier-and-Moore-receipt.json'));
+          if(d.exact_mean_cost_pareto_uncapped_7_turns.map(o=>o.T+'/'+o.Q).join(',')!=='71/45,74/44') throw Error('PARETO_BREAKAGE');
+          if(d.hard_7_turn_4_query_cap_optimum.T!==74) throw Error('CAPPED_BREAKAGE');
+          if(d.moore_24_state_output_minimization.two_action_response_classes!==24)throw Error('MOORE_NOT_MINIMAL');
+          if(!d.all_physical_witnesses_replayed) throw Error('PHYSICAL_WITNESSES_NOT_REPLAYED');
+          console.log('P8_INDEPENDENT_RECEIPT_SHAPE_PASS');
+          JS
+      - name: Upload all 12 initial-source cost-optimal policy witnesses and dual bounds
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-021-P8-exact-physical-turn-query-Pareto-and-24-Moore
+          path: P8-real-Rubik-cost-frontier-and-Moore-receipt.json
+          retention-days: 90
+          if-no-files-found: warn
