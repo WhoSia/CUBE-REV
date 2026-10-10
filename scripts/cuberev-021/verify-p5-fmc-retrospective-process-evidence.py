@@ -26,7 +26,7 @@ if len(sys.argv) > 2:
 raw = SEED.read_bytes()
 dataset = json.loads(raw)
 assert dataset["schema"] == "cuberev-021-p5-fmc-retrospective-process-v1"
-assert dataset["source_acquisition"].endswith("NO_PRIVATE .VFMC FILE")
+assert dataset["source_acquisition"].endswith("NO PRIVATE .VFMC FILE")
 assert all(dataset["assertions"].values())
 episodes = dataset["episodes"]
 assert len(episodes) == 6
