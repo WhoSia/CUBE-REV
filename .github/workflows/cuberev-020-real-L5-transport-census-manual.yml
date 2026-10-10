@@ -1,0 +1,60 @@
+name: CUBE-REV 0.20 — Independent Real Rubik L5 Transport-Cut Census
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-l5-phase-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Materialize frozen real 3x3 HTM UR-edge inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/cube020
+          node scripts/cuberev-018/export-mstar-physical.mjs /tmp/cube020/original_physical.json
+          node scripts/cuberev-019/export-L5-physical.mjs /tmp/cube020/original_physical.json /tmp/cube020/original_L5_partitions.tsv
+          node --input-type=module > /tmp/cube020/original_move_maps.txt <<'JS'
+          import {urMoveAutomaton} from './scripts/cuberev-015/ur-fiber-tomography.mjs';
+          for (const action of urMoveAutomaton()) console.log(action.join(' '));
+          JS
+          echo '9f2119738f92f56485897c1894d2cb721a3d6b0498c5aa14832c71f18b20e2f1  /tmp/cube020/original_physical.json' | sha256sum --check
+          test "$(wc -l < /tmp/cube020/original_L5_partitions.tsv)" -eq 14938
+          test "$(wc -l < /tmp/cube020/original_move_maps.txt)" -eq 18
+      - name: Compile independent physical map enumerator with warnings as errors
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++20 -O3 -Wall -Wextra -Werror -pedantic scripts/cuberev-020/census-L5-transport-cuts.cpp -o /tmp/cube020/census
+      - name: Re-enumerate all 18^5 physical words and independent original partition audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/cube020/census /tmp/cube020/original_move_maps.txt /tmp/cube020/canonical_partition_keys.txt > /tmp/cube020/L5-census.json
+          python scripts/cuberev-020/verify-L5-census-source.py \
+            --physical /tmp/cube020/original_physical.json \
+            --tsv /tmp/cube020/original_L5_partitions.tsv \
+            --census /tmp/cube020/L5-census.json \
+            --partition-keys /tmp/cube020/canonical_partition_keys.txt | tee /tmp/cube020/L5-independent-verification.json
+          grep -F 'CUBE_REV_020_L5_TRANSPORT_CUT_CENSUS_INDEPENDENT_PASS' /tmp/cube020/L5-independent-verification.json
+      - name: Attach exact inputs, checks and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cube020-frozen-real-L5-phase-census
+          path: |
+            /tmp/cube020/original_physical.json
+            /tmp/cube020/original_move_maps.txt
+            /tmp/cube020/original_L5_partitions.tsv
+            /tmp/cube020/canonical_partition_keys.txt
+            /tmp/cube020/L5-census.json
+            /tmp/cube020/L5-independent-verification.json
+          if-no-files-found: warn
+          retention-days: 30
