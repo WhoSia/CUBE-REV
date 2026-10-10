@@ -44,6 +44,42 @@ jobs:
             --census /tmp/cube020/L5-census.json \
             --partition-keys /tmp/cube020/canonical_partition_keys.txt | tee /tmp/cube020/L5-independent-verification.json
           grep -F 'CUBE_REV_020_L5_TRANSPORT_CUT_CENSUS_INDEPENDENT_PASS' /tmp/cube020/L5-independent-verification.json
+      - name: Prove real Rubik phase grammar, geometric orbits and 12-source rank7 court
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++20 -O3 -Wall -Wextra -Werror -pedantic scripts/cuberev-020/emit-L5-rank7-geometry.cpp -o /tmp/cube020/rank7
+          /tmp/cube020/rank7 /tmp/cube020/original_move_maps.txt /tmp/cube020/rank7.csv
+          python scripts/cuberev-020/verify-L5-rank7-grammar.py \
+            --source /tmp/cube020/original_physical.json \
+            --maps /tmp/cube020/original_move_maps.txt \
+            --records /tmp/cube020/rank7.csv | tee /tmp/cube020/rank7-grammar-receipt.json
+          python scripts/cuberev-020/verify-L5-rank7-phase-cover.py \
+            --source /tmp/cube020/original_physical.json \
+            --maps /tmp/cube020/original_move_maps.txt \
+            --records /tmp/cube020/rank7.csv | tee /tmp/cube020/rank7-cover-receipt.json
+          grep -F 'CUBE_REV_020_P1E_REAL_CUBE_RANK7_GRAMMAR_ORBITS_PASS' /tmp/cube020/rank7-grammar-receipt.json
+          grep -F 'CUBE_REV_020_P1E_RANK7_ONLY_MSTAR5_EIGHT_EXACT_LOCAL_PASS' /tmp/cube020/rank7-cover-receipt.json
+      - name: Adversarial noncube R-cycle falsification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/cuberev-020/falsify-L5-phase-by-noncube-R-cycle.py \
+            --source /tmp/cube020/original_physical.json \
+            --maps /tmp/cube020/original_move_maps.txt \
+            --output /tmp/cube020/NONCUBE_R_mutant.txt | tee /tmp/cube020/NONCUBE_R_mutant_receipt.json
+          /tmp/cube020/rank7 /tmp/cube020/NONCUBE_R_mutant.txt /tmp/cube020/NONCUBE_R_rank7.csv
+          python - <<'PY'
+          import csv
+          from collections import Counter
+          with open('/tmp/cube020/NONCUBE_R_rank7.csv',newline='') as f:
+              rows=list(csv.DictReader(f))
+          per=Counter(int(r['q']) for r in rows)
+          uniq={q:len({r['key'] for r in rows if int(r['q'])==q}) for q in (3,4)}
+          assert per=={3:128,4:448},per
+          assert uniq=={3:28,4:16},uniq
+          print('NONCUBE_16_PLUS_16_UNIVERSALITY_FALSIFIED_PASS',per,uniq)
+          PY
       - name: Attach exact inputs, checks and results
         if: always()
         uses: actions/upload-artifact@v4
@@ -56,5 +92,10 @@ jobs:
             /tmp/cube020/canonical_partition_keys.txt
             /tmp/cube020/L5-census.json
             /tmp/cube020/L5-independent-verification.json
+            /tmp/cube020/rank7.csv
+            /tmp/cube020/rank7-grammar-receipt.json
+            /tmp/cube020/rank7-cover-receipt.json
+            /tmp/cube020/NONCUBE_R_mutant_receipt.json
+            /tmp/cube020/NONCUBE_R_rank7.csv
           if-no-files-found: warn
           retention-days: 30
