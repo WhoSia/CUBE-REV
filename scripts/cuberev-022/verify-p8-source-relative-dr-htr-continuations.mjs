@@ -69,7 +69,7 @@ while(head<queue.length) {
  }
 }
 assert.equal(groupDist.size,663552);
-assert.equal(Math.max(...groupDist.values()),15);
+assert.equal(hist.length-1,15); // BFS levels are contiguous; no spread over 663552 values
 assert.equal(hist.reduce((a,b)=>a+b,0),663552);
 function checksum(s){return crypto.createHash('sha256').update(key(s)).digest('hex');}
 function htrDistance(s){return dr(s)?groupDist.get(enc(s)):undefined;}
