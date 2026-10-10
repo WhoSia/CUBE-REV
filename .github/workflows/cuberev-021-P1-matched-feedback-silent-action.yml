@@ -1,0 +1,36 @@
+name: CUBE-REV 0.21 — Matched Feedback and Silent Physical Turn
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-021/**'
+      - '.github/workflows/cuberev-021-P1-matched-feedback-silent-action.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  matched-physical-feedback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independently test physical fixed-9 witness and adaptive-7 policy with silent turn court
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-021/verify-p1-feedback-silent-action.mjs | tee cube021-P1-physical-feedback-receipt.json
+          grep -F 'CUBE_REV_021_P1_PHYSICAL_FEEDBACK_AND_SILENT_ACTION_PASS' cube021-P1-physical-feedback-receipt.json
+      - name: Upload physical P1 finite policy and all 12 source trace receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-021-P1-matched-physical-feedback-and-silent-action
+          path: cube021-P1-physical-feedback-receipt.json
+          if-no-files-found: warn
+          retention-days: 30
