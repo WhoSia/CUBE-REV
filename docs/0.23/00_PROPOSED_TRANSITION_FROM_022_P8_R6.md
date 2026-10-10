@@ -42,6 +42,14 @@ This is a joint physical and empirical hypothesis program with an explicit **hum
 
 Verify and freeze each actual source file, author/WCA ID, stable reconstruction URL, attempt and exact line span, grammar side, physical verification, and evidence grade. Explicitly separate independent human authors and alternate words by a single author. Independent physical parity/orientation oracle + no fabricated source chronology. PASS only when link/file and statement boundaries can be independently audited; missing source structure => HOLD.
 
+### P0 decision threshold — where existing physical dominance can first fail
+
+P8-R6's two genuine source states have exact all-18 physical distances **9 main / 12 alternative** and authored stage lengths **10 / 11**. For any SAME legal additional r-face-turn word applied to each branch and raw staged total costs, 1-Lipschitz of whole-cube solved distance yields (for r≤9):
+
+`4−2r ≤ (11+r+d18(alt·w,e))−(10+r+d18(main·w,e)) ≤ 4+2r`.
+
+This is an **analytic bound, not a measured larger neighborhood**. In the complete r=1 DR-preserving generator set, main superiority remains strict [2,6] under all-18 continuation; the DR-grammar exact paired differences sharpen it to 2–5. **r=2 is the first intervention radius where a physical tie is not ruled out by the bound; r=3 is the first where a reversal is not ruled out.** Therefore initial 0.23 physical falsification should target a *predeclared complete feasible radius-2* study for equality or gap narrowing, rather than proclaiming a known radius-2 effect. Explore radius-3 only if scientific discrimination justifies costs and authorization. Record canonical face-turn normalization separately because raw stage-cost inequalities need not survive collapsing the literal source boundary into the final FMC word.
+
 ### P1 — Matched Physical Intervention Matrix & Joint-Constraint Certificates
 
 Design a **new** explicit, non-cherry-picked finite matched intervention matrix beyond the R6 radius-one letters. A proposed R=2 legal DR group neighborhood may be explored only with a pre-registered computational budget, state quotienting, source endpoint equivalence, original-sticker cross-check, admissible bounds and correct resource-HOLD semantics. Prove or disprove whether PDB rank reversal survives physically realizable balancing of corner orbit and UD-edge occupancy, without producing impossible free corner-only permutations. Do not claim isolated causal effects of a corner occupancy mask unless valid interventions hold all competing physical coordinates fixed; physical constraints may make this impossible.
