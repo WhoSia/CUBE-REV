@@ -1,0 +1,45 @@
+name: CUBE-REV 0.22 P7 — Authored FMC Candidate and NISS Group Court
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-022/verify-p7-source-dr-endpoint-niss-side-court.mjs'
+      - 'data/cuberev-022/p7_fmc_source_anchored_candidate_ledger.json'
+      - '.github/workflows/cuberev-022-P7-source-DR-NISS-court.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source_claims_to_full_cube_grammar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact authentic reported alternate DR physical matches and NISS sided algebra
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-022/verify-p7-source-dr-endpoint-niss-side-court.mjs | tee CUBE_REV_022_P7_source_DR_NISS_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_022_P7_source_DR_NISS_receipt.json','utf8'));
+          if(z.marker!=='CUBE_REV_022_P7_SOURCE_REAL_DR_ENDPOINT_ALIAS_AND_TYPED_NISS_PASS')throw Error('P7_MARKER');
+          if(z.six_source_authored_normal_side_pairs.length!==6)throw Error('NOT_FULL_SOURCE_LEDGER');
+          if(!z.matched_authored_main_DR_commutation_collision.same_staged_full_cubie_DR)throw Error('NO_REAL_DR_MATCH');
+          if(!z.NISS.sourced_Miao_A2_parenthesized_inverse_alternative.different_physical_states)throw Error('NISS_GRAMMAR_LEAK');
+          if(!z.procedural_constraints.complete_search_chronology_not_observed)throw Error('HUMAN_PROCESS_INVENTED');
+          console.log('P7_FULL_PHYSICAL_AND_SOURCE_GRADE_CONTRACT_PASS');
+          JS
+      - name: Retain exact proof and candidate dedup receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-022-P7-real-source-DR-NISS-endpoint-quotient
+          path: CUBE_REV_022_P7_source_DR_NISS_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
