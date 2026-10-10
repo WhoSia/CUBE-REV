@@ -1,0 +1,48 @@
+name: CUBE-REV 0.23 P1 — Preregistered Matched Radius-Two Physical Tie Court
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-023/verify-p1-matched-radius2-tie.mjs'
+      - 'data/cuberev-023/p1_matched_radius2_preregistration.json'
+      - '.github/workflows/cuberev-023-P1-radius2-tie.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real_cube_two_step_boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 27
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute bounded original-cube physical radius-two tie decision under precommitted P1
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=5000 scripts/cuberev-023/verify-p1-matched-radius2-tie.mjs | tee CUBE_REV_023_P1_matched_radius2_tie_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const r=JSON.parse(fs.readFileSync('CUBE_REV_023_P1_matched_radius2_tie_receipt.json','utf8'));
+          assert.equal(r.marker,'CUBE_REV_023_P1_PREREG_SOURCE_MATCHED_2STEP_EXACT_DR_TIE_COURT');
+          assert.equal(r.all_ordered_two_action_words,100);
+          assert.equal(r.unique_new_geodesic_distance_two_actions,74);
+          assert.equal(r.exact_full_alphabet_first_move_tie_exclusion_count,70);
+          assert.equal(r.selected_conditionally_possible_ordered_words,30);
+          assert.equal(r.selected_source_full_cubie_pairs,30);
+          assert(['NO_RADIUS_TWO_RAW_TIE_IN_DR_GRAMMAR','PHYSICAL_TIE_WITNESSED','COMPUTE_HOLD_NO_EXCLUSION'].includes(r.strict_exact_DR_matched_radius2_tie_verdict));
+          assert(r.human_consideration_of_any_synthetic_word_NOT_OBSERVED);
+          console.log('CUBE_REV_023_P1_RADIUS2_DECLARED_SOURCE_PHYSICS_CONTRACT_PASS');
+          JS
+      - name: Preserve original full-cube radius-two tie proof or HOLD
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-023-P1-matched-radius2-two-step-tie
+          path: CUBE_REV_023_P1_matched_radius2_tie_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
