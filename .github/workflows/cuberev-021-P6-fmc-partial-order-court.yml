@@ -1,0 +1,46 @@
+name: CUBE-REV 0.21 P6 — Grounded FMC Partial-Order Search
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'data/cuberev-021/p5_fmc_existing_search_event_seed.json'
+      - 'data/cuberev-021/p6_fmc_partial_order_extension.json'
+      - 'scripts/cuberev-021/verify-p6-fmc-source-grounded-partial-order.py'
+      - '.github/workflows/cuberev-021-P6-fmc-partial-order-court.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  event-graph-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build honest partial-order graphs from source-qualified FMC records
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/cuberev-021/verify-p6-fmc-source-grounded-partial-order.py --outdir p6-output
+          grep -F 'CUBE_REV_021_P6_SOURCE_GROUNDED_FMC_PARTIAL_ORDER_PASS' <(python scripts/cuberev-021/verify-p6-fmc-source-grounded-partial-order.py --outdir p6-output)
+          python - <<'PY'
+          import json
+          r=json.load(open('p6-output/p6_fmc_partial_order_receipt.json'))
+          assert r['youtube_video_frames_actually_inspected']==0
+          assert r['episodes']==8
+          assert r['vincent_primary_source_attempt_corrected_to']=='FMCWorld2026 Attempt 3; 24 HTM'
+          print('P6_OUTPUT_GRADE_CONFIRMED')
+          PY
+      - name: Upload event graph and computational warrant receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-021-P6-real-FMC-event-partial-order-graph
+          path: p6-output/*.json
+          if-no-files-found: warn
+          retention-days: 90
