@@ -116,6 +116,48 @@ function exactCourt({h,k,lambda}){
  // action despite containing a different set; no hidden psychology imputed.
  if(optimal)assert(rootOpt.length>0);
  const firstStageRegret=closestSubopt?(closestSubopt.weighted-minimum)/12:null;
+ // Physical posterior-branch audit within ONE concrete chosen Bellman policy:
+ // root has four tied globally optimal initial actions, but do feasible
+ // turn costs separate after actual binary observations?
+ const visitedPolicy=new Set(),inner=[];
+ function descend(mask,turns,reads,depth){
+  if(size(mask)===1)return;
+  const key=mask+':'+turns+':'+reads;
+  if(visitedPolicy.has(key))return;
+  visitedPolicy.add(key);
+  const optimalHere=solve(mask,turns,reads);
+  assert(optimalHere);
+  const all=offers(mask,turns,reads);
+  assert(all.length);
+  const bestCost=optimalHere.T+lambda*optimalHere.Q;
+  const grouped=ACTIONS.map((action,a)=>{
+    const x=choose(all.filter(o=>o.a===a));
+    return x?{action,mode:x.mode,score:x.T+lambda*x.Q}:null;
+  }).filter(Boolean);
+  const bestActions=grouped.filter(x=>x.score===bestCost);
+  const suboptActions=grouped.filter(x=>x.score>bestCost)
+      .sort((a,b)=>a.score-b.score||a.action.localeCompare(b.action));
+  inner.push({depth,candidate_count:size(mask),remaining_turns:turns,remaining_queries:reads,
+    physical_belief_mask_hex:'0x'+mask.toString(16),
+    feasible_first_turn_count:grouped.length,
+    optimal_actions:bestActions.map(x=>x.action),
+    strictly_suboptimal_feasible_actions:suboptActions.length,
+    nearest_suboptimal_action:suboptActions.length?suboptActions[0].action:null,
+    minimum_conditional_expected_extra_cost_gap:suboptActions.length?(suboptActions[0].score-bestCost)/size(mask):null,
+    chosen_mode:optimalHere.mode,chosen_face_move:ACTIONS[optimalHere.a],
+    mathematical_not_human_regret:true});
+  const a=optimalHere.a,t=move(mask,a);
+  if(optimalHere.mode==='READ'){
+    assert((t&EVEN)&&(t&ODD));
+    descend(t&EVEN,turns-1,reads-1,depth+1);
+    descend(t&ODD,turns-1,reads-1,depth+1);
+  }else{
+    assert(optimalHere.mode==='SILENT');
+    descend(t,turns-1,reads,depth+1);
+  }
+ }
+ if(optimal)descend(EVEN,h,k,0);
+ const nontrivialInterior=inner.filter(x=>x.strictly_suboptimal_feasible_actions>0);
  return {
   task:{max_turns:h,max_reads:k,lambda,source_count:12,source_uniform:true},
   feasible_complete_identification:!!optimal,
@@ -130,7 +172,15 @@ function exactCourt({h,k,lambda}){
     root_cost_by_legal_face_turn:byAction,
     sharp_root_choice_correspondence_under_HYPOTHETICAL_consideration:optimalConsideration,
     closest_feasible_strictly_suboptimal_first_action_correspondence:suboptimalConsideration,
-    nearest_suboptimal_regret_in_EXPECTED_PHYSICAL_COST_not_human_cost:firstStageRegret
+    nearest_suboptimal_regret_in_EXPECTED_PHYSICAL_COST_not_human_cost:firstStageRegret,
+    selected_optimal_policy_branch_opportunity_court:{
+      internal_belief_budget_nodes:inner.length,
+      internal_with_feasible_but_strictly_inferior_face_turns:nontrivialInterior.length,
+      first_five_true_policy_node_choices:inner.slice(0,5),
+      first_nontrivial_feasible_cost_regret_witness:nontrivialInterior[0]??null,
+      all_selected_policy_nodes:inner,
+      scope:'exactly ONE tie-broken Bellman-optimal physical controller; no human observation'
+    }
   }:{}),
   exact_Bellman_belief_resource_states:memo.size,
   no_claim_about_population_human_ability:true};
