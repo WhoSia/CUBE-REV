@@ -67,7 +67,10 @@ struct Census {
   }
  }
  void run(){std::array<unsigned char,N> pos{};std::array<uint16_t,N> histories{};
-  for(int i=0;i<N;i++)pos[i]=2*i;visit(0,0,pos,histories);
+  for(int i=0;i<N;i++) {
+   pos[i]=2*i;
+  }
+  visit(0,0,pos,histories);
  }
 };
 int main(int argc,char** argv){
