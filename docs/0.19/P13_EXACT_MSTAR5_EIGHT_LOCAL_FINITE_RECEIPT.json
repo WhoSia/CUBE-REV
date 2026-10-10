@@ -1,0 +1,76 @@
+{
+  "schema": "cube-rev.019.P13.original-1192-source-exact-L5-integer-eight.compiled-finite-receipt.v1",
+  "result": "CUBE_REV_019_P13_ORIGINAL_FULL_1192_PHYSICAL_MSTAR5_EXACT_EIGHT_LOCAL_FINITE_PROOF_PASS",
+  "frozen_original_physical_sha256": "9f2119738f92f56485897c1894d2cb721a3d6b0498c5aa14832c71f18b20e2f1",
+  "source_requirements": 1192,
+  "five_source_subfamily": 480,
+  "word_length": 5,
+  "exact_minimum": 8,
+  "independent_external_CI": "NOT_YET_CHECKED",
+  "local_case_split": {
+    "rank7_count_0": {
+      "first_rank6_orbits": 74,
+      "integer_duals": 65,
+      "independent_finite_branches": 9,
+      "branch_nodes": 5082
+    },
+    "rank7_counts_1_2_3": {
+      "conditioned_original_source_integer_dual_courts": 374,
+      "orbit_reps": {
+        "1": 3,
+        "2": 44,
+        "3": 327
+      }
+    },
+    "rank7_count_4": {
+      "symmetry_orbits_checked": 2361,
+      "original_rank7_quadruples": 35960,
+      "first_low_cases_checked": 359004
+    },
+    "rank7_counts_5_6_7": {
+      "rank7_five_orbits": 12717,
+      "rank7_six_subsets": 906192,
+      "rank7_seven_subsets": 3365856
+    }
+  },
+  "physical_eight_word_witness": [
+    "F' B' L F B",
+    "F' B' R F B",
+    "F' B' D F B",
+    "F L2 B' D2 F",
+    "F U2 B R2 F",
+    "F' B' U F B",
+    "F B L F B",
+    "F B R F B"
+  ],
+  "witness_partition_ranks": [
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7
+  ],
+  "witness_individual_original_requirements_covered": [
+    553,
+    553,
+    553,
+    465,
+    465,
+    553,
+    553,
+    553
+  ],
+  "witness_union_all_1192": 1192,
+  "input_receipt_sha256": {
+    "p12": "dd1f0befd673e83045398d912f59cb2884099f23af326c5ecc5105dffd960926",
+    "t0": "58f3decf00e67fa462428c6fc208486832f6b7f3601ee1381c235a35cea5201a",
+    "t123": "5d72f14314adb9b2f06900479eb112bc7c26b3cf2559cd335a8fba4d41c500e2",
+    "t4": "43904c715cde6d7a26572c1407e95b726651956d3155a67833f5d84958fa3f2f",
+    "t567": "3b20d7fe4f1d2c9fa57ab104ef06adc06e5f38dbed4b73c2c246dfb13d5de799"
+  },
+  "proof_scope": "Fixed original 1192 source subsets, tracked UR edge at one of 12 original zero-flip positions, 18 physical HTM actions, full cumulative flip history after each of five preset actions; dictionary unit cost, fixed nonadaptive words, known resettable source family.",
+  "not_claimed": "Formal Lean/Coq proof, external DRUP/PB kernel acceptance, result for full Rubik cube states or humans."
+}
