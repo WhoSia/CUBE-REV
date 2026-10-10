@@ -1,0 +1,45 @@
+name: CUBE-REV 0.23 P1 — Full Eighteen-HTM Radius-Two Tie Adjudication
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p1_certified_matched_tie_DR_witnesses.json'
+      - 'scripts/cuberev-023/verify-p1-two-ties-full18-mitm.mjs'
+      - '.github/workflows/cuberev-023-P1-full18-two-ties.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  true_cube_all18_matched_ties:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independently decide full 18 HTM shortest costs at both source-matched radius-two tie witnesses
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=5000 scripts/cuberev-023/verify-p1-two-ties-full18-mitm.mjs | tee CUBE_REV_023_P1_general_18_HTM_two_DR_ties_receipt.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_023_P1_general_18_HTM_two_DR_ties_receipt.json','utf8'));
+          assert.equal(z.marker,'CUBE_REV_023_P1_FULL_18_HTM_TIE_FALSIFICATION_ON_TWO_SOURCE_MATCHED_DR_WITNESSES');
+          assert.equal(z.source_state_and_human_word_count,4);
+          assert.equal(z.all18_pair_adjudications.length,2);
+          assert.equal(z.exact_18_HTM_shortest_continuation_proven_for_all,true);
+          assert(z.entire_original_54_sticker_source_specific_witnesses.every(p=>p.physically_solves_original_54_sticker_scramble));
+          console.log('CUBE_REV_023_P1_FULL18_TIE_PHYSICAL_FALSIFICATION_PASS');
+          JS
+      - name: Retain full cubie whole-HTM continuation proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-023-P1-all18-two-matched-ties
+          path: CUBE_REV_023_P1_general_18_HTM_two_DR_ties_receipt.json
+          retention-days: 90
+          if-no-files-found: warn
