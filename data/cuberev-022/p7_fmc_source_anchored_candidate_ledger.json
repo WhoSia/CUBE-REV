@@ -57,8 +57,9 @@
       "eo_prefix": "L F2 L2 D'",
       "dr_extension": "B' L B L' F",
       "reported_label": "9 2c3 4e",
-      "declared_mode": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
-      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME"
+      "declared_mode": "ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY",
+      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "interpretation_grade": "AUXILIARY_PHYSICAL_REPLAY_HYPOTHESIS_NOT_INDEPENDENTLY_DOCUMENTED_SIDE_STATE"
     },
     {
       "id": "riabov_other_2",
@@ -67,8 +68,9 @@
       "eo_prefix": "B L R2 U'",
       "dr_extension": "F B L B' R B",
       "reported_label": "10 4b3",
-      "declared_mode": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
-      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME"
+      "declared_mode": "ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY",
+      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "interpretation_grade": "AUXILIARY_PHYSICAL_REPLAY_HYPOTHESIS_NOT_INDEPENDENTLY_DOCUMENTED_SIDE_STATE"
     },
     {
       "id": "riabov_other_3",
@@ -77,8 +79,9 @@
       "eo_prefix": "F L' F D",
       "dr_extension": "L B2 L U2 R F",
       "reported_label": "10 2c4",
-      "declared_mode": "CONTIGUOUS_NORMAL_SIDE_PREFIX",
-      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME"
+      "declared_mode": "ASSUMED_CONTIGUOUS_NORMAL_SIDE_FOR_TEST_ONLY",
+      "grade": "PUBLISHED_RETROSPECTIVE_AUTHOR_NOT_REALTIME",
+      "interpretation_grade": "AUXILIARY_PHYSICAL_REPLAY_HYPOTHESIS_NOT_INDEPENDENTLY_DOCUMENTED_SIDE_STATE"
     }
   ],
   "deliberately_unparsed": [
@@ -122,6 +125,8 @@
     "physical_equivalence_not_human_cognitive_equivalence": true,
     "insertions_not_parsed_as_simple_concatenation": true,
     "missing_exhaustive_consideration_set": true,
-    "not_a_full_timestamped_search_log": true
+    "not_a_full_timestamped_search_log": true,
+    "riabov_other_second_pair_fails_all_three_EO_DR_axis_tests_under_concatenation": true,
+    "failure_does_not_establish_author_error": true
   }
 }
