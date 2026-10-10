@@ -1,8 +1,17 @@
 # CUBE-REV — research/current
 
-> **Active programme: CUBE-REV 0.19 — Physical Origins of Observational Reconstructibility: Rubik's Cube Transition Invariants, Observation-Partition Geometry & the Structural Limits of State Identification.** Earlier reports are scientific provenance, not a substitute for the current proof status. This README is a short entrypoint rather than a historical phase log.
+> **Active programme: CUBE-REV 0.21 — Active Reconstruction of the Rubik's Cube: Observation-Driven Action Selection, Belief-State Dynamics, Physical Information Access & the Limits of Adaptive Solving.** 0.21 continues, rather than replaces, all 0.18–0.20 original physical results, mathematical records, receipts, mistakes and open obligations. Earlier versions remain scientific evidence, not obsolete material.
 
 CUBE-REV studies exact identification in physically constrained reversible systems and the boundaries of transferring ideal observation models to human cognition. The current exact mathematics uses a **real 3×3 Rubik's Cube-derived tracked-edge sensor**; it does **not** claim to determine complete cube state, human memory capacity, or optimal speedsolving / FMC moves.
+
+## Active continuous 0.21 research entry
+
+- [0.21 Notion formal research home](https://app.notion.com/p/3f5ef561cf92815e86efc7d923b6ffa8)
+- [0.21 P0 continuity charter and physical feedback-state definition](docs/0.21/P0_CONTINUITY_CHARTER_AND_PHYSICAL_ADAPTIVE_BELIEF_COURT.md)
+- [Physical 0.21 adaptive-vs-0.15 finite oracle regression](scripts/cuberev-021/audit-physical-adaptive-beliefs.mjs) and [read-only CI](.github/workflows/cuberev-021-physical-adaptive-belief.yml).
+- [0.20 P1-E external finite theorem PASS](https://github.com/WhoSia/CUBE-REV/actions/runs/38039068732) and [unchanged 0.20 canonical record](https://app.notion.com/p/3f5ef561cf92812cb9bad19f515b2c8b).
+- The prior 0.15 adaptive depth procedure is a **predecessor** for reuse and critical comparison; 0.18/0.19 `M*(4)=34`, `M*(5)=8` are unit-cost resettable *preset dictionaries*, not adaptive move counts.
+- Preserve exact earlier proof scope, physical transition conventions and all historical failed attempts. Any external 0.21 CI remains a separate evidence grade until checked.
 
 ## Canonical research authority
 
