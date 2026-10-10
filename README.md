@@ -64,7 +64,7 @@ For the **frozen 1,192 original admitted source subsets** of twelve initially in
 3. **Sharp instance mechanisms:** explain `34→8→4→3→2→1`, the L5 integer-vs-LP gap, the 480→1,192 source extension penalty, and preset-9 vs adaptive-7 under identical observability contracts.
 4. **Optional external validity:** FMC/WCA/reconstruction videos and human annotations are auxiliary data; no such dataset proves the deterministic finite HTM edge-state theorem.
 
-## 0.20 proposed formal name — not administratively opened
+**New exact 0.20 baseline — source-family extension and integrality gap:** The identical physical L5 word family requires **7** experiments for the original 480 five-element sources and **8** for all original 1,192 sources. The source-extension **integer cost is 1**. Exact fractional optima are **185/39** and **16/3=208/39**, so fractional extension costs **23/39** and the additive integrality gap grows from **88/39** to **8/3=104/39**, an exact increase of **16/39**. The integer/LP ratios are **273/185** and **3/2**, respectively. These are model-specific finite theorems and a proposed 0.20 research starting point, **not** universal laws.\n\n## 0.20 proposed formal name — not administratively opened
 
 [**CUBE-REV 0.20 — preparatory research charter**](docs/0.20/PREPARATORY_CHARTER_NOT_ACTIVATED.md):
 
