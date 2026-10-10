@@ -1,0 +1,47 @@
+{
+  "schema": "cuberev-023-p1-physically-certified-two-action-matched-tie-witness-v1",
+  "provenance": "Independent read-only GitHub P1 Actions #38083300079, artifact #11681052747; exact DR IDA under physical original cube.",
+  "original_ledger": "data/cuberev-022/p7_fmc_source_anchored_candidate_ledger.json",
+  "all_18_POST_intervention_ANSWER_UNTESTED": true,
+  "source_word_prefix_grade": "SOURCED_AUTHOR_RETROSPECTIVE_PLUS_SYNTHETIC_MATCHED_TWO_ACTIONS",
+  "pairs": [
+    {
+      "word": "D B2",
+      "arms": [
+        {
+          "id": "miao_main",
+          "exact": 11,
+          "suffix": "U2 B' R2 B' R2 U2 B U2 L2 B F",
+          "sha": "c585fa281bf16d3df992111b8560a1013988de99706e06de63c22704f86fb567",
+          "code": "EXACT_IDA_OR_MATCHED_LOWER_UPPER"
+        },
+        {
+          "id": "miao_alternative_from_same_eo",
+          "exact": 10,
+          "suffix": "L2 U2 B U2 F U2 R2 D2 R2 B2",
+          "sha": "d483d6d07c5b2d4a62aa2d04cbdb98ca3d8ddbf85071ddd613592e5f4d19e0be",
+          "code": "EXACT_IDA_OR_MATCHED_LOWER_UPPER"
+        }
+      ]
+    },
+    {
+      "word": "D' F2",
+      "arms": [
+        {
+          "id": "miao_main",
+          "exact": 11,
+          "suffix": "D2 F D2 B2 F L2 D2 F L2 D2 F2",
+          "sha": "7d00e76fac89fbd9b500419aec84d420d393476a4f42c5159947a6d6b058ae78",
+          "code": "EXACT_IDA_OR_MATCHED_LOWER_UPPER"
+        },
+        {
+          "id": "miao_alternative_from_same_eo",
+          "exact": 10,
+          "suffix": "R2 D2 B' U2 F U2 B2 R2 D2 R2",
+          "sha": "a533b86a91f9a8e6adfd29fa93d16e7aab2b0c224e154201d1cd7fc0e558676a",
+          "code": "EXACT_IDA_OR_MATCHED_LOWER_UPPER"
+        }
+      ]
+    }
+  ]
+}
