@@ -1,0 +1,39 @@
+name: CUBE-REV 0.21 P5 — FMC Retrospective Process Evidence Court
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'data/cuberev-021/p5_fmc_existing_search_event_seed.json'
+      - 'scripts/cuberev-021/verify-p5-fmc-retrospective-process-evidence.py'
+      - '.github/workflows/cuberev-021-P5-fmc-process-evidence.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-existing-process-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate publicly sourced self-reported process events and warrant boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/cuberev-021/verify-p5-fmc-retrospective-process-evidence.py cuberev021-P5-retrospective-evidence-receipt.json | tee cuberev021-P5-console-receipt.json
+          grep -F 'CUBE_REV_021_P5_EXISTING_FMC_PROCESS_EVIDENCE_BOUNDARY_PASS' cuberev021-P5-retrospective-evidence-receipt.json
+      - name: Preserve source URLs, ordered author-reported events and reproducible grade receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-021-P5-existing-FMC-retrospective-source-evidence
+          path: |
+            data/cuberev-021/p5_fmc_existing_search_event_seed.json
+            cuberev021-P5-retrospective-evidence-receipt.json
+          retention-days: 60
+          if-no-files-found: warn
