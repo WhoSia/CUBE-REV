@@ -33,6 +33,12 @@ jobs:
           assert(x.results.every(r=>Object.values(r.physically_replayed_representative_per_savings_class).every(w=>w.original_stickers_replayed)));
           assert(x.results.every(r=>BigInt(r.exact_optimal_all18_suffix_word_COUNT)>0n));
           assert(x.exact_original_prefix_preserving_19_vs_23_bound_still_enforced);
+          assert(x.every_single_geodesic_suffix_word_independently_enumerated_and_physically_replayed);
+          assert.deepEqual(x.results.map(r=>r.exact_optimal_all18_suffix_word_COUNT),['2','1','4','1']);
+          assert(x.results.every(r=>r.independent_complete_suffix_word_enumeration_verified));
+          assert(x.results.every(r=>r.all_shortest_suffix_words_physically_replayed_on_original_54_stickers));
+          assert(x.results.every(r=>r.all_optimal_suffix_words_with_boundary_savings.length===Number(r.exact_optimal_all18_suffix_word_COUNT)));
+          assert.deepEqual(x.results[2].optimal_suffix_word_counts_by_final_adjacent_face_savings,{'2':'2','4':'2'});
           assert(x.ordered_full_face_turn_graph_both_commuting_orders_included_in_suffix_DAG);
           console.log('CUBE_REV_023_P2_R1_ALL_SHORTEST_FACE_WORDS_EXACT_BOUNDARY_COURT_PASS');
           JS
