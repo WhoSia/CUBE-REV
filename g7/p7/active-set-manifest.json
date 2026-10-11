@@ -2079,7 +2079,7 @@
           },
           {
             "path": "docs/0.23/P3_R3_ROBUST_FACE_OBSERVATION_ERROR_CORRECTION_AND_SOURCE_TRANSFER.md",
-            "git_blob_sha": "22a6a235a4f1c77b2b0e0c34cbb25dcfacb1404e"
+            "git_blob_sha": "dccfdd9fec97d6b06f6474619d53986a30bdb709"
           },
           {
             "path": ".github/workflows/cuberev-023-P3-R3-robust-face-error-code.yml",
@@ -2087,7 +2087,47 @@
           }
         ],
         "validation_boundary": "full source face symbol exact DP directly verified; GitHub Actions independent completed PASS unverified; not independent 54-sticker physical engine",
-        "historical_preservation": "original first-admission Git blob shas retained unchanged"
+        "historical_preservation": "original first-admission Git blob shas retained unchanged",
+        "source_index_robust_26_subcode_witness": {
+          "indices": [
+            3,
+            6,
+            8,
+            10,
+            11,
+            14,
+            17,
+            19,
+            20,
+            21,
+            24,
+            25,
+            35,
+            37,
+            38,
+            42,
+            43,
+            45,
+            46,
+            48,
+            49,
+            53,
+            55,
+            56,
+            57,
+            61
+          ],
+          "state_pair_count": 325,
+          "minimum_complete_face_distance": 3,
+          "distances": {
+            "3": 24,
+            "4": 69,
+            "5": 84,
+            "6": 148
+          },
+          "source_fixture_sha": "dc36a595209dde26ba270b3070ff747c25559a35",
+          "verified_against_original_fixture": true
+        }
       }
     }
   }
