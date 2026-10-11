@@ -58,6 +58,7 @@
     ".github/workflows/cuberev-023-P0-source-physics.yml",
     ".github/workflows/cuberev-023-P1-full18-two-ties.yml",
     ".github/workflows/cuberev-023-P1-radius2-tie.yml",
+    ".github/workflows/cuberev-023-P2-R1-optimal-suffix-census.yml",
     ".github/workflows/cuberev-023-P2-boundary-rewrite.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
@@ -537,6 +538,7 @@
     "scripts/cuberev-023/verify-p1-matched-radius2-tie.mjs",
     "scripts/cuberev-023/verify-p1-two-ties-full18-mitm.mjs",
     "scripts/cuberev-023/verify-p2-original-cube-staged-vs-normalized-fmc.mjs",
+    "scripts/cuberev-023/verify-p2-r1-all-optimal-all18-suffix-boundary-census.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -1633,6 +1635,27 @@
       "limitations": "Accepting a science artifact into the exact file-path allowlist does not independently certify its physical science, permission safety, rights, or deployability; those remain separate audits. CUBE-REV 0.23 active source and P2 CI independently verified.",
       "verified_readme_reentry_path": "README.md",
       "original_P7_failed_audit_preserved": "https://github.com/WhoSia/CUBE-REV/actions/runs/38083612017"
+    },
+    "p2_r1_allowlist_admission": {
+      "date": "2026-10-11",
+      "purpose": "Four genuine original-source-derived synthetic whole-cube endpoint proof: enumerate ALL optimal full-18 HTM suffix move words through shortest-path DAG and verify boundary rewrite classes",
+      "exact_paths": [
+        "scripts/cuberev-023/verify-p2-r1-all-optimal-all18-suffix-boundary-census.mjs",
+        ".github/workflows/cuberev-023-P2-R1-optimal-suffix-census.yml"
+      ],
+      "blob_sha1": [
+        {
+          "path": "scripts/cuberev-023/verify-p2-r1-all-optimal-all18-suffix-boundary-census.mjs",
+          "sha": "127e7f7ac9036a920f02e1d79dc509ad5c6f7973"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P2-R1-optimal-suffix-census.yml",
+          "sha": "f79a206b99e1e2edfba201e4c42973ea88fabb32"
+        }
+      ],
+      "CI_workflow_contents_read": true,
+      "scientific_result_at_admission": "PENDING; permit current reproducible code but do not prejudge search outcomes",
+      "no_retired_glob_reclassified": true
     }
   }
 }
