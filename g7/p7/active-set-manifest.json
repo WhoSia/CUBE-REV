@@ -288,6 +288,7 @@
     "docs/0.23/P2_R1_ALL_OPTIMAL_SUFFIX_BOUNDARY_OPPORTUNITY_CENSUS.md",
     "docs/0.23/P2_R2_GUARDED_BOUNDARY_SIGNATURE_AND_DONG_INDEPENDENT_CUBE_COURTS.md",
     "docs/0.23/P3_R0_PARETO_PDB_LEAN_GOCXX_CORNERS_COGNITIVE_FRONTIERS.md",
+    "docs/0.23/P3_R1_EXACT_REAL_FACE_INSPECTION_MSTAR_AND_HUMAN_2X2_SOURCE_BOUNDARY.md",
     "docs/0.23/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -1927,6 +1928,18 @@
       ],
       "source_is_public_solve_reconstruction_not_attributed_private_cognitive_thought": true,
       "read_only_ci": true
+    },
+    "p3_r1_complete_real_observation_policy_report_admission": {
+      "status": "PHYSCUBE_62_P3R1A_PASS_GO_CPP_LEAN_P3R1B_PASS_2X2_REAL_SOURCE_GRAMMAR_HOLD",
+      "path": "docs/0.23/P3_R1_EXACT_REAL_FACE_INSPECTION_MSTAR_AND_HUMAN_2X2_SOURCE_BOUNDARY.md",
+      "original_blob_sha": "7445e0e0e17b6ab300db17a58953b2719c41bd46",
+      "actions": [
+        "38134488980",
+        "38134674692",
+        "38134830339"
+      ],
+      "governance": "Exact-path only, no CI write permissions, source-grammar failure and full negative receipt preserved",
+      "physical_math": "Adaptive 1,12,42,58,62 vs fixed 1,12,38,50,62; four fixed/adaptive complete face reads; exact solution library 1 vs62"
     }
   }
 }
