@@ -68,6 +68,7 @@
     ".github/workflows/cuberev-023-P3-R1A-real-face-dictionary-frontier.yml",
     ".github/workflows/cuberev-023-P3-R1B-GoCPP-Lean-policy-frontier.yml",
     ".github/workflows/cuberev-023-P3-R1C-2x2-human-source-physical.yml",
+    ".github/workflows/cuberev-023-P3-R2A-source-2x2-24-rotations.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -198,6 +199,7 @@
     "data/cuberev-023/p3_r1a_preregistered_physical_face_query_dictionary_frontier.json",
     "data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv",
     "data/cuberev-023/p3_r1c_real_public_2x2_solve_reconstruction_prereg.json",
+    "data/cuberev-023/p3_r2a_2x2_24_orientation_frame_audit_prereg.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -574,6 +576,7 @@
     "scripts/cuberev-023/verify-p3-r0-corner-2x2-quotient-vs-full-3x3.mjs",
     "scripts/cuberev-023/verify-p3-r1a-exact-real-face-observation-resource-frontier.mjs",
     "scripts/cuberev-023/verify-p3-r1c-independent-real-2x2-human-recon-corners.mjs",
+    "scripts/cuberev-023/verify-p3-r2a-2x2-original24rot-source-grammar.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -1940,6 +1943,28 @@
       ],
       "governance": "Exact-path only, no CI write permissions, source-grammar failure and full negative receipt preserved",
       "physical_math": "Adaptive 1,12,42,58,62 vs fixed 1,12,38,50,62; four fixed/adaptive complete face reads; exact solution library 1 vs62"
+    },
+    "p3_r2a_24_real_2x2_source_frames": {
+      "status_at_registration": "BEFORE_SOURCE_FRAME_CI",
+      "date": "2026-10-11",
+      "original_source": "https://www.speedcubing.org.au/national-record/roman-2x2-single-047",
+      "P3R1C_literal_failure": "38134830339",
+      "approved_path_blob_sha": [
+        {
+          "path": "data/cuberev-023/p3_r2a_2x2_24_orientation_frame_audit_prereg.json",
+          "sha": "fff15b95150121e135fc11ae2381478fe06f7b73"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p3-r2a-2x2-original24rot-source-grammar.mjs",
+          "sha": "7a2ea0f16550d65602f64faaec3b552db58d87da"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P3-R2A-source-2x2-24-rotations.yml",
+          "sha": "a310d608dc78e9be5dabe39c49896ab33f4f8339"
+        }
+      ],
+      "permissions": "contents: read",
+      "if_extra_frames_solve": "CONDITIONAL_ONLY_NEVER_ATTRIBUTED_TO_ATHLETE"
     }
   }
 }
