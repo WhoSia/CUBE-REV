@@ -87,6 +87,40 @@ while (unseen) {
 }
 assert.equal(62 - coverTotal, 26);
 assert.equal(hist.reduce((a,b)=>a+b,0), 1891);
+// Full exact adaptive policy game: one located adversarial erasure, with
+// each of six physical faces queryable at most once; state-mask DP has all
+// source states and every possible observed face-symbol partition.
+const ALL = (1n << 62n) - 1n;
+function adaptiveErasure(q) {
+  const memo = new Map();
+  function win(mask, used, remaining, erasures) {
+    if (pop(mask) === 1) return true;
+    if (remaining === 0) return false;
+    const key = [mask.toString(), used, remaining, erasures].join(":");
+    if (memo.has(key)) return memo.get(key);
+    for (let f = 0; f < 6; f++) {
+      if (used & (1 << f)) continue;
+      const nextUsed = used | (1 << f);
+      // Worst-case first branch: the current face is erased, with location known.
+      if (erasures && !win(mask, nextUsed, remaining - 1, 0)) continue;
+      const parts = new Map();
+      for (let i = 0; i < 62; i++) if (mask & (1n << BigInt(i))) {
+        const pattern = rows[i].face[f];
+        parts.set(pattern, (parts.get(pattern) || 0n) | (1n << BigInt(i)));
+      }
+      if (parts.size === 1) continue;
+      if ([...parts.values()].every(part => win(part, nextUsed, remaining - 1, erasures))) {
+        memo.set(key, true);
+        return true;
+      }
+    }
+    memo.set(key, false);
+    return false;
+  }
+  return win(ALL, 0, q, 1);
+}
+const adaptiveLocatedErasure = Array.from({length: 7}, (_, q) => adaptiveErasure(q));
+assert.deepEqual(adaptiveLocatedErasure, [false,false,false,false,false,false,true]);
 console.log(JSON.stringify({
   status: "PASS_FINITE_FACE_CODE_ONLY",
   source: fixture, human_process: "NOT_IDENTIFIED",
