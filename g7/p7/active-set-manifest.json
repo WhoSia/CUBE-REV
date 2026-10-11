@@ -59,6 +59,7 @@
     ".github/workflows/cuberev-023-P1-full18-two-ties.yml",
     ".github/workflows/cuberev-023-P1-radius2-tie.yml",
     ".github/workflows/cuberev-023-P2-R1-optimal-suffix-census.yml",
+    ".github/workflows/cuberev-023-P2-R2-guarded-Dong-cross-ecology.yml",
     ".github/workflows/cuberev-023-P2-boundary-rewrite.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
@@ -181,6 +182,8 @@
     "data/cuberev-023/p1_certified_matched_tie_DR_witnesses.json",
     "data/cuberev-023/p1_matched_radius2_preregistration.json",
     "data/cuberev-023/p2_P1_all18_four_word_authority_fixture.json",
+    "data/cuberev-023/p2_r2_frozen_all_eight_full18_optimal_suffix_words.json",
+    "data/cuberev-023/p2_r2_guarded_signature_independent_source_prereg.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -540,6 +543,7 @@
     "scripts/cuberev-023/verify-p1-two-ties-full18-mitm.mjs",
     "scripts/cuberev-023/verify-p2-original-cube-staged-vs-normalized-fmc.mjs",
     "scripts/cuberev-023/verify-p2-r1-all-optimal-all18-suffix-boundary-census.mjs",
+    "scripts/cuberev-023/verify-p2-r2-guarded-boundary-signature-Dong-independent-ecology.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -1667,6 +1671,31 @@
       "independent_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38114288842",
       "permissions": "no workflow write permission changes",
       "no_globs_no_deletions": true
+    },
+    "p2_r2_guarded_cross_ecology_admission": {
+      "status": "PRE_RESULT_PERMISSION_ONLY",
+      "date": "2026-10-11",
+      "paths": [
+        {
+          "path": "data/cuberev-023/p2_r2_guarded_signature_independent_source_prereg.json",
+          "original_blob_sha": "28fc1357c19a2e1362ca96ab82132ea6abbcefe3"
+        },
+        {
+          "path": "data/cuberev-023/p2_r2_frozen_all_eight_full18_optimal_suffix_words.json",
+          "original_blob_sha": "eeb06e290dc044f5b3dbbdd4f873f4a6c0997409"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p2-r2-guarded-boundary-signature-Dong-independent-ecology.mjs",
+          "original_blob_sha": "fe1b2a598f83be4c50a849c7e980eeda00ad8f48"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P2-R2-guarded-Dong-cross-ecology.yml",
+          "original_blob_sha": "4c7d1686551a32f9fa649eadba5a109715ebef82"
+        }
+      ],
+      "source_validity": "Human retrospective second competitor, independent competition and original scramble; synthetic inverse-insertion paths not interpreted as human alternatives or geodesics",
+      "workflow_permissions": "contents: read",
+      "no_wildcards": true
     }
   }
 }
