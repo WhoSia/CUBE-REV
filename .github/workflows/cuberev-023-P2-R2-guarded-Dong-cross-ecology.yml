@@ -32,6 +32,9 @@ jobs:
           assert.equal(z.marker,'CUBE_REV_023_P2_R2_GUARDED_TWO_TOKEN_PREDICTOR_INDEPENDENT_DONG_SOURCE');
           assert.equal(z.P2R1_shortest_actual_full18_word_count,8);
           assert.equal(z.two_token_exact_prediction_mistakes,0);
+          assert.deepEqual(z.exact_physical_source_boundary_sealing_horizon_census,{'1':2,'2':2,'3':4});
+          assert(z.all_eight_actual_HTM_geodesic_suffixes_sealed_by_at_most_three_tokens);
+          assert(z.P2R1_predicted_cases.every(x=>x.predicted_entire_savings_from_first_sealed_suffix_prefix===x.actual_adjacent_saved_actions));
           assert(z.independent_original_submitted_FMC_solution_verified);
           assert(z.independent_full_cube_DR_axes.length>=1);
           assert.equal(z.independent_original_face_synthetic_inverse_pair_count,324);
