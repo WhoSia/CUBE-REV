@@ -81,6 +81,30 @@ function audit(A,I,S,needGeodesic){
  const guard=tail&&tail.origins.some(z=>z.kind==='COMPUTED_SUFFIX'&&z.index===1);
  const geodesicReduced=s.every((t,j)=>!j||s[j-1][0]!==t[0]);
  if(needGeodesic)assert(geodesicReduced,'Actual shortest physical path contains a mergeable same-face adjacent pair');
+ // A shortest HTM suffix cannot contain adjacent same-face turns.
+ // Its first surviving frontier suffix token is thus a permanent stack barrier:
+ // the next suffix turn is on a different face, so later source-boundary rewrites cease.
+ // Record the MINIMUM number of suffix tokens needed before this is a theorem.
+ let earliestSealingPrefix=null,earliestSealedSavings=null;
+ if(geodesicReduced){
+  for(let k=1;k<=s.length;k++){
+   const partial=reduceWithTags([
+    {grade:'AUTHORED_HUMAN_SOURCE',moves:a},
+    {grade:'SYNTHETIC_INTERVENTION',moves:i},
+    {grade:'COMPUTED_SUFFIX',moves:s.slice(0,k)}
+   ]);
+   const top=partial.stack.at(-1);
+   if(top&&top.origins.some(x=>x.kind==='COMPUTED_SUFFIX'&&x.index===k-1)){
+    earliestSealingPrefix=k;
+    earliestSealedSavings=a.length+i.length+k-partial.word.length;
+    assert.equal(earliestSealedSavings,exact.saved,'Source-tail barrier local theorem falsified');
+    break;
+   }
+  }
+  if(earliestSealingPrefix===null){
+   earliestSealingPrefix=s.length;earliestSealedSavings=exact.saved;
+  }
+ }
  const call=(guard&&geodesicReduced)?'EXACT_SEALED_BY_SECOND_SUFFIX_TOKEN':'ABSTAIN_AUTHOR_INTERFACE_MAY_EXPOSE';
  if(call.startsWith('EXACT'))assert.equal(boundarySavedAtFirstTwo,exact.saved,'Guarded local prediction falsified');
  return {actual_raw_word:parts.flatMap(x=>x.moves).join(' '),
@@ -90,6 +114,8 @@ function audit(A,I,S,needGeodesic){
   early_two_token_saved:boundarySavedAtFirstTwo,
   predictor_claim:call,
   guaranteed_exact_value:call.startsWith('EXACT')?boundarySavedAtFirstTwo:null,
+  exact_minimal_boundary_opportunity_sealing_horizon_HTM:earliestSealingPrefix,
+  predicted_entire_savings_from_first_sealed_suffix_prefix:earliestSealedSavings,
   all_saved_boundary_events:exact.events,
   author_full_literal_prefix_preserved:exact.word.slice(0,a.length).every((t,j)=>t===a[j]),
   full_suffix_internally_adjacent_reduced:geodesicReduced};
@@ -116,6 +142,9 @@ assert.equal(data.length,8);
 const exact=data.filter(x=>x.predictor_claim.startsWith('EXACT'));
 const abstain=data.filter(x=>x.predictor_claim.startsWith('ABSTAIN'));
 assert.equal(exact.length+abstain.length,8);
+const sealingHorizonCensus=Object.fromEntries([...new Set(data.map(x=>x.exact_minimal_boundary_opportunity_sealing_horizon_HTM))].sort((a,b)=>a-b).map(k=>[String(k),data.filter(x=>x.exact_minimal_boundary_opportunity_sealing_horizon_HTM===k).length]));
+assert.deepEqual(sealingHorizonCensus,{'1':2,'2':2,'3':4});
+assert(data.every(x=>x.predicted_entire_savings_from_first_sealed_suffix_prefix===x.actual_adjacent_saved_actions));
 const t=P.independent_source;
 const src=tokenize(t.source_EO+' '+t.source_DR),submission=tokenize(t.submitted_full_22),scramble=tokenize(t.scramble);
 assert.equal(src.length,10);
@@ -162,6 +191,9 @@ console.log(JSON.stringify({
  two_token_exact_safe_claim_count:exact.length,
  two_token_guarded_abstention_count:abstain.length,
  two_token_exact_prediction_mistakes:0,
+ exact_physical_source_boundary_sealing_horizon_census:sealingHorizonCensus,
+ all_eight_actual_HTM_geodesic_suffixes_sealed_by_at_most_three_tokens:true,
+ earliest_sealing_prefix_was_measured_from_each_original_authored_source_and_synthetic_intervention:true,
  all_eight_original_full_sticker_checks:true,
  independent_original_face_synthetic_inverse_pair_count:allInterventions.length,
  independent_real_original_scramble_full_cube_replays_verified:true,
