@@ -91,7 +91,7 @@ assert.equal(hist.reduce((a,b)=>a+b,0), 1891);
 // each of six physical faces queryable at most once; state-mask DP has all
 // source states and every possible observed face-symbol partition.
 const ALL = (1n << 62n) - 1n;
-function adaptiveErasure(q) {
+function adaptiveErasure(q, retryErasedFace) {
   const memo = new Map();
   function win(mask, used, remaining, erasures) {
     if (pop(mask) === 1) return true;
@@ -102,7 +102,7 @@ function adaptiveErasure(q) {
       if (used & (1 << f)) continue;
       const nextUsed = used | (1 << f);
       // Worst-case first branch: the current face is erased, with location known.
-      if (erasures && !win(mask, nextUsed, remaining - 1, 0)) continue;
+      if (erasures && !win(mask, retryErasedFace ? used : nextUsed, remaining - 1, 0)) continue;
       const parts = new Map();
       for (let i = 0; i < 62; i++) if (mask & (1n << BigInt(i))) {
         const pattern = rows[i].face[f];
@@ -119,8 +119,10 @@ function adaptiveErasure(q) {
   }
   return win(ALL, 0, q, 1);
 }
-const adaptiveLocatedErasure = Array.from({length: 7}, (_, q) => adaptiveErasure(q));
-assert.deepEqual(adaptiveLocatedErasure, [false,false,false,false,false,false,true]);
+const adaptiveLocatedErasureNoRepeat = Array.from({length: 7}, (_, q) => adaptiveErasure(q, false));
+const adaptiveLocatedErasureWithRetry = Array.from({length: 7}, (_, q) => adaptiveErasure(q, true));
+assert.deepEqual(adaptiveLocatedErasureNoRepeat, [false,false,false,false,false,false,true]);
+assert.deepEqual(adaptiveLocatedErasureWithRetry, [false,false,false,false,false,true,true]);
 console.log(JSON.stringify({
   status: "PASS_FINITE_FACE_CODE_ONLY",
   source: fixture, human_process: "NOT_IDENTIFIED",
@@ -130,5 +132,7 @@ console.log(JSON.stringify({
   one_adversarial_substitution_all62: "IMPOSSIBLE",
   maximum_one_error_correctable_subset:26,
   exact_algorithm: "componentwise_minimum_vertex_cover",
+  adaptive_one_marked_erasure_no_face_repeat:adaptiveLocatedErasureNoRepeat,
+  adaptive_one_marked_erasure_retry_erased_face:adaptiveLocatedErasureWithRetry,
   component_sizes:sizes
 }));
