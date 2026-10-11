@@ -69,6 +69,7 @@
     ".github/workflows/cuberev-023-P3-R1B-GoCPP-Lean-policy-frontier.yml",
     ".github/workflows/cuberev-023-P3-R1C-2x2-human-source-physical.yml",
     ".github/workflows/cuberev-023-P3-R2A-source-2x2-24-rotations.yml",
+    ".github/workflows/cuberev-023-P3-R2B-451-aggregate-transport.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -200,6 +201,7 @@
     "data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv",
     "data/cuberev-023/p3_r1c_real_public_2x2_solve_reconstruction_prereg.json",
     "data/cuberev-023/p3_r2a_2x2_24_orientation_frame_audit_prereg.json",
+    "data/cuberev-023/p3_r2b_private451_new_corner_state_conditional_support_aggregate.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -577,6 +579,8 @@
     "scripts/cuberev-023/verify-p3-r1a-exact-real-face-observation-resource-frontier.mjs",
     "scripts/cuberev-023/verify-p3-r1c-independent-real-2x2-human-recon-corners.mjs",
     "scripts/cuberev-023/verify-p3-r2a-2x2-original24rot-source-grammar.mjs",
+    "scripts/cuberev-023/verify-p3-r2b-private451-human-corner-transport.py",
+    "scripts/cuberev-023/verify-p3-r2b-published-human-aggregate-Mstar-transport-gate.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -1965,6 +1969,33 @@
       ],
       "permissions": "contents: read",
       "if_extra_frames_solve": "CONDITIONAL_ONLY_NEVER_ATTRIBUTED_TO_ATHLETE"
+    },
+    "p3_r2b_private451_source_rights_safe_local_reanalysis": {
+      "source_original_SHA256": "fb88827cce327d0021a0741e47dfa09670651083b8baaaa46cccc9051d73568e",
+      "data_rights": "PRIVATE; no ZIP or person/trajectory raw cells in repository",
+      "original_local_computation": "452 records, dedup 451, 25272 reconstructed actions; new exact CP/CO vs full cubie comparisons, 24 explicit rotation frame proxies; stage/last3 matched support collapses to zero",
+      "validity": "RETROSPECTIVE_EXPLORATORY_NOT_CAUSAL_OR_INDEPENDENT_HELDOUT",
+      "public_actions_gate_only": "does NOT access private archive; checks aggregate arithmetic",
+      "approved_exact_paths": [
+        {
+          "path": "scripts/cuberev-023/verify-p3-r2b-private451-human-corner-transport.py",
+          "sha": "33ddd7ea7e2b29faba3ce7dcc35d5906416eaf38"
+        },
+        {
+          "path": "data/cuberev-023/p3_r2b_private451_new_corner_state_conditional_support_aggregate.json",
+          "sha": "72561985d9c23ba92bf358e136ef3636954cfcbb"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p3-r2b-published-human-aggregate-Mstar-transport-gate.mjs",
+          "sha": "2aa90a5eedd49413f80bafcdd20869deae02b3d7"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P3-R2B-451-aggregate-transport.yml",
+          "sha": "6b0c955f118a7b713b87b650701677803509afbb"
+        }
+      ],
+      "permissions": "contents: read",
+      "previous_mid_commit_P7_FAILS_remain": true
     }
   }
 }
