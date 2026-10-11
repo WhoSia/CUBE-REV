@@ -87,6 +87,16 @@ func main(){
  require(equal(fullCounts,[]int{1,18,243,3240,43239}),"all18 finite ball")
  require(equal(histHalf,[]int{1,6,27,120,519,1932}),"halfturn finite ball")
  require(equal(histRev,[]int{1,6,27})&&len(reverse)==34,"meet-in-middle goal radius2")
+ quarterControls:=0
+ for i,m:=range moves{
+  if strings.HasSuffix(m.name,"2"){continue}
+  quarterControls++
+  t:=turn(goal,m)
+  req,ok:=full[t];require(ok&&req.depth==1,"full18 quarter control exact depth1")
+  _,inHalf:=hg[t];require(!inHalf,"quarter control was improperly admitted to 5-ball halfturn solver")
+  _=i
+ }
+ require(quarterControls==12,"twelve independent quarterturn controls")
  literal,shortestTotal,firstDouble,wordDouble,scannedMax,scannedSum:=0,0,0,0,0,0
  firstFrequency:=map[string]int{}
  for k:=0;k<62;k++{
