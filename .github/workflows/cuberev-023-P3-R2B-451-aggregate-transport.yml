@@ -1,0 +1,45 @@
+name: CUBE-REV 0.23 P3-R2B — Privacy-Safe 451 Human Reconstruction Transport Court
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p3_r2b_private451_new_corner_state_conditional_support_aggregate.json'
+      - 'scripts/cuberev-023/verify-p3-r2b-published-human-aggregate-Mstar-transport-gate.mjs'
+      - '.github/workflows/cuberev-023-P3-R2B-451-aggregate-transport.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public_aggregate_only_transport_and_support:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check SOURCE GRADED historic 451-reconstruction data versus non-equivalent physical face-oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-023/verify-p3-r2b-published-human-aggregate-Mstar-transport-gate.mjs | tee CUBE_REV_023_P3_R2B_human_source_aggregate_transport.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('CUBE_REV_023_P3_R2B_human_source_aggregate_transport.json','utf8'));
+          assert.equal(x.marker,'CUBE_REV_023_P3_R2B_SOURCE_GRADED_HUMAN_TO_PHYSICAL_FRONTIER_TRANSPORT_GATE_PASS');
+          assert.equal(x.extreme_matched_history_support_after_3_moves,0);
+          assert.equal(x.matched_effect_estimate_at_strictest_level,'UNDEFINED_SUPPORT_FAILURE');
+          assert(x.physical_operator_identity_between_theory_and_human_data===false);
+          assert(x.private_original_reconstruction_data_in_public_artifact===false);
+          assert(x.human_real_Mstar_frontier_identified===false);
+          console.log('CUBE_REV_023_P3_R2B_ARCHIVE_AGGREGATE_SUPPORT_HOLD_GUARD_PASS');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-023-P3-R2B-451-source-private-safe-aggregate-support
+          path: CUBE_REV_023_P3_R2B_human_source_aggregate_transport.json
+          retention-days: 90
+          if-no-files-found: warn
