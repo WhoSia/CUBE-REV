@@ -66,9 +66,10 @@ theorem expanded_opportunity_minimum_cannot_increase
     (mAttained : AttainedMinimum restrict m)
     (nAttained : AttainedMinimum expand n) :
     n ≤ m := by
-  by_contra h
-  have hm : m < n := Nat.lt_of_not_ge h
-  exact (nAttained.2 m hm) (included m mAttained.1)
+  have impossible : ¬ m < n := by
+    intro hm
+    exact (nAttained.2 m hm) (included m mAttained.1)
+  exact Nat.le_of_not_gt impossible
 
 theorem rank_reversal_example :
     ¬ ∃ f : Nat → Nat → Nat, IsBiMono f ∧
