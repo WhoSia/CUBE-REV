@@ -69,5 +69,32 @@ func main(){
   ncover+=cover(local);sizes=append(sizes,len(vertices))
  }
  must(N-ncover==26,"exact maximum robust subcode")
+ // Adversarial adaptive one-marked-erasure minimax over all face partitions.
+ type Key struct{ mask uint64;used uint8;left uint8;erase uint8 }
+ adaptive:=func(q int)bool{
+  memo:=map[Key]bool{};seen:=map[Key]bool{}
+  var win func(uint64,uint8,uint8,uint8)bool
+  win=func(mask uint64,used,left,erase uint8)bool{
+   if bits.OnesCount64(mask)<=1{return true}
+   if left==0{return false}
+   k:=Key{mask,used,left,erase};if seen[k]{return memo[k]};seen[k]=true
+   for f:=0;f<6;f++{
+    if used&(1<<uint(f))!=0{continue}
+    nextUsed:=used|(1<<uint(f))
+    if erase>0&&!win(mask,nextUsed,left-1,0){continue}
+    parts:=map[string]uint64{}
+    for i:=0;i<N;i++{if mask&(uint64(1)<<i)!=0{parts[obs[i][f]]|=uint64(1)<<i}}
+    if len(parts)<=1{continue}
+    good:=true
+    for _,p:=range parts{if !win(p,nextUsed,left-1,erase){good=false;break}}
+    if good{memo[k]=true;return true}
+   }
+   memo[k]=false;return false
+  }
+  return win((uint64(1)<<N)-1,0,uint8(q),1)
+ }
+ frontier:=[]bool{}
+ for q:=0;q<=6;q++{frontier=append(frontier,adaptive(q))}
+ must(fmt.Sprint(frontier)=="[false false false false false false true]","adaptive one-erasure frontier")
  fmt.Printf("P3R3 GO STATES=62 PAIRS=1891 HIST=%v BEST_MIN_DISTANCE=%v ONE_ERASURE_MASKS=%v ONE_ERROR_CORRECTABLE_CAPACITY=%d COMPONENTS=%v PROOF=EXHAUSTIVE_VERTEX_COVER\n",hist,best,erasureMasks,N-ncover,sizes)
 }
