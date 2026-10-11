@@ -67,6 +67,7 @@
     ".github/workflows/cuberev-023-P3-R0-crosslanguage-lean-pdb.yml",
     ".github/workflows/cuberev-023-P3-R1A-real-face-dictionary-frontier.yml",
     ".github/workflows/cuberev-023-P3-R1B-GoCPP-Lean-policy-frontier.yml",
+    ".github/workflows/cuberev-023-P3-R1C-2x2-human-source-physical.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -196,6 +197,7 @@
     "data/cuberev-023/p3_r0_source_matched_R6_real_PDB_10_action_census.csv",
     "data/cuberev-023/p3_r1a_preregistered_physical_face_query_dictionary_frontier.json",
     "data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv",
+    "data/cuberev-023/p3_r1c_real_public_2x2_solve_reconstruction_prereg.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -570,6 +572,7 @@
     "scripts/cuberev-023/verify-p2-r2c-Dong-source-boundary-first-turn-exact.mjs",
     "scripts/cuberev-023/verify-p3-r0-corner-2x2-quotient-vs-full-3x3.mjs",
     "scripts/cuberev-023/verify-p3-r1a-exact-real-face-observation-resource-frontier.mjs",
+    "scripts/cuberev-023/verify-p3-r1c-independent-real-2x2-human-recon-corners.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -1903,6 +1906,27 @@
       ],
       "existing_Lean_file_modified_no_new_path": true,
       "CI_contents_read_only": true
+    },
+    "p3_r1c_real_2x2_documented_original_public_source_admission": {
+      "date": "2026-10-11",
+      "source": "https://www.speedcubing.org.au/national-record/roman-2x2-single-047",
+      "status_at_admission": "AWAITING_ORIGINAL_54_STICKER_2X2_REPLAY",
+      "files": [
+        {
+          "path": "data/cuberev-023/p3_r1c_real_public_2x2_solve_reconstruction_prereg.json",
+          "git_blob_sha": "643b74192861901e6afe1b6eeaa8a0b4072f70f0"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p3-r1c-independent-real-2x2-human-recon-corners.mjs",
+          "git_blob_sha": "caf6979e17618d8e91ecba285d301291ea311e6b"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P3-R1C-2x2-human-source-physical.yml",
+          "git_blob_sha": "e300717cc167824d5b73d478e043b763b7cb4422"
+        }
+      ],
+      "source_is_public_solve_reconstruction_not_attributed_private_cognitive_thought": true,
+      "read_only_ci": true
     }
   }
 }
