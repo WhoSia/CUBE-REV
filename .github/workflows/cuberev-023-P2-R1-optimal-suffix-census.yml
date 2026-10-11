@@ -1,0 +1,46 @@
+name: CUBE-REV 0.23 P2-R1 — All-Optimal Whole-HTM Suffix Boundary Census
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-023/verify-p2-r1-all-optimal-all18-suffix-boundary-census.mjs'
+      - '.github/workflows/cuberev-023-P2-R1-optimal-suffix-census.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  all_optimal_source_18_htm_word_court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Count all shortest physical post-intervention 18-HTM suffixes and every boundary cost class
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=5500 scripts/cuberev-023/verify-p2-r1-all-optimal-all18-suffix-boundary-census.mjs | tee CUBE_REV_023_P2_R1_all_optimal_suffix_boundary_census.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('CUBE_REV_023_P2_R1_all_optimal_suffix_boundary_census.json','utf8'));
+          assert.equal(x.marker,'CUBE_REV_023_P2_R1_ALL_OPTIMAL_18_HTM_SUFFIX_BOUNDARY_CENSUS');
+          assert.equal(x.results.length,4);
+          assert(x.results.every(r=>r.geodesic_first_two_partition_verified));
+          assert(x.results.every(r=>Object.values(r.physically_replayed_representative_per_savings_class).every(w=>w.original_stickers_replayed)));
+          assert(x.results.every(r=>BigInt(r.exact_optimal_all18_suffix_word_COUNT)>0n));
+          assert(x.exact_original_prefix_preserving_19_vs_23_bound_still_enforced);
+          assert(x.ordered_full_face_turn_graph_both_commuting_orders_included_in_suffix_DAG);
+          console.log('CUBE_REV_023_P2_R1_ALL_SHORTEST_FACE_WORDS_EXACT_BOUNDARY_COURT_PASS');
+          JS
+      - name: Preserve full four-state optimal complete solution suffix census
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-023-P2-R1-all-optimal-suffix-boundary-census
+          path: CUBE_REV_023_P2_R1_all_optimal_suffix_boundary_census.json
+          retention-days: 90
+          if-no-files-found: warn
