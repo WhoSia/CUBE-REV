@@ -20,6 +20,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Syntax check local-only private archive replayer without reading private data
+        run: |
+          python3 - <<'PY'
+          import ast
+          from pathlib import Path
+          path=Path('scripts/cuberev-023/verify-p3-r2b-private451-human-corner-transport.py')
+          ast.parse(path.read_text(encoding='utf-8'),filename=str(path))
+          print('PRIVATE451_LOCAL_REPLAYER_SYNTAX_PASS; NO_PRIVATE_ARCHIVE_UPLOADED')
+          PY
       - name: Check SOURCE GRADED historic 451-reconstruction data versus non-equivalent physical face-oracle
         shell: bash
         run: |
