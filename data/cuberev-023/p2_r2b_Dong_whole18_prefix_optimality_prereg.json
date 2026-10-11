@@ -1,0 +1,36 @@
+{
+  "schema": "cuberev-023-p2-r2b-Dong-source-conditioned-whole18-exact-opportunity-v1",
+  "status": "PREREG_BEFORE_P2_R2B_ALL18_SEARCH",
+  "question": "For independent human-authored Dong Shanghai2026 Attempt1 EO+DR literal 10-turn prefix and original full scramble, what is EXACT shortest post-prefix full 18 HTM continuation to physical solved, and is author's submitted 22-turn complete word geodesic within the fixed source-prefix condition?",
+  "registered_human_source": "https://333.333.fm/wca/reconstruction/MoreThanOneCubeShanghai2026/2008DONG06",
+  "source_grade": "actual retrospective author original scramble, 10 literal normal prefix and 22 submitted word; backup parenthesized side NOT parsed",
+  "physical_source_authority": "data/cuberev-023/p2_r2_guarded_signature_independent_source_prereg.json",
+  "already_independently_verified": "Actions #38131823864 original full 54-sticker public submitted 22 HTM solves; source 10-turn EO+DR LR axis; 12-turn submitted remainder upper bound",
+  "solver": "All 18 original legal face turns (U/U2/Uprime etc). Dual full-cubie (corner+edge orientation and permutation) BFS radius5 from solved and source. Exclude ≤10 by full physical intersection. Exclude ≤11 or find witness by streaming goal-depth5 one-turn transitions to source radius5. If ≤11 absent, 12-turn physically replayed submitted suffix proves exact12, optionally independently show a goal-depth5 two-step bridge. If ≤10 found, original sticker replay both roots and witness, shortest from cross-radius path.",
+  "budgets": {
+    "goal_frontier_depth": 5,
+    "source_frontier_depth": 5,
+    "max_one_bridge_checks": 10348344,
+    "max_two_bridge_checks": 186270192,
+    "CI_timeout_minutes": 22,
+    "no_human_recruitment": true
+  },
+  "outcomes": [
+    "source_conditional_exact_remaining_d18",
+    "source_conditional_total_prefix_plus_d18",
+    "quantified_human_published_total_minus_fixed_prefix_geodesic",
+    "exact_full_cube_witness",
+    "no_human_decision_causation_claim"
+  ],
+  "risk_boundaries": [
+    "Cannot infer author missed available best path under actual time/consideration/notation constraints",
+    "Cannot equate source fixed-prefix optimal to full competition optimal with NISS and insertions",
+    "Source backup parenthetical grammar HOLD",
+    "No results included in this prereg; do not tune stopping rule after observing"
+  ],
+  "governance": {
+    "CI_read_only": true,
+    "WhoSia_commits_only": true,
+    "explicit_P7_manifest_admission": true
+  }
+}
