@@ -1,0 +1,53 @@
+name: CUBE-REV 0.23 P3-R1A — Exact Face Observation vs Solution Dictionary Frontier
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p3_r1a_preregistered_physical_face_query_dictionary_frontier.json'
+      - 'scripts/cuberev-023/verify-p3-r1a-exact-real-face-observation-resource-frontier.mjs'
+      - '.github/workflows/cuberev-023-P3-R1A-real-face-dictionary-frontier.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physical_adaptive_face_query_and_htm_word_dictionary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enumerate exact original 3x3 real 62-state full-sticker face-query frontier
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=5500 scripts/cuberev-023/verify-p3-r1a-exact-real-face-observation-resource-frontier.mjs | tee CUBE_REV_023_P3_R1A_exact_face_query_frontier.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('CUBE_REV_023_P3_R1A_exact_face_query_frontier.json','utf8'));
+          assert.equal(x.marker,'CUBE_REV_023_P3_R1A_TRUE_FULL_CUBE_FACE_INSPECTION_VS_ALGORITHM_DICTIONARY_FRONTIER');
+          assert(x.preregistration_preceded_first_new_outcome);
+          assert.equal(x.original_r5_full_cubie_states,621649);
+          assert.equal(x.original_corner_projection_state_keys,236552);
+          assert.equal(x.chosen_largest_fixed_frame_corner_equivalence_fiber_count,62);
+          assert.equal(x.exact_solved_word_dictionary_minimum_corner_task,1);
+          assert.equal(x.exact_solved_word_dictionary_minimum_full_task_given_perfect_state_identification,62);
+          assert.equal(x.exact_fixed_face_subset_enumerations,64);
+          assert.equal(x.exact_adaptive_tree_leaf_count,62);
+          assert(x.exact_minimax_adaptive_full_face_looks_to_identify_state<=6);
+          assert.equal(x.complete_fiber_witness_dataset.length,62);
+          assert.equal(x.exact_solution_success_resource_grid.length,49);
+          assert(x.no_human_visual_time_attention_or_algorithms_assumed);
+          assert(x.prior_P3_R0_6bit_lower_bound_does_NOT_equal_number_of_full_face_looks);
+          console.log('CUBE_REV_023_P3_R1A_ORIGINAL_STICKER_PHYSICAL_MULTIVARIATE_MSTAR_FRONTIER_PASS');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-023-P3-R1A-62real-cubies-exact-observation-and-action-frontier
+          path: CUBE_REV_023_P3_R1A_exact_face_query_frontier.json
+          retention-days: 90
+          if-no-files-found: warn
