@@ -61,6 +61,7 @@
     ".github/workflows/cuberev-023-P2-R1-optimal-suffix-census.yml",
     ".github/workflows/cuberev-023-P2-R2-guarded-Dong-cross-ecology.yml",
     ".github/workflows/cuberev-023-P2-R2B-Dong-source-full18-exact.yml",
+    ".github/workflows/cuberev-023-P2-R2C-Dong-boundary-optimal.yml",
     ".github/workflows/cuberev-023-P2-boundary-rewrite.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
@@ -186,6 +187,7 @@
     "data/cuberev-023/p2_r2_frozen_all_eight_full18_optimal_suffix_words.json",
     "data/cuberev-023/p2_r2_guarded_signature_independent_source_prereg.json",
     "data/cuberev-023/p2_r2b_Dong_whole18_prefix_optimality_prereg.json",
+    "data/cuberev-023/p2_r2c_Dong_source_boundary_geodesic_prereg.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -547,6 +549,7 @@
     "scripts/cuberev-023/verify-p2-r1-all-optimal-all18-suffix-boundary-census.mjs",
     "scripts/cuberev-023/verify-p2-r2-guarded-boundary-signature-Dong-independent-ecology.mjs",
     "scripts/cuberev-023/verify-p2-r2b-Dong-source-prefix-exact-full18.mjs",
+    "scripts/cuberev-023/verify-p2-r2c-Dong-source-boundary-first-turn-exact.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -1719,6 +1722,30 @@
       ],
       "read_only_CI": true,
       "no_global_FMC_inference": true
+    },
+    "p2_r2c_three_face_boundary_court_admission": {
+      "status": "PRE_RESULT",
+      "original_human_written_last_face": "D",
+      "required_first_moves": [
+        "D",
+        "D2",
+        "D'"
+      ],
+      "exact_paths": [
+        {
+          "path": "data/cuberev-023/p2_r2c_Dong_source_boundary_geodesic_prereg.json",
+          "blob_sha": "80b6bb27affff7ece288d1f2d5fe9a6779aad68a"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p2-r2c-Dong-source-boundary-first-turn-exact.mjs",
+          "blob_sha": "29092dfa6e5a290deecba3d6725068106b8a7930"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P2-R2C-Dong-boundary-optimal.yml",
+          "blob_sha": "a37b4e1abb38bbff3b73cb22e7055d5469616729"
+        }
+      ],
+      "read_only": true
     }
   }
 }
