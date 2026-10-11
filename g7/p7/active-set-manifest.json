@@ -2168,7 +2168,13 @@
       "independent_implementations": "independent original geometric 54-facelet JS and Go layer-rotation engines",
       "CI": "GitHub Actions contents:read; no autopush and no bot contributions; external completed run still unverified",
       "transition_024": "PROPOSED_ONLY_not_activated_no_new_branch",
-      "no_glob": true
+      "no_glob": true,
+      "post_admission_exact_report_revision": {
+        "path": "docs/0.23/P3_R3B_HALF_TURN_GEODESIC_SOLVER_AND_024_RESEARCH_PIVOT.md",
+        "git_blob_sha": "91914646861dea9dfcb8354816c55e0c10c81055",
+        "reason": "12 genuine independent quarterturn bounded source controls now asserted by both physical engine implementations",
+        "externalCI": "PENDING_READBACK"
+      }
     }
   }
 }
