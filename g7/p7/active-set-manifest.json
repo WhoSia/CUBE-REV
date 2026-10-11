@@ -276,6 +276,7 @@
     "docs/0.23/P1_MATCHED_RADIUS2_REAL_CUBE_TIES_AND_ALL18_NORMALIZATION_ADVERSARY.md",
     "docs/0.23/P2_BOUNDARY_LOCALIZED_SOURCE_STAGE_COST_AND_FMC_NORMAL_FORM.md",
     "docs/0.23/P2_R1_ALL_OPTIMAL_SUFFIX_BOUNDARY_OPPORTUNITY_CENSUS.md",
+    "docs/0.23/P2_R2_GUARDED_BOUNDARY_SIGNATURE_AND_DONG_INDEPENDENT_CUBE_COURTS.md",
     "docs/0.23/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -1746,6 +1747,19 @@
         }
       ],
       "read_only": true
+    },
+    "p2_r2_independent_human_cube_report_admission": {
+      "audited_path": "docs/0.23/P2_R2_GUARDED_BOUNDARY_SIGNATURE_AND_DONG_INDEPENDENT_CUBE_COURTS.md",
+      "blob_sha_at_first_admission": "0fe3202545c3f8e4e1e03c866841e74af40187d7",
+      "provenance": "Independent actual athlete and scramble under original whole sticker reconstruction; Miao all8 exact and Dong original human22 full18 exact",
+      "source_CI": [
+        "38132244769",
+        "38131968404",
+        "38132118488"
+      ],
+      "science_grade": "Three distinct physical CI PASS, cognitively unobserved, backup NISS grammar HOLD",
+      "workflow_write_permissions_changed": false,
+      "no_wildcard_expansion": true
     }
   }
 }
