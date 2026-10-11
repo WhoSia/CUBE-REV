@@ -293,6 +293,7 @@
     "docs/0.23/P2_R2_GUARDED_BOUNDARY_SIGNATURE_AND_DONG_INDEPENDENT_CUBE_COURTS.md",
     "docs/0.23/P3_R0_PARETO_PDB_LEAN_GOCXX_CORNERS_COGNITIVE_FRONTIERS.md",
     "docs/0.23/P3_R1_EXACT_REAL_FACE_INSPECTION_MSTAR_AND_HUMAN_2X2_SOURCE_BOUNDARY.md",
+    "docs/0.23/P3_R2_TRUE_2X2_FRAME_AND_PRIVATE451_HUMAN_MSTAR_TRANSPORT.md",
     "docs/0.23/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -1996,6 +1997,25 @@
       ],
       "permissions": "contents: read",
       "previous_mid_commit_P7_FAILS_remain": true
+    },
+    "p3_r2_human_physical_real_court_report_admission": {
+      "report_exact_path": "docs/0.23/P3_R2_TRUE_2X2_FRAME_AND_PRIVATE451_HUMAN_MSTAR_TRANSPORT.md",
+      "original_git_blob_sha": "8f296bbd8f0c110c5c801de31592da3c424a4320",
+      "authorised_source_2x2": "Roman Rudakov 2x2 official 0.47, public reconstruction literal hold, unique extra y2 model compatible",
+      "privacy": "451 original ZIP remains ONLY private local/connected Drive; GitHub only anonymized aggregate and reproducible local SHA-locked program",
+      "CI": [
+        "38137146802",
+        "38137734510",
+        "38137671284"
+      ],
+      "science_grades": [
+        "24_FRAME_ORIGINAL_STICKER_PASS_CONDITIONAL_ONLY",
+        "451_RAW_ARCHIVE_LOCAL_EXPLORATORY_NO_INDEPENDENT_HOLDOUT",
+        "PUBLIC_CI_ARITHMETIC_ONLY",
+        "LEAN_MATH_PASS_NOT_NEURAL_CAUSAL"
+      ],
+      "permissions": "contents: read",
+      "no_glob_added": true
     }
   }
 }
