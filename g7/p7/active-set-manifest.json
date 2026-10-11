@@ -63,6 +63,8 @@
     ".github/workflows/cuberev-023-P2-R2B-Dong-source-full18-exact.yml",
     ".github/workflows/cuberev-023-P2-R2C-Dong-boundary-optimal.yml",
     ".github/workflows/cuberev-023-P2-boundary-rewrite.yml",
+    ".github/workflows/cuberev-023-P3-R0-corner-2x2-quotient.yml",
+    ".github/workflows/cuberev-023-P3-R0-crosslanguage-lean-pdb.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -188,6 +190,8 @@
     "data/cuberev-023/p2_r2_guarded_signature_independent_source_prereg.json",
     "data/cuberev-023/p2_r2b_Dong_whole18_prefix_optimality_prereg.json",
     "data/cuberev-023/p2_r2c_Dong_source_boundary_geodesic_prereg.json",
+    "data/cuberev-023/p3_r0_human_physical_cognitive_source_grade_inventory.json",
+    "data/cuberev-023/p3_r0_source_matched_R6_real_PDB_10_action_census.csv",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -277,6 +281,7 @@
     "docs/0.23/P2_BOUNDARY_LOCALIZED_SOURCE_STAGE_COST_AND_FMC_NORMAL_FORM.md",
     "docs/0.23/P2_R1_ALL_OPTIMAL_SUFFIX_BOUNDARY_OPPORTUNITY_CENSUS.md",
     "docs/0.23/P2_R2_GUARDED_BOUNDARY_SIGNATURE_AND_DONG_INDEPENDENT_CUBE_COURTS.md",
+    "docs/0.23/P3_R0_PARETO_PDB_LEAN_GOCXX_CORNERS_COGNITIVE_FRONTIERS.md",
     "docs/0.23/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -289,6 +294,10 @@
     "formal/017/lake-manifest.json",
     "formal/017/lakefile.toml",
     "formal/017/lean-toolchain",
+    "formal/cuberev023/PDBRankReversal.lean",
+    "formal/cuberev023/lake-manifest.json",
+    "formal/cuberev023/lakefile.lean",
+    "formal/cuberev023/lean-toolchain",
     "g7/p10/batch4-leverage-preseal.json",
     "g7/p10/closure.json",
     "g7/p10/constitution.json",
@@ -543,6 +552,8 @@
     "scripts/cuberev-022/verify-p8-r6-matched-DR-HTR-Schreier-contacts.mjs",
     "scripts/cuberev-022/verify-p8-r6-matched-DR-neighborhood-geodesics.mjs",
     "scripts/cuberev-022/verify-p8-source-relative-dr-htr-continuations.mjs",
+    "scripts/cuberev-023/rank_reversal_cpp/main.cpp",
+    "scripts/cuberev-023/rank_reversal_go/main.go",
     "scripts/cuberev-023/verify-p0-source-grade-and-full-cube.mjs",
     "scripts/cuberev-023/verify-p1-matched-radius2-tie.mjs",
     "scripts/cuberev-023/verify-p1-two-ties-full18-mitm.mjs",
@@ -551,6 +562,7 @@
     "scripts/cuberev-023/verify-p2-r2-guarded-boundary-signature-Dong-independent-ecology.mjs",
     "scripts/cuberev-023/verify-p2-r2b-Dong-source-prefix-exact-full18.mjs",
     "scripts/cuberev-023/verify-p2-r2c-Dong-source-boundary-first-turn-exact.mjs",
+    "scripts/cuberev-023/verify-p3-r0-corner-2x2-quotient-vs-full-3x3.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -1760,6 +1772,85 @@
       "science_grade": "Three distinct physical CI PASS, cognitively unobserved, backup NISS grammar HOLD",
       "workflow_write_permissions_changed": false,
       "no_wildcard_expansion": true
+    },
+    "p3_r0_multiaxis_exact_explicit_admission": {
+      "date": "2026-10-11",
+      "previous_allowlist_count": 644,
+      "added": 12,
+      "tree_head_before_manifest_commit": "02c78cff1058e979344ce773aeb1e957fa26dbb8",
+      "git_tree_sha_before_manifest_commit": "e564474d3fc03c78518c9fef8e5b8e0c654f0d86",
+      "new_paths_and_blob_SHA1": [
+        {
+          "path": ".github/workflows/cuberev-023-P3-R0-corner-2x2-quotient.yml",
+          "git_blob_sha": "fdd4352eb2e464e817c49ed3766c4eace475d799",
+          "mode": "100644"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P3-R0-crosslanguage-lean-pdb.yml",
+          "git_blob_sha": "782f1e040c2e68cb9b6712f2bb52a1fda5f49628",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-023/p3_r0_human_physical_cognitive_source_grade_inventory.json",
+          "git_blob_sha": "81cf8db4df08f4e2b9ae1cb3c2d7886854a646bc",
+          "mode": "100644"
+        },
+        {
+          "path": "data/cuberev-023/p3_r0_source_matched_R6_real_PDB_10_action_census.csv",
+          "git_blob_sha": "827dffaa74f77acc4aaab8b50805e8d01a125e61",
+          "mode": "100644"
+        },
+        {
+          "path": "docs/0.23/P3_R0_PARETO_PDB_LEAN_GOCXX_CORNERS_COGNITIVE_FRONTIERS.md",
+          "git_blob_sha": "62745e6ffe745f73ee067ee0cc1a8ab14442a5c3",
+          "mode": "100644"
+        },
+        {
+          "path": "formal/cuberev023/PDBRankReversal.lean",
+          "git_blob_sha": "7006f2cf677e0caf0938e92e48d91a155f2aba64",
+          "mode": "100644"
+        },
+        {
+          "path": "formal/cuberev023/lake-manifest.json",
+          "git_blob_sha": "679c08eef665e760ddd2e69c3cc4c4df0ca54d02",
+          "mode": "100644"
+        },
+        {
+          "path": "formal/cuberev023/lakefile.lean",
+          "git_blob_sha": "33f1c0ac06c4852271661d8381bbbdf22a4196c3",
+          "mode": "100644"
+        },
+        {
+          "path": "formal/cuberev023/lean-toolchain",
+          "git_blob_sha": "c00a53503cc3cc776c290056ed21ce7e5d80b083",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-023/rank_reversal_cpp/main.cpp",
+          "git_blob_sha": "bed674d22b182ae58f6ac38680ff571c203a8744",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-023/rank_reversal_go/main.go",
+          "git_blob_sha": "c69b02930a7f4f90e5047d9e98342542004ed6c2",
+          "mode": "100644"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p3-r0-corner-2x2-quotient-vs-full-3x3.mjs",
+          "git_blob_sha": "53c8d7733c38a6f146b1ba73658fe9d4d5740ef8",
+          "mode": "100644"
+        }
+      ],
+      "external_drive_retired_README_MD_verified": "https://drive.google.com/file/d/1GoOQpUTROhKxIIYFGRQhN0fH-tc6-vsx/view",
+      "science_checks": [
+        "Lean and Go/C++ independently SUCCESS #38133579548",
+        "2x2-corner and actual 3x3 full-state independent SUCCESS #38133695418"
+      ],
+      "old_paths_preserved": true,
+      "remove_files": false,
+      "glob_rule_added": false,
+      "permissions_no_write": true,
+      "original_main_commit_history_unchanged": true
     }
   }
 }
