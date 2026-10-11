@@ -1,0 +1,40 @@
+name: CUBE-REV 0.23 P3-R3B original-cube halfturn geodesic solver
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv"
+      - "scripts/cuberev-023/verify-p3-r3b-62-original-sticker-halfturn-mitm-geodesic.mjs"
+      - "scripts/cuberev-023/p3_r3b_halfturn_physical_go/main.go"
+      - ".github/workflows/cuberev-023-P3-R3B-full-sticker-halfturn-solver.yml"
+permissions:
+  contents: read
+jobs:
+  exact-54-sticker-cube-geodesics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Zero github-action bot contributors on research history
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::Forbidden bot authored or committed history"
+            exit 1
+          fi
+      - name: Node source-independent original 54-sticker exact all18/half6 geometry and 3+2 solver
+        run: node scripts/cuberev-023/verify-p3-r3b-62-original-sticker-halfturn-mitm-geodesic.mjs
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.2"
+      - name: Independent Go original 54-sticker exact finite cubing and solver
+        run: go run scripts/cuberev-023/p3_r3b_halfturn_physical_go/main.go
+      - name: No generated source edits or git writes
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
