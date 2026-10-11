@@ -71,6 +71,25 @@ theorem expanded_opportunity_minimum_cannot_increase
     exact (nAttained.2 m hm) (included m mAttained.1)
   exact Nat.le_of_not_gt impossible
 
+/- A deterministic perfect-information solver must assign different solving
+   words to different exact group states. The proof assumes real HTM group
+   right-action injectivity; the finite 62-state physical witnesses are separately
+   certified by their original complete 54-sticker solver. -/
+theorem exact_full_solve_word_assignment_injective
+    {State Word : Type}
+    (act : State → Word → State)
+    (actInjective : ∀ w, Function.Injective (fun s => act s w))
+    (goal : State)
+    (algorithmFor : State → Word)
+    (correct : ∀ s, act s (algorithmFor s) = goal) :
+    Function.Injective algorithmFor := by
+  intro s t sameWord
+  have hs : act s (algorithmFor s) = goal := correct s
+  have ht : act t (algorithmFor s) = goal := by
+    rw [sameWord]
+    exact correct t
+  exact (actInjective (algorithmFor s)) (hs.trans ht.symm)
+
 theorem rank_reversal_example :
     ¬ ∃ f : Nat → Nat → Nat, IsBiMono f ∧
       f 6 9 = 10 ∧ f 5 7 = 12 := by
