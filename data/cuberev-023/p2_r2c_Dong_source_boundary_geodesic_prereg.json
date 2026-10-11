@@ -1,0 +1,20 @@
+{
+  "schema": "cuberev-023-p2-r2c-independent-Dong-authored-boundary-shortest-suffix-v1",
+  "status": "FROZEN_BEFORE_ANY_NEW_DISTANCE11_CHILD_SEARCH",
+  "origin": "Independent source Dong 10-turn original LR DR prefix, full 18-HTM shortest12 exactly P2-R2B Actions #38131968404; human published 22 HTM main word",
+  "proposition": "An exact shortest12 post-prefix completion can shorten the final 22-turn word across the original human source-prefix/suffix boundary only if its FIRST legal original face move is D, D2, or Dprime (the author prefix last original move is D). A candidate such move exists iff the corresponding physical child state has an 11-turn solved path.",
+  "physically_exhaustive_test_alphabet": [
+    "D",
+    "D2",
+    "D'"
+  ],
+  "decision_method": "For each original physical child obtained from the real scramble+10 written moves+one tested D-family turn, do independent full-cubie BFS radius5 and solved full-cubie BFS radius5. Exclude <=10 by exact state intersection; test existence of <=11 by streaming 574908 real goal-depth5 states x 18 actual moves. If an 11-turn witness exists, physically replay whole 12-turn original sourced completion and adjacent normal form. If none, certify no shortest12 continuation begins this face move. No 12+ frontier needed.",
+  "predicted_possible_full_word_savings": {
+    "D": 1,
+    "D2": 1,
+    "D'": 2
+  },
+  "bounded_compute": "3x source radius5 full cubie + at most three sets of 10,348,344 real one-turn bridges. When no 11 after a move, do not invent its exact d12 or13. Actions read-only, timeout 23min.",
+  "valid_scope": "Actual authored 10-turn literal prefix and its exact shortest postprefix full18=12; if boundary cancellation exists, entire final word may lose original prefix, so original prefix-conditioned22 theorem is not contradicted.",
+  "human_process": "No claim that Baiqiang Dong considered the mathematically possible alternative if found, nor that author's backup parenthesized NISS grammar is normal side."
+}
