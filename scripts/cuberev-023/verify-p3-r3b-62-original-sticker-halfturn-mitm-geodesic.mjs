@@ -109,6 +109,14 @@ const goalRadius2=distanceCensus(halfIds,2);
 assert.deepEqual(full.hist,[1,18,243,3240,43239]);
 assert.deepEqual(half.hist,[1,6,27,120,519,1932]);
 assert.equal(goalRadius2.visited.size,34);
+const quarterControls=actions.map((a,i)=>({a,i})).filter(x=>!x.a.endsWith("2"));
+assert.equal(quarterControls.length,12);
+for(const control of quarterControls){
+  const genuinePhysicalQuarterState=move(identity,control.i);
+  assert.equal(full.visited.get(genuinePhysicalQuarterState)?.depth,1);
+  assert.equal(half.visited.has(genuinePhysicalQuarterState),false,
+    "Quarter-turn negative control must NOT be solved by <=5 halfturns");
+}
 let firstMoveSupport=Object.fromEntries(halfIds.map(i=>[actions[i],0]));
 const shortestCountHist={},firstChoiceHist={},examples=[];
 const witnessWords=[],solverForwardHistogram={};
