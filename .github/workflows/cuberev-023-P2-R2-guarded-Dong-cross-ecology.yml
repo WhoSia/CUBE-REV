@@ -1,0 +1,50 @@
+name: CUBE-REV 0.23 P2-R2 — Guarded Boundary Signature Cross-Ecology
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p2_r2_guarded_signature_independent_source_prereg.json'
+      - 'data/cuberev-023/p2_r2_frozen_all_eight_full18_optimal_suffix_words.json'
+      - 'scripts/cuberev-023/verify-p2-r2-guarded-boundary-signature-Dong-independent-ecology.mjs'
+      - '.github/workflows/cuberev-023-P2-R2-guarded-Dong-cross-ecology.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source_original_full_cube_cross_ecology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test guarded 2-suffix-turn boundary opportunity and independent authored original-scramble cube 
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-023/verify-p2-r2-guarded-boundary-signature-Dong-independent-ecology.mjs | tee CUBE_REV_023_P2_R2_source_guarded_cross_ecology.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_023_P2_R2_source_guarded_cross_ecology.json','utf8'));
+          assert.equal(z.marker,'CUBE_REV_023_P2_R2_GUARDED_TWO_TOKEN_PREDICTOR_INDEPENDENT_DONG_SOURCE');
+          assert.equal(z.P2R1_shortest_actual_full18_word_count,8);
+          assert.equal(z.two_token_exact_prediction_mistakes,0);
+          assert(z.independent_original_submitted_FMC_solution_verified);
+          assert(z.independent_full_cube_DR_axes.length>=1);
+          assert.equal(z.independent_original_face_synthetic_inverse_pair_count,324);
+          assert(z.independent_real_original_scramble_full_cube_replays_verified);
+          assert(z.all_324_are_geodesic_suffixes===false);
+          assert(z.human_decision_process_inference_NOT_IDENTIFIED);
+          console.log('CUBE_REV_023_P2_R2_SOURCE_GUARD_PREDICTOR_REAL_SECOND_SCRAMBLE_PASS');
+          JS
+      - name: Persist exact source grade, abstentions, physical witness probes and negative controls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-023-P2-R2-guarded-Dong-real-scramble
+          path: CUBE_REV_023_P2_R2_source_guarded_cross_ecology.json
+          retention-days: 90
+          if-no-files-found: warn
