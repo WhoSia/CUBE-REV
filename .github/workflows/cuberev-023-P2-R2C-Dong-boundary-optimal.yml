@@ -1,0 +1,47 @@
+name: CUBE-REV 0.23 P2-R2C — Independent Dong Source Boundary Turn Court
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p2_r2c_Dong_source_boundary_geodesic_prereg.json'
+      - 'scripts/cuberev-023/verify-p2-r2c-Dong-source-boundary-first-turn-exact.mjs'
+      - '.github/workflows/cuberev-023-P2-R2C-Dong-boundary-optimal.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent_Dong_original_face_boundary_optimality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact 3-way original author last-face boundary completion lower/upper test
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=5000 scripts/cuberev-023/verify-p2-r2c-Dong-source-boundary-first-turn-exact.mjs | tee CUBE_REV_023_P2_R2C_Dong_first_optimal_face_boundary.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('CUBE_REV_023_P2_R2C_Dong_first_optimal_face_boundary.json','utf8'));
+          assert.equal(x.marker,'CUBE_REV_023_P2_R2C_INDEPENDENT_HUMAN_DONG_OPTIMAL_BOUNDARY_TURN_COURT');
+          assert.equal(x.exact_three_face_turn_tests.length,3);
+          assert(x.independent_exhaustive_full_cube_11_turn_bridge_searches);
+          for(const t of x.exact_three_face_turn_tests){
+           assert(t.physically_supported_exact_12_turn_continuation_starting_this_face || t.eleven_turn_whole_cube_midpoint_tests===574908*18);
+          }
+          assert(x.unobserved_human_mental_choice_NOT_IDENTIFIED);
+          console.log('CUBE_REV_023_P2_R2C_INDEPENDENT_BOUNDARY_FACE_CHOICE_EXACT_PASS');
+          JS
+      - name: Retain full cubie physical face boundary witnesses and exclusions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-023-P2-R2C-Dong-first-boundary-18HTM
+          path: CUBE_REV_023_P2_R2C_Dong_first_optimal_face_boundary.json
+          retention-days: 90
+          if-no-files-found: warn
