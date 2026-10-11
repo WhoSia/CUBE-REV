@@ -1,0 +1,119 @@
+{
+  "schema": "cuberev-023-P3-R0-physical-vs-behavioral-cognitive-source-authority-v1",
+  "status": "SOURCE_AUTHORITY_INVENTORY_NOT_NEW_HUMAN_EXPERIMENT",
+  "primary_research_question": "Can a physically proven task-relative observation/heuristic/geodesic cost frontier be connected to observed human stage or algorithm choice? Separate geometrical feasibility from cognitive mechanism.",
+  "sources": [
+    {
+      "id": "R6_MIAO",
+      "type": "PHYSICAL_FULL_CUBE_AUTHORED_PREFIX_PLUS_SYNTHETIC_INTERVENTIONS",
+      "scope": "3x3 FMC authored same EO two DR alternatives; 10 matched synthetic DR moves; strict componentwise PDB reversal 10/10",
+      "human_n": 1,
+      "physical_matched_pair_n": 10,
+      "cognition_direct_observations": 0,
+      "link": "https://github.com/WhoSia/CUBE-REV/blob/research/current/docs/0.22/P8_R6_MATCHED_BRANCH_INTERVENTIONS_AND_JOINT_CONSTRAINT_CERTIFICATES.md",
+      "allowed": "full-cube actual lower bounds and exact DR solved cost; original retrospective word existence",
+      "prohibited": "individual mental strategy, group generalization"
+    },
+    {
+      "id": "DONG_SHA_2026",
+      "type": "AUTHORED_FMC_SINGLE_COMPLETE_SOLUTION",
+      "scope": "different human and scramble; human ten-turn LR DR prefix, exact all18 12-suffix, source-optimal 22",
+      "human_n": 1,
+      "physical_matched_pair_n": 0,
+      "cognition_direct_observations": 0,
+      "link": "https://333.333.fm/wca/reconstruction/MoreThanOneCubeShanghai2026/2008DONG06",
+      "allowed": "literal source moves and actual whole-cube completion",
+      "prohibited": "mental search timeline or unparsed backup NISS"
+    },
+    {
+      "id": "RECO_NZ_PRIOR451",
+      "type": "SECONDARY_3x3_SPEEDSOLVE_ACTION_RECONSTRUCTION_PRIVATE",
+      "scope": "452 source records, 451 content-unique trajectories, 25,272 nonterminal annotated actions, 25,723 cubie snapshots",
+      "human_n": null,
+      "physical_matched_pair_n": null,
+      "cognition_direct_observations": null,
+      "link": "https://github.com/WhoSia/CUBE-REV/blob/research/current/docs/0.21/P3_NATURALISTIC_451_P25_EXACT_REJOIN_AND_FMC_PROCESS_EVIDENCE.md",
+      "allowed": "source-level aggregate historical outcomes with stage/frame/confound controls",
+      "prohibited": "redistribution of private raw reconstructed trajectories, 25,272 statistically independent human events, validated neural labels",
+      "status": "ARCHIVED_PRIVATE_DERIVATIVE_ONLY"
+    },
+    {
+      "id": "WCA_RESULTS_V2_20261010",
+      "type": "OFFICIAL_PUBLIC_2x2_AND_3x3_ATTEMPT_LEVEL_OUTCOMES",
+      "scope": "v2 export metadata; events includes 222 and 333, official results and per-attempt result values; large raw TSV not downloaded this P3",
+      "human_n": null,
+      "physical_matched_pair_n": null,
+      "cognition_direct_observations": 0,
+      "link": "https://www.worldcubeassociation.org/export/results",
+      "allowed": "event-specific solve results / validity / time distribution with attribution once data ingested",
+      "prohibited": "individual cognitive load, working memory, move-by-move algorithm, brain regions, timing of inspection"
+    },
+    {
+      "id": "MEINZ_2023_DRIVE_ORIGINAL",
+      "type": "PRIMARY_PSYCHOLOGY_OPEN_ACCESS_ORIGINAL_READ",
+      "scope": "N=79 novice 7-step trained full Rubik solving; reported Gf predictive, WMC no comparable incremental prediction; not expert comparative 2x2 or speedcubing proof",
+      "human_n": 79,
+      "physical_matched_pair_n": 0,
+      "cognition_direct_observations": "psychometric study, not neural measurement",
+      "link": "https://drive.google.com/file/d/1evZEtiF9f1oyg9kjMctEKVZ3VFmec6mA/view",
+      "doi": "10.3390/jintelligence11010018",
+      "allowed": "interpret exactly published novice training associations",
+      "prohibited": "equate cognitive barrier to WMC globally; infer participant scores from WCA"
+    },
+    {
+      "id": "COLLECTIVE_INTELLIGENCE_2025_PREPRINT",
+      "type": "ABSTRACT_ONLY_SECONDARY_NARRATIVE",
+      "scope": "Krakauer Kardeş Grochow arxiv abstract, mathematical learning history",
+      "human_n": null,
+      "physical_matched_pair_n": null,
+      "cognition_direct_observations": null,
+      "link": "https://arxiv.org/abs/2511.18609",
+      "drive_inventory": "Drive 미확보(색인 검색 기준)",
+      "pdf_status": "직접 PDF 미확인",
+      "allowed": "hypothesis provenance only",
+      "prohibited": "represent as original paper fully read or neurological evidence"
+    }
+  ],
+  "binding_hypotheses": [
+    {
+      "code": "H_OBSERVABILITY",
+      "claim": "2x2-corner-only fixed-frame observations alias 3x3 edge states; task-relative physical coverage differs",
+      "evidence": "ACTUAL_FULL_CUBE_GEOMETRY_CI_PASS",
+      "neural_status": "NOT_OBSERVED"
+    },
+    {
+      "code": "H_ALGORITHM_ACCESS",
+      "claim": "learned algorithm class can restrict attainable short solutions independent of global geodesic",
+      "evidence": "FUTURE_PREDECLARED_POLICY_GRAMMAR_ONLY",
+      "neural_status": "NOT_OBSERVED"
+    },
+    {
+      "code": "H_ACTION_TIME",
+      "claim": "low HTM move count need not mean low physical speed solve time",
+      "evidence": "WCA_OUTCOMES_AVAILABLE_2x2_3x3_NOT_DOWNLOADED",
+      "neural_status": "NOT_OBSERVED"
+    },
+    {
+      "code": "H_RECOGNITION",
+      "claim": "lookahead, chunking and recognition constraints may change effective M* under budgets",
+      "evidence": "HYPOTHESIS; NO_EYE_TRACKER_OR_TASK_MEASURES",
+      "neural_status": "NOT_OBSERVED"
+    },
+    {
+      "code": "H_DUAL_PROCESS",
+      "claim": "fast heuristic vs deliberative planned candidate selection could affect policy",
+      "evidence": "HYPOTHESIS; NO_DIRECT_PROCESS_TIMESTAMPS",
+      "neural_status": "NOT_OBSERVED"
+    }
+  ],
+  "critical_invariants": [
+    "Official WCA events 222 and 333 performance time is not an observation of cognition",
+    "Source authored FMC alternatives are NOT independent participant trials",
+    "The 451 naturalistic 3x3 traces are privately held and cannot be publicly redistributed",
+    "PDB physical ranking is about 3x3 DR search not 2x2 participant performance",
+    "2x2-corner projection is fixed orientation cube mathematical quotient, not complete competition-level 2x2 metric",
+    "M*(5)=8 belongs only to frozen finite resettable 0.19 physical observational model",
+    "Lean theorem cannot establish human cognitive cause"
+  ],
+  "next_gate": "P3-R1 fixed 2x2 vs 3x3 action+observation+policy resource budget grid; needs original privacy/rights and separately verified 2x2 move trace before human process inference"
+}
