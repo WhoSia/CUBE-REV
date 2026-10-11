@@ -1,0 +1,20 @@
+{
+  "schema": "cuberev-023-p3-r2a-2x2-rotational-source-grammar-audit-prereg-v1",
+  "author": "Roman Rudakov",
+  "official_event": "2x2x2 Cube Belgrave Open 2026 0.47 single",
+  "official_wca": "https://www.worldcubeassociation.org/competitions/BelgraveOpen2026/results/all",
+  "reported_reconstruction": "https://www.speedcubing.org.au/national-record/roman-2x2-single-047",
+  "frozen": "U2 R' F R2 U2 R2 F U2 F U2 R2",
+  "frozen_solution": "x2 y' U2 R U' R2",
+  "reference_failed_before": "Original literal full sticker replay P3-R1C CI 38134830339 SOURCE_CONVENTION_HOLD",
+  "task": "Preserve source exactly; exhaustive all 24 legitimate cube orientation transforms by x/y/z as an EXPLICIT missing frame between scramble and printed solution. Compare with literal no-extra-frame; no manual correction or selection of a single successful variant.",
+  "criteria": [
+    "All 24 orientation transforms built from genuine x,y,z rotations and independently deduplicated by actual fixed-frame center images.",
+    "Literal variant must remain exactly identical to P3-R1C failing before/after sticker signature.",
+    "Conditional transform accepted only as model-compatible, NOT evidence which orientation the athlete actually used.",
+    "Verify original six 2x2 corner face uniformity under all six face normals ignoring edges and centers.",
+    "If none of 24 succeeds, maintain unresolved public source grammar; if some succeed, mark CONDITIONAL_FRAME_ONLY and test independent source/video only upon authorization."
+  ],
+  "research_grade": "Original official personal record VERIFIED, public reconstructed text VERIFIED, physical parsing of literal path FAILED, no cognitive process observed.",
+  "privacy": "Do not collect video or private participant contact; rely public source only."
+}
