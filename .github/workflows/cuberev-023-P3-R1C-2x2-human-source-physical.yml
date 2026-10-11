@@ -1,0 +1,48 @@
+name: CUBE-REV 0.23 P3-R1C — Independent Real 2x2 Published Solve Source
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p3_r1c_real_public_2x2_solve_reconstruction_prereg.json'
+      - 'scripts/cuberev-023/verify-p3-r1c-independent-real-2x2-human-recon-corners.mjs'
+      - '.github/workflows/cuberev-023-P3-R1C-2x2-human-source-physical.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent_2x2_recorded_source_grammar_whole_sticker_replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact public 2x2 recorded scramble and solution on real original physical corner faces
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-023/verify-p3-r1c-independent-real-2x2-human-recon-corners.mjs | tee CUBE_REV_023_P3_R1C_real_2x2_source.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('CUBE_REV_023_P3_R1C_real_2x2_source.json','utf8'));
+          if(x.marker==='CUBE_REV_023_P3_R1C_PUBLIC_2X2_RECONSTRUCTION_SOURCE_GRAMMAR_HOLD'){
+            console.error('Actual original published 2x2 source did not physically solve under exact used frame, SOURCE_CONVENTION_HOLD');
+            process.exitCode=2;
+          } else {
+            assert.equal(x.marker,'CUBE_REV_023_P3_R1C_PUBLIC_2X2_RECONSTRUCTION_SOURCE_PHYSICAL_PASS');
+            assert(x.physically_solved_all_six_corners_only_2x2_faces);
+            assert(x.actual_original_54_sticker_oracle_used);
+            assert(x.no_2x2_all_state_optimality_claim);
+            console.log('CUBE_REV_023_P3_R1C_REAL_2X2_SOURCE_PHYSICAL_PASS');
+          }
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-023-P3-R1C-public-real-2x2-reconstruction
+          path: CUBE_REV_023_P3_R1C_real_2x2_source.json
+          retention-days: 90
+          if-no-files-found: warn
