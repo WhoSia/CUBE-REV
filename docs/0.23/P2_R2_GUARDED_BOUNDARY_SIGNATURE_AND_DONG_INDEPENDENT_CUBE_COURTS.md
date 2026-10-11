@@ -37,7 +37,7 @@ Replayed the **complete set of eight** P2-R1 optimal 18-HTM suffix move strings 
 | Main (two) | `D' F2` | `D2 B R2 …` | **3** | **4 HTM** |
 | Alternate (one) | `D' F2` | `R2 D2 …` | **1** | **0 HTM** |
 
-Independent [P2-R2 guarded source cross-ecology CI SUCCESS #38132233908](https://github.com/WhoSia/CUBE-REV/actions/runs/38132233908) (final newer build also succeeds), [full original-source/8-geodesic/324-control artifact #11699202255](https://github.com/WhoSia/CUBE-REV/actions/runs/38131823864/artifacts/11699202255) is the **earlier first-two guard** receipt; use the later [Actions #38132233908](https://github.com/WhoSia/CUBE-REV/actions/runs/38132233908) for the complete horizon distribution and updated proof, not the earlier artifact. [Reusable physical boundary classifier](../../scripts/cuberev-023/verify-p2-r2-guarded-boundary-signature-Dong-independent-ecology.mjs).
+Independent **final** [P2-R2 guarded source/horizon cross-ecology CI SUCCESS #38132244769](https://github.com/WhoSia/CUBE-REV/actions/runs/38132244769), [full original-source / 8-geodesic / 324 reversible-insertion controls and earliest-sealing-horizon artifact #11699950424](https://github.com/WhoSia/CUBE-REV/actions/runs/38132244769/artifacts/11699950424), artifact ZIP SHA-256 `9c3a7e2edc08bb0a4a447178746b5601754fbd0d4de71d01537ccdb0bc772611` (prior first-two preliminary #38131823864 preserved separately). [Reusable physical boundary classifier](../../scripts/cuberev-023/verify-p2-r2-guarded-boundary-signature-Dong-independent-ecology.mjs).
 
 ## 3. Independent Dong original-scramble 324-word adversarial control
 
