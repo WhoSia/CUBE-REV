@@ -2057,7 +2057,38 @@
         "Node and Go exact minimum vertex cover",
         "C++20 exact maximum independent set"
       ],
-      "governance": "READ_ONLY_CI; commit authors/committers WhoSia only; no bot; no new human sourcing; preserve history"
+      "governance": "READ_ONLY_CI; commit authors/committers WhoSia only; no bot; no new human sourcing; preserve history",
+      "post_admission_revision": {
+        "status": "EXACT_62_ORIGINAL_FACE_SYMBOL_ADAPTIVE_MARKED_ERASURE_DP_6_VS_5_EXTERNAL_CI_PENDING",
+        "identical_physical_source_unchanged_sha": "dc36a595209dde26ba270b3070ff747c25559a35",
+        "source_checked_live_from_original_GitHub_csv": true,
+        "minimax_one_located_erasure_no_requery_queries": 6,
+        "minimax_one_located_erasure_retry_erased_face_queries": 5,
+        "programs_and_github_blobs": [
+          {
+            "path": "scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs",
+            "git_blob_sha": "98b6a59ec5f69a838414141ba861f13b54741376"
+          },
+          {
+            "path": "scripts/cuberev-023/p3_r3_robust_face_go/main.go",
+            "git_blob_sha": "8f4558fd701adeefcdd73deeeb8ad7b4c99f73ac"
+          },
+          {
+            "path": "scripts/cuberev-023/p3_r3_robust_face_cpp/main.cpp",
+            "git_blob_sha": "3cc370a8aa3c8c2f0ddaa1c8d5b343fec058905e"
+          },
+          {
+            "path": "docs/0.23/P3_R3_ROBUST_FACE_OBSERVATION_ERROR_CORRECTION_AND_SOURCE_TRANSFER.md",
+            "git_blob_sha": "22a6a235a4f1c77b2b0e0c34cbb25dcfacb1404e"
+          },
+          {
+            "path": ".github/workflows/cuberev-023-P3-R3-robust-face-error-code.yml",
+            "git_blob_sha": "53292de6288de9edc45113ffbd344f4256670229"
+          }
+        ],
+        "validation_boundary": "full source face symbol exact DP directly verified; GitHub Actions independent completed PASS unverified; not independent 54-sticker physical engine",
+        "historical_preservation": "original first-admission Git blob shas retained unchanged"
+      }
     }
   }
 }
