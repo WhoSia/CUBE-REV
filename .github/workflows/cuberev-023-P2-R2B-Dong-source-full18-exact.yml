@@ -1,0 +1,48 @@
+name: CUBE-REV 0.23 P2-R2B — Dong Original Literal Source Prefix All18 Optimum
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p2_r2b_Dong_whole18_prefix_optimality_prereg.json'
+      - 'scripts/cuberev-023/verify-p2-r2b-Dong-source-prefix-exact-full18.mjs'
+      - '.github/workflows/cuberev-023-P2-R2B-Dong-source-full18-exact.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent_human_source_full18_optimum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prove unrestricted all18 shortest geodesic after real author literal DR stage
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=5000 scripts/cuberev-023/verify-p2-r2b-Dong-source-prefix-exact-full18.mjs | tee CUBE_REV_023_P2_R2B_Dong_exact_source_opportunity.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('CUBE_REV_023_P2_R2B_Dong_exact_source_opportunity.json','utf8'));
+          assert.equal(x.marker,'CUBE_REV_023_P2_R2B_DONG_INDEPENDENT_SOURCE_ALL18_EXACT_FIXED_PREFIX_OPPORTUNITY');
+          assert(x.preregistered_before_result);
+          assert.deepEqual(x.verified_physical_DR_axes,['LR']);
+          assert(x.original_22_HTM_public_result_solves_original_cube);
+          assert(x.complete_intersection_check_for_paths_at_most_10);
+          assert(x.exact_shortest_all18_post_actual_human_source_prefix<=12);
+          assert(x.witness_physically_solves_original_54_sticker_cube);
+          assert(x.human_historical_choice_trajectory_NOT_IDENTIFIED);
+          console.log('P2_R2B_DONG_SOURCE_VERIFIED_EXACT_18_HTM_PHYSICAL_PASS');
+          JS
+      - name: Preserve independent sourced full cube geodesic or computational failure artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-023-P2-R2B-Dong-source-exact-18HTM
+          path: CUBE_REV_023_P2_R2B_Dong_exact_source_opportunity.json
+          retention-days: 90
+          if-no-files-found: warn
