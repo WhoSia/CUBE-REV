@@ -123,6 +123,7 @@ assert.equal(submission.length,22);
 assert.deepEqual(submission.slice(0,10),src,'New independent human author reconstructed EO+DR prefix must match their published solution');
 assert(solvedUpToRotation(stickerAfter([...scramble,...submission])),'Independent Dong public submitted FMC solution did NOT solve exact original scramble');
 const axes=Object.keys(ROT).filter(a=>dr(phaseState(stickerAfter([...scramble,...src]),a)));
+assert(axes.length>0,'Independent Dong source prefix not valid DR in any real physical axis: CROSS_ECOLOGY_HOLD');
 const T=submission.slice(src.length);
 assert.equal(T.length,12);
 const baseAudit=reduceWithTags([{grade:'AUTHORED_HUMAN_SOURCE',moves:src},{grade:'AUTHORED_HUMAN_SUBMISSION_SUFFIX',moves:T}]);
