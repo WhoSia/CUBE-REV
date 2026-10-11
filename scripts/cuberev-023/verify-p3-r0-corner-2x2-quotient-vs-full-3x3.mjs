@@ -133,13 +133,14 @@ function inspect(source,side,label) {
 
 
 const sorted=[...G.visited.entries()].sort((a,b)=>a[1].length-b[1].length);
-const cornerSeen=new Map(),edgeSeen=new Map(),atDepth=[],collisions=[];
+const cornerSeen=new Map(),edgeSeen=new Map(),cornerMultiplicity=new Map(),atDepth=[],collisions=[];
 let index=0,cornerAliasCount=0,edgeAliasCount=0,crossEdgeOrientationAliases=0;
 for(const [k,code] of sorted){
  const depth=code.length;
  const corner=k.slice(0,16);
  const edge=k.slice(16,40);
  const prior=cornerSeen.get(corner);
+ cornerMultiplicity.set(corner,(cornerMultiplicity.get(corner)||0)+1);
  if(prior){
   if(prior.whole!==k){
    cornerAliasCount++;
@@ -161,10 +162,12 @@ for(const [k,code] of sorted){
    }
   }
  }else{cornerSeen.set(corner,{whole:k,word:code,depth});}
- if(edgeSeen.has(edge)){edgeAliasCount++;}else{edgeSeen.set(edge,{whole:k,word:code});}
+ const previouslySeenEdge=edgeSeen.has(edge);
+ if(previouslySeenEdge){edgeAliasCount++;}else{edgeSeen.set(edge,{whole:k,word:code});}
  if(!atDepth[depth])atDepth[depth]={depth,whole_states:0,new_corner_states:0,new_edge_states:0};
  const row=atDepth[depth];row.whole_states++;
  if(!prior)row.new_corner_states++;
+ if(!previouslySeenEdge)row.new_edge_states++;
  index++;
 }
 assert.equal(index,G.visited.size);
@@ -172,6 +175,12 @@ assert.deepEqual(G.hist,[1,18,243,3240,43239,574908]);
 assert.equal(cornerSeen.size+cornerAliasCount,index);
 assert(cornerSeen.size>0);
 assert(cornerSeen.size<=index);
+const largestCornerFiber=Math.max(...cornerMultiplicity.values());
+const extraEdgeBitsLowerBound=Math.ceil(Math.log2(largestCornerFiber));
+const fibers=[...cornerMultiplicity.values()];
+const fibersAtLeastTwo=fibers.filter(n=>n>=2).length;
+assert(fibers.reduce((x,y)=>x+y,0)===index);
+assert(fibersAtLeastTwo>0&&largestCornerFiber>=2);
 const observed=collisions.length;
 if(cornerAliasCount>0)assert(observed>0);
 console.log(JSON.stringify({
@@ -182,6 +191,10 @@ console.log(JSON.stringify({
  physical_full_3x3_cubie_state_count:index,
  physically_distinct_2x2_corner_position_orientation_projections:cornerSeen.size,
  observed_corner_projection_collision_instances:cornerAliasCount,
+ observed_corners_only_multistate_observation_keys:fibersAtLeastTwo,
+ maximum_full_cube_states_per_one_identical_corner_observation:largestCornerFiber,
+ deterministic_worst_case_additional_binary_distinctions_needed_to_resolve_fixed_corner_fiber:extraEdgeBitsLowerBound,
+ this_bit_lower_bound_is_a_counting_argument_not_human_working_memory:true,
  physically_distinct_edge_position_orientation_projections:edgeSeen.size,
  edge_projection_collision_instances:edgeAliasCount,
  actual_corners_equal_edges_different_witnesses:collisions,
