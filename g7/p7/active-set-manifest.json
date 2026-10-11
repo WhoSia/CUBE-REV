@@ -71,6 +71,7 @@
     ".github/workflows/cuberev-023-P3-R2A-source-2x2-24-rotations.yml",
     ".github/workflows/cuberev-023-P3-R2B-451-aggregate-transport.yml",
     ".github/workflows/cuberev-023-P3-R3-robust-face-error-code.yml",
+    ".github/workflows/cuberev-023-P3-R3B-full-sticker-halfturn-solver.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -295,8 +296,10 @@
     "docs/0.23/P3_R0_PARETO_PDB_LEAN_GOCXX_CORNERS_COGNITIVE_FRONTIERS.md",
     "docs/0.23/P3_R1_EXACT_REAL_FACE_INSPECTION_MSTAR_AND_HUMAN_2X2_SOURCE_BOUNDARY.md",
     "docs/0.23/P3_R2_TRUE_2X2_FRAME_AND_PRIVATE451_HUMAN_MSTAR_TRANSPORT.md",
+    "docs/0.23/P3_R3B_HALF_TURN_GEODESIC_SOLVER_AND_024_RESEARCH_PIVOT.md",
     "docs/0.23/P3_R3_ROBUST_FACE_OBSERVATION_ERROR_CORRECTION_AND_SOURCE_TRANSFER.md",
     "docs/0.23/PROGRAM_CHARTER.md",
+    "docs/0.24/00_PROPOSED_PHYSICAL_CUBE_SEARCH_ARCHITECTURE_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
     "formal/016/P12LightGraph.lean",
@@ -570,6 +573,7 @@
     "scripts/cuberev-023/p3_r1b_face_policy_go/main.go",
     "scripts/cuberev-023/p3_r3_robust_face_cpp/main.cpp",
     "scripts/cuberev-023/p3_r3_robust_face_go/main.go",
+    "scripts/cuberev-023/p3_r3b_halfturn_physical_go/main.go",
     "scripts/cuberev-023/rank_reversal_cpp/main.cpp",
     "scripts/cuberev-023/rank_reversal_go/main.go",
     "scripts/cuberev-023/verify-p0-source-grade-and-full-cube.mjs",
@@ -587,6 +591,7 @@
     "scripts/cuberev-023/verify-p3-r2b-private451-human-corner-transport.py",
     "scripts/cuberev-023/verify-p3-r2b-published-human-aggregate-Mstar-transport-gate.mjs",
     "scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs",
+    "scripts/cuberev-023/verify-p3-r3b-62-original-sticker-halfturn-mitm-geodesic.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2129,6 +2134,41 @@
           "verified_against_original_fixture": true
         }
       }
+    },
+    "p3_r3b_actual_54_sticker_halfturn_geodesic_and_024_proposal": {
+      "date": "2026-10-11",
+      "status": "SOURCE_FACELET_EXACT_INDEPENDENT_MODEL_INTERNAL_PASS_EXTERNAL_CI_PENDING_024_NOT_ACTIVE",
+      "physical_fixture": "data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv",
+      "physical_fixture_git_blob_sha": "dc36a595209dde26ba270b3070ff747c25559a35",
+      "finite_results": "62 source states (60 exact d5 2 exact d3), all18 radius4 1/18/243/3240/43239, halfturn radius5 1/6/27/120/519/1932, 50 single geodesic / 12 double, exactly 74 all18 shortest words and all halfturn-only, 34 goal radius2 and 154 source radius3; all original source facelets solve",
+      "out_of_domain_controls": "12 genuine physical quarterturn states not admitted as radius<=5 H-only",
+      "source_rights": "public existing physically derived 62 full-state fixture, no private 451 trajectories",
+      "new_paths_exact_Git_blobs": [
+        {
+          "path": "scripts/cuberev-023/verify-p3-r3b-62-original-sticker-halfturn-mitm-geodesic.mjs",
+          "git_blob_sha": "4b4e59f38b36d92202d2fc2a0f1aed8b8c814c1c"
+        },
+        {
+          "path": "scripts/cuberev-023/p3_r3b_halfturn_physical_go/main.go",
+          "git_blob_sha": "7681b2b323a704df9ee4cc77a05a00178c231270"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P3-R3B-full-sticker-halfturn-solver.yml",
+          "git_blob_sha": "4e46866ca53065769d77e6bb413b421104eccca5"
+        },
+        {
+          "path": "docs/0.23/P3_R3B_HALF_TURN_GEODESIC_SOLVER_AND_024_RESEARCH_PIVOT.md",
+          "git_blob_sha": "af970e466ab5901af06faf52fe8a304a638339be"
+        },
+        {
+          "path": "docs/0.24/00_PROPOSED_PHYSICAL_CUBE_SEARCH_ARCHITECTURE_CHARTER.md",
+          "git_blob_sha": "47d139b4dab26cf42d90c1a6ef6a8e0bf8dab997"
+        }
+      ],
+      "independent_implementations": "independent original geometric 54-facelet JS and Go layer-rotation engines",
+      "CI": "GitHub Actions contents:read; no autopush and no bot contributions; external completed run still unverified",
+      "transition_024": "PROPOSED_ONLY_not_activated_no_new_branch",
+      "no_glob": true
     }
   }
 }
