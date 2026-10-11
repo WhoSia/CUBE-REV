@@ -53,6 +53,21 @@ A subset T of the 62 physical states has guaranteed one-face-substitution correc
 
 This is an exact statement about the frozen set of 62 *genuine* whole-cubie source states and the specified six-symbol observation channel. It is **not** the number of people, retained solution algorithms, neurologic chunks, human recoverable states or a universal theorem for all 2×2/3×3 states.
 
+## Theorem R3-D — Exact adaptive marked-erasure control: 6 without re-query, 5 with re-query
+
+The complete source-state mask dynamic game is now separately solved by Node and Go. A controller observes a complete face symbol when not erased; if erased, the location is explicitly known, and exactly **one** erasure may occur adversarially. Each policy may condition its next selected face on the prior correct output and erasure flag. The cost is worst-case number of issued face queries. The target remains exact identification of all 62 original physical cubies.
+
+For a belief set B, previously queried face mask U, remaining budget q and remaining erasure allowance e, the exact winning predicate W(B,U,q,e) is true if the belief is a singleton, or if some permitted next face f has **all** possible correct-observation child partitions winning with (q−1,e) and, when e=1, its erased-answer branch winning with (q−1,0). In the **no-repeat** model, f is marked consumed even when erased; in the **retry-allowed** model, erased f remains queryable. The recursion terminates because q decreases strictly on every path. Finite source-state masks, each actual recorded nine-sticker face partition and the 62 whole-cubie source rows determine the entire exhaustive game.
+
+**Computed exact q=0..6 winning vectors:**
+
+- **No repeated face after erasure:** false,false,false,false,false,false,**true** ⇒ exact worst-case q*=**6**.
+- **Retry of an erased face permitted:** false,false,false,false,false,**true,true** ⇒ exact worst-case q*=**5**.
+
+There is also a short independent *structural proof* of the second q*=5. The previously certified original P3-R1 zero-error adaptive worst-case q*=4 policy can be executed, retrying the *same* face once if its report is erased. There is at most one erasure, so at most five total queries suffice. With a budget of four, an adversary may erase the first query; at most three valid later face-query observations remain from the entire unchanged 62-state prior, but the exact P3-R1 q=3 noiseless impossibility forbids identifying all source states; therefore four cannot suffice. The DP confirms the bound while accounting for exact face partitions.
+
+The q*=6 versus q*=5 contrast is a strict operational *action-affordance* distinction, not a result about observed human working memory, an arbitrary query library, facelet noise distributions or one unlocated substitution. In particular, **Theorem R3-A still assumes six distinct face patterns read once**; allowing re-read changes its action contract and requires a separate error-correction analysis. Nor does q*=6 imply all human policies need six glances.
+
 ## Independent algorithms and original-source verification boundaries
 
 - [Node exact verifier](../../scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs): frozen original fixture structural/color validation, 1,891×64 pair comparisons, distance count and full componentwise exact minimum vertex-cover algorithm.
@@ -70,8 +85,8 @@ The 451 private human-written 3×3 solve records supply **no measured nine-stick
 
 ## Next stringent research court
 
-1. Analyze **adaptive** minimax face selection with one explicitly marked erasure and **no repeated face**: can a five-query decision policy succeed despite the fixed-mask five-face obstruction? Do not prejudge the result.
-2. Explicitly price face re-reads and bound errors; distinguish a static six-face code from an interactive fault-tolerant decision tree.
+1. **R3-D now proved:** exact adaptive one-marked-erasure minimax is **6 without any erased-face re-query versus 5 when re-query is permitted**. Next attempt an independently executable *policy certificate* and adversarial transition-by-transition witness, not merely a scalar Boolean frontier.
+2. Price complete-face re-read, whole-face substitution and partial-sticker noise as three different action/observation types; do not transfer the q*=5 erasure theorem to unlocated corruptions.
 3. Compare minimal word dictionaries with **concretely specified and priced algorithm programs** without quietly equating a short generic solver with human learning.
 4. Independently verify a second real 2×2 textual reconstruction under **source-authorized** frame notation; do not insert unreported orientation to rewrite original human evidence.
 5. Maintain privacy-safe source-stratified negative controls and report empty common support without estimating a person-specific cognition effect.
