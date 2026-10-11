@@ -322,6 +322,37 @@ for(const item of input.rows){
  assert.equal(BigInt(allWordKeys.size),total,'Independent explicit optimal word enumeration disagrees with DAG count');
  for(const [saved,count] of histogram)assert.equal(allWordCounts.get(saved),count,'Explicit original-sticker replay class counts disagree with DP');
  assert.equal(allWordExamples.length,allWordKeys.size);
+ // Secondary physical-word quotient: commuting moves of genuinely opposite cube
+ // faces preserve cube state and HTM length; they do NOT create independent candidates.
+ const wordIndex=new Map(allWordExamples.map((x,i)=>[x.shortest_suffix,i]));
+ const parent=allWordExamples.map((_,i)=>i);
+ const find=i=>parent[i]===i?i:(parent[i]=find(parent[i]));
+ const union=(i,j)=>{let a=find(i),b=find(j);if(a!==b)parent[b]=a;};
+ const oppositeFaces={U:'D',D:'U',R:'L',L:'R',F:'B',B:'F'};
+ let physicallyCommutingNeighborChecks=0;
+ for(let i=0;i<allWordExamples.length;i++){
+  const t=tokenize(allWordExamples[i].shortest_suffix);
+  for(let k=0;k<t.length-1;k++){
+   assert.notEqual(t[k][0],t[k+1][0],'Optimal HTM word cannot have adjacent same-face turns');
+   if(oppositeFaces[t[k][0]]!==t[k+1][0])continue;
+   physicallyCommutingNeighborChecks++;
+   const b=t.slice();[b[k],b[k+1]]=[b[k+1],b[k]];
+   const j=wordIndex.get(b.join(' '));
+   assert(j!==undefined,'Opposite-face commute must remain a complete shortest legal suffix in exhaustive enumeration');
+   union(i,j);
+  }
+ }
+ const classMap=new Map();
+ for(let i=0;i<allWordExamples.length;i++){
+  const k=find(i);
+  if(!classMap.has(k))classMap.set(k,[]);
+  classMap.get(k).push(allWordExamples[i]);
+ }
+ const commuteClasses=[...classMap.values()].map(group=>({
+  member_suffixes:group.map(x=>x.shortest_suffix),
+  independent_word_variants:group.length,
+  attainable_boundary_savings:[...new Set(group.map(x=>x.boundary_savings_HTM))].sort((a,b)=>a-b)
+ }));
  const possible=[...histogram.keys()].sort((a,b)=>a-b);
  const allCounts=Object.fromEntries(possible.map(x=>[String(x),histogram.get(x).toString()]));
  const exactClassFreq=Object.fromEntries(possible.map(x=>[String(x),Number(histogram.get(x)>0n)]));
@@ -339,6 +370,9 @@ for(const item of input.rows){
   distinct_first_one_moves_in_an_optimal_suffix:[...oneWords].sort(),
   distinct_first_two_words_in_an_optimal_suffix_count:observedTwo.size,
   exact_optimal_all18_suffix_word_COUNT:total.toString(),
+  commuting_opposite_face_neighbor_checks:physicallyCommutingNeighborChecks,
+  exact_shortest_suffix_word_classes_modulo_local_opposite_face_commutation:commuteClasses.length,
+  concrete_local_commutation_classes:commuteClasses,
   independent_complete_suffix_word_enumeration_verified:true,
   all_shortest_suffix_words_physically_replayed_on_original_54_stickers:true,
   all_optimal_suffix_words_with_boundary_savings:allWordExamples,
@@ -377,6 +411,7 @@ console.log(JSON.stringify({
  no_greedy_suffix_selection_and_no_shortest_path_omission:true,
  ordered_full_face_turn_graph_both_commuting_orders_included_in_suffix_DAG:true,
  all_shortest_suffixes_counted_as_distinct_legal_HTM_words_not_distinct_endpoints:true,
+ opposite_face_commuting_lexical_variants_quotiented_without_attributing_distinct_human_search:true,
  every_single_geodesic_suffix_word_independently_enumerated_and_physically_replayed:true,
  physical_full_54_sticker_replay_per_class:true,
  exact_original_prefix_preserving_19_vs_23_bound_still_enforced:true,
