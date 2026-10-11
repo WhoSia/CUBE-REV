@@ -54,7 +54,7 @@ The worst-case source-side BFS reaches exactly **154 distinct full cube states**
 
 ### Protocol-negative controls and next experiment
 
-Add explicit *out-of-cohort* physical source controls, including real source-rooted single quarter turns from solved. Run the H-only solver against them and require a clear UNSUPPORTED outcome if their 54-sticker state is not in the bounded halfturn 5-ball. A success due to a quarter turn being silently rewritten as synthetic human evidence is a failure. Longer halfturn paths and full subgroup membership require a separate proof; the bounded negative result is only about a five-halfturn horizon.
+**Implemented 12 original-cube out-of-cohort negative controls:** construct each of U/U', R/R', F/F', D/D', L/L', B/B' directly from the solved physical 54 stickers. Every control has full18 exact depth one and is absent from the independently enumerated radius<=5 *half-turn-only* reachable set. Both Node and Go physical verifiers now assert this explicit negative result as a test; if the solver's halfturn domain is accidentally broadened, its regression should fail. This is only a **finite horizon-five refusal to generalize**, not a mathematical proof of non-membership in the entire 663552-state HTR subgroup or a wall-clock performance comparison. Independent read-only CI success is still pending readback.
 
 ## Transition to a genuinely new physical-cube research program
 
