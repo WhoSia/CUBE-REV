@@ -53,6 +53,23 @@ theorem action_expansion_preserves_witness
     a ∈ poolLarge := by
   exact included a witness
 
+/- A multivariate M* is an infimum over feasible resource costs, not a
+   scalar of human IQ or a result derived from solve times. If the expanded
+   action/observation/budget regime admits every witness from the old regime,
+   the new *attained* minimal integer cardinality cannot be larger. -/
+def AttainedMinimum (P : Nat → Prop) (n : Nat) : Prop :=
+  P n ∧ ∀ k, k < n → ¬ P k
+
+theorem expanded_opportunity_minimum_cannot_increase
+    (restrict expand : Nat → Prop) (m n : Nat)
+    (included : ∀ k, restrict k → expand k)
+    (mAttained : AttainedMinimum restrict m)
+    (nAttained : AttainedMinimum expand n) :
+    n ≤ m := by
+  by_contra h
+  have hm : m < n := Nat.lt_of_not_ge h
+  exact (nAttained.2 m hm) (included m mAttained.1)
+
 theorem rank_reversal_example :
     ¬ ∃ f : Nat → Nat → Nat, IsBiMono f ∧
       f 6 9 = 10 ∧ f 5 7 = 12 := by
