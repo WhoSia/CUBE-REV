@@ -90,7 +90,7 @@ console.log(JSON.stringify({
  scientific_authority_grade:grade,
  existing_human_0_47_official_result_unchanged:true,
  source_explicitly_records_hidden_extra_frame:false,
- conditional_frame_not_claimed_competitor_actual:false,
+ conditional_frame_not_claimed_competitor_actual:true,
  no_human_heuristic_or_neural_inference:true,
  all_24_original_physical_sticker_results:tests,
  source_literal_SHA256:crypto.createHash('sha256').update(P.frozen+'\n'+P.frozen_solution).digest('hex')
