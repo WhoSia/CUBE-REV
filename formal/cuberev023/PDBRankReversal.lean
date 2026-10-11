@@ -90,6 +90,31 @@ theorem exact_full_solve_word_assignment_injective
     exact correct t
   exact (actInjective (algorithmFor s)) (hs.trans ht.symm)
 
+/- P3-R2: deterministic observation policy cannot solve two distinct EXACT physical
+   states when they share one observation and each legal action word is a bijection.
+   This is an order/indistinguishability theorem, not a theorem of observed cognition. -/
+theorem identical_observation_blocks_two_distinct_exact_full_solves
+    {State Observation Word : Type}
+    (observe : State → Observation)
+    (act : State → Word → State)
+    (action_injective : ∀ w, Function.Injective (fun s => act s w))
+    (goal : State)
+    (a b : State) (sameObservation : observe a = observe b)
+    (distinct : a ≠ b)
+    (policy : Observation → Word) :
+    ¬ (act a (policy (observe a)) = goal ∧
+       act b (policy (observe b)) = goal) := by
+  intro h
+  have sameWord : policy (observe a) = policy (observe b) :=
+    congrArg policy sameObservation
+  have sameTarget : act a (policy (observe a)) =
+      act b (policy (observe a)) := by
+    calc
+      act a (policy (observe a)) = goal := h.1
+      _ = act b (policy (observe b)) := h.2.symm
+      _ = act b (policy (observe a)) := by rw [sameWord]
+  exact distinct (action_injective (policy (observe a)) sameTarget)
+
 theorem rank_reversal_example :
     ¬ ∃ f : Nat → Nat → Nat, IsBiMono f ∧
       f 6 9 = 10 ∧ f 5 7 = 12 := by
