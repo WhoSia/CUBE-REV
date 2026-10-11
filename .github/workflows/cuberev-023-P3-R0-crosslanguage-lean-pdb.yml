@@ -1,0 +1,78 @@
+name: CUBE-REV 0.23 P3-R0 — Lean and Go/C++ Physical PDB Inversion
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p3_r0_source_matched_R6_real_PDB_10_action_census.csv'
+      - 'formal/cuberev023/**'
+      - 'scripts/cuberev-023/rank_reversal_go/**'
+      - 'scripts/cuberev-023/rank_reversal_cpp/**'
+      - '.github/workflows/cuberev-023-P3-R0-crosslanguage-lean-pdb.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verified_independent_go_cpp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+      - name: Run independent Go physical PDB receipt validator
+        run: |
+          set -euo pipefail
+          go run scripts/cuberev-023/rank_reversal_go/main.go | tee GO_cuberev023_pdb.log
+      - name: Run independently compiled C++ physical PDB receipt validator
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror scripts/cuberev-023/rank_reversal_cpp/main.cpp -o /tmp/cuberev_023_cpp_pdb
+          /tmp/cuberev_023_cpp_pdb | tee CPP_cuberev023_pdb.log
+      - name: Require byte-identical physical results and all ten genuine PDB inversions
+        run: |
+          set -euo pipefail
+          diff -u GO_cuberev023_pdb.log CPP_cuberev023_pdb.log
+          grep -F 'CUBE_REV_023_P3_R0_ROWS=10 REVERSE=10' GO_cuberev023_pdb.log
+          grep -F 'ALL18_CHILD_EXACT=NOT_COMPUTED HUMAN_COGNITION=NOT_IDENTIFIED' CPP_cuberev023_pdb.log
+          cat GO_cuberev023_pdb.log > CUBE_REV_023_P3_R0_crosslanguage_physical_PDB_receipt.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-023-P3-R0-Go-CPP-real-PDB-court
+          path: |
+            GO_cuberev023_pdb.log
+            CPP_cuberev023_pdb.log
+            CUBE_REV_023_P3_R0_crosslanguage_physical_PDB_receipt.txt
+          retention-days: 90
+          if-no-files-found: warn
+  formal_lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/cuberev023
+          auto-config: false
+          build: false
+          test: false
+          use-github-cache: false
+      - name: Typecheck exact multivariate Pareto rank inversion theorem (no sorry)
+        working-directory: formal/cuberev023
+        run: |
+          set -euo pipefail
+          lean PDBRankReversal.lean | tee CUBE_REV_023_P3_R0_Lean_theorem.log
+          ! grep -E '\bsorry\b|admit' PDBRankReversal.lean
+          echo 'CUBE_REV_023_P3_R0_LEAN_THEOREM_PASS' | tee -a CUBE_REV_023_P3_R0_Lean_theorem.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-023-P3-R0-Lean-vector-rank-theorem
+          path: formal/cuberev023/CUBE_REV_023_P3_R0_Lean_theorem.log
+          retention-days: 90
+          if-no-files-found: warn
