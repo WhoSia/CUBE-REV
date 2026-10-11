@@ -70,6 +70,7 @@
     ".github/workflows/cuberev-023-P3-R1C-2x2-human-source-physical.yml",
     ".github/workflows/cuberev-023-P3-R2A-source-2x2-24-rotations.yml",
     ".github/workflows/cuberev-023-P3-R2B-451-aggregate-transport.yml",
+    ".github/workflows/cuberev-023-P3-R3-robust-face-error-code.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -294,6 +295,7 @@
     "docs/0.23/P3_R0_PARETO_PDB_LEAN_GOCXX_CORNERS_COGNITIVE_FRONTIERS.md",
     "docs/0.23/P3_R1_EXACT_REAL_FACE_INSPECTION_MSTAR_AND_HUMAN_2X2_SOURCE_BOUNDARY.md",
     "docs/0.23/P3_R2_TRUE_2X2_FRAME_AND_PRIVATE451_HUMAN_MSTAR_TRANSPORT.md",
+    "docs/0.23/P3_R3_ROBUST_FACE_OBSERVATION_ERROR_CORRECTION_AND_SOURCE_TRANSFER.md",
     "docs/0.23/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -566,6 +568,8 @@
     "scripts/cuberev-022/verify-p8-source-relative-dr-htr-continuations.mjs",
     "scripts/cuberev-023/p3_r1b_face_policy_cpp/main.cpp",
     "scripts/cuberev-023/p3_r1b_face_policy_go/main.go",
+    "scripts/cuberev-023/p3_r3_robust_face_cpp/main.cpp",
+    "scripts/cuberev-023/p3_r3_robust_face_go/main.go",
     "scripts/cuberev-023/rank_reversal_cpp/main.cpp",
     "scripts/cuberev-023/rank_reversal_go/main.go",
     "scripts/cuberev-023/verify-p0-source-grade-and-full-cube.mjs",
@@ -582,6 +586,7 @@
     "scripts/cuberev-023/verify-p3-r2a-2x2-original24rot-source-grammar.mjs",
     "scripts/cuberev-023/verify-p3-r2b-private451-human-corner-transport.py",
     "scripts/cuberev-023/verify-p3-r2b-published-human-aggregate-Mstar-transport-gate.mjs",
+    "scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2016,6 +2021,43 @@
       ],
       "permissions": "contents: read",
       "no_glob_added": true
+    },
+    "p3_r3_robust_physical_face_observation_and_error_code": {
+      "date": "2026-10-11",
+      "status_at_admission": "ORIGINAL_PHYSICAL_FIXTURE_DERIVED_LOCAL_COMBINATORIAL_PASS_EXTERNAL_CI_PENDING",
+      "inherited_real_fixture": "data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv",
+      "inherited_real_fixture_git_blob_sha": "dc36a595209dde26ba270b3070ff747c25559a35",
+      "source_grade": "SYNTHETIC_ADVERSARIAL_FACE_SYMBOL_FAULT_MODEL_NOT_HUMAN_PERCEPTION",
+      "preexisting_private451": "NOT_READ_OR_PUBLISHED",
+      "source_2x2_literal_grammar": "UNCHANGED_HOLD",
+      "exact_admitted_new_files": [
+        {
+          "path": "scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs",
+          "git_blob_sha": "8996f175a6fde6c2344a46f02c37b8a599db5c35"
+        },
+        {
+          "path": "scripts/cuberev-023/p3_r3_robust_face_go/main.go",
+          "git_blob_sha": "897a4faa10da7cb4588de17b713ed118aa68a637"
+        },
+        {
+          "path": "scripts/cuberev-023/p3_r3_robust_face_cpp/main.cpp",
+          "git_blob_sha": "3cc370a8aa3c8c2f0ddaa1c8d5b343fec058905e"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P3-R3-robust-face-error-code.yml",
+          "git_blob_sha": "53292de6288de9edc45113ffbd344f4256670229"
+        },
+        {
+          "path": "docs/0.23/P3_R3_ROBUST_FACE_OBSERVATION_ERROR_CORRECTION_AND_SOURCE_TRANSFER.md",
+          "git_blob_sha": "1d4cb437998941aef15545b5829510dbe4302744"
+        }
+      ],
+      "result_contract": "62 real states 1891 pairs; face distance histogram 0/0/142/216/390/400/743; six fixed faces required for one marked erasure; one unmarked corruption defeats all62; exact 26-state maximum correction subcode",
+      "independent_methods": [
+        "Node and Go exact minimum vertex cover",
+        "C++20 exact maximum independent set"
+      ],
+      "governance": "READ_ONLY_CI; commit authors/committers WhoSia only; no bot; no new human sourcing; preserve history"
     }
   }
 }
