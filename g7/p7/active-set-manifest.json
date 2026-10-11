@@ -60,6 +60,7 @@
     ".github/workflows/cuberev-023-P1-radius2-tie.yml",
     ".github/workflows/cuberev-023-P2-R1-optimal-suffix-census.yml",
     ".github/workflows/cuberev-023-P2-R2-guarded-Dong-cross-ecology.yml",
+    ".github/workflows/cuberev-023-P2-R2B-Dong-source-full18-exact.yml",
     ".github/workflows/cuberev-023-P2-boundary-rewrite.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
@@ -184,6 +185,7 @@
     "data/cuberev-023/p2_P1_all18_four_word_authority_fixture.json",
     "data/cuberev-023/p2_r2_frozen_all_eight_full18_optimal_suffix_words.json",
     "data/cuberev-023/p2_r2_guarded_signature_independent_source_prereg.json",
+    "data/cuberev-023/p2_r2b_Dong_whole18_prefix_optimality_prereg.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -544,6 +546,7 @@
     "scripts/cuberev-023/verify-p2-original-cube-staged-vs-normalized-fmc.mjs",
     "scripts/cuberev-023/verify-p2-r1-all-optimal-all18-suffix-boundary-census.mjs",
     "scripts/cuberev-023/verify-p2-r2-guarded-boundary-signature-Dong-independent-ecology.mjs",
+    "scripts/cuberev-023/verify-p2-r2b-Dong-source-prefix-exact-full18.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -1696,6 +1699,26 @@
       "source_validity": "Human retrospective second competitor, independent competition and original scramble; synthetic inverse-insertion paths not interpreted as human alternatives or geodesics",
       "workflow_permissions": "contents: read",
       "no_wildcards": true
+    },
+    "p2_r2b_independent_original_source_exact_geodesic_admission": {
+      "phase": "PRE_RESULT",
+      "source": "Baiqiang Dong 2026 Shanghai FMC; previous independent original full sticker CI PASS",
+      "new_entries": [
+        {
+          "path": "data/cuberev-023/p2_r2b_Dong_whole18_prefix_optimality_prereg.json",
+          "original_blob_sha": "ef599d476acb6b6a1f7b6a210964c30813faa665"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p2-r2b-Dong-source-prefix-exact-full18.mjs",
+          "original_blob_sha": "a4f92fef1e4e7929d2f49cc70b98969faff318fb"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P2-R2B-Dong-source-full18-exact.yml",
+          "original_blob_sha": "5d920642f3ce315fce8dd8292d96784769653d42"
+        }
+      ],
+      "read_only_CI": true,
+      "no_global_FMC_inference": true
     }
   }
 }
