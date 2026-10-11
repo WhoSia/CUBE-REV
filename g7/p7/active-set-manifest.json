@@ -66,6 +66,7 @@
     ".github/workflows/cuberev-023-P3-R0-corner-2x2-quotient.yml",
     ".github/workflows/cuberev-023-P3-R0-crosslanguage-lean-pdb.yml",
     ".github/workflows/cuberev-023-P3-R1A-real-face-dictionary-frontier.yml",
+    ".github/workflows/cuberev-023-P3-R1B-GoCPP-Lean-policy-frontier.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -194,6 +195,7 @@
     "data/cuberev-023/p3_r0_human_physical_cognitive_source_grade_inventory.json",
     "data/cuberev-023/p3_r0_source_matched_R6_real_PDB_10_action_census.csv",
     "data/cuberev-023/p3_r1a_preregistered_physical_face_query_dictionary_frontier.json",
+    "data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -554,6 +556,8 @@
     "scripts/cuberev-022/verify-p8-r6-matched-DR-HTR-Schreier-contacts.mjs",
     "scripts/cuberev-022/verify-p8-r6-matched-DR-neighborhood-geodesics.mjs",
     "scripts/cuberev-022/verify-p8-source-relative-dr-htr-continuations.mjs",
+    "scripts/cuberev-023/p3_r1b_face_policy_cpp/main.cpp",
+    "scripts/cuberev-023/p3_r1b_face_policy_go/main.go",
     "scripts/cuberev-023/rank_reversal_cpp/main.cpp",
     "scripts/cuberev-023/rank_reversal_go/main.go",
     "scripts/cuberev-023/verify-p0-source-grade-and-full-cube.mjs",
@@ -1875,6 +1879,30 @@
       "read_only_ci": true,
       "no_human_new_data_claim": true,
       "no_new_wildcards": true
+    },
+    "p3_r1b_independent_combinatorial_source_grade_admission": {
+      "status": "PRE_FIRST_GO_CPP_INDEPENDENT_CI",
+      "provenance": "Original 62 whole cubie states and nine-color face signatures independently physical Node original sticker P3-R1A #38134488980",
+      "exact_paths": [
+        {
+          "path": "data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv",
+          "git_blob_sha": "dc36a595209dde26ba270b3070ff747c25559a35"
+        },
+        {
+          "path": "scripts/cuberev-023/p3_r1b_face_policy_go/main.go",
+          "git_blob_sha": "470656cace9e9664473df776127f14b63769f372"
+        },
+        {
+          "path": "scripts/cuberev-023/p3_r1b_face_policy_cpp/main.cpp",
+          "git_blob_sha": "db80ac08b114de0f26bcf84fb0869706a76e63d6"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P3-R1B-GoCPP-Lean-policy-frontier.yml",
+          "git_blob_sha": "a281bdc88ed0e8b1fecb52b62bd36a912e8d28d0"
+        }
+      ],
+      "existing_Lean_file_modified_no_new_path": true,
+      "CI_contents_read_only": true
     }
   }
 }
