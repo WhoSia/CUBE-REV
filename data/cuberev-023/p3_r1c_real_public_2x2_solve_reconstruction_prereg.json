@@ -1,0 +1,19 @@
+{
+  "schema": "cuberev-023-p3-r1c-independent-real-human-2x2-reconstruction-source-v1",
+  "registered_before_new_2x2_physical_replay": true,
+  "source_title": "Speedcubing Australia — Roman Rudakov 2x2 National Record 0.47",
+  "source_url": "https://www.speedcubing.org.au/national-record/roman-2x2-single-047",
+  "event": "2x2 official speedcubing result and published solve reconstruction",
+  "competition": "Belgrave Open 2026",
+  "date": "2026-09-12",
+  "published_scramble": "U2 R' F R2 U2 R2 F U2 F U2 R2",
+  "published_solution_with_orientation": "x2 y' U2 R U' R2",
+  "notation": {
+    "x2 y'": "whole-cube reorientation not HTM face turn",
+    "U2 R U' R2": "four outer-layer move actions after 2x2 orientation"
+  },
+  "source_grade": "PUBLIC_RECONSTRUCTION_ATTACHED_TO_PERSON_RECORD_NOT_INDEPENDENT_VERIFIED_HUMAN_CONSIDERATION",
+  "physics_contract": "Use original 54-sticker 3x3 full cube oracle on published physical face turns; for physical 2x2 goal require 4 CORNER stickers on EACH six face carry identical final face color, ignoring all edges/centers and whole-cube original orientation. Do not require 3x3 edges solved. Independently replay original scramble+solution including x2 y' rotations and no fabricated corrections. If replay fails, return SOURCE_CONVENTION_HOLD without declaring a verified 2x2 original source.",
+  "no_cognitive_inference": true,
+  "no_person_level_mental_capacity_claim": true
+}
