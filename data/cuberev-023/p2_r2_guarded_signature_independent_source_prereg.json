@@ -1,0 +1,45 @@
+{
+  "schema": "cuberev-023-p2-r2-guarded-two-token-predictor-v1",
+  "status": "PREDECLARED_BEFORE_NEW_RUN",
+  "stage": "CUBE-REV 0.23 P2-R2 — Guarded Boundary Opportunity Signature & Independent Human FMC Source",
+  "origin": "Rubik full-cubie 0.19->0.23 history; P2-R1 complete 8-word exact all18 suffix census on Miao authored same-EO variants",
+  "training": "P2-R1 frozen eight exact shortest 18HTM completion words and original Miao same EO full human source prefixes",
+  "independent_source": {
+    "author": "Baiqiang Dong",
+    "wca_id": "2008DONG06",
+    "event": "More Than One Cube Shanghai 2026",
+    "attempt": 1,
+    "date": "2026-06-06",
+    "original_reconstruction_url": "https://333.333.fm/wca/reconstruction/MoreThanOneCubeShanghai2026/2008DONG06",
+    "scramble": "R' U' F L2 D' U2 B2 U' L R B' R' B F' D' F U B' R2 F2 R' U' F",
+    "source_EO": "B U2 L' D' F'",
+    "source_DR": "R' D B2 L D",
+    "submitted_full_22": "B U2 L' D' F' R' D B2 L D R' U2 R' U2 D2 F2 R F2 R2 L D2 B2",
+    "backup_source_grade": "PARENTHESIZED_OTHER_SIDE_NOT_CONCATENATED_HOLD"
+  },
+  "hypotheses": {
+    "guarded_predictor": "For fixed actual source A + synthetic two-token intervention I and internally adjacent-reduced shortest suffix S, calculate earliest 2-token suffix boundary saving. Only call predictive EXACT if no exposed human A suffix and no potentially cancellable residual intervention remains; otherwise abstain and inspect additional tokens. Test on all eight exact shortest P2-R1 words before the independent source.",
+    "cross_ecology": "Independently verify Dong submitted original solution and literal first-10 EO+DR prefix (full 54-sticker, actual DR axis). Test source-aware identity and actual complete-word boundary semantics across different person/competition/scramble.",
+    "negative_stress": "Construct all 324 ordered original-face two-turn synthetic inserted paths I, append legal inverse(I) and the source-attested remaining published solution suffix; these 324 guaranteed-valid witness words need original-sticker independent replay, but are NOT shortest suffixes, statistical human observations, or athlete paths."
+  },
+  "stop_and_failure": [
+    "Dong main 54-sticker submitted word fails to solve original scramble => HOLD, do not silently correct source",
+    "Dong EO+DR typed linear source does not satisfy DR in any axis => HOLD",
+    "P2-R1 shortest word class 2-token predictor makes false EXACT attribution => FAIL",
+    "324 synthetic inverse insertion words fail to preserve original actual solution => FAIL",
+    "Unbounded suffix past authored boundary treated as known from first 2 without guard => FAIL",
+    "Source backup parentheses parsed as linear normal side without proof => FAIL"
+  ],
+  "compute": {
+    "p2_r1_shortest_word_tests": 8,
+    "independent_original_face_intervention_pairs": 324,
+    "only_genuine_full_cube_physics": true,
+    "no_global_FMC_optimum": true,
+    "no_real_time_human_choice_claim": true
+  },
+  "governance": {
+    "CI_permissions": "contents: read",
+    "user_commits_only": true,
+    "exact_path_manifest_admission": true
+  }
+}
