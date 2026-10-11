@@ -1,0 +1,43 @@
+name: CUBE-REV 0.23 P3-R0 — Real 2x2 Corner Quotient vs Full 3x3
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-023/verify-p3-r0-corner-2x2-quotient-vs-full-3x3.mjs'
+      - '.github/workflows/cuberev-023-P3-R0-corner-2x2-quotient.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physical_2x2_corner_projection_against_3x3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enumerate actual 18 HTM full cubie states and physical 2x2 corner quotient
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=5000 scripts/cuberev-023/verify-p3-r0-corner-2x2-quotient-vs-full-3x3.mjs | tee CUBE_REV_023_P3_R0_2x2corner_to_3x3_cubie.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const z=JSON.parse(fs.readFileSync('CUBE_REV_023_P3_R0_2x2corner_to_3x3_cubie.json','utf8'));
+          assert.equal(z.marker,'CUBE_REV_023_P3_R0_REAL_FULL_CUBE_TO_2X2_CORNER_QUOTIENT_OBSERVATION');
+          assert.equal(z.physical_full_3x3_cubie_state_count,621649);
+          assert(z.physically_distinct_2x2_corner_position_orientation_projections<=z.physical_full_3x3_cubie_state_count);
+          assert(z.not_complete_2x2_Gods_number);
+          assert(z.no_human_perception_or_neural_recording);
+          console.log('CUBE_REV_023_P3_R0_TRUE_2X2_CORNERS_VS_3X3_FULL_PHYSICAL_PASS');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-023-P3-R0-real-2x2-corner-vs-3x3-full-ball
+          path: CUBE_REV_023_P3_R0_2x2corner_to_3x3_cubie.json
+          retention-days: 90
+          if-no-files-found: warn
