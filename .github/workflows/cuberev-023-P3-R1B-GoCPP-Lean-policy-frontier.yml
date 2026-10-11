@@ -1,0 +1,79 @@
+name: CUBE-REV 0.23 P3-R1B — Go C++ Adaptive Real-Face Policy and Lean Word Injectivity
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv'
+      - 'scripts/cuberev-023/p3_r1b_face_policy_go/**'
+      - 'scripts/cuberev-023/p3_r1b_face_policy_cpp/**'
+      - 'formal/cuberev023/PDBRankReversal.lean'
+      - '.github/workflows/cuberev-023-P3-R1B-GoCPP-Lean-policy-frontier.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent_go_cpp_62_original_states:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+          cache: false
+      - name: Run independent Go exact fixed and adaptive full face policy enumerator
+        run: |
+          set -euo pipefail
+          go run scripts/cuberev-023/p3_r1b_face_policy_go/main.go | tee CUBE_REV_023_P3_R1B_Go_receipt.log
+      - name: Run independent compiled C++17 exact fixed and adaptive policy enumerator
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror scripts/cuberev-023/p3_r1b_face_policy_cpp/main.cpp -o /tmp/cuberev_p3_r1b
+          /tmp/cuberev_p3_r1b | tee CUBE_REV_023_P3_R1B_Cpp_receipt.log
+      - name: Exact byte-identical independent policy results
+        run: |
+          set -euo pipefail
+          diff -u CUBE_REV_023_P3_R1B_Go_receipt.log CUBE_REV_023_P3_R1B_Cpp_receipt.log
+          grep -F 'ADAPTIVE_FRONTIER=1/12/42/58/62/62/62 FIXED_FRONTIER=1/12/38/50/62/62/62' CUBE_REV_023_P3_R1B_Go_receipt.log
+          cp CUBE_REV_023_P3_R1B_Go_receipt.log CUBE_REV_023_P3_R1B_cross_language.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-023-P3-R1B-Go-Cpp-independent-policy-frontier
+          path: |
+            CUBE_REV_023_P3_R1B_Go_receipt.log
+            CUBE_REV_023_P3_R1B_Cpp_receipt.log
+            CUBE_REV_023_P3_R1B_cross_language.txt
+          retention-days: 90
+          if-no-files-found: warn
+  Lean_full_group_action_injective_solver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/cuberev023
+          auto-config: false
+          build: false
+          test: false
+          use-github-cache: false
+      - name: Compile no-sorry solver word injection and resource expansion
+        working-directory: formal/cuberev023
+        run: |
+          set -euo pipefail
+          lean PDBRankReversal.lean | tee CUBE_REV_023_P3_R1B_Lean.log
+          ! grep -E 'sorry|admit' PDBRankReversal.lean
+          grep -q 'exact_full_solve_word_assignment_injective' PDBRankReversal.lean
+          echo 'CUBE_REV_023_P3_R1B_LEAN_SOLVER_INJECTION_PASS' | tee -a CUBE_REV_023_P3_R1B_Lean.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-023-P3-R1B-Lean-solver-injection-theorem
+          path: formal/cuberev023/CUBE_REV_023_P3_R1B_Lean.log
+          retention-days: 90
+          if-no-files-found: warn
