@@ -1,0 +1,59 @@
+{
+  "schema": "cuberev-023-p3-r1a-real-face-observation-dictionary-frontier-preregistered-v1",
+  "title": "Resource-Indexed Observation–Algorithm Frontiers & Heuristic Recognition Transfer",
+  "status": "P3-R1A PREREGISTRATION BEFORE SEEING NEW CUBE FACE DECISION TREE",
+  "task": "Among actual 3x3 cubie states at unrestricted legal 18 HTM solved radius <=5, choose lexicographically earliest largest equivalence fiber of identical CP/CO. Fix it as finite closed test cohort K. Compare exact corner-only task vs exact full cube solved task under face observations and solution-word dictionary restrictions.",
+  "inherited_original_independent_court": "P3-R0 whole physical radius5 |ball|=621649, corner keys=236552, max fiber=62; all future numbers must be independently rechecked.",
+  "physical_action_alphabet": "18 genuine face legal HTM tokens, original 54-sticker replay cp/co/ep/eo, shortest solution for each state by inverse of source-root <=5 witness",
+  "state_frame": "Static original URFDLB orientation. Complete one face query reads original nine colored facelets including fixed center; face position coordinates sorted deterministically. Six full face query operators are ideal full-face observations, NOT a literal human visual glance or timed inspection.",
+  "resource_axes": {
+    "R": [
+      "corners position+orientation solved",
+      "entire original full cubie CP/CO/EP/EO solved"
+    ],
+    "A": "18 physical HTM face moves, bounded completion <=5",
+    "O": [
+      "no additional face inspection after predeclared identical complete corner observation",
+      "fixed set of face observations",
+      "adaptive face-choice policy with answer-dependent next face"
+    ],
+    "L": 5,
+    "Pi": [
+      "one common HTM inverse word",
+      "up to K individual HTM inverse words",
+      "deterministic finite face-query decision tree chooses a complete inverse word at unique leaf"
+    ],
+    "B": [
+      "max face inspections 0..6",
+      "size of solve-word dictionary 1..K"
+    ],
+    "C": "worst-case number of full-face observations and distinct action words; separately report expected queries only under declared artificially uniform prior"
+  },
+  "algorithms": {
+    "fiber_select": "Choose maximum multiplicity corner (CP/CO) observation and lexicographically first key on tie from exact radius5; no post-selection of promising sample",
+    "min_fixed": "Exhaustively enumerate all 2^6=64 subsets of faces, certify for each if simultaneous six-face observed signatures are injective over all K physical states; minimum number of fixed-face observations and all minimal sets.",
+    "min_adaptive": "Exact minimax dynamic programming over state subset and unobserved face mask; singleton leaves terminate with 0. Split every available face by actual 54-sticker nine-color signature; recurrence 1+min_face max_child D(child) over nontrivial splits. Full plan must be replayed against all K states and retain exact source state ID at unique leaf.",
+    "dictionary": "Prove full state words injective: one fixed no-feedback word cannot solve two different fixed-frame full cubie states due group right cancellation. Show per-state shortest inverse witnesses length <=5. A single representative corner inverse solves corners for all K, certifying dictionary cardinality 1 for corner task; full task dictionary cardinality K, with face observations sufficient to identify state.",
+    "unsupported_claims": [
+      "2x2 competitor-specific God's number/turn-time measurement",
+      "real human full-face perfect perception per query",
+      "brain activation",
+      "actual human memory M* measured",
+      "every source scramble equally likely",
+      "free observations in real speed competition"
+    ]
+  },
+  "acceptance": [
+    "Actual original 54-sticker replays verify each source and all 62 complete inverse words and common corner-only word.",
+    "Recompute 621649 full ball, 236552 distinct corner keys, selected fiber cardinality 62.",
+    "Verify exact all64 fixed-face subsets and a full adaptive policy proof by distinct recursive physical signatures.",
+    "Report minimal number of complete face inspections as one query each, not information bits; 6-bit lower bound concerns a DIFFERENT ideal binary query model.",
+    "Each fixed sample state has unique solved cubie key and all 62 words distinct.",
+    "No human participant claims or cognitive labels from ideal physical observations."
+  ],
+  "governance": {
+    "read_only_actions": true,
+    "human_authored_commits_only": true,
+    "exact_new_file_sha_P7_admission": true
+  }
+}
