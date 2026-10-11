@@ -1,0 +1,45 @@
+name: CUBE-REV 0.23 P3-R2A — 2x2 Human Source Literal and 24 Rotational Frames
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'data/cuberev-023/p3_r2a_2x2_24_orientation_frame_audit_prereg.json'
+      - 'scripts/cuberev-023/verify-p3-r2a-2x2-original24rot-source-grammar.mjs'
+      - '.github/workflows/cuberev-023-P3-R2A-source-2x2-24-rotations.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physically_exhausted_orientation_conventions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit exactly all 24 true cube orientation frames under fixed original source
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cuberev-023/verify-p3-r2a-2x2-original24rot-source-grammar.mjs | tee CUBE_REV_023_P3_R2A_24_2x2_frames.json
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('CUBE_REV_023_P3_R2A_24_2x2_frames.json','utf8'));
+          assert.equal(x.marker,'CUBE_REV_023_P3_R2A_24_REAL_CUBE_2X2_ROTATION_FRAME_AUDIT');
+          assert.equal(x.true_physical_distinct_cube_frame_count,24);
+          assert.equal(x.all_24_original_physical_sticker_results.length,24);
+          assert(x.exact_literal_result_reproduced_as_SOURCE_CONVENTION_HOLD);
+          assert(x.conditional_frame_not_claimed_competitor_actual);
+          assert(x.existing_human_0_47_official_result_unchanged);
+          console.log('CUBE_REV_023_P3_R2A_24_PHYSICAL_FRAMES_AUDITED_WITH_SOURCE_GRADE');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-023-P3-R2A-24real-2x2-source-frame-audit
+          path: CUBE_REV_023_P3_R2A_24_2x2_frames.json
+          retention-days: 90
+          if-no-files-found: warn
