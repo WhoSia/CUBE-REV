@@ -65,6 +65,7 @@
     ".github/workflows/cuberev-023-P2-boundary-rewrite.yml",
     ".github/workflows/cuberev-023-P3-R0-corner-2x2-quotient.yml",
     ".github/workflows/cuberev-023-P3-R0-crosslanguage-lean-pdb.yml",
+    ".github/workflows/cuberev-023-P3-R1A-real-face-dictionary-frontier.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -192,6 +193,7 @@
     "data/cuberev-023/p2_r2c_Dong_source_boundary_geodesic_prereg.json",
     "data/cuberev-023/p3_r0_human_physical_cognitive_source_grade_inventory.json",
     "data/cuberev-023/p3_r0_source_matched_R6_real_PDB_10_action_census.csv",
+    "data/cuberev-023/p3_r1a_preregistered_physical_face_query_dictionary_frontier.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -563,6 +565,7 @@
     "scripts/cuberev-023/verify-p2-r2b-Dong-source-prefix-exact-full18.mjs",
     "scripts/cuberev-023/verify-p2-r2c-Dong-source-boundary-first-turn-exact.mjs",
     "scripts/cuberev-023/verify-p3-r0-corner-2x2-quotient-vs-full-3x3.mjs",
+    "scripts/cuberev-023/verify-p3-r1a-exact-real-face-observation-resource-frontier.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -1851,6 +1854,27 @@
       "glob_rule_added": false,
       "permissions_no_write": true,
       "original_main_commit_history_unchanged": true
+    },
+    "p3_r1a_pre_result_exact_path_admission": {
+      "status": "PENDING_REAL_PHYSICAL_SEARCH_AT_REGISTRATION",
+      "source": "P3-R0 actual complete 621649 3x3 cubie ball and max 62 fixed corner projection fiber",
+      "new_paths": [
+        {
+          "path": "data/cuberev-023/p3_r1a_preregistered_physical_face_query_dictionary_frontier.json",
+          "git_blob_sha1": "710d93cb4ac89f6fe3ab06246f3e58f180c105ea"
+        },
+        {
+          "path": "scripts/cuberev-023/verify-p3-r1a-exact-real-face-observation-resource-frontier.mjs",
+          "git_blob_sha1": "2107015bbfdde87e91575ac2f723dbc3229237f6"
+        },
+        {
+          "path": ".github/workflows/cuberev-023-P3-R1A-real-face-dictionary-frontier.yml",
+          "git_blob_sha1": "f15e042e06dc8a8199ef65a42b6374fe91abd0c8"
+        }
+      ],
+      "read_only_ci": true,
+      "no_human_new_data_claim": true,
+      "no_new_wildcards": true
     }
   }
 }
