@@ -115,5 +115,49 @@
     "M*(5)=8 belongs only to frozen finite resettable 0.19 physical observational model",
     "Lean theorem cannot establish human cognitive cause"
   ],
-  "next_gate": "P3-R1 fixed 2x2 vs 3x3 action+observation+policy resource budget grid; needs original privacy/rights and separately verified 2x2 move trace before human process inference"
+  "next_gate": "P3-R1 fixed 2x2 vs 3x3 action+observation+policy resource budget grid; needs original privacy/rights and separately verified 2x2 move trace before human process inference",
+  "P3_R2_2026_10_11_source_grade_successor": {
+    "science_grade": "PHYSICAL_CONDITIONAL_2X2_ROTATION_FRAME_PASS; ORIGINAL_SOURCE_LITERAL_HOLD; LOCAL_PRIVATE_451_AGGREGATE_EXPLORATORY_PASS; PUBLIC_ARITHMETIC_ONLY_CI_PASS",
+    "physical_source": "https://www.speedcubing.org.au/national-record/roman-2x2-single-047",
+    "conditional_2x2": {
+      "original_published_solution_untouched": true,
+      "full_24_distinct_actual_orientation_tests": 24,
+      "only_original_complementary_frame_solving": "y2",
+      "surviving_frames_count": 1,
+      "public_retrospective_source_does_not_state_extra_y2": true,
+      "source_exact_literal_2x2_corner_solve_currently": false,
+      "original_failed_CI": "38134830339",
+      "conditional_CI_success": "38137146802",
+      "no_person_process_inference": true
+    },
+    "archival_human": {
+      "archive_url": "https://drive.google.com/file/d/1NYY_8J47dnFnevfqc8g_dj5bKkyiOuO8/view",
+      "sha256": "fb88827cce327d0021a0741e47dfa09670651083b8baaaa46cccc9051d73568e",
+      "private_source_records": 452,
+      "duplicate_removed": 1,
+      "real_reconstructed_solve_contents": 451,
+      "recorded_next_actions": 25272,
+      "public_aggregate_path": "data/cuberev-023/p3_r2b_private451_new_corner_state_conditional_support_aggregate.json",
+      "real_archival_locally_calculated_same_CP_CO_comparator_common_keys_by_nested_controls": [
+        181,
+        120,
+        43,
+        9,
+        0
+      ],
+      "face_only_comparator_common_keys_by_nested_controls": [
+        164,
+        73,
+        15,
+        1,
+        0
+      ],
+      "observation_operator_is_cpco_not_9_color_facelet_query": true,
+      "private_zip_held_only_in_authorized_local_workspace": true,
+      "github_actions_only_public_anonymized_aggregate": true,
+      "retrospective_not_independent_heldout_or_causal": true
+    },
+    "lean_theorem": "identical_observation_blocks_two_distinct_exact_full_solves",
+    "synthesis": "Finite physical information lower bound is mathematical; retrospective next reconstructed human action disagreements do not estimate neural barriers, gaze, attention, or actual q full-face oracle budget."
+  }
 }
