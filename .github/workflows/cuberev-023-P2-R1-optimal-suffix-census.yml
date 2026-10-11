@@ -39,6 +39,9 @@ jobs:
           assert(x.results.every(r=>r.all_shortest_suffix_words_physically_replayed_on_original_54_stickers));
           assert(x.results.every(r=>r.all_optimal_suffix_words_with_boundary_savings.length===Number(r.exact_optimal_all18_suffix_word_COUNT)));
           assert.deepEqual(x.results[2].optimal_suffix_word_counts_by_final_adjacent_face_savings,{'2':'2','4':'2'});
+          assert.deepEqual(x.results.map(r=>r.exact_shortest_suffix_word_classes_modulo_local_opposite_face_commutation),[1,1,2,1]);
+          assert(x.opposite_face_commuting_lexical_variants_quotiented_without_attributing_distinct_human_search);
+          assert(x.results.every(r=>r.concrete_local_commutation_classes.reduce((n,c)=>n+c.independent_word_variants,0)===Number(r.exact_optimal_all18_suffix_word_COUNT)));
           assert(x.ordered_full_face_turn_graph_both_commuting_orders_included_in_suffix_DAG);
           console.log('CUBE_REV_023_P2_R1_ALL_SHORTEST_FACE_WORDS_EXACT_BOUNDARY_COURT_PASS');
           JS
