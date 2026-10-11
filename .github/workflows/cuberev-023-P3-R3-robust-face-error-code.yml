@@ -1,0 +1,46 @@
+name: CUBE-REV 0.23 P3-R3 robust physical face observation
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "data/cuberev-023/p3_r1b_real_62_physical_face9_cubie_fixture.csv"
+      - "scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs"
+      - "scripts/cuberev-023/p3_r3_robust_face_go/main.go"
+      - "scripts/cuberev-023/p3_r3_robust_face_cpp/main.cpp"
+      - ".github/workflows/cuberev-023-P3-R3-robust-face-error-code.yml"
+permissions:
+  contents: read
+jobs:
+  finite-physical-observation-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Forbid bot commit authors and committers on research history
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::Bot-authored/committed Git history is forbidden on research/current"
+            exit 1
+          fi
+      - name: Exact original-source face signature geometry in Node
+        run: node scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.2"
+      - name: Independent Go exact minimum vertex cover
+        run: go run scripts/cuberev-023/p3_r3_robust_face_go/main.go
+      - name: Independent C++20 exact maximum independent set
+        run: |
+          g++ -std=c++20 -O2 -Wall -Wextra -Werror -pedantic \
+            scripts/cuberev-023/p3_r3_robust_face_cpp/main.cpp -o /tmp/cuberev-p3r3-exact
+          /tmp/cuberev-p3r3-exact
+      - name: Check workflows are source read-only, without any git writeback
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
