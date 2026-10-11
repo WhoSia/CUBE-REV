@@ -1,0 +1,141 @@
+{
+  "schema": "cuberev-023-p3-r2b-private451-exploratory-aggregate-v1",
+  "provenance": "LOCAL private Drive archived derivative, downloaded with authenticated Drive connector and SHA256 verified; no source trajectories or person IDs exposed",
+  "private_archive_sha256": "fb88827cce327d0021a0741e47dfa09670651083b8baaaa46cccc9051d73568e",
+  "original_records": 452,
+  "identical_reconstructed_content_duplicate_eliminated": 1,
+  "remaining_distinct_reconstructed_solve_contents": 451,
+  "retrospective_reconstruction_next_actions": 25272,
+  "types": {
+    "FACE_TURN": 21118,
+    "WIDE_TURN": 1424,
+    "ROTATION": 1396,
+    "SLICE_TURN": 1334
+  },
+  "explicit_method_family_tagged_record_count": 20,
+  "frame_proxy": "24 proper signed basis orientations from only explicitly recorded x/y/z right-composed; proxy NOT person viewpoint",
+  "stage_proxy": "last previous author/reconstructor annotation_after with boundary_after, not mental stage directly observed",
+  "corner_projection": "complete cubie CP/CO 8 corner permutations+orientations, NOT the old FC3 face-only or P3-R1A ideal full nine-sticker read",
+  "full_projection": "CP/CO/EP/EO actual archived whole cubie",
+  "units": "cross source ROW PAIRS (highly dependent), NOT participants or independent hypothesis tests",
+  "all_actions": [
+    {
+      "restriction": "corner_CP_CO",
+      "cross_source_qualifying_observation_keys": 949,
+      "keys_with_both_same_full_and_different_full_contrasts": 181,
+      "same_exact_full_state_cross_source_pairs": 7851,
+      "different_exact_full_state_cross_source_pairs": 86453,
+      "different_next_action_when_same_full": 2575,
+      "different_next_action_when_different_full": 72738,
+      "descriptive_common_key_balanced_delta_different_minus_same": 0.293711246447798,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    },
+    {
+      "restriction": "corner_plus_explicit_rotation_proxy",
+      "cross_source_qualifying_observation_keys": 666,
+      "keys_with_both_same_full_and_different_full_contrasts": 120,
+      "same_exact_full_state_cross_source_pairs": 733,
+      "different_exact_full_state_cross_source_pairs": 5611,
+      "different_next_action_when_same_full": 141,
+      "different_next_action_when_different_full": 4660,
+      "descriptive_common_key_balanced_delta_different_minus_same": 0.5388916702469168,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    },
+    {
+      "restriction": "corner_plus_rotation_plus_prior_annotated_stage",
+      "cross_source_qualifying_observation_keys": 574,
+      "keys_with_both_same_full_and_different_full_contrasts": 43,
+      "same_exact_full_state_cross_source_pairs": 258,
+      "different_exact_full_state_cross_source_pairs": 1951,
+      "different_next_action_when_same_full": 41,
+      "different_next_action_when_different_full": 1579,
+      "descriptive_common_key_balanced_delta_different_minus_same": 0.6337738230761486,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    },
+    {
+      "restriction": "corner_rotation_stage_plus_last_move",
+      "cross_source_qualifying_observation_keys": 309,
+      "keys_with_both_same_full_and_different_full_contrasts": 9,
+      "same_exact_full_state_cross_source_pairs": 105,
+      "different_exact_full_state_cross_source_pairs": 352,
+      "different_next_action_when_same_full": 20,
+      "different_next_action_when_different_full": 240,
+      "descriptive_common_key_balanced_delta_different_minus_same": 0.3888888888888889,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    },
+    {
+      "restriction": "corner_rotation_stage_plus_last_three_moves",
+      "cross_source_qualifying_observation_keys": 94,
+      "keys_with_both_same_full_and_different_full_contrasts": 0,
+      "same_exact_full_state_cross_source_pairs": 59,
+      "different_exact_full_state_cross_source_pairs": 43,
+      "different_next_action_when_same_full": 10,
+      "different_next_action_when_different_full": 25,
+      "descriptive_common_key_balanced_delta_different_minus_same": null,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    }
+  ],
+  "face_turn_only": [
+    {
+      "restriction": "corner_CP_CO",
+      "cross_source_qualifying_observation_keys": 853,
+      "keys_with_both_same_full_and_different_full_contrasts": 164,
+      "same_exact_full_state_cross_source_pairs": 6078,
+      "different_exact_full_state_cross_source_pairs": 27988,
+      "different_next_action_when_same_full": 1453,
+      "different_next_action_when_different_full": 19334,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    },
+    {
+      "restriction": "corner_plus_explicit_rotation_proxy",
+      "cross_source_qualifying_observation_keys": 474,
+      "keys_with_both_same_full_and_different_full_contrasts": 73,
+      "same_exact_full_state_cross_source_pairs": 589,
+      "different_exact_full_state_cross_source_pairs": 1817,
+      "different_next_action_when_same_full": 65,
+      "different_next_action_when_different_full": 1233,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    },
+    {
+      "restriction": "corner_plus_rotation_plus_prior_annotated_stage",
+      "cross_source_qualifying_observation_keys": 349,
+      "keys_with_both_same_full_and_different_full_contrasts": 15,
+      "same_exact_full_state_cross_source_pairs": 202,
+      "different_exact_full_state_cross_source_pairs": 597,
+      "different_next_action_when_same_full": 13,
+      "different_next_action_when_different_full": 393,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    },
+    {
+      "restriction": "corner_rotation_stage_plus_last_move",
+      "cross_source_qualifying_observation_keys": 176,
+      "keys_with_both_same_full_and_different_full_contrasts": 1,
+      "same_exact_full_state_cross_source_pairs": 70,
+      "different_exact_full_state_cross_source_pairs": 182,
+      "different_next_action_when_same_full": 7,
+      "different_next_action_when_different_full": 119,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    },
+    {
+      "restriction": "corner_rotation_stage_plus_last_three_moves",
+      "cross_source_qualifying_observation_keys": 66,
+      "keys_with_both_same_full_and_different_full_contrasts": 0,
+      "same_exact_full_state_cross_source_pairs": 45,
+      "different_exact_full_state_cross_source_pairs": 29,
+      "different_next_action_when_same_full": 3,
+      "different_next_action_when_different_full": 17,
+      "matched_key_causal_comparison_IDENTIFIED": false
+    }
+  ],
+  "severe_support_failure": "Zero same-observation keys simultaneously support same-full and different-full cross-source pair types after frame+stage+last three prior moves, even though separate pair types survive.",
+  "independent_heldout": false,
+  "causal_brain_barrier_inference": false,
+  "transport_of_P3_R1A_62_state_uniform_policy_to_real_people": false,
+  "limitations": [
+    "Archive contains reconstructed written solve sequences not timed decision or visual scans",
+    "2x2 genuine move-by-move source remains literal grammar HOLD despite physical y2 conditional compatibility",
+    "No source-blocked independent fresh participant experiment",
+    "WCA competition seconds not inspected nine-sticker face looks",
+    "This aggregate computed locally; CI will validate only arithmetic because private ZIP is NOT available in GitHub"
+  ]
+}
