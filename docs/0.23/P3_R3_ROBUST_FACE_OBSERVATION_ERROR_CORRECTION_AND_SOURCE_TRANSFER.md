@@ -68,6 +68,14 @@ There is also a short independent *structural proof* of the second q*=5. The pre
 
 The q*=6 versus q*=5 contrast is a strict operational *action-affordance* distinction, not a result about observed human working memory, an arbitrary query library, facelet noise distributions or one unlocated substitution. In particular, **Theorem R3-A still assumes six distinct face patterns read once**; allowing re-read changes its action contract and requires a separate error-correction analysis. Nor does q*=6 imply all human policies need six glances.
 
+### Source-indexed exact 26-state lower-bound witness
+
+The independent C++20 maximum-independent-set algorithm emitted this **original P3-R1B fixture row-index** witness (0-based indices; these are anonymized computational state indices, not player/source identifiers):
+
+`[3,6,8,10,11,14,17,19,20,21,24,25,35,37,38,42,43,45,46,48,49,53,55,56,57,61]`
+
+Direct independent re-evaluation against the **unchanged original 62×6 GitHub source fixture**, not an equality-signature surrogate, confirms **26 unique indices and 325/325 unordered chosen pairs have complete-face Hamming distance >=3**; the selected-pair distances are 3:24, 4:69, 5:84, 6:148. This explicitly witnesses **alpha(G)>=26**. Complete componentwise exact minimum-vertex-cover / maximum-independent-set search establishes **alpha(G)<=26**. The two statements together certify the exact value, not merely a heuristic independent set. No private human data appears in the witness.
+
 ## Independent algorithms and original-source verification boundaries
 
 - [Node exact verifier](../../scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs): frozen original fixture structural/color validation, 1,891×64 pair comparisons, distance count and full componentwise exact minimum vertex-cover algorithm.
