@@ -72,6 +72,7 @@
     ".github/workflows/cuberev-023-P3-R2B-451-aggregate-transport.yml",
     ".github/workflows/cuberev-023-P3-R3-robust-face-error-code.yml",
     ".github/workflows/cuberev-023-P3-R3B-full-sticker-halfturn-solver.yml",
+    ".github/workflows/cuberev-024-P0-physical-halfturn-domain.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -300,6 +301,8 @@
     "docs/0.23/P3_R3_ROBUST_FACE_OBSERVATION_ERROR_CORRECTION_AND_SOURCE_TRANSFER.md",
     "docs/0.23/PROGRAM_CHARTER.md",
     "docs/0.24/00_PROPOSED_PHYSICAL_CUBE_SEARCH_ARCHITECTURE_CHARTER.md",
+    "docs/0.24/P0_FULL_PHYSICAL_CUBE_PARITY_HDOMAIN_CENSUS.md",
+    "docs/0.24/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
     "formal/016/P12LightGraph.lean",
@@ -592,6 +595,8 @@
     "scripts/cuberev-023/verify-p3-r2b-published-human-aggregate-Mstar-transport-gate.mjs",
     "scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs",
     "scripts/cuberev-023/verify-p3-r3b-62-original-sticker-halfturn-mitm-geodesic.mjs",
+    "scripts/cuberev-024/p0_fullcube_parity_go/main.go",
+    "scripts/cuberev-024/p0_real_cube_parity_and_halfturn_domain.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2175,6 +2180,41 @@
         "reason": "12 genuine independent quarterturn bounded source controls now asserted by both physical engine implementations",
         "externalCI": "PENDING_READBACK"
       }
+    },
+    "p0_024_real_physical_cube_full18_parity_halfturn_programme": {
+      "date": "2026-10-12",
+      "authorised_title": "CUBE-REV 0.24 — Physical Search Architecture for the Rubik's Cube: Exact Geodesic Frontiers, Subgroup-Aware Program Synthesis, Adversarial Human-Authored FMC Benchmarks & Proof-Carrying Solver Innovation",
+      "status_at_admission": "0.24_ACTIVE_P0_LOCAL_ORIGINAL_STICKER_JS_PASS_GO_CODE_ADDED_EXTERNAL_CI_PENDING",
+      "predecessor": "0.23 P3-R3B 62 real cube halfturn subgroup biased exact finite cohort, former 0.24 proposed-only charter unchanged",
+      "exact_new_paths": [
+        {
+          "path": "docs/0.24/PROGRAM_CHARTER.md",
+          "git_blob_sha": "1060cd47af81b009d1be91f259a38669cc086549"
+        },
+        {
+          "path": "docs/0.24/P0_FULL_PHYSICAL_CUBE_PARITY_HDOMAIN_CENSUS.md",
+          "git_blob_sha": "5b10ead4dc47d0bbdfa82cf50f0983d17efdf473"
+        },
+        {
+          "path": "scripts/cuberev-024/p0_real_cube_parity_and_halfturn_domain.mjs",
+          "git_blob_sha": "6b19b982cfd16cd49add56c7b5524528f6f20989"
+        },
+        {
+          "path": "scripts/cuberev-024/p0_fullcube_parity_go/main.go",
+          "git_blob_sha": "8348d94474864fa5701b92bada2cef412885344e"
+        },
+        {
+          "path": ".github/workflows/cuberev-024-P0-physical-halfturn-domain.yml",
+          "git_blob_sha": "c48d40f411403d70f2a0436d4ff788a722cd2f84"
+        }
+      ],
+      "physical_results": "full 18 HTM 54-sticker ball d0..3 1/18/243/3240; 6-halfturn d0..5 1/6/27/120/519/1932; bounded H5 overlap 154; even outside bounded H5 1548; odd-corner sign structurally excluded from entire halfturn subgroup 1800",
+      "guarantee": "Odd corner parity exclusion for ANY halfturn word, not full membership check; even failures only halfturn radius5 bounded",
+      "data_rights": "No real private 451 human records read or published; earlier source holds unchanged",
+      "commit_rules": "WhoSia author/committer only; no github-actions[bot] or github-action[bot]; workflow read-only",
+      "notional_canonical_024": "https://app.notion.com/p/3f7ef561cf92817d8e78c7e79a6d5e54",
+      "source_grade": "FINITELY_ENUMERATED_TRUE_PHYSICAL_STICKER_STATES_LOCAL_PASS; INDEPENDENT_GITHUB_ACTIONS_UNVERIFIED",
+      "no_auto_glob": true
     }
   }
 }
