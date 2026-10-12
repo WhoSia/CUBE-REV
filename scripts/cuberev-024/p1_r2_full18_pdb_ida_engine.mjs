@@ -108,6 +108,11 @@ function allCrossBound(s){
   additionalCrossPDBs??=Object.fromEntries('RFBL'.split('').map(f=>[f,buildCrossPDB(f)]));
   return Math.max(crossBound(s),...Object.entries(additionalCrossPDBs).map(([f,pdb])=>pdb.distances[indexOfFourEdges(s.ep,s.eo,FACE_EDGE_IDS[f])]));
 }
+export function warmAllCrossPDBs(){
+ const t=performance.now(),cold=additionalCrossPDBs===null;
+ additionalCrossPDBs??=Object.fromEntries('RFBL'.split('').map(f=>[f,buildCrossPDB(f)]));
+ return {cold,addedStates:760320,elapsedMs:performance.now()-t};
+}
 export function lowerBound(s,useAllCrossPDBs=false){
   const b=Math.max(useAllCrossPDBs?allCrossBound(s):crossBound(s),coPDB.dist[coPDB.encode(s.co)],eoPDB.dist[eoPDB.encode(s.eo)]);
   assert(b>=0&&b<255);
