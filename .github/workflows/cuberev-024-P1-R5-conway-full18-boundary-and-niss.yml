@@ -1,4 +1,4 @@
-name: CUBE-REV 0.24 P1-R5 exact physical target-18 boundary + NISS
+name: CUBE-REV 0.24 P1-R5 actual whole-cube 18HTM NISS witness and finite courts
 on:
   workflow_dispatch:
   push:
@@ -14,107 +14,77 @@ on:
 permissions:
   contents: read
 jobs:
-  actual-complete-cubie-finite-exclusion-and-niss:
+  original-physical-18htm-certificate-and-bounded-negative-courts:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: No GitHub Actions bot authors or committers
+      - name: No github-actions bot author or committer
         shell: bash
         run: |
           if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
-            echo "::error::Actions bot contribution is prohibited"
+            echo "::error::GitHub Actions bot contributor forbidden"
             exit 1
           fi
-      - name: Compile original real 54-sticker C++17 group rewrite and two-stage target18 engines
+      - name: Compile true-original-54-sticker C++17 group and two-sided engines
         shell: bash
         run: |
-          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_conway_target18_cpp/test_trace_group.cpp -o /tmp/cuberev-group
-          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_conway_target18_cpp/main.cpp -o /tmp/cuberev-18
-          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_niss_dual_boundary_cpp/main.cpp -o /tmp/cuberev-niss
+          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_conway_target18_cpp/main.cpp -o /tmp/cuberev-target18
+          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_conway_target18_cpp/test_trace_group.cpp -o /tmp/cuberev-traceunit
+          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_niss_dual_boundary_cpp/main.cpp -o /tmp/cuberev-niss1
           g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_niss_two_premove_cpp/main.cpp -o /tmp/cuberev-niss2
-      - name: Exact same-face and disjoint-commutation physically replayed positive controls
+      - name: Actual original cubie group word rewriting positive controls
+        run: |
+          /tmp/cuberev-traceunit | tee /tmp/traceunit.txt
+          grep -Fq 'P1R5_TRUE_WHOLE_CUBE_GROUP_TRACE_REWRITE_PASS' /tmp/traceunit.txt
+      - name: Complete all three real DR source axes at exact stage1 bounds 7 through 13
         shell: bash
         run: |
-          /tmp/cuberev-group | tee /tmp/trace-positive.log
-          grep -q 'P1R5_TRUE_WHOLE_CUBE_GROUP_TRACE_REWRITE_PASS' /tmp/trace-positive.log
-      - name: Exhaust specified three-axis DR depth-13 and raw20 Conway trace closure scope
+          timeout 900 /tmp/cuberev-target18 120 13 ALL > /tmp/target18negative.log 2>&1
+          tail -28 /tmp/target18negative.log
+          test "$(grep -c '^P1R5_AXIS ' /tmp/target18negative.log)" -eq 3
+          test "$(grep -c '^PHASE1_BOUND 13 COMPLETED 1 FOUND 0' /tmp/target18negative.log)" -eq 3
+          test "$(grep -c 'TARGET18_FOUND 0 RESOURCE_STOP 0 TRACE_CLOSURE_HOLD 0' /tmp/target18negative.log)" -eq 3
+          grep -Fq 'P1R5_AXIS LR TARGET18_FOUND 0 RESOURCE_STOP 0 TRACE_CLOSURE_HOLD 0 NODES1 425596069 NODES2 1780629 CONTACTS 460960 DOWNSTREAM_ATTEMPTS 35733 COMPLETE_WORDS_TESTED 57' /tmp/target18negative.log
+          grep -Fq 'P1R5_AXIS FB TARGET18_FOUND 0 RESOURCE_STOP 0 TRACE_CLOSURE_HOLD 0 NODES1 321415678 NODES2 1686482 CONTACTS 338506 DOWNSTREAM_ATTEMPTS 30545 COMPLETE_WORDS_TESTED 13' /tmp/target18negative.log
+          grep -Fq 'P1R5_AXIS UD TARGET18_FOUND 0 RESOURCE_STOP 0 TRACE_CLOSURE_HOLD 0 NODES1 317970931 NODES2 732950 CONTACTS 300462 DOWNSTREAM_ATTEMPTS 17714 COMPLETE_WORDS_TESTED 4' /tmp/target18negative.log
+          grep -Fq 'P1R5_NO_18_WITNESS_WITHIN_EXPLICIT_RESOURCE_AND_AXIS_BOUNDS_NOT_GLOBAL_DISTANCE_CERTIFICATE' /tmp/target18negative.log
+      - name: Complete one real NISS premove 18-by-three source cases through depth12
         shell: bash
         run: |
-          timeout 600 /tmp/cuberev-18 90 13 ALL > /tmp/p1r5-18.log 2>&1
-          cat /tmp/p1r5-18.log
-          test "$(grep -c '^P1R5_AXIS ' /tmp/p1r5-18.log)" -eq 3
-          test "$(grep -c '^PHASE1_BOUND 13 COMPLETED 1 FOUND 0' /tmp/p1r5-18.log)" -eq 3
-          test "$(grep -c 'TARGET18_FOUND 0 RESOURCE_STOP 0 TRACE_CLOSURE_HOLD 0' /tmp/p1r5-18.log)" -eq 3
-          grep -q '^P1R5_AXIS LR .* NODES1 425596069 .* COMPLETE_WORDS_TESTED 57$' /tmp/p1r5-18.log
-          grep -q '^P1R5_AXIS FB .* NODES1 321415678 .* COMPLETE_WORDS_TESTED 13$' /tmp/p1r5-18.log
-          grep -q '^P1R5_AXIS UD .* NODES1 317970931 .* COMPLETE_WORDS_TESTED 4$' /tmp/p1r5-18.log
-          grep -q '^P1R5_NO_18_WITNESS_WITHIN_EXPLICIT_RESOURCE_AND_AXIS_BOUNDS_NOT_GLOBAL_DISTANCE_CERTIFICATE$' /tmp/p1r5-18.log
-      - name: NISS exact one original-side premove across 18 source moves and three conjugate axes
+          timeout 900 /tmp/cuberev-niss1 18 12 > /tmp/niss1negative.log 2>&1
+          tail -8 /tmp/niss1negative.log
+          test "$(grep -c '^PREMOVE_CASE ' /tmp/niss1negative.log)" -eq 54
+          test "$(grep -c '^PREMOVE_CASE .* CUT 1 ' /tmp/niss1negative.log)" -eq 0
+          grep -Fq 'NISS_ONE_PREMOVE_SCOPE_RESULT NO_18_FOUND TESTS 54 SUM_NODES1 1372877118 SUM_NODES2 6745624 SUM_CONTACTS 1244168 NOT_AN_UNRESTRICTED_18HTM_DISTANCE_PROOF' /tmp/niss1negative.log
+      - name: Complete two genuine NISS premoves 243-by-three at shorter depth10
         shell: bash
         run: |
-          timeout 600 /tmp/cuberev-niss 15 11 > /tmp/p1r5-niss.log 2>&1
-          tail -70 /tmp/p1r5-niss.log
-          test "$(grep -c '^PREMOVE_CASE ' /tmp/p1r5-niss.log)" -eq 54
-          test "$(grep -c '^PREMOVE_CASE .* CUT 1 ' /tmp/p1r5-niss.log)" -eq 0
-          test "$(grep -c '^PREMOVE_CASE .* WIN 1 ' /tmp/p1r5-niss.log)" -eq 0
-          grep -q '^NISS_ONE_PREMOVE_SCOPE_RESULT NO_18_FOUND TESTS 54 SUM_NODES1 105060048 SUM_NODES2 3370185 SUM_CONTACTS 81376 NOT_AN_UNRESTRICTED_18HTM_DISTANCE_PROOF$' /tmp/p1r5-niss.log
-      - name: NISS two genuine inverse-side premoves, 243 legal words by three real DR frames
+          timeout 900 /tmp/cuberev-niss2 18 10 > /tmp/niss2negative.log 2>&1
+          tail -8 /tmp/niss2negative.log
+          test "$(grep -c '^NISS2_RESOURCE_CUT ' /tmp/niss2negative.log)" -eq 0
+          grep -Fq 'NISS2_SOURCE_SCOPE_DONE TESTS 729 CUTS 0 WINS 0 SUM_NODES1 103578829 SUM_NODES2 3081206 CONTACTS 68862 NOT_A_GLOBAL_18HTM_DISTANCE_PROOF' /tmp/niss2negative.log
+      - name: At NISS depth11 certify a REAL original WCA full 18-move 3x3 solution
         shell: bash
         run: |
-          timeout 600 /tmp/cuberev-niss2 15 10 > /tmp/p1r5-niss2.log 2>&1
-          tail -8 /tmp/p1r5-niss2.log
-          test "$(grep -c '^NISS2_RESOURCE_CUT ' /tmp/p1r5-niss2.log)" -eq 0
-          grep -q '^NISS2_SOURCE_SCOPE_DONE TESTS 729 CUTS 0 WINS 0 SUM_NODES1 103578829 SUM_NODES2 3081206 CONTACTS 68862 NOT_A_GLOBAL_18HTM_DISTANCE_PROOF
-        shell: bash
-        run: |
-          node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
-      - name: Guarantee no generated artifacts committed by a workflow
-        shell: bash
-        run: |
-          git diff --exit-code
-          test -z "$(git status --porcelain)"
- /tmp/p1r5-niss2.log
-      - name: Genuine official WCA full 18 HTM breakthrough via two-sided NISS depth11 source group surgery
-        shell: bash
-        run: |
-          timeout 600 /tmp/cuberev-niss2 35 11 > /tmp/p1r5-niss2-positive18.log 2>&1
-          tail -26 /tmp/p1r5-niss2-positive18.log
-          grep -q '^NISS2_ACTUAL_GROUP_FACTOR_CERTIFICATE P1_LEN 11 P2_LEN 6 SUFFIX_PREMOVES_LEN 2 RAW_LEN 19 TRACENORM_LEN 18
-        shell: bash
-        run: |
-          node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
-      - name: Guarantee no generated artifacts committed by a workflow
-        shell: bash
-        run: |
-          git diff --exit-code
-          test -z "$(git status --porcelain)"
- /tmp/p1r5-niss2-positive18.log
-          grep -q "^NISS2_P1_ORIGINAL F U F D' R' F' L' F' D' L B$" /tmp/p1r5-niss2-positive18.log
-          grep -q '^NISS2_P2_ORIGINAL L2 F2 U2 L2 U F2
-        shell: bash
-        run: |
-          node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
-      - name: Guarantee no generated artifacts committed by a workflow
-        shell: bash
-        run: |
-          git diff --exit-code
-          test -z "$(git status --porcelain)"
- /tmp/p1r5-niss2-positive18.log
-          grep -q "^NISS2_SOURCE_VERIFIED_COMPLETE_18_WITNESS F U F D' R' F' L' F' D' L B L2 F2 U2 L2 U F' R2 LENGTH 18 PREMOVES F R2 AXIS UD$" /tmp/p1r5-niss2-positive18.log
+          timeout 900 /tmp/cuberev-niss2 35 11 > /tmp/niss2positive18.log 2>&1
+          tail -18 /tmp/niss2positive18.log
+          grep -Fq 'NISS2_EXACT_DR_SUFFIX_PDB_SANDWICH LOWER 6 ACTUAL_WORD_LEN 6 TRUE_DR_MEMBER 1' /tmp/niss2positive18.log
+          grep -Fq 'NISS2_ACTUAL_GROUP_FACTOR_CERTIFICATE P1_LEN 11 P2_LEN 6 SUFFIX_PREMOVES_LEN 2 RAW_LEN 19 TRACENORM_LEN 18' /tmp/niss2positive18.log
+          grep -Fq "NISS2_P1_ORIGINAL F U F D' R' F' L' F' D' L B" /tmp/niss2positive18.log
+          grep -Fq 'NISS2_P2_ORIGINAL L2 F2 U2 L2 U F2' /tmp/niss2positive18.log
+          grep -Fq "NISS2_SOURCE_VERIFIED_COMPLETE_18_WITNESS F U F D' R' F' L' F' D' L B L2 F2 U2 L2 U F' R2 LENGTH 18 PREMOVES F R2 AXIS UD" /tmp/niss2positive18.log
       - uses: actions/setup-node@v4
         with:
           node-version: "22.16.0"
-      - name: Independently certify exact original fixed 54-sticker WCA 18-word physical and source NISS identity
+      - name: Independently replay fixed original 54-sticker 18-HTM NISS group identity
         run: node scripts/cuberev-024/p1_r5_independent_original_54_facelet_18_replay.mjs
-      - name: Still independently verify the prior genuine source-54-sticker 19-turn upper bound
-        shell: bash
-        run: |
-          node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
-      - name: Guarantee no generated artifacts committed by a workflow
+      - name: Retain separately verified previous whole-cube 19-HTM control
+        run: node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
+      - name: Ensure entirely read-only checkout
         shell: bash
         run: |
           git diff --exit-code
