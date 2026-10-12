@@ -1,0 +1,83 @@
+name: CUBE-REV 0.25 P0-R2 real full-corner 88m and operator cost-partition proof
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r2_operator_cost_go/**"
+      - "scripts/cuberev-025/p0_r2_full_corner_go/**"
+      - "scripts/cuberev-025/p0_r2_independent_full_corner_cpp/**"
+      - "formal/025/**"
+      - ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml"
+permissions:
+  contents: read
+jobs:
+  native-real-original-cubie-complete-finite-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Enforce no GitHub Actions bot author or committer in active branch ancestry
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::github-actions[bot] or github-action[bot] scientific contributor is forbidden"
+            exit 1
+          fi
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.2"
+      - name: Go geometric original cube five Schreier patterns and all 15625 legal face-cost shares
+        shell: bash
+        run: |
+          timeout 360 go run scripts/cuberev-025/p0_r2_operator_cost_go/main.go | tee /tmp/p0r2-weighted.txt
+          test "$(grep -c '^P0R2_VERIFIED_PHYSICAL_ZERO_ONE_PDB ' /tmp/p0r2-weighted.txt)" -eq 5
+          grep -Fq 'CASES 15625 OPTIMUM_ADMISSIBLE_SOURCE_LOWER 7 ATTAINERS 1 FACE_ORDER_URFDLB_OWNER_PATTERN_INDEX [0 0 0 0 0 0]' /tmp/p0r2-weighted.txt
+          grep -Fq 'P0R2_COMPLETE_FINITE_CERTIFICATE PHYSICAL_FIVE_QUOTIENTS=5 MASKS_PER_QUOTIENT=64 TOTAL_ASSIGNMENTS=15625' /tmp/p0r2-weighted.txt
+          grep -Fq 'P0R2_MANDATORY_PHYSICAL_COUNTEREXAMPLE REAL_U_TURN TRUE_COST1 UNSPLIT_DIST_SUM 5' /tmp/p0r2-weighted.txt
+      - name: Go physically derived true whole-corner 88,179,840-state exact 18HTM PDB
+        shell: bash
+        run: |
+          timeout 420 go run scripts/cuberev-025/p0_r2_full_corner_go/main.go | tee /tmp/p0r2-wholecorner-go.txt
+          grep -Fq 'P0R2_FULL_CORNER_EXACT_PDB FINISHED 1 DISTINCT 88179840 EXPECTED 88179840 DIAMETER 11 SOURCE_DISTANCE 9' /tmp/p0r2-wholecorner-go.txt
+          grep -Fq 'LAYERS [1 18 243 2874 28000 205416 1168516 5402628 20776176 45391616 15139616 64736]' /tmp/p0r2-wholecorner-go.txt
+          grep -Fq 'P0R2_FULL_CORNER_CERTIFICATE WHOLE_ORIGINAL_CUBIES_SOURCE_PDB_LOWER 9 INHERITED_FULL_GLOBAL_LOWER14 1 UNRESTRICTED_17_NONEXISTENCE_NOT_PROVED 1' /tmp/p0r2-wholecorner-go.txt
+      - name: Independent C++17 physical 54 labeled stickers and all 88m full-corner layers
+        shell: bash
+        run: |
+          g++ -std=c++17 -O3 scripts/cuberev-025/p0_r2_independent_full_corner_cpp/main.cpp -o /tmp/p0r2-wholecorner-cpp
+          timeout 420 /tmp/p0r2-wholecorner-cpp | tee /tmp/p0r2-wholecorner-cpp.txt
+          grep -Fq 'P0R2_CPP_INDEPENDENT_FULL_CORNER_ORIGINAL_54_FACELET_INTERTWINEMENT PASS' /tmp/p0r2-wholecorner-cpp.txt
+          grep -Fq 'P0R2_CPP_FULL_CORNER_PDB_EXACT 1 STATES 88179840 DIAMETER 11 ORIGINAL_SOURCE_H 9' /tmp/p0r2-wholecorner-cpp.txt
+          grep -Fq 'P0R2_CPP_FINAL_REPLICATION PHYSICAL_SOURCE_CORNER_PROJECTION_9 PASS WHOLE_CUBE_PREVIOUS_LOWER_14_NOT_UPGRADED 1' /tmp/p0r2-wholecorner-cpp.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+      - name: Separate inherited original 54-sticker actual full-cube 18 HTM benchmark
+        run: node scripts/cuberev-024/p1_r5_independent_original_54_facelet_18_replay.mjs
+      - name: Strict repository checkout remains read-only
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+  scaled-action-budget-lean-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Lean 4 generic common physical-word five PDB cost budget lemma
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/025
+          build: true
+          test: false
+          use-mathlib-cache: false
+      - name: No generated research commit
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
