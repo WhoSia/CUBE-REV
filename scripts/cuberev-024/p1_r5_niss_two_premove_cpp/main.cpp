@@ -91,8 +91,16 @@ int main(int argc,char**argv){try{
    bool solved18=t.run(fromStickers(f.cube),seconds,maxDepth);
    checked++;totals1+=t.nodes1;totals2+=t.nodes2;contacts+=t.contacts;cuts+=t.stopped;
    if(solved18){
+     auto p1original=backToOriginal(t.winning1,f);
+     auto p2original=backToOriginal(t.winning2,f);
+     vector<int>raw=p1original;raw.insert(raw.end(),p2original.begin(),p2original.end());raw.push_back(a);raw.push_back(b);
+     if(!physicalSolves(scramble,raw))throw runtime_error("NISS2 raw group identity incorrect for original whole cube");
      auto word=normalizeLegalHTM(t.winningNormalized);
      if(word.size()>18||!physicalSolves(scramble,word))throw runtime_error("two premoves invalid full original 54-sticker witness");
+     cout<<"NISS2_ACTUAL_GROUP_FACTOR_CERTIFICATE P1_LEN "<<p1original.size()<<" P2_LEN "<<p2original.size()<<" SUFFIX_PREMOVES_LEN 2 RAW_LEN "<<raw.size()<<" TRACENORM_LEN "<<word.size()<<"\n";
+     cout<<"NISS2_P1_ORIGINAL "<<join(p1original)<<"\n";
+     cout<<"NISS2_P2_ORIGINAL "<<join(p2original)<<"\n";
+     cout<<"NISS2_RAW_ORIGINAL_COMPLETE_WORD "<<join(raw)<<"\n";
      cout<<"NISS2_SOURCE_VERIFIED_COMPLETE_18_WITNESS "<<join(word)<<" LENGTH "<<word.size()
          <<" PREMOVES "<<names[a]<<" "<<names[b]<<" AXIS "<<(axis==2?"LR":axis==0?"FB":"UD")<<"\n";
      return 0;
