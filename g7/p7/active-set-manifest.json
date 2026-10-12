@@ -76,6 +76,7 @@
     ".github/workflows/cuberev-024-P1-R0-real-cube-H-geodesic-distortion.yml",
     ".github/workflows/cuberev-024-P1-R1-certified-restricted-incumbent.yml",
     ".github/workflows/cuberev-024-P1-R2-physical-ida-pdb-and-speedcubing.yml",
+    ".github/workflows/cuberev-024-P1-R3-true-cube-three-axis-two-phase-cpp.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -309,6 +310,7 @@
     "docs/0.24/P1_R0_EXACT_REAL_CUBE_H_SUBGROUP_GEODESIC_DISTORTION.md",
     "docs/0.24/P1_R1_CERTIFIED_H_SUBGROUP_INCUMBENT_AND_PHYSICAL_ORBIT_GATED_FULL18_SEARCH.md",
     "docs/0.24/P1_R2_FULL_CUBE_PDB_IDA_ENGINE_AND_SPEED_CROSS_ECOLOGIES.md",
+    "docs/0.24/P1_R3_HARD_WCA_FMC_MULTIPHASE_CUBIE_SEARCH_AND_NONVIDEO_HUMAN_EVIDENCE.md",
     "docs/0.24/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -612,6 +614,8 @@
     "scripts/cuberev-024/p1_r2_seeded_heldout_engine_benchmark.mjs",
     "scripts/cuberev-024/p1_r2_source_fmc_speed_boundary.mjs",
     "scripts/cuberev-024/p1_r2_speedcubing_cross_pdb_court.mjs",
+    "scripts/cuberev-024/p1_r3_independent_source_replay.mjs",
+    "scripts/cuberev-024/p1_r3_true_54_facelet_multiaxis_dr_cpp/main.cpp",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2420,6 +2424,39 @@
         }
       ],
       "governance": "authenticated WhoSia author+committer only, no github-actions[bot] or github-action[bot], private451 source never published"
+    },
+    "p1_r3_024_hard_wca_fmc_three_axis_original_facelet_dr_solver": {
+      "date": "2026-10-12",
+      "status": "ACTIVE_P1_R3_CPP17_COMPILED_LOCAL_PASS_NODE_INDEPENDENT_ORIGINAL_STICKERS_PASS_EXTERNAL_ACTIONS_PENDING",
+      "science": "independent physical original fixed 54-sticker 3x3 full HTM phase1 2187x495 CO-slice plus 2048x495 EO-slice; phase2 two 40320x24 real legal DR permutation quotient PDB, all three conjugate UD FB LR axes, up to 128 phase1 candidate contacts, source strict sticker replay",
+      "Cplusplus_source_sha256": "21ce76ea90926733b1484fb302406016b3976cbc8ba82186a56a15943944e6d8",
+      "real_WCA_333_final_A1": "source scramble 20, best new 2-phase source physical witness 21; trivially valid scramble inverse20 is BETTER; GLOBAL_OPTIMALITY_HOLD",
+      "real_WCA_333_first_A1": "source scramble19, new physical 2-phase solution19; ties trivial source inverse19; GLOBAL_OPTIMALITY_HOLD",
+      "named_FMC_authored_main": "Miao and Riabov original written normal-side prefixes source-distinct but same entire source cubie state; FB-axis G1 already reached and certified DR phase2 nine-turn suffix; reproduces 0.22 P8-R3 not independent human cognition",
+      "first_contact_counterexample": "same WCA FinalA1 UD-phase first DR contact 10+15=25 versus competing physical phase1-minimal contact 10+11=21, four move conditional later-cost spread",
+      "algorithmic_prior_art": "Known Kociemba two-phase and 0.22 P8-R3 DR-PDB machinery, no claim algorithm invented",
+      "human_evidence": "video AI alone not human cognition evidence; physical counterfactual action/program opportunity, existing source-authored FMC grammar and possible rights-checked BLE timestamped actual move records; no new participant or video acquisition approved",
+      "source_data_boundary": "WCA official public scrambles; existing FMC public ledger; original private451 trajectories excluded; 2x2 y2 source-frame HOLD preserved",
+      "proof_scope": "C++ and existing independent Node replay legal entire 54 sticker solved words on four written inputs/three physical endpoints; phase2 exact only within chosen fixed ten-action DR subgroup; entire unrestricted full18 global shortest not established",
+      "read_only_CI": "workflow committed but independent completed Actions result not yet checked; no author/committer bot",
+      "new_paths_and_git_blobs": [
+        {
+          "path": "scripts/cuberev-024/p1_r3_true_54_facelet_multiaxis_dr_cpp/main.cpp",
+          "git_blob_sha": "c7a96e4314a977d4fe54dcda5fa8c64ba2b90b7c"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r3_independent_source_replay.mjs",
+          "git_blob_sha": "28dd2074638fb090827e8101cbb6c4d6daf74733"
+        },
+        {
+          "path": ".github/workflows/cuberev-024-P1-R3-true-cube-three-axis-two-phase-cpp.yml",
+          "git_blob_sha": "0c7f22db9ca5d1130f0df0702f6376d7ec96e8b0"
+        },
+        {
+          "path": "docs/0.24/P1_R3_HARD_WCA_FMC_MULTIPHASE_CUBIE_SEARCH_AND_NONVIDEO_HUMAN_EVIDENCE.md",
+          "git_blob_sha": "9e98086526d0aee80f537a8a4ff58d76d5e23913"
+        }
+      ]
     }
   }
 }
