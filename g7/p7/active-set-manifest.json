@@ -320,6 +320,7 @@
     "docs/0.24/P1_R6_SOURCE_COMPLETE_FULL18_GLOBAL_BIDIRECTIONAL_CERTIFICATE_AND_025_GATE.md",
     "docs/0.24/P1_R7_SCIENTIFIC_FREEZE_AND_025_HANDOFF.md",
     "docs/0.24/PROGRAM_CHARTER.md",
+    "docs/0.25/P0_R1_PHYSICAL_SCHREIER_PDB_PARIKH_SATURATION_AND_DUALITY.md",
     "docs/0.25/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -2716,6 +2717,87 @@
           "git_blob_sha": "0e820e582d10005f7a3e4ca1c639ad603c43918b"
         }
       ]
+    },
+    "p0_r1_025_actual_schreier_quotient_PDB_and_parikh_no_go": {
+      "date": "2026-10-12",
+      "status": "LOCAL_GO_CPP_EXACT_PHYSICAL_FINITE_COURTS_PASS_SOURCE_BYTES_CONVERSATION_ATTACHMENT_GITHUB_EXECUTABLE_IMPORT_PENDING_EXTERNAL_CI_NOT_CLAIMED",
+      "scientific_report": {
+        "path": "docs/0.25/P0_R1_PHYSICAL_SCHREIER_PDB_PARIKH_SATURATION_AND_DUALITY.md",
+        "git_blob_sha": "234f885aa50085d4102b4263c1f1ccf3bfa4b286"
+      },
+      "actual_cube": "fixed original WCA Seoul Summer 2026 3x3 Final A1 54 stickers and 18 legal original outer moves",
+      "edge_patterns": [
+        [
+          0,
+          4,
+          8,
+          10
+        ],
+        [
+          1,
+          5,
+          9,
+          11
+        ],
+        [
+          2,
+          3,
+          6,
+          7
+        ]
+      ],
+      "corner_patterns": [
+        [
+          0,
+          2,
+          4,
+          6
+        ],
+        [
+          1,
+          3,
+          5,
+          7
+        ]
+      ],
+      "edge_quotient_cardinality": 190080,
+      "corner_quotient_cardinality": 136080,
+      "physical_pattern_diameters": [
+        8,
+        8,
+        8,
+        7,
+        7
+      ],
+      "source_pattern_distances": [
+        7,
+        5,
+        5,
+        5,
+        6
+      ],
+      "valid_single_potential_lower": 7,
+      "unweighted_sum_28_invalid": true,
+      "exact_one_move_U_counterexample": {
+        "true_distance": 1,
+        "sum_of_five_unweighted_pattern_distances": 5
+      },
+      "parikh_even_length8_each_pattern_classes": 32,
+      "parikh_odd_length9_each_pattern_classes": 32,
+      "saturation_theorem": "for this source, all five quotient accepted face-count parities attain every permitted 32-vector class by length8/9; 2-step a a^-1 padding yields all lengths >=8; no nonexistence certificate for 17 from this synchronized parity alone",
+      "joint_quotient": "five marked-piece pattern tuples jointly determine all original 8 corner and 12 edge positions/orientations, so fully synchronized product recovers whole physical cube",
+      "current_unrestricted_18HTM_distance_interval": [
+        14,
+        18
+      ],
+      "new_global_lower_bound_claim": false,
+      "local_verifier_source_sha256": {
+        "go": "2946e891d406890dd6129b59763ceec0cfae7d12a226f0af9b84f7295d0ce878",
+        "cpp17": "c6e0a67207f337a392d48def0c004c3ec1b92fc07ef9a87c97b61b87a9e88bd8"
+      },
+      "source_availability": "compiled reproducibility sources + numeric receipt verified and bundled in current conversation sandbox ZIP, not yet GitHub due expired Library container bridge",
+      "next": "actual source-complete joint corner or cost-partitioned quotient with nonabelian order constraints and independent proof checker; no invalid PDB addition",
+      "bot_rule": "all new GitHub commits WhoSia author/committer, Actions contents:read, no bot writeback"
     }
   }
 }
