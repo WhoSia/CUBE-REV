@@ -318,7 +318,9 @@
     "docs/0.24/P1_R5_R1_WCA_REAL_18HTM_NISS_CONWAY_GROUP_CERTIFICATE.md",
     "docs/0.24/P1_R5_SOURCE_FULL18_TARGET_BOUNDED_CONWAY_TRACE_NISS_COURTS.md",
     "docs/0.24/P1_R6_SOURCE_COMPLETE_FULL18_GLOBAL_BIDIRECTIONAL_CERTIFICATE_AND_025_GATE.md",
+    "docs/0.24/P1_R7_SCIENTIFIC_FREEZE_AND_025_HANDOFF.md",
     "docs/0.24/PROGRAM_CHARTER.md",
+    "docs/0.25/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
     "formal/016/P12LightGraph.lean",
@@ -2687,6 +2689,33 @@
         ],
         "conclusion_limit": "14<=d18<=18, NOT d18=18"
       }
+    },
+    "p1_r7_024_scientific_freeze_and_formal_025_activation": {
+      "date": "2026-10-12",
+      "status": "CUBE_REV_024_P1_R7_SCIENTIFICALLY_CLOSED_CUBE_REV_025_ACTIVE_P0_OPEN_RESEARCHER_EXPLICITLY_AUTHORIZED",
+      "approved_formal_name": "CUBE-REV 0.25 — Proof-Carrying Physical Program Synthesis for the Rubik's Cube: Source-Complete Geodesic Certificates, Coset-Guided Solver Architectures, Adversarial FMC Prediction & Timed Speedcubing Mechanism Falsification",
+      "notion_025_child": "https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc",
+      "notion_024_parent": "https://app.notion.com/p/3f7ef561cf92817d8e78c7e79a6d5e54",
+      "frozen_original_WCA_333_final_A1_legal_18HTM_solution": "F U F D' R' F' L' F' D' L B L2 F2 U2 L2 U F' R2",
+      "unrestricted_true_whole_cube_18HTM_lower": 14,
+      "constructive_whole_cube_18HTM_upper": 18,
+      "not_proven": "d18(s)=18. Existence of legal complete 14-17 move word remains OPEN.",
+      "global_proof_external_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38210864083",
+      "physical_historical_regression_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38211534949",
+      "scope": "Official actual whole 54-sticker original Rubik 3x3. P1-R6 goal radius6 exact 8240087 whole-cubie states, source radius7 exact 120213368 recursive calls, no intersection; independent Go original 54-sticker lower11 only.",
+      "inherited_source_HOLDS": "authored FMC same actual cubie endpoints, conditional Riabov Other #2/NISS, 2x2 unreported-y2 HOLD, private 451 raw trajectories excluded; older falsely claimed depth13 corrected to actual11; resource holds retained.",
+      "active_025_P0_contract": "Whole 18HTM source-complete geodesic certificate, correct quotient admissibility, source-stabilizer-safe coset/orbit, executable solver policy, adversarial WCA/FMC, real Cross-to-F2L/timed move falsification",
+      "governance": "0.24 code and old failure reports preserved. New version is user authorized. All authors/committers WhoSia; no github-actions[bot]/github-action[bot] contributions; Actions read-only; P7 exact file SHA.",
+      "new_approved_paths_and_git_blobs": [
+        {
+          "path": "docs/0.24/P1_R7_SCIENTIFIC_FREEZE_AND_025_HANDOFF.md",
+          "git_blob_sha": "cefadda7be23fdad6eb274e2325615262ff3ac31"
+        },
+        {
+          "path": "docs/0.25/PROGRAM_CHARTER.md",
+          "git_blob_sha": "0e820e582d10005f7a3e4ca1c639ad603c43918b"
+        }
+      ]
     }
   }
 }
