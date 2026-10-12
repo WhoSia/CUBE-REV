@@ -160,6 +160,85 @@ for(const [category,cohort] of [
     all_original_facelets_replayed_and_solved:true
   });
 }
+// Actual 3x3 edge-position signature filter. Allowed pairs are derived
+// ONLY from genuine physical H5 states, never from the evaluator's H group.
+// Rejecting a pair cannot reject any H5 optimality certificate. False
+// positives merely lead to harmless full18 fallback.
+const edgePositions=[...new Set(positions.filter(p=>p.p.filter(c=>Math.abs(c)===1).length===2)
+  .map(p=>p.p.join(',')))].sort();
+const edgePairs=edgePositions.map(p=>positions.map((a,i)=>a.p.join(',')===p?i:-1).filter(i=>i>=0));
+assert.equal(edgePairs.length,12);assert(edgePairs.every(p=>p.length===2));
+const faceCode=new Uint8Array(128);
+for(let i=0;i<6;i++)faceCode[F.charCodeAt(i)]=i;
+const allowedEdgePair=edgePairs.map(pair=>{
+  const allowed=new Uint8Array(36);
+  for(const s of H5.seen.keys())
+    allowed[6*faceCode[s.charCodeAt(pair[0])]+faceCode[s.charCodeAt(pair[1])]]=1;
+  assert.equal(allowed.reduce((x,y)=>x+y,0),4);
+  return allowed;
+});
+function edgeGate(s){
+  for(let j=0;j<12;j++){
+    const pair=edgePairs[j],v=6*faceCode[s.charCodeAt(pair[0])]+faceCode[s.charCodeAt(pair[1])];
+    if(!allowedEdgePair[j][v])return {pass:false,checks:j+1};
+  }
+  return {pass:true,checks:12};
+}
+for(const s of HGroup.seen.keys())assert(edgeGate(s).pass,
+  'All genuine H states preserve actual four-edge orbit signatures');
+function orbitCertified(s,goal4,h5){
+  let probes=1,rotations=0;
+  const ready=goal4.get(s);
+  if(ready)return {word:invertWord(ready.word),probes,rotations,edgeChecks:0,method:'goal4'};
+  const g=edgeGate(s);
+  if(g.pass){
+    const h=h5.get(s);probes++;
+    if(h?.d===5)return {word:invertWord(h.word),probes,rotations,edgeChecks:g.checks,method:'certified_H5'};
+  }
+  for(const m of all){
+    const child=apply(s,m);rotations++;probes++;
+    const next=goal4.get(child);
+    if(next)return {word:[m,...invertWord(next.word)],probes,rotations,edgeChecks:g.checks,method:'full18'};
+  }
+  return {word:null,probes,rotations,edgeChecks:g.checks,method:'HOLD_OUTSIDE_RADIUS5'};
+}
+let gateSourceCount=0,h5GateCount=0;
+for(const [s,v] of full5.seen){
+  if(v.d!==5)continue;
+  const g=edgeGate(s).pass;
+  if(g)gateSourceCount++;
+  if(H5.seen.get(s)?.d===5){h5GateCount++;assert(g);}
+}
+assert.equal(gateSourceCount,2124);
+assert.equal(h5GateCount,1932);
+const easyLookupSavings=summary[0].baseline.probes-summary[0].dual.probes;
+assert.equal(easyLookupSavings,16143);
+const fullShellExactLookupDelta=gateSourceCount-h5GateCount-easyLookupSavings;
+assert.equal(fullShellExactLookupDelta,-15951);
+const orbitCohorts=[];
+for(const [label,cohort] of [
+  ['halfturn_five_is_full18_geodesic',positive],
+  ['halfturn_distance_8_or_9_but_full18_five',distorted],
+  ['outside_full_halfturn_subgroup_seeded_reservoir',negative]
+]){
+  const data={probes:0,rotations:0,edgeChecks:0,certified:0,gatePassed:0};
+  for(const s of cohort){
+    const x=orbitCertified(s,R4.seen,H5.seen);
+    assert.equal(x.word?.length,5);assert.equal(replay(s,x.word),goal);
+    data.probes+=x.probes;data.rotations+=x.rotations;data.edgeChecks+=x.edgeChecks;
+    if(x.method==='certified_H5')data.certified++;
+    if(x.edgeChecks===12)data.gatePassed++;
+  }
+  const t=[];
+  for(let round=0;round<5;round++){
+    const start=performance.now();let n=0;
+    for(const s of cohort)n+=orbitCertified(s,R4.seen,H5.seen).word.length;
+    assert.equal(n,cohort.length*5);
+    t.push(performance.now()-start);
+  }
+  orbitCohorts.push({cohort:label,physical_sources:cohort.length,...data,median_ms:median(t),trials_ms:t});
+}
+
 // Complete-domain contract: an actual out-of-radius-five state MUST produce
 // a HOLD from both bounded solvers; neither may mistake H membership for an
 // unrestricted optimality witness.
@@ -169,6 +248,7 @@ const beyond=(()=>{for(const [s,v] of full5.seen){
 }throw Error('NO_R6_CONTROL')})();
 assert.equal(full18Radius5(beyond,R4.seen).method,'HOLD_OUTSIDE_RADIUS5');
 assert.equal(certifiedDual(beyond,R4.seen,H5.seen).method,'HOLD_OUTSIDE_RADIUS5');
+assert.equal(orbitCertified(beyond,R4.seen,H5.seen).method,'HOLD_OUTSIDE_RADIUS5');
 const realCounterexamples=[
  ["D U R2 D U",9],["D U R2 D' U",8]
 ];
@@ -177,6 +257,10 @@ for(const [scramble,dH] of realCounterexamples){
   assert.equal(full5.seen.get(s)?.d,5);
   assert.equal(HGroup.seen.get(s)?.d,dH);
   const solved=certifiedDual(s,R4.seen,H5.seen);
+  const screened=orbitCertified(s,R4.seen,H5.seen);
+  assert.equal(screened.method,'full18');
+  assert.equal(screened.word.length,5);
+  assert.equal(replay(s,screened.word),goal);
   assert.equal(solved.method,'full18');
   assert.equal(solved.word.length,5);
   assert.equal(replay(s,solved.word),goal);
@@ -197,6 +281,11 @@ console.log(JSON.stringify({
   extra_H5_heap_mib:(hybridMemory.heap-baselineMemory.heap)/1048576,
   extra_H5_rss_mib:(hybridMemory.rss-baselineMemory.rss)/1048576,
   test_cohorts:summary,
+  screened_orbit_policy_cohorts:orbitCohorts,
+  complete_d5_edge_signature_gate_positive:gateSourceCount,
+  complete_d5_H5_certificates:h5GateCount,
+  exact_all_574908_d5_lookup_change_screened_minus_baseline:fullShellExactLookupDelta,
+  complete_d5_wallclock_NOT_MEASURED:true,
   complete_full18_shell_d5_size:574908,
   certified_H5_in_full18_shell_d5:1932,
   certified_H5_prevalence_percent:1932/574908*100,
