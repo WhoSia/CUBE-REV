@@ -78,6 +78,8 @@
     ".github/workflows/cuberev-024-P1-R2-physical-ida-pdb-and-speedcubing.yml",
     ".github/workflows/cuberev-024-P1-R3-true-cube-three-axis-two-phase-cpp.yml",
     ".github/workflows/cuberev-024-P1-R4-conway-19-original-facelets.yml",
+    ".github/workflows/cuberev-024-P1-R5-conway-full18-boundary-and-niss.yml",
+    ".github/workflows/cuberev-024-P1-R6-full18-global-bidir-and-independent-facelets.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -313,6 +315,9 @@
     "docs/0.24/P1_R2_FULL_CUBE_PDB_IDA_ENGINE_AND_SPEED_CROSS_ECOLOGIES.md",
     "docs/0.24/P1_R3_HARD_WCA_FMC_MULTIPHASE_CUBIE_SEARCH_AND_NONVIDEO_HUMAN_EVIDENCE.md",
     "docs/0.24/P1_R4_CONWAY_GROUP_WORD_SURGERY_19_WCA_WITNESS.md",
+    "docs/0.24/P1_R5_R1_WCA_REAL_18HTM_NISS_CONWAY_GROUP_CERTIFICATE.md",
+    "docs/0.24/P1_R5_SOURCE_FULL18_TARGET_BOUNDED_CONWAY_TRACE_NISS_COURTS.md",
+    "docs/0.24/P1_R6_SOURCE_COMPLETE_FULL18_GLOBAL_BIDIRECTIONAL_CERTIFICATE_AND_025_GATE.md",
     "docs/0.24/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -621,6 +626,14 @@
     "scripts/cuberev-024/p1_r4_conway_boundary19_cpp/main.cpp",
     "scripts/cuberev-024/p1_r4_conway_trace_cpp/main.cpp",
     "scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs",
+    "scripts/cuberev-024/p1_r5_conway_target18_cpp/group_trace_rewrite.hpp",
+    "scripts/cuberev-024/p1_r5_conway_target18_cpp/main.cpp",
+    "scripts/cuberev-024/p1_r5_conway_target18_cpp/test_trace_group.cpp",
+    "scripts/cuberev-024/p1_r5_independent_original_54_facelet_18_replay.mjs",
+    "scripts/cuberev-024/p1_r5_niss_dual_boundary_cpp/main.cpp",
+    "scripts/cuberev-024/p1_r5_niss_two_premove_cpp/main.cpp",
+    "scripts/cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp",
+    "scripts/cuberev-024/p1_r6_independent_54_facelet_go/main.go",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2542,6 +2555,119 @@
         }
       ],
       "next": "Find an actual 18-or-fewer whole original 3x3 solution or certify d18>=19 with unrestricted physical 18HTM dual-frontier/PDB proof, not bounded subgroup-only negative."
+    },
+    "p1_r5_024_conway_trace_dual_NISS_actual_WCA_18_witness": {
+      "date": "2026-10-12",
+      "status": "SOURCE_VERIFIED_REAL_ORIGINAL_3x3_EIGHTEEN_HTM_UPPER_BOUND_INDEPENDENT_CPP_NODE_LOCAL_PASS_EXTERNAL_CI_UNVERIFIED",
+      "actual_original_54_source": "WCA Seoul Summer 2026 Final A1 original legal20",
+      "exact_18_word": "F U F D' R' F' L' F' D' L B L2 F2 U2 L2 U F' R2",
+      "genuine_original_cube_upper_bound": 18,
+      "minimality": "NO certified 17-turn exclusion as of P1-R5",
+      "NISS_source_premoves": "F R2",
+      "true_DR_P1_actions": 11,
+      "true_DR_P2_actions": 6,
+      "actual_DR_suffix_PDB_bound": 6,
+      "raw_program_actions": 19,
+      "group_product": "F2 F = F' gives final 18",
+      "bounded_negative": "Three DR axes source first-phase depth13 and finite true word closure; NISS depth10/11 negative is historical, 18 positive appears at NISS 2-premove depth11",
+      "source_privacy": "only public WCA scramble, no confidential person trajectories",
+      "read_only_actions": "external completed workflow receipt pending",
+      "exact_paths_and_current_Git_blobs": [
+        {
+          "path": "scripts/cuberev-024/p1_r5_conway_target18_cpp/main.cpp",
+          "git_blob_sha": "e39cfae76ed8f2382611353623549ca509be706c"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r5_conway_target18_cpp/group_trace_rewrite.hpp",
+          "git_blob_sha": "e1141ce78887b976ddcb8cf9f061bfa03595e9a9"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r5_conway_target18_cpp/test_trace_group.cpp",
+          "git_blob_sha": "bd466909627b79b6e714a6dd98aa09c30812568c"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r5_niss_dual_boundary_cpp/main.cpp",
+          "git_blob_sha": "33f0136215e42c0605f0b50685bb60d00d484c9e"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r5_niss_two_premove_cpp/main.cpp",
+          "git_blob_sha": "45cf7009784a6f2cc6edbcc14d62ad0c5ab713f4"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r5_independent_original_54_facelet_18_replay.mjs",
+          "git_blob_sha": "ecc0372d76bbcf39ccde0750b4257157ebb7e010"
+        },
+        {
+          "path": ".github/workflows/cuberev-024-P1-R5-conway-full18-boundary-and-niss.yml",
+          "git_blob_sha": "8ff48a570f8ea571a87e73c59e6ff6838e23eebd"
+        },
+        {
+          "path": "docs/0.24/P1_R5_SOURCE_FULL18_TARGET_BOUNDED_CONWAY_TRACE_NISS_COURTS.md",
+          "git_blob_sha": "3ab3c3055862f8a40d62bf7f30d3a73b3c8d372f"
+        },
+        {
+          "path": "docs/0.24/P1_R5_R1_WCA_REAL_18HTM_NISS_CONWAY_GROUP_CERTIFICATE.md",
+          "git_blob_sha": "2dc511ba0be2cbe0907f8803be415406f9a155fa"
+        }
+      ]
+    },
+    "p1_r6_024_true_global_full18_collision_free_B6_B7": {
+      "date": "2026-10-12",
+      "status": "SOURCE_COMPLETE_TRUE_18HTM_GLOBAL_DISTANCE_LOWER_14_CPP_LOCAL_PASS_INDEPENDENT_GO_ORIGINAL_FACELETS_LOWER_11_PASS_EXTERNAL_CI_UNVERIFIED",
+      "theorem": "For full cube group right Cayley balls d18(s,e)<=r+t iff B_t(s) intersects B_r(e)",
+      "source": "WCA Seoul Summer 2026 Final A1 same original 54-facelet legal20 scramble",
+      "goal_radius": 6,
+      "goal_distinct_full_cubie_states": 8240087,
+      "goal_exact_layer_counts": [
+        1,
+        18,
+        243,
+        3240,
+        43239,
+        574908,
+        7618438
+      ],
+      "source_radius": 7,
+      "source_recursive_calls": 120213368,
+      "source_per_iteration_calls": [
+        1,
+        19,
+        262,
+        3502,
+        46756,
+        624124,
+        8331112,
+        111207592
+      ],
+      "source_goal_intersections": 0,
+      "rigorous_unrestricted_lower": 14,
+      "known_original_cube_18_solution_upper": 18,
+      "unproved": "17-or-fewer global source cube words not excluded; d18=18 remains HOLD",
+      "local_replay_seconds": 81.59,
+      "local_peak_rss_KiB": 653964,
+      "packed_encoding": "full cubie CP/CO/EP/EO exact reversible two-word 64-bit pairs; hash bucket collision cannot affect exact key equality",
+      "independent_GO_checker": "entire 54 original facelet geometry independently recreates all legal moves; B5+sourceB5 disjoint yields lower11 only",
+      "cpp_source_sha256": "e46476b5513a2e46fdc46236b209ac05c2e35e080935b18b7f90e2e9286c2e5e",
+      "go_source_sha256": "b6e6ae4cb53a09a884f0c1c7af78a05c1121b0137302d4f47a93318752065e45",
+      "next_gate": "P1R6 external CI readback then P1R7 0.24 scientific freeze; 0.25 proposal conditional and user-approved, not auto switch",
+      "new_exact_paths_and_blobs": [
+        {
+          "path": "scripts/cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp",
+          "git_blob_sha": "d004aced3fa19be07a6caa7ec53b55d5497b18e2"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r6_independent_54_facelet_go/main.go",
+          "git_blob_sha": "13145c4d3ba6f1fab16b1f9675df167d4cca40e2"
+        },
+        {
+          "path": ".github/workflows/cuberev-024-P1-R6-full18-global-bidir-and-independent-facelets.yml",
+          "git_blob_sha": "0d9abcb9fb9e66d54a4d37362ba15dfa139afc3a"
+        },
+        {
+          "path": "docs/0.24/P1_R6_SOURCE_COMPLETE_FULL18_GLOBAL_BIDIRECTIONAL_CERTIFICATE_AND_025_GATE.md",
+          "git_blob_sha": "df4ba891ed0c2ab22129e7ff994d4690cadeb6a6"
+        }
+      ]
     }
   }
 }
