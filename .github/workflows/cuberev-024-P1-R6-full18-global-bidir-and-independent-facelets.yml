@@ -1,0 +1,60 @@
+name: CUBE-REV 0.24 P1-R6 genuine full18 global bidirectional certificate
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp"
+      - "scripts/cuberev-024/p1_r6_independent_54_facelet_go/main.go"
+      - ".github/workflows/cuberev-024-P1-R6-full18-global-bidir-and-independent-facelets.yml"
+permissions:
+  contents: read
+jobs:
+  source-complete-full-18htm-original-cubies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Enforce no github-actions bot author or committer in active branch ancestry
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::GitHub Actions bot contribution forbidden"
+            exit 1
+          fi
+      - name: C++17 original cubie and sticker sourced full18 whole-cube compiler
+        shell: bash
+        run: |
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp -o /tmp/cuberev024-full18-global
+      - name: Genuine source-complete global 18HTM B6(goal) B7(source) original state nonintersection
+        shell: bash
+        run: |
+          timeout 750 /tmp/cuberev024-full18-global 6 7 650 | tee /tmp/p1r6-full18-global.txt
+          grep -Fq 'P1R6_SOURCE_ORIGINAL_54_FACELET_CUBIE_ROUNDTRIP PASS' /tmp/p1r6-full18-global.txt
+          grep -Fq 'P1R6_GLOBAL_FULL18_GOAL_LAYER 6 EXACT_DISTINCT 7618438 TOTAL 8240087' /tmp/p1r6-full18-global.txt
+          grep -Fq 'P1R6_GLOBAL_FULL18_SOURCE_BOUND 7 COMPLETED 1 VISITS 111207592 MATCH 0' /tmp/p1r6-full18-global.txt
+          grep -Fq 'P1R6_FULL18_SOURCE_COMPLETE_EXCLUSION COMPLETE 1 ALL18LEGAL_ACTIONS 1 ALL_ORIGINAL_CUBIES 1 GOAL_RADIUS 6 SOURCE_RADIUS 7 EXCLUDED_ALL_WORDS_LENGTH_LEQ 13 GOAL_STATES 8240087 SOURCE_NODES 120213368 HASH_COLLISION_FALSE_POSITIVE_SAFE 1 NO_SOURCE_STABILIZER_SHORTCUT_USED 1' /tmp/p1r6-full18-global.txt
+          grep -Fq 'P1R6_CURRENT_PROOF_DISTANCE_BOUNDS LOWER 14 UPPER 18 GLOBAL17_NOT_YET_EXCLUDED 1' /tmp/p1r6-full18-global.txt
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.2"
+      - name: Independent Go original 54 physical facelets, no inherited C++ cubie parser
+        shell: bash
+        run: |
+          go run scripts/cuberev-024/p1_r6_independent_54_facelet_go/main.go 5 | tee /tmp/p1r6-go-real-facelet.txt
+          grep -Fq 'P1R6_GO_INDEPENDENT_TRUE_54_STICKER_WCA_18_WITNESS PASS' /tmp/p1r6-go-real-facelet.txt
+          grep -Fq 'P1R6_GO_INDEPENDENT_54STICKER_GOAL_LAYER 5 DISTINCT 574908 TOTAL 621649' /tmp/p1r6-go-real-facelet.txt
+          grep -Fq 'P1R6_GO_COMPLETE_SOURCE_GLOBAL_EXCLUSION ALL18_MOVES 1 STRICT_54_FACELET_KEYS 1 EXCLUDED_LENGTH_LEQ 10 LOWER_BOUND 11 UPPER_BOUND 18 GOAL_DISTINCT 621649' /tmp/p1r6-go-real-facelet.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+      - name: Independent existing Node original 54 sticker strict eighteen turn upper certificate
+        run: node scripts/cuberev-024/p1_r5_independent_original_54_facelet_18_replay.mjs
+      - name: Source checkout remains read only
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
