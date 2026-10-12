@@ -148,7 +148,7 @@ function canonicalLast(last,move){
   if(last[0]===move[0])return true;
   return opp[last[0]]===move[0]&&move[0]<last[0]; // commuting opposite face canonicalization
 }
-export function solveOptimal(tokens,{useHIncumbent=true,nodeCap=250000,timeCapMs=2000,maxDepth=13}={}){
+export function solveOptimal(tokens,{useHIncumbent=true,hIncumbentMode='cheap_H5',nodeCap=250000,timeCapMs=2000,maxDepth=13}={}){
   legalTokens(tokens);
   const initial=fromTokens(tokens),start=performance.now();
   const h0=lowerBound(initial);
@@ -160,7 +160,18 @@ export function solveOptimal(tokens,{useHIncumbent=true,nodeCap=250000,timeCapMs
   if(exact){const word=inverted(exact.path);assert(cubieSolved(applyWord(initial,word)));
     return {...result,result:'OPTIMAL',length:word.length,word,method:'EXACT_R4',bounded_optimum_certificate:true,elapsedMs:performance.now()-start};
   }
-  const hCandidate=useHIncumbent?restrictedIncumbent(initial,Math.max(9,maxDepth)):null;
+  // Avoid paying up to 673 halfturn source-side evaluations on sources for
+  // which full18 IDA* closes quickly. Default = only a cheap exact H5 lookup.
+  // EXPENSIVE 4+5 H<=9 search is explicit and resource-priced; it is never
+  // a lower bound and is not automatically run for distorted d18=5/H8,9.
+  const hCandidate=useHIncumbent
+    ?(hIncumbentMode==='eager_H9'?restrictedIncumbent(initial,Math.max(9,maxDepth)):
+      passesTetrads(initial)
+        ?(()=>{const d=H5.seen.get(key(initial));return d
+          ?{word:inverted(d.path),expanded:0,reason:'EXACT_H5_DIRECT'}
+          :{word:null,expanded:0,reason:'H5_NOT_REACHED'}})()
+        :{word:null,expanded:0,reason:'OUTSIDE_H_TETRADS'})
+    :null;
   const inc=hCandidate?.word??null;
   if(inc){assert(cubieSolved(applyWord(initial,inc)));result.incumbent={length:inc.length,reason:hCandidate.reason,search_nodes:hCandidate.expanded}}
   else if(hCandidate)result.incumbent={length:null,reason:hCandidate.reason,search_nodes:hCandidate.expanded};
