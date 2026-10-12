@@ -59,7 +59,7 @@ func parity(s string,triads [][]int,identity []string)int{
  inversions:=0;for i:=0;i<8;i++{for j:=i+1;j<8;j++{if order[i]>order[j]{inversions++}}};return inversions%2
 }
 func main(){
- _,moves:=geometry()
+ slots,moves:=geometry()
  var b strings.Builder
  for _,f:=range []byte("URFDLB"){b.WriteString(strings.Repeat(string(f),9))}
  goal:=b.String()
@@ -118,6 +118,40 @@ func main(){
   }
   return Result{nil,probes,18,"HOLD_OUTSIDE_RADIUS5"}
  }
+ // Independently derive genuine physical edge-cubie two-sticker positions.
+ // Allowed pair patterns come only from the H5 physical solver table.
+ physicalEdges:=map[string][]int{}
+ for i,slot:=range slots{
+  hits:=0;for j:=0;j<3;j++{if slot.P[j]!=0{hits++}}
+  if hits==2{p:=xyz(slot.P);physicalEdges[p]=append(physicalEdges[p],i)}
+ }
+ edgeNames:=[]string{};for p:=range physicalEdges{edgeNames=append(edgeNames,p)};sort.Strings(edgeNames)
+ require(len(edgeNames)==12,"twelve true two-sticker edge positions")
+ pairs:=[][]int{};allowed:=[]map[string]bool{}
+ for _,p:=range edgeNames{
+  ix:=physicalEdges[p];require(len(ix)==2,"edge position physical slot pair")
+  pairs=append(pairs,ix);allowed=append(allowed,map[string]bool{})
+ }
+ for s:=range H5{
+  for j,pair:=range pairs{allowed[j][string([]byte{s[pair[0]],s[pair[1]]})]=true}
+ }
+ for _,set:=range allowed{require(len(set)==4,"four physical edge pair signatures per orbit position")}
+ edgeAllowed:=func(s string)bool{
+  for j,p:=range pairs{
+   if !allowed[j][string([]byte{s[p[0]],s[p[1]]})]{return false}
+  }
+  return true
+ }
+ for s:=range HGroup{require(edgeAllowed(s),"no true halfturn group member violates its edge tetrad")}
+ gatePassD5:=0;gateCertified:=0
+ for source,r:=range Full5{
+  if r.D!=5{continue}
+  pass:=edgeAllowed(source)
+  if pass{gatePassD5++}
+  if h,ok:=H5[source];ok&&h.D==5{gateCertified++;require(pass,"gate cannot lose exact H5 certificate")}
+ }
+ require(gatePassD5==2124&&gateCertified==1932,"finite entire full18 radius5 physical edge orbit gate")
+
  type Total struct{BaseProbes,DualProbes,BaseRotations,DualRotations,Count,Certified int}
  tally:=map[string]*Total{
   "H5_exact_global5":{},
@@ -172,5 +206,6 @@ func main(){
   }
  }
  require(holdFound,"actual full18 radius6 negative control")
- fmt.Printf("CUBE_REV_024_P1_R1_GO_INDEPENDENT_REAL_54_FACELET_CERTIFIED_DISPATCH_PASS TABLES=full18_r4:%d_H5:%d EVAL_FULL5=%d EVAL_HGROUP=%d EASY=%+v DISTORTION=%+v OUTSIDE_H_4096=%+v R6_HOLD=true\n",len(R4),len(H5),len(Full5),len(HGroup),*tally["H5_exact_global5"],*tally["H_members_but_cost8or9"],*tally["outside_H_d5"])
+ require(gatePassD5-gateCertified-(tally["H5_exact_global5"].BaseProbes-tally["H5_exact_global5"].DualProbes)==-15951,"complete real d5 source cohort certified edge gate lookup reduction")
+ fmt.Printf("CUBE_REV_024_P1_R1_GO_INDEPENDENT_REAL_54_FACELET_CERTIFIED_DISPATCH_PASS TABLES=full18_r4:%d_H5:%d EVAL_FULL5=%d EVAL_HGROUP=%d EASY=%+v DISTORTION=%+v OUTSIDE_H_4096=%+v R6_HOLD=true\n",len(R4),len(H5),len(Full5),len(HGroup),*tally["H5_exact_global5"],*tally["H_members_but_cost8or9"],*tally["outside_H_d5"],gatePassD5)
 }
