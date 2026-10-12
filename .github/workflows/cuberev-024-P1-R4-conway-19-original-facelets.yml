@@ -1,0 +1,56 @@
+name: CUBE-REV 0.24 P1-R4 Conway full-cube 19 HTM witness
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-024/p1_r4_conway_boundary19_cpp/main.cpp"
+      - "scripts/cuberev-024/p1_r4_conway_trace_cpp/main.cpp"
+      - "scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs"
+      - "scripts/cuberev-024/p1_r3_true_54_facelet_multiaxis_dr_cpp/main.cpp"
+      - ".github/workflows/cuberev-024-P1-R4-conway-19-original-facelets.yml"
+permissions:
+  contents: read
+jobs:
+  original-cube-19-upper-bound-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Reject any GitHub Actions bot author or committer
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::GitHub Actions bot contributor forbidden"
+            exit 1
+          fi
+      - name: Build actual full 54-sticker three-axis DR first-entry solver in C++17
+        run: |
+          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r4_conway_boundary19_cpp/main.cpp -o /tmp/conway19
+      - name: Reproduce real WCA Final A1 20-to-19 source-bound exact group rewrite
+        shell: bash
+        run: |
+          P1R4_ONLY_LR=1 /tmp/conway19 | tee /tmp/conway19.txt
+          grep -q '^CONWAY_GROUP_FIRST_G1_ENTRY_CHECK PASS ' /tmp/conway19.txt
+          grep -q '^SUBGROUP_CROSS_BOUNDARY_LOCAL B B2 REDUCED_LEN 19 PHASE1_LEN 12 PHASE2_LEN 8 RAW_LEN 20$' /tmp/conway19.txt
+          grep -q "^BOUNDARY_19_OR_LESS_SOURCE_FULL_CUBE_WITNESS F2 R B U2 B' L F' U2 F U' L2 B' R' D2 L R' U2 L2 U2 LENGTH 19$" /tmp/conway19.txt
+      - name: Build and run independent actual cubie group trace-local geodesic attack
+        shell: bash
+        run: |
+          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r4_conway_trace_cpp/main.cpp -o /tmp/conway-trace
+          /tmp/conway-trace 10 4000000 | tee /tmp/conway-trace.txt
+          grep -q '^CONWAY_COMMUTATION_TRACE_CLASS 8 REPRESENTATIVES_EXAMINED 8 LOCAL_WINDOWS 784 EXACT_BIDIR_NODES 4479160 REWRITE_FOUND 0$' /tmp/conway-trace.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+      - name: Independent inherited original 54-sticker Node engine authenticates 19 upper bound
+        run: |
+          node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
+      - name: Exact checkout remained read only
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
