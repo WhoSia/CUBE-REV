@@ -1,0 +1,39 @@
+name: CUBE-REV 0.24 P1-R1 certified restricted incumbent
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-024/p1_r1_certified_h5_dispatch_benchmark.mjs"
+      - "scripts/cuberev-024/p1_r1_certified_dual_go/main.go"
+      - ".github/workflows/cuberev-024-P1-R1-certified-restricted-incumbent.yml"
+permissions:
+  contents: read
+jobs:
+  original-54-facelet-certificate-vs-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Forbid bot author OR committer in research history
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::GitHub Actions bot contribution forbidden"
+            exit 1
+          fi
+      - name: Exact physical 54-facelet 18HTM baseline vs restricted-word optimum
+        run: node --expose-gc scripts/cuberev-024/p1_r1_certified_h5_dispatch_benchmark.mjs
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.2"
+      - name: Independently certify same real cube geodesic counts and 192 adversarial cases
+        run: go run scripts/cuberev-024/p1_r1_certified_dual_go/main.go
+      - name: Read-only checkout preserved
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
