@@ -164,6 +164,15 @@ export function solveOptimal(tokens,{useHIncumbent=true,nodeCap=250000,timeCapMs
   const inc=hCandidate?.word;
   if(inc){assert(cubieSolved(applyWord(initial,inc)));result.incumbent={length:inc.length,reason:hCandidate.reason,search_nodes:hCandidate.expanded}}
   else if(hCandidate)result.incumbent={length:null,reason:hCandidate.reason,search_nodes:hCandidate.expanded};
+  // Source outside the exact full18 radius-four ball has d18>=5. An actual
+  // replayed five-move H-word supplies d18<=5. Thus the full global HTM
+  // optimum is certified immediately, with no search or resource cap needed.
+  if(inc?.length===5){
+    assert(cubieSolved(toCubieState(cubeFromWords([...tokens,...inc]))));
+    return {...result,result:'OPTIMAL',length:5,word:inc,method:'H5_SANDWICH_GLOBAL_OPTIMAL',
+      reason:'EXACT_FULL18_R4_NEGATIVE_AND_REAL_H5_WITNESS',
+      bounded_optimum_certificate:true,elapsedMs:performance.now()-start};
+  }
   let best=inc,limit=Math.max(5,h0),found=null,resource=false;
   // We need to search only strictly shorter than a valid incumbent; if none
   // exists the incumbent is OPTIMAL even when it came from restricted H moves.
