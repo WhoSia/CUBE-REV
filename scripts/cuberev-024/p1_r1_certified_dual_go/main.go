@@ -207,5 +207,5 @@ func main(){
  }
  require(holdFound,"actual full18 radius6 negative control")
  require(gatePassD5-gateCertified-(tally["H5_exact_global5"].BaseProbes-tally["H5_exact_global5"].DualProbes)==-15951,"complete real d5 source cohort certified edge gate lookup reduction")
- fmt.Printf("CUBE_REV_024_P1_R1_GO_INDEPENDENT_REAL_54_FACELET_CERTIFIED_DISPATCH_PASS TABLES=full18_r4:%d_H5:%d EVAL_FULL5=%d EVAL_HGROUP=%d EASY=%+v DISTORTION=%+v OUTSIDE_H_4096=%+v R6_HOLD=true\n",len(R4),len(H5),len(Full5),len(HGroup),*tally["H5_exact_global5"],*tally["H_members_but_cost8or9"],*tally["outside_H_d5"],gatePassD5)
+ fmt.Printf("CUBE_REV_024_P1_R1_GO_INDEPENDENT_REAL_54_FACELET_CERTIFIED_DISPATCH_PASS TABLES=full18_r4:%d_H5:%d EVAL_FULL5=%d EVAL_HGROUP=%d EASY=%+v DISTORTION=%+v OUTSIDE_H_4096=%+v R6_HOLD=true EDGE_ORBIT_COMPLETE_D5_PASSES=%d GATED_GLOBAL_PROBE_CHANGE=-15951\n",len(R4),len(H5),len(Full5),len(HGroup),*tally["H5_exact_global5"],*tally["H_members_but_cost8or9"],*tally["outside_H_d5"],gatePassD5)
 }
