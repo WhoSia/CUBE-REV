@@ -74,6 +74,7 @@
     ".github/workflows/cuberev-023-P3-R3B-full-sticker-halfturn-solver.yml",
     ".github/workflows/cuberev-024-P0-R1-edge-tetrad.yml",
     ".github/workflows/cuberev-024-P0-physical-halfturn-domain.yml",
+    ".github/workflows/cuberev-024-P1-R0-real-cube-H-geodesic-distortion.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -304,6 +305,7 @@
     "docs/0.24/00_PROPOSED_PHYSICAL_CUBE_SEARCH_ARCHITECTURE_CHARTER.md",
     "docs/0.24/P0_FULL_PHYSICAL_CUBE_PARITY_HDOMAIN_CENSUS.md",
     "docs/0.24/P0_R1_EXACT_EDGE_TETRAD_HALF_TURN_SUBGROUP_EXCLUSION.md",
+    "docs/0.24/P1_R0_EXACT_REAL_CUBE_H_SUBGROUP_GEODESIC_DISTORTION.md",
     "docs/0.24/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -601,6 +603,8 @@
     "scripts/cuberev-024/p0_r1_edge_tetrad_go/main.go",
     "scripts/cuberev-024/p0_r1_exact_edge_tetrad_orbit_d4.mjs",
     "scripts/cuberev-024/p0_real_cube_parity_and_halfturn_domain.mjs",
+    "scripts/cuberev-024/p1_r0_full_real_cube_H_geodesic_distortion.mjs",
+    "scripts/cuberev-024/p1_r0_fullcube_H_geodesic_go/main.go",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2253,6 +2257,69 @@
       "independent_CI": "read-only Node and Go workflow, completed result not independently checked",
       "data_rights": "no private human 451 original solve traces touched",
       "release": "WhoSia author and committer only, no bot, manifest exact paths no globs"
+    },
+    "p1_r0_024_true_physical_H_subgroup_geodesic_metric_distortion": {
+      "date": "2026-10-12",
+      "status": "0.24_ACTIVE_P1_R0_LOCAL_ORIGINAL_FACELET_EXACT_PASS_GO_VERIFIER_COMMITTED_EXTERNAL_ACTIONS_NOT_VERIFIED",
+      "complete_H_subgroup_order": 663552,
+      "complete_halfturn_geodesic_radius": 15,
+      "exact_H_shells": [
+        1,
+        6,
+        27,
+        120,
+        519,
+        1932,
+        6484,
+        20310,
+        55034,
+        113892,
+        178495,
+        179196,
+        89728,
+        16176,
+        1488,
+        144,
+        0
+      ],
+      "full18_shortest_depth5_ball_states": 621649,
+      "full18_shells": [
+        1,
+        18,
+        243,
+        3240,
+        43239,
+        574908
+      ],
+      "source_depth5_tetrad_preserving_and_H_members": 2124,
+      "full18_depth5_to_H_distances": {
+        "5": 1932,
+        "8": 96,
+        "9": 96
+      },
+      "actual_full_54_sticker_witness": "D U R2 D U full18 distance5 vs H-only distance9; original 54 facelets independently replayed in local physical code",
+      "provenance": "All 54 physical sticker cubies, no human original non-public 451 archive exposed",
+      "proof_scope": "Finite source cohort depth <=5 for edge orbit completeness; exact H subgroup enumeration to closure. No claim global edge orbit membership sufficiency or faster unrestricted solver",
+      "new_exact_paths_by_blob": [
+        {
+          "path": "scripts/cuberev-024/p1_r0_full_real_cube_H_geodesic_distortion.mjs",
+          "git_blob_sha": "dfec747da3f296301937706dbd09ac70ad0c3f4c"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r0_fullcube_H_geodesic_go/main.go",
+          "git_blob_sha": "ca7670577f9184e187e42848804b0a4cda3b6a43"
+        },
+        {
+          "path": ".github/workflows/cuberev-024-P1-R0-real-cube-H-geodesic-distortion.yml",
+          "git_blob_sha": "005a84d26862a330954627d8f79729390504cfe7"
+        },
+        {
+          "path": "docs/0.24/P1_R0_EXACT_REAL_CUBE_H_SUBGROUP_GEODESIC_DISTORTION.md",
+          "git_blob_sha": "846a85bb3963a7565ae4136997c375bfe7ffe4bb"
+        }
+      ],
+      "no_bot": "Git commit author and committer WhoSia; CI contents:read; no github-actions[bot] or github-action[bot]",
+      "next_science": "P1-R1 proof-carrying full18 versus restricted subgroup search branch cost and real performance matched-baseline falsification"
     }
   }
 }
