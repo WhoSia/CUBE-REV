@@ -29,7 +29,7 @@ const moves=ACTIONS.map(token=>{
   return toCubieState(c);
 });
 function compose(s,m){
-  const x=moves[m];return {cp:x.cp.map(i=>s.cp[i]),
+  const x=moves[ACTIONS.indexOf(m)];assert(x,'legal HTM token required');return {cp:x.cp.map(i=>s.cp[i]),
     co:x.co.map((x,i)=>(s.co[moves[m].cp[i]]+x)%3),
     ep:x.ep.map(i=>s.ep[i]),eo:x.eo.map((x,i)=>s.eo[moves[m].ep[i]]^x)};
 }
