@@ -72,6 +72,7 @@
     ".github/workflows/cuberev-023-P3-R2B-451-aggregate-transport.yml",
     ".github/workflows/cuberev-023-P3-R3-robust-face-error-code.yml",
     ".github/workflows/cuberev-023-P3-R3B-full-sticker-halfturn-solver.yml",
+    ".github/workflows/cuberev-024-P0-R1-edge-tetrad.yml",
     ".github/workflows/cuberev-024-P0-physical-halfturn-domain.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
@@ -302,6 +303,7 @@
     "docs/0.23/PROGRAM_CHARTER.md",
     "docs/0.24/00_PROPOSED_PHYSICAL_CUBE_SEARCH_ARCHITECTURE_CHARTER.md",
     "docs/0.24/P0_FULL_PHYSICAL_CUBE_PARITY_HDOMAIN_CENSUS.md",
+    "docs/0.24/P0_R1_EXACT_EDGE_TETRAD_HALF_TURN_SUBGROUP_EXCLUSION.md",
     "docs/0.24/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -596,6 +598,8 @@
     "scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs",
     "scripts/cuberev-023/verify-p3-r3b-62-original-sticker-halfturn-mitm-geodesic.mjs",
     "scripts/cuberev-024/p0_fullcube_parity_go/main.go",
+    "scripts/cuberev-024/p0_r1_edge_tetrad_go/main.go",
+    "scripts/cuberev-024/p0_r1_exact_edge_tetrad_orbit_d4.mjs",
     "scripts/cuberev-024/p0_real_cube_parity_and_halfturn_domain.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
@@ -2215,6 +2219,40 @@
       "notional_canonical_024": "https://app.notion.com/p/3f7ef561cf92817d8e78c7e79a6d5e54",
       "source_grade": "FINITELY_ENUMERATED_TRUE_PHYSICAL_STICKER_STATES_LOCAL_PASS; INDEPENDENT_GITHUB_ACTIONS_UNVERIFIED",
       "no_auto_glob": true
+    },
+    "p0_r1_024_true_physical_edge_tetrad_orbit_exclusion": {
+      "date": "2026-10-12",
+      "status": "0.24_ACTIVE_P0_R1_NODE_LOCAL_EXACT_PHYSICAL_PASS_GO_SOURCE_ADDED_CI_PENDING",
+      "original_physical_model": "independent real original 54-sticker 18 HTM radius4 and six H-turn radius5",
+      "actual_cube_results": "46,741 18HTM depth<=4 source states, halfturn 5-ball intersection 673, 46,068 physically edge tetrad-violating states rigorously excluded from unbounded halfturn subgroup",
+      "three_edge_tetrad_orbits": [
+        "BD BU DF FU",
+        "BL BR FL FR",
+        "DL DR LU RU"
+      ],
+      "finite_scope_limit": "orbit preservation iff H-radius5 membership asserted ONLY among full18 radius<=4 states; no universal sufficient-condition statement",
+      "exact_paths_and_current_git_blobs": [
+        {
+          "path": "scripts/cuberev-024/p0_r1_exact_edge_tetrad_orbit_d4.mjs",
+          "git_blob_sha": "f9826d46575aae97d06c656579e61948aa01cc76"
+        },
+        {
+          "path": "scripts/cuberev-024/p0_r1_edge_tetrad_go/main.go",
+          "git_blob_sha": "9a805627e4b21ae5661fedc9a310411f40916c09"
+        },
+        {
+          "path": ".github/workflows/cuberev-024-P0-R1-edge-tetrad.yml",
+          "git_blob_sha": "d629a933869c669d47f8afdbb6c280cf6c8e9162"
+        },
+        {
+          "path": "docs/0.24/P0_R1_EXACT_EDGE_TETRAD_HALF_TURN_SUBGROUP_EXCLUSION.md",
+          "git_blob_sha": "5d8b3beeab0897e53d98e864de1788e88eade5c6"
+        }
+      ],
+      "original_P0_parity_holds_preserved": true,
+      "independent_CI": "read-only Node and Go workflow, completed result not independently checked",
+      "data_rights": "no private human 451 original solve traces touched",
+      "release": "WhoSia author and committer only, no bot, manifest exact paths no globs"
     }
   }
 }
