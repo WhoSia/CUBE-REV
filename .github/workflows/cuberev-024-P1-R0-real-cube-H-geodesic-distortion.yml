@@ -1,0 +1,39 @@
+name: CUBE-REV 0.24 P1-R0 complete physical H geodesic distortion
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-024/p1_r0_full_real_cube_H_geodesic_distortion.mjs"
+      - "scripts/cuberev-024/p1_r0_fullcube_H_geodesic_go/main.go"
+      - ".github/workflows/cuberev-024-P1-R0-real-cube-H-geodesic-distortion.yml"
+permissions:
+  contents: read
+jobs:
+  original-54-facelet-full-vs-H-geodesic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Prohibit GitHub Actions bot-authored and bot-committed research history
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::Bot contributor prohibited"
+            exit 1
+          fi
+      - name: Independent original physical JS complete H subgroup versus 18 HTM five-move ball
+        run: node scripts/cuberev-024/p1_r0_full_real_cube_H_geodesic_distortion.mjs
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.2"
+      - name: Independent original physical Go subgroup and exact full cubie source witnesses
+        run: go run scripts/cuberev-024/p1_r0_fullcube_H_geodesic_go/main.go
+      - name: Preserve clean read-only research checkout
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
