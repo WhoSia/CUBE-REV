@@ -74,6 +74,14 @@ for(const {id,source,scramble} of casebook){
     officialHumanSolutionObserved:false,
     speedcubing_stage_evidence:'ACTUAL_COMPETITION_SCRAMBLE_ONLY, MACHINE_SYNTHETIC_CROSS_PLANS'});
 }
+const expected=[
+ {U:5,R:7,F:5,D:6,L:6,B:6},
+ {U:6,R:6,F:7,D:7,L:7,B:7},
+ {U:5,R:5,F:6,D:5,L:6,B:6}
+];
+for(let i=0;i<3;i++)
+ assert.deepEqual(Object.fromEntries(Object.entries(results[i].crossFaceResults).map(([f,v])=>[f,v.optimalCrossHTM])),expected[i],
+ 'independently certified actual 190080-state face-PDB WCA cross vector mismatch');
 console.log(JSON.stringify({
   marker:'CUBE_REV_024_P1_R2_ACTUAL_SPEEDCUBING_CROSS_PDB_STAGE_COURT',
   official_wca_scramble_examples:results.length,
