@@ -38,7 +38,7 @@ Data produced by exhaustive original-54-facelet state enumeration; every duplica
 
 These 1,548 even-sign states are **not within five H turns**. They may or may not be in the unbounded H subgroup. No source or document may combine them with the 1,800 provably nonmembers and call all 3,348 H-subgroup nonmembers. That stronger claim has not been proved.
 
-As of this stage, the two implementations are [Node](../../scripts/cuberev-024/p0_real_cube_parity_and_halfturn_domain.mjs) and [Go](../../scripts/cuberev-024/p0_fullcube_parity_go/main.go), each deriving 54-sticker geometry and turn permutations independently. Neither reads hidden user human-solve archives. [New read-only independent CI](../../.github/workflows/cuberev-024-P0-physical-halfturn-domain.yml) must complete successfully before the independent public CI status can become PASS.
+As of this stage, the two implementations are [Node](https://github.com/WhoSia/CUBE-REV/blob/469e9cf07a633a87da300ffa0fdbbccc7230fc89/scripts/cuberev-024/p0_real_cube_parity_and_halfturn_domain.mjs) and [Go](https://github.com/WhoSia/CUBE-REV/blob/469e9cf07a633a87da300ffa0fdbbccc7230fc89/scripts/cuberev-024/p0_fullcube_parity_go/main.go), each deriving 54-sticker geometry and turn permutations independently. Neither reads hidden user human-solve archives. [New read-only independent CI](https://github.com/WhoSia/CUBE-REV/blob/469e9cf07a633a87da300ffa0fdbbccc7230fc89/.github/workflows/cuberev-024-P0-physical-halfturn-domain.yml) must complete successfully before the independent public CI status can become PASS.
 
 ## Why this advances cube search rather than just observation language
 
@@ -58,3 +58,8 @@ Previous P3-R3B 62-source policy was *always* within the special H-ball; an appa
 All new Git commits need WhoSia author AND committer, no github-actions[bot] or github-action[bot]. Existing branch research/current only. Actions permissions contents read with no writebacks; original history, P7 exact path manifest, preserved 0.23 failures, real 2×2 source grammar HOLD and private 451 human trajectories remain unchanged. A finite original physical calculation does not become an independently completed GitHub Actions PASS merely because its code exists.
 
 **Release status:** 0.24 ACTIVATED by user; P0 physical math locally source-independent Node demonstrated, independent Go and GitHub read-only CI await run-result readback; P1 not yet declared a performance advance.
+
+
+### Closed P0 execution archival notice
+
+The three old P0 one-off scripts/workflow were copied, read back and verified in the [Drive archive](https://docs.google.com/document/d/1sr1K8Qx5ugDFSEni-1iAfJExdqYbP5m3QKc2OPmSt8o/edit); exact original Git blob SHAs are listed there. The code links above deliberately use an immutable commit, while this scientific report and P0 successor physical computations remain.
