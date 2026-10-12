@@ -80,6 +80,7 @@
     ".github/workflows/cuberev-024-P1-R4-conway-19-original-facelets.yml",
     ".github/workflows/cuberev-024-P1-R5-conway-full18-boundary-and-niss.yml",
     ".github/workflows/cuberev-024-P1-R6-full18-global-bidir-and-independent-facelets.yml",
+    ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -165,6 +166,7 @@
     "README.md",
     "REPOSITORY_POLICY.md",
     "archive/readme/README_RESEARCH_CURRENT_BEFORE_P13_EXACT_EIGHT_20261010.md",
+    "archive/readme/README_RESEARCH_CURRENT_FULL_PRE_P0R2_20261012.md",
     "archive/readme/README_RESEARCH_CURRENT_P13_BEFORE_EXACT_EIGHT_20261010.md",
     "archive/readme/README_RESEARCH_CURRENT_PRE_019_20261010.md",
     "archive/readme/README_RESEARCH_CURRENT_PRE_P13_20261010.md",
@@ -212,6 +214,9 @@
     "data/cuberev-023/p3_r1c_real_public_2x2_solve_reconstruction_prereg.json",
     "data/cuberev-023/p3_r2a_2x2_24_orientation_frame_audit_prereg.json",
     "data/cuberev-023/p3_r2b_private451_new_corner_state_conditional_support_aggregate.json",
+    "data/cuberev-025/p0_r2_full_corner_go_receipt.txt",
+    "data/cuberev-025/p0_r2_independent_cpp_receipt.txt",
+    "data/cuberev-025/p0_r2_operator_cost_go_receipt.txt",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -321,6 +326,7 @@
     "docs/0.24/P1_R7_SCIENTIFIC_FREEZE_AND_025_HANDOFF.md",
     "docs/0.24/PROGRAM_CHARTER.md",
     "docs/0.25/P0_R1_PHYSICAL_SCHREIER_PDB_PARIKH_SATURATION_AND_DUALITY.md",
+    "docs/0.25/P0_R2_FULL_CORNER_88M_AND_CERTIFIED_OPERATOR_COST_DUALITY.md",
     "docs/0.25/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -333,6 +339,10 @@
     "formal/017/lake-manifest.json",
     "formal/017/lakefile.toml",
     "formal/017/lean-toolchain",
+    "formal/025/CostPartition.lean",
+    "formal/025/lake-manifest.json",
+    "formal/025/lakefile.toml",
+    "formal/025/lean-toolchain",
     "formal/cuberev023/PDBRankReversal.lean",
     "formal/cuberev023/lake-manifest.json",
     "formal/cuberev023/lakefile.lean",
@@ -637,6 +647,11 @@
     "scripts/cuberev-024/p1_r5_niss_two_premove_cpp/main.cpp",
     "scripts/cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp",
     "scripts/cuberev-024/p1_r6_independent_54_facelet_go/main.go",
+    "scripts/cuberev-025/p0_r1_independent_physical_cpp/main.cpp",
+    "scripts/cuberev-025/p0_r1_physical_schreier_go/main.go",
+    "scripts/cuberev-025/p0_r2_full_corner_go/main.go",
+    "scripts/cuberev-025/p0_r2_independent_full_corner_cpp/main.cpp",
+    "scripts/cuberev-025/p0_r2_operator_cost_go/main.go",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2797,7 +2812,140 @@
       },
       "source_availability": "compiled reproducibility sources + numeric receipt verified and bundled in current conversation sandbox ZIP, not yet GitHub due expired Library container bridge",
       "next": "actual source-complete joint corner or cost-partitioned quotient with nonabelian order constraints and independent proof checker; no invalid PDB addition",
-      "bot_rule": "all new GitHub commits WhoSia author/committer, Actions contents:read, no bot writeback"
+      "bot_rule": "all new GitHub commits WhoSia author/committer, Actions contents:read, no bot writeback",
+      "source_code_now_migrated_to_github": true,
+      "imported_native_source_paths": [
+        "scripts/cuberev-025/p0_r1_physical_schreier_go/main.go",
+        "scripts/cuberev-025/p0_r1_independent_physical_cpp/main.cpp"
+      ]
+    },
+    "p0_r2_025_complete_physical_full_corner_pdb_and_cost_partition": {
+      "date": "2026-10-12",
+      "status": "GO_CPP_NATIVE_SOURCE_88M_COMPLETE_EXTERNAL_CI_NATIVE_PASS_LEAN_KERNAL_RETRY_PENDING_ARCHIVED_README_EXACT",
+      "source_real_WCA": "WCA Seoul Summer 2026 3x3 Final Group A original 20-turn scramble; independent full original 54 sticker verified existing 18-turn complete word",
+      "scientific_results": {
+        "corner_quotient_size": 88179840,
+        "corner_only_exact_HTM_diameter": 11,
+        "corner_distance_for_WCA_source": 9,
+        "verified_layer_counts": [
+          1,
+          18,
+          243,
+          2874,
+          28000,
+          205416,
+          1168516,
+          5402628,
+          20776176,
+          45391616,
+          15139616,
+          64736
+        ],
+        "five_four_cubie_PDB_source_distances": [
+          7,
+          5,
+          5,
+          5,
+          6
+        ],
+        "operator_cost_partition_theorem": "for every original legal move a sum_i cost_i(a) <= 1 implies sum_i exact weighted quotient distance <= whole cube shortest d18",
+        "exact_face_owner_assignments": 15625,
+        "exact_weighted_face_masks_per_pattern": 64,
+        "patterns": 5,
+        "face_owner_optimal_source_lower": 7,
+        "unique_best_owner_URFDLB": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "histogram": {
+          "0": 5268,
+          "1": 6880,
+          "2": 2674,
+          "3": 609,
+          "4": 172,
+          "5": 20,
+          "6": 1,
+          "7": 1
+        },
+        "full_cube_existing_unrestricted_lower": 14,
+        "upper": 18,
+        "global_d18_optimality_UNPROVED": true,
+        "claim_boundary": "No upper bound on fractional cost allocations nor coupling; integer face-owned class only. Corner-only lower9 does not upgrade real global14."
+      },
+      "independent_original_physics": "Go original real 54-sticker oriented marker derivation and separate C++ original 54-sticker reconstruction, full88m layers exact same; native GitHub job PASS",
+      "original_readme_before_trim_git_blob_sha": "11f726c24f6bc032f2469f91f4dc60c5d7d3a92a",
+      "original_readme_github_verbatim": "archive/readme/README_RESEARCH_CURRENT_FULL_PRE_P0R2_20261012.md",
+      "original_readme_drive_exact_raw_markdown": "https://drive.google.com/file/d/1QQ18TJ2Ary6xl4tD1iRX3ErdVx5HDHwi/view",
+      "readme_after_slitting": "live README shortened 109858 to 7610 characters only after GitHub/Drive full text exact readback",
+      "formal_Lean": "Generic scaled five quotient common-word budget theorem; compile step initially held for missing Lake manifest, registered fix, pending kernel success",
+      "workflow_status": "native Go/C++ and inherited Node source witness PASS in Actions run 38224634998; independent Lean initially fail config; await retry exact job",
+      "governance": "WhoSia human author+committer only, github-actions[bot]/github-action[bot] forbidden as code contributor, Actions contents read no writeback",
+      "new_current_paths_and_git_blobs": [
+        {
+          "path": "archive/readme/README_RESEARCH_CURRENT_FULL_PRE_P0R2_20261012.md",
+          "git_blob_sha": "11f726c24f6bc032f2469f91f4dc60c5d7d3a92a"
+        },
+        {
+          "path": "scripts/cuberev-025/p0_r1_physical_schreier_go/main.go",
+          "git_blob_sha": "ae14b02cb660d1517240667aa145c83494ebd801"
+        },
+        {
+          "path": "scripts/cuberev-025/p0_r1_independent_physical_cpp/main.cpp",
+          "git_blob_sha": "cfefe583e90b56a0ea9168e691507dfde2574942"
+        },
+        {
+          "path": "scripts/cuberev-025/p0_r2_operator_cost_go/main.go",
+          "git_blob_sha": "8f57c6346cc3d0aae65d74d82c490cb4347fe47b"
+        },
+        {
+          "path": "scripts/cuberev-025/p0_r2_full_corner_go/main.go",
+          "git_blob_sha": "ca314101dcbf673c0b6ef441bf00fc2ed72ec2da"
+        },
+        {
+          "path": "scripts/cuberev-025/p0_r2_independent_full_corner_cpp/main.cpp",
+          "git_blob_sha": "e97434cbcab8a94eb671f043dae1d65543143927"
+        },
+        {
+          "path": "formal/025/CostPartition.lean",
+          "git_blob_sha": "fadc578b2dc4762856f5c70739234ea1b8121272"
+        },
+        {
+          "path": "formal/025/lakefile.toml",
+          "git_blob_sha": "b14a0e109b67199452895e94b0ac86eb785a0ca5"
+        },
+        {
+          "path": "formal/025/lean-toolchain",
+          "git_blob_sha": "d3f42871e4edb662be7c361d2a22bb978e9d80d7"
+        },
+        {
+          "path": "formal/025/lake-manifest.json",
+          "git_blob_sha": "82ca79c8a28cc94994f6331fe2d4aad321d7cbe0"
+        },
+        {
+          "path": "data/cuberev-025/p0_r2_full_corner_go_receipt.txt",
+          "git_blob_sha": "4c4e0a05b31cf31eb20c1b9e3f5ce84f4e24784d"
+        },
+        {
+          "path": "data/cuberev-025/p0_r2_operator_cost_go_receipt.txt",
+          "git_blob_sha": "a8cd6b621f9d61ec1b31fac0cc542311598cdd55"
+        },
+        {
+          "path": "data/cuberev-025/p0_r2_independent_cpp_receipt.txt",
+          "git_blob_sha": "d35c5115da6a1c349dd52e9fd70ad9559ee4fdc1"
+        },
+        {
+          "path": "docs/0.25/P0_R2_FULL_CORNER_88M_AND_CERTIFIED_OPERATOR_COST_DUALITY.md",
+          "git_blob_sha": "dc0cf8dbf85b10d024c0446585898d52a442b877"
+        },
+        {
+          "path": ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml",
+          "git_blob_sha": "924e5da8673f9942f1a44b8f1a4199df7066ae40"
+        }
+      ]
     }
   }
 }
