@@ -73,13 +73,6 @@ func main(){
  require(fmt.Sprint(h5Shells)=="[1 6 27 120 519 1932]","independent halfturn radius5 table")
  require(fmt.Sprint(fullShells)=="[1 18 243 3240 43239 574908]","independent full18 radius5 evaluator")
  require(len(HGroup)==663552,"entire original physical halfturn group")
- inverse:=func(i int)int{
-  word:=moves[i].Name
-  back:=word
-  if strings.HasSuffix(word,"'"){back=word[:1]}else if !strings.HasSuffix(word,"2"){back=word+"'"}
-  for j,a:=range moves{if a.Name==back{return j}}
-  panic("no inverse")
- }
  applyWord:=func(s string,path []int)string{for _,i:=range path{s=apply(s,moves[i])};return s}
  var construct func(string,map[string]Record,[]int)[]int
  construct=func(s string,table map[string]Record,alphabet []int)[]int{
