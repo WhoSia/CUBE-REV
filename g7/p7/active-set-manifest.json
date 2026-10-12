@@ -73,9 +73,9 @@
     ".github/workflows/cuberev-023-P3-R3-robust-face-error-code.yml",
     ".github/workflows/cuberev-023-P3-R3B-full-sticker-halfturn-solver.yml",
     ".github/workflows/cuberev-024-P0-R1-edge-tetrad.yml",
-    ".github/workflows/cuberev-024-P0-physical-halfturn-domain.yml",
     ".github/workflows/cuberev-024-P1-R0-real-cube-H-geodesic-distortion.yml",
     ".github/workflows/cuberev-024-P1-R1-certified-restricted-incumbent.yml",
+    ".github/workflows/cuberev-024-P1-R2-physical-ida-pdb-and-speedcubing.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -308,6 +308,7 @@
     "docs/0.24/P0_R1_EXACT_EDGE_TETRAD_HALF_TURN_SUBGROUP_EXCLUSION.md",
     "docs/0.24/P1_R0_EXACT_REAL_CUBE_H_SUBGROUP_GEODESIC_DISTORTION.md",
     "docs/0.24/P1_R1_CERTIFIED_H_SUBGROUP_INCUMBENT_AND_PHYSICAL_ORBIT_GATED_FULL18_SEARCH.md",
+    "docs/0.24/P1_R2_FULL_CUBE_PDB_IDA_ENGINE_AND_SPEED_CROSS_ECOLOGIES.md",
     "docs/0.24/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -601,14 +602,16 @@
     "scripts/cuberev-023/verify-p3-r2b-published-human-aggregate-Mstar-transport-gate.mjs",
     "scripts/cuberev-023/verify-p3-r3-robust-face-observation.mjs",
     "scripts/cuberev-023/verify-p3-r3b-62-original-sticker-halfturn-mitm-geodesic.mjs",
-    "scripts/cuberev-024/p0_fullcube_parity_go/main.go",
     "scripts/cuberev-024/p0_r1_edge_tetrad_go/main.go",
     "scripts/cuberev-024/p0_r1_exact_edge_tetrad_orbit_d4.mjs",
-    "scripts/cuberev-024/p0_real_cube_parity_and_halfturn_domain.mjs",
     "scripts/cuberev-024/p1_r0_full_real_cube_H_geodesic_distortion.mjs",
     "scripts/cuberev-024/p1_r0_fullcube_H_geodesic_go/main.go",
     "scripts/cuberev-024/p1_r1_certified_dual_go/main.go",
     "scripts/cuberev-024/p1_r1_certified_h5_dispatch_benchmark.mjs",
+    "scripts/cuberev-024/p1_r2_full18_pdb_ida_engine.mjs",
+    "scripts/cuberev-024/p1_r2_seeded_heldout_engine_benchmark.mjs",
+    "scripts/cuberev-024/p1_r2_source_fmc_speed_boundary.mjs",
+    "scripts/cuberev-024/p1_r2_speedcubing_cross_pdb_court.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2226,7 +2229,30 @@
       "commit_rules": "WhoSia author/committer only; no github-actions[bot] or github-action[bot]; workflow read-only",
       "notional_canonical_024": "https://app.notion.com/p/3f7ef561cf92817d8e78c7e79a6d5e54",
       "source_grade": "FINITELY_ENUMERATED_TRUE_PHYSICAL_STICKER_STATES_LOCAL_PASS; INDEPENDENT_GITHUB_ACTIONS_UNVERIFIED",
-      "no_auto_glob": true
+      "no_auto_glob": true,
+      "retirement_after_source_archive": {
+        "date": "2026-10-12",
+        "source_files_removed_from_active_tree_only": [
+          "scripts/cuberev-024/p0_real_cube_parity_and_halfturn_domain.mjs",
+          "scripts/cuberev-024/p0_fullcube_parity_go/main.go",
+          ".github/workflows/cuberev-024-P0-physical-halfturn-domain.yml"
+        ],
+        "archived_at": "https://docs.google.com/document/d/1sr1K8Qx5ugDFSEni-1iAfJExdqYbP5m3QKc2OPmSt8o/edit",
+        "archive_folder": "https://drive.google.com/drive/folders/1uu6tlj9lECA6sO9V73F48BqgxsbZoAVv",
+        "archive_exact_source_text_readback_pass": true,
+        "immutable_original_Git_snapshot": "469e9cf07a633a87da300ffa0fdbbccc7230fc89",
+        "retirement_commits": [
+          "50c05d6fb014fa6b6d378e249d4cbe83a93c0a9c",
+          "383c1af5a402587ec1aa997013c414cb2cf9c96d",
+          "be4c8d84b0d5b174661425840d990b85a4c76bd2"
+        ],
+        "source_science_docs_and_history_preserved": true,
+        "active_replacement_modules": [
+          "scripts/cuberev-024/p0_r1_exact_edge_tetrad_orbit_d4.mjs",
+          "scripts/cuberev-024/p0_r1_edge_tetrad_go/main.go",
+          "scripts/cuberev-024/p1_r0_full_real_cube_H_geodesic_distortion.mjs"
+        ]
+      }
     },
     "p0_r1_024_true_physical_edge_tetrad_orbit_exclusion": {
       "date": "2026-10-12",
@@ -2355,6 +2381,45 @@
       ],
       "limits": "bounded exact 18HTM d<=5 only, d6+ HOLD, external CI unverified, not unrestricted 3x3 solver",
       "next": "P1-R2 admissible lower bounds and full18 global solver with real heldout FMC physical branches and honest performance baselines"
+    },
+    "p1_r2_024_global_real_cube_PDB_IDA_and_speedcubing_cross": {
+      "date": "2026-10-12",
+      "status": "ACTUAL_GITHUB_SOURCES_RUNTIME_IN_ORIGINAL_CUBE_V8_SHIM_PASS_EXTERNAL_ACTIONS_UNVERIFIED",
+      "scientific_object": "Original whole 3x3 18 HTM PDB maximum heuristic + exact R4 suffix + lazy physical H5 upper-bound incumbent + IDA complete when uncapped; explicit HOLD with caps",
+      "heuristics": "Cross4 exact original 4-edge quotient x6 face references 190080 each; CO 2187; EO 2048; maximum admissible, never sum",
+      "seeded_holdout": "xorshift32 0xC0BE24A1 16 original 18HTM legal source words lengths6,7,8,9; dual face UD 246089 calls vs all6 73856 calls, 69.988 percent reduction, all16 independent replay original cube optimum, 13 wins 3 ties",
+      "precompute": "four new PDB build ~2.38s one test, 760320 extra single-byte PDB distance entries, heap/RSS not independently verified",
+      "real_speedcubing": "three official WCA Seoul Summer/Winter 2026 3x3 scrambles, exact Cross faces U/R/F/D/L/B, official source scrambles but computer-produced Cross word, no observed human solution",
+      "FMC": "Miao and Riabov source-distinct authored normal-side EO+DR recorded prefixes reach same actual original complete cubie endpoint; 4 public source rows (2 WCA, 2 FMC) hit 30001 IDA entry caps HOLD",
+      "external_CI": "workflow source exists and read-only; completed run/Go reproduction of entire IDA not yet verified",
+      "archives": "three closed old P0 execution files source-perfect in Drive, original Git commit immutable, removed from active manifest",
+      "new_paths_exact_Git_blobs": [
+        {
+          "path": "scripts/cuberev-024/p1_r2_full18_pdb_ida_engine.mjs",
+          "git_blob_sha": "5b3fa88d455d5ef0dae0ab0a2f3cbdebe7f86ba7"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r2_speedcubing_cross_pdb_court.mjs",
+          "git_blob_sha": "010bd828b16b6eb139f2c0161efe67271946afac"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r2_seeded_heldout_engine_benchmark.mjs",
+          "git_blob_sha": "5d22390969aa1ac6294f9b6e57af95e40c56517b"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r2_source_fmc_speed_boundary.mjs",
+          "git_blob_sha": "cb4c0b4f6543f7904719a14ea7463ac8eced7752"
+        },
+        {
+          "path": ".github/workflows/cuberev-024-P1-R2-physical-ida-pdb-and-speedcubing.yml",
+          "git_blob_sha": "9d92f4cd15dcf74671ad1a4ff3e9023ac0733c5e"
+        },
+        {
+          "path": "docs/0.24/P1_R2_FULL_CUBE_PDB_IDA_ENGINE_AND_SPEED_CROSS_ECOLOGIES.md",
+          "git_blob_sha": "6a39d4da1d7f1272b601e9ffe5578a2c334849da"
+        }
+      ],
+      "governance": "authenticated WhoSia author+committer only, no github-actions[bot] or github-action[bot], private451 source never published"
     }
   }
 }
