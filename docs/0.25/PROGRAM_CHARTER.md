@@ -2,6 +2,8 @@
 
 **Status: ACTIVE — formally researcher-approved on 2026-10-12.** Authorized opening after [CUBE-REV 0.24 P1-R7 Scientific Freeze](../0.24/P1_R7_SCIENTIFIC_FREEZE_AND_025_HANDOFF.md). **Current substage: P0 — Source-Complete Physical Geodesic and Program-Certificate Foundations (OPEN; no claimed new 0.25 experimental discovery yet).** Programme 0.24 is CLOSED AS RESEARCH-ARCHITECTURE BASELINE, not retroactively rewritten and not declared to have proved its hardest global optimality question.
 
+**Canonical [Notion 0.25 active child research page](https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc).** This 0.25 page is the direct descendant of the preserved canonical 0.24 Notion page; archive history not deleted.
+
 ## 1. Actual research object, exact semantics and inherited source
 
 We study the **real 3×3 Rubik's Cube**, fixed original 54 stickers, 8 corner permutations and twists, 12 edge permutations and flips, complete legal 18 outer-face HTM generator set, and source-graded actual human-authored FMC candidate programs. TCS and group theory serve EXECUTABLE solver engineering on genuine legal physical cube states; never substitute a small synthetic graph, generic 'observation authority' philosophy, or software governance for the original cube.
