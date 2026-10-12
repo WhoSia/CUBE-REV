@@ -30,8 +30,8 @@ const moves=ACTIONS.map(token=>{
 });
 function compose(s,m){
   const x=moves[ACTIONS.indexOf(m)];assert(x,'legal HTM token required');return {cp:x.cp.map(i=>s.cp[i]),
-    co:x.co.map((x,i)=>(s.co[moves[m].cp[i]]+x)%3),
-    ep:x.ep.map(i=>s.ep[i]),eo:x.eo.map((x,i)=>s.eo[moves[m].ep[i]]^x)};
+    co:x.co.map((v,i)=>(s.co[x.cp[i]]+v)%3),
+    ep:x.ep.map(i=>s.ep[i]),eo:x.eo.map((v,i)=>s.eo[x.ep[i]]^v)};
 }
 const pdb=Object.fromEntries('URFDLB'.split('').map(face=>[face,buildCrossPDB(face)]));
 for(const face of 'URFDLB')assert.equal(pdb[face].reachable,190080);
