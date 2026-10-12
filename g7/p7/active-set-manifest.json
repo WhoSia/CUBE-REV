@@ -77,6 +77,7 @@
     ".github/workflows/cuberev-024-P1-R1-certified-restricted-incumbent.yml",
     ".github/workflows/cuberev-024-P1-R2-physical-ida-pdb-and-speedcubing.yml",
     ".github/workflows/cuberev-024-P1-R3-true-cube-three-axis-two-phase-cpp.yml",
+    ".github/workflows/cuberev-024-P1-R4-conway-19-original-facelets.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -311,6 +312,7 @@
     "docs/0.24/P1_R1_CERTIFIED_H_SUBGROUP_INCUMBENT_AND_PHYSICAL_ORBIT_GATED_FULL18_SEARCH.md",
     "docs/0.24/P1_R2_FULL_CUBE_PDB_IDA_ENGINE_AND_SPEED_CROSS_ECOLOGIES.md",
     "docs/0.24/P1_R3_HARD_WCA_FMC_MULTIPHASE_CUBIE_SEARCH_AND_NONVIDEO_HUMAN_EVIDENCE.md",
+    "docs/0.24/P1_R4_CONWAY_GROUP_WORD_SURGERY_19_WCA_WITNESS.md",
     "docs/0.24/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -616,6 +618,9 @@
     "scripts/cuberev-024/p1_r2_speedcubing_cross_pdb_court.mjs",
     "scripts/cuberev-024/p1_r3_independent_source_replay.mjs",
     "scripts/cuberev-024/p1_r3_true_54_facelet_multiaxis_dr_cpp/main.cpp",
+    "scripts/cuberev-024/p1_r4_conway_boundary19_cpp/main.cpp",
+    "scripts/cuberev-024/p1_r4_conway_trace_cpp/main.cpp",
+    "scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2454,7 +2459,7 @@
         },
         {
           "path": "docs/0.24/P1_R3_HARD_WCA_FMC_MULTIPHASE_CUBIE_SEARCH_AND_NONVIDEO_HUMAN_EVIDENCE.md",
-          "git_blob_sha": "37a7ffcfd0010e4274892f7cab083df481a7032a"
+          "git_blob_sha": "00a50184a54306ae96a6aa38b626aa970a9fcf63"
         }
       ],
       "bounded_negative_19_raw_phase1_le13": {
@@ -2484,8 +2489,59 @@
         "positive_control": "original WCA Seoul Summer 2026 first A1 actual full 54-sticker source solved in 19 under same target mode",
         "claim_boundary": "NOT a global 18HTM d>=20 certificate; phase1>=14, alternative words and cross-boundary same-face cancellations not excluded",
         "new_cpp_sha256": "9e13417a685bdd0e2ef6c8982eb5e12d5639194d0d8f9e4ed44cb55605e3881e",
-        "external_CI": "pending"
+        "external_CI": "pending",
+        "historical_scope_erratum": "The historical entry name suggests <=13 but the actually executed source initial h=7 and loop b<=min(13,h+4) searched phase1 lengths 7..11 ONLY for all three source axes. Raw solution length<=19 excluded physical boundary merge raw20->normalized19. This negative was superseded by the actual 19 original fixed-facelet witness in P1-R4; never cite as <=13 completeness.",
+        "ACTUAL_phase1_max": 11,
+        "claim_superseded": true
       }
+    },
+    "p1_r4_024_conway_subgroup_boundary_19_htm_official_WCA": {
+      "date": "2026-10-12",
+      "status": "ACTUAL_ORIGINAL_54_FACELET_WCA_19_HTM_COMPLETE_SOLUTION_CPP_AND_SEPARATE_NODE_PASS_EXTERNAL_ACTIONS_PENDING",
+      "official_WCA_source": "https://www.worldcubeassociation.org/competitions/SeoulSummer2026/scrambles",
+      "event": "333 Final Group A scramble 1",
+      "scramble": "R' B' F2 D2 F2 L2 R2 U' F2 L2 D2 B2 D F L' R2 B U2 F2 R2",
+      "original_source_scramble_htm": 20,
+      "new_legal_complete_solver_word": "F2 R B U2 B' L F' U2 F U' L2 B' R' D2 L R' U2 L2 U2",
+      "NEW_constructive_whole_18HTM_upper_bound": 19,
+      "global_minimality": "d18<=19 is proved by independently replayed actual original cube witness; d18=19 versus 18 or less UNPROVED",
+      "actual_phase1_DR_axis": "LR",
+      "first_subgroup_entry_depth": 12,
+      "phase2_exact_DR_subgrammar_suffix": 8,
+      "raw_concat_word_length": 20,
+      "boundary_identity": "B B2 = B' on true original legal 3x3 face-turn group",
+      "original_cpp_source_sha256": "4e45ec5e0ef21247aafc582f2438d72a5dcf8857ac7bf3029834c0d5a5e5c40d",
+      "CPP_boundary_LR_local_receipt": "16,433 authentic DR contacts; 4,955 eligible phase2; phase1 recursion 17,413,655; phase2 recursion 576,448; resource STOPPED=0; exact 19 validated",
+      "independent_node": "project inherited original 54-sticker engine actual complete solved CP/CO/EP/EO + original facelets and raw20 vs normalized19 equality, PASS",
+      "historical_P1R3_depth_correction": "old claimed <=13, ACTUALLY h=7 and h+4 cutoff => <=11; 4928 old DR contacts were only phase1 up to11 and raw<=19. Both deeper first-entry 12 and boundary normalization needed.",
+      "local_trace_court": "8 complete adjacent disjoint-face commutation trace representatives, 784 actual contiguous windows length4..10, 4,479,160 exact full-cubie BFS visits, zero local shortening but independent real 19 solution exists",
+      "local_trace_cpp_sha256": "b3c7ffbc172adbee936dd63c2255916c6d88652437357f32c8b397aca19022c8",
+      "science_novelty": "source-attested new whole-cube 19 witness, group-theoretic subgroup-entry and boundary-aware search interface, demonstrated insufficiency of this frozen local rewriting language; NOT new Kociemba two phase algorithm nor global optimum proof",
+      "source_privacy": "public WCA scramble only; NO original private451 solve data; machine-computed witness not attributed to athlete",
+      "governance": "WhoSia author and committer only, github-actions[bot] and github-action[bot] forbidden as contributors, read-only Actions, exact individual Git blob SHA entries",
+      "new_paths_current_blobs": [
+        {
+          "path": "scripts/cuberev-024/p1_r4_conway_boundary19_cpp/main.cpp",
+          "git_blob_sha": "85e588d5087af90bb850f039f22f72ee0a11cb49"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r4_conway_trace_cpp/main.cpp",
+          "git_blob_sha": "fec4fffba2079132c4ccc9829cd16ba68a012773"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs",
+          "git_blob_sha": "234acbe02bb17b03c893f1f279b1c5374587cd52"
+        },
+        {
+          "path": ".github/workflows/cuberev-024-P1-R4-conway-19-original-facelets.yml",
+          "git_blob_sha": "09f2f1084fcded331cd990fc530ef8ecd7ba81f4"
+        },
+        {
+          "path": "docs/0.24/P1_R4_CONWAY_GROUP_WORD_SURGERY_19_WCA_WITNESS.md",
+          "git_blob_sha": "c616715eaad02288538dc74c25cb13831170ddf2"
+        }
+      ],
+      "next": "Find an actual 18-or-fewer whole original 3x3 solution or certify d18>=19 with unrestricted physical 18HTM dual-frontier/PDB proof, not bounded subgroup-only negative."
     }
   }
 }
