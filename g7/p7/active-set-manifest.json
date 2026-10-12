@@ -2468,7 +2468,7 @@
         },
         {
           "path": ".github/workflows/cuberev-024-P1-R3-true-cube-three-axis-two-phase-cpp.yml",
-          "git_blob_sha": "718a55f9becd9258bf0dd0ba082ec834b5804501"
+          "git_blob_sha": "cda80c23e89597b3f5da043a715f3b45652b4719"
         },
         {
           "path": "docs/0.24/P1_R3_HARD_WCA_FMC_MULTIPHASE_CUBIE_SEARCH_AND_NONVIDEO_HUMAN_EVIDENCE.md",
@@ -2506,6 +2506,12 @@
         "historical_scope_erratum": "The historical entry name suggests <=13 but the actually executed source initial h=7 and loop b<=min(13,h+4) searched phase1 lengths 7..11 ONLY for all three source axes. Raw solution length<=19 excluded physical boundary merge raw20->normalized19. This negative was superseded by the actual 19 original fixed-facelet witness in P1-R4; never cite as <=13 completeness.",
         "ACTUAL_phase1_max": 11,
         "claim_superseded": true
+      },
+      "read_only_historical_CI_repair": {
+        "malformed_yaml_historical_runs": "empty-job GitHub Actions failed before any scientific computation",
+        "repaired_in_human_commit": "6869df89c5a27c5134b52b8476beb13c9c015598",
+        "successful_completed_run": "https://github.com/WhoSia/CUBE-REV/actions/runs/38211534949",
+        "status": "SUCCESS_SOURCE_21_19_9_9_HISTORICAL_PHYSICAL_REGRESSION"
       }
     },
     "p1_r4_024_conway_subgroup_boundary_19_htm_official_WCA": {
@@ -2613,7 +2619,7 @@
     },
     "p1_r6_024_true_global_full18_collision_free_B6_B7": {
       "date": "2026-10-12",
-      "status": "SOURCE_COMPLETE_TRUE_18HTM_GLOBAL_DISTANCE_LOWER_14_CPP_LOCAL_PASS_INDEPENDENT_GO_ORIGINAL_FACELETS_LOWER_11_PASS_EXTERNAL_CI_UNVERIFIED",
+      "status": "CPLUSPLUS_FULL_B6_B7_SOURCE_COMPLETE_GLOBAL_LOWER_14_EXTERNAL_ACTIONS_SUCCESS_PLUS_INDEPENDENT_GO_54_STICKER_B5_B5_LOWER_11_EXTERNAL_SUCCESS",
       "theorem": "For full cube group right Cayley balls d18(s,e)<=r+t iff B_t(s) intersects B_r(e)",
       "source": "WCA Seoul Summer 2026 Final A1 same original 54-facelet legal20 scramble",
       "goal_radius": 6,
@@ -2649,7 +2655,7 @@
       "independent_GO_checker": "entire 54 original facelet geometry independently recreates all legal moves; B5+sourceB5 disjoint yields lower11 only",
       "cpp_source_sha256": "e46476b5513a2e46fdc46236b209ac05c2e35e080935b18b7f90e2e9286c2e5e",
       "go_source_sha256": "b6e6ae4cb53a09a884f0c1c7af78a05c1121b0137302d4f47a93318752065e45",
-      "next_gate": "P1R6 external CI readback then P1R7 0.24 scientific freeze; 0.25 proposal conditional and user-approved, not auto switch",
+      "next_gate": "P1R6 external CI satisfied. Remaining 0.24 gate: one P1R7 scientific freeze and separate user approval to activate 0.25; global 17-word exclusion can remain OPEN.",
       "new_exact_paths_and_blobs": [
         {
           "path": "scripts/cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp",
@@ -2665,9 +2671,22 @@
         },
         {
           "path": "docs/0.24/P1_R6_SOURCE_COMPLETE_FULL18_GLOBAL_BIDIRECTIONAL_CERTIFICATE_AND_025_GATE.md",
-          "git_blob_sha": "df4ba891ed0c2ab22129e7ff994d4690cadeb6a6"
+          "git_blob_sha": "b1745f7d0c22449f066bfd9224dbaba46ce2b769"
         }
-      ]
+      ],
+      "external_CI": {
+        "run": "https://github.com/WhoSia/CUBE-REV/actions/runs/38210864083",
+        "head_sha": "2aaf34e3e56df29244beebc6f423fe651a3bf934",
+        "conclusion": "success",
+        "verified_steps": [
+          "actual C++17 whole cubie 8,240,087-state target ball and 120,213,368 source calls nonintersection",
+          "independently built Go whole 54-sticker physical source and goal radius5 nonintersection",
+          "independent Node real source complete 18 upper witness",
+          "bot author prohibition",
+          "read-only checkout"
+        ],
+        "conclusion_limit": "14<=d18<=18, NOT d18=18"
+      }
     }
   }
 }
