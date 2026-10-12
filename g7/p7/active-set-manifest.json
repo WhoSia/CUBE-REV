@@ -75,6 +75,7 @@
     ".github/workflows/cuberev-024-P0-R1-edge-tetrad.yml",
     ".github/workflows/cuberev-024-P0-physical-halfturn-domain.yml",
     ".github/workflows/cuberev-024-P1-R0-real-cube-H-geodesic-distortion.yml",
+    ".github/workflows/cuberev-024-P1-R1-certified-restricted-incumbent.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -306,6 +307,7 @@
     "docs/0.24/P0_FULL_PHYSICAL_CUBE_PARITY_HDOMAIN_CENSUS.md",
     "docs/0.24/P0_R1_EXACT_EDGE_TETRAD_HALF_TURN_SUBGROUP_EXCLUSION.md",
     "docs/0.24/P1_R0_EXACT_REAL_CUBE_H_SUBGROUP_GEODESIC_DISTORTION.md",
+    "docs/0.24/P1_R1_CERTIFIED_H_SUBGROUP_INCUMBENT_AND_PHYSICAL_ORBIT_GATED_FULL18_SEARCH.md",
     "docs/0.24/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -605,6 +607,8 @@
     "scripts/cuberev-024/p0_real_cube_parity_and_halfturn_domain.mjs",
     "scripts/cuberev-024/p1_r0_full_real_cube_H_geodesic_distortion.mjs",
     "scripts/cuberev-024/p1_r0_fullcube_H_geodesic_go/main.go",
+    "scripts/cuberev-024/p1_r1_certified_dual_go/main.go",
+    "scripts/cuberev-024/p1_r1_certified_h5_dispatch_benchmark.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2320,6 +2324,37 @@
       ],
       "no_bot": "Git commit author and committer WhoSia; CI contents:read; no github-actions[bot] or github-action[bot]",
       "next_science": "P1-R1 proof-carrying full18 versus restricted subgroup search branch cost and real performance matched-baseline falsification"
+    },
+    "p1_r1_024_true_cubie_certified_H5_and_orbit_gated_full18": {
+      "date": "2026-10-12",
+      "status": "LOCAL_NODE_PILOT_EXACT_PHYSICAL_PASS_INDEPENDENT_GO_AND_GITHUB_ACTIONS_COMPLETION_UNVERIFIED",
+      "scientific_object": "Actual original full 54-sticker 3x3 cube, whole18 HTM geodesic policy with exact restricted halfturn word and original edge orbit screening",
+      "proof": "If not in exact 18HTM goal ball R4 then d>=5; if genuinely solved with H5 length5 then d<=5; therefore d=5. If not certified, exhaustive 18 legal first actions to R4 completes EVERY actual d<=5 original cube.",
+      "cost_court": "complete full18 distance5 574908 source cubes, 1932 certified H5, 192 edge orbit pass H8/H9 requiring exact fallback, 572784 edge orbit negative, exact B2-vs-B0 table lookup saving15951",
+      "resources": "shared exact R4 goal ball 46741 states; new H5 2605 states; H5 build 4038 legal source actions; 18075 avoided per-input facelet legal actions across full cohort; local added heap about0.96MiB",
+      "pilot_benchmark": "Local Node22 Xeon Platinum8573C, five exposed vCPUs, retrospective five-run source-cohort timing, no full-shell 574908 runtime measurement or statistically supported generalized speed improvement",
+      "private_human_data": "Neither private451 source trajectories nor participant identities used",
+      "release_contract": "WhoSia author+committer only; read-only CI; no github-actions[bot]/github-action[bot] writeback; no glob; P7 explicit Git blob",
+      "exact_paths_and_current_blobs": [
+        {
+          "path": "scripts/cuberev-024/p1_r1_certified_h5_dispatch_benchmark.mjs",
+          "git_blob_sha": "bce05f08d07617c110a34bcb53d09fd8fcb7e982"
+        },
+        {
+          "path": "scripts/cuberev-024/p1_r1_certified_dual_go/main.go",
+          "git_blob_sha": "9b205bb6af71b88c894c7e4b917e415f29328464"
+        },
+        {
+          "path": ".github/workflows/cuberev-024-P1-R1-certified-restricted-incumbent.yml",
+          "git_blob_sha": "84b9a64bc4227bf886c83fe9e75d77832914aab0"
+        },
+        {
+          "path": "docs/0.24/P1_R1_CERTIFIED_H_SUBGROUP_INCUMBENT_AND_PHYSICAL_ORBIT_GATED_FULL18_SEARCH.md",
+          "git_blob_sha": "2005fa58760e37038b09c3a94829baa071ad1d70"
+        }
+      ],
+      "limits": "bounded exact 18HTM d<=5 only, d6+ HOLD, external CI unverified, not unrestricted 3x3 solver",
+      "next": "P1-R2 admissible lower bounds and full18 global solver with real heldout FMC physical branches and honest performance baselines"
     }
   }
 }
