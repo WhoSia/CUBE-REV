@@ -1,7 +1,7 @@
 // CUBE-REV 0.24 P0: independent Go original 54-sticker cube and exact parity court.
 // No imports from JavaScript, no source/participant private data.
 package main
-import("encoding/json";"fmt";"math/bits";"sort";"strings")
+import("encoding/json";"fmt";"sort";"strings")
 type V [3]int
 type Slot struct{P,N V}
 type Move struct{Name string; Dest [54]int}
@@ -86,7 +86,6 @@ func main(){
   }
  }
  require(byDepth==[4]Row{{1,0,0},{6,0,12},{27,108,108},{120,1440,1680}},"physical parity census")
- checkParity:=0;for _,i:=range half{checkParity+=bits.OnesCount(uint(i))};_ =checkParity
  j,_:=json.Marshal(struct{Marker string `json:"marker"`;Full []int `json:"full18_layers"`;Half []int `json:"half6_layers"`;Census [4]Row `json:"by_depth"`;StateCount int `json:"full_state_count"`}{
  "CUBE_REV_024_P0_GO_PHYSICAL_PARITY_PASS",fl,hl,byDepth,len(full)})
  fmt.Println(string(j))
