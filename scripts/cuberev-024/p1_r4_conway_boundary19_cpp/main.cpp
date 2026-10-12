@@ -79,6 +79,19 @@ if(ok){
     throw runtime_error("frozen boundary group-word witness regression failed");
   if(find(moves2.begin(),moves2.end(),t.w1.back())!=moves2.end())
     throw runtime_error("DR entrance final letter must be outside G1 alphabet");
+  // Verify that this is genuinely the FIRST G1 entry on the winning
+  // source prefix, not a later arbitrary subgroup re-entrance.
+  auto prefixCube=fromStickers(f.cube);
+  for(size_t k=0;k<t.w1.size();k++){
+    prefixCube=composeCube(prefixCube,turn[t.w1[k]]);
+    if(k+1<t.w1.size() && phase1H(prefixCube)==0)
+      throw runtime_error("witness was already in G1 before its stated first arrival");
+  }
+  if(phase1H(prefixCube)!=0)throw runtime_error("winner did not reach genuine G1");
+  if(names[t.w1.back()]!="B"||names[t.w2.front()]!="B2")
+    throw runtime_error("specific original-stage B B2 rewrite has drifted");
+  cout<<"CONWAY_GROUP_FIRST_G1_ENTRY_CHECK PASS FINAL_OUTSIDE_SUBGROUP_GENERATOR B BOUNDARY B_B2_TO_B_PRIME\n";
+
   cout<<"SUBGROUP_CROSS_BOUNDARY_LOCAL "<<names[t.w1.back()]<<" "<<names[t.w2.front()]<<" REDUCED_LEN "<<original.size()<<" PHASE1_LEN "<<p1len<<" PHASE2_LEN "<<p2len<<" RAW_LEN "<<w.size()<<"\n";
   if(original.size()>19||!physicalSolves(scramble,original))throw runtime_error("bad full original physical replay");cout<<"BOUNDARY_19_OR_LESS_SOURCE_FULL_CUBE_WITNESS "<<join(original)<<" LENGTH "<<original.size()<<"\n";return 0;}
 }cout<<"BOUNDARY_NO_TARGET19_WITHIN_RAW20_AND_ACTUAL_AXIS_LOWER_PLUS6_SCOPE NODES1 "<<all1<<" NODES2 "<<all2<<" CONTACTS "<<allContacts<<" PHASE2_CHECKS "<<eligible<<"\n";return 0;}catch(exception&e){cerr<<"ERROR "<<e.what()<<"\n";return 1;}}
