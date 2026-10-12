@@ -48,9 +48,13 @@ for(const item of [...wca,...publicFmc]){
   expanded_IDA_calls:out.idaNodes,
   no_human_process_measured:true});
 }
+assert.equal(results[2].original_complete_cubie_sha256,results[3].original_complete_cubie_sha256,
+ 'Miao and Riabov written main prefixes have the SAME real physical whole-cubie endpoint; do not count as two independent heldout states');
 console.log(JSON.stringify({
  marker:'CUBE_REV_024_P1_R2_PUBLIC_WCA_AND_AUTHORED_FMC_SOURCE_BOUNDARY',
  cohorts:results,
+ source_distinct_public_FMC_prefixes:2,
+ physical_distinct_public_FMC_endpoints:1,
  rights:'only existing public source-authored competition/FMC source; no private 451 archive',
  interpretation:'HOLD is a resource failure, not unsolvability, not observed human slow cognition',
  publication_grade:'EXPLORATORY_SOURCE_BOUNDARY_NOT_INDEPENDENT_HUMAN_REPLICATION'
