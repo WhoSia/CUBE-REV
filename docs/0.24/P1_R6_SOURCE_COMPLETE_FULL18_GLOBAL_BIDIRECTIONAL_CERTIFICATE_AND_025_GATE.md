@@ -1,6 +1,12 @@
+**EXTERNAL CI UPDATE (2026-10-12):** [P1-R6 complete Github Actions run #38210864083](https://github.com/WhoSia/CUBE-REV/actions/runs/38210864083), head commit 2aaf34e3e56df29244beebc6f423fe651a3bf934, finished **SUCCESS**. Verified the job's actual steps separately: full original C++ global B6(goal)+B7(source) exact nonintersection PASS, truly independent original 54-sticker Go B5+B5 source lower11 PASS, inherited Node 18HTM whole-cube actual source witness PASS, bot-contributor gate PASS and read-only checkout PASS. Subsequent README/Notion/manifest commits do not alter these tested physical source blobs. This external success verifies **d18>=14 as a regenerable source-complete finite search on this exact code**, NOT d18=18 global optimality.
+
+**Separate historical regression:** an older P1-R3 Action file was malformed (duplicated/incomplete YAML from an earlier patch, zero jobs, not a computation failure). The P1-R3 C++ source itself was rerun locally and independently retained its four known original physical outcomes 21,19,9,9; the workflow was replaced with valid read-only YAML in human-WhoSia commit 6869df89c5a27c5134b52b8476beb13c9c015598. Await the new regression run before claiming that older workflow repaired in CI.
+
+---
+
 # CUBE-REV 0.24 P1-R6 — Global Geodesic Certification Beyond Phase Decomposition: Source-Complete 18-HTM Lower Bounds, Exact Whole-Cubie Bidirectional Search, Symmetry-Safe Proof Frontiers and Independent Checkers
 
-**2026-10-12 · ACTIVE P1-R6 · LOCAL C++ AND INDEPENDENT GO PASS · EXTERNAL CI PENDING**
+**2026-10-12 · ACTIVE P1-R6 · LOCAL C++ AND INDEPENDENT GO PASS · ACTUAL EXTERNAL P1-R6 CI SUCCESS (RUN #38210864083)**
 
 ## Original Rubik cube target, not a restricted DR word problem
 
@@ -72,7 +78,7 @@ B_5(s)\cap B_5(e)=\varnothing \Rightarrow d_{18}(s)\ge11.
 
 Source bound recursive calls in Go are [1,19,262,3502,46756,624124], all completed. Its independent local computation took around **0.692 seconds** on this environment. Go source SHA-256 **b6e6ae4cb53a09a884f0c1c7af78a05c1121b0137302d4f47a93318752065e45**. **Do not claim the Go model independently confirmed the stronger C++ lower14:** its independent source-complete proof is lower11 only.
 
-[Read-only Github Actions source](../../.github/workflows/cuberev-024-P1-R6-full18-global-bidir-and-independent-facelets.yml) exercises the C++ original whole-cubie B6+B7 certificate, independently authored Go full original sticker B5+B5, and inherited Node original 18-word replay. Strict GitHub Actions read permissions; no code writes; no github-actions[bot]/github-action[bot] authors or committers. **External workflow result not yet confirmed.**
+[Read-only Github Actions source](../../.github/workflows/cuberev-024-P1-R6-full18-global-bidir-and-independent-facelets.yml) exercises the C++ original whole-cubie B6+B7 certificate, independently authored Go full original sticker B5+B5, and inherited Node original 18-word replay. Strict GitHub Actions read permissions; no code writes; no github-actions[bot]/github-action[bot] authors or committers. **External exact workflow run #38210864083 SUCCESS, with all C++, Go, Node, bot-gate and read-only steps passing.**
 
 ## M*(5), source-complete proof and the genuine unsolved geodesic
 
@@ -90,4 +96,4 @@ This cube now has global interval **14–18**, and a constructive legal solution
 
 0.25's flagship remains the genuine full-cube 17-turn benchmark (known actual interval14–18), with an expanded, distinct real speedcubing Cross→F2L and rights-checked direct move/timestamp evidence axis, not AI guessing human thought from unrelated videos. TCS and group theory serve original Rubik's cube engineering; administrative tasks are supporting release hygiene.
 
-**Status summary:** C++ full B6+B7 local PASS, independent Go physical B5+B5 local PASS, 18 original physical solution PASS; source files/CI/document committed, external Actions PASS unverified, no unapproved actual 0.25 activation.
+**Status summary:** C++ full B6+B7 local PASS, independent Go physical B5+B5 local PASS, 18 original physical solution PASS; source files/CI/document committed, P1-R6 external Actions PASS verified (run #38210864083); other historical CI conclusions are separately tracked, no unapproved actual 0.25 activation.
