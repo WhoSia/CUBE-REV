@@ -9,6 +9,7 @@ on:
       - "scripts/cuberev-024/p1_r5_conway_target18_cpp/test_trace_group.cpp"
       - "scripts/cuberev-024/p1_r5_niss_dual_boundary_cpp/main.cpp"
       - "scripts/cuberev-024/p1_r5_niss_two_premove_cpp/main.cpp"
+      - "scripts/cuberev-024/p1_r5_independent_original_54_facelet_18_replay.mjs"
       - ".github/workflows/cuberev-024-P1-R5-conway-full18-boundary-and-niss.yml"
 permissions:
   contents: read
@@ -77,6 +78,38 @@ jobs:
           git diff --exit-code
           test -z "$(git status --porcelain)"
  /tmp/p1r5-niss2.log
+      - name: Genuine official WCA full 18 HTM breakthrough via two-sided NISS depth11 source group surgery
+        shell: bash
+        run: |
+          timeout 600 /tmp/cuberev-niss2 35 11 > /tmp/p1r5-niss2-positive18.log 2>&1
+          tail -26 /tmp/p1r5-niss2-positive18.log
+          grep -q '^NISS2_ACTUAL_GROUP_FACTOR_CERTIFICATE P1_LEN 11 P2_LEN 6 SUFFIX_PREMOVES_LEN 2 RAW_LEN 19 TRACENORM_LEN 18
+        shell: bash
+        run: |
+          node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
+      - name: Guarantee no generated artifacts committed by a workflow
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+ /tmp/p1r5-niss2-positive18.log
+          grep -q "^NISS2_P1_ORIGINAL F U F D' R' F' L' F' D' L B$" /tmp/p1r5-niss2-positive18.log
+          grep -q '^NISS2_P2_ORIGINAL L2 F2 U2 L2 U F2
+        shell: bash
+        run: |
+          node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
+      - name: Guarantee no generated artifacts committed by a workflow
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+ /tmp/p1r5-niss2-positive18.log
+          grep -q "^NISS2_SOURCE_VERIFIED_COMPLETE_18_WITNESS F U F D' R' F' L' F' D' L B L2 F2 U2 L2 U F' R2 LENGTH 18 PREMOVES F R2 AXIS UD$" /tmp/p1r5-niss2-positive18.log
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+      - name: Independently certify exact original fixed 54-sticker WCA 18-word physical and source NISS identity
+        run: node scripts/cuberev-024/p1_r5_independent_original_54_facelet_18_replay.mjs
       - name: Still independently verify the prior genuine source-54-sticker 19-turn upper bound
         shell: bash
         run: |
