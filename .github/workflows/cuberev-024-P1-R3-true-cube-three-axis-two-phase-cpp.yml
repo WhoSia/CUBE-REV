@@ -41,6 +41,39 @@ jobs:
           grep -q '^CASE FMC_World2026_Riabov_main_EO_DR .* SOLUTION_LEN 9$' /tmp/p1r3-receipt.txt
           grep -q '^FRAME FMC_World2026_Miao_main_EO_DR AXIS FB .* P1 0 P2 9 ' /tmp/p1r3-receipt.txt
           grep -q '^INVERSE_SCRAMBLE_BASELINE_LEN 20$' /tmp/p1r3-receipt.txt
+      - name: Reject any within-first-13-DR-phase path beating official WCA inverse 20, but do not claim global HTM optimality
+        shell: bash
+        run: |
+          P1R3_FIND19=1 /tmp/cuberev024-p1r3 "R'" "B'" F2 D2 F2 L2 R2 "U'" F2 L2 D2 B2 D F "L'" R2 B U2 F2 R2 > /tmp/p1r3-target19-negative.txt 2>&1
+          cat /tmp/p1r3-target19-negative.txt
+          grep -q '^TARGET19_UNRESOLVED_RESOURCE_OR_PHASE_DEPTH_BOUND
+        with:
+          node-version: "22.16.0"
+      - name: Independently replay original 54-sticker C++ witnesses in Node
+        run: node scripts/cuberev-024/p1_r3_independent_source_replay.mjs
+      - name: Verify checkout remained read-only
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+ /tmp/p1r3-target19-negative.txt
+          test "$(grep -c '^TARGET19_AXIS .* STOPPED 0
+        with:
+          node-version: "22.16.0"
+      - name: Independently replay original 54-sticker C++ witnesses in Node
+        run: node scripts/cuberev-024/p1_r3_independent_source_replay.mjs
+      - name: Verify checkout remained read-only
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+ /tmp/p1r3-target19-negative.txt)" -eq 3
+      - name: Positive source control of the bounded 19-move C++ real-cube challenger
+        shell: bash
+        run: |
+          P1R3_FIND19=1 /tmp/cuberev024-p1r3 L2 F2 U F2 R2 U B2 R2 D U F L U "F'" R2 B "R'" D "B'" > /tmp/p1r3-target19-positive.txt 2>&1
+          cat /tmp/p1r3-target19-positive.txt
+          grep -q '^FOUND_TARGET19_LEN 19 WORD ' /tmp/p1r3-target19-positive.txt
       - uses: actions/setup-node@v4
         with:
           node-version: "22.16.0"
