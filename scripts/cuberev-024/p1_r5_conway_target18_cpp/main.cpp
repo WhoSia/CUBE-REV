@@ -82,12 +82,12 @@ int main(int argc,char**argv){
   auto scramble=parse("R' B' F2 D2 F2 L2 R2 U' F2 L2 D2 B2 D F L' R2 B U2 F2 R2");
   auto base=solvedStickers();for(int m:scramble)physicalTurn(base,names[m]);
   int seconds=argc>1?stoi(argv[1]):20,maxdepth=argc>2?stoi(argv[2]):13;
-  string axis=argc>3?argv[3]:"ALL";
+  string axis=argc>3?argv[3]:"ALL";bool anyStop=false;
   for(int f:{2,0,-1}){
    string name=f==2?"LR":f==0?"FB":"UD";
    if(axis!="ALL"&&axis!=name)continue;
    auto ff=inFrame(base,f);P1R5Target18 engine;
-   bool won=engine.run(fromStickers(ff.cube),seconds,maxdepth);
+   bool won=engine.run(fromStickers(ff.cube),seconds,maxdepth);anyStop|=engine.stopped;
    cout<<"P1R5_AXIS "<<name<<" TARGET18_FOUND "<<won<<" RESOURCE_STOP "<<engine.stopped<<" TRACE_CLOSURE_HOLD "<<engine.rewriteBudgetHold
        <<" NODES1 "<<engine.nodes1<<" NODES2 "<<engine.nodes2<<" CONTACTS "<<engine.contacts
        <<" DOWNSTREAM_ATTEMPTS "<<engine.phase2Attempts<<" COMPLETE_WORDS_TESTED "<<engine.normalizedCandidates<<"\n"<<flush;
@@ -98,6 +98,7 @@ int main(int argc,char**argv){
      return 0;
    }
   }
-  cout<<"P1R5_NO_18_WITNESS_WITHIN_EXPLICIT_RESOURCE_AND_AXIS_BOUNDS_NOT_GLOBAL_DISTANCE_CERTIFICATE\n";
+  if(anyStop)cout<<"P1R5_RESOURCE_LIMIT_PARTIAL_HOLD_NOT_A_FINITE_EXCLUSION_CERTIFICATE\n";
+  else cout<<"P1R5_NO_18_WITNESS_WITHIN_EXPLICIT_RESOURCE_AND_AXIS_BOUNDS_NOT_GLOBAL_DISTANCE_CERTIFICATE\n";
  }catch(const exception&e){cerr<<"ERROR "<<e.what()<<"\n";return 2;}
 }
