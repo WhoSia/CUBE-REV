@@ -2427,9 +2427,9 @@
     },
     "p1_r3_024_hard_wca_fmc_three_axis_original_facelet_dr_solver": {
       "date": "2026-10-12",
-      "status": "ACTIVE_P1_R3_CPP17_COMPILED_LOCAL_PASS_NODE_INDEPENDENT_ORIGINAL_STICKERS_PASS_EXTERNAL_ACTIONS_PENDING",
+      "status": "ACTIVE_P1_R3_CPP17_3AXIS_LOCAL_FULL_SOURCE_PASS_INDEPENDENT_NODE_REPLAY_PASS_BOUNDED_RAW_TARGET19_NEGATIVE_PLUS_POSITIVE_PASS_EXTERNAL_ACTIONS_PENDING",
       "science": "independent physical original fixed 54-sticker 3x3 full HTM phase1 2187x495 CO-slice plus 2048x495 EO-slice; phase2 two 40320x24 real legal DR permutation quotient PDB, all three conjugate UD FB LR axes, up to 128 phase1 candidate contacts, source strict sticker replay",
-      "Cplusplus_source_sha256": "21ce76ea90926733b1484fb302406016b3976cbc8ba82186a56a15943944e6d8",
+      "Cplusplus_source_sha256": "9e13417a685bdd0e2ef6c8982eb5e12d5639194d0d8f9e4ed44cb55605e3881e",
       "real_WCA_333_final_A1": "source scramble 20, best new 2-phase source physical witness 21; trivially valid scramble inverse20 is BETTER; GLOBAL_OPTIMALITY_HOLD",
       "real_WCA_333_first_A1": "source scramble19, new physical 2-phase solution19; ties trivial source inverse19; GLOBAL_OPTIMALITY_HOLD",
       "named_FMC_authored_main": "Miao and Riabov original written normal-side prefixes source-distinct but same entire source cubie state; FB-axis G1 already reached and certified DR phase2 nine-turn suffix; reproduces 0.22 P8-R3 not independent human cognition",
@@ -2442,7 +2442,7 @@
       "new_paths_and_git_blobs": [
         {
           "path": "scripts/cuberev-024/p1_r3_true_54_facelet_multiaxis_dr_cpp/main.cpp",
-          "git_blob_sha": "c7a96e4314a977d4fe54dcda5fa8c64ba2b90b7c"
+          "git_blob_sha": "77a4d8d528c2fc6718e2dade411d1b67b12240a9"
         },
         {
           "path": "scripts/cuberev-024/p1_r3_independent_source_replay.mjs",
@@ -2450,13 +2450,42 @@
         },
         {
           "path": ".github/workflows/cuberev-024-P1-R3-true-cube-three-axis-two-phase-cpp.yml",
-          "git_blob_sha": "0c7f22db9ca5d1130f0df0702f6376d7ec96e8b0"
+          "git_blob_sha": "718a55f9becd9258bf0dd0ba082ec834b5804501"
         },
         {
           "path": "docs/0.24/P1_R3_HARD_WCA_FMC_MULTIPHASE_CUBIE_SEARCH_AND_NONVIDEO_HUMAN_EVIDENCE.md",
-          "git_blob_sha": "9e98086526d0aee80f537a8a4ff58d76d5e23913"
+          "git_blob_sha": "37a7ffcfd0010e4274892f7cab083df481a7032a"
         }
-      ]
+      ],
+      "bounded_negative_19_raw_phase1_le13": {
+        "source": "original WCA Seoul Summer 2026 final A1 20-token scramble",
+        "target_total_raw_HTM_max": 19,
+        "phase1_cap": 13,
+        "three_real_frame_axes": {
+          "UD": {
+            "DR_contacts": 1190,
+            "phase2_eligible": 203,
+            "resource_cut": false
+          },
+          "FB": {
+            "DR_contacts": 1526,
+            "phase2_eligible": 518,
+            "resource_cut": false
+          },
+          "LR": {
+            "DR_contacts": 2212,
+            "phase2_eligible": 676,
+            "resource_cut": false
+          }
+        },
+        "total_DR_contacts": 4928,
+        "total_phase2_eligible": 1397,
+        "raw_target_found": false,
+        "positive_control": "original WCA Seoul Summer 2026 first A1 actual full 54-sticker source solved in 19 under same target mode",
+        "claim_boundary": "NOT a global 18HTM d>=20 certificate; phase1>=14, alternative words and cross-boundary same-face cancellations not excluded",
+        "new_cpp_sha256": "9e13417a685bdd0e2ef6c8982eb5e12d5639194d0d8f9e4ed44cb55605e3881e",
+        "external_CI": "pending"
+      }
     }
   }
 }
