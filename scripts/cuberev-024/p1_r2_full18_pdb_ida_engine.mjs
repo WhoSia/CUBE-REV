@@ -161,7 +161,7 @@ export function solveOptimal(tokens,{useHIncumbent=true,nodeCap=250000,timeCapMs
     return {...result,result:'OPTIMAL',length:word.length,word,method:'EXACT_R4',bounded_optimum_certificate:true,elapsedMs:performance.now()-start};
   }
   const hCandidate=useHIncumbent?restrictedIncumbent(initial,Math.max(9,maxDepth)):null;
-  const inc=hCandidate?.word;
+  const inc=hCandidate?.word??null;
   if(inc){assert(cubieSolved(applyWord(initial,inc)));result.incumbent={length:inc.length,reason:hCandidate.reason,search_nodes:hCandidate.expanded}}
   else if(hCandidate)result.incumbent={length:null,reason:hCandidate.reason,search_nodes:hCandidate.expanded};
   // Source outside the exact full18 radius-four ball has d18>=5. An actual
