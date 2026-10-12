@@ -109,10 +109,81 @@ struct Search{Result res;vector<int>path1,path2;int limit1;int phase2Goal;bool s
  if(g==bound)return false;for(int a=0;a<18;a++){if(!canonical(last,a))continue;path1.push_back(a);if(dfs1(composeCube(s,turn[a]),coTurn[co][a],eoTurn[eo][a],slTurn[sl][a],g+1,bound,a))return true;path1.pop_back();if(stop)return false;}return false;}
  Result solve(const Cube&s,int sec=65){start=Clock::now();seconds=sec;int co=coIndex(s),eo=eoIndex(s),sl=sliceID[sliceMask(s)];int initH=max<int>(pdbCOslice[co*495+sl],pdbEOslice[eo*495+sl]);for(int b=initH;b<=15;b++){limit1=b;path1.clear();if(dfs1(s,co,eo,sl,0,b,-1)){res.status="SOLVED_SAMPLED_DR_FIRST_BOUND_NOT_GLOBAL_OPTIMAL";break;}if(res.solved){res.status="SOLVED_PARTIAL_DR_CONTACTS_NOT_GLOBAL_OPTIMAL";break;}if(stop)break;}if(!res.solved)res.status="HOLD_"+(why.empty()?string("DEPTH15"):why);res.runtime=chrono::duration<double>(Clock::now()-start).count();return res;}
 };
+
+// Independent bounded direct challenge to the trivial source inverse 20:
+// search actual physical original 18 HTM two-phase words of length <=19.
+// A failure under the budget proves NOTHING about complete global distance.
+struct Target19 {
+  uint64_t nodes1=0,nodes2=0,contacts=0,p2_calls=0;
+  bool stopped=false,found=false;int maxTimeSeconds=16;
+  Clock::time_point started;
+  vector<int>p1,p2,w1,w2;
+  bool overBudget(){if(nodes1>150000000||nodes2>100000000)return true;
+    return chrono::duration<double>(Clock::now()-started).count()>maxTimeSeconds;}
+  bool secondDFS(int cp,int ud,int es,int depth,int bound,int last){
+    nodes2++;if((nodes2&0x1FFF)==0 && overBudget()){stopped=true;return false;}
+    if(depth+phase2H(cp,ud,es)>bound)return false;
+    if(cp==0&&ud==0&&es==0){w2=p2;return true;}
+    if(depth>=bound)return false;
+    for(int a=0;a<10;a++){
+      const int m=moves2[a];if(!canonical(last,m))continue;
+      p2.push_back(m);
+      if(secondDFS(cpTurn[cp][a],udTurn[ud][a],esTurn[es][a],depth+1,bound,m))return true;
+      p2.pop_back();if(stopped)return false;
+    }return false;
+  }
+  bool second(Cube s,int p1len){
+    int cp=rankCP(s),ud=rankUD(s),es=rankES(s);
+    int h=phase2H(cp,ud,es);if(p1len+h>19)return false;
+    p2_calls++;
+    for(int b=h;b<=19-p1len;b++){
+       p2.clear();if(secondDFS(cp,ud,es,0,b,-1))return true;
+       if(stopped)return false;
+    }return false;
+  }
+  bool firstDFS(Cube s,int co,int eo,int sl,int d,int bound,int last){
+    nodes1++;if((nodes1&0x1FFF)==0 && overBudget()){stopped=true;return false;}
+    int h=max<int>(pdbCOslice[co*495+sl],pdbEOslice[eo*495+sl]);
+    if(d+h>bound)return false;
+    if(h==0){
+       contacts++;
+       if(second(s,d)) {w1=p1;found=true;return true;}
+       if(stopped)return false;
+    }
+    if(d==bound)return false;
+    for(int a=0;a<18;a++){
+      if(!canonical(last,a))continue;
+      p1.push_back(a);
+      if(firstDFS(composeCube(s,turn[a]),coTurn[co][a],eoTurn[eo][a],slTurn[sl][a],d+1,bound,a))return true;
+      p1.pop_back();if(stopped)return false;
+    }return false;
+  }
+  bool run(Cube s,int seconds){started=Clock::now();maxTimeSeconds=seconds;
+    int co=coIndex(s),eo=eoIndex(s),sl=sliceID[sliceMask(s)];
+    int h=max<int>(pdbCOslice[co*495+sl],pdbEOslice[eo*495+sl]);
+    for(int b=h;b<=min(13,h+4);b++){
+      p1.clear();if(firstDFS(s,co,eo,sl,0,b,-1))return true;
+      if(stopped)return false;
+    }return false;
+  }
+};
 int main(int argc,char**argv){try{auto init=Clock::now();initTurns();initPhase1();auto d1=chrono::duration<double>(Clock::now()-init).count();initPhase2();auto d2=chrono::duration<double>(Clock::now()-init).count();cerr<<"PDB_BUILD_SECONDS phase1="<<d1<<" total="<<d2<<" phase1_states="<<(1082565+1013760)<<" phase2_states="<<(2*967680)<<"\n";
 vector<pair<string,string>>cases={{"WCA_SeoulSummer2026_333_Final_A_1","R' B' F2 D2 F2 L2 R2 U' F2 L2 D2 B2 D F L' R2 B U2 F2 R2"},{"WCA_SeoulSummer2026_333_First_A_1","L2 F2 U F2 R2 U B2 R2 D U F L U F' R2 B R' D B'"},{"FMC_World2026_Miao_main_EO_DR","R' U' F L2 D' L2 U' R U F' D R L' F U2 D2 F L2 F' R2 F2 D R' U' F L2 F' L D L2 F2 B L B2 L"},{"FMC_World2026_Riabov_main_EO_DR","R' U' F L2 D' L2 U' R U F' D R L' F U2 D2 F L2 F' R2 F2 D R' U' F L2 F' L D L2 B F2 L B2 L"}};
 if(argc>1){cases.clear();string s;for(int i=1;i<argc;i++){if(i>1)s+=' ';s+=argv[i];}cases.push_back({"CUSTOM",s});}
-for(auto [name,s]:cases){auto scramble=parse(s);Stickers facelet=solvedStickers();for(int m:scramble)physicalTurn(facelet,names[m]);Cube state=fromStickers(facelet);Cube fast=cubeAfter(scramble);if(state.cp!=fast.cp||state.co!=fast.co||state.ep!=fast.ep||state.eo!=fast.eo)throw runtime_error("cubie action and physical 54 sticker mismatch!");// All three axis choices share identical physical moves by conjugacy.
+for(auto [name,s]:cases){auto scramble=parse(s);
+if(getenv("P1R3_FIND19")){
+ Stickers base=solvedStickers();for(int m:scramble)physicalTurn(base,names[m]);
+ for(int axis : {-1,0,2}){
+  Frame f=inFrame(base,axis);Target19 solver;bool ok=solver.run(fromStickers(f.cube),16);
+  cerr<<"TARGET19_AXIS "<<(axis<0?"UD":axis==0?"FB":"LR")<<" FOUND "<<ok<<" CONTACTS "<<solver.contacts<<" P2_CALLS "<<solver.p2_calls<<" NODES1 "<<solver.nodes1<<" NODES2 "<<solver.nodes2<<" STOPPED "<<solver.stopped<<"\n";
+  if(ok){auto w=solver.w1;w.insert(w.end(),solver.w2.begin(),solver.w2.end());
+   w=backToOriginal(w,f);w=normalizeLegalHTM(w);
+   if(w.size()>19||!physicalSolves(scramble,w))throw runtime_error("bad target19 complete original 54 stickers");
+   cout<<"FOUND_TARGET19_LEN "<<w.size()<<" WORD "<<join(w)<<"\n";return 0;}
+ }
+ cout<<"TARGET19_UNRESOLVED_RESOURCE_OR_PHASE_DEPTH_BOUND\n";return 0;
+}
+Stickers facelet=solvedStickers();for(int m:scramble)physicalTurn(facelet,names[m]);Cube state=fromStickers(facelet);Cube fast=cubeAfter(scramble);if(state.cp!=fast.cp||state.co!=fast.co||state.ep!=fast.ep||state.eo!=fast.eo)throw runtime_error("cubie action and physical 54 sticker mismatch!");// All three axis choices share identical physical moves by conjugacy.
 // The local phase2 proof remains grammar-relative, never global full18.
 int bestLen=10000,bestAxis=-1;vector<int>bestWord;Result bestResult;
 for(int axis : {-1,0,2}){
