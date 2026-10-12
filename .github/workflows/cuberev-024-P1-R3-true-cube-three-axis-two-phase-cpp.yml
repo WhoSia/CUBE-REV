@@ -1,0 +1,53 @@
+name: CUBE-REV 0.24 P1-R3 true 54-facelet multiaxis DR
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-024/p1_r3_true_54_facelet_multiaxis_dr_cpp/main.cpp"
+      - "scripts/cuberev-024/p1_r3_independent_source_replay.mjs"
+      - ".github/workflows/cuberev-024-P1-R3-true-cube-three-axis-two-phase-cpp.yml"
+permissions:
+  contents: read
+jobs:
+  whole-cube-source-pdb-and-conjugacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Forbid github-actions bot authors and committers
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::GitHub Actions bot contribution prohibited"
+            exit 1
+          fi
+      - name: Build independent original-sticker C++17 phase engine
+        shell: bash
+        run: |
+          g++ -std=c++17 -O3 -Wall -Wextra scripts/cuberev-024/p1_r3_true_54_facelet_multiaxis_dr_cpp/main.cpp -o /tmp/cuberev024-p1r3
+      - name: Run long original 3x3 WCA and public-authored FMC full-solve corpus
+        shell: bash
+        run: |
+          /tmp/cuberev024-p1r3 | tee /tmp/p1r3-receipt.txt
+          test "$(grep -c '^CASE .* STATUS SOLVED_PHYSICALLY_ALL54 ' /tmp/p1r3-receipt.txt)" -eq 4
+          test "$(grep -c '^WINNER ' /tmp/p1r3-receipt.txt)" -eq 4
+          grep -q '^CASE WCA_SeoulSummer2026_333_Final_A_1 .* SOLUTION_LEN 21$' /tmp/p1r3-receipt.txt
+          grep -q '^CASE WCA_SeoulSummer2026_333_First_A_1 .* SOLUTION_LEN 19$' /tmp/p1r3-receipt.txt
+          grep -q '^CASE FMC_World2026_Miao_main_EO_DR .* SOLUTION_LEN 9$' /tmp/p1r3-receipt.txt
+          grep -q '^CASE FMC_World2026_Riabov_main_EO_DR .* SOLUTION_LEN 9$' /tmp/p1r3-receipt.txt
+          grep -q '^FRAME FMC_World2026_Miao_main_EO_DR AXIS FB .* P1 0 P2 9 ' /tmp/p1r3-receipt.txt
+          grep -q '^INVERSE_SCRAMBLE_BASELINE_LEN 20$' /tmp/p1r3-receipt.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+      - name: Independently replay original 54-sticker C++ witnesses in Node
+        run: node scripts/cuberev-024/p1_r3_independent_source_replay.mjs
+      - name: Verify checkout remained read-only
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
