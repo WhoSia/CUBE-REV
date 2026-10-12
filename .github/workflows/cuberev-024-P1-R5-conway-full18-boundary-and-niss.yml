@@ -8,6 +8,7 @@ on:
       - "scripts/cuberev-024/p1_r5_conway_target18_cpp/group_trace_rewrite.hpp"
       - "scripts/cuberev-024/p1_r5_conway_target18_cpp/test_trace_group.cpp"
       - "scripts/cuberev-024/p1_r5_niss_dual_boundary_cpp/main.cpp"
+      - "scripts/cuberev-024/p1_r5_niss_two_premove_cpp/main.cpp"
       - ".github/workflows/cuberev-024-P1-R5-conway-full18-boundary-and-niss.yml"
 permissions:
   contents: read
@@ -33,6 +34,7 @@ jobs:
           g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_conway_target18_cpp/test_trace_group.cpp -o /tmp/cuberev-group
           g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_conway_target18_cpp/main.cpp -o /tmp/cuberev-18
           g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_niss_dual_boundary_cpp/main.cpp -o /tmp/cuberev-niss
+          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_niss_two_premove_cpp/main.cpp -o /tmp/cuberev-niss2
       - name: Exact same-face and disjoint-commutation physically replayed positive controls
         shell: bash
         run: |
@@ -59,6 +61,22 @@ jobs:
           test "$(grep -c '^PREMOVE_CASE .* CUT 1 ' /tmp/p1r5-niss.log)" -eq 0
           test "$(grep -c '^PREMOVE_CASE .* WIN 1 ' /tmp/p1r5-niss.log)" -eq 0
           grep -q '^NISS_ONE_PREMOVE_SCOPE_RESULT NO_18_FOUND TESTS 54 SUM_NODES1 105060048 SUM_NODES2 3370185 SUM_CONTACTS 81376 NOT_AN_UNRESTRICTED_18HTM_DISTANCE_PROOF$' /tmp/p1r5-niss.log
+      - name: NISS two genuine inverse-side premoves, 243 legal words by three real DR frames
+        shell: bash
+        run: |
+          timeout 600 /tmp/cuberev-niss2 15 10 > /tmp/p1r5-niss2.log 2>&1
+          tail -8 /tmp/p1r5-niss2.log
+          test "$(grep -c '^NISS2_RESOURCE_CUT ' /tmp/p1r5-niss2.log)" -eq 0
+          grep -q '^NISS2_SOURCE_SCOPE_DONE TESTS 729 CUTS 0 WINS 0 SUM_NODES1 103578829 SUM_NODES2 3081206 CONTACTS 68862 NOT_A_GLOBAL_18HTM_DISTANCE_PROOF
+        shell: bash
+        run: |
+          node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
+      - name: Guarantee no generated artifacts committed by a workflow
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+ /tmp/p1r5-niss2.log
       - name: Still independently verify the prior genuine source-54-sticker 19-turn upper bound
         shell: bash
         run: |
