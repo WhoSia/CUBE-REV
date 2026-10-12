@@ -1,0 +1,50 @@
+name: CUBE-REV 0.24 P1-R2 physical IDA PDB and speed Cross
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-024/p1_r2_full18_pdb_ida_engine.mjs"
+      - "scripts/cuberev-024/p1_r2_speedcubing_cross_pdb_court.mjs"
+      - "scripts/cuberev-024/p1_r2_seeded_heldout_engine_benchmark.mjs"
+      - "scripts/cuberev-024/p1_r2_source_fmc_speed_boundary.mjs"
+      - ".github/workflows/cuberev-024-P1-R2-physical-ida-pdb-and-speedcubing.yml"
+permissions:
+  contents: read
+jobs:
+  actual-original-cube-pdb-ida-and-speed-stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: No github-actions bot authors or committers in research/current history
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::Bot author/committer prohibited"
+            exit 1
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+      - name: Real 3x3 global 18HTM PDB+IDA certified paths and H-cost adversaries
+        run: node scripts/cuberev-024/p1_r2_full18_pdb_ida_engine.mjs
+      - name: Six-face speedcubing exact Cross stage on source-attested WCA 333 scrambles
+        run: node scripts/cuberev-024/p1_r2_speedcubing_cross_pdb_court.mjs
+      - name: Frozen 16-scramble generated physical heldout; compare dual and six-PDB with full replay
+        run: node --expose-gc scripts/cuberev-024/p1_r2_seeded_heldout_engine_benchmark.mjs
+      - name: Public authored FMC physical prefixes and real WCA full-scramble resource HOLD
+        run: node scripts/cuberev-024/p1_r2_source_fmc_speed_boundary.mjs
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.2"
+      - name: Independent Go true original 54-facelet turn geometry and exact 46741-state tetrads
+        run: go run scripts/cuberev-024/p0_r1_edge_tetrad_go/main.go
+      - name: Checkout remained physically and historically read-only
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
