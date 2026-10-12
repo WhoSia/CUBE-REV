@@ -1,0 +1,70 @@
+name: CUBE-REV 0.24 P1-R5 exact physical target-18 boundary + NISS
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-024/p1_r5_conway_target18_cpp/main.cpp"
+      - "scripts/cuberev-024/p1_r5_conway_target18_cpp/group_trace_rewrite.hpp"
+      - "scripts/cuberev-024/p1_r5_conway_target18_cpp/test_trace_group.cpp"
+      - "scripts/cuberev-024/p1_r5_niss_dual_boundary_cpp/main.cpp"
+      - ".github/workflows/cuberev-024-P1-R5-conway-full18-boundary-and-niss.yml"
+permissions:
+  contents: read
+jobs:
+  actual-complete-cubie-finite-exclusion-and-niss:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: No GitHub Actions bot authors or committers
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::Actions bot contribution is prohibited"
+            exit 1
+          fi
+      - name: Compile original real 54-sticker C++17 group rewrite and two-stage target18 engines
+        shell: bash
+        run: |
+          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_conway_target18_cpp/test_trace_group.cpp -o /tmp/cuberev-group
+          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_conway_target18_cpp/main.cpp -o /tmp/cuberev-18
+          g++ -std=c++17 -O3 scripts/cuberev-024/p1_r5_niss_dual_boundary_cpp/main.cpp -o /tmp/cuberev-niss
+      - name: Exact same-face and disjoint-commutation physically replayed positive controls
+        shell: bash
+        run: |
+          /tmp/cuberev-group | tee /tmp/trace-positive.log
+          grep -q 'P1R5_TRUE_WHOLE_CUBE_GROUP_TRACE_REWRITE_PASS' /tmp/trace-positive.log
+      - name: Exhaust specified three-axis DR depth-13 and raw20 Conway trace closure scope
+        shell: bash
+        run: |
+          timeout 600 /tmp/cuberev-18 90 13 ALL > /tmp/p1r5-18.log 2>&1
+          cat /tmp/p1r5-18.log
+          test "$(grep -c '^P1R5_AXIS ' /tmp/p1r5-18.log)" -eq 3
+          test "$(grep -c '^PHASE1_BOUND 13 COMPLETED 1 FOUND 0' /tmp/p1r5-18.log)" -eq 3
+          test "$(grep -c 'TARGET18_FOUND 0 RESOURCE_STOP 0 TRACE_CLOSURE_HOLD 0' /tmp/p1r5-18.log)" -eq 3
+          grep -q '^P1R5_AXIS LR .* NODES1 425596069 .* COMPLETE_WORDS_TESTED 57$' /tmp/p1r5-18.log
+          grep -q '^P1R5_AXIS FB .* NODES1 321415678 .* COMPLETE_WORDS_TESTED 13$' /tmp/p1r5-18.log
+          grep -q '^P1R5_AXIS UD .* NODES1 317970931 .* COMPLETE_WORDS_TESTED 4$' /tmp/p1r5-18.log
+          grep -q '^P1R5_NO_18_WITNESS_WITHIN_EXPLICIT_RESOURCE_AND_AXIS_BOUNDS_NOT_GLOBAL_DISTANCE_CERTIFICATE$' /tmp/p1r5-18.log
+      - name: NISS exact one original-side premove across 18 source moves and three conjugate axes
+        shell: bash
+        run: |
+          timeout 600 /tmp/cuberev-niss 15 11 > /tmp/p1r5-niss.log 2>&1
+          tail -70 /tmp/p1r5-niss.log
+          test "$(grep -c '^PREMOVE_CASE ' /tmp/p1r5-niss.log)" -eq 54
+          test "$(grep -c '^PREMOVE_CASE .* CUT 1 ' /tmp/p1r5-niss.log)" -eq 0
+          test "$(grep -c '^PREMOVE_CASE .* WIN 1 ' /tmp/p1r5-niss.log)" -eq 0
+          grep -q '^NISS_ONE_PREMOVE_SCOPE_RESULT NO_18_FOUND TESTS 54 SUM_NODES1 105060048 SUM_NODES2 3370185 SUM_CONTACTS 81376 NOT_AN_UNRESTRICTED_18HTM_DISTANCE_PROOF$' /tmp/p1r5-niss.log
+      - name: Still independently verify the prior genuine source-54-sticker 19-turn upper bound
+        shell: bash
+        run: |
+          node scripts/cuberev-024/p1_r4_independent_original_54_facelet_19_replay.mjs
+      - name: Guarantee no generated artifacts committed by a workflow
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
