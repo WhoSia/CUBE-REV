@@ -93,6 +93,13 @@ int main(int argc,char**argv){try{
    if(solved18){
      auto p1original=backToOriginal(t.winning1,f);
      auto p2original=backToOriginal(t.winning2,f);
+     vector<int>phase1Check={a,b};phase1Check.insert(phase1Check.end(),scramble.begin(),scramble.end());
+     phase1Check.insert(phase1Check.end(),p1original.begin(),p1original.end());
+     Cube drReached=cubeAfter(phase1Check);
+     if(phase1H(drReached)!=0)throw runtime_error("NISS reached candidate is not genuine DR member");
+     int certifiedPhase2Lower=phase2H(rankCP(drReached),rankUD(drReached),rankES(drReached));
+     if(certifiedPhase2Lower!=6 || p2original.size()!=6)throw runtime_error("independent quotient PDB fails to certify actual six-turn DR suffix");
+     cout<<"NISS2_EXACT_DR_SUFFIX_PDB_SANDWICH LOWER "<<certifiedPhase2Lower<<" ACTUAL_WORD_LEN "<<p2original.size()<<" TRUE_DR_MEMBER 1\n";
      vector<int>raw=p1original;raw.insert(raw.end(),p2original.begin(),p2original.end());raw.push_back(a);raw.push_back(b);
      if(!physicalSolves(scramble,raw))throw runtime_error("NISS2 raw group identity incorrect for original whole cube");
      auto word=normalizeLegalHTM(t.winningNormalized);
