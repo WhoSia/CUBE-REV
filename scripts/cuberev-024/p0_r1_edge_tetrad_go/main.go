@@ -1,7 +1,7 @@
 // CUBE-REV 0.24 P0-R1: independent Go original 54-sticker and H edge-orbit court.
 // No imports from JavaScript, no source/participant private data.
 package main
-import("encoding/json";"fmt";"sort";"strings")
+import("fmt";"sort";"strings")
 type V [3]int
 type Slot struct{P,N V}
 type Move struct{Name string; Dest [54]int}
