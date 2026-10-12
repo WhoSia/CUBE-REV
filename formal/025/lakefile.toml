@@ -1,0 +1,6 @@
+name = "CubeRev025"
+version = "0.1.0"
+defaultTargets = ["CostPartition"]
+
+[[lean_lib]]
+name = "CostPartition"
