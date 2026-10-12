@@ -103,8 +103,13 @@ function orientationPDB(kind){
   return {dist,encode};
 }
 const coPDB=orientationPDB('corner'),eoPDB=orientationPDB('edge');
-export function lowerBound(s){
-  const b=Math.max(crossBound(s),coPDB.dist[coPDB.encode(s.co)],eoPDB.dist[eoPDB.encode(s.eo)]);
+let additionalCrossPDBs=null;
+function allCrossBound(s){
+  additionalCrossPDBs??=Object.fromEntries('RFBL'.split('').map(f=>[f,buildCrossPDB(f)]));
+  return Math.max(crossBound(s),...Object.entries(additionalCrossPDBs).map(([f,pdb])=>pdb.distances[indexOfFourEdges(s.ep,s.eo,FACE_EDGE_IDS[f])]));
+}
+export function lowerBound(s,useAllCrossPDBs=false){
+  const b=Math.max(useAllCrossPDBs?allCrossBound(s):crossBound(s),coPDB.dist[coPDB.encode(s.co)],eoPDB.dist[eoPDB.encode(s.eo)]);
   assert(b>=0&&b<255);
   return b;
 }
@@ -148,10 +153,10 @@ function canonicalLast(last,move){
   if(last[0]===move[0])return true;
   return opp[last[0]]===move[0]&&move[0]<last[0]; // commuting opposite face canonicalization
 }
-export function solveOptimal(tokens,{useHIncumbent=true,hIncumbentMode='cheap_H5',nodeCap=250000,timeCapMs=2000,maxDepth=13}={}){
+export function solveOptimal(tokens,{useHIncumbent=true,hIncumbentMode='cheap_H5',useAllCrossPDBs=false,nodeCap=250000,timeCapMs=2000,maxDepth=13}={}){
   legalTokens(tokens);
   const initial=fromTokens(tokens),start=performance.now();
-  const h0=lowerBound(initial);
+  const h0=lowerBound(initial,useAllCrossPDBs);
   const result={source_tokens:tokens,lower_bound:h0,method:'IDA_FULL18',
     result:'HOLD',word:null,length:null,idaNodes:0,idaIterations:[],incumbent:null,
     bounded_optimum_certificate:false,reason:null,elapsedMs:null};
@@ -194,7 +199,7 @@ export function solveOptimal(tokens,{useHIncumbent=true,hIncumbentMode='cheap_H5
       if(g+exactSuffix.depth<=bound)found=[...path,...inverted(exactSuffix.path)];
       return;
     }
-    const heuristic=Math.max(5,lowerBound(state)); // outside R4 implies d18>=5
+    const heuristic=Math.max(5,lowerBound(state,useAllCrossPDBs)); // outside R4 implies d18>=5
     if(g+heuristic>bound||g===bound)return;
     for(const move of MOVES){
       if(canonicalLast(last,move))continue;
