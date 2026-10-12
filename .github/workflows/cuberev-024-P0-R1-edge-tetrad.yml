@@ -1,0 +1,39 @@
+name: CUBE-REV 0.24 P0-R1 exact full-cube edge tetrads
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-024/p0_r1_exact_edge_tetrad_orbit_d4.mjs"
+      - "scripts/cuberev-024/p0_r1_edge_tetrad_go/main.go"
+      - ".github/workflows/cuberev-024-P0-R1-edge-tetrad.yml"
+permissions:
+  contents: read
+jobs:
+  physical-original-cube-orbit-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Forbid GitHub Actions bots authoring or committing research history
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then
+            echo "::error::Bot-written history forbidden"
+            exit 1
+          fi
+      - name: Independent original 54-sticker Node 18 HTM four-shell H-tetrad court
+        run: node scripts/cuberev-024/p0_r1_exact_edge_tetrad_orbit_d4.mjs
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.2"
+      - name: Independent Go original physical edge tetrads and exhaustive 46741-state audit
+        run: go run scripts/cuberev-024/p0_r1_edge_tetrad_go/main.go
+      - name: Ensure no generated modifications or repository writeback
+        shell: bash
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
