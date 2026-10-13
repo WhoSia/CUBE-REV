@@ -81,6 +81,7 @@
     ".github/workflows/cuberev-024-P1-R5-conway-full18-boundary-and-niss.yml",
     ".github/workflows/cuberev-024-P1-R6-full18-global-bidir-and-independent-facelets.yml",
     ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml",
+    ".github/workflows/cuberev-025-P0-R3-source-physical-fractional-half-budget.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -652,6 +653,7 @@
     "scripts/cuberev-025/p0_r2_full_corner_go/main.go",
     "scripts/cuberev-025/p0_r2_independent_full_corner_cpp/main.cpp",
     "scripts/cuberev-025/p0_r2_operator_cost_go/main.go",
+    "scripts/cuberev-025/p0_r3_halfprice_pairs_go/main.go",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2881,7 +2883,7 @@
       "original_readme_github_verbatim": "archive/readme/README_RESEARCH_CURRENT_FULL_PRE_P0R2_20261012.md",
       "original_readme_drive_exact_raw_markdown": "https://drive.google.com/file/d/1QQ18TJ2Ary6xl4tD1iRX3ErdVx5HDHwi/view",
       "readme_after_slitting": "live README shortened 109858 to 7610 characters only after GitHub/Drive full text exact readback",
-      "formal_Lean": "Generic scaled five quotient common-word budget theorem; compile step initially held for missing Lake manifest, registered fix, pending kernel success",
+      "formal_Lean": "Lean 4.34 source import position fixed in WhoSia commit fb7192948727d0c6dbe84ea7223ee45f92a4ec93; kernel compiled in CI #38354728534 but end-job tracked checkout checker initially failed on generated untracked Lake .lake artifacts. CI checked-source safeguard corrected in WhoSia commit 783ebe2c75df12c23cbc3542f33da0e324723081. Await complete P0R2 green result.",
       "workflow_status": "native Go/C++ and inherited Node source witness PASS in Actions run 38224634998; independent Lean initially fail config; await retry exact job",
       "governance": "WhoSia human author+committer only, github-actions[bot]/github-action[bot] forbidden as code contributor, Actions contents read no writeback",
       "new_current_paths_and_git_blobs": [
@@ -2911,7 +2913,7 @@
         },
         {
           "path": "formal/025/CostPartition.lean",
-          "git_blob_sha": "fadc578b2dc4762856f5c70739234ea1b8121272"
+          "git_blob_sha": "6118f5d104cd1a930b16a8737c538c3d0778e065"
         },
         {
           "path": "formal/025/lakefile.toml",
@@ -2943,9 +2945,30 @@
         },
         {
           "path": ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml",
-          "git_blob_sha": "924e5da8673f9942f1a44b8f1a4199df7066ae40"
+          "git_blob_sha": "df9446aca4cf3e4d7745bd4f81158bb5eb1d1547"
         }
       ]
+    },
+    "p0_r3_025_two_pattern_halfprice_source_complete_finite_source": {
+      "date": "2026-10-13",
+      "status": "NEW_FRACTIONAL_FACE_PRICE_FINITE_EXPERIMENT_COMMITTED_NO_RESULT_CLAIM_CI_PENDING",
+      "source": "same public WCA Seoul Summer 2026 3x3 Final A1, actual fixed 54 sticker model and previous real physical 18-turn full solve",
+      "subset": "five old genuine four-cubie oriented point Schreier projections, choose two patterns globally (10 unordered pairs), six physical faces prices per pair as exact [0,1,2] half-HTM units, complementary sum 2 for all 18 original legal face turns",
+      "size": "10 * 3^6 = 7290 exhaustive pair assignments; 5 * 3^6=3645 separate nonnegative integer-weight shortest quotient distances",
+      "theorem": "Sum of exact weighted pair distances divided by two <= genuine full18HTM physical source distance, for each admissible shared original-face price allocation",
+      "new_claim_hold": "Numeric optimum UNKNOWN; CI must fully run. NOT optimization of all 5-pattern fractional shares or arbitrary per-turn costs. NO 17-move global exclusion inferred.",
+      "CI": "https://github.com/WhoSia/CUBE-REV/actions/workflows/cuberev-025-P0-R3-source-physical-fractional-half-budget.yml",
+      "entries": [
+        {
+          "path": "scripts/cuberev-025/p0_r3_halfprice_pairs_go/main.go",
+          "git_blob_sha": "f3df1a2a5f14e9eaf182908e150e84c6695b6792"
+        },
+        {
+          "path": ".github/workflows/cuberev-025-P0-R3-source-physical-fractional-half-budget.yml",
+          "git_blob_sha": "9b0abdf7057cc789e58e626b147040a81a2a28bc"
+        }
+      ],
+      "governance": "source GitHub changes authored and committed by human WhoSia; no GitHub Actions bot contributors, read-only workflow and artifact upload only"
     }
   }
 }
