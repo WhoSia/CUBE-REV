@@ -85,6 +85,7 @@
     ".github/workflows/cuberev-025-P0-R3-source-physical-fractional-half-budget.yml",
     ".github/workflows/cuberev-025-P0-R3B-continuous-face-price-envelope.yml",
     ".github/workflows/cuberev-025-P0-R3C-E0E2-seven-face-envelopes.yml",
+    ".github/workflows/cuberev-025-P0-R4-five-pattern-continuous-face-budget-original-cube.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -661,6 +662,7 @@
     "scripts/cuberev-025/p0_r3_halfprice_pairs_go/main.go",
     "scripts/cuberev-025/p0_r3b_source_projected_face_envelope_go/main.go",
     "scripts/cuberev-025/p0_r3c_E0_E2_nonshortest_face_envelope_go/main.go",
+    "scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go",
     "scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
@@ -3132,6 +3134,30 @@
           "git_blob_sha": "df9446aca4cf3e4d7745bd4f81158bb5eb1d1547"
         }
       ]
+    },
+    "p0_r4_025_real_five_pattern_shared_face_budget_9_certificate": {
+      "date": "2026-10-13",
+      "status": "PHYSICAL_SOURCE_COMPLETE_GO_CODE_COMMITTED_EXTERNAL_ACTIONS_RESULT_PENDING",
+      "scientific_contract": "All actual WCA Seoul Summer 2026 final A1 original 54 sticker cube; five actual marked-piece quotients E0/E1/E2/C0/C1. Each projected source solution is a legal original 18 HTM word, generally NOT a full cube solve.",
+      "proof": "If one face count cap M works for a legal projected solution in EACH of five patterns, then for every admissible nonnegative continuous face-uniform share with sum costs <=1 per original face, sum_i weighted shortest projected costs <=sum_f M_f, regardless of independent word orders.",
+      "search": "Complete bounded projected legal 18 HTM words length<=8 and <=9 using actual physical PDB distance for sound pruning, exact state transitions, normal-form opposite commutation and same-face reduction; all six face cap vectors sum8 (1287) or sum9 (2002).",
+      "candidate": "From prior independent P0-R3 proof words a 9-cost cap known. Search for source-specific cap8. Cap8 absence, if observed, only absence of this single deterministic shared cap proof template, NOT impossibility of fractional five PDB better bound or global whole cube 15 lower.",
+      "prior_global_bounds": {
+        "whole_cube_min": 14,
+        "whole_cube_max": 18
+      },
+      "new_exact_paths": [
+        {
+          "path": "scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go",
+          "git_blob_sha": "2f54d6b23dbc95b744cd6d9165def569c2681dc0"
+        },
+        {
+          "path": ".github/workflows/cuberev-025-P0-R4-five-pattern-continuous-face-budget-original-cube.yml",
+          "git_blob_sha": "76dd9aa71833e22e73e7a71a43b58cf3d9c80fd7"
+        }
+      ],
+      "read_only_authorship": "WhoSia author and committer only, no GitHub Actions bot commits, contents:read workflow",
+      "external_CI": "PENDING"
     }
   }
 }
