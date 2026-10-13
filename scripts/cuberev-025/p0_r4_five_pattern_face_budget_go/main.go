@@ -651,7 +651,7 @@ func main(){
   s:=applyWord(d.goalCode(),d,original)
   if applyWord(s,d,solution)!=d.goalCode(){panic("real complete 18 solution is not projected solved")}
  }
- for _,maxB:=range []int{8,9}{
+ for _,maxB:=range []int{7,8}{
   var candidates [5][]ProofSig
   for i,db:=range patterns {
    list,_:=p0r4Explore(db,original,maxB)
@@ -688,7 +688,7 @@ func main(){
   }
   search(0,maxB)
   fmt.Printf("P0R4_CERTIFICATE_CAP_SEARCH_COMPLETE bound=%d all_six_face_cap_vectors=%d exists_common_cap=%t all_original_cubie_patterns=5 source_exact=1\n",maxB,checked,success)
-  if !success && maxB==9 {panic("No 9 cap despite known prior physical words. Reaudit")}
+  if !success && maxB==8 {panic("No 8 cap despite previously verified physical five-word cap. Reaudit")}
  }
  fmt.Println("P0R4_NOTE_COMPLETE_BOUNDED_WORD_CAP_SEARCH_DOES_NOT_SOLVE_GLOBAL_FRACTIONAL_COST_OPTIMIZATION_OR_FULL_CUBE_D15")
 }
