@@ -5,6 +5,9 @@ on:
     branches: [research/current]
     paths:
       - "scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go"
+      - "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap7.json"
+      - "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap8.json"
+      - "scripts/cuberev-025/verify_p0_r4_five_real_face_budget_original_54sticker.mjs"
       - ".github/workflows/cuberev-025-P0-R4-five-pattern-continuous-face-budget-original-cube.yml"
 permissions:
   contents: read
@@ -33,10 +36,16 @@ jobs:
           set -o pipefail
           timeout 850 go run scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go | tee /tmp/cuberev-p0r4.log
           test "$(grep -c '^P0R4_SOURCE_COMPLETE_PHYSICAL_PROJECTED_WORD_COUNTS ' /tmp/cuberev-p0r4.log)" -eq 10
-          grep -Fq 'P0R4_CERTIFICATE_CAP_SEARCH_COMPLETE bound=7 all_six_face_cap_vectors=792' /tmp/cuberev-p0r4.log
+          grep -Fq 'P0R4_CERTIFICATE_CAP_SEARCH_COMPLETE bound=7 all_six_face_cap_vectors=792 exists_common_cap=true' /tmp/cuberev-p0r4.log
           grep -Fq 'P0R4_CERTIFICATE_CAP_SEARCH_COMPLETE bound=8 all_six_face_cap_vectors=1287 exists_common_cap=true' /tmp/cuberev-p0r4.log
-          grep -Fq 'P0R4_UNIVERSAL_FIVE_PATTERN_CONTINUOUS_FACE_PRICE_CERTIFIED totalCap=8 ' /tmp/cuberev-p0r4.log
+          grep -Fq 'P0R4_UNIVERSAL_FIVE_PATTERN_CONTINUOUS_FACE_PRICE_CERTIFIED totalCap=7 ' /tmp/cuberev-p0r4.log
           grep -Fq 'P0R4_NOTE_COMPLETE_BOUNDED_WORD_CAP_SEARCH_DOES_NOT_SOLVE_GLOBAL_FRACTIONAL_COST_OPTIMIZATION_OR_FULL_CUBE_D15' /tmp/cuberev-p0r4.log
+      - name: Independently verify all ten projected source-word physical witnesses on original 54 facelets
+        shell: bash
+        run: |
+          node scripts/cuberev-025/verify_p0_r4_five_real_face_budget_original_54sticker.mjs | tee /tmp/p0r4-independent-real-facelets.txt
+          test "$(grep -c '^P0R4_NODE_ORIGINAL_54STICKER_PROJECTED_SOLVE_CERTIFIED' /tmp/p0r4-independent-real-facelets.txt)" -eq 10
+          grep -Fq 'P0R4_CONTINUOUS_FIVE_PDB_FACE_COST_EXACT_OPTIMUM_7_CROSSKERNEL_PASS ' /tmp/p0r4-independent-real-facelets.txt
       - name: Independent existing actual whole 54-sticker WCA 18 HTM replay
         shell: bash
         run: |
