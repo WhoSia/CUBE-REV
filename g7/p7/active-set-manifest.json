@@ -82,6 +82,7 @@
     ".github/workflows/cuberev-024-P1-R6-full18-global-bidir-and-independent-facelets.yml",
     ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml",
     ".github/workflows/cuberev-025-P0-R3-source-physical-fractional-half-budget.yml",
+    ".github/workflows/cuberev-025-P0-R3B-continuous-face-price-envelope.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -654,6 +655,7 @@
     "scripts/cuberev-025/p0_r2_independent_full_corner_cpp/main.cpp",
     "scripts/cuberev-025/p0_r2_operator_cost_go/main.go",
     "scripts/cuberev-025/p0_r3_halfprice_pairs_go/main.go",
+    "scripts/cuberev-025/p0_r3b_source_projected_face_envelope_go/main.go",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2969,6 +2971,24 @@
         }
       ],
       "governance": "source GitHub changes authored and committed by human WhoSia; no GitHub Actions bot contributors, read-only workflow and artifact upload only"
+    },
+    "p0_r3b_025_projected_original_face_word_envelope": {
+      "date": "2026-10-13",
+      "status": "OPEN_BOUNDED_FINITE_SOURCE_SHORT_WORD_PROOF_CI_PENDING",
+      "question": "For each of ten pairs, does a pair of ACTUAL projected shortest physical Rubik solution words have face-wise count envelope ≤7? If so continuous face-share upper7 is certified for that pair.",
+      "math": "For every face-price vector x in [0,1]^6, h_i(x)+h_j(1-x)≤Σ_f (n_i,f x_f+n_j,f(1-x_f))≤Σ_f max(n_i,f,n_j,f). Check replayed source cubie words.",
+      "boundary": "A failure to find a shortest-word pair is not a continuous fractional counterexample: longer projected source words or mixtures may still certify the bound.",
+      "paths_and_blobs": [
+        {
+          "path": "scripts/cuberev-025/p0_r3b_source_projected_face_envelope_go/main.go",
+          "git_blob_sha": "824fa3c10d37fa1b2f9716eb79beed5c3b22d411"
+        },
+        {
+          "path": ".github/workflows/cuberev-025-P0-R3B-continuous-face-price-envelope.yml",
+          "git_blob_sha": "6c61ab2367eea7297fe131403b7c30eb389ba25c"
+        }
+      ],
+      "CI": "https://github.com/WhoSia/CUBE-REV/actions/workflows/cuberev-025-P0-R3B-continuous-face-price-envelope.yml"
     }
   }
 }
