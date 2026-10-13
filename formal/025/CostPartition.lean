@@ -1,3 +1,5 @@
+import Lean
+
 /-!
 CUBE-REV 0.25 P0-R2 — scaled move-cost partitioning, Lean 4 core theorem.
 
@@ -6,7 +8,6 @@ from the original physical 54 facelets to the five executable PDB transitions,
 and the finite 15,625-allocation computation, are checked by Go/C++, NOT by
 this Lean theorem. Do NOT infer global original-cube optimality.
 -/
-import Lean
 
 namespace CubeRev025
 
