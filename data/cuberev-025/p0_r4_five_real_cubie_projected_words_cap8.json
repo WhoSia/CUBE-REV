@@ -1,0 +1,116 @@
+{
+  "program": "CUBE-REV 0.25 P0-R4 five original 54-sticker-validated cubie projection common face count envelope",
+  "date": "2026-10-13",
+  "official_source": "WCA Seoul Summer 2026 3x3 Final A1",
+  "scramble": "R' B' F2 D2 F2 L2 R2 U' F2 L2 D2 B2 D F L' R2 B U2 F2 R2",
+  "source_complete_18_witness": "F U F D' R' F' L' F' D' L B L2 F2 U2 L2 U F' R2",
+  "face_order": "URFDLB",
+  "common_cap": [
+    0,
+    1,
+    1,
+    2,
+    2,
+    2
+  ],
+  "patterns": [
+    {
+      "name": "E0",
+      "type": "edge",
+      "ids": [
+        0,
+        4,
+        8,
+        10
+      ],
+      "word": "B L' F2 D' R B' D' L2",
+      "counts": [
+        0,
+        1,
+        1,
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "name": "E1",
+      "type": "edge",
+      "ids": [
+        1,
+        5,
+        9,
+        11
+      ],
+      "word": "L2 D B F2 D' L2",
+      "counts": [
+        0,
+        0,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "name": "E2",
+      "type": "edge",
+      "ids": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "word": "L2 R B' F2 L D2",
+      "counts": [
+        0,
+        1,
+        1,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "name": "C0",
+      "type": "corner",
+      "ids": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "word": "D B2 L' D B'",
+      "counts": [
+        0,
+        0,
+        0,
+        2,
+        1,
+        2
+      ]
+    },
+    {
+      "name": "C1",
+      "type": "corner",
+      "ids": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "word": "R B' D2 F2 L2 D' B2",
+      "counts": [
+        0,
+        1,
+        1,
+        2,
+        1,
+        2
+      ]
+    }
+  ],
+  "theorem": "For any continuous nonnegative real face-uniform per-physical-HTM move prices c_i(f) for five actual four-cubie quotients with sum_i c_i(f)<=1, sum_i shortest projected weighted cost <=sum_f common_cap[f]=8.",
+  "limitations": "All five words independently solve their four marked cubies, not necessarily the entire cube. Upper bound on optimized five-pattern continuous-cost PDB heuristic, NOT a lower bound on unrestricted whole-cube d18 and NOT a human observed solve.",
+  "origin_run": "https://github.com/WhoSia/CUBE-REV/actions/runs/38369965022"
+}
