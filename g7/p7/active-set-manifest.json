@@ -83,6 +83,7 @@
     ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml",
     ".github/workflows/cuberev-025-P0-R3-source-physical-fractional-half-budget.yml",
     ".github/workflows/cuberev-025-P0-R3B-continuous-face-price-envelope.yml",
+    ".github/workflows/cuberev-025-P0-R3C-E0E2-seven-face-envelopes.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -656,6 +657,7 @@
     "scripts/cuberev-025/p0_r2_operator_cost_go/main.go",
     "scripts/cuberev-025/p0_r3_halfprice_pairs_go/main.go",
     "scripts/cuberev-025/p0_r3b_source_projected_face_envelope_go/main.go",
+    "scripts/cuberev-025/p0_r3c_E0_E2_nonshortest_face_envelope_go/main.go",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2953,7 +2955,7 @@
     },
     "p0_r3_025_two_pattern_halfprice_source_complete_finite_source": {
       "date": "2026-10-13",
-      "status": "NEW_FRACTIONAL_FACE_PRICE_FINITE_EXPERIMENT_COMMITTED_NO_RESULT_CLAIM_CI_PENDING",
+      "status": "EXTERNAL_GO_EXACT_7290_COMPLETE_SUCCESS_NO_GLOBAL_BOUND_IMPROVEMENT",
       "source": "same public WCA Seoul Summer 2026 3x3 Final A1, actual fixed 54 sticker model and previous real physical 18-turn full solve",
       "subset": "five old genuine four-cubie oriented point Schreier projections, choose two patterns globally (10 unordered pairs), six physical faces prices per pair as exact [0,1,2] half-HTM units, complementary sum 2 for all 18 original legal face turns",
       "size": "10 * 3^6 = 7290 exhaustive pair assignments; 5 * 3^6=3645 separate nonnegative integer-weight shortest quotient distances",
@@ -2970,11 +2972,15 @@
           "git_blob_sha": "9b0abdf7057cc789e58e626b147040a81a2a28bc"
         }
       ],
-      "governance": "source GitHub changes authored and committed by human WhoSia; no GitHub Actions bot contributors, read-only workflow and artifact upload only"
+      "governance": "source GitHub changes authored and committed by human WhoSia; no GitHub Actions bot contributors, read-only workflow and artifact upload only",
+      "verified_receipt": {
+        "run": "https://github.com/WhoSia/CUBE-REV/actions/runs/38355226394",
+        "results": "all five genuine physical quotient patterns ×729 exact 0/1/2 weighted shortest path masks; 10 pairs×729=7290 assignments complete; highest priced sum14 half-units hence HTM ceil(14/2)=7, exactly four half-grid maximizers; histogram raw halfunits 0:24,1:57,2:243,3:339,4:869,5:1018,6:1452,7:1184,8:1096,9:603,10:273,11:98,12:27,13:3,14:4"
+      }
     },
     "p0_r3b_025_projected_original_face_word_envelope": {
       "date": "2026-10-13",
-      "status": "OPEN_BOUNDED_FINITE_SOURCE_SHORT_WORD_PROOF_CI_PENDING",
+      "status": "EXTERNAL_GO_REAL_PHYSICAL_OPTIMAL_PROJECTION_WORDS_COMPLETED_9_OF_10_CONTINUOUS_PAIR_COST_UPPER7_WITNESSES",
       "question": "For each of ten pairs, does a pair of ACTUAL projected shortest physical Rubik solution words have face-wise count envelope ≤7? If so continuous face-share upper7 is certified for that pair.",
       "math": "For every face-price vector x in [0,1]^6, h_i(x)+h_j(1-x)≤Σ_f (n_i,f x_f+n_j,f(1-x_f))≤Σ_f max(n_i,f,n_j,f). Check replayed source cubie words.",
       "boundary": "A failure to find a shortest-word pair is not a continuous fractional counterexample: longer projected source words or mixtures may still certify the bound.",
@@ -2988,7 +2994,51 @@
           "git_blob_sha": "6c61ab2367eea7297fe131403b7c30eb389ba25c"
         }
       ],
-      "CI": "https://github.com/WhoSia/CUBE-REV/actions/workflows/cuberev-025-P0-R3B-continuous-face-price-envelope.yml"
+      "CI": "https://github.com/WhoSia/CUBE-REV/actions/workflows/cuberev-025-P0-R3B-continuous-face-price-envelope.yml",
+      "verified_receipt": {
+        "run": "https://github.com/WhoSia/CUBE-REV/actions/runs/38355753083",
+        "actual_five_pattern_distances": [
+          7,
+          5,
+          5,
+          5,
+          6
+        ],
+        "full_shortest_signature_counts": [
+          12,
+          2,
+          1,
+          2,
+          13
+        ],
+        "exact_shortest_path_dag_recursive_calls": [
+          153,
+          30,
+          6,
+          16,
+          81
+        ],
+        "pairs_with_face_envelope_leq7": 9,
+        "one_unresolved_from_shortest_word_pairs": "EDGE4_0 + EDGE4_2 shortest-only min face envelope8; longer legal projected path may fix; no continuous fractional nonoptimality conclusion"
+      }
+    },
+    "p0_r3c_025_E0E2_actual_source_nonshortest_face_envelope": {
+      "date": "2026-10-13",
+      "status": "SOURCE_EXACT_QUOTA_SEARCH_CI_PENDING_RESULT",
+      "question": "One remaining E0+E2 source-specific projected pair lacks bound7 envelope between strictly shortest projected 7/5 word signatures, despite exact half-cost 7290 search upper7",
+      "method": "Enumerate all E0 7-turn shortest projected physical source-to-goal word face-count signatures; for each, memoized source-to-goal E2 actual 18-move search of any length≤7 within six-face quota. If yes, any fractional price x(f)∈[0,1] has source pair bound≤7. If no, no global fractional lower claim.",
+      "source_grade": "independent true original 54-sticker-derived physical oriented marker projections, exhaustive complete shortest DAG and a resource-guarded ≤7 memoized face quota oracle",
+      "paths_and_blobs": [
+        {
+          "path": "scripts/cuberev-025/p0_r3c_E0_E2_nonshortest_face_envelope_go/main.go",
+          "git_blob_sha": "d535307c60c1dd464c0f58640f9f529fc579080b"
+        },
+        {
+          "path": ".github/workflows/cuberev-025-P0-R3C-E0E2-seven-face-envelopes.yml",
+          "git_blob_sha": "1c2942ffe9b1636b4d49470b079ac82e307b9ea5"
+        }
+      ],
+      "CI": "https://github.com/WhoSia/CUBE-REV/actions/workflows/cuberev-025-P0-R3C-E0E2-seven-face-envelopes.yml"
     }
   }
 }
