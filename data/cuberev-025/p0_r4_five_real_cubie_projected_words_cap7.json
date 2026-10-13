@@ -1,0 +1,118 @@
+{
+  "program": "CUBE-REV 0.25 P0-R4 all five original Rubik 54-sticker projected solution word certificates for exact continuous face-price optimum7",
+  "date": "2026-10-13",
+  "source": "WCA Seoul Summer 2026 3x3 Final Group A Scramble1",
+  "scramble": "R' B' F2 D2 F2 L2 R2 U' F2 L2 D2 B2 D F L' R2 B U2 F2 R2",
+  "source_complete_18_witness": "F U F D' R' F' L' F' D' L B L2 F2 U2 L2 U F' R2",
+  "face_order": "URFDLB",
+  "common_cap": [
+    1,
+    2,
+    1,
+    1,
+    0,
+    2
+  ],
+  "patterns": [
+    {
+      "name": "E0",
+      "type": "edge",
+      "ids": [
+        0,
+        4,
+        8,
+        10
+      ],
+      "word": "B' U F R D2 R2 B'",
+      "counts": [
+        1,
+        2,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "name": "E1",
+      "type": "edge",
+      "ids": [
+        1,
+        5,
+        9,
+        11
+      ],
+      "word": "B' R2 F2 U' R2 D' B'",
+      "counts": [
+        1,
+        2,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "name": "E2",
+      "type": "edge",
+      "ids": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "word": "R2 B R' U2 F' D2 B2",
+      "counts": [
+        1,
+        2,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "name": "C0",
+      "type": "corner",
+      "ids": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "word": "F D2 B' R U2 B2",
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "name": "C1",
+      "type": "corner",
+      "ids": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "word": "R B' U2 F2 R2 D' B2",
+      "counts": [
+        1,
+        2,
+        1,
+        1,
+        0,
+        2
+      ]
+    }
+  ],
+  "exact_lower7": "E0 original source exact unweighted 18HTM quotient geodesic7, assigning ALL six real face action prices1 to E0 and zero to other patterns is feasible.",
+  "exact_upper7": "Each pattern has at least one source-to-projection-solved legal word with six-face usage count <=common_cap; for any nonnegative real continuous face uniform cost shares sum_i c_i(f)<=1, sum weighted quotient optima <=sum cap=7.",
+  "scope": "EXACT optimized five physically induced 4-cubie PDB face-uniform continuous nonnegative per-face cost partition is7 on THIS SOURCE. Full original cube global distance remains certified in [14,18]. The five different projected words are NOT one actual complete WCA solve.",
+  "source_external_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38370213103",
+  "source_unique_face_cap7_vectors_exhaustively_checked": 792
+}
