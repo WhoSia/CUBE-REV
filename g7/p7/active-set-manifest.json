@@ -223,6 +223,8 @@
     "data/cuberev-025/p0_r2_independent_cpp_receipt.txt",
     "data/cuberev-025/p0_r2_operator_cost_go_receipt.txt",
     "data/cuberev-025/p0_r3_continuous_face_price_ten_physical_word_pair_witness.json",
+    "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap7.json",
+    "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap8.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -334,6 +336,7 @@
     "docs/0.25/P0_R1_PHYSICAL_SCHREIER_PDB_PARIKH_SATURATION_AND_DUALITY.md",
     "docs/0.25/P0_R2_FULL_CORNER_88M_AND_CERTIFIED_OPERATOR_COST_DUALITY.md",
     "docs/0.25/P0_R3_EXACT_CONTINUOUS_FACE_COST_PAIR_NO_GO_PHYSICAL_WORD_CERTIFICATE.md",
+    "docs/0.25/P0_R4_EXACT_CONTINUOUS_FIVE_PATTERN_COST_NO_GO_SEVEN_ORIGINAL_CUBIE_WORD_CERTIFICATE.md",
     "docs/0.25/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -664,6 +667,7 @@
     "scripts/cuberev-025/p0_r3c_E0_E2_nonshortest_face_envelope_go/main.go",
     "scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go",
     "scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs",
+    "scripts/cuberev-025/verify_p0_r4_five_real_face_budget_original_54sticker.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -3137,27 +3141,47 @@
     },
     "p0_r4_025_real_five_pattern_shared_face_budget_9_certificate": {
       "date": "2026-10-13",
-      "status": "PHYSICAL_SOURCE_COMPLETE_GO_CODE_COMMITTED_EXTERNAL_ACTIONS_RESULT_PENDING",
-      "scientific_contract": "All actual WCA Seoul Summer 2026 final A1 original 54 sticker cube; five actual marked-piece quotients E0/E1/E2/C0/C1. Each projected source solution is a legal original 18 HTM word, generally NOT a full cube solve.",
-      "proof": "If one face count cap M works for a legal projected solution in EACH of five patterns, then for every admissible nonnegative continuous face-uniform share with sum costs <=1 per original face, sum_i weighted shortest projected costs <=sum_f M_f, regardless of independent word orders.",
-      "search": "Complete bounded projected legal 18 HTM words length<=8 and <=9 using actual physical PDB distance for sound pruning, exact state transitions, normal-form opposite commutation and same-face reduction; all six face cap vectors sum8 (1287) or sum9 (2002).",
-      "candidate": "From prior independent P0-R3 proof words a 9-cost cap known. Search for source-specific cap8. Cap8 absence, if observed, only absence of this single deterministic shared cap proof template, NOT impossibility of fractional five PDB better bound or global whole cube 15 lower.",
-      "prior_global_bounds": {
-        "whole_cube_min": 14,
-        "whole_cube_max": 18
-      },
-      "new_exact_paths": [
+      "status": "MATHEMATICAL_SOURCE_SPECIFIC_EXACT_FIVE_REAL_PHYSICAL_PDB_CONTINUOUS_FACE_UNIFORM_COST_OPTIMUM_7_GO_AND_INDEPENDENT_NODE_EXTERNAL_ACTIONS_SUCCESS",
+      "scientific_main_theorem": "For the five genuine 4-cubie E0 E1 E2 C0 C1 quotient PDBs, the maximized sum of continuous nonnegative per-face-uniform weighted projected distances under sum_i c_i(f)<=1 for all original six faces is EXACTLY 7 on the source WCA Seoul Summer 2026 Final A1.",
+      "theorem_lower": "Assign all six HTM face costs1 to original E0 marked four-edge quotient; complete 190080-state true PDB original source distance 7.",
+      "theorem_upper": "Physical projected source-solving five actual 18HTM legal words, jointly face-count bounded by M=(1,2,1,1,0,2). For every feasible real continuous five-pattern cost share weighted projected minima sum<= sum M=7; source and all five cubie markers independently verified.",
+      "real_original_full_cube_distance_certified": [
+        14,
+        18
+      ],
+      "full_cube_global_optimum": "NOT proved. This is UPPER bound on optimal PDB heuristic, NOT actual Rubik full-cube minimum.",
+      "source_complete_budget": "Original legal projected word enumeration depth<=7, complete all 792 face count vector caps sum7, successful common cap; deeper sum8 1287 also checked with historic weaker witness.",
+      "human_source": "None used. Only genuine public WCA actual cube, Go original sticker derived legal moves, separately written Node original 54-sticker direct marker verification.",
+      "Go_physical_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38370213103",
+      "independent_actual_54_sticker_integrated_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38370676066",
+      "lean_inherited_math_only": "https://github.com/WhoSia/CUBE-REV/actions/runs/38354902944",
+      "no_bot": "All new GitHub commits human WhoSia author/committer, Actions contents: read and no writeback.",
+      "new_exact_paths_and_current_git_blobs": [
         {
           "path": "scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go",
-          "git_blob_sha": "2f54d6b23dbc95b744cd6d9165def569c2681dc0"
+          "git_blob_sha": "5f9f3b945d428dc8c29537c783cfbbc21095119c"
         },
         {
           "path": ".github/workflows/cuberev-025-P0-R4-five-pattern-continuous-face-budget-original-cube.yml",
-          "git_blob_sha": "76dd9aa71833e22e73e7a71a43b58cf3d9c80fd7"
+          "git_blob_sha": "40417c7c70f8c06547023c8dcf3c3191b821d8b8"
+        },
+        {
+          "path": "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap7.json",
+          "git_blob_sha": "86355efc3f0d9ca15fba242be1ee0c97cde222e6"
+        },
+        {
+          "path": "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap8.json",
+          "git_blob_sha": "fe7ca5aa3aa6c84362adaf09eaa822a41fa8bebd"
+        },
+        {
+          "path": "scripts/cuberev-025/verify_p0_r4_five_real_face_budget_original_54sticker.mjs",
+          "git_blob_sha": "56ac6729a046f1b2959ac8ce2eec223fa58c4255"
+        },
+        {
+          "path": "docs/0.25/P0_R4_EXACT_CONTINUOUS_FIVE_PATTERN_COST_NO_GO_SEVEN_ORIGINAL_CUBIE_WORD_CERTIFICATE.md",
+          "git_blob_sha": "ad069574d0dfc1d295405f285bfa2f0b1ff18cbb"
         }
-      ],
-      "read_only_authorship": "WhoSia author and committer only, no GitHub Actions bot commits, contents:read workflow",
-      "external_CI": "PENDING"
+      ]
     }
   }
 }
