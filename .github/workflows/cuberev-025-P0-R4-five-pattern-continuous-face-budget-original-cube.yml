@@ -27,15 +27,15 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: "1.23.2"
-      - name: Physical original 54-sticker five marked-cubie quotient cap 8 versus 9 exhaustive bounded proof
+      - name: Physical original 54-sticker five marked-cubie quotient cap 7 versus 8 exhaustive bounded proof
         shell: bash
         run: |
           set -o pipefail
           timeout 850 go run scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go | tee /tmp/cuberev-p0r4.log
           test "$(grep -c '^P0R4_SOURCE_COMPLETE_PHYSICAL_PROJECTED_WORD_COUNTS ' /tmp/cuberev-p0r4.log)" -eq 10
-          grep -Fq 'P0R4_CERTIFICATE_CAP_SEARCH_COMPLETE bound=8 all_six_face_cap_vectors=1287' /tmp/cuberev-p0r4.log
-          grep -Fq 'P0R4_CERTIFICATE_CAP_SEARCH_COMPLETE bound=9 all_six_face_cap_vectors=2002 exists_common_cap=true' /tmp/cuberev-p0r4.log
-          grep -Fq 'P0R4_UNIVERSAL_FIVE_PATTERN_CONTINUOUS_FACE_PRICE_CERTIFIED totalCap=9 ' /tmp/cuberev-p0r4.log
+          grep -Fq 'P0R4_CERTIFICATE_CAP_SEARCH_COMPLETE bound=7 all_six_face_cap_vectors=792' /tmp/cuberev-p0r4.log
+          grep -Fq 'P0R4_CERTIFICATE_CAP_SEARCH_COMPLETE bound=8 all_six_face_cap_vectors=1287 exists_common_cap=true' /tmp/cuberev-p0r4.log
+          grep -Fq 'P0R4_UNIVERSAL_FIVE_PATTERN_CONTINUOUS_FACE_PRICE_CERTIFIED totalCap=8 ' /tmp/cuberev-p0r4.log
           grep -Fq 'P0R4_NOTE_COMPLETE_BOUNDED_WORD_CAP_SEARCH_DOES_NOT_SOLVE_GLOBAL_FRACTIONAL_COST_OPTIMIZATION_OR_FULL_CUBE_D15' /tmp/cuberev-p0r4.log
       - name: Independent existing actual whole 54-sticker WCA 18 HTM replay
         shell: bash
