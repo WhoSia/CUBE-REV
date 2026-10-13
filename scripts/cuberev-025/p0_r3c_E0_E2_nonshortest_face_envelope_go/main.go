@@ -679,15 +679,10 @@ func findProjectedWordWithinE0FaceBudget(db *DB,src uint32,quota [6]uint8)([]uin
 func main(){
  makeMoves();derivePhysicalTokenMoves()
  original:="R' B' F2 D2 F2 L2 R2 U' F2 L2 D2 B2 D F L' R2 B U2 F2 R2"
- witness:="F U F D' R' F' L' F' D' L B L2 F2 U2 L F' R2"
  // Only E0/E2 are necessary for the one scientifically live pair.
  e0:=makeDB("EDGE4_0",2,&edgeMove,[4]uint8{0,4,8,10})
  e2:=makeDB("EDGE4_2",2,&edgeMove,[4]uint8{2,3,6,7})
  verifyPhysicalQuotient([]*DB{e0,e2},original)
- // The previous original 18-word source witness is not needed to infer
- // pair-certificate soundness. Exact literal text from previous source
- // may be checked but must NEVER invent a new whole cube solving word.
- _=witness
  sigs:=exactShortestProjectedWordFaceSignatures(e0,original)
  sourceE2:=applyWord(e2.goalCode(),e2,original)
  found:=0;totalCalls:=0
