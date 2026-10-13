@@ -3141,7 +3141,7 @@
     },
     "p0_r4_025_real_five_pattern_shared_face_budget_9_certificate": {
       "date": "2026-10-13",
-      "status": "MATHEMATICAL_SOURCE_SPECIFIC_EXACT_FIVE_REAL_PHYSICAL_PDB_CONTINUOUS_FACE_UNIFORM_COST_OPTIMUM_7_GO_AND_INDEPENDENT_NODE_EXTERNAL_ACTIONS_SUCCESS",
+      "status": "WHOLE_FIVE_CUBIE_PATTERN_FACE_UNIFORM_CONTINUOUS_COST_OPTIMUM_EXACTLY_7_GO_EXHAUSTIVE_PLUS_INDEPENDENT_NODE_ORIGINAL_54STICKER_EXTERNAL_PASS",
       "scientific_main_theorem": "For the five genuine 4-cubie E0 E1 E2 C0 C1 quotient PDBs, the maximized sum of continuous nonnegative per-face-uniform weighted projected distances under sum_i c_i(f)<=1 for all original six faces is EXACTLY 7 on the source WCA Seoul Summer 2026 Final A1.",
       "theorem_lower": "Assign all six HTM face costs1 to original E0 marked four-edge quotient; complete 190080-state true PDB original source distance 7.",
       "theorem_upper": "Physical projected source-solving five actual 18HTM legal words, jointly face-count bounded by M=(1,2,1,1,0,2). For every feasible real continuous five-pattern cost share weighted projected minima sum<= sum M=7; source and all five cubie markers independently verified.",
@@ -3179,9 +3179,83 @@
         },
         {
           "path": "docs/0.25/P0_R4_EXACT_CONTINUOUS_FIVE_PATTERN_COST_NO_GO_SEVEN_ORIGINAL_CUBIE_WORD_CERTIFICATE.md",
-          "git_blob_sha": "ad069574d0dfc1d295405f285bfa2f0b1ff18cbb"
+          "git_blob_sha": "ce20e0528096fada85daa3da55c98d4abc6f95a4"
         }
-      ]
+      ],
+      "proof_grade": "For any nonnegative real face-uniform five-share c_i(f) with sum_i c_i(f)<=1, exact source quotient distances weighted sum<=7 by five distinct legal projected original cube source word packets; E0 physical 190080-state exact source distance7 gives lower7.",
+      "common_seven_face_URFDLB": [
+        1,
+        2,
+        1,
+        1,
+        0,
+        2
+      ],
+      "source_complete_7_face_budget_vectors": 792,
+      "full_cubie_witnesses": "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap7.json",
+      "independent_external_full_run": "https://github.com/WhoSia/CUBE-REV/actions/runs/38370676066",
+      "ci_all_jobs_success": true,
+      "evidence_limits": "NO 7-move original whole cube solve. Distinct marked-cubie words; global unrestricted cube still 14<=d18<=18. Face-uniform pricing only; no result about finer move pricing or coupled/noncommutative quotient."
+    },
+    "p0_r4_025_exact_real_five_pattern_continuous_face_cost_7": {
+      "date": "2026-10-13",
+      "status": "WHOLE_FIVE_CUBIE_PATTERN_FACE_UNIFORM_CONTINUOUS_COST_OPTIMUM_EXACTLY_7_GO_EXHAUSTIVE_PLUS_INDEPENDENT_NODE_ORIGINAL_54STICKER_EXTERNAL_PASS",
+      "scientific_main_theorem": "For the five genuine 4-cubie E0 E1 E2 C0 C1 quotient PDBs, the maximized sum of continuous nonnegative per-face-uniform weighted projected distances under sum_i c_i(f)<=1 for all original six faces is EXACTLY 7 on the source WCA Seoul Summer 2026 Final A1.",
+      "theorem_lower": "Assign all six HTM face costs1 to original E0 marked four-edge quotient; complete 190080-state true PDB original source distance 7.",
+      "theorem_upper": "Physical projected source-solving five actual 18HTM legal words, jointly face-count bounded by M=(1,2,1,1,0,2). For every feasible real continuous five-pattern cost share weighted projected minima sum<= sum M=7; source and all five cubie markers independently verified.",
+      "real_original_full_cube_distance_certified": [
+        14,
+        18
+      ],
+      "full_cube_global_optimum": "NOT proved. This is UPPER bound on optimal PDB heuristic, NOT actual Rubik full-cube minimum.",
+      "source_complete_budget": "Original legal projected word enumeration depth<=7, complete all 792 face count vector caps sum7, successful common cap; deeper sum8 1287 also checked with historic weaker witness.",
+      "human_source": "None used. Only genuine public WCA actual cube, Go original sticker derived legal moves, separately written Node original 54-sticker direct marker verification.",
+      "Go_physical_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38370213103",
+      "independent_actual_54_sticker_integrated_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38370676066",
+      "lean_inherited_math_only": "https://github.com/WhoSia/CUBE-REV/actions/runs/38354902944",
+      "no_bot": "All new GitHub commits human WhoSia author/committer, Actions contents: read and no writeback.",
+      "new_exact_paths_and_current_git_blobs": [
+        {
+          "path": "scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go",
+          "git_blob_sha": "5f9f3b945d428dc8c29537c783cfbbc21095119c"
+        },
+        {
+          "path": ".github/workflows/cuberev-025-P0-R4-five-pattern-continuous-face-budget-original-cube.yml",
+          "git_blob_sha": "40417c7c70f8c06547023c8dcf3c3191b821d8b8"
+        },
+        {
+          "path": "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap7.json",
+          "git_blob_sha": "86355efc3f0d9ca15fba242be1ee0c97cde222e6"
+        },
+        {
+          "path": "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap8.json",
+          "git_blob_sha": "fe7ca5aa3aa6c84362adaf09eaa822a41fa8bebd"
+        },
+        {
+          "path": "scripts/cuberev-025/verify_p0_r4_five_real_face_budget_original_54sticker.mjs",
+          "git_blob_sha": "56ac6729a046f1b2959ac8ce2eec223fa58c4255"
+        },
+        {
+          "path": "docs/0.25/P0_R4_EXACT_CONTINUOUS_FIVE_PATTERN_COST_NO_GO_SEVEN_ORIGINAL_CUBIE_WORD_CERTIFICATE.md",
+          "git_blob_sha": "ce20e0528096fada85daa3da55c98d4abc6f95a4"
+        }
+      ],
+      "proof_grade": "For any nonnegative real face-uniform five-share c_i(f) with sum_i c_i(f)<=1, exact source quotient distances weighted sum<=7 by five distinct legal projected original cube source word packets; E0 physical 190080-state exact source distance7 gives lower7.",
+      "common_seven_face_URFDLB": [
+        1,
+        2,
+        1,
+        1,
+        0,
+        2
+      ],
+      "source_complete_7_face_budget_vectors": 792,
+      "full_cubie_witnesses": "data/cuberev-025/p0_r4_five_real_cubie_projected_words_cap7.json",
+      "independent_external_full_run": "https://github.com/WhoSia/CUBE-REV/actions/runs/38370676066",
+      "ci_all_jobs_success": true,
+      "evidence_limits": "NO 7-move original whole cube solve. Distinct marked-cubie words; global unrestricted cube still 14<=d18<=18. Face-uniform pricing only; no result about finer move pricing or coupled/noncommutative quotient.",
+      "canonical_key": true,
+      "legacy_key": "p0_r4_025_real_five_pattern_shared_face_budget_9_certificate"
     }
   }
 }
