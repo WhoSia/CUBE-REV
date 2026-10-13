@@ -1,0 +1,37 @@
+name: CUBE-REV 0.25 P0-R3 original 54-sticker ten compact continuous face-price certificates
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "data/cuberev-025/p0_r3_continuous_face_price_ten_physical_word_pair_witness.json"
+      - "scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs"
+      - ".github/workflows/cuberev-025-P0-R3-original-54sticker-ten-pair-continuous-face-price.yml"
+permissions:
+  contents: read
+jobs:
+  independent-54sticker-physical-rubik-certificate-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Ban github-actions bot contributors in active repo ancestry
+        shell: bash
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+      - name: Independently replay every E0 E1 E2 C0 C1 source pair on original actual 54 sticker cube
+        shell: bash
+        run: |
+          node scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs | tee /tmp/p0r3-independent-witness.txt
+          test "$(grep -c '^P0R3_NODE_INDEPENDENT_PHYSICAL_FACE_ENVELOPE_PAIR' /tmp/p0r3-independent-witness.txt)" -eq 10
+          grep -Fq 'P0R3_NODE_INDEPENDENT_ORIGINAL_54_STICKER_CERTIFICATE ALL_TEN_CONTINUOUS_PRICE_FACE_ENVELOPES_MAX7 1 ALL_TWENTY_ORIGINAL_PHYSICAL_PROJECTED_WORDS_PASS 1' /tmp/p0r3-independent-witness.txt
+      - name: Read-only checked out tracked source
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain --untracked-files=no)"
