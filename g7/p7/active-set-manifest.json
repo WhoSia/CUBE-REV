@@ -81,6 +81,7 @@
     ".github/workflows/cuberev-024-P1-R5-conway-full18-boundary-and-niss.yml",
     ".github/workflows/cuberev-024-P1-R6-full18-global-bidir-and-independent-facelets.yml",
     ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml",
+    ".github/workflows/cuberev-025-P0-R3-original-54sticker-ten-pair-continuous-face-price.yml",
     ".github/workflows/cuberev-025-P0-R3-source-physical-fractional-half-budget.yml",
     ".github/workflows/cuberev-025-P0-R3B-continuous-face-price-envelope.yml",
     ".github/workflows/cuberev-025-P0-R3C-E0E2-seven-face-envelopes.yml",
@@ -220,6 +221,7 @@
     "data/cuberev-025/p0_r2_full_corner_go_receipt.txt",
     "data/cuberev-025/p0_r2_independent_cpp_receipt.txt",
     "data/cuberev-025/p0_r2_operator_cost_go_receipt.txt",
+    "data/cuberev-025/p0_r3_continuous_face_price_ten_physical_word_pair_witness.json",
     "docs/0.16/P10_50_BY_116.json",
     "docs/0.16/P10_COMPONENT_THEOREM.md",
     "docs/0.16/P11_FRACTIONAL_INTEGRALITY_AUDIT.md",
@@ -330,6 +332,7 @@
     "docs/0.24/PROGRAM_CHARTER.md",
     "docs/0.25/P0_R1_PHYSICAL_SCHREIER_PDB_PARIKH_SATURATION_AND_DUALITY.md",
     "docs/0.25/P0_R2_FULL_CORNER_88M_AND_CERTIFIED_OPERATOR_COST_DUALITY.md",
+    "docs/0.25/P0_R3_EXACT_CONTINUOUS_FACE_COST_PAIR_NO_GO_PHYSICAL_WORD_CERTIFICATE.md",
     "docs/0.25/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -658,6 +661,7 @@
     "scripts/cuberev-025/p0_r3_halfprice_pairs_go/main.go",
     "scripts/cuberev-025/p0_r3b_source_projected_face_envelope_go/main.go",
     "scripts/cuberev-025/p0_r3c_E0_E2_nonshortest_face_envelope_go/main.go",
+    "scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -2827,7 +2831,7 @@
     },
     "p0_r2_025_complete_physical_full_corner_pdb_and_cost_partition": {
       "date": "2026-10-12",
-      "status": "GO_CPP_NATIVE_SOURCE_88M_COMPLETE_EXTERNAL_CI_NATIVE_PASS_LEAN_KERNAL_RETRY_PENDING_ARCHIVED_README_EXACT",
+      "status": "COMPLETE_FULL_CORNER_PHYSICAL_GO_CPP_AND_LEAN4_EXTERNAL_SUCCESS",
       "source_real_WCA": "WCA Seoul Summer 2026 3x3 Final Group A original 20-turn scramble; independent full original 54 sticker verified existing 18-turn complete word",
       "scientific_results": {
         "corner_quotient_size": 88179840,
@@ -2888,7 +2892,7 @@
       "original_readme_drive_exact_raw_markdown": "https://drive.google.com/file/d/1QQ18TJ2Ary6xl4tD1iRX3ErdVx5HDHwi/view",
       "readme_after_slitting": "live README shortened 109858 to 7610 characters only after GitHub/Drive full text exact readback",
       "formal_Lean": "Lean 4.34 source import position fixed in WhoSia commit fb7192948727d0c6dbe84ea7223ee45f92a4ec93; kernel compiled in CI #38354728534 but end-job tracked checkout checker initially failed on generated untracked Lake .lake artifacts. CI checked-source safeguard corrected in WhoSia commit 783ebe2c75df12c23cbc3542f33da0e324723081. Await complete P0R2 green result.",
-      "workflow_status": "native Go/C++ and inherited Node source witness PASS in Actions run 38224634998; independent Lean initially fail config; await retry exact job",
+      "workflow_status": "All native source-physical 88m corners and 15,625 integer cost allocations, independent C++ and actual Lean 4 scaled 5-PDB budget theorem CI COMPLETED SUCCESS #38354902944; original 54 sticker words verified. Historical source syntax and untracked Lake output failures retained.",
       "governance": "WhoSia human author+committer only, github-actions[bot]/github-action[bot] forbidden as code contributor, Actions contents read no writeback",
       "new_current_paths_and_git_blobs": [
         {
@@ -2945,17 +2949,18 @@
         },
         {
           "path": "docs/0.25/P0_R2_FULL_CORNER_88M_AND_CERTIFIED_OPERATOR_COST_DUALITY.md",
-          "git_blob_sha": "dc0cf8dbf85b10d024c0446585898d52a442b877"
+          "git_blob_sha": "79875807c9ed2da93f8760436f01b8a3cf562aa0"
         },
         {
           "path": ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml",
           "git_blob_sha": "df9446aca4cf3e4d7745bd4f81158bb5eb1d1547"
         }
-      ]
+      ],
+      "external_true_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38354902944"
     },
     "p0_r3_025_two_pattern_halfprice_source_complete_finite_source": {
       "date": "2026-10-13",
-      "status": "EXTERNAL_GO_EXACT_7290_COMPLETE_SUCCESS_NO_GLOBAL_BOUND_IMPROVEMENT",
+      "status": "EXACT_ORIGINAL_PHYSICAL_7290_HALF_PRICE_GRID_COMPLETE_EXTERNAL_PASS; ALL_CONTINUOUS_FACE_UNIFORM_TWO_PATTERN_THEOREM_FURTHER_PROVED_BY_R3B_R3C_COMPACT_PHYSICAL_CERTIFICATES",
       "source": "same public WCA Seoul Summer 2026 3x3 Final A1, actual fixed 54 sticker model and previous real physical 18-turn full solve",
       "subset": "five old genuine four-cubie oriented point Schreier projections, choose two patterns globally (10 unordered pairs), six physical faces prices per pair as exact [0,1,2] half-HTM units, complementary sum 2 for all 18 original legal face turns",
       "size": "10 * 3^6 = 7290 exhaustive pair assignments; 5 * 3^6=3645 separate nonnegative integer-weight shortest quotient distances",
@@ -2976,11 +2981,15 @@
       "verified_receipt": {
         "run": "https://github.com/WhoSia/CUBE-REV/actions/runs/38355226394",
         "results": "all five genuine physical quotient patterns ×729 exact 0/1/2 weighted shortest path masks; 10 pairs×729=7290 assignments complete; highest priced sum14 half-units hence HTM ceil(14/2)=7, exactly four half-grid maximizers; histogram raw halfunits 0:24,1:57,2:243,3:339,4:869,5:1018,6:1452,7:1184,8:1096,9:603,10:273,11:98,12:27,13:3,14:4"
-      }
+      },
+      "continuous_theorem": "For these five literal original physical 4-cubie marked patterns on WCA Final A1, max over all 10 distinct unordered pairs and ALL REAL face-uniform fractional allocations x∈[0,1]^6 of h_i(x)+h_j(1−x) equals 7. Proof: 10 pairs of legally replayable original source projected solving face-turn words each have six-face max histogram sum ≤7, plus original source h_E0=7 lower attainability.",
+      "full_real_price_proof_run": "https://github.com/WhoSia/CUBE-REV/actions/runs/38356018621",
+      "independent_actual_54_sticker_external_CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38356444729",
+      "important_caveat": "Continuous TWO-PATTERN FACE-UNIFORM only. Not all five patterns simultaneously, not per-quarter-half different face-turn price, not a new original full cube d18≥15 or d18=18."
     },
     "p0_r3b_025_projected_original_face_word_envelope": {
       "date": "2026-10-13",
-      "status": "EXTERNAL_GO_REAL_PHYSICAL_OPTIMAL_PROJECTION_WORDS_COMPLETED_9_OF_10_CONTINUOUS_PAIR_COST_UPPER7_WITNESSES",
+      "status": "CLOSED_SHORTEST_ONLY_9_OF_10_PHYSICAL_FACE_PRICE_UPPER7_WITNESSES; E0_E2_REMAINDER_CLOSED_P0R3C",
       "question": "For each of ten pairs, does a pair of ACTUAL projected shortest physical Rubik solution words have face-wise count envelope ≤7? If so continuous face-share upper7 is certified for that pair.",
       "math": "For every face-price vector x in [0,1]^6, h_i(x)+h_j(1-x)≤Σ_f (n_i,f x_f+n_j,f(1-x_f))≤Σ_f max(n_i,f,n_j,f). Check replayed source cubie words.",
       "boundary": "A failure to find a shortest-word pair is not a continuous fractional counterexample: longer projected source words or mixtures may still certify the bound.",
@@ -3024,7 +3033,7 @@
     },
     "p0_r3c_025_E0E2_actual_source_nonshortest_face_envelope": {
       "date": "2026-10-13",
-      "status": "SOURCE_EXACT_QUOTA_SEARCH_CI_PENDING_RESULT",
+      "status": "SOURCE_EXACT_7MOVE_E0_E2_IDENTICAL_FACE_HISTOGRAM_FOUND_AND_EXTERNAL_CI_SUCCESS",
       "question": "One remaining E0+E2 source-specific projected pair lacks bound7 envelope between strictly shortest projected 7/5 word signatures, despite exact half-cost 7290 search upper7",
       "method": "Enumerate all E0 7-turn shortest projected physical source-to-goal word face-count signatures; for each, memoized source-to-goal E2 actual 18-move search of any length≤7 within six-face quota. If yes, any fractional price x(f)∈[0,1] has source pair bound≤7. If no, no global fractional lower claim.",
       "source_grade": "independent true original 54-sticker-derived physical oriented marker projections, exhaustive complete shortest DAG and a resource-guarded ≤7 memoized face quota oracle",
@@ -3038,7 +3047,91 @@
           "git_blob_sha": "1c2942ffe9b1636b4d49470b079ac82e307b9ea5"
         }
       ],
-      "CI": "https://github.com/WhoSia/CUBE-REV/actions/workflows/cuberev-025-P0-R3C-E0E2-seven-face-envelopes.yml"
+      "CI": "https://github.com/WhoSia/CUBE-REV/actions/workflows/cuberev-025-P0-R3C-E0E2-seven-face-envelopes.yml",
+      "result": {
+        "E0_word": "F B' U F R' L2 U2",
+        "E2_word": "U2 F B2 U2 R F' L'",
+        "identical_URFDLB_face_counts": [
+          2,
+          1,
+          2,
+          0,
+          1,
+          1
+        ],
+        "source_E2_quotient_optimal_distance": 5,
+        "nonshortest_E2_word_length": 7,
+        "exact_face_count_envelope": 7,
+        "calls_to_find": 103,
+        "memoized_excluded_states": 69,
+        "CI": "https://github.com/WhoSia/CUBE-REV/actions/runs/38356018621",
+        "independent_54_sticker": "https://github.com/WhoSia/CUBE-REV/actions/runs/38356444729"
+      }
+    },
+    "p0_r3_continuous_two_real_cubie_quotient_cost_shares_global_exact7": {
+      "date": "2026-10-13",
+      "status": "MATHEMATICALLY_EXACT_CONTINUOUS_REAL_FACE_PRICE_NO_GO_ALL_10_GENUINE_PAIR_WITNESSES_WITH_INDEPENDENT_54_STICKER_CI_PASS",
+      "scope": "fixed WCA Seoul Summer 2026 3x3 Final A1 actual original 54 sticker cube; genuine 18HTM face-uniform costs; five original physical four-cubie marked projections, any two distinct pattern choices, all real share vectors 6 faces in [0,1]",
+      "proved_statement": "max_{i<j,x∈[0,1]^6} [h_i(x)+h_j(1-x)]=7, notwithstanding true whole cube d18(s)>=14.",
+      "proof": "Each pair has real legal projected solution words u_i,u_j with sum over six faces max(face count_i,face count_j)<=7, so weighted pair optimum<=7 for ALL real x; assign entire cost to E0 to attain seven.",
+      "special_nonshortest_essential_example": {
+        "E0": "F B' U F R' L2 U2",
+        "E2": "U2 F B2 U2 R F' L'",
+        "face_counts": [
+          2,
+          1,
+          2,
+          0,
+          1,
+          1
+        ],
+        "E2_minimal_projected_HMT": 5,
+        "needed_nonshortest_length": 7,
+        "only_shortest_projected_pair_min_envelope": 8
+      },
+      "independent_external_CI": [
+        "https://github.com/WhoSia/CUBE-REV/actions/runs/38355226394",
+        "https://github.com/WhoSia/CUBE-REV/actions/runs/38355753083",
+        "https://github.com/WhoSia/CUBE-REV/actions/runs/38356018621",
+        "https://github.com/WhoSia/CUBE-REV/actions/runs/38356444729"
+      ],
+      "limits": "Not three-or-more PDB continuous cost sharing, not distinct 90/180 face costs, not corner-edge noncommutative joint source complete metric, not d18=18.",
+      "new_approved_paths_and_live_blobs": [
+        {
+          "path": "docs/0.25/P0_R3_EXACT_CONTINUOUS_FACE_COST_PAIR_NO_GO_PHYSICAL_WORD_CERTIFICATE.md",
+          "git_blob_sha": "ab3bb2e506b97882bf4a0a643a3f7ae0a0fbfcd7"
+        },
+        {
+          "path": "data/cuberev-025/p0_r3_continuous_face_price_ten_physical_word_pair_witness.json",
+          "git_blob_sha": "ae993646b354eeb525a44e25746cb9d71626d439"
+        },
+        {
+          "path": "scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs",
+          "git_blob_sha": "332d64adb45c5f55c057d094c7177a4a422d47a1"
+        },
+        {
+          "path": ".github/workflows/cuberev-025-P0-R3-original-54sticker-ten-pair-continuous-face-price.yml",
+          "git_blob_sha": "243df8a70d9b01c1eeb8f39b9608e9367fc5c474"
+        }
+      ],
+      "updated_existing_blobs": [
+        {
+          "path": "README.md",
+          "git_blob_sha": "0eddbc97ea0533c334fe462b159af46063d96021"
+        },
+        {
+          "path": "docs/0.25/P0_R2_FULL_CORNER_88M_AND_CERTIFIED_OPERATOR_COST_DUALITY.md",
+          "git_blob_sha": "79875807c9ed2da93f8760436f01b8a3cf562aa0"
+        },
+        {
+          "path": "formal/025/CostPartition.lean",
+          "git_blob_sha": "6118f5d104cd1a930b16a8737c538c3d0778e065"
+        },
+        {
+          "path": ".github/workflows/cuberev-025-P0-R2-physical-88m-corner-and-cost-partition.yml",
+          "git_blob_sha": "df9446aca4cf3e4d7745bd4f81158bb5eb1d1547"
+        }
+      ]
     }
   }
 }
