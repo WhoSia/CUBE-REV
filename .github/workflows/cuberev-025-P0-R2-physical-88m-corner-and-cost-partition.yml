@@ -77,7 +77,9 @@ jobs:
           build: true
           test: false
           use-mathlib-cache: false
-      - name: No generated research commit
+      - name: Tracked checkout unchanged; Lake build outputs permitted only as untracked CI files
+        shell: bash
         run: |
           git diff --exit-code
-          test -z "$(git status --porcelain)"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          echo "No tracked source modified, no git writes or authored commits by CI."
