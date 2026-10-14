@@ -39,4 +39,29 @@ theorem canonical_source_first_two_word_layers :
     (faceLowNext 9 9 + faceHighNext 9 9)=243 := by
   decide
 
+
+/-- Same two-class quotient, but now a shard starts from one exact initial
+18HTM generator (one low-class or one high-class initial last face). -/
+def transferPair (state : Nat × Nat) : Nat × Nat :=
+  (faceLowNext state.1 state.2, faceHighNext state.1 state.2)
+
+/-- Under repeated depth-limited source DFS to radius R, an exact first-move
+shard contributes depth-d canonical suffix words (R-d+1) times each.
+This quantity excludes the R+1 visits to the empty source root. -/
+def weightedFirstActionShard : Nat → Nat × Nat → Nat
+  | 0, _ => 0
+  | k+1, state =>
+      (k+1)*(state.1+state.2) +
+        weightedFirstActionShard k (transferPair state)
+
+/-- Original normal-form B10 can be exactly split into 18 disjoint
+first-action classes with the 11 empty-prefix iterative root calls separate.
+These are recursive CALL counts and not counts of distinct physical cubes. -/
+theorem exact_B10_first_action_shard_counts :
+    weightedFirstActionShard 10 (1,0) = 17489205559 ∧
+    weightedFirstActionShard 10 (0,1) = 14279876542 ∧
+    11 + 9 * weightedFirstActionShard 10 (1,0) +
+         9 * weightedFirstActionShard 10 (0,1) = 285921738920 := by
+  decide
+
 end CubeRev025
