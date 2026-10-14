@@ -81,6 +81,7 @@ struct R6 {
    return false;
  }
 };
+#ifndef CUBEREV_P0R6_AS_LIBRARY
 int main(int argc,char**argv) {
  try {
    int rg=argc>1?std::stoi(argv[1]):6;
@@ -133,3 +134,5 @@ int main(int argc,char**argv) {
    return 0;
  } catch(const std::exception&e){std::cerr<<"P0R6_ERROR "<<e.what()<<"\n";return 4;}
 }
+
+#endif // CUBEREV_P0R6_AS_LIBRARY
