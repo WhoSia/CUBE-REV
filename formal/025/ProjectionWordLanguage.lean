@@ -93,4 +93,38 @@ theorem empty_common_projection_language_excludes_real_solution
     cornerNecessary edgeNecessary source word hPhysical
   exact emptyJointLanguage word hLegal hCommon
 
+
+/-- A Myhill–Nerode-style residual equivalence of acceptance under all
+future COMMON ordered action words. If replacing one state by another
+would change any accepted continuation, caching by their coarser
+features would be unsafe. -/
+def residualEquivalent {S : Type u} {A : Type z}
+    (step : S → A → S) (accept : S → Prop) (x y : S) : Prop :=
+  ∀ word : List A,
+    accept (runWord step x word) ↔
+    accept (runWord step y word)
+
+/-- The common-word residual relation is a right congruence: taking
+the SAME new first action preserves equivalence of all future suffixes. -/
+theorem residual_equivalence_right_congruence
+    {S : Type u} {A : Type z}
+    (step : S → A → S) (accept : S → Prop)
+    (x y : S) (h : residualEquivalent step accept x y) (a : A) :
+    residualEquivalent step accept (step x a) (step y a) := by
+  intro word
+  simpa only [runWord] using (h (a :: word))
+
+/-- Sound proof-cache reuse: a state with an empty accepted suffix
+language may be replaced by any state with an exactly equal residual
+language, without introducing a false absence certificate. -/
+theorem residual_equivalence_preserves_empty_language
+    {S : Type u} {A : Type z}
+    (step : S → A → S) (accept : S → Prop)
+    (x y : S) (h : residualEquivalent step accept x y)
+    (nothingFromX : ∀ word : List A,
+      ¬ accept (runWord step x word)) :
+    ∀ word : List A, ¬ accept (runWord step y word) := by
+  intro word hAccepted
+  exact nothingFromX word ((h word).mpr hAccepted)
+
 end CubeRev025
