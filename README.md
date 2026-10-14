@@ -10,6 +10,12 @@
 
 **[0.25 P0-R5 — actual unrestricted whole 18HTM corner-prefilter solver engineering](docs/0.25/P0_R5_EXACT_CORNER_PREFILTER_FOR_WHOLE_CUBE_GLOBAL_BALL_CERTIFICATE.md):** [external physical original-cube CI SUCCESS #38513745705](https://github.com/WhoSia/CUBE-REV/actions/runs/38513745705). On the original WCA 3×3 and verified goal B6 of 8,240,087 full-cubie states, the exact entire-corner projection has 1,405,068 distinct states. Full source B7 complete: **120,213,368** source visits; **118,678,327** safely rejected on corner membership alone; **1,535,041** needed expensive full CP/CO/EP/EO lookups (**98.723% fewer full-state lookups**), zero true intersections. All normal-form descendants STILL explored; not a geodesic subtree prune or a wall-time speedup claim. Global interval **14≤d18≤18** preserved. [Original P1-R6 independent source compile regression SUCCESS #38513732158](https://github.com/WhoSia/CUBE-REV/actions/runs/38513732158). Go/C++ and Lean4 remain preferred scientific languages.
 
+## P0-R6 — exact descendant pruning (external CI pending)
+
+[Research theorem and limitations](docs/0.25/P0_R6_EXACT_ONE_STEP_DESCENDANT_PRUNING.md) · [original physical C++17 implementation](scripts/cuberev-025/p0_r6_one_step_descendant_cpp/main.cpp) · [read-only Actions workflow](.github/workflows/cuberev-025-P0-R6-descendant-pruning.yml).
+
+**New implementation, NOT yet externally confirmed:** extend the entire exact B6 goal-side corner projection by one genuine reversible 18HTM move; at depth6 in a source B7 search, a node outside the extended exact corner envelope cannot have a B6-meeting one-step child. The C++ engine therefore skips **entire descendant branches**, not merely full-cubie lookups as P0-R5 did. It retains exact whole-cubie CP/CO/EP/EO equality checks where necessary, the same canonical source coverage, and the original official 54-sticker test. Real pruning counts, wall time, peak RAM, and completed CI outcome are **PENDING**, not PASS. No new 15+ global bound is claimed: **14≤d18(s)≤18** persists. The next attack needs genuinely coupled corner–edge admissibility and independent proof-carrying benchmark comparisons. P7 exact active paths: **767**.
+
 ## Original-cube benchmark and proof grade
 
 The real [WCA Seoul Summer 2026 3×3 Final Group A scramble 1](https://www.worldcubeassociation.org/competitions/SeoulSummer2026/scrambles) is:
