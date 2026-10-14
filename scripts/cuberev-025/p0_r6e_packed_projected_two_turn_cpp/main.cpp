@@ -1,9 +1,9 @@
 // CUBE-REV 0.25 P0-R6E: exact packed corner-first, then edge,
 // ordered two-generator global source search. Same inherited real
 // 54-sticker physical turn maps. No new projection caches / RAM explosion.
-#define main cuberev_r6d_inherited_entry
+#define CUBEREV_P0R6D_AS_LIBRARY
 #include "../p0_r6_ordered_two_turn_cpp/main.cpp"
-#undef main
+#undef CUBEREV_P0R6D_AS_LIBRARY
 
 using Key64=uint64_t;
 Key64 cornerTurnPacked(Key64 c,int action) {
