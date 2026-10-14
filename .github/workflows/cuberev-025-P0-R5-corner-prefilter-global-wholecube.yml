@@ -1,0 +1,35 @@
+name: CUBE-REV 0.25 P0-R5 source-complete original cube safe corner filter
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r5_corner_projected_global_membership_cpp/**"
+      - ".github/workflows/cuberev-025-P0-R5-corner-prefilter-global-wholecube.yml"
+permissions:
+  contents: read
+jobs:
+  original-whole-cube-corner-exact-prefilter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: No bot-authored repository commits
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile actual original whole-cube physical 18HTM filter
+        run: |
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r5_corner_projected_global_membership_cpp/main.cpp -o /tmp/p0r5
+      - name: Exhaust original source whole-cubie B7 versus target B6 with sound projected corner prefilter
+        run: |
+          timeout 780 /tmp/p0r5 6 7 750 | tee /tmp/p0r5.receipt
+          grep -Fq 'P0R5_FULL_PHYSICAL_GEODESIC_BOUNDS_LOWER 14 UPPER 18 OLD_CERTIFICATE_REPRODUCED 1' /tmp/p0r5.receipt
+          grep -Fq 'P0R5_SAFE_ORIGINAL_CUBIE_PREFILTER_COMPLETE 1 GOAL_RADIUS 6 SOURCE_RADIUS 7 FULL_GOAL_STATES 8240087' /tmp/p0r5.receipt
+          grep -Fq 'FULL_INTERSECTIONS 0 COLLISION_FREE_STATE_EQUALITY 1 NO_DESCENDANT_PRUNING 1' /tmp/p0r5.receipt
+      - name: No source writes by Actions
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
