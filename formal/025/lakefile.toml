@@ -1,8 +1,11 @@
 name = "CubeRev025"
 version = "0.1.0"
-defaultTargets = ["CostPartition", "JointNextAction"]
+defaultTargets = ["CostPartition", "JointNextAction", "ProjectionWordLanguage"]
 
 [[lean_lib]]
 name = "CostPartition"
 [[lean_lib]]
 name = "JointNextAction"
+
+[[lean_lib]]
+name = "ProjectionWordLanguage"
