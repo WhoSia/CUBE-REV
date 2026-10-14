@@ -64,4 +64,41 @@ theorem exact_B10_first_action_shard_counts :
          9 * weightedFirstActionShard 10 (0,1) = 285921738920 := by
   decide
 
+
+/-- The same two-class transfer applies uniformly to every remaining depth. -/
+def canonicalPairAfter : Nat → Nat × Nat → Nat × Nat
+  | 0, state => state
+  | n + 1, state => transferPair (canonicalPairAfter n state)
+
+def canonicalWordsAfter (n : Nat) (state : Nat × Nat) : Nat :=
+  (canonicalPairAfter n state).1 + (canonicalPairAfter n state).2
+
+/-- Not merely the checked B10 instances: the characteristic equation holds
+at EVERY depth and from ANY exact initial low/high last-face profile. This
+is the coefficient identity underlying the rational generating function. -/
+theorem all_depth_canonical_transfer_recurrence
+    (n : Nat) (state : Nat × Nat) :
+    canonicalWordsAfter (n+2) state =
+      12*canonicalWordsAfter (n+1) state +
+      18*canonicalWordsAfter n state := by
+  change (transferPair (transferPair (canonicalPairAfter n state))).1 +
+         (transferPair (transferPair (canonicalPairAfter n state))).2 =
+       12*((transferPair (canonicalPairAfter n state)).1 +
+            (transferPair (canonicalPairAfter n state)).2) +
+       18*((canonicalPairAfter n state).1 +
+            (canonicalPairAfter n state).2)
+  exact two_class_canonical_grammar_characteristic
+    (canonicalPairAfter n state).1 (canonicalPairAfter n state).2
+
+/-- Beginning with exactly one original low-class generator: 1, 15, 198 ...;
+the corresponding high-class generator: 1, 12, 162 ... . -/
+theorem canonical_first_face_class_initial_coefficients :
+    canonicalWordsAfter 0 (1,0) = 1 ∧
+    canonicalWordsAfter 1 (1,0) = 15 ∧
+    canonicalWordsAfter 2 (1,0) = 198 ∧
+    canonicalWordsAfter 0 (0,1) = 1 ∧
+    canonicalWordsAfter 1 (0,1) = 12 ∧
+    canonicalWordsAfter 2 (0,1) = 162 := by
+  decide
+
 end CubeRev025
