@@ -1,9 +1,9 @@
 // CUBE-REV 0.25 P0-R5: physically exact corner prefilter for FULL cubie B6/B7.
 // A sound one-sided negative membership filter; DO NOT prune descendants.
 // Reuse previously externally independently certified original full-cubie physics.
-#define main inherited_p1r6_global_main
+#define CUBEREV_P1R6_AS_LIBRARY
 #include "../../cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp"
-#undef main
+#undef CUBEREV_P1R6_AS_LIBRARY
 #include <unordered_set>
 #include <iomanip>
 
