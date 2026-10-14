@@ -1,0 +1,114 @@
+name: CUBE-REV 0.25 P0-R6E exact packed ordered physical actions cost trial
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6e_packed_projected_two_turn_cpp/**"
+      - "scripts/cuberev-025/p0_r6_receipt_go/**"
+      - ".github/workflows/cuberev-025-P0-R6E-packed-pair-benchmark.yml"
+permissions:
+  contents: read
+jobs:
+  quick-original-cube-physics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Human-only authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original 54-sticker-derived D/E and independent Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_ordered_two_turn_cpp/main.cpp -o /tmp/p0r6d
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6e_packed_projected_two_turn_cpp/main.cpp -o /tmp/p0r6e
+          go build -o /tmp/r6e-audit scripts/cuberev-025/p0_r6_receipt_go/main.go
+      - name: Small real physical B3 goal B3 source and exact packed-vs-original state turns
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 100 /tmp/p0r6d 3 3 90 | tee /tmp/p0r6d-small.txt
+          timeout 100 /tmp/p0r6e 3 3 90 | tee /tmp/p0r6e-small.txt
+          grep -Fq 'P0R6D_EXACT_COVER' /tmp/p0r6d-small.txt
+          grep -Fq 'P0R6E_PACKED_PHYSICAL_TURN_REGRESSION PASS CASES 4608' /tmp/p0r6e-small.txt
+          grep -Fq 'P0R6E_EXACT_COVER' /tmp/p0r6e-small.txt
+          grep -Fq 'COMPLETE 1' /tmp/p0r6e-small.txt
+      - name: No tracked source writebacks
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve quick test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6e-smoke-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/p0r6d-small.txt
+            /tmp/p0r6e-small.txt
+          if-no-files-found: warn
+          retention-days: 30
+  paired-original-full-cube-B7:
+    needs: quick-original-cube-physics
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Human-only authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Same-toolchain same-runner C++17 original physical D/E
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_ordered_two_turn_cpp/main.cpp -o /tmp/p0r6d
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6e_packed_projected_two_turn_cpp/main.cpp -o /tmp/p0r6e
+      - name: Completed original B6/B7 D exact baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'BENCH_P0R6D_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S' timeout 740 /tmp/p0r6d 6 7 710 2>&1 | tee /tmp/r6d.log
+          grep -Fq 'P0R6D_EXACT_COVER BASELINE 120213368' /tmp/r6d.log
+          grep -Fq 'P0R6D_GLOBAL_LOWER 14 UPPER 18 COMPLETE 1 ORDERED_TWO_MOVE_PREDICATE_SOUND 1' /tmp/r6d.log
+      - name: Completed original B6/B7 E exact packed projection
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'BENCH_P0R6E_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S' timeout 740 /tmp/p0r6e 6 7 710 2>&1 | tee /tmp/r6e.log
+          grep -Fq 'P0R6E_PACKED_PHYSICAL_TURN_REGRESSION PASS CASES 4608' /tmp/r6e.log
+          grep -Fq 'P0R6E_EXACT_COVER BASELINE 120213368' /tmp/r6e.log
+          grep -Fq 'P0R6E_GLOBAL_LOWER 14 UPPER 18 FULL_PHYSICAL_SOURCE_COMPLETE 1 SOURCE_RADIUS 7' /tmp/r6e.log
+      - name: Independent Go proof comparison and true hardware resource cost
+        shell: bash
+        run: |
+          set -euo pipefail
+          go run scripts/cuberev-025/p0_r6_receipt_go/main.go --packed /tmp/r6d.log /tmp/r6e.log | tee /tmp/r6e-paired-audit.log
+          grep -Fq 'P0R6E_GO_PAIRED_AUDIT_PASS' /tmp/r6e-paired-audit.log
+      - name: Ensure no repository mutations
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve all actual physical time and RSS evidence on any exit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6e-full-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6d.log
+            /tmp/r6e.log
+            /tmp/r6e-paired-audit.log
+          if-no-files-found: warn
+          retention-days: 30
