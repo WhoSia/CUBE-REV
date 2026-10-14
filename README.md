@@ -6,6 +6,10 @@
 
 **The scientific subject is the actual fixed-center 3×3 Rubik's Cube:** 54 original physical stickers, all 8 corner and 12 edge permutations and orientations, and 18 legal outer-face HTM moves. Group theory, TCS and formal verification serve actual physical cube solving. Source-authored FMC programs are distinguished from machine-generated paths and from unobserved human mental processes.
 
+## Latest true physical solver engineering
+
+**[0.25 P0-R5 — actual unrestricted whole 18HTM corner-prefilter solver engineering](docs/0.25/P0_R5_EXACT_CORNER_PREFILTER_FOR_WHOLE_CUBE_GLOBAL_BALL_CERTIFICATE.md):** [external physical original-cube CI SUCCESS #38513745705](https://github.com/WhoSia/CUBE-REV/actions/runs/38513745705). On the original WCA 3×3 and verified goal B6 of 8,240,087 full-cubie states, the exact entire-corner projection has 1,405,068 distinct states. Full source B7 complete: **120,213,368** source visits; **118,678,327** safely rejected on corner membership alone; **1,535,041** needed expensive full CP/CO/EP/EO lookups (**98.723% fewer full-state lookups**), zero true intersections. All normal-form descendants STILL explored; not a geodesic subtree prune or a wall-time speedup claim. Global interval **14≤d18≤18** preserved. [Original P1-R6 independent source compile regression SUCCESS #38513732158](https://github.com/WhoSia/CUBE-REV/actions/runs/38513732158). Go/C++ and Lean4 remain preferred scientific languages.
+
 ## Original-cube benchmark and proof grade
 
 The real [WCA Seoul Summer 2026 3×3 Final Group A scramble 1](https://www.worldcubeassociation.org/competitions/SeoulSummer2026/scrambles) is:
