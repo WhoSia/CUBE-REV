@@ -1,0 +1,105 @@
+name: CUBE-REV 0.25 P0-R6D ordered two-turn exact physical court
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6_ordered_two_turn_cpp/**"
+      - "scripts/cuberev-025/p0_r6_joint_next_action_cpp/**"
+      - "scripts/cuberev-025/p0_r6_receipt_go/**"
+      - ".github/workflows/cuberev-025-P0-R6D-ordered-two-turn.yml"
+permissions:
+  contents: read
+jobs:
+  quick-physical-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0, persist-credentials: false }
+      - name: Reject bot authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile both actual physical C++17 solvers and Go auditor
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_joint_next_action_cpp/main.cpp -o /tmp/p0r6c
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_ordered_two_turn_cpp/main.cpp -o /tmp/p0r6d
+          go build -o /tmp/p0r6go scripts/cuberev-025/p0_r6_receipt_go/main.go
+      - name: Original 54-sticker B3/B3 regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 120 /tmp/p0r6c 3 3 100 | tee /tmp/p0r6c-small.log
+          timeout 120 /tmp/p0r6d 3 3 100 | tee /tmp/p0r6d-small.log
+          grep -Fq 'P0R6C_EXACT_COVER' /tmp/p0r6c-small.log
+          grep -Fq 'P0R6D_EXACT_COVER' /tmp/p0r6d-small.log
+          grep -Fq 'REAL_ORIGINAL_CUBE_UF_NE_FU 1' /tmp/p0r6d-small.log
+      - name: No source mutation
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve preflight diagnostic outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6d-preflight-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/p0r6c-small.log
+            /tmp/p0r6d-small.log
+          if-no-files-found: warn
+          retention-days: 30
+  original-source-b7-benchmark:
+    needs: quick-physical-preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0, persist-credentials: false }
+      - name: Reject bot authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Build C and D from identical physical sources
+        run: |
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_joint_next_action_cpp/main.cpp -o /tmp/p0r6c
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_ordered_two_turn_cpp/main.cpp -o /tmp/p0r6d
+      - name: Completed original B6 goal and B7 source for C
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'BENCH_P0R6C_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S' timeout 1050 /tmp/p0r6c 6 7 1000 2>&1 | tee /tmp/r6c.log
+          grep -Fq 'P0R6C_EXACT_COVER BASELINE 120213368' /tmp/r6c.log
+          grep -Fq 'P0R6C_CERTIFIED_PHYSICAL_GLOBAL_LOWER 14 UPPER 18 COMPLETE 1 COMMON_ACTION_SOUND 1' /tmp/r6c.log
+      - name: Completed original B6 goal and B7 source for D
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'BENCH_P0R6D_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S' timeout 1050 /tmp/p0r6d 6 7 1000 2>&1 | tee /tmp/r6d.log
+          grep -Fq 'P0R6D_EXACT_COVER BASELINE 120213368' /tmp/r6d.log
+          grep -Fq 'P0R6D_GLOBAL_LOWER 14 UPPER 18 COMPLETE 1 ORDERED_TWO_MOVE_PREDICATE_SOUND 1' /tmp/r6d.log
+      - name: Independent Go exact full coverage and time RSS comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          go run scripts/cuberev-025/p0_r6_receipt_go/main.go --ordered /tmp/r6c.log /tmp/r6d.log | tee /tmp/r6d-audit.log
+          grep -Fq 'P0R6D_GO_AUDIT_PASS' /tmp/r6d-audit.log
+      - name: No source mutation
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve long run evidence even on resource HOLD or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6d-full-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6c.log
+            /tmp/r6d.log
+            /tmp/r6d-audit.log
+          if-no-files-found: warn
+          retention-days: 30
