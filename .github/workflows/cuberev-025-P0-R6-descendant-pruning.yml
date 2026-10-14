@@ -1,0 +1,36 @@
+name: CUBE-REV 0.25 P0-R6 exact physical descendant pruning
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6_one_step_descendant_cpp/**"
+      - ".github/workflows/cuberev-025-P0-R6-descendant-pruning.yml"
+permissions:
+  contents: read
+jobs:
+  actual-original-whole-cube:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reject bot-authored or bot-committed history
+        run: |
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original physical C++17 checker
+        run: |
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_one_step_descendant_cpp/main.cpp -o /tmp/cuberev025r6
+      - name: Original full state goal B6 source B7 with actual descendant pruning
+        run: |
+          set -o pipefail
+          /usr/bin/time -v timeout 1100 /tmp/cuberev025r6 6 7 1000 2>&1 | tee /tmp/p0r6.log
+          grep -Fq 'P0R6_COMPLETE 1 FULL_GOAL 8240087' /tmp/p0r6.log
+          grep -Fq 'SOUND_ONE_STEP_DESCENDANT_PRUNING 1' /tmp/p0r6.log
+          grep -Fq 'P0R6_GLOBAL_LOWER 14 UPPER 18 NEW_LOWER_NOT_CLAIMED 1' /tmp/p0r6.log
+      - name: No source writeback
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
