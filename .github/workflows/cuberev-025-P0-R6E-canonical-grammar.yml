@@ -1,0 +1,43 @@
+name: CUBE-REV 0.25 P0-R6E canonical two-class source grammar
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6e_normal_form_transfer_go/**"
+      - ".github/workflows/cuberev-025-P0-R6E-canonical-grammar.yml"
+permissions:
+  contents: read
+jobs:
+  algebraic-grammar-exact-go-vs-18-word-DFA:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: No bot authors or committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Execute full exact 18-action automaton versus 2-class transfer for lengths 1..10
+        shell: bash
+        run: |
+          set -euo pipefail
+          go run scripts/cuberev-025/p0_r6e_normal_form_transfer_go/main.go | tee /tmp/r6e-grammar.log
+          grep -Fq 'P0R6E_TWO_STATE_GRAMMAR_EXACT_PASS' /tmp/r6e-grammar.log
+          grep -Fq 'P0R6E_CANONICAL_DEPTH 9 WORDS 18330699168' /tmp/r6e-grammar.log
+      - name: Original checkout untouched
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Retain exact grammar and recurrence receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6e-tcs-grammar-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/r6e-grammar.log
+          if-no-files-found: warn
+          retention-days: 30
