@@ -1,5 +1,26 @@
 # CUBE-REV 0.25 P0-R6E — Packed Ordered-Word Physical Search and Formal Common-Language Exclusion
 
+## VERIFIED 2026-10-14 — actual full original B9 global lower16 proof (supersedes original prospective section)
+
+**NEW SOURCE-SPECIFIC RESULT: 16 ≤ d18(s) ≤ 18.** Full actual fixed-center original physical 54-sticker WCA 3×3 cube, 18 HTM legal turns, exact complete-cubie CP/CO/EP/EO identity. [Actual P0-R6E original B6(goal)/B9(source) external GitHub Actions run #38520307408](https://github.com/WhoSia/CUBE-REV/actions/runs/38520307408), completed SUCCESS, full job 115708392135, Go original source audit independently passed.
+
+Completed experiment's raw receipt:
+- Real solved-side entire-cubie goal B6 size **8,240,087** states; goal projected corner6 **1,405,068**, one-step corner7 **6,807,696**, projected edge6 **7,672,278**.
+- Source complete iterative normal-form B9 baseline **21,419,814,808** recursive calls; actual **120,217,012** source recursive visits + **21,299,597,796** soundly omitted recursive calls, exact integer equality, zero complete CP/CO/EP/EO intersections.
+- Ordered same-generator two-move candidate checks **1,406,001,619**; all packed corner checks matched this count, edge packed checks **280,043,085**; **1,484,449,469** two-step rejected first-action subtrees across iterative bounds.
+- **4,608** deterministic physically reachable cubie states × original legal 18HTM turn test cases in the packed-to-full transition regression passed before source enumeration.
+- Wall **1,093.99 seconds**, max RSS **1,340,448 KiB**, user CPU **1,093.26 s**, system CPU **0.53 s**.
+- Exact executable full-completion marker P0R6E_GLOBAL_LOWER 16 UPPER 18 FULL_PHYSICAL_SOURCE_COMPLETE 1 SOURCE_RADIUS 9 PROJECTION_EQUIVALENCE_4608 1.
+- Independent Go auditor P0R6E_B9_GO_INDEPENDENT_CERT_PASS BASELINE 21419814808 ACTUAL_VISITS 120217012 SKIPPED_CALLS 21299597796 ORDERED_PAIRS 1406001619 WALL_SECONDS 1093.990 PEAK_RSS_KIB 1340448 VERIFIED_GLOBAL_LOWER 16 UPPER 18.
+- Original physical 18-move solution is still replayed on the original 54 stickers, certifying upper18.
+
+Soundness deduction: Every legal physical solution word of length ≤15 would split at a source prefix of length ≤9 and a solved-side suffix of length ≤6, hence would yield an actual complete-cubie meet of B9(s) and B6(e). Every canonical source prefix has been counted by the independent exact original-normal-form recurrence; no eliminated source call can meet the full solved-side ball by the proved projection same-ordered-word necessary condition and exact full-key checks where needed. Since all remaining physically possible B9 source calls were exhaustively checked with zero full-cubie meets and timeout did NOT occur, **ALL ≤15 actual 18 HTM solutions of this original source are excluded**. This is a finite proof for one official scramble, not for every cube.
+
+**Scope limitations:** This is NOT a complete Lean proof of the full physical normal-form construction, nor a second full independent Go B9 physical search. The Go program independently audits exact canonical call accounting, genuine required original physical receipt markers, resource data and result typing. A systematic error shared by inherited C++ physical turn implementation and its own reference assertions still motivates future independent engines or proof-carrying trace verification; never overstate independence. Previously established lower15 from B8 is now a historical precursor, not the current frontier.
+
+**Next strict geodesic frontier:** Full original B10(source) versus exact B6(goal) zero meet would exclude lengths ≤16 and prove **17≤d18(s)≤18**, but this requires completing a substantially larger source-language proof. The **unpruned iterative canonical B10 word-call count 285,921,738,920** is established by independent 18-action Go vs two-state TCS transfer; not 285B unique cubes. Before any naive expensive monolithic job, optimize proof cost and consider certified partition of canonical first-generator languages into independent prefix shards. If any true complete cubie intersection appears, reconstruct and independently replay the shorter actual solution and abandon the proposed lower17. No new lower17 is claimed at time of this update.
+
+
 **Science contract:** source-specific official WCA Seoul Summer 2026 3×3 Final Group A1 original 54-facelet fixed-center cube; all original 18 legal HTM actions, all eight corner and twelve edge perm+orientation. **Previously completed, actual external Actions-certified original distance: 15≤d18(s)≤18** via [R6B full goal B6/source B8](https://github.com/WhoSia/CUBE-REV/actions/runs/38518179172). The present P0-R6E source B9 test is a **NEW UNVERIFIED attempt** to exclude 15 moves and prove lower16; never presuppose its result.
 
 ## Two genuinely different research axes
