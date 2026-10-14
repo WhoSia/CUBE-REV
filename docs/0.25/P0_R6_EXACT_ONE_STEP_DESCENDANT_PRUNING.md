@@ -21,3 +21,40 @@ This theorem only uses **a one-step corner extension**, not yet a joint corner�
 
 ### Governance
 Commit author+committer WhoSia only; github-actions[bot]/github-action[bot] forbidden. CI contents:read, checkout persist-credentials:false, zero Git writeback. Preserve 0.24/P0-R1..R5 negative proof boundaries and protected private 451 human records. No Python-first implementation.
+
+
+## 2026-10-14 P0-R6A follow-up — independent canonical-word accounting and paired cost experiment
+
+**Implementation complete; GitHub Actions completion and numerical performance not yet independently observed.** This changes the quality of the pending experiment, not its externally attested result.
+
+The original source DFS checks ALL canonical legal prefixes at each iterative depth limit. Let c_d count legal canonical exact-length d action words, with c_0=1. The independent recurrence tracks the final generator and applies precisely the original source \`canonical(last,next)\` adjacency rule (no consecutive identical faces, reorder commuting opposite faces into the chosen canonical direction). Thus the unpruned total recursive call count for bounds 0..R is
+
+\[
+N_R=\sum_{d=0}^{R}(R-d+1)c_d.
+\]
+
+A small independent C++17 combinatorial program, compiled and executed locally in the audit environment, returned N6=9,005,776, N7=120,213,368, N8=1,604,664,504. The N7 count agrees EXACTLY with the previous GitHub Actions P0-R5 physical source-visit receipt. These counts are **normal-form DFS recursive calls including repeated iterative-depth visits**, NOT distinct physical cube states.
+
+Because this P0-R6 initial theorem prunes only a node's immediate canonical children when exactly one move remains, each pruned child corresponds to exactly one missing baseline recursive visit. The C++ executable now checks the exact equation
+
+\[
+\text{VISITED}+\text{SKIPPED\_CHILDREN}=N_R.
+\]
+
+It throws and cannot certify a lower bound if equality fails. This equality checks whole-prefix accounting; the separate actual corner-envelope theorem proves that each skipped child could not meet B6(e). Neither condition alone is sufficient as an external physical proof.
+
+The [paired read-only P0-R6A Actions workflow](../../.github/workflows/cuberev-025-P0-R6-descendant-pruning.yml) now compiles both historical P0-R5 and new P0-R6, runs source B7 versus actual complete-cubie target B6 on the **same GitHub runner**, logs true GNU time wall seconds and maximum resident memory (KiB) for each, and invokes the independently authored [Go receipt auditor](../../scripts/cuberev-025/p0_r6_receipt_go/main.go). The Go checker refuses to report verified savings if either historical physical no-intersection result, baseline visit count, exact source partition, or measured costs are missing. It reports signed changes in wall time and RSS rather than assuming descendant elimination yields a speedup. Running two alternatives in fixed order on one runner controls hardware class but does not eliminate order, contention or cache effects; source-general performance claims require more benchmarks and repetitions.
+
+## P0-R6B — direct full-physical exclusion test for 14 moves or fewer
+
+**Mathematical target (NOT YET AN OBSERVED RESULT):**
+\[
+B_8(s)\cap B_6(e)=\varnothing\quad\Longrightarrow\quad d_{18}(s,e)\ge15.
+\]
+Conversely any intersection supplies a whole-cubie state on an actual source word of length at most 8 and a goal word of length at most 6; it refutes the attempted lower15. The earlier B7(s) versus B6(e) excludes only lengths <=13 and therefore proves lower14, **not** the nonexistence of 14-move solutions.
+
+The physical C++17 R6 search now accepts source radius 8 with the original 54-sticker physical check, full exact CP/CO/EP/EO equality, and identical canonical normal-form coverage. The same one-step envelope is applied to each penultimate-depth prefix; this does NOT presume complete corner-edge coupled admissibility. The expected unpruned iterative source count is exactly **1,604,664,504**. Any source resource limit, timeout, unexpectedly changed goal cardinality, broken equality, or discovered source–goal intersection exits without the lower15 certificate. Only after a complete collision-free original physical zero-intersection run can the executable emit \`P0R6_GLOBAL_LOWER 15 UPPER 18 ... ALL_14_OR_LESS_EXCLUDED 1\`.
+
+The dedicated [read-only P0-R6B Actions experimental court](../../.github/workflows/cuberev-025-P0-R6B-global-lower15-source8.yml) has a bounded wall/resource budget and logs measured wall time and RSS. A separate Go-mode verifier independently computes N8 and requires a completed zero-intersection whole-cube receipt before recognizing a claimed lower15. The new court is an **ATTEMPT to solve the open 14-move exclusion problem**, and a HOLD caused by insufficient compute remains a HOLD. No verified P0-R6B run ID or result has been obtained at this writing.
+
+**Claim status:** P0-R6A finite theorem and code committed, native full-scale PASS pending. P0-R6B exact 14-or-less exclusion programme committed, global lower15 pending. External GitHub Actions run listing for push-triggered executions was not available through the current connector query, which only exposes PR-associated commit runs; an empty return is not evidence of failure or success. Preserve earlier certified **14<=d18(s)<=18** until completed run logs and independent evidence are read.
