@@ -1,6 +1,6 @@
 # CUBE-REV 0.25 P0-R6D — Ordered Two-Turn Corner–Edge Synchronization and Source-Complete Subtree Accounting
 
-**2026-10-14 evidence state: C++17 physical solver and Go audit committed; independent tiny S3×S3 finite contract locally tested; full original 3×3 GitHub Actions CI, matched pruning counts, wall seconds and RSS UNVERIFIED.** Do not call this a new lower bound. Inherited original WCA Seoul Summer 2026 3×3 Final A1 physical 18 HTM source remains **14≤d18(s)≤18**. All 54 original stickers, complete CP/CO/EP/EO and original 18 HTM move maps remain mandatory.
+**CURRENT: original C++17 physical B7+Go paired C/D Actions SUCCESS #38518256469; this early status sentence is preserved as the superseded preflight hypothesis.** Do not call this a new lower bound. Inherited original WCA Seoul Summer 2026 3×3 Final A1 physical 18 HTM source remains **14≤d18(s)≤18**. All 54 original stickers, complete CP/CO/EP/EO and original 18 HTM move maps remain mandatory.
 
 ## Original question and genuine mathematical improvement
 
@@ -55,3 +55,18 @@ The public GitHub Actions run page could not be fetched through available page a
     go run scripts/cuberev-025/p0_r6_receipt_go/main.go --ordered /tmp/r6c.log /tmp/r6d.log
 
 Proof scope hierarchy: R6A one-step corner-only → R6C one shared physical action corner+edge → **R6D ordered two-action subtree elimination** → OPEN: stronger joint projection, reusable two-turn backward tables and source-general deep prefix coverage. In all phases preserve human-author/committer WhoSia, no github-actions[bot] or github-action[bot] contributors, read-only CI, and private 451 human original recordings out of public research code.
+
+
+## Completed original physical external run and measured negative cost result (2026-10-14)
+
+**The opening-era UNVERIFIED note above is now superseded for B7 by actual completed [GitHub Actions #38518256469](https://github.com/WhoSia/CUBE-REV/actions/runs/38518256469).** Both quick original 54-sticker B3+B3 C++17/Go compile/smoke and the full original physical B6(goal)/B7(source) same-runner C-vs-D job were independently observed as completed SUCCESS. The compiled code is real physical C++17, the measured comparison is a single GitHub runner experiment and the result is checked by the independent Go receipt auditor.
+
+- Baseline exhaustive *unpruned* iterative 0..7 canonical calls: **120,213,368**. Full true solved-side B6 states: **8,240,087**; projected corner6 **1,405,068**, expanded corner7 **6,807,696**, projected edge6 **7,672,278**.
+- P0-R6C common single-action: **9,005,784 actual recursive calls**, **111,207,584 omitted**, wall **20.01 s**, peak RSS **1,340,256 KiB**.
+- P0-R6D **ordered two-action**: **674,679 actual recursive calls**, **119,538,689 omitted**, wall **20.00 s**, peak RSS **1,341,068 KiB**.
+- R6D extra omitted relative to C: **8,331,105 recursive calls**, or **92.508381% fewer actual recursive visits** than R6C (but essentially **0.05% less wall time**, within the noise of one comparison). D ran **7,462,988 actual ordered pair candidate checks**, with 8,331,105 first-action subtree rejections and exactly 5 projected pair passes.
+- Both full-cubie intersections **0**. Go audit prints **P0R6D_GO_AUDIT_PASS**, checks independent exact source partition against baseline 120,213,368, and reports signed time/RSS changes. Source-only B7 regression therefore reproduces **global lower14**, already surpassed by independently certified R6B B8 **global lower15**.
+
+**Falsifiable interpretation:** R6D materially reduces DFS visits but yields *no useful wall-time improvement* against C under this particular runner and source because physical ordered-pair checks and materializing both exact projections consume overhead. Peak RSS remains approximately unchanged relative to C. The next optimization target is reusable ordered-pair support masks, cache keys, precomputation/cost accounting, or a stronger full cube potential that reduces the number of expensive pair expansions. Never call a 92.5% search-visit reduction a 92.5% wall-time speedup, and never advertise new lower16 without a completed original B9/B6 source-complete certificate.
+
+**General Lean4 soundness lemma now ACTUALLY KERNEL BUILT:** [P0-R6C Lean Actions SUCCESS #38517271238](https://github.com/WhoSia/CUBE-REV/actions/runs/38517271238), with five-job Lake build completed. This establishes an abstract common-action necessary condition, not the full empirical C/D or whole-cube B8 proof.
