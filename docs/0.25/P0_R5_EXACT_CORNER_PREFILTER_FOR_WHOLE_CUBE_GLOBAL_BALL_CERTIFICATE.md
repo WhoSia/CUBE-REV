@@ -1,6 +1,16 @@
+## External reproducibility update — complete source-global Actions PASS (2026-10-14)
+
+[**P0-R5 completed GitHub Actions run #38513745705**](https://github.com/WhoSia/CUBE-REV/actions/runs/38513745705) is **SUCCESS** on human-author/committer source. Exact real-original complete goal B6 **8,240,087** full CP/CO/EP/EO cubies, whose projected entire 8-corner set has **1,405,068** distinct reversible corner keys. Source normal-form exhaustive bounds0..7 finished **120,213,368** recursive visits. Pre-filter ledger: **118,678,327 exact corner negatives**, **1,535,041 full-cubie lookups** and **ZERO full-cubie intersections**. The partition reconciles exactly: 118,678,327+1,535,041=120,213,368. This saved **98.72308% of expensive full-cubie set queries**, *but each visit still performed a corner set lookup*, and no descendant was cut. This is a machine-checked original physical finite receipt, not a statement of a 98.72% wall time gain.
+
+Iterative depth7 alone: 111,207,592 source recursive visits, 109,779,254 exact corner rejections and 1,428,338 full-cubie lookups. The same original cube completes with the inherited independent 18-word witness and has **global 14≤d18≤18**. The original P1-R6 source was refactored only by a conditional compilation guard that leaves its original standalone main unchanged; its own [full real source CI #38513732158](https://github.com/WhoSia/CUBE-REV/actions/runs/38513732158) also **SUCCESS**, independently establishing that the refactor did not change the historic lower14 mathematical computation. The [P7 read-only branch active-set audit #38513861829](https://github.com/WhoSia/CUBE-REV/actions/runs/38513861829) also succeeded after exact SHA reconciliation.
+
+This is not yet safe subtree pruning and makes NO stronger whole-cube distance lower bound. Next P0-R6 must separate (a) exact projected membership filtering, (b) genuinely admissible future-remaining geodesic branch pruning, and (c) realized hardware wall/RAM performance relative to an identical baseline.
+
+---
+
 # CUBE-REV 0.25 P0-R5 — Sound Physical-Corner Prefilter for Complete-Cubie Bidirectional Certification
 
-**Status: executable native C++17 algorithm and GitHub Actions committed; real completed-run outcome and exact measured performance PENDING.** Official original WCA Seoul Summer 2026 Final A1, all legal physical 18 HTM, 54 original facelets, all 8 CP/CO and 12 EP/EO. No original human trajectories included.
+**Status: original full 18HTM physical C++17 actual GitHub Actions PASS #38513745705, full original geodesic lower14 independently rerun after guarded refactor.** Official original WCA Seoul Summer 2026 Final A1, all legal physical 18 HTM, 54 original facelets, all 8 CP/CO and 12 EP/EO. No original human trajectories included.
 
 ## Exact theorem (one-sided proof-preserving membership filter)
 
