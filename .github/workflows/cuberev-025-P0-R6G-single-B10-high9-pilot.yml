@@ -1,0 +1,93 @@
+name: CUBE-REV 0.25 P0-R6G high-class original B10 single shard cost pilot
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - ".github/workflows/cuberev-025-P0-R6G-single-B10-high9-pilot.yml"
+permissions:
+  contents: read
+jobs:
+  original-physical-shard-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject all automated commit authors or committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile full 54-sticker-derived C++17 selected source-shard solver and Go independent auditor
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6g_first_action_shard_pilot_cpp/main.cpp -o /tmp/r6g
+          go build -o /tmp/r6g-go scripts/cuberev-025/p0_r6g_shard_audit_go/main.go
+      - name: Original actual 18HTM high-class action ID9 B3/B3 source shard regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 120 /tmp/r6g 3 3 110 9 2>&1 | tee /tmp/r6g-single-B3.log
+          /tmp/r6g-go --single /tmp/r6g-single-B3.log 9 3 | tee /tmp/r6g-single-B3-audit.log
+          grep -Fq 'P0R6G_SINGLE_SHARD_GO_AUDIT_PASS SOURCE_RADIUS 3 FIRST_ACTION 9' /tmp/r6g-single-B3-audit.log
+      - name: Ensure no tracked source writeback
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve actual original B3 source proof or error
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6g-single-B3-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6g-single-B3.log
+            /tmp/r6g-single-B3-audit.log
+          if-no-files-found: warn
+          retention-days: 30
+  cost-bounded-original-full-B10-one-shard:
+    needs: original-physical-shard-preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 52
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject automated GitHub contributors
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Build actual original physical single-shard C++17 and independent Go proof auditor
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6g_first_action_shard_pilot_cpp/main.cpp -o /tmp/r6g
+          go build -o /tmp/r6g-go scripts/cuberev-025/p0_r6g_shard_audit_go/main.go
+      - name: Complete ORIGINAL source B10 first physical D move only and goal B6; NO global lower17
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'R6G_SINGLE_B10_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S' timeout 2650 /tmp/r6g 6 10 2600 9 2>&1 | tee /tmp/r6g-single-B10.log
+          grep -Fq 'P0R6G_SINGLE_SHARD_COMPLETE 1 ACTION_ID 9 GOAL_RADIUS 6 SOURCE_RADIUS 10' /tmp/r6g-single-B10.log
+          grep -Fq 'NOT_A_GLOBAL_SOURCE_COVER 1' /tmp/r6g-single-B10.log
+      - name: Go independently certify ONLY the exact first-action B10 canonical proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/r6g-go --single /tmp/r6g-single-B10.log 9 10 | tee /tmp/r6g-single-B10-audit.log
+          grep -Fq 'P0R6G_SINGLE_SHARD_GO_AUDIT_PASS SOURCE_RADIUS 10 FIRST_ACTION 9 SHARD_EXPECTED 14279876542' /tmp/r6g-single-B10-audit.log
+      - name: Read-only checkout and unchanged tracked sources
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve one actual B10 shard or typed HOLD evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6g-single-B10-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6g-single-B10.log
+            /tmp/r6g-single-B10-audit.log
+          if-no-files-found: warn
+          retention-days: 30
