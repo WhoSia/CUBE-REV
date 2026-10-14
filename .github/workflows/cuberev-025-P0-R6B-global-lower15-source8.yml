@@ -42,6 +42,16 @@ jobs:
           set -euo pipefail
           go run scripts/cuberev-025/p0_r6_receipt_go/main.go --source8 /tmp/p0r6-b8.log | tee /tmp/p0r6-b8-audit.log
           grep -Fq 'P0R6_B8_INDEPENDENT_GO_SUCCESS' /tmp/p0r6-b8-audit.log
+      - name: Preserve immutable run-local evidence even on HOLD or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6b-source8-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/p0r6-b8.log
+            /tmp/p0r6-b8-audit.log
+          if-no-files-found: warn
+          retention-days: 30
       - name: Confirm actions never modifies source
         shell: bash
         run: |
