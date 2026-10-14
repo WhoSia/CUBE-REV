@@ -86,6 +86,7 @@
     ".github/workflows/cuberev-025-P0-R3B-continuous-face-price-envelope.yml",
     ".github/workflows/cuberev-025-P0-R3C-E0E2-seven-face-envelopes.yml",
     ".github/workflows/cuberev-025-P0-R4-five-pattern-continuous-face-budget-original-cube.yml",
+    ".github/workflows/cuberev-025-P0-R5-corner-prefilter-global-wholecube.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -337,6 +338,7 @@
     "docs/0.25/P0_R2_FULL_CORNER_88M_AND_CERTIFIED_OPERATOR_COST_DUALITY.md",
     "docs/0.25/P0_R3_EXACT_CONTINUOUS_FACE_COST_PAIR_NO_GO_PHYSICAL_WORD_CERTIFICATE.md",
     "docs/0.25/P0_R4_EXACT_CONTINUOUS_FIVE_PATTERN_COST_NO_GO_SEVEN_ORIGINAL_CUBIE_WORD_CERTIFICATE.md",
+    "docs/0.25/P0_R5_EXACT_CORNER_PREFILTER_FOR_WHOLE_CUBE_GLOBAL_BALL_CERTIFICATE.md",
     "docs/0.25/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -666,6 +668,7 @@
     "scripts/cuberev-025/p0_r3b_source_projected_face_envelope_go/main.go",
     "scripts/cuberev-025/p0_r3c_E0_E2_nonshortest_face_envelope_go/main.go",
     "scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go",
+    "scripts/cuberev-025/p0_r5_corner_projected_global_membership_cpp/main.cpp",
     "scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs",
     "scripts/cuberev-025/verify_p0_r4_five_real_face_budget_original_54sticker.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
@@ -3256,6 +3259,34 @@
       "evidence_limits": "NO 7-move original whole cube solve. Distinct marked-cubie words; global unrestricted cube still 14<=d18<=18. Face-uniform pricing only; no result about finer move pricing or coupled/noncommutative quotient.",
       "canonical_key": true,
       "legacy_key": "p0_r4_025_real_five_pattern_shared_face_budget_9_certificate"
+    },
+    "p0_r5_025_genuine_full_cubie_corner_prefilter_global_membership": {
+      "date": "2026-10-14",
+      "status": "EXACT_PHYSICAL_MEMBERSHIP_FILTER_THEOREM_CODE_COMMITTED_EXTERNAL_CI_PENDING",
+      "source": "WCA Seoul Summer 2026 3x3 Final A1 original complete 54 sticker state",
+      "math_contract": "Full state in goal B6 implies projected full-corner state in pi_C(B6), so absence permits skipping current full-state membership query ONLY; NO descendant pruning",
+      "global_existing_distance_interval": "14<=d18(s)<=18",
+      "expected_original_baseline": {
+        "target_complete_states": 8240087,
+        "source_iterative_depth0_to7_calls": 120213368,
+        "intersection": 0
+      },
+      "benchmark_contract": "measure actual corner-rejects and exact full-cubie probes, separately memory and wall time; no speed claim before readback",
+      "git_blob_paths": [
+        {
+          "path": "scripts/cuberev-025/p0_r5_corner_projected_global_membership_cpp/main.cpp",
+          "git_blob_sha": "e815e70d88fafd85ba5ac1702a5a1f6e2cd3e729"
+        },
+        {
+          "path": ".github/workflows/cuberev-025-P0-R5-corner-prefilter-global-wholecube.yml",
+          "git_blob_sha": "c5c73d6ab9d07bdb5eb1539de8d74aafeb9f5722"
+        },
+        {
+          "path": "docs/0.25/P0_R5_EXACT_CORNER_PREFILTER_FOR_WHOLE_CUBE_GLOBAL_BALL_CERTIFICATE.md",
+          "git_blob_sha": "bc4a83c09c33da9b02acda8025efb23dacad073c"
+        }
+      ],
+      "governance": "WhoSia only author and committer; github-actions[bot] forbidden; CI contents read-only"
     }
   }
 }
