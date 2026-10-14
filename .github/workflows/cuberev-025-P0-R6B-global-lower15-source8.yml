@@ -1,0 +1,50 @@
+name: CUBE-REV 0.25 P0-R6B full physical 14HTM exclusion court
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6_one_step_descendant_cpp/**"
+      - "scripts/cuberev-025/p0_r6_receipt_go/**"
+      - ".github/workflows/cuberev-025-P0-R6B-global-lower15-source8.yml"
+permissions:
+  contents: read
+jobs:
+  exhaustive-original-source-b8-goal-b6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 58
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reject all automated commit authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile actual original 54-facelet physical full-cubie solver
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_one_step_descendant_cpp/main.cpp -o /tmp/p0r6
+      - name: Source-complete exact B8 versus full original solved B6
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'BENCH_P0R6_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S' timeout 3000 /tmp/p0r6 6 8 2950 2>&1 | tee /tmp/p0r6-b8.log
+          grep -Fq 'P0R6_CANONICAL_ACCOUNTING BASELINE 1604664504' /tmp/p0r6-b8.log
+          grep -Fq 'EXACT_EQUATION_PASS 1' /tmp/p0r6-b8.log
+          grep -Fq 'P0R6_GLOBAL_LOWER 15 UPPER 18 SOURCE_B8_GOAL_B6_COMPLETE 1 ALL_14_OR_LESS_EXCLUDED 1' /tmp/p0r6-b8.log
+      - name: Independent Go source-normal-form counting and B8 evidence audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          go run scripts/cuberev-025/p0_r6_receipt_go/main.go --source8 /tmp/p0r6-b8.log | tee /tmp/p0r6-b8-audit.log
+          grep -Fq 'P0R6_B8_INDEPENDENT_GO_SUCCESS' /tmp/p0r6-b8-audit.log
+      - name: Confirm actions never modifies source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
