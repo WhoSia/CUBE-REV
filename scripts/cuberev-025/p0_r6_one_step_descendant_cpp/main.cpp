@@ -6,6 +6,26 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <iomanip>
+// Independent combinatorial count of ALL complete canonical source DFS entries.
+// Does not inspect cubie states or depend on the pruning algorithm.
+uint64_t canonicalBaselineVisits(int radius) {
+  std::vector<uint64_t> byLast(18,0);
+  uint64_t count=uint64_t(radius+1);
+  for(int depth=1;depth<=radius;depth++) {
+    std::vector<uint64_t> next(18,0);
+    for(int a=0;a<18;a++) {
+      if(depth==1) next[a]=canonical(-1,a)?1:0;
+      else for(int last=0;last<18;last++)
+        if(canonical(last,a)) next[a]+=byLast[last];
+    }
+    uint64_t layer=0;
+    for(auto number:next)layer+=number;
+    count+=layer*uint64_t(radius-depth+1);
+    byLast.swap(next);
+  }
+  return count;
+}
+
 struct R6 {
  GlobalCourt court;
  std::unordered_set<U64> c6,c7;
@@ -85,11 +105,18 @@ int main(int argc,char**argv) {
    bool hit=r.check(source,rs);
    if(r.cut||r.court.expired()){std::cout<<"P0R6_RESOURCE_HOLD_SOURCE\n";return 2;}
    if(hit){std::cout<<"P0R6_INTERSECTION_FOUND LOWER_CERTIFICATE_WITHHELD\n";return 3;}
+   const uint64_t baseline=canonicalBaselineVisits(rs);
+   if(r.visits+r.skippedChildren!=baseline)
+     throw std::runtime_error("incomplete canonical source accounting");
+   std::cout<<"P0R6_CANONICAL_ACCOUNTING BASELINE "<<baseline
+     <<" VISITED "<<r.visits<<" SKIPPED "<<r.skippedChildren
+     <<" EXACT_EQUATION_PASS 1\n";
    std::cout<<"P0R6_COMPLETE 1 FULL_GOAL "<<r.court.goal.size()
      <<" SOURCE_VISITS "<<r.visits<<" DESCENDANT_CUTS "<<r.descendantCuts
      <<" SKIPPED_CHILDREN "<<r.skippedChildren<<" FULL_QUERIES "<<r.fullQueries
      <<" FULL_HITS "<<r.fullHits<<" SOUND_ONE_STEP_DESCENDANT_PRUNING 1\n";
    if(rg==6&&rs==7) {
+     if(baseline!=120213368ULL)throw std::runtime_error("original normal form size mismatch");
      if(r.court.goal.size()!=8240087||r.c6.size()!=1405068||r.fullHits!=0)
        throw std::runtime_error("original full-cubie baseline mismatch");
      std::cout<<"P0R6_GLOBAL_LOWER 14 UPPER 18 NEW_LOWER_NOT_CLAIMED 1\n";
