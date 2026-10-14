@@ -2,7 +2,7 @@
 // A sound one-sided negative membership filter; DO NOT prune descendants.
 // Reuse previously externally independently certified original full-cubie physics.
 #define main inherited_p1r6_global_main
-#include "../../../cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp"
+#include "../../cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp"
 #undef main
 #include <unordered_set>
 #include <iomanip>
