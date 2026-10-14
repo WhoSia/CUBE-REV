@@ -1,0 +1,51 @@
+name: CUBE-REV 0.25 P0-R6H conditional source-B10 18-shard aggregation contract
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6h_b10_source_aggregate_go/**"
+      - ".github/workflows/cuberev-025-P0-R6H-B10-aggregate-contract.yml"
+permissions:
+  contents: read
+jobs:
+  compile-and-reject-incomplete-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Forbid bot authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile deterministic Go source-B10 receipt verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/r6h-aggregate scripts/cuberev-025/p0_r6h_b10_source_aggregate_go/main.go
+      - name: An incomplete 18-shard manifest MUST NOT certify global lower17
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s\n' '{"schema":"cuberev-025-r6h-original-source-b10-18shard-v1","source":"WCA_Seoul_Summer_2026_333_Final_A1_original","goal_radius":6,"source_radius":10,"commit_sha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","root_checked":true,"shards":[]}' >/tmp/r6h-incomplete.json
+          if /tmp/r6h-aggregate /tmp/r6h-incomplete.json > /tmp/r6h-reject.log 2>&1; then
+            echo 'ERROR: incomplete proof silently passed'; exit 1
+          fi
+          grep -Fq 'P0R6H_AGGREGATE_REJECT' /tmp/r6h-reject.log
+          echo 'P0R6H_GLOBAL_CERT_INCOMPLETE_18_SHARD_MUST_REJECT_PASS'
+      - name: No source writeback
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve negative certificate contract evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6h-negative-contract-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/r6h-reject.log
+          if-no-files-found: warn
+          retention-days: 30
