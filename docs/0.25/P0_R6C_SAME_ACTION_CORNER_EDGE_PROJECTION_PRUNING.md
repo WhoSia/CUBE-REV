@@ -45,3 +45,18 @@ Test the full source B7 before expanding R6C to B8. The existing B8 P0-R6B remai
     go run scripts/cuberev-025/p0_r6_receipt_go/main.go --joint /tmp/r6a.log /tmp/r6c.log
 
 Use full measurements only from completed logs with exact commit/toolchain/runner identity. The tiny synthetic finite group sanity check is merely a mathematical counterexample/implementation aid, never a stand-in for a real cube certificate.
+
+
+## Quantifier-order counterexample and limitation of the noncommutative label
+
+The important advance is synchronizing **one identical action**, not yet a theorem about noncommuting word order. In particular, an abstract, completely commuting test system already separates the two logical forms
+
+    (exists a: cornerPass(a)) and (exists b: edgePass(b))
+
+from
+
+    (exists a: cornerPass(a) and edgePass(a)).
+
+For an explicit finite counterexample, take states (c,e) in Z/3Z × Z/3Z, legal moves +(1,1) and −(1,1), and full target T={(0,0)}. From x=(1,2), the + move reaches (2,0) and meets the *edge* projection of T only, while the − move reaches (0,1) and meets the *corner* projection only. So both separately existential one-step tests pass, but there is NO single legal generator jointly passing both. This demonstration was also checked in a standalone locally executed Go exhaustive finite-state toy search. **It is a counterexample to a logic mistake, NOT a real-cube benchmark or performance result.**
+
+True Rubik's-cube noncommutative **word-order** synchronization needs to couple two or more legally ordered generators and retain enough information to distinguish \`ab\` from \`ba\` when those moves do not commute. P0-R6C does not yet do that; treat it as the first joint-generator predicate before the stronger multi-action programme. The physical original-cube C++17 experiment remains essential.
