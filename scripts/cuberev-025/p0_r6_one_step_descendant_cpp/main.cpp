@@ -86,8 +86,8 @@ int main(int argc,char**argv) {
    int rg=argc>1?std::stoi(argv[1]):6;
    int rs=argc>2?std::stoi(argv[2]):7;
    int seconds=argc>3?std::stoi(argv[3]):850;
-   if(rg<0||rg>6||rs<0||rs>7||seconds<1)
-     throw std::runtime_error("safe radii 0..6 and 0..7");
+   if(rg<0||rg>6||rs<0||rs>8||seconds<1)
+     throw std::runtime_error("safe radii 0..6 and 0..8");
    initTurns();
    auto sourceWords=parse("R' B' F2 D2 F2 L2 R2 U' F2 L2 D2 B2 D F L' R2 B U2 F2 R2");
    auto solveWords=parse("F U F D' R' F' L' F' D' L B L2 F2 U2 L2 U F' R2");
@@ -120,6 +120,15 @@ int main(int argc,char**argv) {
      if(r.court.goal.size()!=8240087||r.c6.size()!=1405068||r.fullHits!=0)
        throw std::runtime_error("original full-cubie baseline mismatch");
      std::cout<<"P0R6_GLOBAL_LOWER 14 UPPER 18 NEW_LOWER_NOT_CLAIMED 1\n";
+   }
+   if(rg==6&&rs==8) {
+     // This *only* executes when the entire B8 source DFS has completed
+     // without a complete physical B6(goal) match or resource hold.
+     if(r.court.goal.size()!=8240087||r.c6.size()!=1405068
+        ||baseline!=1604664504ULL||r.fullHits!=0)
+       throw std::runtime_error("14-turn global exclusion regression failed");
+     std::cout<<"P0R6_GLOBAL_LOWER 15 UPPER 18"
+       <<" SOURCE_B8_GOAL_B6_COMPLETE 1 ALL_14_OR_LESS_EXCLUDED 1\n";
    }
    return 0;
  } catch(const std::exception&e){std::cerr<<"P0R6_ERROR "<<e.what()<<"\n";return 4;}
