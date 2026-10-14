@@ -1,6 +1,6 @@
 # CUBE-REV 0.25 P0-R6 — Exact One-Step Projected Descendant Pruning for a Whole-Cubie Global Certificate
 
-**State: implementation committed for external verification; CI PASS and measured savings NOT YET CLAIMED.** This is a deliberately narrow first research attack under the broader P0-R6 corner–edge joint-admissibility programme. Real WCA Seoul Summer 2026 3×3 Final A1, original fixed-center 54 stickers, legal 18 HTM, full CP/CO/EP/EO collision-free equality. Original established global bound remains **14 <= d18(s) <= 18**.
+**CURRENT: original physical R6A/B CI SUCCESS, including B8 global lower15 (#38518179172); historical pending status superseded.** This is a deliberately narrow first research attack under the broader P0-R6 corner–edge joint-admissibility programme. Real WCA Seoul Summer 2026 3×3 Final A1, original fixed-center 54 stickers, legal 18 HTM, full CP/CO/EP/EO collision-free equality. Original established global bound remains **14 <= d18(s) <= 18**.
 
 ## New finite theorem
 Let T=B6(e) be the **full-cubie** exact solved-side ball. Set C6=pi_C(T), and define E7=C6 union {pi_C(g a): g is a full representative of any corner projection in C6, a is one of the 18 physically legal HTM turns}. The definition is representative independent: the Rubik's legal corner turn depends only on corner configuration, not edge configuration. Equivalently E7 is the exact one-step reverse-reachable corner enlargement of pi_C(T), including zero moves. Because every 18HTM inverse is in the same legal alphabet, forward and reverse one-step neighborhood coincide.
@@ -58,3 +58,20 @@ The physical C++17 R6 search now accepts source radius 8 with the original 54-st
 The dedicated [read-only P0-R6B Actions experimental court](../../.github/workflows/cuberev-025-P0-R6B-global-lower15-source8.yml) has a bounded wall/resource budget and logs measured wall time and RSS. A separate Go-mode verifier independently computes N8 and requires a completed zero-intersection whole-cube receipt before recognizing a claimed lower15. The new court is an **ATTEMPT to solve the open 14-move exclusion problem**, and a HOLD caused by insufficient compute remains a HOLD. No verified P0-R6B run ID or result has been obtained at this writing.
 
 **Claim status:** P0-R6A finite theorem and code committed, native full-scale PASS pending. P0-R6B exact 14-or-less exclusion programme committed, global lower15 pending. External GitHub Actions run listing for push-triggered executions was not available through the current connector query, which only exposes PR-associated commit runs; an empty return is not evidence of failure or success. Preserve earlier certified **14<=d18(s)<=18** until completed run logs and independent evidence are read.
+
+
+## VERIFIED EXTERNAL RESULT ADDENDUM — 2026-10-14: global lower15 actually certified
+
+**Supersedes this document's opening-era CI-pending wording.**
+
+[Completed physical B6/B7 paired baseline #38518178965](https://github.com/WhoSia/CUBE-REV/actions/runs/38518178965) has original P0-R5 **120,213,368 visits, 37.30 s, peak RSS 715,184 KiB**, versus P0-R6A **16,468,799 visits + 103,744,569 soundly omitted canonical calls**, 19.72 s, RSS 1,111,376 KiB. The Go audit PASS confirms exact full original physical state counts, goal B6 8,240,087, source B7 baseline 120,213,368 and zero complete-cubie intersections. Original one-step corner envelope has exactly **6,807,696** states. This same-runner single comparison measured **47.13% less wall time** and **55.40% more peak RSS**. Runtime results are not automatically source-general.
+
+**Breakthrough:** [P0-R6B completed original B6(goal) + B8(source) #38518179172](https://github.com/WhoSia/CUBE-REV/actions/runs/38518179172) is GitHub Actions **SUCCESS** with physical goal ball 8,240,087 states and zero actual complete CP/CO/EP/EO intersections. Baseline canonical source calls at cumulative bounds0..8: **1,604,664,504**; actually visited **222,915,288**; soundly skipped **1,381,749,216** (86.108293%); full complete-cubie membership lookups **21,665,106**; exact subtree cutoff nodes **103,516,913**. Wall **73.46 seconds**, peak RSS **1,111,372 KiB**. Go independently checked the source canonical recurrence, all source bookkeeping and exact receipt markers, returning **P0R6_B8_INDEPENDENT_GO_SUCCESS ... VERIFIED_GLOBAL_LOWER 15 UPPER 18**. Combined with the physically verified 18-turn original completion this establishes the first verified new unrestricted source-specific global interval:
+
+    15 <= d18(s) <= 18
+
+All 14-or-fewer original legal HTM words are thereby excluded (subject to the soundness of the source-canonical normal form, physical cube transition implementation and one-step projected pruning theorem). **15–17 remain OPEN**. This is a finite C++17 original physical search proof with a Go accounting cross-check, NOT a second independent Go B8 full-cubie exhaustive search or an end-to-end Lean4 theorem of the entire 3×3 physical search.
+
+[Original R6C external full B7 #38518179313](https://github.com/WhoSia/CUBE-REV/actions/runs/38518179313) and [ordered R6D external full B7 #38518256469](https://github.com/WhoSia/CUBE-REV/actions/runs/38518256469) separately succeed; neither adds to the B8 lower15 certified by THIS R6B court. For exact C/D costs consult [R6D report](P0_R6D_ORDERED_TWO_MOVE_COUPLED_PRUNING.md).
+
+**Status: R6A & R6B COMPLETE/EXTERNALLY VERIFIED (2026-10-14); R6C & D B7 COMPLETE; next whole-cube global lower16 via B9/B6 still OPEN.** Any older "not yet confirmed" or "14≤d18≤18 unchanged" phrase in the design chronology above is a preserved earlier state, superseded by this exact completed run.
