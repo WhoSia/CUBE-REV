@@ -39,7 +39,67 @@ func shardExpected(first,radius int)uint64 {
  }
  return calls
 }
+
+func auditSingle(path string,action,radius int){
+ if action<0||action>=18||!(radius==3||radius==10){
+  fail("single shard only action0..17 source radius3 or10")
+ }
+ b,err:=os.ReadFile(path)
+ if err!=nil{fail("cannot read single original physical shard log")}
+ lines:=strings.Split(string(b),"\n")
+ goal:=uint64(3502)
+ if radius==10{goal=8240087}
+ var shard,final,goalline,resource string
+ var n int
+ for _,l:=range lines{
+  l=strings.TrimSpace(l)
+  if strings.HasPrefix(l,"P0R6G_GOAL_FULL "){goalline=l}
+  if strings.HasPrefix(l,"P0R6G_PHYSICAL_SHARD_COMPLETE "){shard=l;n++}
+  if strings.HasPrefix(l,"P0R6G_SINGLE_SHARD_COMPLETE "){final=l}
+  if strings.HasPrefix(l,"R6G_SINGLE_B10_WALL_SECONDS "){resource=l}
+ }
+ if n!=1||goalline==""||final==""{fail("missing or duplicate selected physical shard result")}
+ gw:=strings.Fields(goalline);sw:=strings.Fields(shard);fw:=strings.Fields(final)
+ if number(val(gw,"P0R6G_GOAL_FULL"))!=goal||
+    number(val(gw,"PHYSICAL_PACKED_CASES"))!=4608||
+    val(gw,"ROOT_CHECKED")!="1"||
+    int(number(val(sw,"ACTION_ID")))!=action||
+    int(number(val(fw,"ACTION_ID")))!=action||
+    number(val(fw,"P0R6G_SINGLE_SHARD_COMPLETE"))!=1||
+    number(val(fw,"SOURCE_RADIUS"))!=uint64(radius)||
+    val(fw,"NOT_A_GLOBAL_SOURCE_COVER")!="1"||
+    val(fw,"ORIGINAL_54_STICKER_PHYSICS_PASS")!="1"{
+    fail("original goal, selected action, certified root, radius, physics or no-global-claim invalid")
+ }
+ expected:=shardExpected(action,radius)
+ v:=number(val(sw,"VISITED"));skip:=number(val(sw,"SKIPPED"))
+ if number(val(sw,"BASELINE"))!=expected||
+  v+skip!=expected||
+  number(val(fw,"SHARD_BASELINE"))!=expected||
+  number(val(fw,"SHARD_VISITED"))!=v||
+  number(val(fw,"SHARD_SAFE_SKIPS"))!=skip||
+  val(sw,"GOAL_MEETS")!="0"||
+  val(fw,"FULL_CUBIE_GOAL_MEETS")!="0"||
+  val(fw,"CANONICAL_LAST_ACTION_CONTEXT_PRESERVED")!="1"{
+   fail("source normal form, physical full cubie or safe prefix account missing")
+ }
+ if radius==10 {
+  if resource==""{fail("B10 full physical wall time/RSS missing")}
+  rw:=strings.Fields(resource)
+  if _,e:=strconv.ParseFloat(val(rw,"R6G_SINGLE_B10_WALL_SECONDS"),64);e!=nil{
+    fail("invalid B10 wall time")
+  }
+  if number(val(rw,"PEAK_RSS_KIB"))==0{fail("invalid B10 peak RSS")}
+ }
+ fmt.Printf("P0R6G_SINGLE_SHARD_GO_AUDIT_PASS SOURCE_RADIUS %d FIRST_ACTION %d SHARD_EXPECTED %d ACTUAL_VISITS %d SAFE_SKIPS %d ORIGINAL_COMPLETE_GOAL %d FULL_GOAL_MEETS 0 NOT_GLOBAL_LOWER17 1\n",radius,action,expected,v,skip,goal)
+}
+
 func main() {
+ if len(os.Args)==5 && os.Args[1]=="--single" {
+  a,e1:=strconv.Atoi(os.Args[3]); r,e2:=strconv.Atoi(os.Args[4]);
+  if e1!=nil||e2!=nil{fail("invalid first-action/radius arguments")}
+  auditSingle(os.Args[2],a,r);return
+ }
  if len(os.Args)!=4{fail("usage: log-file goalRadius sourceRadius")}
  data,err:=os.ReadFile(os.Args[1]);if err!=nil{fail("read log failed")}
  goal,_:=strconv.Atoi(os.Args[2])
