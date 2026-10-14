@@ -124,6 +124,7 @@ struct PackedOrderedCourt : OrderedTwoTurnCourt {
    return false;
  }
 };
+#ifndef CUBEREV_P0R6E_AS_LIBRARY
 int main(int argc,char**argv){
  try{
    const int rg=argc>1?std::stoi(argv[1]):3;
@@ -187,3 +188,5 @@ int main(int argc,char**argv){
    return 0;
  }catch(const std::exception&e){std::cerr<<"P0R6E_ERROR "<<e.what()<<"\n";return 4;}
 }
+
+#endif // CUBEREV_P0R6E_AS_LIBRARY
