@@ -95,3 +95,25 @@ A new [Go single-shard independent audit mode](../../scripts/cuberev-025/p0_r6g_
 The subsequent long **single physical original B10 action9** job (ID 115720562632) was **IN_PROGRESS** at the latest check. Full resource cap 2,650 wall seconds, bounded GitHub job 52 minutes; partial or timed-out work must retain HOLD and cannot be promoted to even a one-shard absence theorem. Results and wall/RSS must be read from the completed actual job log before claiming any per-shard finding. The established full original cube bound remains **16≤d18(s)≤18**.
 
 This staged physical cost pilot is a direct application of the verified TCS partition, with explicit costs and evidence grading. It does not authorize launching the other 17 costly B10 shards before a measured execution plan and source-complete aggregation protocol are established.
+
+
+## 2026-10-14 evidence upgrade: exact original source-B10 first D shard COMPLETED
+
+Previously PENDING [original physical cost-limited first D shard Actions #38524132916](https://github.com/WhoSia/CUBE-REV/actions/runs/38524132916) has now completed BOTH job stages **SUCCESS**. The full original real 54-sticker source B10 against entire solved-side B6 first-move shard job 115720562632 actual logs and independent Go receipt were directly retrieved.
+
+**Single exact first generator action ID9 D ONLY; NOT global lower17:**
+
+- Complete whole-cubie B6 goal: **8,240,087** actual CP/CO/EP/EO states; complete goal C6 **1,405,068**, E6 **7,672,278**.
+- Full B10 first-D generator normal-form iterative recursion requirement: **14,279,876,542** calls.
+- **80,144,176** actual physically visited recursive calls + **14,199,732,366** soundly omitted recursive calls = exact 14,279,876,542. The safely omitted fraction is **99.4387614% of the unpruned canonical-call population**. This is not a comparable wall-speedup percentage.
+- **Zero complete-cubie goal collisions** in this entire precisely delimited source canonical first-D shard; physically checks original source root separately, retains last-generator canonical context, and tests 4,608 original full-vs-packed physical turn transitions.
+- Actual wall time **561.99 seconds**, peak RSS **1,341,156 KiB**, user CPU561.54s, system0.35s.
+- Independent Go P0R6G_SINGLE_SHARD_GO_AUDIT_PASS SOURCE_RADIUS 10 FIRST_ACTION 9 SHARD_EXPECTED 14279876542 ACTUAL_VISITS 80144176 SAFE_SKIPS 14199732366 ORIGINAL_COMPLETE_GOAL 8240087 FULL_GOAL_MEETS 0 NOT_GLOBAL_LOWER17 1.
+
+**Exact inference:** this is a valid finite no-intersection certificate of one *regular-language cylinder* defined by the precise first legal move D, not a global statement about all source B10 canonical words. If some length ≤16 legal whole-cube solution still exists, it might start with any other first-generator action. The established original cube full source-specific interval remains **16≤d18(s)≤18**.
+
+### Initial resource budgeting, explicitly model-based
+
+One measured high-index first-action shard uses ~562 runner wall seconds and ~1.34 million KiB resident memory. The independently verified exact first-class unpruned canonical weights are high **14,279,876,542** and low **17,489,205,559**, a 1.2247448714 size ratio. Under an **UNVERIFIED simplifying assumption** that original physical projected pruning efficiency and average transition costs are identical across classes, 9 high+9 low shards would consume approximately 9×561.99×(1+17,489,205,559/14,279,876,542) = **11,252.6 runner seconds ≈ 3.13 runner-hours**, before per-job setup, scheduling overhead, retries and independent aggregate certification. This is NOT an empirically measured global runtime estimate: different first-source corners and edges may have very different target proximity, pruning selectivity, and any true short solution might terminate one shard early.
+
+**Cheapest defensible next calibration:** test one low-class first action with the same exact original physics and Go no-global condition, then estimate wall/RSS from TWO class-specific data points. Avoid automatically dispatching the remaining 16 expensive B10 cases until their proof packet and approximate cost envelope are scientifically justified. A single PASS can never substitute for 18 PASS plus the independently checked root.
