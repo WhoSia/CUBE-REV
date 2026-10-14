@@ -33,8 +33,56 @@ func number(line,key string) float64 {
  if err!=nil || x<0 {fail("invalid measurement %s in %s",key,line)}
  return x
 }
+
+func legal(last,next int) bool {
+ if last<0 {return true}
+ if last/3==next/3 {return false}
+ fa,fb:=last/3,next/3
+ return !(fb-fa==-3)
+}
+func canonicalVisits(radius int) uint64 {
+ prev:=make([]uint64,18)
+ count:=uint64(radius+1)
+ for depth:=1;depth<=radius;depth++ {
+  now:=make([]uint64,18)
+  for a:=0;a<18;a++ {
+   if depth==1 {now[a]=1
+   } else {for last:=0;last<18;last++ {
+    if legal(last,a) {now[a]+=prev[last]}
+   }}
+  }
+  var n uint64
+  for _,v:=range now {n+=v}
+  count+=n*uint64(radius-depth+1)
+  prev=now
+ }
+ return count
+}
+func sourceEight(path string) {
+ r:=read(path)
+ c:=r.line("P0R6_COMPLETE")
+ eq:=r.line("P0R6_CANONICAL_ACCOUNTING")
+ n:=canonicalVisits(8)
+ if n!=1604664504 {fail("independent Go canonical recurrence changed")}
+ if count(c,"FULL_GOAL")!=8240087||count(c,"FULL_HITS")!=0 {
+  fail("B8 original 54-sticker goal source certificate mismatch")
+ }
+ if count(eq,"BASELINE")!=n||count(eq,"VISITED")+count(eq,"SKIPPED")!=n||field(eq,"EXACT_EQUATION_PASS")!="1" {
+  fail("B8 canonical source completeness partition invalid")
+ }
+ if field(r.line("P0R6_GLOBAL_LOWER"),"SOURCE_B8_GOAL_B6_COMPLETE")!="1" {
+  fail("15-move lower certificate not completed")
+ }
+ wall:=number(r.line("BENCH_P0R6_WALL_SECONDS"),"BENCH_P0R6_WALL_SECONDS")
+ ram:=number(r.line("BENCH_P0R6_WALL_SECONDS"),"PEAK_RSS_KIB")
+ if wall<=0||ram<=0 {fail("missing B8 measured hardware metrics")}
+ fmt.Printf("P0R6_B8_INDEPENDENT_GO_SUCCESS CANONICAL_SOURCE_VISITS %d ACTUAL_VISITS %d SKIPPED_CHILDREN %d DESCENDANT_CUTS %d WALL_SECONDS %.3f PEAK_RSS_KIB %.0f VERIFIED_GLOBAL_LOWER 15 UPPER 18\n",
+ n,count(eq,"VISITED"),count(eq,"SKIPPED"),count(c,"DESCENDANT_CUTS"),wall,ram)
+}
+
 func main() {
- if len(os.Args)!=3 {fail("usage: auditor P0R5.log P0R6.log")}
+ if len(os.Args)==3 && os.Args[1]=="--source8" {sourceEight(os.Args[2]);return}
+ if len(os.Args)!=3 {fail("usage: auditor P0R5.log P0R6.log OR --source8 P0R6-B8.log")}
  old:=read(os.Args[1]);neu:=read(os.Args[2])
  a:=old.line("P0R5_SAFE_ORIGINAL_CUBIE_PREFILTER_COMPLETE")
  b:=neu.line("P0R6_COMPLETE")
