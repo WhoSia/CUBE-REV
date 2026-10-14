@@ -1,0 +1,94 @@
+name: CUBE-REV 0.25 P0-R6C same-generator corner-edge synchrony
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6_one_step_descendant_cpp/**"
+      - "scripts/cuberev-025/p0_r6_joint_next_action_cpp/**"
+      - "scripts/cuberev-025/p0_r6_receipt_go/**"
+      - ".github/workflows/cuberev-025-P0-R6C-joint-same-generator.yml"
+permissions:
+  contents: read
+jobs:
+  quick-physical-compile-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reject bot authored and committed Git history
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: C++17 physical R6A and R6C compile; Go independent auditor compile
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_one_step_descendant_cpp/main.cpp -o /tmp/p0r6a
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_joint_next_action_cpp/main.cpp -o /tmp/p0r6c
+          go build -o /tmp/p0r6-go-audit scripts/cuberev-025/p0_r6_receipt_go/main.go
+      - name: Real original 54-sticker small-radius A/C regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 90 /tmp/p0r6a 3 3 80 | tee /tmp/p0r6a-small.log
+          timeout 90 /tmp/p0r6c 3 3 80 | tee /tmp/p0r6c-small.log
+          grep -Fq 'P0R6_COMPLETE 1' /tmp/p0r6a-small.log
+          grep -Fq 'P0R6C_EXACT_COVER' /tmp/p0r6c-small.log
+          grep -Fq 'COMPLETE 1' /tmp/p0r6c-small.log
+      - name: Read-only integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+  full-physical-source-b7-a-vs-c:
+    needs: quick-physical-compile-and-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 42
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reject bot authored and committed Git history
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Build same-toolchain C++17 original physical solver variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_one_step_descendant_cpp/main.cpp -o /tmp/p0r6a
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_joint_next_action_cpp/main.cpp -o /tmp/p0r6c
+      - name: Full B6 goal plus full B7 source, projected corner-only A
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'BENCH_P0R6_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S' timeout 1050 /tmp/p0r6a 6 7 1000 2>&1 | tee /tmp/r6a.log
+          grep -Fq 'P0R6_CANONICAL_ACCOUNTING BASELINE 120213368' /tmp/r6a.log
+          grep -Fq 'P0R6_GLOBAL_LOWER 14 UPPER 18 NEW_LOWER_NOT_CLAIMED 1' /tmp/r6a.log
+      - name: Full B6 goal plus full B7 source, common-physical-action C
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'BENCH_P0R6C_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S' timeout 1050 /tmp/p0r6c 6 7 1000 2>&1 | tee /tmp/r6c.log
+          grep -Fq 'P0R6C_EXACT_COVER BASELINE 120213368' /tmp/r6c.log
+          grep -Fq 'P0R6C_CERTIFIED_PHYSICAL_GLOBAL_LOWER 14 UPPER 18 COMPLETE 1 COMMON_ACTION_SOUND 1' /tmp/r6c.log
+      - name: Independent Go evaluation of more pruning versus wall/RSS
+        shell: bash
+        run: |
+          set -euo pipefail
+          go run scripts/cuberev-025/p0_r6_receipt_go/main.go --joint /tmp/r6a.log /tmp/r6c.log | tee /tmp/r6c-audit.log
+          grep -Fq 'P0R6C_GO_INDEPENDENT_AUDIT_PASS' /tmp/r6c-audit.log
+      - name: Read-only integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
