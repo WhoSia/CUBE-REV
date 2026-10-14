@@ -1,0 +1,85 @@
+name: CUBE-REV 0.25 P0-R6E source B9 global lower16 falsification court
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6e_packed_projected_two_turn_cpp/**"
+      - ".github/workflows/cuberev-025-P0-R6E-global-lower16-B9.yml"
+permissions:
+  contents: read
+jobs:
+  preflight-packed-physical-operator-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject all GitHub bot authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile physical R6E and independent Go audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6e_packed_projected_two_turn_cpp/main.cpp -o /tmp/r6e
+          go build -o /tmp/r6e-go scripts/cuberev-025/p0_r6_receipt_go/main.go
+          timeout 90 /tmp/r6e 3 3 85 | tee /tmp/r6e-small.log
+          grep -Fq 'P0R6E_PACKED_PHYSICAL_TURN_REGRESSION PASS CASES 4608' /tmp/r6e-small.log
+          grep -Fq 'P0R6E_EXACT_COVER' /tmp/r6e-small.log
+      - name: Preserve native preflight receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6e-B9-preflight-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/r6e-small.log
+          if-no-files-found: warn
+          retention-days: 30
+  full-physical-B9-against-B6:
+    needs: preflight-packed-physical-operator-proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 52
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject all GitHub bot authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original physical C++17 and independent Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6e_packed_projected_two_turn_cpp/main.cpp -o /tmp/r6e
+          go build -o /tmp/r6e-go scripts/cuberev-025/p0_r6_receipt_go/main.go
+      - name: Full 15-or-fewer HTM exclusion attempt original source B9 and solved goal B6
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'BENCH_P0R6E_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S' timeout 2700 /tmp/r6e 6 9 2600 2>&1 | tee /tmp/r6e-B9.log
+          grep -Fq 'P0R6E_EXACT_COVER BASELINE 21419814808' /tmp/r6e-B9.log
+          grep -Fq 'P0R6E_GLOBAL_LOWER 16 UPPER 18 FULL_PHYSICAL_SOURCE_COMPLETE 1 SOURCE_RADIUS 9' /tmp/r6e-B9.log
+      - name: Independent Go recurrence verifies exact radius9 source and 16 lower-bound receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          go run scripts/cuberev-025/p0_r6_receipt_go/main.go --source9 /tmp/r6e-B9.log | tee /tmp/r6e-B9-audit.log
+          grep -Fq 'P0R6E_B9_GO_INDEPENDENT_CERT_PASS' /tmp/r6e-B9-audit.log
+      - name: No repository writeback ever
+        shell: bash
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve original B9 physical proof or exact FAILURE/HOLD output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6e-B9-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6e-B9.log
+            /tmp/r6e-B9-audit.log
+          if-no-files-found: warn
+          retention-days: 30
