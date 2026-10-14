@@ -99,6 +99,7 @@
     ".github/workflows/cuberev-025-P0-R6E-packed-pair-benchmark.yml",
     ".github/workflows/cuberev-025-P0-R6F-lean-residual-dominance.yml",
     ".github/workflows/cuberev-025-P0-R6G-physical-18-shard-pilot.yml",
+    ".github/workflows/cuberev-025-P0-R6G-single-B10-high9-pilot.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
