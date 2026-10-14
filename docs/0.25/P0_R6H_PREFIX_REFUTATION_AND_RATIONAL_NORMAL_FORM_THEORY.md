@@ -104,3 +104,24 @@ The cost-gated one-high-class first-D-move [B10 pilot #38524132916](https://gith
 [Lean4 normal-form theorem Actions #38525117311](https://github.com/WhoSia/CUBE-REV/actions/runs/38525117311) completed SUCCESS and the actual job reported **Build completed successfully (13 jobs)**. The added all-depth canonical transfer recurrence theorem applies to ANY initial two-class pair and any finite remaining depth. The low-first (1,15,198) and high-first (1,12,162) initial coefficients are kernel-verified as well. Thus the coefficientwise rational identities derived from the transfer are uniquely fixed: G_low(z)=z(1+3z)/(1−12z−18z²), G_high(z)=z/(1−12z−18z²), and whole canonical language C(z)=(1+6z+9z²)/(1−12z−18z²). The analytic asymptotic low/high ratio sqrt(3/2) is derived mathematically from the simple dominant root; this real-limit argument is NOT claimed to be a separate Lean theorem.
 
 [Second actual bounded B10 first-low U source pilot #38525480526](https://github.com/WhoSia/CUBE-REV/actions/runs/38525480526) has been submitted with independent Go per-shard receipt, cost cap, full 54-sticker physics, and strict NOT GLOBAL labels to calibrate the other canonical source class. At this update its entire physical B10 result is not yet verified. Neither a single low and a single high completed shard, nor a rational generating series, can prove the remaining 16 first-action B10 cylinders empty.
+
+
+## A further exact identity: the low-first B_R cylinder is high-first B_R plus three smaller high-first cylinders
+
+The rational language identities admit an especially clean COEFFICIENTWISE interpretation:
+
+    G_low(z) = (1+3z) G_high(z).
+
+Therefore for all total word lengths n≥1, with h_0 defined zero,
+
+    lowFirstWords(n) = highFirstWords(n) + 3 highFirstWords(n−1).
+
+After weighting each layer by its multiplicity in iterative deepening, for EVERY canonical source radius R≥1:
+
+    W_low(R) = W_high(R) + 3 W_high(R−1),  W_high(0)=0.
+
+This is much stronger and more transparent than saying that shard sizes eventually approach a common growth-ratio. At radius R=10 the equality holds in full exact integers:
+
+    17,489,205,559 = 14,279,876,542 + 3×1,069,776,339.
+
+It is a closed-form WORKLOAD ACCOUNTING identity derived from the normal-form language grammar. It holds independent of any Rubik physical solution state, pattern-database pruning choice or wall-clock performance. The new independent 18-letter Go word-automaton audit checks this identity for ALL radii1..10 before it labels P0R6H_RATIONAL_LANGUAGE_CLASS_IDENTITY_PASS; the resulting external Actions result must be directly verified. Algebraically the equality is established for all radii by the exact rational formal generating function; currently the Lean kernel proves the all-depth second-order recurrence and initial coefficients, not a separate theorem naming this exact weighted identity.
