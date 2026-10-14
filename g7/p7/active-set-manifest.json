@@ -672,6 +672,7 @@
     "scripts/cuberev-025/p0_r4_five_pattern_face_budget_go/main.go",
     "scripts/cuberev-025/p0_r5_corner_projected_global_membership_cpp/main.cpp",
     "scripts/cuberev-025/p0_r6_one_step_descendant_cpp/main.cpp",
+    "scripts/cuberev-025/p0_r6_receipt_go/main.go",
     "scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs",
     "scripts/cuberev-025/verify_p0_r4_five_real_face_budget_original_54sticker.mjs",
     "scripts/g7-p10/audit-batch4-leverage.py",
