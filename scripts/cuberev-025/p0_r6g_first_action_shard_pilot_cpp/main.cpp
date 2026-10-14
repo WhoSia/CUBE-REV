@@ -117,7 +117,7 @@ int main(int argc,char**argv){
        <<" CANONICAL_LAST_ACTION_CONTEXT_PRESERVED 1"
        <<" NOT_A_GLOBAL_SOURCE_COVER 1"
        <<" ORIGINAL_54_STICKER_PHYSICS_PASS 1"
-       <<"\\n"<<std::flush;
+       <<"\n"<<std::flush;
      return 0;
    }
    for(bool flag:certified)if(!flag)
