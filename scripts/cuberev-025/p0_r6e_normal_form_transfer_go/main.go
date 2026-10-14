@@ -11,6 +11,28 @@ func legal(a,b int)bool{
  (fa==2&&fb==5)||(fa==5&&fb==2)
  return !opposite||fb>=fa
 }
+
+// shardCalls checks the original full 18-generator grammar starting with an
+// EXACT first action. The source root's (R+1) IDDFS visits are handled separately.
+func shardCalls(firstAction,limit int)uint64{
+ current:=make([]uint64,18)
+ current[firstAction]=1
+ var weighted uint64
+ for depth:=1;depth<=limit;depth++{
+  if depth>1{
+   next:=make([]uint64,18)
+   for a:=0;a<18;a++{for b,v:=range current{
+    if legal(b,a){next[a]+=v}
+   }}
+   current=next
+  }
+  var layer uint64
+  for _,v:=range current{layer+=v}
+  weighted+=uint64(limit-depth+1)*layer
+ }
+ return weighted
+}
+
 func main(){
  var low,high uint64=9,9 // 3 low faces and 3 high faces × 3 HTM powers
  byLast:=make([]uint64,18)
@@ -42,5 +64,16 @@ func main(){
   prev2,prev1=prev1,current
   low,high=6*low+6*high,9*low+6*high
  }
+ var shards uint64
+ for a:=0;a<18;a++{
+  size:=shardCalls(a,10)
+  expected:=uint64(17489205559)
+  if a>=9{expected=14279876542}
+  if size!=expected{die(fmt.Sprintf("normal-form source first-move shard %d unexpectedly contains %d",a,size))}
+  fmt.Printf("P0R6G_SOURCE_B10_FIRST_MOVE_SHARD ACTION_ID %d CANONICAL_ITERATIVE_CALLS %d CLASS %s\n",a,size,func()string{if a<9{return "LOW"};return "HIGH"}())
+  shards+=size
+ }
+ if 11+shards!=285921738920{die("18 first-move shards + all repeated root visits do not exactly cover B10")}
+ fmt.Printf("P0R6G_B10_SOURCE_FIRST_MOVE_PARTITION_PASS ROOT_VISITS 11 LOW_SHARD_SIZE 17489205559 HIGH_SHARD_SIZE 14279876542 LOW_SHARDS 9 HIGH_SHARDS 9 TOTAL_CANONICAL_CALLS 285921738920\n")
  fmt.Printf("P0R6E_TWO_STATE_GRAMMAR_EXACT_PASS TRANSFER_LOW_TO_LOW 6 LOW_TO_HIGH 9 HIGH_TO_LOW 6 HIGH_TO_HIGH 6 CHARACTERISTIC_RECURRENCE C_D_PLUS_2_EQUALS_12_C_D_PLUS_1_PLUS_18_C_D 1 R7 120213368 R8 1604664504 R9 21419814808\n")
 }
