@@ -5,6 +5,7 @@ on:
     branches: [research/current]
     paths:
       - "formal/025/ProjectionWordLanguage.lean"
+      - "formal/025/CanonicalTransfer.lean"
       - "formal/025/lakefile.toml"
       - ".github/workflows/cuberev-025-P0-R6E-lean-language.yml"
 permissions:
