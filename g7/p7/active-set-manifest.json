@@ -3262,7 +3262,7 @@
     },
     "p0_r5_025_genuine_full_cubie_corner_prefilter_global_membership": {
       "date": "2026-10-14",
-      "status": "CPLUSPLUS_P1R6_LIBRARY_INCLUDE_GUARD_FIXED_EXTERNAL_CI_PENDING",
+      "status": "ORIGINAL_FULL_CUBIE_P0R5_EXACT_CORNER_PREFILTER_CI_SUCCESS",
       "source": "WCA Seoul Summer 2026 3x3 Final A1 original complete 54 sticker state",
       "math_contract": "Full state in goal B6 implies projected full-corner state in pi_C(B6), so absence permits skipping current full-state membership query ONLY; NO descendant pruning",
       "global_existing_distance_interval": "14<=d18(s)<=18",
@@ -3283,11 +3283,26 @@
         },
         {
           "path": "docs/0.25/P0_R5_EXACT_CORNER_PREFILTER_FOR_WHOLE_CUBE_GLOBAL_BALL_CERTIFICATE.md",
-          "git_blob_sha": "bc4a83c09c33da9b02acda8025efb23dacad073c"
+          "git_blob_sha": "f844aa23208104c2723f788d8571db40b7210b0c"
         }
       ],
       "governance": "WhoSia only author and committer; github-actions[bot] forbidden; CI contents read-only",
-      "original_p1r6_library_import": "Conditional CUBEREV_P1R6_AS_LIBRARY flag leaves original main present when compiled standalone; inherited mathematical source engine unchanged"
+      "original_p1r6_library_import": "Conditional CUBEREV_P1R6_AS_LIBRARY flag leaves original main present when compiled standalone; inherited mathematical source engine unchanged",
+      "external_ci": "https://github.com/WhoSia/CUBE-REV/actions/runs/38513745705",
+      "original_p1r6_regression": "https://github.com/WhoSia/CUBE-REV/actions/runs/38513732158",
+      "complete_measured_metrics": {
+        "full_goal_cube_states": 8240087,
+        "distinct_projected_corner_states": 1405068,
+        "source_visits": 120213368,
+        "corner_rejection_queries_avoided": 118678327,
+        "exact_full_cubie_lookups": 1535041,
+        "lookup_reduction_percent": 98.72306963398613,
+        "full_true_intersections": 0,
+        "descendant_branches_pruned": 0,
+        "whole_global_lower": 14,
+        "known_upper": 18
+      },
+      "not_general_runtime_speedup": "extra corner query per visited state and extra RAM; full lookups counted not wall speed"
     }
   }
 }
