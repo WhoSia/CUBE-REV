@@ -1,6 +1,6 @@
 name = "CubeRev025"
 version = "0.1.0"
-defaultTargets = ["CostPartition", "JointNextAction", "ProjectionWordLanguage", "CanonicalTransfer"]
+defaultTargets = ["CostPartition", "JointNextAction", "ProjectionWordLanguage", "CanonicalTransfer", "BoundedResidualDominance"]
 
 [[lean_lib]]
 name = "CostPartition"
@@ -12,3 +12,6 @@ name = "ProjectionWordLanguage"
 
 [[lean_lib]]
 name = "CanonicalTransfer"
+
+[[lean_lib]]
+name = "BoundedResidualDominance"
