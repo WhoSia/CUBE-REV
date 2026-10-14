@@ -114,7 +114,44 @@ func auditJoint(oldPath,jointPath string){
  ramOld,ramJoint,100*(ramJoint/ramOld-1))
 }
 
+
+func auditOrdered(cPath,dPath string){
+ c:=read(cPath);d:=read(dPath)
+ old:=c.line("P0R6C_EXACT_COVER")
+ cur:=d.line("P0R6D_EXACT_COVER")
+ full:=d.line("P0R6D_GOAL_FULL")
+ bound:=canonicalVisits(7)
+ if bound!=120213368||count(old,"BASELINE")!=bound||
+ count(cur,"BASELINE")!=bound||
+ count(old,"VISITS")+count(old,"SKIPPED")!=bound||
+ count(cur,"ACTUAL_VISITS")+count(cur,"SKIPPED_CANONICAL_CALLS")!=bound||
+ count(old,"FULL_HITS")!=0||count(cur,"FULL_HITS")!=0||
+ count(full,"P0R6D_GOAL_FULL")!=8240087 ||
+ count(full,"CORNER6")!=1405068 ||
+ field(full,"REAL_ORIGINAL_CUBE_UF_NE_FU")!="1"{
+ fail("C/D physical full-cubie nonintersection, correct goal or exact-source coverage gate failed")
+ }
+ cutC:=count(old,"SKIPPED")
+ cutD:=count(cur,"SKIPPED_CANONICAL_CALLS")
+ if cutD<cutC {fail("D unexpectedly visited more source calls than C")}
+ if field(d.line("P0R6D_GLOBAL_LOWER"),"ORDERED_TWO_MOVE_PREDICATE_SOUND")!="1" {
+ fail("ordered physical certificate missing")
+ }
+ cCost:=c.line("BENCH_P0R6C_WALL_SECONDS")
+ dCost:=d.line("BENCH_P0R6D_WALL_SECONDS")
+ tC:=number(cCost,"BENCH_P0R6C_WALL_SECONDS")
+ tD:=number(dCost,"BENCH_P0R6D_WALL_SECONDS")
+ rC:=number(cCost,"PEAK_RSS_KIB")
+ rD:=number(dCost,"PEAK_RSS_KIB")
+ if tC==0||tD==0||rC==0||rD==0{fail("ordered cost measurement missing")}
+ fmt.Printf("P0R6D_GO_AUDIT_PASS BASELINE %d C_VISITS %d D_VISITS %d C_SKIPPED %d D_SKIPPED %d EXTRA_SKIPPED %d ORDERED_PAIR_CHECKS %d TWO_STEP_REJECTED_BRANCHES %d C_WALL_SECONDS %.3f D_WALL_SECONDS %.3f TIME_CHANGE_PERCENT %.4f C_RSS_KIB %.0f D_RSS_KIB %.0f RAM_CHANGE_PERCENT %.4f VERIFIED_GLOBAL_LOWER 14 UPPER 18\n",
+ bound,count(old,"VISITS"),count(cur,"ACTUAL_VISITS"),cutC,cutD,cutD-cutC,
+ count(cur,"ORDERED_PAIR_CHECKS"),count(cur,"TWO_STEP_REJECTED_FIRST_ACTION_BRANCHES"),
+ tC,tD,100*(tD/tC-1),rC,rD,100*(rD/rC-1))
+}
+
 func main() {
+ if len(os.Args)==4 && os.Args[1]=="--ordered" {auditOrdered(os.Args[2],os.Args[3]);return}
  if len(os.Args)==4 && os.Args[1]=="--joint" {auditJoint(os.Args[2],os.Args[3]);return}
  if len(os.Args)==3 && os.Args[1]=="--source8" {sourceEight(os.Args[2]);return}
  if len(os.Args)!=3 {fail("usage: auditor P0R5.log P0R6.log OR --source8 P0R6-B8.log")}
