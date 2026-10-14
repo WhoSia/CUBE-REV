@@ -28,8 +28,10 @@ int main(int argc,char**argv){
    const int goalR=argc>1?std::stoi(argv[1]):3;
    const int sourceR=argc>2?std::stoi(argv[2]):3;
    const int seconds=argc>3?std::stoi(argv[3]):240;
-   if(goalR<0||goalR>6||sourceR<1||sourceR>7||seconds<1)
-     throw std::runtime_error("R6G PILOT only goal radius0..6, source radius1..7");
+   const int selected=argc>4?std::stoi(argv[4]):-1;
+   if(goalR<0||goalR>6||sourceR<1||sourceR>10||seconds<1||
+      selected<-1||selected>17||(sourceR>7&&selected<0))
+     throw std::runtime_error("R6G all 18 shards goal<=6 source<=7; optional single shard source<=10");
    initTurns();
    const auto scr=parse("R' B' F2 D2 F2 L2 R2 U' F2 L2 D2 B2 D F L' R2 B U2 F2 R2");
    const auto known=parse("F U F D' R' F' L' F' D' L B L2 F2 U2 L2 U F' R2");
@@ -64,6 +66,7 @@ int main(int argc,char**argv){
      <<" ROOT_CHECKED 1 PHYSICAL_PACKED_CASES "<<physicalChecks
      <<"\n"<<std::flush;
    for(int first=0;first<18;first++){
+     if(selected>=0&&first!=selected)continue;
      court.visits=0;court.skippedChildren=0;
      const Cube firstCube=composeCube(source,turn[first]);
      for(int limit=1;limit<=sourceR;limit++){
@@ -90,6 +93,32 @@ int main(int argc,char**argv){
      summedBaseline+=baseline;
      certified[first]=true;
      certifiedShards++;
+   }
+   if(selected>=0){
+     const uint64_t firstBaseline=exactCanonicalFirstMoveCalls(selected,sourceR);
+     const uint64_t firstVisits=totalVisited-uint64_t(sourceR+1);
+     if(certifiedShards!=1||!certified[selected]||
+        firstVisits+totalSkipped!=firstBaseline||
+        summedBaseline!=firstBaseline+uint64_t(sourceR+1))
+       throw std::runtime_error("selected first-move physical proof subset incomplete");
+     if(goalR==6&&sourceR==10){
+       const uint64_t expected=selected<9?17489205559ULL:14279876542ULL;
+       if(firstBaseline!=expected||court.court.goal.size()!=8240087ULL||
+          court.c6.size()!=1405068ULL)
+         throw std::runtime_error("source B10 canonical first-action / goal B6 regression failed");
+     }
+     std::cout<<"P0R6G_SINGLE_SHARD_COMPLETE 1 ACTION_ID "<<selected
+       <<" GOAL_RADIUS "<<goalR<<" SOURCE_RADIUS "<<sourceR
+       <<" ROOT_PHYSICAL_CHECKED 1"
+       <<" SHARD_BASELINE "<<firstBaseline
+       <<" SHARD_VISITED "<<firstVisits
+       <<" SHARD_SAFE_SKIPS "<<totalSkipped
+       <<" FULL_CUBIE_GOAL_MEETS 0"
+       <<" CANONICAL_LAST_ACTION_CONTEXT_PRESERVED 1"
+       <<" NOT_A_GLOBAL_SOURCE_COVER 1"
+       <<" ORIGINAL_54_STICKER_PHYSICS_PASS 1"
+       <<"\\n"<<std::flush;
+     return 0;
    }
    for(bool flag:certified)if(!flag)
      throw std::runtime_error("missing first generator");
