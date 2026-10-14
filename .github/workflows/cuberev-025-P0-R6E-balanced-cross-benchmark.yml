@@ -1,0 +1,73 @@
+name: CUBE-REV 0.25 P0-R6E balanced repeated original cube cost trial
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6e_replicated_cost_go/**"
+      - ".github/workflows/cuberev-025-P0-R6E-balanced-cross-benchmark.yml"
+permissions:
+  contents: read
+jobs:
+  matched-ABBA-twice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Refuse all bot-authored or bot-committed Git research
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original unchanged R6D and lossless R6E packed physical C++17 and independent Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6_ordered_two_turn_cpp/main.cpp -o /tmp/r6d
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6e_packed_projected_two_turn_cpp/main.cpp -o /tmp/r6e
+          go build -o /tmp/r6e-crosscheck scripts/cuberev-025/p0_r6e_replicated_cost_go/main.go
+      - name: Repeated exact same-runner original physical B6/B7 D E E D D E E D
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r6e-cross
+          for entry in D1 E1 E2 D2 D3 E3 E4 D4; do
+            variant="${entry:0:1}"
+            exe="/tmp/r6d"
+            if [ "$variant" = E ]; then exe="/tmp/r6e"; fi
+            echo "CROSS_BENCH_ENTRY $entry $variant"
+            /usr/bin/time -f "BENCH_R6E_CROSS_WALL_SECONDS %e PEAK_RSS_KIB %M USER_SECONDS %U SYSTEM_SECONDS %S VARIANT $variant" timeout 135 "$exe" 6 7 125 2>&1 | tee "/tmp/r6e-cross/$entry.log"
+            if [ "$variant" = D ]; then
+              grep -Fq "P0R6D_EXACT_COVER BASELINE 120213368" "/tmp/r6e-cross/$entry.log"
+              grep -Fq "P0R6D_GLOBAL_LOWER 14 UPPER 18 COMPLETE 1" "/tmp/r6e-cross/$entry.log"
+            else
+              grep -Fq "P0R6E_PACKED_PHYSICAL_TURN_REGRESSION PASS CASES 4608" "/tmp/r6e-cross/$entry.log"
+              grep -Fq "P0R6E_EXACT_COVER BASELINE 120213368" "/tmp/r6e-cross/$entry.log"
+              grep -Fq "P0R6E_GLOBAL_LOWER 14 UPPER 18 FULL_PHYSICAL_SOURCE_COMPLETE 1 SOURCE_RADIUS 7" "/tmp/r6e-cross/$entry.log"
+            fi
+          done
+      - name: Independent Go physical-proof-equivalence check plus crossover mean/median and RSS
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/r6e-crosscheck /tmp/r6e-cross | tee /tmp/r6e-cross-summary.log
+          grep -Fq 'R6E_CROSS_AUDIT_SUCCESS' /tmp/r6e-cross-summary.log
+      - name: No tracked repository mutation or writeback
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Persist per-iteration evidence even on timeout or FAIL
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6e-balanced-cross-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6e-cross/
+            /tmp/r6e-cross-summary.log
+          if-no-files-found: warn
+          retention-days: 30
