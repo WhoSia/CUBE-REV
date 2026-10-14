@@ -2696,7 +2696,7 @@
       "new_exact_paths_and_blobs": [
         {
           "path": "scripts/cuberev-024/p1_r6_global_full18_bidir_cpp/main.cpp",
-          "git_blob_sha": "d004aced3fa19be07a6caa7ec53b55d5497b18e2"
+          "git_blob_sha": "83cf8c7d087919c42c924c747863fd9235d52dca"
         },
         {
           "path": "scripts/cuberev-024/p1_r6_independent_54_facelet_go/main.go",
@@ -3262,7 +3262,7 @@
     },
     "p0_r5_025_genuine_full_cubie_corner_prefilter_global_membership": {
       "date": "2026-10-14",
-      "status": "EXACT_PHYSICAL_MEMBERSHIP_FILTER_THEOREM_CODE_COMMITTED_EXTERNAL_CI_PENDING",
+      "status": "CPLUSPLUS_P1R6_LIBRARY_INCLUDE_GUARD_FIXED_EXTERNAL_CI_PENDING",
       "source": "WCA Seoul Summer 2026 3x3 Final A1 original complete 54 sticker state",
       "math_contract": "Full state in goal B6 implies projected full-corner state in pi_C(B6), so absence permits skipping current full-state membership query ONLY; NO descendant pruning",
       "global_existing_distance_interval": "14<=d18(s)<=18",
@@ -3275,7 +3275,7 @@
       "git_blob_paths": [
         {
           "path": "scripts/cuberev-025/p0_r5_corner_projected_global_membership_cpp/main.cpp",
-          "git_blob_sha": "e815e70d88fafd85ba5ac1702a5a1f6e2cd3e729"
+          "git_blob_sha": "14feb73e3eb2bacb7860f6c5450514ed49a068e0"
         },
         {
           "path": ".github/workflows/cuberev-025-P0-R5-corner-prefilter-global-wholecube.yml",
@@ -3286,7 +3286,8 @@
           "git_blob_sha": "bc4a83c09c33da9b02acda8025efb23dacad073c"
         }
       ],
-      "governance": "WhoSia only author and committer; github-actions[bot] forbidden; CI contents read-only"
+      "governance": "WhoSia only author and committer; github-actions[bot] forbidden; CI contents read-only",
+      "original_p1r6_library_import": "Conditional CUBEREV_P1R6_AS_LIBRARY flag leaves original main present when compiled standalone; inherited mathematical source engine unchanged"
     }
   }
 }
