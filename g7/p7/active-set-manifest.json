@@ -88,6 +88,7 @@
     ".github/workflows/cuberev-025-P0-R4-five-pattern-continuous-face-budget-original-cube.yml",
     ".github/workflows/cuberev-025-P0-R5-corner-prefilter-global-wholecube.yml",
     ".github/workflows/cuberev-025-P0-R6-descendant-pruning.yml",
+    ".github/workflows/cuberev-025-P0-R6B-global-lower15-source8.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
