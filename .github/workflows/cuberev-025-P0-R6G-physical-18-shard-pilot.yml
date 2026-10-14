@@ -1,0 +1,94 @@
+name: CUBE-REV 0.25 P0-R6G first-action original physical shard preflight
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6g_first_action_shard_pilot_cpp/**"
+      - "scripts/cuberev-025/p0_r6g_shard_audit_go/**"
+      - ".github/workflows/cuberev-025-P0-R6G-physical-18-shard-pilot.yml"
+permissions:
+  contents: read
+jobs:
+  fast-original-physical-18-shard-B3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject bot-authored and bot-committed Git history
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original 54-sticker R6G physical C++17 and independent Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6g_first_action_shard_pilot_cpp/main.cpp -o /tmp/r6g
+          go build -o /tmp/r6ggo scripts/cuberev-025/p0_r6g_shard_audit_go/main.go
+      - name: Actual original 54-sticker B3 goal and 18 first-generator source B3 shards
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 150 /tmp/r6g 3 3 130 2>&1 | tee /tmp/r6g-B3.log
+          /tmp/r6ggo /tmp/r6g-B3.log 3 3 | tee /tmp/r6g-B3-audit.log
+          grep -Fq 'P0R6G_INDEPENDENT_GO_SHARD_AUDIT_PASS' /tmp/r6g-B3-audit.log
+      - name: No tracked source modification
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve all B3 pilot diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6g-B3-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6g-B3.log
+            /tmp/r6g-B3-audit.log
+          if-no-files-found: warn
+          retention-days: 30
+  full-original-physical-18-shard-B7:
+    needs: fast-original-physical-18-shard-B3
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject bot-authored and bot-committed Git history
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original 54-sticker R6G and independent Go auditor
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6g_first_action_shard_pilot_cpp/main.cpp -o /tmp/r6g
+          go build -o /tmp/r6ggo scripts/cuberev-025/p0_r6g_shard_audit_go/main.go
+      - name: Exactly all 18 legal first move B7 source subproofs and original full B6 solved goal
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'R6G_FULL_B7_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 900 /tmp/r6g 6 7 850 2>&1 | tee /tmp/r6g-B7.log
+          grep -Fq 'P0R6G_ALL_18_FIRST_ACTIONS_AND_ROOT_COMPLETE 1 ROOT_CALLS 8 SHARD_COUNT 18 TOTAL_BASELINE 120213368' /tmp/r6g-B7.log
+      - name: Independent Go exact original canonical full source B7 proof-cover audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/r6ggo /tmp/r6g-B7.log 6 7 | tee /tmp/r6g-B7-audit.log
+          grep -Fq 'P0R6G_INDEPENDENT_GO_SHARD_AUDIT_PASS GOAL_RADIUS 6 SOURCE_RADIUS 7 SHARDS 18' /tmp/r6g-B7-audit.log
+      - name: Never write to original source repository
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve all original B7 source first-generator proof receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6g-B7-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6g-B7.log
+            /tmp/r6g-B7-audit.log
+          if-no-files-found: warn
+          retention-days: 30
