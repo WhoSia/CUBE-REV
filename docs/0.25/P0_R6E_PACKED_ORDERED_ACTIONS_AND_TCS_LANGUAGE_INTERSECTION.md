@@ -64,3 +64,21 @@ The formal theorem is **generic and conditional** on having honest exact one-ste
 ## Evidence and governance
 
 At authorship time the new R6E performance test, actual B9 experiment and Lean projection-language kernel check remain **SUBMITTED/UNVERIFIED**. R6B prior global lower15, R6D prior B7 proof and previous independent Lean same-action kernel theorem are separately completed and inherited. Research code C++17 (physical), Go (independent receipt), Lean4 (abstract TCS). No Python-first claims, no bot author/committer, read-only Actions, P7 exact allowlist, no protected human 451 raw reconstructions in public source.
+
+
+## 2026-10-14 mathematical branch: exact rational source normal-form grammar
+
+An additional independent pure TCS observation eliminates the need to model the 18-letter canonical-word automaton in all 18 last-action states just to COUNT the complete search universe. The inherited physical word normalization forbids consecutive rotations of the same face and fixes one total order among commuting opposite faces. Group the six faces in their actual URFDLB index order as *low* {U,R,F} and *high* {D,L,B}. Each face has exactly three HTM generator powers. At a given old low-ending face, legal next faces comprise two low and three high (six low-labeled moves + nine high-labeled moves); at a high-ending face, the reverse opposite face is forbidden, leaving two low and two high (six low + six high-labeled moves). Therefore if (L_d,H_d) are canonical words of exactly length d ending at each class, the **exact transfer** is
+
+    [L_(d+1)]   [6 6] [L_d]
+    [H_(d+1)] = [9 6] [H_d]       with L_1=9, H_1=9.
+
+Its characteristic polynomial is **lambda²−12lambda−18**, roots 6±3sqrt(6). If c_d=L_d+H_d counts all canonical legal source action WORDS of length d, then for every d>=1,
+
+    c_(d+2)=12 c_(d+1)+18 c_d;  c_1=18, c_2=243.
+
+This recurrence is exact combinatorial normal-form counting, NOT a Rubik full-state count. The growth constant is 6+3sqrt(6)≈13.348469; therefore the unpruned canonical source word tree still expands exponentially even after removing obvious same-face/opposite-face normalization redundancy. The iteratively deepened total number of complete recursive entries through source radius R is N_R=sum_(d=0)^R (R-d+1)c_d, c_0=1. In particular, N_7=120,213,368; N_8=1,604,664,504; **N_9=21,419,814,808**. These exact integer values bound the *accounting population* from which true pruning removes calls; a source search cannot be declared complete by merely comparing wall time to this population.
+
+[Independent Go 6-face class transfer and complete 18-action DFA cross-check](../../scripts/cuberev-025/p0_r6e_normal_form_transfer_go/main.go) checks all lengths 1..10, reproduces the physical inherited normal-form baseline N7,N8,N9 and emits a typed receipt. [Lean4 CanonicalTransfer.lean](../../formal/025/CanonicalTransfer.lean) formalizes the 2x2 transfer's characteristic recurrence and first exact 18/243 layers. **The Lean theorem checks the algebraic consequence of the stated transfer; the correspondence of the transfer to the source canonical grammar is independently enumerated in Go**, not yet a theorem tying actual complete Rubik's physical normal forms to Lean's grammar. [Short independent Go Actions court](../../.github/workflows/cuberev-025-P0-R6E-canonical-grammar.yml) provides a cheap CI gate separate from the long B9 search. Existing [Lean TCS kernel Actions](../../.github/workflows/cuberev-025-P0-R6E-lean-language.yml) builds both CanonicalTransfer and ProjectionWordLanguage via the default Lean lake configuration.
+
+**Research significance:** the transfer has effective dimension two for this face-class counting observable despite the 18-move legal alphabet. This separates the **combinatorial language-growth problem** (a rational, completely solved series) from the **physical Rubik's state coalescence and source-specific geodesic-exclusion problem** (requiring true cubie physics, noncommuting action order, goal projections, and sound subtree certificates). Future TCS work can use the exact grammar transfer to cost bound lookahead, to choose safe proof-prefix partitions, and to prove recurrence-based source-count artifacts without recomputing an enormous DFS tree.
