@@ -64,6 +64,17 @@ func main(){
   prev2,prev1=prev1,current
   low,high=6*low+6*high,9*low+6*high
  }
+ for radius:=1;radius<=10;radius++{
+  low:=shardCalls(0,radius)
+  high:=shardCalls(9,radius)
+  var previousHigh uint64
+  if radius>=2{previousHigh=shardCalls(9,radius-1)}
+  if low!=high+3*previousHigh{
+   die(fmt.Sprintf("exact low/high rational language derivative identity fails at radius %d",radius))
+  }
+  fmt.Printf("P0R6H_SHARD_CLASS_EXACT_IDENTITY RADIUS %d LOW %d HIGH %d HIGH_PREVIOUS %d LOW_EQUALS_HIGH_PLUS_3_PREVIOUS 1\n",radius,low,high,previousHigh)
+ }
+ fmt.Printf("P0R6H_RATIONAL_LANGUAGE_CLASS_IDENTITY_PASS VERIFIED_RADII 1_TO_10 1 FORMULA LOW_R_EQUALS_HIGH_R_PLUS_3_HIGH_R_MINUS_1 1\n")
  var shards uint64
  for a:=0;a<18;a++{
   size:=shardCalls(a,10)
