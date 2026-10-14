@@ -36,7 +36,7 @@ int main(int argc,char**argv){
    Cube source=cubeAfter(scr);
    Stickers original=solvedStickers();
    for(int a:scr)physicalTurn(original,names[a]);
-   if(exactKey(source)!=exactKey(fromStickers(original)) ||
+   if(!(exactKey(source)==exactKey(fromStickers(original))) ||
       known.size()!=18 || !physicalSolves(scr,known))
      throw std::runtime_error("original official source/18turn sticker physics mismatch");
    const uint64_t physicalChecks=physicallyAuditFastProjection();
