@@ -89,4 +89,35 @@ theorem bounded_right_language_budget_monotone
   intro word hLen hWeak
   exact hInc word (Nat.le_trans hLen hBudget) hWeak
 
+
+/-- For deterministic common-action product automata, finite-depth language
+inclusion has an EXACT recursive characterization: zeroth-word acceptance
+implication AND inclusion of every identically labelled successor.
+The automaton state may include canonical-normal-form last-face context. -/
+theorem bounded_right_language_recursive_characterization
+    {S : Type u} {A : Type z}
+    (step : S → A → S) (accept : S → Prop)
+    (k : Nat) (strong weak : S) :
+    boundedRightLanguageIncluded step accept (k+1) strong weak ↔
+    ((accept weak → accept strong) ∧
+      ∀ a : A, boundedRightLanguageIncluded step accept k
+        (step strong a) (step weak a)) := by
+  constructor
+  · intro h
+    constructor
+    · intro hWeak
+      exact h [] (by simp) (by simpa only [runWord] using hWeak)
+    · intro a
+      exact bounded_right_language_step_congruence
+        step accept k strong weak a h
+  · rintro ⟨hEmpty, hStep⟩ word hLen hWeak
+    cases word with
+    | nil =>
+        exact hEmpty (by simpa only [runWord] using hWeak)
+    | cons a tail =>
+        have ht : tail.length ≤ k := by
+          simpa using hLen
+        have hr := hStep a tail ht (by simpa only [runWord] using hWeak)
+        simpa only [runWord] using hr
+
 end CubeRev025
