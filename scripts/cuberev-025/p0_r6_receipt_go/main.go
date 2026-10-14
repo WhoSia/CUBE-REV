@@ -80,7 +80,42 @@ func sourceEight(path string) {
  n,count(eq,"VISITED"),count(eq,"SKIPPED"),count(c,"DESCENDANT_CUTS"),wall,ram)
 }
 
+
+func auditJoint(oldPath,jointPath string){
+ old:=read(oldPath);joint:=read(jointPath)
+ a:=old.line("P0R6_COMPLETE")
+ b:=joint.line("P0R6C_EXACT_COVER")
+ pa:=old.line("P0R6_CANONICAL_ACCOUNTING")
+ pb:=joint.line("P0R6C_PROJECTIONS")
+ n:=canonicalVisits(7)
+ if n!=120213368||count(pa,"BASELINE")!=n||count(b,"BASELINE")!=n||
+ count(a,"SOURCE_VISITS")+count(a,"SKIPPED_CHILDREN")!=n||
+ count(b,"VISITS")+count(b,"SKIPPED")!=n||
+ count(b,"FULL_HITS")!=0||count(a,"FULL_HITS")!=0||
+ count(pb,"GOAL_FULL")!=8240087||count(pb,"CORNER6")!=1405068||
+ field(b,"COMPLETE")!="1"{
+ fail("P0-R6A/C full-cubie source, goal, equality, or complete coverage mismatch")
+ }
+ if count(b,"SKIPPED")<count(a,"SKIPPED_CHILDREN"){
+ fail("same-generator pair screen pruned fewer nodes than corner-only screen")
+ }
+ if field(joint.line("P0R6C_CERTIFIED_PHYSICAL_GLOBAL_LOWER"),"COMMON_ACTION_SOUND")!="1"{
+ fail("joint common-action certificate missing")
+ }
+ wallOld:=number(old.line("BENCH_P0R6_WALL_SECONDS"),"BENCH_P0R6_WALL_SECONDS")
+ wallJoint:=number(joint.line("BENCH_P0R6C_WALL_SECONDS"),"BENCH_P0R6C_WALL_SECONDS")
+ ramOld:=number(old.line("BENCH_P0R6_WALL_SECONDS"),"PEAK_RSS_KIB")
+ ramJoint:=number(joint.line("BENCH_P0R6C_WALL_SECONDS"),"PEAK_RSS_KIB")
+ if wallOld<=0||wallJoint<=0||ramOld<=0||ramJoint<=0{fail("missing physical measurements")}
+ fmt.Printf("P0R6C_GO_INDEPENDENT_AUDIT_PASS BASELINE %d A_VISITS %d C_VISITS %d A_SKIPPED %d C_SKIPPED %d ADDITIONAL_SKIPPED %d EDGE6_STATES %d JOINT_EMPTY_CUTS %d A_WALL_SECONDS %.3f C_WALL_SECONDS %.3f C_VS_A_WALL_CHANGE_PERCENT %.3f A_RSS_KIB %.0f C_RSS_KIB %.0f C_VS_A_RSS_CHANGE_PERCENT %.3f GLOBAL_LOWER 14 UPPER 18\n",
+ n,count(a,"SOURCE_VISITS"),count(b,"VISITS"),count(a,"SKIPPED_CHILDREN"),count(b,"SKIPPED"),
+ count(b,"SKIPPED")-count(a,"SKIPPED_CHILDREN"),count(pb,"EDGE6"),count(b,"JOINT_EMPTY_CUTS"),
+ wallOld,wallJoint,100*(wallJoint/wallOld-1),
+ ramOld,ramJoint,100*(ramJoint/ramOld-1))
+}
+
 func main() {
+ if len(os.Args)==4 && os.Args[1]=="--joint" {auditJoint(os.Args[2],os.Args[3]);return}
  if len(os.Args)==3 && os.Args[1]=="--source8" {sourceEight(os.Args[2]);return}
  if len(os.Args)!=3 {fail("usage: auditor P0R5.log P0R6.log OR --source8 P0R6-B8.log")}
  old:=read(os.Args[1]);neu:=read(os.Args[2])
