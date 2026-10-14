@@ -1,0 +1,36 @@
+name: CUBE-REV 0.25 P0-R6H graded prefix-refutation calculus
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "formal/025/PrefixRefutationCalculus.lean"
+      - "formal/025/lakefile.toml"
+      - ".github/workflows/cuberev-025-P0-R6H-lean-prefix-refutation.yml"
+permissions:
+  contents: read
+jobs:
+  check-bounded-canonical-prefix-refutation-iff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject any bot author or committer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Lean4 kernel proves grammatical physical suffix exclusion sound and complete
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/025
+          build: true
+          test: false
+          use-mathlib-cache: false
+      - name: Reject source writeback
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
