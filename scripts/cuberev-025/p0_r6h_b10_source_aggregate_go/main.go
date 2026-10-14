@@ -47,8 +47,7 @@ func num(line,key string) uint64 {
 }
 func oneLine(raw,heading string)string{
  var found string
- for _,line:=range strings.Split(raw,"
-"){
+ for _,line:=range strings.Split(raw,"\n"){
   line=strings.TrimSpace(line)
   if strings.HasPrefix(line,heading+" "){
    if found!=""{bad("duplicate "+heading)}
@@ -151,6 +150,5 @@ func main(){
  // attached raw logs and pinned commits still require actual GitHub cross
  // verification, and the abstract prefix-cut proof must be paired with
  // the original physical kernel/normal-form simulation argument.
- fmt.Printf("P0R6H_ALL_18_SOURCE_B10_LOG_RECEIPTS_CONDITIONALLY_AGGREGATED FULL_ORIGINAL_SOURCE_COVER %d DISTINCT_FIRST_ACTIONS 18 SOURCE_ROOT_CALLS 11 SOURCE_TOTAL_RECURSIVE_CALLS %d ACTUAL_VISITS_EXCLUDING_ROOT %d SAFELY_OMITTED %d PHYSICAL_FULL_GOAL_MEETS 0 PINNED_COMMIT %s REQUIRES_EXTERNAL_GITHUB_RUN_AUTHENTICITY_CHECK 1 NO_INDEPENDENT_SECOND_PHYSICS_ENGINE 1
-",1,expected,visited,skipped,m.CommitSHA)
+ fmt.Printf("P0R6H_ALL_18_SOURCE_B10_LOG_RECEIPTS_CONDITIONALLY_AGGREGATED FULL_ORIGINAL_SOURCE_COVER %d DISTINCT_FIRST_ACTIONS 18 SOURCE_ROOT_CALLS 11 SOURCE_TOTAL_RECURSIVE_CALLS %d ACTUAL_VISITS_EXCLUDING_ROOT %d SAFELY_OMITTED %d PHYSICAL_FULL_GOAL_MEETS 0 PINNED_COMMIT %s REQUIRES_EXTERNAL_GITHUB_RUN_AUTHENTICITY_CHECK 1 NO_INDEPENDENT_SECOND_PHYSICS_ENGINE 1\n",1,expected,visited,skipped,m.CommitSHA)
 }
