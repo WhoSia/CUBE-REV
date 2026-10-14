@@ -1,0 +1,36 @@
+name: CUBE-REV 0.25 P0-R6E TCS regular-word language simulation Lean
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "formal/025/ProjectionWordLanguage.lean"
+      - "formal/025/lakefile.toml"
+      - ".github/workflows/cuberev-025-P0-R6E-lean-language.yml"
+permissions:
+  contents: read
+jobs:
+  prove-finite-word-quotient-necessary-language:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject every GitHub bot commit author or committer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Lake Lean4 kernel check of projection language theorem
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/025
+          build: true
+          test: false
+          use-mathlib-cache: false
+      - name: Checkout unchanged except possible untracked build artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
