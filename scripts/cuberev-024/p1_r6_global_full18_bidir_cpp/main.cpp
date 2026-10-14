@@ -82,6 +82,7 @@ struct GlobalCourt{
   return false;
  }
 };
+#ifndef CUBEREV_P1R6_AS_LIBRARY
 int main(int argc,char**argv){
  try{
   int rg=argc>1?stoi(argv[1]):5,rs=argc>2?stoi(argv[2]):6;
@@ -112,3 +113,4 @@ int main(int argc,char**argv){
   return 0;
  }catch(exception const&e){cerr<<"P1R6_ERROR "<<e.what()<<"\n";return 3;}
 }
+#endif // CUBEREV_P1R6_AS_LIBRARY
