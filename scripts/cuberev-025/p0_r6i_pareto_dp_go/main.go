@@ -9,9 +9,11 @@ import(
  "math/big"
  "math/bits"
  "sort"
+ "os"
+ "strconv"
 )
 const R=10
-const goalSetupCentis=2000 // UNMEASURED setup assumption, 20.00 sec
+var goalSetupCentis uint64=2000 // sensitivity input: 2000=old assumed 20s; 1449=one measured B6/B7 14.486s rounded
 const measuredLowCentis=71150 // measured whole first-U B10 physical
 const measuredHighCentis=56199 // measured whole first-D B10 physical
 const canonicalTotal uint64=285921738920
@@ -51,7 +53,7 @@ func cost(first int, w uint64)uint64{
  observed:=uint64(measuredHighCentis)
  if first<9{observed=measuredLowCentis}
  if observed<=goalSetupCentis{reject("nonpositive net empirical source cost")}
- setup:=big.NewInt(goalSetupCentis*10000000)
+ setup:=new(big.Int).SetUint64(goalSetupCentis*10000000)
  net:=new(big.Int).Mul(new(big.Int).SetUint64(observed-goalSetupCentis),new(big.Int).SetUint64(w))
  net.Mul(net,big.NewInt(10000000))
  q:=ceilDiv(net,new(big.Int).SetUint64(whole))
@@ -164,6 +166,8 @@ func same(a,b []opt)bool{
  return true
 }
 func main(){
+ if len(os.Args)>2{reject("usage: pareto [setup_centiseconds]")}
+ if len(os.Args)==2{v,e:=strconv.ParseUint(os.Args[1],10,64);if e!=nil||v>5000{reject("setup centiseconds invalid or >5000")};goalSetupCentis=v}
  for i:=0;i<18;i++{a,b:=branches(i);choices[i]=[2]opt{a,b}}
  if bits.OnesCount32((1<<18)-1)!=18{reject("enumeration bit domain")}
  // Brute force 2^18 policies compared to exact DP. The only optimized
