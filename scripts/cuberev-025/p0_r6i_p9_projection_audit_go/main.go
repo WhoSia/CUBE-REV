@@ -29,16 +29,9 @@ func readTurns(p string)[18]Turn{
   x:=solved
   for i:=1;i<=4;i++{
    x=move(x,ts[base])
-   if i==2&&x!=move(solved,ts[base+1]){bad("original squared 18HTM generator action not consistent")}
-   if i==3&&x!=move(solved,ts[base+2]){bad("original inverted 18HTM generator action not consistent")}
+   if i==2&&x!=move(solved,ts[base+2]){bad("original squared 18HTM generator action not consistent")}
+   if i==3&&x!=move(solved,ts[base+1]){bad("original inverted 18HTM generator action not consistent")}
    if i==4&&x!=solved{bad("original quarter turn not order4")}
-  }
-  for i:=0;i<8;i++{
-   var sum uint8
-   for j:=0;j<8;j++{
-    if ts[base+i%3].cp[j]==uint8(i){sum=ts[base+i%3].co[j];break}
-   }
-   _=sum
   }
  }
  return ts
