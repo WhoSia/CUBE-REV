@@ -1,6 +1,6 @@
 name = "CubeRev025"
 version = "0.1.0"
-defaultTargets = ["CostPartition", "JointNextAction", "ProjectionWordLanguage", "CanonicalTransfer", "BoundedResidualDominance", "PrefixRefutationCalculus"]
+defaultTargets = ["CostPartition", "JointNextAction", "ProjectionWordLanguage", "CanonicalTransfer", "BoundedResidualDominance", "PrefixRefutationCalculus", "WeightedPrefixCutset"]
 
 [[lean_lib]]
 name = "CostPartition"
@@ -18,3 +18,6 @@ name = "BoundedResidualDominance"
 
 [[lean_lib]]
 name = "PrefixRefutationCalculus"
+
+[[lean_lib]]
+name = "WeightedPrefixCutset"
