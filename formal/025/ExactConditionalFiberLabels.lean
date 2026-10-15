@@ -64,9 +64,12 @@ theorem pairwise_distinct_fibers_force_injective_labels
        ∃ e, goal c₁ e ≠ goal c₂ e) :
     Function.Injective codec.encode := by
   intro x y hEqual
-  by_contra hDiff
-  obtain ⟨w, hw⟩ := separates x y hDiff
-  exact (distinguishable_exact_fibers_require_distinct_labels
-    codec x y w hw) hEqual
+  classical
+  by_cases hEqualCorners : x = y
+  · exact hEqualCorners
+  · obtain ⟨w, hw⟩ := separates x y hEqualCorners
+    exact False.elim
+      ((distinguishable_exact_fibers_require_distinct_labels
+        codec x y w hw) hEqual)
 
 end CubeRev025
