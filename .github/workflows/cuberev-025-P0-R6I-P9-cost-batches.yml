@@ -1,0 +1,60 @@
+name: CUBE-REV 0.25 P0-R6I-P9 authenticated prior B10 physical evidence geometry batching
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p9_geometry_worker_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P9-cost-batches.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  independently-audited-original-two-B10-prefix-RAM-cost-worker-batching:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Fetch only REAL previously completed verified physical B10 and independent Go receipts from exact historical Actions run
+        uses: actions/download-artifact@v4
+        with:
+          name: p9-previously-open-B10-first-action-probes-38694775426
+          path: /tmp/p9-real-evidence
+          run-id: 38694775426
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compile auditable resource model, reuse genuine already-executed original physical B10 evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/p9-model scripts/cuberev-025/p0_r6i_p9_geometry_worker_go/main.go
+          test -s /tmp/p9-real-evidence/p9-physical-B10.log
+          test -s /tmp/p9-real-evidence/p9-independent-B10.log
+      - name: Construct one-worker and two-worker RAM-constrained plans from pinned physical Go-audited leaf certificates
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/p9-model /tmp/p9-real-evidence/p9-physical-B10.log /tmp/p9-real-evidence/p9-independent-B10.log 1600000 2 | tee /tmp/p9-plan-memory-tight.log
+          /tmp/p9-model /tmp/p9-real-evidence/p9-physical-B10.log /tmp/p9-real-evidence/p9-independent-B10.log 3200000 2 | tee /tmp/p9-plan-memory-roomy.log
+          grep -Fq 'ADMITTED_WORKERS 1' /tmp/p9-plan-memory-tight.log
+          grep -Fq 'ADMITTED_WORKERS 2' /tmp/p9-plan-memory-roomy.log
+          grep -Fq 'P9_REAL_PHYSICAL_TWO_OPEN_FIRST_ACTION_B10_CERT_LINK_PASS' /tmp/p9-plan-memory-roomy.log
+          if /tmp/p9-model /tmp/p9-real-evidence/p9-physical-B10.log /tmp/p9-real-evidence/p9-independent-B10.log 1000 2; then
+            echo P9_UNSOUND_SMALL_MEMORY_ACCEPTANCE; exit 1
+          fi
+          cp /tmp/p9-real-evidence/p9-independent-B10.log /tmp/p9-fake-independent.log
+          sed -i s/409d46f47d29852f1ced2ed1726aba0ce1085472def92591ecbb6a2346cc1ffc/0000000000000000000000000000000000000000000000000000000000000000/ /tmp/p9-fake-independent.log
+          if /tmp/p9-model /tmp/p9-real-evidence/p9-physical-B10.log /tmp/p9-fake-independent.log 3200000 2; then
+            echo P9_UNSOUND_UNAUDITED_PROJECTION_ACCEPTANCE; exit 1
+          fi
+          echo P9_PILOT_RAM_AND_PROJECTION_MANIFEST_TAMPER_FAIL_CLOSED_PASS
+      - name: Preserve only authenticated audited physical evidence-linked scheduling receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p9-real-B10-proof-carrying-worker-cost-${{ github.run_id }}
+          path: |
+            /tmp/p9-plan-memory-tight.log
+            /tmp/p9-plan-memory-roomy.log
+          if-no-files-found: warn
+          retention-days: 30
