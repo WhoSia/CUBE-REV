@@ -1,0 +1,92 @@
+name: CUBE-REV 0.25 P0-R6I true 43 variable-depth physical cylinder proof pilot
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_mixed_prefix_physical_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_mixed_cut_audit_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-physical-mixed-cut-pilot.yml"
+permissions:
+  contents: read
+jobs:
+  actual-original-physical-B3-mixed-cut-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: No bot author or committer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original 54-sticker C++17 and independent Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_mixed_prefix_physical_cpp/main.cpp -o /tmp/r6i-original
+          go build -o /tmp/r6i-audit scripts/cuberev-025/p0_r6i_mixed_cut_audit_go/main.go
+      - name: Real original B3 goal/source and exact mixed-depth 43-cylinder source
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 125 /tmp/r6i-original 3 3 120 2>&1 | tee /tmp/r6i-B3.log
+          /tmp/r6i-audit /tmp/r6i-B3.log 3 3 | tee /tmp/r6i-B3-audit.log
+          grep -Fq 'P0R6I_GO_INDEPENDENT_ORIGINAL_43_CUTSET_PASS' /tmp/r6i-B3-audit.log
+      - name: No tracked mutation
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve typed native B3 logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-physical-B3-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6i-B3.log
+            /tmp/r6i-B3-audit.log
+          if-no-files-found: warn
+  original-full-B6-B7-mixed-cut-global-source-cover:
+    needs: actual-original-physical-B3-mixed-cut-regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: No bot author or committer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original physical C++17 and independent Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_mixed_prefix_physical_cpp/main.cpp -o /tmp/r6i-original
+          go build -o /tmp/r6i-audit scripts/cuberev-025/p0_r6i_mixed_cut_audit_go/main.go
+      - name: Complete actual original B6/B7 source proof under 43 variable-depth DFA cylinders
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P0R6I_B7_REAL_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 840 /tmp/r6i-original 6 7 810 2>&1 | tee /tmp/r6i-B7.log
+          grep -Fq 'P0R6I_ORIGINAL_43_MIXED_DEPTH_CUTSET_CERT COMPLETE 1 LEAF_CYLINDERS 43 INTERNAL_NODES 3 INTERNAL_CALLS 22 TOTAL_BASELINE 120213368' /tmp/r6i-B7.log
+      - name: Independent 18-letter Go DFA auditing all physical source cuts
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/r6i-audit /tmp/r6i-B7.log 6 7 | tee /tmp/r6i-B7-audit.log
+          grep -Fq 'P0R6I_GO_INDEPENDENT_ORIGINAL_43_CUTSET_PASS' /tmp/r6i-B7-audit.log
+      - name: No source mutation
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve all physical proof and resource receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-physical-B7-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6i-B7.log
+            /tmp/r6i-B7-audit.log
+          if-no-files-found: warn
