@@ -45,7 +45,7 @@ int main(int argc,char**argv){
   Cube source=cubeAfter(scramble);
   Stickers physical=solvedStickers();
   for(int a:scramble)physicalTurn(physical,names[a]);
-  if(exactKey(source)!=exactKey(fromStickers(physical))||
+  if(!(exactKey(source)==exactKey(fromStickers(physical)))||
     known.size()!=18||!physicalSolves(scramble,known)||
     physicallyAuditFastProjection()!=4608)
    throw std::runtime_error("original 54-sticker source and physical packed projection regression failed");
