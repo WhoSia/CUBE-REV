@@ -60,6 +60,7 @@ func cost(first int, w uint64)uint64{
  return ans.Uint64()
 }
 type opt struct{jobs int;sum,max uint64;low,high uint16;inner uint64}
+var choices [18][2]opt
 func combine(a,b opt)opt{
  x:=opt{jobs:a.jobs+b.jobs,sum:a.sum+b.sum,low:a.low+b.low,high:a.high+b.high,inner:a.inner+b.inner}
  if a.max>b.max{x.max=a.max}else{x.max=b.max}
@@ -90,7 +91,7 @@ func solveDP()[]opt{
  states:=map[key]opt{{0,0}:{jobs:0,sum:0,max:0}}
  for first:=0;first<18;first++{
   next:=map[key]opt{}
-  a,b:=branches(first)
+  a,b:=choices[first][0],choices[first][1]
   for _,state:=range states{
    for _,choice:=range []opt{a,b}{
     x:=combine(state,choice); k:=key{x.jobs,x.max}
@@ -118,7 +119,7 @@ func solveDP()[]opt{
 func evaluate(mask uint32)opt{
  out:=opt{}
  for i:=0;i<18;i++{
-  a,b:=branches(i)
+  a,b:=choices[i][0],choices[i][1]
   if mask&(1<<i)!=0{out=combine(out,b)}else{out=combine(out,a)}
  }
  return out
@@ -163,6 +164,7 @@ func same(a,b []opt)bool{
  return true
 }
 func main(){
+ for i:=0;i<18;i++{a,b:=branches(i);choices[i]=[2]opt{a,b}}
  if bits.OnesCount32((1<<18)-1)!=18{reject("enumeration bit domain")}
  // Brute force 2^18 policies compared to exact DP. The only optimized
  // quantity is a *discretized separable cost* and a single-job maximum,
