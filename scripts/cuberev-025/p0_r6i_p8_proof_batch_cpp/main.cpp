@@ -154,8 +154,13 @@ int main(int argc,char**argv){
    const double duration=std::chrono::duration<double,std::milli>(
       std::chrono::steady_clock::now()-t).count();
    auto expected=p8Weight(p.back(),rs-int(p.size()));
-   if(court.visits+court.skippedChildren!=expected||court.fullHits)
+   if(court.visits+court.skippedChildren!=expected||court.fullHits){
+    std::cout<<"P8_LEAF_ACCOUNTING_HOLD FIRST "<<p[0]<<" SECOND "<<(p.size()==2?p[1]:-1)
+      <<" DEPTH "<<p.size()<<" EXPECTED "<<expected<<" VISITED "<<court.visits
+      <<" OMITTED "<<court.skippedChildren<<" FULL_HITS "<<court.fullHits
+      <<" EXPIRED "<<court.court.expired()<<" CUT "<<court.cut<<"\n"<<std::flush;
     throw std::runtime_error("original canonical source leaf not entirely ruled out");
+   }
    count++;total+=expected;visited+=court.visits;skipped+=court.skippedChildren;
    const FullKey key=exactKey(x);
    std::cout<<"P8_LEAF MODE "<<mode<<" INDEX "<<count
