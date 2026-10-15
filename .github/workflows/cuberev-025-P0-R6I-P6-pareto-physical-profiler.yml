@@ -31,8 +31,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          timeout 160 /tmp/r6i-pareto | tee /tmp/r6i-pareto.log
+          timeout 160 /tmp/r6i-pareto 2000 | tee /tmp/r6i-pareto.log
           grep -Fq 'P0R6I_EXACT_DEPTH2_PARETO_DP_262144_BRUTE_FORCE_AUDIT_PASS' /tmp/r6i-pareto.log
+          timeout 160 /tmp/r6i-pareto 1449 | tee /tmp/r6i-pareto-measured-setup.log
+          grep -Fq 'P0R6I_EXACT_DEPTH2_PARETO_DP_262144_BRUTE_FORCE_AUDIT_PASS' /tmp/r6i-pareto-measured-setup.log
       - name: Never write to tracked source
         run: |
           git diff --exit-code HEAD --
@@ -42,7 +44,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: r6i-pareto-${{ github.run_id }}-${{ github.run_attempt }}
-          path: /tmp/r6i-pareto.log
+          path: |
+            /tmp/r6i-pareto.log
+            /tmp/r6i-pareto-measured-setup.log
           if-no-files-found: warn
   original-physical-stage-B3:
     runs-on: ubuntu-latest
