@@ -32,7 +32,8 @@ jobs:
           set -euo pipefail
           /usr/bin/time -f 'P10_FIRST_ACTION3_SHARD_EXTERNAL_SECONDS %e PEAK_RSS_KIB %M' timeout 720 /tmp/p10-original-shard 3 ${{ matrix.shard }} 690 2>&1 | tee /tmp/p10-first3-${{ matrix.shard }}.log
           grep -Fq 'P10_BRANCH_SHARD_COMPLETE FIRST 3 SHARD ${{ matrix.shard }}' /tmp/p10-first3-${{ matrix.shard }}.log
-          test "$(grep -c '^P10_BRANCH_LEAF FIRST 3 ' /tmp/p10-first3-${{ matrix.shard }}.log)" -eq ${{ matrix.shard == 0 && 8 || 7 }}
+          if [ "${{ matrix.shard }}" = "0" ]; then expected=8; else expected=7; fi
+          test "$(grep -c '^P10_BRANCH_LEAF FIRST 3 ' /tmp/p10-first3-${{ matrix.shard }}.log)" -eq "$expected"
           grep -Fq 'SOURCE_WHOLE_GLOBAL_COMPLETE 0' /tmp/p10-first3-${{ matrix.shard }}.log
       - name: Preserve immutable original whole-goal and all actual source physical leaf receipts
         if: always()
