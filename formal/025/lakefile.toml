@@ -1,6 +1,6 @@
 name = "CubeRev025"
 version = "0.1.0"
-defaultTargets = ["CostPartition", "JointNextAction", "ProjectionWordLanguage", "CanonicalTransfer", "BoundedResidualDominance", "PrefixRefutationCalculus", "WeightedPrefixCutset", "ParetoCutsetDominance", "ParallelWorkerLoads", "ImmutableGoalBatch", "OneStepProjectionEnvelope", "ProjectionMarginalObstruction"]
+defaultTargets = ["CostPartition", "JointNextAction", "ProjectionWordLanguage", "CanonicalTransfer", "BoundedResidualDominance", "PrefixRefutationCalculus", "WeightedPrefixCutset", "ParetoCutsetDominance", "ParallelWorkerLoads", "ImmutableGoalBatch", "OneStepProjectionEnvelope", "ProjectionMarginalObstruction", "ExactConditionalFiberLabels"]
 
 [[lean_lib]]
 name = "CostPartition"
@@ -36,3 +36,6 @@ name = "OneStepProjectionEnvelope"
 
 [[lean_lib]]
 name = "ProjectionMarginalObstruction"
+
+[[lean_lib]]
+name = "ExactConditionalFiberLabels"
