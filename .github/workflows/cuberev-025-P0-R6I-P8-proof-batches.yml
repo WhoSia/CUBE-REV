@@ -1,0 +1,130 @@
+name: CUBE-REV 0.25 P0-R6I-P8 immutable goal proof batches
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p8_proof_batch_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_p8_batch_audit_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P8-proof-batches.yml"
+permissions:
+  contents: read
+jobs:
+  smoke-original-whole-cubie-B3-and-attack-rejection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject bot contributors
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original C++17 physical kernel with SHA256 and independent Go verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_p8_proof_batch_cpp/main.cpp -lcrypto -o /tmp/p8-native
+          go build -o /tmp/p8-go-audit scripts/cuberev-025/p0_r6i_p8_batch_audit_go/main.go
+      - name: Actual original physical full 43-leaf B3 prefix tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 110 /tmp/p8-native smoke /tmp/p8-B3-goal.bin 100 | tee /tmp/p8-B3.log
+          /tmp/p8-go-audit /tmp/p8-B3.log /tmp/p8-B3-goal.bin smoke | tee /tmp/p8-B3-audit.log
+          grep -Fq 'P8_GO_INDEPENDENT_SHA256_AND_PHYSICAL_DFA_BATCH_PASS MODE smoke' /tmp/p8-B3-audit.log
+      - name: Reject damaged snapshot and incomplete source proof manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/p8-B3-goal.bin /tmp/p8-B3-tampered.bin
+          printf '\001' | dd of=/tmp/p8-B3-tampered.bin bs=1 count=1 conv=notrunc status=none
+          if /tmp/p8-go-audit /tmp/p8-B3.log /tmp/p8-B3-tampered.bin smoke; then
+            echo 'P8_UNSOUND_TAMPER_ACCEPTANCE'; exit 1
+          fi
+          grep -v '^P8_LEAF MODE smoke INDEX 1 ' /tmp/p8-B3.log > /tmp/p8-B3-missing.log
+          if /tmp/p8-go-audit /tmp/p8-B3-missing.log /tmp/p8-B3-goal.bin smoke; then
+            echo 'P8_UNSOUND_MISSING_LEAF_ACCEPTANCE'; exit 1
+          fi
+          echo P8_B3_TAMPER_AND_MISSING_LEAF_FAIL_CLOSED_PASS
+      - name: No tracked mutation
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve complete original B3 receipt and Go proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p8-real-B3-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/p8-B3.log
+            /tmp/p8-B3-audit.log
+          if-no-files-found: warn
+          retention-days: 30
+  full-original-54-sticker-B6-B7-43-leaf-signed-court:
+    needs: smoke-original-whole-cubie-B3-and-attack-rejection
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compile original immutable full B6 physical 18 HTM court and Go stream SHA256 checker
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_p8_proof_batch_cpp/main.cpp -lcrypto -o /tmp/p8-native
+          go build -o /tmp/p8-go-audit scripts/cuberev-025/p0_r6i_p8_batch_audit_go/main.go
+      - name: Complete actual original physical B6/B7 canonical 43-leaf proof batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P8_B7_PHYSICAL_EXTERNAL_SECONDS %e PEAK_RSS_KIB %M' timeout 260 /tmp/p8-native b7 /tmp/p8-B6-sorted.bin 240 2>&1 | tee /tmp/p8-B7.log
+          /usr/bin/time -f 'P8_B7_GO_AUDIT_SECONDS %e PEAK_RSS_KIB %M' /tmp/p8-go-audit /tmp/p8-B7.log /tmp/p8-B6-sorted.bin b7 | tee /tmp/p8-B7-audit.log
+          grep -Fq 'P8_GO_INDEPENDENT_SHA256_AND_PHYSICAL_DFA_BATCH_PASS MODE b7' /tmp/p8-B7-audit.log
+          grep -Fq 'SOURCE_GLOBAL_COMPLETE 1' /tmp/p8-B7.log
+      - name: No bot writeback
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve original physical B7 43-leaf proof bundle and original B6 content hash
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p8-real-B7-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/p8-B7.log
+            /tmp/p8-B7-audit.log
+          if-no-files-found: warn
+          retention-days: 30
+  original-B10-two-sibling-partial-physical-proof-batch:
+    needs: smoke-original-whole-cubie-B3-and-attack-rejection
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compile real source B10 physical runner and external streaming Go auditor
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_p8_proof_batch_cpp/main.cpp -lcrypto -o /tmp/p8-native
+          go build -o /tmp/p8-go-audit scripts/cuberev-025/p0_r6i_p8_batch_audit_go/main.go
+      - name: Real original physical complete source B10 U-R and D-R with explicit partial source tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P8_B10_PHYSICAL_EXTERNAL_SECONDS %e PEAK_RSS_KIB %M' timeout 320 /tmp/p8-native b10sample /tmp/p8-B10-B6-sorted.bin 300 2>&1 | tee /tmp/p8-B10.log
+          /tmp/p8-go-audit /tmp/p8-B10.log /tmp/p8-B10-B6-sorted.bin b10sample | tee /tmp/p8-B10-audit.log
+          grep -Fq 'P8_GO_INDEPENDENT_SHA256_AND_PHYSICAL_DFA_BATCH_PASS MODE b10sample' /tmp/p8-B10-audit.log
+          grep -Fq 'SOURCE_GLOBAL_COMPLETE 0' /tmp/p8-B10.log
+      - name: Preserve partial source-B10 provenance without inventing full source-B10 theorem
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p8-real-B10-PARTIAL-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/p8-B10.log
+            /tmp/p8-B10-audit.log
+          if-no-files-found: warn
+          retention-days: 30
