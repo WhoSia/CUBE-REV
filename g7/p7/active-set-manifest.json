@@ -393,6 +393,7 @@
     "formal/025/BoundedResidualDominance.lean",
     "formal/025/CanonicalTransfer.lean",
     "formal/025/CostPartition.lean",
+    "formal/025/ExactConditionalFiberLabels.lean",
     "formal/025/ImmutableGoalBatch.lean",
     "formal/025/JointNextAction.lean",
     "formal/025/OneStepProjectionEnvelope.lean",
