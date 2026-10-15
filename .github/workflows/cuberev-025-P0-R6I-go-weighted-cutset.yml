@@ -1,0 +1,56 @@
+name: CUBE-REV 0.25 P0-R6I exact weighted canonical cutset benchmark
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_weighted_cutset_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-go-weighted-cutset.yml"
+permissions:
+  contents: read
+jobs:
+  exhaustive-finite-language-cover-and-cost-policies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject all bot commit authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile independent Go exact DFA cylinder weight + minimax planner
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/r6i-cutset scripts/cuberev-025/p0_r6i_weighted_cutset_go/main.go
+      - name: Compare 18/30/45/60/80/120 frontier budgets with 4 workers and validate every cylinder
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/r6i-cutset 4 | tee /tmp/r6i-4workers.log
+          grep -Fq 'P0R6I_ALL_PLANS_EXACT_CUTSET_COVER_PASS FULL_SOURCE_B10 285921738920' /tmp/r6i-4workers.log
+          grep -Fq 'P0R6I_PLAN MAX_SHARDS 18 ACTUAL_SHARDS 18 EXACT_TOTAL_WORD_CALLS 285921738920' /tmp/r6i-4workers.log
+      - name: Independent concurrency alternative 8 workers same exact source population
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/r6i-cutset 8 | tee /tmp/r6i-8workers.log
+          grep -Fq 'P0R6I_ALL_PLANS_EXACT_CUTSET_COVER_PASS FULL_SOURCE_B10 285921738920' /tmp/r6i-8workers.log
+      - name: Read-only checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve cost model and exact grammar receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-word-cutsets-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6i-4workers.log
+            /tmp/r6i-8workers.log
+          if-no-files-found: warn
+          retention-days: 30
