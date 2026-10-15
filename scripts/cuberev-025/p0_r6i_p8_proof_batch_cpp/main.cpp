@@ -19,9 +19,12 @@ static uint64_t p8Weight(int last,int remaining){
  uint64_t sum=uint64_t(remaining+1);
  for(int depth=1;depth<=remaining;depth++){
   std::array<uint64_t,18> now{};
-  if(depth==1)for(int a=0;a<18;a++)if(canonical(last,a))now[a]=1;
-  else for(int b=0;b<18;b++)for(int a=0;a<18;a++)
-    if(canonical(b,a))now[a]+=before[b];
+  if(depth==1){
+   for(int a=0;a<18;a++)if(canonical(last,a))now[a]=1;
+  }else{
+   for(int b=0;b<18;b++)for(int a=0;a<18;a++)
+     if(canonical(b,a))now[a]+=before[b];
+  }
   before=now;uint64_t layer=0;for(auto x:now)layer+=x;
   sum+=uint64_t(remaining-depth+1)*layer;
  }
