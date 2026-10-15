@@ -1,0 +1,42 @@
+name: CUBE-REV 0.25 P0-R6I-P10 physical exact conditional fiber vs C6 E6 marginal
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p10_fiber_counterfactual_cpp/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P10-fiber-counterfactual.yml"
+permissions:
+  contents: read
+jobs:
+  actual-original-source-B10-matched-independent-vs-exact-joint-marginal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Build true original WCA physical 18HTM source-B10 baseline and actual conditional-fiber operator
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p10_fiber_counterfactual_cpp/main.cpp -lcrypto -o /tmp/p10-physical-compare
+      - name: Same-runner same immutable whole B6 baseline marginal then exact conditioned support proof and time/RAM measurement
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P10_COMPARE_EXTERNAL_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 340 /tmp/p10-physical-compare 320 2>&1 | tee /tmp/p10-fiber-counterfactual.log
+          grep -Fq 'P10_FIBER_EXACT_VS_PRODUCT_MARGINAL_PHYSICAL_COMPARE_PASS' /tmp/p10-fiber-counterfactual.log
+          grep -Fq 'EXTRA_SPARSE_FIBER_INDEX_BUILT 0' /tmp/p10-fiber-counterfactual.log
+          test "$(grep -c '^P10_COMPARISON ORIGINAL_FIRST' /tmp/p10-fiber-counterfactual.log)" -eq 2
+      - name: No source writes
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve real original physical same-goal counterfactual comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p10-real-fiber-counterfactual-${{ github.run_id }}
+          path: /tmp/p10-fiber-counterfactual.log
+          if-no-files-found: warn
+          retention-days: 30
