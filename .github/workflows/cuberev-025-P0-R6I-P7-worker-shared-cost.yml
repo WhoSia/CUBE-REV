@@ -1,0 +1,40 @@
+name: CUBE-REV 0.25 P0-R6I-P7 exact immutable target scheduling model
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p7_schedule_shared_model_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P7-worker-shared-cost.yml"
+permissions:
+  contents: read
+jobs:
+  exact-nonpreemptive-4-and-8-worker-common-B6-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject bot author and committer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile exact Bellman with independent threshold verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/r6i-p7-share-cost scripts/cuberev-025/p0_r6i_p7_schedule_shared_model_go/main.go
+          /tmp/r6i-p7-share-cost | tee /tmp/r6i-p7-share-model.log
+          grep -Fq 'P0R6I_P7_EXACT_SHARED_WORKER_COST_COMPARISON_PASS' /tmp/r6i-p7-share-model.log
+      - name: No tracked source mutation
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve model comparison and lower-bound certificates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-p7-share-model-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/r6i-p7-share-model.log
+          if-no-files-found: warn
