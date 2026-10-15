@@ -12,7 +12,7 @@ type V struct{cost,assignL,assignH int;ok bool}
 var memo map[Key]V
 func (c C) price(l,h int)int{
  if l+h==0{return 0}
- if !c.reuse{return l*c.lo+h*c.h}
+ if !c.reuse{return l*c.lo+h*c.hi}
  return c.setup+l*(c.lo-c.setup)+h*(c.hi-c.setup)
 }
 func exact(p,l,h int,c C)V{
