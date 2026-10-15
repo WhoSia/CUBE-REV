@@ -1,0 +1,89 @@
+name: CUBE-REV 0.25 P0-R6I-P8 four-worker independent SHA256 physical proof composition
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p8_shard_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_p8_shard_audit_go/**"
+      - "scripts/cuberev-025/p0_r6i_p8_shard_merge_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P8-four-worker-merge.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  physically-complete-disjoint-original-source-B7-worker-batches:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard_id: [0, 1, 2, 3]
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject all bot authors or committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile full original 54-sticker physical SHA256 court and independent Go verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_p8_shard_cpp/main.cpp -lcrypto -o /tmp/p8-shard-native
+          go build -o /tmp/p8-shard-go scripts/cuberev-025/p0_r6i_p8_shard_audit_go/main.go
+      - name: Actual one immutable original B6 CP CO EP EO court per worker with assigned real source B7 leaves
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P8_SHARD_EXTERNAL_SECONDS %e PEAK_RSS_KIB %M' timeout 220 /tmp/p8-shard-native ${{ matrix.shard_id }} /tmp/p8-shard-goal-${{ matrix.shard_id }}.bin 200 2>&1 | tee /tmp/p8-shard-${{ matrix.shard_id }}.log
+          /tmp/p8-shard-go /tmp/p8-shard-${{ matrix.shard_id }}.log /tmp/p8-shard-goal-${{ matrix.shard_id }}.bin ${{ matrix.shard_id }} | tee /tmp/p8-shard-${{ matrix.shard_id }}-audit.log
+          grep -Fq 'P8_SHARD_INDEPENDENT_GO_PASS SHARD ${{ matrix.shard_id }}' /tmp/p8-shard-${{ matrix.shard_id }}-audit.log
+          grep -Fq 'GLOBAL_SOURCE_COMPLETE 0' /tmp/p8-shard-${{ matrix.shard_id }}.log
+      - name: Preserve real physical source prefix certificates without 132MB goal image transfer
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p8-shard-${{ matrix.shard_id }}-${{ github.run_id }}
+          path: |
+            /tmp/p8-shard-${{ matrix.shard_id }}.log
+            /tmp/p8-shard-${{ matrix.shard_id }}-audit.log
+          if-no-files-found: warn
+          retention-days: 30
+  independent-complete-four-worker-canonical-physical-refutation-merge:
+    needs: physically-complete-disjoint-original-source-B7-worker-batches
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p8-shard-*-${{ github.run_id }}
+          path: /tmp/p8-proof-shards
+          merge-multiple: false
+      - name: Independent source 18HTM DFA Go compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/p8-four-worker-merge scripts/cuberev-025/p0_r6i_p8_shard_merge_go/main.go
+      - name: Audit all four independent physical source worker receipts as ONE complete 43-leaf original B7 no-meet proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/p8-four-worker-merge /tmp/p8-proof-shards ${{ github.run_id }} | tee /tmp/p8-four-worker-global-receipt.log
+          grep -Fq 'P8_FOUR_WORKER_COMPLETE_ORIGINAL_B7_PROOF_PASS' /tmp/p8-four-worker-global-receipt.log
+          grep -Fq 'GLOBAL_LOWER17_NOT_CLAIMED 1' /tmp/p8-four-worker-global-receipt.log
+      - name: Track all source files read only
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve the full independent 4-worker globally complete real physical B7 certificate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p8-four-worker-global-proof-${{ github.run_id }}
+          path: /tmp/p8-four-worker-global-receipt.log
+          if-no-files-found: warn
+          retention-days: 30
