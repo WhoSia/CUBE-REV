@@ -81,3 +81,19 @@ Completed: independent physically sourced original C6,C7,E6 content identities, 
 Not completed: independent Go 54-sticker physical action table generator or all8.24M-state BFS reproduction; actual two parallel original radius10 worker hardware benchmark; original complete first-action source10 a3/a12 certificates or any of the other fourteen initial first-action source10 areas; certified global lower17.
 
 Read-only GitHub Actions, human WhoSia authorship/committer, no bot contributions; historical failed Go action ordering check #38694635555 and successful corrected #38694775426 recorded. Actual model #38695301502 and Lean kernel #38695481915 succeeded. Do not expose protected private human451 original FMC records or write back from CI. Next scientific work is a proof-carrying conditional fiber support representation and structurally independent full-source R10 task/receipt composition, ONLY when the physical data and memory tradeoffs justify it.
+
+
+## P9-R2. A substantive TCS index-complexity lower bound — exact conditional fibers
+
+[Lean4 ExactConditionalFiberLabels.lean](../../formal/025/ExactConditionalFiberLabels.lean) is the next mathematical step beyond the simple finite Boolean marginal counterexample; after an initial Lean-core compile failure caused by an unavailable by_contra tactic (actual Actions #38696605539 FAIL), the proof was rewritten by explicit decidable equality cases and verified in the actual [Lean kernel workflow #38696704765](https://github.com/WhoSia/CUBE-REV/actions/runs/38696704765) **SUCCESS**.
+
+For any exact whole-cubie joint support relation G(c,e), define the conditional edge fiber F(c)={e | G(c,e)}. An arbitrary claimed exact fiber index consists of a corner encoder L:C→Label and a label-dependent edge predicate Supports:Label→E→Prop, required to satisfy for EVERY corner/edge pair G(c,e) ↔ Supports(L(c),e).
+
+The Lean theorems prove:
+1. **same_exact_fiber_label_forces_same_edge_support**: L(c1)=L(c2) implies pointwise equality of allowed edge membership at c1 and c2.
+2. **distinguishable_exact_fibers_require_distinct_labels**: whenever there exists an edge witness e where G(c1,e) and G(c2,e) differ, EXACT correctness forces L(c1)≠L(c2).
+3. **pairwise_distinct_fibers_force_injective_labels**: if a selected corner domain contains pairwise different conditional edge-support fibers, EVERY exact label encoder must be injective on that domain. Thus the number of distinct actual fibers is a lower bound on the number of available lossless labels, independent of the data structure. It is NOT yet a measured byte-RAM lower bound or a computed numeric distinct-fiber cardinality for actual B6.
+
+This is relevant to the actual 54-sticker original physical search: earlier Lean finite marginal obstruction proves that independent C6/E6 hits can be false positives for whole CP/CO/EP/EO membership; P9 measures vastly different pair/edge/full lookup counts at equal canonical work. The exact corner-conditioned edge-fiber relation G(c,e) could reject these false-positive combinations but may require many distinct labels and substantial RAM. Therefore compare (a) actual number of distinct edge-support fibers, (b) their membership compression, (c) false-positive gate reduction on REAL original B10 physical prefixes, and (d) extra target construction work before choosing a new source pruning architecture. P9 proves the representation obstruction but DOES NOT already provide or benchmark such a cache.
+
+Preserve failed theorem run #38696605539 and repaired [#38696704765](https://github.com/WhoSia/CUBE-REV/actions/runs/38696704765); this proof was not silently assumed successful on first attempt. No sorry or SHA equality axioms were introduced.
