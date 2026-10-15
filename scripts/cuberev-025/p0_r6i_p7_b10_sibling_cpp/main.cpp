@@ -62,7 +62,7 @@ int main(int argc,char**argv){
     court.court.started=Clock::now();
     court.court.secondsBudget=seconds;
     const auto start=WallClock::now();
-    if(!court.court.build(g)){std::cout<<"P0R6I_P7_B10_TARGET_HOLD\n";return 2;}
+    if(!court.court.build(g)){std::cout<<"P0R6I_P7_B10_B10_TARGET_HOLD\n";return 2;}
     court.project();
     court.prepareEdges();
     double delta=ms(start);
@@ -72,7 +72,7 @@ int main(int argc,char**argv){
        (g==6&&(court.c6.size()!=1405068||court.edge6.size()!=7672278)))
      throw std::runtime_error("physically wrong original whole-cubie target/projected sets");
     std::cout<<std::fixed<<std::setprecision(3)
-      <<"P0R6I_P7_GOAL_BUILD MODE "<<mode
+      <<"P0R6I_P7_B10_GOAL_BUILD MODE "<<mode
       <<" BUILD "<<builds<<" FULL_GOAL "<<court.court.goal.size()
       <<" CORNER "<<court.c6.size()<<" EDGE "<<court.edge6.size()
       <<" TARGET_SETUP_MS "<<delta<<" RSS_PEAK_KIB "<<rssPeak()
@@ -89,10 +89,10 @@ int main(int argc,char**argv){
    for(int lim=int(p.size());lim<=r;lim++){
     court.path=p;
     if(court.fastVisit(x,int(p.size()),lim,p.back())){
-      std::cout<<"P0R6I_P7_TRUE_PHYSICAL_INTERSECTION NO_NEGATIVE_CERT\n";return 3;
+      std::cout<<"P0R6I_P7_B10_TRUE_PHYSICAL_INTERSECTION NO_NEGATIVE_CERT\n";return 3;
     }
     if(court.cut||court.court.expired()){
-      std::cout<<"P0R6I_P7_RESOURCE_HOLD NO_NEGATIVE_CERT\n";return 2;
+      std::cout<<"P0R6I_P7_B10_RESOURCE_HOLD NO_NEGATIVE_CERT\n";return 2;
     }
    }
    const double duration=ms(start);
@@ -101,7 +101,7 @@ int main(int argc,char**argv){
     throw std::runtime_error("source prefix not fully covered by physical true cube");
    totalSearch+=duration;
    std::cout<<std::fixed<<std::setprecision(3)
-    <<"P0R6I_P7_PREFIX MODE "<<mode
+    <<"P0R6I_P7_B10_PREFIX MODE "<<mode
     <<" CASE "<<(i+1)<<" FIRST "<<p.front()
     <<" SECOND "<<(p.size()==2?p[1]:-1)
     <<" WORD_CALLS "<<expected
@@ -117,7 +117,7 @@ int main(int argc,char**argv){
   if(builds!=(mode=="shared"?1:2))
    throw std::runtime_error("incorrect number of independent target builds");
   std::cout<<std::fixed<<std::setprecision(3)
-   <<"P0R6I_P7_MODE_COMPLETE MODE "<<mode
+   <<"P0R6I_P7_B10_MODE_COMPLETE MODE "<<mode
    <<" GOAL_RADIUS "<<g<<" SOURCE_RADIUS "<<r
    <<" TARGET_BUILDS "<<builds<<" PREFIXES 2"
    <<" TOTAL_GOAL_SETUP_MS "<<totalSetup
@@ -129,6 +129,6 @@ int main(int argc,char**argv){
    <<" NOT_GLOBAL_B10 1\n"<<std::flush;
   return 0;
  }catch(std::exception const&e){
-  std::cerr<<"P0R6I_P7_ERROR "<<e.what()<<"\n";return 4;
+  std::cerr<<"P0R6I_P7_B10_ERROR "<<e.what()<<"\n";return 4;
  }
 }
