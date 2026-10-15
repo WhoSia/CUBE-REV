@@ -1,6 +1,6 @@
 name = "CubeRev025"
 version = "0.1.0"
-defaultTargets = ["CostPartition", "JointNextAction", "ProjectionWordLanguage", "CanonicalTransfer", "BoundedResidualDominance", "PrefixRefutationCalculus", "WeightedPrefixCutset", "ParetoCutsetDominance", "ParallelWorkerLoads", "ImmutableGoalBatch"]
+defaultTargets = ["CostPartition", "JointNextAction", "ProjectionWordLanguage", "CanonicalTransfer", "BoundedResidualDominance", "PrefixRefutationCalculus", "WeightedPrefixCutset", "ParetoCutsetDominance", "ParallelWorkerLoads", "ImmutableGoalBatch", "OneStepProjectionEnvelope"]
 
 [[lean_lib]]
 name = "CostPartition"
@@ -30,3 +30,6 @@ name = "ParallelWorkerLoads"
 
 [[lean_lib]]
 name = "ImmutableGoalBatch"
+
+[[lean_lib]]
+name = "OneStepProjectionEnvelope"
