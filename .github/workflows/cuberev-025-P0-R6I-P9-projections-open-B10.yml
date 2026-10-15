@@ -1,0 +1,96 @@
+name: CUBE-REV 0.25 P0-R6I-P9 exact independent projection closure and OPEN B10 physical cost
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p9_projection_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_p9_projection_audit_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P9-projections-open-B10.yml"
+permissions:
+  contents: read
+jobs:
+  independent-full-B6-C6-C7-E6-sorted-projection-and-all18-closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compile native original full-cubie goals and independent Go projection closure verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p9_projection_cpp/main.cpp -lcrypto -o /tmp/p9-original
+          go build -o /tmp/p9-audit scripts/cuberev-025/p0_r6i_p9_projection_audit_go/main.go
+      - name: Generate original 54-sticker B6 whole target and all three canonical projection images
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P9_AUDIT_NATIVE_EXTERNAL_WALL_SECONDS %e RSS_KIB %M' timeout 360 /tmp/p9-original audit /tmp/p9-source 320 2>&1 | tee /tmp/p9-native-audit.log
+      - name: Independently re-derive C6 E6 from full B6 and exact C7 one-action corner closure in Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P9_AUDIT_GO_EXTERNAL_WALL_SECONDS %e RSS_KIB %M' timeout 320 /tmp/p9-audit /tmp/p9-source /tmp/p9-native-audit.log audit 2>&1 | tee /tmp/p9-independent-audit.log
+          grep -Fq 'P9_GO_INDEPENDENT_PROJECTION_CLOSURE_PASS' /tmp/p9-independent-audit.log
+          test "$(grep -c '^P9_GO_EXACT_PROJECTION_PASS TYPE' /tmp/p9-independent-audit.log)" -eq 3
+      - name: Reject modified sorted C7 projected membership data
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/p9-source-C7.bin /tmp/p9-C7-sound.bin
+          printf '\001' | dd of=/tmp/p9-source-C7.bin bs=1 count=1 conv=notrunc status=none
+          if /tmp/p9-audit /tmp/p9-source /tmp/p9-native-audit.log audit; then
+            echo P9_UNSOUND_PROJECTION_ACCEPTED; exit 1
+          fi
+          mv /tmp/p9-C7-sound.bin /tmp/p9-source-C7.bin
+          echo P9_TAMPERED_C7_FAIL_CLOSED_PASS
+      - name: Keep repository unmodified
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve original full physical projection triple receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p9-c6-c7-e6-closure-${{ github.run_id }}
+          path: |
+            /tmp/p9-native-audit.log
+            /tmp/p9-independent-audit.log
+          if-no-files-found: warn
+          retention-days: 30
+  original-unproved-first-action-two-physical-B10-prefix-cost-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compile actual whole original CP-CO-EP-EO physics and independent projection/partial-B10 Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p9_projection_cpp/main.cpp -lcrypto -o /tmp/p9-original
+          go build -o /tmp/p9-audit scripts/cuberev-025/p0_r6i_p9_projection_audit_go/main.go
+      - name: Source R10 physical two-probe prefixes starting in previously OPEN first-action regions
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P9_B10_PILOT_EXTERNAL_WALL_SECONDS %e RSS_KIB %M' timeout 395 /tmp/p9-original pilot /tmp/p9-pilot 375 2>&1 | tee /tmp/p9-physical-B10.log
+          grep -Fq 'P9_COMPLETE MODE pilot' /tmp/p9-physical-B10.log
+      - name: Independently verify all 3 projection data images and two true complete B10 prefixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P9_GO_PILOT_AUDIT_EXTERNAL_WALL_SECONDS %e RSS_KIB %M' timeout 325 /tmp/p9-audit /tmp/p9-pilot /tmp/p9-physical-B10.log pilot 2>&1 | tee /tmp/p9-independent-B10.log
+          grep -Fq 'P9_GO_INDEPENDENT_PROJECTION_CLOSURE_PASS' /tmp/p9-independent-B10.log
+          test "$(grep -c '^P9_OPEN_B10_PILOT' /tmp/p9-physical-B10.log)" -eq 2
+      - name: Preserve genuine B10 original physical pilot and separate full projection audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p9-previously-open-B10-first-action-probes-${{ github.run_id }}
+          path: |
+            /tmp/p9-physical-B10.log
+            /tmp/p9-independent-B10.log
+          if-no-files-found: warn
+          retention-days: 30
