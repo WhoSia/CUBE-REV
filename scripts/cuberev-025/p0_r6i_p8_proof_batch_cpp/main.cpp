@@ -83,6 +83,7 @@ static std::vector<std::vector<int>> frontier43(){
  if(all.size()!=43)throw std::runtime_error("original source DFA not 43 leaf");
  return all;
 }
+#ifndef CUBEREV_P8_AS_LIBRARY
 int main(int argc,char**argv){
  try{
   const std::string mode=argc>1?argv[1]:"smoke";
@@ -200,3 +201,4 @@ int main(int argc,char**argv){
   std::cerr<<"P8_ERROR "<<e.what()<<"\n";return 4;
  }
 }
+#endif // CUBEREV_P8_AS_LIBRARY
