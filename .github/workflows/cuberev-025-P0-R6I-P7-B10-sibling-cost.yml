@@ -1,0 +1,62 @@
+name: CUBE-REV 0.25 P0-R6I-P7 real original B10 U-R/D-R sibling shared goal pilot
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p7_b10_sibling_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_p7_b10_sibling_audit_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P7-B10-sibling-cost.yml"
+permissions:
+  contents: read
+jobs:
+  original-54-facelet-real-source-B10-two-sibling-target-share-cost:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject bot author and committer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile original full-cubie C++17 source B10 engine and independent Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_p7_b10_sibling_cpp/main.cpp -o /tmp/r6i-p7-b10
+          go build -o /tmp/r6i-p7-b10-audit scripts/cuberev-025/p0_r6i_p7_b10_sibling_audit_go/main.go
+      - name: Prove original full B6 court real source B10 first U-R and D-R prefix cylinders with one shared target
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P0R6I_P7_B10_SHARED_EXTERNAL_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 240 /tmp/r6i-p7-b10 shared 6 10 225 2>&1 | tee /tmp/r6i-p7-B10-shared.log
+          grep -Fq 'P0R6I_P7_B10_MODE_COMPLETE MODE shared GOAL_RADIUS 6 SOURCE_RADIUS 10 TARGET_BUILDS 1 PREFIXES 2' /tmp/r6i-p7-B10-shared.log
+      - name: Rebuild original B6 target twice for physically identical two sibling source cylinders
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P0R6I_P7_B10_ISOLATED_EXTERNAL_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 270 /tmp/r6i-p7-b10 isolated 6 10 255 2>&1 | tee /tmp/r6i-p7-B10-isolated.log
+          grep -Fq 'P0R6I_P7_B10_MODE_COMPLETE MODE isolated GOAL_RADIUS 6 SOURCE_RADIUS 10 TARGET_BUILDS 2 PREFIXES 2' /tmp/r6i-p7-B10-isolated.log
+      - name: Independent ORIGINAL source10 grammar and physically identical pruning audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/r6i-p7-b10-audit /tmp/r6i-p7-B10-shared.log /tmp/r6i-p7-B10-isolated.log 6 10 | tee /tmp/r6i-p7-B10-audit.log
+          grep -Fq 'P0R6I_P7_B10_GO_INDEPENDENT_PAIRED_PASS GOAL_RADIUS 6 SOURCE_RADIUS 10 PREFIXES 2' /tmp/r6i-p7-B10-audit.log
+      - name: No original source writeback
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve independently audited original physical source B10 prefix receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-p7-true-B10-siblings-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6i-p7-B10-shared.log
+            /tmp/r6i-p7-B10-isolated.log
+            /tmp/r6i-p7-B10-audit.log
+          if-no-files-found: warn
+          retention-days: 30
