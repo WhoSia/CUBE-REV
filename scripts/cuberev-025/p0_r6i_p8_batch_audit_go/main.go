@@ -112,6 +112,13 @@ func main(){
  expectedStates:=uint64(8240087);expectedTotal:=uint64(120213368)
  if mode=="smoke"{expectedStates=3502;expectedTotal=3784}
  targetDigest:=goalDigest(image,rg,expectedStates)
+ // Independently preserve the actually observed complete original physical
+ // goal image fingerprint as a versioned golden regression. Hash equality
+ // remains a cryptographic commitment, NEVER a Lean set-membership axiom.
+ pinned:="82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979"
+ if mode=="smoke"{pinned="860df15c96f330d9f629ecf4e7c0dc3745c5903f2e5dbb7001344b5724d02cb0"}
+ if targetDigest!=pinned{fail("physical original target SHA256 changed from externally audited golden goal court")}
+
  gotGoal,gotFinal:=false,false
  internalCount,leafCount:=0,0
  var internalWeight,leafWeight,leafVisits,leafSkips uint64
