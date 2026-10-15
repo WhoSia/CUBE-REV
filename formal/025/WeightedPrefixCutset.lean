@@ -78,30 +78,30 @@ canonical prefix with k remaining depth. It counts the current prefix
 The alphabet is FINITE. The implementer must match its exact original
 physical/canonical HTM grammar. -/
 def weightedPrefixCalls
-    {Q : Type v} {A : Type w} [DecidableEq A]
-    (legalNext : Q → Finset A) (nextQ : Q → A → Q) :
+    {Q : Type v} {A : Type w}
+    (legalNext : Q → List A) (nextQ : Q → A → Q) :
     Nat → Q → Nat
   | 0, _ => 1
   | k+1, q =>
       (k+2) +
-      ∑ a ∈ legalNext q,
-        weightedPrefixCalls legalNext nextQ k (nextQ q a)
+      (legalNext q).foldl (fun total a =>
+        total + weightedPrefixCalls legalNext nextQ k (nextQ q a)) 0
 
 /-- Fundamental conservation identity for splitting one cylinder into
 its exact legal children. The parent itself remains an internal node. -/
 theorem exact_weighted_cylinder_split
-    {Q : Type v} {A : Type w} [DecidableEq A]
-    (legalNext : Q → Finset A) (nextQ : Q → A → Q)
+    {Q : Type v} {A : Type w}
+    (legalNext : Q → List A) (nextQ : Q → A → Q)
     (k : Nat) (q : Q) :
     weightedPrefixCalls legalNext nextQ (k+1) q =
-      (k+2) + ∑ a ∈ legalNext q,
-        weightedPrefixCalls legalNext nextQ k (nextQ q a) := by
+      (k+2) + (legalNext q).foldl (fun total a =>
+        total + weightedPrefixCalls legalNext nextQ k (nextQ q a)) 0 := by
   rfl
 
 /-- Every node with zero remaining depth weighs exactly one call. -/
 theorem terminal_cylinder_weight_one
-    {Q : Type v} {A : Type w} [DecidableEq A]
-    (legalNext : Q → Finset A) (nextQ : Q → A → Q)
+    {Q : Type v} {A : Type w}
+    (legalNext : Q → List A) (nextQ : Q → A → Q)
     (q : Q) :
     weightedPrefixCalls legalNext nextQ 0 q = 1 := by
   rfl
