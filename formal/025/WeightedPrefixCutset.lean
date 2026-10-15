@@ -106,4 +106,41 @@ theorem terminal_cylinder_weight_one
     weightedPrefixCalls legalNext nextQ 0 q = 1 := by
   rfl
 
+
+/-- Verified antichain/negative-certificate reuse across possibly
+different canonical-DFA states. Two INDEPENDENT obligations must hold:
+every suffix legal at the candidate is legal at the certificate source,
+and success from the candidate implies success from the source on the
+SAME ordered suffix word. Neither property follows from cubie equality
+or a scalar pattern-database heuristic alone.
+
+This theorem converts an existing variable-depth refutation into an
+actual well-formed prefix refutation for the dominated candidate. -/
+theorem weighted_cutset_antichain_reuse
+    {S : Type u} {Q : Type v} {A : Type w}
+    (move : S → A → S)
+    (advance : Q → A → Q)
+    (allowed : Q → A → Prop) (target : S → Prop)
+    (k : Nat) (strong weak : S) (strongQ weakQ : Q)
+    (strongProof :
+      WeightedCutRefutation move advance allowed target k strong strongQ)
+    (legalLanguageIncluded : ∀ word : List A,
+      word.length ≤ k →
+      legalSuffix allowed advance weakQ word →
+      legalSuffix allowed advance strongQ word)
+    (successLanguageIncluded : ∀ word : List A,
+      word.length ≤ k →
+      legalSuffix allowed advance weakQ word →
+      target (runWord move weak word) →
+      target (runWord move strong word)) :
+    PrefixRefutation move advance allowed target k weak weakQ := by
+  apply prefix_refutation_complete move advance allowed target
+  intro word hLen hLegal hSuccess
+  have forbiddenStrong :=
+    weighted_cutset_sound move advance allowed target
+      k strong strongQ strongProof word
+      hLen (legalLanguageIncluded word hLen hLegal)
+  exact forbiddenStrong
+    (successLanguageIncluded word hLen hLegal hSuccess)
+
 end CubeRev025
