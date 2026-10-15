@@ -6,6 +6,7 @@ on:
     paths:
       - "scripts/cuberev-025/p0_r6i_p8_proof_batch_cpp/**"
       - "scripts/cuberev-025/p0_r6i_p8_batch_audit_go/**"
+      - "scripts/cuberev-025/p0_r6i_p8_resource_scheduler_go/**"
       - ".github/workflows/cuberev-025-P0-R6I-P8-proof-batches.yml"
 permissions:
   contents: read
@@ -83,6 +84,24 @@ jobs:
           /usr/bin/time -f 'P8_B7_GO_AUDIT_SECONDS %e PEAK_RSS_KIB %M' /tmp/p8-go-audit /tmp/p8-B7.log /tmp/p8-B6-sorted.bin b7 | tee /tmp/p8-B7-audit.log
           grep -Fq 'P8_GO_INDEPENDENT_SHA256_AND_PHYSICAL_DFA_BATCH_PASS MODE b7' /tmp/p8-B7-audit.log
           grep -Fq 'SOURCE_GLOBAL_COMPLETE 1' /tmp/p8-B7.log
+      - name: Compile receipt-linked geometry-aware RAM-gated worker batch planner
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/p8-resource-plan scripts/cuberev-025/p0_r6i_p8_resource_scheduler_go/main.go
+      - name: Verify feasible 4-worker and 8-worker scheduled original physical source B7 receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/p8-resource-plan /tmp/p8-B7.log /tmp/p8-B7-audit.log 6000000 4 13711 | tee /tmp/p8-B7-resource-4.log
+          /tmp/p8-resource-plan /tmp/p8-B7.log /tmp/p8-B7-audit.log 16000000 8 13711 | tee /tmp/p8-B7-resource-8.log
+          grep -Fq 'P8_RESOURCE_CONSTRAINED_LPT_FEASIBLE_NOT_EXACT_OPT' /tmp/p8-B7-resource-4.log
+          grep -Fq 'ADMITTED_WORKERS 4' /tmp/p8-B7-resource-4.log
+          grep -Fq 'ADMITTED_WORKERS 8' /tmp/p8-B7-resource-8.log
+          if /tmp/p8-resource-plan /tmp/p8-B7.log /tmp/p8-B7-audit.log 1000 4 13711; then
+            echo 'P8_UNSOUND_MEMORY_SCHEDULER_ACCEPTANCE'; exit 1
+          fi
+          echo 'P8_RAM_LIMIT_FAIL_CLOSED_PASS'
       - name: No bot writeback
         run: |
           git diff --exit-code HEAD --
@@ -95,6 +114,8 @@ jobs:
           path: |
             /tmp/p8-B7.log
             /tmp/p8-B7-audit.log
+            /tmp/p8-B7-resource-4.log
+            /tmp/p8-B7-resource-8.log
           if-no-files-found: warn
           retention-days: 30
   original-B10-two-sibling-partial-physical-proof-batch:
