@@ -103,3 +103,38 @@ A deliberately small, read-only original full-cubie physical R10 probe was added
 The first workflow [#38679949807](https://github.com/WhoSia/CUBE-REV/actions/runs/38679949807) was officially FAILURE due to an OUTPUT RECEIPT NAMESPACE mismatch: the original C++17 physical source trial completed both shared-court R10 cylinders zero whole-cubie hits and exact per-prefix source accounting, but the workflow required P0R6I_P7_B10_MODE_COMPLETE while the cloned C++ pilot still emitted P0R6I_P7_MODE_COMPLETE. The job failed before independent rebuilt target or Go comparison and therefore MUST NOT be marked paired PASS. Its raw original physical shared log is preserved and contains two exact source-R10 prefix source word-call populations of1,310,203,083 each, source visits7,353,415 and7,353,394 and genuine whole-cubie B6 zero-meet. Physical source durations57.248 and55.183s, with shared setup15.189s, full process127.620s, peak RSS1,341,540KiB. The normal-form call populations were identical yet original geometry-dependent ordered-pair checks differed:88,754,209 (U-R) vs77,248,894 (D-R), packed edge checks17,574,309 vs15,032,971, full whole-cubie goal lookups94,759 vs69,511.
 
 The typed label was repaired with GitHub commit c06a981102850992bb8380a1c349a26a7f0e2cb6. Read-only [resubmission #38680264075](https://github.com/WhoSia/CUBE-REV/actions/runs/38680264075) repeats full original B10 source checks shared and separately rebuilt with independent Go parity audit. Until full process, rebuilt phase and Go receipts ALL complete successfully, no independent physically paired B10 cost claim can be made. The previous physically verified B7 target-sharing comparisons and Go/Lean B10 cost models remain valid in their own scopes.
+
+
+## 9. Fully completed TRUE source-B10 paired original-cube sibling calibration — exact physical and independent audit
+
+**Historical first attempt #38679949807 FAIL must be retained:** the C++17 original source-B10 shared physical computation itself completed both U-R / D-R prefix cylinders with real B6 full goal zero intersections and exact canonical accounting, but stdout retained an older R6I-P7 receipt namespace while the workflow expected R6I-P7-B10, so CI failed before attempting isolated rebuilding and Go parity. Corrective commit c06a981102850992bb8380a1c349a26a7f0e2cb6 changed the emitted label only. No original physical move semantics or source DFA policy changed.
+
+**Subsequent read-only actual original workflow [#38680264075](https://github.com/WhoSia/CUBE-REV/actions/runs/38680264075), job116242956310: COMPLETED SUCCESS.** Both real full original CP/CO/EP/EO physical source-B10 sibling cylinders were completely searched to radius 10, first with one shared original complete B6 and projected corner/edge court and then after rebuilding a new court for each prefix, with entirely independent Go original 18-letter suffix source-accounting and strict full physical parity.
+
+Each original source prefix (U-R=action IDs 0,3 and D-R=IDs 9,3) has **1,310,203,083 exact source canonical iterative word calls**. They have identical canonical last-action state R and remaining source depth, but differ in true physical cubie starting state. The original physical source results in BOTH shared and isolated mode were identically:
+
+| Original depth2 prefix | Canonical calls | Physical DFS visits | Mathematically sound omitted calls | Ordered candidate pair checks | Packed edge checks | Exact full-goal lookups | Full physical target meets |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| U-R (0,3) |1,310,203,083|7,353,415|1,302,849,668|88,754,209|17,574,309|94,759|0|
+| D-R (9,3) |1,310,203,083|7,353,394|1,302,849,689|77,248,894|15,032,971|69,511|0|
+
+Thus the same full original B10 canonical language mass and nearly identical physical DFS visits do not imply identical original whole-cube projection pair/edge/full query cost. No heuristic projection collision is promoted to a full-cubie physical meet. Go independently checked every source call/skip equality, original full solved-side B6 8,240,087/CP projection1,405,068/EP projection7,672,278 cardinalities, 4,608 true full vs packed original move validations, one-vs-two target building scope and exact physical search counts on BOTH runs.
+
+Actual same Actions worker resource receipts:
+
+| Same original B10 paired worker | Shared FULL ORIGINAL B6 court built once | Separate B6 targets built twice |
+|---|---:|---:|
+| Whole-court setup |13,063.951ms|27,289.538ms|
+| Actual full-source B10 two-prefix searches |86,636.796ms|91,397.531ms|
+| Complete internal process wall |**99,701.318ms**|**122,344.709ms**|
+| External /usr/bin/time wall |101.14s|122.40s|
+| Peak process RSS |1,341,092KiB|1,359,176KiB|
+| Built targets |1|2|
+
+The verified complete-program saved time is 22,643.391ms = ~**18.51%** compared with independent rebuilding in this single paired source-B10 runner. Independent source/corner/edge physical visit/candidate counts agree EXACTLY across the two cost modes. Shared target setup is lower by14,225.587ms, and the remaining process-time difference also reflects runtime/cache/allocator effects; it would be unsound to attribute all22.64s exclusively to one fewer goal build.
+
+The earlier source-B7 six-prefix matched physical experiments exhibited ~85% process-wall savings from sharing because their SOURCE searches were very short and setup dominated; the genuine B10 two-prefix experiment demonstrates why one cannot extrapolate that relative improvement to deeper original source searches. The first official FAILED workflow's U-R/D-R physical timings (57.248/55.183s for two source searches) also differed from the successful rerun (44.418/42.219s), so single worker/cache wall observations are NOT a universal constant. Correct conclusion: same-process read-only target court reuse is physically worthwhile and search semantics/proof obligations are preserved in these original source-B10 sibling tests, but precise speed improvement is hardware/time and original physical geometry dependent.
+
+**No global proof upgrade:** the two U-R and D-R cylinders are STRICT subtrees of the already physically certified first-U and first-D original source-B10 action cylinders. They do not certify any of the sixteen still-open first-action source-B10 cylinders and do not establish original lower17. Current verified global source-specific original WCA whole-cube bound remains **16≤d18(s)≤18**.
+
+**Resulting engineering direction:** batch multiple FIRST-ACTION or depth2 source proof obligations on a worker sharing one immutable original solved-B6 target, while emitting *separate* source prefix/DFA/remaining-depth/physical full-cubie no-meet receipts for each leaf. Then use a model with at least exact canonical source call weight + observed ordered candidate pair/packed edge/full target query counts + one-per-batch target setup and verified peak RAM; an unconstrained scalar word-count heuristic is no longer scientifically adequate. Protect target provenance, goal fingerprint, and external task/job authenticity. Only after a source-complete original B10 frontier is actually measured and independently audited may any lower17 claim be considered.
