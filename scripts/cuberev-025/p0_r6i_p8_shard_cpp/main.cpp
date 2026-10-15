@@ -2,9 +2,9 @@
 // Each worker independently builds and commits the entire original B6.
 // Inside one worker, all assigned source leaves share an immutable goal.
 // Only external independent Go merger may certify the GLOBAL 43-leaf cut.
-#define main inherited_p8_batch_single_main
+#define CUBEREV_P8_AS_LIBRARY
 #include "../p0_r6i_p8_proof_batch_cpp/main.cpp"
-#undef main
+#undef CUBEREV_P8_AS_LIBRARY
 
 int main(int argc,char**argv){
  try{
