@@ -8,6 +8,7 @@ on:
       - "formal/025/ParetoCutsetDominance.lean"
       - "formal/025/ParallelWorkerLoads.lean"
       - "formal/025/ImmutableGoalBatch.lean"
+      - "formal/025/OneStepProjectionEnvelope.lean"
       - "formal/025/lakefile.toml"
       - ".github/workflows/cuberev-025-P0-R6I-lean-cutset.yml"
 permissions:
