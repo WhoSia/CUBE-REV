@@ -5,6 +5,7 @@ on:
     branches: [research/current]
     paths:
       - "formal/025/WeightedPrefixCutset.lean"
+      - "formal/025/ParetoCutsetDominance.lean"
       - "formal/025/lakefile.toml"
       - ".github/workflows/cuberev-025-P0-R6I-lean-cutset.yml"
 permissions:
