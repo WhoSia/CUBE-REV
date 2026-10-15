@@ -1,0 +1,141 @@
+name: CUBE-REV 0.25 P0-R6I-P7 exact worker DP and original shared B6 court audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p7_exact_parallel_dp_go/**"
+      - "scripts/cuberev-025/p0_r6i_p7_shared_goal_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_p7_shared_goal_audit_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P7-scheduling-shared-goal.yml"
+permissions:
+  contents: read
+jobs:
+  exact-4-and-8-worker-scheduling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Block bot contributors
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Native Go exact 18-case Bellman optimal schedule and independent feasibility boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/r6i-schedule scripts/cuberev-025/p0_r6i_p7_exact_parallel_dp_go/main.go
+          timeout 100 /tmp/r6i-schedule | tee /tmp/r6i-exact-schedule.log
+          grep -Fq 'P0R6I_P7_EXACT_18_WORKER_DP_PASS WORKERS 4' /tmp/r6i-exact-schedule.log
+          grep -Fq 'P0R6I_P7_EXACT_18_WORKER_DP_PASS WORKERS 8' /tmp/r6i-exact-schedule.log
+          grep -Fq 'P0R6I_P7_SCHEDULING_COMPLETE_EXACT_18_AND_BOUNDED_MIXED43_PASS' /tmp/r6i-exact-schedule.log
+      - name: No tracked source writeback
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve exact optimal worker assignments and non-optimal bounded 43 schedule
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-p7-schedule-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/r6i-exact-schedule.log
+          if-no-files-found: warn
+  original-physical-shared-goal-B3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Block bot contributors
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Build original 54-sticker physical C++17 and independent Go paired receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_p7_shared_goal_cpp/main.cpp -o /tmp/r6i-shared
+          go build -o /tmp/r6i-shared-go scripts/cuberev-025/p0_r6i_p7_shared_goal_audit_go/main.go
+      - name: Compare exact original B3/B3 shared target vs six independent builds
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 120 /tmp/r6i-shared shared 3 3 100 | tee /tmp/r6i-shared-B3.log
+          timeout 120 /tmp/r6i-shared isolated 3 3 100 | tee /tmp/r6i-isolated-B3.log
+          /tmp/r6i-shared-go /tmp/r6i-shared-B3.log /tmp/r6i-isolated-B3.log 3 3 | tee /tmp/r6i-paired-B3-go.log
+          grep -Fq 'P0R6I_P7_GO_INDEPENDENT_PAIRED_PASS' /tmp/r6i-paired-B3-go.log
+      - name: Preserve original B3 physical paired receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-p7-shared-B3-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6i-shared-B3.log
+            /tmp/r6i-isolated-B3.log
+            /tmp/r6i-paired-B3-go.log
+          if-no-files-found: warn
+  original-physical-shared-goal-B6-order-shared-first:
+    needs: original-physical-shared-goal-B3
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Build immutable original physical C++17 and Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_p7_shared_goal_cpp/main.cpp -o /tmp/r6i-shared
+          go build -o /tmp/r6i-shared-go scripts/cuberev-025/p0_r6i_p7_shared_goal_audit_go/main.go
+      - name: Original full B6 8.24M whole-cubie target build once then rebuild six times
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P0R6I_P7_SHARED_EXTERNAL_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 210 /tmp/r6i-shared shared 6 7 195 2>&1 | tee /tmp/r6i-shared-B6.log
+          /usr/bin/time -f 'P0R6I_P7_ISOLATED_EXTERNAL_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 230 /tmp/r6i-shared isolated 6 7 215 2>&1 | tee /tmp/r6i-isolated-B6.log
+          /tmp/r6i-shared-go /tmp/r6i-shared-B6.log /tmp/r6i-isolated-B6.log 6 7 | tee /tmp/r6i-paired-B6-go.log
+          grep -Fq 'P0R6I_P7_GO_INDEPENDENT_PAIRED_PASS GOAL_RADIUS 6 SOURCE_RADIUS 7' /tmp/r6i-paired-B6-go.log
+      - name: Preserve 6 real original B6 rebuilds and paired source gates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-p7-shared-first-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6i-shared-B6.log
+            /tmp/r6i-isolated-B6.log
+            /tmp/r6i-paired-B6-go.log
+          if-no-files-found: warn
+  original-physical-shared-goal-B6-order-isolated-first:
+    needs: original-physical-shared-goal-B3
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Build original physical C++17 and independent Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_p7_shared_goal_cpp/main.cpp -o /tmp/r6i-shared
+          go build -o /tmp/r6i-shared-go scripts/cuberev-025/p0_r6i_p7_shared_goal_audit_go/main.go
+      - name: Control run order by building six isolated original B6 courts BEFORE shared one
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P0R6I_P7_ISOLATED_EXTERNAL_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 230 /tmp/r6i-shared isolated 6 7 215 2>&1 | tee /tmp/r6i-isolated-B6.log
+          /usr/bin/time -f 'P0R6I_P7_SHARED_EXTERNAL_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 210 /tmp/r6i-shared shared 6 7 195 2>&1 | tee /tmp/r6i-shared-B6.log
+          /tmp/r6i-shared-go /tmp/r6i-shared-B6.log /tmp/r6i-isolated-B6.log 6 7 | tee /tmp/r6i-paired-B6-go.log
+          grep -Fq 'P0R6I_P7_GO_INDEPENDENT_PAIRED_PASS GOAL_RADIUS 6 SOURCE_RADIUS 7' /tmp/r6i-paired-B6-go.log
+      - name: Preserve reversed-order real physical B6 resource receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-p7-isolated-first-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6i-shared-B6.log
+            /tmp/r6i-isolated-B6.log
+            /tmp/r6i-paired-B6-go.log
+          if-no-files-found: warn
