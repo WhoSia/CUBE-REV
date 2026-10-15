@@ -1,0 +1,81 @@
+name: CUBE-REV 0.25 P0-R6I-P10 full first action3 source B10 original physical refutation
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p10_first_action3_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_p10_first_action3_merge_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P10-first-action3-complete.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-entire-first-action3-B10-physical-shards:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1]
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Original 54-sticker physical engine compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p10_first_action3_cpp/main.cpp -lcrypto -o /tmp/p10-original-shard
+      - name: Run complete exactly assigned original source B10 first-action3 physical second-action cylinders
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P10_FIRST_ACTION3_SHARD_EXTERNAL_SECONDS %e PEAK_RSS_KIB %M' timeout 720 /tmp/p10-original-shard 3 ${{ matrix.shard }} 690 2>&1 | tee /tmp/p10-first3-${{ matrix.shard }}.log
+          grep -Fq 'P10_BRANCH_SHARD_COMPLETE FIRST 3 SHARD ${{ matrix.shard }}' /tmp/p10-first3-${{ matrix.shard }}.log
+          test "$(grep -c '^P10_BRANCH_LEAF FIRST 3 ' /tmp/p10-first3-${{ matrix.shard }}.log)" -eq ${{ matrix.shard == 0 && 8 || 7 }}
+          grep -Fq 'SOURCE_WHOLE_GLOBAL_COMPLETE 0' /tmp/p10-first3-${{ matrix.shard }}.log
+      - name: Preserve immutable original whole-goal and all actual source physical leaf receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p10-first3-shard-${{ matrix.shard }}-${{ github.run_id }}
+          path: /tmp/p10-first3-${{ matrix.shard }}.log
+          if-no-files-found: warn
+          retention-days: 30
+  independent-first-action3-exact-canonical-child-merge:
+    needs: original-entire-first-action3-B10-physical-shards
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p10-first3-shard-*-${{ github.run_id }}
+          path: /tmp/p10-first3-shard-artifacts
+          merge-multiple: false
+      - name: Compile fully independent Go exact 18HTM canonical source word-coverage verifier
+        run: |
+          set -euo pipefail
+          go build -o /tmp/p10-first3-go scripts/cuberev-025/p0_r6i_p10_first_action3_merge_go/main.go
+      - name: Join two genuine completed original physical first action3 R10 source cylinders with SHA-pinned complete B6
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/p10-first3-go /tmp/p10-first3-shard-artifacts/p10-first3-shard-0-${{ github.run_id }}/p10-first3-0.log /tmp/p10-first3-shard-artifacts/p10-first3-shard-1-${{ github.run_id }}/p10-first3-1.log | tee /tmp/p10-first3-full-proof.log
+          grep -Fq 'P10_FIRST_ACTION3_COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS' /tmp/p10-first3-full-proof.log
+          grep -Fq 'ORIGINAL_FULL_18_ACTION_SOURCE_COMPLETE 0 GLOBAL_LOWER17_CLAIMED 0' /tmp/p10-first3-full-proof.log
+      - name: No bot contribution or source mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve completed first-action3 proof certificate ONLY after independent audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p10-first-action3-merged-${{ github.run_id }}
+          path: /tmp/p10-first3-full-proof.log
+          if-no-files-found: warn
+          retention-days: 30
