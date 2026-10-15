@@ -37,4 +37,25 @@ theorem parallel_makespan_cons (x : Nat) (xs : List Nat) :
       max x (parallelMakespan xs) := by
   rfl
 
+
+/-- Exact fixed-setup amortization. If N independent physical prefix
+jobs each rebuild an immutable target court costing s, but B nonempty
+worker batches each build the SAME court once while preserving all
+N original prefix proof obligations, the aggregate modelled setup
+work saved is precisely (N-B)*s. This is an algebraic statement
+conditional on fixed equal setup cost and identical source work,
+NOT a wall-speedup law for unknown shared hardware contention. -/
+theorem immutable_goal_court_setup_amortization
+    (jobs batches setup : Nat) (h : batches ≤ jobs) :
+    jobs * setup =
+      batches * setup + (jobs - batches) * setup := by
+  have hb : jobs - batches + batches = jobs :=
+    Nat.sub_add_cancel h
+  calc
+    jobs * setup = (jobs - batches + batches) * setup := by rw [hb]
+    _ = (jobs - batches) * setup + batches * setup := by
+      rw [Nat.add_mul]
+    _ = batches * setup + (jobs - batches) * setup := by
+      omega
+
 end CubeRev025
