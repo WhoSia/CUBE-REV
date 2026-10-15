@@ -1,0 +1,36 @@
+name: CUBE-REV 0.25 P0-R6I weighted variable-depth prefix-cutset Lean proofs
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "formal/025/WeightedPrefixCutset.lean"
+      - "formal/025/lakefile.toml"
+      - ".github/workflows/cuberev-025-P0-R6I-lean-cutset.yml"
+permissions:
+  contents: read
+jobs:
+  certify-graded-cut-composition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject bot authors and committers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\\[bot\\]|github-action\\[bot\\]'; then exit 1; fi
+      - name: Kernel build entire current 0.25 proof package
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/025
+          build: true
+          test: false
+          use-mathlib-cache: false
+      - name: Reject source writeback
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
