@@ -45,6 +45,7 @@ static void writeProjection(const std::string&label,
   <<" SNAPSHOT_BYTES "<<data.size()*8ULL<<" SHA256 "<<digest
   <<" ORIG_FULL_GOAL_SHA256 82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979\n"<<std::flush;
 }
+#ifndef CUBEREV_P9_AS_LIBRARY
 int main(int argc,char**argv){
  try{
   if(argc!=4)throw std::runtime_error("usage: audit|pilot outputPrefix seconds");
@@ -132,3 +133,4 @@ int main(int argc,char**argv){
   return 0;
  }catch(const std::exception&e){std::cerr<<"P9_ERROR "<<e.what()<<"\n";return 4;}
 }
+#endif // CUBEREV_P9_AS_LIBRARY
