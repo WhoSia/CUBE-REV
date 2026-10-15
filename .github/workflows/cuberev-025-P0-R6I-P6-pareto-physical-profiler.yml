@@ -1,0 +1,121 @@
+name: CUBE-REV 0.25 P0-R6I-P6 exact Pareto and physical phase cost audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_pareto_dp_go/**"
+      - "scripts/cuberev-025/p0_r6i_physical_phase_profile_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_physical_phase_audit_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P6-pareto-physical-profiler.yml"
+permissions:
+  contents: read
+jobs:
+  exact-18-action-depth2-Pareto-against-262144-policies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject bot author and committer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile exact DP and brute force verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/r6i-pareto scripts/cuberev-025/p0_r6i_pareto_dp_go/main.go
+      - name: Compare certified 2-to-the-18 distinct labelled decisions with DP Pareto frontier
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 160 /tmp/r6i-pareto | tee /tmp/r6i-pareto.log
+          grep -Fq 'P0R6I_EXACT_DEPTH2_PARETO_DP_262144_BRUTE_FORCE_AUDIT_PASS' /tmp/r6i-pareto.log
+      - name: Never write to tracked source
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve complete Pareto frontier
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-pareto-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/r6i-pareto.log
+          if-no-files-found: warn
+  original-physical-stage-B3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject bot author and committer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile untouched original 54-sticker derived turn kernel instrumentation and independent Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_physical_phase_profile_cpp/main.cpp -o /tmp/r6i-phase
+          go build -o /tmp/r6i-phase-go scripts/cuberev-025/p0_r6i_physical_phase_audit_go/main.go
+      - name: Original physical goal B3 build versus projected source-prefix time and exact call receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 130 /tmp/r6i-phase 3 3 115 2>&1 | tee /tmp/r6i-phase-B3.log
+          /tmp/r6i-phase-go /tmp/r6i-phase-B3.log 3 3 | tee /tmp/r6i-phase-B3-audit.log
+          grep -Fq 'R6I_PROFILE_GO_INDEPENDENT_PHASE_PASS' /tmp/r6i-phase-B3-audit.log
+      - name: No tracked source writeback
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve all actual B3 physical source and time evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-stage-B3-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6i-phase-B3.log
+            /tmp/r6i-phase-B3-audit.log
+          if-no-files-found: warn
+  original-physical-stage-B6:
+    needs: original-physical-stage-B3
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject bot author and committer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\[bot\]|github-action\[bot\]'; then exit 1; fi
+      - name: Compile physical stage timing C++17 and Go
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type scripts/cuberev-025/p0_r6i_physical_phase_profile_cpp/main.cpp -o /tmp/r6i-phase
+          go build -o /tmp/r6i-phase-go scripts/cuberev-025/p0_r6i_physical_phase_audit_go/main.go
+      - name: Time true ORIGINAL entire B6 goal, corner/edge projections, six source prefixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'R6I_PROFILE_EXTERNAL_FULL_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 450 /tmp/r6i-phase 6 7 425 2>&1 | tee /tmp/r6i-phase-B6.log
+          /tmp/r6i-phase-go /tmp/r6i-phase-B6.log 6 7 | tee /tmp/r6i-phase-B6-audit.log
+          grep -Fq 'R6I_PROFILE_GO_INDEPENDENT_PHASE_PASS GOAL_RADIUS 6 SOURCE_RADIUS 7 FULL_GOAL 8240087' /tmp/r6i-phase-B6-audit.log
+      - name: Read-only tracked sources
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve physical phase stage timing and per-prefix data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r6i-stage-B6-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            /tmp/r6i-phase-B6.log
+            /tmp/r6i-phase-B6-audit.log
+          if-no-files-found: warn
