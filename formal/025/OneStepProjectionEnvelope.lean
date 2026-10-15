@@ -105,4 +105,56 @@ theorem exclude_one_step_from_corner_envelope
       goal legalActions inverse commutes inverseAdmissible inverseCancels
       s a hLegal hGoal)
 
+/-- The full one-generator ball operator on actual S-states. -/
+def oneStepWholeBall
+    {S : Type u} {A : Type w}
+    (move : S → A → S) (goal : S → Prop)
+    (legalActions : A → Prop) (x : S) : Prop :=
+  goal x ∨ ∃ source action, goal source ∧
+    legalActions action ∧ move source action = x
+
+/-- Exact transport of one-step reachability under the cube's corner
+projection: if the physical state quotient commutes with every 18HTM
+generator, taking the existential projection AFTER one move is
+literally equivalent to applying the induced corner action to the
+entire projected goal. No heuristic estimate is involved.
+
+Consequently C7 = π_C(B7) as an exact equality, provided B7 is
+defined as the one-step completion of the full B6 and each physical
+18HTM action commutes with corner projection. -/
+theorem projection_preserves_one_step_ball
+    {S : Type u} {C : Type v} {A : Type w}
+    (move : S → A → S) (projection : S → C)
+    (cornerMove : C → A → C) (goal : S → Prop)
+    (legalActions : A → Prop)
+    (commutes : ∀ s a,
+       projection (move s a) = cornerMove (projection s) a)
+    (c : C) :
+    cornerImage projection
+      (oneStepWholeBall move goal legalActions) c ↔
+    oneStepCornerEnvelope projection goal cornerMove legalActions c := by
+  constructor
+  · rintro ⟨state, hState, hProjection⟩
+    rcases hState with hBase | ⟨source, action, hSource, hAllowed, hMove⟩
+    · exact Or.inl ⟨state, hBase, hProjection⟩
+    · right
+      refine ⟨projection source, action, ⟨source, hSource, rfl⟩,
+        hAllowed, ?_⟩
+      calc
+        cornerMove (projection source) action =
+          projection (move source action) := (commutes source action).symm
+        _ = projection state := by rw [hMove]
+        _ = c := hProjection
+  · intro h
+    rcases h with ⟨state, hState, hProjection⟩ |
+      ⟨before, action, ⟨source, hSource, hBefore⟩, hLegal, hResult⟩
+    · exact ⟨state, Or.inl hState, hProjection⟩
+    · refine ⟨move source action, Or.inr
+        ⟨source, action, hSource, hLegal, rfl⟩, ?_⟩
+      calc
+        projection (move source action) =
+          cornerMove (projection source) action := commutes source action
+        _ = cornerMove before action := by rw [hBefore]
+        _ = c := hResult
+
 end CubeRev025
