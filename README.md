@@ -1,5 +1,22 @@
 # CUBE-REV — Physical Rubik's Cube Search & Proof-Carrying Programs
 
+## P0-R6I-P12-P4 — four weighted Q3 conjugacy orbits, intrinsic distance spectra, and Lean-verified conditional structure (2026-10-16)
+
+**ACTUAL FULL ORIGINAL B6 VERIFICATION:** [P12-P4 source-native/Go full run #38852970561](https://github.com/WhoSia/CUBE-REV/actions/runs/38852970561) SUCCESS, subsequent [Q3 displacement profile audit #38853254299](https://github.com/WhoSia/CUBE-REV/actions/runs/38853254299) SUCCESS. The original solved 54-facelet B6=8,240,087 with immutable original checksum yields 576 distinct unordered literal-equal edge-fiber corner pairs. Canonically oriented relative CP permutations are 108, but proper unordered relative labels **[δ]={δ,δ⁻¹} number 102**. Enumerating all 8! vertex permutations that preserve original native 18HTM-derived cube-corner graph adjacency gives **Aut(Q3)=48**. Its conjugacy action on [δ] decomposes ALL 102 observed labels into exactly four full orbits. Original B6 equal-fiber pair multiplicities are constant within each graph-label orbit:
+
+| relative CP type | observed Q3 conjugacy orbit size | actual pairs per unordered label | total pairs | stabilizer | Q3 displacement metric profile (D0,D1,D2,D3) |
+| --- | ---: | ---: | ---: | ---: | --- |
+| (2)(2) | 6 | 32 | 192 | 8 | (4,0,4,0) |
+| (2)(2) | 24 | 8 | 192 | 2 | (4,2,0,2) |
+| (4)(2) | 24 | 4 | 96 | 2 | (2,4,2,0) |
+| (4)(2) | 48 | 2 | 96 | 1 | (2,1,4,1) |
+| **ALL** | **102** | | **576** | | |
+
+**Intriguing finite mass law:** each observed orbit obeys μ([δ])·ord(δ)=8·|Stab_G([δ])|, hence orbit pair mass times permutation order equals **48·8=384**, and **576=48(4+4+2+2)**. These weight premises are **EMPIRICAL ORIGINAL B6 facts**; group symmetry of the physical fiber pair object set or a reason WHY the weights hold is **NOT YET PROVEN**. Lean 4 independently checks universal pointwise invariance of graph distances under isometric conjugacy and inverse reindexing, plus conditional arithmetic mass conservation: [Lean #38853787948](https://github.com/WhoSia/CUBE-REV/actions/runs/38853787948) SUCCESS after [previous failed Lean attempt #38853488125](https://github.com/WhoSia/CUBE-REV/actions/runs/38853488125) and documented proof-tactic repair. It does not formalize the whole original B6 or source/goal preserving 48-element cubie action.
+
+**Scientific boundary:** An automorphism of Q3 acting on relative CP permutation TYPES is not a certified joint CP/CO/EP/EO automorphism acting on all actual cube STATES. Orbit-wise uniform multiplicity is an original B6 census result, NOT yet a consequence of verified fiber equivariance; transporting first-action B10 proof certificates requires source-fixed and source-DFA preservation independently. Original certified shortest interval **16≤d18(s)≤18**, four source B10 first actions {0,3,9,12} complete, 14 OPEN, global lower17 NOT PROVED. [Detailed P12-P4 reproducibility and failure ledger](docs/0.25/P0_R6I_P12_P4_UNDIRECTED_RELATIVE_PERMUTATION_ORBITS.md) · [Notion stepwise research notebook](https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc). Human WhoSia author/committer, read-only CI, P7 allowlist875.
+
+
 ## P0-R6I-P12-P3 — exact original physical corner-graph three-family result; (3)(3) W counterexample (2026-10-16)
 
 [Original B6 physical Go complete witness #38849904879](https://github.com/WhoSia/CUBE-REV/actions/runs/38849904879) and [native corner-turn geometry R3 #38850597728](https://github.com/WhoSia/CUBE-REV/actions/runs/38850597728) both SUCCESS. SHA-pinned 54-sticker-derived whole solved B6=8,240,087 CP/CO/EP/EO states yielded **576** pairs with identical literal edge fibers. The WEAKER common-edge witness relation contains **705,075 pair incidences** including **103,404 relative (3)(3) incidences**, all with unequal full fibers; actual witness EDGE1277590518456 / CORNERS87340466581,280606970135. Hence short edge-preserving relative words do not alone explain exact-fiber exclusion.
