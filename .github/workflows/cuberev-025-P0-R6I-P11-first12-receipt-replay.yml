@@ -50,7 +50,7 @@ jobs:
           if /tmp/p11-go /tmp/p11-first12-0.log /tmp/p11-fake-goal.log; then
             echo 'P11_UNSOUND_WRONG_ORIGINAL_GOAL_SHA_ACCEPTANCE'; exit 1
           fi
-          echo 'P11_COMPLETE_FIRST3_TAMPER_FAIL_CLOSED_PASS'
+          echo 'P11_COMPLETE_FIRST12_TAMPER_FAIL_CLOSED_PASS'
       - name: Strict read only provenance
         run: |
           git diff --exit-code HEAD --
