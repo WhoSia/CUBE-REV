@@ -43,7 +43,7 @@ jobs:
         run: |
           set -euo pipefail
           /tmp/p12-p3-face /tmp/p12-p3-original-turns.bin /tmp/p12-p3-geometry.log 2>&1 | tee /tmp/p12-p3-face-incidence.log
-          grep -Fq "P12_P3_R2_TRUE_FACE_EDGE_INCIDENCE_PASS" /tmp/p12-p3-face-incidence.log
+          grep -Fq "P12_P3_R3_OPPOSITE_EDGE_AND_PATH_SUPPORT_PASS" /tmp/p12-p3-face-incidence.log
       - name: Reject physical goal byte corruption
         shell: bash
         run: |
