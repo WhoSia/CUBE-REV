@@ -17,7 +17,7 @@ import (
 
 type Perm [8]uint8
 type PairSig struct { a,b uint64; fiber int; cycle string; rel Perm }
-type OrbitSig struct { n,w int; cycle string }
+type OrbitSig struct { n,w int; cycle string; metric [4]int }
 func fail(reason string) { fmt.Fprintln(os.Stderr,"P12_P4_FAIL",reason);os.Exit(2) }
 func cp(c uint64,i int)uint8{return uint8((c>>uint(3*i))&7)}
 func co(c uint64,i int)uint8{return uint8((c>>uint(24+2*i))&3)}
@@ -78,6 +78,24 @@ func allGraphAutos(adj [8][8]bool)[]Perm {
  if len(autos)!=48{fail("physical Q3 full graph automorphism group != 48")}
  return autos
 }
+// The Q3 distance histogram is invariant under vertex-isometric conjugation
+// and under reversal of the unordered relative permutation label.
+func graphDistance(adj [8][8]bool)[8][8]int {
+ var d [8][8]int
+ for i:=0;i<8;i++ {for j:=0;j<8;j++ {
+  if i==j{d[i][j]=0}else if adj[i][j]{d[i][j]=1}else{d[i][j]=99}
+ }}
+ for k:=0;k<8;k++{for i:=0;i<8;i++{for j:=0;j<8;j++ {
+  if d[i][k]+d[k][j]<d[i][j]{d[i][j]=d[i][k]+d[k][j]}
+ }}}
+ for i:=0;i<8;i++{for j:=0;j<8;j++{if d[i][j]>3{fail("original Q3 graph disconnected")}}}
+ return d
+}
+func metricProfile(p Perm,d [8][8]int)[4]int {
+ var profile [4]int
+ for i:=0;i<8;i++{profile[d[i][p[i]]]++}
+ return profile
+}
 func readPairs(path string)([]PairSig,map[string]int,int){
  f,e:=os.Open(path);if e!=nil{fail("open pair ledger "+e.Error())};defer f.Close()
  sc:=bufio.NewScanner(f);if !sc.Scan(){fail("empty pair ledger")}
@@ -120,6 +138,7 @@ func main(){
  if len(os.Args)!=3{fail("usage: p12p4 original-P9-turns.bin original-P12P3-576-pairs.tsv")}
  turns,e:=os.ReadFile(os.Args[1]);if e!=nil{fail(e.Error())}
  adj:=graphFromPhysical(turns)
+ distances:=graphDistance(adj)
  group:=allGraphAutos(adj)
  pairs,counts,oriented:=readPairs(os.Args[2])
  if oriented!=108||len(counts)!=102{fail("raw 108 or inverse-normalized 102 relative permutations changed")}
@@ -132,21 +151,25 @@ func main(){
   for _,g:=range group{orb[norm(conj(p,g))]=true}
   freq:=counts[seed]
   ctype:=cycleName(p)
+  profile:=metricProfile(p,distances)
+  if profile!=metricProfile(inverse(p),distances){fail("inverse-class has different Q3 metric profile")}
   for key:=range orb{
+   var q Perm;for i:=0;i<8;i++{q[i]=key[i]-'0'}
+   if metricProfile(q,distances)!=profile{fail("graph-isometric conjugation changed displacement profile")}
    if counts[key]!=freq{fail(fmt.Sprintf("orbit not weight-preserving: orbitseed %s partner %s seedweight %d observed %d",seed,key,freq,counts[key]))}
    if !unseen[key]{fail("orbit overlap with already removed label")}
    delete(unseen,key)
   }
-  orbits=append(orbits,OrbitSig{len(orb),freq,ctype})
+  orbits=append(orbits,OrbitSig{len(orb),freq,ctype,profile})
  }
  sort.Slice(orbits,func(i,j int)bool{if orbits[i].cycle!=orbits[j].cycle{return orbits[i].cycle<orbits[j].cycle};if orbits[i].n!=orbits[j].n{return orbits[i].n<orbits[j].n};return orbits[i].w<orbits[j].w})
- expected:=[]OrbitSig{{6,32,"2+2"},{24,8,"2+2"},{24,4,"2+4"},{48,2,"2+4"}}
+ expected:=[]OrbitSig{{6,32,"2+2",[4]int{4,0,4,0}},{24,8,"2+2",[4]int{4,2,0,2}},{24,4,"2+4",[4]int{2,4,2,0}},{48,2,"2+4",[4]int{2,1,4,1}}}
  if len(orbits)!=len(expected){fail("unexpected number of inverse-class conjugation orbits")}
  nLabels,total:=0,0
  for i,o:=range orbits{
   if o!=expected[i]{fail(fmt.Sprintf("orbit expected %+v got %+v",expected[i],o))}
   nLabels+=o.n;total+=o.n*o.w
-  fmt.Printf("P12_P4_ORBIT CYCLE %s DISTINCT_UNDIRECTED_REL_MAPS %d PAIRS_PER_MAP %d TOTAL_PAIRS %d GRAPH_STABILIZER_ORDER %d\n",o.cycle,o.n,o.w,o.n*o.w,48/o.n)
+  fmt.Printf("P12_P4_ORBIT CYCLE %s DISTINCT_UNDIRECTED_REL_MAPS %d PAIRS_PER_MAP %d TOTAL_PAIRS %d GRAPH_STABILIZER_ORDER %d Q3_METRIC_PROFILE %d,%d,%d,%d\n",o.cycle,o.n,o.w,o.n*o.w,48/o.n,o.metric[0],o.metric[1],o.metric[2],o.metric[3])
  }
  if nLabels!=102||total!=576||len(pairs)!=576{fail("the four orbit totals do not exhaust 576")}
  fmt.Printf("P12_P4_INVERSE_CONJUGACY_ORBIT_PASS ORIGINAL_B6_FIBER_PAIRS 576 RAW_RELATIVE_CP_MAPS %d UNDIRECTED_INVERSE_LABELS %d Q3_AUTOMORPHISMS %d ORBITS 4 WEIGHT_UNIFORM 1 GOAL_B6_JOINT_CUBIE_AUTOMORPHISM_PROVEN 0 SOURCE_FIXED_SYMMETRY_PROVEN 0 GLOBAL_LOWER17_CLAIMED 0\n",oriented,nLabels,len(group))
