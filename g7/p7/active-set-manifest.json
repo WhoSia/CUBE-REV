@@ -110,6 +110,7 @@
     ".github/workflows/cuberev-025-P0-R6I-P11-duplicate-fiber-geometry.yml",
     ".github/workflows/cuberev-025-P0-R6I-P11-first-action12-complete.yml",
     ".github/workflows/cuberev-025-P0-R6I-P11-first12-receipt-replay.yml",
+    ".github/workflows/cuberev-025-P0-R6I-P12-relative-cycle-lean.yml",
     ".github/workflows/cuberev-025-P0-R6I-P6-pareto-physical-profiler.yml",
     ".github/workflows/cuberev-025-P0-R6I-P7-B10-sibling-cost.yml",
     ".github/workflows/cuberev-025-P0-R6I-P7-scheduling-shared-goal.yml",
@@ -381,6 +382,7 @@
     "docs/0.25/P0_R6H_PREFIX_REFUTATION_AND_RATIONAL_NORMAL_FORM_THEORY.md",
     "docs/0.25/P0_R6I_P10_EXACT_FIBER_CENSUS_PHYSICAL_FALSE_POSITIVES_AND_FIRST3_R10.md",
     "docs/0.25/P0_R6I_P11_FIBER_GEOMETRY_SYMMETRY_AND_FIRST12_B10.md",
+    "docs/0.25/P0_R6I_P12_RELATIVE_CYCLE_AND_TWIST_BALANCE_DEVELOPMENT.md",
     "docs/0.25/P0_R6I_P6_CERTIFIED_PARETO_DP_AND_ORIGINAL_PHYSICAL_PHASE_COST_AUDIT.md",
     "docs/0.25/P0_R6I_P7_EXACT_PARALLEL_MAKESPAN_AND_SHARED_GOAL_COURT.md",
     "docs/0.25/P0_R6I_P8_PROOF_CARRYING_WORKER_BATCHES_AND_IMMUTABLE_GOAL_SHA256.md",
@@ -414,6 +416,7 @@
     "formal/025/PrefixRefutationCalculus.lean",
     "formal/025/ProjectionMarginalObstruction.lean",
     "formal/025/ProjectionWordLanguage.lean",
+    "formal/025/RelativeCornerCycleConstraints.lean",
     "formal/025/WeightedPrefixCutset.lean",
     "formal/025/lake-manifest.json",
     "formal/025/lakefile.toml",
@@ -751,6 +754,7 @@
     "scripts/cuberev-025/p0_r6i_p11_duplicate_fiber_geometry_go/main.go",
     "scripts/cuberev-025/p0_r6i_p11_first_action12_cpp/main.cpp",
     "scripts/cuberev-025/p0_r6i_p11_first_action12_merge_go/main.go",
+    "scripts/cuberev-025/p0_r6i_p12_cycle_census_go/main.go",
     "scripts/cuberev-025/p0_r6i_p7_b10_sibling_audit_go/main.go",
     "scripts/cuberev-025/p0_r6i_p7_b10_sibling_cpp/main.cpp",
     "scripts/cuberev-025/p0_r6i_p7_exact_parallel_dp_go/main.go",
@@ -3404,6 +3408,19 @@
         "known_upper": 18
       },
       "not_general_runtime_speedup": "extra corner query per visited state and extra RAM; full lookups counted not wall speed"
+    },
+    "p0_r6i_p12_cycle_lean_development": {
+      "status": "DEVELOPMENT; external native B6/Go census and Lean kernel PENDING",
+      "admitted_new_paths": [
+        "scripts/cuberev-025/p0_r6i_p12_cycle_census_go/main.go",
+        "formal/025/RelativeCornerCycleConstraints.lean",
+        "docs/0.25/P0_R6I_P12_RELATIVE_CYCLE_AND_TWIST_BALANCE_DEVELOPMENT.md",
+        ".github/workflows/cuberev-025-P0-R6I-P12-relative-cycle-lean.yml"
+      ],
+      "original_p11_coarse_types": "1/6/2=96,1/6/4=96,4/4/0=256,4/4/4=128",
+      "global_original_distance": "16<=d18(s)<=18; full B10 lower17 unproved; 14 first actions open",
+      "notion_canonical": "https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc",
+      "governance": "Only WhoSia human git author and committer; Actions read-only; bot writeback prohibited"
     }
   }
 }

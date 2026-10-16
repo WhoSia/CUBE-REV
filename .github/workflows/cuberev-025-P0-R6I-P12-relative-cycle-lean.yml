@@ -1,0 +1,84 @@
+name: CUBE-REV 0.25 P12 exact original B6 relative cycle census and Lean arithmetic
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p12_cycle_census_go/**"
+      - "formal/025/RelativeCornerCycleConstraints.lean"
+      - ".github/workflows/cuberev-025-P0-R6I-P12-relative-cycle-lean.yml"
+permissions:
+  contents: read
+jobs:
+  actual-original-full-b6-cycle-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Reject GitHub bot research contributors
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log --format='%an <%ae> %cn <%ce>' | grep -Ei 'github-actions?\\[bot\\]|github-action\\[bot\\]'; then exit 1; fi
+      - name: Compile source exact physics and Go audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p9_projection_cpp/main.cpp -lcrypto -o /tmp/p12-original-p9
+          go vet scripts/cuberev-025/p0_r6i_p12_cycle_census_go/main.go
+          go build -o /tmp/p12-cycle scripts/cuberev-025/p0_r6i_p12_cycle_census_go/main.go
+      - name: Build original 8,240,087 whole-cubie solved B6 from 54 facelets
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P12_ORIGINAL_B6_WALL %e PEAK_RSS_KIB %M' timeout 240 /tmp/p12-original-p9 audit /tmp/p12-original-goal 230 2>&1 | tee /tmp/p12-original-b6.log
+          grep -Fq 'P9_PROJECTIONS_COMPLETE' /tmp/p12-original-b6.log
+      - name: Enumerate all 576 true literal-fiber pairs and relative cycles
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P12_CYCLE_WALL %e PEAK_RSS_KIB %M' timeout 180 /tmp/p12-cycle /tmp/p12-original-goal-B6.bin 2>&1 | tee /tmp/p12-cycle-census.log
+          grep -Fq 'P12_ORIGINAL_B6_RELATIVE_CYCLE_CENSUS_PASS' /tmp/p12-cycle-census.log
+          grep -Fq 'GLOBAL_LOWER17_CLAIMED 0' /tmp/p12-cycle-census.log
+      - name: Reject corrupted physical goal data
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/p12-original-goal-B6.bin /tmp/p12-corrupted-B6.bin
+          printf '\001' | dd of=/tmp/p12-corrupted-B6.bin bs=1 count=1 conv=notrunc status=none
+          if /tmp/p12-cycle /tmp/p12-corrupted-B6.bin; then
+            echo P12_CORRUPTED_WHOLE_B6_ACCEPTED; exit 1
+          fi
+          echo P12_B6_CORRUPTION_REJECTED_PASS
+      - name: Read-only tracked source check
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Preserve actual counts and failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p12-original-relative-cycle-census-${{ github.run_id }}
+          path: |
+            /tmp/p12-original-b6.log
+            /tmp/p12-cycle-census.log
+          retention-days: 30
+          if-no-files-found: warn
+  lean-pure-arithmetic-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Kernel build with P12 proof included in Lake targets
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/025
+          build: true
+          test: false
+          use-mathlib-cache: false
+      - name: No tracked code modification
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"

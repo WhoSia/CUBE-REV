@@ -1,5 +1,10 @@
 # CUBE-REV — Physical Rubik's Cube Search & Proof-Carrying Programs
 
+## P0-R6I-P12-P1/P2 — relative corner cycles and twist-balance audit, DEVELOPMENT / CI PENDING (2026-10-16)
+
+**This is NOT an independently certified new original B6 fine-type census or Lean kernel PASS.** [P12 stepwise research log](docs/0.25/P0_R6I_P12_RELATIVE_CYCLE_AND_TWIST_BALANCE_DEVELOPMENT.md) and [Notion 0.25 continuously recorded lab book](https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc). New pinned-goal Go enumeration, four conditional numerical Lean arithmetic necessity lemmas, read-only physical/Lean reproducibility CI have been submitted; measured counts of relative (3)(3) vs (4)(2) remain PENDING until actual original B6 regeneration+full census. **CURRENT certified physical 18HTM distance remains 16≤d18(s)≤18, four first-action10 regions {0,3,9,12} complete, 14 OPEN, global lower17 UNPROVED.** Negative and pending results belong in Notion immediately. No bot commit/writeback.
+
+
 ## P0-R6I-P11 — exact 576 duplicate-fiber geometric signatures, proved stabilizer/parity/source-fixed symmetry contracts, and FIRST-ACTION12 ORIGINAL B10 COMPLETE (2026-10-16)
 
 **AUTHORITY: genuine original WCA 3×3 18HTM shortest-distance remains 16≤d18(s)≤18. Now exactly FOUR first-generator original source-B10 cylinders are completely certified no-meet against the immutable full solved B6: action IDs {0(U),3,9(D),12}. The other FOURTEEN (previously15) original first-generator B10 regions remain OPEN. Full source B10 global lower17 remains UNPROVED.** [Complete P11 original physics + pure TCS detailed report](docs/0.25/P0_R6I_P11_FIBER_GEOMETRY_SYMMETRY_AND_FIRST12_B10.md).
