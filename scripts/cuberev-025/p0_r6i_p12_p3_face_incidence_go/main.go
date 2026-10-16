@@ -64,13 +64,13 @@ func main(){
   var maskstr string
   var count int
   tok:=strings.Fields(s)
-  if len(tok)!=6{fail("malformed support ledger line")}
+  if len(tok)!=7||tok[1]!="KEY"||tok[5]!="PAIRS"{fail("malformed support ledger line")}
   for _,v:=range tok{
    if strings.HasPrefix(v,"fiber="){fiber,_=strconv.Atoi(strings.TrimPrefix(v,"fiber="))}
    if strings.HasPrefix(v,"cycle="){cycle=strings.TrimPrefix(v,"cycle=")}
    if strings.HasPrefix(v,"mask="){maskstr=strings.TrimPrefix(v,"mask=")}
   }
-  count,_=strconv.Atoi(tok[5])
+  count,errCount:=strconv.Atoi(tok[6]);if errCount!=nil{fail("invalid support count")}
   raw,err:=hex.DecodeString(maskstr)
   if err!=nil||len(raw)!=1{fail("invalid mask hex")}
   m:=raw[0]
