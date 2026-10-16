@@ -1,0 +1,82 @@
+name: CUBE-REV 0.25 P0-R6I-P11 full first action12 source B10 original physical refutation
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p11_first_action3_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_p11_first_action3_merge_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P11-first-action12-complete.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-entire-first-action12-B10-physical-shards:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1]
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Original 54-sticker physical engine compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p11_first_action3_cpp/main.cpp -lcrypto -o /tmp/p11-original-shard
+      - name: Run complete exactly assigned original source B10 first-action12 physical second-action cylinders
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P11_FIRST_ACTION12_SHARD_EXTERNAL_SECONDS %e PEAK_RSS_KIB %M' timeout 720 /tmp/p11-original-shard 12 ${{ matrix.shard }} 690 2>&1 | tee /tmp/p11-first12-${{ matrix.shard }}.log
+          grep -Fq 'P11_BRANCH_SHARD_COMPLETE FIRST 12 SHARD ${{ matrix.shard }}' /tmp/p11-first12-${{ matrix.shard }}.log
+          if [ "${{ matrix.shard }}" = "0" ]; then expected=6; else expected=6; fi
+          test "$(grep -c '^P11_BRANCH_LEAF FIRST 12 ' /tmp/p11-first12-${{ matrix.shard }}.log)" -eq "$expected"
+          grep -Fq 'SOURCE_WHOLE_GLOBAL_COMPLETE 0' /tmp/p11-first12-${{ matrix.shard }}.log
+      - name: Preserve immutable original whole-goal and all actual source physical leaf receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p11-first12-shard-${{ matrix.shard }}-${{ github.run_id }}
+          path: /tmp/p11-first12-${{ matrix.shard }}.log
+          if-no-files-found: warn
+          retention-days: 30
+  independent-first-action12-exact-canonical-child-merge:
+    needs: original-entire-first-action12-B10-physical-shards
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p11-first12-shard-*-${{ github.run_id }}
+          path: /tmp/p11-first12-shard-artifacts
+          merge-multiple: false
+      - name: Compile fully independent Go exact 18HTM canonical source word-coverage verifier
+        run: |
+          set -euo pipefail
+          go build -o /tmp/p11-first12-go scripts/cuberev-025/p0_r6i_p11_first_action3_merge_go/main.go
+      - name: Join two genuine completed original physical first action12 R10 source cylinders with SHA-pinned complete B6
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/p11-first12-go /tmp/p11-first12-shard-artifacts/p11-first12-shard-0-${{ github.run_id }}/p11-first12-0.log /tmp/p11-first12-shard-artifacts/p11-first12-shard-1-${{ github.run_id }}/p11-first12-1.log | tee /tmp/p11-first12-full-proof.log
+          grep -Fq 'P11_FIRST_ACTION12_COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS' /tmp/p11-first12-full-proof.log
+          grep -Fq 'ORIGINAL_FULL_18_ACTION_SOURCE_COMPLETE 0 GLOBAL_LOWER17_CLAIMED 0' /tmp/p11-first12-full-proof.log
+      - name: No bot contribution or source mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve completed first-action12 proof certificate ONLY after independent audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p11-first-action12-merged-${{ github.run_id }}
+          path: /tmp/p11-first12-full-proof.log
+          if-no-files-found: warn
+          retention-days: 30
