@@ -100,6 +100,6 @@ theorem conditional_corner_orbit_mass_conservation
           simp [Nat.mul_assoc]
     _ = orbitSize * (8 * stabilizerSize) := by rw [weightPremise]
     _ = (orbitSize * stabilizerSize) * 8 := by ac_rfl
-    _ = 384 := by rw [orbitStabilizer]; omega
+    _ = 384 := by rw [orbitStabilizer]
 
 end CubeRev025P12
