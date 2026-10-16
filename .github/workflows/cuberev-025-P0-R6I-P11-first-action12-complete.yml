@@ -4,8 +4,8 @@ on:
   push:
     branches: [research/current]
     paths:
-      - "scripts/cuberev-025/p0_r6i_p11_first_action3_cpp/**"
-      - "scripts/cuberev-025/p0_r6i_p11_first_action3_merge_go/**"
+      - "scripts/cuberev-025/p0_r6i_p11_first_action12_cpp/**"
+      - "scripts/cuberev-025/p0_r6i_p11_first_action12_merge_go/**"
       - ".github/workflows/cuberev-025-P0-R6I-P11-first-action12-complete.yml"
 permissions:
   contents: read
@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p11_first_action3_cpp/main.cpp -lcrypto -o /tmp/p11-original-shard
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p11_first_action12_cpp/main.cpp -lcrypto -o /tmp/p11-original-shard
       - name: Run complete exactly assigned original source B10 first-action12 physical second-action cylinders
         shell: bash
         run: |
@@ -58,7 +58,7 @@ jobs:
       - name: Compile fully independent Go exact 18HTM canonical source word-coverage verifier
         run: |
           set -euo pipefail
-          go build -o /tmp/p11-first12-go scripts/cuberev-025/p0_r6i_p11_first_action3_merge_go/main.go
+          go build -o /tmp/p11-first12-go scripts/cuberev-025/p0_r6i_p11_first_action12_merge_go/main.go
       - name: Join two genuine completed original physical first action12 R10 source cylinders with SHA-pinned complete B6
         shell: bash
         run: |
