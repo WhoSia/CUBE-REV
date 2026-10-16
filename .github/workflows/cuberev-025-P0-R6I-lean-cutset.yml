@@ -12,6 +12,7 @@ on:
       - "formal/025/ProjectionMarginalObstruction.lean"
       - "formal/025/ExactConditionalFiberLabels.lean"
       - "formal/025/FiberAutomorphismStabilizers.lean"
+      - "formal/025/FiberInvariantTransfer.lean"
       - "formal/025/lakefile.toml"
       - ".github/workflows/cuberev-025-P0-R6I-lean-cutset.yml"
 permissions:
