@@ -394,6 +394,7 @@
     "docs/0.25/P0_R6I_WEIGHTED_PREFIX_CUTSET_AND_SPECTRAL_CYLINDER_MEASURE.md",
     "docs/0.25/P0_R6_EXACT_ONE_STEP_DESCENDANT_PRUNING.md",
     "docs/0.25/PROGRAM_CHARTER.md",
+    "docs/0.26/P12_P5_PHYSICAL_24_ROTATION_FIBER_TWIN_ACTION.md",
     "docs/0.26/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -3473,6 +3474,17 @@
       "source_branch": "research/current; main untouched",
       "critical_boundary": "Do not treat 48 Q3 graph isometries as verified physical 48 CP/CO/EP/EO transformations; P12-P5 test first 24 proper rotations",
       "distance": "16<=d18(s)<=18, first-action B10 four certified fourteen open"
+    },
+    "cuberev_026_p12p5_physical_proper_action": {
+      "status": "SCOPED original finite computational PASS; 24 actual spatial rotations freely act on 576 original corner pair objects; 8+8+4+4 physical orbits; primary algebraic 48-graph multiplicity remains OPEN",
+      "report": "docs/0.26/P12_P5_PHYSICAL_24_ROTATION_FIBER_TWIN_ACTION.md",
+      "runs": [
+        38855948078,
+        38856119250
+      ],
+      "notion": "https://app.notion.com/p/3fbef561cf9281198294d7b5601a3ab3",
+      "source": "scripts/cuberev-026/p12_p5_true_rotation_lift_cpp/main.cpp",
+      "priority": "no endless P0 fiber study; return to broad 0.26 original 18HTM source-complete solver goals"
     }
   }
 }
