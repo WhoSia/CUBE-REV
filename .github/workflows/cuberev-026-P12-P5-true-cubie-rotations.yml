@@ -1,0 +1,71 @@
+name: CUBE-REV 0.26 P12-P5 true 54-facelet 24-rotation physical twin transport
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-026/p12_p5_true_rotation_lift_cpp/**"
+      - ".github/workflows/cuberev-026-P12-P5-true-cubie-rotations.yml"
+permissions:
+  contents: read
+jobs:
+  actual-original-physical-24-rotations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Build actual original 54-sticker C++17 and independent Go pair-census
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p9_projection_cpp/main.cpp -lcrypto -o /tmp/p026-p9
+          g++ -std=c++17 -O2 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-026/p12_p5_true_rotation_lift_cpp/main.cpp -o /tmp/p026-rotations
+          go build -o /tmp/p026-go-pairs scripts/cuberev-025/p0_r6i_p12_p3_edge_witness_geometry_go/main.go
+      - name: Regenerate actual original B6 and pinned original source 18HTM turn table
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P026_ORIGINAL_B6_WALL %e RSS_KIB %M' timeout 240 /tmp/p026-p9 audit /tmp/p026-full 230 2>&1 | tee /tmp/p026-original.log
+          grep -Fq 'P9_PROJECTIONS_COMPLETE GOAL_SHA256 82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979' /tmp/p026-original.log
+      - name: Reconstruct 576 unordered original exact corner fiber pair ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 200 /tmp/p026-go-pairs /tmp/p026-full-B6.bin /tmp/p026-pairs.tsv 2>&1 | tee /tmp/p026-pairs.log
+          grep -Fq 'P12_P3_EDGE_WITNESS_VS_EQUAL_FIBER_PASS' /tmp/p026-pairs.log
+          test "$(wc -l </tmp/p026-pairs.tsv)" = 577
+      - name: Physically transport full CP CO EP EO and ALL 576 edge fibers under 24 proper rotations
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P026_PHYSICAL_LIFT_WALL %e RSS_KIB %M' timeout 150 /tmp/p026-rotations /tmp/p026-full-turns.bin /tmp/p026-full-B6.bin /tmp/p026-pairs.tsv 2>&1 | tee /tmp/p026-rotations.log
+          grep -Fq 'P12_P5_TRUE_54_FACELET_24_ROTATION_CUBIE_LIFT_PASS' /tmp/p026-rotations.log
+          grep -Fq 'NUMERICAL_MULTIPLICITY_LAW_EXPLAINED 0' /tmp/p026-rotations.log
+      - name: Physical negative control - reject invalid original 18 action source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/p026-full-turns.bin /tmp/p026-bad-turns.bin
+          printf '\377' | dd of=/tmp/p026-bad-turns.bin bs=1 count=1 conv=notrunc status=none
+          if timeout 20 /tmp/p026-rotations /tmp/p026-bad-turns.bin /tmp/p026-full-B6.bin /tmp/p026-pairs.tsv; then
+            echo P026_INVALID_MOVE_TABLE_ACCEPTED; exit 1
+          fi
+          echo P026_INVALID_MOVE_TABLE_REJECTED_PASS
+      - name: CI source immutability and original research branch authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Preserve audit receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p026-p12p5-24-physical-rotation-audit-${{ github.run_id }}
+          path: |
+            /tmp/p026-original.log
+            /tmp/p026-pairs.log
+            /tmp/p026-rotations.log
+          retention-days: 30
+          if-no-files-found: warn

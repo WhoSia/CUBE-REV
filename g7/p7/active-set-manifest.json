@@ -123,6 +123,7 @@
     ".github/workflows/cuberev-025-P0-R6I-go-weighted-cutset.yml",
     ".github/workflows/cuberev-025-P0-R6I-lean-cutset.yml",
     ".github/workflows/cuberev-025-P0-R6I-physical-mixed-cut-pilot.yml",
+    ".github/workflows/cuberev-026-P12-P5-true-cubie-rotations.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -393,6 +394,7 @@
     "docs/0.25/P0_R6I_WEIGHTED_PREFIX_CUTSET_AND_SPECTRAL_CYLINDER_MEASURE.md",
     "docs/0.25/P0_R6_EXACT_ONE_STEP_DESCENDANT_PRUNING.md",
     "docs/0.25/PROGRAM_CHARTER.md",
+    "docs/0.26/PROGRAM_CHARTER.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
     "formal/016/P12LightGraph.lean",
@@ -782,6 +784,7 @@
     "scripts/cuberev-025/p0_r6i_weighted_cutset_go/main.go",
     "scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs",
     "scripts/cuberev-025/verify_p0_r4_five_real_face_budget_original_54sticker.mjs",
+    "scripts/cuberev-026/p12_p5_true_rotation_lift_cpp/main.cpp",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -3456,6 +3459,20 @@
       ],
       "boundary": "Aut(Q3) acts by conjugation on relative permutation labels; NOT established physical CP/CO/EP/EO or fiber goal action",
       "notion": "https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc"
+    },
+    "cuberev_026_version_continuity": {
+      "status": "VERSION-NAME ONLY transition, P12-P5 inherited, external full 24 proper physical cubie symmetry CI PENDING",
+      "active_version": "0.26",
+      "prior_version": "0.25 unchanged source history",
+      "notion_active": "https://app.notion.com/p/3fbef561cf9281198294d7b5601a3ab3",
+      "new_paths": [
+        "docs/0.26/PROGRAM_CHARTER.md",
+        "scripts/cuberev-026/p12_p5_true_rotation_lift_cpp/main.cpp",
+        ".github/workflows/cuberev-026-P12-P5-true-cubie-rotations.yml"
+      ],
+      "source_branch": "research/current; main untouched",
+      "critical_boundary": "Do not treat 48 Q3 graph isometries as verified physical 48 CP/CO/EP/EO transformations; P12-P5 test first 24 proper rotations",
+      "distance": "16<=d18(s)<=18, first-action B10 four certified fourteen open"
     }
   }
 }
