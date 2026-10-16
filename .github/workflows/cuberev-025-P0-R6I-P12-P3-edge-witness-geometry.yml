@@ -6,6 +6,7 @@ on:
     paths:
       - "scripts/cuberev-025/p0_r6i_p12_p3_edge_witness_geometry_go/**"
       - ".github/workflows/cuberev-025-P0-R6I-P12-P3-edge-witness-geometry.yml"
+      - "scripts/cuberev-025/p0_r6i_p12_p3_face_incidence_go/**"
 permissions:
   contents: read
 jobs:
@@ -21,6 +22,7 @@ jobs:
           set -euo pipefail
           g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p9_projection_cpp/main.cpp -lcrypto -o /tmp/p12-p3-native
           go build -o /tmp/p12-p3 scripts/cuberev-025/p0_r6i_p12_p3_edge_witness_geometry_go/main.go
+          go build -o /tmp/p12-p3-face scripts/cuberev-025/p0_r6i_p12_p3_face_incidence_go/main.go
       - name: Rebuild genuine original solved B6 and pinned full CP CO EP EO SHA
         shell: bash
         run: |
@@ -36,6 +38,12 @@ jobs:
           grep -Fq 'P12_P3_ORIGINAL_B6_RELATIVE_CYCLE_CENSUS_PASS' /tmp/p12-p3-geometry.log
           grep -Fq 'GLOBAL_LOWER17_CLAIMED 0' /tmp/p12-p3-geometry.log
           test "$(wc -l </tmp/p12-p3-576-original-pairs.tsv)" = 577
+      - name: Independently ground support masks in actual six face moves and twelve physical corner edges
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/p12-p3-face /tmp/p12-p3-original-turns.bin /tmp/p12-p3-geometry.log 2>&1 | tee /tmp/p12-p3-face-incidence.log
+          grep -Fq "P12_P3_R2_TRUE_FACE_EDGE_INCIDENCE_PASS" /tmp/p12-p3-face-incidence.log
       - name: Reject physical goal byte corruption
         shell: bash
         run: |
@@ -58,6 +66,7 @@ jobs:
           path: |
             /tmp/p12-p3-native.log
             /tmp/p12-p3-geometry.log
+            /tmp/p12-p3-face-incidence.log
             /tmp/p12-p3-576-original-pairs.tsv
           retention-days: 30
           if-no-files-found: warn

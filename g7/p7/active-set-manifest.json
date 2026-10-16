@@ -758,6 +758,7 @@
     "scripts/cuberev-025/p0_r6i_p11_first_action12_merge_go/main.go",
     "scripts/cuberev-025/p0_r6i_p12_cycle_census_go/main.go",
     "scripts/cuberev-025/p0_r6i_p12_p3_edge_witness_geometry_go/main.go",
+    "scripts/cuberev-025/p0_r6i_p12_p3_face_incidence_go/main.go",
     "scripts/cuberev-025/p0_r6i_p7_b10_sibling_audit_go/main.go",
     "scripts/cuberev-025/p0_r6i_p7_b10_sibling_cpp/main.cpp",
     "scripts/cuberev-025/p0_r6i_p7_exact_parallel_dp_go/main.go",
@@ -3436,6 +3437,14 @@
       "research_gate": "Do not equate shared edge witness with identical whole edge fiber, or general positional relabeling with source-fixed cube symmetry",
       "notion": "https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc",
       "governance": "WhoSia author+committer only; CI contents:read, persist-credentials:false, no source writeback"
+    },
+    "p0_r6i_p12_p3_face_incidence": {
+      "status": "HYPOTHESIS AND ACTUAL GEOMETRY CHECK NOT YET RUN",
+      "admitted": [
+        "scripts/cuberev-025/p0_r6i_p12_p3_face_incidence_go/main.go"
+      ],
+      "physical_input": "P9 native 288-byte 18HTM corner turn table, physical move supports for U/R/F/D/L/B",
+      "expected_explanatory_gate": "6 enriched support masks = 6 actual face sets; 12 unmoved endpoint pairs =12 actual corner-cube graph edges; fail closed on mismatch"
     }
   }
 }
