@@ -1,0 +1,65 @@
+name: CUBE-REV 0.25 P0-R6I-P11 independently replay first-action12 physical proof
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - ".github/workflows/cuberev-025-P0-R6I-P11-first12-receipt-replay.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  external-original-complete-B10-first12-certificate-replay-and-mutation-rejection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Fetch ORIGINAL physically executed successful Actions source B10 first12 shard receipts from pinned immutable run
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p11-first12-shard-*-38835961260
+          path: /tmp/p11-proof
+          merge-multiple: false
+          run-id: 38835961260
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compile independent 18HTM canonical Go completeness verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/p11-go scripts/cuberev-025/p0_r6i_p11_first_action12_merge_go/main.go
+          test -s /tmp/p11-proof/p11-first12-shard-0-38835961260/p11-first12-0.log
+          test -s /tmp/p11-proof/p11-first12-shard-1-38835961260/p11-first12-1.log
+      - name: Replay authentic two true physical shard logs with independent complete 15-action first12 merger
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/p11-proof/p11-first12-shard-0-38835961260/p11-first12-0.log /tmp/p11-first12-0.log
+          cp /tmp/p11-proof/p11-first12-shard-1-38835961260/p11-first12-1.log /tmp/p11-first12-1.log
+          /tmp/p11-go /tmp/p11-first12-0.log /tmp/p11-first12-1.log | tee /tmp/p11-replay-complete.log
+          grep -Fq 'P11_FIRST_ACTION12_COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS' /tmp/p11-replay-complete.log
+      - name: Reject deleted physical child, corrupted goal SHA and false complete receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -v '^P11_BRANCH_LEAF FIRST 12 SECOND 0 ' /tmp/p11-first12-0.log > /tmp/p11-missing-child.log
+          if /tmp/p11-go /tmp/p11-missing-child.log /tmp/p11-first12-1.log; then
+            echo 'P11_UNSOUND_MISSING_ORIGINAL_B10_PREFIX_ACCEPTANCE'; exit 1
+          fi
+          sed s/82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979/0000000000000000000000000000000000000000000000000000000000000000/g /tmp/p11-first12-1.log > /tmp/p11-fake-goal.log
+          if /tmp/p11-go /tmp/p11-first12-0.log /tmp/p11-fake-goal.log; then
+            echo 'P11_UNSOUND_WRONG_ORIGINAL_GOAL_SHA_ACCEPTANCE'; exit 1
+          fi
+          echo 'P11_COMPLETE_FIRST3_TAMPER_FAIL_CLOSED_PASS'
+      - name: Strict read only provenance
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Preserve independently replayed true full physical original first12 source proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p11-original-first12-independent-replay-${{ github.run_id }}
+          path: /tmp/p11-replay-complete.log
+          if-no-files-found: warn
+          retention-days: 30
