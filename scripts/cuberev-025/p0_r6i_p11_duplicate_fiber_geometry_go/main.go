@@ -8,6 +8,12 @@ package main
 import("crypto/sha256";"encoding/binary";"encoding/hex";"fmt";"io";"math";"os";"sort";"strconv";"strings")
 const golden="82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979"
 type fiberClass struct{freq int; size int; first uint64}
+type duplicateFiberPair struct{left,right uint64; size int}
+func cornerParity(c uint64)int{
+ parity:=0
+ for i:=0;i<8;i++{for j:=i+1;j<8;j++{if (c>>(3*i))&7>(c>>(3*j))&7{parity^=1}}}
+ return parity
+}
 func fail(msg string){fmt.Fprintln(os.Stderr,"P11_FIBER_AUDIT_FAIL",msg);os.Exit(2)}
 func get(line,k string)string{w:=strings.Fields(line);for i:=0;i+1<len(w);i++{if w[i]==k{return w[i+1]}};fail("missing "+k);return ""}
 func num(line,k string)uint64{v,e:=strconv.ParseUint(get(line,k),10,64);if e!=nil{fail("bad "+k)};return v}
@@ -72,7 +78,7 @@ func main(){
  info,e:=f.Stat();if e!=nil||info.Size()!=8240087*16{fail("whole B6 byte length not exactly 131841392")}
  h:=sha256.New();h.Write([]byte("CUBE-REV-025-P8:FULL-CP-CO-EP-EO:LE64x2:v1;radius=6;count=8240087\n"))
  classes:=make(map[string]*fiberClass,1500000)
- duplicatePairs:=make([][2]uint64,0,576)
+ duplicatePairs:=make([]duplicateFiberPair,0,576)
  sizeHist:=make(map[int]int)
  classFrequency:=make(map[int]int)
  var row [16]byte
@@ -89,7 +95,7 @@ func main(){
   if v,ok:=classes[key];ok{
    if v.size!=len(edges){fail("fiber canonical equality inconsistent")}
    if v.freq!=1{fail("true original fiber multiplicity exceeds two")}
-   duplicatePairs=append(duplicatePairs,[2]uint64{v.first,prevC})
+   duplicatePairs=append(duplicatePairs,duplicateFiberPair{left:v.first,right:prevC,size:len(edges)})
    v.freq++
   }else{classes[key]=&fiberClass{freq:1,size:len(edges),first:prevC}}
   corners++
@@ -146,15 +152,20 @@ func main(){
 
  if len(duplicatePairs)!=576{fail("true original 576 fiber pair count changed")}
  exactOne,exactTwo,sameCP,sameCO:=0,0,0,0
+ sameParityPairs:=0
+ correlation:=make(map[string]int)
  cpDiff:=make(map[int]int);coDiff:=make(map[int]int);orderedActionTwoWitness:=0
  for _,pair:=range duplicatePairs{
-  x,y:=pair[0],pair[1]
+  x,y:=pair.left,pair.right
   cpChange,coChange:=0,0
   for i:=0;i<8;i++{
    if (x>>(3*i))&7!=(y>>(3*i))&7{cpChange++}
    if (x>>(24+2*i))&3!=(y>>(24+2*i))&3{coChange++}
   }
   cpDiff[cpChange]++;coDiff[coChange]++
+  correlation[fmt.Sprintf("%d/%d/%d",pair.size,cpChange,coChange)]++
+  if cornerParity(x)!=cornerParity(y){fail("literal identical nonempty edge fiber had incompatible CP parity")}
+  sameParityPairs++
   if cpChange==0{sameCP++};if coChange==0{sameCO++}
   one,two:=false,false
   for a:=0;a<18;a++{
@@ -163,7 +174,9 @@ func main(){
   }
   if one{exactOne++};if two{exactTwo++}
  }
- fmt.Printf("P11_FIBER_DUPLICATE_EXACT_GEOMETRY_PASS ORIGINAL_B6_SHA256 %s TWO_CORNER_SHARED_FIBER_CLASSES %d SINGLE_CORNER_FIBER_CLASSES %d DISTINCT_CLASSES %d PAIRS_RELATED_BY_ONE_LEGAL_ACTUAL_HTM_MOVE %d PAIRS_RELATED_BY_TWO_ORDERED_HTM_MOVES %d TOTAL_TWO_ORDERED_WORD_WITNESSES %d SAME_CORNER_PERMUTATION %d SAME_CORNER_ORIENTATION %d ORIGINAL_18_GENERATOR_QUARTER_INVERSE_HALF_GROUP_POWER_AUDITED 1 EXACT_BINARY_FIBER_EQUALITY_NO_HASH_ONLY 1 SOURCE_R10_GLOBAL_COMPLETE 0\n",golden,len(duplicatePairs),singletonClasses,len(classes),exactOne,exactTwo,orderedActionTwoWitness,sameCP,sameCO)
+ fmt.Printf("P11_FIBER_DUPLICATE_EXACT_GEOMETRY_PASS ORIGINAL_B6_SHA256 %s TWO_CORNER_SHARED_FIBER_CLASSES %d SINGLE_CORNER_FIBER_CLASSES %d DISTINCT_CLASSES %d PAIRS_RELATED_BY_ONE_LEGAL_ACTUAL_HTM_MOVE %d PAIRS_RELATED_BY_TWO_ORDERED_HTM_MOVES %d TOTAL_TWO_ORDERED_WORD_WITNESSES %d SAME_CORNER_PERMUTATION %d SAME_CORNER_ORIENTATION %d CORNER_PERMUTATION_PARITY_SAME_PAIRS %d ORIGINAL_18_GENERATOR_QUARTER_INVERSE_HALF_GROUP_POWER_AUDITED 1 EXACT_BINARY_FIBER_EQUALITY_NO_HASH_ONLY 1 SOURCE_R10_GLOBAL_COMPLETE 0\n",golden,len(duplicatePairs),singletonClasses,len(classes),exactOne,exactTwo,orderedActionTwoWitness,sameCP,sameCO,sameParityPairs)
+ keys:=make([]string,0,len(correlation));for key:=range correlation{keys=append(keys,key)};sort.Strings(keys)
+ for _,signature:=range keys{fmt.Printf("P11_DUPLICATE_FIBER_JOINT_SIGNATURE SIZE_CPDIFF_CODIFF %s PAIRS %d\n",signature,correlation[signature])}
  for i:=0;i<=8;i++{
   if cpDiff[i]>0{fmt.Printf("P11_SHARED_FIBER_PAIR_CORNER_CP_POSITION_HAMMING DISTANCE %d PAIRS %d\n",i,cpDiff[i])}
   if coDiff[i]>0{fmt.Printf("P11_SHARED_FIBER_PAIR_CORNER_CO_POSITION_HAMMING DISTANCE %d PAIRS %d\n",i,coDiff[i])}
