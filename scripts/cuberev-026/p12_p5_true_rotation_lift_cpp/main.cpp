@@ -167,6 +167,7 @@ int main(int argc,char**argv){
    if(a!=b||int(a.size())!=p.fiber)throw runtime_error("actual full edge fiber equality mismatch");
   }
   set<PKey> mappedPairs;uint64_t pairTransport=0,edgeTransport=0;
+  map<PKey,set<PKey>> orbitImages;
   for(auto r:rots){
    for(auto p:pairs){
     auto &support=edgeSupport.at(p.a);
@@ -188,11 +189,63 @@ int main(int argc,char**argv){
     sort(imageE.begin(),imageE.end());
     if(imageE!=target)throw runtime_error("physical rotation did not transport WHOLE literal edge support");
     mappedPairs.insert({ca,cb});
+    orbitImages[{p.a,p.b}].insert({ca,cb});
     pairTransport++;
    }
   }
   if(mappedPairs.size()!=576||pairTransport!=24ULL*576||edgeTransport!=24ULL*1728)
     throw runtime_error("whole original fiber orbit cover not complete");
+
+  // Refine the physical group lift into action orbits on the 576
+  // actual unordered equal-edge-fiber PAIR OBJECTS (not just CP labels).
+  // A stabilizer calculation uses all 24 maps for every pair, not
+  // the observed 48-element graph isometry label conjugacy alone.
+  map<PKey,PairC> pairByKey;
+  for(auto p:pairs)pairByKey[{p.a,p.b}]=p;
+  set<PKey> unused;
+  for(auto p:pairs)unused.insert({p.a,p.b});
+  map<int,int> actualOrbitHistogram;
+  map<string,int> typedOrbitHistogram;
+  auto profileOf=[&](PairC p)->string{
+   int inv[8];for(int i=0;i<8;i++)inv[(p.a>>(3*i))&7]=i;
+   int D[4]={0,0,0,0};
+   for(int i=0;i<8;i++){
+    int pi=inv[(p.b>>(3*i))&7];
+    auto cornerPoint=[](int id){Vec v={0,0,0};for(Vec n:cornerN[id])v=plusv(v,n);return v;};
+    Vec v=cornerPoint(i),w=cornerPoint(pi);
+    int dist=(v.x!=w.x)+(v.y!=w.y)+(v.z!=w.z);
+    if(dist<0||dist>3)throw runtime_error("invalid Q3 graph metric distance");
+    D[dist]++;
+   }
+   ostringstream out;for(int k=0;k<4;k++)out<<(k?",":"")<<D[k];
+   return out.str();
+  };
+  while(!unused.empty()){
+   PKey representative=*unused.begin();
+   const auto &orb=orbitImages.at(representative);
+   if(orb.empty()||24%orb.size()!=0)
+    throw runtime_error("proper rotation action orbit size not divisor24");
+   const string profile=profileOf(pairByKey.at(representative));
+   for(auto other:orb){
+    if(!unused.count(other)||profileOf(pairByKey.at(other))!=profile)
+     throw runtime_error("physical pair orbit overlap or metric non-covariance");
+    if(orbitImages.at(other)!=orb)
+     throw runtime_error("24 actual physical rotation maps fail group orbit closure");
+   }
+   for(auto other:orb)unused.erase(other);
+   actualOrbitHistogram[(int)orb.size()]++;
+   typedOrbitHistogram[profile+"/"+to_string(orb.size())]++;
+  }
+  int nPhysicalOrbits=0;
+  for(auto [size,count]:actualOrbitHistogram){
+   nPhysicalOrbits+=count;
+   cout<<"P12_P5_TRUE_PAIR_ORBIT ORBIT_SIZE "<<size
+       <<" ORBIT_COUNT "<<count
+       <<" ORIGINAL_PAIR_COUNT "<<size*count<<"\n";
+  }
+  for(auto [signature,count]:typedOrbitHistogram)
+   cout<<"P12_P5_Q3_METRIC_PAIR_ORBIT PROFILE_AND_SIZE "<<signature
+       <<" ORBIT_COUNT "<<count<<"\n";
   cout<<"P12_P5_TRUE_54_FACELET_24_ROTATION_CUBIE_LIFT_PASS"
       <<" PROPER_ROTATIONS 24 REFLECTIONS_CLAIMED 0"
       <<" GENERATOR_EQUIVARIANCE_CASES "<<generatorCases
@@ -202,6 +255,7 @@ int main(int argc,char**argv){
       <<" FULL_PAIR_TRANSPORT_CHECKS "<<pairTransport
       <<" EDGE_SUPPORT_TRANSPORT_CHECKS "<<edgeTransport
       <<" MAPPED_PAIR_COVER "<<mappedPairs.size()
+      <<" TRUE_PHYSICAL_PAIR_ORBITS "<<nPhysicalOrbits
       <<" FULL_48_AUTOMORPHISM_PROVEN 0"
       <<" NUMERICAL_MULTIPLICITY_LAW_EXPLAINED 0"
       <<" ORIGINAL_SCRAMBLE_SOURCE_FIXED_PROVEN 0"
