@@ -2,6 +2,26 @@
 
 **Original stage status (2026-10-16): DEVELOPMENT / COMPUTATION PENDING**; keep this status as history after subsequent verified amendments. The full new Go experiment is not claimed as externally successful until GitHub Actions logs are read. Notion records exploratory assumptions, negative results and repair attempts immediately.
 
+## P12-P3-R3 verified result: actual corner graph support families (2026-10-16)
+
+Full native source + independent Go [#38850597728](https://github.com/WhoSia/CUBE-REV/actions/runs/38850597728) SUCCESS. Every one of the 576 original exactly identical edge-fiber corner pairs belongs to one of **three geometrically grounded physical Q3 corner-position support families**, identified by original 288-byte P9 18HTM CP generator data, not by guessing from histograms.
+
+| original CP moved support | support masks | exact pairs/mask | exact pairs | cycle |
+| --- | ---: | ---: | ---: | --- |
+| six corners: two fixed vertices are endpoints of one of twelve physical edges | 12 | 16 | 192 | (4)(2) |
+| four corners inducing a 3-edge simple path with internal vertex degrees 1,2,2,1 | 24 | 8 | 192 | (2)(2) |
+| four corners forming endpoints of two diametrically opposite physical edges | 6 | 32 | 192 | (2)(2) |
+| **Total** | **42** | | **576** | |
+
+The original R2 hypothesis that six high-frequency masks are the six PHYSICAL CUBE FACES was false: real U/R/F/D/L/B moving corner masks are 0f,99,33,f0,66,cc; six high-frequency masks are 3c,55,69,96,aa,c3. First R2 [#38850279543](https://github.com/WhoSia/CUBE-REV/actions/runs/38850279543) failed because log token parser expected six instead of seven fields; updated R2 [#38850309572](https://github.com/WhoSia/CUBE-REV/actions/runs/38850309572) correctly falsified face conjecture; R3 [#38850597728](https://github.com/WhoSia/CUBE-REV/actions/runs/38850597728) constructed physical edge incidence and antipodal vertices independently, tested three geometric support classes and PASS. Raw 576 full original packed-corner pair rows preserved in Action artifact; original whole solved B6 checksum pinned, modified input rejected.
+
+The corner-position graph Q3 has Aut(Q3) ≅ (C2)^3 ⋊ S3 order 48; its natural graph support orbits have sizes 12 for edge complements, 24 for induced length-three paths, and 6 for antipodal-edge unions. Within these families original measured pairs per support 16,8,32 are exactly uniform, each family total192. **Neither this orbit arithmetic nor uniform numerical frequency alone proves an actual goal-preserving joint CP/CO/EP/EO group action on all E pairs, and it does NOT imply source-fixed original B10 proof reuse.** Explaining which actual group action stabilizes full fibers and why those weights occur is a new mathematical proof obligation; observe and record failed alternatives.
+
+Earlier actual [P12-P3 R1 #38849904879](https://github.com/WhoSia/CUBE-REV/actions/runs/38849904879) found shared-edge W corner-pair **incidences**705,075 and W relative (3)(3) incidences103,404 (all not full-fiber equal), refuting short edge-kernel absence as sufficient explanation. E itself (576 unordered exact-fiber corner pairs) has zero 3+3, 108 distinct relative CP maps and CO-difference support subset CP-moved support. This is all **original radius6 finite exact computational evidence**, not a radius-universal theorem. Original WCA fixed scramble 16≤d18(s)≤18 and 14 full first generator B10 regions still OPEN.
+
+### Source/custody lineage and negative results explicitly kept
+0.16-P11 exact finite 7004-case integrality-overlap premise was not overclaimed as geometric proof. 0.19 exact small physical M*(5) task, 0.20 transport of actual action/observation, 0.21 finite adaptive control, 0.22 exact cost and source FMC, 0.23 privacy and candidate provenance, 0.24 real 54-sticker whole cube exact search, and 0.25 P0-R1 nonadditive PDB counterexample, P10 +6.8407% exact-fiber filter slowdown, P11 source-fixed symmetry Lean theorem form present grade constraints. Protected 451 human FMC source records never entered this P12 physical analysis. HUMAN WhoSia commits only; Actions read-only, P7 exact path allowlist 873.
+
 ## P12-P3-R1 exact observational result and R2 physical face hypothesis (2026-10-16)
 
 [P12-P3 actual original B6 whole goal + Go run #38849904879](https://github.com/WhoSia/CUBE-REV/actions/runs/38849904879) SUCCESS: common-edge pair **incidences** 705,075, E exact pairs576 and incidences1,728; relative (3)(3) common-edge incidences **103,404** (all not E). One actual full B6 counterexample: edge 1277590518456, corners 87340466581 and 280606970135. Thus the short edge-preserving relative-word hypothesis by itself is insufficient to eliminate (3)(3) under exact-fiber equality. B6 original SHA pinned and corrupt-goal negative test PASS; 576 complete rows in workflow artifact. Rebuild native20.63s/RSS1482152KiB, Go9.32s/RSS366516KiB. Relative physical corner maps in E:108 distinct; CO change support is contained in CP moved support for all576 empirically.
