@@ -110,6 +110,7 @@
     ".github/workflows/cuberev-025-P0-R6I-P11-duplicate-fiber-geometry.yml",
     ".github/workflows/cuberev-025-P0-R6I-P11-first-action12-complete.yml",
     ".github/workflows/cuberev-025-P0-R6I-P11-first12-receipt-replay.yml",
+    ".github/workflows/cuberev-025-P0-R6I-P12-P3-edge-witness-geometry.yml",
     ".github/workflows/cuberev-025-P0-R6I-P12-relative-cycle-lean.yml",
     ".github/workflows/cuberev-025-P0-R6I-P6-pareto-physical-profiler.yml",
     ".github/workflows/cuberev-025-P0-R6I-P7-B10-sibling-cost.yml",
@@ -382,6 +383,7 @@
     "docs/0.25/P0_R6H_PREFIX_REFUTATION_AND_RATIONAL_NORMAL_FORM_THEORY.md",
     "docs/0.25/P0_R6I_P10_EXACT_FIBER_CENSUS_PHYSICAL_FALSE_POSITIVES_AND_FIRST3_R10.md",
     "docs/0.25/P0_R6I_P11_FIBER_GEOMETRY_SYMMETRY_AND_FIRST12_B10.md",
+    "docs/0.25/P0_R6I_P12_P3_EDGE_WITNESS_VS_EQUAL_FIBER_GEOMETRY.md",
     "docs/0.25/P0_R6I_P12_RELATIVE_CYCLE_AND_TWIST_BALANCE_DEVELOPMENT.md",
     "docs/0.25/P0_R6I_P6_CERTIFIED_PARETO_DP_AND_ORIGINAL_PHYSICAL_PHASE_COST_AUDIT.md",
     "docs/0.25/P0_R6I_P7_EXACT_PARALLEL_MAKESPAN_AND_SHARED_GOAL_COURT.md",
@@ -755,6 +757,7 @@
     "scripts/cuberev-025/p0_r6i_p11_first_action12_cpp/main.cpp",
     "scripts/cuberev-025/p0_r6i_p11_first_action12_merge_go/main.go",
     "scripts/cuberev-025/p0_r6i_p12_cycle_census_go/main.go",
+    "scripts/cuberev-025/p0_r6i_p12_p3_edge_witness_geometry_go/main.go",
     "scripts/cuberev-025/p0_r6i_p7_b10_sibling_audit_go/main.go",
     "scripts/cuberev-025/p0_r6i_p7_b10_sibling_cpp/main.cpp",
     "scripts/cuberev-025/p0_r6i_p7_exact_parallel_dp_go/main.go",
@@ -3421,6 +3424,18 @@
       "global_original_distance": "16<=d18(s)<=18; full B10 lower17 unproved; 14 first actions open",
       "notion_canonical": "https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc",
       "governance": "Only WhoSia human git author and committer; Actions read-only; bot writeback prohibited"
+    },
+    "p0_r6i_p12_p3": {
+      "status": "PENDING exact W/E physical census; no 3+3 claims until full original B6 external CI logs",
+      "admitted": [
+        "scripts/cuberev-025/p0_r6i_p12_p3_edge_witness_geometry_go/main.go",
+        ".github/workflows/cuberev-025-P0-R6I-P12-P3-edge-witness-geometry.yml",
+        "docs/0.25/P0_R6I_P12_P3_EDGE_WITNESS_VS_EQUAL_FIBER_GEOMETRY.md"
+      ],
+      "evidence_lineage": "0.16-P11, 0.19-0.24 actual physical history, P11 exact fiber, P12-P1/P2 physical+Lean",
+      "research_gate": "Do not equate shared edge witness with identical whole edge fiber, or general positional relabeling with source-fixed cube symmetry",
+      "notion": "https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc",
+      "governance": "WhoSia author+committer only; CI contents:read, persist-credentials:false, no source writeback"
     }
   }
 }

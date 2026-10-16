@@ -1,0 +1,63 @@
+name: CUBE-REV 0.25 P12-P3 whole B6 shared-edge vs identical-fiber geometry
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p12_p3_edge_witness_geometry_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P12-P3-edge-witness-geometry.yml"
+permissions:
+  contents: read
+jobs:
+  original-8240087-whole-cube-witness-geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compile actual original 54-sticker P9 and P12-P3 Go witness court
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p9_projection_cpp/main.cpp -lcrypto -o /tmp/p12-p3-native
+          go build -o /tmp/p12-p3 scripts/cuberev-025/p0_r6i_p12_p3_edge_witness_geometry_go/main.go
+      - name: Rebuild genuine original solved B6 and pinned full CP CO EP EO SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P12_P3_ORIGINAL_B6_WALL %e RSS_KIB %M' timeout 240 /tmp/p12-p3-native audit /tmp/p12-p3-original 230 2>&1 | tee /tmp/p12-p3-native.log
+          grep -Fq 'P9_PROJECTIONS_COMPLETE GOAL_SHA256 82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979' /tmp/p12-p3-native.log
+      - name: Exact lossless identical-fiber census vs weaker shared-edge intersection witness
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P12_P3_WITNESS_GO_WALL %e RSS_KIB %M' timeout 240 /tmp/p12-p3 /tmp/p12-p3-original-B6.bin /tmp/p12-p3-576-original-pairs.tsv 2>&1 | tee /tmp/p12-p3-geometry.log
+          grep -Fq 'P12_P3_EDGE_WITNESS_VS_EQUAL_FIBER_PASS' /tmp/p12-p3-geometry.log
+          grep -Fq 'P12_P3_ORIGINAL_B6_RELATIVE_CYCLE_CENSUS_PASS' /tmp/p12-p3-geometry.log
+          grep -Fq 'GLOBAL_LOWER17_CLAIMED 0' /tmp/p12-p3-geometry.log
+          test "$(wc -l </tmp/p12-p3-576-original-pairs.tsv)" = 577
+      - name: Reject physical goal byte corruption
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/p12-p3-original-B6.bin /tmp/p12-p3-bad-B6.bin
+          printf '\001' | dd of=/tmp/p12-p3-bad-B6.bin bs=1 count=1 conv=notrunc status=none
+          if /tmp/p12-p3 /tmp/p12-p3-bad-B6.bin /tmp/p12-p3-corrupted.tsv; then
+            echo P12_P3_UNSOUND_CORRUPT_ACCEPT; exit 1
+          fi
+          echo P12_P3_CORRUPT_GOAL_FAIL_CLOSED_PASS
+      - name: Ensure tracked repository is not changed by CI
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Preserve all 576 pair records plus geometry and physics logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p12-p3-original-edge-fiber-geometry-${{ github.run_id }}
+          path: |
+            /tmp/p12-p3-native.log
+            /tmp/p12-p3-geometry.log
+            /tmp/p12-p3-576-original-pairs.tsv
+          retention-days: 30
+          if-no-files-found: warn
