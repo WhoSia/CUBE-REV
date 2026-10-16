@@ -384,6 +384,7 @@
     "docs/0.25/P0_R6I_P10_EXACT_FIBER_CENSUS_PHYSICAL_FALSE_POSITIVES_AND_FIRST3_R10.md",
     "docs/0.25/P0_R6I_P11_FIBER_GEOMETRY_SYMMETRY_AND_FIRST12_B10.md",
     "docs/0.25/P0_R6I_P12_P3_EDGE_WITNESS_VS_EQUAL_FIBER_GEOMETRY.md",
+    "docs/0.25/P0_R6I_P12_P4_UNDIRECTED_RELATIVE_PERMUTATION_ORBITS.md",
     "docs/0.25/P0_R6I_P12_RELATIVE_CYCLE_AND_TWIST_BALANCE_DEVELOPMENT.md",
     "docs/0.25/P0_R6I_P6_CERTIFIED_PARETO_DP_AND_ORIGINAL_PHYSICAL_PHASE_COST_AUDIT.md",
     "docs/0.25/P0_R6I_P7_EXACT_PARALLEL_MAKESPAN_AND_SHARED_GOAL_COURT.md",
@@ -759,6 +760,7 @@
     "scripts/cuberev-025/p0_r6i_p12_cycle_census_go/main.go",
     "scripts/cuberev-025/p0_r6i_p12_p3_edge_witness_geometry_go/main.go",
     "scripts/cuberev-025/p0_r6i_p12_p3_face_incidence_go/main.go",
+    "scripts/cuberev-025/p0_r6i_p12_p4_inverse_conjugacy_go/main.go",
     "scripts/cuberev-025/p0_r6i_p7_b10_sibling_audit_go/main.go",
     "scripts/cuberev-025/p0_r6i_p7_b10_sibling_cpp/main.cpp",
     "scripts/cuberev-025/p0_r6i_p7_exact_parallel_dp_go/main.go",
@@ -3445,6 +3447,15 @@
       ],
       "physical_input": "P9 native 288-byte 18HTM corner turn table, physical move supports for U/R/F/D/L/B",
       "expected_explanatory_gate": "6 enriched support masks = 6 actual face sets; 12 unmoved endpoint pairs =12 actual corner-cube graph edges; fail closed on mismatch"
+    },
+    "p0_r6i_p12_p4_inversion_orbit": {
+      "status": "DEVELOPMENT; external independent Go physical pair-ledger verification PENDING",
+      "admitted": [
+        "scripts/cuberev-025/p0_r6i_p12_p4_inverse_conjugacy_go/main.go",
+        "docs/0.25/P0_R6I_P12_P4_UNDIRECTED_RELATIVE_PERMUTATION_ORBITS.md"
+      ],
+      "boundary": "Aut(Q3) acts by conjugation on relative permutation labels; NOT established physical CP/CO/EP/EO or fiber goal action",
+      "notion": "https://app.notion.com/p/3f7ef561cf9281ae8e94c46e9f916fdc"
     }
   }
 }
