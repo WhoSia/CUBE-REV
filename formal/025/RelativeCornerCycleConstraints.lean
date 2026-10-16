@@ -30,19 +30,17 @@ theorem six_moved_even_cycles
     (evenSign : (n2 + n4 + n6) % 2 = 0) :
     (n3 = 2 ∧ n2 = 0 ∧ n4 = 0 ∧ n5 = 0 ∧ n6 = 0) ∨
     (n4 = 1 ∧ n2 = 1 ∧ n3 = 0 ∧ n5 = 0 ∧ n6 = 0) := by
-  -- Exhaust only the finite partitions allowed by support = 6;
-  -- explicit cases eliminate the modular abstraction blocker in omega.
-  have c2 : n2 = 0 ∨ n2 = 1 ∨ n2 = 2 ∨ n2 = 3 := by omega
-  have c3 : n3 = 0 ∨ n3 = 1 ∨ n3 = 2 := by omega
-  have c4 : n4 = 0 ∨ n4 = 1 := by omega
-  have c5 : n5 = 0 ∨ n5 = 1 := by omega
+  -- Eliminate the impossible 5-cycle directly, then split the 6-
+  -- and 4-cycle choices.  Only the remaining few n2 cases need omega.
+  have h5 : n5 = 0 := by omega
   have c6 : n6 = 0 ∨ n6 = 1 := by omega
-  rcases c2 with h2 | h2 | h2 | h2 <;>
-    rcases c3 with h3 | h3 | h3 <;>
-    rcases c4 with h4 | h4 <;>
-    rcases c5 with h5 | h5 <;>
-    rcases c6 with h6 | h6 <;>
-    omega
+  rcases c6 with h6 | h6
+  · have c4 : n4 = 0 ∨ n4 = 1 := by omega
+    rcases c4 with h4 | h4
+    · have c2 : n2 = 0 ∨ n2 = 1 ∨ n2 = 2 ∨ n2 = 3 := by omega
+      rcases c2 with h2 | h2 | h2 | h2 <;> omega
+    · omega
+  · omega
 
 theorem two_twists_balanced (positive negative : Nat)
     (support : positive + negative = 2)
