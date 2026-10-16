@@ -1,0 +1,68 @@
+name: CUBE-REV 0.25 P0-R6I-P11 actual original B6 exact shared-fiber group geometry
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-025/p0_r6i_p11_duplicate_fiber_geometry_go/**"
+      - ".github/workflows/cuberev-025-P0-R6I-P11-duplicate-fiber-geometry.yml"
+permissions:
+  contents: read
+jobs:
+  all-8240087-original-physical-full-goal-corner-edge-fibers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Build existing original whole-cubie 54-sticker native and independent full-projection + exact fiber auditors
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-025/p0_r6i_p9_projection_cpp/main.cpp -lcrypto -o /tmp/p9-original
+          go build -o /tmp/p9-projection-go scripts/cuberev-025/p0_r6i_p9_projection_audit_go/main.go
+          go build -o /tmp/p11-fiber-go scripts/cuberev-025/p0_r6i_p11_duplicate_fiber_geometry_go/main.go
+      - name: Rebuild all genuine B6 whole-cubie target and all C6 C7 E6 projected snapshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P11_NATIVE_GOAL_WALL_SECONDS %e RSS_KIB %M' timeout 240 /tmp/p9-original audit /tmp/p11-goal 230 2>&1 | tee /tmp/p11-physical-goal.log
+      - name: Reproduce complete original C6 C7 E6 closure independently before any fiber conclusions
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P11_PROJECTION_GO_WALL_SECONDS %e RSS_KIB %M' timeout 240 /tmp/p9-projection-go /tmp/p11-goal /tmp/p11-physical-goal.log audit 2>&1 | tee /tmp/p11-projections-independent.log
+          grep -Fq 'P9_GO_INDEPENDENT_PROJECTION_CLOSURE_PASS' /tmp/p11-projections-independent.log
+      - name: Exhaustively count exact distinct edge support fibers using lossless byte equality and independently pinned original B6
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'P11_FIBER_AUDIT_WALL_SECONDS %e RSS_KIB %M' timeout 220 /tmp/p11-fiber-go /tmp/p11-goal-B6.bin /tmp/p11-physical-goal.log /tmp/p11-projections-independent.log /tmp/p11-goal-turns.bin 2>&1 | tee /tmp/p11-fiber-complete.log
+          grep -Fq 'P11_FIBER_EXACT_PASS' /tmp/p11-fiber-complete.log
+          grep -Fq 'P11_FIBER_DUPLICATE_EXACT_GEOMETRY_PASS' /tmp/p11-fiber-complete.log
+          grep -Fq 'GLOBAL_B10_COMPLETE 0' /tmp/p11-fiber-complete.log
+      - name: Fail closed on corrupted source whole-goal binary
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/p11-goal-B6.bin /tmp/p11-bad-goal.bin
+          printf '\001' | dd of=/tmp/p11-bad-goal.bin bs=1 count=1 conv=notrunc status=none
+          if /tmp/p11-fiber-go /tmp/p11-bad-goal.bin /tmp/p11-physical-goal.log /tmp/p11-projections-independent.log /tmp/p11-goal-turns.bin; then
+            echo 'P11_UNSOUND_GOAL_TAMPER_ACCEPTANCE'; exit 1
+          fi
+          echo P11_FIBER_GOAL_TAMPER_FAIL_CLOSED_PASS
+      - name: No source writeback
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git ls-files --modified)"
+      - name: Retain independent exact original fiber histogram and the complete projection proof receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p11-original-exact-fiber-census-${{ github.run_id }}
+          path: |
+            /tmp/p11-fiber-complete.log
+            /tmp/p11-physical-goal.log
+            /tmp/p11-projections-independent.log
+          retention-days: 30
+          if-no-files-found: warn
