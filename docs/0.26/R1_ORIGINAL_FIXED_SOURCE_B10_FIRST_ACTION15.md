@@ -2,6 +2,18 @@
 
 **Initial state: DEVELOPMENT, external native two-worker plus Go proof CI PENDING (2026-10-17).** Original fixed WCA 3×3 scramble, original 18HTM and all prior 0.25 source code/certificates carried forward UNCHANGED. Version only moved 0.25→0.26. This is not the full 18-action original B10 source proof.
 
+## Posthoc source-byte custody verification — 2026-10-17 (R1 original CI receipt ZIPs on Google Drive)
+
+Per the [current Research OS cross-lab sandbox/Drive custody doctrine](https://docs.google.com/document/d/1GK7OrfZfr4nBEfpHEszzmp8LCPFYAxP_g46YVek-rlc/edit?usp=drivesdk), the three small genuinely original external GitHub Actions run #39007260192 ZIP artifacts, NOT reconstructed markdown/transcribed text, were copied as original ZIP bytes using GitHub artifact download file_uri to the verified CUBE-REV Research OS Lab Drive [10_CANONICAL_PROOF_COURTS](https://drive.google.com/drive/folders/1DboAVDmbMmOXD7CMgznchCMX2RIRxrCf). Independent re-download of each actual Drive raw file and local SHA-256/byte-for-byte equality against the GitHub artifact ZIP passed:
+
+| Original scientific proof receipt | Canonical Drive ID and file link | ZIP bytes | SHA-256 (GitHub immutable artifact digest = Drive raw readback digest) |
+| --- | --- | ---: | --- |
+| original physical C++ shard0 | [1fWMU-95lQW4F6lIe3oxu6OM24XAL3CjY](https://drive.google.com/file/d/1fWMU-95lQW4F6lIe3oxu6OM24XAL3CjY/view) | 1,155 | `79dffaa8e4d04a5cdb1a545fe72245fbe7acf9d38659d80f9975124b7d0c8b3d` |
+| original physical C++ shard1 | [1Rg9g5nfjSekoCI9Tjcu67c6rm2ltmzLs](https://drive.google.com/file/d/1Rg9g5nfjSekoCI9Tjcu67c6rm2ltmzLs/view) | 1,124 | `a825dcc1b09385b48e232cfd0ac248eab6c3cafd81aade2721dd2b4ce7c00fb1` |
+| independent Go actual whole proof merger | [1ZHfPUs9UGUiyKWoExnAz48JeRCeCr4yt](https://drive.google.com/file/d/1ZHfPUs9UGUiyKWoExnAz48JeRCeCr4yt/view) | 743 | `284086c32d6aa1cab66ae58d59b5b627356ed6decbb09b9fb28598ada7a0bb57` |
+
+Scientific custody grade **BYTE_VERIFIED** (file ID, parent, MIME, size, actual remote SHA/byte equality); derived provenance: original GitHub source-run SHA from #39007260192, separate adversarial replay success #39007715103, Notion 0.26 active journal. Transient session /mnt/data GH download and Google Drive raw readback ZIP copies were actually removed after verification; original upstream GitHub CI retained. No unverified sandbox link is treated as an archive. This seals three raw R1 receipts only — it does NOT claim every historic 0.25 GitHub Actions artifact has been migrated, nor a new mathematical global lower17.
+
 ## 2026-10-17 ORIGINAL fixed source first15 B B10 full negative certificate — EXTERNALLY VERIFIED SUCCESS
 
 **ACTUAL primary computation**: [whole native two-worker + independent complete Go source replay #39007260192](https://github.com/WhoSia/CUBE-REV/actions/runs/39007260192), **ALL THREE JOBS SUCCESS**. Fixed original 54-facelet-derived WCA Seoul Summer 2026 3x3 source with legal physical 18HTM move model and known original 18-turn solving word rechecked. Both independent worker VMs reconstructed exact solved B6=8,240,087 full CP/CO/EP/EO states, original whole goal immutable SHA256 `82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979`, and physical projected C6/C7/E6 tables with all three independently pinned original SHA; 4,608 physical/packed move regression checks per job. Each worker completely refuted six of the twelve distinct legal original first-action15 canonical second-action subtrees, with actual first15 internal whole-B6 membership separately checked by worker0.
