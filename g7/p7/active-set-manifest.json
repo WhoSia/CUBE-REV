@@ -3602,6 +3602,30 @@
       "notion": "https://app.notion.com/p/3fbef561cf9281198294d7b5601a3ab3",
       "drive": "1DboAVDmbMmOXD7CMgznchCMX2RIRxrCf",
       "human_author_only": true
+    },
+    "cuberev_026_r3_p6_first10": {
+      "status": "ACTUAL original fixed-source full first-action10(D-prime) B10 no-meet, all native+Go + negative controls PASS",
+      "run": 39020628177,
+      "sourceSHA256": "82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979",
+      "certified_roots": [
+        0,
+        3,
+        9,
+        10,
+        12,
+        15,
+        16
+      ],
+      "open_count": 11,
+      "lower17_proven": false,
+      "report": "docs/0.26/R3_P6_ORIGINAL_FIRST10_C8_FULL_SOURCE_PROOF.md",
+      "raw_zip_drive_ids": [
+        "1lVP6v27xSURmWQDSuT4iLP86uQ1o6ucr",
+        "1atUEZTm6249gyUoxg9ynLIsx28F20GVh",
+        "1yA-pjgt9bySTbLiw-eMl8Wuey3vtWEfZ"
+      ],
+      "raw_byte_custody": "verified sha256 against true GitHub artifacts; T0 sandbox cleaned",
+      "next_scheduler": "first11 D2 low-class, original first1 U-prime exploration; unexecuted"
     }
   }
 }
