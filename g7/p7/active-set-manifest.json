@@ -127,6 +127,7 @@
     ".github/workflows/cuberev-026-R0-source-priority.yml",
     ".github/workflows/cuberev-026-R1-first15-receipt-replay.yml",
     ".github/workflows/cuberev-026-R1-original-first-action15.yml",
+    ".github/workflows/cuberev-026-R2-matched-admissible-order.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -401,6 +402,7 @@
     "docs/0.26/PROGRAM_CHARTER.md",
     "docs/0.26/R0_RESEARCH_PRIORITY_DECISION_AND_SOURCE_SYMMETRY.md",
     "docs/0.26/R1_ORIGINAL_FIXED_SOURCE_B10_FIRST_ACTION15.md",
+    "docs/0.26/R2_MATCHED_SOUND_MARGINAL_ORDER_ABBA.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
     "formal/016/P12LightGraph.lean",
@@ -795,6 +797,8 @@
     "scripts/cuberev-026/r0_source_priority_go/main.go",
     "scripts/cuberev-026/r1_first_action15_cpp/main.cpp",
     "scripts/cuberev-026/r1_first_action15_merge_go/main.go",
+    "scripts/cuberev-026/r2_matched_admissible_order_cpp/main.cpp",
+    "scripts/cuberev-026/r2_matched_admissible_order_go/main.go",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -3538,6 +3542,24 @@
       ],
       "pinned_replay_run": 39007715103,
       "distance_lower17_not_proved": true
+    },
+    "cuberev_026_r2_matched_order": {
+      "status": "DEVELOPMENT, original B6 same-runner ABBA physical 8 full depth2 source10 runs external CI PENDING; no new first-root certificate; no claimed speedup",
+      "scientific_obligation": "same original goal full SHA, exact 54 stickers, equal visits/omitted/pair predicates, two first-action fixtures {15,16} at second0, A/B/B/A, independent Go receipt and negative controls",
+      "source": [
+        "scripts/cuberev-026/r2_matched_admissible_order_cpp/main.cpp",
+        "scripts/cuberev-026/r2_matched_admissible_order_go/main.go",
+        ".github/workflows/cuberev-026-R2-matched-admissible-order.yml",
+        "docs/0.26/R2_MATCHED_SOUND_MARGINAL_ORDER_ABBA.md"
+      ],
+      "notion": "https://app.notion.com/p/3fbef561cf9281198294d7b5601a3ab3",
+      "storage": {
+        "doctrine": "https://docs.google.com/document/d/1GK7OrfZfr4nBEfpHEszzmp8LCPFYAxP_g46YVek-rlc/edit",
+        "lab_root_id": "1hT0LOvQ36Ib3NfIxXNeIn1afPtQ_afpL",
+        "canonical_proof_folder_id": "1DboAVDmbMmOXD7CMgznchCMX2RIRxrCf",
+        "raw_log_upload": "PENDING; Drive connector supported file_uri required",
+        "sandbox": "T0 temporary only, no canonical user sandbox links"
+      }
     }
   }
 }
