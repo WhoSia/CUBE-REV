@@ -1,0 +1,53 @@
+name: CUBE-REV 0.26 R3-P7 immutable original D2 source shard independent replay
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-026/r3_root11_c8_merge_go/**"
+      - ".github/workflows/cuberev-026-R3-P7-immutable-first11-replay.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-first11-immutable-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 39021622195
+          pattern: r3-original-first11-native-shard-*-39021622195
+          path: /tmp/source
+          merge-multiple: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fresh independent Go first11 canonical grammar/whole-source checker on ORIGINAL physical receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/verify scripts/cuberev-026/r3_root11_c8_merge_go/main.go
+          cp /tmp/source/r3-original-first11-native-shard-0-39021622195/c026-r3-root11-0.log /tmp/s0.log
+          cp /tmp/source/r3-original-first11-native-shard-1-39021622195/c026-r3-root11-1.log /tmp/s1.log
+          /tmp/verify /tmp/s0.log /tmp/s1.log | tee /tmp/complete.log
+          grep -Fq 'FIRST_ACTION11_COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS' /tmp/complete.log
+          grep -Fq 'ORIGINAL_FULL_18_ACTION_SOURCE_COMPLETE 0 GLOBAL_LOWER17_CLAIMED 0' /tmp/complete.log
+      - name: Adversarial negative missing REAL legal child3 and forged original B6 SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -v '^C026_R3R11_BRANCH_LEAF FIRST 11 SECOND 3 ' /tmp/s0.log > /tmp/missing.log
+          test "$(grep -c '^C026_R3R11_BRANCH_LEAF FIRST 11 ' /tmp/missing.log)" -eq 5
+          if /tmp/verify /tmp/missing.log /tmp/s1.log; then echo FORGED_PARTIAL_SOURCE_PROOF_ACCEPTED; exit 1; fi
+          sed 's/82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979/0000000000000000000000000000000000000000000000000000000000000000/g' /tmp/s1.log > /tmp/forged.log
+          if /tmp/verify /tmp/s0.log /tmp/forged.log; then echo FORGED_ORIGINAL_GOAL_ACCEPTED; exit 1; fi
+          echo R3_P7_IMMUTABLE_ORIGINAL_FIRST11_NEGATIVE_CONTROLS_PASS
+      - name: No bot commit
+        run: git diff --exit-code HEAD --
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r3-p7-first11-immutable-independent-certificate-${{ github.run_id }}
+          path: /tmp/complete.log
+          retention-days: 30

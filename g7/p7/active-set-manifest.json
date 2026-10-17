@@ -133,6 +133,7 @@
     ".github/workflows/cuberev-026-R3-P5-resource-policy.yml",
     ".github/workflows/cuberev-026-R3-P6-first10-C8-certified.yml",
     ".github/workflows/cuberev-026-R3-P7-first11-C8-certified.yml",
+    ".github/workflows/cuberev-026-R3-P7-immutable-first11-replay.yml",
     ".github/workflows/cuberev-026-R3-original-C8-DFA.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
