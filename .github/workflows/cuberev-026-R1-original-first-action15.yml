@@ -1,0 +1,79 @@
+name: CUBE-REV 0.26 R1 original WCA source B10 full first action15 (B) two-worker proof
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-026/r1_first_action15_cpp/**"
+      - "scripts/cuberev-026/r1_first_action15_merge_go/**"
+      - ".github/workflows/cuberev-026-R1-original-first-action15.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-first-action15-native:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1]
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compile fixed-original 54-sticker whole-cubie exact source court
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-026/r1_first_action15_cpp/main.cpp -lcrypto -o /tmp/c026-first15
+      - name: Original first15 entire assigned canonical second-action source R10 cylinders
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'C026_FIRST15_SHARD_WALL %e PEAK_RSS_KIB %M' timeout 720 /tmp/c026-first15 15 ${{ matrix.shard }} 690 2>&1 | tee /tmp/c026-first15-${{ matrix.shard }}.log
+          grep -Fq 'C026_R1_BRANCH_SHARD_COMPLETE FIRST 15 SHARD ${{ matrix.shard }}' /tmp/c026-first15-${{ matrix.shard }}.log
+          test "$(grep -c '^C026_R1_BRANCH_LEAF FIRST 15 ' /tmp/c026-first15-${{ matrix.shard }}.log)" -eq 6
+          grep -Fq 'SOURCE_WHOLE_GLOBAL_COMPLETE 0' /tmp/c026-first15-${{ matrix.shard }}.log
+      - name: Preserve original pinned source leaf logs before independent merging
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c026-first15-shard-${{ matrix.shard }}-${{ github.run_id }}
+          path: /tmp/c026-first15-${{ matrix.shard }}.log
+          retention-days: 30
+          if-no-files-found: warn
+  independent-canonical-first15-Go-merger:
+    needs: original-first-action15-native
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: c026-first15-shard-*-${{ github.run_id }}
+          path: /tmp/c026-first15-shards
+          merge-multiple: false
+      - name: Build independent original canonical 18HTM grammar and full receipt verification
+        run: |
+          set -euo pipefail
+          go build -o /tmp/c026-first15-go scripts/cuberev-026/r1_first_action15_merge_go/main.go
+      - name: Independently verify all 12 original second actions and complete first15 B10 no-meet
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/c026-first15-go /tmp/c026-first15-shards/c026-first15-shard-0-${{ github.run_id }}/c026-first15-0.log /tmp/c026-first15-shards/c026-first15-shard-1-${{ github.run_id }}/c026-first15-1.log | tee /tmp/c026-first15-complete-proof.log
+          grep -Fq 'C026_R1_FIRST_ACTION15_COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS' /tmp/c026-first15-complete-proof.log
+          grep -Fq 'ORIGINAL_FULL_18_ACTION_SOURCE_COMPLETE 0 GLOBAL_LOWER17_CLAIMED 0' /tmp/c026-first15-complete-proof.log
+      - name: No bot commits or source edits
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Preserve independent completed certificate
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c026-first15-certificate-${{ github.run_id }}
+          path: /tmp/c026-first15-complete-proof.log
+          retention-days: 30
+          if-no-files-found: warn

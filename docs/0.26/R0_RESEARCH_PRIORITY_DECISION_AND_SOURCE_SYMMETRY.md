@@ -2,6 +2,10 @@
 
 **Initial state 2026-10-17: DEVELOPMENT, external CI PENDING. This does not reinitialize the 0.25 P0/P12 work.**
 
+## 2026-10-17 R1 actual next selected original fixed-source work
+
+Following R0 cheap physics and independent grammar audit, budget one **real ORIGINAL WCA first-action15 B-face B10 full certificate** ([new R1 methodology](docs/0.26/R1_ORIGINAL_FIXED_SOURCE_B10_FIRST_ACTION15.md)). This uses existing P11 actual physical source engine without source/goal relabeling, source action15 with all twelve canonical second actions, independent two-worker/Go merge, and fixed goal/projection SHA, avoiding P10 exact-fiber regression. It is one source root, **not** global lower17. At initial commit status PENDING; failures or hits are scientific evidence, not completion.
+
 ## Decision is scientific, not new marketing
 Two parallel questions: (a) what open theorem would meaningfully change the program, and (b) what shortest falsifiable experiment would make a defensible increment now? Original WCA Seoul Summer 2026 54-facelet 18HTM 16≤d18(s)≤18 (only first action0,3,9,12 B10 full no-meet), fourteen OPEN. Stable original B6 8,240,087 and pinned physical sha. P12-P5 true proper24 acted freely on original 576 identical fiber corner PAIRS; leave 8+8+4+4 nonenumerative proof open and bounded, no endless fiber taxonomy.
 
