@@ -57,7 +57,7 @@ func main(){
   var shardW,shardV,shardO uint64
   for _,line:=range strings.Split(raw,"\n"){
    if strings.HasPrefix(line,"C026_R3R11_BRANCH_GOAL "){
-    if goalSeen||u(line,"FIRST")!=10||u(line,"SHARD")!=uint64(shard)||
+    if goalSeen||u(line,"FIRST")!=11||u(line,"SHARD")!=uint64(shard)||
       u(line,"SHARDS")!=2||u(line,"GOAL_STATES")!=8240087||
       u(line,"REAL_54_FACELET_4608")!=1||u(line,"SOURCE_RADIUS")!=10||
       u(line,"SOURCE_WHOLE_GLOBAL_COMPLETE")!=0||
@@ -65,13 +65,13 @@ func main(){
     for k,v:=range proj{if f(line,k)!=v{fail("target corner/edge auxiliary projection not independently P9 anchored")}}
     goalSeen=true
    }else if strings.HasPrefix(line,"C026_R3R11_BRANCH_ROOT "){
-    if !goalSeen||shard!=0||internal!=0||u(line,"FIRST")!=10||
+    if !goalSeen||shard!=0||internal!=0||u(line,"FIRST")!=11||
       u(line,"SHARD")!=0||u(line,"DEPTH")!=1||
       u(line,"REPEATED_CALLS")!=10||u(line,"WHOLE_GOAL_HITS")!=0||
       f(line,"GOAL_SHA")!=target{fail("source first-action11 physical internal check absent or forged")}
     internal++;shardW+=10;shardV+=10
    }else if strings.HasPrefix(line,"C026_R3R11_BRANCH_LEAF "){
-    if !goalSeen||done||u(line,"FIRST")!=10||
+    if !goalSeen||done||u(line,"FIRST")!=11||
       u(line,"SHARD")!=uint64(shard)||u(line,"COMPLETE_LEAF")!=1||
       u(line,"WHOLE_GOAL_HITS")!=0||u(line,"FIRST_ACTION_CERT_COMPLETE")!=0||
       u(line,"SOURCE_WHOLE_GLOBAL_COMPLETE")!=0||f(line,"GOAL_SHA")!=target{
@@ -93,7 +93,7 @@ func main(){
     shardW+=expected;shardV+=v;shardO+=o
     allPairs+=u(line,"PAIRS");allEdges+=u(line,"EDGES");fullQueries+=u(line,"FULL_QUERIES")
    }else if strings.HasPrefix(line,"C026_R3R11_BRANCH_SHARD_COMPLETE "){
-    if done||!goalSeen||u(line,"FIRST")!=10||
+    if done||!goalSeen||u(line,"FIRST")!=11||
       u(line,"SHARD")!=uint64(shard)||u(line,"CHILDREN")!=uint64(leafCount)||
       u(line,"INTERNAL_CHECKS")!=uint64(internal)||
       u(line,"WEIGHT")!=shardW||u(line,"VISITED")!=shardV||
