@@ -115,6 +115,7 @@ struct Snapshot{
  double durationMs=0;
 };
 
+#ifndef CUBEREV_R3_AS_LIBRARY
 int main(int argc,char**argv){
  try{
   if(argc!=3)throw std::runtime_error("usage: output-prefix time-budget-seconds");
@@ -211,3 +212,4 @@ int main(int argc,char**argv){
   return 0;
  }catch(std::exception const& e){std::cerr<<"R3_PHYSICAL_ERROR "<<e.what()<<"\n";return 4;}
 }
+#endif // CUBEREV_R3_AS_LIBRARY
