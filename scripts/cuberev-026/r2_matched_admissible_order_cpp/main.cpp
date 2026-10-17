@@ -105,7 +105,7 @@ int main(int argc,char**argv){
   Cube src=cubeAfter(scr);
   Stickers original=solvedStickers();
   for(int a:scr)physicalTurn(original,names[a]);
-  if(!equalCube(fromStickers(original),src)||sol.size()!=18||
+  if(!(exactKey(fromStickers(original))==exactKey(src))||sol.size()!=18||
      !physicalSolves(scr,sol)||physicallyAuditFastProjection()!=4608)
    throw std::runtime_error("original WCA physical 54-sticker source HOLD");
   EdgeFirstCourt r;
