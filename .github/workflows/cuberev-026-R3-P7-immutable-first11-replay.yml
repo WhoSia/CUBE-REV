@@ -31,7 +31,7 @@ jobs:
           cp /tmp/source/r3-original-first11-native-shard-0-39021622195/c026-r3-root11-0.log /tmp/s0.log
           cp /tmp/source/r3-original-first11-native-shard-1-39021622195/c026-r3-root11-1.log /tmp/s1.log
           /tmp/verify /tmp/s0.log /tmp/s1.log | tee /tmp/complete.log
-          grep -Fq 'FIRST_ACTION11_COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS' /tmp/complete.log
+          grep -Fq 'FIRST_ACTION11_COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS FIRST_ACTION 11 ' /tmp/complete.log
           grep -Fq 'ORIGINAL_FULL_18_ACTION_SOURCE_COMPLETE 0 GLOBAL_LOWER17_CLAIMED 0' /tmp/complete.log
       - name: Adversarial negative missing REAL legal child3 and forged original B6 SHA
         shell: bash
