@@ -1,0 +1,90 @@
+name: CUBE-REV 0.26 R3-P7 exact original first11 D2 full-source B10 C8 DFA certificate
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-026/r3_root11_c8_shards_cpp/**"
+      - "scripts/cuberev-026/r3_root11_c8_merge_go/**"
+      - ".github/workflows/cuberev-026-R3-P7-first11-C8-certified.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  original-first11-physical-C8:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compile inherited real 54-sticker original source physical C8 group oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-026/r3_root11_c8_shards_cpp/main.cpp -lcrypto -o /tmp/c026-r3-first11
+      - name: Exact original source B10 first11 through all assigned six real second-action cylinders
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'R3_ROOT11_NATIVE_WALL_SECONDS %e RSS_KIB %M' timeout 900 /tmp/c026-r3-first11 11 ${{ matrix.shard }} 890 2>&1 | tee /tmp/c026-r3-root11-${{ matrix.shard }}.log
+          grep -Fq 'C026_R3R11_BRANCH_SHARD_COMPLETE FIRST 11 SHARD ${{ matrix.shard }}' /tmp/c026-r3-root11-${{ matrix.shard }}.log
+          test "$(grep -c '^C026_R3R11_BRANCH_LEAF FIRST 11 ' /tmp/c026-r3-root11-${{ matrix.shard }}.log)" -eq 6
+          grep -Fq 'SOURCE_WHOLE_GLOBAL_COMPLETE 0' /tmp/c026-r3-root11-${{ matrix.shard }}.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r3-original-first11-native-shard-${{ matrix.shard }}-${{ github.run_id }}
+          path: /tmp/c026-r3-root11-${{ matrix.shard }}.log
+          retention-days: 30
+          if-no-files-found: warn
+  independent-whole-first11-Go-merger:
+    needs: original-first11-physical-C8
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: r3-original-first11-native-shard-*-${{ github.run_id }}
+          path: /tmp/c026-r3-shards
+          merge-multiple: false
+      - name: Compile independently typed 18HTM canonical DFA source whole coverage and pinned C8 audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/c026-r3-r10-go scripts/cuberev-026/r3_root11_c8_merge_go/main.go
+      - name: Verify entire original first11 root (twelve depth2 cylinders and original depth1)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/c026-r3-shards/r3-original-first11-native-shard-0-${{ github.run_id }}/c026-r3-root11-0.log /tmp/r3-s0.log
+          cp /tmp/c026-r3-shards/r3-original-first11-native-shard-1-${{ github.run_id }}/c026-r3-root11-1.log /tmp/r3-s1.log
+          /tmp/c026-r3-r10-go /tmp/r3-s0.log /tmp/r3-s1.log | tee /tmp/c026-r3-whole-first11-certificate.log
+          grep -Fq 'COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS' /tmp/c026-r3-whole-first11-certificate.log
+          grep -Fq 'ORIGINAL_FULL_18_ACTION_SOURCE_COMPLETE 0 GLOBAL_LOWER17_CLAIMED 0' /tmp/c026-r3-whole-first11-certificate.log
+      - name: Reject a missing original root11 leaf and forged original B6 checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -v '^C026_R3R11_BRANCH_LEAF FIRST 11 SECOND 3 ' /tmp/r3-s0.log > /tmp/r3-missing.log
+          if /tmp/c026-r3-r10-go /tmp/r3-missing.log /tmp/r3-s1.log; then echo UNSOUND_MISSING_ROOT11_LEAF; exit 1; fi
+          sed 's/82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979/0000000000000000000000000000000000000000000000000000000000000000/g' /tmp/r3-s1.log > /tmp/r3-forged.log
+          if /tmp/c026-r3-r10-go /tmp/r3-s0.log /tmp/r3-forged.log; then echo UNSOUND_FORGED_ROOT11_B6_GOAL; exit 1; fi
+          echo R3_ROOT11_INDEPENDENT_NEGATIVE_CONTROLS_PASS
+      - name: No GitHub bot repo writes
+        shell: bash
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r3-original-first11-independent-full-certificate-${{ github.run_id }}
+          path: /tmp/c026-r3-whole-first11-certificate.log
+          retention-days: 30
+          if-no-files-found: warn
