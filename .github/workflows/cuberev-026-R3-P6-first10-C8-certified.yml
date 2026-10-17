@@ -1,4 +1,4 @@
-name: CUBE-REV 0.26 R3-P6 exact original first10 B-prime full-source B10 C8 DFA certificate
+name: CUBE-REV 0.26 R3-P6 exact original first10 D-prime full-source B10 C8 DFA certificate
 on:
   workflow_dispatch:
   push:
@@ -30,7 +30,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          /usr/bin/time -f 'R3_ROOT16_NATIVE_WALL_SECONDS %e RSS_KIB %M' timeout 900 /tmp/c026-r3-first10 16 ${{ matrix.shard }} 890 2>&1 | tee /tmp/c026-r3-root10-${{ matrix.shard }}.log
+          /usr/bin/time -f 'R3_ROOT10_NATIVE_WALL_SECONDS %e RSS_KIB %M' timeout 900 /tmp/c026-r3-first10 10 ${{ matrix.shard }} 890 2>&1 | tee /tmp/c026-r3-root10-${{ matrix.shard }}.log
           grep -Fq 'C026_R3R10_BRANCH_SHARD_COMPLETE FIRST 10 SHARD ${{ matrix.shard }}' /tmp/c026-r3-root10-${{ matrix.shard }}.log
           test "$(grep -c '^C026_R3R10_BRANCH_LEAF FIRST 10 ' /tmp/c026-r3-root10-${{ matrix.shard }}.log)" -eq 6
           grep -Fq 'SOURCE_WHOLE_GLOBAL_COMPLETE 0' /tmp/c026-r3-root10-${{ matrix.shard }}.log
