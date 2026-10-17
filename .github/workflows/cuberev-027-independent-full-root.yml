@@ -1,0 +1,50 @@
+name: CUBE-REV 0.27 — independent 54-site whole-physics first-root reproduction
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physical-go-original-root:
+    name: Source-complete Go first root ${{ matrix.root }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        root: [1, 2, 4, 5, 6, 7, 8, 13, 14, 17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      - name: Fail closed until full independent geometry source is imported
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s scripts/cuberev-027/independent_root_general.go || {
+            echo "::error::P11 independent Go physical source not imported. No physical proof attempted."
+            exit 1
+          }
+      - name: Build independent full-cube 54-site engine
+        run: go build -o /tmp/cuberev027-go-root scripts/cuberev-027/independent_root_general.go
+      - name: Actually regenerate goal balls and exhaust source first-root
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/cuberev027-go-root '${{ matrix.root }}' -1 | tee 'root-${{ matrix.root }}.log'
+      - name: Check every canonical second-child and compare fixed native reference totals
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/cuberev-027/verify_external_root.py '${{ matrix.root }}' 'root-${{ matrix.root }}.log' scripts/cuberev-027/expected_roots.json
+      - name: Preserve Go raw execution log without writeback
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-independent-go-root-${{ matrix.root }}
+          path: root-${{ matrix.root }}.log
+          if-no-files-found: warn
+          retention-days: 30
