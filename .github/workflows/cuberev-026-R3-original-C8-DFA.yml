@@ -1,0 +1,62 @@
+name: CUBE-REV 0.26 R3 original physical C8 projected automaton pilot
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-026/r3_c8_automaton_cpp/**"
+      - "scripts/cuberev-026/r3_c8_automaton_go/**"
+      - ".github/workflows/cuberev-026-R3-original-C8-DFA.yml"
+permissions:
+  contents: read
+jobs:
+  original-C8-physical-and-independent-Go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compile original whole cubie physical C++ and independent Go C8 verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O3 -Wno-return-type -Wno-deprecated-declarations scripts/cuberev-026/r3_c8_automaton_cpp/main.cpp -lcrypto -o /tmp/r3cpp
+          go build -o /tmp/r3go scripts/cuberev-026/r3_c8_automaton_go/main.go
+      - name: Rebuild true original B6/C7 then exact C8 and matched source B10 leaves
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'R3_NATIVE_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 930 /tmp/r3cpp /tmp/r3-native 920 2>&1 | tee /tmp/r3-physical.log
+          grep -Fq 'R3_COMPLETE_ORIGINAL_C8_DFA_PILOT_PASS' /tmp/r3-physical.log
+          test "$(grep -c '^R3_ACTUAL_MATCHED ' /tmp/r3-physical.log)" -eq 4
+      - name: Independent rebuild of true C8 from original C7 snapshot and physical turn table, plus Go DFA verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'R3_GO_WALL_SECONDS %e PEAK_RSS_KIB %M' timeout 320 /tmp/r3go /tmp/r3-native-C7.bin /tmp/r3-native-turns.bin /tmp/r3-physical.log 2>&1 | tee /tmp/r3-go.log
+          grep -Fq 'R3_GO_TRUE_INDEPENDENT_C8_PASS' /tmp/r3-go.log
+      - name: Reject missing certified negative leaf and forged original goal or C8 count
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -v '^R3_ACTUAL_MATCHED FIRST 16 SECOND 1 MODE C8_GUARD ' /tmp/r3-physical.log > /tmp/r3-missing.log
+          if /tmp/r3go /tmp/r3-native-C7.bin /tmp/r3-native-turns.bin /tmp/r3-missing.log; then echo UNSOUND_MISSING_ORIGINAL_LEAF; exit 1; fi
+          sed 's/82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979/0000000000000000000000000000000000000000000000000000000000000000/g' /tmp/r3-physical.log > /tmp/r3-forged-goal.log
+          if /tmp/r3go /tmp/r3-native-C7.bin /tmp/r3-native-turns.bin /tmp/r3-forged-goal.log; then echo UNSOUND_FORGED_ORIGINAL_GOAL; exit 1; fi
+          sed 's/R3_C8_BUILD_PASS C7_COUNT 6807696 C8_COUNT /R3_C8_BUILD_PASS C7_COUNT 6807696 C8_COUNT 1/' /tmp/r3-physical.log > /tmp/r3-forged-C8.log
+          if /tmp/r3go /tmp/r3-native-C7.bin /tmp/r3-native-turns.bin /tmp/r3-forged-C8.log; then echo UNSOUND_FORGED_C8_COUNT; exit 1; fi
+          echo R3_INDEPENDENT_NEGATIVE_CONTROL_PASS
+      - name: No bot commit and scientific artifact custody must be performed in Lab Drive
+        shell: bash
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: R3-original-C8-DFA-physical-Go-${{ github.run_id }}
+          path: |
+            /tmp/r3-physical.log
+            /tmp/r3-go.log
+          retention-days: 30
+          if-no-files-found: warn
