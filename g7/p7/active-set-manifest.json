@@ -128,6 +128,7 @@
     ".github/workflows/cuberev-026-R1-first15-receipt-replay.yml",
     ".github/workflows/cuberev-026-R1-original-first-action15.yml",
     ".github/workflows/cuberev-026-R2-matched-admissible-order.yml",
+    ".github/workflows/cuberev-026-R3-P2-first16-C8-certified.yml",
     ".github/workflows/cuberev-026-R3-original-C8-DFA.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
@@ -404,6 +405,7 @@
     "docs/0.26/R0_RESEARCH_PRIORITY_DECISION_AND_SOURCE_SYMMETRY.md",
     "docs/0.26/R1_ORIGINAL_FIXED_SOURCE_B10_FIRST_ACTION15.md",
     "docs/0.26/R2_MATCHED_SOUND_MARGINAL_ORDER_ABBA.md",
+    "docs/0.26/R3_P2_ORIGINAL_FIRST16_COMPLETE_C8_PROOF.md",
     "docs/0.26/R3_TRUE_CORNER_C8_REACHABILITY_AND_RESOURCE_RATIONAL_AUTOMATA.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
@@ -803,6 +805,8 @@
     "scripts/cuberev-026/r2_matched_admissible_order_go/main.go",
     "scripts/cuberev-026/r3_c8_automaton_cpp/main.cpp",
     "scripts/cuberev-026/r3_c8_automaton_go/main.go",
+    "scripts/cuberev-026/r3_root16_c8_merge_go/main.go",
+    "scripts/cuberev-026/r3_root16_c8_shards_cpp/main.cpp",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -3574,6 +3578,20 @@
         "custody": "BYTE_VERIFIED, raw ZIP re-downloaded from real Drive and compared byte for byte with true GitHub Actions archive, temporary copies removed"
       },
       "verdict": "NEGATIVE performance; preserve previous CORNER_FIRST order; no new full original source first root or global lower17"
+    },
+    "cuberev_026_r3p2_first16_attempt": {
+      "status": "actual whole original first16 2-worker C8-DFA and independent-Go receipt PENDING; 5/18 prior original first roots unchanged",
+      "r3_c8_pilot_run": 39017211204,
+      "c8_sha256": "1591559f375779e00d8343d91a753f48a655f7455ae8c67686f101b1b4bcffa3",
+      "targets": [
+        "scripts/cuberev-026/r3_root16_c8_shards_cpp/main.cpp",
+        "scripts/cuberev-026/r3_root16_c8_merge_go/main.go",
+        ".github/workflows/cuberev-026-R3-P2-first16-C8-certified.yml",
+        "docs/0.26/R3_P2_ORIGINAL_FIRST16_COMPLETE_C8_PROOF.md"
+      ],
+      "notion": "https://app.notion.com/p/3fbef561cf9281198294d7b5601a3ab3",
+      "drive": "1DboAVDmbMmOXD7CMgznchCMX2RIRxrCf",
+      "human_author_only": true
     }
   }
 }
