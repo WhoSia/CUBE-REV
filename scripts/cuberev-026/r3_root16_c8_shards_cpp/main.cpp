@@ -2,9 +2,9 @@
 // source proof for ONE previously-open entire first-action cylinder a=16,
 // split into TWO independently-running GitHub Actions worker shards.
 // Complete means that particular first action only, NEVER entire B10.
-#define main r3_pilot_entry_not_called
+#define CUBEREV_R3_AS_LIBRARY
 #include "../r3_c8_automaton_cpp/main.cpp"
-#undef main
+#undef CUBEREV_R3_AS_LIBRARY
 
 int main(int argc,char**argv){
  try{
@@ -41,7 +41,7 @@ int main(int argc,char**argv){
      e6hash!="40de5296f586037e8c5710b6a843263c4370c5faedb8bcf99516a4ae08a070f9")
    throw std::runtime_error("projected target goal contents differ from independently Go audited P9 SHA");
   for(auto c:court.c7){court.c8.put(c);for(int a=0;a<18;a++)court.c8.put(cornerTurnPacked(c,a));}
-  auto c8count=court.c8.count(),c8sha=court.c8.sha();
+  const auto c8count=court.c8.count();const auto c8sha=court.c8.sha();
   if(c8count!=27583872||c8sha!="1591559f375779e00d8343d91a753f48a655f7455ae8c67686f101b1b4bcffa3")throw std::runtime_error("wrong original physical C8");
   std::cout<<"C026_R3R16_C8_BUILD_PASS C8_COUNT "<<c8count<<" C8_SHA "<<c8sha<<" DENSE_BYTES "<<court.c8.bits.size()*8<<"\n";
   std::cout<<"C026_R3R16_BRANCH_GOAL FIRST "<<first<<" SHARD "<<shard<<" SHARDS 2"
