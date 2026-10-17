@@ -109,6 +109,7 @@ vector<PairC> readTwinPairs(const string& path){
  if(v.size()!=576)throw runtime_error("original exact 576 pair ledger changed");
  return v;
 }
+#ifndef CUBEREV026_P12_P5_AS_LIBRARY
 int main(int argc,char**argv){
  try{
   if(argc!=4)throw runtime_error("usage: P9-original-turns.bin P9-original-B6.bin P12P3-original-576.tsv");
@@ -263,3 +264,4 @@ int main(int argc,char**argv){
   return 0;
  }catch(exception const&e){cerr<<"P12_P5_FAIL "<<e.what()<<"\n";return 3;}
 }
+#endif // CUBEREV026_P12_P5_AS_LIBRARY

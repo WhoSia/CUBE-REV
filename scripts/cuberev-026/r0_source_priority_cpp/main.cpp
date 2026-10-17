@@ -1,8 +1,8 @@
 // CUBE-REV 0.26 R0: value-of-proof selection and true source stabilizer audit.
 // Direct continuation of 0.25 fixed-source source-R10 proof, not a reset.
-#define main cuberev026_p12p5_embedded_main_unused
+#define CUBEREV026_P12_P5_AS_LIBRARY
 #include "../p12_p5_true_rotation_lift_cpp/main.cpp"
-#undef main
+#undef CUBEREV026_P12_P5_AS_LIBRARY
 
 static uint64_t canonicalIddfsWeight(int prev,int remaining){
  array<uint64_t,18> last{};uint64_t result=(uint64_t)remaining+1;
