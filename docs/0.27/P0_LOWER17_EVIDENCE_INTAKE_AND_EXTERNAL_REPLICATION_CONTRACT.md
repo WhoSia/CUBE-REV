@@ -21,3 +21,9 @@
 The mathematical conclusion **conditional on the entire source-complete true physics tree** is `17 <= d18(s) <= 18`, not `d18(s)=18`. A legal actual 17-move solving word plus external lower17 certifies exact17. A separate source-complete no-17 certificate plus existing 18 witness certifies exact18. Mstar(5)=8 is a distinct observation dictionary cardinality theorem and must not be mistaken for full Rubik geodesics.
 
 Read-only evidence: [0.27 main charter](PROGRAM_CHARTER.md), [previous 0.26 R3-P7 externally completed 8/18](../0.26/R3_P7_ORIGINAL_FIRST11_D2_C8_CERTIFICATE.md). Local P11 archived evidence raw ZIP is not yet imported into this Git tree.
+
+## P1 source-import update — 2026-10-18
+
+The previously missing independent Go source path `scripts/cuberev-027/independent_root_general.go` has now been populated by an explicitly manually transcribed, source-equivalent 54-site Go implementation via the authenticated GitHub contents API. Commit `1bc4e94c06af131735dde535de381cb127f43393` was inspected: GitHub author=WhoSia and committer=WhoSia; remote source content was fetched and compared character-for-character against the submitted content and matched. **This is not a byte-for-byte copy of the original P11 local Go file; independent compilation and full physical output parity are therefore mandatory, not assumed.**
+
+The earlier infrastructure file `scripts/cuberev-027/expected_roots.json` and fail-closed Python merger are in the same branch, as is `.github/workflows/cuberev-027-independent-full-root.yml`. This workflow is manual dispatch, 10 physical root jobs, read-only checkout and output artifacts. **It has NOT been triggered or observed to pass as of this update.** The separately pinned canonical sorted physical B6 byte SHA has NOT been recomputed by this Go source. Original P11 full local archive remains available only in the T0 research session, not yet in GitHub or independently byte-sealed in Drive.
