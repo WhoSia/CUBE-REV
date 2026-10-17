@@ -1,0 +1,66 @@
+name: CUBE-REV 0.26 R1 independent pinned physical first15 proof replay and tamper rejection
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - ".github/workflows/cuberev-026-R1-first15-receipt-replay.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  pinned-original-source-first15-independent-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Fetch original external physical run 39007260192 whole-B6 original per-shard source receipts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: c026-first15-shard-*-39007260192
+          path: /tmp/c026-r1-replay
+          merge-multiple: false
+          run-id: 39007260192
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compile independent Go complete canonical original 18HTM B10 source certificate verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/c026-r1-go scripts/cuberev-026/r1_first_action15_merge_go/main.go
+          test -s /tmp/c026-r1-replay/c026-first15-shard-0-39007260192/c026-first15-0.log
+          test -s /tmp/c026-r1-replay/c026-first15-shard-1-39007260192/c026-first15-1.log
+      - name: Reverify all twelve real original first15 depth2 source10 negative cylinders
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/c026-r1-replay/c026-first15-shard-0-39007260192/c026-first15-0.log /tmp/c026-r1-0.log
+          cp /tmp/c026-r1-replay/c026-first15-shard-1-39007260192/c026-first15-1.log /tmp/c026-r1-1.log
+          /tmp/c026-r1-go /tmp/c026-r1-0.log /tmp/c026-r1-1.log | tee /tmp/c026-r1-certificate.log
+          grep -Fq 'C026_R1_FIRST_ACTION15_COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS' /tmp/c026-r1-certificate.log
+          grep -Fq 'ORIGINAL_FULL_18_ACTION_SOURCE_COMPLETE 0 GLOBAL_LOWER17_CLAIMED 0' /tmp/c026-r1-certificate.log
+      - name: Reject missing original leaf or corrupted full B6 SHA under independent merger
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -v '^C026_R1_BRANCH_LEAF FIRST 15 SECOND 0 ' /tmp/c026-r1-0.log > /tmp/c026-r1-missing-child.log
+          if /tmp/c026-r1-go /tmp/c026-r1-missing-child.log /tmp/c026-r1-1.log; then
+            echo C026_R1_UNSOUND_OMITTED_ORIGINAL_SECOND_CHILD_ACCEPTED; exit 1
+          fi
+          sed 's/82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979/0000000000000000000000000000000000000000000000000000000000000000/g' /tmp/c026-r1-1.log > /tmp/c026-r1-fake-goal.log
+          if /tmp/c026-r1-go /tmp/c026-r1-0.log /tmp/c026-r1-fake-goal.log; then
+            echo C026_R1_UNSOUND_FORGED_B6_SHA_ACCEPTED; exit 1
+          fi
+          echo C026_R1_PINNED_PHYSICAL_FIRST15_TAMPER_REJECTION_PASS
+      - name: Read-only audited research branch
+        shell: bash
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c026-r1-original-first15-independent-replay-${{ github.run_id }}
+          path: /tmp/c026-r1-certificate.log
+          if-no-files-found: warn
+          retention-days: 30

@@ -125,6 +125,7 @@
     ".github/workflows/cuberev-025-P0-R6I-physical-mixed-cut-pilot.yml",
     ".github/workflows/cuberev-026-P12-P5-true-cubie-rotations.yml",
     ".github/workflows/cuberev-026-R0-source-priority.yml",
+    ".github/workflows/cuberev-026-R1-first15-receipt-replay.yml",
     ".github/workflows/cuberev-026-R1-original-first-action15.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
@@ -3508,7 +3509,7 @@
       "version": "0.26 version-name only, 0.25 research/current history unchanged"
     },
     "cuberev_026_r1_first_action15": {
-      "status": "DEVELOPMENT; 2 worker real original B6/source R10 certification PENDING, no new original distance lower bound claimed",
+      "status": "ACTUAL two-worker whole first-action15 B10 no-meet, independent Go merge PASS #39007260192; separate adversarial pinned receipt replay pending",
       "source": [
         "scripts/cuberev-026/r1_first_action15_cpp/main.cpp",
         "scripts/cuberev-026/r1_first_action15_merge_go/main.go",
@@ -3522,10 +3523,19 @@
         9,
         12
       ],
-      "remainingOpen": 14,
+      "remainingOpen": 13,
       "expectedCanonicalCalls": 14279876542,
       "notion": "https://app.notion.com/p/3fbef561cf9281198294d7b5601a3ab3",
-      "governance": "WhoSia author+committer only; Actions read-only; no bot writes"
+      "governance": "WhoSia author+committer only; Actions read-only; no bot writes",
+      "pinned_original_executed_run": 39007260192,
+      "pinned_replay_workflow": ".github/workflows/cuberev-026-R1-first15-receipt-replay.yml",
+      "certified_first_actions_after_success": [
+        0,
+        3,
+        9,
+        12,
+        15
+      ]
     }
   }
 }
