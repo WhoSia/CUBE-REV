@@ -3509,7 +3509,7 @@
       "version": "0.26 version-name only, 0.25 research/current history unchanged"
     },
     "cuberev_026_r1_first_action15": {
-      "status": "ACTUAL two-worker whole first-action15 B10 no-meet, independent Go merge PASS #39007260192; separate adversarial pinned receipt replay pending",
+      "status": "ACTUAL FULL original 54-sticker physical two-worker first-action15 source B10 refutation, independent Go merger #39007260192 and pinned adversarial replay #39007715103 PASS",
       "source": [
         "scripts/cuberev-026/r1_first_action15_cpp/main.cpp",
         "scripts/cuberev-026/r1_first_action15_merge_go/main.go",
@@ -3535,7 +3535,9 @@
         9,
         12,
         15
-      ]
+      ],
+      "pinned_replay_run": 39007715103,
+      "distance_lower17_not_proved": true
     }
   }
 }
