@@ -57,25 +57,25 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          go build -o /tmp/c026-r3-r16-go scripts/cuberev-026/r3_root10_c8_merge_go/main.go
+          go build -o /tmp/c026-r3-r10-go scripts/cuberev-026/r3_root10_c8_merge_go/main.go
       - name: Verify entire original first10 root (twelve depth2 cylinders and original depth1)
         shell: bash
         run: |
           set -euo pipefail
           cp /tmp/c026-r3-shards/r3-original-first10-native-shard-0-${{ github.run_id }}/c026-r3-root10-0.log /tmp/r3-s0.log
           cp /tmp/c026-r3-shards/r3-original-first10-native-shard-1-${{ github.run_id }}/c026-r3-root10-1.log /tmp/r3-s1.log
-          /tmp/c026-r3-r16-go /tmp/r3-s0.log /tmp/r3-s1.log | tee /tmp/c026-r3-whole-first10-certificate.log
+          /tmp/c026-r3-r10-go /tmp/r3-s0.log /tmp/r3-s1.log | tee /tmp/c026-r3-whole-first10-certificate.log
           grep -Fq 'COMPLETE_REAL_PHYSICAL_B10_PROOF_PASS' /tmp/c026-r3-whole-first10-certificate.log
           grep -Fq 'ORIGINAL_FULL_18_ACTION_SOURCE_COMPLETE 0 GLOBAL_LOWER17_CLAIMED 0' /tmp/c026-r3-whole-first10-certificate.log
       - name: Reject a missing original root10 leaf and forged original B6 checksum
         shell: bash
         run: |
           set -euo pipefail
-          grep -v '^C026_R3R10_BRANCH_LEAF FIRST 10 SECOND 0 ' /tmp/r3-s0.log > /tmp/r3-missing.log
-          if /tmp/c026-r3-r16-go /tmp/r3-missing.log /tmp/r3-s1.log; then echo UNSOUND_MISSING_ROOT16_LEAF; exit 1; fi
+          grep -v '^C026_R3R10_BRANCH_LEAF FIRST 10 SECOND 3 ' /tmp/r3-s0.log > /tmp/r3-missing.log
+          if /tmp/c026-r3-r10-go /tmp/r3-missing.log /tmp/r3-s1.log; then echo UNSOUND_MISSING_ROOT10_LEAF; exit 1; fi
           sed 's/82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979/0000000000000000000000000000000000000000000000000000000000000000/g' /tmp/r3-s1.log > /tmp/r3-forged.log
-          if /tmp/c026-r3-r16-go /tmp/r3-s0.log /tmp/r3-forged.log; then echo UNSOUND_FORGED_ROOT16_B6_GOAL; exit 1; fi
-          echo R3_ROOT16_INDEPENDENT_NEGATIVE_CONTROLS_PASS
+          if /tmp/c026-r3-r10-go /tmp/r3-s0.log /tmp/r3-forged.log; then echo UNSOUND_FORGED_ROOT10_B6_GOAL; exit 1; fi
+          echo R3_ROOT10_INDEPENDENT_NEGATIVE_CONTROLS_PASS
       - name: No GitHub bot repo writes
         shell: bash
         run: |
