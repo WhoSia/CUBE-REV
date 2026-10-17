@@ -1,0 +1,50 @@
+name: CUBE-REV 0.26 R3-P4 root proof automaton
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-026/r3_p4_proof_automaton_go/**"
+      - ".github/workflows/cuberev-026-R3-P4-proof-automaton.yml"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 39017991545
+          pattern: r3-original-first16-native-shard-*-39017991545
+          path: /tmp/receipts
+          merge-multiple: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Replay full original source root16 into evidence automaton
+        shell: bash
+        run: |
+          set -euo pipefail
+          go build -o /tmp/automaton scripts/cuberev-026/r3_p4_proof_automaton_go/main.go
+          /tmp/automaton /tmp/receipts/r3-original-first16-native-shard-0-39017991545/c026-r3-root16-0.log /tmp/receipts/r3-original-first16-native-shard-1-39017991545/c026-r3-root16-1.log /tmp/status.txt | tee /tmp/audit.log
+          grep -Fq 'R3_P4_FINITE_PROOF_AUTOMATON_PASS' /tmp/audit.log
+          grep -Fq 'CERTIFIED_ROOTS 6 OPEN_ROOTS 12 GLOBAL_LOWER17_PROVED 0' /tmp/status.txt
+      - name: Missing leaf must fail
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -v '^C026_R3R16_BRANCH_LEAF FIRST 16 SECOND 0 ' /tmp/receipts/r3-original-first16-native-shard-0-39017991545/c026-r3-root16-0.log > /tmp/bad.log
+          if /tmp/automaton /tmp/bad.log /tmp/receipts/r3-original-first16-native-shard-1-39017991545/c026-r3-root16-1.log /tmp/bad-status.txt; then exit 1; fi
+          echo R3_P4_NEGATIVE_CONTROL_PASS
+      - name: Read only
+        run: git diff --exit-code HEAD --
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r3-p4-proof-automaton-${{ github.run_id }}
+          path: |
+            /tmp/status.txt
+            /tmp/audit.log
+          retention-days: 30
