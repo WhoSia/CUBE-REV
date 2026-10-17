@@ -5,6 +5,10 @@ package main
 
 import (
  "fmt"
+ "bytes"
+ "crypto/sha256"
+ "encoding/hex"
+ "sort"
  "os"
  "runtime"
  "strconv"
@@ -234,6 +238,12 @@ func b6goal()(map[Key]struct{},map[EK]struct{}){
  e:=make(map[EK]struct{},7800000)
  for _,v:=range q{e[edge(v)]=struct{}{}}
  must(len(e)==7672278,"independent E6 projection mismatch")
+ sort.Slice(q,func(i,j int)bool{return bytes.Compare(q[i][:],q[j][:])<0})
+ h:=sha256.New()
+ for _,key:=range q { _,err:=h.Write(key[:]);must(err==nil,"goal-hash-write") }
+ digest:=hex.EncodeToString(h.Sum(nil))
+ must(digest=="3ea99357e5cfbd47921e38e4ad82438267fd5956d3bcd20674466335e70bbe5f","whole 20-marker B6 SHA mismatch")
+ fmt.Println("GO_FULL_B6_SORTED_20BYTE_SITEKEY_SHA256",digest)
  q=nil;runtime.GC()
  fmt.Println("GO_INDEPENDENT_FULL_GOAL_B6_PASS",len(g),"E6",len(e),"SECONDS",time.Since(stamp).Seconds())
  return g,e
