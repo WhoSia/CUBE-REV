@@ -1,0 +1,60 @@
+name: CUBE-REV 0.26 R0 original-source symmetry and certified-language workload audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-026/r0_source_priority_cpp/**"
+      - "scripts/cuberev-026/r0_source_priority_go/**"
+      - ".github/workflows/cuberev-026-R0-source-priority.yml"
+permissions:
+  contents: read
+jobs:
+  actual-physical-original-source-stabilizer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: false}
+      - name: Compile actual 54-sticker physical C++17 and independent Go grammar court
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -O2 scripts/cuberev-026/r0_source_priority_cpp/main.cpp -o /tmp/c026-r0-source
+          go build -o /tmp/c026-r0-go scripts/cuberev-026/r0_source_priority_go/main.go
+      - name: Exact original WCA source 24 real cubie rotation fixed-state and legal canonical root cost
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/time -f 'R0_PHYSICAL_SOURCE_AUDIT_WALL %e RSS_KIB %M' /tmp/c026-r0-source 2>&1 | tee /tmp/c026-r0-original.log
+          grep -Fq 'R0_SOURCE_STABILIZER_AUDIT_PASS' /tmp/c026-r0-original.log
+          grep -Fq 'GLOBAL_LOWER17_CLAIMED 0 ROOT_CERTIFICATE_UPGRADE 0' /tmp/c026-r0-original.log
+      - name: Independent Go whole-18 canonical-grammar budget and status validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/c026-r0-go /tmp/c026-r0-original.log | tee /tmp/c026-r0-independent-go.log
+          grep -Fq 'R0_INDEPENDENT_GO_ALL_18_SOURCE_GRAMMAR_PASS' /tmp/c026-r0-independent-go.log
+      - name: Adversarial independent receipt mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/c026-r0-original.log /tmp/c026-r0-tampered.log
+          sed -i 's/17489205559/17489205558/' /tmp/c026-r0-tampered.log
+          if /tmp/c026-r0-go /tmp/c026-r0-tampered.log; then
+            echo R0_UNSOUND_CANONICAL_WORKLOAD_ACCEPTED; exit 1
+          fi
+          echo R0_INDEPENDENT_GO_WORKLOAD_MUTATION_REJECTED_PASS
+      - name: CI no automatic git writes
+        run: |
+          git diff --exit-code HEAD --
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c026-r0-source-priority-${{ github.run_id }}
+          path: |
+            /tmp/c026-r0-original.log
+            /tmp/c026-r0-independent-go.log
+          retention-days: 30
+          if-no-files-found: warn

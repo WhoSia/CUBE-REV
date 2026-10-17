@@ -124,6 +124,7 @@
     ".github/workflows/cuberev-025-P0-R6I-lean-cutset.yml",
     ".github/workflows/cuberev-025-P0-R6I-physical-mixed-cut-pilot.yml",
     ".github/workflows/cuberev-026-P12-P5-true-cubie-rotations.yml",
+    ".github/workflows/cuberev-026-R0-source-priority.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -396,6 +397,7 @@
     "docs/0.25/PROGRAM_CHARTER.md",
     "docs/0.26/P12_P5_PHYSICAL_24_ROTATION_FIBER_TWIN_ACTION.md",
     "docs/0.26/PROGRAM_CHARTER.md",
+    "docs/0.26/R0_RESEARCH_PRIORITY_DECISION_AND_SOURCE_SYMMETRY.md",
     "formal/016/CubeRev016.lean",
     "formal/016/P11Fractional.lean",
     "formal/016/P12LightGraph.lean",
@@ -786,6 +788,8 @@
     "scripts/cuberev-025/verify_p0_r3_continuous_face_price_original_54sticker.mjs",
     "scripts/cuberev-025/verify_p0_r4_five_real_face_budget_original_54sticker.mjs",
     "scripts/cuberev-026/p12_p5_true_rotation_lift_cpp/main.cpp",
+    "scripts/cuberev-026/r0_source_priority_cpp/main.cpp",
+    "scripts/cuberev-026/r0_source_priority_go/main.go",
     "scripts/g7-p10/audit-batch4-leverage.py",
     "scripts/g7-p10/audit-lb7-cohort-instability.py",
     "scripts/g7-p10/audit-support-choice-factorization.py",
@@ -3485,6 +3489,19 @@
       "notion": "https://app.notion.com/p/3fbef561cf9281198294d7b5601a3ab3",
       "source": "scripts/cuberev-026/p12_p5_true_rotation_lift_cpp/main.cpp",
       "priority": "no endless P0 fiber study; return to broad 0.26 original 18HTM source-complete solver goals"
+    },
+    "cuberev_026_r0_priority": {
+      "status": "RESEARCH PRIORITY DECISION AND SOURCE STABILIZER EXPERIMENT PENDING external CI",
+      "report": "docs/0.26/R0_RESEARCH_PRIORITY_DECISION_AND_SOURCE_SYMMETRY.md",
+      "source": [
+        "scripts/cuberev-026/r0_source_priority_cpp/main.cpp",
+        "scripts/cuberev-026/r0_source_priority_go/main.go",
+        ".github/workflows/cuberev-026-R0-source-priority.yml"
+      ],
+      "notion": "https://app.notion.com/p/3fbef561cf9281198294d7b5601a3ab3",
+      "boundary": "No new original fixed source B10 certificate/shortest lower17 from this root-workload auditor",
+      "decision": "Measure cheap original physical source stabilizer and all-18 exact IDDFS grammar budgets; then budget a15 B-face original pilot",
+      "version": "0.26 version-name only, 0.25 research/current history unchanged"
     }
   }
 }
