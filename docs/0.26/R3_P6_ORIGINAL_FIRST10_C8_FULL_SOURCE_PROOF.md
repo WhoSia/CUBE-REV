@@ -1,0 +1,9 @@
+# CUBE-REV 0.26 R3-P6 — Selected original first-action10 D-prime complete C8 guarded source certificate
+
+**STATE: DEVELOPMENT, external CI PENDING.** Continued exact original WCA source B10 and solved-side B6 certified SHA256 82fe545bcad3537c989ec22afce9d286926ddce5f4ef9428c0307951ec2d0979, exact physical 54-sticker 18HTM, actual C8=27,583,872 and digest 1591559f375779e00d8343d91a753f48a655f7455ae8c67686f101b1b4bcffa3. Human WhoSia-only commit, read-only Actions, one research/current branch; no full lower17 claim.
+
+R3-P5 cost-aware scheduler selected first action10 (D-prime) as lowest-index among remaining 12-child-class original roots. This is a judgmental cost-informed choice (historical 12-child worker sums433.66/580.74/631.73s), not proof of optimal scheduling or fixed expected runtime.
+
+Original source first10 root: all canonical legal second children exactly12, six interleaved physical source R10 subtrees per independent native worker, exact goal B6 and C6/C7/E6 projection SHA and C8 rebuild verification, exact no true physical full-cubie goal hits for all limits, original first10 depth1 membership once, source word mass14,279,876,542. Independent Go recreates canonical source language, checks two workers and all twelve children and all pinned physical source hashes, refuses positive meetings, missing source child, forged goal/checksum or timeout. All programmatic repairs/failures kept as original GH/Notion evidence.
+
+If full proof actual CI PASS then and only then promote original source-first certificate set to {0,3,9,10,12,15,16}: SEVEN of18, ELEVEN OPEN, original d18(s) interval STILL 16≤d≤18. Original global lower17 requires all eighteen certified and remains unproved. RITHM-style automaton must not promote before evidence. Archive original GitHub native/Go raw CI ZIP into CUBE-REV Research OS Lab Drive 10_CANONICAL_PROOF_COURTS and verify remote byte SHA, never treat /mnt/data sandbox as permanent.
