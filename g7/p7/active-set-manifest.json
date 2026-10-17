@@ -3544,7 +3544,7 @@
       "distance_lower17_not_proved": true
     },
     "cuberev_026_r2_matched_order": {
-      "status": "DEVELOPMENT, original B6 same-runner ABBA physical 8 full depth2 source10 runs external CI PENDING; no new first-root certificate; no claimed speedup",
+      "status": "ACTUAL original B6 54facelet ABBA 8 source-prefix runs+Go receipt PASS, EDGE_FIRST 13.35% & 13.22% SLOWER, candidate rejected; exact same visited/omitted; 1 depth2 original first16 second0 negative; 5 roots certified13 open",
       "scientific_obligation": "same original goal full SHA, exact 54 stickers, equal visits/omitted/pair predicates, two first-action fixtures {15,16} at second0, A/B/B/A, independent Go receipt and negative controls",
       "source": [
         "scripts/cuberev-026/r2_matched_admissible_order_cpp/main.cpp",
@@ -3559,7 +3559,17 @@
         "canonical_proof_folder_id": "1DboAVDmbMmOXD7CMgznchCMX2RIRxrCf",
         "raw_log_upload": "PENDING; Drive connector supported file_uri required",
         "sandbox": "T0 temporary only, no canonical user sandbox links"
-      }
+      },
+      "success_run": 39008745753,
+      "failed_initial_compile_run": 39008709980,
+      "raw_drive": {
+        "id": "1iKdFFneABoJh1hWo8Lsg5c8qnXd_xD8R",
+        "url": "https://drive.google.com/file/d/1iKdFFneABoJh1hWo8Lsg5c8qnXd_xD8R/view",
+        "size_bytes": 1501,
+        "sha256": "dcc3dfc7d21c0005bd61b4ffc0c403161c8bc3bb91231ae1c6eca4c3eab306d6",
+        "custody": "BYTE_VERIFIED, raw ZIP re-downloaded from real Drive and compared byte for byte with true GitHub Actions archive, temporary copies removed"
+      },
+      "verdict": "NEGATIVE performance; preserve previous CORNER_FIRST order; no new full original source first root or global lower17"
     }
   }
 }
