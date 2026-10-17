@@ -3632,6 +3632,33 @@
       ],
       "raw_byte_custody": "verified sha256 against true GitHub artifacts; T0 sandbox cleaned",
       "next_scheduler": "first11 D2 low-class, original first1 U-prime exploration; unexecuted"
+    },
+    "cuberev_026_r3_p7_first11": {
+      "status": "ACTUAL 2x ORIGINAL D2 source physical workers + independent corrected immutable Go and adversarial controls PASS",
+      "certified_roots": [
+        0,
+        3,
+        9,
+        10,
+        11,
+        12,
+        15,
+        16
+      ],
+      "open_roots": 10,
+      "native_run": 39021622195,
+      "final_replay_run": 39022095918,
+      "source_word_calls": "14279876542",
+      "visits": "80143990",
+      "omitted": "14199732552",
+      "drive_ids": [
+        "1rI8296i42UtHTf5lRnOLI8_mEkpObZbY",
+        "1pOl8pB0sE5YBBAYZlDP7pAuEgsFcEqJv",
+        "1y9AxyIh5ao2D5ep2vc497A7vcH25rdp2"
+      ],
+      "byte_verification": "GitHub original archive versus Drive raw SHA256/size matches; ephemeral copies deleted",
+      "lean_kernel_link": false,
+      "global_lower17_proven": false
     }
   }
 }
