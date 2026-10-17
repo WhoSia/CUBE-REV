@@ -1,0 +1,34 @@
+name: CUBE-REV 0.26 R3-P5 resource-rational source root policy
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-026/r3_p5_cost_policy_go/**"
+      - ".github/workflows/cuberev-026-R3-P5-resource-policy.yml"
+permissions:
+  contents: read
+jobs:
+  selection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - name: Independent exact 18HTM DFA grammar cost and nonpromoting proof-status gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          go run scripts/cuberev-026/r3_p5_cost_policy_go/main.go /tmp/policy.csv | tee /tmp/policy.log
+          grep -Fq 'R3_P5_COST_AWARE_PROOF_SELECTION_PASS' /tmp/policy.log
+          grep -Fq '# CERTIFIED 6 OPEN 12 LOWER17_PROVEN 0' /tmp/policy.csv
+          test "$(grep -c '^0,' /tmp/policy.csv)" -eq 1
+          git diff --exit-code HEAD --
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r3-p5-reproducible-source-cost-policy-${{ github.run_id }}
+          path: |
+            /tmp/policy.csv
+            /tmp/policy.log
+          retention-days: 30

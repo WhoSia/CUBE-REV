@@ -1,0 +1,11 @@
+# CUBE-REV 0.26 R3-P5 — Resource-Rational Proof Scheduling Without Evidence Laundering
+
+Original source 18HTM radius10 first-action certificates remain **{0,3,9,12,15,16} (6/18)**, 12 open. Global lower17 is unproved and original distance remains 16≤d18(s)≤18. Version-only continuity from 0.25, not a program reset.
+
+The scheduler uses the exact 18HTM canonical adjacent-move automaton to recompute all 18 root's repeated IDDFS word calls. A 12-child root has mass 14,279,876,542; a 15-child root has mass 17,489,205,559. Historical *nonmatched* native two-worker totals for complete cheap-class roots (a12/a15/a16) are 631.73/580.74/433.66 runner-seconds. Conservative illustrative low/high scenario factors 0.75×minimum and 1.6×maximum are **judgmental stress intervals, NOT calibrated confidence intervals, predictions, or proof probabilities**. Computational cost is not admissible evidence of original whole-cubie goal absence. This policy never promotes any root status.
+
+Selection ranks by high-cost scenario while forcing every third choice to represent a 15-child root, guarding against the failure mode of cheap-only exploration. It emits all roots' costs, open/certified status, deterministic tie-breaking and a 2-cheap/1-expensive exploration slate. The document and receipt MUST disclose that partial root certification and independent origin attestations live in a separate proof automaton R3-P4. A policy recommendation is not an authorized source proof.
+
+RITHM P29's legitimate information restriction (use only observed receipts and prior measured cost), finite-memory status machine and bounded cost policy inspires the design. Metareasoning and resource-rational cognition are theoretical precedents, not experimental claims about human solvers. The decision problem is a partially observed cost-vs-information allocation under unknown branch hit/no-hit outcomes. Exact root coverage is a logical AND of certified children, never an expectation.
+
+New computational research requires actual next selected native source-root execution, fixed original B6 source SHA, independent Go source language/whole-cubie receipt, negative controls, and Drive T2 byte-verification. Status at authoring: planning/programmatic audit, not a new source-root certificate.
