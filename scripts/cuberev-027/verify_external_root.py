@@ -12,6 +12,7 @@ expected=ref["roots"][str(a.root)]
 for marker in ("GO_INDEPENDENT_54_SITE_GEOMETRY_OK 54",
                "GO_INDEPENDENT_CORNER_C8_PASS 88179840",
                "GO_INDEPENDENT_FULL_GOAL_B6_PASS 8240087 E6 7672278",
+               "GO_FULL_B6_SORTED_20BYTE_SITEKEY_SHA256 3ea99357e5cfbd47921e38e4ad82438267fd5956d3bcd20674466335e70bbe5f",
                "GO_SOURCE_FIXED_PHYSICAL_18HTM_WITNESS_PASS"):
     assert marker in s, f"MISSING_PHYSICAL_PREMISE: {marker}"
 pat=r"^GO_ROOT_RESULT root=(\d+) child=(-?\d+) jobs=(\d+) visits=(\d+) omitted=(\d+) hit=(\d+) full=(\d+) e6=(\d+) corner8=(\d+) corner7=(\d+) corner6=(\d+) virtual=(\d+)"
