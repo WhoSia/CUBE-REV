@@ -1,0 +1,34 @@
+name: CUBE-REV 0.27 P9 — independent optimal 17HTM challenge
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  solve-original-fixed-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 'pypy3.10'
+      - name: Fail-closed physical geometry and frozen original WCA source selftest
+        run: pypy3 scripts/cuberev-027/p9_independent_optimal_probe.py --selftest
+      - name: Install independent third-party optimal solver (GPLv3+, not vendored)
+        run: pypy3 -m pip install --no-deps 'RubikOptimal==1.1.0'
+      - name: Independently search exact optimal word and physically verify every label
+        shell: bash
+        run: |
+          set -euo pipefail
+          pypy3 -u scripts/cuberev-027/p9_independent_optimal_probe.py 2>&1 | tee P9_EXTERNAL_OPTIMAL_PROBE_RAW.log
+          grep '^P9_EXTERNAL_OPTIMAL_SOLVER_54_SITE_WITNESS_PASS ' P9_EXTERNAL_OPTIMAL_PROBE_RAW.log
+      - name: Preserve raw third-party output, even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p9-independent-optimal-solver-execution
+          path: P9_EXTERNAL_OPTIMAL_PROBE_RAW.log
+          retention-days: 30
+          if-no-files-found: warn
