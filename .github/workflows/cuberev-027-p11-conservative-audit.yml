@@ -20,7 +20,7 @@ jobs:
       - name: Standalone physical permutation court and strict mutation tests
         run: python3 -u scripts/cuberev-027/p11_external_guard_free.py --offline
   solver-no-equal-axis:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[p11-full-audit]')
     needs: offline-independent-corner-geometry
     runs-on: ubuntu-latest
     timeout-minutes: 330
