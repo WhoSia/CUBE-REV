@@ -1,0 +1,59 @@
+name: CUBE-REV 0.27 P11 — conservative independent optimality audit
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/current
+    paths:
+      - scripts/cuberev-027/p11_external_guard_free.py
+      - .github/workflows/cuberev-027-p11-conservative-audit.yml
+permissions:
+  contents: read
+jobs:
+  offline-independent-corner-geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Standalone physical permutation court and strict mutation tests
+        run: python3 -u scripts/cuberev-027/p11_external_guard_free.py --offline
+  solver-no-equal-axis:
+    if: github.event_name == 'workflow_dispatch'
+    needs: offline-independent-corner-geometry
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 'pypy3.10'
+      - name: Download exact independently distributed upstream wheel and pin byte hash
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p p11-third-party-wheel
+          pypy3 -m pip download --no-deps --only-binary=:all: -d p11-third-party-wheel 'RubikOptimal==1.1.0'
+          sha256sum p11-third-party-wheel/*.whl | tee P11_WHEEL_SHA256.txt
+          pypy3 -m pip install --no-deps p11-third-party-wheel/*.whl
+      - name: Full original cube search with extra equal-axis pruning removed and all corner PDB rows cross-checked
+        shell: bash
+        run: |
+          set -euo pipefail
+          pypy3 -u scripts/cuberev-027/p11_external_guard_free.py 2>&1 | tee P11_GUARD_FREE_RAW.log
+          grep '^P11_NONTRIVIAL_EQUAL_TRIAXIAL_CUTOFF_DISABLED_PASS$' P11_GUARD_FREE_RAW.log
+          grep '^P11_ACTUAL_PYPI_ALL_CORNER_DISTANCES_AND_MOVES_PASS ' P11_GUARD_FREE_RAW.log
+          grep '^P11_NO_EQUAL_AXIS_PHYSICAL_WITNESS_PASS ' P11_GUARD_FREE_RAW.log
+      - name: Keep raw logs and wheel hash; no repository write-back
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-027-p11-conservative-no-equal-axis-raw
+          path: |
+            P11_GUARD_FREE_RAW.log
+            P11_WHEEL_SHA256.txt
+          if-no-files-found: warn
+          retention-days: 30
