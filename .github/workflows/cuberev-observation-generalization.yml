@@ -34,6 +34,8 @@ jobs:
           cat /tmp/cuberev-observation/smoke.json
           python scripts/cuberev-observation/l7_targeted_witnesses.py --length 7 --max-nodes 5000 > /tmp/cuberev-observation/l7_bounded.json
           cat /tmp/cuberev-observation/l7_bounded.json
+          python scripts/cuberev-observation/dictionary_coverage.py > /tmp/cuberev-observation/dictionary_coverage.json
+          cat /tmp/cuberev-observation/dictionary_coverage.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
