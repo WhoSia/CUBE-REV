@@ -3,6 +3,7 @@
 import unittest
 from physical_edges import ACTIONS, edge_transitions
 from robust_observation import signatures, feasible_sources, explore
+from dictionary_coverage import evaluate
 
 class PhysicalSmoke(unittest.TestCase):
     @classmethod
@@ -30,6 +31,12 @@ class PhysicalSmoke(unittest.TestCase):
         counts=explore(self.moves,2,min_distance=1)
         self.assertEqual(counts["3"],64)
         self.assertEqual(counts["4"],0)
+
+    def test_four_word_dictionary_physical_coverage(self):
+        result=evaluate()
+        self.assertEqual(result['dictionary_size'],4)
+        self.assertEqual(result['coverage_by_size'], {'3':120,'4':60,'5':6})
+        self.assertFalse(result['global_minimum_proven'])
 
     def test_bounded_smoke(self):
         with self.assertRaises(AssertionError):
