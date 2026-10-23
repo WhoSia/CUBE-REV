@@ -1,0 +1,40 @@
+name: CUBE-REV observation generalization — read-only smoke
+
+on:
+  push:
+    branches:
+      - research/observation-generalization
+    paths:
+      - 'scripts/cuberev-observation/**'
+      - '.github/workflows/cuberev-observation-generalization.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  physical-observation-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify physical geometry, inverses, and observational baselines
+        run: |
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_*.py' -v
+      - name: Export physical transition receipt (artifact, not repository write)
+        run: |
+          mkdir -p /tmp/cuberev-observation
+          python scripts/cuberev-observation/physical_edges.py > /tmp/cuberev-observation/edge_transitions.json
+          python scripts/cuberev-observation/robust_observation.py --moves /tmp/cuberev-observation/edge_transitions.json --length 2 --errors 0 > /tmp/cuberev-observation/smoke.json
+          cat /tmp/cuberev-observation/smoke.json
+          sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-observation-smoke
+          path: /tmp/cuberev-observation/
+          retention-days: 30
