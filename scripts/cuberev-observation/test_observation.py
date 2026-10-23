@@ -4,6 +4,7 @@ import unittest
 from physical_edges import ACTIONS, edge_transitions
 from robust_observation import signatures, feasible_sources, explore
 from dictionary_coverage import evaluate
+from physical_set_cover import build, greedy, lower_bound
 
 class PhysicalSmoke(unittest.TestCase):
     @classmethod
@@ -37,6 +38,15 @@ class PhysicalSmoke(unittest.TestCase):
         self.assertEqual(result['dictionary_size'],4)
         self.assertEqual(result['coverage_by_size'], {'3':120,'4':60,'5':6})
         self.assertFalse(result['global_minimum_proven'])
+
+    def test_physical_set_cover_four_seeds(self):
+        covers=build()
+        universe=set().union(*covers)
+        self.assertEqual(len(universe),186)
+        g=greedy(covers,universe)
+        self.assertEqual(g['status'],'COVERED_IN_POOL')
+        self.assertEqual(len(set().union(*(covers[i] for i in g['indices']))),186)
+        self.assertLessEqual(lower_bound(covers,universe),g['size'])
 
     def test_bounded_smoke(self):
         with self.assertRaises(AssertionError):
