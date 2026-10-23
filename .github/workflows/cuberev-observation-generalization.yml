@@ -38,6 +38,9 @@ jobs:
           cat /tmp/cuberev-observation/dictionary_coverage.json
           python scripts/cuberev-observation/physical_set_cover.py > /tmp/cuberev-observation/restricted_set_cover.json
           cat /tmp/cuberev-observation/restricted_set_cover.json
+          python -m pip install --disable-pip-version-check 'python-sat==1.9.dev15'
+          python scripts/cuberev-observation/physical_set_cover.py --solver sat --max-k 4 > /tmp/cuberev-observation/seed4_sat_optimum.json
+          python - <<'PY'\n          import json\n          p='/tmp/cuberev-observation/seed4_sat_optimum.json'\n          d=json.load(open(p))\n          assert d['exact']['status']=='SAT' and d['exact']['k']==4,d\n          print('SEED4_RESTRICTED_SAT_K4_PASS')\n          PY
           python scripts/cuberev-observation/verify_l7_27_cover.py > /tmp/cuberev-observation/L7_27_cover_verified.json
           cat /tmp/cuberev-observation/L7_27_cover_verified.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
