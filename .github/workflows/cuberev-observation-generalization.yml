@@ -44,6 +44,8 @@ jobs:
           python -c 'import json; d=json.load(open("/tmp/cuberev-observation/seed4_sat_optimum.json")); assert d["exact"]["status"]=="SAT" and d["exact"]["k"]==4, d; print("SEED4_RESTRICTED_SAT_K4_PASS")'
           python scripts/cuberev-observation/verify_l7_27_cover.py > /tmp/cuberev-observation/L7_27_cover_verified.json
           cat /tmp/cuberev-observation/L7_27_cover_verified.json
+          python scripts/cuberev-observation/verify_l7_25_cover.py > /tmp/cuberev-observation/L7_25_cover_verified.json
+          cat /tmp/cuberev-observation/L7_25_cover_verified.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
