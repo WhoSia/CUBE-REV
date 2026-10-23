@@ -32,6 +32,8 @@ jobs:
           python scripts/cuberev-observation/physical_edges.py > /tmp/cuberev-observation/edge_transitions.json
           python scripts/cuberev-observation/robust_observation.py --moves /tmp/cuberev-observation/edge_transitions.json --length 2 --errors 0 > /tmp/cuberev-observation/smoke.json
           cat /tmp/cuberev-observation/smoke.json
+          python scripts/cuberev-observation/l7_targeted_witnesses.py --length 7 --max-nodes 5000 > /tmp/cuberev-observation/l7_bounded.json
+          cat /tmp/cuberev-observation/l7_bounded.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
