@@ -5,6 +5,7 @@ from physical_edges import ACTIONS, edge_transitions
 from robust_observation import signatures, feasible_sources, explore
 from dictionary_coverage import evaluate
 from physical_set_cover import build, greedy, lower_bound
+from verify_l7_27_cover import verify
 
 class PhysicalSmoke(unittest.TestCase):
     @classmethod
@@ -47,6 +48,12 @@ class PhysicalSmoke(unittest.TestCase):
         self.assertEqual(g['status'],'COVERED_IN_POOL')
         self.assertEqual(len(set().union(*(covers[i] for i in g['indices']))),186)
         self.assertLessEqual(lower_bound(covers,universe),g['size'])
+
+    def test_l7_constructive_cover_27(self):
+        certificate=verify()
+        self.assertEqual(certificate['status'],'PHYSICAL_27_WORD_UPPER_BOUND_PASS')
+        self.assertEqual(certificate['covered'],{'3':220,'4':495})
+        self.assertFalse(certificate['globally_optimal'])
 
     def test_bounded_smoke(self):
         with self.assertRaises(AssertionError):
