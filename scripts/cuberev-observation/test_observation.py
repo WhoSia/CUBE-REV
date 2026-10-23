@@ -5,7 +5,8 @@ from physical_edges import ACTIONS, edge_transitions
 from robust_observation import signatures, feasible_sources, explore
 from dictionary_coverage import evaluate
 from physical_set_cover import build, greedy, lower_bound
-from verify_l7_27_cover import verify
+from verify_l7_27_cover import verify, INPUT
+from generate_sampled_dictionary import build as regenerate_sample
 
 class PhysicalSmoke(unittest.TestCase):
     @classmethod
@@ -54,6 +55,14 @@ class PhysicalSmoke(unittest.TestCase):
         self.assertEqual(certificate['status'],'PHYSICAL_27_WORD_UPPER_BOUND_PASS')
         self.assertEqual(certificate['covered'],{'3':220,'4':495})
         self.assertFalse(certificate['globally_optimal'])
+
+    def test_reproduce_seeded_27_word_dictionary(self):
+        import json
+        data=json.loads(INPUT.read_text(encoding='utf-8'))
+        reconstructed=regenerate_sample()
+        self.assertEqual(reconstructed['selected_words'],data['words'])
+        self.assertEqual(reconstructed['uncovered_target_count'],0)
+        self.assertEqual(len(reconstructed['selected_words']),27)
 
     def test_bounded_smoke(self):
         with self.assertRaises(AssertionError):
