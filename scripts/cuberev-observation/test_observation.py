@@ -6,6 +6,7 @@ from robust_observation import signatures, feasible_sources, explore
 from dictionary_coverage import evaluate
 from physical_set_cover import build, greedy, lower_bound
 from verify_l7_27_cover import verify, INPUT
+from verify_l7_25_cover import verify as verify25
 from generate_sampled_dictionary import build as regenerate_sample
 
 class PhysicalSmoke(unittest.TestCase):
@@ -63,6 +64,12 @@ class PhysicalSmoke(unittest.TestCase):
         self.assertEqual(reconstructed['selected_words'],data['words'])
         self.assertEqual(reconstructed['uncovered_target_count'],0)
         self.assertEqual(len(reconstructed['selected_words']),27)
+
+    def test_l7_constructive_cover_25(self):
+        certificate=verify25()
+        self.assertEqual(certificate['status'],'PHYSICAL_25_WORD_UPPER_BOUND_PASS')
+        self.assertEqual(certificate['counts'],{'3':220,'4':495})
+        self.assertFalse(certificate['global_optimum_proven'])
 
     def test_bounded_smoke(self):
         with self.assertRaises(AssertionError):
