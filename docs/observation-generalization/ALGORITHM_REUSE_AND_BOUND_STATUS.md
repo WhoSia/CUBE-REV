@@ -27,6 +27,29 @@
   implementations only if a full-cube goal-policy benchmark becomes relevant.
   No claim that these external implementations have been integrated.
 
+## Global lower bound inherited from previous physical observability
+
+The independently documented CUBE-REV 0.19 P5 exact physical horizon court
+(`docs/0.19/P5_EXACT_OBSERVABILITY_HORIZONS_COLLISION_PAIRS_AND_ADAPTIVITY.md`)
+established that **no physical length-seven word distinguishes all 12 initial
+edge slots**; its stronger rank bound is at most 10 distinct transcripts.
+
+This implies a rigorous global bound **M*_robust >= 3** for the family of
+ALL 3-element and ALL 4-element source sets, even at zero observation errors.
+Proof: suppose two physical words w and v cover all of those sets. Because
+neither distinguishes the 12 states fully, choose a collided pair in w and
+another collided pair in v. Their union contains at most four states. Extend
+the union to a four-element source set A. A includes a collision under w
+and under v, so neither experiment can distinguish A even without errors;
+contradiction. The same argument excludes one word. Since one-bit correction
+is stronger than zero-error distinction, **3 <= M*_robust(7; all triples
+and quadruples, 1 bit error) <= 27**.
+
+This lower bound inherits precisely the recorded physical length-seven
+non-injectivity theorem; it is not a new DRUP certificate, and it does not
+depend on the seed-limited SAT model. If the 0.19 model semantics or theorem
+is revised, revisit this bound accordingly.
+
 ## What is already computed
 
 With the original 54-sticker-derived 18-move transitions and one-bit-error
@@ -54,8 +77,8 @@ does not apply to all possible physical L7 experiments.
 ## Unresolved mathematical target
 
 The true globally optimal dictionary size for all size-3 and size-4
-source subsets remains OPEN: a constructive 27 upper bound is not a
-lower-bound certificate. Future work: maximize columns by physical
+source subsets remains OPEN between the inherited global 3 lower bound and
+constructive 27 upper bound. Future work: maximize columns by physical
 enumeration or symmetry reductions; exact set cover on the complete
 candidate-column family; certified SAT UNSAT/DRUP or independently
 checkable combinatorial lower bounds. A solver's mere numerical
