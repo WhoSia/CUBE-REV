@@ -36,6 +36,8 @@ jobs:
           cat /tmp/cuberev-observation/l7_bounded.json
           python scripts/cuberev-observation/dictionary_coverage.py > /tmp/cuberev-observation/dictionary_coverage.json
           cat /tmp/cuberev-observation/dictionary_coverage.json
+          python scripts/cuberev-observation/physical_set_cover.py > /tmp/cuberev-observation/restricted_set_cover.json
+          cat /tmp/cuberev-observation/restricted_set_cover.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
