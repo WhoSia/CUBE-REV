@@ -7,6 +7,7 @@ from dictionary_coverage import evaluate
 from physical_set_cover import build, greedy, lower_bound
 from verify_l7_27_cover import verify, INPUT
 from verify_l7_25_cover import verify as verify25
+from verify_l7_15_cover import verify as verify15
 from generate_sampled_dictionary import build as regenerate_sample
 
 class PhysicalSmoke(unittest.TestCase):
@@ -70,6 +71,12 @@ class PhysicalSmoke(unittest.TestCase):
         self.assertEqual(certificate['status'],'PHYSICAL_25_WORD_UPPER_BOUND_PASS')
         self.assertEqual(certificate['counts'],{'3':220,'4':495})
         self.assertFalse(certificate['global_optimum_proven'])
+
+    def test_l7_constructive_cover_15(self):
+        result=verify15()
+        self.assertEqual(result['status'],'PHYSICAL_15_WORD_COVER_PASS')
+        self.assertEqual(result['covered_triples']+result['covered_quadruples'],715)
+        self.assertFalse(result['global_optimum_proven'])
 
     def test_bounded_smoke(self):
         with self.assertRaises(AssertionError):
