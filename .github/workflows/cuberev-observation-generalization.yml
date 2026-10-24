@@ -50,8 +50,10 @@ jobs:
           cat /tmp/cuberev-observation/L7_15_cover_verified.json
           python scripts/cuberev-observation/verify_l7_11_cover.py > /tmp/cuberev-observation/L7_11_cover_verified.json
           cat /tmp/cuberev-observation/L7_11_cover_verified.json
+          python scripts/cuberev-observation/verify_sensor_orbits.py > /tmp/cuberev-observation/sensor_orbit_columns.json
+          cat /tmp/cuberev-observation/sensor_orbit_columns.json
           python scripts/cuberev-observation/sensor_symmetry.py > /tmp/cuberev-observation/sensor_symmetry.json
-          python -c 'import json; r=json.load(open("/tmp/cuberev-observation/sensor_symmetry.json")); assert r["tested_proper_cube_rotations"]==24 and len(r["certified_sensor_automorphisms"])>=1; print("SENSOR_SYMMETRY_ENUMERATION_PASS",len(r["certified_sensor_automorphisms"]))'
+          python -c 'import json; r=json.load(open("/tmp/cuberev-observation/sensor_symmetry.json")); assert r["tested_proper_cube_rotations"]==24 and len(r["certified_sensor_automorphisms"])==4; print("SENSOR_SYMMETRY_ENUMERATION_PASS",len(r["certified_sensor_automorphisms"]))'
           python scripts/cuberev-observation/check_25_irredundancy.py > /tmp/cuberev-observation/L7_25_irredundancy.json
           cat /tmp/cuberev-observation/L7_25_irredundancy.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
