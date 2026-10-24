@@ -8,8 +8,8 @@ class SensorSymmetryTests(unittest.TestCase):
     def test_24_proper_rotations(self):
         r=analyze()
         self.assertEqual(r["tested_proper_cube_rotations"],24)
-        self.assertGreaterEqual(len(r["certified_sensor_automorphisms"]),1)
-        self.assertLess(len(r["certified_sensor_automorphisms"]),24)
+        self.assertEqual(len(r["certified_sensor_automorphisms"]),4)
+        self.assertEqual(r["automaton_intertwining_count"],24)
         self.assertTrue(all(x["flip_readout_preserved"] and x["automaton_intertwines"]
                             for x in r["certified_sensor_automorphisms"]))
 
