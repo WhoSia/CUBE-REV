@@ -46,6 +46,8 @@ jobs:
           cat /tmp/cuberev-observation/L7_27_cover_verified.json
           python scripts/cuberev-observation/verify_l7_25_cover.py > /tmp/cuberev-observation/L7_25_cover_verified.json
           cat /tmp/cuberev-observation/L7_25_cover_verified.json
+          python scripts/cuberev-observation/verify_l7_15_cover.py > /tmp/cuberev-observation/L7_15_cover_verified.json
+          cat /tmp/cuberev-observation/L7_15_cover_verified.json
           python scripts/cuberev-observation/check_25_irredundancy.py > /tmp/cuberev-observation/L7_25_irredundancy.json
           cat /tmp/cuberev-observation/L7_25_irredundancy.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
