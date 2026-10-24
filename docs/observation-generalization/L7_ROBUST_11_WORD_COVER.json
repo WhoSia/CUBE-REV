@@ -1,0 +1,126 @@
+{
+  "schema": "cube-rev.robust-dictionary-v1",
+  "length": 7,
+  "one_bit_errors": 1,
+  "target_sizes": [
+    3,
+    4
+  ],
+  "claimed_coverage": {
+    "3": 220,
+    "4": 495
+  },
+  "search": {
+    "base": "L7_ROBUST_15_WORD_COVER.json",
+    "mutation_seed": 20261024,
+    "random_trials": 30000,
+    "generated_unique_words": 29467,
+    "selected_columns": 3003,
+    "solver": "SciPy HiGHS MILP",
+    "solver_status": "Optimal in finite pool",
+    "finite_pool_objective": 11,
+    "finite_pool_lower_bound": 11
+  },
+  "global_minimum_proven": false,
+  "words": [
+    [
+      "U",
+      "R",
+      "F",
+      "R2",
+      "B",
+      "U2",
+      "F"
+    ],
+    [
+      "U",
+      "R",
+      "F",
+      "U",
+      "F",
+      "U2",
+      "F"
+    ],
+    [
+      "U",
+      "R'",
+      "B",
+      "R",
+      "B",
+      "R",
+      "B"
+    ],
+    [
+      "F'",
+      "L2",
+      "B'",
+      "D",
+      "F",
+      "D'",
+      "B"
+    ],
+    [
+      "B",
+      "R2",
+      "F",
+      "U'",
+      "B",
+      "U",
+      "F"
+    ],
+    [
+      "B",
+      "L2",
+      "F",
+      "U'",
+      "B",
+      "U",
+      "F"
+    ],
+    [
+      "B",
+      "D",
+      "F",
+      "U'",
+      "B",
+      "U",
+      "F"
+    ],
+    [
+      "F'",
+      "L'",
+      "F",
+      "B",
+      "B2",
+      "F'",
+      "R'"
+    ],
+    [
+      "B",
+      "U",
+      "F",
+      "R",
+      "F'",
+      "U",
+      "F"
+    ],
+    [
+      "F",
+      "L'",
+      "F'",
+      "R",
+      "F'",
+      "U",
+      "F"
+    ],
+    [
+      "B",
+      "D2",
+      "B'",
+      "D",
+      "B'",
+      "L",
+      "B"
+    ]
+  ]
+}
