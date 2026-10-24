@@ -1,0 +1,154 @@
+{
+  "schema": "cube-rev.robust-dictionary-v1",
+  "length": 7,
+  "one_bit_errors": 1,
+  "target_sizes": [
+    3,
+    4
+  ],
+  "claimed_coverage": {
+    "3": 220,
+    "4": 495
+  },
+  "solver_scope": "OPTIMAL_ONLY_IN_GENERATED_2225_COLUMN_POOL",
+  "candidate_generation": "25 incumbent words plus 50,000 seeded one-to-three-action mutants; highest-coverage 2200 candidates",
+  "seed": 392,
+  "global_minimum_proven": false,
+  "words": [
+    [
+      "U",
+      "R",
+      "F",
+      "R2",
+      "B",
+      "U2",
+      "F"
+    ],
+    [
+      "U",
+      "R",
+      "F",
+      "U",
+      "F",
+      "U2",
+      "F"
+    ],
+    [
+      "U",
+      "R'",
+      "B",
+      "R",
+      "B",
+      "R",
+      "B"
+    ],
+    [
+      "F",
+      "B",
+      "U",
+      "F",
+      "B'",
+      "F",
+      "F"
+    ],
+    [
+      "B",
+      "R",
+      "F",
+      "U'",
+      "B",
+      "U",
+      "F"
+    ],
+    [
+      "F'",
+      "L2",
+      "B'",
+      "D",
+      "F",
+      "L",
+      "B"
+    ],
+    [
+      "F",
+      "L'",
+      "F",
+      "B",
+      "B2",
+      "F'",
+      "R'"
+    ],
+    [
+      "F",
+      "R'",
+      "F",
+      "B",
+      "F2",
+      "F'",
+      "R'"
+    ],
+    [
+      "B",
+      "L2",
+      "B'",
+      "D",
+      "B'",
+      "L",
+      "B"
+    ],
+    [
+      "F'",
+      "U",
+      "F'",
+      "R",
+      "F'",
+      "U",
+      "F"
+    ],
+    [
+      "B",
+      "D'",
+      "F",
+      "R2",
+      "B",
+      "U2",
+      "F"
+    ],
+    [
+      "B'",
+      "L",
+      "F",
+      "B'",
+      "L'",
+      "F",
+      "D"
+    ],
+    [
+      "L2",
+      "B",
+      "R'",
+      "U2",
+      "F'",
+      "L",
+      "R"
+    ],
+    [
+      "R'",
+      "B'",
+      "U",
+      "U",
+      "F'",
+      "U'",
+      "F2"
+    ],
+    [
+      "U2",
+      "F'",
+      "D'",
+      "R2",
+      "B'",
+      "R",
+      "U"
+    ]
+  ]
+}
