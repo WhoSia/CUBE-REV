@@ -60,6 +60,8 @@ jobs:
           cat /tmp/cuberev-observation/temporal_counterexample.json
           python scripts/cuberev-observation/channel_model_transfer.py > /tmp/cuberev-observation/channel_transfer_11.json
           cat /tmp/cuberev-observation/channel_transfer_11.json
+          python scripts/cuberev-observation/verify_l7_erasure7_cover.py > /tmp/cuberev-observation/L7_erasure7_verified.json
+          cat /tmp/cuberev-observation/L7_erasure7_verified.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
