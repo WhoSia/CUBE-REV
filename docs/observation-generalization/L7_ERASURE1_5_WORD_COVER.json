@@ -1,0 +1,67 @@
+{
+  "schema": "cube-rev.physical-channel-dictionary-v1",
+  "channel": "erasure1",
+  "length": 7,
+  "source_family": "all size-3 and size-4 subsets of twelve initial edge slots",
+  "coverage_claim": {
+    "3": 220,
+    "4": 495
+  },
+  "source": "local independent 54-sticker-derived edge move replay",
+  "search": {
+    "seed": 261026,
+    "mutations": 5500,
+    "unique_words": 4195,
+    "distinct_screened_columns": 374,
+    "lp_value": 3.9782024413108683,
+    "finite_pool_milp_optimum": 5,
+    "global_optimality_proven": false
+  },
+  "words": [
+    [
+      "B",
+      "R2",
+      "F",
+      "U'",
+      "B",
+      "F'",
+      "B"
+    ],
+    [
+      "B",
+      "U2",
+      "F'",
+      "D",
+      "B",
+      "F'",
+      "B"
+    ],
+    [
+      "F'",
+      "L'",
+      "F",
+      "B",
+      "D'",
+      "F'",
+      "F2"
+    ],
+    [
+      "B",
+      "L",
+      "D2",
+      "B",
+      "U2",
+      "F'",
+      "L"
+    ],
+    [
+      "U'",
+      "F'",
+      "D2",
+      "B",
+      "U",
+      "F'",
+      "R'"
+    ]
+  ]
+}
