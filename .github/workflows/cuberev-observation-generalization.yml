@@ -56,6 +56,8 @@ jobs:
           python -c 'import json; r=json.load(open("/tmp/cuberev-observation/sensor_symmetry.json")); assert r["tested_proper_cube_rotations"]==24 and len(r["certified_sensor_automorphisms"])==4; print("SENSOR_SYMMETRY_ENUMERATION_PASS",len(r["certified_sensor_automorphisms"]))'
           python scripts/cuberev-observation/check_25_irredundancy.py > /tmp/cuberev-observation/L7_25_irredundancy.json
           cat /tmp/cuberev-observation/L7_25_irredundancy.json
+          python scripts/cuberev-observation/channel_model_transfer.py > /tmp/cuberev-observation/channel_transfer_11.json
+          cat /tmp/cuberev-observation/channel_transfer_11.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
