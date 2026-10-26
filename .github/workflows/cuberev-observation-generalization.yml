@@ -66,6 +66,8 @@ jobs:
           python scripts/cuberev-observation/global_dual_obligations.py > /tmp/cuberev-observation/global_dual_orbits.json
           python scripts/cuberev-observation/erasure_observation_policy.py > /tmp/cuberev-observation/erasure_stop_policy.json
           python scripts/cuberev-observation/adaptive_erasure_minimax.py --sources 0,1 --horizon 2 > /tmp/cuberev-observation/adaptive_small_policy.json
+          python scripts/cuberev-observation/fullcube_goal_info_conflict.py > /tmp/cuberev-observation/fullcube_goal_info_conflict.json
+          cat /tmp/cuberev-observation/fullcube_goal_info_conflict.json
           python scripts/cuberev-observation/verify_l7_erasure7_cover.py > /tmp/cuberev-observation/L7_erasure7_verified.json
           cat /tmp/cuberev-observation/L7_erasure7_verified.json
           sha256sum /tmp/cuberev-observation/*.json > /tmp/cuberev-observation/SHA256SUMS
