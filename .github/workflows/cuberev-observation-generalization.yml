@@ -66,6 +66,11 @@ jobs:
           python scripts/cuberev-observation/global_dual_obligations.py > /tmp/cuberev-observation/global_dual_orbits.json
           python scripts/cuberev-observation/erasure_observation_policy.py > /tmp/cuberev-observation/erasure_stop_policy.json
           python scripts/cuberev-observation/adaptive_erasure_minimax.py --sources 0,1 --horizon 2 > /tmp/cuberev-observation/adaptive_small_policy.json
+          python scripts/cuberev-observation/fullcube_sensor_goal_theorem.py > /tmp/cuberev-observation/fullcube_sensor_goal_theorem.json
+          python scripts/cuberev-observation/fullcube_goal_pattern_databases.py > /tmp/cuberev-observation/fullcube_pattern_databases.json
+          python scripts/cuberev-observation/fullcube_multisensor_goal_cases.py > /tmp/cuberev-observation/fullcube_multisensor_goals.json
+          python scripts/cuberev-observation/fullcube_andor_baseline_comparison.py > /tmp/cuberev-observation/fullcube_andor_baselines.json
+          python -c 'import json; p="/tmp/cuberev-observation/fullcube_sensor_goal_theorem.json"; d=json.load(open(p)); assert d["minimum_sensors_for_all_eighteen_single_turn_states"]==3 and len(d["all_eight_minimal_face_cover_sensor_sets"])==8; print("FULLCUBE_3_SENSOR_MINIMUM_PASS")'
           python scripts/cuberev-observation/fullcube_policy_family_benchmark.py > /tmp/cuberev-observation/fullcube_policy_family.json
           python scripts/cuberev-observation/k4_v4_burnside_feasibility.py > /tmp/cuberev-observation/k4_v4_burnside.json
           cat /tmp/cuberev-observation/k4_v4_burnside.json
