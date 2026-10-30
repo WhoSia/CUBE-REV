@@ -60,3 +60,35 @@ Fair same-input AND-OR benchmark: 18 HTM actions, same UR+DF+BL noisy-free readi
 Their work already spans belief-state contingent planning and partial-view cube interaction, so neither "active sensing" nor "using a Rubik's cube" constitutes novel territory. What is established here is a narrowly scoped exact physical theorem with a complete finite census and constructive policy bound. Publication-grade novelty relative to sensor-selection theory and competitive solver speed is still unproved. The known one-erasure L7 dictionary problem k=4 also remains unresolved (3 <= M* <= 5).
 
 Evidence code: scripts/cuberev-observation/fullcube_sensor_goal_theorem.py; fullcube_goal_pattern_databases.py; fullcube_multisensor_goal_cases.py; fullcube_andor_baseline_comparison.py; physical receipts attached to GitHub's read-only workflow.
+
+
+## NEW — exact radius-dependent sensor minimum at 3, 8 and 9
+
+The 0.24 exact 54-facelet 18HTM solved-state BFS yields complete metric balls:
+- B1: 1 + 18 = **19** physically distinct full cube states.
+- B2: 1 + 18 + 243 = **262** physically distinct full cube states.
+- B3: 1 + 18 + 243 + 3240 = **3502** physically distinct full cube states.
+
+For each candidate sensor set E, its full tagged-cubie factor encoding on a ball is injective if and only if all pairs of physical cube states are distinct under at least one tagged original edge position+orientation. By Theorem A above, this is equivalent to a guaranteed finite full-cube contingent-solve policy for any hidden start in that ball (under exact noiseless sensor semantics).
+
+The exhaustive physical certificate code scripts/cuberev-observation/fullcube_sensor_radius_hierarchy.py provides the following COMPLETE finite design answers:
+
+| full solved distance ball | states | lower-size designs refuted | minimal sensors | successful minimal-size designs |
+|---|---:|---:|---:|---:|
+| B1 | 19 | all C(12,2)=66 | **3** | **8** |
+| B2 | 262 | all C(12,7)=792 | **8** | **42** |
+| B3 | 3502 | all C(12,8)=495 | **9** | **8** |
+
+For every failed sensor design at size m-1, the physical enumerator outputs *two distinct actual scramble words* in the relevant ball with the same tagged cubie factor vector; the exact HTM factor closure proves they remain indistinguishable under every feedback policy. Every successful size-m sensor set is validated against **all** of the corresponding complete physical ball. Since adding tagged sensors cannot destroy injectivity, all smaller sizes are excluded by the failure of every size-(m-1) design. The positive and negative sides give **exact minimum counts**, not merely bounds.
+
+Example B2 minimum sensor placement: UR, UF, UL, DR, DF, DL, BL, BR (8 tagged edges); there are 42 minimal such designs.
+
+Example B3 minimum sensor placement: UR, UF, UL, DR, DF, DB, FL, BL, BR (9 tagged edges); there are 8 minimal such designs.
+
+This is a **new scoped result of the CUBE-REV calculation**, establishing a sharp rise in sensing complexity from radius 1 to radius 2. It does **not** automatically extend to all 4.3×10^19 physical cube states, to human view constraints, to sensors with measurement errors, or to abstract arbitrary automata. In particular, even observing all 12 original tagged *edges* leaves some full cube states that differ only in corners permanently indistinguishable; more global claims would require adding corner measurements or other instruments.
+
+The local independent witness bundle is generated with --all-witnesses and contains **66 + 792 + 495 = 1353** separate explicit physical collision certificates for negative designs. Source-generated SHA-256 records are checked against independent local receipts. The read-only GitHub Actions workflow also regenerates the physical certificates; its remote PASS has not been separately confirmed.
+
+### Publication interpretation
+
+The r=1 face-cover formula has a short geometric proof. The r=2 and r=3 exact threshold claims are **finite computational theorems**, with exhaustive physical source generation and one witness per excluded sensor configuration. A high-quality paper would still need a comparison with existing distinguishing sensor-set / sensor placement algorithms, a stronger mathematical characterization of the radius-dependent threshold beyond the first three layers, and a fair independent contingent-planner comparator. The model uses an **idealized tagged-edge identity-aware sensor that outputs only orientation bits**. A practical robot that must first locate the tagged piece has additional sensing cost; this model must not be labeled an experimentally deployed physical device.
