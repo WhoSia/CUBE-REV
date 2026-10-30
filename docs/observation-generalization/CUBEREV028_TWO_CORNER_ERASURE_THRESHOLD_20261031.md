@@ -1,3 +1,5 @@
+> **STATUS UPDATE — CLOSED at radius 7 (2026-10-31).** The conditional theorem below is still valid, but two independent 12-HTM physical two-corner twist witnesses now establish L_CC <= 12. Consequently **b_r^(1)=20 for every r>=7** (in fact, all corners are mandatory by B6). The first two-cubie minimum-distance collapse occurs at radius6. Full proof, physically verified 12/14-HTM words and reproducible checks: [CUBEREV028_SHORT_SUPPORT_PHASE_DIAGRAM_20261031.md](CUBEREV028_SHORT_SUPPORT_PHASE_DIAGRAM_20261031.md). Do NOT read the earlier OPEN status below as current.
+
 # CUBE-REV 0.28 — Two-corner threshold for one-erasure cubie bases
 
 Status: conditional mathematical theorem, not a new full-cube census. Date: 2026-10-31.
