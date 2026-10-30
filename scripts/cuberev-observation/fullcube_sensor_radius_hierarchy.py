@@ -53,8 +53,8 @@ def validate_sensor_size(cohort,k,record_collisions):
         elif record_collisions:
             i,j=collision
             failed.append({'tags':list(tags),
-                'source_a':[A[a] for a in cohort[i][1]],
-                'source_b':[A[a] for a in cohort[j][1]]})
+                'word1':[A[a] for a in cohort[i][1]],
+                'word2':[A[a] for a in cohort[j][1]]})
         else:
             failed.append(None)
     assert len(accepted)+len(failed)==len(list(itertools.combinations(range(12),k)))
@@ -87,9 +87,9 @@ def audit(include_all_witnesses=False):
             result['complete_negative_collision_witnesses']=collisions
         output.append(result)
     assert [r['sha256_of_collision_evidence'] for r in output]==[
-        'ab367a3c0c92d5df1d3e95e38c8af50de4ee7cbff8cb965398c681aee30b95b0',
-        'a9dd769efa1b84922e18ab5bd2d7b8f5703d028f9f395d8c2cb9a16608f6765',
-        '53f9ceebc0a7563f0105957f5b003dd071d6b614247997cfde1b74f8858454b72']
+        'ab367a3c0c92d5dfa8d3f431ed9d3b06d575c46b77036ce352eb786b10651ec9',
+        'a9dd769efa1b84b5f62858878fe088fe4a52828fed2f6d0bf8bd3075d066e09b',
+        '53f9ceebc0a7563f14cdd9025454f8384b3880fab5db4bbfd4b9c18f49eed3e8']
     return {'status':'EXACT_FULL54_RADIUS1_2_3_SENSOR_MINIMUM_PASS',
             'source_ball_layers':[1,18,243,3240],
             'goal':'every hidden complete physical cube state eventually SOLVED',
