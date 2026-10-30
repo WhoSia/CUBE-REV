@@ -42,7 +42,7 @@ def audit(length=7):
     while masks:
         base=min(masks,key=lambda s:(len(s),tuple(sorted(s))))
         orbit={frozenset(p[i] for i in base) for _,p in group}
-        assert orbit<=masks or orbit.isdisjoint(masks)==False
+        assert orbit<=masks
         masks-=orbit
         orbit_sizes[len(orbit)]+=1
         orbit_sizes_by_source_size[(len(base),len(orbit))]+=1
