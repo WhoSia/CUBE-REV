@@ -67,6 +67,8 @@ jobs:
           python scripts/cuberev-observation/erasure_observation_policy.py > /tmp/cuberev-observation/erasure_stop_policy.json
           python scripts/cuberev-observation/adaptive_erasure_minimax.py --sources 0,1 --horizon 2 > /tmp/cuberev-observation/adaptive_small_policy.json
           python scripts/cuberev-observation/fullcube_sensor_goal_theorem.py > /tmp/cuberev-observation/fullcube_sensor_goal_theorem.json
+          python scripts/cuberev-observation/fullcube_sensor_radius_hierarchy.py --all-witnesses > /tmp/cuberev-observation/fullcube_sensor_radius_hierarchy.json
+          python -c 'import json; r=json.load(open("/tmp/cuberev-observation/fullcube_sensor_radius_hierarchy.json")); assert [x["minimum_tagged_edge_orientation_sensors"] for x in r["results"]]==[3,8,9] and [x["successful_minimal_design_count"] for x in r["results"]]==[8,42,8]; print("SENSOR_RADIUS_HIERARCHY_PASS")'
           python scripts/cuberev-observation/fullcube_goal_pattern_databases.py > /tmp/cuberev-observation/fullcube_pattern_databases.json
           python scripts/cuberev-observation/fullcube_multisensor_goal_cases.py > /tmp/cuberev-observation/fullcube_multisensor_goals.json
           python scripts/cuberev-observation/fullcube_andor_baseline_comparison.py > /tmp/cuberev-observation/fullcube_andor_baselines.json
