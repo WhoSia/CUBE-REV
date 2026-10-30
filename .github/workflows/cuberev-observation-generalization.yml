@@ -67,6 +67,11 @@ jobs:
           python scripts/cuberev-observation/erasure_observation_policy.py > /tmp/cuberev-observation/erasure_stop_policy.json
           python scripts/cuberev-observation/adaptive_erasure_minimax.py --sources 0,1 --horizon 2 > /tmp/cuberev-observation/adaptive_small_policy.json
           python scripts/cuberev-observation/fullcube_sensor_goal_theorem.py > /tmp/cuberev-observation/fullcube_sensor_goal_theorem.json
+          node scripts/cuberev-observation/independent_node_corner_kernel.mjs > /tmp/cuberev-observation/fullcube_node_corner_kernel.json
+          python scripts/cuberev-observation/fullcube_edge_kernel_radius4.py > /tmp/cuberev-observation/fullcube_edge_kernel_radius4.json
+          python scripts/cuberev-observation/fullcube_mixed_sensor_minimum14.py --all-witnesses > /tmp/cuberev-observation/fullcube_mixed_sensor_minimum14.json
+          python scripts/cuberev-observation/replay_027_p22_shallow_bridge.py > /tmp/cuberev-observation/replay_027_p22_shallow_bridge.json
+          python -c 'import json; p="/tmp/cuberev-observation/fullcube_mixed_sensor_minimum14.json"; d=json.load(open(p)); assert d["exact_minimum_total_tags"]==14 and d["number_of_minimum_fourteen_tag_designs"]==2856; print("PHYSICAL_RADIUS4_MIN14_PASS")'
           python scripts/cuberev-observation/fullcube_sensor_radius_hierarchy.py --all-witnesses > /tmp/cuberev-observation/fullcube_sensor_radius_hierarchy.json
           python -c 'import json; r=json.load(open("/tmp/cuberev-observation/fullcube_sensor_radius_hierarchy.json")); assert [x["minimum_tagged_edge_orientation_sensors"] for x in r["results"]]==[3,8,9] and [x["successful_minimal_design_count"] for x in r["results"]]==[8,42,8]; print("SENSOR_RADIUS_HIERARCHY_PASS")'
           python scripts/cuberev-observation/fullcube_goal_pattern_databases.py > /tmp/cuberev-observation/fullcube_pattern_databases.json
