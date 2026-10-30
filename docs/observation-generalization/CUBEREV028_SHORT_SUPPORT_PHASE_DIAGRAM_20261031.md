@@ -1,0 +1,53 @@
+# CUBE-REV 0.28 — Short-support phase diagram (2026-10-31)
+
+## Model and evidence grades
+
+Legal fixed-center 3×3×3 Rubik group, 18 outer face turns in HTM. Twenty original cubies are tagged (eight corners, twelve edges). Each tag contributes its COMPLETE position+orientation factor. This is distinct from instantaneous orientation-bit/trit sensing and adaptive-policy costs. B_r is the solved-state radius-r HTM ball. δ_r is the minimum number of differing cubie factors between distinct B_r states. b_r^(e) is the smallest selected tag set such that any e permanently erased selected tags still identify all B_r states.
+
+### Physically verified short support witnesses (word existence is prior art)
+
+- Face-diagonal corners, 12 HTM: U2 R' B D2 B' R U2 R' B D2 B' R. Changed originals: BLU, FRU; no edges.
+- Body-diagonal corners, 12 HTM: U' B2 U L' F2 L U' B2 U L' F2 L. Changed originals: BDL, FRU; no edges.
+- Adjacent corners, 14 HTM: R' D R F D F' U' F D' F' R' D' R U. Changed originals: FLU, FRU; no edges.
+- Incident edges, 13 HTM: L F R' F' L' U2 R U R U' R2 U2 R. Changed originals: UF, UR; no corners.
+
+Sources: https://puzzling.stackexchange.com/questions/117511/shortest-algorithm-to-rotate-2-corners-on-a-rubiks-cube and https://www.randelshofer.ch/rubik/patterns/U020.02.html . No claimed global shortest-word optimality. Two physically distinct implementations were used: old 54-facelet/20-factor model and a new standalone 48-movable-sticker tracker.
+
+Proper 24 cube rotations of the corner words give size-12 face-diagonal, size-4 body-diagonal and size-12 adjacent-corner orbits. Hence all 28 corner pairs arise by radius7, of which at least 16 by radius6. The adjacent-edge witness yields 24 incident-edge pairs, touching all twelve edge tags, by radius7.
+
+## Theorem 1 — Exact collapse radius δ6=2
+
+Split a length-12 pure-two-corner word at its midpoint into a pair of states in B6. They differ in exactly two complete original cubie factors. No legal nonidentity cube element changes just one cubie (permutation parity and orientation invariants). Thus δ6=2 and δr=2 for r>=6. With inherited locally verified δ5=3, the first radius with distance2 is exactly six. Two permanent cubie-tag erasures cannot be tolerated from B6 onward even with all20 tags.
+
+## Theorem 2 — Exact one-erasure threshold b_r^(1)=20, r>=7
+
+A difference support exactly {a,b} forces BOTH a and b to be selected for one-erasure robustness. At radius6 rotated pure-two-corner words cover all corners; at radius7 rotated 13HTM pure-two-edge words cover all edges. Therefore all20 sensors are necessary from B7. They suffice because no legal nonidentity difference has cardinality one. This exact result does not rely on the full B5 census, only on certified physical words, symmetry and cube legality.
+
+## Theorem 3 — B6 one-erasure dichotomy
+
+Let L_EE be the shortest HTM word for an in-place two-edge flip fixing all corners/other edges. Existing δ5=3 yields L_EE>=11; the 13HTM word yields L_EE<=13.
+
+Inherited B5 all C(12,3)=220 pure-three-edge supports mean B6 one-erasure robustness requires at least eleven edge tags. Radius6 pure-two-corner words force all eight corner tags. Hence 19<=b6^(1)<=20.
+
+If L_EE>12, choose all 8 corners and any 11 edges. Every nontrivial support has at least two selected tags: the only potential two-support obstruction is a pure two-edge flip containing the one omitted edge, which is absent by assumption. Conversely, if L_EE<=12, rotate any pure-two-edge witness to touch any omitted edge, so all12 edges become compulsory. Thus b6^(1)=19 iff L_EE=13, otherwise20. Exact L_EE remains OPEN.
+
+## Theorem 4 — B7 zero-erasure candidate pruning
+
+By B7 every pair of two corners is a physical support, requiring >=7 corners to hit them all. Inherited B5 all pure three-edge supports require >=10 edges. Hence b7>=17. Any seven corners and eleven edges determine the entire legal cube state by missing-cubie parity and twist invariants, so b7<=18.
+
+If a 17-tag B7 base exists, it consists of 7 corners+10 edges. Omitting one corner gives 8 choices. Of C(12,2)=66 omitted-edge pairs, 24 are adjacent (forbidden by the 13HTM edge collision orbit) and 42 are nonincident. Thus AT MOST 8×42=336 possible 17-tag bases remain under these necessary constraints; positive injectivity was NOT checked at B7.
+
+At B6 any 16-tag candidate must be 6 corners+10 edges by inherited B5. Omitted corners cannot form a face/body diagonal, leaving 12 adjacent corner pairs and 66 edge pairs =792 preliminary candidates; inherited B5 mixed obstructions reduce those to at most 12×(66−18)=576. This is an upper bound on candidates, NOT 576 certified B6 solutions.
+
+## General structure
+
+Define the radius-r support-two graph with all original cubie tags as vertices and the physically realized exact two-cubie supports as edges. For zero-erasure identification, selected tags must be a vertex cover. For one-erasure identification, selected tags MUST contain every nonisolated graph vertex. This elementary graph principle plus short physical witness orbits proves the threshold above. Generic vertex-cover and cube legality are prior art.
+
+## Reproducibility & status
+
+- Independent executable 48-movable-sticker witness audit: scripts/cuberev-observation/verify_short_support_phase.py (four physical words and 24 proper rotations).
+- Pure set-system test: scripts/cuberev-observation/verify_obstruction_phase.py (all corner pair orbit sizes and 336/792 candidate counts).
+- Reference local note SHA256: 05a968d0d226d5783c87ee39b793efa23e6404eef44164d603695d596fbee210.
+- Inherited but not rerun in this substage: full B5 positive layout census and 220 triple-edge supports. CI still NOT certified. No co-author bot, no 0.27 rewrite.
+
+Notion canonical 0.28: https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea
