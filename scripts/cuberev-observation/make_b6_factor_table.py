@@ -13,7 +13,8 @@ with zipfile.ZipFile(sys.argv[1]) as z:
     census=json.loads(z.read("b5_sixteen_layout_census.json"))
 scope={"__name__":"cuberev_b4_source","__file__":"independent_b4.py"}
 exec(compile(source,"independent_b4.py","exec"),scope)
-b=type("B4",(),scope)
+from types import SimpleNamespace
+b=SimpleNamespace(**scope)
 states=[b.START];seen={b.START}
 front=[b.START]
 for d in range(1,4):
