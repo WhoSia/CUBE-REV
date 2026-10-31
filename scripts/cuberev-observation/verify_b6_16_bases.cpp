@@ -1,6 +1,6 @@
 // CUBE-REV 0.28: exhaustive B6 factor-injectivity search, 27 orbit representatives.
 // Generate headers using make_b6_factor_table.py on the provenance-checked B1-B5 ZIP.
-// Compile: g++ -O3 -std=c++17 verify_b6_16_bases.cpp -o verify_b6_16_bases
+// Compile: g++ -O3 -std=c++17 -I . /path/to/verify_b6_16_bases.cpp -o verify_b6_16_bases
 // Execute: ./verify_b6_16_bases 0 [through 26]. No claim of remote CI.
 #include <bits/stdc++.h>
 #include "b6_factor_table.hpp"
