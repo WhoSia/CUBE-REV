@@ -110,7 +110,7 @@ for selected in b5_eligible:
 
 # Extra audit of the fixed omitted corner pair: B5=48, B6=13+35.
 fixbits=(1<<12)|(1<<13)
-fixed={m for m in b5_eligible if full^m&((255)<<12)==fixbits}
+fixed={m for m in b5_eligible if ((full^m)&(255<<12))==fixbits}
 assert len(fixed)==48
 assert len(fixed&predicted)==13
 assert len(fixed-predicted)==35
