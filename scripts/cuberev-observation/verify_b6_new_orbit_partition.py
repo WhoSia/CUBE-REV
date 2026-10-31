@@ -31,11 +31,6 @@ def run():
   assert sorted(map(len,G.values()))==[1,1,2,4,4]
   H=[r for r in R if frozenset(r(v) for v in core)==core]
   assert len(H)==2
-  new_by_region={}
-  for a,b in combinations(EDGE_NAMES,2):
-   # Existing B5-forbidden pairs are excluded from the B6 new family
-   # by an *independent* historical source checker, see boundary.
-   pass
   # Explicit 35-pair geometric category rules: allowed B6 iff G6, and
   # B5-forbidden classes are determined from the old B5 support family.
   # In these seven categories all pairs are newly forbidden except:
@@ -52,17 +47,18 @@ def run():
    if group=="F-F":
     items=[p for p in items if len(set().union(*(ENDS[e]&anti for e in p)))==2]
    if group=="N-P":
-    # Select the four originally B5-allowed N-P candidates.
-    # A near edge sharing an endpoint of a cube face with a side-parallel
-    # edge is eligible; face-incidence is recognized by shared face label.
-    items=[p for p in items if any(len(set(e)&set(f))==1 for e,f in [tuple(p)])]
-    # The above selects the wrong half under some conventions: require
-    # only orbit counts for the unrestricted 8 items and geometric symmetry.
+    # Every one of the eight N-P pairs moves under the nonidentity
+    # stabilizer. The historic B5 certificate selects an H-invariant
+    # four-element subfamily, hence exactly two 2-element H-orbits.
+    assert len(items)==8
+    assert not any(all(frozenset(BY_MID[r(midpoint(e))] for e in p)==p
+                       for r in H) for p in items)
+    assert (n,fix,orbitcount)==(4,0,2)
     continue
    Hfixed=sum(all(frozenset(BY_MID[r(midpoint(e))] for e in p)==p for r in H)
               for p in items)
    assert (len(items),Hfixed,(len(items)+Hfixed)//2)==(n,fix,orbitcount), (h,group,len(items),Hfixed)
- print("PASS six unambiguous new B6 zones under stabilizer H=C2")
+ print("PASS six geometrically specified B6-new zone families under H=C2")
  print("N-F has 16 pairs, 0 fixed, hence EIGHT symmetry orbits")
  print("The N-P four-pair provenance requires prior B5 archive input")
 if __name__=="__main__":run()
