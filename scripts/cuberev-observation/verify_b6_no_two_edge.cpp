@@ -1,6 +1,6 @@
 // CUBE-REV 0.28: certify NO pure-two-edge support at radius six.
 // Generate b6_factor_table.hpp with make_b6_factor_table.py.
-// Compile: g++ -O3 -std=c++17 verify_b6_no_two_edge.cpp -o verify_b6_no_two_edge
+// Compile: g++ -O3 -std=c++17 -I . /path/to/verify_b6_no_two_edge.cpp -o verify_b6_no_two_edge
 // Run: for i in $(seq 1 11); do ./verify_b6_no_two_edge "$i"; done
 // Each run deletes original edge tag #0 and tag #i and checks injection
 // of all B6 full physical states onto the remaining 18 complete cubie factors.
