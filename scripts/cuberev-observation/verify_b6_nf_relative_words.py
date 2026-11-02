@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""CUBE-REV: shared-prefix cancellation certificate for four N-F seeds.
+"""CUBE-REV: FORMAL chronological-prefix cancellation for four N-F seeds.
 
-Algebraic only. For word pairs x=p*a, y=p*b, the word x^{-1}y
-freely reduces to a^{-1}b. Output is an HTM upper bound, never an
-optimality or a full cubie-support statement.
+WARNING: this is a free-word statement in the chronological token order,
+NOT an original-cubie stabilizer certificate. Physical turns act on the
+original tagged pieces by LEFT composition. If p is the first executed turn,
+the relevant original-tag relative g is conjugated by p, so the 10-token
+auxiliary word below need NOT fix the same original cubies or prove a B5
+collision. See B6_RADIUS_DOUBLING_STABILIZER.md and test_b6_word_order.py.
 """
 PAIRS=[
  ("A","U L2 B' U B L2","U F' D F' D' F2"),
@@ -28,10 +31,11 @@ def reduced(word):
 for name,x,y in PAIRS:
     xs,ys=x.split(),y.split()
     assert len(xs)==len(ys)==6
-    assert xs[0]==ys[0]
+    assert xs[0]==ys[0]  # first executed action, not final action
+    assert xs[-1]!=ys[-1]
     target=inverse(xs[1:])+ys[1:]
     assert reduced(inverse(xs)+ys)==reduced(target)
     assert len(target)==10
     print(name,"prefix",xs[0],"relative", " ".join(target))
-print("PASS four common-prefix 10-HTM upper-bound certificates")
-print("LIMIT free-word proof; no claim 10 is the shortest HTM length")
+print("PASS four 10-token formal auxiliary words after chronological prefix cancellation")
+print("LIMIT these auxiliary words are NOT 10-HTM original-tag stabilizer witnesses")
