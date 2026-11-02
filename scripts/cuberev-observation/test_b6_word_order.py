@@ -5,6 +5,9 @@ The short relative expression for a common chronological prefix is conjugated
 by that move. Toy S4 verifies the resulting tag stabilizer may differ.
 This is NOT a physical 3x3 replay of the four historical B6 N-F witnesses.
 """
+from pathlib import Path
+import ast
+
 def mul(a,b): return tuple(a[i] for i in b)
 def inv(a): return tuple(a.index(i) for i in range(len(a)))
 
@@ -30,6 +33,21 @@ def main():
         assert len(xs)==len(ys)==6
         assert xs[0]==ys[0]     # common FIRST executed turn
         assert xs[-1]!=ys[-1]   # no common LAST executed turn
+    source=Path(__file__).with_name("verify_b6_negative_witnesses.py")
+    tree=ast.parse(source.read_text(encoding="utf-8"))
+    archived=None
+    for node in tree.body:
+        if isinstance(node,ast.Assign) and any(
+            isinstance(target,ast.Name) and target.id=="W" for target in node.targets):
+            archived=ast.literal_eval(node.value)
+            break
+    assert archived is not None and len(archived)==19
+    for x,y in archived.values():
+        xs,ys=x.split(),y.split()
+        assert len(xs)==len(ys)==6
+        assert xs[0]==ys[0], ("not a shared first action",x,y)
+        assert xs[-1]!=ys[-1], ("B5 cancellation risk",x,y)
+    print("PASS: all 19 archived new B6 witness pairs share first but not last action")
     print("PASS: shared executed prefix is conjugated in the original-tag relative")
     print("PASS: four B6 N-F seed pairs have shared first, distinct last moves")
     print("LIMIT: no 3x3 physical facelet replay in this isolated test")
