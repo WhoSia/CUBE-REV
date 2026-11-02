@@ -29,21 +29,23 @@ without any fresh enumeration of B6 states.
 
 ## Why F-F has 4 successes and 2 failures
 
-Let h* be the antipodal cube edge, with endpoints u*,v*. Four other edges
-incident with h*'s endpoints form F, partitioned into two pairs F_u* and
-F_v*, each of size two. A pair in F shares a face label iff it selects
-one spoke at EACH endpoint of h*, AND their remaining face label is
-the same. Because a cube edge lies on exactly two faces, those same-face
-cross-endpoint pairs occur in two choices? CAUTION: here the side-label
-face shared between the two spokes may instead follow distinct endpoint
-neighbors; verify against actual face labels before claiming a 4 count.
+Let h* be the antipodal cube edge, with endpoints u*,v*. Its four
+other incident edge-spokes form F. There are precisely four pairs of F
+spokes sharing one of the four relevant faces: for h=DL, F is
+{UB, UF, RB, RF}, and the pairs are
 
-Authoritative rule: accept exactly F pairs with intersecting face-label
-sets, `set(edge_a) & set(edge_b)`. Directly on the four spokes:
-- same endpoint: two pairs; each contains no shared face label (adjacent
-  faces at one endpoint may share a face, depending on the h* orientation);
-- opposite endpoints: four pairs; shared face label may occur.
-Use explicit fixed h labels to resolve. Do NOT infer without checking.
+    {UB,UF} (shared U face)
+    {UB,RB} (shared B face)
+    {UF,RF} (shared F face)
+    {RB,RF} (shared R face).
+
+The two non-face-sharing pairs are {UB,RF} and {UF,RB}.
+Thus the "share a face" relation on F is a cycle C4,
+with exactly four accepted edges and two rejected diagonals.
+The intrinsic proof for arbitrary h follows by transporting this
+incidence statement under cube rotations (every cube edge is in the
+same orbit). Here the labels are original edge tags, so the
+face-name intersection is exactly the existing admissibility test.
 
 ## Global 13 and 156 arithmetic
 
