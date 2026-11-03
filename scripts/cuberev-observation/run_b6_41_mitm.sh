@@ -14,7 +14,7 @@ for bounds in "0 8" "8 16" "16 24" "24 32" "32 41"; do
   read -r first last <<< "$bounds"
   echo "Running independent 18-HTM proof classes [$first,$last)"
   "$out/verify_b6_41_mitm" "$out/targets41.txt" "$first" "$last" \
-    | tee "$out/mitm_$first_$last.log"
+    | tee "$out/mitm_"$first"_"$last".log"
 done
 python3 - "$out" <<'PY'
 import re,sys,hashlib
