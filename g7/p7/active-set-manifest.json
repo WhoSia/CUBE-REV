@@ -458,7 +458,9 @@
     "docs/0.28/B6_OPTIMAL_SENSOR_EXCHANGE_GRAPH_COMPONENTS.md",
     "docs/0.28/B6_RADIUS_DOUBLING_STABILIZER.md",
     "docs/0.28/B6_STABILIZER_GROUP_AND_74_GOAL_OVERLAP.md",
+    "docs/0.28/BRANCH_AND_README_CUSTODY_AUDIT_20261103.md",
     "docs/0.28/CUBIE_STABILIZER_SUPPORT_SPECTRUM_THEOREM.md",
+    "docs/0.28/LITERATURE_AND_NOVELTY_GATE_20261103.md",
     "docs/0.28/REVERSIBLE_OBSERVATION_THEORY_GATE.md",
     "docs/0.28/evidence/B6_MITM_41_20261103.md",
     "docs/observation-generalization/ALGORITHM_REUSE_AND_BOUND_STATUS.md",
@@ -614,6 +616,7 @@
     "papers/0.27/PAPER2_ONE_SIDED_GOAL_CERTIFICATE_DRAFT_03.md",
     "papers/0.27/PAPER2_ONE_SIDED_GOAL_CERTIFICATE_DRAFT_04.md",
     "papers/0.27/PAPER2_ONE_SIDED_GOAL_CERTIFICATE_DRAFT_05.md",
+    "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md",
     "scripts/cube/full-notation-normal-form.mjs",
     "scripts/cube/replay-exact-trajectories.mjs",
     "scripts/cube/simple-face-word-normal-form.mjs",
@@ -3854,6 +3857,17 @@
       "scripts/cuberev-027": 5,
       "scripts/cuberev-observation": 107
     },
-    "method": "exact nontruncated tracked-Git-blob path set; no wildcard and no mass removal; path-only security gate distinct from independent physical validation"
+    "method": "exact nontruncated tracked-Git-blob path set; no wildcard and no mass removal; path-only security gate distinct from independent physical validation",
+    "follow_up": {
+      "phase": "literature, paper and branch custody additions",
+      "explicit_additions": [
+        "docs/0.28/BRANCH_AND_README_CUSTODY_AUDIT_20261103.md",
+        "docs/0.28/LITERATURE_AND_NOVELTY_GATE_20261103.md",
+        "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md"
+      ],
+      "source": "nontruncated Git tree as of 2026-11-03; no wildcard, no deletion",
+      "previous_paths": 1088,
+      "final_paths": 1091
+    }
   }
 }
