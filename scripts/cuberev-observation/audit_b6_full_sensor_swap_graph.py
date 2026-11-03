@@ -76,7 +76,6 @@ def audit():
     assert within_edges == 12 * 22 == 264
     assert cross_edges == 72, (cross_edges, summary)
     assert summary == (96,) + (4,) * 12 + (1,) * 12, summary
-    assert all_degree_counts == {0: 12, 2: 48, 4: 24, 6: 24, 7: 48}, all_degree_counts
     # Each one-corner-swap cross-sector edge remains inside the
     # single large 96-layout sector. The small cycle and singleton
     # classes are sealed under EVERY one-sensor exchange.
@@ -94,6 +93,7 @@ def audit():
                       if any(x[0] == fixed for x in component)) == [1, 4]
     assert 2 * (within_edges + cross_edges) == sum(len(n) for n in graph.values())
     all_degree_counts = dict(sorted(Counter(map(len, graph.values())).items()))
+    assert all_degree_counts == {0: 12, 2: 48, 4: 24, 6: 24, 7: 48}, all_degree_counts
     print("TOTAL_LAYOUTS", len(layouts))
     print("TOTAL_SWAP_EDGES", within_edges + cross_edges)
     print("WITHIN_FIXED_CORNER_PAIR", within_edges)
