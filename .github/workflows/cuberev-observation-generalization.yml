@@ -3,6 +3,7 @@ name: CUBE-REV observation generalization — read-only smoke
 on:
   push:
     branches:
+      - research/current
       - research/observation-generalization
     paths:
       - 'scripts/cuberev-observation/**'
@@ -29,6 +30,8 @@ jobs:
       - name: Verify physical geometry, inverses, and observational baselines
         run: |
           python -m unittest discover -s scripts/cuberev-observation -p 'test_*.py' -v
+      - name: Audit all 156 B6 optimal single-tag exchanges
+        run: python scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py
       - name: Export physical transition receipt (artifact, not repository write)
         run: |
           mkdir -p /tmp/cuberev-observation
