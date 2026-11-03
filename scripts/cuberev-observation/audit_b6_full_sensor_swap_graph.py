@@ -74,6 +74,24 @@ def audit():
         if x[0] != y[0]
     ) // 2
     assert within_edges == 12 * 22 == 264
+    assert cross_edges == 72, (cross_edges, summary)
+    assert summary == (96,) + (4,) * 12 + (1,) * 12, summary
+    assert all_degree_counts == {0: 12, 2: 48, 4: 24, 6: 24, 7: 48}, all_degree_counts
+    # Each one-corner-swap cross-sector edge remains inside the
+    # single large 96-layout sector. The small cycle and singleton
+    # classes are sealed under EVERY one-sensor exchange.
+    main_component = components[0]
+    assert len(main_component) == 96
+    assert sum(1 for a in main_component for b in graph[a]
+               if a[0] != b[0]) // 2 == 72
+    assert all(a[0] == b[0] for c in components[1:]
+               for a in c for b in graph[a])
+    for h in EDGE_NAMES:
+        fixed = frozenset(ENDS[h])
+        assert sum(x[0] == fixed for x in main_component) == 8
+        assert sorted(sum(x[0] == fixed for x in component)
+                      for component in components if component is not main_component
+                      if any(x[0] == fixed for x in component)) == [1, 4]
     assert 2 * (within_edges + cross_edges) == sum(len(n) for n in graph.values())
     all_degree_counts = dict(sorted(Counter(map(len, graph.values())).items()))
     print("TOTAL_LAYOUTS", len(layouts))
