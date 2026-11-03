@@ -66,6 +66,24 @@ def main(archive):
     assert all(any(ENDS[a] & ENDS[b] for a, b in combinations(pair, 2))
                for pair in support_to_word)
 
+    # Exact midpoint realization: with chronological turns g=t13...t1,
+    # take x=inverse(t8..t13) (six actions), y=t1..t7 (seven actions).
+    # Then x^-1*y=g as physical LEFT actions on ORIGINAL cubie tags.
+    def inv_turn(token):
+        return token if token.endswith("2") else (
+            token[:-1] if token.endswith("'") else token+"'")
+    for pair, word in support_to_word.items():
+        tokens = word.split()
+        left = " ".join(inv_turn(t) for t in reversed(tokens[7:]))
+        right = " ".join(tokens[:7])
+        assert len(left.split()) == 6 and len(right.split()) == 7
+        sx, sy = replay(left), replay(right)
+        assert sx != sy
+        changed_e = frozenset(E[i] for i, (x, y) in enumerate(zip(ev(sx),ev(sy))) if x != y)
+        changed_c = frozenset(i for i in range(8) if cv(sx)[4*i:4*i+4] != cv(sy)[4*i:4*i+4])
+        assert (changed_e, changed_c) == (pair, frozenset())
+    print("PASS: all 24 rotated words give exact B7 6+7 physical collision pairs")
+
     eligible = {(h, pair) for h in E for pair in valid_pairs(h)}
     assert len(eligible) == 156
     positive_48 = set()
@@ -96,6 +114,7 @@ def main(archive):
     print("PASS: all 24 proper rotations physically replayed, exact original-tag support")
     print("PASS: each of 48 F-h* B6-positive layouts has an HTM <=13 stabilizer witness")
     print("PASS: two proper-rotation orbits of size 24")
+    print("PASS: all 48 F-h* B6 layouts explicitly fail B7 via 6+7 pairs")
     print("BOUNDARY: length >=13 depends on prior B6-positive census")
     return orbits
 
