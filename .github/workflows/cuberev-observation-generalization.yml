@@ -31,6 +31,8 @@ jobs:
           python -m unittest discover -s scripts/cuberev-observation -p 'test_*.py' -v
       - name: Audit all 156 B6 optimal single-tag exchanges
         run: python scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py
+      - name: Verify 24-by-3 physical incidence bridge theorem
+        run: python scripts/cuberev-observation/verify_b6_cross_core_bridge.py
       - name: Independent JavaScript geometry and swap graph
         run: node scripts/cuberev-observation/independent_js_b6_exchange_graph.mjs
       - name: Export physical transition receipt (artifact, not repository write)
