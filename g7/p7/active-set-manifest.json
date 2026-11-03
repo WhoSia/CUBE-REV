@@ -453,6 +453,7 @@
     "docs/0.28/B6_42_INCIDENCE_DERIVATION.md",
     "docs/0.28/B6_66_PARTITION_EVIDENCE_AUDIT.md",
     "docs/0.28/B6_EXACT_16_TWO_CERTIFICATE_CLOSURE.md",
+    "docs/0.28/B6_FULL_SWAP_GRAPH_24_BY_3_THEOREM.md",
     "docs/0.28/B6_MINIMUM_SENSOR_EXCHANGE_COUNTEREXAMPLE.md",
     "docs/0.28/B6_NF_COVER_OBSTRUCTION.md",
     "docs/0.28/B6_OPTIMAL_SENSOR_EXCHANGE_GRAPH_COMPONENTS.md",
@@ -916,6 +917,7 @@
     "scripts/cuberev-observation/fullcube_sensor_radius_hierarchy.py",
     "scripts/cuberev-observation/generate_sampled_dictionary.py",
     "scripts/cuberev-observation/global_dual_obligations.py",
+    "scripts/cuberev-observation/independent_js_b6_exchange_graph.mjs",
     "scripts/cuberev-observation/independent_node_corner_kernel.mjs",
     "scripts/cuberev-observation/k4_v4_burnside_feasibility.py",
     "scripts/cuberev-observation/l7_targeted_witnesses.py",
@@ -936,6 +938,7 @@
     "scripts/cuberev-observation/test_adaptive_erasure_minimax.py",
     "scripts/cuberev-observation/test_b6_42_incidence.py",
     "scripts/cuberev-observation/test_b6_basis_exchange_failure.py",
+    "scripts/cuberev-observation/test_b6_cross_core_bridge.py",
     "scripts/cuberev-observation/test_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/test_b6_goal_union_count.py",
     "scripts/cuberev-observation/test_b6_radius_stabilizer.py",
@@ -961,6 +964,7 @@
     "scripts/cuberev-observation/verify_b6_candidate_orbits.py",
     "scripts/cuberev-observation/verify_b6_corner_obstruction.py",
     "scripts/cuberev-observation/verify_b6_corner_orbit_stabilizer.py",
+    "scripts/cuberev-observation/verify_b6_cross_core_bridge.py",
     "scripts/cuberev-observation/verify_b6_failure_orbit_independence.py",
     "scripts/cuberev-observation/verify_b6_fixed_corner_quotient.py",
     "scripts/cuberev-observation/verify_b6_geometric_bridge.py",
@@ -3868,6 +3872,17 @@
       "source": "nontruncated Git tree as of 2026-11-03; no wildcard, no deletion",
       "previous_paths": 1088,
       "final_paths": 1091
+    },
+    "second_follow_up": {
+      "reason": "Independent JavaScript geometry, 24x3 Python cross-core theorem, corresponding regression, and structural theorem note",
+      "admitted_explicit_paths": [
+        "docs/0.28/B6_FULL_SWAP_GRAPH_24_BY_3_THEOREM.md",
+        "scripts/cuberev-observation/independent_js_b6_exchange_graph.mjs",
+        "scripts/cuberev-observation/test_b6_cross_core_bridge.py",
+        "scripts/cuberev-observation/verify_b6_cross_core_bridge.py"
+      ],
+      "total_paths": 1095,
+      "admission_method": "nontruncated exact Git blob paths, reviewed against scientific intent, no wildcard"
     }
   }
 }
