@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source": "fresh C++ 48-sticker 621649-state BFS: face-turn sign convention corrected after independent Python CI mismatch; U+,R-,F-,D+,L+,B+",
+  "source": "fresh C++ 48-sticker B5 621649-state BFS; exact T turn convention U-,R-,F-,D+,L+,B+ independently checked against Python source; 13 orbit physical word pairs",
   "witnesses": [
     {
       "id": "B5-R01",
@@ -11,50 +11,50 @@
     {
       "id": "B5-R02",
       "representative_triple": "UR,UF,DR",
-      "left": "U F2 L2 B2",
+      "left": "U' F2 L2 B2",
       "right": "F2 L2 B2 D"
     },
     {
       "id": "B5-R03",
       "representative_triple": "UR,UF,DF",
-      "left": "U' R2 B2 L2",
+      "left": "U R2 B2 L2",
       "right": "R2 B2 L2 D'"
     },
     {
       "id": "B5-R04",
       "representative_triple": "UR,UF,DL",
-      "left": "U' R2 B2 D L2",
-      "right": "U' F2 U R2 B2"
+      "left": "U R2 B2 D L2",
+      "right": "U F2 U' R2 B2"
     },
     {
       "id": "B5-R05",
       "representative_triple": "UR,UF,DB",
       "left": "U2 R2 F2 L2",
-      "right": "U R2 F2 L2 D"
+      "right": "U' R2 F2 L2 D"
     },
     {
       "id": "B5-R06",
       "representative_triple": "UR,UF,FR",
-      "left": "U' R B L F",
-      "right": "R B L F U'"
+      "left": "U R B L F",
+      "right": "R B L F U"
     },
     {
       "id": "B5-R07",
       "representative_triple": "UR,UF,FL",
-      "left": "U R D2 U2 L'",
-      "right": "R D2 U2 L' U"
+      "left": "U' R D2 U2 L'",
+      "right": "R D2 U2 L' U'"
     },
     {
       "id": "B5-R08",
       "representative_triple": "UR,UF,BL",
-      "left": "R F R2 D U",
-      "right": "R F D U B2"
+      "left": "R F R2 D U'",
+      "right": "R F D U' B2"
     },
     {
       "id": "B5-R09",
       "representative_triple": "UR,UF,BR",
-      "left": "U' R U' R U'",
-      "right": "R U' R U' R"
+      "left": "U R U R U",
+      "right": "R U R U R"
     },
     {
       "id": "B5-R10",
@@ -71,15 +71,15 @@
     {
       "id": "B5-R12",
       "representative_triple": "UR,DF,BL",
-      "left": "U' F U' L2 D",
-      "right": "U' F D F2 U'"
+      "left": "U F U L2 D",
+      "right": "U F D F2 U"
     },
     {
       "id": "B5-R13",
       "representative_triple": "UR,DB,FL",
-      "left": "U F R B2 L",
-      "right": "U F L U2 R"
+      "left": "U' F R B2 L",
+      "right": "U' F L U2 R"
     }
   ],
-  "validation_status": "CI pending; distinguish candidate generation from successful independent replay"
+  "validation_status": "CI pending; physical source replay required"
 }
