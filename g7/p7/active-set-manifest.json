@@ -901,6 +901,7 @@
     "scripts/cuberev-027/p9_independent_optimal_probe.py",
     "scripts/cuberev-027/verify_external_root.py",
     "scripts/cuberev-observation/README.md",
+    "scripts/cuberev-observation/active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/active_p48_fixed_site_scan.py",
     "scripts/cuberev-observation/adaptive_erasure_minimax.py",
     "scripts/cuberev-observation/audit_b6_66_partition.py",
@@ -950,6 +951,7 @@
     "scripts/cuberev-observation/sensor_symmetry.py",
     "scripts/cuberev-observation/solve_orbit_pool_milp.py",
     "scripts/cuberev-observation/solve_sampled_milp.py",
+    "scripts/cuberev-observation/test_active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/test_active_p48_fixed_site_scan.py",
     "scripts/cuberev-observation/test_adaptive_erasure_minimax.py",
     "scripts/cuberev-observation/test_b5_three_edge_physical_manifest.py",
@@ -4053,5 +4055,17 @@
     "research_lineage": "Grand Doctrine original observation/action question, not a new human cognitive result",
     "proof_gate": "remote CI must verify; no global shortest observation policy claimed",
     "bot_writeback": "forbidden"
+  },
+  "active_set_reconciliation_20261104_b6_active_ten": {
+    "date": "2026-11-04",
+    "previous_allowed": 1124,
+    "new_allowed": 1126,
+    "added_paths": [
+      "scripts/cuberev-observation/active_p48_b6_ten_frame_bridge.py",
+      "scripts/cuberev-observation/test_active_p48_b6_ten_frame_bridge.py"
+    ],
+    "scientific_result": "One stationary ideal oriented-cubie corner-site and edge-site probe gives B6 nonadaptive horizon exactly ten via cube inverse and P48 156 valid original-tag bases; adaptive B6 horizon unresolved",
+    "external_prior": "two spatial physical RGB scanners reported in MIT 6.111 2017, so active two-sensor concept prior art",
+    "remote_proof": "await current head success"
   }
 }
