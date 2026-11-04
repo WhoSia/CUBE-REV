@@ -29,6 +29,14 @@ jobs:
       - name: Verify physical geometry, inverses, and observational baselines
         run: |
           python -m unittest discover -s scripts/cuberev-observation -p 'test_*.py' -v
+      - name: Independently rederive B5 13 physical witness orbits and replay 220 supports
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -pedantic scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp -o /tmp/cuberev-b5-fresh
+          /tmp/cuberev-b5-fresh > /tmp/cuberev-b5-independent-seeds.txt 2> /tmp/cuberev-b5-independent-search.log
+          grep -F 'B5_BALL_PASS 621649' /tmp/cuberev-b5-independent-search.log
+          test "$(grep -c '^ORBIT .* FOUND left=' /tmp/cuberev-b5-independent-seeds.txt)" -eq 13
+          python scripts/cuberev-observation/verify_b5_three_edge_physical_manifest.py data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json > /tmp/cuberev-b5-independent-physical-replay.json
+          python -c 'import json; d=json.load(open("/tmp/cuberev-b5-independent-physical-replay.json")); x=d["audit"]; assert x["full_220_certificate"] and x["distinct_triple_edge_supports_physically_replayed"]==220 and x["physical_orbits_covered"]==13; print("B5_220_INDEPENDENT_PHYSICAL_PASS")'
       - name: Audit all 156 B6 optimal single-tag exchanges
         run: python scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py
       - name: Verify 24-by-3 physical incidence bridge theorem
