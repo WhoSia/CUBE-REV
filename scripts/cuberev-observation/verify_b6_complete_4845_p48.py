@@ -117,6 +117,24 @@ def audit():
     b6=adjacent_b6_obstructions()
     assert not b5&b6
     assert len(triple|corner|b5|b6)==872
+    # Independent B6 16-sensor lower bound: each deleted five-tag set
+    # contains a physical B5 three-edge OR B6 nonadjacent two-corner witness.
+    for omitted5 in map(frozenset,combinations(TAGS,5)):
+        assert any(d<=omitted5 for d in triple|corner)
+    # Each selected support has a private four-tag excluded design:
+    # no *other* member of THIS finite 872-support certificate kills it.
+    # This establishes inclusion-wise irredundancy, not smallest certificate
+    # over every possible physical short-support family.
+    family=triple|corner|b5|b6
+    for support in family:
+        if support in triple:
+            private=support|{CORNERS[0]}
+        elif support in corner:
+            private=support|set(EDGE_POS[:2])
+        else:
+            private=support
+        assert len(private)==4
+        assert sum(d<=private for d in family)==1
     grades=Counter()
     survivors=set()
     for omitted in map(frozenset,combinations(TAGS,4)):
@@ -140,6 +158,8 @@ def audit():
     assert len(positive)==156 and survivors==positive
     assert sum(grades.values())==4689 and sum(grades.values())+len(survivors)==4845
     print("P48_B6_ALL_4845_NEGATIVE_CLASSIFICATION_PASS")
+    print("P48_B6_15_SENSOR_LOWER_BOUND_PASS all 15504 missing-five layouts obstructed")
+    print("P48_B6_872_SUPPORT_KERNEL_IRREDUNDANT every support has a private witness")
     print("PHYSICAL_SUPPORTS edge3=220 corner2=16 B5adj4=216 B6adj4=420")
     print("EXCLUSION_PARTITION 2255+1798+216+420=4689; survivors=156")
     print("POSITIVE_DEPENDENCY independently completed P48 41/41 MITM required")
