@@ -42,6 +42,21 @@ def nonadaptive_five(factors):
             else:return (ee,cc),scanned
     return None,scanned
 
+def nonadaptive_six(factors):
+    """Exhaust 12C6 * 8C6 = 25,872 full six-edge/six-corner schedules."""
+    n=len(factors);scanned=0
+    for ee in combinations(range(12),6):
+        for cc in combinations(range(8),6):
+            scanned+=1
+            columns=ee+tuple(12+i for i in cc)
+            seen=set()
+            for f in factors:
+                key=tuple(f[i] for i in columns)
+                if key in seen:break
+                seen.add(key)
+            else:return (ee,cc),scanned
+    return None,scanned
+
 def audit(max_nodes=1000):
     states,layers=ball(3)
     assert len(states)==3502 and layers==[1,18,243,3240]
@@ -55,6 +70,9 @@ def audit(max_nodes=1000):
     five,count5=nonadaptive_five(factors)
     print("ACTIVE_B3_NONADAPTIVE_5","FOUND" if five else "EXCLUDED",
           "candidates_tested",count5,"certificate",five)
+    six,count6=nonadaptive_six(factors)
+    print("ACTIVE_B3_NONADAPTIVE_6","FOUND" if six else "EXCLUDED",
+          "candidates_tested",count6,"certificate",six)
     adaptive2,nodes,_=can_adapt(rows,2,budget=50000)
     print("ACTIVE_B3_ADAPTIVE_2","FOUND" if adaptive2 else "EXCLUDED","belief_nodes",nodes)
     if not adaptive2:
