@@ -15,7 +15,7 @@ from verify_b5_three_edge_physical_manifest import (
 )
 
 PATTERN = re.compile(
-    r'^ORBIT (?P<index>\\d+) size=(?P<size>\\d+) '
+    r'^ORBIT (?P<index>\d+) size=(?P<size>\d+) '
     r'triple=(?P<triple>[A-Z]{2},[A-Z]{2},[A-Z]{2}) '
     r'FOUND left="(?P<left>[^"]*)" right="(?P<right>[^"]*)"$'
 )
