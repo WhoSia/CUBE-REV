@@ -1,0 +1,60 @@
+name: CUBE-REV 0.28 independent P48 B6 MITM
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'scripts/cuberev-observation/b6_independent_48sticker_goals.py'
+      - 'scripts/cuberev-observation/test_b6_independent_48sticker_goals.py'
+      - 'scripts/cuberev-observation/verify_b6_41_mitm_p48.cpp'
+      - 'scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py'
+      - '.github/workflows/cuberev-028-independent-p48-mitm.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independent-physical-b6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Python P48 geometric target and adversarial tests
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_independent_48sticker_goals.py' -v
+          python scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py
+          python scripts/cuberev-observation/b6_independent_48sticker_goals.py --emit /tmp/cuberev-p48
+      - name: Compile exact P48 full-state MITM
+        run: |
+          set -euo pipefail
+          g++ --version | head -n 1
+          g++ -O3 -std=c++17 -I /tmp/cuberev-p48 scripts/cuberev-observation/verify_b6_41_mitm_p48.cpp -o /tmp/cuberev-p48/mitm_p48
+      - name: Independent 41-target exact radius-6 exclusion (5 complete batches)
+        run: |
+          set -euo pipefail
+          cd /tmp/cuberev-p48
+          for bounds in '0 8' '8 16' '16 24' '24 32' '32 41'; do
+            read first last <<< "$bounds"
+            echo "BATCH $first:$last"
+            ./mitm_p48 targets41.txt "$first" "$last" | tee "batch_${first}_${last}.log"
+            grep -q "P48_CERTIFIED range=$first:$last" "batch_${first}_${last}.log"
+          done
+          test "$(grep -h '^P48_PASS target=' batch_*.log | wc -l)" -eq 41
+          sha256sum targets41.txt raw_goal48.hex b6_factor_table.hpp batch_*.log | tee sha256sums.txt
+          echo "INDEPENDENT_P48_B6_41_ALL_PASS"
+      - name: Preserve verification outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-028-independent-p48-b6-${{ github.sha }}
+          path: |
+            /tmp/cuberev-p48/targets41.txt
+            /tmp/cuberev-p48/raw_goal48.hex
+            /tmp/cuberev-p48/b6_factor_table.hpp
+            /tmp/cuberev-p48/batch_*.log
+            /tmp/cuberev-p48/sha256sums.txt
+          retention-days: 30
