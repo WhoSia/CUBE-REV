@@ -8,6 +8,8 @@ on:
       - 'scripts/cuberev-observation/test_b6_independent_48sticker_goals.py'
       - 'scripts/cuberev-observation/verify_b6_41_mitm_p48.cpp'
       - 'scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py'
+      - 'scripts/cuberev-observation/verify_b6_negative_19_pairs_p48.py'
+      - 'scripts/cuberev-observation/test_b6_negative_19_pairs_p48.py'
       - '.github/workflows/cuberev-028-independent-p48-mitm.yml'
   workflow_dispatch:
 
@@ -26,6 +28,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_independent_48sticker_goals.py' -v
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_negative_19_pairs_p48.py' -v
           python scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py
           python scripts/cuberev-observation/b6_independent_48sticker_goals.py --emit /tmp/cuberev-p48
       - name: Compile exact P48 full-state MITM
