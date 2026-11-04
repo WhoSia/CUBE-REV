@@ -467,6 +467,7 @@
     "docs/0.28/BRANCH_AND_README_CUSTODY_AUDIT_20261103.md",
     "docs/0.28/CUBIE_STABILIZER_SUPPORT_SPECTRUM_THEOREM.md",
     "docs/0.28/LITERATURE_AND_NOVELTY_GATE_20261103.md",
+    "docs/0.28/P48_B6_41_INDEPENDENT_CLOSURE_AND_BACKUP_CORE_SPECTRUM_20261104.md",
     "docs/0.28/PUBLICATION_AND_NOVELTY_GO_NO_GO_20261104.md",
     "docs/0.28/REVERSIBLE_OBSERVATION_THEORY_GATE.md",
     "docs/0.28/evidence/B6_MITM_41_20261103.md",
@@ -3987,5 +3988,18 @@
     "scope": "three additional P48 full-distance proof, robust-core incidence and read-only CI paths",
     "local_verdict": "41/41 completed in five 48-sticker-derived local MITM batches; remote CI PASS requires inspection",
     "writeback": "WhoSia author and committer only; workflow contents read; no bot commits"
+  },
+  "active_set_reconciliation_20261104_p48_closure_paper": {
+    "date": "2026-11-04",
+    "previous_allowed": 1113,
+    "now_allowed": 1114,
+    "added": [
+      "docs/0.28/P48_B6_41_INDEPENDENT_CLOSURE_AND_BACKUP_CORE_SPECTRUM_20261104.md"
+    ],
+    "source_proof_run": 41763106125,
+    "proof_head": "8401e4220fb480104add61d8ef6d289b51a14fde",
+    "scientific_boundary": "P48 41/41 independently physically positive B6 PASS; negative 156-design completeness and novelty still HOLD",
+    "manuscript_revision": "0.28-D0.3",
+    "read_only_actions": true
   }
 }
