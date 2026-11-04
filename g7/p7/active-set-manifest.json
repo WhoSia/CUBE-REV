@@ -467,6 +467,7 @@
     "docs/0.28/BRANCH_AND_README_CUSTODY_AUDIT_20261103.md",
     "docs/0.28/CUBIE_STABILIZER_SUPPORT_SPECTRUM_THEOREM.md",
     "docs/0.28/LITERATURE_AND_NOVELTY_GATE_20261103.md",
+    "docs/0.28/P48_B6_19_NEGATIVE_ORBIT_REPLAY_AND_COMPLETENESS_GATE_20261104.md",
     "docs/0.28/P48_B6_41_INDEPENDENT_CLOSURE_AND_BACKUP_CORE_SPECTRUM_20261104.md",
     "docs/0.28/PUBLICATION_AND_NOVELTY_GO_NO_GO_20261104.md",
     "docs/0.28/REVERSIBLE_OBSERVATION_THEORY_GATE.md",
@@ -954,6 +955,7 @@
     "scripts/cuberev-observation/test_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/test_b6_goal_union_count.py",
     "scripts/cuberev-observation/test_b6_independent_48sticker_goals.py",
+    "scripts/cuberev-observation/test_b6_negative_19_pairs_p48.py",
     "scripts/cuberev-observation/test_b6_one_erasure_exact19.py",
     "scripts/cuberev-observation/test_b6_one_erasure_robustness.py",
     "scripts/cuberev-observation/test_b6_radius_stabilizer.py",
@@ -991,6 +993,7 @@
     "scripts/cuberev-observation/verify_b6_goal_union_count.py",
     "scripts/cuberev-observation/verify_b6_mirror_orbits.py",
     "scripts/cuberev-observation/verify_b6_mixed_support_filtration.py",
+    "scripts/cuberev-observation/verify_b6_negative_19_pairs_p48.py",
     "scripts/cuberev-observation/verify_b6_negative_witnesses.py",
     "scripts/cuberev-observation/verify_b6_new_orbit_partition.py",
     "scripts/cuberev-observation/verify_b6_nf_cover_duality.py",
@@ -4001,5 +4004,18 @@
     "scientific_boundary": "P48 41/41 independently physically positive B6 PASS; negative 156-design completeness and novelty still HOLD",
     "manuscript_revision": "0.28-D0.3",
     "read_only_actions": true
+  },
+  "active_set_reconciliation_20261104_p48_negative19": {
+    "date": "2026-11-04",
+    "previous_allowed": 1114,
+    "now_allowed": 1117,
+    "added": [
+      "scripts/cuberev-observation/verify_b6_negative_19_pairs_p48.py",
+      "scripts/cuberev-observation/test_b6_negative_19_pairs_p48.py",
+      "docs/0.28/P48_B6_19_NEGATIVE_ORBIT_REPLAY_AND_COMPLETENESS_GATE_20261104.md"
+    ],
+    "science": "19 inherited B6 6-HTM word pairs independently reinterpreted in P48; 420 four-tag negative supports, not full candidate completeness",
+    "remote_ci": "await current-head checked run",
+    "bot_writeback": "forbidden"
   }
 }
