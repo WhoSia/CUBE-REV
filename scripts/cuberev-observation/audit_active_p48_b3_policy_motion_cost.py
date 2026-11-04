@@ -70,7 +70,7 @@ def profile():
         physical=word(" ".join(path))
         assert physical==canonical[current]
         move_hist[total]+=1
-        depth_hist[len(path) if False else 0]+=0 # no-op; depth counted below
+        # Observation count is reconstructed from the checked policy tree.
         detailed.append(total)
         trajectories+=1
     # Count observation frames from the independent policy tree.
