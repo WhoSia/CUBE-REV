@@ -37,6 +37,10 @@ jobs:
           python scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py
           python scripts/cuberev-observation/b6_independent_48sticker_goals.py --emit /tmp/cuberev-p48
           python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_complete_4845_p48.py' -v
+          python scripts/cuberev-observation/verify_b6_complete_4845_p48.py | tee /tmp/cuberev-p48/all4845_classification.log
+          grep -q '^P48_B6_ALL_4845_NEGATIVE_CLASSIFICATION_PASS' /tmp/cuberev-p48/all4845_classification.log
+          grep -q '^P48_B6_15_SENSOR_LOWER_BOUND_PASS' /tmp/cuberev-p48/all4845_classification.log
+          grep -q '^P48_B6_872_SUPPORT_KERNEL_IRREDUNDANT' /tmp/cuberev-p48/all4845_classification.log
           python scripts/cuberev-observation/emit_b5_adjacent_p48_discovery_goals.py /tmp/cuberev-p48
       - name: Compile exact P48 full-state MITM
         run: |
@@ -60,7 +64,7 @@ jobs:
             grep -q "P48_CERTIFIED range=$first:$last" "batch_${first}_${last}.log"
           done
           test "$(grep -h '^P48_PASS target=' batch_*.log | wc -l)" -eq 41
-          sha256sum targets41.txt raw_goal48.hex b6_factor_table.hpp batch_*.log | tee sha256sums.txt
+          sha256sum targets41.txt raw_goal48.hex b6_factor_table.hpp all4845_classification.log b5_adjacent_discovery.log b5_adjacent_candidate_orbits11.txt b5_adjacent_candidate_goals121.txt batch_*.log | tee sha256sums.txt
           echo "INDEPENDENT_P48_B6_41_ALL_PASS"
       - name: Preserve verification outputs
         if: always()
@@ -72,6 +76,7 @@ jobs:
             /tmp/cuberev-p48/b5_adjacent_candidate_goals121.txt
             /tmp/cuberev-p48/b5_adjacent_candidate_orbits11.txt
             /tmp/cuberev-p48/b5_adjacent_discovery.log
+            /tmp/cuberev-p48/all4845_classification.log
             /tmp/cuberev-p48/raw_goal48.hex
             /tmp/cuberev-p48/b6_factor_table.hpp
             /tmp/cuberev-p48/batch_*.log
