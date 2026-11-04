@@ -907,6 +907,7 @@
     "scripts/cuberev-observation/active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/active_p48_fixed_site_scan.py",
     "scripts/cuberev-observation/adaptive_erasure_minimax.py",
+    "scripts/cuberev-observation/audit_active_p48_b3_policy_motion_cost.py",
     "scripts/cuberev-observation/audit_active_p48_frame_route_cost.py",
     "scripts/cuberev-observation/audit_active_p48_small_ball_decision_trees.py",
     "scripts/cuberev-observation/audit_b6_66_partition.py",
@@ -961,6 +962,7 @@
     "scripts/cuberev-observation/solve_sampled_milp.py",
     "scripts/cuberev-observation/test_active_p48_b2_adaptive_certificate.py",
     "scripts/cuberev-observation/test_active_p48_b3_full_certificate.py",
+    "scripts/cuberev-observation/test_active_p48_b3_policy_motion_cost.py",
     "scripts/cuberev-observation/test_active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/test_active_p48_fixed_site_scan.py",
     "scripts/cuberev-observation/test_active_p48_frame_route_cost.py",
@@ -4141,5 +4143,18 @@
     "theorem_scope": "P48 3+3 radius split exact pairwise 18-HTM geodesics, Held-Karp optimal ordering among selected fixed frame representatives for B6 ten-probe/full G eleven-probe nonadaptive schedules",
     "caveat": "NOT global HTM-optimal policy across alternative physical frames and adaptive action policies",
     "ci": "read-only"
+  },
+  "active_set_reconciliation_20261104_b3_adaptive_htm_profile": {
+    "date": "2026-11-04",
+    "previous_allowed": 1138,
+    "current_allowed": 1140,
+    "added": [
+      "scripts/cuberev-observation/audit_active_p48_b3_policy_motion_cost.py",
+      "scripts/cuberev-observation/test_active_p48_b3_policy_motion_cost.py"
+    ],
+    "scope": "B3 complete 3502-state adaptive four-frame policy HTM cost profile and nonadaptive six-frame fixed reference comparison",
+    "not_claimed": "global minimum movement cost over all alternative physical frame representations and policies",
+    "audit_gate": "generic read-only test discovery and P7 current-head success required",
+    "authorship": "WhoSia only"
   }
 }
