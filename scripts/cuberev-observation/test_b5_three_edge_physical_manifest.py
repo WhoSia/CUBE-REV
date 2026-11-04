@@ -3,10 +3,17 @@
 import unittest
 from verify_b5_three_edge_physical_manifest import (
     B3_DEMONSTRATION, orbit_from_replayed_words, physical_support,
-    verify_manifest, rotate_word, proper24,
+    verify_manifest, rotate_word, proper24, full_three_edge_rotation_orbits,
 )
 
 class PhysicalB5TripleWitnessManifestTests(unittest.TestCase):
+    def test_all_thirteen_rotation_orbits_partition_exact_220(self):
+        orbits=full_three_edge_rotation_orbits()
+        self.assertEqual(len(orbits),13)
+        self.assertEqual(sorted(map(len,orbits)),
+                         [4,4,8,12,12,12,24,24,24,24,24,24,24])
+        self.assertEqual(len(set().union(*orbits)),220)
+
     def test_b3_known_original_edge_support_orbit_is_12(self):
         orbit=orbit_from_replayed_words("U R2 U'","D B2 D'")
         self.assertEqual(len(orbit),12)
@@ -28,6 +35,8 @@ class PhysicalB5TripleWitnessManifestTests(unittest.TestCase):
         self.assertEqual(result["distinct_triple_edge_supports_physically_replayed"],12)
         self.assertEqual(result["missing_triple_edge_supports"],208)
         self.assertFalse(result["full_220_certificate"])
+        self.assertEqual(result["physical_orbits_covered"],1)
+        self.assertEqual(result["total_geometric_orbits"],13)
 
     def test_reject_nonphysical_support(self):
         with self.assertRaisesRegex(ValueError,"Not precisely 3"):
