@@ -904,6 +904,7 @@
     "scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/audit_b6_one_erasure_robustness.py",
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
+    "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
     "scripts/cuberev-observation/channel_model_transfer.py",
     "scripts/cuberev-observation/check_25_irredundancy.py",
@@ -949,6 +950,7 @@
     "scripts/cuberev-observation/test_b6_cross_core_bridge.py",
     "scripts/cuberev-observation/test_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/test_b6_goal_union_count.py",
+    "scripts/cuberev-observation/test_b6_independent_48sticker_goals.py",
     "scripts/cuberev-observation/test_b6_one_erasure_exact19.py",
     "scripts/cuberev-observation/test_b6_one_erasure_robustness.py",
     "scripts/cuberev-observation/test_b6_radius_stabilizer.py",
@@ -3954,5 +3956,20 @@
     ],
     "source_commit": "1da29d7f21bc483bbbb0f282fa3ec8d60ee5fb75",
     "gate": "P7 remote PASS remains a separate observed claim"
+  },
+  "active_set_reconciliation_20261104_p48_goal_builder": {
+    "date": "2026-11-04",
+    "prior_allowed": 1108,
+    "new_allowed": 1110,
+    "added_paths": [
+      "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
+      "scripts/cuberev-observation/test_b6_independent_48sticker_goals.py"
+    ],
+    "scientific_scope": "independent 48-moving-sticker B6 geometric 88->74->41 goals; no 41-distance certification",
+    "commits": [
+      "ab1d7195049060a3993b59e0bfa8a48dd1d91f63",
+      "673360299c64cd3b518237a5ef3a311109b3baf9"
+    ],
+    "ci_gate": "read-only actual current-head P7 workflow needed"
   }
 }
