@@ -199,5 +199,109 @@ def audit():
     print("LIMIT: no radius-six MITM distance or historical B6-positive uniqueness checked")
     return goals,states,classes
 
+
+def factor_value(original_position, state):
+    """Exact 24-value original-cubie factor from 48 physical sticker slots."""
+    stickers=PIECES[original_position]
+    width=len(stickers)
+    positions=CORNERS if width==3 else EDGE_POS
+    dest={SLOTS[state[i]][0] for i in stickers}
+    assert len(dest)==1
+    new_position=dest.pop()
+    slots=PIECES[new_position]
+    orientation=[slots.index(state[i]) for i in stickers]
+    assert all((orientation[k]-orientation[0])%width==k for k in range(width))
+    return positions.index(new_position)*width+orientation[0]
+
+def factor_state(state):
+    return tuple(factor_value(pos,state) for pos in EDGE_POS+CORNERS)
+
+def factor_table():
+    """Generate all 18x20x24 transition entries, from P48 coordinates only."""
+    table=[]
+    for name,move in MOVES.items():
+        action=[]
+        for source in EDGE_POS+CORNERS:
+            width=len(PIECES[source])
+            destinations=CORNERS if width==3 else EDGE_POS
+            values=[]
+            for target_position in destinations:
+                for ori in range(width):
+                    arbitrary=list(range(48))
+                    for i,sticker in enumerate(PIECES[source]):
+                        arbitrary[sticker]=PIECES[target_position][(i+ori)%width]
+                    after=[move[arbitrary[i]] for i in PIECES[source]]
+                    positions={SLOTS[j][0] for j in after}
+                    assert len(positions)==1
+                    new_pos=positions.pop()
+                    slots=PIECES[new_pos]
+                    delta=slots.index(after[0])
+                    assert all(after[k]==slots[(k+delta)%width] for k in range(width))
+                    values.append(destinations.index(new_pos)*width+delta)
+            assert sorted(values)==list(range(24))
+            action.append(values)
+        table.append(action)
+    assert len(table)==18
+    return table
+
+def verify_factor_table(table):
+    eye=bytes(range(48))
+    solved=factor_state(eye)
+    for ai,move in enumerate(MOVES.values()):
+        assert factor_state(move)==tuple(table[ai][i][v] for i,v in enumerate(solved))
+        for bi,next_move in enumerate(MOVES.values()):
+            physical=factor_state(compose(next_move,move))
+            predicted=tuple(table[bi][i][table[ai][i][v]] for i,v in enumerate(solved))
+            assert physical==predicted,(ai,bi)
+    sample=("U R F' D2 L B'", "F2 U R2 F D' L2 B",
+            "L F R' F' L' U2 R U R U' R2 U2 R")
+    for seq in sample:
+        expected=factor_state(word(seq))
+        values=list(solved)
+        for token in seq.split():
+            action=tuple(MOVES).index(token)
+            values=[table[action][i][v] for i,v in enumerate(values)]
+        assert tuple(values)==expected,(seq,values,expected)
+    print("PASS P48 324 exact two-turn full-sticker/factor correspondences and 13-turn control")
+
+def emit(directory):
+    """Write MITM inputs, explicitly without any 54-facelet archive."""
+    from pathlib import Path
+    from hashlib import sha256
+    folder=Path(directory)
+    folder.mkdir(parents=True,exist_ok=True)
+    table=factor_table()
+    verify_factor_table(table)
+    entries,states,classes=generate()
+    minima=sorted(min(group) for group in classes)
+    assert len(minima)==41
+    lines=["#pragma once","#include <cstdint>",
+           "static constexpr uint8_t START[20] = {"+
+           ",".join(map(str,factor_state(bytes(range(48)))))+"};",
+           "static constexpr uint8_t TABLE[18][20][24] = {"]
+    for action in table:
+        lines.append("  {")
+        for row in action:
+            lines.append("    {"+",".join(map(str,row))+"},")
+        lines.append("  },")
+    lines.append("};")
+    header="\n".join(lines)+"\n"
+    (folder/"b6_factor_table.hpp").write_text(header,encoding="utf-8")
+    goal_lines=["# INDEPENDENT P48 factor goals 0..40; not 54-facelet target data"]
+    for i,s in enumerate(minima):
+        goal_lines.append(str(i)+" "+" ".join(map(str,factor_state(s))))
+    goals="\n".join(goal_lines)+"\n"
+    (folder/"targets41.txt").write_text(goals,encoding="utf-8")
+    (folder/"raw_goal48.hex").write_text("\n".join(s.hex() for s in minima)+"\n",encoding="utf-8")
+    print("PASS P48 table SHA256",sha256(header.encode()).hexdigest())
+    print("PASS P48 target manifest SHA256",sha256(goals.encode()).hexdigest())
+    return minima
+
 if __name__=="__main__":
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--emit",help="emit entirely P48-derived MITM tables and goals")
+    args=parser.parse_args()
     audit()
+    if args.emit:
+        emit(args.emit)
