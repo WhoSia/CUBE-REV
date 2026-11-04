@@ -1,8 +1,8 @@
 # CUBE-REV — Physical Rubik's Cube: Reconstruction, Observation & Certified Search
 
 **Active scientific stage:** 0.28 — *Radius-Restricted Cubie Bases, Short-Support Geometry & Robust Active Observation*  
-**State reviewed:** 2026-11-03 · **Source of scientific meaning:** [Notion 0.28](https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea)  
-**Executable branch currently carrying 0.28:** `research/observation-generalization` · **Long-term branch policy:** [REPOSITORY_POLICY.md](REPOSITORY_POLICY.md)
+**State reviewed:** 2026-11-04 · **Source of scientific meaning:** [Notion 0.28](https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea)  
+**Single active research branch carrying 0.28:** `research/current` · **Long-term branch policy:** [REPOSITORY_POLICY.md](REPOSITORY_POLICY.md)
 
 > **Evidence warning:** A finite program's successful return, an independently checked certificate, a mathematical proof and a new general theorem are four different claims. Keep them separate. Do not infer human cognition from exact cube combinatorics, nor infer an HTM shortest path from a stabilizer's abstract group order.
 
@@ -51,6 +51,8 @@ The new 2026-11-03 algebraic work is **a consequence of standard cube legality, 
 - **Nonmatroidal minimum-sensor family:** the previously certified physical B6-positive 16-tag layouts fail the matroid basis-exchange axiom. A concrete missing-edge counterexample uses `{FR,UR}`, `{DR,UL}` with the same missing adjacent corners at `DL`; exchanging the observed `DR` produces only two B6-negative configurations. **2,112** ordered exchange failures follow from the 12-core geometric classification. This mathematical consequence **inherits** the previous physical positive/negative witness status. [Counterexample, exact assumptions](docs/0.28/B6_MINIMUM_SENSOR_EXCHANGE_COUNTEREXAMPLE.md).
 - **Complete optimal-design exchange graph (post-README update):** allowing one original-cubie tag to be replaced, **including corner tags**, gives a graph on all 156 historically B6-positive size-16 sensor sets with **336 edges and 25 connected components**: one component of size **96**, twelve of size **4**, and twelve isolated designs. The 336 links comprise 264 within-fixed-corner links and 72 cross-corner links; a **24 adjacent-core-pair × 3 shared omission-pairs** argument proves why the 12 local eight-design wheel components form the 96-component (see [structural theorem](docs/0.28/B6_FULL_SWAP_GRAPH_24_BY_3_THEOREM.md)). Read the [global exchange-graph auditor](scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py) and [structural note](docs/0.28/B6_OPTIMAL_SENSOR_EXCHANGE_GRAPH_COMPONENTS.md). The graph is exactly checked against the existing B6 geometric classification; its physical-positive labels depend on the earlier facelet certificates.
 
+
+**Exact one-original-cubie-erasure robustness at B6 (2026-11-04):** under the archived B5 all-220 pure-three-edge supports, independently replayed B6 12-HTM pure-two-corner midpoint supports, and previously certified B6 156 positive size-16 layouts, the minimum one-erasure-robust sensor count is **b6^(1)=19**, with **exactly twelve minimum layouts**: all eight original corners and any eleven edges. The lower bound comes directly from B5/B6 physical collision supports; the positive 19-tag upper bound has a ten-orbit geometric witness certificate. This restores an older physical fact overlooked by an interim 18–19 bound; it does NOT use the false assumption that every valid larger set contains a valid 16-tag sublayout. [Proof, source genealogy and retraction](docs/0.28/B6_SINGLE_ERASURE_ROBUSTNESS_19_TAG_THEOREM.md) · [Physical midpoint and combinatorial verifier](scripts/cuberev-observation/verify_b6_one_erasure_exact19.py).
 
 These examples do **not** independently establish all 41 HTM geodesic lower bounds, a new hardness result, any general matroid theorem or human planning mechanisms.
 
