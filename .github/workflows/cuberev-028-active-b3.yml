@@ -1,0 +1,38 @@
+name: CUBE-REV exploratory active B3 exact query boundary
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'scripts/cuberev-observation/explore_active_p48_b3_horizons.py'
+      - '.github/workflows/cuberev-028-active-b3.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-b3-horizon:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Exact finite B3 checks and bounded adaptive exploration
+        run: |
+          set -euo pipefail
+          python scripts/cuberev-observation/explore_active_p48_b3_horizons.py --max-nodes 500 | tee /tmp/cuberev-b3-active-exploration.log
+          grep -q '^ACTIVE_B3_P48_STATES 3502 ' /tmp/cuberev-b3-active-exploration.log
+          grep -q '^ACTIVE_B3_NONADAPTIVE_3 ' /tmp/cuberev-b3-active-exploration.log
+          grep -q '^ACTIVE_B3_NONADAPTIVE_4 ' /tmp/cuberev-b3-active-exploration.log
+          grep -q '^ACTIVE_B3_ADAPTIVE_2 ' /tmp/cuberev-b3-active-exploration.log
+          grep -q '^ACTIVE_B3_ADAPTIVE_3 ' /tmp/cuberev-b3-active-exploration.log
+          sha256sum /tmp/cuberev-b3-active-exploration.log
+      - name: Preserve outcome with UNKNOWN explicitly visible
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-028-active-b3-${{ github.sha }}
+          path: /tmp/cuberev-b3-active-exploration.log
+          retention-days: 30
