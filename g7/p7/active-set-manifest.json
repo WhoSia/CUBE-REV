@@ -301,6 +301,7 @@
     "docs/0.17/P2_MSTAR25_RIGIDITY_AND_THREE_SIGNATURES.md",
     "docs/0.17/PROGRAM_CHARTER.md",
     "docs/0.17/RETURN_MAXIMALITY_THEOREM.md",
+    "docs/0.18/20261104_EXACT_MSTAR34_RECHECK_AND_DRIVE_CUSTODY.md",
     "docs/0.18/P0_34_WORD_PHYSICAL_UPPER_WITNESS.json",
     "docs/0.18/P0_60_POSITIVE_DUAL_WEIGHTS.json",
     "docs/0.18/P0_REPAIRED_37_WORD_PHYSICAL_WITNESS.json",
@@ -4161,5 +4162,19 @@
     "not_claimed": "global minimum movement cost over all alternative physical frame representations and policies",
     "audit_gate": "generic read-only test discovery and P7 current-head success required",
     "authorship": "WhoSia only"
+  },
+  "active_set_reconciliation_20261104_mstar34_supersession": {
+    "date": "2026-11-04",
+    "previous_allowed": 1145,
+    "new_allowed": 1146,
+    "new_paths": [
+      "docs/0.18/20261104_EXACT_MSTAR34_RECHECK_AND_DRIVE_CUSTODY.md"
+    ],
+    "source_run": 37958523951,
+    "proof": "both independently DRUP-checked component minima (27+7), 34 physical upper; exact frozen instance",
+    "sha": "4f947c36c32185f02c59d3ed9b5d1fe6a71c1a20904e9f38f798d3e86d8228fb",
+    "drive": "19ry8e4HgyJ_C3uVbZrsGHl9D2Z4ZzHrJ",
+    "archive": "three near-expiry original artifacts Drive raw byte custody",
+    "doctrine": "human WhoSia commits only; CI no writes; old verdicts retained as historical"
   }
 }
