@@ -138,6 +138,7 @@
     ".github/workflows/cuberev-027-independent-full-root.yml",
     ".github/workflows/cuberev-027-p11-conservative-audit.yml",
     ".github/workflows/cuberev-027-p9-independent-optimal-17-challenge.yml",
+    ".github/workflows/cuberev-028-active-b3.yml",
     ".github/workflows/cuberev-028-active-observation.yml",
     ".github/workflows/cuberev-028-independent-p48-mitm.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
@@ -924,6 +925,7 @@
     "scripts/cuberev-observation/emit_b6_41_mitm_inputs.py",
     "scripts/cuberev-observation/erasure_observation_policy.py",
     "scripts/cuberev-observation/erasure_prefix_oracle_cost.py",
+    "scripts/cuberev-observation/explore_active_p48_b3_horizons.py",
     "scripts/cuberev-observation/fullcube_adaptive_goal_policy.py",
     "scripts/cuberev-observation/fullcube_andor_baseline_comparison.py",
     "scripts/cuberev-observation/fullcube_edge_kernel_radius4.py",
@@ -4097,5 +4099,17 @@
     "result": "B2 exact adaptive depth2 vs nonadaptive3, 262 P48 states, 96 joint queries, 1848 explicit nonadaptive 2-frame counterexamples and full adaptive decision-tree manifest",
     "claims": "finite ideal fixed-site complete-label/orientation channel, no B6 adaptive conjecture promoted",
     "ci": "read-only proof artifact; verify before claiming PASS"
+  },
+  "active_set_reconciliation_20261104_active_b3_exploration": {
+    "date": "2026-11-04",
+    "previous_allowed": 1131,
+    "new_allowed": 1133,
+    "added": [
+      "scripts/cuberev-observation/explore_active_p48_b3_horizons.py",
+      ".github/workflows/cuberev-028-active-b3.yml"
+    ],
+    "scope": "B3 3502 exact physical states, nonadaptive three/four query census, exact two-step adaptive check and bounded depth-three with explicit UNKNOWN",
+    "do_not_claim": "A bounded search returning UNKNOWN does not establish nonexistence",
+    "ci": "read-only"
   }
 }
