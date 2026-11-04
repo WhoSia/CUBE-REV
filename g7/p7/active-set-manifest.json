@@ -458,6 +458,7 @@
     "docs/0.28/B6_NF_COVER_OBSTRUCTION.md",
     "docs/0.28/B6_OPTIMAL_SENSOR_EXCHANGE_GRAPH_COMPONENTS.md",
     "docs/0.28/B6_RADIUS_DOUBLING_STABILIZER.md",
+    "docs/0.28/B6_SINGLE_ERASURE_ROBUSTNESS_19_TAG_THEOREM.md",
     "docs/0.28/B6_STABILIZER_GROUP_AND_74_GOAL_OVERLAP.md",
     "docs/0.28/BRANCH_AND_README_CUSTODY_AUDIT_20261103.md",
     "docs/0.28/CUBIE_STABILIZER_SUPPORT_SPECTRUM_THEOREM.md",
@@ -897,6 +898,7 @@
     "scripts/cuberev-observation/audit_b6_66_partition.py",
     "scripts/cuberev-observation/audit_b6_full48_target_orbits.py",
     "scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py",
+    "scripts/cuberev-observation/audit_b6_one_erasure_robustness.py",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
     "scripts/cuberev-observation/channel_model_transfer.py",
     "scripts/cuberev-observation/check_25_irredundancy.py",
@@ -941,6 +943,7 @@
     "scripts/cuberev-observation/test_b6_cross_core_bridge.py",
     "scripts/cuberev-observation/test_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/test_b6_goal_union_count.py",
+    "scripts/cuberev-observation/test_b6_one_erasure_robustness.py",
     "scripts/cuberev-observation/test_b6_radius_stabilizer.py",
     "scripts/cuberev-observation/test_b6_sensor_exchange_graph.py",
     "scripts/cuberev-observation/test_b6_stabilizer_group_structure.py",
@@ -3883,6 +3886,17 @@
       ],
       "total_paths": 1095,
       "admission_method": "nontruncated exact Git blob paths, reviewed against scientific intent, no wildcard"
+    },
+    "third_follow_up": {
+      "reason": "2026-11-04 B6 one-original-cubie erasure theorem, independent enumeration and five regressions",
+      "explicit_additions": [
+        "docs/0.28/B6_SINGLE_ERASURE_ROBUSTNESS_19_TAG_THEOREM.md",
+        "scripts/cuberev-observation/audit_b6_one_erasure_robustness.py",
+        "scripts/cuberev-observation/test_b6_one_erasure_robustness.py"
+      ],
+      "previous_paths": 1095,
+      "total_paths": 1098,
+      "source": "nontruncated exact Git blob path inventory; no wildcard, deletion or bot-authored commits"
     }
   }
 }
