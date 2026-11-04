@@ -5,6 +5,8 @@ on:
     branches: ['research/current']
     paths:
       - 'scripts/cuberev-observation/explore_active_p48_b3_horizons.py'
+      - 'scripts/cuberev-observation/certify_active_p48_b3_adaptive_gap.py'
+      - 'scripts/cuberev-observation/test_active_p48_b3_full_certificate.py'
       - '.github/workflows/cuberev-028-active-b3.yml'
   workflow_dispatch:
 
@@ -23,16 +25,25 @@ jobs:
         run: |
           set -euo pipefail
           python scripts/cuberev-observation/explore_active_p48_b3_horizons.py --max-nodes 500 | tee /tmp/cuberev-b3-active-exploration.log
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_active_p48_b3_full_certificate.py' -v
+          python scripts/cuberev-observation/certify_active_p48_b3_adaptive_gap.py --emit /tmp/cuberev-b3-full-proof.json | tee /tmp/cuberev-b3-proof-verification.log
+          python scripts/cuberev-observation/certify_active_p48_b3_adaptive_gap.py --verify /tmp/cuberev-b3-full-proof.json
+          grep -q '^ACTIVE_B3_ADAPTIVE_FOUR_FRAME_FULL_P48_TREE_PASS' /tmp/cuberev-b3-proof-verification.log
+          grep -q '^ACTIVE_B3_ADAPTIVE_THREE_FRAME_EXHAUSTIVE_EXCLUSION_PASS' /tmp/cuberev-b3-proof-verification.log
+          grep -q '^ACTIVE_B3_NONADAPTIVE_FIVE_FRAME_ALL_44352_EXCLUDED' /tmp/cuberev-b3-proof-verification.log
           grep -q '^ACTIVE_B3_P48_STATES 3502 ' /tmp/cuberev-b3-active-exploration.log
           grep -q '^ACTIVE_B3_NONADAPTIVE_3 ' /tmp/cuberev-b3-active-exploration.log
           grep -q '^ACTIVE_B3_NONADAPTIVE_4 ' /tmp/cuberev-b3-active-exploration.log
           grep -q '^ACTIVE_B3_ADAPTIVE_2 ' /tmp/cuberev-b3-active-exploration.log
           grep -q '^ACTIVE_B3_ADAPTIVE_3 ' /tmp/cuberev-b3-active-exploration.log
-          sha256sum /tmp/cuberev-b3-active-exploration.log
+          sha256sum /tmp/cuberev-b3-active-exploration.log /tmp/cuberev-b3-full-proof.json /tmp/cuberev-b3-proof-verification.log
       - name: Preserve outcome with UNKNOWN explicitly visible
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cuberev-028-active-b3-${{ github.sha }}
-          path: /tmp/cuberev-b3-active-exploration.log
+          path: |
+            /tmp/cuberev-b3-active-exploration.log
+            /tmp/cuberev-b3-full-proof.json
+            /tmp/cuberev-b3-proof-verification.log
           retention-days: 30
