@@ -54,7 +54,7 @@ def transform_word(s,det,R):
 
 def physical_orbit(a,b):
     base=physical_support(a,b)
-    if len(base)!=4 or len(base&CORNERS)!=2 or len(base&EDGE_POS)!=2:
+    if len(base)!=4 or len(base.intersection(CORNERS))!=2 or len(base.intersection(EDGE_POS))!=2:
         raise AssertionError("not a four-tag two-corner/two-edge collision")
     proper=set()
     for det,p,R in SPATIAL:
