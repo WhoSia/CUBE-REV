@@ -57,7 +57,58 @@ def nonadaptive_six(factors):
             else:return (ee,cc),scanned
     return None,scanned
 
-def audit(max_nodes=1000):
+def adaptive_three_optimized(rows,max_nodes=25000):
+    """Try exact three-frame B3 belief recursion; NEVER treat timeout as false.
+
+    More discriminating query partitions first; within each candidate, test
+    largest ambiguous observation cells first. A FOUND/EXCLUDED is exhaustive
+    over all ninety-six queries; UNKNOWN is a hard explicit resource bound.
+    """
+    from collections import defaultdict
+    cache={};calls=[0]
+    class Budget(Exception):pass
+    def test(group,depth):
+        if len(group)<=1:return (True,())
+        if depth==0:return (False,None)
+        key=(group,depth)
+        if key in cache:return cache[key]
+        calls[0]+=1
+        if calls[0]>max_nodes:raise Budget
+        if depth==1:
+            for qi,row in enumerate(rows):
+                if len({row[i] for i in group})==len(group):
+                    cache[key]=(True,(qi,))
+                    return cache[key]
+            cache[key]=(False,None)
+            return cache[key]
+        candidates=[]
+        for qi,row in enumerate(rows):
+            parts=defaultdict(list)
+            for i in group:parts[row[i]].append(i)
+            if len(parts)<=1:continue
+            sorted_parts=tuple(sorted((tuple(x) for x in parts.values()),
+                                      key=len,reverse=True))
+            candidates.append((len(parts),qi,sorted_parts))
+        candidates.sort(key=lambda item:item[0],reverse=True)
+        for _,qi,parts in candidates:
+            proof=[];ok=True
+            for part in parts:
+                verdict,sub=test(part,depth-1)
+                if not verdict:
+                    ok=False;break
+                proof.append((part,sub))
+            if ok:
+                cache[key]=(True,(qi,proof))
+                return cache[key]
+        cache[key]=(False,None)
+        return cache[key]
+    try:
+        verdict,cert=test(tuple(range(len(rows[0]))),3)
+        return ("FOUND" if verdict else "EXCLUDED",calls[0],len(cache),cert)
+    except Budget:
+        return ("UNKNOWN_BOUND_EXHAUSTED",calls[0],len(cache),None)
+
+def audit(max_nodes=1000,optimized_budget=25000):
     states,layers=ball(3)
     assert len(states)==3502 and layers==[1,18,243,3240]
     factors,queries,rows=observations(states)
@@ -82,9 +133,13 @@ def audit(max_nodes=1000):
                   "belief_nodes",nodes)
         except BudgetExceeded as exc:
             print("ACTIVE_B3_ADAPTIVE_3 UNKNOWN_BOUND_EXHAUSTED",exc)
+    status,nodes,cached,certificate=adaptive_three_optimized(rows,optimized_budget)
+    print("ACTIVE_B3_ADAPTIVE_3_OPTIMIZED",status,"belief_nodes",nodes,"memoized",cached)
     print("BOUNDARY B3 exhaustive statements only for searches that completed; B6 adaptive open")
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser()
     parser.add_argument("--max-nodes",type=int,default=1000)
-    audit(parser.parse_args().max_nodes)
+    parser.add_argument("--optimized-budget",type=int,default=25000)
+    opt=parser.parse_args()
+    audit(opt.max_nodes,opt.optimized_budget)
