@@ -96,6 +96,68 @@ def reconstruct(initial_state,plan=None):
         raise AssertionError("failed to recover initial 48-sticker state")
     return tuple(recovered),relative_actions
 
+def eleven_frame_scan():
+    """Eleven edge-site visits, all eight corner-site visits, no reset."""
+    pairs=joint_position_words()
+    plan=[(e,CORNERS[i%8],pairs[(e,CORNERS[i%8])])
+          for i,e in enumerate(EDGE_POS[:-1])]
+    assert len(plan)==11
+    assert len({p for p,c,a in plan})==11
+    assert {c for p,c,a in plan}==set(CORNERS)
+    return plan
+
+def reconstruct_with_edge_parity(initial_state,plan=None):
+    """Recover the unobserved twelfth edge from legal cube parity constraints.
+
+    The eleven complete edge readings give eleven destination slots and eleven
+    orientation bits. On legal fixed-centre cubes, the last edge position is
+    the remaining slot and its orientation is forced by sum(flips) == 0 mod 2.
+    All eight original corners are visited in these same eleven frames.
+    """
+    if plan is None:plan=eleven_frame_scan()
+    if sorted(initial_state)!=list(range(48)):
+        raise ValueError("not a complete physical sticker permutation")
+    recovered={}
+    current_frame=bytes(range(48))
+    for _,_,tokens in plan:
+        frame=word(" ".join(tokens))
+        relative=compose(frame,inverse(current_frame))
+        current_frame=compose(relative,current_frame)
+        assert current_frame==frame
+        observed_state=compose(frame,initial_state)
+        undo=inverse(frame)
+        for site in (REF_EDGE,REF_CORNER):
+            label,sticker_slots=observe(observed_state,site)
+            original_slots=tuple(undo[j] for j in sticker_slots)
+            if label in recovered and recovered[label]!=original_slots:
+                raise AssertionError("conflicting original-slot observations")
+            recovered[label]=original_slots
+    known_edges={p:slots for p,slots in recovered.items() if p in EDGE_POS}
+    if len(known_edges)!=11 or not set(CORNERS)<=set(recovered):
+        raise AssertionError("scan did not cover eleven edges and eight corners")
+    missing_label=next(iter(set(EDGE_POS)-set(known_edges)))
+    occupied=set()
+    parity_sum=0
+    for slots in known_edges.values():
+        d={SLOTS[j][0] for j in slots}
+        assert len(d)==1
+        destination_position=d.pop()
+        assert destination_position in EDGE_POS
+        occupied.add(destination_position)
+        parity_sum+=PIECES[destination_position].index(slots[0])
+    assert len(occupied)==11
+    missing_position=next(iter(set(EDGE_POS)-occupied))
+    missing_flip=(-parity_sum)%2
+    recovered[missing_label]=tuple(
+        PIECES[missing_position][(i+missing_flip)%2] for i in range(2))
+    result=[None]*48
+    for label,slots in recovered.items():
+        for origin,physical in zip(PIECES[label],slots):
+            result[origin]=physical
+    if tuple(result)!=tuple(initial_state):
+        raise AssertionError("eleven frames did not reconstruct legal state")
+    return tuple(result)
+
 def audit():
     sites=joint_position_words()
     plan=twelve_frame_scan()
@@ -108,6 +170,10 @@ def audit():
     for name,state in samples.items():
         got,_=reconstruct(state,plan)
         assert got==tuple(state),name
+    short_plan=eleven_frame_scan()
+    for name,state in samples.items():
+        assert reconstruct_with_edge_parity(state,short_plan)==tuple(state),name
+    print("ACTIVE_P48_EXACT_11_FRAME_FULL_GROUP_SCAN_PASS tested_states=",len(samples))
     longest=max(len(w) for p,c,w in plan)
     print("ACTIVE_P48_96_JOINT_SITE_ORBIT_PASS")
     print("ACTIVE_P48_12_FRAME_TWO_PROBE_RECONSTRUCTION_PASS tested_states=",len(samples))
