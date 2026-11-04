@@ -4,8 +4,9 @@
 Proof dependencies are kept separate:
 (A) Two 12-HTM physical two-corner witness words and their 24 proper cube
     rotations, REPLAYED via standalone 48-movable-sticker implementation.
-(B) B5 complete 220/220 pure three-original-edge collision supports, INHERITED
-    from sealed physical 54-facelet historical certificate; not replayed here.
+(B) B5 complete 220/220 pure three-original-edge supports, REPLAYED now
+    from 13 newly independently discovered HTM word pairs in Python 48-sticker
+    physics, as well as historically certified in the archived 54-facelet proof.
 (C) B6 positive sixteen-tag family of 156 layouts, INHERITED from sealed
     original-cube HTM proof; the 6+4 rotation incidence witnesses are checked
     here via audit_b6_one_erasure_robustness.
@@ -13,6 +14,9 @@ No separate 54-facelet engine, independent 41-target HTM proof, or new
 geodesic lower bound is claimed.
 """
 from itertools import combinations
+from pathlib import Path
+import json
+from verify_b5_three_edge_physical_manifest import verify_manifest
 from verify_short_support_phase import initial, play, factors, proper24, WORDS
 from audit_b6_one_erasure_robustness import (
     CORNERS_TAGS, EDGES_TAGS, TAGS, positive_missing_four,
@@ -63,16 +67,23 @@ def certified_physical_B7_adjacent_edge_pairs():
     assert set().union(*orbit)==set(edges.values())
     return orbit
 
-def inherited_all_B5_three_edge_supports():
-    """SET of obligations certified in archived B5 witness replay, NOT new replay."""
-    # Archived SHA256 002887a198bac812ad360ba536309f2522899d5c28d12fb73bb92062ae889c94
-    # Archive b5_nine_pair_verifier.py and 54-facelet rotation replay:
-    # B4 84 supports + B5 new 136 supports = C(12,3) = 220 supports.
-    return frozenset(map(frozenset, combinations(EDGES_TAGS,3)))
+def physically_replayed_all_B5_three_edge_supports():
+    """Fail-closed: replay real B5 words and rotations before trusting all 220."""
+    path=Path(__file__).resolve().parents[2] / (
+        "data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json"
+    )
+    payload=json.loads(path.read_text(encoding="utf-8"))
+    certificate=verify_manifest(payload,require_complete=True)
+    assert certificate["distinct_triple_edge_supports_physically_replayed"]==220
+    assert certificate["physical_orbits_covered"]==13
+    assert certificate["missing_triple_edge_supports"]==0
+    # The combinations below form only a named universe AFTER actual full
+    # word-based physical realization of all its members was verified above.
+    return frozenset(map(frozenset,combinations(EDGES_TAGS,3)))
 
 def obstruction_lower_bound():
     physical_corner=certified_physical_corner_pairs()
-    triple_edges=inherited_all_B5_three_edge_supports()
+    triple_edges=physically_replayed_all_B5_three_edge_supports()
     assert len(physical_corner)==16 and len(triple_edges)==220
     # Each difference support D must meet observed tags in >=2 points,
     # or removing its only observed sensor creates a collision.
@@ -111,7 +122,7 @@ def audit():
             assert omitted[0]=="C"
     assert len(robust_19)==12
     # Every 18-tag selection misses either a corner (already impossible)
-    # or two edges (violates inherited B5 220-triple support completeness).
+    # or two edges (violates freshly physically replayed B5 220-triple support completeness).
     for omitted in combinations(sorted(TAGS),2):
         absent=frozenset(omitted)
         if absent&CORNERS_TAGS:
@@ -127,12 +138,12 @@ def audit():
     b6_robust_total=12+1
     b7_robust_total=1
     assert (b6_robust_total,b7_robust_total)==(13,1)
-    print("B6 ERASURE EXACT THRESHOLD 19 (on inherited physical certificates)")
+    print("B6 ERASURE EXACT THRESHOLD 19 (fresh B5 220/220 replay; B6 positive family still archived)")
     print("FULL B6 ONE-ERASURE ROBUST SENSOR FAMILY 13 sets = 12 size19 + 1 size20")
     print("B7 ONE-ERASURE THRESHOLD 20; only full20 robust; 24 adjacent two-edge midpoint supports physically replayed")
     print("B6 ROBUST MINIMUM LAYOUTS 12: all 8 corners + any 11 edges")
     print("PHYSICAL CORNER CERTIFICATE 16 two-corner pairs via independent 48-sticker midpoint replay")
-    print("B5 THREE-EDGE SUPPORT PROVENANCE inherited 220/220, not independently replayed here")
+    print("B5 THREE-EDGE SUPPORT PROVENANCE independent C++ B5 BFS -> pinned 13 words -> Python 48-sticker 220/220 replay")
     print("B6 POSITIVE FAMILY PROVENANCE inherited 156 positive 16-tag layouts")
     print("B6 UPPER GEOMETRIC COVER witnesses 6 edge orbits + 4 corner-edge orbits")
     return (19,12)
