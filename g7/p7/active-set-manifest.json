@@ -929,6 +929,7 @@
     "scripts/cuberev-observation/certify_active_p48_b4_five_frame_upper.py",
     "scripts/cuberev-observation/channel_model_transfer.py",
     "scripts/cuberev-observation/check_25_irredundancy.py",
+    "scripts/cuberev-observation/construct_color_p48_24_frame_scanner.py",
     "scripts/cuberev-observation/dictionary_coverage.py",
     "scripts/cuberev-observation/discover_b5_adjacent_p48_mitm.cpp",
     "scripts/cuberev-observation/dual_priced_columns.py",
@@ -994,6 +995,7 @@
     "scripts/cuberev-observation/test_b6_stabilizer_group_structure.py",
     "scripts/cuberev-observation/test_b6_word_order.py",
     "scripts/cuberev-observation/test_channel_model_transfer.py",
+    "scripts/cuberev-observation/test_color_p48_24_frame_scanner.py",
     "scripts/cuberev-observation/test_dual_priced_columns.py",
     "scripts/cuberev-observation/test_erasure_observation_policy.py",
     "scripts/cuberev-observation/test_fullcube_policy_family_benchmark.py",
@@ -4195,5 +4197,18 @@
     "caveats": "local finite geometric explanation not new general theorem; 13 is information lower bound only; Hamming one-error bound fixed nonadaptive policies only",
     "ci": "read-only success required before independent proof status",
     "author": "WhoSia only"
+  },
+  "active_set_reconciliation_20261105_color_constructive24": {
+    "date": "2026-11-05",
+    "previous_allowed": 1150,
+    "new_allowed": 1152,
+    "added_paths": [
+      "scripts/cuberev-observation/construct_color_p48_24_frame_scanner.py",
+      "scripts/cuberev-observation/test_color_p48_24_frame_scanner.py"
+    ],
+    "claim": "24 predetermined frame upper bound for two stationary one-facelet color probes, physical P48 joint edge/corner sticker orbit 576, full group reconstructability by 48 facelet colors; unrestricted group information lower bound 13",
+    "caveat": "actual color category idealized, no measured hardware noise, 24 not globally shortest; verify remote CI and P7 before final claim",
+    "author": "WhoSia",
+    "ci": "read-only"
   }
 }
