@@ -7,6 +7,8 @@ on:
       - 'scripts/cuberev-observation/audit_b6_exchange_line_graph.py'
       - 'scripts/cuberev-observation/audit_color_probe_information_bounds.py'
       - 'scripts/cuberev-observation/test_b6_exchange_and_color_probe.py'
+      - 'scripts/cuberev-observation/construct_color_p48_24_frame_scanner.py'
+      - 'scripts/cuberev-observation/test_color_p48_24_frame_scanner.py'
       - '.github/workflows/cuberev-028-exchange-color-audit.yml'
   workflow_dispatch:
 
@@ -25,11 +27,15 @@ jobs:
         run: |
           set -euo pipefail
           python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_exchange_and_color_probe.py' -v
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_color_p48_24_frame_scanner.py' -v
+          python scripts/cuberev-observation/construct_color_p48_24_frame_scanner.py | tee /tmp/cube-color-24-frame.log
           python scripts/cuberev-observation/audit_b6_exchange_line_graph.py | tee /tmp/b6-exchange-geometry.log
           python scripts/cuberev-observation/audit_color_probe_information_bounds.py | tee /tmp/cube-color-information.log
           grep -q '^B6_EXCHANGE_CUBE_LINE_GRAPH_QUOTIENT_PASS' /tmp/b6-exchange-geometry.log
           grep -q '^COLOR_PROBE_FULL_GROUP_13_FRAME_LOWER_BOUND_PASS' /tmp/cube-color-information.log
-          sha256sum /tmp/b6-exchange-geometry.log /tmp/cube-color-information.log
+          grep -q '^COLOR_P48_24_FRAME_FULL_STICKER_SCANNER_PASS' /tmp/cube-color-24-frame.log
+          grep -q '^COLOR_P48_B2_ALL_262_STATES_REPLAY_PASS' /tmp/cube-color-24-frame.log
+          sha256sum /tmp/b6-exchange-geometry.log /tmp/cube-color-information.log /tmp/cube-color-24-frame.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -37,4 +43,5 @@ jobs:
           path: |
             /tmp/b6-exchange-geometry.log
             /tmp/cube-color-information.log
+            /tmp/cube-color-24-frame.log
           retention-days: 30
