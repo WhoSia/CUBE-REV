@@ -68,16 +68,18 @@ def reconstruct_from_colors(state,plan=None):
         raise ValueError("not an oriented 48-sticker bijection")
     initial_spatial_colors={}
     present_frame=bytes(range(48))
-    total_moves=0
+    previous_commands=()
     for original_edge_slot,original_corner_slot,commands in plan:
         frame=word(" ".join(commands))
         relative=compose(frame,inverse(present_frame))
         present_frame=compose(relative,present_frame)
         assert present_frame==frame
-        # Exact legal relative action word: inverse of previous absolute
-        # frame word followed by next absolute frame word. The group product
-        # above verifies the 48-sticker action, avoiding an imaginary reset.
-        total_moves+=len(commands)*2  # conservative accounting placeholder removed below
+        # Actual relative word = inverse(previous absolute word) then next.
+        # No imaginary reset between frames; verify on all 48 stickers.
+        actual_relative=tuple(inverted_token(t) for t in
+                              reversed(previous_commands))+commands
+        assert word(" ".join(actual_relative))==relative
+        previous_commands=commands
         edge_color,corner_color=two_one_facelet_colors(state,frame)
         recovered_edge=inverse(frame)[EDGE_FACELET]
         recovered_corner=inverse(frame)[CORNER_FACELET]
@@ -112,6 +114,18 @@ def reconstruct_from_colors(state,plan=None):
         raise AssertionError("the color scan failed to reconstruct full physical P48")
     return tuple(recovered)
 
+def plan_htm_cost(plan):
+    """Executable (not globally shortest) no-reset HTM length."""
+    previous=()
+    total=0
+    for _,_,next_commands in plan:
+        relative=tuple(inverted_token(t) for t in reversed(previous))+next_commands
+        total+=len(relative)
+        assert word(" ".join(relative))==compose(
+            word(" ".join(next_commands)),inverse(word(" ".join(previous))))
+        previous=next_commands
+    return total
+
 def audit():
     orbit=joint_sticker_orbit()
     plan=scan_plan()
@@ -131,10 +145,12 @@ def audit():
     print("COLOR_P48_24_FRAME_FULL_STICKER_SCANNER_PASS all 48 facelets read")
     print("COLOR_P48_B2_ALL_262_STATES_REPLAY_PASS")
     print("COLOR_P48_GEOMETRY_MAX_ABSOLUTE_FRAME_WORD",max(len(w) for e,c,w in plan))
+    print("COLOR_P48_NO_RESET_ACTION_UPPER_HTM",plan_htm_cost(plan))
     print("COLOR_FULL_GROUP_BOUNDS 13 <= optimal_clean_frames <= 24")
     print("BOUNDARY ideal quantized color labels, no sensor noise or action-cost optimality")
     return {"joint_pairs":len(orbit),"frames":len(plan),
-            "max_absolute_frame_word":max(len(w) for e,c,w in plan)}
+            "max_absolute_frame_word":max(len(w) for e,c,w in plan),
+            "constructive_no_reset_htm":plan_htm_cost(plan)}
 
 if __name__=="__main__":
     audit()
