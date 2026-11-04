@@ -138,6 +138,7 @@
     ".github/workflows/cuberev-027-independent-full-root.yml",
     ".github/workflows/cuberev-027-p11-conservative-audit.yml",
     ".github/workflows/cuberev-027-p9-independent-optimal-17-challenge.yml",
+    ".github/workflows/cuberev-028-independent-p48-mitm.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
@@ -903,6 +904,7 @@
     "scripts/cuberev-observation/audit_b6_full48_target_orbits.py",
     "scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/audit_b6_one_erasure_robustness.py",
+    "scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py",
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
@@ -974,6 +976,7 @@
     "scripts/cuberev-observation/verify_b6_13_edge_orbit.py",
     "scripts/cuberev-observation/verify_b6_16_bases.cpp",
     "scripts/cuberev-observation/verify_b6_41_mitm.cpp",
+    "scripts/cuberev-observation/verify_b6_41_mitm_p48.cpp",
     "scripts/cuberev-observation/verify_b6_basis_exchange_failure.py",
     "scripts/cuberev-observation/verify_b6_candidate_orbits.py",
     "scripts/cuberev-observation/verify_b6_corner_obstruction.py",
@@ -3971,5 +3974,18 @@
       "673360299c64cd3b518237a5ef3a311109b3baf9"
     ],
     "ci_gate": "read-only actual current-head P7 workflow needed"
+  },
+  "active_set_reconciliation_20261104_p48_exact_mitm": {
+    "date": "2026-11-04",
+    "previous_paths": 1110,
+    "new_paths": 1113,
+    "added": [
+      "scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py",
+      "scripts/cuberev-observation/verify_b6_41_mitm_p48.cpp",
+      ".github/workflows/cuberev-028-independent-p48-mitm.yml"
+    ],
+    "scope": "three additional P48 full-distance proof, robust-core incidence and read-only CI paths",
+    "local_verdict": "41/41 completed in five 48-sticker-derived local MITM batches; remote CI PASS requires inspection",
+    "writeback": "WhoSia author and committer only; workflow contents read; no bot commits"
   }
 }
