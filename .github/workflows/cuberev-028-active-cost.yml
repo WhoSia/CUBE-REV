@@ -1,0 +1,38 @@
+name: CUBE-REV P48 fixed-frame active sensing exact HTM route costs
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'scripts/cuberev-observation/audit_active_p48_frame_route_cost.py'
+      - 'scripts/cuberev-observation/test_active_p48_frame_route_cost.py'
+      - '.github/workflows/cuberev-028-active-cost.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fixed-frame-htm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Certify exact 3+3 HTM route distances and minimum fixed scan order
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_active_p48_frame_route_cost.py' -v
+          python scripts/cuberev-observation/audit_active_p48_frame_route_cost.py | tee /tmp/cuberev-active-htm-route.log
+          grep -q '^ACTIVE_ROUTE G_FULL_11 ' /tmp/cuberev-active-htm-route.log
+          grep -q '^ACTIVE_ROUTE B6_10 ' /tmp/cuberev-active-htm-route.log
+          grep -q '^ACTIVE_FIXED_FRAME_ROUTE_EXACT_PASS' /tmp/cuberev-active-htm-route.log
+          sha256sum /tmp/cuberev-active-htm-route.log
+      - name: Archive checked route and its explicit physical word
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-028-active-htm-route-${{ github.sha }}
+          path: /tmp/cuberev-active-htm-route.log
+          retention-days: 30
