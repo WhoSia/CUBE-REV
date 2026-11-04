@@ -138,6 +138,7 @@
     ".github/workflows/cuberev-027-independent-full-root.yml",
     ".github/workflows/cuberev-027-p11-conservative-audit.yml",
     ".github/workflows/cuberev-027-p9-independent-optimal-17-challenge.yml",
+    ".github/workflows/cuberev-028-active-observation.yml",
     ".github/workflows/cuberev-028-independent-p48-mitm.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
@@ -904,6 +905,7 @@
     "scripts/cuberev-observation/active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/active_p48_fixed_site_scan.py",
     "scripts/cuberev-observation/adaptive_erasure_minimax.py",
+    "scripts/cuberev-observation/audit_active_p48_small_ball_decision_trees.py",
     "scripts/cuberev-observation/audit_b6_66_partition.py",
     "scripts/cuberev-observation/audit_b6_full48_target_orbits.py",
     "scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py",
@@ -953,6 +955,7 @@
     "scripts/cuberev-observation/solve_sampled_milp.py",
     "scripts/cuberev-observation/test_active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/test_active_p48_fixed_site_scan.py",
+    "scripts/cuberev-observation/test_active_p48_small_ball_decision_trees.py",
     "scripts/cuberev-observation/test_adaptive_erasure_minimax.py",
     "scripts/cuberev-observation/test_b5_three_edge_physical_manifest.py",
     "scripts/cuberev-observation/test_b6_42_incidence.py",
@@ -4067,5 +4070,18 @@
     "scientific_result": "One stationary ideal oriented-cubie corner-site and edge-site probe gives B6 nonadaptive horizon exactly ten via cube inverse and P48 156 valid original-tag bases; adaptive B6 horizon unresolved",
     "external_prior": "two spatial physical RGB scanners reported in MIT 6.111 2017, so active two-sensor concept prior art",
     "remote_proof": "await current head success"
+  },
+  "active_set_reconciliation_20261104_active_b1_b2": {
+    "date": "2026-11-04",
+    "previous_allowed": 1126,
+    "now_allowed": 1129,
+    "added_paths": [
+      "scripts/cuberev-observation/audit_active_p48_small_ball_decision_trees.py",
+      "scripts/cuberev-observation/test_active_p48_small_ball_decision_trees.py",
+      ".github/workflows/cuberev-028-active-observation.yml"
+    ],
+    "scope": "exact small B1/B2 joint-site adaptive decision trees and nonadaptive finite pair selection; B6 adaptive complexity remains open",
+    "ci": "read-only, separate from P48 heavy B6 proof",
+    "author": "WhoSia"
   }
 }
