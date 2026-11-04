@@ -5,6 +5,7 @@ from itertools import combinations
 from audit_b6_one_erasure_robustness import (
     TAGS,CORNERS_TAGS,EDGES_TAGS,positive_missing_four,
     has_certified_16_core,all_erasures_have_16_core,audit,
+    verify_orbit_witnesses,
 )
 
 class OneErasureCoreCertificateTests(unittest.TestCase):
@@ -28,6 +29,11 @@ class OneErasureCoreCertificateTests(unittest.TestCase):
         for absent in combinations(TAGS,4):
             is_positive=frozenset(absent) in self.family
             self.assertEqual(is_positive,has_certified_16_core(TAGS-set(absent),self.family))
+
+    def test_rotation_orbit_coverage_witnesses(self):
+        edge_orbits,corner_orbits=verify_orbit_witnesses()
+        self.assertEqual(sorted(map(len,edge_orbits)),[1,2,2,2,2,2])
+        self.assertEqual(sorted(map(len,corner_orbits)),[3,3,3,3])
 
     def test_counts_and_inference_boundary(self):
         self.assertEqual(audit(),{16:0,17:0,18:0,19:12,20:1})
