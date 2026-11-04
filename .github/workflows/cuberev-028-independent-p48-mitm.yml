@@ -17,6 +17,8 @@ on:
       - 'scripts/cuberev-observation/verify_b5_adjacent_p48_discovery_receipt.py'
       - 'scripts/cuberev-observation/active_p48_fixed_site_scan.py'
       - 'scripts/cuberev-observation/test_active_p48_fixed_site_scan.py'
+      - 'scripts/cuberev-observation/active_p48_b6_ten_frame_bridge.py'
+      - 'scripts/cuberev-observation/test_active_p48_b6_ten_frame_bridge.py'
       - '.github/workflows/cuberev-028-independent-p48-mitm.yml'
   workflow_dispatch:
 
@@ -40,6 +42,9 @@ jobs:
           python scripts/cuberev-observation/b6_independent_48sticker_goals.py --emit /tmp/cuberev-p48
           python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_complete_4845_p48.py' -v
           python -m unittest discover -s scripts/cuberev-observation -p 'test_active_p48_fixed_site_scan.py' -v
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_active_p48_b6_ten_frame_bridge.py' -v
+          python scripts/cuberev-observation/active_p48_b6_ten_frame_bridge.py | tee /tmp/cuberev-p48-b6-ten-frame.log
+          grep -q '^ACTIVE_B6_P48_NONADAPTIVE_HORIZON_EXACT_10' /tmp/cuberev-p48-b6-ten-frame.log
           python scripts/cuberev-observation/active_p48_fixed_site_scan.py | tee /tmp/cuberev-p48-active-scan.log
           grep -q '^ACTIVE_P48_12_FRAME_TWO_PROBE_RECONSTRUCTION_PASS' /tmp/cuberev-p48-active-scan.log
           python scripts/cuberev-observation/verify_b6_complete_4845_p48.py | tee /tmp/cuberev-p48/all4845_classification.log
