@@ -2,10 +2,10 @@
 """Regress two-probe active observability and no-go for one cubie type."""
 import unittest
 from b6_independent_48sticker_goals import (
-    EDGE_POS, CORNERS, MOVES, factor_value, word, compose
+    EDGE_POS, CORNERS, MOVES, EDGE_POSITION, target, factor_value, word, compose
 )
 from active_p48_fixed_site_scan import (
-    joint_position_words, twelve_frame_scan, reconstruct,
+    joint_position_words, twelve_frame_scan, eleven_frame_scan, reconstruct, reconstruct_with_edge_parity,
     REF_CORNER, REF_EDGE, observe
 )
 
@@ -55,6 +55,39 @@ class ActiveP48ScannerTests(unittest.TestCase):
             changed=compose(MOVES[token],altered)
             self.assertEqual(observe(original,REF_EDGE),
                              observe(changed,REF_EDGE))
+
+    def test_eleven_frames_and_edge_flip_legality_recover_full_group_examples(self):
+        plan=eleven_frame_scan()
+        self.assertEqual(len(plan),11)
+        self.assertEqual(len({e for e,c,w in plan}),11)
+        self.assertEqual({c for e,c,w in plan},set(CORNERS))
+        examples=["","U","F","R U2 F' L B2","U L2 D' F R B",
+                  EDGE_ONLY_DIFFERENCE,CORNER_ONLY_DIFFERENCE]
+        for w in examples:
+            with self.subTest(word=w):
+                state=word(w)
+                self.assertEqual(reconstruct_with_edge_parity(state,plan),tuple(state))
+
+    def test_every_ten_frame_schedule_on_solved_has_a_pure_double_edge_flip_adversary(self):
+        # One edge-position probe per frame can inspect at most ten initial
+        # edge locations. Two unseen locations support a legal double flip.
+        plan=twelve_frame_scan()[:10]
+        sampled={e for e,c,w in plan}
+        missing=set(EDGE_POS)-sampled
+        self.assertEqual(len(missing),2)
+        bypos={v:k for k,v in EDGE_POSITION.items()}
+        omitted=frozenset(bypos[p] for p in missing)
+        flipped=target("DL",omitted,0,0,1)
+        solved=bytes(range(48))
+        self.assertNotEqual(flipped,solved)
+        for _,_,tokens in plan:
+            frame=word(" ".join(tokens))
+            self.assertEqual(
+                observe(compose(frame,flipped),REF_EDGE),
+                observe(compose(frame,solved),REF_EDGE))
+            self.assertEqual(
+                observe(compose(frame,flipped),REF_CORNER),
+                observe(compose(frame,solved),REF_CORNER))
 
     def test_bad_state_is_rejected(self):
         with self.assertRaisesRegex(ValueError,"complete physical"):
