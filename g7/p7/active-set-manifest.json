@@ -455,6 +455,7 @@
     "docs/0.27/P8_FIRST_COMPLETE_SOURCE_DEPTH11_17HTM_COURT_14_1.md",
     "docs/0.27/P9_TWO_PHYSICAL_COURTS_AND_INDEPENDENT_OPTIMAL_17_CHALLENGE.md",
     "docs/0.27/PROGRAM_CHARTER.md",
+    "docs/0.28/20261105_B6_EXCHANGE_LINE_GRAPH_AND_COLOR_FACELET_OBSERVABILITY.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -955,6 +956,7 @@
     "scripts/cuberev-observation/k4_v4_burnside_feasibility.py",
     "scripts/cuberev-observation/l7_targeted_witnesses.py",
     "scripts/cuberev-observation/make_b6_factor_table.py",
+    "scripts/cuberev-observation/optimize_color_p48_24_frame_route.py",
     "scripts/cuberev-observation/optimize_mutation_milp.py",
     "scripts/cuberev-observation/orbit_column_generation.py",
     "scripts/cuberev-observation/physical_edges.py",
@@ -1003,6 +1005,7 @@
     "scripts/cuberev-observation/test_k4_v4_burnside_feasibility.py",
     "scripts/cuberev-observation/test_l7_witnesses.py",
     "scripts/cuberev-observation/test_observation.py",
+    "scripts/cuberev-observation/test_optimize_color_p48_24_frame_route.py",
     "scripts/cuberev-observation/test_orbit_column_generation.py",
     "scripts/cuberev-observation/test_reversible_pair_audit.py",
     "scripts/cuberev-observation/test_sensor_symmetry.py",
@@ -4210,5 +4213,18 @@
     "caveat": "actual color category idealized, no measured hardware noise, 24 not globally shortest; verify remote CI and P7 before final claim",
     "author": "WhoSia",
     "ci": "read-only"
+  },
+  "active_set_reconciliation_20261105_color_route_structural_court": {
+    "date": "2026-11-05",
+    "previous_allowed": 1152,
+    "new_allowed": 1155,
+    "added_paths": [
+      "docs/0.28/20261105_B6_EXCHANGE_LINE_GRAPH_AND_COLOR_FACELET_OBSERVABILITY.md",
+      "scripts/cuberev-observation/optimize_color_p48_24_frame_route.py",
+      "scripts/cuberev-observation/test_optimize_color_p48_24_frame_route.py"
+    ],
+    "science": "Physical B6 exchange quotient line graph and full-group one-facelet color two-probe 13..24 bound; optimize 24-frame no-reset HTM travel cost by deterministic 2opt and exact P48 replay",
+    "novelty": "finite geometric mechanism and color-channel proof; no new generic theory or hardware claim",
+    "ci": "read-only run and source author WhoSia"
   }
 }
