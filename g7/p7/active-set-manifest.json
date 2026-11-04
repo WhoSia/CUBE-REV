@@ -456,6 +456,7 @@
     "docs/0.28/B6_66_PARTITION_EVIDENCE_AUDIT.md",
     "docs/0.28/B6_EXACT_16_TWO_CERTIFICATE_CLOSURE.md",
     "docs/0.28/B6_FULL_SWAP_GRAPH_24_BY_3_THEOREM.md",
+    "docs/0.28/B6_INDEPENDENT_48STICKER_PROOF_GATE_20261104.md",
     "docs/0.28/B6_MINIMUM_SENSOR_EXCHANGE_COUNTEREXAMPLE.md",
     "docs/0.28/B6_NF_COVER_OBSTRUCTION.md",
     "docs/0.28/B6_OPTIMAL_SENSOR_EXCHANGE_GRAPH_COMPONENTS.md",
@@ -3942,5 +3943,16 @@
     "new_count": 1107,
     "blob_tree_sha": "8ef4cf504d8ce9fdb814a970ed3680c460997b68",
     "method": "exact nontruncated Git blob tree; no wildcard, deletion or bot-authored commits"
+  },
+  "active_set_reconciliation_20261104_b6_independent_protocol": {
+    "date": "2026-11-04",
+    "reason": "Admit one new design-only B6 independent physical verification protocol written by WhoSia; does not constitute a new executed physical certificate.",
+    "prior_allowed": 1107,
+    "new_allowed": 1108,
+    "added_paths": [
+      "docs/0.28/B6_INDEPENDENT_48STICKER_PROOF_GATE_20261104.md"
+    ],
+    "source_commit": "1da29d7f21bc483bbbb0f282fa3ec8d60ee5fb75",
+    "gate": "P7 remote PASS remains a separate observed claim"
   }
 }
