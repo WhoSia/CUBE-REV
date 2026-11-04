@@ -1,6 +1,6 @@
 # WORKING PAPER — Radius-Restricted Cubie Observation in the 3×3 Rubik Group
 
-**Draft:** 0.28-D0.4 — P48 B6 Positive-Distance Closure and Independent Negative-420 Physical Replay, 2026-11-04. **NOT SUBMISSION-READY.** This is a finite case-study manuscript, not a claim of new general group theory. All 41 B6-positive stabilizer distance classes have now passed both local and remote exact MITM from a fresh 48-moving-sticker physical generator. The complete enumeration of *all* minimum B6 layouts and the B5 lower bound still inherit separate historical negative-obstruction certificates; novelty review is open.
+**Draft:** 0.28-D0.5 — Full P48 B6 Physical Classification, Independent No-15 Lower Bound and Irredundant 872-Support Kernel, 2026-11-04. **NOT SUBMISSION-READY.** This is a finite case-study manuscript, not a claim of new general group theory. All 41 B6-positive stabilizer distance classes have now passed both local and remote exact MITM from a fresh 48-moving-sticker physical generator. The complete enumeration of *all* minimum B6 layouts and the B5 lower bound still inherit separate historical negative-obstruction certificates; novelty review is open.
 
 ## Provisional title
 
@@ -30,15 +30,42 @@ For a finite group with a symmetric generating alphabet and a consistent left ac
 
 This proposition is an elementary word-metric/group-action identity, not itself a novel theorem.
 
-## 2. Existing physical result: b6=16
+## 2. New 0.28-D0.5 complete P48 physical classification and lower-bound proof
 
-The archived exact B5 negative witness replay proves b5≥16, and monotonicity B5⊆B6 implies b6≥16. For the B6 upper bound, prior original-cube geometric construction yields 156 candidate 16-tag sets, grouped in eight proper cube-rotation orbits. Every such layout misses precisely two adjacent corners (endpoints of a physical cube edge) and two edges. For each layout H_S has 12 legal configurations, 11 nonidentity. Archived physical construction and signed spatial/inverse covariance reduce the eight representative layouts’ 88 target entries to 41 distance classes. A separately executed exact six-ball meet-in-the-middle decision algorithm, operating on all oriented original cubies and derived from the archived 54-facelet transition oracle, found zero intersections between each of 41 target six-balls and the solved six-ball. This certifies each target has HTM length at least 13 and hence the 156 candidate layouts all identify B6. The separate original negative-witness coverage is needed to conclude these are all the positive 16-tag layouts. Refer to the original proof and source-binary identity ledger [C1,C2].
+**2026-11-04 proof upgrade.** The earlier historical B5 no-15 certificate and the original 54-facelet B6 156-design census remain in the provenance record, but are **not necessary premises for the new proof**. All B6 size-16 positive and negative cases now have an executable P48 physical certificate. The 19 historical B6 six-turn *word strings* are inherited candidate witnesses; all their physical actions and resulting supports have been independently recomputed in a new 48-moving-sticker source. The nine crucial B5 four-tag witnesses were discovered afresh in an independent P48 radius-five two-sided MITM. The B6 41-goal positive verification independently computes its own P48 physical goal states and factor transitions.
 
-Do not describe the two MITM implementations as entirely independent *physical models*: they share original transition semantics. Do not infer a newly independently checkable globally shortest cube solution.
+**Theorem 2 (exact B6 minimum and complete minimum-layout family).** For the legal fixed-centre 3×3 cube under symmetric 18-HTM actions, original cubies observed with full persistent position and orientation satisfy
 
-### Newly authenticated B6-negative physical witnesses (scope-limited)
+    b_6=16,     number of minimum 16-tag bases = 156.
 
-A new independent 48-moving-sticker source now replays all **19 inherited two-sided, at-most-six-HTM B6-negative word-pair seeds** in the physical P48 engine. For every pair it checks actual original-cubie position/orientation differences and physically conjugates the input words by all 48 spatial cube symmetries, collecting disjoint proper-24 orbits. The result is **420 distinct four-tag supports**, each comprising two adjacent corner tags and two edge tags; for each of 12 omitted-corner core edges, precisely **35** absent-edge pairs are physically refuted. None is among the 13 P48-positive geometric omissions for that core. See [independent negative witness replay and limits](../../docs/0.28/P48_B6_19_NEGATIVE_ORBIT_REPLAY_AND_COMPLETENESS_GATE_20261104.md). This replaces the previous *physical interpretation* dependency for those 420 obstructions; the words themselves are inherited, and the earlier B5-negative **360** support masks and other 16-sensor exclusion shapes have not yet been physically regenerated here. This strengthens the independent negative branch but does **not** independently close the full 156-optimal-layout completeness claim. Current-head remote CI of the new negative-replay tests must be observed separately; old P48 41-class run 41763106125 is not its result.
+*Proof of the independently reconstructed lower bound.* Let M contain unobserved original cubies. Thirteen separately replayed two-sided B5 word pairs and their proper spatial rotation orbits physically realize every one of the C(12,3)=220 three-edge difference supports. Hence |M∩Edges|≤2. Two 12-HTM physical words, split into actual pairs of six-move B6 endpoint states, realize all 16 pairs of nonadjacent original corners. Hence every pair of unobserved corners must be adjacent. As the cube's vertex graph is triangle-free, |M∩Corners|≤2. Therefore |M|≤4, proving at least sixteen sensors are necessary. An independent 15-sensor audit checks all C(20,5)=15,504 possible five-omission patterns against precisely these 236 actual physical collision supports. This avoids the previous inherited B5 all-15-layout obstruction certificate.
+
+*Physical exclusion and completeness of size sixteen.* A set M of four excluded tags must pass all actual physical short-support checks. Every failing M falls into the following **disjoint first-applicable classes**:
+
+| Obstruction | Number of four-tag omissions |
+| --- | ---: |
+| Three or four missing edges (B5 220 physical triple-edge support family) | C(12,4)+8 C(12,3)=2,255 |
+| Nonadjacent missing corner pair, with fewer than three missing edges (B6 16 physical two-corner supports) | C(8,4)+12 C(8,3)+16 C(12,2)=1,798 |
+| Adjacent pair of missing corners plus a specific B5 four-tag physical support | 12×18=216 |
+| Adjacent pair of missing corners plus a new B6 four-tag physical support | 12×35=420 |
+| Survivors | 12×13=156 |
+| **Total** | **4,845** |
+
+The 216 B5 failures are not inherited from the original 54-facelet archive. An independent P48 B5 MITM reconstructs all 621,649 B5 states via 624,124 normal-form paths, generates 121 stabilizer targets from eleven broad geometric omitted-edge candidate orbits and finds nine actual <=5/<=5 HTM word-pair witnesses. A separate Python physical replay checks both words and the 24 proper spatial rotations of each pair; the resulting nine disjoint 24-element support orbits cover precisely 216 missing-four-tag designs, eighteen per adjacent corner core. Two other candidate orbits have no short collision in the exact five-plus-five search. The B6-specific 420 failures are obtained by independent P48 replay of 19 inherited <=6/<=6 historical word pairs under all signed spatial symmetries; there are thirty-five per adjacent corner core, disjoint from the 216.
+
+The 156 survivors are *exactly* the 12 choices of an adjacent missing-corner pair, each with thirteen allowed missing-edge pairs given by the four-case geometric rule. All have been proven **positive** by the separately executed independent physical P48 41-class six-ball MITM: every nonidentity stabilizer representative has distance at least thirteen, so its stabilizer meets B12 only at the identity. Hence these 156 survive, all other 4,689 are physically refuted, and they exhaust all size-sixteen bases. QED.
+
+**Proposition 3 (irredundant short-support exclusion kernel).** The physically replayed obstruction family contains
+
+    220 edge triples + 16 nonadjacent corner pairs
+       + 216 B5 adjacent four-tag + 420 B6 adjacent four-tag
+       = 872 different physical supports.
+
+This particular 872-member certificate is inclusion-wise irredundant: for each edge-triple support E, the four-omission set E∪{any corner} contains no other support from this family; for each nonadjacent-corner pair C, choose C∪{any two edges}; for each adjacent four-tag support D, choose M=D. Each of the 872 has a private rejected four-omission layout. This does **not** prove that 872 is smallest among all alternative physical collision-support certificate families, nor a new general set-cover theorem. It does show that a short-support hypergraph can be an auditable *basis for every failure of observation* in an otherwise enormous finite physical state system.
+
+**Verified computational chain.** [P48 full 4,845-layout physical audit](../../scripts/cuberev-observation/verify_b6_complete_4845_p48.py), [fresh P48 B5-target generator](../../scripts/cuberev-observation/emit_b5_adjacent_p48_discovery_goals.py), [exact P48 B5 MITM rediscovery](../../scripts/cuberev-observation/discover_b5_adjacent_p48_mitm.cpp), [word-by-word receipt verifier](../../scripts/cuberev-observation/verify_b5_adjacent_p48_discovery_receipt.py), [P48 B6 negative 19 word-pair replay](../../scripts/cuberev-observation/verify_b6_negative_19_pairs_p48.py), and [P48 41-goal positive MITM](../../scripts/cuberev-observation/verify_b6_41_mitm_p48.cpp). The first full pipeline completed with actual remote read-only [CI PASS 41767450421](https://github.com/WhoSia/CUBE-REV/actions/runs/41767450421), including fresh nine-pair discovery, all 4,845 exclusions and 41/41 goal checks. The added 15-sensor and irredundancy checks are a later improvement and require their own workflow result before remote PASS can be claimed for that specific commit. Archived 54-facelet proof and earlier erroneous/orphaned assumptions remain preserved, not overwritten.
+
+**Ambition retained.** This finite theorem does not close the broader questions concerning the earliest radius where short supports emerge, exact action cost of hidden change, representation-dependent identifiability, active sensor policies, limited memory, human reconstruction, or complexity as the family of reversible systems varies. These are explicit next *theorem problems*, not excluded from CUBE-REV merely because this manuscript isolates the precise finite B6 case study.
 
 ## 3. Abstract legality and exact support counts
 
