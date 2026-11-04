@@ -1,12 +1,25 @@
 #!/usr/bin/env python3
 """Independent physical B5 source-manifest verification regression tests."""
 import unittest
+import json
+from pathlib import Path
 from verify_b5_three_edge_physical_manifest import (
     B3_DEMONSTRATION, orbit_from_replayed_words, physical_support,
     verify_manifest, rotate_word, proper24, full_three_edge_rotation_orbits,
 )
 
 class PhysicalB5TripleWitnessManifestTests(unittest.TestCase):
+    def test_new_thirteen_independent_physical_word_pairs_certify_all_220(self):
+        root=Path(__file__).resolve().parents[2]
+        manifest=root / "data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json"
+        payload=json.loads(manifest.read_text(encoding="utf-8"))
+        self.assertEqual(len(payload["witnesses"]),13)
+        result=verify_manifest(payload,require_complete=True)
+        self.assertEqual(result["distinct_triple_edge_supports_physically_replayed"],220)
+        self.assertEqual(result["physical_orbits_covered"],13)
+        self.assertEqual(result["missing_triple_edge_supports"],0)
+        self.assertTrue(result["full_220_certificate"])
+
     def test_all_thirteen_rotation_orbits_partition_exact_220(self):
         orbits=full_three_edge_rotation_orbits()
         self.assertEqual(len(orbits),13)
