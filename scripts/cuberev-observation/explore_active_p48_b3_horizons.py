@@ -57,7 +57,7 @@ def nonadaptive_six(factors):
             else:return (ee,cc),scanned
     return None,scanned
 
-def adaptive_three_optimized(rows,max_nodes=25000):
+def adaptive_policy_optimized(rows,depth,max_nodes=25000):
     """Try exact three-frame B3 belief recursion; NEVER treat timeout as false.
 
     More discriminating query partitions first; within each candidate, test
@@ -103,12 +103,12 @@ def adaptive_three_optimized(rows,max_nodes=25000):
         cache[key]=(False,None)
         return cache[key]
     try:
-        verdict,cert=test(tuple(range(len(rows[0]))),3)
+        verdict,cert=test(tuple(range(len(rows[0]))),depth)
         return ("FOUND" if verdict else "EXCLUDED",calls[0],len(cache),cert)
     except Budget:
         return ("UNKNOWN_BOUND_EXHAUSTED",calls[0],len(cache),None)
 
-def audit(max_nodes=1000,optimized_budget=25000):
+def audit(max_nodes=1000,optimized_budget=25000,four_budget=15000):
     states,layers=ball(3)
     assert len(states)==3502 and layers==[1,18,243,3240]
     factors,queries,rows=observations(states)
@@ -133,13 +133,18 @@ def audit(max_nodes=1000,optimized_budget=25000):
                   "belief_nodes",nodes)
         except BudgetExceeded as exc:
             print("ACTIVE_B3_ADAPTIVE_3 UNKNOWN_BOUND_EXHAUSTED",exc)
-    status,nodes,cached,certificate=adaptive_three_optimized(rows,optimized_budget)
+    status,nodes,cached,certificate=adaptive_policy_optimized(rows,3,optimized_budget)
     print("ACTIVE_B3_ADAPTIVE_3_OPTIMIZED",status,"belief_nodes",nodes,"memoized",cached)
+    if status=="EXCLUDED":
+        four_status,four_nodes,four_cached,four_certificate=adaptive_policy_optimized(rows,4,four_budget)
+        print("ACTIVE_B3_ADAPTIVE_4_OPTIMIZED",four_status,
+              "belief_nodes",four_nodes,"memoized",four_cached)
     print("BOUNDARY B3 exhaustive statements only for searches that completed; B6 adaptive open")
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser()
     parser.add_argument("--max-nodes",type=int,default=1000)
     parser.add_argument("--optimized-budget",type=int,default=25000)
+    parser.add_argument("--four-budget",type=int,default=15000)
     opt=parser.parse_args()
-    audit(opt.max_nodes,opt.optimized_budget)
+    audit(opt.max_nodes,opt.optimized_budget,opt.four_budget)
