@@ -6,6 +6,8 @@ on:
     paths:
       - 'scripts/cuberev-observation/audit_active_p48_small_ball_decision_trees.py'
       - 'scripts/cuberev-observation/test_active_p48_small_ball_decision_trees.py'
+      - 'scripts/cuberev-observation/certify_active_p48_b2_adaptive_gap.py'
+      - 'scripts/cuberev-observation/test_active_p48_b2_adaptive_certificate.py'
       - '.github/workflows/cuberev-028-active-observation.yml'
   workflow_dispatch:
 
@@ -25,13 +27,21 @@ jobs:
           set -euo pipefail
           python -m unittest discover -s scripts/cuberev-observation -p 'test_active_p48_small_ball_decision_trees.py' -v
           python scripts/cuberev-observation/audit_active_p48_small_ball_decision_trees.py | tee /tmp/active-small-ball-receipt.log
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_active_p48_b2_adaptive_certificate.py' -v
+          python scripts/cuberev-observation/certify_active_p48_b2_adaptive_gap.py --emit /tmp/cuberev-b2-adaptive-proof.json | tee /tmp/cuberev-b2-proof-verification.log
+          python scripts/cuberev-observation/certify_active_p48_b2_adaptive_gap.py --verify /tmp/cuberev-b2-adaptive-proof.json
+          grep -q '^ACTIVE_B2_ADAPTIVE_TWO_FRAME_DECISION_TREE_PASS' /tmp/cuberev-b2-proof-verification.log
+          grep -q '^ACTIVE_B2_NONADAPTIVE_TWO_FRAME_ALL_1848_COLLISIONS_PASS' /tmp/cuberev-b2-proof-verification.log
           grep -q '^ACTIVE_SMALL_B1_EXACT' /tmp/active-small-ball-receipt.log
           grep -q '^ACTIVE_SMALL_B2_EXACT' /tmp/active-small-ball-receipt.log
-          sha256sum /tmp/active-small-ball-receipt.log
+          sha256sum /tmp/active-small-ball-receipt.log /tmp/cuberev-b2-adaptive-proof.json /tmp/cuberev-b2-proof-verification.log
       - name: Preserve exploratory exact finite receipt
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cuberev-028-active-small-ball-${{ github.sha }}
-          path: /tmp/active-small-ball-receipt.log
+          path: |
+            /tmp/active-small-ball-receipt.log
+            /tmp/cuberev-b2-adaptive-proof.json
+            /tmp/cuberev-b2-proof-verification.log
           retention-days: 30
