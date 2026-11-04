@@ -74,6 +74,32 @@ def orbit_from_replayed_words(left,right):
         orbit.add(physical)
     return frozenset(orbit)
 
+def full_three_edge_rotation_orbits():
+    """Algebraically derive all 13 cube-rotation orbits of 220 edge triples.
+
+    These are targets only; constructing an orbit is NOT physical evidence
+    that some B5 pair realizes it.
+    """
+    position_to_tag={original_tag_position(tag):tag for tag in ORIGINAL}
+    universe={frozenset(p) for p in combinations(EDGE_TAGS,3)}
+    unseen=set(universe)
+    orbits=[]
+    while unseen:
+        representative=min(unseen,key=lambda x:tuple(sorted(x)))
+        orbit=frozenset(frozenset(
+            position_to_tag[rot(original_tag_position(t))] for t in representative
+        ) for rot in proper24())
+        if not orbit<=unseen:
+            raise AssertionError("Orbit intersects already partitioned region")
+        unseen-=orbit
+        orbits.append(orbit)
+    assert len(orbits)==13
+    sizes=sorted(map(len,orbits))
+    assert sizes==[4,4,8,12,12,12,24,24,24,24,24,24,24],sizes
+    assert set().union(*orbits)==universe
+    return tuple(sorted(orbits,key=lambda o:(len(o),tuple(sorted(min(
+        o,key=lambda x:tuple(sorted(x))))))))
+
 def verify_manifest(payload, require_complete=True):
     if not isinstance(payload,dict) or payload.get("schema_version")!=1:
         raise ValueError("Expected schema_version=1 JSON object")
@@ -88,7 +114,10 @@ def verify_manifest(payload, require_complete=True):
         orb=orbit_from_replayed_words(record["left"],record["right"])
         support_union.update(orb)
         orbit_sizes.append(len(orb))
-    universe={frozenset(x) for x in combinations(EDGE_TAGS,3)}
+    orbit_partition=full_three_edge_rotation_orbits()
+    universe=set().union(*orbit_partition)
+    physical_orbits_covered=sum(bool(orb & support_union)
+                                for orb in orbit_partition)
     if not support_union<=universe:
         raise AssertionError("Support semantics inconsistent")
     summary={
@@ -98,6 +127,8 @@ def verify_manifest(payload, require_complete=True):
         "distinct_triple_edge_supports_physically_replayed":len(support_union),
         "total_possible_triple_edge_supports":len(universe),
         "missing_triple_edge_supports":len(universe-support_union),
+        "physical_orbits_covered":physical_orbits_covered,
+        "total_geometric_orbits":len(orbit_partition),
         "full_220_certificate":support_union==universe
     }
     if require_complete and support_union!=universe:
