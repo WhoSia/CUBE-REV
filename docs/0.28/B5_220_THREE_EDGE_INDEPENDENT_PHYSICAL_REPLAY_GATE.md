@@ -32,6 +32,36 @@ Each pair must satisfy **all**:
 
 The historical original B5 archive contains the nine B5-new physical pairs and original B4 seeds, but an extracted all-orbit representative manifest has **not** been loaded and replayed by this new source yet. This script does not pretend to have those original moves.
 
+## Independent geometric census — exactly 13 original-edge-triple orbits
+
+Without using the inherited B5 positive/negative masks or any physical witness words, the verifier independently constructs all `C(12,3)=220` original three-edge support sets and partitions them by the 24 orientation-preserving cube rotations. Exactly **13 orbits** result, of sizes
+
+```
+4, 4, 8, 12, 12, 12, 24, 24, 24, 24, 24, 24, 24.
+```
+
+One explicit representative for each is listed below; original edge names are the actual cubie stickers/positions, not abstract Cayley graph vertices:
+
+| Geometric orbit representative (three omitted/original edge labels) | Orbit size | Physical B5 replay status |
+| --- | ---: | --- |
+| BL, DF, UR | 4 | Original witness manifest not yet imported |
+| DB, FL, UR | 4 | Original witness manifest not yet imported |
+| FR, UF, UR | 8 | Original witness manifest not yet imported |
+| BR, UF, UR | 12 | Original witness manifest not yet imported |
+| DR, UL, UR | 12 | Original witness manifest not yet imported |
+| FL, UF, UR | 12 | Original witness manifest not yet imported |
+| BL, UF, UR | 24 | Original witness manifest not yet imported |
+| DB, UF, UR | 24 | Original witness manifest not yet imported |
+| DF, UF, UR | 24 | Original witness manifest not yet imported |
+| DF, UL, UR | 24 | Original witness manifest not yet imported |
+| DL, UF, UR | 24 | Original witness manifest not yet imported |
+| DR, UF, UR | 24 | Original witness manifest not yet imported |
+| UF, UL, UR | 24 | Original witness manifest not yet imported |
+
+The compact **source-independent geometric partition** sums to `4+4+8+3*12+7*24=220`; it also agrees with the historical 2026-10-30 description that B3+B4 supplied 4 orbits of sizes `12+24+24+24=84`, and B5 supplied 9 further orbits of sizes `4+4+8+12+12+24+24+24+24=136`. These subgroup-size facts do NOT determine which representatives have shortest witness radius B3/B4/B5 or prove their physical existence.
+
+**Minimality under a restricted certificate format:** a single physical pair and all its spatial rotations can cover at most ONE of the thirteen disjoint orbits. Any orbit-saturated physical witness scheme must therefore contain **at least thirteen seed pairs** with support representatives in different orbits. One actual verified word pair in each orbit suffices; this yields a human-sized 13-seed verification target rather than 220 unrelated word pairs. The standalone fail-closed verifier now calculates the number of physically covered orbits from its supplied manifest and still requires `220/220` actual supports to claim completion.
+
 ### Verified partial baseline
 
 The historical radius-three pair is:
