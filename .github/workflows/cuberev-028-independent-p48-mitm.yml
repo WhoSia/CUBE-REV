@@ -10,6 +10,11 @@ on:
       - 'scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py'
       - 'scripts/cuberev-observation/verify_b6_negative_19_pairs_p48.py'
       - 'scripts/cuberev-observation/test_b6_negative_19_pairs_p48.py'
+      - 'scripts/cuberev-observation/verify_b6_complete_4845_p48.py'
+      - 'scripts/cuberev-observation/test_b6_complete_4845_p48.py'
+      - 'scripts/cuberev-observation/emit_b5_adjacent_p48_discovery_goals.py'
+      - 'scripts/cuberev-observation/discover_b5_adjacent_p48_mitm.cpp'
+      - 'scripts/cuberev-observation/verify_b5_adjacent_p48_discovery_receipt.py'
       - '.github/workflows/cuberev-028-independent-p48-mitm.yml'
   workflow_dispatch:
 
@@ -31,11 +36,19 @@ jobs:
           python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_negative_19_pairs_p48.py' -v
           python scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py
           python scripts/cuberev-observation/b6_independent_48sticker_goals.py --emit /tmp/cuberev-p48
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_complete_4845_p48.py' -v
+          python scripts/cuberev-observation/emit_b5_adjacent_p48_discovery_goals.py /tmp/cuberev-p48
       - name: Compile exact P48 full-state MITM
         run: |
           set -euo pipefail
           g++ --version | head -n 1
           g++ -O3 -std=c++17 -I /tmp/cuberev-p48 scripts/cuberev-observation/verify_b6_41_mitm_p48.cpp -o /tmp/cuberev-p48/mitm_p48
+          g++ -O3 -std=c++17 -I /tmp/cuberev-p48 scripts/cuberev-observation/discover_b5_adjacent_p48_mitm.cpp -o /tmp/cuberev-p48/discover_b5_p48
+      - name: Reconstruct B5 negative-adjacent witness pairs using fresh P48 exact MITM
+        run: |
+          set -euo pipefail
+          /tmp/cuberev-p48/discover_b5_p48 /tmp/cuberev-p48/b5_adjacent_candidate_goals121.txt | tee /tmp/cuberev-p48/b5_adjacent_discovery.log
+          python scripts/cuberev-observation/verify_b5_adjacent_p48_discovery_receipt.py /tmp/cuberev-p48/b5_adjacent_discovery.log
       - name: Independent 41-target exact radius-6 exclusion (5 complete batches)
         run: |
           set -euo pipefail
@@ -56,6 +69,9 @@ jobs:
           name: cuberev-028-independent-p48-b6-${{ github.sha }}
           path: |
             /tmp/cuberev-p48/targets41.txt
+            /tmp/cuberev-p48/b5_adjacent_candidate_goals121.txt
+            /tmp/cuberev-p48/b5_adjacent_candidate_orbits11.txt
+            /tmp/cuberev-p48/b5_adjacent_discovery.log
             /tmp/cuberev-p48/raw_goal48.hex
             /tmp/cuberev-p48/b6_factor_table.hpp
             /tmp/cuberev-p48/batch_*.log
