@@ -916,6 +916,7 @@
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
     "scripts/cuberev-observation/certify_active_p48_b2_adaptive_gap.py",
+    "scripts/cuberev-observation/certify_active_p48_b3_adaptive_gap.py",
     "scripts/cuberev-observation/channel_model_transfer.py",
     "scripts/cuberev-observation/check_25_irredundancy.py",
     "scripts/cuberev-observation/dictionary_coverage.py",
@@ -957,6 +958,7 @@
     "scripts/cuberev-observation/solve_orbit_pool_milp.py",
     "scripts/cuberev-observation/solve_sampled_milp.py",
     "scripts/cuberev-observation/test_active_p48_b2_adaptive_certificate.py",
+    "scripts/cuberev-observation/test_active_p48_b3_full_certificate.py",
     "scripts/cuberev-observation/test_active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/test_active_p48_fixed_site_scan.py",
     "scripts/cuberev-observation/test_active_p48_small_ball_decision_trees.py",
@@ -4111,5 +4113,17 @@
     "scope": "B3 3502 exact physical states, nonadaptive three/four query census, exact two-step adaptive check and bounded depth-three with explicit UNKNOWN",
     "do_not_claim": "A bounded search returning UNKNOWN does not establish nonexistence",
     "ci": "read-only"
+  },
+  "active_set_reconciliation_20261104_b3_policy_full_certificate": {
+    "date": "2026-11-04",
+    "previous_allowed": 1133,
+    "new_allowed": 1135,
+    "added": [
+      "scripts/cuberev-observation/certify_active_p48_b3_adaptive_gap.py",
+      "scripts/cuberev-observation/test_active_p48_b3_full_certificate.py"
+    ],
+    "scope": "complete P48 B3 3502-state four-level adaptive decision tree, three-level impossibility, 44352 nonadaptive five-frame exclusions and six-frame positive",
+    "proof_grade": "separate independent physical-slot measurement replay, read-only CI artifact SHA required before acceptance",
+    "policy": "WhoSia commits and no GitHub Actions authors"
   }
 }
