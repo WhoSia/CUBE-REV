@@ -139,6 +139,7 @@
     ".github/workflows/cuberev-027-p11-conservative-audit.yml",
     ".github/workflows/cuberev-027-p9-independent-optimal-17-challenge.yml",
     ".github/workflows/cuberev-028-active-b3.yml",
+    ".github/workflows/cuberev-028-active-cost.yml",
     ".github/workflows/cuberev-028-active-observation.yml",
     ".github/workflows/cuberev-028-independent-p48-mitm.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
@@ -906,6 +907,7 @@
     "scripts/cuberev-observation/active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/active_p48_fixed_site_scan.py",
     "scripts/cuberev-observation/adaptive_erasure_minimax.py",
+    "scripts/cuberev-observation/audit_active_p48_frame_route_cost.py",
     "scripts/cuberev-observation/audit_active_p48_small_ball_decision_trees.py",
     "scripts/cuberev-observation/audit_b6_66_partition.py",
     "scripts/cuberev-observation/audit_b6_full48_target_orbits.py",
@@ -961,6 +963,7 @@
     "scripts/cuberev-observation/test_active_p48_b3_full_certificate.py",
     "scripts/cuberev-observation/test_active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/test_active_p48_fixed_site_scan.py",
+    "scripts/cuberev-observation/test_active_p48_frame_route_cost.py",
     "scripts/cuberev-observation/test_active_p48_small_ball_decision_trees.py",
     "scripts/cuberev-observation/test_adaptive_erasure_minimax.py",
     "scripts/cuberev-observation/test_b5_three_edge_physical_manifest.py",
@@ -4125,5 +4128,18 @@
     "scope": "complete P48 B3 3502-state four-level adaptive decision tree, three-level impossibility, 44352 nonadaptive five-frame exclusions and six-frame positive",
     "proof_grade": "separate independent physical-slot measurement replay, read-only CI artifact SHA required before acceptance",
     "policy": "WhoSia commits and no GitHub Actions authors"
+  },
+  "active_set_reconciliation_20261104_active_htm_fixed_routes": {
+    "date": "2026-11-04",
+    "previous_allowed": 1135,
+    "new_allowed": 1138,
+    "added_paths": [
+      "scripts/cuberev-observation/audit_active_p48_frame_route_cost.py",
+      "scripts/cuberev-observation/test_active_p48_frame_route_cost.py",
+      ".github/workflows/cuberev-028-active-cost.yml"
+    ],
+    "theorem_scope": "P48 3+3 radius split exact pairwise 18-HTM geodesics, Held-Karp optimal ordering among selected fixed frame representatives for B6 ten-probe/full G eleven-probe nonadaptive schedules",
+    "caveat": "NOT global HTM-optimal policy across alternative physical frames and adaptive action policies",
+    "ci": "read-only"
   }
 }
