@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""B6 one-erasure robustness, conditional on archived 156 positive 16-tag layouts.
+"""B6 one-erasure SUFFICIENT certificate via archived 16-tag positive cores.
 
-No physical HTM shortest-path decision is done here. The positive family is
-the independently archived four-case geometry (verify_b6_geometric_rule).
+CRITICAL: A valid 17-, 18- or 19-tag sensor set need NOT contain a
+valid 16-tag subset. Therefore lack of a 16-core is NOT an invalidity
+certificate for larger selected sensor sets. This auditor only proves
+constructive upper bounds (plus the exactly-classified 17-tag robust
+impossibility via all 16-tag erasures).
 """
 from itertools import combinations
 from collections import Counter
@@ -14,58 +17,53 @@ TAGS = CORNERS_TAGS | EDGES_TAGS
 
 def positive_missing_four():
     return frozenset(
-        frozenset([* (("C", c) for c in ENDS[h]),
-                   * (("E", e) for e in pair)])
-        for h in EDGE_NAMES
-        for pair in valid_pairs(h)
+        frozenset([*(("C", c) for c in ENDS[h]),
+                   *(("E", e) for e in pair)])
+        for h in EDGE_NAMES for pair in valid_pairs(h)
     )
 
-def is_radius6_valid(observed, positive_missing=None):
-    """All 16-tag bases are in the archived certified positive family."""
+def has_certified_16_core(observed, positive_missing=None):
+    """Sufficient for B6 validity, necessary only when |observed|=16."""
     positive_missing = positive_missing if positive_missing is not None else positive_missing_four()
     missing = TAGS - frozenset(observed)
     return any(missing <= b for b in positive_missing)
 
-def is_one_erasure_robust(observed, positive_missing=None):
+def all_erasures_have_16_core(observed, positive_missing=None):
+    """Sufficient to be B6 one-erasure robust; NOT necessary for |S|>=18."""
     positive_missing = positive_missing if positive_missing is not None else positive_missing_four()
-    return all(is_radius6_valid(frozenset(observed) - {tag}, positive_missing)
+    return all(has_certified_16_core(frozenset(observed)-{tag}, positive_missing)
                for tag in observed)
 
 def audit():
     family = positive_missing_four()
-    assert len(TAGS) == 20 and len(family) == 156
-    assert all(len(b) == 4 and len(b & CORNERS_TAGS) == 2
-               and len(b & EDGES_TAGS) == 2 for b in family)
-    assert all(is_radius6_valid(TAGS-b, family) for b in family)
-    # Each two-edge omission extends to some allowed four-tag omission.
-    pair_covered = sum(any(frozenset(pair) <= b for b in family)
-                       for pair in combinations(EDGES_TAGS, 2))
-    assert pair_covered == 66, pair_covered
-    # Every (corner, edge) omission also extends to some positive layout.
-    mixed_covered = sum(any({c,e} <= b for b in family)
-                        for c in CORNERS_TAGS for e in EDGES_TAGS)
-    assert mixed_covered == 96, mixed_covered
-    counts = {}
-    for omitted_n in (0,1,2,3,4):
-        by_type=Counter()
-        robust_sets=[]
-        for missing_tuple in combinations(sorted(TAGS), omitted_n):
-            missing=frozenset(missing_tuple)
-            obs=TAGS-missing
-            if is_one_erasure_robust(obs,family):
-                robust_sets.append(missing)
-                by_type[(len(missing&CORNERS_TAGS),
-                         len(missing&EDGES_TAGS))]+=1
-        counts[20-omitted_n]=len(robust_sets)
-        if omitted_n==1:
-            assert len(robust_sets)==12
-            assert all(m <= EDGES_TAGS for m in robust_sets)
-        if omitted_n>=2: assert not robust_sets
-        print(f"SENSORS {20-omitted_n} ROBUST_LAYOUTS {len(robust_sets)} TYPES {dict(by_type)}")
-    assert counts == {20:1,19:12,18:0,17:0,16:0}, counts
-    print("B6 SINGLE ERASURE THRESHOLD 19 (CONDITIONAL POSITIVE FAMILY)")
-    print("PAIR COVERAGE 66/66; MIXED TAG COVERAGE 96/96")
+    assert len(TAGS)==20 and len(family)==156
+    assert all(len(b)==4 and len(b&CORNERS_TAGS)==2
+               and len(b&EDGES_TAGS)==2 for b in family)
+    assert all(has_certified_16_core(TAGS-b,family) for b in family)
+    pair_covered=sum(any(frozenset(p)<=b for b in family)
+                     for p in combinations(EDGES_TAGS,2))
+    mixed_covered=sum(any({c,e}<=b for b in family)
+                      for c in CORNERS_TAGS for e in EDGES_TAGS)
+    assert (pair_covered,mixed_covered)==(66,96)
+    counts={}
+    for k in (16,17,18,19,20):
+        sufficient_sets=[]
+        for absent in combinations(sorted(TAGS),20-k):
+            missing=frozenset(absent)
+            if all_erasures_have_16_core(TAGS-missing,family):
+                sufficient_sets.append(missing)
+        counts[k]=len(sufficient_sets)
+        print("SENSORS",k,"ONE_ERASURE_CERTIFIED_VIA_16_CORE",len(sufficient_sets))
+        if k==19:
+            assert len(sufficient_sets)==12
+            assert all(m<=EDGES_TAGS for m in sufficient_sets)
+        if k==17: assert not sufficient_sets
+    assert counts=={16:0,17:0,18:0,19:12,20:1},counts
+    print("PROVEN: 17 TAGS CANNOT TOLERATE ONE ERASURE (all resulting 16s classified)")
+    print("PROVEN: 12 CONSTRUCTIVE 19-TAG SINGLE-ERASURE DESIGNS; b6^(1) <= 19")
+    print("OPEN: actual existence of robust 18-tag designs; 18 no-16-core is INCONCLUSIVE")
+    print("66/66 EDGE-PAIR and 96/96 CORNER-EDGE extension coverage")
     return counts
 
-if __name__ == "__main__":
+if __name__=="__main__":
     audit()
