@@ -64,10 +64,10 @@ def payload():
     if lower!="EXCLUDED":raise AssertionError("adaptive B3 depth-three negative gate not complete")
     upper,search_nodes,_cache,cert=adaptive_policy_optimized(rows,4,20000)
     if upper!="FOUND":raise AssertionError("adaptive B3 depth-four positive gate not complete")
-    non5,count=nonadaptive_five(factors)
-    if non5 is not None or count!=44352:
+    non5,count5=nonadaptive_five(factors)
+    if non5 is not None or count5!=44352:
         raise AssertionError("nonadaptive B3 five-frame negative gate not complete")
-    six,count=nonadaptive_six(factors)
+    six,count6=nonadaptive_six(factors)
     if six is None:raise AssertionError("nonadaptive B3 six-frame positive gate missing")
     tree=tree_from_search(tuple(range(len(states))),cert,rows)
     return {
@@ -81,7 +81,8 @@ def payload():
       "adaptive_four_search_belief_nodes":search_nodes,
       "adaptive_tree":tree,
       "nonadaptive_frames":6,
-      "nonadaptive_five_candidate_count":count if False else 44352,
+      "nonadaptive_five_candidate_count":count5,
+      "nonadaptive_six_witness_search_candidates":count6,
       "nonadaptive_six": {"edges":list(six[0]),"corners":list(six[1])},
       "limitations":"B6 adaptive horizon and minimum HTM action cost open; RGB readout different"
     }
