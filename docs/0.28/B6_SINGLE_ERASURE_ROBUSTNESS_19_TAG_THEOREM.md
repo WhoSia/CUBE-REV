@@ -1,52 +1,38 @@
-# CUBE-REV 0.28 — Exact single-erasure robustness of B6 original-cubie sensors
+# CUBE-REV 0.28 — One-erasure B6 original-cubie sensors: rigorous 18–19 bound
 
-**Date:** 2026-11-04. **Status:** combinatorial classification conditional on the earlier, *original-physical* B6=16 and exactly 156 positive 16-tag layout certificate. This is **not** a new independent HTM proof of the archived positive-family criterion.
+**2026-11-04 CORRECTED audit.** The earlier draft of this note incorrectly asserted b6^(1)=19 by assuming every B6-valid 17/18/19-tag design necessarily contains a B6-valid sixteen-tag subset. **That implication is false for general monotone sensor predicates**. This file preserves the correction prominently rather than hiding the earlier error. No new physical HTM distance claims are made.
 
-## Observational distinction
+## Definition and existing input
 
-Let T be the twenty original 3×3 cubie tags: eight *oriented corner tags* and twelve *oriented edge tags*, measured by the physical object's position and orientation. Let B6 denote the eighteen-HTM word ball of radius six. For S⊆T let S be B6-valid iff the full-position-and-orientation observation map on B6 is injective.
+Twenty original physical cubie tags (eight corners, twelve edges) each report that *specific original object's* full position and orientation. A tag set S is B6-valid if it separates all legal 18-HTM radius-six cube states. It is **one-erasure robust** if for every selected tag t∈S, the set S\\{t} is B6-valid. Let b6^(1) be minimum cardinality of such a set.
 
-A B6-valid set S is **one-erasure robust** if S\\{t} remains B6-valid **for every t∈S**. Write b6^(1) for the smallest robust |S|, and N19^(1) for the number of robust 19-tag sets.
+Inherited archived physical B6 classification: b6=16 and **all** B6-positive 16-tag sets are exactly 156 layouts. Each of these omits two *adjacent* corners and two edges subject to the four-case geometric rule. This physical positive-family classification still needs fully separately implemented original HTM verification.
 
-## Theorem (single physical-cubie erasure)
+## Theorem — rigorously proved bounds and construction
 
-Conditional on the prior physical certificate that every B6-valid sixteen-tag set omits exactly two **adjacent** original corners and exactly two original edges and that the complete sixteen-tag positive family is the geometrically specified 156 layouts,
+**18 ≤ b6^(1) ≤ 19**, with at least **12 independently enumerated, certifiably robust 19-tag layouts**: all eight corners and all but any one edge.
 
-**b6^(1)=19 and N19^(1)=12.**
+### Why 17 is impossible — a valid exact deduction
 
-The twelve robust 19-tag layouts are **exactly those omitting a single edge tag**, hence observe *all eight corners and eleven of the twelve edges*. No 18-tag layout is one-erasure robust, and no 19-tag layout omitting a corner is robust.
+Suppose a 17-tag one-erasure robust set S exists. Then erasing *any* of its 17 selected tags leaves a B6-valid **16-tag** set, necessarily one of the 156 existing bases. So for any erased original corner tag, the 4 total missing tags must contain two corners and two edges; the same must hold on erasing any observed original edge tag. But S contains both corner tags (at least five) and edge tags (at least nine). These two erasures demand contradictory missing-tag type counts. Therefore no 17-tag set is robust. By upward monotonicity of erasure robustness no smaller set can work.
 
-### Proof of lower bound and complete 19-tag shape restriction
+### Constructive 19-tag sufficient certificate
 
-Validity is monotone under **adding** sensors. Because b6=16, every valid 16-tag subset is among the 156 bases. A 17-tag set is valid iff its three missing tags can be extended to an allowed four-tag missing layout; similarly an 18-tag set is valid iff its two missing tags have such an extension.
+Let e be any one original edge tag, and observe the other 19 tags. Erasing one additional edge f leaves two missing edges, which can be extended to a **positive 16-tag** missing four-tag layout for each unordered edge pair: coverage **66/66**. Erasing any original corner c leaves missing tags {e,c}, and each such pair extends to a positive four-tag layout: coverage **96/96**. By monotonicity, all 18-tag erasure residues are B6-valid. Thus each of the 12 choices of omitted original edge produces an authentic one-erasure robust 19-tag design. This is proved conditionally on the archived B6 positive-family correctness and needs no assumption about larger minimal bases.
 
-Suppose an 18-tag candidate has two omitted corners. Deleting any other observed corner yields three omitted corners, impossible to extend to a positive four-tag missing layout (which always omits exactly two corners). If it instead omits two edges, deleting any other observed edge yields three omitted edges, likewise impossible. If the two absent tags comprise a corner c and edge e, deleting the *opposite cube corner* of c gives a 17-tag set missing two **nonadjacent** corner tags, which cannot extend to an allowed four-tag layout (every positive omitted corner pair must be adjacent). Hence **no 18-tag set is one-erasure robust**, without any complete 190-candidate search. Any one-erasure robust 17-tag or smaller design could be augmented to an 18-tag robust set (erasure robustness is upward monotone), so none exist.
+### What the finite 156-layout core audit does NOT prove
 
-For a 19-tag layout missing a corner c, erasing the opposite original corner again leaves a nonadjacent omitted pair and fails. Thus any robust 19-tag layout must miss an original **edge tag** only.
+An 18-tag set could be B6-valid even if it has **no valid 16-tag subset**. To decide robustness of an 18-tag set, one needs to determine actual B6 validity of each of its 17-tag one-erasure residues, not merely whether each residue contains an archived positive 16-tag layout. The full 156-layout core certificate does NOT settle this. The finite auditor finds **zero** 18-tag sets for which *all erasure residues contain certified 16-tag bases*. That is a **failure of this sufficient certificate**, not proof of 18-tag impossibility. Likewise, it does not exclude additional 19-tag robust designs omitting one corner.
 
-### Constructive upper bound and exact count
+Therefore **b6^(1)∈{18,19} remains open**. The paper must never claim the exact 19 threshold or exact count 12 of *all* robust 19-tag designs.
 
-Choose one originally omitted edge e. To prove that observing the other 19 cubies is erasure-robust, it suffices to examine losing either (a) one other original edge f, or (b) one corner c. In each case we need a positive 16-tag sub-layout of the remaining 18 tags: equivalently the two omitted tags {e,f} or {e,c} must be included in some certified four-tag omitted set.
+## Reproducible audit and provenance
 
-Two finite incidence coverage checks over the archived 12×13=156 geometric layouts yield:
+- `scripts/cuberev-observation/audit_b6_one_erasure_robustness.py` — exactly 156 historically certified positive 16-tag omitted families; reports sufficient 16-core certificates at 16..20 observed tags, 66/66 edge–edge and 96/96 corner–edge extension counts, avoids invalid converse.
+- `scripts/cuberev-observation/test_b6_one_erasure_robustness.py` — five semantic-boundary tests. The 18-tag negative test concerns **existence of sufficient core certificates only**, NOT actual B6 invalidity.
+- Hernando–Mora–Slater–Wood (2008), *Fault-Tolerant Metric Dimension of Graphs*, is in Research OS Drive 00 at `1qjgI5Jllteoog_RedYttju-zX7p6nDe4`. Their distance-landmark failure model is distinct from an original oriented cubie sensor.
+- Boutin, *Determining Sets, Resolving Sets, and the Exchange Property*, arXiv 0808.1427v1, Drive `1uQpaotOWnqEi6oTShp4WSHoy6B0B1IgD`, already studies exchange failures. The generic idea is not new.
 
-- Every unordered pair of two original edge tags is included in at least one positive four-tag omission: **66/66**.
-- Every ordered corner–edge pair (one of each) is included in at least one positive four-tag omission: **8×12=96/96**.
+## Next physical decision gate
 
-Therefore **all twelve** 19-tag sets omitting one edge are one-erasure robust. The previous shape argument excludes the eight 19-tag sets omitting one corner. QED.
-
-The counts 66/66 and 96/96 are rechecked *directly*, without assuming them in the program, by the Python script below. The script also enumerates every set with 16–20 observed tags and yields number of one-erasure-robust layouts at each cardinality: 16:0, 17:0, 18:0, 19:12, 20:1.
-
-## Reproducibility
-
-- `scripts/cuberev-observation/audit_b6_one_erasure_robustness.py`: enumerates 156 positive omitted-tag sets by using `verify_b6_geometric_rule.py`; evaluates all one-tag erasures against existence of a certified 16-tag core, computes the 66/66 and 96/96 incidence coverage, and asserts all size counts.
-- `scripts/cuberev-observation/test_b6_one_erasure_robustness.py`: five tests of all 12 edge omissions, all eight corner omissions, all 190 18-sensor sets, exact 16-tag family, and threshold.
-- Existing independently authored geometric code checks 24 spatial rotations, 13 admissible omitted-edge pairs/core, and 156-node graph. The source of the four-case **physical** B6 validity is still the existing 41-goal HTM/MITM archived certificates; the present audit does not separately rederive HTM shortest distances.
-
-## Literature and novelty
-
-Hernando, Mora, Slater and Wood, *Fault-Tolerant Metric Dimension of Graphs* (2008) (available in Research OS 00 as HMSW-FaultTolerant.pdf, Drive 1qjgI5Jllteoog_RedYttju-zX7p6nDe4) introduces single-loss fault-tolerant **graph-distance** resolving sets. Their abstract and §1 define the single-loss rule, but their observed outputs are graph distances rather than the full location and orientation of original moving physical cubies. The one-erasure set-cover equivalence is elementary and should **not** be claimed as a new general mathematical principle. Boutin (preprint arXiv 0808.1427v1, Drive 1uQpaotOWnqEi6oTShp4WSHoy6B0B1IgD) already establishes exchange-property failures in graph determining and resolving sets, and explicitly distinguishes minimal (inclusion-minimal) versus minimum (minimum cardinality) designs. Our physical original-cubie exact instance is the only possible cube-specific contribution, subject to proof-independence and deeper novelty auditing.
-
-## Next research gate
-
-Reduce the finite coverage checks 66/66 and 96/96 to short geometric orbit lemmas, *then* move to independent 54-facelet and original 18-HTM distance certification of the inherited B6 positive family. Do not confuse this result with noisy/stochastic sensing, distance-landmark robustness or adaptive observation.
+Classify **all** 17-tag B6-valid designs with actual original 18-HTM stabilizer distance tests. Every 18-tag one-erasure robust design would need every 17-tag deletion B6-valid. A full 17-tag certificate is the decisive missing input, independent of whether those 17-tag designs contain a positive 16-tag core.
