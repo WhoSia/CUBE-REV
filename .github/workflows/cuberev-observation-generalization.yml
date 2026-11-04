@@ -36,6 +36,8 @@ jobs:
           grep -F 'B5_BALL_PASS 621649' /tmp/cuberev-b5-independent-search.log
           test "$(grep -c '^ORBIT .* FOUND left=' /tmp/cuberev-b5-independent-seeds.txt)" -eq 13
           python scripts/cuberev-observation/verify_b5_three_edge_physical_manifest.py data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json > /tmp/cuberev-b5-independent-physical-replay.json
+          python scripts/cuberev-observation/verify_b5_independent_cpp_receipt.py /tmp/cuberev-b5-independent-seeds.txt data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json > /tmp/cuberev-b5-cross-language-bridge.json
+          python -c 'import json; d=json.load(open("/tmp/cuberev-b5-cross-language-bridge.json")); assert d["pinned_receipt_identical"] and d["complete_physical_certificate"] and d["original_edge_triples_replayed"]==220; print("B5_FRESH_CPP_TO_PYTHON_220_PHYSICAL_PASS")'
           python -c 'import json; d=json.load(open("/tmp/cuberev-b5-independent-physical-replay.json")); x=d["audit"]; assert x["full_220_certificate"] and x["distinct_triple_edge_supports_physically_replayed"]==220 and x["physical_orbits_covered"]==13; print("B5_220_INDEPENDENT_PHYSICAL_PASS")'
       - name: Audit all 156 B6 optimal single-tag exchanges
         run: python scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py
