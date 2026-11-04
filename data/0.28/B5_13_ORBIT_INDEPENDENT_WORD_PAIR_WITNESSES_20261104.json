@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "source": "fresh independently implemented C++ 48-original-sticker BFS 18HTM B5; 621649 distinct physical states",
+  "witnesses": [
+    {
+      "id": "B5-R01",
+      "representative_triple": "UR,UF,UL",
+      "left": "R B' L U2 L'",
+      "right": "F U2 F' R B'"
+    },
+    {
+      "id": "B5-R02",
+      "representative_triple": "UR,UF,DR",
+      "left": "U F2 L2 B2",
+      "right": "F2 L2 B2 D'"
+    },
+    {
+      "id": "B5-R03",
+      "representative_triple": "UR,UF,DF",
+      "left": "U' R2 B2 L2",
+      "right": "R2 B2 L2 D"
+    },
+    {
+      "id": "B5-R04",
+      "representative_triple": "UR,UF,DL",
+      "left": "U' R2 B2 D' L2",
+      "right": "U' F2 U R2 B2"
+    },
+    {
+      "id": "B5-R05",
+      "representative_triple": "UR,UF,DB",
+      "left": "U2 R2 F2 L2",
+      "right": "U R2 F2 L2 D'"
+    },
+    {
+      "id": "B5-R06",
+      "representative_triple": "UR,UF,FR",
+      "left": "U' R B' L F'",
+      "right": "R B' L F' U'"
+    },
+    {
+      "id": "B5-R07",
+      "representative_triple": "UR,UF,FL",
+      "left": "U R D2 U2 L'",
+      "right": "R D2 U2 L' U"
+    },
+    {
+      "id": "B5-R08",
+      "representative_triple": "UR,UF,BL",
+      "left": "R F U L2 D",
+      "right": "R F D B2 U"
+    },
+    {
+      "id": "B5-R09",
+      "representative_triple": "UR,UF,BR",
+      "left": "U' R U' R U'",
+      "right": "R U' R U' R"
+    },
+    {
+      "id": "B5-R10",
+      "representative_triple": "UR,UL,DR",
+      "left": "F U2 B",
+      "right": "B R2 F"
+    },
+    {
+      "id": "B5-R11",
+      "representative_triple": "UR,UL,DF",
+      "left": "U' L R'",
+      "right": "U L R' F2"
+    },
+    {
+      "id": "B5-R12",
+      "representative_triple": "UR,DF,BL",
+      "left": "U' F' D U'",
+      "right": "U' F D U' L2"
+    },
+    {
+      "id": "B5-R13",
+      "representative_triple": "UR,DB,FL",
+      "left": "U F D2 L R'",
+      "right": "U F L R' B2"
+    }
+  ]
+}
