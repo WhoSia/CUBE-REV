@@ -1,6 +1,6 @@
 # CUBE-REV 0.28 — Publication decision, primary-result hierarchy and hostile-review gate
 
-**2026-11-04. Status: research case-study manuscript with a newly closed B5 220-support physical dependency; not submission-ready.** This gate separates a theorem whose **proof is demonstrable** from a theorem whose **novelty and generality are defensible**. Do not confuse a read-only CI PASS with external peer review.
+**2026-11-04 (P48-D0.3 update). Status: independent B5 220-support certificate AND second physical-model B6-positive 41/41 certificate completed; manuscript still not submission-ready.** This gate separates a theorem whose **proof is demonstrable** from a theorem whose **novelty and generality are defensible**. Do not confuse a read-only CI PASS with external peer review.
 
 ## 1. One coherent scientific question
 
@@ -14,14 +14,14 @@ This is a fixed observation problem on a concrete finite physical group action. 
 | --- | --- | --- | --- |
 | `pi_S|B_r` injective iff `H_S ∩ B_(2r)={1}` | Elementary and rigorous for symmetric generators with consistent left action | Algebraic proof | Basic reduction, NOT claimed novelty |
 | 3×3 original-cubie stabilizer exact orders and support spectrum | Finite derivation from legal parity and twist/flip constraints | Closed form and tests | Explanatory lemma, likely known algebra |
-| `b6=16` and exactly 156 optimal sixteen-cubie layouts | Computationally certified relative to original physical source/archive | Historical negative witnesses + B5 lower bound + 41-target B6 MITM; positive lower-bound algorithm separate but same source physical transitions | Primary case-specific result, only with proof-source declaration |
+| `b6=16` and exactly 156 optimal sixteen-cubie layouts | B6 *positive 156-design* proof now independently certified from P48 geometry and 41/41 full-state MITM; exact optimality and uniqueness still inherit B5 and B6 negative-obstruction coverage | Independent 48-moving-sticker P48 physical goal/table builder + remote Actions 41763106125, in addition to historical negative witnesses and B5 lower bound | Primary case-specific result, only with proof-source declaration |
 | 156-layout one-cubie exchange graph has 336 edges and 25 components (`96 + 12×4 + 12×1`) | Precise combinatorial deduction conditional on the positive B6 layout classification | Pure Python geometric counts, independently written JavaScript and 24×3 orbit argument | Strongly communicable **physical case-study geometry** |
 | Exact B6 one-erasure minimum `b6^(1)=19`, exactly twelve minimum designs | Lower bound now supported by fresh B5 physical 220/220 replay plus 12HTM two-corner witnesses; upper still uses original B6-positive 156 layouts | Complete 13 real B5 two-sided word pairs found in independent C++ BFS on all 621649 B5 states, separately replayed by Python 48-sticker under 24 rotations and cross-language receipt bridge | Primary robustness case-study result |
 | B7 `b7^(1)=20`; exactly one robust 20-tag layout | Original physical 13HTM 6+7 two-edge midpoint witnesses and symmetry, plus B6 corner supports | Standalone 48-sticker midpoint audit, CI | Sharp finite-radius change |
 | General exchange failure of resolving/determining sets | **Old prior art**: Boutin 2008/2009 and other group-base literature | Original Boutin PDF inspected | Must NOT be sold as novelty |
 | Fault tolerance of graph metric dimension | **Old prior art**: Hernando et al. 2008, Knor et al. 2025, Geneson & Tsai 2026 | Primary PDFs/publisher sources | Explicitly distinguish physical observation output |
 
-The phrase **“independent B5 physical 220 support certificate”** means physical word-pair reproduction independent of the historic 54-facelet B5 source code. It does NOT mean that independent B6 positive 41-goal HTM lower bounds have been completed with a new physical transition model.
+The **independent B5 physical 220 support certificate** replays B5 word pairs independently of the historic 54-facelet model. **Separately**, the P48 B6 41/41 physical distance certificate has now completed with its own geometric 48-moving-sticker transitions and original-cubie factor table. Neither positive certificate independently proves the historical negative/exhaustiveness classification for all B6 size-16 candidates.
 
 ## 3. Newly closed, precisely reproducible B5 lemma
 
@@ -56,19 +56,26 @@ Other relevant source families in Research OS: Laison et al. on base-size sets u
 ## 6. Hard hostile-review questions
 
 1. **What is measured exactly?** A persistent originally tagged corner/edge's full current position and orientation. Any change to unlabelled observation or single-bit orientation invalidates direct transfer of these thresholds.
-2. **Do the 41 B6 HTM goal classes have a truly separate physical verification?** No: the completed C++ MITM is algorithmically independent of an older projection census but uses the original physical 54-facelet move source. A second model is still the highest remaining technical proof gate.
+2. **Do the 41 B6 HTM goal classes have a truly separate physical verification?** Yes, at the computational physical-model level: a P48 geometry-only generator constructs the full 48-sticker move/goal semantics and a separate exact MITM passes all 41 cases in [Actions 41763106125](https://github.com/WhoSia/CUBE-REV/actions/runs/41763106125). This does NOT replace the historical negative sensor-layout completeness certificates.
 3. **Does “156 optimal B6” follow from the new B5 220-support lemma alone?** No. It also relies on B6 positive 41-goal evidence AND completeness of negative obstruction witnesses, including 19 physical B6 negative-orbit seeds and historical B5 mask coverage.
 4. **Why 25 exchange components, not simply a known matroid failure?** The actual cube-dependent incidence rule has `W5 ⊔ C4 ⊔ K2 ⊔ K1` on each fixed missing-corner pair, `24×3=72` cross-core swaps, producing exact topological components. General exchange failure is old; the explicit finite Rubik geometry is the candidate contribution.
 5. **Why 19 robust sensors?** Pure two-corner physical B6 witness orbits force all 8 corners; all 220 separately replayed B5 three-edge support witnesses force ≥11 edges. Ten orbit-incidence certificates within the 156 B6-positive layouts show all 12 possible 19-tag omissions of a single edge survive any one loss.
 6. **Are the same 13 C++ witnesses automatically correct because a program printed FOUND?** No. CI physically replays both endpoint move words in a different Python engine, checks rotations and cross-language output/pinned manifest equality. Earlier sign-error failures demonstrate that safeguards are active.
 7. **Are the observed thresholds and exact layout counts novel?** They are case-specific candidate results whose priority must still be assessed against obscure historical Rubik reconstruction and state inference literature. No blanket “first” claim.
-8. **Is the proposed paper currently ready for submission?** No. Missing second physical B6 transition model, formalized evidence package, focused domain novelty search, carefully proofed mathematics, and independent human manuscript review.
+8. **Is the proposed paper currently ready for submission?** No. The second physical B6-positive model has passed local and hosted CI, but the B6-negative/156-layout completeness proof still requires a focused independently replayable audit, as do the domain novelty search, mathematical exposition and independent human manuscript review.
 
 ## 7. Stop/go gate for a substantive paper
 
-**GO for continued full-paper drafting and figure preparation** because exact finite computations have matching physical receipts, a genuine new independent B5 certificate, and a coherent physical model. **HOLD external submission** until the B6 physical-model-independent 41-target certificate and novelty review are sufficiently strong. If peer review reveals prior exact B6/erasure results, adjust to a reproducibility/independent-certification contribution rather than assert priority.
+**GO for continued full-paper drafting and figure preparation** because the independent B5 physical certificates and a second independently constructed P48 B6 41-target distance certificate have both passed. **HOLD external submission** pending B6 negative-layout completeness audit, specialist novelty review, full manuscript and third-party reproduction. If peer review reveals prior exact B6/erasure results, adjust to a reproducibility/independent-certification contribution rather than assert priority.
 
-Priority next: (i) second 48-sticker independent B6 stabilizer distance engine or formal PDB for the 41 target set; (ii) short geometric explanation of four-case 13 survivor criterion; (iii) graph picture of 96+12×4+12 isolated exchange components; (iv) full bibliography, figures and careful error analysis.
+Priority next: (i) source-independent B6-negative 16-layout completeness/physical obstruction replay; (ii) a short geometric explanation of the four-case 13 survivor criterion; (iii) explain the 96+12×4+12 exchange components jointly with the 19-tag 26-backup-core fault-incidence spectrum; (iv) finish focused prior-art, reproducibility figures, manuscript and outside scientific review.
+
+
+## 2026-11-04 P48 closure addendum — exact remote and local evidence
+
+A fully independent 48-moving-sticker model and generated 20-factor HTM action table now supply a source-independent second *physical* B6-positive certificate. The fresh P48 generators derived 88 nonidentity stabilizer entries, 74 distinct full states, and 41 symmetry/inversion distance classes. All 41 exact two-sided radius-six queries returned zero full-state intersections in [GitHub Actions run 41763106125](https://github.com/WhoSia/CUBE-REV/actions/runs/41763106125), which actually completed SUCCESS with an uploaded evidence artifact. All five `P48_CERTIFIED` logs, the final `INDEPENDENT_P48_B6_41_ALL_PASS` line, and six passing P48 tests were read from the job logs.
+
+New conditional exact combinatorics: each of the twelve 19-tag one-erasure-robust B6 bases contains 26 positive sixteen-tag sub-bases. A selected-edge deletion leaves respectively 1/2/3/4 such backup bases with frequencies 4/1/4/2; a selected-corner deletion leaves 4/6/10 with frequencies 2/4/2. Total backup-base/deletion incidences are 78=3×26. Neither this local incidence theorem nor the new P48 certification removes the need to verify the complete *negative* 16-layout census. See [detailed theorem and receipts](P48_B6_41_INDEPENDENT_CLOSURE_AND_BACKUP_CORE_SPECTRUM_20261104.md) and the revised 0.28-D0.3 paper. **Human perception, generic group-base novelty, and full publication priority are not claimed.**
 
 ## 8. Evidence custody rules
 
