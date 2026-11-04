@@ -1,6 +1,6 @@
 # WORKING PAPER — Radius-Restricted Cubie Observation in the 3×3 Rubik Group
 
-**Draft:** 0.28-D0.1, 2026-11-03. **NOT SUBMISSION-READY.** This file is a candidate exposition, not a formally peer-reviewed theorem or a claim of novel general group theory. The physical B6=16 and 156-layout classification depend on sealed source algorithms and certificates; cross-engine independence is open.
+**Draft:** 0.28-D0.2 — Independent B5 Physical Witness Closure, 2026-11-04. **NOT SUBMISSION-READY.** This file is a candidate exposition, not a formally peer-reviewed theorem or a claim of novel general group theory. The physical B6=16 and 156-layout classification depend on sealed source algorithms and certificates; cross-engine independence is open.
 
 ## Provisional title
 
