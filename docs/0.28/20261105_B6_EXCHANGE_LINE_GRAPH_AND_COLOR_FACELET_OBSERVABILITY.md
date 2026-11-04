@@ -52,6 +52,14 @@ Combining the information lower and the algorithmic upper:
 
 This upper is not optimal, and **169 HTM** is a feasible move count, NOT a minimum. Neither figure assumes live RGB calibration, color classification error or occlusion. One color *per probe per frame* is a sharply different model from complete cubie-identity/orientation observation, where the earlier exact horizon is 11.
 
+## C2. New no-reset 24-frame route improvement on the same physical channel
+
+The first 24-frame plan was 169 HTM with unshortened inverse-previous/next absolute frame concatenation. The same visit order reduces to **164 HTM** by exact adjacent same-face move cancellation. A deterministic 24-start nearest-neighbor plus two-opt route search over the **same 24 fixed readout frame permutations** reduces a physically executable no-reset route to **136 HTM**, using the query order `0,5,17,2,8,4,15,11,7,23,22,3,10,14,16,18,21,19,12,13,9,6,20,1` (indices into the scanner's original fixed 24-pair list).
+
+Every relative move list is replayed as a 48-sticker physical permutation, and the final scan still reconstructs all 262 B2 states and sample physical group states. [Route source](../../scripts/cuberev-observation/optimize_color_p48_24_frame_route.py) · [adversarial physical tests](../../scripts/cuberev-observation/test_optimize_color_p48_24_frame_route.py) · [successful read-only CI 41937780792](https://github.com/WhoSia/CUBE-REV/actions/runs/41937780792). Original terminal receipts include `COLOR_P48_REORDER_HTM 164 -> 136` and `COLOR_P48_REORDER_B2_262_STATES_PASS`.
+
+The 136 bound is **not optimal even among all valid twenty-four-frame query schedules**, because only a fixed geometrically selected set of twenty-four absolute frames was searched, and individual transitions were reduced by same-face cancellation rather than solved for globally shortest HTM distance. It is an achievable action upper bound, not a new exact optimum. The published research target remains joint minimality over query count, query sites, executable HTM words and robust color noise.
+
 ## D. Hostile novelty and future gates
 
 - The line graph L(Q3) and the elementary branching/coding lower bounds are classical mathematics. The contribution is a specific verified cube-relative geometric mechanism and a physically constructive weaker-channel bridge, **not** new generic information theory.
