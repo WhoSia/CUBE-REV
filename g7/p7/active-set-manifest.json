@@ -251,6 +251,7 @@
     "crates/search-geometry-core/src/bin/g7_p7_reco_rivals.rs",
     "crates/search-geometry-core/src/lib.rs",
     "crates/search-geometry-core/src/phase1.rs",
+    "data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json",
     "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
     "data/cuberev-021/p6_fmc_partial_order_extension.json",
     "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
@@ -464,6 +465,7 @@
     "docs/0.28/BRANCH_AND_README_CUSTODY_AUDIT_20261103.md",
     "docs/0.28/CUBIE_STABILIZER_SUPPORT_SPECTRUM_THEOREM.md",
     "docs/0.28/LITERATURE_AND_NOVELTY_GATE_20261103.md",
+    "docs/0.28/PUBLICATION_AND_NOVELTY_GO_NO_GO_20261104.md",
     "docs/0.28/REVERSIBLE_OBSERVATION_THEORY_GATE.md",
     "docs/0.28/evidence/B6_MITM_41_20261103.md",
     "docs/observation-generalization/ALGORITHM_REUSE_AND_BOUND_STATUS.md",
@@ -900,6 +902,7 @@
     "scripts/cuberev-observation/audit_b6_full48_target_orbits.py",
     "scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/audit_b6_one_erasure_robustness.py",
+    "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
     "scripts/cuberev-observation/channel_model_transfer.py",
     "scripts/cuberev-observation/check_25_irredundancy.py",
@@ -963,6 +966,7 @@
     "scripts/cuberev-observation/test_reversible_pair_audit.py",
     "scripts/cuberev-observation/test_sensor_symmetry.py",
     "scripts/cuberev-observation/test_stabilizer_support_spectrum.py",
+    "scripts/cuberev-observation/verify_b5_independent_cpp_receipt.py",
     "scripts/cuberev-observation/verify_b5_three_edge_physical_manifest.py",
     "scripts/cuberev-observation/verify_b6_13_edge_orbit.py",
     "scripts/cuberev-observation/verify_b6_16_bases.cpp",
@@ -3925,5 +3929,18 @@
     "old_tracked_paths": 1100,
     "new_tracked_paths": 1103,
     "source": "GitHub nontruncated exact full blob tree; no wildcard and no deletion"
+  },
+  "active_set_reconciliation_20261104_independent_b5_complete": {
+    "reason": "Source-independent original 48-sticker B5 621649-state C++ BFS, thirteen physical two-sided words, actual C++ stdout to independent Python 220/220 replay bridge, and hostile-review publication gate",
+    "explicit_additions": [
+      "data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json",
+      "docs/0.28/PUBLICATION_AND_NOVELTY_GO_NO_GO_20261104.md",
+      "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
+      "scripts/cuberev-observation/verify_b5_independent_cpp_receipt.py"
+    ],
+    "old_count": 1103,
+    "new_count": 1107,
+    "blob_tree_sha": "8ef4cf504d8ce9fdb814a970ed3680c460997b68",
+    "method": "exact nontruncated Git blob tree; no wildcard, deletion or bot-authored commits"
   }
 }
