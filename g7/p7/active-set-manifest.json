@@ -914,6 +914,7 @@
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
+    "scripts/cuberev-observation/certify_active_p48_b2_adaptive_gap.py",
     "scripts/cuberev-observation/channel_model_transfer.py",
     "scripts/cuberev-observation/check_25_irredundancy.py",
     "scripts/cuberev-observation/dictionary_coverage.py",
@@ -953,6 +954,7 @@
     "scripts/cuberev-observation/sensor_symmetry.py",
     "scripts/cuberev-observation/solve_orbit_pool_milp.py",
     "scripts/cuberev-observation/solve_sampled_milp.py",
+    "scripts/cuberev-observation/test_active_p48_b2_adaptive_certificate.py",
     "scripts/cuberev-observation/test_active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/test_active_p48_fixed_site_scan.py",
     "scripts/cuberev-observation/test_active_p48_small_ball_decision_trees.py",
@@ -4083,5 +4085,17 @@
     "scope": "exact small B1/B2 joint-site adaptive decision trees and nonadaptive finite pair selection; B6 adaptive complexity remains open",
     "ci": "read-only, separate from P48 heavy B6 proof",
     "author": "WhoSia"
+  },
+  "active_set_reconciliation_20261104_b2_adaptive_certificate": {
+    "date": "2026-11-04",
+    "prior": 1129,
+    "now": 1131,
+    "added_paths": [
+      "scripts/cuberev-observation/certify_active_p48_b2_adaptive_gap.py",
+      "scripts/cuberev-observation/test_active_p48_b2_adaptive_certificate.py"
+    ],
+    "result": "B2 exact adaptive depth2 vs nonadaptive3, 262 P48 states, 96 joint queries, 1848 explicit nonadaptive 2-frame counterexamples and full adaptive decision-tree manifest",
+    "claims": "finite ideal fixed-site complete-label/orientation channel, no B6 adaptive conjecture promoted",
+    "ci": "read-only proof artifact; verify before claiming PASS"
   }
 }
