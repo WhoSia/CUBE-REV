@@ -943,6 +943,7 @@
     "scripts/cuberev-observation/test_b6_cross_core_bridge.py",
     "scripts/cuberev-observation/test_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/test_b6_goal_union_count.py",
+    "scripts/cuberev-observation/test_b6_one_erasure_exact19.py",
     "scripts/cuberev-observation/test_b6_one_erasure_robustness.py",
     "scripts/cuberev-observation/test_b6_radius_stabilizer.py",
     "scripts/cuberev-observation/test_b6_sensor_exchange_graph.py",
@@ -984,6 +985,7 @@
     "scripts/cuberev-observation/verify_b6_nf_three_bit_invariants.py",
     "scripts/cuberev-observation/verify_b6_no_two_edge.cpp",
     "scripts/cuberev-observation/verify_b6_obstruction_filtration.py",
+    "scripts/cuberev-observation/verify_b6_one_erasure_exact19.py",
     "scripts/cuberev-observation/verify_b6_sensor_exchange_graph.py",
     "scripts/cuberev-observation/verify_b6_sensor_strata.py",
     "scripts/cuberev-observation/verify_b6_stabilizer_group_structure.py",
@@ -3897,6 +3899,17 @@
       "previous_paths": 1095,
       "total_paths": 1098,
       "source": "nontruncated exact Git blob path inventory; no wildcard, deletion or bot-authored commits"
+    },
+    "fourth_follow_up": {
+      "date": "2026-11-04",
+      "reason": "Historical B5 pure-three-edge and direct B6 corner-pair witness restoration; exact 19-tag one-erasure theorem and five tests",
+      "admitted_explicit_paths": [
+        "scripts/cuberev-observation/test_b6_one_erasure_exact19.py",
+        "scripts/cuberev-observation/verify_b6_one_erasure_exact19.py"
+      ],
+      "previous_paths": 1098,
+      "total_paths": 1100,
+      "source": "nontruncated exact Git blob list, reviewed two files only; research/current, no bot writes"
     }
   }
 }
