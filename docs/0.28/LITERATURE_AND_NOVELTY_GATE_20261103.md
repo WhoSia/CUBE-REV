@@ -62,3 +62,20 @@ Research OS 00_INTAKE folder `1MLtYh0pv8QUZDReYzRqjDrOjRkSJAD16` has the followi
 Remaining historical original-text acquisition HOLD: Harary & Melter (1976) *On the Metric Dimension of a Graph*, *Ars Combinatoria* 2:191–195; Slater (1975) *Leaves of Trees*, *Congressus Numerantium* XIV:549–559. Original standalone source PDFs not found in Drive, and the user has separately emailed publishers. Do not misclassify them as obtained merely because the reference lists in the above PDFs cite them.
 
 New CUBE-specific conditional consequence of 156-layout classification: all twelve 19-tag sensor layouts omitting one original edge survive **any one observed cubie tag erasure**, yielding the rigorous *upper bound* b6^(1)≤19; since no 17-tag robust set is possible from the exact 16-tag classification, 18≤b6^(1)≤19. **Do not assert the exact 19-tag threshold**: a valid 17- or 18-tag set need not contain a valid 16-tag core, so the stronger claim requires new physical classifications. See `docs/0.28/B6_SINGLE_ERASURE_ROBUSTNESS_19_TAG_THEOREM.md` and current 0.28 paper §5A. Do not claim novelty of *fault tolerance* as a concept; it is established in the 2008 graph-distance paper.
+
+## 2026-11-04 — 00_INTAKE → 10_PAPERS eight exact Drive IDs, provenance preserving
+
+Eight direct PDF originals were fetched, titles checked from first pages, and **metadata-only renamed and moved** from original `00_INTAKE` parent `1MLtYh0pv8QUZDReYzRqjDrOjRkSJAD16` to scientific `10_PAPERS` parent `1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP`, with Drive IDs unchanged; bytes were not replaced. Each move returned the new sole parent ID. They are:
+
+- Boutin (2008 arXiv v1) exchange property `1uQpaotOWnqEi6oTShp4WSHoy6B0B1IgD`.
+- Boutin (2006) determining sets EJC #R78 `136c11GwhYrDtfND278THyU1gyPnsUpZD`.
+- Hernando–Mora–Slater–Wood fault-tolerant metric dimension `1qjgI5Jllteoog_RedYttju-zX7p6nDe4`.
+- Hernando–Mora–Pelayo–Seara–Wood (2010) extremal graph metric dimension `1WsfiTbHgXiBhW3_s_GowNMbKD6LwgKv3`.
+- Foster-Greenwood & Uhl (2024) three complete graphs metric dimension `1p2XRgkjU0xZDLgk4VkqqXF2hUvq5T8zf`.
+- **Khuller–Raghavachari–Rosenfeld (1996), *Landmarks in Graphs***, original Elsevier publisher PDF, `1tPF-UoAqrTXL4oYhm8Y9WyVanO7fY_7d`. This important 1996 classic was found in actual 00 folder inventory by its non-descriptive original filename `1-s2.0-0166218X95001062-main.pdf`. Its first-page abstract explicitly says graph-distance robot landmark identification and polynomial-time O(log n) approximation. It is now **verified owned**, not missing.
+- Tillquist–Frongillo–Lladser (2019), arXiv:1910.04103v1 *Metric Dimension* `1ZHC9tfBU4pVrT0pRvM2Mo54ilWKJNXZz`; note this is a standalone 2019 preprint, distinct from any possible 2023 survey publication.
+- Sooryanarayana (1998), *On the Metric Dimension of a Graph*, *Indian J. Pure Appl. Math.* 29(4):413–415, `16w-A0v6m6-8Q3-GGYa-FrWVRL6Sg-vCo`; refines an earlier Khuller et al. graph dimension result.
+
+**Open original-PDF custody only:** Harary & Melter (1976), *On the Metric Dimension of a Graph*, and Slater (1975), *Leaves of Trees*. User has contacted publisher. Other 00 unrelated and provenance/duplicate HOLD files were intentionally not touched.
+
+**New geometric reduction:** Conditional on the archived 156 B6-positive sixteen-sensor layouts, the constructive 19-tag single-erasure protection of twelve missing-edge layouts follows from 66/66 edge-pair and 96/96 corner-edge coverages. Rather than just 162 brute cases, proper cube rotation equivariance reduces the sufficiency to **six edge-pair stabilizer orbits + four corner-edge stabilizer orbits** with ten explicit witnesses; in `docs/0.28/B6_SINGLE_ERASURE_ROBUSTNESS_19_TAG_THEOREM.md`. The *minimum robust threshold* is known only in rigorous range **18..19**, not exactly 19, until actual 17-tag positive validity is proved.
