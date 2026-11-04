@@ -3,9 +3,10 @@
 
 CRITICAL: A valid 17-, 18- or 19-tag sensor set need NOT contain a
 valid 16-tag subset. Therefore lack of a 16-core is NOT an invalidity
-certificate for larger selected sensor sets. This auditor only proves
-constructive upper bounds (plus the exactly-classified 17-tag robust
-impossibility via all 16-tag erasures).
+certificate for larger selected sensor sets. This auditor only proves constructive upper bounds by positive 16-cores.
+The exact 19-tag minimum is proved SEPARATELY from pure-two-corner B6
+and complete pure-three-edge B5 physical short-support witnesses in
+verify_b6_one_erasure_exact19.py.
 """
 from itertools import combinations
 from collections import Counter
@@ -119,7 +120,7 @@ def audit():
     assert counts=={16:0,17:0,18:0,19:12,20:1},counts
     print("PROVEN: 17 TAGS CANNOT TOLERATE ONE ERASURE (all resulting 16s classified)")
     print("PROVEN: 12 CONSTRUCTIVE 19-TAG SINGLE-ERASURE DESIGNS; b6^(1) <= 19")
-    print("OPEN: actual existence of robust 18-tag designs; 18 no-16-core is INCONCLUSIVE")
+    print("LIMIT: 18 no-16-core is INCONCLUSIVE ALONE; exact b6^(1)=19 separately follows from physical B5 220-triple and B6 two-corner supports")
     print("66/66 EDGE-PAIR and 96/96 CORNER-EDGE extension coverage")
     return counts
 
