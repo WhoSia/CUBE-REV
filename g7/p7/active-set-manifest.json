@@ -448,6 +448,7 @@
     "docs/0.27/P8_FIRST_COMPLETE_SOURCE_DEPTH11_17HTM_COURT_14_1.md",
     "docs/0.27/P9_TWO_PHYSICAL_COURTS_AND_INDEPENDENT_OPTIMAL_17_CHALLENGE.md",
     "docs/0.27/PROGRAM_CHARTER.md",
+    "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
     "docs/0.28/B6_42_INCIDENCE_DERIVATION.md",
@@ -938,6 +939,7 @@
     "scripts/cuberev-observation/solve_orbit_pool_milp.py",
     "scripts/cuberev-observation/solve_sampled_milp.py",
     "scripts/cuberev-observation/test_adaptive_erasure_minimax.py",
+    "scripts/cuberev-observation/test_b5_three_edge_physical_manifest.py",
     "scripts/cuberev-observation/test_b6_42_incidence.py",
     "scripts/cuberev-observation/test_b6_basis_exchange_failure.py",
     "scripts/cuberev-observation/test_b6_cross_core_bridge.py",
@@ -961,6 +963,7 @@
     "scripts/cuberev-observation/test_reversible_pair_audit.py",
     "scripts/cuberev-observation/test_sensor_symmetry.py",
     "scripts/cuberev-observation/test_stabilizer_support_spectrum.py",
+    "scripts/cuberev-observation/verify_b5_three_edge_physical_manifest.py",
     "scripts/cuberev-observation/verify_b6_13_edge_orbit.py",
     "scripts/cuberev-observation/verify_b6_16_bases.cpp",
     "scripts/cuberev-observation/verify_b6_41_mitm.cpp",
@@ -3911,5 +3914,16 @@
       "total_paths": 1100,
       "source": "nontruncated exact Git blob list, reviewed two files only; research/current, no bot writes"
     }
+  },
+  "active_set_reconciliation_20261104_b5_source_replay": {
+    "reason": "Audit B5 220-triple prior evidence with independent physical replay manifest contract; fail closed without 13-orbit original witness pairs",
+    "explicit_additions": [
+      "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
+      "scripts/cuberev-observation/test_b5_three_edge_physical_manifest.py",
+      "scripts/cuberev-observation/verify_b5_three_edge_physical_manifest.py"
+    ],
+    "old_tracked_paths": 1100,
+    "new_tracked_paths": 1103,
+    "source": "GitHub nontruncated exact full blob tree; no wildcard and no deletion"
   }
 }
