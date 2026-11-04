@@ -1,0 +1,37 @@
+name: CUBE-REV exact small-ball adaptive slot observations
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'scripts/cuberev-observation/audit_active_p48_small_ball_decision_trees.py'
+      - 'scripts/cuberev-observation/test_active_p48_small_ball_decision_trees.py'
+      - '.github/workflows/cuberev-028-active-observation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-small-ball-query:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Exhaustive B1/B2 physical query and decision-tree regression
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_active_p48_small_ball_decision_trees.py' -v
+          python scripts/cuberev-observation/audit_active_p48_small_ball_decision_trees.py | tee /tmp/active-small-ball-receipt.log
+          grep -q '^ACTIVE_SMALL_B1_EXACT' /tmp/active-small-ball-receipt.log
+          grep -q '^ACTIVE_SMALL_B2_EXACT' /tmp/active-small-ball-receipt.log
+          sha256sum /tmp/active-small-ball-receipt.log
+      - name: Preserve exploratory exact finite receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-028-active-small-ball-${{ github.sha }}
+          path: /tmp/active-small-ball-receipt.log
+          retention-days: 30
