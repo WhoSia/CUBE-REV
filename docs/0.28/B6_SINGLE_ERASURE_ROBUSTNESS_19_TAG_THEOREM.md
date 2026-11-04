@@ -54,6 +54,22 @@ Therefore all twelve 19-tag sets missing one edge work, while no 19-tag set miss
 
 QED, at the explicitly recorded physical-source evidence grade.
 
+## Stronger completeness and the B6 → B7 robustness phase transition
+
+The preceding necessity (all 8 corners and at least 11 edges) and sufficiency (all twelve 19-tag missing-one-edge layouts) actually characterize the **entire one-erasure-robust family** on the 20 original-tag ground set, not only its minimum:
+
+- At **radius six**, the robust sets are exactly the twelve 19-tag layouts and the complete 20-tag layout, so **13 robust subsets total** across all 2^20 choices.
+- At **radius seven and above**, only the complete 20-tag layout is robust, so **1 robust subset total**. A 13-HTM physical word changing only two original edges, split into actual 6- and 7-turn B7 midpoint states, yields a two-edge collision. Its 24 spatial rotations touch all twelve original edge tags; thus one-erasure robustness requires **all twelve edges**. All eight corners were already mandatory at B6, so all twenty tags are necessary, and sufficient because no legal nonidentity difference has support on only one original cubie.
+
+An additional 48-sticker physical midpoint replay in `verify_b6_one_erasure_exact19.py` checks the 13-HTM adjacent-two-edge word and all 24 rotated support pairs, with the **actual midpoint states** rather than simply equating endpoint support to observed tag support by assumption. This B7 phase change is **prior 2026-10-31 original research** reconnected to the independently certified B6 upper family, not a claim of new general fault-tolerance theory.
+
+| Radius | Minimum one-erasure robust count | All robust tag sets | Smallest robust shape |
+| --- | ---: | ---: | --- |
+| B6 | **19** | **13** | 8 corners + 11 of 12 edges (12 ways) |
+| B7 and larger | **20** | **1** | all 8 corners + all 12 edges |
+
+Equivalently the original-tag one-erasure feasibility predicate becomes strictly stronger from B6 to B7, deleting exactly **twelve previously valid** one-erasure layouts. There is no appeal to a hypothetical B8 full-state census: inclusion B7⊆Br and full20 robustness for all legal-cube states finish the argument.
+
 ## What is verified / what is inherited / what changed
 
 | Scientific proposition | Evidential source |
