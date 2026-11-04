@@ -21,7 +21,7 @@ from audit_active_p48_small_ball_decision_trees import (
 )
 from active_p48_fixed_site_scan import joint_position_words, REF_EDGE, REF_CORNER
 from active_p48_b6_ten_frame_bridge import measured_inverse_factor
-from b6_independent_48sticker_goals import word
+from b6_independent_48sticker_goals import word, EDGE_POS, CORNERS
 
 QUERY_PAIRS=tuple((e,c) for e in range(12) for c in range(8))
 assert len(QUERY_PAIRS)==96
@@ -108,12 +108,9 @@ def verify(p):
         # the absolute physical turn words and read fixed probe sticker slots.
         for pair,expected in ((root,first),(second,second_value)):
             edge,corner=pair
-            frame=word(" ".join(joint_words[( __import__('b6_independent_48sticker_goals',fromlist=['EDGE_POS']).EDGE_POS[edge],
-                                              __import__('b6_independent_48sticker_goals',fromlist=['CORNERS']).CORNERS[corner])]))
-            got_edge=measured_inverse_factor(state,
-                         __import__('b6_independent_48sticker_goals',fromlist=['EDGE_POS']).EDGE_POS[edge],frame,REF_EDGE)
-            got_corner=measured_inverse_factor(state,
-                         __import__('b6_independent_48sticker_goals',fromlist=['CORNERS']).CORNERS[corner],frame,REF_CORNER)
+            frame=word(" ".join(joint_words[(EDGE_POS[edge],CORNERS[corner])]))
+            got_edge=measured_inverse_factor(state,EDGE_POS[edge],frame,REF_EDGE)
+            got_corner=measured_inverse_factor(state,CORNERS[corner],frame,REF_CORNER)
             if got_edge*24+got_corner!=expected:
                 raise AssertionError("actual P48 fixed-slot probe disagrees with inverse factor")
     if len(outcomes)!=262 or set(decisions)!=observed_first:
