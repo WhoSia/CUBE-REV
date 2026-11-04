@@ -913,7 +913,9 @@
     "scripts/cuberev-observation/channel_model_transfer.py",
     "scripts/cuberev-observation/check_25_irredundancy.py",
     "scripts/cuberev-observation/dictionary_coverage.py",
+    "scripts/cuberev-observation/discover_b5_adjacent_p48_mitm.cpp",
     "scripts/cuberev-observation/dual_priced_columns.py",
+    "scripts/cuberev-observation/emit_b5_adjacent_p48_discovery_goals.py",
     "scripts/cuberev-observation/emit_b6_41_mitm_inputs.py",
     "scripts/cuberev-observation/erasure_observation_policy.py",
     "scripts/cuberev-observation/erasure_prefix_oracle_cost.py",
@@ -951,6 +953,7 @@
     "scripts/cuberev-observation/test_b5_three_edge_physical_manifest.py",
     "scripts/cuberev-observation/test_b6_42_incidence.py",
     "scripts/cuberev-observation/test_b6_basis_exchange_failure.py",
+    "scripts/cuberev-observation/test_b6_complete_4845_p48.py",
     "scripts/cuberev-observation/test_b6_cross_core_bridge.py",
     "scripts/cuberev-observation/test_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/test_b6_goal_union_count.py",
@@ -974,6 +977,7 @@
     "scripts/cuberev-observation/test_reversible_pair_audit.py",
     "scripts/cuberev-observation/test_sensor_symmetry.py",
     "scripts/cuberev-observation/test_stabilizer_support_spectrum.py",
+    "scripts/cuberev-observation/verify_b5_adjacent_p48_discovery_receipt.py",
     "scripts/cuberev-observation/verify_b5_independent_cpp_receipt.py",
     "scripts/cuberev-observation/verify_b5_three_edge_physical_manifest.py",
     "scripts/cuberev-observation/verify_b6_13_edge_orbit.py",
@@ -982,6 +986,7 @@
     "scripts/cuberev-observation/verify_b6_41_mitm_p48.cpp",
     "scripts/cuberev-observation/verify_b6_basis_exchange_failure.py",
     "scripts/cuberev-observation/verify_b6_candidate_orbits.py",
+    "scripts/cuberev-observation/verify_b6_complete_4845_p48.py",
     "scripts/cuberev-observation/verify_b6_corner_obstruction.py",
     "scripts/cuberev-observation/verify_b6_corner_orbit_stabilizer.py",
     "scripts/cuberev-observation/verify_b6_cross_core_bridge.py",
@@ -4017,5 +4022,21 @@
     "science": "19 inherited B6 6-HTM word pairs independently reinterpreted in P48; 420 four-tag negative supports, not full candidate completeness",
     "remote_ci": "await current-head checked run",
     "bot_writeback": "forbidden"
+  },
+  "active_set_reconciliation_20261104_p48_all4845": {
+    "date": "2026-11-04",
+    "previous_allowed": 1117,
+    "now_allowed": 1122,
+    "added_paths": [
+      "scripts/cuberev-observation/verify_b6_complete_4845_p48.py",
+      "scripts/cuberev-observation/emit_b5_adjacent_p48_discovery_goals.py",
+      "scripts/cuberev-observation/discover_b5_adjacent_p48_mitm.cpp",
+      "scripts/cuberev-observation/verify_b5_adjacent_p48_discovery_receipt.py",
+      "scripts/cuberev-observation/test_b6_complete_4845_p48.py"
+    ],
+    "evidence_scope": "New P48 B5 nine 5+5 HTM discovery word pairs -> 216 adjacent B5 supports; independently replayed B5 220 edge triples, B6 16 corner pairs, 19 inherited B6 word pairs -> 420; 4845 total classification / 4689 exact negatives / 156 survivors; positive requires separately confirmed P48 41 MITM",
+    "source": "full physical 48-moving-sticker generated factor table; new P48 source and existing historical short words physically reinterpreted",
+    "status": "local math PASS, remote CI pending",
+    "policy": "WhoSia commits, read-only CI; no historical overwrites"
   }
 }
