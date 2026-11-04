@@ -55,7 +55,7 @@ int main() {
     V n=normal(faces[f]);
     int axis=0; while(n[axis]==0)axis++;
     int layer=n[axis];
-    int sgn=(f%2==0)?1:-1; // U+,R-,F+,D-,L+,B-
+    int sgn=(f==0||f==3||f==4||f==5)?1:-1; // U+,R-,F-,D+,L+,B+; matches independent physical oracle
     for(int kind=0;kind<3;kind++) {
       int pow=(kind==0)?1:(kind==1)?3:2;
       for(int i=0;i<48;i++) {
