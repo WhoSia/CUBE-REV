@@ -12,7 +12,7 @@ from audit_active_p48_b4_nonadaptive_horizon import (
 )
 from verify_b6_complete_4845_p48 import physical_orbit
 
-WITNESS=("F2 R2 F2 U2","R2 F2 R2 U2")
+WITNESS=("U2 F2 R2 F2","U2 R2 F2 R2")
 
 def audit():
     t=triples()
