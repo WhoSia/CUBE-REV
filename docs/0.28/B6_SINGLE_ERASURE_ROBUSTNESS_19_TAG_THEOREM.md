@@ -1,64 +1,81 @@
-# CUBE-REV 0.28 — One-erasure B6 original-cubie sensors: rigorous 18–19 bound
+# CUBE-REV 0.28 — Exact B6 one-original-cubie erasure threshold: 19
 
-**2026-11-04 CORRECTED audit.** The earlier draft of this note incorrectly asserted b6^(1)=19 by assuming every B6-valid 17/18/19-tag design necessarily contains a B6-valid sixteen-tag subset. **That implication is false for general monotone sensor predicates**. This file preserves the correction prominently rather than hiding the earlier error. No new physical HTM distance claims are made.
+**2026-11-04, prior-chat provenance restoration and logical correction.** This supersedes the earlier same-day temporary 18–19 uncertainty. The earlier speculative method of deducing 18-tag invalidity from *absence of valid 16-tag subsets* was invalid; it is NOT used in this proof. The decisive lower-bound witnesses were already physically certified in the 2026-10-31 research phase but omitted from the previous audit. New proof stitching and direct midpoint replay make the result explicit and auditable.
 
-## Definition and existing input
+## Model and result
 
-Twenty original physical cubie tags (eight corners, twelve edges) each report that *specific original object's* full position and orientation. A tag set S is B6-valid if it separates all legal 18-HTM radius-six cube states. It is **one-erasure robust** if for every selected tag t∈S, the set S\\{t} is B6-valid. Let b6^(1) be minimum cardinality of such a set.
+Fixed-centre legal 3×3 Rubik group, symmetric 18-HTM word ball B6. Each selected sensor reports its particular **original oriented cubie's full position and orientation**, not graph-landmark distance and not an instantaneous orientation bit. One-erasure robust means for every tag t in S the observation on S\\{t} separates every state in B6.
 
-Inherited archived physical B6 classification: b6=16 and **all** B6-positive 16-tag sets are exactly 156 layouts. Each of these omits two *adjacent* corners and two edges subject to the four-case geometric rule. This physical positive-family classification still needs fully separately implemented original HTM verification.
+**Conditional exact theorem:** Given the archived B5 complete pure-three-original-edge-support witnesses and B6 positive 16-tag physical certificates, whose source and replay levels are recorded below,
 
-## Theorem — rigorously proved bounds and construction
+    b6^(1) = 19
 
-**18 ≤ b6^(1) ≤ 19**, with at least **12 independently enumerated, certifiably robust 19-tag layouts**: all eight corners and all but any one edge.
+and there are **exactly twelve** optimal robust sets: all eight original corners and any eleven of the twelve original edges. This number is for **one lost sensor**, not the ordinary zero-erasure b6=16, and not the r>=7 result b7^(1)=20.
 
-### Why 17 is impossible — a valid exact deduction
+## General support-hypergraph lemma
 
-Suppose a 17-tag one-erasure robust set S exists. Then erasing *any* of its 17 selected tags leaves a B6-valid **16-tag** set, necessarily one of the 156 existing bases. So for any erased original corner tag, the 4 total missing tags must contain two corners and two edges; the same must hold on erasing any observed original edge tag. But S contains both corner tags (at least five) and edge tags (at least nine). These two erasures demand contradictory missing-tag type counts. Therefore no 17-tag set is robust. By upward monotonicity of erasure robustness no smaller set can work.
+For two distinct states x,y∈B6, define the original-tag difference support D(x,y) = {t : the FULL oriented factor of t differs between x and y}. An observed tag set S is one-erasure robust if and only if
 
-### Constructive 19-tag sufficient certificate
+    |D(x,y) ∩ S| >= 2    for every x != y in B6.
 
-Let e be any one original edge tag, and observe the other 19 tags. Erasing one additional edge f leaves two missing edges, which can be extended to a **positive 16-tag** missing four-tag layout for each unordered edge pair: coverage **66/66**. Erasing any original corner c leaves missing tags {e,c}, and each such pair extends to a positive four-tag layout: coverage **96/96**. By monotonicity, all 18-tag erasure residues are B6-valid. Thus each of the 12 choices of omitted original edge produces an authentic one-erasure robust 19-tag design. This is proved conditionally on the archived B6 positive-family correctness and needs no assumption about larger minimal bases.
+Proof: a one-tag erasure can remove at most one member of the detected support; if at most one was present, erasing it creates indistinguishable physical states. The converse is immediate. This criterion is general combinatorial elementary prior art, NOT a new lemma in graph theory.
 
-### What the finite 156-layout core audit does NOT prove
+## Lower bound: 8 mandatory corner sensors + 11 mandatory edge sensors
 
-An 18-tag set could be B6-valid even if it has **no valid 16-tag subset**. To decide robustness of an 18-tag set, one needs to determine actual B6 validity of each of its 17-tag one-erasure residues, not merely whether each residue contains an archived positive 16-tag layout. The full 156-layout core certificate does NOT settle this. The finite auditor finds **zero** 18-tag sets for which *all erasure residues contain certified 16-tag bases*. That is a **failure of this sufficient certificate**, not proof of 18-tag impossibility. Likewise, it does not exclude additional 19-tag robust designs omitting one corner.
+**Corner source (physical midpoint replay).** The established 12-HTM pure-two-original-corner words
 
-Therefore **b6^(1)∈{18,19} remains open**. The paper must never claim the exact 19 threshold or exact count 12 of *all* robust 19-tag designs.
+    U2 R' B D2 B' R U2 R' B D2 B' R
+    U' B2 U L' F2 L U' B2 U L' F2 L
 
-## Short geometric incidence proof: ten symmetry-orbit witnesses
+are imported from the 2026-10-31 physical-short-support audit, not newly discovered. A separately implemented 48-movable-sticker physical engine `verify_short_support_phase.py` replays these words. Cutting each 12-move sequence into two six-move endpoint paths produces distinct states in B6; a new `verify_b6_one_erasure_exact19.py` additionally replays the actual two endpoints and computes their original-tag difference directly, rather than assuming the solved-endpoint support matches after midpoint transport. The two geometric orbits contain 12 face-diagonal + 4 body-diagonal original corner pairs, with no edge-tag differences. Their union touches **all eight corners**. Every absent corner c lies in a two-support {c,c'}; the other corner c' is at most one observed factor, failing the >=2 criterion even if every other sensor is installed. Therefore every robust S contains **all 8 corners**.
 
-The 24 proper spatial cube rotations act transitively on the twelve original edge positions and on the eight original corner positions; the four-case positive B6 omission criterion is covariant under these rotations. Consequently, for edge–edge extension coverage it suffices to fix the first absent edge to `DL`, then classify its remaining eleven possible partner edges by the order-two rotation stabilizer of `DL`. The stabilizer orbits and one allowed positive-layout **core-edge witness** for each are:
+**Edge source (historical sealed B5 physical certificate).** The earlier 0.28 B5 research and re-executed source archive `CUBE_REV_20261030_EXACT_B1_B5_SENSOR_CERTIFICATES.zip`, SHA256 `002887a198bac812ad360ba536309f2522899d5c28d12fb73bb92062ae889c94`, report 84 pure three-edge support masks in B4, plus 136 disjoint new ones in B5, yielding precisely **C(12,3)=220** triple-edge physical difference supports. Nine B5 new physical representatives and their 24 proper rotations were replayed using the old 54-facelet model; see `docs/0.28/B6_EXACT_16_TWO_CERTIFICATE_CLOSURE.md` and the 2026-10-30 history recorded in Drive `33.md`. **The present new verifier does not independently replay the 220 source witnesses**: it treats the complete triple-edge family as a clearly labelled inherited physical premise.
 
-| Second edge orbit for the fixed missing `DL` | Representative f | Positive omitted-corner core h with `{DL,f} ∈ F_h` |
-| --- | --- | --- |
-| {BL, DF} | BL | UR |
-| {BR, UF} | BR | DB |
-| {DB, FL} | DB | UR |
-| {DR, UL} | DR | UF |
-| {FR, UB} | FR | DF |
-| {UR} | UR | UL |
+Suppose two edge sensors e,f are uninstalled. Pick any third edge g. A B5⊆B6 pair differs only in e,f,g; after erasing g, no observed factor distinguishes those states. Therefore one-erasure robustness requires at most **one** omitted edge, i.e. at least **11 selected edges**. Together with all eight mandatory corners:
 
-This uses only **six positive-layout membership checks**, not all 66 pairs. The orbit sizes 2+2+2+2+2+1=11, together with edge transitivity, cover every unordered edge pair.
+    |S| >= 8 + 11 = 19.
 
-For corner–edge pairs, fix the first omitted corner to the coordinate `(-1,-1,-1)`, which is an endpoint of the original `DL` edge. The order-three rotation stabilizer of that corner yields **four orbits** on original edges:
+This proof excludes every 18-tag layout **directly by original physical short-support witnesses**, not by the false 16-subset converse. It does not need classification of any 17-tag B6-positive sets.
 
-| Missing edge orbit | Representative e | Positive 16-tag omission: core h and omitted edge pair |
-| --- | --- | --- |
-| {BL, DB, DL} | BL | h=DL; {DF,BL} |
-| {BR, DF, UL} | BR | h=DL; {UR,BR} |
-| {DR, FL, UB} | DR | h=DL; {UL,DR} |
-| {FR, UF, UR} | FR | h=DL; {UR,FR} |
+## Upper bound: 12 actual 19-tag constructions, using 10 symmetry witnesses
 
-These four verified incidences, by rotation, cover all 8×12=**96** corner–edge pairs. The exact stabilizer orbits and the ten witness admissibilities are additionally asserted in `verify_orbit_witnesses()`; the separate full 66/66 and 96/96 finite auditor remains as a cross-check. The argument is purely geometric **conditional on the already-certified four-case B6 positive-family rule** and does not prove HTM lower bounds.
+Take all 8 original corners and all 12 original edges except any one e. For any additional single lost edge f, the two missing edges {e,f} are included in at least one of the **156 archived physically positive omitted-four-tag** B6 layouts. For any lost corner c, the two missing tags {e,c} likewise extend to one positive omitted-four-tag layout. Thus the remaining 18 installed tags in either case still contain a genuinely B6-valid sixteen-sensor sublayout; its injectivity is inherited by monotonicity.
 
-## Reproducible audit and provenance
+The full geometric enumeration gives coverage **66/66** unordered original edge pairs and **96/96** corner–edge pairs. The 24 proper spatial cube rotations permit an explicit shorter certificate:
 
-- `scripts/cuberev-observation/audit_b6_one_erasure_robustness.py` — exactly 156 historically certified positive 16-tag omitted families; reports sufficient 16-core certificates at 16..20 observed tags, 66/66 edge–edge and 96/96 corner–edge extension counts, avoids invalid converse.
-- `scripts/cuberev-observation/test_b6_one_erasure_robustness.py` — five semantic-boundary tests. The 18-tag negative test concerns **existence of sufficient core certificates only**, NOT actual B6 invalidity.
-- Hernando–Mora–Slater–Wood (2008), *Fault-Tolerant Metric Dimension of Graphs*, is in Research OS Drive 00 at `1qjgI5Jllteoog_RedYttju-zX7p6nDe4`. Their distance-landmark failure model is distinct from an original oriented cubie sensor.
-- Boutin, *Determining Sets, Resolving Sets, and the Exchange Property*, arXiv 0808.1427v1, Drive `1uQpaotOWnqEi6oTShp4WSHoy6B0B1IgD`, already studies exchange failures. The generic idea is not new.
+- Fix one absent original edge DL: its rotation stabilizer is order 2, splitting the eleven other edges into six partner orbits `{BL,DF}, {BR,UF}, {DB,FL}, {DR,UL}, {FR,UB}, {UR}`. A positive omitted-corner-core edge h for the respective representatives BL,BR,DB,DR,FR,UR is **UR, DB, UR, UF, DF, UL**, respectively.
+- Fix one absent corner at `(-1,-1,-1)`: the order-3 rotation stabilizer has four original-edge orbits `{BL,DB,DL}, {BR,DF,UL}, {DR,FL,UB}, {FR,UF,UR}`. Every representative BL, BR, DR, FR occurs with missing core h=DL and omitted edge pair **{DF,BL}, {UR,BR}, {UL,DR}, {UR,FR}**, respectively.
 
-## Next physical decision gate
+`audit_b6_one_erasure_robustness.py` verifies the orbit stabilizers, all ten concrete witness memberships and the full coverage. The 156-layout B6-positive labels are **inherited** from previous exact 41-goal full-state HTM MITM certificates, NOT independently established by the orbit code.
 
-Classify **all** 17-tag B6-valid designs with actual original 18-HTM stabilizer distance tests. Every 18-tag one-erasure robust design would need every 17-tag deletion B6-valid. A full 17-tag certificate is the decisive missing input, independent of whether those 17-tag designs contain a positive 16-tag core.
+Therefore all twelve 19-tag sets missing one edge work, while no 19-tag set missing one corner works because the physical corner-pair obstruction forces all corners.
+
+    b6^(1)=19,   # minimum one-erasure robust layouts = 12.
+
+QED, at the explicitly recorded physical-source evidence grade.
+
+## What is verified / what is inherited / what changed
+
+| Scientific proposition | Evidential source |
+| --- | --- |
+| Two specific 12-HTM pure-two-corner words; midpoint transport; 16 rotated supports; all corners touched | **Actually replayed** by independent 48-sticker `verify_b6_one_erasure_exact19.py` + original physical `verify_short_support_phase.py`; not a claim of shortest possible words |
+| Every one of the C(12,3)=220 edge triples physically occurs as B5 difference support | **Inherited and historically re-executed** old original 54-facelet B5 certificate; new proof code counts the obligated triples but does not replay them |
+| Exactly 156 B6-positive 16-tag layouts | **Inherited** from historical witness census, original physical archive and separate 41-distance full-state MITM; not source-independent fresh facelet engine |
+| Constructive 19-tag validity | New 10-orbit finite geometric derivation **conditional on** positive family |
+| 18-tag nonexistence for one erasure | Direct short-support-hypergraph consequence of corner and edge physical witnesses; **not** 16-subset inference |
+| Relation to prior work | Hernando–Mora–Slater–Wood (2008) studies fault-tolerant **graph-distance landmark** metric bases; not this original-cubie output. Boutin (2008) studies exchange properties more generally |
+
+This restores a genuinely stronger argument from previous chat history rather than inventing the 220-triple premise at this turn. Its value is mathematical integration and executable source-linking, **not** independent physical discovery of an earlier short word or a new generic robustness principle.
+
+## Reproducibility
+
+- `python scripts/cuberev-observation/verify_b6_one_erasure_exact19.py`
+- `python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_one_erasure_exact19.py' -v`
+- `python scripts/cuberev-observation/audit_b6_one_erasure_robustness.py`
+- `python scripts/cuberev-observation/verify_short_support_phase.py`
+
+Mandatory canonical branch: **research/current**, by `REPOSITORY_POLICY.md`. CI is **read only**, no bot-authored commits.
+
+## Retraction genealogy
+
+An intermediate 2026-11-04 draft incorrectly claimed exact 19 by a false general converse about containing a positive 16-core, and a subsequent correction withdrew to 18≤b6^(1)≤19. The **final exact proof here is different**: it imports earlier actual B5=220 triple-edge and B6=16 two-corner physical support evidence, *then* separately proves the 19-tag positive upper construction. The logical issue stays documented to prevent regression.
