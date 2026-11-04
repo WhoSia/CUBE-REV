@@ -1,0 +1,40 @@
+name: CUBE-REV 0.28 exchange geometry and realistic color bounds
+
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - 'scripts/cuberev-observation/audit_b6_exchange_line_graph.py'
+      - 'scripts/cuberev-observation/audit_color_probe_information_bounds.py'
+      - 'scripts/cuberev-observation/test_b6_exchange_and_color_probe.py'
+      - '.github/workflows/cuberev-028-exchange-color-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  physical-geometry-and-information:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify local exchange fibers and 6-color probe capacity
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s scripts/cuberev-observation -p 'test_b6_exchange_and_color_probe.py' -v
+          python scripts/cuberev-observation/audit_b6_exchange_line_graph.py | tee /tmp/b6-exchange-geometry.log
+          python scripts/cuberev-observation/audit_color_probe_information_bounds.py | tee /tmp/cube-color-information.log
+          grep -q '^B6_EXCHANGE_CUBE_LINE_GRAPH_QUOTIENT_PASS' /tmp/b6-exchange-geometry.log
+          grep -q '^COLOR_PROBE_FULL_GROUP_13_FRAME_LOWER_BOUND_PASS' /tmp/cube-color-information.log
+          sha256sum /tmp/b6-exchange-geometry.log /tmp/cube-color-information.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cuberev-028-exchange-color-${{ github.sha }}
+          path: |
+            /tmp/b6-exchange-geometry.log
+            /tmp/cube-color-information.log
+          retention-days: 30
