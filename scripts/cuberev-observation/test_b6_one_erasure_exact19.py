@@ -4,7 +4,7 @@ import unittest
 from itertools import combinations
 from verify_b6_one_erasure_exact19 import (
     certified_physical_corner_pairs, certified_physical_B7_adjacent_edge_pairs,
-    inherited_all_B5_three_edge_supports,
+    physically_replayed_all_B5_three_edge_supports,
     obstruction_lower_bound, audit
 )
 from audit_b6_one_erasure_robustness import (
@@ -25,8 +25,8 @@ class ExactNineteenTests(unittest.TestCase):
         self.assertEqual(len(pairs),24)
         self.assertEqual(len(set().union(*pairs)),12)
 
-    def test_B5_three_edge_coverage_obligation_is_inherited(self):
-        family=inherited_all_B5_three_edge_supports()
+    def test_B5_three_edge_coverage_physically_replayed_220(self):
+        family=physically_replayed_all_B5_three_edge_supports()
         self.assertEqual(len(family),220)
         self.assertTrue(all(frozenset(p) in family
                             for p in combinations(EDGES_TAGS,3)))
