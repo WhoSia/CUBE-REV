@@ -1,5 +1,7 @@
 # CUBE-REV 0.18 — Factorized Rubik Set Cover, Exhaustive Four-Slot Minimum and the Remaining Five-Slot Proof
 
+> **Superseded proof-status notice (2026-11-04):** this report's five-slot UNSAT pending verdict and `30<=M*<=34` interval were superseded by the exact 27+7=34 externally checked DRUP proof on GitHub Actions run [37958523951](https://github.com/WhoSia/CUBE-REV/actions/runs/37958523951). Rechecked raw original proofs and Drive custody are documented in [20261104_EXACT_MSTAR34_RECHECK_AND_DRIVE_CUSTODY.md](20261104_EXACT_MSTAR34_RECHECK_AND_DRIVE_CUSTODY.md). Keep the text below as **dated historical context**, not the latest verdict.
+
 **Single ACTIVE official version:** CUBE-REV 0.18. This is an internal P7 certificate report, not a new formal version. Our subject remains the actual 3×3×3 Rubik's Cube: 18 legitimate HTM face turns, the tracked UR-edge's 24 position/flip states, four post-move orientation-bit observations, and 1,192 original legal source subsets.
 
 ## Exact all-cardinality reduction to 2 connected components
