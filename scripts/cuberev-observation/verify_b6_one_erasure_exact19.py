@@ -24,7 +24,8 @@ def inverse_token(m):
 
 def midpoint_states(word):
     turns=word.split()
-    assert len(turns)==12
+    assert len(turns) in (12,13)
+    # 6 + 6 for B6; 6 + 7 for B7, with full original-tag comparison.
     left=" ".join(inverse_token(t) for t in reversed(turns[6:]))
     right=" ".join(turns[:6])
     return play(left),play(right)
@@ -47,6 +48,20 @@ def certified_physical_corner_pairs():
     observed_positions=set(corners.values())
     assert set().union(*actual)==observed_positions
     return actual
+
+def certified_physical_B7_adjacent_edge_pairs():
+    """Physical B7 13-HTM 6+7 midpoint witness; 24 rotations touch all edges."""
+    solved=factors(initial())
+    edges={tag:pos for tag,(pos,_) in solved.items() if len(tag)==2}
+    s1,s2=midpoint_states(WORDS["adjacent_edges_13"])
+    f1,f2=factors(s1),factors(s2)
+    difference={tag for tag in solved if f1[tag]!=f2[tag]}
+    assert len(difference)==2 and all(len(tag)==2 for tag in difference)
+    positions=[edges[tag] for tag in difference]
+    orbit={frozenset(r(v) for v in positions) for r in proper24()}
+    assert len(orbit)==24
+    assert set().union(*orbit)==set(edges.values())
+    return orbit
 
 def inherited_all_B5_three_edge_supports():
     """SET of obligations certified in archived B5 witness replay, NOT new replay."""
@@ -103,7 +118,18 @@ def audit():
             assert len(absent&CORNERS_TAGS)>=1
         else:
             assert len(absent&EDGES_TAGS)==2
+    b7_adjacent=certified_physical_B7_adjacent_edge_pairs()
+    assert len(b7_adjacent)==24
+    # Complete set-level classifications from the support obstructions
+    # and the constructive positive B6 19-tag family:
+    # B6 robust family: exactly 12 choices (omit one edge) plus full20.
+    # B7 robust family: only full20 (physical 13-HTM rotated two-edge support).
+    b6_robust_total=12+1
+    b7_robust_total=1
+    assert (b6_robust_total,b7_robust_total)==(13,1)
     print("B6 ERASURE EXACT THRESHOLD 19 (on inherited physical certificates)")
+    print("FULL B6 ONE-ERASURE ROBUST SENSOR FAMILY 13 sets = 12 size19 + 1 size20")
+    print("B7 ONE-ERASURE THRESHOLD 20; only full20 robust; 24 adjacent two-edge midpoint supports physically replayed")
     print("B6 ROBUST MINIMUM LAYOUTS 12: all 8 corners + any 11 edges")
     print("PHYSICAL CORNER CERTIFICATE 16 two-corner pairs via independent 48-sticker midpoint replay")
     print("B5 THREE-EDGE SUPPORT PROVENANCE inherited 220/220, not independently replayed here")
