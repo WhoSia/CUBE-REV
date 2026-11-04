@@ -26,6 +26,32 @@ An 18-tag set could be B6-valid even if it has **no valid 16-tag subset**. To de
 
 Therefore **b6^(1)∈{18,19} remains open**. The paper must never claim the exact 19 threshold or exact count 12 of *all* robust 19-tag designs.
 
+## Short geometric incidence proof: ten symmetry-orbit witnesses
+
+The 24 proper spatial cube rotations act transitively on the twelve original edge positions and on the eight original corner positions; the four-case positive B6 omission criterion is covariant under these rotations. Consequently, for edge–edge extension coverage it suffices to fix the first absent edge to `DL`, then classify its remaining eleven possible partner edges by the order-two rotation stabilizer of `DL`. The stabilizer orbits and one allowed positive-layout **core-edge witness** for each are:
+
+| Second edge orbit for the fixed missing `DL` | Representative f | Positive omitted-corner core h with `{DL,f} ∈ F_h` |
+| --- | --- | --- |
+| {BL, DF} | BL | UR |
+| {BR, UF} | BR | DB |
+| {DB, FL} | DB | UR |
+| {DR, UL} | DR | UF |
+| {FR, UB} | FR | DF |
+| {UR} | UR | UL |
+
+This uses only **six positive-layout membership checks**, not all 66 pairs. The orbit sizes 2+2+2+2+2+1=11, together with edge transitivity, cover every unordered edge pair.
+
+For corner–edge pairs, fix the first omitted corner to the coordinate `(-1,-1,-1)`, which is an endpoint of the original `DL` edge. The order-three rotation stabilizer of that corner yields **four orbits** on original edges:
+
+| Missing edge orbit | Representative e | Positive 16-tag omission: core h and omitted edge pair |
+| --- | --- | --- |
+| {BL, DB, DL} | BL | h=DL; {DF,BL} |
+| {BR, DF, UL} | BR | h=DL; {UR,BR} |
+| {DR, FL, UB} | DR | h=DL; {UL,DR} |
+| {FR, UF, UR} | FR | h=DL; {UR,FR} |
+
+These four verified incidences, by rotation, cover all 8×12=**96** corner–edge pairs. The exact stabilizer orbits and the ten witness admissibilities are additionally asserted in `verify_orbit_witnesses()`; the separate full 66/66 and 96/96 finite auditor remains as a cross-check. The argument is purely geometric **conditional on the already-certified four-case B6 positive-family rule** and does not prove HTM lower bounds.
+
 ## Reproducible audit and provenance
 
 - `scripts/cuberev-observation/audit_b6_one_erasure_robustness.py` — exactly 156 historically certified positive 16-tag omitted families; reports sufficient 16-core certificates at 16..20 observed tags, 66/66 edge–edge and 96/96 corner–edge extension counts, avoids invalid converse.
