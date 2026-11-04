@@ -141,6 +141,7 @@
     ".github/workflows/cuberev-028-active-b3.yml",
     ".github/workflows/cuberev-028-active-cost.yml",
     ".github/workflows/cuberev-028-active-observation.yml",
+    ".github/workflows/cuberev-028-exchange-color-audit.yml",
     ".github/workflows/cuberev-028-independent-p48-mitm.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
@@ -914,10 +915,12 @@
     "scripts/cuberev-observation/audit_active_p48_frame_route_cost.py",
     "scripts/cuberev-observation/audit_active_p48_small_ball_decision_trees.py",
     "scripts/cuberev-observation/audit_b6_66_partition.py",
+    "scripts/cuberev-observation/audit_b6_exchange_line_graph.py",
     "scripts/cuberev-observation/audit_b6_full48_target_orbits.py",
     "scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/audit_b6_one_erasure_robustness.py",
     "scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py",
+    "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
@@ -979,6 +982,7 @@
     "scripts/cuberev-observation/test_b6_basis_exchange_failure.py",
     "scripts/cuberev-observation/test_b6_complete_4845_p48.py",
     "scripts/cuberev-observation/test_b6_cross_core_bridge.py",
+    "scripts/cuberev-observation/test_b6_exchange_and_color_probe.py",
     "scripts/cuberev-observation/test_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/test_b6_goal_union_count.py",
     "scripts/cuberev-observation/test_b6_independent_48sticker_goals.py",
@@ -4176,5 +4180,20 @@
     "drive": "19ry8e4HgyJ_C3uVbZrsGHl9D2Z4ZzHrJ",
     "archive": "three near-expiry original artifacts Drive raw byte custody",
     "doctrine": "human WhoSia commits only; CI no writes; old verdicts retained as historical"
+  },
+  "active_set_reconciliation_20261105_explanatory_exchange_realism": {
+    "date": "2026-11-05",
+    "previous_allowed": 1146,
+    "new_allowed": 1150,
+    "added_paths": [
+      "scripts/cuberev-observation/audit_b6_exchange_line_graph.py",
+      "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
+      "scripts/cuberev-observation/test_b6_exchange_and_color_probe.py",
+      ".github/workflows/cuberev-028-exchange-color-audit.yml"
+    ],
+    "scope": "B6 156 optimum layout graph: 8+4+1 fiber over each of 12 cube edges, giant component quotient line graph of Q3 with three physical swaps per adjacent core-edge pair; contrast with color-only stationary probes requiring >=13 frames on unrestricted G",
+    "caveats": "local finite geometric explanation not new general theorem; 13 is information lower bound only; Hamming one-error bound fixed nonadaptive policies only",
+    "ci": "read-only success required before independent proof status",
+    "author": "WhoSia only"
   }
 }
