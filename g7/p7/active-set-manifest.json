@@ -460,6 +460,7 @@
     "docs/0.28/20261105_R10_LEGAL_NO_RESET_ADAPTIVE_POLICY_PHYSICAL_LIFT.md",
     "docs/0.28/20261105_R11_CORNER14_NO_ORACLE_JOINT_FEEDBACK_21_THEOREM.md",
     "docs/0.28/20261105_R11_CORNER_CHIRALITY_PARITY_EDGE_TIMING_GATE.md",
+    "docs/0.28/20261105_R12_EIGHT_COMPLETE_EDGE_ADAPTIVE_PREFIX_NO20_THEOREM.md",
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
     "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
@@ -4459,14 +4460,14 @@
     }
   },
   "active_set_reconciliation_20261105_r12": {
-    "date": "2026-11-05",
     "stage": "0.28-R12",
+    "date": "2026-11-05",
     "paths": [
-      "scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py"
+      "scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py",
+      "docs/0.28/20261105_R12_EIGHT_COMPLETE_EDGE_ADAPTIVE_PREFIX_NO20_THEOREM.md"
     ],
-    "theorem": "no 20-frame solution within any policy class with first 16 edge-color queries completing eight spatial edge positions; U-star adversary leaves residual 96 legal states requiring 5 additional reads",
-    "applies": "even with true complete corner state; first 16 edge slots fully cover exactly eight edge positions",
-    "does_not_apply": "all mixed partial early edge query strategies; global h still 18..21",
-    "remote_ci": "queued"
+    "theorem": "any adaptive policy with its first 16 edge reads completing eight distinct original spatial edge positions cannot identify full group by frame20; U-star deferred adversary leaves 96 parity-valid completions needing five reads",
+    "limits": "not all adaptive policy classes, global h remains 18..21",
+    "ci_status": "queued"
   }
 }
