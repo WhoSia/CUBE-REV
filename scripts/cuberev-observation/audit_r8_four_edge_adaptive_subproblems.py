@@ -113,7 +113,7 @@ def audit():
     assert aggregate=={3:72,4:369,5:54},aggregate
     assert parity_checks==1980
     assert sum(by_shape.values())==495
-    assert sum(k==5 for _,_,k in by_shape for _ in range(by_shape[(_,_,k)]))==54
+    assert sum(n for (degree,components,depth),n in by_shape.items() if depth==5)==54
     budget_numerator=sum(depth*count for depth,count in aggregate.items())
     assert budget_numerator==1962
     print("R8_FOUR_EDGE_ADAPTIVE_MINIMAX_PASS",
