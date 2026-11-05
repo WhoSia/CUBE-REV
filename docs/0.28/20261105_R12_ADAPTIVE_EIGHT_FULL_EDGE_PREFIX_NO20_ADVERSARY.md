@@ -121,6 +121,12 @@ The independent source is a *color-label parity model*, not an
 independent P48 physical coordinate implementation. The P48-derived
 edge type labeling and its physical realization are inherited from
 R11/R12; global physical zero-error claims need those audited links.
-The independent local run passed, the remote GitHub Actions result for
-this **new** R14 entry must be inspected separately, and the Drive
-original-source SHA is not equivalent to verified Drive readback SHA.
+The independent local run passed. The two R14 seven-prefix files
+were independently downloaded as RAW bytes from Drive; exact SHA-256
+comparisons against original source succeeded:
+- Independent Python: `a07b416cb6a2b479083f3dcf5134cac78fa235f0874399d3833cb9b5646fb18e` (4,651 bytes).
+- Residual minimax receipt: `9ff354c6984d3e18380f83a26188005adb8f689b666d83d86d6862ad8a95f17e` (2,272 bytes).
+The earlier two R14 color-orbit artifacts were likewise raw-byte SHA-verified.
+Thus Drive status is **BYTE_VERIFIED** for all four. The remote GitHub
+Actions result for this **new** R14 entry remains UNCONFIRMED; raw Drive
+custody does not substitute for remote code execution certification.
