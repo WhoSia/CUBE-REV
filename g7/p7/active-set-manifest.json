@@ -936,6 +936,7 @@
     "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/audit_r10_physical_feedback_lift.py",
+    "scripts/cuberev-observation/audit_r11_corner13_collision_witness.py",
     "scripts/cuberev-observation/audit_r11_corner13_with_parity.py",
     "scripts/cuberev-observation/audit_r11_corner14_chirality.py",
     "scripts/cuberev-observation/audit_r11_corner14_no_oracle.py",
@@ -4429,7 +4430,8 @@
       "scripts/cuberev-observation/audit_r11_corner13_with_parity.py",
       "scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp",
       "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
-      "scripts/cuberev-observation/audit_r11_full21_with_corner14.py"
+      "scripts/cuberev-observation/audit_r11_full21_with_corner14.py",
+      "scripts/cuberev-observation/audit_r11_corner13_collision_witness.py"
     ],
     "verifications": {
       "independent_local_corner14_13": 2501,
@@ -4440,6 +4442,11 @@
       "global_adaptive_frames": "18..21 OPEN"
     },
     "remote_ci": "queued awaiting workflow result",
-    "doctrine": "conditional results not general global 20; no measured cognitive effect"
+    "doctrine": "conditional results not general global 20; no measured cognitive effect",
+    "claims": [
+      "fixed corner-only exact 14 reads via two per seven and twist parity",
+      "for any <=13 precommitted corner positions, legal P48 indistinguishable pair exists",
+      "staged full-cube no-corner-oracle 21-frame adaptive policy"
+    ]
   }
 }
