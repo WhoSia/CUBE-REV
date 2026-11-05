@@ -49,6 +49,12 @@ jobs:
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
           grep -q '^R4_COLOR_B2_TWO_FRAME_UNIFORM_POSTERIOR_PASS adaptive 1976 fixed 2242 denominator 262' /tmp/cuberev-color-r4-b2-belief.log
           grep -q '^R4_COLOR_B2_WORST_AMBIGUITY_PASS adaptive 18 fixed 18' /tmp/cuberev-color-r4-b2-belief.log
+      - name: Exact bounded R5 B2 two-frame physical Pareto and branch DP
+        run: |
+          python scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py | tee /tmp/cuberev-color-r5-exact-pareto.log
+          grep -q '^R5_B2_EXACT_PARETO_PASS' /tmp/cuberev-color-r5-exact-pareto.log
+          grep -q '^R5_B2_ADAPTIVE_PARETO_POINTS' /tmp/cuberev-color-r5-exact-pareto.log
+          grep -q '^R5_B2_EXTREME_PASS' /tmp/cuberev-color-r5-exact-pareto.log
       - name: Audit all 156 B6 optimal single-tag exchanges
         run: python scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py
       - name: Verify 24-by-3 physical incidence bridge theorem
