@@ -944,6 +944,7 @@
     "scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp",
     "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
     "scripts/cuberev-observation/audit_r11_full21_with_corner14.py",
+    "scripts/cuberev-observation/audit_r11_full_cube_joint_feedback_21.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
@@ -4421,10 +4422,17 @@
     "date": "2026-11-05",
     "paths": [
       "scripts/cuberev-observation/audit_r11_corner14_no_oracle.py",
-      "scripts/cuberev-observation/audit_r11_corner_parity_coupling.py"
+      "scripts/cuberev-observation/audit_r11_corner_parity_coupling.py",
+      "scripts/cuberev-observation/audit_r11_full_cube_joint_feedback_21.py"
     ],
-    "scope": "corner-only independent 14-frame physical decoder and solved-reference corner/parity observation-mask census",
-    "claim_boundary": "no <=20 frame full cube adaptive identifier; no free corner oracle in 14 frame decoder",
+    "scope": "universal 14-corner-color lemma; full 21-frame oracle-free staged feedback policy using only real two six-color sensors",
+    "proof_obligations": [
+      "all corner two-color signatures bijective",
+      "R9 exact 495×4 residual policy table",
+      "joint pair orbit 576",
+      "real P48 decoder",
+      "no free reset"
+    ],
     "remote_ci": "pending"
   }
 }
