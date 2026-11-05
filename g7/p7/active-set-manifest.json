@@ -935,6 +935,7 @@
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
+    "scripts/cuberev-observation/audit_r9_feedback_fixed_separation.py",
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
@@ -4363,6 +4364,24 @@
       }
     },
     "global_fullcube_adaptive_frames": "18..21 unresolved",
+    "remote_ci": "pending"
+  },
+  "active_set_reconciliation_20261105_r9_feedback": {
+    "stage": "0.28-R9",
+    "date": "2026-11-05",
+    "paths": [
+      "scripts/cuberev-observation/audit_r9_feedback_fixed_separation.py"
+    ],
+    "scope": "corner oracle, arbitrary edge slot access, 4-unknown-edge residual, 96 edge states per parity case",
+    "classification": {
+      "adaptive3_fixed4": 72,
+      "adaptive4_fixed4": 225,
+      "adaptive4_fixed5": 144,
+      "adaptive5_fixed5": 54
+    },
+    "feedback_improves_which_subsets": 216,
+    "parity_cases": 1980,
+    "source": "exact P48 color readout replay; no physical turn routing and no human cognition claims",
     "remote_ci": "pending"
   }
 }
