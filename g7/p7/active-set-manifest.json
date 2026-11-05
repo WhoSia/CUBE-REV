@@ -4565,7 +4565,7 @@
     "original_receipt": "https://drive.google.com/file/d/1S8SFjv29UVEGsab3sLFTk0Lz_SqBRJX_/view",
     "source_sha256": "c0f0ed57be25ac0373f82a8b6317768a96698e0454565a0a0e99354936ff6375",
     "receipt_sha256": "c3309d6abe89031d99858fd0f9f71ee1ef01b8ffcdefec1111b43569894e8236",
-    "custody": "Drive upload acknowledged; raw-byte readback not yet independently compared",
+    "custody": "BYTE_VERIFIED: Python 10,414 bytes and JSON receipt 1,357 bytes; exact SHA-256 re-read from Drive raw bytes matches uploaded originals",
     "remote_ci": "pending"
   }
 }
