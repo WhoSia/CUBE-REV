@@ -1,6 +1,6 @@
 # CUBE-REV 0.28 — R5: Exact finite information/action Pareto court and research-program differentiation
 
-**Date 2026-11-05. Status:** Exact integer-DP mathematics and implemented P48 finite-court code; remote CI outcome must be verified for the final R5 code before declaring a new certified numerical frontier. The full Rubik color-channel adaptive identification horizon remains 16–21; the fixed/nonadaptive horizon is exactly 21 (R3). No human behavioral data are claimed.
+**Date 2026-11-05. Status:** Exact integer-DP mathematics and implemented P48 finite-court code; the physical Pareto and discrete nonconvexity checks completed remote CI SUCCESS (runs 41956909650 and 41957967084). The full Rubik color-channel adaptive identification horizon remains 16–21; the fixed/nonadaptive horizon is exactly 21 (R3). No human behavioral data are claimed.
 
 ## 1. Research target and epistemic boundaries
 
@@ -102,7 +102,7 @@ The lower convex hull over all 152 nondominated points has just eight extreme ve
 (212,2248);(231,2032);(241,1992);(257,1976)
 ```
 
-Including collinear Pareto points that tie for some real nonnegative linear weight `lambda`, only **18/152** efficient points are supported by a scalar objective `M + lambda*A`; **134/152** are unsupported. This count has been independently recomputed from the exact GitHub R5 output using integer orientation/cross-product tests. The latest source adds CI-checkable assertions for these numbers, so the appended claim should be upgraded to full final-run CI PASS only when that subsequent commit's run completes successfully.
+Including collinear Pareto points that tie for some real nonnegative linear weight `lambda`, only **18/152** efficient points are supported by a scalar objective `M + lambda*A`; **134/152** are unsupported. This count has been independently recomputed from the exact GitHub R5 output using integer orientation/cross-product tests. The follow-on independent [read-only CI 41957967084](https://github.com/WhoSia/CUBE-REV/actions/runs/41957967084) completed SUCCESS, including the exact R5 Pareto physical step and the additional integer-hull assertions; the 8 hull vertices, 18 supported points and 134 unsupported points are thus externally rerun.
 
 A simple nonconvexity witness is the *efficient* point `(111,13760)`. For it to outperform `(0,15194)` under `M+lambda*A`, one needs `lambda <= (15194-13760)/111=1434/111`. To outperform `(113,3640)`, one simultaneously needs `lambda >= (13760-3640)/(113-111)=10120/2=5060`. These conditions cannot both hold. Thus a naive weighted-sum sweep misses a real, physically realizable Pareto-optimal observation policy. This is a new exact *Rubik finite-case witness*, not a new general fact about discrete multiobjective optimization.
 
