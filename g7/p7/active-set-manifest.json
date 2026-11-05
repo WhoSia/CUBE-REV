@@ -935,6 +935,7 @@
     "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/audit_r10_physical_feedback_lift.py",
+    "scripts/cuberev-observation/audit_r11_corner19_edge_parity.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
@@ -4406,5 +4407,15 @@
     "ci_run": 41994714970,
     "ci_conclusion": "success",
     "boundaries": "corner oracle, three representative parity-even classes, independent trials, not full-cube policy or motor cost optimum"
+  },
+  "active_set_reconciliation_20261105_r11": {
+    "date": "2026-11-05",
+    "stage": "0.28-R11",
+    "paths": [
+      "scripts/cuberev-observation/audit_r11_corner19_edge_parity.py"
+    ],
+    "target": "19 corner color readout reconstruction given independent one-bit true edge parity oracle",
+    "proof_status": "pending remote CI; no full cube 20 policy",
+    "empirical_source": "legal P48 B2 262 states and 4 longer words"
   }
 }
