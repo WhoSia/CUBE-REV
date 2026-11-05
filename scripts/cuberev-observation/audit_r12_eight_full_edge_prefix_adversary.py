@@ -124,5 +124,45 @@ def audit():
     print("R12_SCOPE 16 readings are EXACTLY 8 complete spatial edge positions;"
           " mixed/partial-prefix universal 20-frame question remains OPEN")
 
+def audit_r14_seven_complete_prefix_gate():
+    """Strengthen R12: adaptive selection of SEVEN complete positions in 14 reads.
+
+    At each newly encountered spatial edge position during the first 14
+    reads, an online adversary assigns one unused edge type from the
+    complement of {UR,UF,UL,UB,FR}.  Since all first-14 readings cover
+    exactly 7 complete positions, the complementary 5 types remain entirely
+    unread regardless of adaptive position order.  The *existing* R11
+    exact 960-state 5-edge minimax shows that 6 further reads are never
+    universally enough, even with free corner state and free slot access.
+
+    This does not cover partial/mixed prefixes before the 14th reading.
+    """
+    from audit_r11_five_edge_20frame_gate import positions, make_states, solver
+    hard = positions(("UR", "UF", "UL", "UB", "FR"))
+    complement = tuple(i for i in range(12) if i not in hard)
+    assert len(hard) == 5 and len(complement) == 7
+    counts=[]
+    for pp in (0,1):
+        for fp in (0,1):
+            states=make_states(hard,pp,fp)
+            query,outcomes=solver(states)
+            no_six=query((1<<960)-1,6)==-2
+            assert no_six,(pp,fp)
+            # R11 also provides a precommitted seven-slot distinguishing
+            # witness: read 2+2+2+1 remaining facelets.
+            slots=(0,1,2,3,4,5,6)
+            assert len({tuple(s[i] for i in slots) for s in states})==960
+            counts.append((pp,fp,len(states),query.cache_info().currsize))
+    assert len(counts)==4
+    print("R14_ADAPTIVE_SEVEN_COMPLETE_PREFIX_NO20_PASS",
+          "observed_initial_complete=7", "observations_prefix=14",
+          "forced_remaining_labels=UR/UF/UL/UB/FR",
+          "residual_legal_states_per_parity=960",
+          "residual_minimax=7","parity_cases=4")
+    print("R14_SCOPE any seven-complete first14 prefix, including"
+          " adaptive choice/order; mixed/partially observed prefixes OPEN")
+    return counts
+
 if __name__=="__main__":
     audit()
+    audit_r14_seven_complete_prefix_gate()
