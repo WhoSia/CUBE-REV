@@ -65,6 +65,44 @@ def minimax_depth(remaining, permutation_parity, flip_parity):
     if can(whole,4):return 4
     return 5
 
+def verify_constructive_policy(remaining, permutation_parity, flip_parity, depth):
+    """Extract an executable color-branch query tree and replay all 96 states."""
+    states=states_for(remaining,permutation_parity,flip_parity)
+    if depth==5:
+        # A fixed 5-read legal completion: both stickers of positions 0,1,
+        # then the first sticker of position 2; parity fixes the last label
+        # and remaining flip. The 96 complete traces must be unique.
+        assert len({tuple(state[i] for i in (0,1,2,3,4))
+                    for state in states})==96
+        return ("fixed_five",(0,1,2,3,4))
+    outcomes=tuple({color:sum(1<<i for i,state in enumerate(states)
+                              if state[slot]==color) for color in SIX}
+                   for slot in range(8))
+    full=(1<<96)-1
+    @lru_cache(None)
+    def action(subset,left):
+        if subset.bit_count()==1:return -1
+        if left==0:return -2
+        for slot in range(8):
+            successors=tuple(subset & m for m in outcomes[slot].values()
+                             if subset & m)
+            if len(successors)<2:continue
+            if all(action(branch,left-1)!=-2 for branch in successors):
+                return slot
+        return -2
+    first=action(full,depth)
+    assert first>=0,(remaining,permutation_parity,flip_parity,depth)
+    for i,state in enumerate(states):
+        posterior=full
+        left=depth
+        while posterior.bit_count()>1:
+            slot=action(posterior,left)
+            assert 0<=slot<8 and left>0
+            posterior&=outcomes[slot][state[slot]]
+            left-=1
+        assert posterior==(1<<i),(remaining,i,posterior)
+    return ("adaptive_tree",first)
+
 def graph_shape(remaining):
     edges=[TYPES[j] for j in remaining]
     counts=Counter(c for e in edges for c in e)
@@ -110,6 +148,16 @@ def audit():
         aggregate[depth]+=1
         by_shape[(shape[0],shape[1],depth)]+=1
         examples.setdefault(depth,remaining)
+    # A decision-tree success flag alone is not an executable certificate.
+    # Reconstruct physical-facelet query choices and replay every one of the
+    # 96 legal conditional states for each of the three depth classes.
+    for depth,remaining in examples.items():
+        for pp in (0,1):
+            for fp in (0,1):
+                kind,root=verify_constructive_policy(remaining,pp,fp,depth)
+                print("R8_EXPLICIT_POLICY_REPLAY_PASS",
+                      "depth",depth,"pp",pp,"fp",fp,"kind",kind,
+                      "root",root,"states",96)
     assert aggregate=={3:72,4:369,5:54},aggregate
     assert parity_checks==1980
     assert sum(by_shape.values())==495
