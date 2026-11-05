@@ -947,6 +947,7 @@
     "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
     "scripts/cuberev-observation/audit_r11_full21_with_corner14.py",
     "scripts/cuberev-observation/audit_r11_full_cube_joint_feedback_21.py",
+    "scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
@@ -4448,5 +4449,16 @@
       "for any <=13 precommitted corner positions, legal P48 indistinguishable pair exists",
       "staged full-cube no-corner-oracle 21-frame adaptive policy"
     ]
+  },
+  "active_set_reconciliation_20261105_r12": {
+    "date": "2026-11-05",
+    "stage": "0.28-R12",
+    "paths": [
+      "scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py"
+    ],
+    "theorem": "no 20-frame solution within any policy class with first 16 edge-color queries completing eight spatial edge positions; U-star adversary leaves residual 96 legal states requiring 5 additional reads",
+    "applies": "even with true complete corner state; first 16 edge slots fully cover exactly eight edge positions",
+    "does_not_apply": "all mixed partial early edge query strategies; global h still 18..21",
+    "remote_ci": "queued"
   }
 }
