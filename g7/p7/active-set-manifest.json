@@ -935,6 +935,7 @@
     "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/audit_r10_physical_feedback_lift.py",
+    "scripts/cuberev-observation/audit_r11_corner13_with_parity.py",
     "scripts/cuberev-observation/audit_r11_corner14_chirality.py",
     "scripts/cuberev-observation/audit_r11_corner19_edge_parity.py",
     "scripts/cuberev-observation/audit_r11_corner20_no_oracle.py",
@@ -4418,13 +4419,15 @@
       "scripts/cuberev-observation/audit_r11_corner19_edge_parity.py",
       "scripts/cuberev-observation/audit_r11_corner20_no_oracle.py",
       "scripts/cuberev-observation/audit_r11_corner14_chirality.py",
+      "scripts/cuberev-observation/audit_r11_corner13_with_parity.py",
       "scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp"
     ],
     "candidate": {
-      "corner14": "full corner recovery with 14 fixed corner color reads by chirality",
-      "edge_lower": "unconditioned edge-only Hall bound >=19 reads, unlike parity-known >=18"
+      "corner14": "full legal corner state identified by 14 fixed color readings without parity oracle",
+      "corner13": "with true edge parity one bit, 13 fixed corner reads",
+      "edge_only_lower": "if NO corner or parity information, at least 19 adaptive edge color reads by Hall over 18"
     },
-    "global_joint_bounds": "18..21 unchanged",
-    "remote_ci": "pending"
+    "global_horizon": "18..21 unchanged",
+    "remote_ci": "queued awaiting receipt"
   }
 }
