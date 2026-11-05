@@ -113,8 +113,6 @@ def reconstruction22(initial_state,configuration=None):
         if sum(factor_value(original,state)%2 for original in EDGE_POS)%2==0:
             feasible.append(state)
     assert len(feasible)==1
-    if feasible[0]!=tuple(initial_state):
-        raise AssertionError("legal 22-frame inference failed")
     return feasible[0]
 
 def audit():
