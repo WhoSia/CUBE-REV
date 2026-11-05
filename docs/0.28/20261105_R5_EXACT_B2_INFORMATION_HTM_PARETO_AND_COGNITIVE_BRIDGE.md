@@ -81,3 +81,29 @@ For eventual empirical work, prespecify a protocol comparing real participant co
 Executable source: [R5 exact B2 Pareto](https://github.com/WhoSia/CUBE-REV/blob/research/current/scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py). Read-only CI workflow: `.github/workflows/cuberev-observation-generalization.yml`; it runs the physical audit and checks receipt markers. P7 active manifest is updated separately. GitHub WhoSia author/committer only, bot writeback prohibited. Notion carries semantic claim limitations; Drive is the designated custody surface for irreplaceable raw proof bytes, not for re-created generic smoke logs.
 
 **Current verdict:** R5 finite Pareto method complete in code; numerical results and remote verification must be quoted from actual receipts; a general geometric theorem and a cognitive-science claim remain OPEN.
+
+## 7. Completed remote physical R5 receipt: 152 Pareto points and nonconvexity
+
+[GitHub Actions run 41956909650](https://github.com/WhoSia/CUBE-REV/actions/runs/41956909650) completed SUCCESS; its R5 physical observation job emitted:
+
+```
+R5_B2_EXACT_PARETO_PASS states 262 first_branches 22 points 152 baseline_ambiguity 15194
+R5_B2_EXTREME_PASS adaptive_best 1976 fixed_best 2242 worst_adaptive 18 worst_fixed 18
+```
+
+The complete actual 152-point list is in that workflow job log, not reconstructed from a summary. Representative exact (A,M) points are `(0,15194)`, `(111,13760)`, `(113,3640)`, `(257,1976)`. The best fixed second move is `(262,2242)`, under the explicitly precommitted, mandatory-second-action baseline; adaptively stopping early is a separate protocol and must not be silently given only to the adaptive comparator.
+
+[Independent branch-attribution run 41957516828](https://github.com/WhoSia/CUBE-REV/actions/runs/41957516828) completed SUCCESS. Its actual physical first-color output `D,D` contains **113** of the 262 states. A legal `D2` second HTM turn maps this branch from squared belief score `113^2=12769` to `1215`, a gain of `11554`; the movement budget consumed by this branch is `113` in normalized expected-move units. At A=111 the best policy uses several smaller first-color branches, achieving M=13760. At A=113 the optimum reallocates the entire motion budget to this `D,D` branch, achieving M=3640. This is **discrete combinatorial resource allocation**, not a thermodynamic critical point or an observed human perceptual transition.
+
+The lower convex hull over all 152 nondominated points has just eight extreme vertices:
+
+```
+(0,15194);(113,3640);(136,3284);(176,2724);
+(212,2248);(231,2032);(241,1992);(257,1976)
+```
+
+Including collinear Pareto points that tie for some real nonnegative linear weight `lambda`, only **18/152** efficient points are supported by a scalar objective `M + lambda*A`; **134/152** are unsupported. This count has been independently recomputed from the exact GitHub R5 output using integer orientation/cross-product tests. The latest source adds CI-checkable assertions for these numbers, so the appended claim should be upgraded to full final-run CI PASS only when that subsequent commit's run completes successfully.
+
+A simple nonconvexity witness is the *efficient* point `(111,13760)`. For it to outperform `(0,15194)` under `M+lambda*A`, one needs `lambda <= (15194-13760)/111=1434/111`. To outperform `(113,3640)`, one simultaneously needs `lambda >= (13760-3640)/(113-111)=10120/2=5060`. These conditions cannot both hold. Thus a naive weighted-sum sweep misses a real, physically realizable Pareto-optimal observation policy. This is a new exact *Rubik finite-case witness*, not a new general fact about discrete multiobjective optimization.
+
+**Archival authority:** small program and report in GitHub; P7 active-set 1,168 paths last reported successful [run 41957557112](https://github.com/WhoSia/CUBE-REV/actions/runs/41957557112). This R5 report is now an active P7 file. The attempted Notion R5 insertion was blocked by the connected service; do not mark the Notion R5 semantic update completed until a successful readback.
