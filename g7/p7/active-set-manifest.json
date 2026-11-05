@@ -949,6 +949,7 @@
     "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
     "scripts/cuberev-observation/audit_r11_full21_with_corner14.py",
     "scripts/cuberev-observation/audit_r11_full_cube_joint_feedback_21.py",
+    "scripts/cuberev-observation/audit_r12_eight_full_edge_prefix_adversary.py",
     "scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
@@ -4469,5 +4470,16 @@
     "theorem": "any adaptive policy with its first 16 edge reads completing eight distinct original spatial edge positions cannot identify full group by frame20; U-star deferred adversary leaves 96 parity-valid completions needing five reads",
     "limits": "not all adaptive policy classes, global h remains 18..21",
     "ci_status": "queued"
+  },
+  "active_set_reconciliation_20261105_r12_prefix_adversary": {
+    "stage": "0.28-R12",
+    "date": "2026-11-05",
+    "paths": [
+      "scripts/cuberev-observation/audit_r12_eight_full_edge_prefix_adversary.py"
+    ],
+    "claim": "No <=20 full-cube policy in 16-complete-edge-cubies-first prefix class, even choosing which 8 positions adaptively",
+    "proof": "adversary assigns 8 complement labels online, keeps 54 bad four-type subsets unseen; 96 legal residual arrangements need >=5 more edge reads",
+    "limit": "does not rule out mixed/partial observation prefixes, which remain central to full-group adaptive 18..21",
+    "remote_ci": "pending"
   }
 }
