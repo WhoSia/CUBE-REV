@@ -4525,6 +4525,9 @@
     "drive_source": "https://drive.google.com/file/d/1x9XzsxjkARyd45V3KYUea3w5kNZHTAgp/view",
     "drive_receipt": "https://drive.google.com/file/d/1NxTJ-LT9gvCC5Xto3Pysut3GT-Bx8Hj7/view",
     "remote_ci": "pending",
-    "drive_byte_readback": "pending"
+    "drive_byte_readback": "BYTE_VERIFIED (source and receipt raw Drive download, SHA-256 matched local originals)",
+    "source_sha256": "2c2abf0e36090a6499f325ff9a672ac1e4776e1677ef93bc2b1ced6820a74227",
+    "receipt_sha256": "2e4494cf300d79f9ec661757b09726b2935724998fb1c16f9f3b7b343554a0dd",
+    "ci_workflow": ".github/workflows/cuberev-observation-generalization.yml"
   }
 }
