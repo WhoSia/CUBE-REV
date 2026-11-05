@@ -1,0 +1,36 @@
+name: CUBE-REV R14-P5 parity-coupled observational equivariance
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py'
+      - 'docs/0.28/20261106_R14_P5_OBSERVATIONAL_EQUIVARIANCE_AND_EXACT_MINIMAX_QUOTIENT.md'
+      - '.github/workflows/cuberev-r14-p5-observation-equivariance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-finite-equivariance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independent 51,840-state / 2,464-history minimax-equivariance court
+        run: |
+          python scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py > /tmp/r14-p5-equivariance.json
+          python -c 'import json;d=json.load(open("/tmp/r14-p5-equivariance.json"));assert d["result"]=="R14_P5_OBSERVATIONAL_EQUIVARIANCE_PASS" and d["legal_joint_states"]==51840 and d["group_order"]==12 and d["three_frame_adaptive_histories"]==2464 and d["selected_belief_size"]==40 and d["distinct_group_transformed_beliefs"]==12 and d["orbit_minimax_depth"]==3 and d["all_orbit_minimax_depths_equal"] and d["verified_all_histories_all_3_generator_queries"]==7392 and d["selected_orbit_all_query_covariances"]==1080;print("R14_P5_READ_ONLY_EXACT_EQUIVARIANCE_PASS")'
+      - name: Preserve read-only exact finite receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: r14-p5-exact-equivariance
+          path: /tmp/r14-p5-equivariance.json
+          retention-days: 30
