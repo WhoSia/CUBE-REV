@@ -70,7 +70,7 @@ This research must not substitute the small finite 5-edge/3-corner experiment fo
 - Local source SHA-256: `2c2abf0e36090a6499f325ff9a672ac1e4776e1677ef93bc2b1ced6820a74227`.
 - Local receipt SHA-256: `2e4494cf300d79f9ec661757b09726b2935724998fb1c16f9f3b7b343554a0dd`.
 - Independent local execution: PASS (all 2,464 transcripts compared).
-- **Drive raw-byte readback:** must be verified before changing status to BYTE_VERIFIED.
+- **Drive raw-byte readback:** **BYTE_VERIFIED** — re-downloaded both raw files through connected Drive, materialized the returned bytes, and confirmed the exact above SHA-256 hashes and lengths (Python 5,557 bytes; JSON receipt 1,231 bytes).
 - **GitHub remote CI:** not yet asserted PASS for this new source.
 - No data from human participants were used; no inference about working memory or intent is justified.
 
