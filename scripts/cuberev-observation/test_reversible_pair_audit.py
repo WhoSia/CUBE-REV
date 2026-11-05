@@ -48,18 +48,22 @@ class R6HistoryConfoundingPhysicalCourt(unittest.TestCase):
         from itertools import product
 
         eye = bytes(range(48))
-        # Both are 2 HTM long and leave every moving sticker slot identical.
+        # Two distinct 3-HTM paths have the same non-solved F endpoint,
+        # identical final F action and cost.
         # Their physically intermediate states and input histories differ.
         assert MOVES["U"] != MOVES["R"]
         self.assertEqual(word("U U'"), eye)
         self.assertEqual(word("R R'"), eye)
         self.assertNotEqual(word("U"), word("R"))
+        self.assertEqual(word("U U' F"), MOVES["F"])
+        self.assertEqual(word("R R' F"), MOVES["F"])
+        self.assertNotEqual(MOVES["F"], eye)
         self.assertEqual(compose(MOVES["U'"], MOVES["U"]), eye)
         self.assertEqual(compose(MOVES["R'"], MOVES["R"]), eye)
 
         # H=0/1 means the prior legal action history, Y=0/1 the following
         # action choice. Both mechanisms have the exact same observed
-        # joint law P(H=h,Y=y | final_cube=solved), including full history.
+        # joint law P(H=h,Y=y | final_cube=F), including full history.
         #
         # Memory mechanism: H uniform, Y is computed as H.
         # Latent-policy mechanism: Z uniform, H=Z and Y=Z; H is not a
