@@ -461,6 +461,7 @@
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
     "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
     "docs/0.28/20261105_R5_EXACT_B2_INFORMATION_HTM_PARETO_AND_COGNITIVE_BRIDGE.md",
+    "docs/0.28/20261105_R8_UNIFORM_EDGE_LOCAL_CERTIFICATE_VS_ADAPTIVE_IDENTIFICATION.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -4346,16 +4347,18 @@
     "stage": "0.28-R8",
     "date": "2026-11-05",
     "paths": [
+      "docs/0.28/20261105_R8_UNIFORM_EDGE_LOCAL_CERTIFICATE_VS_ADAPTIVE_IDENTIFICATION.md",
       "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
       "scripts/cuberev-observation/test_r8_edge_state_certificates.py"
     ],
-    "model": "physical complete corner oracle; edge-facelet six color observations; per-state certificates",
     "local_result": {
-      "minimum_local_edge_certificate": 17,
+      "minimum_corner_oracle_edge_local_certificate": 17,
+      "unique_17_facelet_certificates_per_state": 14664,
       "all_16_facelet_masks_tested": 735471,
-      "unique_17_facelet_masks_for_solved": 14664
+      "nonadaptive_optimum_frames": 21,
+      "adaptive_horizon": "18..21 remains open"
     },
-    "universal_adaptive_horizon": "18..21 remains open",
-    "remote_ci": "pending"
+    "remote_ci": "pending",
+    "proof_limit": "complete corner oracle, state-specific edge facelet certificates; NOT adaptive 17-frame policy or human cognition"
   }
 }
