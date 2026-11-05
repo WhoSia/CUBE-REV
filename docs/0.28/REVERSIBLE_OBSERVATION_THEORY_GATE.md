@@ -45,3 +45,20 @@ Primary classical complexity source: Garey–Johnson (1979), Theorem 3.9
 MINIMUM TEST COLLECTION, appendix SP6 MINIMUM TEST SET, final-printing
 correction asserting NP-completeness even for tests of size at most 2.
 This does not establish hardness of Rubik-legal restricted tests.
+
+
+## R6 Origin Re-entry: full physical state does not identify a mental history mechanism (2026-11-05)
+
+The founding CUBE-REV 1.md (2026-07-24) and the Grand Doctrine make human cube reconstruction the central explanandum. Exact physical search and observation theory are instruments, not convenient substitute aims.
+
+**Retrospective feasibility warning.** The earlier 0.21 P4 naturalistic source-pair ladder contains 1,442 pairs at coarse FC3, 88 after exact full-cubie-state matching, 10 after recorded rotation-frame proxy, one after recorded stage, and **zero** after matching previous action. This is missing comparison support, NOT evidence that cognition is memoryless. Paper 1 M1.2 separately reports 346 turnover-positive frontier segments, 313 from the dominant reconstructor. Neither set permits an independent, reconstructor-invariant history-as-cause inference without further controls.
+
+**New physical countermodel.** The actual P48 cube engine confirms `U U' F` and `R R' F` are different three-HTM histories ending in the identical non-solved full state `F`, with an identical final action. Let H distinguish histories and Y distinguish a later choice. Two competing mechanisms are observationally indistinguishable:
+- history-policy: H is uniform and Y=H;
+- latent-goal policy: Z is uniform, H=Z, and Y=Z.
+
+Both yield P(H=h,Y=y)=1/2 for h=y, zero otherwise, conditional on the same complete physical end state. However, under an experimentally assigned history H=0, the first model predicts P(Y=0)=1, the second 1/2. This is a textbook causal confounding construction, NOT a new generic causal theorem. It is an exact physically matched Rubik example. Test: `scripts/cuberev-observation/test_reversible_pair_audit.py`, `R6HistoryConfoundingPhysicalCourt`.
+
+**Falsifiable next comparison.** Predict future actions using C=coarse progress, X=full state, and H=recorded action history, with explicit viewpoint, task, method and provenance. Compare prospective out-of-group log scores; `I(Y;H|C,X)` is a predictive information target, not causal evidence. A controlled physically matched-endpoint randomized history manipulation could distinguish the two mechanisms, but execution/motor priming and unmeasured goals still require controls and participant ethics. The inherited naturalistic data have inadequate strict matched overlap for that causal conclusion. Do not claim a human cognition result.
+
+Full-group adaptive exact six-color identification remains open at 16 to 21 frames; fixed nonadaptive minimum is 21. The R6 physical causal-control example is a separate scientific problem, not an improvement of that horizon.
