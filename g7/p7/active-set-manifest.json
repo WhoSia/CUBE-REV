@@ -458,6 +458,7 @@
     "docs/0.28/20261105_B6_EXCHANGE_LINE_GRAPH_AND_COLOR_FACELET_OBSERVABILITY.md",
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
+    "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -925,6 +926,7 @@
     "scripts/cuberev-observation/audit_b6_one_erasure_robustness.py",
     "scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py",
     "scripts/cuberev-observation/audit_color_p48_frame_action_pareto.py",
+    "scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
@@ -4294,5 +4296,25 @@
     "verified_local_masks": 10626,
     "claim": "nonadaptive 21-frame lower bound; adaptive optimum remains open",
     "ci": "pending independent completed run verification"
+  },
+  "active_set_reconciliation_20261105_color_r4": {
+    "stage": "0.28-R4",
+    "date": "2026-11-05",
+    "paths": [
+      "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
+      "scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py"
+    ],
+    "b2_states": 262,
+    "exact_two_frame_uniform_posterior_numerators": {
+      "adaptive": 1976,
+      "fixed": 2242,
+      "denominator": 262
+    },
+    "worst_residual": {
+      "adaptive": 18,
+      "fixed": 18
+    },
+    "remote_ci": "pending verification",
+    "scope": "finite P48 B2 with one legal HTM move; not human cognitive cost"
   }
 }
