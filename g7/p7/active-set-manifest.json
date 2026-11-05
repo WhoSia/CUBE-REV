@@ -462,6 +462,7 @@
     "docs/0.28/20261105_R11_CORNER_CHIRALITY_PARITY_EDGE_TIMING_GATE.md",
     "docs/0.28/20261105_R12_ADAPTIVE_EIGHT_FULL_EDGE_PREFIX_NO20_ADVERSARY.md",
     "docs/0.28/20261105_R12_EIGHT_COMPLETE_EDGE_ADAPTIVE_PREFIX_NO20_THEOREM.md",
+    "docs/0.28/20261105_R14_P3_PARITY_FACTORED_ADAPTIVE_BELIEFS.md",
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
     "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
@@ -953,6 +954,7 @@
     "scripts/cuberev-observation/audit_r12_eight_full_edge_prefix_adversary.py",
     "scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py",
     "scripts/cuberev-observation/audit_r13_corner12_same_edge_parity_collision.py",
+    "scripts/cuberev-observation/audit_r14_p3_parity_factored_belief.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
@@ -4510,5 +4512,19 @@
     "lower": "every <=12 corner facelet read mask admits two physically legal P48 states with exactly same complete edges and observed corner colors",
     "upper": "six corner positions read in full pairs plus one extra corner facelet, given correct edge permutation parity",
     "remote_ci": "pending"
+  },
+  "active_set_reconciliation_20261105_r14_p3_parity_factorization": {
+    "stage": "0.28-R14-P3",
+    "date": "2026-11-05",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p3_parity_factored_belief.py",
+      "docs/0.28/20261105_R14_P3_PARITY_FACTORED_ADAPTIVE_BELIEFS.md"
+    ],
+    "scope": "Exact legal-cube parity factorization at any realized color-only adaptive transcript; 51,840-state five-edge/three-corner algebra court checks 2,464 histories; matched parity counts insufficient for next-query partition dynamics",
+    "limits": "No new global full-cube 20-frame existence/absence result, no independent P48 model, no human cognition inference",
+    "drive_source": "https://drive.google.com/file/d/1x9XzsxjkARyd45V3KYUea3w5kNZHTAgp/view",
+    "drive_receipt": "https://drive.google.com/file/d/1NxTJ-LT9gvCC5Xto3Pysut3GT-Bx8Hj7/view",
+    "remote_ci": "pending",
+    "drive_byte_readback": "pending"
   }
 }
