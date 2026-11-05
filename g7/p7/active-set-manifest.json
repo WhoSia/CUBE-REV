@@ -927,6 +927,7 @@
     "scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py",
     "scripts/cuberev-observation/audit_color_p48_frame_action_pareto.py",
     "scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py",
+    "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
@@ -4316,5 +4317,15 @@
     },
     "remote_ci": "pending verification",
     "scope": "finite P48 B2 with one legal HTM move; not human cognitive cost"
+  },
+  "active_set_reconciliation_20261105_color_r5": {
+    "stage": "0.28-R5",
+    "date": "2026-11-05",
+    "paths": [
+      "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py"
+    ],
+    "source": "exact P48 B2 multiple-choice Pareto DP",
+    "remote_ci": "pending verification",
+    "limit": "finite B2 two-frame one-turn uniform-prior only; not cognitive proof"
   }
 }
