@@ -139,6 +139,10 @@ jobs:
           python scripts/cuberev-observation/audit_r13_corner12_same_edge_parity_collision.py | tee /tmp/cuberev-r13-collision.log
           grep -q '^R13_CORNER12_KNOWN_EDGE_PARITY_COLLISION_PASS' /tmp/cuberev-r13-collision.log
           grep -q '^R13_CORNER_FIXED_EDGE_PARITY_OPTIMUM_13' /tmp/cuberev-r13-collision.log
+      - name: R14-P3 exact parity-factored adaptive belief and count-aliasing court
+        run: |
+          python scripts/cuberev-observation/audit_r14_p3_parity_factored_belief.py > /tmp/cuberev-r14-p3-parity-belief.json
+          python -c 'import json; r=json.load(open("/tmp/cuberev-r14-p3-parity-belief.json")); assert r["result"]=="R14_P3_PARITY_FACTOR_BELIEF_PASS" and r["legal_joint_states"]==51840 and r["observed_distinct_histories"]==2464 and r["all_histories_factorization_verified"]; a=r["insufficient_marginal_cardinality_witness"]; assert a["signature"]==[36,36,1,1] and sorted(a["response_branch_sizes_a"])==[12,20,20,20] and sorted(a["response_branch_sizes_b"])==[24,48]; print("R14_P3_PARITY_FACTOR_AND_COUNT_QUOTIENT_COUNTEREXAMPLE_PASS")'
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
