@@ -65,3 +65,21 @@ The 20-read missing-four no-parity ambiguity occurs only when the missing mask s
 ## Research custody
 
 GitHub sources are authored/committed through the authenticated human \`WhoSia\`, no GitHub Actions bot writeback. Read-only CI must print PASS before marking remote results verified. P7 exact active-set manifest must include every newly added source/report. Notion holds semantic claims and limitations, Drive holds irreplaceable raw data rather than generated verification code. Do not assume private naturalistic reconstructions provide matched human behavioral comparisons: the previous 0.21 strict matched-state/stage/prior-action support count was zero.
+
+## R13 (2026-11-05) — exact 13 fixed corner colors with correct edge parity
+
+The earlier exact 14 reads concerned the corner-only channel WITHOUT edge information. With the correct edge permutation parity bit revealed, the **fixed corner-only optimum is exactly 13**, and in fact **12 fixed corner reads fail even if the complete true edge state is revealed**.
+
+**Upper 13.** Read both facelet colors in six distinct corner positions (12 readings). Physical corner chirality makes each ordered pair a unique source corner label and cyclic orientation. The two remaining labels can be assigned to their two locations by the known edge/corner permutation parity. One additional color in the seventh corner determines its cyclic orientation. The final corner twist follows from twist sum zero mod 3. Source: scripts/cuberev-observation/audit_r11_corner13_with_parity.py.
+
+**Lower 13.** Fix ANY set S of at most 12 corner facelet slots. A spatial corner position is weak if at most one slot is read. There must be at least two weak positions.
+
+*Exactly two weak positions:* Because the other six positions need at least two readings each, both weak positions must have ZERO reads and all other six have exactly two. Keep every corner source label and every edge unchanged in two states; shift the first unread corner twist by +1 and the second by -1 mod 3. Both are physically legal, have equal full edge state, equal permutation parity, and all observed corner colors coincide.
+
+*At least three weak positions:* Put three distinct U-containing original corner labels into three weak destination positions. Each singly read slot is oriented to display U. Cycle the three labels by an EVEN 3-cycle. At a singly observed destination the needed twist equals destination-index minus source-U-index modulo 3, so the sum of these three forced twists is invariant under cycling. If any of the three destination positions is completely unread, choose its free twist to make the total twist sums agree. All other corner labels stay fixed between the states; use an identical orientation correction of a fourth, unchanged corner to enforce the total legal twist sum zero. Since the cycle is even, corner permutation parity is unchanged. Pick the SAME legal edge configuration of the matching permutation parity in both states. Every edge sticker and every measured corner color matches, yet the legal 48-sticker states differ.
+
+This universal constructive collision proves at least 13 reads for a fixed corner-only channel, even with the complete edge state revealed. It does NOT lower-bound the original dual-probe adaptive policy. The global full-cube adaptive 6-color horizon remains 18–21.
+
+**Executable sanity check:** scripts/cuberev-observation/audit_r13_corner12_same_edge_parity_collision.py tests many seeded slot masks against legal P48 sticker permutations. A finite smoke is not a substitute for the quantified argument. The 13-read upper code initially contained a Python set-minus-dict TypeError, documented by failed CI run https://github.com/WhoSia/CUBE-REV/actions/runs/42021578086; corrected by commit 62330002c08b5c3acd773d72b7a1f19b3174a786. Remote PASS must be confirmed separately, rather than inferred.
+
+**Interpretation:** the shared edge/corner permutation-parity bit substitutes for exactly one required WORST-CASE FIXED corner-only color observation: 14 without an edge oracle and 13 with parity. This is a model-specific physical information-coupling theorem, not a generic information-entropy discovery or evidence about human cognitive cost.
