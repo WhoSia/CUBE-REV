@@ -49,6 +49,12 @@ jobs:
           g++ -std=c++17 -O2 -Wall -Wextra -pedantic scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp -o /tmp/cuberev-r7-hall
           /tmp/cuberev-r7-hall | tee /tmp/r7-hall.log
           grep -q '^R7_ADAPTIVE_EDGE_HALL_LOWER_18_PASS 456979723200 490497638400' /tmp/r7-hall.log
+      - name: R8 exact edge-local certificate census under full corner oracle
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -pedantic scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp -o /tmp/cuberev-r8-local-cert
+          /tmp/cuberev-r8-local-cert | tee /tmp/cuberev-r8-cert.log
+          grep -q '^R8_EDGE_CERT_MASK omitted=8 total=735471 singleton=0 ambiguous=735471' /tmp/cuberev-r8-cert.log
+          grep -q '^R8_EDGE_CORNER_ORACLE_LOCAL_CERTIFICATE_17_PASS tested_16_read_masks=735471 singleton_17_read_masks=14664' /tmp/cuberev-r8-cert.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
