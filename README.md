@@ -6,6 +6,18 @@
 
 > **Evidence warning:** A finite program's successful return, an independently checked certificate, a mathematical proof and a new general theorem are four different claims. Keep them separate. Do not infer human cognition from exact cube combinatorics, nor infer an HTM shortest path from a stabilizer's abstract group order.
 
+## 2026-11-05 R11: corner chirality and the global 20-frame gate
+
+**New constructive corner theorem (model-specific):** Two **ordered** six-color facelet readings at one corner position determine the original corner piece and its twist, because the 8×3=24 physically legal type/orientation states produce 24 different ordered face-color pairs. Seven corner positions, two colors each, plus the global corner-twist invariant reconstruct **all eight corners in 14 fixed color reads with NO edge/parity oracle**. With the **true edge permutation parity already known**, only 13 corner colors suffice (six 2-color corners + one color of the seventh; parity and twist-sum supply the rest). These are sufficient constructions, not proven optimal corner-only thresholds. Independent local 3D P48 generated 2,501 legal states and confirmed both decoders.
+
+**Full-cube interface:** Pair 21 original distinct edge-facelet slots with just 14 distinct necessary corner-facelet slots (7 corner positions observed twice each; repeated corner slots on seven remaining frames). This yields a **new full legal Rubik 21-frame decoder using 35 distinct initially spatial sticker colors** rather than 42, while both fixed sensors still output 42 symbols. Independent local P48 reproduction on 2,400 random legal full states succeeded. The original **global nonadaptive minimum remains 21** and **global adaptive h remains 18–21**; this is not a 20-frame policy.
+
+**New information obstruction:** With **no corner measurements/parity oracle whatsoever**, Hall's universal adaptive edge-color tree has at most 947,446,315,200 depth-18 transcripts, below 12!·2^11 = 980,995,276,800 possible edge configurations. Hence at least **19 edge-only adaptive readings** are needed under this no-parity oracle. Independent local C++ recomputation confirmed the number with 2,245,866 visited abstract signatures. This does **not** raise the lower bound for the real two-probe full-cube task, where the corner sensor conveys parity.
+
+**Failed candidate 20-frame path (informative negative):** A 14-edge-read prefix that completely identifies seven *preselected* spatial edge positions leaves five pieces, or 5!/2·2^4 = 960 states per fixed parity pair. A five-edge residual class (UR,UF,UL,UB,FR) cannot be identified with six more adaptive edge-color reads, while (UR,UF,UL,UB,DR) can; the specified fixed-prefix 14+6 strategy is therefore insufficient. Other mixed/adaptive 20-frame policies remain open.
+
+[R11 mathematical report](docs/0.28/20261105_R11_CORNER_CHIRALITY_PARITY_EDGE_TIMING_GATE.md). The first R11 physical 19-corner-parity CI [42018449872](https://github.com/WhoSia/CUBE-REV/actions/runs/42018449872) passed; newly added R11 13/14/full21/Hall/five-edge CI runs must each be read and verified separately before any remote-PASS claim. Nothing here establishes a human cognitive mechanism.
+
 ## 2026-11-05 R8–R10: local certificates, exact feedback gap and legal-turn lifting
 
 The full legal cube **two-color-probe** adaptive identification horizon is still **18–21** observations, with exact fixed nonadaptive minimum **21**. **R8** proves that, if the complete corner state is revealed free, every individual legal edge state has 17-facelet state-dependent certificates (14,664 minimal certificate sets per state); this does **not** provide a universal 17-frame policy.
