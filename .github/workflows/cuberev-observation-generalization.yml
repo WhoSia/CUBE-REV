@@ -82,6 +82,12 @@ jobs:
           python scripts/cuberev-observation/audit_r11_corner20_no_oracle.py | tee /tmp/cuberev-r11-corner20.log
           grep -q '^R11_CORNER_20_NO_PARITY_ORACLE_PASS tested_physical_states 434 corner_color_reads 20 edge_oracle_bits 0' /tmp/cuberev-r11-corner20.log
           grep -q '^R11_CORNER20_P48_NO_RESET_PASS joint_facelet_frames 20' /tmp/cuberev-r11-corner20.log
+      - name: R11 14 corner reads by physical chirality with no parity oracle
+        run: |
+          python scripts/cuberev-observation/audit_r11_corner14_chirality.py | tee /tmp/cuberev-r11-corner14.log
+          grep -q '^R11_ALL_24_ORDERED_CORNER_COLOR_PAIRS_UNIQUE_PASS 24' /tmp/cuberev-r11-corner14.log
+          grep -q '^R11_CORNER_14_NO_EDGE_ORACLE_PASS physical_states 434 corner_colors 14 read_corner_positions 7' /tmp/cuberev-r11-corner14.log
+          grep -q '^R11_CORNER14_P48_NO_RESET_PASS joint_orbit 576' /tmp/cuberev-r11-corner14.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
