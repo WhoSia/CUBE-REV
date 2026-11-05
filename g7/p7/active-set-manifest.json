@@ -463,6 +463,7 @@
     "docs/0.28/20261105_R12_ADAPTIVE_EIGHT_FULL_EDGE_PREFIX_NO20_ADVERSARY.md",
     "docs/0.28/20261105_R12_EIGHT_COMPLETE_EDGE_ADAPTIVE_PREFIX_NO20_THEOREM.md",
     "docs/0.28/20261105_R14_P3_PARITY_FACTORED_ADAPTIVE_BELIEFS.md",
+    "docs/0.28/20261105_R14_P4_MATCHING_PARITY_COMPLETION_COUNTING.md",
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
     "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
@@ -955,6 +956,7 @@
     "scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py",
     "scripts/cuberev-observation/audit_r13_corner12_same_edge_parity_collision.py",
     "scripts/cuberev-observation/audit_r14_p3_parity_factored_belief.py",
+    "scripts/cuberev-observation/audit_r14_p4_matching_parity_dp.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
@@ -4529,5 +4531,21 @@
     "source_sha256": "2c2abf0e36090a6499f325ff9a672ac1e4776e1677ef93bc2b1ced6820a74227",
     "receipt_sha256": "2e4494cf300d79f9ec661757b09726b2935724998fb1c16f9f3b7b343554a0dd",
     "ci_workflow": ".github/workflows/cuberev-observation-generalization.yml"
+  },
+  "active_set_reconciliation_20261105_r14_p4_matching_parity_dp": {
+    "stage": "0.28-R14-P4",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p4_matching_parity_dp.py",
+      "docs/0.28/20261105_R14_P4_MATCHING_PARITY_COMPLETION_COUNTING.md"
+    ],
+    "claim": "exact matching bitmask DP counts orientation-sum-legal edge/corner assignments by permutation parity after partial color constraints",
+    "verified": "full cube 43252003274489856000 unobserved count, 51,840 legal small-court states and 2,464 adaptive transcript counts matched direct enumeration",
+    "scope_limit": "not a full-cube 20-frame adaptive policy or P48 source-independent checker",
+    "drive_source": "https://drive.google.com/file/d/16MWCnRCAlw1627eLZp58NZTPTCFKw6or/view",
+    "drive_receipt": "https://drive.google.com/file/d/19mv_bYX7DdhERiSix7N6nWHZJcwF9eVk/view",
+    "sha256_source": "ef3a7258139a7d7ccfcdc9782b22e98d5c4bbd8ecc512643be68fa8dad833a2f",
+    "sha256_receipt": "1ef10cc9ba54e6d518c7b07931f9c17a38a0d015b966e3d10c604e2cabdad516",
+    "drive_byte_readback": "BYTE_VERIFIED",
+    "remote_ci": "pending"
   }
 }
