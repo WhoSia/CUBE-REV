@@ -460,6 +460,7 @@
     "docs/0.28/20261105_R10_LEGAL_NO_RESET_ADAPTIVE_POLICY_PHYSICAL_LIFT.md",
     "docs/0.28/20261105_R11_CORNER14_NO_ORACLE_JOINT_FEEDBACK_21_THEOREM.md",
     "docs/0.28/20261105_R11_CORNER_CHIRALITY_PARITY_EDGE_TIMING_GATE.md",
+    "docs/0.28/20261105_R12_ADAPTIVE_EIGHT_FULL_EDGE_PREFIX_NO20_ADVERSARY.md",
     "docs/0.28/20261105_R12_EIGHT_COMPLETE_EDGE_ADAPTIVE_PREFIX_NO20_THEOREM.md",
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
@@ -4475,11 +4476,13 @@
     "stage": "0.28-R12",
     "date": "2026-11-05",
     "paths": [
-      "scripts/cuberev-observation/audit_r12_eight_full_edge_prefix_adversary.py"
+      "scripts/cuberev-observation/audit_r12_eight_full_edge_prefix_adversary.py",
+      "docs/0.28/20261105_R12_ADAPTIVE_EIGHT_FULL_EDGE_PREFIX_NO20_ADVERSARY.md"
     ],
     "claim": "No <=20 full-cube policy in 16-complete-edge-cubies-first prefix class, even choosing which 8 positions adaptively",
     "proof": "adversary assigns 8 complement labels online, keeps 54 bad four-type subsets unseen; 96 legal residual arrangements need >=5 more edge reads",
     "limit": "does not rule out mixed/partial observation prefixes, which remain central to full-group adaptive 18..21",
-    "remote_ci": "pending"
+    "remote_ci": "pending",
+    "proof_scope": "any adaptive selection/interleaving of eight fully observed edge positions in first 16 edge frames; corner oracle permitted; 54 four-type hard sets"
   }
 }
