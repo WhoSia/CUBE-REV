@@ -457,6 +457,7 @@
     "docs/0.27/PROGRAM_CHARTER.md",
     "docs/0.28/20261105_B6_EXCHANGE_LINE_GRAPH_AND_COLOR_FACELET_OBSERVABILITY.md",
     "docs/0.28/20261105_PAPER_PORTFOLIO_CRITICAL_NOVELTY_AUDIT.md",
+    "docs/0.28/20261105_R10_LEGAL_NO_RESET_ADAPTIVE_POLICY_PHYSICAL_LIFT.md",
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
     "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
@@ -4392,10 +4393,18 @@
     "stage": "0.28-R10",
     "date": "2026-11-05",
     "paths": [
+      "docs/0.28/20261105_R10_LEGAL_NO_RESET_ADAPTIVE_POLICY_PHYSICAL_LIFT.md",
       "scripts/cuberev-observation/audit_r10_physical_feedback_lift.py"
     ],
-    "purpose": "execute R9 conditional edge feedback with no-reset legal 18-HTM physical turn words at fixed joint color probes",
-    "scope": "three parity-even 96-state residual classes; complete corner oracle; not full cube identification",
-    "remote_ci": "pending"
+    "verified_result": {
+      "physical_legal_states": 288,
+      "readout_frames": 5648,
+      "executed_htm_sum_across_trials": 38732,
+      "max_htm_per_trial": 149,
+      "joint_pair_orbit": 576
+    },
+    "ci_run": 41994714970,
+    "ci_conclusion": "success",
+    "boundaries": "corner oracle, three representative parity-even classes, independent trials, not full-cube policy or motor cost optimum"
   }
 }
