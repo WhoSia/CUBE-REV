@@ -458,6 +458,7 @@
     "docs/0.28/20261105_B6_EXCHANGE_LINE_GRAPH_AND_COLOR_FACELET_OBSERVABILITY.md",
     "docs/0.28/20261105_PAPER_PORTFOLIO_CRITICAL_NOVELTY_AUDIT.md",
     "docs/0.28/20261105_R10_LEGAL_NO_RESET_ADAPTIVE_POLICY_PHYSICAL_LIFT.md",
+    "docs/0.28/20261105_R11_CORNER14_NO_ORACLE_JOINT_FEEDBACK_21_THEOREM.md",
     "docs/0.28/20261105_R11_CORNER_CHIRALITY_PARITY_EDGE_TIMING_GATE.md",
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
@@ -4432,7 +4433,8 @@
       "scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp",
       "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
       "scripts/cuberev-observation/audit_r11_full21_with_corner14.py",
-      "scripts/cuberev-observation/audit_r11_corner13_collision_witness.py"
+      "scripts/cuberev-observation/audit_r11_corner13_collision_witness.py",
+      "docs/0.28/20261105_R11_CORNER14_NO_ORACLE_JOINT_FEEDBACK_21_THEOREM.md"
     ],
     "verifications": {
       "independent_local_corner14_13": 2501,
@@ -4448,7 +4450,13 @@
       "fixed corner-only exact 14 reads via two per seven and twist parity",
       "for any <=13 precommitted corner positions, legal P48 indistinguishable pair exists",
       "staged full-cube no-corner-oracle 21-frame adaptive policy"
-    ]
+    ],
+    "tests_summary": {
+      "corner_signature_bijections": 24,
+      "corner14_physical_B2_samples": 262,
+      "corner_13_fixed_query_lower": "constructive legal full-cube collision for arbitrary at-most-13 corner slots",
+      "joint_fullcube21": "full legal cube, 14 corner reads, 16 edge prefix, <=5 adaptive edge reads; CI pending"
+    }
   },
   "active_set_reconciliation_20261105_r12": {
     "date": "2026-11-05",
