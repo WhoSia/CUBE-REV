@@ -459,6 +459,7 @@
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
     "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
+    "docs/0.28/20261105_R5_EXACT_B2_INFORMATION_HTM_PARETO_AND_COGNITIVE_BRIDGE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -4322,10 +4323,19 @@
     "stage": "0.28-R5",
     "date": "2026-11-05",
     "paths": [
+      "docs/0.28/20261105_R5_EXACT_B2_INFORMATION_HTM_PARETO_AND_COGNITIVE_BRIDGE.md",
       "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py"
     ],
-    "source": "exact P48 B2 multiple-choice Pareto DP",
-    "remote_ci": "pending verification",
-    "limit": "finite B2 two-frame one-turn uniform-prior only; not cognitive proof"
+    "b2_states": 262,
+    "first_color_branches": 22,
+    "pareto_points": 152,
+    "remote_run_verified": 41956909650,
+    "verified_points": {
+      "0": 15194,
+      "111": 13760,
+      "113": 3640,
+      "257": 1976
+    },
+    "limit": "fixed first frame, second within one HTM, uniform prior, not complete identification or cognitive evidence"
   }
 }
