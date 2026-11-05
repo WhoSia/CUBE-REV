@@ -121,6 +121,7 @@ def color_capacity(t,m,p,c):
     return ans
 
 def r7_audit():
+    from math import factorial
     v=color_capacity(16,0,0,(0,)*6)
     assert v==436920422400
     assert v<factorial(12)*2**10
