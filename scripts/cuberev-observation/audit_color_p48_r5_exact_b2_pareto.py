@@ -138,6 +138,42 @@ def court():
         assert sum(n for colors,n,action in moved)==a
         print("R5_B2_POLICY_AT_MASS",a,"M",score,
               "moved",repr(sorted(moved)))
+    # Convex scalarization cannot retrieve every efficient discrete policy.
+    # The exact lower convex hull is computed with integer cross products;
+    # collinear efficient points also count as supported ties for a real
+    # nonnegative weight lambda in M + lambda*A.
+    hull=[]
+    for p in pareto:
+        while len(hull)>=2:
+            a,b=hull[-2:]
+            cross=(b[0]-a[0])*(p[1]-b[1])-(b[1]-a[1])*(p[0]-b[0])
+            if cross<=0:hull.pop()
+            else:break
+        hull.append(p)
+    supported=[]
+    for p in pareto:
+        if any(a[0]<=p[0]<=b[0] and
+               (b[0]-a[0])*(p[1]-a[1])==
+               (b[1]-a[1])*(p[0]-a[0])
+               for a,b in zip(hull,hull[1:])):
+            supported.append(p)
+    assert len(hull)==8,hull
+    assert len(supported)==18,supported
+    assert len(pareto)-len(supported)==134
+    # The point (111,13760) is Pareto efficient but is unsupported:
+    # to beat (0,15194) one needs lambda <=1434/111,
+    # while to beat (113,3640) one needs lambda >=10120/2.
+    assert 111 in dp and dp[111][0]==13760
+    assert (15194-13760)*2 < (13760-3640)*111
+    print("R5_B2_EXACT_NONCONVEX_PARETO_PASS",
+          "efficient",len(pareto),"hull_vertices",len(hull),
+          "scalarizable_including_ties",len(supported),
+          "unsupported",len(pareto)-len(supported))
+    print("R5_B2_CONVEX_HULL_VERTICES",
+          ";".join(f"{a}:{m}" for a,m in hull))
+    print("R5_B2_WEIGHTED_SUM_FAILURE_WITNESS",
+          "point", "111:13760", "lambda_le", "1434/111",
+          "lambda_ge", "10120/2", "incompatible",True)
     print("R5_B2_EXACT_PARETO_PASS",
           "states",len(states),"first_branches",len(branches),
           "points",len(pareto),"baseline_ambiguity",base)
