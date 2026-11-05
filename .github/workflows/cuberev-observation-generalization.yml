@@ -98,6 +98,10 @@ jobs:
           python scripts/cuberev-observation/audit_r11_corner13_with_parity.py | tee /tmp/cuberev-r11-corner13.log
           grep -q '^R11_CORNER_13_EDGE_PARITY_ONE_BIT_PASS physical_states 434 corner_colors 13 parity_bits 1' /tmp/cuberev-r11-corner13.log
           grep -q '^R11_CORNER13_P48_NO_RESET_PASS joint_orbit 576' /tmp/cuberev-r11-corner13.log
+      - name: R11 exact 960-state obstruction of staged 14 plus 6 edge reads
+        run: |
+          python scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py | tee /tmp/cuberev-r11-five-edge.log
+          grep -q '^R11_FIVE_EDGE_STAGED_14_PLUS_6_OBSTRUCTION_PASS states_per_parity=960 parity_cases=8 hard_min_reads=7 easy_min_reads=6' /tmp/cuberev-r11-five-edge.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
