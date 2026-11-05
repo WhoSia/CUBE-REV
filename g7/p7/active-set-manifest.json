@@ -930,6 +930,7 @@
     "scripts/cuberev-observation/certify_active_p48_b4_five_frame_upper.py",
     "scripts/cuberev-observation/channel_model_transfer.py",
     "scripts/cuberev-observation/check_25_irredundancy.py",
+    "scripts/cuberev-observation/construct_color_p48_22_frame_parity_scan.py",
     "scripts/cuberev-observation/construct_color_p48_24_frame_scanner.py",
     "scripts/cuberev-observation/dictionary_coverage.py",
     "scripts/cuberev-observation/discover_b5_adjacent_p48_mitm.cpp",
@@ -997,6 +998,7 @@
     "scripts/cuberev-observation/test_b6_stabilizer_group_structure.py",
     "scripts/cuberev-observation/test_b6_word_order.py",
     "scripts/cuberev-observation/test_channel_model_transfer.py",
+    "scripts/cuberev-observation/test_color_p48_22_frame_parity_scan.py",
     "scripts/cuberev-observation/test_color_p48_24_frame_scanner.py",
     "scripts/cuberev-observation/test_dual_priced_columns.py",
     "scripts/cuberev-observation/test_erasure_observation_policy.py",
@@ -4226,5 +4228,17 @@
     "science": "Physical B6 exchange quotient line graph and full-group one-facelet color two-probe 13..24 bound; optimize 24-frame no-reset HTM travel cost by deterministic 2opt and exact P48 replay",
     "novelty": "finite geometric mechanism and color-channel proof; no new generic theory or hardware claim",
     "ci": "read-only run and source author WhoSia"
+  },
+  "active_set_reconciliation_20261105_color22_parity": {
+    "date": "2026-11-05",
+    "previous_allowed": 1155,
+    "new_allowed": 1157,
+    "added_paths": [
+      "scripts/cuberev-observation/construct_color_p48_22_frame_parity_scan.py",
+      "scripts/cuberev-observation/test_color_p48_22_frame_parity_scan.py"
+    ],
+    "science": "Two one-facelet six-color probes reconstruct any legal full-cube state using 22 readouts: all eleven edges fully + one unknown edge inferred by even flip parity; seven corners fully + one corner's single facelet resolves twist",
+    "proof_status": "CI validation required; no optimality claim; no human sensory measurement",
+    "writes": "WhoSia only, CI read-only"
   }
 }
