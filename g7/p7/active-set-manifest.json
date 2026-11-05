@@ -462,6 +462,7 @@
     "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
     "docs/0.28/20261105_R5_EXACT_B2_INFORMATION_HTM_PARETO_AND_COGNITIVE_BRIDGE.md",
     "docs/0.28/20261105_R8_UNIFORM_EDGE_LOCAL_CERTIFICATE_VS_ADAPTIVE_IDENTIFICATION.md",
+    "docs/0.28/20261105_R9_FEEDBACK_VS_FIXED_EDGE_COLOR_DECISION_TREE_SEPARATION.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -4370,18 +4371,20 @@
     "stage": "0.28-R9",
     "date": "2026-11-05",
     "paths": [
-      "scripts/cuberev-observation/audit_r9_feedback_fixed_separation.py"
+      "scripts/cuberev-observation/audit_r9_feedback_fixed_separation.py",
+      "docs/0.28/20261105_R9_FEEDBACK_VS_FIXED_EDGE_COLOR_DECISION_TREE_SEPARATION.md"
     ],
-    "scope": "corner oracle, arbitrary edge slot access, 4-unknown-edge residual, 96 edge states per parity case",
     "classification": {
       "adaptive3_fixed4": 72,
       "adaptive4_fixed4": 225,
       "adaptive4_fixed5": 144,
       "adaptive5_fixed5": 54
     },
-    "feedback_improves_which_subsets": 216,
+    "feedback_better_subsets": 216,
     "parity_cases": 1980,
-    "source": "exact P48 color readout replay; no physical turn routing and no human cognition claims",
-    "remote_ci": "pending"
+    "policy_state_replays": 190080,
+    "ci_run": 41993431311,
+    "ci_outcome": "success",
+    "boundary": "complete corner oracle/free edge slot access; no full-group 20-frame algorithm"
   }
 }
