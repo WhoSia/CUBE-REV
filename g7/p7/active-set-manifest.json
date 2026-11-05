@@ -933,6 +933,7 @@
     "scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py",
     "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
+    "scripts/cuberev-observation/audit_r10_physical_feedback_lift.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
@@ -4386,5 +4387,15 @@
     "ci_run": 41993431311,
     "ci_outcome": "success",
     "boundary": "complete corner oracle/free edge slot access; no full-group 20-frame algorithm"
+  },
+  "active_set_reconciliation_20261105_r10_probe_lift": {
+    "stage": "0.28-R10",
+    "date": "2026-11-05",
+    "paths": [
+      "scripts/cuberev-observation/audit_r10_physical_feedback_lift.py"
+    ],
+    "purpose": "execute R9 conditional edge feedback with no-reset legal 18-HTM physical turn words at fixed joint color probes",
+    "scope": "three parity-even 96-state residual classes; complete corner oracle; not full cube identification",
+    "remote_ci": "pending"
   }
 }
