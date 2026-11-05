@@ -934,6 +934,7 @@
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
+    "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
@@ -4349,16 +4350,19 @@
     "paths": [
       "docs/0.28/20261105_R8_UNIFORM_EDGE_LOCAL_CERTIFICATE_VS_ADAPTIVE_IDENTIFICATION.md",
       "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
-      "scripts/cuberev-observation/test_r8_edge_state_certificates.py"
+      "scripts/cuberev-observation/test_r8_edge_state_certificates.py",
+      "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py"
     ],
-    "local_result": {
-      "minimum_corner_oracle_edge_local_certificate": 17,
-      "unique_17_facelet_certificates_per_state": 14664,
-      "all_16_facelet_masks_tested": 735471,
-      "nonadaptive_optimum_frames": 21,
-      "adaptive_horizon": "18..21 remains open"
+    "verified_local": {
+      "minimum_single_state_edge_certificate": 17,
+      "unique_17_masks_per_state": 14664,
+      "remaining_four_edge_graph_depth": {
+        "depth3": 72,
+        "depth4": 369,
+        "depth5": 54
+      }
     },
-    "remote_ci": "pending",
-    "proof_limit": "complete corner oracle, state-specific edge facelet certificates; NOT adaptive 17-frame policy or human cognition"
+    "global_fullcube_adaptive_frames": "18..21 unresolved",
+    "remote_ci": "pending"
   }
 }
