@@ -44,6 +44,11 @@ jobs:
           python scripts/cuberev-observation/audit_20_frame_edge_collisions.py | tee /tmp/cuberev-color-r3-fixed-lower.log
           grep -q '^20_FRAME_FIXED_EDGE_COLLISION_ALL_OMISSIONS_PASS 10626/10626' /tmp/cuberev-color-r3-fixed-lower.log
           grep -q '^EXACT_NONADAPTIVE_21_LOWER_PASS' /tmp/cuberev-color-r3-fixed-lower.log
+      - name: Costed two-frame B2 color belief audit (finite scope)
+        run: |
+          python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
+          grep -q '^R4_COLOR_B2_TWO_FRAME_UNIFORM_POSTERIOR_PASS adaptive 1976 fixed 2242 denominator 262' /tmp/cuberev-color-r4-b2-belief.log
+          grep -q '^R4_COLOR_B2_WORST_AMBIGUITY_PASS adaptive 18 fixed 18' /tmp/cuberev-color-r4-b2-belief.log
       - name: Audit all 156 B6 optimal single-tag exchanges
         run: python scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py
       - name: Verify 24-by-3 physical incidence bridge theorem
