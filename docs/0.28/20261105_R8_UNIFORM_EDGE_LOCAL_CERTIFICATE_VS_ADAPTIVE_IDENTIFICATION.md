@@ -114,3 +114,38 @@ The next non-avoidance question is **whether the 17-certificate to >=18-adaptive
 Finally, the human reconstruction programme is not solved by any of these certificate counts. Actual 0.21 P4 records had zero comparable cross-source exact state/view/stage/previous-action pairs at the strict endpoint. A human history mechanism must be tested with independently supported matched behavior and explicit latent-goal/reconstructor controls; mathematical Rubik certificates do not measure cognition.
 
 **Custody boundary:** GitHub source and semantic note, human author/committer only; P7 active allowlist updated; Notion is scientific semantic head and Drive holds irreplaceable sources. Source bytes, math induction, observed behavior and publication novelty are distinct authority claims.
+
+## 7. R8 constructive-policy search: exact 4-edge residual graph classification
+
+This is a NEW model-specific result, separate from the local-certificate theorem above. Fix eight spatial edge positions and query both of their colored facelets: 16 reads. With the true corner state granted, these determine the eight original edge labels and flips. Exactly four edge labels remain, their set `L` is known, and both the required permutation parity of their assignment and required flip parity are known. The four unknown edge positions offer **eight** possible individual facelet queries. Their complete legal relative arrangements number `4!/2 * 2^3 = 96` under each of four prescribed (permutation parity, flip parity) combinations.
+
+We compute the exact worst-case **adaptive** number `d(L)` of further single-color reads needed to identify which of the 96 arrangements holds, with free choice among the eight residual spatial facelet slots. The decision-tree recurrence directly partitions the 96-element belief set according to the six-color result of a chosen facelet query, then requires every nonempty response branch to have a successful subtree. This is a full exact minimax search over the residual belief states, **not** an information-theoretic lower count alone.
+
+The twelve possible edge color pairs form the octahedral graph `K_{2,2,2}`: its six vertices are face colors, with opposite color pairs unconnected. For the four remaining edge pieces `L`, form the **four-edge subgraph** on those six colors.
+
+For each one of all `C(12,4)=495` possible `L`, and for all **four** flip/permutation parity combinations, exact minimax depth is classified as follows:
+
+| Four-edge color graph shape | Number of residual label sets | Optimal adaptive further reads |
+| --- | ---: | ---: |
+| 3-edge path + disjoint 1-edge component (`P4 + K2`) | **72** | **3** |
+| Star of four edges (`K1,4`) | **6** | **5** |
+| Triangle with a pendant edge | **48** | **5** |
+| All remaining graph shapes | **369** | **4** |
+
+The **54 obstructions** to four additional queries are exactly the star and the triangle-plus-pendant, with no other graph shapes producing a depth-5 residual problem. The per-label-set depth is independent of the prescribed edge permutation/flip parity bits. Graph counts sum to 495. For all 96 residual states, two reads cannot be enough, because `6^2=36<96`. Five reads ALWAYS suffice: fully read two of the last four positions (four queries), use known global permutation parity to assign the other two edge identities, read one sticker of a third position to determine its flip, and use known global flip parity for the last. Depth 3/4 feasibility and 4-read impossibility are exhaustive finite Bellman/decision-tree computations.
+
+**Constructive expected-budget consequence (corner oracle, edge-only).** For each remaining label set, one may use its exact minimizing adaptive subtree, padding with repeated known observations if necessary. Under a *uniform* distribution on all legal corner-compatible edge states, the four-unread-label set is uniform over the 495 possibilities. Hence a physically addressable **edge-only** strategy that reads eight full edge positions first has worst-case `16+5=21` edge-color observations, but uses at most
+
+```
+16 + (72*3 + 369*4 + 54*5)/495
+ = 16 + 1962/495
+ = 19.963636... 
+```
+
+observations *on average under that mathematical uniform prior*. This is a valid bounded mean **edge-only oracle** result, not a complete-color-cube average-frame guarantee. In the actual two-probe full cube task the complete corner state is NOT available for free, and the joint corner sensor may require all 21 frames; HTM route costs are also not optimized here.
+
+**No misleading global upper bound.** Because the residual star and triangle-plus-pendant cases need five further reads, this natural `16+4` staged construction FAILS to produce a universal 20-edge-read identifier. It does not prove that a different adaptive policy interleaving earlier partial reads cannot identify the entire cube in 20 frames. The exact full-group adaptive frontier remains `18 <= h <= 21`.
+
+**Executable proof:** `scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py`, which imports the independently 3D-generated P48 physical sticker colors, enumerates all 495 four-label choices with all four parity constraints, generates all 96 valid residual configurations per choice, and recurses on all eight possible free physical facelet queries. It validates the graph-shape classification, the 72/369/54 counts and the 1962/495 budget. Independent test receipts and scholarly novelty adjudication remain separate gates.
+
+**Scientific value:** This is a concrete example where **the incidence geometry of remaining colors predicts the exact future observation effort** under specified physical legality and information constraints, without pretending that facelet count itself measures human cognitive effort. It is a candidate structural lemma for a broader inference theory, not a justification for diverting CUBE-REV into smaller puzzle papers.
