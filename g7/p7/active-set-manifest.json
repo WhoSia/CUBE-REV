@@ -932,6 +932,7 @@
     "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
+    "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
     "scripts/cuberev-observation/build_b6_stabilizer_goals.py",
@@ -1022,6 +1023,7 @@
     "scripts/cuberev-observation/test_observation.py",
     "scripts/cuberev-observation/test_optimize_color_p48_24_frame_route.py",
     "scripts/cuberev-observation/test_orbit_column_generation.py",
+    "scripts/cuberev-observation/test_r8_edge_state_certificates.py",
     "scripts/cuberev-observation/test_reversible_pair_audit.py",
     "scripts/cuberev-observation/test_sensor_symmetry.py",
     "scripts/cuberev-observation/test_stabilizer_support_spectrum.py",
@@ -4339,5 +4341,21 @@
       "257": 1976
     },
     "limit": "fixed first frame, second within one HTM, uniform prior, not complete identification or cognitive evidence"
+  },
+  "active_set_reconciliation_20261105_r8_local_edge_certificate": {
+    "stage": "0.28-R8",
+    "date": "2026-11-05",
+    "paths": [
+      "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
+      "scripts/cuberev-observation/test_r8_edge_state_certificates.py"
+    ],
+    "model": "physical complete corner oracle; edge-facelet six color observations; per-state certificates",
+    "local_result": {
+      "minimum_local_edge_certificate": 17,
+      "all_16_facelet_masks_tested": 735471,
+      "unique_17_facelet_masks_for_solved": 14664
+    },
+    "universal_adaptive_horizon": "18..21 remains open",
+    "remote_ci": "pending"
   }
 }
