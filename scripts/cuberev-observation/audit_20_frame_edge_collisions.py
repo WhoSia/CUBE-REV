@@ -103,3 +103,25 @@ def main():
     print('EXACT_NONADAPTIVE_21_LOWER_PASS; adaptive optimum bounded 16..21')
 
 if __name__=='__main__':main()
+
+# R7 oracle upper bound on histories for an adaptive one-edge-color probe.
+from functools import lru_cache
+@lru_cache(None)
+def color_capacity(t,m,p,c):
+    if t==0:return 1
+    ans=color_capacity(t-1,m,p,c)
+    if m<12:
+        z=0
+        for i,x in enumerate(c):
+            if x<4:
+                d=list(c);d[i]+=1
+                z+=color_capacity(t-1,m+1,p,tuple(sorted(d)))
+        ans=max(ans,z)
+    if p<m:ans=max(ans,4*color_capacity(t-1,m,p+1,c))
+    return ans
+
+def r7_audit():
+    v=color_capacity(16,0,0,(0,)*6)
+    assert v==436920422400
+    assert v<factorial(12)*2**10
+    print("R7_ADAPTIVE_COLOR_LOWER_17_PASS",v)
