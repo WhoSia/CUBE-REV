@@ -111,6 +111,33 @@ def court():
     assert pareto[-1][1]==1976,(pareto[-1],unconstrained)
     assert all(0<=a<=262 and 1976<=m<=base for a,m in pareto)
     assert len(pareto)>=2
+    assert len(pareto)==152,len(pareto)
+    assert base==15194,base
+    assert (113,3640) in pareto and (111,13760) in pareto
+    assert pareto[-1]==(257,1976),pareto[-1]
+    # Identify which actual color belief and physical turn produce the largest
+    # one-branch reduction; this is a local structural explanation, not a
+    # universal 'phase transition' theorem.
+    branch_explanations=[]
+    for b,(n,free,best,candidates) in zip(branches,options):
+        first_color=two_one_facelet_colors(states[b[0]],IDENTITY)
+        assert all(two_one_facelet_colors(states[i],IDENTITY)==first_color for i in b)
+        branch_explanations.append((free[1]-best[1],n,first_color,best[0],
+                                    free[1],best[1]))
+    branch_explanations.sort(reverse=True)
+    for saving,mass,colors,action,prior,after in branch_explanations[:5]:
+        print("R5_B2_LARGEST_SINGLE_BRANCH_GAIN",
+              "first_colors",",".join(colors),"mass",mass,
+              "HTM",action,"ambiguity_before",prior,"after",after,
+              "saving",saving)
+    for a in (111,113,257):
+        score,chosen=dp[a]
+        moved=[(",".join(two_one_facelet_colors(states[b[0]],IDENTITY)),
+                len(b),action) for b,action in zip(branches,chosen)
+                if action!="NO_TURN"]
+        assert sum(n for colors,n,action in moved)==a
+        print("R5_B2_POLICY_AT_MASS",a,"M",score,
+              "moved",repr(sorted(moved)))
     print("R5_B2_EXACT_PARETO_PASS",
           "states",len(states),"first_branches",len(branches),
           "points",len(pareto),"baseline_ambiguity",base)
