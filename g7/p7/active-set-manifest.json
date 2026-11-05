@@ -456,6 +456,7 @@
     "docs/0.27/P9_TWO_PHYSICAL_COURTS_AND_INDEPENDENT_OPTIMAL_17_CHALLENGE.md",
     "docs/0.27/PROGRAM_CHARTER.md",
     "docs/0.28/20261105_B6_EXCHANGE_LINE_GRAPH_AND_COLOR_FACELET_OBSERVABILITY.md",
+    "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -4268,6 +4269,17 @@
     "scientific_scope": "Compare specific physically executable 21/22/24 fixed six-color joint facelet readout schedules using same 24-node deterministic route heuristic and complete B2 replay",
     "limitations": "heuristic movement cost not proven globally minimum, h_color optimality open, no optical hardware",
     "ci": "read only; verify current run",
+    "author": "WhoSia"
+  },
+  "active_set_reconciliation_20261105_color_r2": {
+    "date": "2026-11-05",
+    "before": 1161,
+    "after": 1162,
+    "added_paths": [
+      "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md"
+    ],
+    "science": "Constructive full-group 21-frame color reconstruction with cube twist/permutation/flip invariants, upper achieved 119 HTM, 13-frame alphabetic lower bound, data/proof limits explicitly separated",
+    "ci": "read-only 41938711695 verified; newest P7 run must pass",
     "author": "WhoSia"
   }
 }
