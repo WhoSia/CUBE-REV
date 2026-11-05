@@ -952,6 +952,7 @@
     "scripts/cuberev-observation/audit_r11_full_cube_joint_feedback_21.py",
     "scripts/cuberev-observation/audit_r12_eight_full_edge_prefix_adversary.py",
     "scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py",
+    "scripts/cuberev-observation/audit_r13_corner12_same_edge_parity_collision.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
@@ -4484,5 +4485,16 @@
     "limit": "does not rule out mixed/partial observation prefixes, which remain central to full-group adaptive 18..21",
     "remote_ci": "pending",
     "proof_scope": "any adaptive selection/interleaving of eight fully observed edge positions in first 16 edge frames; corner oracle permitted; 54 four-type hard sets"
+  },
+  "active_set_reconciliation_20261105_r13_corner_parity": {
+    "stage": "0.28-R13",
+    "date": "2026-11-05",
+    "paths": [
+      "scripts/cuberev-observation/audit_r13_corner12_same_edge_parity_collision.py"
+    ],
+    "claimed_exact_corner_fixed_edge_parity": 13,
+    "lower": "every <=12 corner facelet read mask admits two physically legal P48 states with exactly same complete edges and observed corner colors",
+    "upper": "six corner positions read in full pairs plus one extra corner facelet, given correct edge permutation parity",
+    "remote_ci": "pending"
   }
 }
