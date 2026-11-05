@@ -937,8 +937,10 @@
     "scripts/cuberev-observation/audit_r10_physical_feedback_lift.py",
     "scripts/cuberev-observation/audit_r11_corner13_with_parity.py",
     "scripts/cuberev-observation/audit_r11_corner14_chirality.py",
+    "scripts/cuberev-observation/audit_r11_corner14_no_oracle.py",
     "scripts/cuberev-observation/audit_r11_corner19_edge_parity.py",
     "scripts/cuberev-observation/audit_r11_corner20_no_oracle.py",
+    "scripts/cuberev-observation/audit_r11_corner_parity_coupling.py",
     "scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp",
     "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
     "scripts/cuberev-observation/audit_r11_full21_with_corner14.py",
@@ -4415,25 +4417,14 @@
     "boundaries": "corner oracle, three representative parity-even classes, independent trials, not full-cube policy or motor cost optimum"
   },
   "active_set_reconciliation_20261105_r11": {
-    "date": "2026-11-05",
     "stage": "0.28-R11",
+    "date": "2026-11-05",
     "paths": [
-      "scripts/cuberev-observation/audit_r11_corner19_edge_parity.py",
-      "scripts/cuberev-observation/audit_r11_corner20_no_oracle.py",
-      "scripts/cuberev-observation/audit_r11_corner14_chirality.py",
-      "scripts/cuberev-observation/audit_r11_corner13_with_parity.py",
-      "scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp",
-      "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
-      "scripts/cuberev-observation/audit_r11_full21_with_corner14.py"
+      "scripts/cuberev-observation/audit_r11_corner14_no_oracle.py",
+      "scripts/cuberev-observation/audit_r11_corner_parity_coupling.py"
     ],
-    "candidate": {
-      "corner14": "full legal corner state from 14 fixed six-color samples",
-      "corner13": "one edge parity bit reduces to 13 corner color reads",
-      "full21": "joint full-cube 21 frames with 21 distinct edge and only 14 distinct corner facelet readings",
-      "edge_hall": "edge-only unknown corner parity requires >=19 adaptive reads",
-      "staged14plus6": "960-state hard leftover edge group cannot be universally identified with 6 further reads"
-    },
-    "remote_ci": "queued; not certified",
-    "global_adaptive_bounds": "18..21 OPEN"
+    "scope": "corner-only independent 14-frame physical decoder and solved-reference corner/parity observation-mask census",
+    "claim_boundary": "no <=20 frame full cube adaptive identifier; no free corner oracle in 14 frame decoder",
+    "remote_ci": "pending"
   }
 }
