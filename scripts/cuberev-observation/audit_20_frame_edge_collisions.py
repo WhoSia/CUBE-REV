@@ -100,7 +100,7 @@ def main():
     edge_states_given_corners=factorial(12)*(2**10)
     assert 6**15 < edge_states_given_corners <= 6**16
     print('ADAPTIVE_COLOR_EDGE_ORACLE_INFORMATION_LOWER_16_PASS', edge_states_given_corners, 6**15)
-    print('EXACT_NONADAPTIVE_21_LOWER_PASS; adaptive optimum bounded 16..21')
+    print('EXACT_NONADAPTIVE_21_LOWER_PASS; R3 historical adaptive lower 16, superseded by subsequent R7 certificate')
 
 if __name__=='__main__':main()
 
