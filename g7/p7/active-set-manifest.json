@@ -953,6 +953,7 @@
     "scripts/cuberev-observation/audit_r12_eight_full_edge_prefix_adversary.py",
     "scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py",
     "scripts/cuberev-observation/audit_r13_corner12_same_edge_parity_collision.py",
+    "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
@@ -4485,6 +4486,19 @@
     "limit": "does not rule out mixed/partial observation prefixes, which remain central to full-group adaptive 18..21",
     "remote_ci": "pending",
     "proof_scope": "any adaptive selection/interleaving of eight fully observed edge positions in first 16 edge frames; corner oracle permitted; 54 four-type hard sets"
+  },
+  "active_set_reconciliation_20261105_r14_six_complete_prefix": {
+    "stage": "0.28-R14",
+    "date": "2026-11-05",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
+      "docs/0.28/20261105_R12_ADAPTIVE_EIGHT_FULL_EDGE_PREFIX_NO20_ADVERSARY.md"
+    ],
+    "claim": "any adaptive policy whose first twelve edge queries fully read exactly six spatial edge positions cannot guarantee full-cube identification in 20 frames",
+    "proof": "online complement-label adversary forces residual {UR,UF,UL,UB,FR,FL}; exact 11520-state parity-conditioned six-edge minimax requires nine more color reads, not eight",
+    "scope_limit": "the original 18..21 full-group adaptive bound remains OPEN for mixed/partial early prefixes",
+    "source_custody": "Drive canonical 10_CANONICAL_PROOF_COURTS, raw Python and exact output receipt",
+    "remote_ci": "pending"
   },
   "active_set_reconciliation_20261105_r13_corner_parity": {
     "stage": "0.28-R13",
