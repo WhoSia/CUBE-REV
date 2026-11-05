@@ -144,6 +144,7 @@
     ".github/workflows/cuberev-028-exchange-color-audit.yml",
     ".github/workflows/cuberev-028-independent-p48-mitm.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
+    ".github/workflows/cuberev-r14-p5-observation-equivariance.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -470,6 +471,7 @@
     "docs/0.28/20261105_R5_EXACT_B2_INFORMATION_HTM_PARETO_AND_COGNITIVE_BRIDGE.md",
     "docs/0.28/20261105_R8_UNIFORM_EDGE_LOCAL_CERTIFICATE_VS_ADAPTIVE_IDENTIFICATION.md",
     "docs/0.28/20261105_R9_FEEDBACK_VS_FIXED_EDGE_COLOR_DECISION_TREE_SEPARATION.md",
+    "docs/0.28/20261106_R14_P5_OBSERVATIONAL_EQUIVARIANCE_AND_EXACT_MINIMAX_QUOTIENT.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -957,6 +959,7 @@
     "scripts/cuberev-observation/audit_r13_corner12_same_edge_parity_collision.py",
     "scripts/cuberev-observation/audit_r14_p3_parity_factored_belief.py",
     "scripts/cuberev-observation/audit_r14_p4_matching_parity_dp.py",
+    "scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
@@ -4546,6 +4549,23 @@
     "sha256_source": "ef3a7258139a7d7ccfcdc9782b22e98d5c4bbd8ecc512643be68fa8dad833a2f",
     "sha256_receipt": "1ef10cc9ba54e6d518c7b07931f9c17a38a0d015b966e3d10c604e2cabdad516",
     "drive_byte_readback": "BYTE_VERIFIED",
+    "remote_ci": "pending"
+  },
+  "active_set_reconciliation_20261106_r14_p5_equivariance": {
+    "stage": "0.28-R14-P5",
+    "date": "2026-11-06",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py",
+      "docs/0.28/20261106_R14_P5_OBSERVATIONAL_EQUIVARIANCE_AND_EXACT_MINIMAX_QUOTIENT.md",
+      ".github/workflows/cuberev-r14-p5-observation-equivariance.yml"
+    ],
+    "claim": "12-element parity-coupled observation symmetry on 51,840 legal 5-edge/3-corner algebraic states; exact posterior covariance on 2,464 feedback histories; 12 distinct 40-candidate beliefs all require exactly three more paired color reads",
+    "boundary": "No independent P48 geometry lift, no free-turn-cost physical proof, no global depth20 policy",
+    "original_source": "https://drive.google.com/file/d/1mgk7kdckRwEyb8lOQH4ubmemZahCeKCu/view",
+    "original_receipt": "https://drive.google.com/file/d/1S8SFjv29UVEGsab3sLFTk0Lz_SqBRJX_/view",
+    "source_sha256": "c0f0ed57be25ac0373f82a8b6317768a96698e0454565a0a0e99354936ff6375",
+    "receipt_sha256": "c3309d6abe89031d99858fd0f9f71ee1ef01b8ffcdefec1111b43569894e8236",
+    "custody": "Drive upload acknowledged; raw-byte readback not yet independently compared",
     "remote_ci": "pending"
   }
 }
