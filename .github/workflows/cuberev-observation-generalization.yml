@@ -130,6 +130,10 @@ jobs:
         run: |
           python scripts/cuberev-observation/audit_r12_eight_full_prefix_adversary.py | tee /tmp/r12-u-star.log
           grep -q '^R12_ADAPTIVE_EIGHT_COMPLETE_EDGE_PREFIX_OBSTRUCTION_PASS hard_types UR/UF/UL/UB residual_minimax 5 parity_classes 4 constructed_legal_states 3072 sample_feedback_prefixes 32' /tmp/r12-u-star.log
+      - name: R12 universal 16-complete-edge prefix obstruction witness
+        run: |
+          python scripts/cuberev-observation/audit_r12_eight_full_edge_prefix_adversary.py | tee /tmp/cuberev-r12-adversary.log
+          grep -q '^R12_FULL_EDGE_PREFIX_NO20_THEOREM_WITNESS_PASS physical_complete_states 96 bad_graph_classes 2 residual_minimax_depth 5' /tmp/cuberev-r12-adversary.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
