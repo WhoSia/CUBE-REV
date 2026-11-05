@@ -941,6 +941,7 @@
     "scripts/cuberev-observation/audit_r11_corner20_no_oracle.py",
     "scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp",
     "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
+    "scripts/cuberev-observation/audit_r11_full21_with_corner14.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
@@ -4422,16 +4423,17 @@
       "scripts/cuberev-observation/audit_r11_corner14_chirality.py",
       "scripts/cuberev-observation/audit_r11_corner13_with_parity.py",
       "scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp",
-      "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py"
+      "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
+      "scripts/cuberev-observation/audit_r11_full21_with_corner14.py"
     ],
-    "results": {
-      "corner14": "no-oracle corner reconstruction by 7 ordered color pairs",
-      "corner13": "conditional on true edge parity",
-      "edge_Hall_18": "full-edge unknown parity implies >=19 edge-only reads",
-      "five_edge": "explicit 960-state counterexample to fixed 14-complete-edge-facelet prefix plus 6 adaptive reads"
+    "candidate": {
+      "corner14": "full legal corner state from 14 fixed six-color samples",
+      "corner13": "one edge parity bit reduces to 13 corner color reads",
+      "full21": "joint full-cube 21 frames with 21 distinct edge and only 14 distinct corner facelet readings",
+      "edge_hall": "edge-only unknown corner parity requires >=19 adaptive reads",
+      "staged14plus6": "960-state hard leftover edge group cannot be universally identified with 6 further reads"
     },
-    "independent_local": "2501 random legal P48 states for corner14,13; independent C++ Hall H18 result 947446315200",
-    "remote_ci": "queued; do not claim success",
-    "fullcube_adaptive": "18..21 still open"
+    "remote_ci": "queued; not certified",
+    "global_adaptive_bounds": "18..21 OPEN"
   }
 }
