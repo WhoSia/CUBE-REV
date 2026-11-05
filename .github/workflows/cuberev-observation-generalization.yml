@@ -121,6 +121,11 @@ jobs:
           python scripts/cuberev-observation/audit_r11_full_cube_joint_feedback_21.py | tee /tmp/cuberev-r11-joint.log
           grep -q '^R11_FULL_CUBE_NO_CORNER_ORACLE_21_FRAME_PASS B2_states 262' /tmp/cuberev-r11-joint.log
           grep -q '^R11_UNIVERSAL_CONSTRUCTION 14_corner_color_reads+16_full_edge_prefix+at_most_5_edge_feedback; no reset' /tmp/cuberev-r11-joint.log
+      - name: R11 constructive 13-frame corner-only physical collision adversary
+        run: |
+          python scripts/cuberev-observation/audit_r11_corner13_collision_witness.py | tee /tmp/cuberev-r11-corner13.log
+          grep -q '^R11_CORNER13_UNIVERSAL_COLLISION_WITNESS_PASS' /tmp/cuberev-r11-corner13.log
+          grep -q '^R11_CORNER_ONLY_NONADAPTIVE_EXACT_14_PASS' /tmp/cuberev-r11-corner13.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
