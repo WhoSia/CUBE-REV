@@ -77,6 +77,11 @@ jobs:
           python scripts/cuberev-observation/audit_r11_corner19_edge_parity.py | tee /tmp/cuberev-r11-corner19.log
           grep -q '^R11_P48_CORNER_19_WITH_EDGE_PARITY_PASS samples 266 corner_colors 19 edge_parity_oracle_bits 1' /tmp/cuberev-r11-corner19.log
           grep -q '^R11_NO_RESET_COLOR_SENSOR_EXECUTION_PASS trials 266' /tmp/cuberev-r11-corner19.log
+      - name: R11 corner 20-frame color reconstruction without parity oracle
+        run: |
+          python scripts/cuberev-observation/audit_r11_corner20_no_oracle.py | tee /tmp/cuberev-r11-corner20.log
+          grep -q '^R11_CORNER_20_NO_PARITY_ORACLE_PASS tested_physical_states 434 corner_color_reads 20 edge_oracle_bits 0' /tmp/cuberev-r11-corner20.log
+          grep -q '^R11_CORNER20_P48_NO_RESET_PASS joint_facelet_frames 20' /tmp/cuberev-r11-corner20.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
