@@ -125,3 +125,5 @@ def r7_audit():
     assert v==436920422400
     assert v<factorial(12)*2**10
     print("R7_ADAPTIVE_COLOR_LOWER_17_PASS",v)
+
+if __name__=='__main__':r7_audit()
