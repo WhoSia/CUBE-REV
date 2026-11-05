@@ -457,6 +457,7 @@
     "docs/0.27/PROGRAM_CHARTER.md",
     "docs/0.28/20261105_B6_EXCHANGE_LINE_GRAPH_AND_COLOR_FACELET_OBSERVABILITY.md",
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
+    "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -911,6 +912,7 @@
     "scripts/cuberev-observation/active_p48_b6_ten_frame_bridge.py",
     "scripts/cuberev-observation/active_p48_fixed_site_scan.py",
     "scripts/cuberev-observation/adaptive_erasure_minimax.py",
+    "scripts/cuberev-observation/audit_20_frame_edge_collisions.py",
     "scripts/cuberev-observation/audit_active_p48_b3_policy_motion_cost.py",
     "scripts/cuberev-observation/audit_active_p48_b4_corner_freedom.py",
     "scripts/cuberev-observation/audit_active_p48_b4_nonadaptive_horizon.py",
@@ -4281,5 +4283,16 @@
     "science": "Constructive full-group 21-frame color reconstruction with cube twist/permutation/flip invariants, upper achieved 119 HTM, 13-frame alphabetic lower bound, data/proof limits explicitly separated",
     "ci": "read-only 41938711695 verified; newest P7 run must pass",
     "author": "WhoSia"
+  },
+  "active_set_reconciliation_20261105_color_r3": {
+    "stage": "0.28-R3",
+    "date": "2026-11-05",
+    "paths": [
+      "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
+      "scripts/cuberev-observation/audit_20_frame_edge_collisions.py"
+    ],
+    "verified_local_masks": 10626,
+    "claim": "nonadaptive 21-frame lower bound; adaptive optimum remains open",
+    "ci": "pending independent completed run verification"
   }
 }
