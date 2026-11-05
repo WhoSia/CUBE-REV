@@ -43,7 +43,7 @@ def decode13(colors,edge_parity):
         source_to_dest[source]=dest
         for i,s in enumerate(PIECES[source]):
             known[s]=PIECES[dest][(i+twist)%3]
-    missing=sorted(set(CORNERS)-source_to_dest)
+    missing=sorted(set(CORNERS)-set(source_to_dest))
     assert len(missing)==2
     index={p:i for i,p in enumerate(CORNERS)}
     possibilities=[]
