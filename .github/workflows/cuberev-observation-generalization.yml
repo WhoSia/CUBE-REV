@@ -65,6 +65,13 @@ jobs:
           python scripts/cuberev-observation/audit_r9_feedback_fixed_separation.py | tee /tmp/cuberev-r9-feedback.log
           grep -q '^R9_EXACT_FEEDBACK_SEPARATION_PASS remaining_subsets=495 parity_cases=1980 adaptive_better=216 equal=279 adaptive_depth_sum=1962 fixed_depth_sum=2178' /tmp/cuberev-r9-feedback.log
           grep -q '^R9_ALL_PARITY_EXPLICIT_POLICY_REPLAY_PASS physical_conditional_states 190080' /tmp/cuberev-r9-feedback.log
+      - name: R10 physical no-reset turn lift for adaptive R9 edge policies
+        run: |
+          python scripts/cuberev-observation/audit_r10_physical_feedback_lift.py | tee /tmp/cuberev-r10-lift.log
+          grep -q '^R10_NO_RESET_P48_ORACLE_EDGE_LIFT_PASS physical_states 288' /tmp/cuberev-r10-lift.log
+          grep -q '^R10_PHYSICAL_FEEDBACK_CLASS_PASS adaptive 3 fixed 4 states 96' /tmp/cuberev-r10-lift.log
+          grep -q '^R10_PHYSICAL_FEEDBACK_CLASS_PASS adaptive 4 fixed 5 states 96' /tmp/cuberev-r10-lift.log
+          grep -q '^R10_PHYSICAL_FEEDBACK_CLASS_PASS adaptive 5 fixed 5 states 96' /tmp/cuberev-r10-lift.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
