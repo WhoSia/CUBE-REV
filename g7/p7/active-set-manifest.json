@@ -458,6 +458,7 @@
     "docs/0.28/20261105_B6_EXCHANGE_LINE_GRAPH_AND_COLOR_FACELET_OBSERVABILITY.md",
     "docs/0.28/20261105_PAPER_PORTFOLIO_CRITICAL_NOVELTY_AUDIT.md",
     "docs/0.28/20261105_R10_LEGAL_NO_RESET_ADAPTIVE_POLICY_PHYSICAL_LIFT.md",
+    "docs/0.28/20261105_R11_CORNER_CHIRALITY_PARITY_EDGE_TIMING_GATE.md",
     "docs/0.28/20261105_R2_COLOR_PARITY_21_FRAME_AND_ACTION_PARETO.md",
     "docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md",
     "docs/0.28/20261105_R4_COSTED_BELIEF_AND_COGNITIVE_TRANSFER_BOUNDARY.md",
@@ -4418,21 +4419,27 @@
     "boundaries": "corner oracle, three representative parity-even classes, independent trials, not full-cube policy or motor cost optimum"
   },
   "active_set_reconciliation_20261105_r11": {
-    "stage": "0.28-R11",
     "date": "2026-11-05",
+    "stage": "0.28-R11",
     "paths": [
-      "scripts/cuberev-observation/audit_r11_corner14_no_oracle.py",
-      "scripts/cuberev-observation/audit_r11_corner_parity_coupling.py",
-      "scripts/cuberev-observation/audit_r11_full_cube_joint_feedback_21.py"
+      "docs/0.28/20261105_R11_CORNER_CHIRALITY_PARITY_EDGE_TIMING_GATE.md",
+      "scripts/cuberev-observation/audit_r11_corner19_edge_parity.py",
+      "scripts/cuberev-observation/audit_r11_corner20_no_oracle.py",
+      "scripts/cuberev-observation/audit_r11_corner14_chirality.py",
+      "scripts/cuberev-observation/audit_r11_corner13_with_parity.py",
+      "scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp",
+      "scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py",
+      "scripts/cuberev-observation/audit_r11_full21_with_corner14.py"
     ],
-    "scope": "universal 14-corner-color lemma; full 21-frame oracle-free staged feedback policy using only real two six-color sensors",
-    "proof_obligations": [
-      "all corner two-color signatures bijective",
-      "R9 exact 495×4 residual policy table",
-      "joint pair orbit 576",
-      "real P48 decoder",
-      "no free reset"
-    ],
-    "remote_ci": "pending"
+    "verifications": {
+      "independent_local_corner14_13": 2501,
+      "independent_local_full_cube21": 2400,
+      "independent_hall_h18": 947446315200,
+      "independent_hall_signature_visits": 2245866,
+      "five_edge_hard_min": 7,
+      "global_adaptive_frames": "18..21 OPEN"
+    },
+    "remote_ci": "queued awaiting workflow result",
+    "doctrine": "conditional results not general global 20; no measured cognitive effect"
   }
 }
