@@ -107,6 +107,15 @@ jobs:
           python scripts/cuberev-observation/audit_r11_full21_with_corner14.py | tee /tmp/r11-full21-35.log
           grep -q '^R11_FULL_CUBE_21_FRAMES_35_UNIQUE_COLOR_READS_PASS physical_states 434 edge_distinct 21 corner_distinct 14 joint_frames 21' /tmp/r11-full21-35.log
           grep -q '^R11_FULL21_P48_NO_RESET_PASS joint_orbit 576' /tmp/r11-full21-35.log
+      - name: R11 corner14 no-oracle P48 joint-probe decoder
+        run: |
+          python scripts/cuberev-observation/audit_r11_corner14_no_oracle.py | tee /tmp/cuberev-r11-corner14.log
+          grep -q '^R11_CORNER_TWO_FACELET_LOCAL_BIJECTION_PASS positions 8 two_facelet_choices_per_position 3 oriented_cubie_signatures_each 24' /tmp/cuberev-r11-corner14.log
+          grep -q '^R11_CORNER14_FULL_STATE_WITHOUT_ORACLE_P48_PASS frames 14 B2_replays 262 long_controls 3 trials 265' /tmp/cuberev-r11-corner14.log
+      - name: R11 corner-only 18-20 mask parity-coupling census
+        run: |
+          python scripts/cuberev-observation/audit_r11_corner_parity_coupling.py | tee /tmp/cuberev-r11-mask.log
+          grep -q '^R11_CORNER_PARITY_COUPLING_PASS 20_reads_without_edge_parity_unique=10590/10626' /tmp/cuberev-r11-mask.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
