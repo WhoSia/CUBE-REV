@@ -102,6 +102,11 @@ jobs:
         run: |
           python scripts/cuberev-observation/audit_r11_five_edge_20frame_gate.py | tee /tmp/cuberev-r11-five-edge.log
           grep -q '^R11_FIVE_EDGE_STAGED_14_PLUS_6_OBSTRUCTION_PASS states_per_parity=960 parity_cases=8 hard_min_reads=7 easy_min_reads=6' /tmp/cuberev-r11-five-edge.log
+      - name: R11 full-cube 21 frames only 14 independent corner color observations
+        run: |
+          python scripts/cuberev-observation/audit_r11_full21_with_corner14.py | tee /tmp/r11-full21-35.log
+          grep -q '^R11_FULL_CUBE_21_FRAMES_35_UNIQUE_COLOR_READS_PASS physical_states 434 edge_distinct 21 corner_distinct 14 joint_frames 21' /tmp/r11-full21-35.log
+          grep -q '^R11_FULL21_P48_NO_RESET_PASS joint_orbit 576' /tmp/r11-full21-35.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
