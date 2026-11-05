@@ -123,7 +123,14 @@ def color_capacity(t,m,p,c):
 def r7_audit():
     from math import factorial
     v=color_capacity(16,0,0,(0,)*6)
-    assert v==436920422400
+    from itertools import product
+    from math import prod
+    c12=sum(factorial(12)//prod(factorial(x) for x in cs)
+            for cs in product(range(5),repeat=6) if sum(cs)==12)
+    assert c12==1706720400
+    assert v==c12*4**4==436920422400
+    assert color_capacity(15,0,0,(0,)*6)==109230105600
+    assert color_capacity(17,0,0,(0,)*6)==1747681689600
     assert v<factorial(12)*2**10
     print("R7_ADAPTIVE_COLOR_LOWER_17_PASS",v)
 
