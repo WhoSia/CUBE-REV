@@ -96,6 +96,10 @@ def main():
     print('20_FRAME_FIXED_EDGE_COLLISION_ALL_OMISSIONS_PASS 10626/10626')
     for shape,count in sorted(histogram.items()):
         print('EDGE_OMISSION_PATTERN', '+'.join(map(str,shape)),count)
-    print('EXACT_NONADAPTIVE_21_LOWER_PASS; adaptive optimum OPEN')
+    from math import factorial
+    edge_states_given_corners=factorial(12)*(2**10)
+    assert 6**15 < edge_states_given_corners <= 6**16
+    print('ADAPTIVE_COLOR_EDGE_ORACLE_INFORMATION_LOWER_16_PASS', edge_states_given_corners, 6**15)
+    print('EXACT_NONADAPTIVE_21_LOWER_PASS; adaptive optimum bounded 16..21')
 
 if __name__=='__main__':main()
