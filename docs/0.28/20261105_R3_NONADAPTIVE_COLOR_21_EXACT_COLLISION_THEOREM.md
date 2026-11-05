@@ -38,3 +38,30 @@ An adaptive observation policy may choose the next relative turn after reading p
 Formulate a decision-tree adversary for adaptive observation, determining whether a common-color collision survives state-dependent turns; separately examine whether edge-only ambiguity can be propagated along each adaptive branch. Any claim of exact adaptive 21 requires a policy-wise proof or a complete explicit certified tree, not only this fixed-mask census.
 
 **Doctrine:** human WhoSia commits only; maintain P7 manifest and read-only CI; GitHub for small executable source, Notion for current semantics, Drive for irreplaceable T2 original bytes.
+## Additional stronger theorem: adaptive observation requires at least 16 frames
+
+Give the decoder the **complete true corner state for free** before any sensing. Fix any such corner state, including its known permutation parity. By the Rubik legality characterization, the remaining edge state can be any of
+
+```
+12! * 2^11 / 2 = 12! * 2^10 = 490,497,638,400
+```
+
+different edge permutations/orientations: one parity restriction on the edge permutation (to match the known corners) and one parity restriction on its 12 flip bits.
+
+Even under a fully adaptive legal-turn policy, each physical frame reveals **exactly one six-valued edge color**. Given the entire known corner configuration and all earlier edge readings, the observed corner colors and chosen turns are deterministic functions of the previous history and cannot transmit an additional independent edge symbol. A depth-`t` adaptive decision tree therefore has at most `6^t` distinct edge observation histories for these states.
+
+```
+6^15 = 470,184,984,576
+12! * 2^10 = 490,497,638,400
+6^15 < 12! * 2^10
+```
+
+Thus **at least 16 joint edge+corner probe frames are required even with arbitrary feedback-adaptive known 18-HTM actions**. This improves the full-group color-channel adaptive bound to
+
+```
+16 <= h_color^adaptive(full G) <= 21.
+```
+
+It is not asserted that 16 or 21 is the adaptive optimum. The fixed-schedule optimum remains exactly 21. This adversarial/oracle bound does not depend on the fixed-mask collision census and is valid for any deterministic exact-output adaptive policy; a zero-error randomized policy also cannot evade it for every random seed that must be universally correct.
+
+**Scientific authority split:** This is a direct mathematical counting argument, not an empirical hardware or human-cognition observation. The older R2 lower bound of 13 remains true but is superseded by 16 for this channel and legality model.
