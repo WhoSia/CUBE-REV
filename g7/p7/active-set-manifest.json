@@ -935,6 +935,7 @@
     "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/audit_r10_physical_feedback_lift.py",
+    "scripts/cuberev-observation/audit_r11_corner14_chirality.py",
     "scripts/cuberev-observation/audit_r11_corner19_edge_parity.py",
     "scripts/cuberev-observation/audit_r11_corner20_no_oracle.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
@@ -4414,10 +4415,10 @@
     "stage": "0.28-R11",
     "paths": [
       "scripts/cuberev-observation/audit_r11_corner19_edge_parity.py",
-      "scripts/cuberev-observation/audit_r11_corner20_no_oracle.py"
+      "scripts/cuberev-observation/audit_r11_corner20_no_oracle.py",
+      "scripts/cuberev-observation/audit_r11_corner14_chirality.py"
     ],
-    "goal": "certify 20 fixed corner color samples without any edge parity oracle; 19 given edge parity",
-    "ci_status": "pending",
-    "full_group_scope": "corner reconstruction only; entire edge and global 20-frame remains open"
+    "candidate": "14 fixed categorical corner readings using seven oriented ordered color pairs; no edge parity oracle required",
+    "validation": "pending remote CI; full Rubik cube 20-frame policy not established"
   }
 }
