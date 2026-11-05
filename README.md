@@ -1,10 +1,14 @@
 # CUBE-REV — Physical Rubik's Cube: Reconstruction, Observation & Certified Search
 
 **Active scientific stage:** 0.28 — *Radius-Restricted Cubie Bases, Short-Support Geometry & Robust Active Observation*  
-**State reviewed:** 2026-11-04 · **Source of scientific meaning:** [Notion 0.28](https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea)  
+**State reviewed:** 2026-11-05 · **Source of scientific meaning:** [Notion 0.28](https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea)  
 **Single active research branch carrying 0.28:** `research/current` · **Long-term branch policy:** [REPOSITORY_POLICY.md](REPOSITORY_POLICY.md)
 
 > **Evidence warning:** A finite program's successful return, an independently checked certificate, a mathematical proof and a new general theorem are four different claims. Keep them separate. Do not infer human cognition from exact cube combinatorics, nor infer an HTM shortest path from a stabilizer's abstract group order.
+
+## 2026-11-05 R7: adaptive six-color identification lower bound 18
+
+Under the **separate, explicit color-only channel** (one six-color edge facelet and one six-color corner facelet per frame, with known 18-HTM moves and feedback), the entire legal cube group satisfies **`18 <= h_adaptive <= 21`**; the nonadaptive optimum is **exactly 21 frames**. R7 grants the entire true corner state and arbitrary edge-facelet slot access, then bounds all adaptive 17-read color histories by a unique-edge-type/Hall-matching decision tree: **456,979,723,200** possible histories versus **490,497,638,400** corner-compatible legal edge states. The C++ source and read-only remote [CI success](https://github.com/WhoSia/CUBE-REV/actions/runs/41984204483) are independently linked in the [R3/R7 theorem note](docs/0.28/20261105_R3_NONADAPTIVE_COLOR_21_EXACT_COLLISION_THEOREM.md). This does NOT prove any 18-frame identifying construction, general scholarly priority, or a human cognitive/motor effect. The original P48 full-cubie-tag B6 model below is different and has not been redefined.
 
 ## Scientific question and physical model
 
