@@ -921,6 +921,7 @@
     "scripts/cuberev-observation/audit_b6_full_sensor_swap_graph.py",
     "scripts/cuberev-observation/audit_b6_one_erasure_robustness.py",
     "scripts/cuberev-observation/audit_b6_single_erasure_core_multiplicities.py",
+    "scripts/cuberev-observation/audit_color_p48_frame_action_pareto.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
     "scripts/cuberev-observation/b5_independent_48sticker_seed_search.cpp",
     "scripts/cuberev-observation/b6_independent_48sticker_goals.py",
@@ -1002,6 +1003,7 @@
     "scripts/cuberev-observation/test_color_p48_21_frame_legality_scan.py",
     "scripts/cuberev-observation/test_color_p48_22_frame_parity_scan.py",
     "scripts/cuberev-observation/test_color_p48_24_frame_scanner.py",
+    "scripts/cuberev-observation/test_color_p48_frame_action_pareto.py",
     "scripts/cuberev-observation/test_dual_priced_columns.py",
     "scripts/cuberev-observation/test_erasure_observation_policy.py",
     "scripts/cuberev-observation/test_fullcube_policy_family_benchmark.py",
@@ -4254,5 +4256,18 @@
     "science": "21-frame upper construction from two single-facelet color probes on legal full cube using 10 fully observed edges, one partially observed edge, one unobserved edge, seven fully observed corners, plus group twist, flip and permutation parity invariants",
     "status": "CI must verify before paper claim",
     "policy": "WhoSia commits only, contents-read Actions"
+  },
+  "active_set_reconciliation_20261105_color_pareto": {
+    "date": "2026-11-05",
+    "previous_allowed": 1159,
+    "new_allowed": 1161,
+    "added_paths": [
+      "scripts/cuberev-observation/audit_color_p48_frame_action_pareto.py",
+      "scripts/cuberev-observation/test_color_p48_frame_action_pareto.py"
+    ],
+    "scientific_scope": "Compare specific physically executable 21/22/24 fixed six-color joint facelet readout schedules using same 24-node deterministic route heuristic and complete B2 replay",
+    "limitations": "heuristic movement cost not proven globally minimum, h_color optimality open, no optical hardware",
+    "ci": "read only; verify current run",
+    "author": "WhoSia"
   }
 }
