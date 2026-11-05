@@ -130,3 +130,95 @@ The earlier two R14 color-orbit artifacts were likewise raw-byte SHA-verified.
 Thus Drive status is **BYTE_VERIFIED** for all four. The remote GitHub
 Actions result for this **new** R14 entry remains UNCONFIRMED; raw Drive
 custody does not substitute for remote code execution certification.
+
+
+## R14-P2 extension — six-complete-edge prefix by frame 12 (2026-11-05)
+
+**New restricted finite computational theorem (local independent PASS, remote
+CI not yet certified).** Any deterministic zero-error full-cube two-probe
+policy whose first **twelve** edge-sensor readouts consist of the two
+distinct facelets at each of precisely **six** spatial initial edge
+positions cannot guarantee completion in at most twenty frames. Both
+the six visited positions and the order of the first twelve reads may
+depend on earlier edge/corner sensor outcomes. This is an independent
+earlier-prefix gate, not a proof against all mixed observation policies.
+
+**Online adversary.** Fix the entire true corner state (give it to the
+policy for free). Let the six hard unseen original edge color types be
+
+`L={UR,UF,UL,UB,FR,FL}`.
+
+As the first twelve readouts encounter six previously unseen spatial
+edge positions, assign unused edge types from the six-element complement
+
+`C={DR,DF,DL,DB,BL,BR}`,
+
+with fixed consistent orientations and actual sticker outputs. This is
+consistent with any deterministic adaptive choice/order in the
+restricted class. All five hundred? **No**: the unobserved region
+comprises six spatial edge positions and exactly six original edge
+types. Conditioned on the already observed type placements, fixed
+corner permutation parity and total edge-flip parity, the number of
+legal distinct completions is
+
+`(6!/2) * 2^5 = 11,520`.
+
+All these legal states have exactly the same first-twelve observation
+history and the identical true corner state. Known physical actions
+do not change this adversarial ambiguity: every fixed-probe reading
+at a known turn prefix is a reading of a known initial spatial
+facelet, so we may grant free access to **all** twelve remaining edge
+facelet slots to strengthen the prospective observer.
+
+**Exact residual finite court.** For each of 720 relative edge-piece
+permutations of six labels and 64 flip choices, retain only the required
+permutation and flip parity, yielding 11,520 complete 12-character
+six-color readout words per parity pair. A fully explicit memoized
+minimax decision-tree recurrence considers every next facelet query
+q in 0..11 and branches on each physically realizable six-color value.
+For a belief mask `B`, define `Win(B,d)` by
+- true for a singleton;
+- false for non-singletons when `d=0`;
+- otherwise true iff some facelet q makes all nonempty outcome
+  belief subsets `Win(B[q=c],d-1)`.
+The `|B|>6^d` bound is used only as a sound **necessary condition**
+for success, never as a positive proof.
+
+Independent Python stdlib exact evaluation for L reports
+`Win(B_full,8)=False` with **225,886 cached states** in the
+(perm-parity=0, flip-parity=0) case, while a specific **fixed**
+nine-query sequence `(0,1,2,3,4,5,6,7,8)` has exactly 11,520
+distinct readout traces. Explicit facelet-coordinate permutations
+interchanging the first two unknown edge positions and exchanging
+the two facelet slots of the first position induce bijections among
+all four parity-conditioned 11,520-state games. Hence all four parity
+conditions have the same exact minimax value **nine**.
+
+Thus every policy in the designated first-twelve/six-complete class
+has a fully legal state forcing at least `12+9=21` frames even under
+the stronger free-corner/free-facelet-read oracle.
+
+**Limit and novelty control.** This does not assert that the full
+mixed/adaptive two-probe game requires 21. To achieve <=20,
+a policy must avoid completely reading six distinct spatial edges in
+its first twelve edge queries and must also avoid completely reading
+seven in its first fourteen, as independently shown by R14-P1.
+The resulting residual 11,520-state six-edge computational lower
+bound is **new to the present R14 court**, while the conditional
+five-edge/960-state seven-read result used for P1 was preexisting R11
+work. Further source-independent physical P48 equivalence and remote
+CI verification are required before submission-level proof promotion.
+
+**Canonical byte-preserved proof sources:**
+- [Drive Python source](https://drive.google.com/file/d/1uMXpAtsFNkwKGOWiQ9sDY3ltyYijcJ2A/view) —
+  4,148 raw bytes, SHA-256
+  `2ef9b5f5f58640762192464428a3813c211d8976de71b5a81f6da73ee4f6b393`.
+- [Drive exact receipt](https://drive.google.com/file/d/1im0UeRllW8eDruTaBS_9N6pFs0U7utFo/view) —
+  938 raw bytes, SHA-256
+  `e7858ad0bc7c6bf2354330ef523f2ba6d957ee92a000e804ec6db5442f5f54d5`.
+
+Both files were independently downloaded again as raw Drive bytes and
+matched these original SHA values. The source was also committed to
+`scripts/cuberev-observation/audit_r14_six_complete_prefix.py`
+with P7 exact active-set registration. No GitHub remote CI success is
+claimed based on the local Python run or Drive readback.
