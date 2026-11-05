@@ -63,3 +63,59 @@ The R9 result shows a real geometry-driven *feedback benefit* within a parity-co
 Transfer the explicit color-decision-tree witness to the fully coupled edge+corner sensory state and legal-turn route constraints, without free corner or unconstrained slot access; seek a 20-or-fewer-frame identifying policy, or a stronger adversarial lower bound. If a generalization fails, preserve it as a negative result. Separately, human reconstruction interpretations require independent controlled behavior measurements. This work does not infer human memory or cognitive cost from Rubik combinatorics.
 
 **Evidence custody:** GitHub compact source and CI receipts; P7 registered code; Notion semantic record; private participants' data never published. Human author/committer only and read-only Actions.
+
+
+## R14 follow-up (2026-11-05): color symmetry orbit certificate
+
+**Precise claim, separate from global R14.** Write the six face colors as three
+opposite pairs, and regard each of the twelve legal edge color types as an
+edge of the octahedral color graph (K_{2,2,2}). Permute opposite pairs and
+independently exchange endpoints within each pair. This gives the color-graph
+automorphism group (W=C_2^3\rtimes S_3), order 48, acting on the 495
+unordered four-edge-type subsets.
+
+The 495 subsets split into **18 orbits**. The orbit-size distribution is
+one size-3 orbit, two size-6 orbits, two size-12 orbits, seven size-24 orbits,
+and six size-48 orbits. The exact previously established R8/R9 residual
+depth classes are constant on these orbits:
+
+| Adaptive / fixed worst-case reads | Orbits | Four-type subsets |
+|---|---:|---:|
+| 3 / 4 | 2 | 72 |
+| 4 / 4 | 10 | 225 |
+| 4 / 5 | 4 | 144 |
+| 5 / 5 | 2 | 54 |
+| **Total** | **18** | **495** |
+
+The R12 four-edge obstruction is thus exactly two color-graph orbits,
+of cardinalities 48 (triangle with pendant edge) and 6 (four-edge star).
+This is an algebraic compression of **existing** conditional residual
+minimax classification, not a new global depth-20 impossibility theorem.
+
+**Independent finite cross-check.** For each of the 48 induced edge
+permutations, factor its 12-point cycle structure into cycle lengths
+(lambda_1,\dots,lambda_k). Its fixed unordered four-subsets are the
+degree-four coefficient of
+(prod_j(1+x^{lambda_j})). Exhaustive integer computation yields
+(sum_{w\in W}|\mathrm{Fix}_{\binom{12}{4}}(w)|=864);
+Burnside's lemma independently gives (864/48=18).
+This equals direct orbit enumeration.
+
+**Reproduction.** Existing active-set script
+`scripts/cuberev-observation/audit_r9_feedback_fixed_separation.py`
+now supports `--color-orbits` for a fast no-full-minimax orbit/Burnside
+check. It derives the edge types from the existing physical P48 source,
+but **does not independently replay physical moves** in this fast mode.
+The original full R9 audit and its remote evidence remain separate.
+The new mode is committed by human writer in
+`ce9b709e98f13aaafe5509b33968cd95f0c09b76`;
+a read-only remote CI PASS for the new mode is **not yet claimed**.
+
+**Critical R14 scope warning.** Color relabelings preserve the abstract
+residual four-edge game's graph structure and its parity-condition-independent
+minimax table. They do not automatically preserve a partially observed
+spatial facelet mask, a fixed physical sensor position, a specific turn word,
+or its HTM action cost. The full joint edge/corner adaptive belief quotient
+must verify transition-and-observation equivariance before reducing states
+by this symmetry. In particular, 18 orbits here do not solve the original
+18–21 adaptive full-cube horizon.
