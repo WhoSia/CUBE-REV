@@ -155,9 +155,8 @@ edge positions, assign unused edge types from the six-element complement
 
 with fixed consistent orientations and actual sticker outputs. This is
 consistent with any deterministic adaptive choice/order in the
-restricted class. All five hundred? **No**: the unobserved region
-comprises six spatial edge positions and exactly six original edge
-types. Conditioned on the already observed type placements, fixed
+restricted class. The unobserved region therefore comprises six spatial edge
+positions and exactly six original edge types. Conditioned on the already observed type placements, fixed
 corner permutation parity and total edge-flip parity, the number of
 legal distinct completions is
 
