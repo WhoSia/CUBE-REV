@@ -55,6 +55,11 @@ jobs:
           /tmp/cuberev-r8-local-cert | tee /tmp/cuberev-r8-cert.log
           grep -q '^R8_EDGE_CERT_MASK omitted=8 total=735471 singleton=0 ambiguous=735471' /tmp/cuberev-r8-cert.log
           grep -q '^R8_EDGE_CORNER_ORACLE_LOCAL_CERTIFICATE_17_PASS tested_16_read_masks=735471 singleton_17_read_masks=14664' /tmp/cuberev-r8-cert.log
+      - name: R8 exactly classify four-unknown-edge adaptive policy subproblems
+        run: |
+          python scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py | tee /tmp/r8-four-edge.log
+          grep -q '^R8_FOUR_EDGE_ADAPTIVE_MINIMAX_PASS subsets=495 parity_cases=1980 depth3=72 depth4=369 depth5=54' /tmp/r8-four-edge.log
+          grep -q '^R8_STAGED_ORACLE_EDGE_POLICY_PASS prefix=16 residual_max=5 total_worst=21 mean_budget_numerator=1962 denominator=495' /tmp/r8-four-edge.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
