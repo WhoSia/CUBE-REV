@@ -93,6 +93,11 @@ jobs:
           g++ -std=c++17 -O2 -Wall -Wextra -pedantic scripts/cuberev-observation/audit_r11_edge_unknown_parity_hall.cpp -o /tmp/cuberev-r11-hall
           /tmp/cuberev-r11-hall | tee /tmp/cuberev-r11-hall.log
           grep -q '^R11_EDGE_ONLY_HALL_LOWER_19_PASS 947446315200 980995276800' /tmp/cuberev-r11-hall.log
+      - name: R11 13 corner reads given one edge parity bit
+        run: |
+          python scripts/cuberev-observation/audit_r11_corner13_with_parity.py | tee /tmp/cuberev-r11-corner13.log
+          grep -q '^R11_CORNER_13_EDGE_PARITY_ONE_BIT_PASS physical_states 434 corner_colors 13 parity_bits 1' /tmp/cuberev-r11-corner13.log
+          grep -q '^R11_CORNER13_P48_NO_RESET_PASS joint_orbit 576' /tmp/cuberev-r11-corner13.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
