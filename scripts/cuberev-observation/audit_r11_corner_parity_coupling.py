@@ -66,7 +66,7 @@ def audit():
     expected={
         4:{None:(10590,36),0:(10626,0)},
         5:{None:(41784,720),0:(42504,0)},
-        6:{0:(134528,68)}
+        6:{None:(127796,6800),0:(134528,68)}
     }
     for omitted,settings in expected.items():
         counters={p:Counter() for p in settings}
