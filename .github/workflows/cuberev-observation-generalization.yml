@@ -60,6 +60,11 @@ jobs:
           python scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py | tee /tmp/r8-four-edge.log
           grep -q '^R8_FOUR_EDGE_ADAPTIVE_MINIMAX_PASS subsets=495 parity_cases=1980 depth3=72 depth4=369 depth5=54' /tmp/r8-four-edge.log
           grep -q '^R8_STAGED_ORACLE_EDGE_POLICY_PASS prefix=16 residual_max=5 total_worst=21 mean_budget_numerator=1962 denominator=495' /tmp/r8-four-edge.log
+      - name: R9 full residual fixed-versus-feedback separation and 190080 policy replays
+        run: |
+          python scripts/cuberev-observation/audit_r9_feedback_fixed_separation.py | tee /tmp/cuberev-r9-feedback.log
+          grep -q '^R9_EXACT_FEEDBACK_SEPARATION_PASS remaining_subsets=495 parity_cases=1980 adaptive_better=216 equal=279 adaptive_depth_sum=1962 fixed_depth_sum=2178' /tmp/cuberev-r9-feedback.log
+          grep -q '^R9_ALL_PARITY_EXPLICIT_POLICY_REPLAY_PASS physical_conditional_states 190080' /tmp/cuberev-r9-feedback.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
