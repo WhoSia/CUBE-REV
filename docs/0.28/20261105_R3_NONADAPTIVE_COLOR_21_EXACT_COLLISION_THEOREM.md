@@ -118,3 +118,61 @@ The equality in the second line is a certified value of the relaxed adaptive rec
 so no depth-16 adaptive decision tree can have a distinct observation transcript for every corner-compatible legal edge state. Consequently **17 frames are necessary**, even granting the full corner oracle and unrealistically free access to edge facelet slots. R2 supplies the known 21-frame upper construction. The gap 17–21 remains OPEN.
 
 **Limits and novelty:** This is a Rubik six-color/constrained-cubie mathematical improvement, not a new general theory of decision-tree counting, not a 17-frame policy, not a human-memory or motor-cost measurement, and not yet proof of scholarly priority versus prior automata/sensing literature. The structural mechanism is finite-color capacity + physical two-facelet edge pairing; the policy adaptivity is genuinely covered by the Bellman induction. Independent CI execution and full paper-level peer review remain separate gates.
+
+## R7 Hall upgrade — universal adaptive lower bound 18 (2026-11-05)
+
+**This supersedes the R7 adaptive lower bound 17 above.** The R2 nonadaptive 21-frame construction still provides the upper bound. We now obtain the unconditional mathematical interval, for the exact specified full 18-HTM legal Rubik group and six-color edge/corner channel,
+
+```
+18 <= h_color^adaptive(full G) <= 21
+h_color^nonadaptive(full G) = 21.
+```
+
+**Theorem.** Even if the initial complete corner state is given to the observer for free, and even if the observer can query *any initial spatial edge-facelet slot* without spending physical turns, at least 18 six-color edge observations are necessary to identify an arbitrary legal cube state. Consequently the actual two-probe legal-turn adaptive policy also requires at least 18 frames.
+
+**1. Corner oracle and initial-slot reduction.** Fix any complete legal corner state. There are exactly `N=12! * 2^10=490497638400` compatible legal edge configurations (half the edge permutations by corner parity, and even edge flip sums). At each frame, applying a known sequence of legal turns and reading the stationary edge probe equals reading a specific *initial spatial edge-facelet slot*; the query choice can depend on earlier colors. The corner probe gives no additional edge-dependent information given the full corner oracle, known actions and previous observations. For an upper bound on edge-readout histories, give the adaptive observer free access to *any* initial spatial slot.
+
+**2. Physical edge-color constraints.** The twelve original physical edge types are
+
+```
+UR UF UL UB DR DF DL DB FR FL BL BR
+```
+
+with six face colors, each occurring on exactly four original edge stickers. Each type is used exactly once. For the abstract query history, a spatial edge position is either unseen, partially seen (its first facelet color `c` has been observed), or fully seen (both colors `c,d` are known). Repeated reading of the same initial facelet yields a determined value and cannot enlarge the set of possible outcomes.
+
+**3. Sufficient relaxed signature for an upper bound.** Let `M` be the bitmask of original edge types recognized among *fully read* spatial positions, and `p_c` the count of *partially read* positions with first color `c`. Fully read pair types cannot repeat. The number of queried distinct facelets is
+
+```
+q(M,p) = 2*popcount(M) + sum_c p_c.
+```
+
+Let `k_c(M)` count how many sticker endpoints of color `c` are already consumed by recognized types in M. Every realizable prefix satisfies `k_c(M)+p_c <= 4` for all colors. Also the partially read positions must admit an **injective matching** to unused original edge types, with every matched type containing its partial facelet color. The necessary Hall criterion is, for every nonempty color subset `S`,
+
+```
+sum_{c in S} p_c <=
+   number of unused original edge types incident with some c in S.
+```
+
+This condition is necessary for actual physical realizability. We deliberately OMIT all other constraints, notably cubie permutation parity, flip parity and action reachability. Removing these restrictions enlarges, rather than shrinks, the possible observation histories.
+
+**4. Universal adaptive decision-tree capacity.** Let `F_H(M,p)` be the maximum number of distinct possible terminal edge-color histories from the current abstract state, with a cap `H` on the total number of distinct facelet queries and with the above feasibility constraints. Infeasible abstract signatures have value zero. Once `q=H`, let `F_H=1`. At every other feasible state, the observer's *next query* is chosen based on the history, so the largest number of possible continuations is bounded recursively by the maximum of these alternatives:
+
+- **First read of an unseen edge position.** If `popcount(M)+sum p<12`, sum `F_H(M,p+e_c)` over each of the six possible colors `c`; infeasible children contribute zero.
+- **Second read of a partially seen position of first color c.** For each `c` with `p_c>0`, sum `F_H(M+{cd},p-e_c)` over all *unused* original edge types `cd` containing c. Take the maximum over the selected c. Every such type corresponds to a distinct possible second color d.
+- **Repeat or stop.** A previously read facelet reveals no new information, contributing at most one continuing branch. Include value 1 as a conservative stopping option.
+
+Importantly, this recurrence already optimizes the next *action* at every possible observation-history node. It is not a fixed or average-case query schedule. For any real history, query geometry and identity can only reduce admissible child outcomes relative to this abstract relaxed recursion; induction on remaining reads proves that the real adaptive policy has at most `F_H(M,p)` leaves from that history. Positions with the same partially read first color are treated symmetrically only for the relaxed *upper bound*; unrecorded physical identity constraints cannot increase the real branch count beyond the union of all permitted child types.
+
+**5. Exact integer proof certificate and result.** [Standalone R7 Hall C++ source](../../scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp) enumerates the 12 pair types, computes all 63 Hall constraints, and evaluates the above recurrence using exact 64-bit integer additions and memoization over `4096 * 5^6` possible signatures (unvisited signatures are never explored). On the empty history, with H=17, its result is
+
+```
+F_17(empty) = 456979723200
+N = 12! * 2^10 = 490497638400
+F_17(empty) < N.
+```
+
+The local executable independently returned `456979723200` with `2108660` memoized signature visits; repeating the same independently compiled C++ program for H=14,15,16,17 gave capacities `22385563200`, `74902766400`, `199139371200`, `456979723200`. These values are upper bounds and need not equal feasible legal-cube history counts.
+
+By pigeonhole, since the 17-read adaptive decision tree has fewer terminal histories than there are corner-compatible legal edge states, two distinct legal edge configurations must remain observationally indistinguishable. Thus the 17-frame worst-case perfect identification task is impossible, even under the relaxed oracle. This proves the **18-frame lower bound**. No 18-, 19-, or 20-frame upper construction is claimed.
+
+**Audit and limitations.** CI compiles and runs the C++ from current GitHub source, checks the printed `R7_ADAPTIVE_EDGE_HALL_LOWER_18_PASS` receipt and retains read-only permissions. Independently inspect exact pair enumeration, Hall condition indexing, the recurrence and source/CI consistency before paper-level submission. An exact C++ execution is not automatically a fully formalized theorem; the induction argument is the mathematical reason the executable count is relevant. The proof does **not** measure real motor cost, human memory, visual classification noise or any actual human intervention. Novelty against adaptive distinguishing-sequence and active sensing prior art is still open.
