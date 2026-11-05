@@ -72,6 +72,11 @@ jobs:
           grep -q '^R10_PHYSICAL_FEEDBACK_CLASS_PASS adaptive 3 fixed 4 states 96' /tmp/cuberev-r10-lift.log
           grep -q '^R10_PHYSICAL_FEEDBACK_CLASS_PASS adaptive 4 fixed 5 states 96' /tmp/cuberev-r10-lift.log
           grep -q '^R10_PHYSICAL_FEEDBACK_CLASS_PASS adaptive 5 fixed 5 states 96' /tmp/cuberev-r10-lift.log
+      - name: R11 physical 19-corner-frame reconstruction with edge parity oracle
+        run: |
+          python scripts/cuberev-observation/audit_r11_corner19_edge_parity.py | tee /tmp/cuberev-r11-corner19.log
+          grep -q '^R11_P48_CORNER_19_WITH_EDGE_PARITY_PASS samples 266 corner_colors 19 edge_parity_oracle_bits 1' /tmp/cuberev-r11-corner19.log
+          grep -q '^R11_NO_RESET_COLOR_SENSOR_EXECUTION_PASS trials 266' /tmp/cuberev-r11-corner19.log
       - name: Costed two-frame B2 color belief audit (finite scope)
         run: |
           python scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py | tee /tmp/cuberev-color-r4-b2-belief.log
