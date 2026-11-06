@@ -1,6 +1,6 @@
-# CUBE-REV Paper A â Referee-Grade Proof and Novelty Gate
+# CUBE-REV Paper A — Referee-Grade Proof and Novelty Gate
 
-**2026-11-06 Â· independent editorial scientific audit Â· not a declaration of submission readiness.** Canonical current manuscript: `papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md`, current D0.5. This document is a referee-facing risk audit and a bounded D0.6 manuscript revision specification.
+**2026-11-06 · independent editorial scientific audit · not a declaration of submission readiness.** Canonical current manuscript: `papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md`, current D0.5. This document is a referee-facing risk audit and a bounded D0.6 manuscript revision specification.
 
 ## The claim the paper must actually establish
 
@@ -26,12 +26,12 @@ The complete B6 classification is the paper's shortest central theorem; one-eras
 2. When stating the 872 supports are irredundant, specify **relative to the selected certificate family** and demonstrate private rejected four-tag layouts. Do not claim no smaller alternative proof family exists.
 3. Write the exchange graph as *a property of the precisely defined optimal 16-tag set family*, not a new generic theorem that basis exchange can fail. Boutin already demonstrated exchange-property failure in other graph families.
 4. The erasure threshold 19 must rely on actual physical pair-collision witnesses, not the false inference that every large valid set contains a valid minimum-size core. The manuscript already documents and retracts the latter; retain the correction visibly.
-5. Distinguish original tagged full cubie sensors from spatial one-facelet six-color sensors (Paper B), and never use the latter's 18â21 adaptive horizon to motivate or prove the former's sixteen-tag minimum.
+5. Distinguish original tagged full cubie sensors from spatial one-facelet six-color sensors (Paper B), and never use the latter's 18–21 adaptive horizon to motivate or prove the former's sixteen-tag minimum.
 6. For every computable number, specify whether it comes from a complete mathematical census, a unique physical witness replay, a finite probabilistic simulation, or historical data. The manuscript must not treat these as equivalent proof levels.
 
 ## Prior-work correction and risk
 
-Boutin, D. L. *Determining Sets, Resolving Sets, and the Exchange Property*. *Graphs and Combinatorics* 25 (2009), 789â806. Published online 10 February 2010, DOI 10.1007/s00373-010-0880-6. The 2008 arXiv version is at https://arxiv.org/abs/0808.1427 . The author's repository full-text manuscript is available at https://people.hamilton.edu/documents/ExchangeProperty.pdf . The current Paper A reference erroneously says âFull text still awaiting inventory,â while a full-text Drive record was already found in the wider project. **Correct that inaccurate custody sentence; do not assume arXiv/manuscript equals the published journal final text line-for-line.**
+Boutin, D. L. *Determining Sets, Resolving Sets, and the Exchange Property*. *Graphs and Combinatorics* 25 (2009), 789–806. Published online 10 February 2010, DOI 10.1007/s00373-010-0880-6. The 2008 arXiv version is at https://arxiv.org/abs/0808.1427 . The author's repository full-text manuscript is available at https://people.hamilton.edu/documents/ExchangeProperty.pdf . The current Paper A reference erroneously says “Full text still awaiting inventory,” while a full-text Drive record was already found in the wider project. **Correct that inaccurate custody sentence; do not assume arXiv/manuscript equals the published journal final text line-for-line.**
 
 Bailey and Cameron (2011) already surveyed base size, metric dimension and related invariants; Dalla Volta et al. (2024) studied minimum base sizes; recent fault-tolerance metric-dimension works predate our fault-tolerance terminology. We do not assert a comprehensive negative prior-art search. A targeted exact-model search for `tagged original cubie partial radius ball`, `Rubik base B6`, and `finite Cayley ball identifiability` found no verified exact identical result at this stage, **not** proof that none exists. A paper-level novelty verdict remains pending.
 
