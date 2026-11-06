@@ -1,0 +1,36 @@
+name: CUBE-REV R14-P6.1 exact 648-state adaptive minimax
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p61_micro_exact_minimax_decision_tree.py'
+      - 'docs/0.28/20261106_R14_P61_EXACT_648_STATE_MINIMAX_POLICY.md'
+      - '.github/workflows/cuberev-r14-p61-full-minimax-648.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exhaustive-and-or-648:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Replay exact depth-4 positive policy and depth-3 universal obstruction
+        run: |
+          python scripts/cuberev-observation/audit_r14_p61_micro_exact_minimax_decision_tree.py > /tmp/r14-p61.json
+          python -c 'import json;d=json.load(open("/tmp/r14-p61.json"));assert d["result"]=="R14_P61_EXACT_648_STATE_MINIMAX_4_AND_NO3_PASS" and d["legal_hidden_states"]==648 and d["allowed_paired_color_queries"]==54 and d["exact_worst_case_minimax_depth"]==4 and d["three_query_policy_impossible"] and d["four_query_policy_exists"] and d["full_state_decoder_replays"]==648 and len(d["depth_3_root_adversary_certificate"])==54 and d["replay_depth_histogram"]=={"3":24,"4":624};print("R14_P61_COMPLETE_MINIMAX_POLICY_AND_NO3_PASS")'
+      - name: Archive finite proof and 963-node policy
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p61-exact-minimax-policy
+          path: /tmp/r14-p61.json
+          retention-days: 30
