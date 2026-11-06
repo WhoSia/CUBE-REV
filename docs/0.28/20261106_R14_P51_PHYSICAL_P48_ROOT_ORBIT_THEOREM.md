@@ -2,6 +2,8 @@
 
 Date: 2026-11-06. Model: all legal fixed-centre 3x3 Rubik configurations, 48 mobile stickers, one edge and one corner six-color probe per observation frame, known legal turns without an HTM cost bound. **Local independent P48 computation passed.** This is not a solved 20-frame adaptive horizon.
 
+> **2026-11-06 P5.3 stronger result / mandatory reading:** This note's `36 -> 3` partition classifies orbits **only under whole spatial rigid cube rotations**; it is NOT a maximal observation-game equivalence. The later P5.3 independent sector-source-label automorphism proof shows **all 36 first paired-color outputs belong to ONE exact Bellman-equivalent orbit**. Thus the global root recursion reduces to a single canonical initial color result, not three independent residual depths. See [R14-P5.3 correction and stronger theorem](20261106_R14_P53_ALL_ROOT_RESPONSES_EQUIVALENT.md). All first-query and twelve second-query-location stabilizer orbit claims in this note remain valid.
+
 ## Exact physical group action
 
 Let G be the legal Rubik group acting on original-to-spatial sticker permutations x. Let c(i) be the solved sticker face color. Define the output at spatial sticker slot i as c(x^{-1}(i)). The output of a paired edge/corner query q=(i,j) is the ordered pair of such colors.
