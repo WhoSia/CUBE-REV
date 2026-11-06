@@ -1,6 +1,6 @@
 # WORKING PAPER B — Exact Color Identification and Group-Equivariant Active Observation of the Rubik Cube
 
-**Research draft D0.1 · 2026-11-06 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
+**Research draft D0.2 · 2026-11-06 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
 
 ## Abstract
 
