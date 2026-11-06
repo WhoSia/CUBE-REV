@@ -212,7 +212,7 @@ A separate [P48 active-observation implementation](../../scripts/cuberev-observa
 
 [2] Laison, J. D., McNicholas, E. M., and Seaders, N. (2014 arXiv v1, manuscript contains later revision date). Base Size Sets and Determining Sets. arXiv:1407.6046. Drive: https://drive.google.com/file/d/1qSqBE5DQ4AS_UwnEzrzdxzyXtwNbQHjb/view.
 
-[3] Boutin, D. L. (2009 issue; 2010 online). Determining Sets, Resolving Sets, and the Exchange Property. *Graphs and Combinatorics*, 25, 789–806. DOI 10.1007/s00373-010-0880-6. arXiv:0808.1427. Full text still awaiting inventory.
+[3] Boutin, D. L. (2009 issue; 2010 online). Determining Sets, Resolving Sets, and the Exchange Property. *Graphs and Combinatorics*, 25, 789–806. DOI 10.1007/s00373-010-0880-6. arXiv:0808.1427. The original author's full-text manuscript and arXiv version have been located; the published journal final text has NOT been line-by-line compared. See https://people.hamilton.edu/documents/ExchangeProperty.pdf and https://arxiv.org/abs/0808.1427.
 
 [4] Cameron, P. J. (1999). *Permutation Groups*. Cambridge University Press, §§4.13–4.14. Drive: https://drive.google.com/file/d/14WWOUzTUy7PVuFcrvr5cnX0O2Fsfxqif/view.
 
