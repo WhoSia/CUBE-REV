@@ -1,0 +1,36 @@
+name: CUBE-REV R14-P5.5 parity-coupled family theorem
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p55_parity_coupled_wreath_orbits.py'
+      - 'docs/0.28/20261106_R14_P55_PARITY_COUPLED_FAMILY_ORBIT_THEOREM.md'
+      - '.github/workflows/cuberev-r14-p55-parity-coupled-family.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  two-sector-family-orbit-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check 42 independent two-sector parameter profiles
+        run: |
+          python scripts/cuberev-observation/audit_r14_p55_parity_coupled_wreath_orbits.py > /tmp/r14-p55.json
+          python -c 'import json;d=json.load(open("/tmp/r14-p55.json"));assert d["result"]=="R14_P55_PARITY_COUPLED_TWO_SECTOR_FAMILY_ORBITS_PASS" and d["tested_parameter_prefix_profiles"]==42 and len(d["boundary_examples"])==5 and d["all_exhaustive_slot_orbit_censuses_pass"];print("R14_P55_42_INDEPENDENT_FAMILY_PROFILES_PASS")'
+      - name: Archive read-only finite receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p55-family-orbits
+          path: /tmp/r14-p55.json
+          retention-days: 30
