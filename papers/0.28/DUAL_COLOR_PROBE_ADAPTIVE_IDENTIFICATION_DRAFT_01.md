@@ -1,16 +1,16 @@
-# WORKING PAPER B â Exact Color Identification and Group-Equivariant Active Observation of the Rubik Cube
+# WORKING PAPER B — Exact Color Identification and Group-Equivariant Active Observation of the Rubik Cube
 
-**Research draft D0.1 Â· 2026-11-06 Â· NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
+**Research draft D0.1 · 2026-11-06 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
 
 ## Abstract
 
-We consider zero-error identification of an arbitrary legal 3Ã3Ã3 Rubik configuration by two categorical sensors, each returning the color of one facelet: one edge and one corner. Between observation frames, a policy may execute a known finite sequence of legal face turns and use previous colors to select subsequent readings. Under an observation-frame objective that does not charge the intermediate turns, the exact minimum for a *preset* observation schedule is 21 frames, whereas the optimal unrestricted adaptive horizon is currently bounded between 18 and 21. We give precise finite verification dependencies for this result and for the adaptive decision trees arising after eight completely observed edge positions. We prove an exact full-cube group-equivariance reduction of the initial decision tree: all 576 paired initial spatial facelet queries are equivalent; all 36 ordered initial color responses are equivalent under legal independent original edge- and corner-label transformations; and the pointwise stabilizer of a fixed first queried facelet pair has exactly 12 orbits on the 576 possible second paired queries. An independent 48-sticker geometric engine checks the legality and covariance of the transformations. A parity-tracked matching dynamic program reproduces the full cube group cardinality and exactly enumerates the 36 possible second responses for the three representative first-color relation classes and twelve second-query stabilizer orbits. These reductions are exact but do not settle the adaptive 18â21 horizon. We identify the additional requirements for a sound global mixed-prefix decision-tree quotient and distinguish our case-specific finite computations from existing group-action and adaptive distinguishing-sequence theory.
+We consider zero-error identification of an arbitrary legal 3×3×3 Rubik configuration by two categorical sensors, each returning the color of one facelet: one edge and one corner. Between observation frames, a policy may execute a known finite sequence of legal face turns and use previous colors to select subsequent readings. Under an observation-frame objective that does not charge the intermediate turns, the exact minimum for a *preset* observation schedule is 21 frames, whereas the optimal unrestricted adaptive horizon is currently bounded between 18 and 21. We give precise finite verification dependencies for this result and for the adaptive decision trees arising after eight completely observed edge positions. We prove an exact full-cube group-equivariance reduction of the initial decision tree: all 576 paired initial spatial facelet queries are equivalent; all 36 ordered initial color responses are equivalent under legal independent original edge- and corner-label transformations; and the pointwise stabilizer of a fixed first queried facelet pair has exactly 12 orbits on the 576 possible second paired queries. An independent 48-sticker geometric engine checks the legality and covariance of the transformations. A parity-tracked matching dynamic program reproduces the full cube group cardinality and exactly enumerates the 36 possible second responses for the three representative first-color relation classes and twelve second-query stabilizer orbits. These reductions are exact but do not settle the adaptive 18–21 horizon. We identify the additional requirements for a sound global mixed-prefix decision-tree quotient and distinguish our case-specific finite computations from existing group-action and adaptive distinguishing-sequence theory.
 
 **Keywords:** Rubik group; exact state identification; adaptive distinguishing experiment; categorical observation; group action; zero-error decision tree; parity-constrained matching.
 
 ## 1. Model and theorem targets
 
-Let G be the legal 3Ã3Ã3 cube group with fixed centers. Every state x is a permutation of 48 individually identified moving facelets, partitioned into 24 edge and 24 corner facelets. Denote the solved color of original facelet a by c0(a) in the six-element face alphabet F={U,D,R,L,F,B}. The physical state maps original facelets to spatial positions. Consequently the sensor at spatial facelet i observes
+Let G be the legal 3×3×3 cube group with fixed centers. Every state x is a permutation of 48 individually identified moving facelets, partitioned into 24 edge and 24 corner facelets. Denote the solved color of original facelet a by c0(a) in the six-element face alphabet F={U,D,R,L,F,B}. The physical state maps original facelets to spatial positions. Consequently the sensor at spatial facelet i observes
 
     c_x(i) = c0(x^{-1}(i)).
 
@@ -35,7 +35,7 @@ The possible case-specific scientific contribution is: (i) a *complete exact* pr
 
 ## 3. Preset 21-frame theorem (previously obtained finite result)
 
-**Theorem 1 â fixed-frame optimum, evidence dependent.** In the stated six-color paired-facelet model, h_fixed=21.
+**Theorem 1 — fixed-frame optimum, evidence dependent.** In the stated six-color paired-facelet model, h_fixed=21.
 
 For the upper bound, the existing P48 construction reads 21 distinct initial spatial edge facelets and fourteen distinct initial corner facelets (two at each of seven corner positions, using corner chirality and the corner-twist constraint to infer the eighth). Every queried pair is reachable using a known legal turn word. The reconstruction uses actual observed colors and known legal turn actions, not ground-truth cubie labels. Total 21 frames; thirty-five *distinct* facelet positions are read, even though both sensors output 42 symbols across 21 frames.
 
@@ -49,9 +49,9 @@ An adversarial online completion leaves a hard set of four labels unread wheneve
 
 ## 5. Exact full-group initial decision-tree quotient
 
-**Lemma 2 â free-slot query covariance.** For g in the legal cube group and hidden state x, put T_g(x)=g x. For every pair of spatial facelet locations q, define gq by applying g to both locations. Then O_{gq}(T_g x)=O_q(x), since (gx)^{-1}(gq)=x^{-1}q. Because the full prior is all of G and the physical paired-slot orbit has 576 elements, the first paired-query choice is arbitrary up to an exact zero-error decision-tree isomorphism.
+**Lemma 2 — free-slot query covariance.** For g in the legal cube group and hidden state x, put T_g(x)=g x. For every pair of spatial facelet locations q, define gq by applying g to both locations. Then O_{gq}(T_g x)=O_q(x), since (gx)^{-1}(gq)=x^{-1}q. Because the full prior is all of G and the physical paired-slot orbit has 576 elements, the first paired-query choice is arbitrary up to an exact zero-error decision-tree isomorphism.
 
-**Lemma 3 â independent legal source-color relabeling.** For a proper rigid cube rotation r, let h_E(r) be its 48-sticker permutation restricted to the 24 *original edge* facelets, acting trivially on original corner facelets; define h_C(r) conversely. Exact legal cubie invariants show all 24 corner-restricted rotations h_C(r) are legal, and exactly twelve edge-restricted rotations h_E(r) are legal. The twelve edge restrictions and all 24 corner restrictions separately act transitively on the six face-color labels. Therefore 288 independent sector products h_E h_C are legal cube states, and each acts on the hidden original-source labeling by x -> x(h_E h_C)^{-1}.
+**Lemma 3 — independent legal source-color relabeling.** For a proper rigid cube rotation r, let h_E(r) be its 48-sticker permutation restricted to the 24 *original edge* facelets, acting trivially on original corner facelets; define h_C(r) conversely. Exact legal cubie invariants show all 24 corner-restricted rotations h_C(r) are legal, and exactly twelve edge-restricted rotations h_E(r) are legal. The twelve edge restrictions and all 24 corner restrictions separately act transitively on the six face-color labels. Therefore 288 independent sector products h_E h_C are legal cube states, and each acts on the hidden original-source labeling by x -> x(h_E h_C)^{-1}.
 
 Let phi_E and phi_C be the face-color permutations induced by the chosen edge and corner rotations. For all hidden legal states and all paired spatial queries,
 
@@ -60,9 +60,9 @@ Let phi_E and phi_C be the face-color permutations induced by the chosen edge an
 
 Thus all 36 possible ordered first-frame two-color results belong to **one** posterior decision-tree equivalence class. This is stronger than the 3-orbit classification under rotations of the entire cube: same, opposite, adjacent colored face pairs are not inequivalent once independent legal sector relabeling is admitted. A future policy transports through the source-label bijection and inverse color permutations. The entire zero-error Bellman recursion, not merely posterior cardinality, is preserved.
 
-**Lemma 4 â second-query stabilizer orbits.** Fix the initial query q0=(i0,j0). Its legal group pointwise stabilizer H={g in G:g(i0)=i0, g(j0)=j0} preserves every first-result-conditioned belief. The edge-facelet H-orbits have sizes 1 (i0), 1 (its same-cubie mate), 22 (other edge facelets). The corner-facelet H-orbits have sizes 1 (j0), 1 and 1 (the two other stickers on its oriented corner), and 21 (other corner facelets). All twelve Cartesian products are single orbits, certified by thirty-two explicit legal generators acting transitively in each cell. The exact orbit-size histogram of all 576 possible second paired queries is {1:6,21:2,22:3,462:1}.
+**Lemma 4 — second-query stabilizer orbits.** Fix the initial query q0=(i0,j0). Its legal group pointwise stabilizer H={g in G:g(i0)=i0, g(j0)=j0} preserves every first-result-conditioned belief. The edge-facelet H-orbits have sizes 1 (i0), 1 (its same-cubie mate), 22 (other edge facelets). The corner-facelet H-orbits have sizes 1 (j0), 1 and 1 (the two other stickers on its oriented corner), and 21 (other corner facelets). All twelve Cartesian products are single orbits, certified by thirty-two explicit legal generators acting transitively in each cell. The exact orbit-size histogram of all 576 possible second paired queries is {1:6,21:2,22:3,462:1}.
 
-**Theorem 5 â exact initial quotient.** There exists a fixed canonical first paired query q0 and a fixed canonical first-color response y0=(U,U) such that the full adaptive problem has the exact form
+**Theorem 5 — exact initial quotient.** There exists a fixed canonical first paired query q0 and a fixed canonical first-color response y0=(U,U) such that the full adaptive problem has the exact form
 
     h_adaptive = 1 + D(B(q0,y0)),
 
@@ -85,7 +85,7 @@ The immediate task is to canonicalize partial facelet-color histories under both
 ## Provisional references and evidence
 
 - The Fundamental Theorem of Cubology, SFU course note: https://www.sfu.ca/~jtmulhol/permutationpuzzles/puzzles-rc-cubology.html (standard legal-cube characterization).
-- Lee, D., and Yannakakis, M. (1994). *Testing finite-state machines: State identification and verification*. IEEE Transactions on Computers 43, 306â320, DOI 10.1109/12.272431 (prior adaptive distinguishing-sequence theory).
+- Lee, D., and Yannakakis, M. (1994). *Testing finite-state machines: State identification and verification*. IEEE Transactions on Computers 43, 306–320, DOI 10.1109/12.272431 (prior adaptive distinguishing-sequence theory).
 - Hierons, R. M., Jourdan, G.-V., Ural, H., and Yenigun, H. (2008). *Using Adaptive Distinguishing Sequences in Checking Sequence Constructions*. ACM SAC, DOI 10.1145/1363686.1363850.
 - MIT 6.111 (2017) *Rubik's Cube Solving Robot*, https://web.mit.edu/6.111/www/f2017/projects/jeswiezy_Project_Final_Report.pdf (two RGB sensor robot prior art; distinct error and hardware model).
 - Project mathematical sources: 
