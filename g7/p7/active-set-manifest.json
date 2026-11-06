@@ -145,6 +145,7 @@
     ".github/workflows/cuberev-028-independent-p48-mitm.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
     ".github/workflows/cuberev-r14-p5-observation-equivariance.yml",
+    ".github/workflows/cuberev-r14-p51-p48-root-orbits.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -471,6 +472,7 @@
     "docs/0.28/20261105_R5_EXACT_B2_INFORMATION_HTM_PARETO_AND_COGNITIVE_BRIDGE.md",
     "docs/0.28/20261105_R8_UNIFORM_EDGE_LOCAL_CERTIFICATE_VS_ADAPTIVE_IDENTIFICATION.md",
     "docs/0.28/20261105_R9_FEEDBACK_VS_FIXED_EDGE_COLOR_DECISION_TREE_SEPARATION.md",
+    "docs/0.28/20261106_R14_P51_PHYSICAL_P48_ROOT_ORBIT_THEOREM.md",
     "docs/0.28/20261106_R14_P5_OBSERVATIONAL_EQUIVARIANCE_AND_EXACT_MINIMAX_QUOTIENT.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
@@ -959,6 +961,7 @@
     "scripts/cuberev-observation/audit_r13_corner12_same_edge_parity_collision.py",
     "scripts/cuberev-observation/audit_r14_p3_parity_factored_belief.py",
     "scripts/cuberev-observation/audit_r14_p4_matching_parity_dp.py",
+    "scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py",
     "scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
@@ -4566,6 +4569,22 @@
     "source_sha256": "c0f0ed57be25ac0373f82a8b6317768a96698e0454565a0a0e99354936ff6375",
     "receipt_sha256": "c3309d6abe89031d99858fd0f9f71ee1ef01b8ffcdefec1111b43569894e8236",
     "custody": "BYTE_VERIFIED: Python 10,414 bytes and JSON receipt 1,357 bytes; exact SHA-256 re-read from Drive raw bytes matches uploaded originals",
+    "remote_ci": "pending"
+  },
+  "active_set_reconciliation_20261106_r14_p51_physical_root_orbits": {
+    "stage": "0.28-R14-P5.1",
+    "date": "2026-11-06",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py",
+      "docs/0.28/20261106_R14_P51_PHYSICAL_P48_ROOT_ORBIT_THEOREM.md",
+      ".github/workflows/cuberev-r14-p51-p48-root-orbits.yml"
+    ],
+    "theorems": "Full legal physical 48-facelet group action normalizes 576 first query location choices to one; 36 ordered paired-color first outputs to three proper-rotation orbits; full stabilizer of first spatial query slots yields exactly 12 second-query orbits of sizes 1x6,21x2,22x3,462x1",
+    "boundary": "No universal depth-20 policy or depth-21 impossibility; no HTM cost optimization",
+    "source_drive": "https://drive.google.com/file/d/1cu-k8TX87Yj20vaDEgDD1n4Tg44Ec_Gt/view",
+    "receipt_drive": "https://drive.google.com/file/d/16fA5u5gfZmXEYnqPVSDkNbhJ3KiAASfm/view",
+    "source_sha256": "44f3d43b3c8c637d889c262700e490306112eb2627d37ec39cde30f199a19bce",
+    "receipt_sha256": "e1c5f2936b811c7f2eea17d7f2aa9da3f3bbd67f5ee96bcfcec42277168fa53e",
     "remote_ci": "pending"
   }
 }
