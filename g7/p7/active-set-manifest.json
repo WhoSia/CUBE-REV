@@ -148,6 +148,7 @@
     ".github/workflows/cuberev-r14-p51-p48-root-orbits.yml",
     ".github/workflows/cuberev-r14-p54-mixed-prefix-stabilizer.yml",
     ".github/workflows/cuberev-r14-p55-parity-coupled-family.yml",
+    ".github/workflows/cuberev-r14-p6-symbolic-belief-branch-court.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -480,6 +481,7 @@
     "docs/0.28/20261106_R14_P54_MIXED_PREFIX_STABILIZER_ORBITS.md",
     "docs/0.28/20261106_R14_P55_PARITY_COUPLED_FAMILY_ORBIT_THEOREM.md",
     "docs/0.28/20261106_R14_P5_OBSERVATIONAL_EQUIVARIANCE_AND_EXACT_MINIMAX_QUOTIENT.md",
+    "docs/0.28/20261106_R14_P6_SYMBOLIC_BELIEF_FACTOR_AND_BRANCH_COURT.md",
     "docs/0.28/20261106_TWO_PAPER_ONE_FRONTIER_RESEARCH_CHARTER.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
@@ -975,6 +977,7 @@
     "scripts/cuberev-observation/audit_r14_p54_mixed_prefix_stabilizer_orbits.py",
     "scripts/cuberev-observation/audit_r14_p55_parity_coupled_wreath_orbits.py",
     "scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py",
+    "scripts/cuberev-observation/audit_r14_p6_symbolic_belief_branch_court.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
@@ -4670,5 +4673,25 @@
     "sha256_receipt": "0afae5b2a4e46f09d951943c9a110e2c42444a5ca57963c13e99917a34e8cd2a",
     "sha256_proof": "656fafdcfe905299f43f33f242bf8eacd8fb16617cef05b954bbc3d6ce7d35be",
     "remote_ci": "pending"
+  },
+  "active_set_reconciliation_20261106_r14_p6_exact_symbolic_belief": {
+    "stage": "0.28-R14-P6",
+    "date": "2026-11-06",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p6_symbolic_belief_branch_court.py",
+      "docs/0.28/20261106_R14_P6_SYMBOLIC_BELIEF_FACTOR_AND_BRANCH_COURT.md",
+      ".github/workflows/cuberev-r14-p6-symbolic-belief-branch-court.yml"
+    ],
+    "claim": "Exact posterior belief sets split as E0×C0 disjoint union E1×C1; next paired color observation branches retain this parity-coupled representation",
+    "independent_microcourt": "648 legal 3-edge/3-corner states directly enumerated; 464 realized mixed partial histories; every next 36 outcome checked against direct enumeration; 108-equal-count distinct-query-partitions negative control",
+    "p48_court": "12 root second-query spatial stabilizer representatives and parity matching counts; best immediate max branch 41608468758528000",
+    "boundary": "No entire P48 20-frame policy, no full belief orbit canonicalizer; full P48 reuse P51 physical geometry, not independently redrawn",
+    "drive_source_v2": "https://drive.google.com/file/d/1_4HPpPDysPGyVIGi3VnL9BbY66wpnEaJ/view",
+    "drive_receipt": "https://drive.google.com/file/d/1y4MbGDz8SYE1Pk3SgEv0xvEDgcrHLqE9/view",
+    "drive_theorem": "https://drive.google.com/file/d/1XBIs4Z90F2pgMDYipmYEgg9HR0fhIxlq/view",
+    "source_sha256": "0b4b1c384d6a6a1c1c803bc35a652eed8ec6f4544707f9e11915964503878f5d",
+    "receipt_sha256": "bf6f02aeabb471b9199e09b1ae0913e5d7fa460b1bb17077b5f9a917f52a5d60",
+    "theorem_sha256": "7ec9a4e92d2cdf7abd82235d60b248432991d33b54f5c9ef38e388df8787c847",
+    "remote_CI": "pending"
   }
 }
