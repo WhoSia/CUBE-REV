@@ -472,9 +472,11 @@
     "docs/0.28/20261105_R5_EXACT_B2_INFORMATION_HTM_PARETO_AND_COGNITIVE_BRIDGE.md",
     "docs/0.28/20261105_R8_UNIFORM_EDGE_LOCAL_CERTIFICATE_VS_ADAPTIVE_IDENTIFICATION.md",
     "docs/0.28/20261105_R9_FEEDBACK_VS_FIXED_EDGE_COLOR_DECISION_TREE_SEPARATION.md",
+    "docs/0.28/20261106_PAPER_A_REFEREE_PROOF_GATE.md",
     "docs/0.28/20261106_R14_P51_PHYSICAL_P48_ROOT_ORBIT_THEOREM.md",
     "docs/0.28/20261106_R14_P53_ALL_ROOT_RESPONSES_EQUIVALENT.md",
     "docs/0.28/20261106_R14_P5_OBSERVATIONAL_EQUIVARIANCE_AND_EXACT_MINIMAX_QUOTIENT.md",
+    "docs/0.28/20261106_TWO_PAPER_ONE_FRONTIER_RESEARCH_CHARTER.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -650,6 +652,7 @@
     "papers/0.27/PAPER2_ONE_SIDED_GOAL_CERTIFICATE_DRAFT_03.md",
     "papers/0.27/PAPER2_ONE_SIDED_GOAL_CERTIFICATE_DRAFT_04.md",
     "papers/0.27/PAPER2_ONE_SIDED_GOAL_CERTIFICATE_DRAFT_05.md",
+    "papers/0.28/DUAL_COLOR_PROBE_ADAPTIVE_IDENTIFICATION_DRAFT_01.md",
     "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md",
     "scripts/cube/full-notation-normal-form.mjs",
     "scripts/cube/replay-exact-trajectories.mjs",
@@ -4607,5 +4610,20 @@
     "drive_p53_python": "https://drive.google.com/file/d/1rTpbmoUgDdpAvo8lK2dwMHnn3BBT_skT/view",
     "drive_p53_receipt": "https://drive.google.com/file/d/1dfu1UHjxrgBOVxgCLmh3Mr8_9oZ35Ys3/view",
     "remote_ci": "pending"
+  },
+  "active_set_reconciliation_20261106_two_paper_one_frontier": {
+    "stage": "0.28 paper+frontier",
+    "date": "2026-11-06",
+    "paths": [
+      "papers/0.28/DUAL_COLOR_PROBE_ADAPTIVE_IDENTIFICATION_DRAFT_01.md",
+      "docs/0.28/20261106_PAPER_A_REFEREE_PROOF_GATE.md",
+      "docs/0.28/20261106_TWO_PAPER_ONE_FRONTIER_RESEARCH_CHARTER.md"
+    ],
+    "claim": "Paper A complete B6 finite proof audit plus Paper B working draft integrating fixed 21, adaptive 18..21, full P48 P53 single root-color orbit and 12 second-query stabilizer classes",
+    "paper_A_gate": "check 4845 layout physical certificates, 872 short-support kernel, 41 positive distance classes, erasure 19, 156-node exchange and prior literature",
+    "paper_B_status": "D0.1 working draft, not submission-ready, adaptive h remains 18..21",
+    "drive_paper_B": "https://drive.google.com/file/d/1r6mui1KewijMlWGm0B4EuJMTEZxvD885/view",
+    "drive_paper_A_audit": "https://drive.google.com/file/d/1EQtmjo1WiLXCyCreMZPnO7eEJhB1zvrD/view",
+    "remote_ci": "P51/P52/P53 new validation not yet independently confirmed PASS"
   }
 }
