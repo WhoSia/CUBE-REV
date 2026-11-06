@@ -149,6 +149,7 @@
     ".github/workflows/cuberev-r14-p54-mixed-prefix-stabilizer.yml",
     ".github/workflows/cuberev-r14-p55-parity-coupled-family.yml",
     ".github/workflows/cuberev-r14-p6-symbolic-belief-branch-court.yml",
+    ".github/workflows/cuberev-r14-p61-full-minimax-648.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -481,6 +482,7 @@
     "docs/0.28/20261106_R14_P54_MIXED_PREFIX_STABILIZER_ORBITS.md",
     "docs/0.28/20261106_R14_P55_PARITY_COUPLED_FAMILY_ORBIT_THEOREM.md",
     "docs/0.28/20261106_R14_P5_OBSERVATIONAL_EQUIVARIANCE_AND_EXACT_MINIMAX_QUOTIENT.md",
+    "docs/0.28/20261106_R14_P61_EXACT_648_STATE_MINIMAX_POLICY.md",
     "docs/0.28/20261106_R14_P6_SYMBOLIC_BELIEF_FACTOR_AND_BRANCH_COURT.md",
     "docs/0.28/20261106_TWO_PAPER_ONE_FRONTIER_RESEARCH_CHARTER.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
@@ -977,6 +979,7 @@
     "scripts/cuberev-observation/audit_r14_p54_mixed_prefix_stabilizer_orbits.py",
     "scripts/cuberev-observation/audit_r14_p55_parity_coupled_wreath_orbits.py",
     "scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py",
+    "scripts/cuberev-observation/audit_r14_p61_micro_exact_minimax_decision_tree.py",
     "scripts/cuberev-observation/audit_r14_p6_symbolic_belief_branch_court.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
@@ -4692,6 +4695,27 @@
     "source_sha256": "0b4b1c384d6a6a1c1c803bc35a652eed8ec6f4544707f9e11915964503878f5d",
     "receipt_sha256": "bf6f02aeabb471b9199e09b1ae0913e5d7fa460b1bb17077b5f9a917f52a5d60",
     "theorem_sha256": "7ec9a4e92d2cdf7abd82235d60b248432991d33b54f5c9ef38e388df8787c847",
-    "remote_CI": "pending"
+    "remote_CI": "pending",
+    "custody": "Drive BYTE_VERIFIED all P6 v2 source/receipt/proof original SHA256"
+  },
+  "active_set_reconciliation_20261106_r14_p61_exact_full_micro_decision_tree": {
+    "stage": "0.28-R14-P6.1",
+    "date": "2026-11-06",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p61_micro_exact_minimax_decision_tree.py",
+      "docs/0.28/20261106_R14_P61_EXACT_648_STATE_MINIMAX_POLICY.md",
+      ".github/workflows/cuberev-r14-p61-full-minimax-648.yml"
+    ],
+    "result": "Exact minimax depth4 for 648-state 3edge/3corner abstract coupled-parity paired six-color game; complete depth4 policy replay 648/648 states; 54 per-root query lower-obstruction branches show no depth3 policy",
+    "replay": "24 states terminate after 3 queries; 624 after 4; full policy 963 nodes",
+    "limitations": "Not full 12E8C P48 adaptive depth20; uses abstract source cubie colors and free query routing; 648 cases are a validity oracle not an extrapolation",
+    "drive_source": "https://drive.google.com/file/d/1eYR3uJS72uoZOy1sib1QGy3EMFZNIjnw/view",
+    "drive_receipt": "https://drive.google.com/file/d/1Ee5Ue-38S_L3EACjGHoQZjdm7mNICZPV/view",
+    "drive_proof": "https://drive.google.com/file/d/1chTZo8VfzWDqYZOVnADfGi2st3wEmmLo/view",
+    "sha256_source": "7e0f89683e581c59d510b1109a7ee8adb191a11ad2a420b2bf2103db3232dc32",
+    "sha256_receipt": "f35425e0d3017e3709b2bbc04fda85248b1e23cf015808a2203ec0434a08510a",
+    "sha256_proof": "8a314deb07c592b09d7b72a403fc076d3a9751e7c8eb69fda956a2730a1a20b6",
+    "Drive_raw_sha": "BYTE_VERIFIED all six P6/P6.1 source/receipt/note originals",
+    "CI": "local PASS; new remote CI not yet confirmed"
   }
 }
