@@ -473,6 +473,7 @@
     "docs/0.28/20261105_R8_UNIFORM_EDGE_LOCAL_CERTIFICATE_VS_ADAPTIVE_IDENTIFICATION.md",
     "docs/0.28/20261105_R9_FEEDBACK_VS_FIXED_EDGE_COLOR_DECISION_TREE_SEPARATION.md",
     "docs/0.28/20261106_R14_P51_PHYSICAL_P48_ROOT_ORBIT_THEOREM.md",
+    "docs/0.28/20261106_R14_P53_ALL_ROOT_RESPONSES_EQUIVALENT.md",
     "docs/0.28/20261106_R14_P5_OBSERVATIONAL_EQUIVARIANCE_AND_EXACT_MINIMAX_QUOTIENT.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
@@ -962,6 +963,8 @@
     "scripts/cuberev-observation/audit_r14_p3_parity_factored_belief.py",
     "scripts/cuberev-observation/audit_r14_p4_matching_parity_dp.py",
     "scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py",
+    "scripts/cuberev-observation/audit_r14_p52_two_frame_p48_posteriors.py",
+    "scripts/cuberev-observation/audit_r14_p53_source_label_automorphisms.py",
     "scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
@@ -4585,6 +4588,24 @@
     "receipt_drive": "https://drive.google.com/file/d/16fA5u5gfZmXEYnqPVSDkNbhJ3KiAASfm/view",
     "source_sha256": "44f3d43b3c8c637d889c262700e490306112eb2627d37ec39cde30f199a19bce",
     "receipt_sha256": "e1c5f2936b811c7f2eea17d7f2aa9da3f3bbd67f5ee96bcfcec42277168fa53e",
+    "remote_ci": "pending"
+  },
+  "active_set_reconciliation_20261106_r14_p52_p53_full_root_collapse": {
+    "stage": "0.28-R14-P5.2/P5.3",
+    "date": "2026-11-06",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p52_two_frame_p48_posteriors.py",
+      "scripts/cuberev-observation/audit_r14_p53_source_label_automorphisms.py",
+      "docs/0.28/20261106_R14_P53_ALL_ROOT_RESPONSES_EQUIVALENT.md"
+    ],
+    "corrects": "P5.1 36->3 proper rigid-rotation orbits are not maximal; legal independent source-label sector actions imply all 36 root dual color outputs share ONE exact Bellman depth",
+    "p52": "exact 3 x 12 physical P48 two-frame branch-profile census using parity-matching DP; best immediate worst cell 41,608,468,758,528,000 for second edge and second corner at distinct previously unread positions",
+    "p53": "12 legal edge-source color rotations x24 legal corner-source rotations=288 legal right source-label relabelings, 31,104 color response covariance checks",
+    "limits": "global 18..21 still open, P52 immediate posterior cardinality not future minimax",
+    "drive_p52_python": "https://drive.google.com/file/d/1f-xjtvWE_vndNS0UA1bO1RRe_M9Wq4Nr/view",
+    "drive_p52_receipt": "https://drive.google.com/file/d/1rRLg7-hXjLUm9iEEaWVL9AiFrhbTMsIV/view",
+    "drive_p53_python": "https://drive.google.com/file/d/1rTpbmoUgDdpAvo8lK2dwMHnn3BBT_skT/view",
+    "drive_p53_receipt": "https://drive.google.com/file/d/1dfu1UHjxrgBOVxgCLmh3Mr8_9oZ35Ys3/view",
     "remote_ci": "pending"
   }
 }
