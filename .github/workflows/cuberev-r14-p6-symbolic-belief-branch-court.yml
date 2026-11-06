@@ -1,0 +1,37 @@
+name: CUBE-REV R14-P6 symbolic color belief branch court
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p6_symbolic_belief_branch_court.py'
+      - 'scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py'
+      - 'docs/0.28/20261106_R14_P6_SYMBOLIC_BELIEF_FACTOR_AND_BRANCH_COURT.md'
+      - '.github/workflows/cuberev-r14-p6-symbolic-belief-branch-court.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  parity-coupled-symbolic-branch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Exact 648-state independent microcourt and full P48 12-orbit branch cross-check
+        run: |
+          python scripts/cuberev-observation/audit_r14_p6_symbolic_belief_branch_court.py > /tmp/r14-p6.json
+          python -c 'import json;d=json.load(open("/tmp/r14-p6.json"));assert d["result"]=="R14_P6_EXACT_SYMBOLIC_BELIEF_BRANCH_COURT_PASS" and d["independent_3edge_3corner_legal_states"]==648 and d["small_full_enumeration_histories_verified"]>=400 and len(d["full_p48_12_second_query_orbit_branch_profiles"])==12 and d["best_second_query_one_step_worst_child"]==41608468758528000 and d["equal_cardinality_alias_counterexample"]["equal_total"]==108;print("R14_P6_EXACT_BELIEF_BRANCH_AND_NEGATIVE_CONTROL_PASS")'
+      - name: Preserve read-only execution receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p6-branch-court
+          path: /tmp/r14-p6.json
+          retention-days: 30
