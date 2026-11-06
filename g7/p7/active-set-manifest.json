@@ -147,6 +147,7 @@
     ".github/workflows/cuberev-r14-p5-observation-equivariance.yml",
     ".github/workflows/cuberev-r14-p51-p48-root-orbits.yml",
     ".github/workflows/cuberev-r14-p54-mixed-prefix-stabilizer.yml",
+    ".github/workflows/cuberev-r14-p55-parity-coupled-family.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -477,6 +478,7 @@
     "docs/0.28/20261106_R14_P51_PHYSICAL_P48_ROOT_ORBIT_THEOREM.md",
     "docs/0.28/20261106_R14_P53_ALL_ROOT_RESPONSES_EQUIVALENT.md",
     "docs/0.28/20261106_R14_P54_MIXED_PREFIX_STABILIZER_ORBITS.md",
+    "docs/0.28/20261106_R14_P55_PARITY_COUPLED_FAMILY_ORBIT_THEOREM.md",
     "docs/0.28/20261106_R14_P5_OBSERVATIONAL_EQUIVARIANCE_AND_EXACT_MINIMAX_QUOTIENT.md",
     "docs/0.28/20261106_TWO_PAPER_ONE_FRONTIER_RESEARCH_CHARTER.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
@@ -971,6 +973,7 @@
     "scripts/cuberev-observation/audit_r14_p52_two_frame_p48_posteriors.py",
     "scripts/cuberev-observation/audit_r14_p53_source_label_automorphisms.py",
     "scripts/cuberev-observation/audit_r14_p54_mixed_prefix_stabilizer_orbits.py",
+    "scripts/cuberev-observation/audit_r14_p55_parity_coupled_wreath_orbits.py",
     "scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
@@ -4648,5 +4651,24 @@
     "receipt_sha256": "f3497775055567bc18189575dc307949557c4485130d07b59da219945e1106b8",
     "proof_sha256": "31d1477815a22d8db84eee447133aa1b4efb52ac826dfd8d873c82f9e8917dbb",
     "remote_ci": "unverified"
+  },
+  "active_set_reconciliation_20261106_r14_p55_parity_coupled_family": {
+    "stage": "0.28-R14-P5.5",
+    "date": "2026-11-06",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p55_parity_coupled_wreath_orbits.py",
+      "docs/0.28/20261106_R14_P55_PARITY_COUPLED_FAMILY_ORBIT_THEOREM.md",
+      ".github/workflows/cuberev-r14-p55-parity-coupled-family.yml"
+    ],
+    "statement": "In two-sector cyclic wreath family with matched permutation parity, zero orientation sums, n/m cubies each with r/s oriented facelets, pointwise stabilizer of one spatial slot on each of k/l visited cubies has exactly (r*k+1)(s*l+1)+1_{n-k=m-l=2} paired query orbits, when at least two cubies unvisited in each sector",
+    "evidence": "42 independent no-import full paired query-domain orbit enumerations across 5 different n,m,r,s parameter families, 5 exceptional parity boundary examples",
+    "limit": "Elementary general group action application; academic priority not established; not full-cube adaptive horizon decision",
+    "source_drive": "https://drive.google.com/file/d/13Pcr7SXjMi3pDNcNe8-YuthQVwaWXA8q/view",
+    "receipt_drive": "https://drive.google.com/file/d/1NJffi-QFEYRdx_zjnczDHniuPhAhH7_a/view",
+    "proof_drive": "https://drive.google.com/file/d/1BEFh_I1r-fGeduRMbm3hYonBgN7TT7Xo/view",
+    "sha256_source": "5c02ca57a39d6c90f5403e0c050c73f9d9009e4e86cc71442f6033606666d83e",
+    "sha256_receipt": "0afae5b2a4e46f09d951943c9a110e2c42444a5ca57963c13e99917a34e8cd2a",
+    "sha256_proof": "656fafdcfe905299f43f33f242bf8eacd8fb16617cef05b954bbc3d6ce7d35be",
+    "remote_ci": "pending"
   }
 }
