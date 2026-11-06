@@ -7,6 +7,9 @@ on:
     paths:
       - 'scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py'
       - 'docs/0.28/20261106_R14_P51_PHYSICAL_P48_ROOT_ORBIT_THEOREM.md'
+      - 'scripts/cuberev-observation/audit_r14_p52_two_frame_p48_posteriors.py'
+      - 'scripts/cuberev-observation/audit_r14_p53_source_label_automorphisms.py'
+      - 'docs/0.28/20261106_R14_P53_ALL_ROOT_RESPONSES_EQUIVALENT.md'
       - '.github/workflows/cuberev-r14-p51-p48-root-orbits.yml'
   workflow_dispatch:
 
@@ -28,6 +31,14 @@ jobs:
         run: |
           python scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py > /tmp/r14-p51.json
           python -c 'import json;d=json.load(open("/tmp/r14-p51.json"));assert d["result"]=="R14_P51_P48_FULL_GROUP_COVARIANCE_PASS" and d["physical_slot_count"]==48 and d["physical_move_count"]==18 and d["physical_legal_scrambles_checked"]==2001 and d["full_joint_probe_orbit"]==576 and d["local_group_order"]==12 and d["proper_spatial_rotations"]==24 and d["first_frame_response_orbits"]=={"same":6,"opposite":6,"adjacent":24} and d["first_frame_fixed_query_second_query_orbits"]==12 and d["first_frame_fixed_query_second_orbit_size_histogram"]=={"1":6,"21":2,"22":3,"462":1} and d["all_root_color_pair_orbits_verified"] and d["illegal_edge_only_swap_rejected"];print("R14_P51_P48_GROUP_COVARIANCE_AND_ROOT_ORBITS_PASS")'
+      - name: R14-P5.3 independent source labels
+        run: |
+          python scripts/cuberev-observation/audit_r14_p53_source_label_automorphisms.py > /tmp/r14-p53.json
+          grep -q 'R14_P53_ALL_36_ROOT_RESPONSES_ONE_BELLMAN_ORBIT_PASS' /tmp/r14-p53.json
+      - name: R14-P5.2 full P48 two-frame posterior census
+        run: |
+          python scripts/cuberev-observation/audit_r14_p52_two_frame_p48_posteriors.py > /tmp/r14-p52.json
+          grep -q 'R14_P52_EXACT_P48_TWO_FRAME_POSTERIORS_PASS' /tmp/r14-p52.json
       - name: Preserve exact read-only proof receipt
         uses: actions/upload-artifact@v4
         with:
