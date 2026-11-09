@@ -1,6 +1,6 @@
 # WORKING PAPER B — Exact Color Identification and Group-Equivariant Active Observation of the Rubik Cube
 
-**Research draft D0.6 · 2026-11-09 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
+**Research draft D0.7 · 2026-11-09 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
 
 ## Abstract
 
@@ -39,7 +39,7 @@ The possible case-specific scientific contribution is: (i) a *complete exact* pr
 
 For the upper bound, the existing P48 construction reads 21 distinct initial spatial edge facelets and fourteen distinct initial corner facelets (two at each of seven corner positions, using corner chirality and the corner-twist constraint to infer the eighth). Every queried pair is reachable using a known legal turn word. The reconstruction uses actual observed colors and known legal turn actions, not ground-truth cubie labels. Total 21 frames; thirty-five *distinct* facelet positions are read, even though both sensors output 42 symbols across 21 frames.
 
-For the lower bound, the existing physical P48 certificate enumerates all 10,626 four-edge-facelet omission patterns at the proposed critical 20-read boundary and provides legal state collisions. The released paper must attach the exact script, witnesses and fresh remote execution receipt. The present D0.6 points to the source lineage rather than reproducing that certificate here; therefore do not circulate this document as a standalone proof of the fixed minimum.
+For the lower bound, the existing physical P48 certificate enumerates all 10,626 four-edge-facelet omission patterns at the proposed critical 20-read boundary and provides legal state collisions. The released paper must attach the exact script, witnesses and fresh remote execution receipt. The present D0.7 points to the source lineage rather than reproducing that certificate here; therefore do not circulate this document as a standalone proof of the fixed minimum.
 
 ## 4. Conditional adaptive feedback and restricted lower bounds
 
@@ -160,3 +160,24 @@ The immediate task is to canonicalize partial facelet-color histories under both
   - https://github.com/WhoSia/CUBE-REV/blob/research/current/scripts/cuberev-observation/audit_r14_p53_source_label_automorphisms.py
 
 **Release gate:** check novelty against original work on cube probing and automorphism quotients; independently verify CI and all positive/negative fixed-21 physical certificates; complete error bounds, executable figure/table generation, publication venue format and authorship/ethics declarations. Do not call this draft accepted, peer-reviewed or submission-ready.
+
+
+## 6F. R14-P7.5 — Full exact conditional six-edge residual minimax through signed color transport
+
+The prior P7.4 six-edge experiment classified all 924 source-type six-subsets into 30 source-color graph orbits, replayed all 11,520 states for each representative one-step policy, but had verified exact lower bounds for only twelve representatives. The completed P7.5 court adds full AND–OR `Win(X_L,D-1)=false` negative proofs for the **other eighteen** representatives, including the nine-read instance that initially timed out. Exact Bellman feasibility is now established for **all thirty** representatives. The complete result is
+
+\[
+
+\#\{L:D^*(L)=7\}=20,\quad\#\{L:D^*(L)=8\}=832,\quad\#\{L:D^*(L)=9\}=72.
+
+\]
+
+Here exactness for every one of the 924 distinct label subsets depends crucially on an observation-game isomorphism, not only a graph-orbit list. For a 48-element `K_(2,2,2)` color automorphism `c`, let `tau` permute the **ordered source type indices**, let `epsilon` record each color-relabeling induced reversal of a source type's two-letter order, choose a spatial slot permutation `sigma` of the same parity as `tau`, and a spatial per-slot facelet flip `delta` with `sum(delta)=sum(epsilon) mod 2`. Then an old legal assignment `(p,f)` is mapped to
+
+\[
+p'_i=\tau(p_{\sigma(i)}),\qquad f'_i=f_{\sigma(i)}\oplus\epsilon_{p_{\sigma(i)}}\oplus\delta_i.
+\]
+
+The new permutation and total flip remain even, and a new spatial slot/facelet query `(i,s)` is related to old `(sigma(i),s xor delta_i)` by observation-color covariance `O_new=c(O_old)`. This transports exact adaptive policies and all outcome children; it is not an assertion that the *literal index-tiebroken one-step greedy* is equivariant. A new standalone checker independently regenerated all **924×11,520=10,644,480** states and verified exact state-set equality under those explicit transformations; a separate transport producer checked all 48 mappings of an entire representative 11,520-state set and 177,408 additional legal samples.
+
+This is a **conditional edge-only residual theorem with known permutation and flip parity**. It does not settle the original coupled full physical 48-sticker dual-sensor adaptive horizon `18<=h_adaptive<=21`, nor imply those 48 abstract face-color automorphisms constitute legal full-cube corner-sector symmetries. The novelty priority of the 924-set exact classification remains to be independently audited against prior literature. Detailed R14-P7.5 theorem and replayable sources are in `docs/0.28/20261109_R14_P75_COMPLETE_SIX_EDGE_924_EXACT_MINIMAX.md`.
