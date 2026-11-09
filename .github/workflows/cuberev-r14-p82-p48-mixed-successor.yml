@@ -1,0 +1,66 @@
+name: CUBE-REV R14-P8.2 exact P48 mixed successor partitions
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py'
+      - 'scripts/cuberev-observation/verify_r14_p82_12state_independent_suffix.py'
+      - 'scripts/cuberev-observation/audit_r14_p8_parity_activation.py'
+      - 'scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py'
+      - 'docs/0.28/20261109_R14_P82_EXACT_P48_MIXED_PREFIX_SUCCESSOR_PARTITIONS.md'
+      - '.github/workflows/cuberev-r14-p82-p48-mixed-successor.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-all-576-and-independent-twelve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build all 2880 physical paired query successor partitions
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p82_mixed_p48_successor_partition.py | tee /tmp/r14-p82-producer.log
+      - name: Independently enumerate all 12 states, and compare 576 query partition SHA digests
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p82_12state_independent_suffix.py | tee /tmp/r14-p82-independent.log
+          python - <<'PY'
+          import json
+          a=json.load(open('R14_P82_MIXED_P48_SUCCESSOR_PARTITIONS_RECEIPT.json'))
+          b=json.load(open('R14_P82_INDEPENDENT_12STATE_RECEIPT.json'))
+          assert a['result']=='R14_P82_EXACT_576_PHYSICAL_P48_NEXT_QUERY_PARTITIONS_PASS'
+          assert len(a['prefixes'])==5
+          assert a['total_query_action_conservation_tests']==2880
+          assert b['result']=='R14_P82_INDEPENDENT_12STATE_ALL_576_PHYSICAL_PARTITIONS_PASS'
+          assert b['checked_literal_color_outputs']==6912
+          suffix=next(x for x in a['prefixes'] if x['prefix']=='ten_edge_six_corner_completed')
+          assert suffix['partition_sha256']==b['partition_sha256']
+          assert suffix['posterior_states']==12 and suffix['best_max_child']==2
+          assert suffix['actions_with_nonzero_parity_correction']==24
+          partial=next(x for x in a['prefixes'] if x['prefix']=='partial_near_gate_11E_7C')
+          assert partial['edge_positions_touched']==11
+          assert partial['corner_positions_touched']==7
+          assert partial['actions_with_nonzero_parity_correction']==0
+          print('R14_P82_FULL_576_P48_AND_12STATE_LITERAL_EXACT_PASS')
+          PY
+      - name: Preserve receipts only; no CI-authored repository commits
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p82-p48-full-successor
+          path: |
+            scripts/cuberev-observation/R14_P82_MIXED_P48_SUCCESSOR_PARTITIONS_RECEIPT.json
+            scripts/cuberev-observation/R14_P82_INDEPENDENT_12STATE_RECEIPT.json
+            /tmp/r14-p82-producer.log
+            /tmp/r14-p82-independent.log
+          retention-days: 30
