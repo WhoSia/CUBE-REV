@@ -1,6 +1,6 @@
 # WORKING PAPER B — Exact Color Identification and Group-Equivariant Active Observation of the Rubik Cube
 
-**Research draft D0.3 · 2026-11-09 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
+**Research draft D0.4 · 2026-11-09 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
 
 ## Abstract
 
@@ -93,6 +93,24 @@ Therefore the minimum 648-bit transformed belief is a **sound** canonical repres
 A prior caution is sharpened. P6's two realized 108-candidate belief sets give different child-count partitions at a *fixed* next query, but P6.2 shows they **are related by a legal spatial query permutation**. They therefore do **not** demonstrate different global decision-tree classes. The newer auditable negative control consists of two reachable **36-candidate** beliefs. Across all 54 possible next queries, their multisets of sorted nonempty color-branch cardinalities differ. As this multiset must be invariant under any exact query-permutation/output-relabeling observation isomorphism, these two beliefs are genuinely nonisomorphic. Their optimal depths are not claimed to differ.
 
 See [P6.2 proof, scope and falsification ledger](../../docs/0.28/20261109_R14_P62_FULL_COVARIANT_BELIEF_QUOTIENT.md) and [standalone exact decision-tree covariance court](../../scripts/cuberev-observation/audit_r14_p62_exact_belief_covariance.py). A general sound full-P48 canonical constraint signature and a universal depth-20 or depth-21 certificate remain **OPEN**. The usual generic group-action argument is established prior mathematics, not a standalone originality claim here.
+
+## 6C. R14-P7 / P7.1 — Certificate discovery versus worst-case adaptive decision depth (2026-11-09)
+
+For any known legal state `x`, a separating certificate is a fixed set of paired sensor queries whose observed outputs on `x` exclude every different legal state. This state-dependent object must not be confused with a universally executable online policy. A simple full physical Rubik construction gives **a 20-frame separating certificate for every specified `x`**: read two facelets on eight spatial edge positions, and the non-U facelet on each of the four spatial edge positions occupied by the four U-incident original edge types; use the parallel corner probe to read both ordered facelets from seven spatial corner positions. With advance knowledge of the hidden state, these chosen spatial slots are known. The four remaining edge types are UR/UF/UL/UB and are distinguished by the observed R/F/L/B non-U facelets. This proves only `max_x C_G(x) <= 20` (not equality) and does **not** constitute a 20-frame online strategy.
+
+A fresh independent **3-edge/3-corner** complete model has 648 legal states. For **every** one of these states, the minimum individualized certificate length is **two** paired queries, while the previously proven unrestricted adaptive minimax worst depth is **four**. Per-state minimality was checked by all 54 possible one-query choices and a complete two-query signature census. In the physically motivated *edge-only, known-parity* hard residual models of 4/5/6 distinct types (96/960/11,520 oriented legal states), exhaustive certificate minima for every target are **3/4/6**, versus **previously established** exact adaptive worst depths **5/7/9** (gaps 2/3/3). A complete alternative-state collision ledger proves the certificate lower bounds for all 28+120+792=940 too-short read subsets. A greedy, not minimum, set cover distills those 940 witnesses to reusable alternate-state obstruction cores of 7/12/41. Witnesses store even permutation, even edge flip and all observed color equalities; some six-edge witnesses are alternating matching 3-cycles, double swaps and five-cycles. These are **static**, not online-adversarial, certificates. See [P7 mathematical report](../../docs/0.28/20261109_R14_P7_CERTIFICATE_GAP_AND_MATCHING_CYCLES.md).
+
+**A new complete computational distinction between one- and two-step future awareness:** For all `C(12,4)=495` sets of four remaining edge types, each with 96 known-parity legal states and eight possible color queries, independently evaluate the exact AND–OR adaptive depth and two deterministic online policies. The one-step greedy policy minimizes the maximum immediate child cardinality (with squared-cell and query-index tie-breakers). The **two-step** lookahead minimizes the largest cardinality reachable after a further optimally chosen single probe from each first color branch, with the same tie-breakers. Their complete classification is:
+
+| Worst depth | Full AND–OR optimum | One-step cardinality greedy | Two-step cardinality lookahead |
+|---|---:|---:|---:|
+| 3 | 72 | 72 | **72** |
+| 4 | 369 | 249 | **369** |
+| 5 | 54 | 174 | **54** |
+
+Thus the one-step rule wastes a query on **120/495** label sets, and two-step lookahead attains the exact optimum on **495/495**. A concrete one-step counterexample is `{UR,UF,UL,DR}`: 5 versus an exact depth 4. An independent non-bitset, direct-frozenset implementation recomputed all 495 exact minimax values, both policy depths, and replayed the two-step online policy to the exact hidden state on **47,520/47,520** starting states. Selected 960- and 11,520-state difficult five/six-edge residual cases also attain their previously established depths 7/9 under the two-step rule, but these are **two examples, not an all-size generalization**. See [P7.1 complete all-495 certificate](../../docs/0.28/20261109_R14_P71_TWO_STEP_LOOKAHEAD_ALL_495.md).
+
+**Scientific boundary:** This is a finite verified algorithmic property of the **edge-only, parity-conditioned residual game**, not an assertion that two-step greedy remains optimal for the original full 12-edge/8-corner P48 game or all other residual type sets. The general distinction between certificate complexity and deterministic decision-tree complexity is classical; cf. Buhrman and de Wolf (2002), *Complexity Measures and Decision Tree Complexity: A Survey*, DOI 10.1016/S0304-3975(01)00144-X. A global online depth-20 policy or unrestricted depth-21 obstruction remains OPEN.
 
 ## 7. Verification contracts
 
