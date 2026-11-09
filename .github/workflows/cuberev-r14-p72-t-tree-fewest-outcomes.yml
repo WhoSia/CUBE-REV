@@ -1,0 +1,84 @@
+name: CUBE-REV R14-P7.2 T-tree regret and one-step tie-break
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p7_lookahead.py'
+      - 'scripts/cuberev-observation/audit_r14_p72_*.py'
+      - 'scripts/cuberev-observation/verify_r14_p72_*.py'
+      - 'docs/0.28/20261109_R14_P72_T_TREE_FAILURE_AND_TIEBREAK_REPAIR.md'
+      - '.github/workflows/cuberev-r14-p72-t-tree-fewest-outcomes.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  complete-t-tree-and-policy-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reproduce original exact 495-row AND-OR reference
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p7_lookahead.py > /tmp/r14-p72-reference.log
+      - name: Certify exactly 120 T graphs and three independent 12-state barriers
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p72_t_tree_theorem.py > /tmp/r14-p72-orbits.log
+          python verify_r14_p72_t_tree_theorem.py > /tmp/r14-p72-independent-graph.log
+          grep -q 'R14_P72_INDEPENDENT_T_TREE_120_EXACT_AND_3_BRANCH_WITNESSES_PASS' /tmp/r14-p72-independent-graph.log
+      - name: Falsify necessity of two-step and independently replay all 47520 decoders
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p72_alternate_tiebreak_all_495.py > /tmp/r14-p72-tiebreak.log
+          python verify_r14_p72_alternate_tiebreak.py > /tmp/r14-p72-independent-policy.log
+          grep -q 'R14_P72_INDEPENDENT_ONE_STEP_FEWEST_BRANCHES_47520_DECODERS_PASS' /tmp/r14-p72-independent-policy.log
+          python - <<'PY'
+          import json
+          a=json.load(open('R14_P72_T_TREE_EXACT_REGRET_RECEIPT.json'))
+          b=json.load(open('R14_P72_ALL_495_TIEBREAK_RESULTS.json'))
+          assert a['result']=='R14_P72_T_TREE_EXACT_REGRET_CHARACTERIZATION_PASS'
+          assert a['all_four_edge_sets']==495 and a['graph_orbits']==18
+          assert a['failure_sets']==120 and a['failure_orbit_sizes']==[24,48,48]
+          assert len(a['three_exact_12_state_branch_witnesses'])==3
+          assert b['all_sets']==495
+          assert b['min_worst_then_fewest_color_outcomes_regret']=={'0':495}
+          assert b['min_worst_then_most_color_outcomes_regret']=={'0':375,'1':120}
+          print('R14_P72_T_TREE_IF_AND_ONLY_IF_AND_SIMPLER_ONE_STEP_PASS')
+          PY
+      - name: Limited hard 5/6-cubie stress, never extrapolate to the whole family
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p72_five_six_fewest_branch_stress.py > /tmp/r14-p72-stress.log
+          python - <<'PY'
+          import json
+          x=json.load(open('R14_P72_5_6_FEWEST_BRANCH_STRESS.json'))
+          assert x['result']=='R14_P72_5_6_FEWEST_OUTCOME_ONE_STEP_STRESS_PASS'
+          assert [v['one_step_fewest_branches_worst_depth'] for v in x['rows']]==[7,9]
+          assert [v['all_states_decoded'] for v in x['rows']]==[960,11520]
+          print('R14_P72_LIMITED_5_6_ONE_STEP_STRESS_PASS')
+          PY
+      - name: Preserve read-only proof receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p72-graph-regret-and-simpler-optimal-policy
+          path: |
+            scripts/cuberev-observation/R14_P72_T_TREE_EXACT_REGRET_RECEIPT.json
+            scripts/cuberev-observation/R14_P72_ALL_495_TIEBREAK_RESULTS.json
+            scripts/cuberev-observation/R14_P72_5_6_FEWEST_BRANCH_STRESS.json
+            /tmp/r14-p72-reference.log
+            /tmp/r14-p72-orbits.log
+            /tmp/r14-p72-independent-graph.log
+            /tmp/r14-p72-tiebreak.log
+            /tmp/r14-p72-independent-policy.log
+            /tmp/r14-p72-stress.log
+          retention-days: 30
