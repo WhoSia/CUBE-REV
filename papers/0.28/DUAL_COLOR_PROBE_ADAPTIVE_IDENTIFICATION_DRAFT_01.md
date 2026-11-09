@@ -6,6 +6,8 @@
 
 We study zero-error identification of an arbitrary legal 3×3×3 Rubik configuration using two categorical probes per frame: one edge-sticker color and one corner-sticker color. Any known legal face-turn sequence may be performed and undone between frames without charge; only the number of probe frames is optimized. Previously verified preset schedules have exact optimal length 21. **The principal new contribution of this draft is an explicit constructive adaptive protocol that identifies the entire legal cube state within 20 paired observation frames**, narrowing the working unrestricted adaptive interval to **18≤h_adaptive≤20** (the lower endpoint relies on an earlier independent project certificate).
 
+**Strict full-group adaptivity advantage already follows:** since the preset optimum is exactly 21 frames and a genuine feedback policy uses at most 20, we prove \(1\le h_{\mathrm{fixed}}-h_{\mathrm{adaptive}}\le3\). The exact adaptive integer is OPEN, but the full-group separation from every nonadaptive schedule does not depend on resolving it.
+
 The protocol reads one facelet on all twelve edge positions, simultaneously completes two indexed facelets on six corners, then reads edge mates adaptively while completing the seventh corner by frame fourteen. The fully reconstructed corner permutation supplies the shared edge/corner parity only after frame fourteen. An exact finite AND–OR court enumerates 867 realizable first-edge-color count vectors in 39 edge-color automorphism orbits and transports policies over 609,376 canonical conditional edge assignments. All but one orbit need at most eight extra edge reads without parity; the exceptional orbit requires parity after two of those reads, still finishing in eight. A genuine physical 3D engine verifies 2,001 legal move-generated cube states and all 2,592 physically constructed exceptional states. A separately implemented corner-chirality and route checker verifies all 24 ordered corner codes and 576 reachable paired spatial sticker targets. An independent exact lower certificate shows that **the fixed twelve-first-edge-sticker policy family** requires twenty frames even if parity is given for free after its first twelve observations. This is not a global lower bound: optimal unrestricted adaptive length 18, 19, or 20 remains unresolved. Source code, machine-readable evidence, and detailed caveats accompany the computational proof; originality against all equivalent prior literature has not been established.
 
 **Keywords:** Rubik group; exact state identification; adaptive distinguishing experiment; categorical observation; group action; zero-error decision tree; parity-constrained matching.
@@ -26,6 +28,12 @@ Define h_fixed as the smallest number of frames in a policy whose *query plan is
 The inequality and proof dependencies established by the research archive are
 
     h_fixed = 21,                     18 <= h_adaptive <= 20.
+
+**Corollary — strict value of color feedback on the entire legal group.** The inherited exact fixed minimum and the constructive full-group P8.6 policy give
+
+    1 <= h_fixed - h_adaptive <= 3.
+
+This is a **strict worst-case adaptive/nonadaptive separation** for the specified original physical categorical paired-probe model. It is stronger than the earlier oracle-conditioned feedback advantages for selected residual edge type families, but it does not imply that the optimal gap is exactly one. The phrase "adaptive advantage" describes a proven comparison of attainable worst-case frame costs, not a measured human cognitive benefit.
 
 **Evidence boundary:** the fixed lower bound uses physical collision certificates across all 10,626 relevant omission masks; it is not implied by the crude |G|<=36^h information inequality. The adaptive lower bound and fixed upper bound have different proof mechanisms. This manuscript must not extrapolate h_adaptive=21 from any restricted prefix obstruction.
 
