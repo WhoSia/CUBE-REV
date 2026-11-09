@@ -4739,6 +4739,9 @@
     "source_sha256": "b356cd825cbd5c3be2028757a53312cd5987651a3fac1386823bbd752bfd5b6e",
     "receipt_sha256": "560cefbccceb6d2834da64f3c21bd10b2b40c4103847b3083ca015a0166812c4",
     "proof_sha256": "030557c29231bd545cfca9027ea7e23f48caf346a993415ab09a21c27b02790b",
-    "remote_ci": "pending"
+    "remote_ci": "pending",
+    "custody": "BYTE_VERIFIED: source, receipt and proof original Drive downloads hash-match; Paper B D0.3 amended original at same Drive ID with exact SHA expected 5e32a905bf555ce6381bcbe053fae8d295057a8ac2ff72b1d910e340519421d9",
+    "paper_B_D03_Drive": "https://drive.google.com/file/d/1SB3I2WoyXR_kHhnHWKMFvepjTXy3VEgj/view",
+    "paper_B_D03_SHA256": "5e32a905bf555ce6381bcbe053fae8d295057a8ac2ff72b1d910e340519421d9"
   }
 }
