@@ -150,6 +150,7 @@
     ".github/workflows/cuberev-r14-p55-parity-coupled-family.yml",
     ".github/workflows/cuberev-r14-p6-symbolic-belief-branch-court.yml",
     ".github/workflows/cuberev-r14-p61-full-minimax-648.yml",
+    ".github/workflows/cuberev-r14-p62-exact-belief-covariance.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -485,6 +486,7 @@
     "docs/0.28/20261106_R14_P61_EXACT_648_STATE_MINIMAX_POLICY.md",
     "docs/0.28/20261106_R14_P6_SYMBOLIC_BELIEF_FACTOR_AND_BRANCH_COURT.md",
     "docs/0.28/20261106_TWO_PAPER_ONE_FRONTIER_RESEARCH_CHARTER.md",
+    "docs/0.28/20261109_R14_P62_FULL_COVARIANT_BELIEF_QUOTIENT.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -980,6 +982,7 @@
     "scripts/cuberev-observation/audit_r14_p55_parity_coupled_wreath_orbits.py",
     "scripts/cuberev-observation/audit_r14_p5_observational_equivariance.py",
     "scripts/cuberev-observation/audit_r14_p61_micro_exact_minimax_decision_tree.py",
+    "scripts/cuberev-observation/audit_r14_p62_exact_belief_covariance.py",
     "scripts/cuberev-observation/audit_r14_p6_symbolic_belief_branch_court.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
@@ -4717,5 +4720,25 @@
     "sha256_proof": "8a314deb07c592b09d7b72a403fc076d3a9751e7c8eb69fda956a2730a1a20b6",
     "Drive_raw_sha": "BYTE_VERIFIED all six P6/P6.1 source/receipt/note originals",
     "CI": "local PASS; new remote CI not yet confirmed"
+  },
+  "active_set_reconciliation_20261109_r14_p62_exact_covariant_quotient": {
+    "stage": "0.28-R14-P6.2",
+    "date": "2026-11-09",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p62_exact_belief_covariance.py",
+      "docs/0.28/20261109_R14_P62_FULL_COVARIANT_BELIEF_QUOTIENT.md",
+      ".github/workflows/cuberev-r14-p62-exact-belief-covariance.yml"
+    ],
+    "scope": "Standalone 648-state parity-matched miniature only; 648 spatial legal group maps, 54 paired queries, literal output covariance and exact inverse-query transport",
+    "verified": "153090 full successor covariances; 2007 distinct policy/root belief masks inspected; 49 group orbits; 315 canonical Bellman comparisons and inverse winning query checks; 963-node policy 648 leaves",
+    "correction": "Prior P6 108 candidate pair has different fixed-query branches but IS group-isomorphic under query permutation; new 36 candidate pair has unequal full 54-query partition-multisets and thus is genuinely nonisomorphic",
+    "boundary": "Does NOT prove a physical P48 mixed belief quotient or a 20-frame policy; original global adaptive depth remains 18..21",
+    "drive_source": "https://drive.google.com/file/d/1Z6DmSG8YXwx30wRRq_uMcT32fQlSM2qE/view",
+    "drive_receipt": "https://drive.google.com/file/d/1veVN6lIZTcoIOQEE2yYf9Rcd0c73mSqF/view",
+    "drive_note": "https://drive.google.com/file/d/1nAamP0e4PIC6jwzDt8lkCq1shTHmGW9s/view",
+    "source_sha256": "b356cd825cbd5c3be2028757a53312cd5987651a3fac1386823bbd752bfd5b6e",
+    "receipt_sha256": "560cefbccceb6d2834da64f3c21bd10b2b40c4103847b3083ca015a0166812c4",
+    "proof_sha256": "030557c29231bd545cfca9027ea7e23f48caf346a993415ab09a21c27b02790b",
+    "remote_ci": "pending"
   }
 }
