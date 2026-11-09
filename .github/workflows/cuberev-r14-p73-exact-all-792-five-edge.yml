@@ -1,0 +1,74 @@
+name: CUBE-REV R14-P7.3 exact all 792 five-edge residual minimax
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/search_r14_p73_five_edge_counterexample.py'
+      - 'scripts/cuberev-observation/audit_r14_p73_all_792_five_edge_exact.py'
+      - 'scripts/cuberev-observation/verify_r14_p73_24_orbit_independent_exact.py'
+      - 'docs/0.28/20261109_R14_P73_EXACT_ALL_792_FIVE_EDGE_MINIMAX.md'
+      - '.github/workflows/cuberev-r14-p73-exact-all-792-five-edge.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-792-exact-and-independent-orbit-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate both one-step and two-step online policy results for ALL 792 five-edge sets
+        working-directory: scripts/cuberev-observation
+        run: |
+          python search_r14_p73_five_edge_counterexample.py 792 > /tmp/r14-p73-all-upper.log
+          python - <<'PY'
+          import json
+          a=json.load(open('R14_P73_ANYTIME_FIVE_EDGE_SEARCH.json'))
+          assert a['attempted']==792 and not a['found_one_step_beaten_by_two_step']
+          assert sum(1 for row in a['rows'] if row['fewest_outcomes_one_step']==5)==12
+          assert sum(1 for row in a['rows'] if row['fewest_outcomes_one_step']==6)==672
+          assert sum(1 for row in a['rows'] if row['fewest_outcomes_one_step']==7)==108
+          PY
+      - name: Full exact AND-OR lower certificate for all 792 and 760320 decoder replays
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p73_all_792_five_edge_exact.py > /tmp/r14-p73-all-exact.log
+          python - <<'PY'
+          import json
+          a=json.load(open('R14_P73_ALL_792_EXACT_MINIMAX_RECEIPT.json'))
+          assert a['result']=='R14_P73_ALL_792_FIVE_EDGE_EXACT_MINIMAX_ONE_STEP_PASS'
+          assert a['all_five_edge_sets']==792 and a['states_per_set']==960
+          assert a['total_individual_decoder_replays']==760320
+          assert a['exact_minimax_histogram']=={'5':12,'6':672,'7':108}
+          assert a['one_step_fewest_outcomes_optimal_sets']==792
+          assert a['two_step_maxleaf_optimal_sets']==792
+          assert a['complete_AND_OR_lower_one_below_policy_for_all_sets']
+          assert len(a['rows'])==792 and all(v['lower_unsatisfiable'] for v in a['rows'])
+          print('R14_P73_EXACT_ALL_792_MINIMAX_PASS')
+          PY
+      - name: Independent 24 orbit frozenset exact AND-OR and 23040 state decoding
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p73_24_orbit_independent_exact.py > /tmp/r14-p73-24-orbit.log
+          grep -q R14_P73_INDEPENDENT_ALL_24_COLOR_GRAPH_ORBITS_EXACT_FROZENSET_PASS /tmp/r14-p73-24-orbit.log
+      - name: Preserve read-only finite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p73-792-five-edge-exact-minimax
+          path: |
+            scripts/cuberev-observation/R14_P73_ANYTIME_FIVE_EDGE_SEARCH.json
+            scripts/cuberev-observation/R14_P73_ALL_792_EXACT_MINIMAX_RECEIPT.json
+            scripts/cuberev-observation/R14_P73_INDEPENDENT_24_ORBIT_RECEIPT.json
+            /tmp/r14-p73-all-upper.log
+            /tmp/r14-p73-all-exact.log
+            /tmp/r14-p73-24-orbit.log
+          retention-days: 30
