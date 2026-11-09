@@ -1,6 +1,6 @@
 # WORKING PAPER B — Exact Color Identification and Group-Equivariant Active Observation of the Rubik Cube
 
-**Research draft D0.5 · 2026-11-09 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
+**Research draft D0.6 · 2026-11-09 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
 
 ## Abstract
 
@@ -39,7 +39,7 @@ The possible case-specific scientific contribution is: (i) a *complete exact* pr
 
 For the upper bound, the existing P48 construction reads 21 distinct initial spatial edge facelets and fourteen distinct initial corner facelets (two at each of seven corner positions, using corner chirality and the corner-twist constraint to infer the eighth). Every queried pair is reachable using a known legal turn word. The reconstruction uses actual observed colors and known legal turn actions, not ground-truth cubie labels. Total 21 frames; thirty-five *distinct* facelet positions are read, even though both sensors output 42 symbols across 21 frames.
 
-For the lower bound, the existing physical P48 certificate enumerates all 10,626 four-edge-facelet omission patterns at the proposed critical 20-read boundary and provides legal state collisions. The released paper must attach the exact script, witnesses and fresh remote execution receipt. The present D0.5 points to the source lineage rather than reproducing that certificate here; therefore do not circulate this document as a standalone proof of the fixed minimum.
+For the lower bound, the existing physical P48 certificate enumerates all 10,626 four-edge-facelet omission patterns at the proposed critical 20-read boundary and provides legal state collisions. The released paper must attach the exact script, witnesses and fresh remote execution receipt. The present D0.6 points to the source lineage rather than reproducing that certificate here; therefore do not circulate this document as a standalone proof of the fixed minimum.
 
 ## 4. Conditional adaptive feedback and restricted lower bounds
 
@@ -121,6 +121,21 @@ The precise mechanism is exhibited by a **12-state reachable partial belief** fo
 **Correction to the prior inference:** Two-step anticipation is **NOT necessary** for this finite family. A fresh full 495-case court for the simpler *one-step* policy that lexicographically minimizes `(maximum immediate child population, number of nonempty color outcomes, sum of squared child populations, query index)` returns the exact AND–OR optimal depths **72/369/54**, with **zero regret across all 495**. The reversed outcome-count tie-break returns the original inferior **72/249/174**. An independent, direct-`frozenset` implementation replays all **47,520** complete initial states for the simpler one-step policy without a single decoding error, establishing the finite result independently of the bitset producer. This observation supersedes any reading of section 6C as claiming a two-level lookahead is required; section 6C's factual two-step zero-regret finding remains correct. The simpler rule achieves known exact depths seven/nine in two specifically identified hard five-/six-edge examples, *not* a complete classification of those larger families.
 
 See [R14-P7.2 finite theorem, failure certificates and correction](../../docs/0.28/20261109_R14_P72_T_TREE_FAILURE_AND_TIEBREAK_REPAIR.md). All minimax claims remain conditional on the **known sector parity, 96-state four-edge residual**, and the previously independently verified exact-AND–OR enumeration. This has no demonstrated implication for a universal physical 20-frame dual-probe Rubik policy, and the overall adaptive 18–21 interval remains **OPEN**. The general color-graph group action and decision-tree theory are established mathematical methods; literature priority for this specialized classification is not asserted.
+
+## 6E. R14-P7.3 — the complete five-edge residual minimax classification (2026-11-09)
+
+The same known-parity single-edge-facelet residual identification problem now has a **complete exact five-piece classification**. For each of all `C(12,5)=792` sets of five distinct original edge types, enumerate the `5!/2 × 2^4 = 960` even-parity/even-flip oriented assignments. Independently of our heuristic conjectures, calculate the exact AND–OR feasibility `Win(X_L,k)` at `k=D_policy(L)-1`, where `D_policy` is the explicit worst-case depth achieved by the simple one-step rule from section 6D. **Every one** of the 792 shorter-budget feasibility calculations returns false; every actual one-step policy returns the right exact singleton across all `792×960=760,320` starting state replays. Thus this is an exact **upper plus matching lower bound** classification, rather than merely two policies agreeing. The resulting worst depths are
+
+| Exact 5-edge residual worst depth | Number of source-type sets |
+|---|---:|
+| 5 | **12** |
+| 6 | **672** |
+| 7 | **108** |
+| Total | **792** |
+
+Both the simple one-step `(M,K,S,q)` rule and P7.1's two-step max-leaf rule attain those exact minima for **every** five-type set. A second **independent frozenset representation** repeats full exact AND–OR lower and one-step policy upper calculations for each of the **24** symmetry-orbit representatives under the 48 abstract face-color graph automorphisms. These orbits cover all 792 source-type sets; the independent verifier decodes 24×960=23,040 explicit starting states. The complete 792-case primary computation does not rely on the physical validity of all 48 graph automorphisms as full corner-sector transformations. The three independent receipts are [R14-P7.3 proof and executable-court audit](../../docs/0.28/20261109_R14_P73_EXACT_ALL_792_FIVE_EDGE_MINIMAX.md), covering the full 792-row online-policy upper results, complete 792-row exact AND–OR lower result, and the 24-orbit separate checker.
+
+**Boundary:** These are *known-parity conditional residual edge-only* results, not a theorem that the simple one-step rule works for six remaining pieces, all arbitrary partial edge histories, or the original simultaneous **edge+corner** P48 problem. The full cube's adaptive horizon stays `18<=h_adaptive<=21`. The ordinary mathematical tools are prior art; priority of the explicit finite classification still requires a precise independent literature comparison.
 
 ## 7. Verification contracts
 
