@@ -154,6 +154,7 @@
     ".github/workflows/cuberev-r14-p7-certificate-gap.yml",
     ".github/workflows/cuberev-r14-p71-lookahead-495.yml",
     ".github/workflows/cuberev-r14-p72-t-tree-fewest-outcomes.yml",
+    ".github/workflows/cuberev-r14-p73-exact-all-792-five-edge.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -492,6 +493,7 @@
     "docs/0.28/20261109_R14_P62_FULL_COVARIANT_BELIEF_QUOTIENT.md",
     "docs/0.28/20261109_R14_P71_TWO_STEP_LOOKAHEAD_ALL_495.md",
     "docs/0.28/20261109_R14_P72_T_TREE_FAILURE_AND_TIEBREAK_REPAIR.md",
+    "docs/0.28/20261109_R14_P73_EXACT_ALL_792_FIVE_EDGE_MINIMAX.md",
     "docs/0.28/20261109_R14_P7_CERTIFICATE_GAP_AND_MATCHING_CYCLES.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
@@ -993,6 +995,7 @@
     "scripts/cuberev-observation/audit_r14_p72_alternate_tiebreak_all_495.py",
     "scripts/cuberev-observation/audit_r14_p72_five_six_fewest_branch_stress.py",
     "scripts/cuberev-observation/audit_r14_p72_t_tree_theorem.py",
+    "scripts/cuberev-observation/audit_r14_p73_all_792_five_edge_exact.py",
     "scripts/cuberev-observation/audit_r14_p7_certificates.py",
     "scripts/cuberev-observation/audit_r14_p7_five_six_lookahead.py",
     "scripts/cuberev-observation/audit_r14_p7_lookahead.py",
@@ -1048,6 +1051,7 @@
     "scripts/cuberev-observation/robust_bad_pair_hypergraph.py",
     "scripts/cuberev-observation/robust_observation.py",
     "scripts/cuberev-observation/run_b6_41_mitm.sh",
+    "scripts/cuberev-observation/search_r14_p73_five_edge_counterexample.py",
     "scripts/cuberev-observation/sensor_symmetry.py",
     "scripts/cuberev-observation/solve_orbit_pool_milp.py",
     "scripts/cuberev-observation/solve_sampled_milp.py",
@@ -1144,6 +1148,7 @@
     "scripts/cuberev-observation/verify_obstruction_phase.py",
     "scripts/cuberev-observation/verify_r14_p72_alternate_tiebreak.py",
     "scripts/cuberev-observation/verify_r14_p72_t_tree_theorem.py",
+    "scripts/cuberev-observation/verify_r14_p73_24_orbit_independent_exact.py",
     "scripts/cuberev-observation/verify_r14_p7_certificates.py",
     "scripts/cuberev-observation/verify_r14_p7_lookahead.py",
     "scripts/cuberev-observation/verify_sensor_orbits.py",
@@ -4805,5 +4810,28 @@
     "drive_all495_tiebreak": "https://drive.google.com/file/d/1B08RQqXb9MY5UYMr5ejaqRuD8Xe1V61z/view",
     "drive_paper_B_D05": "https://drive.google.com/file/d/1nhuCgr9mvCR86C8ocEB1HDoPgKbC69hE/view",
     "remote_ci": "unverified"
+  },
+  "active_set_reconciliation_20261109_r14_p73_all_792_five_edge_exact": {
+    "stage": "0.28-R14-P7.3",
+    "date": "2026-11-09",
+    "paths": [
+      "scripts/cuberev-observation/search_r14_p73_five_edge_counterexample.py",
+      "scripts/cuberev-observation/audit_r14_p73_all_792_five_edge_exact.py",
+      "scripts/cuberev-observation/verify_r14_p73_24_orbit_independent_exact.py",
+      "docs/0.28/20261109_R14_P73_EXACT_ALL_792_FIVE_EDGE_MINIMAX.md",
+      ".github/workflows/cuberev-r14-p73-exact-all-792-five-edge.yml"
+    ],
+    "exact": "All C(12,5)=792 actual five-edge source-type sets, each parity/flip fixed 960 legal oriented states, complete Bellman D-1 impossible plus explicit one-step policy D and correct state replay all 792x960=760320. Exact histogram D5=12, D6=672, D7=108. Two-step max-leaf also reaches same exact D.",
+    "second_implementation": "Standalone direct frozenset complete AND-OR D-1 impossibility, one-step policy and 960 initial state decoder for all 24 source color graph orbit representatives, 23040 start-state replays; orbit sizes 24(12), 48(10), 12(2), covering 792 type sets.",
+    "scope_limits": "KNOWN residual edge permutation/flip parity, edge-only single facelet queries. Full dual edge/corner physical P48 horizon still 18..21 unresolved. Full 48 graph automorphisms not asserted as physical corner model symmetries. Independent novelty priority not established. New remote CI green unverified.",
+    "source_drive": "https://drive.google.com/file/d/1MTPbp7YOjdiFZXl1p3hqlH6Bw46HAo9P/view",
+    "source_sha256": "24c05f7c01ef1cfbee5be7fbd13b74029896652a779f3159d652ca16c15144d5",
+    "all792_exact_receipt": "https://drive.google.com/file/d/1N8NL_7I9G3CaMDT9ZIGcOvrKH5YKiVyT/view",
+    "all792_exact_sha256": "161ef71a942bb2cda7b9e1dc72eedafc75887fea75da2bc74f6a647d2e83ae83",
+    "independent_source": "https://drive.google.com/file/d/1pT84uoLhT4vWuq9nE4DMkS_iRulQP67n/view",
+    "independent_receipt": "https://drive.google.com/file/d/1AL7ueykQOzENJHjjykfSDZi0ghtaKgqR/view",
+    "theorem": "https://drive.google.com/file/d/1TCVxJATT3W5q1nFWHr7Oj3HXJ6helpoK/view",
+    "paper_B_D06": "https://drive.google.com/file/d/1n8_ceO4JWRnBPzEGWV5WD2aOawcIgMEF/view",
+    "remote_ci": "pending"
   }
 }
