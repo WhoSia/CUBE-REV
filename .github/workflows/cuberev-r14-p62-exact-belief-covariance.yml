@@ -1,0 +1,36 @@
+name: CUBE-REV R14-P6.2 exact belief covariance and inverse policy
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p62_exact_belief_covariance.py'
+      - 'docs/0.28/20261109_R14_P62_FULL_COVARIANT_BELIEF_QUOTIENT.md'
+      - '.github/workflows/cuberev-r14-p62-exact-belief-covariance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-covariant-miniature:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Execute standalone full belief covariance, canonical AND-OR and inverse policy transport
+        run: |
+          python scripts/cuberev-observation/audit_r14_p62_exact_belief_covariance.py > /tmp/r14-p62.json
+          python -c 'import json;d=json.load(open("/tmp/r14-p62.json"));assert d["result"]=="R14_P62_EXACT_ORBIT_COVARIANCE_AND_POLICY_TRANSPORT_PASS" and d["legal_states"]==648 and d["all_legal_spatial_group_elements"]==648 and d["all_query_actions"]==54 and d["full_successor_covariance_action_checks"]==153090 and d["complete_decoder_leaves_replayed"]==648 and d["all_policy_bellman_values_match_canonical"]==315 and d["all_original_query_inversions_verified"]==315 and d["genuine_equal_population_nonisomorphic_pair"]["population"]==36 and d["population_alias_is_spatially_equivalent"] and d["full_prior_minimax_depth4"];print("R14_P62_FULL_COVARIANCE_AND_POLICY_TRANSPORT_PASS")'
+      - name: Preserve exact read-only finite execution receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p62-exact-covariance-receipt
+          path: /tmp/r14-p62.json
+          retention-days: 30
