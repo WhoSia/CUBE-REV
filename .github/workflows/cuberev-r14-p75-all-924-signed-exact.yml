@@ -1,0 +1,88 @@
+name: CUBE-REV R14-P7.5 Exact 924 Six-Edge Residuals and Signed Color Transport
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p74_six_edge_*.py'
+      - 'scripts/cuberev-observation/audit_r14_p75_*.py'
+      - 'scripts/cuberev-observation/verify_r14_p75_*.py'
+      - 'docs/0.28/20261109_R14_P75_COMPLETE_SIX_EDGE_924_EXACT_MINIMAX.md'
+      - '.github/workflows/cuberev-r14-p75-all-924-signed-exact.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-30-orbit-lower-and-924-transport-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Full 30 representative upper policies and 345600 actual target replays
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p74_six_edge_orbit_policy.py 30 > /tmp/r14-p75-all-upper.log
+      - name: Recompute original first 12 exact AND-OR lower certificates
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p74_six_edge_exact_representatives.py 12 > /tmp/r14-p75-original12.log
+      - name: Resume exact courts 13,14,16-20
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p75_resume_exact_lower.py 120 8 13 > /tmp/r14-p75-stage-A.log
+          cp R14_P75_RESUMED_LOWER_PARTIAL_RECEIPT.json R14_P75_STAGE_A_LOWER_RECEIPT.json
+      - name: Exact courts 21-30
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p75_resume_exact_lower.py 120 10 21 > /tmp/r14-p75-stage-B.log
+          cp R14_P75_RESUMED_LOWER_PARTIAL_RECEIPT.json R14_P75_STAGE_B_LOWER_RECEIPT.json
+      - name: Last 9-observation exact case 15 after initial limited-time timeout
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p75_resume_exact_lower.py 120 1 15 > /tmp/r14-p75-stage-C.log
+          cp R14_P75_RESUMED_LOWER_PARTIAL_RECEIPT.json R14_P75_STAGE_C_LOWER_RECEIPT.json
+      - name: Prove all 48 signed color actions and produce 924 full decision-tree transports
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p75_signed_color_transport.py > /tmp/r14-p75-signed.log
+          python verify_r14_p75_all_924_exact_and_transport.py > /tmp/r14-p75-924-exact.log
+      - name: Independently check all 10644480 transported states as full legal word sets
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p75_all_924_full_state_bijections.py > /tmp/r14-p75-bijection.log
+          python - <<'PY'
+          import json
+          x=json.load(open('R14_P75_ALL_924_EXACT_MINIMAX_RECEIPT.json'))
+          y=json.load(open('R14_P75_INDEPENDENT_ALL_924_STATE_BIJECTIONS_RECEIPT.json'))
+          assert x['result']=='R14_P75_ALL_924_EXACT_MINIMAX_COVARIANT_COURT_PASS'
+          assert x['exact_representative_lower_proofs']==30
+          assert x['exact_minimax_histogram']=={'7':20,'8':832,'9':72}
+          assert len(x['signed_source_query_transport_witnesses'])==924
+          assert y['result']=='R14_P75_INDEPENDENT_ALL_924_FULL_STATE_SET_BIJECTIONS_PASS'
+          assert y['full_legal_start_states_independently_enumerated_and_transported']==10644480
+          assert y['type_sets']==924
+          print('R14_P75_FULL_EXACT_924_SIGNED_TRANSPORT_PASS')
+          PY
+      - name: Preserve reproducibility artifacts; do not commit from CI
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p75-all-924-six-edge-exact-signed-transport
+          path: |
+            scripts/cuberev-observation/R14_P74_SIX_EDGE_ORBIT_POLICY_RECEIPT.json
+            scripts/cuberev-observation/R14_P74_SIX_EDGE_EXACT_REPRESENTATIVES_RECEIPT.json
+            scripts/cuberev-observation/R14_P75_STAGE_A_LOWER_RECEIPT.json
+            scripts/cuberev-observation/R14_P75_STAGE_B_LOWER_RECEIPT.json
+            scripts/cuberev-observation/R14_P75_STAGE_C_LOWER_RECEIPT.json
+            scripts/cuberev-observation/R14_P75_SIGNED_COLOR_TRANSPORT_RECEIPT.json
+            scripts/cuberev-observation/R14_P75_ALL_924_EXACT_MINIMAX_RECEIPT.json
+            scripts/cuberev-observation/R14_P75_INDEPENDENT_ALL_924_STATE_BIJECTIONS_RECEIPT.json
+            /tmp/r14-p75-*.log
+          retention-days: 30
