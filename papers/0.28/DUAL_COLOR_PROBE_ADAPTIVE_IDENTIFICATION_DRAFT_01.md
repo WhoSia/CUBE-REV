@@ -39,7 +39,7 @@ The possible case-specific scientific contribution is: (i) a *complete exact* pr
 
 For the upper bound, the existing P48 construction reads 21 distinct initial spatial edge facelets and fourteen distinct initial corner facelets (two at each of seven corner positions, using corner chirality and the corner-twist constraint to infer the eighth). Every queried pair is reachable using a known legal turn word. The reconstruction uses actual observed colors and known legal turn actions, not ground-truth cubie labels. Total 21 frames; thirty-five *distinct* facelet positions are read, even though both sensors output 42 symbols across 21 frames.
 
-For the lower bound, the existing physical P48 certificate enumerates all 10,626 four-edge-facelet omission patterns at the proposed critical 20-read boundary and provides legal state collisions. The released paper must attach the exact script, witnesses and fresh remote execution receipt. The present D0.1 points to the source lineage rather than reproducing that certificate here; therefore do not circulate this document as a standalone proof of the fixed minimum.
+For the lower bound, the existing physical P48 certificate enumerates all 10,626 four-edge-facelet omission patterns at the proposed critical 20-read boundary and provides legal state collisions. The released paper must attach the exact script, witnesses and fresh remote execution receipt. The present D0.3 points to the source lineage rather than reproducing that certificate here; therefore do not circulate this document as a standalone proof of the fixed minimum.
 
 ## 4. Conditional adaptive feedback and restricted lower bounds
 
