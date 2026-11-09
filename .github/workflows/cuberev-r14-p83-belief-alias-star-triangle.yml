@@ -1,0 +1,91 @@
+name: CUBE-REV R14-P8.3 physical belief alias and three-edge adversary
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p83_*.py'
+      - 'scripts/cuberev-observation/verify_r14_p83_*.py'
+      - 'docs/0.28/20261109_R14_P83_PHYSICAL_BELIEF_ALIASES_AND_THREE_EDGE_NO_GO.md'
+      - '.github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-finite-falsification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 12-state exhaustive negative control and 648-state physical equal-count non-isomorphism
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p83_suffix_equivalence.py > /tmp/p83-negative.log
+          python audit_r14_p83_648_prefix_invariant.py > /tmp/p83-counterexample.log
+          python verify_r14_p83_independent_physical_counterexample.py > /tmp/p83-independent.log
+          python - <<'PY'
+          import json
+          a=json.load(open('R14_P83_SUFFIX_BELIEF_EQUIVALENCE_RECEIPT.json'))
+          b=json.load(open('R14_P83_648_MIXED_HISTORY_INVARIANT_RECEIPT.json'))
+          c=json.load(open('R14_P83_INDEPENDENT_PHYSICAL_COUNTEREXAMPLE_RECEIPT.json'))
+          assert a['actual_realizable_beliefs']==43 and not a['any_nonisomorphic_under_query_relabeling_invariant']
+          assert b['complete_state_count']==648 and b['realizable_distinct_posterior_masks']==12500
+          assert b['four_sector_counterexample_found']
+          assert b['four_sector_counterexample']['matching_four_parity_counts']==[6,1,1,3,3]
+          assert b['four_sector_counterexample']['A']['optimal_remaining_depth']==1
+          assert b['four_sector_counterexample']['B']['optimal_remaining_depth']==1
+          assert c['different_all_query_partition_multisets'] and c['same_four_sector_counts']
+          print('R14_P83_TRUE_PHYSICAL_FOUR_SECTOR_BELIEF_ALIAS_PASS')
+          PY
+      - name: Exact physical 648-state minimax and corner-only tradeoff
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p83_physical_648_exact_andor.py > /tmp/p83-648-exact.log
+          python audit_r14_p83_cornertime_tradeoff.py > /tmp/p83-corners.log
+          python - <<'PY'
+          import json
+          a=json.load(open('R14_P83_PHYSICAL_648_EXACT_ANDOR_RECEIPT.json'))
+          b=json.load(open('R14_P83_CORNER_ONLY_TIME_TRADEOFF_RECEIPT.json'))
+          assert a['exact_root_win_depths']=={'2':False,'3':False,'4':True}
+          assert a['decoder_replays']==648 and a['depth_histogram']=={'3':24,'4':624}
+          assert len(a['root_adversarial_depth_minus_one'])==54
+          assert all(v is False for v in b['extra_corner_only_query_budget_results'].values())
+          print('R14_P83_PHYSICAL_648_EXACT_FOUR_AND_CORNER_FREE_NO_GO_PASS')
+          PY
+      - name: Exact all 220 graph trios and independently replay 2304 adversarial collisions
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p83_all_220_three_edge_barriers.py > /tmp/p83-220-exact.log
+          python verify_r14_p83_all_220_independent_frozenset.py > /tmp/p83-220-independent.log
+          python audit_r14_p83_384_adversarial_edge_witnesses.py > /tmp/p83-adversary.log
+          python verify_r14_p83_384_witness_replay.py > /tmp/p83-adversary-independent.log
+          python - <<'PY'
+          import json
+          a=json.load(open('R14_P83_ALL_220_THREE_EDGE_BARRIER_RECEIPT.json'))
+          b=json.load(open('R14_P83_INDEPENDENT_ALL_220_RECEIPT.json'))
+          c=json.load(open('R14_P83_384_ROOT_ADVERSARIES_RECEIPT.json'))
+          d=json.load(open('R14_P83_INDEPENDENT_384_ADVERSARY_RECEIPT.json'))
+          assert a['triples_that_require_at_least_three_in_both_parities']==32
+          assert a['triples_with_two_read_solution_in_any_parity']==188
+          assert b['hard_triples']==32 and b['triples']==220
+          assert c['first_query_adversary_certificates']==384 and c['explicit_second_query_collision_pairs']==2304
+          assert d['verified_second_query_collision_pairs']==2304
+          print('R14_P83_STAR_TRIANGLE_IFF_AND_384_CERTIFICATES_PASS')
+          PY
+      - name: Archive research evidence without CI-authored commits
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p83-four-cycle-proof-court
+          path: |
+            scripts/cuberev-observation/R14_P83_*_RECEIPT.json
+            scripts/cuberev-observation/R14_P83_384_ROOT_ADVERSARIES_RECEIPT.json
+            /tmp/p83-*.log
+          retention-days: 30
