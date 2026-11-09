@@ -1,0 +1,92 @@
+name: CUBE-REV R14-P8.6 Physical Global 20-Frame Upper and P8.7 Restricted Lower
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p86_constructive_full_20_frame.py'
+      - 'scripts/cuberev-observation/verify_r14_p86_*.py'
+      - 'scripts/cuberev-observation/verify_r14_p87_12_first_family_lower20.py'
+      - 'scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py'
+      - 'docs/0.28/20261109_R14_P86_CONSTRUCTIVE_20_FRAME_ADAPTIVE_UPPER.md'
+      - 'docs/0.28/20261109_R14_P87_FIXED_FIRST_EDGE_SCAN_20_LOWER.md'
+      - '.github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-20-frame-computational-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Exhaustive 867 canonical first-color count vectors and 39 exact decision-game roots
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p86_constructive_full_20_frame.py > /tmp/r14-p86-39-orbit.log
+      - name: Independent physical 18-HTM sample-state decoder checks
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p86_physical_20frame_routing.py > /tmp/r14-p86-physical.log
+      - name: All 2592 hard genuine legal cube states; delayed parity after frame 14
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p86_hard_physical_states.py > /tmp/r14-p86-hard.log
+      - name: Independently rebuild 3D corner chirality and all 576 routed pairs
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p86_independent_corner_route_axioms.py > /tmp/r14-p86-independent-geometry.log
+      - name: Restricted 12-first strategy lower bound, independent exact parity-oracle frozenset
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p87_12_first_family_lower20.py > /tmp/r14-p87-fixed-prefix-lower.log
+      - name: Check exact claims; do not equate restricted and global lower
+        working-directory: scripts/cuberev-observation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          def read(name):return json.loads(Path(name).read_text())
+          a=read('R14_P86_CONSTRUCTIVE_20_FRAME_POLICY_RECEIPT.json')
+          b=read('R14_P86_PHYSICAL_18HTM_POLICY_REPLAY_RECEIPT.json')
+          c=read('R14_P86_HARD_2592_PHYSICAL_REPLAY_RECEIPT.json')
+          d=read('R14_P86_INDEPENDENT_CORNER_ROUTE_RECEIPT.json')
+          e=read('R14_P87_INDEPENDENT_12_FIRST_HARD_LOWER_RECEIPT.json')
+          assert a['result']=='R14_P86_CONSTRUCTIVE_20_FRAME_EDGE_CORNER_PARITY_DELAYED_POLICY_PASS'
+          assert (a['all_realisable_first_edge_color_count_vectors'],a['count_vector_orbits'])==(867,39)
+          assert a['all_867_canonical_color_count_profiles_full_bijection_and_decoder_replays']==609376
+          assert a['max_full_paired_frames']==20
+          assert a['hard_orbit_parity_delayed_after_two_reads_then_six_possible']
+          assert b['result']=='R14_P86_PHYSICAL_18HTM_CORNER_PARITY_20_FRAME_REPLAY_PASS'
+          assert b['independent_physical_18HTM_states_checked']==2001 and b['max_physical_frames']<=20
+          assert b['all_576_legal_edge_corner_pair_query_routes']==576
+          assert c['result']=='R14_P86_HARD_ORBIT_ALL_2592_GENUINE_P48_STATES_20_FRAME_PASS'
+          assert c['independently_constructed_legal_full_cube_states']==2592 and c['max_frames']<=20
+          assert d['result']=='R14_P86_INDEPENDENT_CORNER_CHIRALITY_AND_576_ROUTES_PASS'
+          assert d['corner_ordered_pair_codes']==24 and d['all_576_edge_corner_spatial_pairs_reachable']==576
+          assert e['result']=='R14_P87_INDEPENDENT_FROZENSET_PARITY_ORACLE_LOWER20_FOR_12_FIRST_SCAN_PASS'
+          assert e['each_parity_seven_mate_queries_impossible'] and e['each_parity_eight_mate_queries_sufficient']
+          print('R14_P86_GLOBAL_UPPER_20_AND_RESTRICTED_LOWER_20_TESTS_PASS')
+          print('Do not conclude global h_adaptive=20; 18<=h_adaptive<=20.')
+          PY
+      - name: Archive read-only computational proof receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p86-constructive-20-frame-proof
+          path: |
+            scripts/cuberev-observation/R14_P86_CONSTRUCTIVE_20_FRAME_POLICY_RECEIPT.json
+            scripts/cuberev-observation/R14_P86_PHYSICAL_18HTM_POLICY_REPLAY_RECEIPT.json
+            scripts/cuberev-observation/R14_P86_HARD_2592_PHYSICAL_REPLAY_RECEIPT.json
+            scripts/cuberev-observation/R14_P86_INDEPENDENT_CORNER_ROUTE_RECEIPT.json
+            scripts/cuberev-observation/R14_P87_INDEPENDENT_12_FIRST_HARD_LOWER_RECEIPT.json
+            /tmp/r14-p86-*.log
+            /tmp/r14-p87-*.log
+          retention-days: 30
