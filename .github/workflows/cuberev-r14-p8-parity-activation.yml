@@ -1,0 +1,72 @@
+name: CUBE-REV R14-P8.1 Coupled Parity Activation and Exact Suffix
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p8_parity_activation.py'
+      - 'scripts/cuberev-observation/verify_r14_p8_joint_suffix.py'
+      - 'scripts/cuberev-observation/verify_r14_p8_p48_geometry.py'
+      - 'scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py'
+      - 'scripts/cuberev-observation/audit_r14_p52_two_frame_p48_posteriors.py'
+      - 'docs/0.28/20261109_R14_P8_DELAYED_COUPLED_PARITY_ACTIVATION.md'
+      - '.github/workflows/cuberev-r14-p8-parity-activation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-parity-rank-one-and-p48-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compute full 12-edge and 8-corner parity-stratified posterior counts
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p8_parity_activation.py > /tmp/r14-p8-dp.log
+      - name: Independent twelve-state mixed paired-sensor minimax and parity-oracle comparison
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p8_joint_suffix.py > /tmp/r14-p8-coupled.log
+      - name: Regression on genuine P48 physical slot geometry (P5.1/P5.2 dependency explicit)
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p8_p48_geometry.py > /tmp/r14-p8-p48.log
+      - name: Assert exact evidence gates without conflating with a full 20-frame theorem
+        working-directory: scripts/cuberev-observation
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('R14_P8_DELAYED_PARITY_ACTIVATION_RECEIPT.json'))
+          b=json.load(open('R14_P8_2E2C_COUPLED_SUFFIX_RECEIPT.json'))
+          c=json.load(open('R14_P8_P48_GEOMETRY_REGRESSION_RECEIPT.json'))
+          assert a['result']=='R14_P8_DELAYED_PARITY_ACTIVATION_DP_PASS'
+          assert a['full_group_states']==43252003274489856000
+          assert a['arbitrary_partial_prefix_balance_tests']==48
+          assert a['explicit_involution_samples']=={'edge':72,'corner':72}
+          assert b['result']=='R14_P8_2E2C_COUPLED_PARITY_EXACT_MINIMAX_PASS'
+          assert b['legal_suffix_states']==12 and b['optimal_worst_paired_reads']==2
+          assert b['free_parity_oracle_optimal_depths']==[1,1]
+          assert b['optimal_policy_all_state_replays']==12
+          assert c['result']=='R14_P8_P48_DEPENDENT_GEOMETRY_DP_REGRESSION_PASS'
+          assert c['new_dp_vs_existing_dp_state_prefix_comparisons']==30
+          print('R14_P8_PARITY_CORRELATION_SUPPORT_GATE_AND_ORACLE_GAP_PASS')
+          PY
+      - name: Preserve run-local evidence without repository write access
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p8-exact-parity-activation
+          path: |
+            scripts/cuberev-observation/R14_P8_DELAYED_PARITY_ACTIVATION_RECEIPT.json
+            scripts/cuberev-observation/R14_P8_2E2C_COUPLED_SUFFIX_RECEIPT.json
+            scripts/cuberev-observation/R14_P8_P48_GEOMETRY_REGRESSION_RECEIPT.json
+            /tmp/r14-p8-*.log
+          retention-days: 30
