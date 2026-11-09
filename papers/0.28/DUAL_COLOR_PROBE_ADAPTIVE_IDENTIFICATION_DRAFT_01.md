@@ -1,6 +1,6 @@
 # WORKING PAPER B — Exact Color Identification and Group-Equivariant Active Observation of the Rubik Cube
 
-**Research draft D0.2 · 2026-11-06 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
+**Research draft D0.3 · 2026-11-09 · NOT SUBMISSION-READY.** Mathematical finite-case paper; no claims of human-cognitive mechanisms, RGB device accuracy or HTM motor-cost optimality. The original adaptive horizon is unresolved.
 
 ## Abstract
 
@@ -81,6 +81,18 @@ After reading one spatial facelet on each of `k` distinct original-spatial edge 
 The exception is one extra orbit beyond `21*19=399`, caused by the matching edge/corner permutation-parity condition when each sector has exactly two untouched cubies. In a natural mixed two-frame prefix `k=l=2`, there are **35** third-query orbits, not 576; orbit sizes are `1:24, 18:4, 20:6, 360:1`. A P48 legal-generator and 576-pair BFS certifies **all 77** valid `(k,l)` profiles including the exceptional 400-orbit case. See [exact proof and declared P48 geometry dependency](../../docs/0.28/20261106_R14_P54_MIXED_PREFIX_STABILIZER_ORBITS.md). This orbit theorem is a safe subgroup action-pruning result, not a maximal color-observation belief quotient, not a minimax-depth calculation, and not a literature-first priority claim.
 
 **Specific prior-art warning.** A public 2015 problem about minimal facelets needed to determine a scrambled cube already discusses sticker-color scanning and gives a 39-sticker *upper bound*, explicitly not an optimum; a 2016 correction observes that 14 selected corner stickers can determine the last corner. The original question and informal answers are not a peer-reviewed proof of our fixed paired-probe 21-frame theorem, but they establish that both sticker minimization and last-corner parity deduction have prior discussion. See https://puzzling.stackexchange.com/questions/22848/minimum-number-of-stickers-to-inspect-in-a-rubik-cube-to-define-a-scrambled-posi . In the manuscript, distinguish their sticker count (which includes center-color calibration) from our 21 **paired frames** and 35 distinct moving facelet slots with fixed known centers. Do not present the general idea of inferring an unread corner as new.
+
+## 6B. R14-P6.2 — an exact belief quotient preserving policies, not just populations (2026-11-09)
+
+The parity-matched miniature model with three oriented edges and three oriented corners has 648 legal states and 54 freely routable paired-facelet queries. In this deliberately smaller model, all 648 legal *spatial* cubie transformations act on full hidden states, on all paired queries, and on literal two-color observations with exact covariance
+
+    g(B_(q,y)) = (gB)_(gq,y).
+
+Therefore the minimum 648-bit transformed belief is a **sound** canonical representative when accompanied by a transporting group element; any winning query for the representative is carried back to the original state by the inverse transformation. An independent finite checker reconstructed the full 963-node optimal depth-four policy without external certificate dependencies, verified every one of the 648 decoder leaves, checked 153,090 complete successor partition transports, and confirmed both exact Bellman values and inversely transported winning policies for 315 nonterminal beliefs. It inspected 2,007 distinct beliefs and enumerated 49 associated exact group orbits. These are finite proof-audit results in an **abstract miniature**, not numerical progress from the full 20-frame search.
+
+A prior caution is sharpened. P6's two realized 108-candidate belief sets give different child-count partitions at a *fixed* next query, but P6.2 shows they **are related by a legal spatial query permutation**. They therefore do **not** demonstrate different global decision-tree classes. The newer auditable negative control consists of two reachable **36-candidate** beliefs. Across all 54 possible next queries, their multisets of sorted nonempty color-branch cardinalities differ. As this multiset must be invariant under any exact query-permutation/output-relabeling observation isomorphism, these two beliefs are genuinely nonisomorphic. Their optimal depths are not claimed to differ.
+
+See [P6.2 proof, scope and falsification ledger](../../docs/0.28/20261109_R14_P62_FULL_COVARIANT_BELIEF_QUOTIENT.md) and [standalone exact decision-tree covariance court](../../scripts/cuberev-observation/audit_r14_p62_exact_belief_covariance.py). A general sound full-P48 canonical constraint signature and a universal depth-20 or depth-21 certificate remain **OPEN**. The usual generic group-action argument is established prior mathematics, not a standalone originality claim here.
 
 ## 7. Verification contracts
 
