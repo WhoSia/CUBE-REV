@@ -157,6 +157,7 @@
     ".github/workflows/cuberev-r14-p73-exact-all-792-five-edge.yml",
     ".github/workflows/cuberev-r14-p74-six-edge-partial-exact.yml",
     ".github/workflows/cuberev-r14-p75-all-924-signed-exact.yml",
+    ".github/workflows/cuberev-r14-p8-parity-activation.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -499,6 +500,7 @@
     "docs/0.28/20261109_R14_P74_SIX_EDGE_924_GRAPH_ORBITS_AND_EXACT_PARTIAL_COURT.md",
     "docs/0.28/20261109_R14_P75_COMPLETE_SIX_EDGE_924_EXACT_MINIMAX.md",
     "docs/0.28/20261109_R14_P7_CERTIFICATE_GAP_AND_MATCHING_CYCLES.md",
+    "docs/0.28/20261109_R14_P8_DELAYED_COUPLED_PARITY_ACTIVATION.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -1007,6 +1009,7 @@
     "scripts/cuberev-observation/audit_r14_p7_certificates.py",
     "scripts/cuberev-observation/audit_r14_p7_five_six_lookahead.py",
     "scripts/cuberev-observation/audit_r14_p7_lookahead.py",
+    "scripts/cuberev-observation/audit_r14_p8_parity_activation.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
@@ -1162,6 +1165,8 @@
     "scripts/cuberev-observation/verify_r14_p75_all_924_full_state_bijections.py",
     "scripts/cuberev-observation/verify_r14_p7_certificates.py",
     "scripts/cuberev-observation/verify_r14_p7_lookahead.py",
+    "scripts/cuberev-observation/verify_r14_p8_joint_suffix.py",
+    "scripts/cuberev-observation/verify_r14_p8_p48_geometry.py",
     "scripts/cuberev-observation/verify_sensor_orbits.py",
     "scripts/cuberev-observation/verify_short_support_phase.py",
     "scripts/cuberev-observation/verify_slice_to_htm.py",
@@ -4894,5 +4899,29 @@
     "theorem": "https://drive.google.com/file/d/1qq-YLMKkf8dn2jwtkvTMthKXbElg672c/view",
     "paper_B_D07": "https://drive.google.com/file/d/1vl2HDCa8wpoN2RX1nDPvUBFGqXKms6ET/view",
     "remote_ci": "pending"
+  },
+  "active_set_reconciliation_20261109_r14_p8_delayed_parity_activation": {
+    "stage": "0.28-R14-P8.1",
+    "date": "2026-11-09",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p8_parity_activation.py",
+      "scripts/cuberev-observation/verify_r14_p8_joint_suffix.py",
+      "scripts/cuberev-observation/verify_r14_p8_p48_geometry.py",
+      "docs/0.28/20261109_R14_P8_DELAYED_COUPLED_PARITY_ACTIVATION.md",
+      ".github/workflows/cuberev-r14-p8-parity-activation.yml"
+    ],
+    "exact_theorem": "For fixed arbitrary partial edge/corner spatial facelet color histories, if one sector has at least two fully unqueried cubie positions then its even/odd full permutation-completion counts are equal by an explicit source-piece swap involution. N=E0*C0+E1*C1=(Etot*Ctot+DeltaE*DeltaC)/2. Therefore nonzero parity interaction term requires at least 11 touched edge positions and 7 touched corner positions (necessary, not sufficient).",
+    "proof_dependency": "Main statement elementary combinatorial involution, verified on full 12E8C masked matching DP for 48 diverse partial histories, plus 72 direct sign-flipped word mappings each sector.",
+    "small_joint": "Explicit 2-unread-edge + 2-unread-corner coupled 12-state suffix: 24 paired choices, exact AND-OR depth 2, 12 of 12 decoded; revealing common parity gratis gives exact depths1/1 for both 6-state strata.",
+    "physical_geometry": "30 actual 3D-derived P48 mixed prefix count comparisons of own matching DP to existing P5.2 parity DP, no independent P48 geometry and no global 20-frame solution.",
+    "scope": "Counts for fixed observation position/color events factor when either sector parity balanced, not general independence of adaptively selected query transcripts or of hidden cubie permutations. Prior group theory priority unknown. h_adaptive 18..21 OPEN.",
+    "drive_source": "https://drive.google.com/file/d/1q-KGIStCrKqTLqqNKpQ9JxzoQQRVDsz8/view",
+    "drive_suffix_source": "https://drive.google.com/file/d/1yVnvIWqy9SesuERL1tbBjIVMHpf803Qa/view",
+    "drive_p48_regression": "https://drive.google.com/file/d/134gKTLQ2-G2qVm3_oVUSvJBOxofqeFqE/view",
+    "drive_dp_receipt": "https://drive.google.com/file/d/1USNY8XTQhKsYTgryF4ZXK9y-U1sArKer/view",
+    "drive_suffix_receipt": "https://drive.google.com/file/d/1IoDVf0NPugYYQQJnBkjDAvfG_PSqZ2ia/view",
+    "drive_p48_receipt": "https://drive.google.com/file/d/1yuq712wTn3s5FM_u8LMhFaMoJXeF-AtF/view",
+    "drive_theorem": "https://drive.google.com/file/d/1qIti24gTnfWb3uA1_Ui4jIG7VBW8wenW/view",
+    "new_ci_remote": "unverified"
   }
 }
