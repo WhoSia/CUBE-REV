@@ -1,0 +1,66 @@
+name: CUBE-REV R14-P7.4 Six-Edge 924 Graph Orbits and 12 Exact Lower Courts
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p74_*.py'
+      - 'scripts/cuberev-observation/verify_r14_p74_*.py'
+      - 'docs/0.28/20261109_R14_P74_SIX_EDGE_924_GRAPH_ORBITS_AND_EXACT_PARTIAL_COURT.md'
+      - '.github/workflows/cuberev-r14-p74-six-edge-partial-exact.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce-six-edge-graph-and-bounded-exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Directly replay 30 representative policies on all 345600 legal starts
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p74_six_edge_orbit_policy.py 30 | tee /tmp/r14-p74-all-upper.log
+      - name: Recompute 12 of 30 complete AND-OR impossibility courts
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p74_six_edge_exact_representatives.py 12 | tee /tmp/r14-p74-12-lower.log
+      - name: Independent 924 orbit enumeration and strict evidence boundary
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p74_six_edge_orbit_and_eight_lower.py | tee /tmp/r14-p74-independent.log
+          python - <<'PY'
+          import json
+          u=json.load(open('R14_P74_SIX_EDGE_ORBIT_POLICY_RECEIPT.json'))
+          e=json.load(open('R14_P74_SIX_EDGE_EXACT_REPRESENTATIVES_RECEIPT.json'))
+          v=json.load(open('R14_P74_INDEPENDENT_GRAPH_CENSUS_RECEIPT.json'))
+          assert u['orbit_count']==30 and u['all_924_six_edge_types']==924
+          assert u['representatives_computed']==30 and u['complete_representative_upper']
+          assert sum(r['replayed_states'] for r in u['rows'])==345600
+          assert e['representatives_checked']==12 and e['all_checked_lower_infeasible']
+          assert v['graph_orbits']==30 and v['upper_policy_actual_target_replays']==345600
+          assert v['exact_lower_representatives_verified_from_receipt']==12
+          assert v['orbit_weighted_upper_depths']=={'7':20,'8':832,'9':72}
+          print('R14_P74_30_REP_UPPER_AND_12_REP_EXACT_LOWER_PASS')
+          print('NOTE: 18 representative exact lower courts remain unverified')
+          PY
+      - name: Read-only raw reproductions
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p74-30-upper-12-exact-lower-partial
+          path: |
+            scripts/cuberev-observation/R14_P74_SIX_EDGE_ORBIT_POLICY_RECEIPT.json
+            scripts/cuberev-observation/R14_P74_SIX_EDGE_EXACT_REPRESENTATIVES_RECEIPT.json
+            scripts/cuberev-observation/R14_P74_INDEPENDENT_GRAPH_CENSUS_RECEIPT.json
+            /tmp/r14-p74-all-upper.log
+            /tmp/r14-p74-12-lower.log
+            /tmp/r14-p74-independent.log
+          retention-days: 30
