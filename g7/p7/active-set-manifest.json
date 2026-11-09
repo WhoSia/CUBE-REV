@@ -158,6 +158,7 @@
     ".github/workflows/cuberev-r14-p74-six-edge-partial-exact.yml",
     ".github/workflows/cuberev-r14-p75-all-924-signed-exact.yml",
     ".github/workflows/cuberev-r14-p8-parity-activation.yml",
+    ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -500,6 +501,7 @@
     "docs/0.28/20261109_R14_P74_SIX_EDGE_924_GRAPH_ORBITS_AND_EXACT_PARTIAL_COURT.md",
     "docs/0.28/20261109_R14_P75_COMPLETE_SIX_EDGE_924_EXACT_MINIMAX.md",
     "docs/0.28/20261109_R14_P7_CERTIFICATE_GAP_AND_MATCHING_CYCLES.md",
+    "docs/0.28/20261109_R14_P82_EXACT_P48_MIXED_PREFIX_SUCCESSOR_PARTITIONS.md",
     "docs/0.28/20261109_R14_P8_DELAYED_COUPLED_PARITY_ACTIVATION.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
@@ -1009,6 +1011,7 @@
     "scripts/cuberev-observation/audit_r14_p7_certificates.py",
     "scripts/cuberev-observation/audit_r14_p7_five_six_lookahead.py",
     "scripts/cuberev-observation/audit_r14_p7_lookahead.py",
+    "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p8_parity_activation.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
@@ -1165,6 +1168,7 @@
     "scripts/cuberev-observation/verify_r14_p75_all_924_full_state_bijections.py",
     "scripts/cuberev-observation/verify_r14_p7_certificates.py",
     "scripts/cuberev-observation/verify_r14_p7_lookahead.py",
+    "scripts/cuberev-observation/verify_r14_p82_12state_independent_suffix.py",
     "scripts/cuberev-observation/verify_r14_p8_joint_suffix.py",
     "scripts/cuberev-observation/verify_r14_p8_p48_geometry.py",
     "scripts/cuberev-observation/verify_sensor_orbits.py",
@@ -4923,5 +4927,26 @@
     "drive_p48_receipt": "https://drive.google.com/file/d/1yuq712wTn3s5FM_u8LMhFaMoJXeF-AtF/view",
     "drive_theorem": "https://drive.google.com/file/d/1qIti24gTnfWb3uA1_Ui4jIG7VBW8wenW/view",
     "new_ci_remote": "unverified"
+  },
+  "active_set_reconciliation_20261109_r14_p82_mixed_p48_successor": {
+    "stage": "0.28-R14-P8.2",
+    "date": "2026-11-09",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
+      "scripts/cuberev-observation/verify_r14_p82_12state_independent_suffix.py",
+      "docs/0.28/20261109_R14_P82_EXACT_P48_MIXED_PREFIX_SUCCESSOR_PARTITIONS.md",
+      ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml"
+    ],
+    "exact": "Full physical 3D P48 sticker orientation, five real color-consistent mixed histories including 10E6C full-read 12-state suffix, 11E7C partial-read 1,327,104-state case. 576 distinct paired next queries x 36 color branches each, all posterior counts exact via parity-matching DP, 2,880 per-query disjoint conservation tests pass.",
+    "best": "Initial 1,201,444,535,402,496,000; mixed two-partial 1,213,580,338,790,400; 10E6C 12-state suffix best max child 2; 11E7C solved full 1; 11E7C first-facelet partial 82,944.",
+    "correction_support": "Merely touching 11E/7C positions is necessary but insufficient for nonzero product DeltaE*DeltaC: last specified partial one-sticker-per-location profile has zero parity correlation across every one of its 576 next paired query outcome partitions; fully read 10E6C suffix produces 24 paired actions with at least one nonzero-correlation child.",
+    "independent": "Literal enumeration of all 12 parity-matched suffix states, fully rederiving P5.1 3D facelet order without importing P8.2 matching DP, reproduces sorted 36-color partitions on all 576 queries. SHA256 partition digest 1be8220e424192013fe87cdac4cc6079384ee51c5015bae161014d55ca45dd77.",
+    "limitations": "Only 1-step outcome cardinalities, not sound canonical Bellman quotient, 20-frame decoder or 21-frame universal lower. Full h_adaptive 18..21 OPEN. CI remote PASS unverified.",
+    "drive_source": "https://drive.google.com/file/d/1INZlAvqqKUp_iRtxqM9FV0Ntj2VoFiIW/view",
+    "drive_independent": "https://drive.google.com/file/d/1qDLc8iNMmGAHJqlsNRx_eb3b6NTKJlj9/view",
+    "drive_full_receipt": "https://drive.google.com/file/d/1uM7818QBMu-R-aLHgTYBxNh1W9gLjZYy/view",
+    "drive_independent_receipt": "https://drive.google.com/file/d/1VIkHsbj9ZArwyCTSfnVwp8y-pSasl6PQ/view",
+    "drive_proof": "https://drive.google.com/file/d/1PG_76pDkh87-8qgQ103J9-dKFHevyj_D/view",
+    "remote_ci": "unverified"
   }
 }
