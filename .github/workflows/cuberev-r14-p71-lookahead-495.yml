@@ -1,0 +1,69 @@
+name: CUBE-REV R14-P7.1 two-step lookahead 495-case exact court
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p7_lookahead.py'
+      - 'scripts/cuberev-observation/verify_r14_p7_lookahead.py'
+      - 'scripts/cuberev-observation/audit_r14_p7_five_six_lookahead.py'
+      - 'docs/0.28/20261109_R14_P71_TWO_STEP_LOOKAHEAD_ALL_495.md'
+      - '.github/workflows/cuberev-r14-p71-lookahead-495.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-495-and-full-state-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independently enumerate all 495 exact Bellman minima and two-step actions
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p7_lookahead.py > /tmp/r14-p71-lookahead.log
+          python verify_r14_p7_lookahead.py > /tmp/r14-p71-independent.log
+          grep -q R14_P7_INDEPENDENT_ALL_495_TWO_STEP_EXACT_MINIMAX_PASS /tmp/r14-p71-independent.log
+          python - <<'PY'
+          import json
+          d=json.load(open('R14_P7_ALL_495_LOOKAHEAD_RESULTS.json'))
+          assert d['all_four_edge_labels']==495
+          assert d['exact_hist']=={'3':72,'4':369,'5':54}
+          assert d['one_step_hist']=={'3':72,'4':249,'5':174}
+          assert d['two_step_hist']=={'3':72,'4':369,'5':54}
+          assert d['one_step_regret']=={'0':375,'1':120}
+          assert d['two_step_regret']=={'0':495}
+          assert d['two_step_better_cases']==120 and d['two_step_worse_cases']==0
+          print('R14_P71_495_COMPLETE_OPTIMAL_TWO_STEP_PASS')
+          PY
+      - name: Stress-test the two known hard five-/six-edge residual cases
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p7_five_six_lookahead.py > /tmp/r14-p71-six.log
+          python - <<'PY'
+          import json
+          d=json.load(open('R14_P7_FIVE_SIX_LOOKAHEAD_RESULTS.json'))
+          assert [r['legal_states'] for r in d['rows']]==[960,11520]
+          assert [r['lookahead_two_step_depth'] for r in d['rows']]==[7,9]
+          assert [r['all_start_states_replayed'] for r in d['rows']]==[960,11520]
+          print('R14_P71_5_6_EDGE_STRESS_PASS')
+          PY
+      - name: Archive reproducibility receipts; never write back to repository
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p71-complete-495-lookahead
+          path: |
+            scripts/cuberev-observation/R14_P7_ALL_495_LOOKAHEAD_RESULTS.json
+            scripts/cuberev-observation/R14_P7_FIVE_SIX_LOOKAHEAD_RESULTS.json
+            /tmp/r14-p71-lookahead.log
+            /tmp/r14-p71-independent.log
+            /tmp/r14-p71-six.log
+          retention-days: 30
