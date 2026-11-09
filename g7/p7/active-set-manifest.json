@@ -155,6 +155,7 @@
     ".github/workflows/cuberev-r14-p71-lookahead-495.yml",
     ".github/workflows/cuberev-r14-p72-t-tree-fewest-outcomes.yml",
     ".github/workflows/cuberev-r14-p73-exact-all-792-five-edge.yml",
+    ".github/workflows/cuberev-r14-p74-six-edge-partial-exact.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -494,6 +495,7 @@
     "docs/0.28/20261109_R14_P71_TWO_STEP_LOOKAHEAD_ALL_495.md",
     "docs/0.28/20261109_R14_P72_T_TREE_FAILURE_AND_TIEBREAK_REPAIR.md",
     "docs/0.28/20261109_R14_P73_EXACT_ALL_792_FIVE_EDGE_MINIMAX.md",
+    "docs/0.28/20261109_R14_P74_SIX_EDGE_924_GRAPH_ORBITS_AND_EXACT_PARTIAL_COURT.md",
     "docs/0.28/20261109_R14_P7_CERTIFICATE_GAP_AND_MATCHING_CYCLES.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
@@ -996,6 +998,8 @@
     "scripts/cuberev-observation/audit_r14_p72_five_six_fewest_branch_stress.py",
     "scripts/cuberev-observation/audit_r14_p72_t_tree_theorem.py",
     "scripts/cuberev-observation/audit_r14_p73_all_792_five_edge_exact.py",
+    "scripts/cuberev-observation/audit_r14_p74_six_edge_exact_representatives.py",
+    "scripts/cuberev-observation/audit_r14_p74_six_edge_orbit_policy.py",
     "scripts/cuberev-observation/audit_r14_p7_certificates.py",
     "scripts/cuberev-observation/audit_r14_p7_five_six_lookahead.py",
     "scripts/cuberev-observation/audit_r14_p7_lookahead.py",
@@ -1149,6 +1153,7 @@
     "scripts/cuberev-observation/verify_r14_p72_alternate_tiebreak.py",
     "scripts/cuberev-observation/verify_r14_p72_t_tree_theorem.py",
     "scripts/cuberev-observation/verify_r14_p73_24_orbit_independent_exact.py",
+    "scripts/cuberev-observation/verify_r14_p74_six_edge_orbit_and_eight_lower.py",
     "scripts/cuberev-observation/verify_r14_p7_certificates.py",
     "scripts/cuberev-observation/verify_r14_p7_lookahead.py",
     "scripts/cuberev-observation/verify_sensor_orbits.py",
@@ -4833,5 +4838,29 @@
     "theorem": "https://drive.google.com/file/d/1TCVxJATT3W5q1nFWHr7Oj3HXJ6helpoK/view",
     "paper_B_D06": "https://drive.google.com/file/d/1n8_ceO4JWRnBPzEGWV5WD2aOawcIgMEF/view",
     "remote_ci": "pending"
+  },
+  "active_set_reconciliation_20261109_r14_p74_six_edge_orbits_partial_exact": {
+    "stage": "0.28-R14-P7.4",
+    "date": "2026-11-09",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p74_six_edge_orbit_policy.py",
+      "scripts/cuberev-observation/audit_r14_p74_six_edge_exact_representatives.py",
+      "scripts/cuberev-observation/verify_r14_p74_six_edge_orbit_and_eight_lower.py",
+      "docs/0.28/20261109_R14_P74_SIX_EDGE_924_GRAPH_ORBITS_AND_EXACT_PARTIAL_COURT.md",
+      ".github/workflows/cuberev-r14-p74-six-edge-partial-exact.yml"
+    ],
+    "graph": "All 924 edge-label 6-subsets classified under 48 abstract opposite-face-preserving color automorphisms; 30 group orbits; orbit sizes48×14,24×6,16×1,12×7,4×2. Independent checker enumerates 720 candidate face permutations.",
+    "upper": "30 representative 11520-state known permutation parity/edge-flip parity residual one-step policy exact target decoders all successful, 345600 replay cases. Representative worst depths 7/8/9, weighted representation 20/832/72; this statistic is NOT direct 924-run greedy behavior, does NOT imply 924 exact optimum.",
+    "exact_lower": "Only first 12 of 30 representatives certified by complete D-1 AND-OR impossibility; 18 other representative exact lower tests OPEN. One of the certified cases has D=9.",
+    "proof_limit": "Explicit signed state and query isomorphism across graph orbits not formally realized yet, so do not claim 924 all minimal depths or one-step all-optimal. Full physical 12E8C adaptive 20 horizon remains open 18..21. Actual new CI green not read.",
+    "drive_upper": "https://drive.google.com/file/d/1me5laOcIFRucp4AfVvs0vVEYTnsr4FYd/view",
+    "sha256_upper": "51a86b39e555cb21e3711c703bdee83570095d9286c32f8d853e0496adec3bf0",
+    "drive_exact12": "https://drive.google.com/file/d/1VX1ur2z1hUFtKiSP4r0WvJc82x79DZh1/view",
+    "sha256_exact12": "76285f10377f1b90a5f14bdc5a82e826b784f4a544e0fe305f817b985bcd8cdb",
+    "drive_independent": "https://drive.google.com/file/d/1AAsyh-5guHhNbRbcH8UUz6Hjp-pYQk9d/view",
+    "sha256_independent": "995353b892876b86fe4767f84e6fccba71a118eb672af99cded24a66862a5714",
+    "drive_report": "https://drive.google.com/file/d/131vQqfrUAVhBO145ATvO08z3auKKJ5lC/view",
+    "raw_byte_verified": "All 7 P7.4 artifact raw downloads SHA256 match",
+    "remote_ci": "unverified"
   }
 }
