@@ -1,0 +1,58 @@
+name: CUBE-REV R14-P7 individualized certificates and matching-cycle cores
+
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p7_certificates.py'
+      - 'scripts/cuberev-observation/verify_r14_p7_certificates.py'
+      - 'docs/0.28/20261109_R14_P7_CERTIFICATE_GAP_AND_MATCHING_CYCLES.md'
+      - '.github/workflows/cuberev-r14-p7-certificate-gap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  complete-certificate-and-collision-court:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Produce all exact individual certificates, 940 collisions and distilled small cores
+        working-directory: scripts/cuberev-observation
+        run: |
+          python audit_r14_p7_certificates.py > /tmp/r14-p7-court.log
+      - name: Independently replay complete lower witnesses, cores and micro state certificates
+        working-directory: scripts/cuberev-observation
+        run: |
+          python verify_r14_p7_certificates.py > /tmp/r14-p7-replay.log
+          grep -q R14_P7_INDEPENDENT_CERTIFICATE_REPLAY_PASS /tmp/r14-p7-replay.log
+          grep -q R14_P7_DISTILLED_HARDNESS_CORES_PASS /tmp/r14-p7-replay.log
+          grep -q R14_P7_ALL_648_MICRO_STATE_CERTIFICATES_LENGTH_EXACTLY_TWO_PASS /tmp/r14-p7-replay.log
+          python - <<'PY'
+          import json
+          d=json.load(open('R14_P7_CERTIFICATE_RESULTS.json'))
+          assert d['individual_min_certificate_histogram']=={'2':648}
+          assert [(r['legal_states'],r['target_certificate_length'],r['certificate_to_adaptive_gap']) for r in d['residual_courts']]==[(96,3,2),(960,4,3),(11520,6,3)]
+          assert [r['all_subsets_proved_impossible'] for r in d['greedy_hardness_cores']]==[28,120,792]
+          assert [r['number_of_distilled_other_states'] for r in d['greedy_hardness_cores']]==[7,12,41]
+          print('R14_P7_EXACT_CERTIFICATE_GAP_AND_LOWER_CORES_PASS')
+          PY
+      - name: Preserve read-only computational proof artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p7-complete-certificate-court
+          path: |
+            scripts/cuberev-observation/R14_P7_CERTIFICATE_RESULTS.json
+            scripts/cuberev-observation/R14_P7_COLLISION_CERTIFICATES.json
+            scripts/cuberev-observation/R14_P7_DISTILLED_HARDNESS_CORES.json
+            /tmp/r14-p7-court.log
+            /tmp/r14-p7-replay.log
+          retention-days: 30
