@@ -5,6 +5,7 @@ on:
     branches: [research/current]
     paths:
       - 'formal/028/**'
+      - 'scripts/cuberev-observation/audit_r14_p89_p810_generic_transport.py'
       - '.github/workflows/cuberev-r14-p89-lean-observation-covariance.yml'
   workflow_dispatch:
 
@@ -26,5 +27,15 @@ jobs:
           build: true
           test: false
           use-mathlib-cache: false
+      - name: Independently exercise miniature covariant belief and adversary gates
+        run: |
+          python scripts/cuberev-observation/audit_r14_p89_p810_generic_transport.py > /tmp/p89-p810-toy.json
+          python -c 'import json;d=json.load(open("/tmp/p89-p810-toy.json"));assert d["status"]=="TOY_MODEL_EXACT_TRANSPORT_AND_ADVERSARY_PASS" and d["legal_toy_states"]==64 and d["paired_queries"]==9 and d["tested_nonempty_beliefs"]==389 and d["tested_fiber_transport_triplets"]==14004 and d["online_two_step_collision_witnesses"]==81 and d["fixed_three_query_decoder_signatures"]==64 and d["cardinality_only_alias_negative_control"];print("R14_P89_P810_GENERIC_MINIATURE_PASS")'
+      - name: Preserve independent executable-unit-test receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p89-p810-generic-toy-unit-test
+          path: /tmp/p89-p810-toy.json
+          retention-days: 30
       - name: Do not write to GitHub tree
         run: git diff --exit-code HEAD --
