@@ -277,6 +277,7 @@
     "crates/search-geometry-core/src/lib.rs",
     "crates/search-geometry-core/src/phase1.rs",
     "data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json",
+    "data/0.28/R14_P814_ALL_66_EDGE_PAIRS_POSITIVE16_CORE_INDEX_20261110.json",
     "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
     "data/cuberev-021/p6_fmc_partial_order_extension.json",
     "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
@@ -1195,6 +1196,7 @@
     "scripts/cuberev-observation/verify_r14_p75_all_924_full_state_bijections.py",
     "scripts/cuberev-observation/verify_r14_p7_certificates.py",
     "scripts/cuberev-observation/verify_r14_p7_lookahead.py",
+    "scripts/cuberev-observation/verify_r14_p814_66_pair_core_index.py",
     "scripts/cuberev-observation/verify_r14_p82_12state_independent_suffix.py",
     "scripts/cuberev-observation/verify_r14_p83_384_witness_replay.py",
     "scripts/cuberev-observation/verify_r14_p83_all_220_independent_frozenset.py",
@@ -5124,5 +5126,17 @@
     "limits": "New GitHub source and read-only workflow written, remote CI PASS not verified; 41-class physical 18-HTM search NOT rerun; no Lean kernel for this 432-layout conclusion; full adaptive P48 19 frame OPEN.",
     "missing": "Six prior original-title search gaps Harary-Melter1976,Slater1975,Hennie1964,Vasilevskii1973,Hopcroft1971,Sokolovskii1971; new targeted gap Blaha1992 Minimum bases for permutation groups The greedy approximation (Journal of Algorithms 13 297-306 DOI 10.1016/0196-6774(92)90020-D). This is not a global Drive nonownership proof.",
     "contribution": "Commits must be human WhoSia only; CI read-only; no bots."
+  },
+  "active_set_reconciliation_20261110_r14_p814_66_pair_index": {
+    "stage": "0.28 R14-P8.14",
+    "date": "2026-11-10",
+    "new_paths": [
+      "data/0.28/R14_P814_ALL_66_EDGE_PAIRS_POSITIVE16_CORE_INDEX_20261110.json",
+      "scripts/cuberev-observation/verify_r14_p814_66_pair_core_index.py"
+    ],
+    "prior_p813_proof": "Conditional on inherited original physical P48 B6 complete 16 sensor positives/negative support certificates, exact minimal size spectrum {16,17} with 432 inclusion-wise minimal layouts and 276 minimal17.",
+    "reference_index": "All 66 unordered omitted original edge pairs mapped to one selected B6-positive 16-tag omission core plus all allowable cores, with 24 pairs uniquely supported and 42 with alternatives; 156 pair-core incidences in total. Selected 66 are references to preexisting physically positive layouts, NOT new physical B12 shortest-path certificates.",
+    "implementation": "Separate JSON and fail-closed source verifier created, CI updated to run and preserve read-only receipt; no remote CI PASS observed in this execution.",
+    "custody": "Human WhoSia commit and committer required; T1 source; PDF original bytes still Drive; no bot writes or raw T2 physical data claim."
   }
 }
