@@ -160,6 +160,7 @@
     ".github/workflows/cuberev-r14-p8-parity-activation.yml",
     ".github/workflows/cuberev-r14-p812-minimal17-sensors.yml",
     ".github/workflows/cuberev-r14-p813-complete-minimal-spectrum.yml",
+    ".github/workflows/cuberev-r14-p815-orbits-greedy.yml",
     ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
@@ -515,6 +516,8 @@
     "docs/0.28/20261110_R14_P811_EXISTING_PAPERS_MISSING_ORIGINAL_AUDIT.md",
     "docs/0.28/20261110_R14_P812_MINIMAL17_SPECTRUM_AND_NEW_LITERATURE.md",
     "docs/0.28/20261110_R14_P813_COMPLETE_MINIMAL_SENSOR_SPECTRUM.md",
+    "docs/0.28/20261110_R14_P815_ORBITS_AND_EXACT_GREEDY.md",
+    "docs/0.28/20261110_R14_P816_GREEDY_PRIORITY_EXACT_PROOF.md",
     "docs/0.28/20261110_R14_P88_ADAPTIVE_HORIZON_COMPARATIVE_THEOREM_GATE.md",
     "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
@@ -1031,6 +1034,7 @@
     "scripts/cuberev-observation/audit_r14_p7_lookahead.py",
     "scripts/cuberev-observation/audit_r14_p812_minimal17_sensor_spectrum.py",
     "scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py",
+    "scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
@@ -5138,5 +5142,21 @@
     "reference_index": "All 66 unordered omitted original edge pairs mapped to one selected B6-positive 16-tag omission core plus all allowable cores, with 24 pairs uniquely supported and 42 with alternatives; 156 pair-core incidences in total. Selected 66 are references to preexisting physically positive layouts, NOT new physical B12 shortest-path certificates.",
     "implementation": "Separate JSON and fail-closed source verifier created, CI updated to run and preserve read-only receipt; no remote CI PASS observed in this execution.",
     "custody": "Human WhoSia commit and committer required; T1 source; PDF original bytes still Drive; no bot writes or raw T2 physical data claim."
+  },
+  "active_set_reconciliation_20261110_r14_p815_p816_greedy_orbits": {
+    "date": "2026-11-10",
+    "stage": "0.28 R14 P8.15/P8.16",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py",
+      "docs/0.28/20261110_R14_P815_ORBITS_AND_EXACT_GREEDY.md",
+      "docs/0.28/20261110_R14_P816_GREEDY_PRIORITY_EXACT_PROOF.md",
+      ".github/workflows/cuberev-r14-p815-orbits-greedy.yml",
+      "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md"
+    ],
+    "physical_dependency": "No new B12 geodesic, original B6 156 positives and short-support physical negative input inherited. New finite exact rational algorithm and 24 spatial rotation orbit results are conditional.",
+    "verified_local": "Independent local Python: 276 minimal17 sets split 1 orbit size12 and 11 orbits size24; 156 minimum16 split 8 orbits. Exact greedy probability 16=1166/1995, 17=829/1995; corner-first 16=11/12, edge-first 16=1/2; seeded 100000 draws within sampling uncertainty.",
+    "anti_overclaim": "There are five different endpoint weights among the 156 minimum16 layouts, so uniform admissible deletion does not output uniform minimum sets. No Lean kernel proof or new global P48 adaptive 19-frame result. New CI workflow is read-only and remote PASS not yet independently observed.",
+    "scientific_direction": "Paper A dependent 12-orbit and greedy-design corollary added. Paper B unrestricted 19 frame OPEN. Next: actual Lean finite-orbit bridge and independent historical 41-class P48 physical certificate replay.",
+    "custody": "research/current; human WhoSia author/committer; GitHub Actions read-only; Notion semantic authority; Drive T2 raw receipts unchanged; no user intake requested"
   }
 }
