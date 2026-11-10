@@ -133,6 +133,38 @@ for _ in range(draws):
             break
         o=rng.choice(actions)
 assert abs(Fraction(hits[16],draws)-p16)<Fraction(1,125)
+def priority_greedy(preferred_type):
+    """Choose uniformly among currently removable sensors of preferred type,
+    falling back to the other type only if none is removable. Exact rational.
+    """
+    masses={frozenset():Fraction(1)}
+    terminal_sizes=Counter()
+    for k in range(5):
+        for omitted in levels[k]:
+            p=masses.get(omitted,Fraction())
+            candidates=[(t,omitted|{t}) for t in tags-omitted
+                        if omitted|{t} in levels.get(k+1,set())]
+            preferred=[new for t,new in candidates if t[0]==preferred_type]
+            nexts=preferred if preferred else [new for t,new in candidates]
+            if not nexts:
+                terminal_sizes[20-len(omitted)]+=p
+            else:
+                for new in nexts:
+                    masses[new]=masses.get(new,Fraction())+p/len(nexts)
+    assert sum(terminal_sizes.values())==1
+    return terminal_sizes
+corner_priority=priority_greedy('C')
+edge_priority=priority_greedy('E')
+assert corner_priority[16]==Fraction(11,12)
+assert corner_priority[17]==Fraction(1,12)
+assert edge_priority[16]==Fraction(1,2)
+assert edge_priority[17]==Fraction(1,2)
+
+# Constructive explanation of 11/12: after two adjacent corners are
+# omitted, all 12 first edge omissions are possible; exactly the core
+# edge h is isolated from every admissible second omitted edge.
+assert all(frozenset(EDGES)-set().union(*P[h])=={h} for h in EDGES)
+
 print(json.dumps({
  "status":"R14_P815_ORBITS_EXACT_GREEDY_GEOMETRY_PASS",
  "conditional_on":"historic full physical B6 certificate",
