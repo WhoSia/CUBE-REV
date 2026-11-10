@@ -1,0 +1,30 @@
+name: CUBE-REV R14-P8.9 exact posterior covariance Lean kernel
+
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'formal/028/**'
+      - '.github/workflows/cuberev-r14-p89-lean-observation-covariance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  observation-covariance-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Build Lean 4 core exact-posterior transport proofs
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/028
+          build: true
+          test: false
+          use-mathlib-cache: false
+      - name: Do not write to GitHub tree
+        run: git diff --exit-code HEAD --
