@@ -46,10 +46,24 @@ theorem exact_two_step_adversary_obstruction
         observe x q2 = observe x' q2 ∧ x ≠ x')) :
     ¬ winTwo observe belief := by
   intro hWin
-  obtain ⟨q1, hFuture⟩ := hWin
-  obtain ⟨y, hPossible, hHard⟩ := adversary q1
-  obtain ⟨q2, hSeparates⟩ := hFuture y hPossible
-  obtain ⟨x, x', hx, hx', hEq, hNe⟩ := hHard q2
-  exact hNe (hSeparates x x' hx hx' hEq)
+  cases hWin with
+  | intro q1 hFuture =>
+    cases adversary q1 with
+    | intro y hBranch =>
+      cases hBranch with
+      | intro hPossible hHard =>
+        cases hFuture y hPossible with
+        | intro q2 hSeparates =>
+          cases hHard q2 with
+          | intro x hSecond =>
+            cases hSecond with
+            | intro x' hWitness =>
+              cases hWitness with
+              | intro hx hMore =>
+                cases hMore with
+                | intro hx' hLast =>
+                  cases hLast with
+                  | intro hEq hNe =>
+                    exact hNe (hSeparates x x' hx hx' hEq)
 
 end CubeRev028
