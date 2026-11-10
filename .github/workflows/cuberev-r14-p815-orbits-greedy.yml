@@ -1,0 +1,46 @@
+name: CUBE-REV R14-P8.15 rational greedy and rotation orbit gate
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py'
+      - 'docs/0.28/20261110_R14_P815_ORBITS_AND_EXACT_GREEDY.md'
+      - '.github/workflows/cuberev-r14-p815-orbits-greedy.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-rational-greedy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run entire 1023-belief monotone deletion court and 24 rotations
+        run: |
+          python scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py > /tmp/p815-result.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p815-result.json'))
+          assert d['status']=='R14_P815_ORBITS_EXACT_GREEDY_GEOMETRY_PASS'
+          assert d['all_positive_states_examined']==1023
+          assert d['proper_rotations']==24
+          assert d['minimal17_orbits']==12 and d['minimum16_orbits']==8
+          assert d['prob_minimum16']=='1166/1995'
+          assert d['prob_minimal17']=='829/1995'
+          assert d['expected_sensor_count']=='32749/1995'
+          assert d['physical_41_distance_classes_replayed'] is False
+          assert d['lean_kernel_proven'] is False
+          print('P815_FINITE_RATIONAL_ORBIT_GATE_PASS_PHYSICAL_DEPENDENCY_EXPLICIT')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p815-geometry-rational-markov
+          path: /tmp/p815-result.json
+          retention-days: 30
+      - name: Reject bot modification of tracked research sources
+        run: git diff --exit-code HEAD --
