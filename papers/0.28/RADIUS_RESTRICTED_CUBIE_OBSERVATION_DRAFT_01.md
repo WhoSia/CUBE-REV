@@ -160,6 +160,21 @@ The crucial complete coverage of all 66 omitted-edge pairs now has a separate [m
 
 All counts were reproduced by a separate local Python coordinate enumeration and can be tested using the [new standalone finite validator](../../scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py). The independent geometry validation is not a fresh 41-target HTM distance audit; the exact [derivation and assumptions](../../docs/0.28/20261110_R14_P813_COMPLETE_MINIMAL_SENSOR_SPECTRUM.md) remain part of the proof package. **General permutation-group IBIS/matroid results do not themselves imply this radius-restricted Rubik spectrum**. The 2026-11-03 explicit basis-exchange counterexample predates the new minimal17 count.
 
+### 5.3. Orbit classes and a quantitative greedy-deletion counterexample (R14-P8.15)
+
+The P8.13 family of 276 inclusion-wise minimal but nonminimum 17-tag sets has only **12 orbits under the 24 orientation-preserving cube rotations**: the 12 omissions formed by an edge and its endpoint corners form one 12-member orbit, and the 264 one-corner/two-edge omissions decompose into **eleven 24-member orbits**. For a fixed corner, the local threefold rotation subgroup acts freely on the 33 minimal omitted-edge pairs because its three-cycles on original edge slots cannot preserve an unordered two-element set. Therefore 33/3=11 local orbits, carried to 11 global 24-member orbits as the corner varies. The 156 minimum 16-tag solutions form eight proper-rotation orbits.
+
+This finite geometry also permits an exact algorithmic comparison. Starting from all 20 tagged-cubie sensors, repeatedly choose uniformly among those sensors whose removal preserves **full B6 identification**, delete that sensor, and stop when none is removable. This is a state-dependent randomized greedy procedure; in particular it is *not* a uniform sample of the 432 minimal solutions. The valid omitted-tag states of size 0 through 4 total 1+20+174+672+156=1,023. Exact rational dynamic programming over this DAG yields
+
+\[
+\Pr(\text{minimum 16 tags})=\frac{1166}{1995}\approx0.58446,\quad
+\Pr(\text{minimal, nonminimum 17 tags})=\frac{829}{1995}\approx0.41554.
+\]
+
+The expected retained count is \(32749/1995\approx16.41554\). A deterministic rotation-invariant rule defines the same probabilities on rotated terminal solutions, but **not** uniformly across all the 156 minimum layouts: the exact calculation produces five distinct per-layout endpoint probabilities across eight proper-rotation orbits. This falsifies an assumption of uniform minimal-base output from uniform admissible deletion. A 100,000-run seeded Monte Carlo diagnostic agreed with the rational recurrence to sampling error, but the **exact rational calculation** is the mathematical result.
+
+Both results rely on the previously proven physical B6 156-positive/4,845-complete-negative certificate and the 17/18/19 minimal sensor consequences. The new [P8.15 independent executable](../../scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py), [read-only CI gate](../../.github/workflows/cuberev-r14-p815-orbits-greedy.yml), and [complete proof notes](../../docs/0.28/20261110_R14_P815_ORBITS_AND_EXACT_GREEDY.md) are finite combinatorial checks. They do **not** separately rerun 41 exact HTM-distance classes or confer a general permutation-group approximation factor.
+
 ## 5A. Exact one-original-cubie sensor erasure threshold at radius six (2026-11-04 restored)
 
 **Conditional exact theorem: b6^(1)=19 and exactly 12 minimum robust layouts.** Here a sensor is an originally labelled oriented cubie, and a set S is one-erasure robust if S\\{t} remains injective on the entire B6 state set after any one selected tag t is lost. The twelve optimal robust designs each observe **all eight original corners and eleven of the twelve original edges**. The result depends on three separately sourced physical certificates, not on the claim that every larger valid set contains a valid 16-tag sublayout.
