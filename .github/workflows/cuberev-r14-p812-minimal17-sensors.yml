@@ -1,0 +1,35 @@
+name: CUBE-REV R14-P8.12 minimal-17 sensor spectrum regression
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p812_minimal17_sensor_spectrum.py'
+      - 'scripts/cuberev-observation/verify_b6_geometric_rule.py'
+      - 'docs/0.28/20261110_R14_P812_MINIMAL17_SPECTRUM_AND_NEW_LITERATURE.md'
+      - '.github/workflows/cuberev-r14-p812-minimal17-sensors.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  minimal-seventeen-geometric:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Execute source-independent fixed-core geometry and 204 deletion checks
+        run: |
+          python scripts/cuberev-observation/audit_r14_p812_minimal17_sensor_spectrum.py > /tmp/p812.json
+          python -c 'import json;d=json.load(open("/tmp/p812.json"));assert d["result"]=="R14_P812_MINIMAL17_TWELVE_GEOMETRIC_COURT_PASS" and d["minimum_16_layouts_inherited"]==156 and d["adjacent_corner_and_one_edge_positive17_by_algebra"]==144 and d["extendable_to_positive16"]==132 and d["inclusionwise_minimal_17"]==12 and len(d["cores"])==12 and not d["physical_54_facelet_or_18htm_rerun"];print("R14_P812_MINIMAL17_GEOMETRY_PASS_PHYSICAL_DEPENDENCY_HELD")'
+      - name: Preserve exact read-only JSON regression receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p812-17-tag-geometric-regression
+          path: /tmp/p812.json
+          retention-days: 30
+      - name: Reject working tree mutations
+        run: git diff --exit-code HEAD --
