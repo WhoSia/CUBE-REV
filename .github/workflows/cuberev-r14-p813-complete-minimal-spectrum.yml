@@ -32,6 +32,8 @@ jobs:
           assert d["minimal_17_types"]=={"two_corners_one_edge":12,"one_corner_two_edges":264}
           assert d["edge_pair_core_coverage"]=={"1":24,"2":6,"3":24,"4":12}
           assert d["total_minimal"]==432 and d["minimal_size_spectrum"]==[16,17]
+          assert d["per_corner_extendable_edge_pair_count"]==[33]*8
+          assert d["per_corner_minimal17_one_corner_two_edges"]==33
           assert d["fresh_independent_physical_18htm_mitm"] is False
           print("R14_P813_COMPLETE_MINIMAL_B6_GEOMETRY_PASS_PHYSICAL_DEPENDENCY_PRESERVED")
           PY
