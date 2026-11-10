@@ -161,6 +161,7 @@
     ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
+    ".github/workflows/cuberev-r14-p89-lean-observation-covariance.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
     ".github/workflows/g7-p10-r2-lb7-local-contrast.yml",
     ".github/workflows/g7-p10-r3-batch4-leverage.yml",
@@ -508,6 +509,8 @@
     "docs/0.28/20261109_R14_P86_CONSTRUCTIVE_20_FRAME_ADAPTIVE_UPPER.md",
     "docs/0.28/20261109_R14_P87_FIXED_FIRST_EDGE_SCAN_20_LOWER.md",
     "docs/0.28/20261109_R14_P8_DELAYED_COUPLED_PARITY_ACTIVATION.md",
+    "docs/0.28/20261110_R14_P88_ADAPTIVE_HORIZON_COMPARATIVE_THEOREM_GATE.md",
+    "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -573,6 +576,10 @@
     "formal/025/lake-manifest.json",
     "formal/025/lakefile.toml",
     "formal/025/lean-toolchain",
+    "formal/028/ObservationCovariance.lean",
+    "formal/028/TwoStepAdversary.lean",
+    "formal/028/lakefile.toml",
+    "formal/028/lean-toolchain",
     "formal/cuberev023/PDBRankReversal.lean",
     "formal/cuberev023/lake-manifest.json",
     "formal/cuberev023/lakefile.lean",
@@ -1024,6 +1031,7 @@
     "scripts/cuberev-observation/audit_r14_p83_physical_648_exact_andor.py",
     "scripts/cuberev-observation/audit_r14_p83_suffix_equivalence.py",
     "scripts/cuberev-observation/audit_r14_p86_constructive_full_20_frame.py",
+    "scripts/cuberev-observation/audit_r14_p89_p810_generic_transport.py",
     "scripts/cuberev-observation/audit_r14_p8_parity_activation.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
@@ -5038,5 +5046,26 @@
     "external_priority": "NOT AUDITED - prior cubology and scanning literature is acknowledged",
     "remote_GitHub_CI": "workflow committed, success UNVERIFIED",
     "next_research_gate": "P8.8: unrestricted 19-frame policy search vs universal all-policy lower20 counterexample, preserving true mixed partial color beliefs and inverse spatial queries; do NOT claim global h=20"
+  },
+  "active_set_reconciliation_20261110_r14_p89_p810_literature_and_lean": {
+    "stage": "0.28 R14-P8.9+P8.10",
+    "date": "2026-11-10",
+    "paths": [
+      ".github/workflows/cuberev-r14-p89-lean-observation-covariance.yml",
+      "docs/0.28/20261110_R14_P88_ADAPTIVE_HORIZON_COMPARATIVE_THEOREM_GATE.md",
+      "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
+      "formal/028/ObservationCovariance.lean",
+      "formal/028/TwoStepAdversary.lean",
+      "formal/028/lakefile.toml",
+      "formal/028/lean-toolchain",
+      "scripts/cuberev-observation/audit_r14_p89_p810_generic_transport.py"
+    ],
+    "literature": "Five verified scholarly PDFs read in 00; four metadata-only moves into 10_PAPERS plus Soucha already central; file IDs unchanged; metadata readback PASS, raw-byte SHA readback PENDING. Moore 1956, Buhrman-de Wolf 2002, Hierons-Turker adaptive 2016, Soucha-Bogdanov 2020, Hierons-Turker preset 2017 removed from missing list.",
+    "science": "P8.8 full-group h_fixed=21, 18<=h_adaptive<=20, unrestricted 19 frame OPEN. New Lean formalized abstraction targets posterior covariance and two-step witness quantifier soundness, not physical P48 legality or numeric minimum.",
+    "local_unit_test": "Python standard-library 64-state abstract toy PASS: 389 beliefs, 14004 branch transports, 81 two-step collision witnesses, 64 fixed 3-read signatures; not whole-cube.",
+    "kernel": "Source and read-only workflow created; actual remote Lean kernel success NOT VERIFIED",
+    "drive_report": "Existing CUBE-REV 0.28 Notion and central Research OS 10_PAPERS custody; no new T2 raw physical experiment was produced",
+    "prior_art": "Classic adaptive ADS and decision-tree certificate measures established in owned papers, novelty remains cube-model-specific and subject to independent priority audit",
+    "bot_contribution_zero": "WhoSia author/committer required; GitHub Actions read-only; no automated commits"
   }
 }
