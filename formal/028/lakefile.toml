@@ -1,6 +1,9 @@
 name = "CubeRev028"
 version = "0.1.0"
-defaultTargets = ["ObservationCovariance"]
+defaultTargets = ["ObservationCovariance", "TwoStepAdversary"]
 
 [[lean_lib]]
 name = "ObservationCovariance"
+
+[[lean_lib]]
+name = "TwoStepAdversary"
