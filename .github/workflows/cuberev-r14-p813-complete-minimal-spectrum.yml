@@ -1,0 +1,44 @@
+name: CUBE-REV R14-P8.13 complete minimal B6 spectrum
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py'
+      - 'docs/0.28/20261110_R14_P813_COMPLETE_MINIMAL_SENSOR_SPECTRUM.md'
+      - '.github/workflows/cuberev-r14-p813-complete-minimal-spectrum.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  complete-minimal-b6-spectrum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Enumerate every 0..4 omitted-tag combination and test inclusion-wise minimality
+        run: |
+          python scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py > /tmp/p813.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/p813.json"))
+          assert d["status"]=="R14_P813_COMPLETE_MINIMAL_B6_SIZE_SPECTRUM_GEOMETRIC_PASS"
+          assert d["positive_observation_count"]=={"16":156,"17":672,"18":174,"19":20,"20":1}
+          assert d["minimal_identifying_count"]=={"16":156,"17":276,"18":0,"19":0,"20":0}
+          assert d["minimal_17_types"]=={"two_corners_one_edge":12,"one_corner_two_edges":264}
+          assert d["edge_pair_core_coverage"]=={"1":24,"2":6,"3":24,"4":12}
+          assert d["total_minimal"]==432 and d["minimal_size_spectrum"]==[16,17]
+          assert d["fresh_independent_physical_18htm_mitm"] is False
+          print("R14_P813_COMPLETE_MINIMAL_B6_GEOMETRY_PASS_PHYSICAL_DEPENDENCY_PRESERVED")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p813-minimal-spectrum-geometry-json
+          path: /tmp/p813.json
+          retention-days: 30
+      - name: No bot-authored source modifications
+        run: git diff --exit-code HEAD --
