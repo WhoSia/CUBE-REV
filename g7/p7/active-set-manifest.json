@@ -158,6 +158,7 @@
     ".github/workflows/cuberev-r14-p74-six-edge-partial-exact.yml",
     ".github/workflows/cuberev-r14-p75-all-924-signed-exact.yml",
     ".github/workflows/cuberev-r14-p8-parity-activation.yml",
+    ".github/workflows/cuberev-r14-p812-minimal17-sensors.yml",
     ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
@@ -510,6 +511,7 @@
     "docs/0.28/20261109_R14_P87_FIXED_FIRST_EDGE_SCAN_20_LOWER.md",
     "docs/0.28/20261109_R14_P8_DELAYED_COUPLED_PARITY_ACTIVATION.md",
     "docs/0.28/20261110_R14_P811_EXISTING_PAPERS_MISSING_ORIGINAL_AUDIT.md",
+    "docs/0.28/20261110_R14_P812_MINIMAL17_SPECTRUM_AND_NEW_LITERATURE.md",
     "docs/0.28/20261110_R14_P88_ADAPTIVE_HORIZON_COMPARATIVE_THEOREM_GATE.md",
     "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
@@ -1024,6 +1026,7 @@
     "scripts/cuberev-observation/audit_r14_p7_certificates.py",
     "scripts/cuberev-observation/audit_r14_p7_five_six_lookahead.py",
     "scripts/cuberev-observation/audit_r14_p7_lookahead.py",
+    "scripts/cuberev-observation/audit_r14_p812_minimal17_sensor_spectrum.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
@@ -5084,5 +5087,23 @@
     "proof_status": "No new full-physical P48 theorem, 19-frame optimum OPEN; two prior Lean modules remain SOURCE_PENDING_KERNEL unless actual remote success is separately inspected.",
     "active_focus": "Preserve Paper A b6 exact minimum and exchange-graph evidence; Paper B P8.8 unrestricted mixed-prefix minmax and P8.9-P8.10 actual physical witness to Lean bridge.",
     "human_commit_identity": "WhoSia; CI read-only; no bot-authored repo changes"
+  },
+  "active_set_reconciliation_20261110_r14_p812_minimal17_literature": {
+    "stage": "0.28 R14-P8.12",
+    "date": "2026-11-10",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p812_minimal17_sensor_spectrum.py",
+      "docs/0.28/20261110_R14_P812_MINIMAL17_SPECTRUM_AND_NEW_LITERATURE.md",
+      ".github/workflows/cuberev-r14-p812-minimal17-sensors.yml",
+      "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md",
+      "papers/0.28/DUAL_COLOR_PROBE_ADAPTIVE_IDENTIFICATION_DRAFT_01.md"
+    ],
+    "literature": "Four PDF original papers newly found in 00_INTAKE and renamed + moved to central 10_PAPERS without changing file IDs. Dalla Volta-Mastrogiacomo-Spiga 2024; Smetsers-Moerman-Jansen 2016; Alur-Courcoubetis-Yannakakis 1995; Chow 1978. PDF text and final metadata verified, original raw byte SHA pending.",
+    "new_proof": "Conditional on inherited complete physical B6 positive16 and negative16 classification, twelve designs omit each original core edge and its two endpoint corners and form inclusionwise minimal17, nonminimum since b6=16. 144 valid 2C1E omissions, 132 extend to positive16, 12 minimal. Does not claim complete minimal cardinality spectrum, new 18-HTM run or independent 41-class physical proof.",
+    "local_falsifier": "Independent from-scratch 3D Python geometric check actual PASS: 156/144/132/12. New repository script and read-only workflow added; remote P8.12 CI PASS not yet observed.",
+    "pairwise_caveat": "Each distinct legal P48 pair is separable by one appropriately selected paired sticker query, but global P8.8 adaptive worst-case remains 18..20; pairwise min separating-word maximum is vacuous as global lower bound.",
+    "known_prior": "Prior matroid exchange failure had already been in docs on 2026-11-03. New result is nonminimum minimal 17 in actual radius-six Rubik case, not generic basis or matroid novelty.",
+    "missing": "Six previous gaps remain: Harary-Melter 1976, Slater 1975, Hennie 1964, Vasilevskii 1973, Hopcroft 1971, Sokolovskii 1971. New followups: Cameron-Fon-Der-Flaass 1995; Tarski 1975; Lucchini-Morigi-Moscatiello 2021. Scoped Drive search negative, not full absence certificate.",
+    "commit_policy": "WhoSia human author and committer; research/current; CI read-only; No Actions bot commits."
   }
 }
