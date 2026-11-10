@@ -1,0 +1,767 @@
+{
+  "schema": "CUBE_REV_R14_P814_66_EDGE_PAIR_CORE_PROOF_INDEX_V1",
+  "date": "2026-11-10",
+  "model": "original full-cubie B6; each selected 16-sensor omitted 4-tag layout has two corner tags at endpoints of core h, plus this edge pair",
+  "scientific_dependency": "all 156 positive 16-tag source layouts and 41-class B12 physical geodesic proof are INHERITED, NOT independently replayed here",
+  "status": "GEOMETRIC_COVERAGE_INDEX_ONLY",
+  "pair_count": 66,
+  "unique_core_pair_count": 24,
+  "core_multiplicity_histogram": {
+    "1": 24,
+    "2": 6,
+    "3": 24,
+    "4": 12
+  },
+  "rows": [
+    {
+      "edge_pair": [
+        "BL",
+        "BR"
+      ],
+      "selected_positive16_core": "DB",
+      "all_positive16_cores": [
+        "DB",
+        "DF",
+        "UB",
+        "UF"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DB",
+        "BL"
+      ],
+      "selected_positive16_core": "FR",
+      "all_positive16_cores": [
+        "FR",
+        "UF",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DB",
+        "BR"
+      ],
+      "selected_positive16_core": "FL",
+      "all_positive16_cores": [
+        "FL",
+        "UF",
+        "UL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DB",
+        "FL"
+      ],
+      "selected_positive16_core": "DL",
+      "all_positive16_cores": [
+        "DL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DB",
+        "FR"
+      ],
+      "selected_positive16_core": "DR",
+      "all_positive16_cores": [
+        "DR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DF",
+        "BL"
+      ],
+      "selected_positive16_core": "DL",
+      "all_positive16_cores": [
+        "DL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DF",
+        "BR"
+      ],
+      "selected_positive16_core": "DR",
+      "all_positive16_cores": [
+        "DR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DF",
+        "DB"
+      ],
+      "selected_positive16_core": "DL",
+      "all_positive16_cores": [
+        "DL",
+        "DR",
+        "UL",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DF",
+        "DL"
+      ],
+      "selected_positive16_core": "BR",
+      "all_positive16_cores": [
+        "BR",
+        "UB",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DF",
+        "FL"
+      ],
+      "selected_positive16_core": "BR",
+      "all_positive16_cores": [
+        "BR",
+        "UB",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DF",
+        "FR"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "UB",
+        "UL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DL",
+        "BL"
+      ],
+      "selected_positive16_core": "FR",
+      "all_positive16_cores": [
+        "FR",
+        "UF",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DL",
+        "BR"
+      ],
+      "selected_positive16_core": "DB",
+      "all_positive16_cores": [
+        "DB"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DL",
+        "DB"
+      ],
+      "selected_positive16_core": "FR",
+      "all_positive16_cores": [
+        "FR",
+        "UF",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DL",
+        "FL"
+      ],
+      "selected_positive16_core": "BR",
+      "all_positive16_cores": [
+        "BR",
+        "UB",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DL",
+        "FR"
+      ],
+      "selected_positive16_core": "DF",
+      "all_positive16_cores": [
+        "DF"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DR",
+        "BL"
+      ],
+      "selected_positive16_core": "DB",
+      "all_positive16_cores": [
+        "DB"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DR",
+        "BR"
+      ],
+      "selected_positive16_core": "FL",
+      "all_positive16_cores": [
+        "FL",
+        "UF",
+        "UL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DR",
+        "DB"
+      ],
+      "selected_positive16_core": "FL",
+      "all_positive16_cores": [
+        "FL",
+        "UF",
+        "UL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DR",
+        "DF"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "UB",
+        "UL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DR",
+        "DL"
+      ],
+      "selected_positive16_core": "DB",
+      "all_positive16_cores": [
+        "DB",
+        "DF",
+        "UB",
+        "UF"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DR",
+        "FL"
+      ],
+      "selected_positive16_core": "DF",
+      "all_positive16_cores": [
+        "DF"
+      ]
+    },
+    {
+      "edge_pair": [
+        "DR",
+        "FR"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "UB",
+        "UL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "FL",
+        "BL"
+      ],
+      "selected_positive16_core": "DL",
+      "all_positive16_cores": [
+        "DL",
+        "DR",
+        "UL",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "FL",
+        "BR"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "FR",
+        "BL"
+      ],
+      "selected_positive16_core": "BR",
+      "all_positive16_cores": [
+        "BR",
+        "FL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "FR",
+        "BR"
+      ],
+      "selected_positive16_core": "DL",
+      "all_positive16_cores": [
+        "DL",
+        "DR",
+        "UL",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "FR",
+        "FL"
+      ],
+      "selected_positive16_core": "DB",
+      "all_positive16_cores": [
+        "DB",
+        "DF",
+        "UB",
+        "UF"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UB",
+        "BL"
+      ],
+      "selected_positive16_core": "DF",
+      "all_positive16_cores": [
+        "DF",
+        "DR",
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UB",
+        "BR"
+      ],
+      "selected_positive16_core": "DF",
+      "all_positive16_cores": [
+        "DF",
+        "DL",
+        "FL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UB",
+        "DB"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "BR",
+        "FL",
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UB",
+        "DF"
+      ],
+      "selected_positive16_core": "DB",
+      "all_positive16_cores": [
+        "DB",
+        "UF"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UB",
+        "DL"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UB",
+        "DR"
+      ],
+      "selected_positive16_core": "BR",
+      "all_positive16_cores": [
+        "BR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UB",
+        "FL"
+      ],
+      "selected_positive16_core": "UL",
+      "all_positive16_cores": [
+        "UL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UB",
+        "FR"
+      ],
+      "selected_positive16_core": "UR",
+      "all_positive16_cores": [
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "BL"
+      ],
+      "selected_positive16_core": "UL",
+      "all_positive16_cores": [
+        "UL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "BR"
+      ],
+      "selected_positive16_core": "UR",
+      "all_positive16_cores": [
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "DB"
+      ],
+      "selected_positive16_core": "DF",
+      "all_positive16_cores": [
+        "DF",
+        "UB"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "DF"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "BR",
+        "FL",
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "DL"
+      ],
+      "selected_positive16_core": "FL",
+      "all_positive16_cores": [
+        "FL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "DR"
+      ],
+      "selected_positive16_core": "FR",
+      "all_positive16_cores": [
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "FL"
+      ],
+      "selected_positive16_core": "BR",
+      "all_positive16_cores": [
+        "BR",
+        "DB",
+        "DR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "FR"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "DB",
+        "DL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "UB"
+      ],
+      "selected_positive16_core": "DL",
+      "all_positive16_cores": [
+        "DL",
+        "DR",
+        "UL",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UF",
+        "UL"
+      ],
+      "selected_positive16_core": "BR",
+      "all_positive16_cores": [
+        "BR",
+        "DB",
+        "DR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UL",
+        "BL"
+      ],
+      "selected_positive16_core": "DF",
+      "all_positive16_cores": [
+        "DF",
+        "DR",
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UL",
+        "BR"
+      ],
+      "selected_positive16_core": "UB",
+      "all_positive16_cores": [
+        "UB"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UL",
+        "DB"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UL",
+        "DF"
+      ],
+      "selected_positive16_core": "FL",
+      "all_positive16_cores": [
+        "FL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UL",
+        "DL"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "BR",
+        "FL",
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UL",
+        "DR"
+      ],
+      "selected_positive16_core": "DL",
+      "all_positive16_cores": [
+        "DL",
+        "UR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UL",
+        "FL"
+      ],
+      "selected_positive16_core": "BR",
+      "all_positive16_cores": [
+        "BR",
+        "DB",
+        "DR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UL",
+        "FR"
+      ],
+      "selected_positive16_core": "UF",
+      "all_positive16_cores": [
+        "UF"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UL",
+        "UB"
+      ],
+      "selected_positive16_core": "DF",
+      "all_positive16_cores": [
+        "DF",
+        "DR",
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "BL"
+      ],
+      "selected_positive16_core": "UB",
+      "all_positive16_cores": [
+        "UB"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "BR"
+      ],
+      "selected_positive16_core": "DF",
+      "all_positive16_cores": [
+        "DF",
+        "DL",
+        "FL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "DB"
+      ],
+      "selected_positive16_core": "BR",
+      "all_positive16_cores": [
+        "BR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "DF"
+      ],
+      "selected_positive16_core": "FR",
+      "all_positive16_cores": [
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "DL"
+      ],
+      "selected_positive16_core": "DR",
+      "all_positive16_cores": [
+        "DR",
+        "UL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "DR"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "BR",
+        "FL",
+        "FR"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "FL"
+      ],
+      "selected_positive16_core": "UF",
+      "all_positive16_cores": [
+        "UF"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "FR"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "DB",
+        "DL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "UB"
+      ],
+      "selected_positive16_core": "DF",
+      "all_positive16_cores": [
+        "DF",
+        "DL",
+        "FL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "UF"
+      ],
+      "selected_positive16_core": "BL",
+      "all_positive16_cores": [
+        "BL",
+        "DB",
+        "DL"
+      ]
+    },
+    {
+      "edge_pair": [
+        "UR",
+        "UL"
+      ],
+      "selected_positive16_core": "DB",
+      "all_positive16_cores": [
+        "DB",
+        "DF",
+        "UB",
+        "UF"
+      ]
+    }
+  ]
+}
