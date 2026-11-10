@@ -58,7 +58,13 @@ For any S of observed original tags define closure cl_B6(S) as all tags t such t
 
 Remove all THREE newly acquired originals from the prior missing-original queue. Six older unresolved originals remain (Harary & Melter 1976; Slater 1975; Hennie 1964; Vasilevskii 1973; Hopcroft 1971; Sokolovskii 1971); the 1970s original titles and translated editions require targeted ownership checks. No unsupported claims of global Drive absence.
 
-## 5. Next scientific gates
+## 5. R14-P8.14 finite proof-reference index, constructed after the theorem
+
+The complete 66-pair coverage used above is now accompanied by an explicit **machine-readable choice of physically certified positive size-16 source layout for every pair**: [66-pair-to-core index](../../data/0.28/R14_P814_ALL_66_EDGE_PAIRS_POSITIVE16_CORE_INDEX_20261110.json). Every row stores the two original edge names, all core edges h whose already certified 13-pair family P(h) contains that pair, and a deterministic selected core. The 66 rows carry exactly 156 core incidences, with 24 pairs having only ONE allowable core (critical unique reference) and 42 pairs with alternative core choices. Exactly 66 selected core-layout references suffice for the algebraic step asserting positivity of each possible two-edge stabilizer, provided the inherited source 16-tag physical classification is accepted.
+
+[Standalone index replay checker](../../scripts/cuberev-observation/verify_r14_p814_66_pair_core_index.py) verifies exact row and core coverage against the independent P8.13 face-normal incidence generator, and read-only CI is configured to preserve its receipt. This is **proof dependency selection**, not 66 new physical MITM distance certificates or a Lean-kernel import. The 24 uniquely supported pairs are particularly valuable fail-closed tests: removing their sole positive reference makes a 66-pair coverage claim invalid.
+
+## 6. Next scientific gates
 
 Paper A: integrate this complete 432-layout theorem as a COROLLARY of physical B6 16-positive/4,845-classification, not a substitute for independent 41-class geodesic proof. Derive a small orbit-based analytic explanation for the uniform 33 minimal 1C+2E omissions per cube corner.
 Paper B: the unrestricted 19-frame whole-group categorical adaptive policy remains OPEN, and M-star/b_r/h cost models remain DISTINCT. A pairwise shortest separating query is not a global policy.
