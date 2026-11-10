@@ -1,0 +1,6 @@
+name = "CubeRev028"
+version = "0.1.0"
+defaultTargets = ["ObservationCovariance"]
+
+[[lean_lib]]
+name = "ObservationCovariance"
