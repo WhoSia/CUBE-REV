@@ -518,6 +518,7 @@
     "docs/0.28/20261110_R14_P813_COMPLETE_MINIMAL_SENSOR_SPECTRUM.md",
     "docs/0.28/20261110_R14_P815_ORBITS_AND_EXACT_GREEDY.md",
     "docs/0.28/20261110_R14_P816_GREEDY_PRIORITY_EXACT_PROOF.md",
+    "docs/0.28/20261110_R14_P817_ONE_PAPER_REVIEWER_GATE.md",
     "docs/0.28/20261110_R14_P88_ADAPTIVE_HORIZON_COMPARATIVE_THEOREM_GATE.md",
     "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
@@ -586,6 +587,7 @@
     "formal/025/lakefile.toml",
     "formal/025/lean-toolchain",
     "formal/028/ObservationCovariance.lean",
+    "formal/028/StaticObservationSupport.lean",
     "formal/028/TwoStepAdversary.lean",
     "formal/028/lakefile.toml",
     "formal/028/lean-toolchain",
@@ -700,6 +702,7 @@
     "papers/0.27/PAPER2_ONE_SIDED_GOAL_CERTIFICATE_DRAFT_04.md",
     "papers/0.27/PAPER2_ONE_SIDED_GOAL_CERTIFICATE_DRAFT_05.md",
     "papers/0.28/DUAL_COLOR_PROBE_ADAPTIVE_IDENTIFICATION_DRAFT_01.md",
+    "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C01.md",
     "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md",
     "scripts/cube/full-notation-normal-form.mjs",
     "scripts/cube/replay-exact-trajectories.mjs",
@@ -1035,6 +1038,7 @@
     "scripts/cuberev-observation/audit_r14_p812_minimal17_sensor_spectrum.py",
     "scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py",
     "scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py",
+    "scripts/cuberev-observation/audit_r14_p817_common_observation_bridge.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
@@ -5158,5 +5162,23 @@
     "anti_overclaim": "There are five different endpoint weights among the 156 minimum16 layouts, so uniform admissible deletion does not output uniform minimum sets. No Lean kernel proof or new global P48 adaptive 19-frame result. New CI workflow is read-only and remote PASS not yet independently observed.",
     "scientific_direction": "Paper A dependent 12-orbit and greedy-design corollary added. Paper B unrestricted 19 frame OPEN. Next: actual Lean finite-orbit bridge and independent historical 41-class P48 physical certificate replay.",
     "custody": "research/current; human WhoSia author/committer; GitHub Actions read-only; Notion semantic authority; Drive T2 raw receipts unchanged; no user intake requested"
+  },
+  "active_set_reconciliation_20261110_r14_p817_unified_manuscript": {
+    "stage": "0.28 R14-P8.17",
+    "date": "2026-11-10",
+    "paths": [
+      "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C01.md",
+      "docs/0.28/20261110_R14_P817_ONE_PAPER_REVIEWER_GATE.md",
+      "scripts/cuberev-observation/audit_r14_p817_common_observation_bridge.py",
+      "formal/028/StaticObservationSupport.lean",
+      "formal/028/lakefile.toml",
+      ".github/workflows/cuberev-r14-p89-lean-observation-covariance.yml"
+    ],
+    "editorial": "User-directed one-paper trial C0.1 combines separate A fixed original tagged-cubie B6 and B full-group paired color feedback theorem with explicit incompatible cost/domain distinction. Original A D0.5 and B D0.8 preserved; do not sell generic observation equivalence as new.",
+    "new_test": "Independent local six-state deterministic observation model fixed minimum 3, adaptive optimum 2; GitHub test written and read-only CI added; this is toy only, NOT Rubik results.",
+    "new_lean": "Generic signature injective iff every difference support hit, added to existing 028 Lean package. Source only, no observed Lean kernel PASS.",
+    "strongest_result": "A physical B6=16, 156 optimum; inherited supporting certificate requires source-first physical independent rerun. B h_fixed=21, h_adaptive 18..20, strict feedback gap but global 19 remains open.",
+    "peer_gate": "Single merged editorial candidate only; publish A-centric single case study if venue audience or actual referee finds mixed A/B model unconvincing.",
+    "source_purity": "WhoSia human author and committer, research/current only, CI read-only, no new PDF/Drive changes, no new P48 numerical result."
   }
 }
