@@ -132,6 +132,32 @@ for \(\mathcal M_6\), the possible cardinalities of inclusion-wise minimal \(B_6
 
 In the *restricted sector* omitting exactly two adjacent corners and one edge, there are precisely \(12\times12=144\) B6-valid 17-tag layouts: exactly 132 contain a certified 16-tag positive subset, and the remaining 12 \(S_h\) are minimal but nonminimum. A from-scratch local 3D geometric regression confirmed the 156/144/132/12 counts; the new [P8.12 executable court](../../scripts/cuberev-observation/audit_r14_p812_minimal17_sensor_spectrum.py) checks all 204 one-tag deletions. See [complete formal paper-scope proof](../../docs/0.28/20261110_R14_P812_MINIMAL17_SPECTRUM_AND_NEW_LITERATURE.md). No claim is made about the other 17-tag omission sectors or sizes ≥18.
 
+### 5.2. Complete radius-six minimal-basis spectrum (R14-P8.13)
+
+A new conditional corollary strengthens the previously constructed twelve minimal-but-nonminimum 17-sensor examples to a **complete classification of all inclusion-wise minimal radius-six identifying sets**. The original-tag sensor model and the inherited independent 16-positive/4,845-complete negative physical certification are unchanged. Let \(\mathcal M_6\) denote the cardinalities of inclusion-wise minimal identifying sensor sets, and let \(N_k^{+}\) count all identifying sensor sets of size \(k\), \(N_k^{\min}\) those inclusion-wise minimal.
+
+| Sensor count \(k\) | \(N_k^+\) | \(N_k^{\min}\) |
+|---:|---:|---:|
+| 16 | 156 | 156 |
+| 17 | **672** | **276** |
+| 18 | 174 | 0 |
+| 19 | 20 | 0 |
+| 20 | 1 | 0 |
+
+Since no \(k\le15\) layout identifies \(B_6\), the exact spectrum is
+
+\[
+\boxed{\mathcal M_6=\{16,17\},\qquad N^{\min}_{\mathrm{total}}=432.}
+\]
+
+Of the 276 minimal 17-sensor layouts, 12 omit the endpoints and original tag of one cube edge (as in P8.12), and another **264** omit one original corner and two original edge tags. The latter figure is **33 for each** of the eight possible omitted corners.
+
+**Proof dependencies.** The physical 4,845-complete 16-tag classification is an inherited certification, not a new result of this finite source. In the legal whole-cube group, when one corner and two edges are unobserved, the corner stays fixed by corner twist/permutation conservation and the two edges cannot swap by joint permutation parity. Their only nontrivial stabilizer action is balanced edge flip, independent of the choice of the omitted corner. A fresh exact cube-incidence enumeration shows **all 66 distinct edge pairs occur as omissions in at least one of the previously certified 156 valid 16-tag layouts**; its core multiplicities are 24 pairs with one, 6 with two, 24 with three and 12 with four possible core edges. Hence all \(8\binom{12}{2}=528\) one-corner/two-edge 17-sensor layouts are identifying. The analogous two-corner/one-edge stabilizer reduces to balanced corner twists: 12 adjacent pairs times 12 omitted edges give 144 positives, while 16 nonadjacent corner pairs times 12 omitted edges give 192 negatives by inherited physical short-collision witnesses. Three omitted corners contain a nonadjacent pair (56 negatives), and three omitted edges are physically obstructed (220 negatives). Thus \(N_{17}^+=528+144=672\), with all 1,140 omission triples classified.
+
+For inclusion-wise minimality, check if a positive three-tag omission can be extended to one of the 156 physically valid four-tag omissions (equivalently removing one more observed sensor). Among positive 2C+1E omissions, 132 extend and 12 do not (the native core-edge label is an isolated vertex of the 13-pair compatibility graph). Among 1C+2E omissions, exactly 264 extend and 264 do not, by direct 8-corner by 66-edge-pair incidence. Hence \(N_{17}^{\min}=12+264=276\). For two-tag omissions, exactly the 16 nonadjacent-corner pairs fail, so \(N_{18}^+=190-16=174\); every positive 18-sensor set has a positive 17-sensor subset, as do all size-19 and size-20 identifying sets. This proves \(N^{\min}_k=0\) for \(k\ge18\).
+
+All counts were reproduced by a separate local Python coordinate enumeration and can be tested using the [new standalone finite validator](../../scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py). The independent geometry validation is not a fresh 41-target HTM distance audit; the exact [derivation and assumptions](../../docs/0.28/20261110_R14_P813_COMPLETE_MINIMAL_SENSOR_SPECTRUM.md) remain part of the proof package. **General permutation-group IBIS/matroid results do not themselves imply this radius-restricted Rubik spectrum**. The 2026-11-03 explicit basis-exchange counterexample predates the new minimal17 count.
+
 ## 5A. Exact one-original-cubie sensor erasure threshold at radius six (2026-11-04 restored)
 
 **Conditional exact theorem: b6^(1)=19 and exactly 12 minimum robust layouts.** Here a sensor is an originally labelled oriented cubie, and a set S is one-erasure robust if S\\{t} remains injective on the entire B6 state set after any one selected tag t is lost. The twelve optimal robust designs each observe **all eight original corners and eleven of the twelve original edges**. The result depends on three separately sourced physical certificates, not on the claim that every larger valid set contains a valid 16-tag sublayout.
