@@ -159,6 +159,7 @@
     ".github/workflows/cuberev-r14-p75-all-924-signed-exact.yml",
     ".github/workflows/cuberev-r14-p8-parity-activation.yml",
     ".github/workflows/cuberev-r14-p812-minimal17-sensors.yml",
+    ".github/workflows/cuberev-r14-p813-complete-minimal-spectrum.yml",
     ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
@@ -512,6 +513,7 @@
     "docs/0.28/20261109_R14_P8_DELAYED_COUPLED_PARITY_ACTIVATION.md",
     "docs/0.28/20261110_R14_P811_EXISTING_PAPERS_MISSING_ORIGINAL_AUDIT.md",
     "docs/0.28/20261110_R14_P812_MINIMAL17_SPECTRUM_AND_NEW_LITERATURE.md",
+    "docs/0.28/20261110_R14_P813_COMPLETE_MINIMAL_SENSOR_SPECTRUM.md",
     "docs/0.28/20261110_R14_P88_ADAPTIVE_HORIZON_COMPARATIVE_THEOREM_GATE.md",
     "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
@@ -1027,6 +1029,7 @@
     "scripts/cuberev-observation/audit_r14_p7_five_six_lookahead.py",
     "scripts/cuberev-observation/audit_r14_p7_lookahead.py",
     "scripts/cuberev-observation/audit_r14_p812_minimal17_sensor_spectrum.py",
+    "scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
@@ -5105,5 +5108,21 @@
     "known_prior": "Prior matroid exchange failure had already been in docs on 2026-11-03. New result is nonminimum minimal 17 in actual radius-six Rubik case, not generic basis or matroid novelty.",
     "missing": "Six previous gaps remain: Harary-Melter 1976, Slater 1975, Hennie 1964, Vasilevskii 1973, Hopcroft 1971, Sokolovskii 1971. New followups: Cameron-Fon-Der-Flaass 1995; Tarski 1975; Lucchini-Morigi-Moscatiello 2021. Scoped Drive search negative, not full absence certificate.",
     "commit_policy": "WhoSia human author and committer; research/current; CI read-only; No Actions bot commits."
+  },
+  "active_set_reconciliation_20261110_r14_p813_complete_minimal_spectrum": {
+    "stage": "0.28 R14-P8.13",
+    "date": "2026-11-10",
+    "new_paths": [
+      "scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py",
+      "docs/0.28/20261110_R14_P813_COMPLETE_MINIMAL_SENSOR_SPECTRUM.md",
+      ".github/workflows/cuberev-r14-p813-complete-minimal-spectrum.yml"
+    ],
+    "updated_manuscript": "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md",
+    "literature": "Cameron-Fon-Der-Flaass1995/Tarski1975/Lucchini-Morigi-Moscatiello2021 original PDFs identified from new 00_INTAKE and moved in-place to central 10_PAPERS; metadata verified, raw SHA256 pending; Tarski scan text OCR extraction degraded, Lucchini PDF arXiv v1.",
+    "conditional_theorem": "Exactly 156 minimal16 original full-cubie B6-identifying sets and 276 minimal17; no minimal18+; full spectrum {16,17}; total 432. Requires inherited exact physical complete 16-tag classification and triple-edge/nonadjacent-corner short-support certificates.",
+    "geometry_validation": "Separate local Python face-normal enumeration actual PASS: positives 16..20 156/672/174/20/1; minimal 16..20 156/276/0/0/0; minimal17 split 12 2C1E and 264 1C2E; edge-pair 66 coverage multiplicity 1:24,2:6,3:24,4:12; 3 incident-core pairwise/triple intersections all size3, union33 per corner.",
+    "limits": "New GitHub source and read-only workflow written, remote CI PASS not verified; 41-class physical 18-HTM search NOT rerun; no Lean kernel for this 432-layout conclusion; full adaptive P48 19 frame OPEN.",
+    "missing": "Six prior original-title search gaps Harary-Melter1976,Slater1975,Hennie1964,Vasilevskii1973,Hopcroft1971,Sokolovskii1971; new targeted gap Blaha1992 Minimum bases for permutation groups The greedy approximation (Journal of Algorithms 13 297-306 DOI 10.1016/0196-6774(92)90020-D). This is not a global Drive nonownership proof.",
+    "contribution": "Commits must be human WhoSia only; CI read-only; no bots."
   }
 }
