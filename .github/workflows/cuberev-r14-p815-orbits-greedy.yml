@@ -32,6 +32,8 @@ jobs:
           assert d['minimal17_orbits']==12 and d['minimum16_orbits']==8
           assert d['prob_minimum16']=='1166/1995'
           assert d['prob_minimal17']=='829/1995'
+          assert d['corner_first_prob16']=='11/12'
+          assert d['edge_first_prob16']=='1/2'
           assert d['expected_sensor_count']=='32749/1995'
           assert d['physical_41_distance_classes_replayed'] is False
           assert d['lean_kernel_proven'] is False
