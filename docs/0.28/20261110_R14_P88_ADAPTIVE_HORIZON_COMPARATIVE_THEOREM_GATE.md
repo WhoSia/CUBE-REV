@@ -81,7 +81,7 @@ Literature candidates for exact model-by-model comparison:
 - *Effective algorithms for constructing minimum cost adaptive distinguishing sequences*, Information and Software Technology 74 (2016), 69–85, DOI 10.1016/j.infsof.2016.02.001.
 - Hierons & Türker, *Distinguishing Sequences for Distributed Testing: Adaptive Distinguishing Sequences*, The Computer Journal 59(8) (2016), 1186–1206, DOI 10.1093/comjnl/bxw004.
 - *State identification sequences from the splitting tree*, Information and Software Technology 123 (2020), 106297, DOI 10.1016/j.infsof.2020.106297.
-These demonstrate deep existing ADS methodology. This note has **not** established that no prior paper proves this exact twenty-frame cube instance, and has **not** verified whether these papers' full texts already reside in Research OS Literature Commons.
+These demonstrate deep existing ADS methodology. **2026-11-10 custody update:** All three papers' original PDFs are now confirmed in the central Research OS Literature Commons: [Türker, Ünlüyurt & Yenigün 2016](https://drive.google.com/file/d/10N6hZKeeKT6zMp0udLza4Si1yIaYEKUm/view), [Hierons & Türker 2016](https://drive.google.com/file/d/17NsR-UoqDikvTH_5vmG1uweOSNsPQ7On/view), and [Soucha & Bogdanov 2020](https://drive.google.com/file/d/1F7RmxBZjYh4lpOqInF3G-hvytObsF17k/view). In addition, Moore (1956), Buhrman & de Wolf (2002), and Hierons & Türker (2017 preset) were read and admitted to central custody. [R14-P8.9/P8.10 literature and formal proof audit](20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md). This ownership confirmation **does not establish** that no prior paper proves this exact twenty-frame cube instance; model-specific priority remains open.
 
 ## 5. Custody and authority of this unit
 
