@@ -509,6 +509,7 @@
     "docs/0.28/20261109_R14_P86_CONSTRUCTIVE_20_FRAME_ADAPTIVE_UPPER.md",
     "docs/0.28/20261109_R14_P87_FIXED_FIRST_EDGE_SCAN_20_LOWER.md",
     "docs/0.28/20261109_R14_P8_DELAYED_COUPLED_PARITY_ACTIVATION.md",
+    "docs/0.28/20261110_R14_P811_EXISTING_PAPERS_MISSING_ORIGINAL_AUDIT.md",
     "docs/0.28/20261110_R14_P88_ADAPTIVE_HORIZON_COMPARATIVE_THEOREM_GATE.md",
     "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
@@ -5067,5 +5068,21 @@
     "drive_report": "Existing CUBE-REV 0.28 Notion and central Research OS 10_PAPERS custody; no new T2 raw physical experiment was produced",
     "prior_art": "Classic adaptive ADS and decision-tree certificate measures established in owned papers, novelty remains cube-model-specific and subject to independent priority audit",
     "bot_contribution_zero": "WhoSia author/committer required; GitHub Actions read-only; no automated commits"
+  },
+  "active_set_reconciliation_20261110_r14_p811_existing_papers": {
+    "stage": "0.28 R14-P8.11",
+    "date": "2026-11-10",
+    "paths": [
+      "docs/0.28/20261110_R14_P811_EXISTING_PAPERS_MISSING_ORIGINAL_AUDIT.md",
+      "papers/0.28/DUAL_COLOR_PROBE_ADAPTIVE_IDENTIFICATION_DRAFT_01.md",
+      "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md"
+    ],
+    "custody": "No newly added 00_INTAKE source, NO PDF moves or uploads. Read owned paper text from canonical Drive and searched original-title/author file metadata; search-negative NOT proof of absence.",
+    "newly_considered_missing": "Harary-Melter 1976; Slater 1975; Dalla Volta-Mastrogiacomo-Spiga 2024; Smetsers-Moerman-Jansen 2016; Alur-Courcoubetis-Yannakakis 1995; Hennie 1964; Chow 1978; Vasilevskii 1973; Hopcroft 1971; Sokolovskii 1971. Publisher records/DOIs known for some; full original PDF not located in scoped Drive searches.",
+    "removed_false_missing": "Angluin 1987 owned; original Lee-Yannakakis, Türker, Hierons-Türker, Moore, Soucha-Bogdanov, Buhrman-de Wolf, Boutin owned; MIT 6.111 2017 report already bibliographically identified in Paper B.",
+    "new_source_status": "Rivest-Schapire 1993 owned PDF but zero extracted characters; full text reading HOLD.",
+    "proof_status": "No new full-physical P48 theorem, 19-frame optimum OPEN; two prior Lean modules remain SOURCE_PENDING_KERNEL unless actual remote success is separately inspected.",
+    "active_focus": "Preserve Paper A b6 exact minimum and exchange-graph evidence; Paper B P8.8 unrestricted mixed-prefix minmax and P8.9-P8.10 actual physical witness to Lean bridge.",
+    "human_commit_identity": "WhoSia; CI read-only; no bot-authored repo changes"
   }
 }
