@@ -175,6 +175,20 @@ The expected retained count is \(32749/1995\approx16.41554\). A deterministic ro
 
 Both results rely on the previously proven physical B6 156-positive/4,845-complete-negative certificate and the 17/18/19 minimal sensor consequences. The new [P8.15 independent executable](../../scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py), [read-only CI gate](../../.github/workflows/cuberev-r14-p815-orbits-greedy.yml), and [complete proof notes](../../docs/0.28/20261110_R14_P815_ORBITS_AND_EXACT_GREEDY.md) are finite combinatorial checks. They do **not** separately rerun 41 exact HTM-distance classes or confer a general permutation-group approximation factor.
 
+### 5.4. An exact comparison of three greedy deletion orders (R14-P8.16)
+
+The geometrically validated finite B6 identifying-set DAG gives a direct non-asymptotic algorithmic corollary. Start with all twenty original tagged-cubie sensors; at every step remove one tag among those whose removal retains B6 injectivity; stop at an inclusion-wise minimal identifying set. Three different policies, each sampling uniformly among its allowed moves, have **different exact probabilities** of arriving at a *globally minimum* 16-sensor design:
+
+| Policy | Probability of 16-sensor optimum | Probability of 17-sensor minimal but nonminimum result | Exact mean retained sensors |
+|---|---:|---:|---:|
+| Prefer removable corner tags, fall back to edges | \(11/12\) | \(1/12\) | \(193/12\) |
+| Choose uniformly among all removable tags | \(1166/1995\) | \(829/1995\) | \(32749/1995\) |
+| Prefer removable edge tags, fall back to corners | \(1/2\) | \(1/2\) | \(33/2\) |
+
+There are short independent proofs for both type-prioritized policies. **Corner-first:** the first two removed corners must be adjacent, and then all twelve first-edge choices retain injectivity. Only the *native* edge joining those corners is isolated in the associated 13-pair graph \(P(h)\), causing termination at 17; the other eleven first-edge choices permit reaching 16. **Edge-first:** the first two removed edges are uniformly distributed among \(\binom{12}{2}=66\) pairs, after which the first removed corner is uniform among eight. Exactly 264 of the \(8\cdot66=528\) (corner, edge-pair) triples extend to a certified 16-sensor design; exactly 264 do not, giving success probability \(1/2\). The unrestricted-uniform law comes from a complete rational DP over 1,023 identifying omission sets rather than Monte Carlo.
+
+These calculations **assume** the complete historical physical 16-tag positive/negative certificate, physical short-collision obstructions, and the algebraic full-cubie stabilizer reductions used in P8.13. They do not provide a universal randomized approximation guarantee in permutation-group base minimization or justify transferring probabilities to sticker-color frames, physical robot turnaround time, or unknown noisy sensor outputs. The full [P8.16 proof](../../docs/0.28/20261110_R14_P816_GREEDY_PRIORITY_EXACT_PROOF.md) and the updated [rational validator](../../scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py) retain these explicit dependencies; actual remote CI result pending inspection.
+
 ## 5A. Exact one-original-cubie sensor erasure threshold at radius six (2026-11-04 restored)
 
 **Conditional exact theorem: b6^(1)=19 and exactly 12 minimum robust layouts.** Here a sensor is an originally labelled oriented cubie, and a set S is one-erasure robust if S\\{t} remains injective on the entire B6 state set after any one selected tag t is lost. The twelve optimal robust designs each observe **all eight original corners and eleven of the twelve original edges**. The result depends on three separately sourced physical certificates, not on the claim that every larger valid set contains a valid 16-tag sublayout.
