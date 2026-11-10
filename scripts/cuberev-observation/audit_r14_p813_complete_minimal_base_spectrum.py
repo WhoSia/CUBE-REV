@@ -60,6 +60,24 @@ assert sum(pair_multiplicity.values())==66
 assert pair_multiplicity=={1:24,2:6,3:24,4:12}
 assert 0 not in pair_multiplicity
 
+# For any original corner c, the three incident core edges have 13
+# admitted edge pairs apiece. Their three pairwise intersections and
+# their common triple intersection are the SAME three omitted-edge pairs.
+# Inclusion-exclusion gives 3*13-3*3+3 = 33 extendable pair omissions
+# at this corner, leaving 66-33 = 33 minimal-17 1C+2E designs.
+corner_union_counts=[]
+for corner in CORNERS:
+    incident=[h for h in EDGES if corner in ENDS[h]]
+    assert len(incident)==3
+    a,b,c=(PAIRS[h] for h in incident)
+    shared=a&b&c
+    assert len(shared)==3
+    assert a&b==a&c==b&c==shared
+    union=a|b|c
+    assert len(union)==3*13-3*3+3==33
+    corner_union_counts.append(len(union))
+assert corner_union_counts==[33]*8
+
 positive16=frozenset(frozenset({("C",p) for p in ENDS[h]}|
                     {("E",e) for e in pair})
                     for h in EDGES for pair in PAIRS[h])
@@ -123,6 +141,8 @@ print(json.dumps({
     "minimal_17_types":{"two_corners_one_edge":12,"one_corner_two_edges":264},
     "total_minimal":432,"minimal_size_spectrum":[16,17],
     "edge_pair_core_coverage":dict(sorted(pair_multiplicity.items())),
+    "per_corner_extendable_edge_pair_count":corner_union_counts,
+    "per_corner_minimal17_one_corner_two_edges":66-corner_union_counts[0],
     "fresh_independent_physical_18htm_mitm":False,
     "lean_kernel_verdict":"NOT_RUN_BY_THIS_SCRIPT"
 },sort_keys=True))
