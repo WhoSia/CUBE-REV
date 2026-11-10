@@ -5,6 +5,7 @@ on:
     branches: [research/current]
     paths:
       - 'formal/028/**'
+      - 'scripts/cuberev-observation/audit_r14_p817_common_observation_bridge.py'
       - 'scripts/cuberev-observation/audit_r14_p89_p810_generic_transport.py'
       - '.github/workflows/cuberev-r14-p89-lean-observation-covariance.yml'
   workflow_dispatch:
@@ -36,6 +37,24 @@ jobs:
         with:
           name: cuberev-r14-p89-p810-generic-toy-unit-test
           path: /tmp/p89-p810-toy.json
+          retention-days: 30
+      - name: Verify static-pair-cover and adaptive minimax on independent six-state court
+        run: |
+          python scripts/cuberev-observation/audit_r14_p817_common_observation_bridge.py > /tmp/p817-bridge.json
+          python - <<'PY'
+          import json
+          data=json.load(open('/tmp/p817-bridge.json'))
+          assert data["status"]=="R14_P817_GENERIC_OBSERVATION_HYPERGRAPH_BELLMAN_PASS"
+          assert data["hidden_states"]==6 and data["queries"]==3 and data["pair_supports"]==15
+          assert data["static_minimum_query_count"]==3
+          assert data["adaptive_minimax_query_depth"]==2
+          assert data["exactly_decoded_states"]==6 and data["full_cube_physical_certificate_replayed"] is False
+          print("R14_P817_COMMON_OBSERVATION_BRIDGE_PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p817-model-bridge-unit
+          path: /tmp/p817-bridge.json
           retention-days: 30
       - name: Do not write to GitHub tree
         run: git diff --exit-code HEAD --
