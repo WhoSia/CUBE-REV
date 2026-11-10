@@ -4,6 +4,8 @@ on:
     branches: [research/current]
     paths:
       - 'scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py'
+      - 'scripts/cuberev-observation/verify_r14_p814_66_pair_core_index.py'
+      - 'data/0.28/R14_P814_ALL_66_EDGE_PAIRS_POSITIVE16_CORE_INDEX_20261110.json'
       - 'docs/0.28/20261110_R14_P813_COMPLETE_MINIMAL_SENSOR_SPECTRUM.md'
       - '.github/workflows/cuberev-r14-p813-complete-minimal-spectrum.yml'
   workflow_dispatch:
@@ -37,10 +39,28 @@ jobs:
           assert d["fresh_independent_physical_18htm_mitm"] is False
           print("R14_P813_COMPLETE_MINIMAL_B6_GEOMETRY_PASS_PHYSICAL_DEPENDENCY_PRESERVED")
           PY
+      - name: Replay and verify the complete 66 physical-certificate reference index
+        run: |
+          python scripts/cuberev-observation/verify_r14_p814_66_pair_core_index.py > /tmp/p814.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/p814.json"))
+          assert d["result"]=="R14_P814_66_PAIR_CORE_INDEX_REPLAY_PASS"
+          assert d["all_edge_pairs"]==66 and d["positive16_selected_layouts"]==66
+          assert d["uniquely_available_core"]==24
+          assert d["candidate_core_multiplicities"]=={"1":24,"2":6,"3":24,"4":12}
+          assert d["physical_B12_41_class_replayed"] is False
+          print("R14_P814_REFERENCE_INDEX_PASS_GEOMETRY_ONLY")
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: cuberev-r14-p813-minimal-spectrum-geometry-json
           path: /tmp/p813.json
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p814-66-pair-core-index-replay
+          path: /tmp/p814.json
           retention-days: 30
       - name: No bot-authored source modifications
         run: git diff --exit-code HEAD --
