@@ -166,6 +166,7 @@
     ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml",
     ".github/workflows/cuberev-r14-p821-np-physical-bridge.yml",
     ".github/workflows/cuberev-r14-p823-p824-b7-fullgroup.yml",
+    ".github/workflows/cuberev-r14-p827-historical-p48-conjugacy.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
     ".github/workflows/cuberev-r14-p89-lean-observation-covariance.yml",
@@ -284,6 +285,9 @@
     "data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json",
     "data/0.28/R14_P814_ALL_66_EDGE_PAIRS_POSITIVE16_CORE_INDEX_20261110.json",
     "data/0.28/R14_P825_20261111_EIGHT_ORIGINALS_SHA256_CUSTODY.json",
+    "data/0.28/R14_P827_20261111_EIGHT_PRIMARY_SOURCE_PDF_SHA256_DRIVE_CUSTODY.json",
+    "data/0.28/R14_P827_ZASSENHAUS_1982_INDEPENDENT_48_STICKER_CONJUGACY_RECEIPT.json",
+    "data/0.28/R14_P828_ZASSENHAUS_1982_EXACT_288_GAUGE_GROUP_RECEIPT.json",
     "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
     "data/cuberev-021/p6_fmc_partial_order_extension.json",
     "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
@@ -532,6 +536,7 @@
     "docs/0.28/20261111_R14_P822_EXTENDED_MISSING_LITERATURE_AND_RAW_EVIDENCE.md",
     "docs/0.28/20261111_R14_P823_P824_RADIUS10_SATURATION_AND_B7_WITNESS.md",
     "docs/0.28/20261111_R14_P825_P826_UPDATED_MISSING_AND_SCIENTIFIC_AUDIT.md",
+    "docs/0.28/20261111_R14_P827_P828_SOURCE_FIRST_P48_GAUGE_AND_UPDATED_MISSING.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -1056,6 +1061,7 @@
     "scripts/cuberev-observation/audit_r14_p821_np_explicit_p48.py",
     "scripts/cuberev-observation/audit_r14_p823_full_group_radius10_bridge.py",
     "scripts/cuberev-observation/audit_r14_p824_independent_48_sticker_b7_collision.py",
+    "scripts/cuberev-observation/audit_r14_p827_zassenhaus_original_48_sticker_conjugacy.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
@@ -5265,5 +5271,27 @@
     "novelty": "Full-group 18 and radius10 saturation are elementary derivative facts, 24 physically explicit rcrit7 representative supplies a constructive new bound, not yet a global B7 optimum or universal proof. Scientific gate = classify critical radius across all eight B6 minimum16 layout orbits with independent B12..B20 distances.",
     "bibliog": "Updated old 16 missing originals: Blaha92,Jerrum86,Sims70,Sims71,Bshouty96,Bisht08,Rivest87,Bshouty95 now owned; Blaha89 PhD also acquired; older unresolved Harary,Slater,Hennie,Vasilevskii,Hopcroft,Sokolovskii,Zassenhaus remain; additional Furst-Hopcroft-Luks, Knuth, Leon, Jefferson2021, Angluin1997, Ron Rubinfeld1995 title-search negative.",
     "provenance": "Source owner WhoSia, research/current, Actions read-only, no bot source commits, historical B5 54-facelet ZIP still missing, no new Lean kernel result."
+  },
+  "active_set_reconciliation_20261111_r14_p827_p828_historical_P48_288_gauge": {
+    "date": "2026-11-11",
+    "stage": "0.28 P8.27–P8.28",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p827_zassenhaus_original_48_sticker_conjugacy.py",
+      "data/0.28/R14_P827_ZASSENHAUS_1982_INDEPENDENT_48_STICKER_CONJUGACY_RECEIPT.json",
+      "data/0.28/R14_P827_20261111_EIGHT_PRIMARY_SOURCE_PDF_SHA256_DRIVE_CUSTODY.json",
+      "data/0.28/R14_P828_ZASSENHAUS_1982_EXACT_288_GAUGE_GROUP_RECEIPT.json",
+      ".github/workflows/cuberev-r14-p827-historical-p48-conjugacy.yml",
+      "docs/0.28/20261111_R14_P827_P828_SOURCE_FIRST_P48_GAUGE_AND_UPDATED_MISSING.md"
+    ],
+    "source_original_zassenhaus_drive_id": "1i0gVO3XuLtBYZSknKCaMChTXJ641D59U",
+    "eight_new_original_pdfs": "Six direct historical/algorithm/automata originals, one Mereb-Vendramin 2024 arXiv v3 Nov 2 2026 preprint, and one unrelated toxicology journal article, all moved metadata-only from Research OS 00_INTAKE to central 10_PAPERS, 8 raw SHA256 verified with same Drive IDs and source classification.",
+    "new_raw_data_drive_folder": "1HT6QRLNlMs0wGJRInyq-ur8BcWjfjZuq",
+    "drive_all288_full_data": "1tVQdI-ulxxHVsLF5Ta8L1u4qixm7rkwj",
+    "drive_all288_data_sha256": "901c8b72dedf187ea739e6289a76b0ec679a485f6f2e5c83551019afeb74ae6b",
+    "drive_source_script_v2": "1cvGc90HTZtC6uHRvVSr0LOcgu_FNFzA9",
+    "source_script_SHA256": "0569bbf4e9ed3371bc96bb6fac16ed64a16b4dc213116f2800f21b8cad22100d",
+    "verification": "Local exact P48 physical generator isomorphism against all six 1982 published permutations, 48 valid face-generator assignments times 3 corner gauge times 2 edge gauge = 288 full exact bijections; all six source generators x all 48 sticker labels tested per bijection; full gauge centralizer C3 x C2; archive bytes download-back SHA256 checked. Remote Actions status not observed.",
+    "missing_originals_current": "Harary & Melter 1976; Slater 1975; Hennie 1964; Vasilevskii 1973; Hopcroft 1971; Sokolovskii 1971; Furst-Hopcroft-Luks 1980 (Cornell tech report public but original not imported). Additional historical candidates: Singmaster 1981 (book), Bandelow 1982 (book), Golomb 1981 (paper), McKay & Piperno 2014, Blaha original 1986 technical report.",
+    "limits": "No re-run of full B6 positive 41 HTM geodesic proof or full B7 min; no Lean kernel check; no manuscript publication claim. Distinguish 48 original witness alignments in P8.27 from complete 288 in P8.28. Github human WhoSia source commits, workflow read-only."
   }
 }
