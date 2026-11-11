@@ -1,0 +1,45 @@
+name: CUBE-REV R14-P8.27 historical 1982 P48 generator conjugacy
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-observation/audit_r14_p827_zassenhaus_original_48_sticker_conjugacy.py"
+      - "data/0.28/R14_P827_ZASSENHAUS_1982_INDEPENDENT_48_STICKER_CONJUGACY_RECEIPT.json"
+      - ".github/workflows/cuberev-r14-p827-historical-p48-conjugacy.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-1982-source-generator-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Source-first exact 48-sticker historical conjugacy
+        run: |
+          python scripts/cuberev-observation/audit_r14_p827_zassenhaus_original_48_sticker_conjugacy.py > /tmp/p827.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/p827.json"))
+          assert d["status"]=="PASS"
+          assert d["turns"]==6
+          assert d["historical_turns_supports"]==[20]*6
+          assert d["historical_opp_pairs"]==[[0,5],[1,4],[2,3]]
+          assert d["distinct_generator_label_and_direction_conjugacies_found"]==48
+          m=d["first_solution"]["source_label_to_physical_sticker_slot"]
+          assert len(m)==48 and len(set(m.values()))==48
+          assert d["first_solution"]["source_T1_to_T6_faces"]=="URFBLD"
+          print("P827_FULL_P48_HISTORICAL_SOURCE_CONJUGACY_PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p827-zassenhaus-1982-p48-original-notation-conjugacy
+          path: /tmp/p827.json
+          retention-days: 30
+      - name: Assert no source writeback
+        run: git diff --exit-code HEAD --
