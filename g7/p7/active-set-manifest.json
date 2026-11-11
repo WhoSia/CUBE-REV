@@ -164,6 +164,7 @@
     ".github/workflows/cuberev-r14-p818-uniform-minimal-bases.yml",
     ".github/workflows/cuberev-r14-p819-b5-b6-transition.yml",
     ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml",
+    ".github/workflows/cuberev-r14-p821-np-physical-bridge.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
     ".github/workflows/cuberev-r14-p89-lean-observation-covariance.yml",
@@ -525,6 +526,8 @@
     "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
     "docs/0.28/20261111_R14_P818_UNIFORM_BASIS_SAMPLER_AND_REPRODUCIBILITY_AUDIT.md",
     "docs/0.28/20261111_R14_P819_B5_B6_OPTIMAL_BASIS_ATTRITION.md",
+    "docs/0.28/20261111_R14_P821_NP_INCIDENCE_PHYSICAL_BRIDGE.md",
+    "docs/0.28/20261111_R14_P822_EXTENDED_MISSING_LITERATURE_AND_RAW_EVIDENCE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -1046,6 +1049,7 @@
     "scripts/cuberev-observation/audit_r14_p818_exact_uniform_basis_sampler.py",
     "scripts/cuberev-observation/audit_r14_p819_b5_b6_transition.py",
     "scripts/cuberev-observation/audit_r14_p820_np_source_disambiguation.py",
+    "scripts/cuberev-observation/audit_r14_p821_np_explicit_p48.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
@@ -5221,5 +5225,21 @@
     "future": "Find original sealed archive, run P8.20 against raw B5 and actual B6 P48, derive human-size 4+4 N-P predicate if found. Then compare full minimum-vs-inclusionwise-minimal spectra at B5 and B6 without assuming they match.",
     "paper_policy": "Neither the 576->156 transition counts nor simple ratio constitute brand-new standalone paper results; preserve unified C0.1 and seek stronger radius-dependent theorem.",
     "commit_authorship": "WhoSia human author/committer, research/current; Actions read-only; preserve original physical bytes"
+  },
+  "active_set_reconciliation_20261111_r14_p821_p822_np_biblio": {
+    "date": "2026-11-11",
+    "stage": "0.28 R14-P8.21/P8.22",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p821_np_explicit_p48.py",
+      ".github/workflows/cuberev-r14-p821-np-physical-bridge.yml",
+      "docs/0.28/20261111_R14_P821_NP_INCIDENCE_PHYSICAL_BRIDGE.md",
+      "docs/0.28/20261111_R14_P822_EXTENDED_MISSING_LITERATURE_AND_RAW_EVIDENCE.md"
+    ],
+    "geometric_local": "Independent local six-face-normal 3D reconstruction of all 24 rotations and 9 existing B5 word-pair seed support labels produced 216 unique B5 masks and 12x8 explicit N-P classifications. For every native core: no shared corner endpoint between N,P iff old B5 failure; shared endpoint iff newly B6 failure. Totals 48 old+48 new. Geometry execution PASS; physical full 48-sticker replay is separate.",
+    "p48_source": "Nine previous B5 full P48 5+5 seeds and nineteen existing B6 P48 6+6 seeds are already source-controlled. P8.21 physical replay directly imports both and avoids missing 54-facelet ZIP, asserting all 96 old/new membership decisions and emitting per-core JSON. Created read-only CI but remote execution PASS NOT observed.",
+    "precautions": "Prior 576->156 and 420 loss numbers from 2026-11-04 preexist. New geometric N-P endpoint rule is narrow sector and dependent on inherited physical seed labels. Does not certify 41 positive B12 targets or solve whole-cube color adaptive 19 frames.",
+    "literature": "P8.22 targeted missing-original PDF candidate list 16 titles plus explicit Drive-owned counterlist: Korf 1997, Rokicki 2013/2014, Hyafil-Rivest 1976, Jerrum-Valiant-Vazirani 1986, Seress 2003, Kulberson/Schaeffer 1998 etc. Scholarly absence is scoped author/title negative search, NOT global absence proof. Raw source custody backlog 20 items.",
+    "pending": "Historical 2026-10-30 B5 raw ZIP still missing from targeted Drive search; not necessary for P8.21 physical witness replayer, but historical source SHA custody outstanding. CI proof receipt and Notion audit required.",
+    "security": "Human WhoSia author/committer, research/current; read-only workflows, no bot writeback; no PDF moves, no new raw-physical computation claims."
   }
 }
