@@ -1,0 +1,101 @@
+{
+  "schema": "CUBE-REV/0.28/P8.25/primary-original-byte-custody-v1",
+  "date": "2026-11-11",
+  "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+  "interpretation": "Original PDF raw bytes downloaded via connected Google Drive for each exact ID, SHA256 computed locally over complete bytes, then parent/name/size read back from Drive; none of the eight PDF bytes were modified. Six already canonical at start; Rivest canonical by later readback; Bshouty 1995 manually rendered first page, canonical metadata-only rename+move with original ID preserved.",
+  "original_copies": [
+    {
+      "label": "Blaha (1992)",
+      "drive_file_id": "1Z-Oe_mOkUrZAQhgsmpZvHuAwN8JtEGKL",
+      "url": "https://drive.google.com/file/d/1Z-Oe_mOkUrZAQhgsmpZvHuAwN8JtEGKL/view",
+      "size_bytes": 602065,
+      "sha256": "5521bd71ae92840b44b114f7ff15b8e66f69f2e79848cb014798919010af9336",
+      "source": "Journal of Algorithms 13 297-306",
+      "byte_level": "SHA256_VERIFIED_FROM_DOWNLOADED_ORIGINAL",
+      "file_location": "10_PAPERS",
+      "metadata_parent_readback": true
+    },
+    {
+      "label": "Jerrum (1986)",
+      "drive_file_id": "1iB2SnrHoIlxFlaz3IQGXRuT5cIHyNUvH",
+      "url": "https://drive.google.com/file/d/1iB2SnrHoIlxFlaz3IQGXRuT5cIHyNUvH/view",
+      "size_bytes": 1138793,
+      "sha256": "cf8bcea41a2535f637d683e26bf6d4ac0b31a08cb9a3412b24c8748cf6df7e50",
+      "source": "Journal of Algorithms 7 60-78",
+      "byte_level": "SHA256_VERIFIED_FROM_DOWNLOADED_ORIGINAL",
+      "file_location": "10_PAPERS",
+      "metadata_parent_readback": true
+    },
+    {
+      "label": "Sims (1970)",
+      "drive_file_id": "1M4WTjnpXCjcGoXaVD1UZpGss79409eK8",
+      "url": "https://drive.google.com/file/d/1M4WTjnpXCjcGoXaVD1UZpGss79409eK8/view",
+      "size_bytes": 796182,
+      "sha256": "0ebac19ece22f952509f882b4582457db92d46190fbd61731828953df6738baa",
+      "source": "Computational Problems in Abstract Algebra 169-183",
+      "byte_level": "SHA256_VERIFIED_FROM_DOWNLOADED_ORIGINAL",
+      "file_location": "10_PAPERS",
+      "metadata_parent_readback": true
+    },
+    {
+      "label": "Sims (1971)",
+      "drive_file_id": "12ESPckYd--MAe0_V6-E5wsqsTXiAOd4A",
+      "url": "https://drive.google.com/file/d/12ESPckYd--MAe0_V6-E5wsqsTXiAOd4A/view",
+      "size_bytes": 410424,
+      "sha256": "26f68c231ee59296358867e39881a0ff66b6c4c71da5e83c332f083065fb8df3",
+      "source": "SYMSAC 1971 23-28",
+      "byte_level": "SHA256_VERIFIED_FROM_DOWNLOADED_ORIGINAL",
+      "file_location": "10_PAPERS",
+      "metadata_parent_readback": true
+    },
+    {
+      "label": "Bshouty, Goldman, Hancock & Matar (1996)",
+      "drive_file_id": "1DcEyQhPZfYErZaTra9sSqvOo_Kl4W8p4",
+      "url": "https://drive.google.com/file/d/1DcEyQhPZfYErZaTra9sSqvOo_Kl4W8p4/view",
+      "size_bytes": 949887,
+      "sha256": "c9f84930c34ff02720a8a10c632383b463c07316a8baa76517056ff74859fae5",
+      "source": "Journal of Computer and System Sciences 52 268-286",
+      "byte_level": "SHA256_VERIFIED_FROM_DOWNLOADED_ORIGINAL",
+      "file_location": "10_PAPERS",
+      "metadata_parent_readback": true
+    },
+    {
+      "label": "Bisht, Bshouty & Khoury (2008; 2007 online)",
+      "drive_file_id": "1wU_xQt0rwHbaI0y2eXa23zZJJfpSJHxB",
+      "url": "https://drive.google.com/file/d/1wU_xQt0rwHbaI0y2eXa23zZJJfpSJHxB/view",
+      "size_bytes": 208520,
+      "sha256": "54c4fe58ca7e381200fb55fa8d3dc484705ba320e002b7348e396fa5cb2cc194",
+      "source": "Journal of Computer and System Sciences 74 2-15",
+      "byte_level": "SHA256_VERIFIED_FROM_DOWNLOADED_ORIGINAL",
+      "file_location": "10_PAPERS",
+      "metadata_parent_readback": true
+    },
+    {
+      "label": "Rivest (1987)",
+      "drive_file_id": "16OTCF7mxJO4ypYvBanEBoN-PkPsH1J8t",
+      "url": "https://drive.google.com/file/d/16OTCF7mxJO4ypYvBanEBoN-PkPsH1J8t/view",
+      "size_bytes": 969042,
+      "sha256": "2fe5bfc8c180c266202f2bba6e487c29fa8698e7f6147695b2ff9f0951bb2748",
+      "source": "Machine Learning 2 229-246",
+      "byte_level": "SHA256_VERIFIED_FROM_DOWNLOADED_ORIGINAL",
+      "file_location": "10_PAPERS",
+      "metadata_parent_readback": true
+    },
+    {
+      "label": "Bshouty (1995)",
+      "drive_file_id": "1br-s2_yYtMhoIw_r-CZ4OBTNDuLtA2Pa",
+      "url": "https://drive.google.com/file/d/1br-s2_yYtMhoIw_r-CZ4OBTNDuLtA2Pa/view",
+      "size_bytes": 564582,
+      "sha256": "363500165c917c5d58881322a77cacfbb9e4f86485c1748856f33b7c45d9cd08",
+      "source": "Information and Computation 123 146-153",
+      "byte_level": "SHA256_VERIFIED_FROM_DOWNLOADED_ORIGINAL",
+      "file_location": "10_PAPERS",
+      "metadata_parent_readback": true
+    }
+  ],
+  "origin_caveats": {
+    "rivet": "Original Rivest file was already renamed and moved in concurrent Drive activity before the attempted update; verify existing location rather than claim this tool invocation moved it.",
+    "bshouty": "Bshouty 1995 PDF encrypted RC4 legacy copy-permitted image PDF; text extractor returned empty, page 1 rendered and visually matched exact original 1995 Information and Computation journal title/author/vol/pages. Canonical in-place rename+move performed."
+  },
+  "excluded_unrelated_intake": "Other 00_INTAKE holdings and duplicate/metadata holds from unrelated MQR/NOMOS/traffic projects were left unchanged."
+}
