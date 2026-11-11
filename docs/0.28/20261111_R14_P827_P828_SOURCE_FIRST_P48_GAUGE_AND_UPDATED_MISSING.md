@@ -55,7 +55,7 @@ The full search is finite and exhaustive: once the six generator images are assi
 | **P8.28 all 288 full sticker map dataset** | `1tVQdI-ulxxHVsLF5Ta8L1u4qixm7rkwj` | `901c8b72dedf187ea739e6289a76b0ec679a485f6f2e5c83551019afeb74ae6b` |
 | 8 new primary PDFs complete raw SHA256/Drive ID manifest | `1DBe9bons0BBZW6xze3T3RMNJhj7vBA4S` | `02c6bd0dad719889d0a585cf9abc9f8899f372a04f7f6ea09c00e445b408f619` |
 
-The four P8.27 raw files were independently DOWNLOAD-BACK hash-checked from Drive after upload; their bytes match local SHA. P8.28 v2 raw uploads additionally returned Drive IDs and success; download-back SHA still needed as separate gate. The original historical versions were NOT overwritten; v2 adds additional completeness evidence.
+ALL seven P8.27/P8.28 source, receipt and map raw files were independently downloaded BACK from Drive after upload and compared byte-for-byte via the recorded SHA-256; all seven passed. The eight-source PDF custody manifest was also downloaded back and SHA-256 checked. This demonstrates raw-byte upload custody, not validity of external published mathematical claims. The original historical versions were NOT overwritten; v2 adds additional completeness evidence.
 
 GitHub work (human WhoSia, research/current) preserves independent verifier `scripts/cuberev-observation/audit_r14_p827_zassenhaus_original_48_sticker_conjugacy.py` now updated for P8.28, read-only `.github/workflows/cuberev-r14-p827-historical-p48-conjugacy.yml` now expects 288; original first-48 GitHub v1 JSON retained for historical audit; corrected P8.28 JSON at `data/0.28/R14_P828_ZASSENHAUS_1982_EXACT_288_GAUGE_GROUP_RECEIPT.json`. Actual GitHub Actions run verdict has NOT been observed, do not mark remote PASS.
 
