@@ -161,6 +161,7 @@
     ".github/workflows/cuberev-r14-p812-minimal17-sensors.yml",
     ".github/workflows/cuberev-r14-p813-complete-minimal-spectrum.yml",
     ".github/workflows/cuberev-r14-p815-orbits-greedy.yml",
+    ".github/workflows/cuberev-r14-p818-uniform-minimal-bases.yml",
     ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
@@ -521,6 +522,7 @@
     "docs/0.28/20261110_R14_P817_ONE_PAPER_REVIEWER_GATE.md",
     "docs/0.28/20261110_R14_P88_ADAPTIVE_HORIZON_COMPARATIVE_THEOREM_GATE.md",
     "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
+    "docs/0.28/20261111_R14_P818_UNIFORM_BASIS_SAMPLER_AND_REPRODUCIBILITY_AUDIT.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -1039,6 +1041,7 @@
     "scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py",
     "scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py",
     "scripts/cuberev-observation/audit_r14_p817_common_observation_bridge.py",
+    "scripts/cuberev-observation/audit_r14_p818_exact_uniform_basis_sampler.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
@@ -5180,5 +5183,22 @@
     "strongest_result": "A physical B6=16, 156 optimum; inherited supporting certificate requires source-first physical independent rerun. B h_fixed=21, h_adaptive 18..20, strict feedback gap but global 19 remains open.",
     "peer_gate": "Single merged editorial candidate only; publish A-centric single case study if venue audience or actual referee finds mixed A/B model unconvincing.",
     "source_purity": "WhoSia human author and committer, research/current only, CI read-only, no new PDF/Drive changes, no new P48 numerical result."
+  },
+  "active_set_reconciliation_20261111_r14_p818_uniform_bases": {
+    "date": "2026-11-11",
+    "stage": "0.28 R14-P8.18",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p818_exact_uniform_basis_sampler.py",
+      ".github/workflows/cuberev-r14-p818-uniform-minimal-bases.yml",
+      "docs/0.28/20261111_R14_P818_UNIFORM_BASIS_SAMPLER_AND_REPRODUCIBILITY_AUDIT.md",
+      "scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py",
+      "scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py"
+    ],
+    "research": "Exact, rejection-free uniform parameterization of all 156 minimum B6 16-tag designs via 12*13, and all 432 minimal designs via 156+12+8*33. Independent local Python verified exact sets and absence of duplicates. No independent B12 full geodesic rerun. Mathematical result depends on previous P48 certificate.",
+    "sampling": "Uniform among 432 minimal = min16 13/36, min17 23/36, average 599/36 sensors. Uniform among 156 optimum = success 1; naive 4-tag subset 156/4845 and random core with unrestricted pair 13/66 acceptance.",
+    "regression": "Fixed import-time unwanted JSON stdout in P8.13, which polluted P8.14 outputs. Fixed unordered Monte Carlo action list under fixed RNG seed in P8.15. New read-only CI checks import purity, P8.14 receipt, and all P8.18 bijections.",
+    "claim_bounds": "No new general basis theory or publication claim, no new Lean kernel PASS, no physical P48 B12 rerun or adaptive 19-frame resolution. Remote CI success not observed.",
+    "future": "More promising structural question: b5=b6=16 but geometry of valid layouts may change with radius; next verify exact B5/B6 family inclusion/difference from original independent raw certificates before announcing new theorem.",
+    "security": "GitHub human WhoSia author and committer, research/current only. CI read-only, Notion semantic ledger, no new Drive manuscript/PDF intake."
   }
 }
