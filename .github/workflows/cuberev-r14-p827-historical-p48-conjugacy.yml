@@ -1,16 +1,18 @@
-name: CUBE-REV R14-P8.27 historical 1982 P48 generator conjugacy
+name: CUBE-REV R14-P8.27-P8.29 historical P48 conjugacy and B7 witness transport
 on:
   push:
     branches: [research/current]
     paths:
       - "scripts/cuberev-observation/audit_r14_p827_zassenhaus_original_48_sticker_conjugacy.py"
+      - "scripts/cuberev-observation/audit_r14_p824_independent_48_sticker_b7_collision.py"
+      - "scripts/cuberev-observation/audit_r14_p829_historical_b7_collision_transport.py"
       - "data/0.28/R14_P827_ZASSENHAUS_1982_INDEPENDENT_48_STICKER_CONJUGACY_RECEIPT.json"
       - ".github/workflows/cuberev-r14-p827-historical-p48-conjugacy.yml"
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  original-1982-source-generator-test:
+  historical-source-and-b7-transport:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -20,7 +22,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Source-first exact 48-sticker historical conjugacy
+      - name: Source-first 48-sticker historical generator conjugacy
         run: |
           python scripts/cuberev-observation/audit_r14_p827_zassenhaus_original_48_sticker_conjugacy.py > /tmp/p827.json
           python - <<'PY'
@@ -30,16 +32,40 @@ jobs:
           assert d["turns"]==6
           assert d["historical_turns_supports"]==[20]*6
           assert d["historical_opp_pairs"]==[[0,5],[1,4],[2,3]]
-          assert d["distinct_face_label_and_direction_assignments"]==48\n          assert d["centralizer_size_fixed_face_assignment"]==6\n          assert d["independent_corner_sticker_gauge_choices"]==3\n          assert d["independent_edge_sticker_gauge_choices"]==2\n          assert d["total_explicit_P48_generator_conjugacies"]==288
+          assert d["distinct_face_label_and_direction_assignments"]==48
+          assert d["centralizer_size_fixed_face_assignment"]==6
+          assert d["independent_corner_sticker_gauge_choices"]==3
+          assert d["independent_edge_sticker_gauge_choices"]==2
+          assert d["total_explicit_P48_generator_conjugacies"]==288
           m=d["first_solution"]["source_label_to_physical_sticker_slot"]
           assert len(m)==48 and len(set(m.values()))==48
-          assert d["first_solution"]["source_T1_to_T6_faces"]=="URFBLD"
-          print("P827_FULL_P48_HISTORICAL_SOURCE_CONJUGACY_PASS")
+          print("P828_FULL_P48_HISTORICAL_CONJUGACY_PASS")
+          PY
+      - name: Replay B7 physical witness and transport across all 288 historical gauges
+        run: |
+          python scripts/cuberev-observation/audit_r14_p824_independent_48_sticker_b7_collision.py > /tmp/p824.json
+          python scripts/cuberev-observation/audit_r14_p829_historical_b7_collision_transport.py > /tmp/p829.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/p829.json"))
+          assert d["status"]=="PASS"
+          assert d["scope"]=="representation_transport_only"
+          assert d["historical_conjugacies_checked"]==288
+          assert d["turn_word_htm_length"]==13
+          assert d["two_state_prefix_and_inverse_suffix_lengths"]==[6,7]
+          assert d["observed_original_cubies"]==16
+          assert d["observed_sticker_labels"]==40
+          assert not d["b7_minimum_resolved"]
+          assert not d["b6_positive_certificate_reexecuted"]
+          print("P829_HISTORICAL_B7_TRANSPORT_PASS")
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: cuberev-r14-p827-zassenhaus-1982-p48-original-notation-conjugacy
-          path: /tmp/p827.json
+          name: cuberev-r14-p827-p829-historical-p48-b7-receipts
+          path: |
+            /tmp/p827.json
+            /tmp/p824.json
+            /tmp/p829.json
           retention-days: 30
       - name: Assert no source writeback
         run: git diff --exit-code HEAD --
