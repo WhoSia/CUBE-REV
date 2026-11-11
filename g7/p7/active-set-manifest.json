@@ -605,6 +605,7 @@
     "formal/025/lake-manifest.json",
     "formal/025/lakefile.toml",
     "formal/025/lean-toolchain",
+    "formal/028/B7PairSupport.lean",
     "formal/028/ObservationCovariance.lean",
     "formal/028/StaticObservationSupport.lean",
     "formal/028/TwoStepAdversary.lean",
@@ -5316,6 +5317,11 @@
     "added_path": "docs/0.28/20261111_R14_P830_B7_EXACT_18_SOURCE_LINEAGE_CORRECTION.md",
     "reason": "Independent revalidation and explicit correction of historical B7 pair-support lineage",
     "proof_status": "P8.30 CI PASS; global b7=18 in permanent-original-tag model, 96 optima",
+    "branch": "research/current"
+  },
+  "active_set_reconciliation_20261111_r14_p831_lean": {
+    "added_path": "formal/028/B7PairSupport.lean",
+    "reason": "Lean abstract two-tag collision hitting certificate, physics premises separately validated",
     "branch": "research/current"
   }
 }
