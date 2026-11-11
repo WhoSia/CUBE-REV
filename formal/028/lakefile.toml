@@ -1,6 +1,6 @@
 name = "CubeRev028"
 version = "0.1.0"
-defaultTargets = ["ObservationCovariance", "TwoStepAdversary", "StaticObservationSupport"]
+defaultTargets = ["ObservationCovariance", "TwoStepAdversary", "StaticObservationSupport", "B7PairSupport"]
 
 [[lean_lib]]
 name = "ObservationCovariance"
@@ -10,3 +10,6 @@ name = "TwoStepAdversary"
 
 [[lean_lib]]
 name = "StaticObservationSupport"
+
+[[lean_lib]]
+name = "B7PairSupport"
