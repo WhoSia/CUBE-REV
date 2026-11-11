@@ -37,7 +37,8 @@ theorem identifying_set_hits_pair
     (hIdentify : signatureInjective observe selected) :
     selected a ∨ selected b := by
   classical
-  by_contra neither
+  apply Classical.byContradiction
+  intro neither
   have ha : ¬ selected a := by
     intro h
     exact neither (Or.inl h)
