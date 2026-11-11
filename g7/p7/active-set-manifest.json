@@ -168,6 +168,7 @@
     ".github/workflows/cuberev-r14-p823-p824-b7-fullgroup.yml",
     ".github/workflows/cuberev-r14-p827-historical-p48-conjugacy.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
+    ".github/workflows/cuberev-r14-p830-b7-exact-full-tag-minimum.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
     ".github/workflows/cuberev-r14-p89-lean-observation-covariance.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
@@ -537,6 +538,7 @@
     "docs/0.28/20261111_R14_P823_P824_RADIUS10_SATURATION_AND_B7_WITNESS.md",
     "docs/0.28/20261111_R14_P825_P826_UPDATED_MISSING_AND_SCIENTIFIC_AUDIT.md",
     "docs/0.28/20261111_R14_P827_P828_SOURCE_FIRST_P48_GAUGE_AND_UPDATED_MISSING.md",
+    "docs/0.28/20261111_R14_P829_HISTORICAL_B7_COLLISION_TRANSPORT_GATE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -1062,7 +1064,9 @@
     "scripts/cuberev-observation/audit_r14_p823_full_group_radius10_bridge.py",
     "scripts/cuberev-observation/audit_r14_p824_independent_48_sticker_b7_collision.py",
     "scripts/cuberev-observation/audit_r14_p827_zassenhaus_original_48_sticker_conjugacy.py",
+    "scripts/cuberev-observation/audit_r14_p829_historical_b7_collision_transport.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
+    "scripts/cuberev-observation/audit_r14_p830_independent_b7_pair_support_complete.py",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
     "scripts/cuberev-observation/audit_r14_p83_all_220_three_edge_barriers.py",
@@ -1228,6 +1232,7 @@
     "scripts/cuberev-observation/verify_r14_p7_certificates.py",
     "scripts/cuberev-observation/verify_r14_p7_lookahead.py",
     "scripts/cuberev-observation/verify_r14_p814_66_pair_core_index.py",
+    "scripts/cuberev-observation/verify_r14_p829_independent_b7_observation38.py",
     "scripts/cuberev-observation/verify_r14_p82_12state_independent_suffix.py",
     "scripts/cuberev-observation/verify_r14_p83_384_witness_replay.py",
     "scripts/cuberev-observation/verify_r14_p83_all_220_independent_frozenset.py",
@@ -5293,5 +5298,17 @@
     "verification": "Local exact P48 physical generator isomorphism against all six 1982 published permutations, 48 valid face-generator assignments times 3 corner gauge times 2 edge gauge = 288 full exact bijections; all six source generators x all 48 sticker labels tested per bijection; full gauge centralizer C3 x C2; archive bytes download-back SHA256 checked. Remote Actions status not observed.",
     "missing_originals_current": "Harary & Melter 1976; Slater 1975; Hennie 1964; Vasilevskii 1973; Hopcroft 1971; Sokolovskii 1971; Furst-Hopcroft-Luks 1980 (Cornell tech report public but original not imported). Additional historical candidates: Singmaster 1981 (book), Bandelow 1982 (book), Golomb 1981 (paper), McKay & Piperno 2014, Blaha original 1986 technical report.",
     "limits": "No re-run of full B6 positive 41 HTM geodesic proof or full B7 min; no Lean kernel check; no manuscript publication claim. Distinguish 48 original witness alignments in P8.27 from complete 288 in P8.28. Github human WhoSia source commits, workflow read-only."
+  },
+  "active_set_reconciliation_20261111_r14_p829_p830": {
+    "added_paths": [
+      ".github/workflows/cuberev-r14-p830-b7-exact-full-tag-minimum.yml",
+      "docs/0.28/20261111_R14_P829_HISTORICAL_B7_COLLISION_TRANSPORT_GATE.md",
+      "scripts/cuberev-observation/audit_r14_p829_historical_b7_collision_transport.py",
+      "scripts/cuberev-observation/audit_r14_p830_independent_b7_pair_support_complete.py",
+      "scripts/cuberev-observation/verify_r14_p829_independent_b7_observation38.py"
+    ],
+    "reason": "Historically grounded B7 transport and independently executed exact B7 full-tag minimum test",
+    "validation": "P7 exact active-set audit required; new test CI success observed",
+    "branch": "research/current"
   }
 }
