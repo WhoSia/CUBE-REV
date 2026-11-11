@@ -1,0 +1,63 @@
+name: CUBE-REV R14-P8.23/P8.24 exact full-group algebra and B7 physical counterexample
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p823_full_group_radius10_bridge.py'
+      - 'scripts/cuberev-observation/audit_r14_p824_independent_48_sticker_b7_collision.py'
+      - 'docs/0.28/20261111_R14_P823_P824_RADIUS10_SATURATION_AND_B7_WITNESS.md'
+      - '.github/workflows/cuberev-r14-p823-p824-b7-fullgroup.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-stabilizer-and-physical-witness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute exact global-tag point stabilizers from legal permutation and orientation constraints
+        run: |
+          python scripts/cuberev-observation/audit_r14_p823_full_group_radius10_bridge.py > /tmp/p823.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p823.json'))
+          assert d['status']=='R14_P823_FULL_GROUP_BASE_AND_RADIUS10_BRIDGE_FINITE_ALGEBRA_PASS'
+          assert d['legal_group_order']==43252003274489856000
+          assert d['full_group_minimum_tag_sensors']==18
+          assert d['full_group_optimum_designs']==96
+          assert d['full_group_identifying_sensor_counts']=={'18':96,'19':20,'20':1}
+          assert d['B10_minimum_tag_sensors_conditional_on_published_HTM_diameter20']==18
+          assert d['B6_min16_stabilizer_size']==12
+          assert d['physical_distance_search_executed'] is False
+          print('P823_LEGAL_GLOBAL_STABILIZER_ALGEBRA_PASS_EXTERNAL_DIAMETER_PREMISE')
+          PY
+      - name: Independently reconstruct 48 moving facelets and two distinct colliding B7 configurations
+        run: |
+          python scripts/cuberev-observation/audit_r14_p824_independent_48_sticker_b7_collision.py > /tmp/p824.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p824.json'))
+          assert d['status']=='R14_P824_EXPLICIT_PHYSICAL_B7_TWO_STATE_16TAG_COLLISION_PASS'
+          assert d['known_18HTM_word_length']==13
+          assert d['observed_original_tag_count']==16
+          assert d['proper_rotation_distinct_omitted_four_tag_layouts']==24
+          assert d['conditional_exact_critical_radius_for_24_layouts']==7
+          assert d['conditional_B6_physical_positive_certificate']=='INHERITED_NOT_REPLAYED'
+          assert d['new_B7_global_minimum_tag_count']=='UNKNOWN'
+          print('P824_INDEPENDENT_48_STICKER_B7_TWO_STATE_COLLISION_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-p823-p824-exact-parity-and-physical-b7-witness
+          path: |
+            /tmp/p823.json
+            /tmp/p824.json
+          retention-days: 30
+      - name: Verify no GitHub Actions bot writeback to source
+        run: git diff --exit-code HEAD --
