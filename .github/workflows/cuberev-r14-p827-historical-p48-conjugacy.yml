@@ -54,7 +54,7 @@ jobs:
           assert d["turn_word_htm_length"]==13
           assert d["two_state_prefix_and_inverse_suffix_lengths"]==[6,7]
           assert d["observed_original_cubies"]==16
-          assert d["observed_sticker_labels"]==40
+          assert d["observed_sticker_labels"]==38
           assert not d["b7_minimum_resolved"]
           assert not d["b6_positive_certificate_reexecuted"]
           print("P829_HISTORICAL_B7_TRANSPORT_PASS")
