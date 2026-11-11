@@ -1,0 +1,46 @@
+name: CUBE-REV R14-P8.30 independent B7 exact tag minimum
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-observation/audit_r14_p830_independent_b7_pair_support_complete.py"
+      - ".github/workflows/cuberev-r14-p830-b7-exact-full-tag-minimum.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-b7-pair-support-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Independent complete B7 pair-support audit
+        run: |
+          python scripts/cuberev-observation/audit_r14_p830_independent_b7_pair_support_complete.py > /tmp/p830.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p830.json'))
+          assert d['status']=='PASS'
+          assert d['model']=='persistent_original_cubie_tags_full_position_orientation'
+          assert d['physical_two_state_rotation_checks']==720
+          assert d['complete_corner_pair_supports']==28
+          assert d['complete_edge_pair_supports']==66
+          assert d['exact_b7_minimum_sensors']==18
+          assert d['optimal_18_sensor_layouts']==96
+          assert d['historical_source_or_prior_verifier_imports'] is False
+          assert d['b7_bfs_enumerated'] is False
+          assert d['spatial_color_probe_horizon_proved'] is False
+          print('P830_B7_FULL_ORIGINAL_TAG_EXACT_18_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p830-b7-exact-tag-minimum
+          path: /tmp/p830.json
+          retention-days: 30
+      - name: Assert no source writeback
+        run: git diff --exit-code HEAD --
