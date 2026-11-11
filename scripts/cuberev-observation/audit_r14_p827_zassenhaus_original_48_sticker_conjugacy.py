@@ -109,9 +109,41 @@ for assignment in permutations(faces):
         assert all(mapping[h[i]]==p[mapping[i]] for h,p in zip(Hist,gens) for i in range(48))
         solutions.append({'source_T1_to_T6_faces':''.join(assignment),'turn_direction_signs':dirs,
                           'source_label_to_physical_sticker_slot':{str(labels[i]):mapping[i] for i in range(48)}})
-print(json.dumps({'status':'PASS' if solutions else 'NO_CONJUGACY','source':'Zassenhaus 1982 Physica 114A 629-637','turns':6,
+# Complete, not first-witness-only, isomorphism enumeration. For EVERY
+# permitted face/direction renaming, each of the two transitive 24-sticker
+# orbits may carry an independent commuting relabelling (gauge).
+# Enumerate all 24 corner-sticker seed images and all 24 edge seed images.
+all_maps=[]
+for entry in solutions:
+    facenames=entry['source_T1_to_T6_faces']
+    directions=entry['turn_direction_signs']
+    gens=[physical[f][sgn] for f,sgn in zip(facenames,directions)]
+    cmaps=[pi for seed in sorted(C) if (pi:=propagate(gens,0,seed)) is not None and len(pi)==24]
+    emaps=[pi for seed in sorted(E) if (pi:=propagate(gens,24,seed)) is not None and len(pi)==24]
+    assert len(cmaps)==3 and len(emaps)==2, (facenames,len(cmaps),len(emaps))
+    for cm in cmaps:
+        for em in emaps:
+            pi={**cm,**em}
+            assert len(pi)==48 and len(set(pi.values()))==48
+            assert all(pi[h[i]]==f[pi[i]] for h,f in zip(Hist,gens) for i in range(48))
+            all_maps.append({'source_T1_to_T6_faces':facenames,
+                             'turn_direction_signs':directions,
+                             'source_label_to_physical_sticker_slot':{str(labels[i]):pi[i] for i in range(48)}})
+assert len(solutions)==48
+assert len(all_maps)==288
+# A fixed historical face-generator alignment leaves exactly six possible
+# original sticker-label maps, not just one: 3 global corner-sticker rotations
+# x 2 global edge-sticker swaps. This is the centralizer of the P48 turn action.
+assert len({(x['source_T1_to_T6_faces'],tuple(x['turn_direction_signs'])) for x in all_maps})==48
+assert len({tuple(x['source_label_to_physical_sticker_slot'][str(i)] for i in labels) for x in all_maps})==288
+assert sorted(set(tuple(x['turn_direction_signs']) for x in solutions))==[(-1,)*6,(1,)*6]
+
+print(json.dumps({'status':'PASS','source':'Zassenhaus 1982 Physica 114A 629-637','turns':6,
                   'historical_turns_supports':[sum(x!=i for i,x in enumerate(h)) for h in Hist],
                   'historical_opp_pairs':[list(x) for x in sorted(hopp)],
-                  'distinct_generator_label_and_direction_conjugacies_found':len(solutions),
-                  'first_solution':solutions[0] if solutions else None},ensure_ascii=False,indent=2))
-assert solutions, 'Zassenhaus 1982 and generated 48-sticker generators are not conjugate'
+                  'distinct_face_label_and_direction_assignments':len(solutions),
+                  'centralizer_size_fixed_face_assignment':6,
+                  'independent_corner_sticker_gauge_choices':3,
+                  'independent_edge_sticker_gauge_choices':2,
+                  'total_explicit_P48_generator_conjugacies':len(all_maps),
+                  'first_solution':all_maps[0]},ensure_ascii=False,indent=2))
