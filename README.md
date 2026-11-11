@@ -1,10 +1,16 @@
 # CUBE-REV — Physical Rubik's Cube: Reconstruction, Observation & Certified Search
 
 **Active scientific stage:** 0.28 — *Radius-Restricted Cubie Bases, Short-Support Geometry & Robust Active Observation*  
-**State reviewed:** 2026-11-05 · **Source of scientific meaning:** [Notion 0.28](https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea)  
+**State reviewed:** 2026-11-11 · **Source of scientific meaning:** [Notion 0.28](https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea)  
 **Single active research branch carrying 0.28:** `research/current` · **Long-term branch policy:** [REPOSITORY_POLICY.md](REPOSITORY_POLICY.md)
 
 > **Evidence warning:** A finite program's successful return, an independently checked certificate, a mathematical proof and a new general theorem are four different claims. Keep them separate. Do not infer human cognition from exact cube combinatorics, nor infer an HTM shortest path from a stabilizer's abstract group order.
+
+## 2026-11-11 R14-P8.30: B7 original-cubie-tag minimum REVALIDATED — b7=18
+
+**IMPORTANT correction to R14-P8.24 and the 38th chat:** the repository's earlier `verify_b7_support_completion.py` and `verify_b7_base_orbits.py` already contained a stronger B7 pair-support claim, but the later R14 research verdict still marked `b7` unknown. P8.30 independently reconstructed the 48-sticker physics, eight explicit <=14 HTM words, both admissible 7+7 state-pair split orders, and their full 24-rotation conjugacy transport. A total of **720 physical pair checks** establishes complete **28/28 corner-pair and 66/66 edge-pair** collision supports inside B7. Since every <=17-tag arrangement omits two corners or two edges, and 7-corner+11-edge original-tag sensors always identify the full legal cube, **b7=b8=...=18**, with **96** optimal 18-tag layouts. This is **independent revalidation of an older stored result**, not first-discovery priority and not a claim about Paper B's six-color spatial probes. R14-P8.24's 24-layout witness was valid but not exhaustive. Conditional on the inherited B6 156-positive-layout certificate, all those 16-tag layouts first fail at B7.
+
+[Independent physical checker](scripts/cuberev-observation/audit_r14_p830_independent_b7_pair_support_complete.py) · [actual remote PASS](https://github.com/WhoSia/CUBE-REV/actions/runs/42973939189) · [complete correction and proof limits](docs/0.28/20261111_R14_P830_B7_EXACT_18_SOURCE_LINEAGE_CORRECTION.md). Full B7 BFS, original B6 41-geodesic reexecution and Lean kernel proofs are **NOT** claimed; unrestricted `18<=h_adaptive<=20` is still open.
 
 ## 2026-11-09 R14-P8.3: four falsification cycles — exact P48 belief alias and 32 hard three-edge residuals
 
