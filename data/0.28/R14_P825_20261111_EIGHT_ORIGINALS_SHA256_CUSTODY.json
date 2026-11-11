@@ -1,8 +1,8 @@
 {
-  "schema": "CUBE-REV/0.28/P8.25/primary-original-byte-custody-v1",
+  "schema": "CUBE-REV/0.28/P8.25/primary-original-and-dissertation-byte-custody-v2",
   "date": "2026-11-11",
   "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
-  "interpretation": "Original PDF raw bytes downloaded via connected Google Drive for each exact ID, SHA256 computed locally over complete bytes, then parent/name/size read back from Drive; none of the eight PDF bytes were modified. Six already canonical at start; Rivest canonical by later readback; Bshouty 1995 manually rendered first page, canonical metadata-only rename+move with original ID preserved.",
+  "interpretation": "Original PDF raw bytes downloaded via connected Google Drive for each exact ID, SHA256 computed locally over complete bytes, then parent/name/size read back from Drive; none of the eight PDF bytes were modified. Six already canonical at start; Rivest canonical by later readback; Bshouty 1995 manually rendered first page, canonical metadata-only rename+move with original ID preserved. An additional Blaha 1989 thesis was discovered during intake, read by original title/abstract, renamed and moved 00_INTAKE ->11_SOURCES in place; raw 36,398,356 bytes SHA256 verified separately.",
   "original_copies": [
     {
       "label": "Blaha (1992)",
@@ -94,8 +94,20 @@
     }
   ],
   "origin_caveats": {
-    "rivet": "Original Rivest file was already renamed and moved in concurrent Drive activity before the attempted update; verify existing location rather than claim this tool invocation moved it.",
-    "bshouty": "Bshouty 1995 PDF encrypted RC4 legacy copy-permitted image PDF; text extractor returned empty, page 1 rendered and visually matched exact original 1995 Information and Computation journal title/author/vol/pages. Canonical in-place rename+move performed."
+    "bshouty": "Bshouty 1995 PDF encrypted RC4 legacy copy-permitted image PDF; text extractor returned empty, page 1 rendered and visually matched exact original 1995 Information and Computation journal title/author/vol/pages. Canonical in-place rename+move performed.",
+    "rivest": "Original Rivest file was already renamed and moved in concurrent Drive activity before the attempted update; verify existing location rather than claim this tool invocation moved it."
   },
-  "excluded_unrelated_intake": "Other 00_INTAKE holdings and duplicate/metadata holds from unrelated MQR/NOMOS/traffic projects were left unchanged."
+  "excluded_unrelated_intake": "Other 00_INTAKE holdings and duplicate/metadata holds from unrelated MQR/NOMOS/traffic projects were left unchanged.",
+  "dissertation_copies": [
+    {
+      "label": "Blaha (1989) — Algorithms for Permutation Groups and Cayley Networks",
+      "type": "University of Oregon PhD Dissertation; institutional technical report CIS-TR-89-14",
+      "drive_file_id": "1a0GIVlVcp5nc2_uTqCtfyNgUgOfuHYdU",
+      "url": "https://drive.google.com/file/d/1a0GIVlVcp5nc2_uTqCtfyNgUgOfuHYdU/view",
+      "folder_id": "1Ee2UDLahRj4ozlnNUXZcQk6Xsbr1Bqfv",
+      "file_bytes": 36398356,
+      "sha256": "8939646ce1db9c43cd52de07fb57ef188fd58d263e028afd86a7b40c078923ea",
+      "status": "FULL_ORIGINAL_BYTES_SHA256_VERIFIED + METADATA_NAME_SIZE_PARENT_READBACK; moved in place from 00_INTAKE to 11_SOURCES; NOT 10_PAPERS"
+    }
+  ]
 }
