@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "source": "Zassenhaus 1982 Physica 114A 629-637",
+  "turns": 6,
+  "historical_turns_supports": [
+    20,
+    20,
+    20,
+    20,
+    20,
+    20
+  ],
+  "historical_opp_pairs": [
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      3
+    ]
+  ],
+  "distinct_generator_label_and_direction_conjugacies_found": 48,
+  "first_solution": {
+    "source_T1_to_T6_faces": "URFBLD",
+    "turn_direction_signs": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "source_label_to_physical_sticker_slot": {
+      "1": 12,
+      "2": 40,
+      "3": 45,
+      "4": 17,
+      "5": 30,
+      "6": 1,
+      "7": 5,
+      "8": 33,
+      "9": 14,
+      "10": 41,
+      "11": 47,
+      "12": 19,
+      "13": 28,
+      "14": 2,
+      "15": 7,
+      "16": 34,
+      "17": 13,
+      "18": 42,
+      "19": 46,
+      "20": 18,
+      "21": 29,
+      "22": 0,
+      "23": 6,
+      "24": 35,
+      "-1": 24,
+      "-2": 43,
+      "-3": 26,
+      "-4": 15,
+      "-5": 9,
+      "-6": 37,
+      "-7": 11,
+      "-8": 38,
+      "-9": 31,
+      "-10": 21,
+      "-11": 4,
+      "-12": 22,
+      "-13": 25,
+      "-14": 44,
+      "-15": 27,
+      "-16": 16,
+      "-17": 8,
+      "-18": 36,
+      "-19": 10,
+      "-20": 39,
+      "-21": 32,
+      "-22": 20,
+      "-23": 3,
+      "-24": 23
+    }
+  },
+  "provenance": {
+    "original_drive_id": "1i0gVO3XuLtBYZSknKCaMChTXJ641D59U",
+    "source": "Zassenhaus (1982), Physica A 114, pp 629-637",
+    "original_permutation_transcription": "six five-4-cycle permutations for T1..T6",
+    "raw_receipt_drive_id": "1GCeRhS0AbV2OYqMW81u0MFgycuLEvBAz",
+    "raw_source_script_drive_id": "1s_DOVn5mSGJ_chYYEP6C0w5MLep4ADUa",
+    "raw_receipt_sha256": "2d5716b0f7e085689ee05dfcd2e1c0f810d1350daed0b7fd24155de4da11fd67",
+    "raw_script_sha256": "5bc78c817f35f918585223cef00766f73ae9d269cc680819059fa0654def37bf",
+    "note": "48 face-turn naming/direction conjugacies; this is independent model concordance, not a shortest-path or B7 minimum proof"
+  }
+}
