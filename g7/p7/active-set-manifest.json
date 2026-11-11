@@ -539,6 +539,7 @@
     "docs/0.28/20261111_R14_P825_P826_UPDATED_MISSING_AND_SCIENTIFIC_AUDIT.md",
     "docs/0.28/20261111_R14_P827_P828_SOURCE_FIRST_P48_GAUGE_AND_UPDATED_MISSING.md",
     "docs/0.28/20261111_R14_P829_HISTORICAL_B7_COLLISION_TRANSPORT_GATE.md",
+    "docs/0.28/20261111_R14_P830_B7_EXACT_18_SOURCE_LINEAGE_CORRECTION.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -5309,6 +5310,12 @@
     ],
     "reason": "Historically grounded B7 transport and independently executed exact B7 full-tag minimum test",
     "validation": "P7 exact active-set audit required; new test CI success observed",
+    "branch": "research/current"
+  },
+  "active_set_reconciliation_20261111_r14_p830_exact_b7_verdict": {
+    "added_path": "docs/0.28/20261111_R14_P830_B7_EXACT_18_SOURCE_LINEAGE_CORRECTION.md",
+    "reason": "Independent revalidation and explicit correction of historical B7 pair-support lineage",
+    "proof_status": "P8.30 CI PASS; global b7=18 in permanent-original-tag model, 96 optima",
     "branch": "research/current"
   }
 }
