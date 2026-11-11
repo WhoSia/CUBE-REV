@@ -58,3 +58,17 @@ The earlier plan of determining eight B6 optimal layout first-failure radii is n
 5. Update the 0.28 Notion canonical verdict and manuscript lineage; preserve a correction note rather than silently erasing older uncertainty.
 
 **Authorship policy:** commits via WhoSia only; GitHub Actions is read-only and is not an authorized contributor.
+
+## 7. R14-P8.31 — Lean 4 conditional pair-support bridge (verified kernel)
+
+A new formal module `formal/028/B7PairSupport.lean` uses the shared `signatureInjective` definition and proves:
+
+- `identifying_set_hits_pair`: if two distinct hidden states have identical outcomes on every tag except `a,b`, any distinguishing signature must include `a` or `b`.
+- `identifying_set_hits_all_corner_pairs`: the conditional statement instantiated on all `Fin 8` corner pairs.
+- `identifying_set_hits_all_edge_pairs`: the conditional statement instantiated on all `Fin 12` edge pairs.
+
+These are abstract logical consequences conditional on input physical collision hypotheses, not Lean verification of the eight HTM words, their 720 derived pairs, or `b7=18` as a closed physical theorem. The prior `StaticObservationSupport.lean` source used a tactic unsupported in this Lean setup and the package lacked a Lake manifest; repaired both under explicit GitHub changes, without modifying the scientific semantics. The new source uses Lean's core classical contradiction to avoid nonimported tactic assumptions.
+
+**Actual Lean kernel build:** [GitHub Actions run 42974864873](https://github.com/WhoSia/CUBE-REV/actions/runs/42974864873), success, with logs explicitly confirming `Built StaticObservationSupport` and `Built B7PairSupport` under Lean 4.34.1. Both supplementary toy-model tests and source writeback prohibition passed. [P7 exact repository active-set audit run 42974864847](https://github.com/WhoSia/CUBE-REV/actions/runs/42974864847) also succeeded.
+
+**Next possible formalization:** encode the finite 48-sticker permutations, HTM moves, eight seed words and proper rotations directly in Lean, then prove their exhaustive 28/66 support coverage inside the kernel. Until then P8.30 physical witnesses remain an independently executed Python certificate feeding the conditional Lean theorem.
