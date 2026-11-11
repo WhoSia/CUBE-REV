@@ -162,6 +162,7 @@
     ".github/workflows/cuberev-r14-p813-complete-minimal-spectrum.yml",
     ".github/workflows/cuberev-r14-p815-orbits-greedy.yml",
     ".github/workflows/cuberev-r14-p818-uniform-minimal-bases.yml",
+    ".github/workflows/cuberev-r14-p819-b5-b6-transition.yml",
     ".github/workflows/cuberev-r14-p82-p48-mixed-successor.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
@@ -523,6 +524,7 @@
     "docs/0.28/20261110_R14_P88_ADAPTIVE_HORIZON_COMPARATIVE_THEOREM_GATE.md",
     "docs/0.28/20261110_R14_P89_P810_LITERATURE_FORMAL_PROOF_BRIDGE.md",
     "docs/0.28/20261111_R14_P818_UNIFORM_BASIS_SAMPLER_AND_REPRODUCIBILITY_AUDIT.md",
+    "docs/0.28/20261111_R14_P819_B5_B6_OPTIMAL_BASIS_ATTRITION.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -1042,6 +1044,8 @@
     "scripts/cuberev-observation/audit_r14_p815_orbits_exact_greedy.py",
     "scripts/cuberev-observation/audit_r14_p817_common_observation_bridge.py",
     "scripts/cuberev-observation/audit_r14_p818_exact_uniform_basis_sampler.py",
+    "scripts/cuberev-observation/audit_r14_p819_b5_b6_transition.py",
+    "scripts/cuberev-observation/audit_r14_p820_np_source_disambiguation.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
@@ -5200,5 +5204,22 @@
     "claim_bounds": "No new general basis theory or publication claim, no new Lean kernel PASS, no physical P48 B12 rerun or adaptive 19-frame resolution. Remote CI success not observed.",
     "future": "More promising structural question: b5=b6=16 but geometry of valid layouts may change with radius; next verify exact B5/B6 family inclusion/difference from original independent raw certificates before announcing new theorem.",
     "security": "GitHub human WhoSia author and committer, research/current only. CI read-only, Notion semantic ledger, no new Drive manuscript/PDF intake."
+  },
+  "active_set_reconciliation_20261111_r14_p819_p820_b5_b6_transition": {
+    "stage": "0.28 R14-P8.19 / P8.20",
+    "date": "2026-11-11",
+    "paths": [
+      "scripts/cuberev-observation/audit_r14_p819_b5_b6_transition.py",
+      "docs/0.28/20261111_R14_P819_B5_B6_OPTIMAL_BASIS_ATTRITION.md",
+      ".github/workflows/cuberev-r14-p819-b5-b6-transition.yml",
+      "scripts/cuberev-observation/audit_r14_p820_np_source_disambiguation.py"
+    ],
+    "previous_result_reproduced": "In the adjacent-2C omitted 16-tag sector at b5=b6=16: 12 cores, 48 B5-positive edge-pair omissions per core (576), 35 new B6-negative per core (420), 13 B6-positive per core (156). 13/48 survive and 35/48 fail. All counts preexisted in 2026-11-04 source, not newly discovered.",
+    "new_execution": "Independent container Python 3D geometry reconstructed 12 core category counts and 13 B6-valid pair layouts and verified historic 18/35/13 counts for all cores, local R14_P819_B5_B6_CATEGORY_TRANSITION_LEDGER_CONSISTENCY_PASS. GitHub script includes machine-readable evidence-tier fields, external CI added but not observed.",
+    "refutation": "Naive coarse model classing all 8 near-parallel N-P pairs as B5-bad fails (44 instead of 48 valid per core). Correct physically sourced split is 4 B5-bad and 4 newly B6-bad per core.",
+    "pending": "Existing exact B5 original 54-facelet archived ZIP is NOT located in current targeted Google Drive search. P8.20 CLI was committed but NOT executed; it requires original ZIP to classify individual 4+4 N-P edge-pair identities and reruns old B6 witness seeds. Do not claim physical replay or exact new geometric rule.",
+    "future": "Find original sealed archive, run P8.20 against raw B5 and actual B6 P48, derive human-size 4+4 N-P predicate if found. Then compare full minimum-vs-inclusionwise-minimal spectra at B5 and B6 without assuming they match.",
+    "paper_policy": "Neither the 576->156 transition counts nor simple ratio constitute brand-new standalone paper results; preserve unified C0.1 and seek stronger radius-dependent theorem.",
+    "commit_authorship": "WhoSia human author/committer, research/current; Actions read-only; preserve original physical bytes"
   }
 }
