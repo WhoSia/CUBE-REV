@@ -6,6 +6,7 @@ on:
       - "scripts/cuberev-observation/audit_r14_p827_zassenhaus_original_48_sticker_conjugacy.py"
       - "scripts/cuberev-observation/audit_r14_p824_independent_48_sticker_b7_collision.py"
       - "scripts/cuberev-observation/audit_r14_p829_historical_b7_collision_transport.py"
+      - "scripts/cuberev-observation/verify_r14_p829_independent_b7_observation38.py"
       - "data/0.28/R14_P827_ZASSENHAUS_1982_INDEPENDENT_48_STICKER_CONJUGACY_RECEIPT.json"
       - ".github/workflows/cuberev-r14-p827-historical-p48-conjugacy.yml"
   workflow_dispatch:
@@ -44,9 +45,14 @@ jobs:
       - name: Replay B7 physical witness and transport across all 288 historical gauges
         run: |
           python scripts/cuberev-observation/audit_r14_p824_independent_48_sticker_b7_collision.py > /tmp/p824.json
+          python scripts/cuberev-observation/verify_r14_p829_independent_b7_observation38.py > /tmp/p829_independent.json
           python scripts/cuberev-observation/audit_r14_p829_historical_b7_collision_transport.py > /tmp/p829.json
           python - <<'PY'
           import json
+          independent=json.load(open("/tmp/p829_independent.json"))
+          assert independent["status"]=="PASS"
+          assert independent["observed_stickers"]==38
+          assert independent["difference_moved_stickers"]==4
           d=json.load(open("/tmp/p829.json"))
           assert d["status"]=="PASS"
           assert d["scope"]=="representation_transport_only"
@@ -66,6 +72,7 @@ jobs:
             /tmp/p827.json
             /tmp/p824.json
             /tmp/p829.json
+            /tmp/p829_independent.json
           retention-days: 30
       - name: Assert no source writeback
         run: git diff --exit-code HEAD --
