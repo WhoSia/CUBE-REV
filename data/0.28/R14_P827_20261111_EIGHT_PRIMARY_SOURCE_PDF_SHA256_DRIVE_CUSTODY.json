@@ -1,0 +1,87 @@
+{
+  "schema": "CUBE-REV-R14-P827-source-original-custody-v1",
+  "date": "2026-11-11",
+  "scope": "8 original PDFs independently downloaded, original Drive IDs preserved on metadata rename+move, SHA-256 full raw bytes",
+  "documents": [
+    {
+      "key": "ron",
+      "bytes": 2088503,
+      "sha256": "566e1e5a7de1536ff56727c56b19dc50e8d2672f6e40d7edc0f48764bdb8b49a",
+      "mount_file": "Ron & Rubinfeld (1995) â Learning Fallible Deterministic Finite Automata â Machine Learning 18 149-185.pdf",
+      "drive_file_id": "1Q2d8Lg6MqC1fF4vpBGWgPAACXB53WFGE",
+      "drive_url": "https://drive.google.com/file/d/1Q2d8Lg6MqC1fF4vpBGWgPAACXB53WFGE/view",
+      "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+      "raw_byte_identity": "SHA256_VERIFIED_RAW_DOWNLOAD"
+    },
+    {
+      "key": "angluin",
+      "bytes": 829007,
+      "sha256": "d0f1e58e2e1b778d44683bcb8bff46f68c4ce657f0215833c3e759907ca5e540",
+      "mount_file": "Angluin, Krikis, Sloan & TurÃ¡n (1997) â Malicious Omissions and Errors in Answers to Membership Queries â Machine Learning 28 211-255.pdf",
+      "drive_file_id": "1L4QsPx5ULNZmQfJ8kbyhoYQD8y0MzpSN",
+      "drive_url": "https://drive.google.com/file/d/1L4QsPx5ULNZmQfJ8kbyhoYQD8y0MzpSN/view",
+      "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+      "raw_byte_identity": "SHA256_VERIFIED_RAW_DOWNLOAD"
+    },
+    {
+      "key": "jefferson",
+      "bytes": 760954,
+      "sha256": "583803748851309eaf0d480ba89d5ff50374c0701658f2494ff03169952c9c0d",
+      "mount_file": "Jefferson, Pfeiffer, Wilson & Waldecker (2021) â Permutation Group Algorithms Based on Directed Graphs â Journal of Algebra 585 723-758.pdf",
+      "drive_file_id": "1XX3n7aoQF_sGOg5QMsv8ufR5s1IFrJSA",
+      "drive_url": "https://drive.google.com/file/d/1XX3n7aoQF_sGOg5QMsv8ufR5s1IFrJSA/view",
+      "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+      "raw_byte_identity": "SHA256_VERIFIED_RAW_DOWNLOAD"
+    },
+    {
+      "key": "mereb",
+      "bytes": 549676,
+      "sha256": "f6cc9373a5f8633d88d040118142bfa20a53737b9f525f38f13f1d6b1efad3ad",
+      "mount_file": "Mereb & Vendramin (2024 arXiv v3) â Rubikâs as Galois - The Inverse Galois Problem for the Rubikâs Cube Group â arXiv 2411.11566v3.pdf",
+      "drive_file_id": "175mqiTNreeuGbT4-CBfxSuhYpItbkTQL",
+      "drive_url": "https://drive.google.com/file/d/175mqiTNreeuGbT4-CBfxSuhYpItbkTQL/view",
+      "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+      "raw_byte_identity": "SHA256_VERIFIED_RAW_DOWNLOAD"
+    },
+    {
+      "key": "zassenhaus",
+      "bytes": 472702,
+      "sha256": "2be2f364e19b75db0ac67f6daca1e1448534f780daccdb256ae74e059da8adf0",
+      "mount_file": "Zassenhaus (1982) â Rubikâs Cube - A Toy, a Galois Tool, Group Theory for Everybody â Physica A 114 629-637.pdf",
+      "drive_file_id": "1i0gVO3XuLtBYZSknKCaMChTXJ641D59U",
+      "drive_url": "https://drive.google.com/file/d/1i0gVO3XuLtBYZSknKCaMChTXJ641D59U/view",
+      "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+      "raw_byte_identity": "SHA256_VERIFIED_RAW_DOWNLOAD"
+    },
+    {
+      "key": "leon",
+      "bytes": 3390778,
+      "sha256": "8c5523abed94cc45b5aef8812fbf46f18745b50b6f6ce2297d8287ba3b9b7153",
+      "mount_file": "Leon (1991) â Permutation Group Algorithms Based on Partitions I - Theory and Algorithms â Journal of Symbolic Computation 12 533-583.pdf",
+      "drive_file_id": "1cRJ8tyDVPYsDZb1-8zHkGudyPVmgClDA",
+      "drive_url": "https://drive.google.com/file/d/1cRJ8tyDVPYsDZb1-8zHkGudyPVmgClDA/view",
+      "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+      "raw_byte_identity": "SHA256_VERIFIED_RAW_DOWNLOAD"
+    },
+    {
+      "key": "knuth",
+      "bytes": 122703,
+      "sha256": "6e1443491111b4b8310867ba4aab50b8bf5d522e527311c621c0100a9c2afda7",
+      "mount_file": "Knuth (1992 arXiv upload; manuscript dated 1991) â Efficient Representation of Perm Groups â arXiv math.9201304v1.pdf",
+      "drive_file_id": "1Thzd-fEXGIME5BwpVxaqhuXmOgnL8rb_",
+      "drive_url": "https://drive.google.com/file/d/1Thzd-fEXGIME5BwpVxaqhuXmOgnL8rb_/view",
+      "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+      "raw_byte_identity": "SHA256_VERIFIED_RAW_DOWNLOAD"
+    },
+    {
+      "key": "ingelman",
+      "bytes": 86042,
+      "sha256": "8cb4d745c3eab7e26039d7e16d19a26daf4c9a4ec71a6b15c6cd59b859fcc527",
+      "mount_file": "Ingelman-Sundberg (2002) â Polymorphism of Cytochrome P450 and Xenobiotic Toxicity â Toxicology 181-182 447-452.pdf",
+      "drive_file_id": "1qtGkUo5FWhfSe-OmTn4fRLtnX4b4eXN1",
+      "drive_url": "https://drive.google.com/file/d/1qtGkUo5FWhfSe-OmTn4fRLtnX4b4eXN1/view",
+      "canonical_folder_id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP",
+      "raw_byte_identity": "SHA256_VERIFIED_RAW_DOWNLOAD"
+    }
+  ]
+}
