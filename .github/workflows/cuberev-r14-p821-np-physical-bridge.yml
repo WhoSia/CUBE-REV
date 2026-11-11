@@ -1,0 +1,50 @@
+name: CUBE-REV R14-P8.21 physical N-P witness split from repository P48 seeds
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p821_np_explicit_p48.py'
+      - 'scripts/cuberev-observation/verify_b6_complete_4845_p48.py'
+      - 'scripts/cuberev-observation/verify_b6_negative_19_pairs_p48.py'
+      - 'scripts/cuberev-observation/b6_independent_48sticker_goals.py'
+      - 'docs/0.28/20261111_R14_P821_NP_INCIDENCE_PHYSICAL_BRIDGE.md'
+      - '.github/workflows/cuberev-r14-p821-np-physical-bridge.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physical-near-parallel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independently replay all B5 and B6 P48 witness pairs and 24 spatial transports
+        run: |
+          python scripts/cuberev-observation/audit_r14_p821_np_explicit_p48.py > /tmp/p821.json
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/p821.json'))
+          assert x['status']=='R14_P821_P48_PHYSICAL_NP_SPLIT_WITHOUT_B5_ARCHIVE_PASS'
+          assert x['P48_B5_seeds']==9 and x['P48_B6_seeds']==19
+          assert x['P48_B5_supports_replayed']==216
+          assert x['P48_B6_supports_replayed']==420
+          assert x['cores']==12 and x['B5_invalid_NP']==48
+          assert x['new_B6_invalid_NP']==48
+          assert x['geometric_rule_B5_bad_iff_no_shared_corner']
+          assert not x['archive_required']
+          assert not x['full_B12_positive_distance_certified_by_this_script']
+          assert len(x['per_core'])==12
+          print('P821_9_B5_AND_19_B6_FULL_P48_WITNESS_REPLAY_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p821-p48-np-full-physical-witness-receipt
+          path: /tmp/p821.json
+          retention-days: 30
+      - name: No bot commits or source modifications
+        run: git diff --exit-code HEAD --
