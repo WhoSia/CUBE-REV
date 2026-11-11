@@ -1,0 +1,52 @@
+name: CUBE-REV R14-P8.19 B5-B6 sensor-basis phase transition
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p819_b5_b6_transition.py'
+      - 'docs/0.28/20261111_R14_P819_B5_B6_OPTIMAL_BASIS_ATTRITION.md'
+      - '.github/workflows/cuberev-r14-p819-b5-b6-transition.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  existing-physical-ledger-versus-independent-geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independently rebuild 12 core-edge categories and check historic B5/B6 witness ledger
+        run: |
+          python scripts/cuberev-observation/audit_r14_p819_b5_b6_transition.py > /tmp/p819.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p819.json'))
+          assert d['status']=='R14_P819_B5_B6_PHYSICAL_LEDGER_GEOMETRY_CROSSCHECK_PASS'
+          assert d['per_core_prior_B5_negative']==18
+          assert d['per_core_B5_valid']==48
+          assert d['per_core_new_B6_negative']==35
+          assert d['per_core_B6_valid']==13
+          assert d['B5_valid_16_sensors_in_adjacent_corners_sector']==576
+          assert d['B6_valid_16_sensors']==156
+          assert d['B5_to_B6_lost_16_sensors']==420
+          assert d['B5_to_B6_retained_fraction']=='13/48'
+          assert d['B5_to_B6_lost_fraction']=='35/48'
+          assert d['new_near_far_failure_count']==192
+          assert d['other_new_failure_count']==228
+          assert d['near_parallel_8_pair_split']=={'old_B5_failures':4,'new_B6_failures':4}
+          assert d['actual_original_P48_witnesses_rerun'] is False
+          assert d['B5_near_parallel_individual_identity_verified'] is False
+          print('P819_INDEPENDENT_GEOMETRY_HISTORICAL_LEDGER_CROSSCHECK_PASS_NOT_PHYSICAL_REPLAY')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p819-transition-category-receipt
+          path: /tmp/p819.json
+          retention-days: 30
+      - name: Keep workflow source write-protected
+        run: git diff --exit-code HEAD --
