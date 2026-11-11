@@ -1,0 +1,55 @@
+{
+  "schema_version": "cube-rev.r14.p832.restored-ci-artifact-custody.v1",
+  "date": "2026-11-11",
+  "branch": "research/current",
+  "execution": {
+    "origin": "GitHub Actions historical execution",
+    "run_id": 41774686324,
+    "run_url": "https://github.com/WhoSia/CUBE-REV/actions/runs/41774686324",
+    "checkout_sha": "1b69b54cba596745c3e5631a85c8b9c3f8c7d281",
+    "run_created_at": "2026-11-04T04:41:06Z",
+    "conclusion": "success",
+    "job": "independent-physical-b6",
+    "artifact_id": 13296452471,
+    "artifact_name": "cuberev-028-independent-p48-b6-1b69b54cba596745c3e5631a85c8b9c3f8c7d281"
+  },
+  "drive_custody": {
+    "file_id": "1FHQVSfwMsEartPjPqdYlIb09vDjUA0Ge",
+    "url": "https://drive.google.com/file/d/1FHQVSfwMsEartPjPqdYlIb09vDjUA0Ge/view",
+    "parent_folder_id": "1DTg_UEq85OvBjxGMjAqEf3D8JagwRhUG",
+    "name": "CUBE_REV_0.28_P48_B6_41_TARGET_REMOTE_CI_20261104_SHA744d848c.zip",
+    "byte_size": 5720,
+    "sha256": "744d848cdc8454e385af661fe7b899a8fec45dfda0f7615161cfcbceb6dabd52",
+    "comparison": "independently fetched complete GitHub artifact, verified SHA256 against historical GitHub Actions upload log, uploaded to Google Drive and downloaded back; cmp passed byte-for-byte"
+  },
+  "zip_internal_audit": {
+    "entries": 13,
+    "sha256_manifest_count": 12,
+    "all_manifest_entries_match": true,
+    "checked_all_files": true,
+    "mitm_target_indices": {
+      "min": 0,
+      "max": 40,
+      "unique": 41
+    },
+    "all_targets_reported_pass": true,
+    "all_recorded_nontrivial_intersections": 0,
+    "probes_per_target": 8331112,
+    "classification": "P48_B6_ALL_4845_NEGATIVE_CLASSIFICATION_PASS",
+    "negative_16_sensor_layouts": 4689,
+    "positive_16_sensor_layouts": 156,
+    "negative_15_sensor_layouts": 15504,
+    "short_support_obstructions": {
+      "three_edges": 220,
+      "nonadjacent_two_corners": 16,
+      "b5_adjacent_four_tags": 216,
+      "b6_adjacent_four_tags": 420,
+      "total": 872
+    }
+  },
+  "scope_limits": [
+    "Historical CI artifact byte-level preservation and independent receipt inspection, NOT a new full MITM computation",
+    "Historical 2026-10-30 source ZIP remains separate and unlocated",
+    "The assertions depend on original executable and 41-target generator correctness; external peer review and independent reexecution of computation are distinct"
+  ]
+}
