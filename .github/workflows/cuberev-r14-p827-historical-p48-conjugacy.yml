@@ -30,7 +30,7 @@ jobs:
           assert d["turns"]==6
           assert d["historical_turns_supports"]==[20]*6
           assert d["historical_opp_pairs"]==[[0,5],[1,4],[2,3]]
-          assert d["distinct_generator_label_and_direction_conjugacies_found"]==48
+          assert d["distinct_face_label_and_direction_assignments"]==48\n          assert d["centralizer_size_fixed_face_assignment"]==6\n          assert d["independent_corner_sticker_gauge_choices"]==3\n          assert d["independent_edge_sticker_gauge_choices"]==2\n          assert d["total_explicit_P48_generator_conjugacies"]==288
           m=d["first_solution"]["source_label_to_physical_sticker_slot"]
           assert len(m)==48 and len(set(m.values()))==48
           assert d["first_solution"]["source_T1_to_T6_faces"]=="URFBLD"
