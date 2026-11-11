@@ -609,6 +609,7 @@
     "formal/028/ObservationCovariance.lean",
     "formal/028/StaticObservationSupport.lean",
     "formal/028/TwoStepAdversary.lean",
+    "formal/028/lake-manifest.json",
     "formal/028/lakefile.toml",
     "formal/028/lean-toolchain",
     "formal/cuberev023/PDBRankReversal.lean",
@@ -5323,5 +5324,9 @@
     "added_path": "formal/028/B7PairSupport.lean",
     "reason": "Lean abstract two-tag collision hitting certificate, physics premises separately validated",
     "branch": "research/current"
+  },
+  "active_set_reconciliation_20261111_r14_p831_lean_manifest": {
+    "added_path": "formal/028/lake-manifest.json",
+    "reason": "Restore missing Lake manifest to allow actual Lean kernel CI, not source-only claims"
   }
 }
