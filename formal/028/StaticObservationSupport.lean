@@ -36,15 +36,18 @@ theorem signature_injective_iff_hitting_all_pairs
   classical
   constructor
   · intro h x y hne
-    by_contra noProbe
+    apply Classical.byContradiction
+    intro noProbe
     apply hne
     apply h x y
     intro q hSelected
-    by_contra differs
+    apply Classical.byContradiction
+    intro differs
     apply noProbe
     exact ⟨q, hSelected, differs⟩
   · intro h x y hSame
-    by_contra hne
+    apply Classical.byContradiction
+    intro hne
     obtain ⟨q, hSelected, differs⟩ := h x y hne
     exact differs (hSame q hSelected)
 
