@@ -1,0 +1,73 @@
+name: CUBE-REV R14-P8.18 exact uniform minimum and minimal basis indexing
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p813_complete_minimal_base_spectrum.py'
+      - 'scripts/cuberev-observation/audit_r14_p818_exact_uniform_basis_sampler.py'
+      - 'scripts/cuberev-observation/verify_r14_p814_66_pair_core_index.py'
+      - 'docs/0.28/20261111_R14_P818_UNIFORM_BASIS_SAMPLER_AND_REPRODUCIBILITY_AUDIT.md'
+      - '.github/workflows/cuberev-r14-p818-uniform-minimal-bases.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-unranking-and-import-hygiene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fail if importing P8.13 prints a second unrelated JSON receipt
+        run: |
+          python - <<'PY'
+          import sys, io, contextlib
+          sys.path.insert(0, 'scripts/cuberev-observation')
+          text=io.StringIO()
+          with contextlib.redirect_stdout(text):
+              import audit_r14_p813_complete_minimal_base_spectrum as m
+          assert text.getvalue() == '', 'P813 violates import-time stdout purity'
+          assert len(m.positive16)==156
+          print('P813_IMPORT_NO_STDOUT_SIDE_EFFECT_PASS')
+          PY
+      - name: Recheck predecessor 66 edge-pair positive certificate index
+        run: |
+          python scripts/cuberev-observation/verify_r14_p814_66_pair_core_index.py > /tmp/p814.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p814.json'))
+          assert d['result']=='R14_P814_66_PAIR_CORE_INDEX_REPLAY_PASS'
+          assert d['all_edge_pairs']==66
+          assert d['candidate_core_multiplicities']=={'1':24,'2':6,'3':24,'4':12}
+          print('P814_INDEX_SINGLE_JSON_RECEIPT_PASS')
+          PY
+      - name: Enumerate exact 156 and 276 disjoint bijections
+        run: |
+          python scripts/cuberev-observation/audit_r14_p818_exact_uniform_basis_sampler.py > /tmp/p818.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p818.json'))
+          assert d['result']=='R14_P818_REJECTION_FREE_UNIFORM_B6_BASIS_SAMPLER_PASS'
+          assert d['minimum16_exact_unranking_count']==156
+          assert d['nonminimum_minimal17_exact_unranking_count']==276
+          assert d['all_minimal_exact_unranking_count']==432
+          assert d['uniform_minimal_prob16']=='13/36'
+          assert d['uniform_minimal_prob17']=='23/36'
+          assert d['uniform_minimal_expected_sensors']=='599/36'
+          assert d['rejection_free_uniform_minimum16_acceptance']=='1'
+          assert d['fresh_physical_htm_geodesic_computation'] is False
+          print('P818_BIJECTION_EXACT_SAMPLER_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p818-deterministic-uniform-sampler-court
+          path: |
+            /tmp/p814.json
+            /tmp/p818.json
+          retention-days: 30
+      - name: No automated source mutations
+        run: git diff --exit-code HEAD --
