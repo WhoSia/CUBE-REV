@@ -724,6 +724,7 @@
     "papers/0.27/PAPER2_ONE_SIDED_GOAL_CERTIFICATE_DRAFT_05.md",
     "papers/0.28/DUAL_COLOR_PROBE_ADAPTIVE_IDENTIFICATION_DRAFT_01.md",
     "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C01.md",
+    "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C02.md",
     "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md",
     "scripts/cube/full-notation-normal-form.mjs",
     "scripts/cube/replay-exact-trajectories.mjs",
@@ -5328,5 +5329,11 @@
   "active_set_reconciliation_20261111_r14_p831_lean_manifest": {
     "added_path": "formal/028/lake-manifest.json",
     "reason": "Restore missing Lake manifest to allow actual Lean kernel CI, not source-only claims"
+  },
+  "active_set_reconciliation_20261111_r14_p832_c02_consolidation": {
+    "added_path": "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C02.md",
+    "reason": "Preserve old A/B and C0.1 drafts while adding a sharper A-led integrated C0.2 candidate with B7 and Lean proof lineage",
+    "status": "EDITORIAL_RESEARCH_DRAFT_NOT_SUBMISSION_READY",
+    "branch": "research/current"
   }
 }
