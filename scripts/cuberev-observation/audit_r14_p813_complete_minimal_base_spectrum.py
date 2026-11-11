@@ -133,16 +133,18 @@ assert hist=={(2,1):12,(1,2):264}
 assert 156+276==432
 assert all(not any(a<b for a in minimal[3] for b in minimal[4]) for _ in (0,))
 
-print(json.dumps({
-    "status":"R14_P813_COMPLETE_MINIMAL_B6_SIZE_SPECTRUM_GEOMETRIC_PASS",
-    "proof_dependency":"inherited 156 positive+4689 negative physical 16-sensor certificates and short-support obstructions",
-    "positive_observation_count":{"16":156,"17":672,"18":174,"19":20,"20":1},
-    "minimal_identifying_count":{"16":156,"17":276,"18":0,"19":0,"20":0},
-    "minimal_17_types":{"two_corners_one_edge":12,"one_corner_two_edges":264},
-    "total_minimal":432,"minimal_size_spectrum":[16,17],
-    "edge_pair_core_coverage":dict(sorted(pair_multiplicity.items())),
-    "per_corner_extendable_edge_pair_count":corner_union_counts,
-    "per_corner_minimal17_one_corner_two_edges":66-corner_union_counts[0],
-    "fresh_independent_physical_18htm_mitm":False,
-    "lean_kernel_verdict":"NOT_RUN_BY_THIS_SCRIPT"
-},sort_keys=True))
+if __name__ == '__main__':
+    print(json.dumps({
+        "status":"R14_P813_COMPLETE_MINIMAL_B6_SIZE_SPECTRUM_GEOMETRIC_PASS",
+        "proof_dependency":"inherited 156 positive+4689 negative physical 16-sensor certificates and short-support obstructions",
+        "positive_observation_count":{"16":156,"17":672,"18":174,"19":20,"20":1},
+        "minimal_identifying_count":{"16":156,"17":276,"18":0,"19":0,"20":0},
+        "minimal_17_types":{"two_corners_one_edge":12,"one_corner_two_edges":264},
+        "total_minimal":432,"minimal_size_spectrum":[16,17],
+        "edge_pair_core_coverage":dict(sorted(pair_multiplicity.items())),
+        "per_corner_extendable_edge_pair_count":corner_union_counts,
+        "per_corner_minimal17_one_corner_two_edges":66-corner_union_counts[0],
+        "fresh_independent_physical_18htm_mitm":False,
+        "lean_kernel_verdict":"NOT_RUN_BY_THIS_SCRIPT"
+    },sort_keys=True))
+    
