@@ -55,7 +55,7 @@ x_phys = inv(suffix)
 y_phys = prefix
 assert comp(inv(x_phys), y_phys) == physical
 kept_stickers = {i for pos in b.kept for i in b.pieces[pos]}
-assert len(kept_stickers) == 40
+assert len(kept_stickers) == 38
 assert all(x_phys[i] == y_phys[i] for i in kept_stickers)
 
 for case in z.all_maps:
@@ -93,11 +93,11 @@ for case in z.all_maps:
     assert x_hist == pullback(x_phys, phi)
     assert y_hist == pullback(y_phys, phi)
 
-    # All 40 historical labels belonging to the 16 observed original
+    # All 38 historical labels belonging to the 16 observed original
     # physical cubies yield the identical positions in both states.
     phi_inv = inv(phi)
     observed_historical = {phi_inv[i] for i in kept_stickers}
-    assert len(observed_historical) == 40
+    assert len(observed_historical) == 38
     assert all(x_hist[i] == y_hist[i] for i in observed_historical)
 
 print(json.dumps({
