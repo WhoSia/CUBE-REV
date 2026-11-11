@@ -289,6 +289,7 @@
     "data/0.28/R14_P827_20261111_EIGHT_PRIMARY_SOURCE_PDF_SHA256_DRIVE_CUSTODY.json",
     "data/0.28/R14_P827_ZASSENHAUS_1982_INDEPENDENT_48_STICKER_CONJUGACY_RECEIPT.json",
     "data/0.28/R14_P828_ZASSENHAUS_1982_EXACT_288_GAUGE_GROUP_RECEIPT.json",
+    "data/0.28/R14_P832_20261111_RESTORED_B6_41_TARGET_CI_ZIP_SHA256_CUSTODY.json",
     "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
     "data/cuberev-021/p6_fmc_partial_order_extension.json",
     "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
@@ -540,6 +541,7 @@
     "docs/0.28/20261111_R14_P827_P828_SOURCE_FIRST_P48_GAUGE_AND_UPDATED_MISSING.md",
     "docs/0.28/20261111_R14_P829_HISTORICAL_B7_COLLISION_TRANSPORT_GATE.md",
     "docs/0.28/20261111_R14_P830_B7_EXACT_18_SOURCE_LINEAGE_CORRECTION.md",
+    "docs/0.28/20261111_R14_P832_SINGLE_PAPER_C02_CRITICAL_REVIEW_AND_LINEAGE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -5335,5 +5337,15 @@
     "reason": "Preserve old A/B and C0.1 drafts while adding a sharper A-led integrated C0.2 candidate with B7 and Lean proof lineage",
     "status": "EDITORIAL_RESEARCH_DRAFT_NOT_SUBMISSION_READY",
     "branch": "research/current"
+  },
+  "active_set_reconciliation_20261111_r14_p832_c02_evidence": {
+    "added_paths": [
+      "docs/0.28/20261111_R14_P832_SINGLE_PAPER_C02_CRITICAL_REVIEW_AND_LINEAGE.md",
+      "data/0.28/R14_P832_20261111_RESTORED_B6_41_TARGET_CI_ZIP_SHA256_CUSTODY.json"
+    ],
+    "github_ci_artifact_url": "https://github.com/WhoSia/CUBE-REV/actions/runs/41774686324",
+    "google_drive_byte_sealed_original_url": "https://drive.google.com/file/d/1FHQVSfwMsEartPjPqdYlIb09vDjUA0Ge/view",
+    "editorial_decision": "C0.2 A-led, B-supported one-paper candidate; full A/B drafts and C0.1 preserved",
+    "status": "B6_HISTORICAL_CI_ZIP_SHA_READBACK_PASS; ORIGINAL_20261030_ZIP_NOT_RECOVERED"
   }
 }
