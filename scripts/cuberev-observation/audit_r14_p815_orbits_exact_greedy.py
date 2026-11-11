@@ -127,7 +127,11 @@ hits=Counter()
 for _ in range(draws):
     o=frozenset()
     while True:
-        actions=[o|{t} for t in tags-o if o|{t} in levels.get(len(o)+1,set())]
+        # Stable ordering is required for a reproducible seeded Monte Carlo
+        # receipt across distinct PYTHONHASHSEED / interpreter processes.
+        actions=sorted((o|{t} for t in tags-o
+                        if o|{t} in levels.get(len(o)+1,set())),
+                       key=lambda x: tuple(sorted(x)))
         if not actions:
             hits[20-len(o)]+=1
             break
