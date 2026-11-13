@@ -294,6 +294,7 @@
     "data/0.28/R14_P832_20261111_RESTORED_B6_41_TARGET_CI_ZIP_SHA256_CUSTODY.json",
     "data/0.28/R14_P833_20261113_FRESH_B6_41_TARGET_FULL_REPLAY_AND_DRIVE_SEAL.json",
     "data/0.28/R14_P834_20261113_ALL_1048576_STATIC_TAG_LAYOUTS_RECEIPT.json",
+    "data/0.28/R14_P836_20261113_THREE_SCHOLARLY_PDF_CANONICAL_INTAKE_SHA256.json",
     "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
     "data/cuberev-021/p6_fmc_partial_order_extension.json",
     "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
@@ -549,6 +550,7 @@
     "docs/0.28/20261113_R14_P833_FRESH_B6_FULL_41_MITM_AND_DRIVE_CUSTODY.md",
     "docs/0.28/20261113_R14_P834_FULL_IDENTIFYING_FAMILY_SATURATION_THEOREM.md",
     "docs/0.28/20261113_R14_P835_SENSOR_MODEL_PRIOR_ART_TRIAGE.md",
+    "docs/0.28/20261113_R14_P836_THREE_PRIMARY_PAPERS_CLOSE_READ_GHOST_AUDIT_AND_CUSTODY.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -5398,5 +5400,21 @@
     "reason": "Scoped primary IEEE/ICLR sensor-model novelty risk and missing-PDF provenance labels",
     "branch": "research/current",
     "no_pdf_custody_claim": true
+  },
+  "active_set_reconciliation_20261113_r14_p836_original_papers": {
+    "added_paths": [
+      "docs/0.28/20261113_R14_P836_THREE_PRIMARY_PAPERS_CLOSE_READ_GHOST_AUDIT_AND_CUSTODY.md",
+      "data/0.28/R14_P836_20261113_THREE_SCHOLARLY_PDF_CANONICAL_INTAKE_SHA256.json"
+    ],
+    "source_count": 3,
+    "reason": "Three actual DOI/publisher-confirmed originals were SHA-audited, closely read, and moved metadata-only from Research OS 00 intake to canonical 10 papers. Preserve separate missing-core literature list.",
+    "source_shas": [
+      "a6c1a2579f07fe7e87518b513834d8b496b4660bbc18a1a11585166cd389d49a",
+      "83cf227e681565cd309fd4d4d947897d52c861352dc43de2bb7201e89b773154",
+      "027da82141cb5628ae3b258451c433997e1238e5caf0e409816d3827f5dba463"
+    ],
+    "current_paper": "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C03.md",
+    "branch": "research/current",
+    "author_policy": "WhoSia human only"
   }
 }
