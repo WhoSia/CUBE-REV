@@ -1,0 +1,65 @@
+name: CUBE-REV R14-P8.33 independently rerun 41 B6 radius-12 exclusions
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-observation/audit_r14_p833_fresh_b6_mitm.cpp"
+      - "scripts/cuberev-observation/b6_independent_48sticker_goals.py"
+      - ".github/workflows/cuberev-r14-p833-fresh-41-b6-mitm.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-rebuild-and-independent-cpp-rerun:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate full 48-sticker source data and compare historical SHA-256
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/cuberev-p833
+          python scripts/cuberev-observation/b6_independent_48sticker_goals.py --emit /tmp/cuberev-p833
+          cd /tmp/cuberev-p833
+          printf '%s\n' \
+            "363edfb2f25b267735f93895103125ba97e457c14937499955f4bf4e7bcdcba8  targets41.txt" \
+            "33ab96ee24228febc89740676078d7abb0967a468b3aba338e4e6ea75eb3a021  b6_factor_table.hpp" \
+            "f73c09094a4ed327f4ab8f9295c3dd1cbdc139b312e3d52ea998591a3ff685b9  raw_goal48.hex" \
+            | tee source_sha256_expected.txt | sha256sum -c -
+      - name: Compile newly authored C++ verifier
+        run: |
+          g++ -std=c++17 -O3 -Wall -Wextra \
+            -I /tmp/cuberev-p833 \
+            scripts/cuberev-observation/audit_r14_p833_fresh_b6_mitm.cpp \
+            -o /tmp/cuberev-p833/fresh_b6_mitm
+      - name: New independent 41-class exact length-12 exclusion run
+        run: |
+          set -euo pipefail
+          /tmp/cuberev-p833/fresh_b6_mitm /tmp/cuberev-p833/targets41.txt \
+            | tee /tmp/cuberev-p833/new_41_class_full_replay.log
+          grep -q '^FRESH_B6_BALL generated=8331112 unique=8240087$' /tmp/cuberev-p833/new_41_class_full_replay.log
+          grep -q '^FRESH_REPLAY_ALL_41_PASS 41$' /tmp/cuberev-p833/new_41_class_full_replay.log
+          test "$(grep -c '^FRESH_TARGET ' /tmp/cuberev-p833/new_41_class_full_replay.log)" -eq 41
+          ! grep -q '^FRESH_TARGET .* collision=1' /tmp/cuberev-p833/new_41_class_full_replay.log
+          sha256sum /tmp/cuberev-p833/{targets41.txt,b6_factor_table.hpp,raw_goal48.hex,new_41_class_full_replay.log} \
+            | tee /tmp/cuberev-p833/replay_sha256.txt
+      - name: Archive exact reproducible input/output logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p833-fresh-41-b6-htm-replay
+          path: |
+            /tmp/cuberev-p833/targets41.txt
+            /tmp/cuberev-p833/b6_factor_table.hpp
+            /tmp/cuberev-p833/raw_goal48.hex
+            /tmp/cuberev-p833/source_sha256_expected.txt
+            /tmp/cuberev-p833/new_41_class_full_replay.log
+            /tmp/cuberev-p833/replay_sha256.txt
+          retention-days: 30
+      - name: No GitHub bot source writes
+        run: git diff --exit-code HEAD --
