@@ -1,0 +1,25 @@
+name: CUBE-REV R14-P8.40 19-frame policy
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p840_constructive_19_frame.py'
+      - 'data/0.28/R14_P840_CONSTRUCTIVE_19_FRAME_RECEIPT.json'
+      - '.github/workflows/cuberev-r14-p840-19-frame.yml'
+      - 'scripts/cuberev-observation/audit_r14_p86_constructive_full_20_frame.py'
+      - 'scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Replay policy and restricted lower bound
+        run: |
+          python3 scripts/cuberev-observation/audit_r14_p840_constructive_19_frame.py > /tmp/p840.json
+          diff -u data/0.28/R14_P840_CONSTRUCTIVE_19_FRAME_RECEIPT.json /tmp/p840.json
