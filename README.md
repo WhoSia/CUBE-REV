@@ -6,6 +6,10 @@
 
 > **Evidence warning:** A finite program's successful return, an independently checked certificate, a mathematical proof and a new general theorem are four different claims. Keep them separate. Do not infer human cognition from exact cube combinatorics, nor infer an HTM shortest path from a stabilizer's abstract group order.
 
+## 2026-11-13 R14-P8.41 — Exact adaptive identification in 19 frames
+
+The full legal cube requires **19 adaptive paired color frames** and **21 fixed paired color frames**. P8.41 excludes every 18-frame policy even when the complete corners are given in advance. Its exact residual matching game includes early reads of both stickers on an edge. A second implementation checks both roots without index-parity pruning. [Proof and reproduction](docs/0.28/20261113_R14_P841_EXACT_ADAPTIVE_19_FRAME_THEOREM.md). P8.40 supplies the constructive upper bound.
+
 ## 2026-11-13 R14-P8.40 — Adaptive color identification in 19 frames
 
 The full legal cube now has adaptive frame bounds **18–19**. The policy starts by reading one sticker on each of eleven edges, then adapts across the eleven mate stickers and both stickers of the unread edge. The edge permutation sign becomes available after frame 14 from the corner scan. All 52 representative games fit the budget, and a separate obstruction establishes exact depth 19 within this prefix family. [Proof, executable and receipt](docs/0.28/20261113_R14_P840_CONSTRUCTIVE_19_FRAME_UPPER.md). The entries below record earlier bounds.

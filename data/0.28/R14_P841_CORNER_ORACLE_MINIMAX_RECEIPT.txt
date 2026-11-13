@@ -1,0 +1,5 @@
+sign 0 wins 0 games 22369
+sign 1 wins 0 games 22370
+sign 0 wins 0 games 90449
+sign 1 wins 0 games 90450
+literal suffix comparisons 648

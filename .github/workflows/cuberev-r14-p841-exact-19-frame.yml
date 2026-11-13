@@ -1,0 +1,32 @@
+name: CUBE-REV R14-P8.41 exact 19-frame minimax
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/*r14_p841*'
+      - 'scripts/cuberev-observation/audit_r14_p840_constructive_19_frame.py'
+      - 'scripts/cuberev-observation/audit_r14_p86_constructive_full_20_frame.py'
+      - 'scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py'
+      - 'data/0.28/R14_P84[01]*'
+      - '.github/workflows/cuberev-r14-p841-exact-19-frame.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-minimax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify both corner-oracle lower-bound roots
+        run: |
+          g++ -std=c++20 -O3 -Wall -Wextra -pedantic scripts/cuberev-observation/audit_r14_p841_corner_oracle_minimax.cpp -o /tmp/p841
+          /tmp/p841 > /tmp/p841.txt
+          python3 scripts/cuberev-observation/verify_r14_p841_explicit_minimax.py >> /tmp/p841.txt
+          diff -u data/0.28/R14_P841_CORNER_ORACLE_MINIMAX_RECEIPT.txt /tmp/p841.txt
+      - name: Replay the constructive 19-frame upper bound
+        run: |
+          python3 scripts/cuberev-observation/audit_r14_p840_constructive_19_frame.py > /tmp/p840.json
+          diff -u data/0.28/R14_P840_CONSTRUCTIVE_19_FRAME_RECEIPT.json /tmp/p840.json

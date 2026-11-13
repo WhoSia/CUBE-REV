@@ -173,6 +173,7 @@
     ".github/workflows/cuberev-r14-p834-static-family-saturation.yml",
     ".github/workflows/cuberev-r14-p838-fault-tolerant-sensor-census.yml",
     ".github/workflows/cuberev-r14-p840-19-frame.yml",
+    ".github/workflows/cuberev-r14-p841-exact-19-frame.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
     ".github/workflows/cuberev-r14-p89-lean-observation-covariance.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
@@ -300,6 +301,7 @@
     "data/0.28/R14_P837_20261113_SIX_INTAKE_OBJECTS_AND_DUPLICATE_RECEIPT.json",
     "data/0.28/R14_P838_20261113_FAULT_TOLERANT_SENSOR_CI_AND_DRIVE_SEAL.json",
     "data/0.28/R14_P840_CONSTRUCTIVE_19_FRAME_RECEIPT.json",
+    "data/0.28/R14_P841_CORNER_ORACLE_MINIMAX_RECEIPT.txt",
     "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
     "data/cuberev-021/p6_fmc_partial_order_extension.json",
     "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
@@ -565,6 +567,7 @@
     "docs/0.28/20261113_R14_P838_FAULT_TOLERANT_PERSISTENT_TAG_EXACT_CENSUS.md",
     "docs/0.28/20261113_R14_P839_FRONTIER_RETURN_UNRESTRICTED_19_FRAME_POSTERIOR_MINIMAX.md",
     "docs/0.28/20261113_R14_P840_CONSTRUCTIVE_19_FRAME_UPPER.md",
+    "docs/0.28/20261113_R14_P841_EXACT_ADAPTIVE_19_FRAME_THEOREM.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -1107,6 +1110,7 @@
     "scripts/cuberev-observation/audit_r14_p83_physical_648_exact_andor.py",
     "scripts/cuberev-observation/audit_r14_p83_suffix_equivalence.py",
     "scripts/cuberev-observation/audit_r14_p840_constructive_19_frame.py",
+    "scripts/cuberev-observation/audit_r14_p841_corner_oracle_minimax.cpp",
     "scripts/cuberev-observation/audit_r14_p86_constructive_full_20_frame.py",
     "scripts/cuberev-observation/audit_r14_p89_p810_generic_transport.py",
     "scripts/cuberev-observation/audit_r14_p8_parity_activation.py",
@@ -1271,6 +1275,7 @@
     "scripts/cuberev-observation/verify_r14_p83_384_witness_replay.py",
     "scripts/cuberev-observation/verify_r14_p83_all_220_independent_frozenset.py",
     "scripts/cuberev-observation/verify_r14_p83_independent_physical_counterexample.py",
+    "scripts/cuberev-observation/verify_r14_p841_explicit_minimax.py",
     "scripts/cuberev-observation/verify_r14_p86_hard_physical_states.py",
     "scripts/cuberev-observation/verify_r14_p86_independent_corner_route_axioms.py",
     "scripts/cuberev-observation/verify_r14_p86_physical_20frame_routing.py",
@@ -5462,5 +5467,15 @@
       ".github/workflows/cuberev-r14-p840-19-frame.yml"
     ],
     "result": "Global adaptive upper bound 19. The lower bound 19 is restricted to the specified eleven-edge scan. Unrestricted interval 18 to 19."
+  },
+  "active_set_reconciliation_20261113_r14_p841": {
+    "paths": [
+      "docs/0.28/20261113_R14_P841_EXACT_ADAPTIVE_19_FRAME_THEOREM.md",
+      "scripts/cuberev-observation/audit_r14_p841_corner_oracle_minimax.cpp",
+      "scripts/cuberev-observation/verify_r14_p841_explicit_minimax.py",
+      "data/0.28/R14_P841_CORNER_ORACLE_MINIMAX_RECEIPT.txt",
+      ".github/workflows/cuberev-r14-p841-exact-19-frame.yml"
+    ],
+    "result": "Exact unrestricted adaptive 19 frames via full-corner-oracle lower bound and P8.40 upper bound."
   }
 }
