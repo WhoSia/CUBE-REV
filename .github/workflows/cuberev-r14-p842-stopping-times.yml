@@ -1,0 +1,26 @@
+name: CUBE-REV R14-P8.42 exact stopping-time census
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - 'scripts/cuberev-observation/audit_r14_p842_stopping_times.py'
+      - 'scripts/cuberev-observation/audit_r14_p840_constructive_19_frame.py'
+      - 'scripts/cuberev-observation/audit_r14_p86_constructive_full_20_frame.py'
+      - 'scripts/cuberev-observation/audit_r14_p51_p48_group_lift.py'
+      - 'data/0.28/R14_P842_STOPPING_TIME_RECEIPT.json'
+      - '.github/workflows/cuberev-r14-p842-stopping-times.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Reproduce weighted census and physical replay
+        run: |
+          python3 scripts/cuberev-observation/audit_r14_p842_stopping_times.py > /tmp/p842.json
+          diff -u data/0.28/R14_P842_STOPPING_TIME_RECEIPT.json /tmp/p842.json

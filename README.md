@@ -6,6 +6,10 @@
 
 > **Evidence warning:** A finite program's successful return, an independently checked certificate, a mathematical proof and a new general theorem are four different claims. Keep them separate. Do not infer human cognition from exact cube combinatorics, nor infer an HTM shortest path from a stabilizer's abstract group order.
 
+## 2026-11-13 R14-P8.42 — Exact stopping-time census
+
+Under a uniform legal initial cube, P8.40 averages 18.00057 frames, with 8.59737% finishing at frame 19. Choosing the exact continuation budget separately for each eleven-color history averages 17.97150 frames and reduces the 19-frame tail to 5.90278%. [Weighted census and reproduction](docs/0.28/20261113_R14_P842_EXACT_STOPPING_TIME_CENSUS.md).
+
 ## 2026-11-13 R14-P8.41 — Exact adaptive identification in 19 frames
 
 The full legal cube requires **19 adaptive paired color frames** and **21 fixed paired color frames**. P8.41 excludes every 18-frame policy even when the complete corners are given in advance. Its exact residual matching game includes early reads of both stickers on an edge. A second implementation checks both roots without index-parity pruning. [Proof and reproduction](docs/0.28/20261113_R14_P841_EXACT_ADAPTIVE_19_FRAME_THEOREM.md). P8.40 supplies the constructive upper bound.
