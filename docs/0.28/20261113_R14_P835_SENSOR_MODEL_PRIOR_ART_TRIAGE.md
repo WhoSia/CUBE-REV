@@ -1,5 +1,7 @@
 # CUBE-REV R14-P8.35 — Targeted sensor-model novelty and prior-art threat triage
 
+> **P8.36 STATUS UPDATE — 2026-11-13:** The three original PDFs described below as *not confirmed* have now all been directly opened, read, SHA-256 identified and moved from Research OS `00_INTAKE` to canonical `10_PAPERS` under their original Drive IDs. **The missing-PDF statements in the original P8.35 text below are superseded, retained only to preserve its prior evidence state.** See [P8.36 primary close-reading, ghost-bibliography and custody audit](20261113_R14_P836_THREE_PRIMARY_PAPERS_CLOSE_READ_GHOST_AUDIT_AND_CUSTODY.md). Correct primary citation identities: Wang et al. (2022), Futuhi & Sturtevant (2026 ICLR, arXiv v2), Harker, Vogel & Gedeon (2007 journal VOR). No 3 new P8.35 originals remain missing.
+
 Date: 2026-11-13. Scope: preliminary original-source metadata scan, not a comprehensive systematic literature review or publication priority finding.
 
 ## 1. Highest proximity: monocular cube recognition (2022 ICSPS / indexed 2023)
