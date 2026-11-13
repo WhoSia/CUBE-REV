@@ -1,0 +1,40 @@
+{
+  "schema": "cuberev.r14.p838.static-robust-layout-census.v1",
+  "date": "2026-11-13",
+  "ci_run_id": 43361772300,
+  "ci_job_id": 131676713947,
+  "ci_url": "https://github.com/WhoSia/CUBE-REV/actions/runs/43361772300",
+  "ci_conclusion": "success",
+  "source_sha": "2a3810fe060c45dd9abdf131ff061d0565cf6415",
+  "github_artifact_id": 14007894481,
+  "artifact_sha256": "c07ce941b5c2de020cd1ee29c391d8f496d2d7b6a5b20e2bcec454bb6b00a1d2",
+  "artifact_bytes": 631,
+  "drive_id": "1o2Gr7efoBuZYLTXqQ2zj1gNIYyzC2oNO",
+  "drive_url": "https://drive.google.com/file/d/1o2Gr7efoBuZYLTXqQ2zj1gNIYyzC2oNO/view",
+  "drive_byte_for_byte_readback": "PASS",
+  "data": {
+    "B6_0_fails": {
+      "16": 156,
+      "17": 672,
+      "18": 174,
+      "19": 20,
+      "20": 1
+    },
+    "B6_1_fail": {
+      "19": 12,
+      "20": 1
+    },
+    "B6_2_fail": {},
+    "B7_0_fails": {
+      "18": 96,
+      "19": 20,
+      "20": 1
+    },
+    "B7_1_fail": {
+      "20": 1
+    },
+    "B7_2_fail": {}
+  },
+  "known_limit": "B6 positive cases inherit prior independent 41-goal MITM; P8.38 is NOT a new full 41-target C++ run and no claim for 19-frame color-game.",
+  "reading_link": "docs/0.28/20261113_R14_P838_FAULT_TOLERANT_PERSISTENT_TAG_EXACT_CENSUS.md"
+}
