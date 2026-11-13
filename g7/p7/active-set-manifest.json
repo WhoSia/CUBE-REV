@@ -548,6 +548,7 @@
     "docs/0.28/20261111_R14_P832_SINGLE_PAPER_C02_CRITICAL_REVIEW_AND_LINEAGE.md",
     "docs/0.28/20261113_R14_P833_FRESH_B6_FULL_41_MITM_AND_DRIVE_CUSTODY.md",
     "docs/0.28/20261113_R14_P834_FULL_IDENTIFYING_FAMILY_SATURATION_THEOREM.md",
+    "docs/0.28/20261113_R14_P835_SENSOR_MODEL_PRIOR_ART_TRIAGE.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -5391,5 +5392,11 @@
     "P834_drive": "https://drive.google.com/file/d/1LzA07XNgexLT7nYJmCowjd3hB5-2Ei1Y/view",
     "statement": "I(B7)=I(G), 117 global identifying layouts, 906 B6 identifying layouts lost",
     "no_bot_writes": true
+  },
+  "active_set_reconciliation_20261113_r14_p835_priortheory": {
+    "added_path": "docs/0.28/20261113_R14_P835_SENSOR_MODEL_PRIOR_ART_TRIAGE.md",
+    "reason": "Scoped primary IEEE/ICLR sensor-model novelty risk and missing-PDF provenance labels",
+    "branch": "research/current",
+    "no_pdf_custody_claim": true
   }
 }
