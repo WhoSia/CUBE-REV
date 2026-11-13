@@ -169,6 +169,7 @@
     ".github/workflows/cuberev-r14-p827-historical-p48-conjugacy.yml",
     ".github/workflows/cuberev-r14-p83-belief-alias-star-triangle.yml",
     ".github/workflows/cuberev-r14-p830-b7-exact-full-tag-minimum.yml",
+    ".github/workflows/cuberev-r14-p833-fresh-41-b6-mitm.yml",
     ".github/workflows/cuberev-r14-p86-20-frame-constructive-upper.yml",
     ".github/workflows/cuberev-r14-p89-lean-observation-covariance.yml",
     ".github/workflows/g7-p10-r1-support-choice.yml",
@@ -1073,6 +1074,7 @@
     "scripts/cuberev-observation/audit_r14_p829_historical_b7_collision_transport.py",
     "scripts/cuberev-observation/audit_r14_p82_mixed_p48_successor_partition.py",
     "scripts/cuberev-observation/audit_r14_p830_independent_b7_pair_support_complete.py",
+    "scripts/cuberev-observation/audit_r14_p833_fresh_b6_mitm.cpp",
     "scripts/cuberev-observation/audit_r14_p83_384_adversarial_edge_witnesses.py",
     "scripts/cuberev-observation/audit_r14_p83_648_prefix_invariant.py",
     "scripts/cuberev-observation/audit_r14_p83_all_220_three_edge_barriers.py",
@@ -5347,5 +5349,14 @@
     "google_drive_byte_sealed_original_url": "https://drive.google.com/file/d/1FHQVSfwMsEartPjPqdYlIb09vDjUA0Ge/view",
     "editorial_decision": "C0.2 A-led, B-supported one-paper candidate; full A/B drafts and C0.1 preserved",
     "status": "B6_HISTORICAL_CI_ZIP_SHA_READBACK_PASS; ORIGINAL_20261030_ZIP_NOT_RECOVERED"
+  },
+  "active_set_reconciliation_20261113_r14_p833_fresh_41_mitm": {
+    "added_paths": [
+      "scripts/cuberev-observation/audit_r14_p833_fresh_b6_mitm.cpp",
+      ".github/workflows/cuberev-r14-p833-fresh-41-b6-mitm.yml"
+    ],
+    "reason": "Independently implement C++ 41-target B6 MITM and regenerate sealed P48 source SHA256 in read-only CI; source authored via WhoSia",
+    "status": "NEW_CI_RESULT_PENDING",
+    "branch": "research/current"
   }
 }
