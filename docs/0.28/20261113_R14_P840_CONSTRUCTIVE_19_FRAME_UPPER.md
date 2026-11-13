@@ -1,6 +1,6 @@
 # R14-P8.40 — A 19-frame adaptive color policy
 
-For the fixed-center legal 3×3 cube, with one edge sticker color and one corner sticker color per frame and known legal turns free, the worst-case adaptive budget satisfies **18 ≤ h_adaptive ≤ 19**. The fixed budget remains 21. The 19-frame policy below attains the exact minimum within the family that starts with the specified eleven edge reads.
+For the fixed-center legal 3×3 cube, with one edge sticker color and one corner sticker color per frame and known legal turns free, the worst-case adaptive budget satisfies **18 ≤ h_adaptive ≤ 19**. The fixed budget remains 21. The 19-frame policy below attains the exact minimum within the family that reads a new edge at each of the first eleven frames.
 
 ## Policy
 
@@ -25,6 +25,10 @@ Each requested sticker pair lies in the 576-pair orbit under legal face turns. T
 ## An 18-frame obstruction for this prefix family
 
 Take the first eleven colors to be `RFFDDLLLBBB` in the edge orientation convention used by the executable. An independent assignment enumeration gives 1,656 compatible edge states for each permutation sign. Fix one compatible corner configuration for each sign and reveal it to the observer at frame 11. Corner readings then supply no further information. A literal set-partition search tests each of the 13 possible informative first continuation queries and finds, for both signs, a response whose remaining belief cannot be distinguished with six more edge queries. Repeating an already observed sticker adds no information in this relaxed game. Thus seven continuation frames are insufficient for this history, even with the full corners supplied. The bound applies to the specified first eleven edge reads. The unrestricted question is whether some other initial policy achieves 18 frames.
+
+## Extension to adaptive first-eleven new-edge scans
+
+Fix one full corner configuration and reveal it for free. Against any deterministic policy that reads a previously unread edge in each of its first eleven frames, give the colors of `RFFDDLLLBBB` in time order. Map the eleven observed physical edge positions to the eleven canonical positions in time order. At each such position, exchange the local sticker slots if needed to send the observed slot to side zero. At the unread position choose the slot exchange so that the total number of exchanges is even. The resulting map on complete edge states preserves total flip parity, and the spatial permutation shifts the edge permutation sign by a fixed XOR. Thus the resulting belief is exactly the canonical witness fiber for one sign. Every state in its inverse image realizes the prescribed adaptive path since all preceding readings and the entire corner configuration agree. Both sign fibers have the independent seven-query obstruction, which transports back to the physical query slots. This rules out 18 frames for every policy in this broader family, including adaptive choices of edge position and side. Any successful 18-frame policy must have some history that reads a previously touched edge in its first eleven frames.
 
 ## Reproduction
 
