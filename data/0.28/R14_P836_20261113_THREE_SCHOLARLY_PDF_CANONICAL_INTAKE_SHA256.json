@@ -1,0 +1,78 @@
+{
+  "schema": "cuberev.r14.p836.primary-literature-three-intake.v1",
+  "created": "2026-11-13",
+  "source_folder": {
+    "name": "00_INTAKE — Literature Radar",
+    "id": "1MLtYh0pv8QUZDReYzRqjDrOjRkSJAD16"
+  },
+  "destination_folder": {
+    "name": "10_PAPERS — Canonical Literature Commons",
+    "id": "1D2M4LHcejREhlyp6vTd71xxLLx-6ldUP"
+  },
+  "changes": "Google Drive metadata rename+move ONLY; no byte replacement, IDs preserved, post-move metadata readback done",
+  "works": [
+    {
+      "id": "1ny5tJVihORd9BxDwrYsBymKLYDmMBhXN",
+      "author": "Mihang Wang; Yigang Wang; Qing Shi; Shi Li",
+      "year": 2022,
+      "title": "Research on State Recognition of Rubik's Cube Based on Monocular Vision",
+      "venue": "2022 14th International Conference on Signal Processing Systems (ICSPS)",
+      "publication_type": "conference paper",
+      "doi": "10.1109/ICSPS58776.2022.00141",
+      "publisher_added_date": "2023-08-25",
+      "pages": "777–780",
+      "pdf_pages": 4,
+      "bytes": 507476,
+      "sha256": "a6c1a2579f07fe7e87518b513834d8b496b4660bbc18a1a11585166cd389d49a",
+      "filename": "Wang et al. (2022) — Research on State Recognition of Rubik's Cube Based on Monocular Vision — IEEE ICSPS DOI 10.1109-ICSPS58776.2022.00141.pdf",
+      "url": "https://drive.google.com/file/d/1ny5tJVihORd9BxDwrYsBymKLYDmMBhXN/view",
+      "source": "https://ieeexplore.ieee.org/document/10218571/",
+      "read": "All 4 pages including Sec III and IV",
+      "critical": "one camera reads full images + contours; 20 repeated guided restoration experiments not 20 sparse categorical observation frames; paper's stated '430 billion' cube states is not legal group cardinality.",
+      "license": "Copyright/access restrictions marked in PDF; do not rehost"
+    },
+    {
+      "id": "15GM1mtoAicpgEwgafy7QQt3VxVvEaDF3",
+      "author": "Ehsan Futuhi; Nathan R. Sturtevant",
+      "year": 2026,
+      "title": "Learning Admissible Heuristics for A*: Theory and Practice",
+      "venue": "ICLR 2026",
+      "publication_type": "conference paper / arXiv v2 manuscript manifestation",
+      "arxiv": "2509.22626v2",
+      "pdf_pages": 31,
+      "bytes": 1132182,
+      "sha256": "83cf227e681565cd309fd4d4d947897d52c861352dc43de2bb7201e89b773154",
+      "filename": "Futuhi & Sturtevant (2026) — Learning Admissible Heuristics for A* - Theory and Practice — ICLR 2026 arXiv 2509.22626v2.pdf",
+      "url": "https://drive.google.com/file/d/15GM1mtoAicpgEwgafy7QQt3VxVvEaDF3/view",
+      "source": "https://mlanthology.org/iclr/2026/futuhi2026iclr-learning/",
+      "read": "Main text pp 1–10, technical appendices and tabular results pp 25–26 inspected; entire 31-page PDF text structurally surveyed",
+      "critical": "learned PDB near-admissibility has measured nonzero heuristic overestimation, not exact distance lower-bound proof; no exact original-tag sensor optimization."
+    },
+    {
+      "id": "1P4XAjtmSI3O6FazqQhQKPUclqQ48P-S9",
+      "author": "S. R. Harker; C. R. Vogel; T. Gedeon",
+      "year": 2007,
+      "title": "Analysis of Constrained Optimization Variants of the Map-Seeking Circuit Algorithm",
+      "venue": "Journal of Mathematical Imaging and Vision 29(1):49-62",
+      "publication_type": "journal article, published journal version",
+      "doi": "10.1007/s10851-007-0024-7",
+      "pdf_pages": 14,
+      "bytes": 653754,
+      "sha256": "027da82141cb5628ae3b258451c433997e1238e5caf0e409816d3827f5dba463",
+      "filename": "Harker, Vogel & Gedeon (2007) — Analysis of Constrained Optimization Variants of the Map-Seeking Circuit Algorithm.pdf",
+      "url": "https://drive.google.com/file/d/1P4XAjtmSI3O6FazqQhQKPUclqQ48P-S9/view",
+      "source": "https://doi.org/10.1007/s10851-007-0024-7",
+      "read": "All 14 pages structurally surveyed; Sec 2.2 24-dimensional cubie states, Sec 5.2 random-depth 100-per-depth cube solver tests, conclusions on MSC non-global guarantee",
+      "critical": "Original-cubie 24-pose one-hot encoding predates CUBE-REV; random solver tests are not exact sensor-base classification."
+    }
+  ],
+  "additional_00_item_not_moved": {
+    "name": "am_2016042515583550.pdf",
+    "id": "1QoXCxia9GnLZ_Z8sGpbm2D8n7wbsLdAx",
+    "identified_as": "Krishnan & Rajan (2016) Fault-Tolerant Resolvability of Certain Crystal Structures",
+    "doi": "10.4236/am.2016.77055",
+    "status": "Distinct article not among three instructed new CUBE-REV PDFs; left 00 unchanged."
+  },
+  "missing_list_update": "Three R14-P8.35 candidates now all PHYSICALLY HELD and canonically moved; seven prior historical missing originals still separate. Remove vague Babai early-base placeholder as a countable paper. Correct Golomb 1981 venue American Journal of Physics not American Mathematical Monthly.",
+  "github_note": "docs/0.28/20261113_R14_P836_THREE_PRIMARY_PAPERS_CLOSE_READ_GHOST_AUDIT_AND_CUSTODY.md"
+}
