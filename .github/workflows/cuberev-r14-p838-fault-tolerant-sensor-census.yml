@@ -1,0 +1,46 @@
+name: CUBE-REV R14-P8.38 exact adversarial sensor-failure census
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - scripts/cuberev-observation/audit_r14_p838_static_fault_tolerant_sensor_family.py
+      - .github/workflows/cuberev-r14-p838-fault-tolerant-sensor-census.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  complete-20-tag-fault-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independently replay B6 B7 supports then test fault tolerance of all subsets
+        run: |
+          set -euo pipefail
+          python scripts/cuberev-observation/audit_r14_p838_static_fault_tolerant_sensor_family.py | tee /tmp/p838.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/p838.json"))
+          assert d["status"]=="PASS"
+          assert d["all_subsets"]==1048576
+          assert d["B7_one_fault_minimum_tags"]==20
+          assert d["B7_two_fault_possible"] is False
+          assert d["B6_two_fault_possible"] is False
+          print("P838_FULL_ADVERSARIAL_FAULT_CENSUS_PASS")
+          PY
+          sha256sum /tmp/p838.json | tee /tmp/p838.sha256
+      - name: Upload exact verifier receipt without source writes
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p838-fault-tolerant-persistent-tags
+          path: |
+            /tmp/p838.json
+            /tmp/p838.sha256
+          retention-days: 30
+      - name: Readonly Git working tree audit
+        run: git diff --exit-code HEAD --
