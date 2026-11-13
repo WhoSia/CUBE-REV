@@ -1,0 +1,60 @@
+{
+  "schema_version": "cube-rev.r14.p834.complete-static-identifying-family.v1",
+  "date": "2026-11-13",
+  "branch": "research/current",
+  "status": "CI_PASS_AND_DRIVE_BYTE_READBACK_PASS",
+  "model": "20 persistent original-cubie full-pose sensors, legal 3x3x3 cube group",
+  "source": "scripts/cuberev-observation/audit_r14_p834_exact_static_family_saturation.py",
+  "workflow": ".github/workflows/cuberev-r14-p834-static-family-saturation.yml",
+  "github_run_id": 43350675032,
+  "github_url": "https://github.com/WhoSia/CUBE-REV/actions/runs/43350675032",
+  "github_artifact_id": 14004295060,
+  "runtime_checks": {
+    "all_tag_subsets": 1048576,
+    "b6_physical_obstruction_masks": 872,
+    "b7_physical_pair_collision_masks": 94,
+    "b6_identifying_by_size": {
+      "16": 156,
+      "17": 672,
+      "18": 174,
+      "19": 20,
+      "20": 1
+    },
+    "b7_identifying_by_size": {
+      "18": 96,
+      "19": 20,
+      "20": 1
+    },
+    "b6_identifying_total": 1023,
+    "b7_identifying_total": 117,
+    "layouts_lost": 906,
+    "lost_by_size": {
+      "16": 156,
+      "17": 672,
+      "18": 78
+    },
+    "b7_equals_full_group_identifying_family": true,
+    "exact_saturation_first_radius": 7,
+    "relies_on_P833_positive_classification": true
+  },
+  "artifact": {
+    "size_bytes": 728,
+    "sha256": "26e9f46fc442adae57ba5914cd65d4c213a2682c5b540c72d9a2282236797256",
+    "json_sha256": "4c8c1d077754b0de769ba2bb34a49311c87e08a7ebbda8c6f244a21199999ec4",
+    "two_files": [
+      "p834.json",
+      "p834.sha256"
+    ],
+    "drive_id": "1LzA07XNgexLT7nYJmCowjd3hB5-2Ei1Y",
+    "drive_url": "https://drive.google.com/file/d/1LzA07XNgexLT7nYJmCowjd3hB5-2Ei1Y/view",
+    "drive_parent_id": "1DTg_UEq85OvBjxGMjAqEf3D8JagwRhUG",
+    "verified_drive_re_download_cmp": "BYTE_IDENTICAL"
+  },
+  "epistemic_limits": {
+    "not_a_full_B7_BFS": true,
+    "no_unrestricted_19_frame_claim": true,
+    "no_new_full_41_mitm_inside_this_run": true,
+    "separate_fresh_P833_41_mitm": "https://github.com/WhoSia/CUBE-REV/actions/runs/43349579675",
+    "historical_20261030_zip_recovered": false
+  }
+}
