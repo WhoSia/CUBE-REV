@@ -1,10 +1,18 @@
 # CUBE-REV — Physical Rubik's Cube: Reconstruction, Observation & Certified Search
 
 **Active scientific stage:** 0.28 — *Radius-Restricted Cubie Bases, Short-Support Geometry & Robust Active Observation*  
-**State reviewed:** 2026-11-11 · **Source of scientific meaning:** [Notion 0.28](https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea)  
+**State reviewed:** 2026-11-13 · **Source of scientific meaning:** [Notion 0.28](https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea)  
 **Single active research branch carrying 0.28:** `research/current` · **Long-term branch policy:** [REPOSITORY_POLICY.md](REPOSITORY_POLICY.md)
 
 > **Evidence warning:** A finite program's successful return, an independently checked certificate, a mathematical proof and a new general theorem are four different claims. Keep them separate. Do not infer human cognition from exact cube combinatorics, nor infer an HTM shortest path from a stabilizer's abstract group order.
+
+## 2026-11-13 R14-P8.33-P8.34: Newly executed 41-target MITM and entire identifying-family saturation
+
+**Newly executed B6 verification:** [P8.33 41-class independent MITM](https://github.com/WhoSia/CUBE-REV/actions/runs/43349579675) regenerated 48-moving-sticker physical factor tables/goals, matched all three historic SHA-256 hashes, rebuilt the 8,240,087-element six-ball from 8,331,112 normalized word paths, and passed all 41 nontrivial stabilizer goals at distance >=13. The independent C++ verifier performed 341,575,592 target-side probes with zero intersections. It does not assert all 41 distances are exactly thirteen. Fresh [P8.33 Drive artifact](https://drive.google.com/file/d/1wBw8zCFs4pBXzRMx2ONOCWCZDLZKZSec/view) was uploaded and independently re-downloaded, ZIP SHA-256 3b58ca1abb93f4615c20d4e62ccedbe83b4f152b60a9e63ed400c3bcd86df0b1. [Reproducibility report](docs/0.28/20261113_R14_P833_FRESH_B6_FULL_41_MITM_AND_DRIVE_CUSTODY.md). The missing 2026-10-30 historical B5 ZIP remains a historical provenance gap, not an input to this modern source-independent P48 proof line.
+
+**Stronger static observation theorem:** [P8.34 1,048,576-layout full census](https://github.com/WhoSia/CUBE-REV/actions/runs/43350675032) physically replayed all 872 B6 and 94 B7 original-tag obstruction supports, yielding 1,023 identifying layouts on B6 and 117 on B7. Exactly 906 previously identifying layouts are lost: 156 size16, 672 size17, 78 size18. The **whole identifying sensor design family**, not merely the minimum cardinality, satisfies I(B7)=I(G) and I(B_r)=I(G) for every r>=7; it consists exactly of subsets containing at least seven original corners and eleven original edges. [P8.34 Drive artifact](https://drive.google.com/file/d/1LzA07XNgexLT7nYJmCowjd3hB5-2Ei1Y/view), SHA-256 26e9f46fc442adae57ba5914cd65d4c213a2682c5b540c72d9a2282236797256, was uploaded and re-downloaded byte-identically. [Proof and controls](docs/0.28/20261113_R14_P834_FULL_IDENTIFYING_FAMILY_SATURATION_THEOREM.md).
+
+The successor [unified one-paper C0.3 manuscript](papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C03.md) is the active editorial candidate; original A D0.5/B D0.8 and C0.1/C0.2 remain preserved. Paper B's distinct paired spatial six-color observation result h_fixed=21 and 18<=h_adaptive<=20 remains separate in its model, and the unrestricted 19-frame problem is **OPEN**. No Github-actions bot source authorship.
 
 ## 2026-11-11 R14-P8.32: one-paper C0.2 editorial consolidation — A-led, B-supported
 
