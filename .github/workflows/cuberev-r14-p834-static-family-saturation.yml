@@ -1,0 +1,57 @@
+name: CUBE-REV R14-P8.34 full static identifying family saturation
+on:
+  push:
+    branches: [research/current]
+    paths:
+      - "scripts/cuberev-observation/audit_r14_p834_exact_static_family_saturation.py"
+      - "scripts/cuberev-observation/audit_r14_p830_independent_b7_pair_support_complete.py"
+      - "scripts/cuberev-observation/verify_b6_complete_4845_p48.py"
+      - "data/0.28/B5_13_ORBIT_INDEPENDENT_WORD_PAIR_WITNESSES_20261104.json"
+      - ".github/workflows/cuberev-r14-p834-static-family-saturation.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  full-1048576-subset-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Replay B6/B7 physical supports and classify all 20-tag selections
+        run: |
+          set -euo pipefail
+          python scripts/cuberev-observation/audit_r14_p834_exact_static_family_saturation.py > /tmp/p834.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p834.json'))
+          assert d['status']=='PASS'
+          assert d['all_20_tag_subsets_checked']==1048576
+          assert d['physically_replayed_b6_obstruction_masks']==872
+          assert d['physically_replayed_b7_two_tag_supports']==94
+          assert d['b6_identifying_designs_total']==1023
+          assert d['b7_identifying_designs_total']==117
+          assert d['b6_to_b7_lost_total']==906
+          assert d['b6_identifying_designs_by_size']=={'16':156,'17':672,'18':174,'19':20,'20':1}
+          assert d['b7_identifying_designs_by_size']=={'18':96,'19':20,'20':1}
+          assert d['b6_to_b7_lost_designs_by_size']=={'16':156,'17':672,'18':78}
+          assert d['global_family_equals_b7_family'] is True
+          assert d['uses_p833_41_distance_positive_premise'] is True
+          assert d['full_group_b7_bfs_executed'] is False
+          print('P834_COMPLETE_1048576_LAYOUT_FAMILY_SATURATION_PASS')
+          PY
+          sha256sum /tmp/p834.json | tee /tmp/p834.sha256
+      - name: Preserve full-census receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-r14-p834-full-family-saturation
+          path: |
+            /tmp/p834.json
+            /tmp/p834.sha256
+          retention-days: 30
+      - name: Assert no source writeback
+        run: git diff --exit-code HEAD --
