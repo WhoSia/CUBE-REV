@@ -293,6 +293,7 @@
     "data/0.28/R14_P828_ZASSENHAUS_1982_EXACT_288_GAUGE_GROUP_RECEIPT.json",
     "data/0.28/R14_P832_20261111_RESTORED_B6_41_TARGET_CI_ZIP_SHA256_CUSTODY.json",
     "data/0.28/R14_P833_20261113_FRESH_B6_41_TARGET_FULL_REPLAY_AND_DRIVE_SEAL.json",
+    "data/0.28/R14_P834_20261113_ALL_1048576_STATIC_TAG_LAYOUTS_RECEIPT.json",
     "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
     "data/cuberev-021/p6_fmc_partial_order_extension.json",
     "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
@@ -546,6 +547,7 @@
     "docs/0.28/20261111_R14_P830_B7_EXACT_18_SOURCE_LINEAGE_CORRECTION.md",
     "docs/0.28/20261111_R14_P832_SINGLE_PAPER_C02_CRITICAL_REVIEW_AND_LINEAGE.md",
     "docs/0.28/20261113_R14_P833_FRESH_B6_FULL_41_MITM_AND_DRIVE_CUSTODY.md",
+    "docs/0.28/20261113_R14_P834_FULL_IDENTIFYING_FAMILY_SATURATION_THEOREM.md",
     "docs/0.28/B5_220_THREE_EDGE_INDEPENDENT_PHYSICAL_REPLAY_GATE.md",
     "docs/0.28/B6_20261103_RESEARCH_VALUE_AUDIT.md",
     "docs/0.28/B6_41_STABILIZER_DISTANCE_GATE.md",
@@ -731,6 +733,7 @@
     "papers/0.28/DUAL_COLOR_PROBE_ADAPTIVE_IDENTIFICATION_DRAFT_01.md",
     "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C01.md",
     "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C02.md",
+    "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C03.md",
     "papers/0.28/RADIUS_RESTRICTED_CUBIE_OBSERVATION_DRAFT_01.md",
     "scripts/cube/full-notation-normal-form.mjs",
     "scripts/cube/replay-exact-trajectories.mjs",
@@ -5374,5 +5377,19 @@
     "branch": "research/current",
     "P833_success": "https://github.com/WhoSia/CUBE-REV/actions/runs/43349579675",
     "P834_status": "pending"
+  },
+  "active_set_reconciliation_20261113_r14_p833_p834_c03": {
+    "added_paths": [
+      "papers/0.28/ONE_PAPER_EXACT_RUBIK_IDENTIFICATION_CONSOLIDATION_C03.md",
+      "docs/0.28/20261113_R14_P834_FULL_IDENTIFYING_FAMILY_SATURATION_THEOREM.md",
+      "data/0.28/R14_P834_20261113_ALL_1048576_STATIC_TAG_LAYOUTS_RECEIPT.json"
+    ],
+    "consolidated_paper": "C0.3 A-led, B-supported, exact identifying-family saturation",
+    "P833_ci": "https://github.com/WhoSia/CUBE-REV/actions/runs/43349579675",
+    "P833_drive": "https://drive.google.com/file/d/1wBw8zCFs4pBXzRMx2ONOCWCZDLZKZSec/view",
+    "P834_ci": "https://github.com/WhoSia/CUBE-REV/actions/runs/43350675032",
+    "P834_drive": "https://drive.google.com/file/d/1LzA07XNgexLT7nYJmCowjd3hB5-2Ei1Y/view",
+    "statement": "I(B7)=I(G), 117 global identifying layouts, 906 B6 identifying layouts lost",
+    "no_bot_writes": true
   }
 }
