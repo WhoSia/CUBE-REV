@@ -304,6 +304,7 @@
     "data/0.28/R14_P840_CONSTRUCTIVE_19_FRAME_RECEIPT.json",
     "data/0.28/R14_P841_CORNER_ORACLE_MINIMAX_RECEIPT.txt",
     "data/0.28/R14_P842_STOPPING_TIME_RECEIPT.json",
+    "data/0.29/TEN_STATE_QUERY_COST.json",
     "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
     "data/cuberev-021/p6_fmc_partial_order_extension.json",
     "data/cuberev-022/p3_fmc_matched_scramble_author_evidence.json",
@@ -593,6 +594,7 @@
     "docs/0.28/PUBLICATION_AND_NOVELTY_GO_NO_GO_20261104.md",
     "docs/0.28/REVERSIBLE_OBSERVATION_THEORY_GATE.md",
     "docs/0.28/evidence/B6_MITM_41_20261103.md",
+    "docs/0.29/TEN_STATE_QUERY_COST.md",
     "docs/observation-generalization/ALGORITHM_REUSE_AND_BOUND_STATUS.md",
     "docs/observation-generalization/CUBEREV028_SHORT_SUPPORT_PHASE_DIAGRAM_20261031.md",
     "docs/observation-generalization/CUBEREV028_TWO_CORNER_ERASURE_THRESHOLD_20261031.md",
@@ -1119,6 +1121,7 @@
     "scripts/cuberev-observation/audit_r14_p89_p810_generic_transport.py",
     "scripts/cuberev-observation/audit_r14_p8_parity_activation.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
+    "scripts/cuberev-observation/audit_r29_ten_state_query_cost.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
     "scripts/cuberev-observation/audit_r8_edge_state_certificates.cpp",
     "scripts/cuberev-observation/audit_r8_four_edge_adaptive_subproblems.py",
@@ -5490,5 +5493,13 @@
       ".github/workflows/cuberev-r14-p842-stopping-times.yml"
     ],
     "result": "Weighted full legal-state stopping times and conditional minimax continuation budgets after the P8.40 prefix."
+  },
+  "active_set_reconciliation_20261114_r29_ten_state_cost": {
+    "paths": [
+      "scripts/cuberev-observation/audit_r29_ten_state_query_cost.py",
+      "data/0.29/TEN_STATE_QUERY_COST.json",
+      "docs/0.29/TEN_STATE_QUERY_COST.md"
+    ],
+    "scope": "Worked-example reproduction for the 0.29 standalone color-observation manuscript"
   }
 }

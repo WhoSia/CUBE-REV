@@ -1,0 +1,72 @@
+{
+  "fixed": 3,
+  "first_query": {
+    "B2": {
+      "partition": [
+        6,
+        4
+      ],
+      "expected_remaining_after_first": "26/5",
+      "optimal_worst_cost": 3,
+      "optimal_mean_cost": "23/10"
+    },
+    "C2": {
+      "partition": [
+        4,
+        4,
+        2
+      ],
+      "expected_remaining_after_first": "18/5",
+      "optimal_worst_cost": 2,
+      "optimal_mean_cost": "2"
+    },
+    "D1": {
+      "partition": [
+        4,
+        2,
+        2,
+        1,
+        1
+      ],
+      "expected_remaining_after_first": "13/5",
+      "optimal_worst_cost": 3,
+      "optimal_mean_cost": "2"
+    },
+    "D2": {
+      "partition": [
+        4,
+        2,
+        2,
+        1,
+        1
+      ],
+      "expected_remaining_after_first": "13/5",
+      "optimal_worst_cost": 3,
+      "optimal_mean_cost": "2"
+    },
+    "E1": {
+      "partition": [
+        4,
+        2,
+        2,
+        1,
+        1
+      ],
+      "expected_remaining_after_first": "13/5",
+      "optimal_worst_cost": 3,
+      "optimal_mean_cost": "2"
+    },
+    "E2": {
+      "partition": [
+        4,
+        2,
+        2,
+        1,
+        1
+      ],
+      "expected_remaining_after_first": "13/5",
+      "optimal_worst_cost": 3,
+      "optimal_mean_cost": "2"
+    }
+  }
+}
