@@ -1,0 +1,26 @@
+{
+  "representatives": 52,
+  "edge_assignments": 144736,
+  "edge_identification_frames": {
+    "18": 14508,
+    "19": 130228
+  },
+  "final_color_group_sizes": {
+    "1": 111540,
+    "2": 18688
+  },
+  "eight_queries_without_sign_failures": {
+    "RFFDDLLLBBB": 3312,
+    "RFFDDDLLBBB": 3168,
+    "RFFFDLLLBBB": 3888,
+    "RFFFDDLLBBB": 4464,
+    "RRFFLLLBBBB": 2880,
+    "RRFFDLLBBBB": 3264,
+    "RRFFDLLLBBB": 5184,
+    "RRFFDDLLBBB": 5088,
+    "RRFFDDDLLBB": 4224,
+    "RRFFFLLBBBB": 4608,
+    "RRFFFLLLBBB": 6048,
+    "RRFFFDLLBBB": 6048
+  }
+}
