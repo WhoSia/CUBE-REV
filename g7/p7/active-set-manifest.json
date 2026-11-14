@@ -304,6 +304,7 @@
     "data/0.28/R14_P840_CONSTRUCTIVE_19_FRAME_RECEIPT.json",
     "data/0.28/R14_P841_CORNER_ORACLE_MINIMAX_RECEIPT.txt",
     "data/0.28/R14_P842_STOPPING_TIME_RECEIPT.json",
+    "data/0.29/EIGHTEEN_QUERY_DAG.json.gz",
     "data/0.29/FINAL_FRAME_PARITY.json",
     "data/0.29/TEN_STATE_QUERY_COST.json",
     "data/cuberev-021/p5_fmc_existing_search_event_seed.json",
@@ -1122,6 +1123,7 @@
     "scripts/cuberev-observation/audit_r14_p89_p810_generic_transport.py",
     "scripts/cuberev-observation/audit_r14_p8_parity_activation.py",
     "scripts/cuberev-observation/audit_r14_six_complete_prefix.py",
+    "scripts/cuberev-observation/audit_r29_eighteen_query_dag.py",
     "scripts/cuberev-observation/audit_r29_final_frame_parity.py",
     "scripts/cuberev-observation/audit_r29_ten_state_query_cost.py",
     "scripts/cuberev-observation/audit_r7_edge_hall_adaptive.cpp",
@@ -5510,5 +5512,9 @@
       "data/0.29/FINAL_FRAME_PARITY.json"
     ],
     "scope": "Delayed parity replay for the 0.29 manuscript"
+  },
+  "active_set_reconciliation_20261114_r29_eighteen_query_dag": {
+    "paths": ["scripts/cuberev-observation/audit_r29_eighteen_query_dag.py", "data/0.29/EIGHTEEN_QUERY_DAG.json.gz"],
+    "scope": "Independent replay certificate for both corner-oracle lower-bound roots"
   }
 }
