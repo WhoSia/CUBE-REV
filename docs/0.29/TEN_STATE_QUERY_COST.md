@@ -31,6 +31,12 @@ Run from the repository root:
 
     python3 scripts/cuberev-observation/audit_r29_ten_state_query_cost.py --targets
 
+### A second history with a binary gap
+
+Keep the known pieces and the four observed addresses. Change their returned colors from F,U,R,U to U,F,U,U in the order A1,A2,B1,C1. This history leaves 12 candidates. The binary target is true exactly on the six unread words BLURDR, BRRDLU, LBDRUR, LRBURD, RBLURD, RLRDBU, in slot order B2,C2,D1,D2,E1,E2. This is a specified mathematical grouping of the twelve states.
+
+Read B2 first. Its replies R and L use D1 next, and reply B uses E1. The program checks that each resulting leaf has a single target value. It also checks every fixed pair and finds a collision across target values in each. For example, reading D1 and E1 cannot distinguish LBDRUR and BRDRUL, both of which give (D,U). The fixed list B2,C2,D1 succeeds, so the fixed and adaptive depths are 3 and 2. Thus the absence of a two-class gap on the ten states depends on the history, even with the same known pieces and query addresses.
+
 ## Prior work for the manuscript
 
 - Moore, *Gedanken-Experiments on Sequential Machines* (1956), “Experiments,” discusses inputs that depend on previous outputs. DOI 10.1515/9781400882618-006.
