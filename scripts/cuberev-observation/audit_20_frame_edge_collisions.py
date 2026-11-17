@@ -5,8 +5,11 @@ Enumerates all C(24,4)=10,626 missing edge-facelet masks and emits two
 distinct legal P48 states having identical observed edge colors and identical
 full corners. This proves a nonadaptive, NOT adaptive, frame lower bound.
 """
+import argparse
 from collections import Counter
 from itertools import combinations, product
+import json
+from math import comb, prod
 
 FACES = {'U': (0,1,0), 'R': (1,0,0), 'F': (0,0,1),
          'D': (0,-1,0), 'L': (-1,0,0), 'B': (0,0,-1)}
@@ -102,8 +105,6 @@ def main():
     print('ADAPTIVE_COLOR_EDGE_ORACLE_INFORMATION_LOWER_16_PASS', edge_states_given_corners, 6**15)
     print('EXACT_NONADAPTIVE_21_LOWER_PASS; R3 historical adaptive lower 16, superseded by subsequent R7 certificate')
 
-if __name__=='__main__':main()
-
 # R7 oracle upper bound on histories for an adaptive one-edge-color probe.
 from functools import lru_cache
 @lru_cache(None)
@@ -134,4 +135,93 @@ def r7_audit():
     assert v<factorial(12)*2**10
     print("R7_ADAPTIVE_COLOR_LOWER_17_PASS",v)
 
-if __name__=='__main__':r7_audit()
+def swap_witness(positions, first, second, read_sides, sides):
+    """Construct two sector assignments with equal read colors and opposite signs."""
+    weak = (first, second)
+    shared = [p for p in positions if SOURCE_COLOR[PIECES[p][0]] == "U"][:2]
+    other_places = [p for p in positions if p not in weak]
+    other_labels = [p for p in positions if p not in shared]
+    assignments = []
+    for weak_labels in (shared, shared[::-1]):
+        assigned = dict(zip(other_places, other_labels))
+        assigned.update(zip(weak, weak_labels))
+        assignments.append(assigned)
+    indexes = {p: i for i, p in enumerate(positions)}
+    if parity([indexes[assignments[0][p]] for p in positions]):
+        a, b = other_places[:2]
+        for assigned in assignments:
+            assigned[a], assigned[b] = assigned[b], assigned[a]
+
+    orientation = {p: 0 for p in positions}
+    orientation.update((p, side) for p, side in zip(weak, read_sides) if side is not None)
+    orientation[other_places[0]] = -sum(orientation.values()) % sides
+    assert sum(orientation.values()) % sides == 0
+    signs, words = [], []
+    for assigned in assignments:
+        assert set(assigned.values()) == set(positions)
+        signs.append(parity([indexes[assigned[p]] for p in positions]))
+        words.append({
+            p: tuple(SOURCE_COLOR[PIECES[assigned[p]][(j - orientation[p]) % sides]]
+                     for j in range(sides))
+            for p in positions
+        })
+    assert signs == [0, 1]
+    assert words[0] != words[1]
+    assert all(words[0][p] == words[1][p] for p in other_places)
+    assert all(words[0][p][side] == words[1][p][side] == "U"
+               for p, side in zip(weak, read_sides) if side is not None)
+    return tuple(signs)
+
+
+def fixed_21_audit():
+    omission_shapes = Counter(
+        tuple(sorted(Counter(SLOTS[slot][0] for slot in omitted).values(), reverse=True))
+        for omitted in combinations(EDGE_SLOTS, 3)
+    )
+    assert omission_shapes == {(2, 1): 264, (1, 1, 1): 1760}
+
+    edge_signs = [
+        swap_witness(EDGES, hidden, partial, (None, read_side), 2)
+        for hidden in EDGES for partial in EDGES if hidden != partial
+        for read_side in range(2)
+    ]
+    corner_signs = [
+        swap_witness(CORNERS, first, second, read_sides, 3)
+        for first, second in combinations(CORNERS, 2)
+        for read_sides in product((None, 0, 1, 2), repeat=2)
+    ]
+    assert len(edge_signs) == 264 and len(corner_signs) == 448
+    assert all(edge == corner for edge, corner in product(edge_signs, corner_signs))
+
+    for first, second in combinations(range(3), 2):
+        replies = {
+            tuple(SOURCE_COLOR[PIECES[p][(j - twist) % 3]] for j in (first, second))
+            for p in CORNERS for twist in range(3)
+        }
+        assert len(replies) == 24
+
+    corner_counts = Counter()
+    for amounts in product(range(4), repeat=8):
+        total = sum(amounts)
+        if total <= 21 and sum(amount >= 2 for amount in amounts) >= 7:
+            corner_counts[total] += prod(comb(3, amount) for amount in amounts)
+    assert corner_counts[14] == 17496 and sum(corner_counts.values()) == 589523
+    return {
+        "recoverable_edge_address_sets": len(edge_signs),
+        "three_distinct_incomplete_edges": omission_shapes[(1, 1, 1)],
+        "deficient_corner_pair_patterns_checked": len(corner_signs),
+        "paired_collision_patterns_checked": len(edge_signs) * len(corner_signs),
+        "corner_address_sets_by_size": dict(sorted(corner_counts.items())),
+        "successful_address_set_pairs": len(edge_signs) * sum(corner_counts.values()),
+    }
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--fixed-21", action="store_true",
+                        help="check the fixed 21-address classification")
+    if parser.parse_args().fixed_21:
+        print(json.dumps(fixed_21_audit(), indent=2))
+    else:
+        main()
+        r7_audit()
