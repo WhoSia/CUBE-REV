@@ -57,3 +57,11 @@ python3 scripts/cuberev-observation/audit_r29_eighteen_query_dag.py trace data/0
 The trace command runs the full certificate check and then uses one prescribed sequence of original sticker addresses at both roots. It follows the stored replies at the corresponding query indices, keeping the original position and slot swap for each surviving edge. It lifts each of the two leaf witnesses, reinserts the resolved edges, and checks both restored assignments against the root constraints and all 18 original replies.
 
 For the even root, the two restored arrays differ only at the originally unread positions UF and DR. Their directed pairs there are (BL, DB) and (LB, BD), respectively. Both have even edge sign and even total flip, so either can be paired with solved corners. These are two witnesses for this particular query path. The universal lower bound comes from the full check of all queries at each reached certificate node.
+
+### Cross-check the eleven-read coverage and orbit count
+
+```sh
+python3 scripts/cuberev-observation/audit_r29_final_frame_parity.py --check-coverage
+```
+
+The direct enumeration omits each edge label in turn and chooses one first color from each of the other eleven labels. The omitted orientation can enforce even total flip. The 24,576 choices yield exactly the same 1,362 vectors as deletion from the twelve-read vectors. The sum of fixed-vector counts over the 48 allowed color maps is 2,496, independently recovering 52 orbits. This check addresses prefix coverage and orbit count; the default replay checks the continuation policies.
