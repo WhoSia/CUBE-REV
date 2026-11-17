@@ -4,6 +4,7 @@ import argparse
 from collections import Counter
 from contextlib import redirect_stdout
 from io import StringIO
+from itertools import product
 import json
 
 from audit_r14_p840_constructive_19_frame import (
@@ -54,6 +55,45 @@ def audit():
         "edge_identification_frames": dict(sorted(stopping_frames.items())),
         "final_color_group_sizes": dict(sorted(final_color_group_sizes.items())),
         "eight_queries_without_sign_failures": without_sign_failures,
+    }
+
+
+def check_prefix_coverage():
+    """Cross-check the prefix support directly, without deleting a color from a 12-read vector."""
+    direct = set()
+    for unseen in E:
+        observed_labels = [edge for edge in E if edge != unseen]
+        for first_colors in product(*observed_labels):
+            # The orientation of the unseen edge can always make the flip sum even.
+            direct.add(prefix_count(first_colors))
+
+    prefix_transports, maps = transports()
+    assert direct == set(prefix_transports)
+    assert len(direct) == 1362
+
+    fixed_counts = Counter()
+    for relabel, *_ in maps:
+        destination = tuple(COLORS.index(relabel[color]) for color in COLORS)
+        fixed = 0
+        for counts in direct:
+            transformed = [0] * len(COLORS)
+            for source, dest in enumerate(destination):
+                transformed[dest] = counts[source]
+            assert tuple(transformed) in direct
+            fixed += tuple(transformed) == counts
+        fixed_counts[fixed] += 1
+
+    fixed_incidences = sum(fixed * copies for fixed, copies in fixed_counts.items())
+    representatives = {rep for rep, _ in prefix_transports.values()}
+    assert fixed_incidences == len(maps) * len(representatives)
+    assert len(representatives) == 52
+    return {
+        "direct_label_color_choices": len(E) * 2 ** (len(E) - 1),
+        "covered_prefix_vectors": len(direct),
+        "color_maps": len(maps),
+        "burnside_fixed_incidences": fixed_incidences,
+        "maps_by_fixed_vector_count": dict(sorted(fixed_counts.items())),
+        "representatives": len(representatives),
     }
 
 
@@ -177,7 +217,16 @@ def physical_witness():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--physical-witness", action="store_true",
-                        help="replay a named physical witness through the final sign")
+    options = parser.add_mutually_exclusive_group()
+    options.add_argument("--physical-witness", action="store_true",
+                         help="replay a named physical witness through the final sign")
+    options.add_argument("--check-coverage", action="store_true",
+                         help="compare direct prefix enumeration and orbit counts")
     args = parser.parse_args()
-    print(json.dumps(physical_witness() if args.physical_witness else audit(), indent=2))
+    if args.physical_witness:
+        report = physical_witness()
+    elif args.check_coverage:
+        report = check_prefix_coverage()
+    else:
+        report = audit()
+    print(json.dumps(report, indent=2))
