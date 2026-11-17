@@ -10,32 +10,46 @@ from pathlib import Path
 LABELS = ("DL", "BL", "FL", "UL", "DB", "DF", "UB", "UF", "DR", "BR", "FR", "UR")
 COLORS = "URFDLB"
 ROOTS = tuple((LABELS, "-" * 12, sign, 0, 18) for sign in (0, 1))
+TRACE_QUERIES = (
+    (3, 1), (9, 0), (3, 0), (1, 1), (10, 1), (0, 0), (9, 1), (1, 0), (11, 0),
+    (5, 1), (0, 1), (6, 0), (10, 0), (4, 1), (5, 0), (2, 1), (11, 1), (6, 1),
+)
 
 
 def parity(items):
     return sum(a > b for i, a in enumerate(items) for b in items[i + 1:]) % 2
 
 
-def transitions(state):
-    labels, slots, sign, flip, budget = state
+def queries(slots):
     for i, known in enumerate(slots):
         for side in ((0, 1) if known == "-" else (1,)):
-            children = {}
-            if known == "-":
-                for answer in COLORS:
-                    marked = slots[:i] + answer + slots[i + 1:]
-                    order = sorted(range(len(slots)), key=lambda j: (marked[j] == "-", marked[j]))
-                    children[answer] = (labels, ''.join(marked[j] for j in order),
-                                        sign ^ parity(order), flip ^ side, budget - 1)
-            else:
-                for j, label in enumerate(labels):
-                    for orientation, pair in enumerate((label, label[::-1])):
-                        if pair[0] == known:
-                            answer = pair[1]
-                            assert answer not in children
-                            children[answer] = (labels[:j] + labels[j + 1:], slots[:i] + slots[i + 1:],
-                                                sign ^ ((i + j) % 2), flip ^ orientation, budget - 1)
-            yield children
+            yield i, side
+
+
+def slot_order(marked):
+    return sorted(range(len(marked)), key=lambda i: (marked[i] == "-", marked[i]))
+
+
+def transitions(state):
+    labels, slots, sign, flip, budget = state
+    for i, side in queries(slots):
+        known = slots[i]
+        children = {}
+        if known == "-":
+            for answer in COLORS:
+                marked = slots[:i] + answer + slots[i + 1:]
+                order = slot_order(marked)
+                children[answer] = (labels, ''.join(marked[j] for j in order),
+                                    sign ^ parity(order), flip ^ side, budget - 1)
+        else:
+            for j, label in enumerate(labels):
+                for orientation, pair in enumerate((label, label[::-1])):
+                    if pair[0] == known:
+                        answer = pair[1]
+                        assert answer not in children
+                        children[answer] = (labels[:j] + labels[j + 1:], slots[:i] + slots[i + 1:],
+                                            sign ^ ((i + j) % 2), flip ^ orientation, budget - 1)
+        yield children
 
 
 def completions(labels, slots, sign, flip):
@@ -130,9 +144,56 @@ def check(rows):
     return {"nodes": len(visited), "leaves": leaves, "arcs": arcs}
 
 
+def trace(rows, root):
+    """Lift one stored path back to the original addresses and two edge states."""
+    state = root
+    addresses = [(i, 0) for i in range(len(LABELS))]
+    fixed = {}
+    history = []
+    for original, side in TRACE_QUERIES:
+        slot = next(i for i, (p, _) in enumerate(addresses) if p == original)
+        swapped = addresses[slot][1]
+        query = slot, side ^ swapped
+        index = list(queries(state[1])).index(query)
+        answer = rows[encode(state)][index]
+        new_state = next(children[answer] for i, children in enumerate(transitions(state))
+                         if i == index)
+        known = state[1][slot]
+        if known == "-":
+            marked = state[1][:slot] + answer + state[1][slot + 1:]
+            addresses[slot] = original, side
+            addresses = [addresses[i] for i in slot_order(marked)]
+        else:
+            pair = known + answer
+            fixed[original] = pair[::-1] if swapped else pair
+            addresses.pop(slot)
+        state = new_state
+        history.append((original, side, answer))
+
+    if state[-1] != 0:
+        raise ValueError("Trace did not reach a certificate leaf")
+    witnesses = []
+    for residual in rows[encode(state)]:
+        lifted = dict(fixed)
+        for (p, swapped), pair in zip(addresses, residual, strict=True):
+            lifted[p] = pair[::-1] if swapped else pair
+        colors = [lifted[p] for p in range(len(LABELS))]
+        if (not legal_witness(root, colors)
+                or any(colors[p][side] != answer for p, side, answer in history)):
+            raise ValueError("Lifted assignment does not satisfy the original history")
+        witnesses.append(colors)
+    if len(witnesses) != 2 or witnesses[0] == witnesses[1]:
+        raise ValueError("Trace did not preserve two distinct witnesses")
+    return {
+        "root_sign": root[2], "edge_order": LABELS,
+        "history": [(LABELS[p], side, answer) for p, side, answer in history],
+        "leaf": encode(state), "lifted_edges": witnesses,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("mode", choices=("generate", "check"))
+    parser.add_argument("mode", choices=("generate", "check", "trace"))
     parser.add_argument("certificate", type=Path)
     args = parser.parse_args()
     if args.mode == "generate":
@@ -142,7 +203,11 @@ def main():
     data = args.certificate.read_bytes()
     if data.startswith(b"\x1f\x8b"):
         data = gzip.decompress(data)
-    print(json.dumps({**check(json.loads(data)), "sha256": hashlib.sha256(data).hexdigest()}))
+    rows = json.loads(data)
+    receipt = {**check(rows), "sha256": hashlib.sha256(data).hexdigest()}
+    if args.mode == "trace":
+        receipt["traces"] = [trace(rows, root) for root in ROOTS]
+    print(json.dumps(receipt, indent=2 if args.mode == "trace" else None))
 
 
 if __name__ == "__main__":
