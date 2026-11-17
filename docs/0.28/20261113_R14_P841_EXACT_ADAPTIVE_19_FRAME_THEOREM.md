@@ -65,3 +65,11 @@ python3 scripts/cuberev-observation/audit_r29_final_frame_parity.py --check-cove
 ```
 
 The direct enumeration omits each edge label in turn and chooses one first color from each of the other eleven labels. The omitted orientation can enforce even total flip. The 24,576 choices yield exactly the same 1,362 vectors as deletion from the twelve-read vectors. The sum of fixed-vector counts over the 48 allowed color maps is 2,496, independently recovering 52 orbits. This check addresses prefix coverage and orbit count; the default replay checks the continuation policies.
+
+### Check the fixed 21-frame characterization
+
+```sh
+python3 scripts/cuberev-observation/audit_20_frame_edge_collisions.py --fixed-21
+```
+
+A successful schedule omits both stickers at one edge and one sticker at another, and reads at least two distinct stickers at each of at least seven corner positions. The check counts 264 qualifying edge sets. It constructs same-observation opposite-sign sector witnesses for each such edge set and each of 448 weak corner-pair patterns, and checks equality of the two sector sign pairs in all 118,272 combinations. An individual failing schedule may contain several weak corner pairs. The corner count is 589,523 over sizes 14–21, giving 155,634,072 successful edge/corner address-set pairs. These are sets, not ordered schedules or physical rotation paths.
