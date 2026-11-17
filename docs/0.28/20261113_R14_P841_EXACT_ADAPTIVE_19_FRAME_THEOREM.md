@@ -24,3 +24,26 @@ The Python verifier uses explicit ordered strings for positions and labels. It t
 ## Reproduce
 
 From the repository root, compile `scripts/cuberev-observation/audit_r14_p841_corner_oracle_minimax.cpp` using `g++ -std=c++20 -O3` and run the resulting executable. Then run `python3 scripts/cuberev-observation/verify_r14_p841_explicit_minimax.py`. Compare the concatenated outputs to `data/0.28/R14_P841_CORNER_ORACLE_MINIMAX_RECEIPT.txt`. The read-only workflow performs these checks and replays the P8.40 upper bound.
+
+## Manuscript claim-to-artifact map
+
+The fixed lower bound, adaptive construction, and adaptive lower bound use different arguments. The proof of the unrestricted adaptive lower bound consists of the corner-oracle reduction, the two residual-matching transitions, and a finite losing-strategy certificate. The P8.40 obstruction within the prescribed initial prefix family is a separate result.
+
+| Claim | Argument in the manuscript | Reproduction entry point |
+| --- | --- | --- |
+| No preset schedule using 20 paired reads identifies every state | Construct a legal collision for each of the three omission patterns | `scripts/cuberev-observation/audit_20_frame_edge_collisions.py` checks 10,626 four-address omission masks |
+| A 19-frame policy exists with the corner sign used at the final frame | Transport original histories and both query/response directions to the representatives, then verify that each terminal color branch contains at most one assignment per sign | `scripts/cuberev-observation/audit_r29_final_frame_parity.py` checks 52 representative games; `--physical-witness` runs a worked two-candidate trace and checks all 48 reconstructed moving colors |
+| No adaptive 18-frame policy identifies every state | Reveal the corners in advance, then apply the losing-strategy argument to both edge roots | `scripts/cuberev-observation/audit_r29_eighteen_query_dag.py` checks the stored certificate without rerunning the minimax search |
+
+From the repository root:
+
+```sh
+python3 scripts/cuberev-observation/audit_20_frame_edge_collisions.py
+python3 scripts/cuberev-observation/audit_r29_final_frame_parity.py
+python3 scripts/cuberev-observation/audit_r29_final_frame_parity.py --physical-witness
+python3 scripts/cuberev-observation/audit_r29_eighteen_query_dag.py check data/0.29/EIGHTEEN_QUERY_DAG.json.gz
+```
+
+The bound checker visits both roots, checks a recorded reply for every informative query, and verifies distinct legal residual completions at each leaf. The expected result is 6,274 nodes, 43,870 query–reply arcs, and 1,418 leaves. Its printed SHA-256 is for the decompressed JSON: `dc9841db1f84819e140a02e9d468a7bbaf062e974beff440fed5db3bcf1bd8ce`. The mathematical argument explains how a residual completion lifts to a cube compatible with the whole history. The stored DAG is a lower-bound certificate; the upper-bound entry point reconstructs and replays its policies.
+
+The related Lean modules under `formal/028` prove model-agnostic implications. `ObservationCovariance.lean` assumes a state bijection and observation covariance. `TwoStepAdversary.lean` proves a conditional two-step obstruction. Neither module checks the 18-read certificate or proves the 21/19 theorem. Run the Lean suite from `formal/028` with `lake build` under the pinned toolchain. The finite checks above use Python and C++.
