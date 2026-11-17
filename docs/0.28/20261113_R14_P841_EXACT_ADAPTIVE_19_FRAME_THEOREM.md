@@ -47,3 +47,13 @@ python3 scripts/cuberev-observation/audit_r29_eighteen_query_dag.py check data/0
 The bound checker visits both roots, checks a recorded reply for every informative query, and verifies distinct legal residual completions at each leaf. The expected result is 6,274 nodes, 43,870 query–reply arcs, and 1,418 leaves. Its printed SHA-256 is for the decompressed JSON: `dc9841db1f84819e140a02e9d468a7bbaf062e974beff440fed5db3bcf1bd8ce`. The mathematical argument explains how a residual completion lifts to a cube compatible with the whole history. The stored DAG is a lower-bound certificate; the upper-bound entry point reconstructs and replays its policies.
 
 The related Lean modules under `formal/028` prove model-agnostic implications. `ObservationCovariance.lean` assumes a state bijection and observation covariance. `TwoStepAdversary.lean` proves a conditional two-step obstruction. Neither module checks the 18-read certificate or proves the 21/19 theorem. Run the Lean suite from `formal/028` with `lake build` under the pinned toolchain. The finite checks above use Python and C++.
+
+### Reproduce a complete path in the original coordinates
+
+```sh
+python3 scripts/cuberev-observation/audit_r29_eighteen_query_dag.py trace data/0.29/EIGHTEEN_QUERY_DAG.json.gz
+```
+
+The trace command runs the full certificate check and then uses one prescribed sequence of original sticker addresses at both roots. It follows the stored replies at the corresponding query indices, keeping the original position and slot swap for each surviving edge. It lifts each of the two leaf witnesses, reinserts the resolved edges, and checks both restored assignments against the root constraints and all 18 original replies.
+
+For the even root, the two restored arrays differ only at the originally unread positions UF and DR. Their directed pairs there are (BL, DB) and (LB, BD), respectively. Both have even edge sign and even total flip, so either can be paired with solved corners. These are two witnesses for this particular query path. The universal lower bound comes from the full check of all queries at each reached certificate node.
