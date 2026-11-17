@@ -12,7 +12,7 @@ SLOTS = ("B2", "C2", "D1", "D2", "E1", "E2")
 UNREAD = (3, 5, 6, 7, 8, 9)
 
 
-def feasible_words():
+def feasible_words(history=HISTORY):
     words = set()
     completions = 0
     for order in permutations(range(len(LABELS))):
@@ -25,10 +25,9 @@ def feasible_words():
             completions += 1
             word = "".join(LABELS[label][::-1] if flip else LABELS[label]
                            for label, flip in zip(order, flips))
-            if all(word[slot] == color for slot, color in HISTORY.items()):
+            if all(word[slot] == color for slot, color in history.items()):
                 words.add("".join(word[slot] for slot in UNREAD))
     assert completions == 960
-    assert len(words) == 10
     return tuple(sorted(words))
 
 
@@ -109,6 +108,27 @@ def target_census(words):
         for word in words
     )
     assert target_costs(words, three_group_labels) == (3, 2)
+    # Keep the observed addresses and change only their colors to U, F, U, U.
+    second_history = {0: "U", 1: "F", 2: "U", 4: "U"}
+    second_words = feasible_words(second_history)
+    yes_words = {"RLRDBU", "RBLURD", "LRBURD", "LBDRUR", "BRRDLU", "BLURDR"}
+    assert len(second_words) == 12 and yes_words <= set(second_words)
+    second_labels = tuple(word in yes_words for word in second_words)
+    fixed, adaptive = target_costs(second_words, second_labels)
+    assert (fixed, adaptive) == (3, 2)
+    policy = {"R": "D1", "L": "D1", "B": "E1"}
+    for branch in children(second_words, SLOTS.index("B2")):
+        reply = branch[0][SLOTS.index("B2")]
+        for leaf in children(branch, SLOTS.index(policy[reply])):
+            assert len({word in yes_words for word in leaf}) == 1
+    census["binary_counterexample"] = {
+        "observed_colors": "UFUU",
+        "candidate_count": len(second_words),
+        "yes_words": sorted(yes_words),
+        "fixed": fixed,
+        "adaptive": adaptive,
+        "after_B2": policy,
+    }
     return census
 
 
@@ -118,6 +138,7 @@ def main():
                         help="count the costs of all two- and three-group targets")
     args = parser.parse_args()
     words = feasible_words()
+    assert len(words) == 10
     if args.targets:
         print(json.dumps(target_census(words), indent=2))
         return
