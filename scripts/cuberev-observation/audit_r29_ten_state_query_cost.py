@@ -1,5 +1,6 @@
 """Replay the ten-state example in CUBE-REV 0.29."""
-from collections import defaultdict
+import argparse
+from collections import Counter, defaultdict
 from fractions import Fraction
 from functools import cache
 from itertools import combinations, permutations, product
@@ -57,8 +58,69 @@ def optimal_cost(words):
     return min(depth for depth, _ in costs), min(total for _, total in costs)
 
 
+def target_partitions(size, group_count):
+    """Enumerate each unlabeled partition once, ordered by first appearance."""
+    for labels in product(range(group_count), repeat=size):
+        if tuple(dict.fromkeys(labels)) == tuple(range(group_count)):
+            yield labels
+
+
+def target_costs(words, labels):
+    """Return minimum fixed and adaptive worst-case depths for a target."""
+    target = dict(zip(words, labels))
+    query_sets = [qs for size in range(len(SLOTS) + 1)
+                  for qs in combinations(range(len(SLOTS)), size)]
+
+    def fixed_identifies(slots):
+        signatures = {}
+        for word in words:
+            signature = tuple(word[slot] for slot in slots)
+            if signatures.setdefault(signature, target[word]) != target[word]:
+                return False
+        return True
+
+    @cache
+    def adaptive(candidates):
+        if len({target[word] for word in candidates}) == 1:
+            return 0
+        partitions = (children(candidates, slot) for slot in range(len(SLOTS)))
+        return 1 + min(max(map(adaptive, partition)) for partition in partitions
+                       if len(partition) > 1)
+
+    return len(next(qs for qs in query_sets if fixed_identifies(qs))), adaptive(words)
+
+
+def target_census(words):
+    census = {}
+    for group_count in (2, 3):
+        counts = Counter(target_costs(words, labels)
+                         for labels in target_partitions(len(words), group_count))
+        census[str(group_count)] = {
+            f"fixed_{fixed}_adaptive_{adaptive}": count
+            for (fixed, adaptive), count in sorted(counts.items())
+        }
+    assert census["2"] == {"fixed_1_adaptive_1": 61, "fixed_2_adaptive_2": 450}
+    assert census["3"] == {"fixed_1_adaptive_1": 101, "fixed_2_adaptive_2": 8400,
+                           "fixed_3_adaptive_2": 829}
+    binary_labels = tuple(word[2:4] in {"UL", "LU", "UR", "RU"} for word in words)
+    assert target_costs(words, binary_labels) == (1, 1)
+    three_group_labels = tuple(
+        0 if word[0] == "U" else 1 if word in {"DRULUB", "DRLUBU", "DLUBUR"} else 2
+        for word in words
+    )
+    assert target_costs(words, three_group_labels) == (3, 2)
+    return census
+
+
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--targets", action="store_true",
+                        help="count the costs of all two- and three-group targets")
+    args = parser.parse_args()
     words = feasible_words()
+    if args.targets:
+        print(json.dumps(target_census(words), indent=2))
+        return
     report = {}
     for i, slot in enumerate(SLOTS):
         sizes = sorted(map(len, children(words, i)), reverse=True)
