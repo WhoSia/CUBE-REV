@@ -9,13 +9,16 @@ and checks at most one completion per permutation sign after frame 19.
 import argparse
 from collections import Counter
 from itertools import permutations, product
-from math import factorial
 from pathlib import Path
-import hashlib, json
+import hashlib
+import json
 
 COLORS='URFDLB'
 LABELS=('DL','BL','FL','UL','DB','DF','UB','UF','DR','BR','FR','UR')
 OPPOSITES={frozenset(p) for p in ('UD','RL','FB')}
+
+if not __debug__:
+    raise RuntimeError('This verifier requires assertions. Run without -O or -OO.')
 
 
 def permutation_parity(order):
