@@ -1,6 +1,6 @@
 # CUBE-REV 0.29 — Adaptive lower bound and pinned data checks
 
-The main contribution is the impossibility of identifying a fixed-center Rubik's Cube in eighteen paired observations, even with the complete corner configuration disclosed. The nineteen-frame policy attains the bound. This directory advances the Lean verification of those results.
+The main contribution is the impossibility of identifying a fixed-center Rubik's Cube in at most eighteen paired observations. The physical Lean theorem gives a collision even when both starting cubes have the same solved corners. The nineteen-frame construction has a checked finite policy and a separately verified physical routing lemma.
 
 | Component | Verified scope |
 | --- | --- |
@@ -18,7 +18,14 @@ The finite graph now constructs the semantic certificate directly. The two local
 | `RootCoordinates.lean` | At either root, the assignments have twelve valid oriented edges. The 24 real edge addresses separate distinct assignments. |
 | `EighteenCertified.lean` | For either corner parity and every policy with budget 18, distinct 24-facelet edge assignments produce the same paired transcript when the corner colors are a known function. |
 
-The pinned graph validity proof uses `native_decide` and prints its generated trust dependency. The universal transition and policy lemmas do not use that decision procedure. The cubie model lower bound is connected through both real certificate roots. The physical reachability of every compatible cubie word from legal face turns and the semantic connection of the 19-frame representative policy remain separate proof obligations.
+| Component | Verified scope |
+| --- | --- |
+| `FaceTurns.lean`, `EdgeSorting.lean` | Geometric quarter-turn permutations on the 48 non-center stickers and factorization of every even edge permutation into an even number of adjacent swaps. |
+| `EdgeOperations.lean`, `EdgeFlips.lean`, `SolvedCornerReachable.lean` | Endpoint checks for 121 ordered pairs of adjacent swaps and 144 ordered pairs of flips. These yield legal turn words for every even-sector edge assignment with all corner stickers fixed. |
+| `PhysicalObservation.lean`, `PhysicalEighteen.lean` | Adaptive composition of relative turns and a physical collision for any fixed edge and corner probe pair under every policy with budget at most 18. |
+| `JointProbeRouting.lean` | All 576 paired target addresses have legal routing words from a base probe pair. Composition and inverses extend the result to arbitrary fixed probes and prior poses. |
+
+The physical lower bound uses native evaluation for the pinned graph and the endpoint table. The universal transition, policy, and realization lemmas are proved in Lean. The 19-frame result still needs a universal proof linking the checked representative policy and the corner decoder to one geometric observation policy. The 21-frame non-adaptive optimum is outside these Lean theorems.
 
 ## Run
 
@@ -34,4 +41,4 @@ Use the upper-policy JSON from the [S editable bundle](https://drive.google.com/
 - Eighteen raw JSON: `dc9841db1f84819e140a02e9d468a7bbaf062e974beff440fed5db3bcf1bd8ce`.
 - Nineteen JSON: `80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227`.
 
-`check_data.py` verifies the input bytes, prepares ignored local copies for `include_str`, and verifies malformed-data controls separately from the pinned computations. It also runs the two negative controls that corrupt an arc while preserving the stored node witnesses.
+`check_data.py` verifies the input bytes, prepares ignored local copies for `include_str`, and builds the physical lower bound against the pinned data. It verifies malformed-data controls separately, including two corruptions of an arc that preserve the stored node witnesses.

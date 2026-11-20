@@ -56,7 +56,10 @@ def main():
 
     print(commands(["env", "lean", "--run", "./VerifySemantic.lean",
                     "EIGHTEEN_QUERY_DAG.json"]).stdout, flush=True)
-    print(commands(["env", "lean", "./EighteenCertified.lean"]).stdout, flush=True)
+    print(commands(["env", "lean", "-o",
+                    "./.lake/build/lib/lean/EighteenCertified.olean",
+                    "./EighteenCertified.lean"]).stdout, flush=True)
+    print(commands(["env", "lean", "./PhysicalEighteen.lean"]).stdout, flush=True)
     print(commands(["env", "lean", "--run", "./SemanticControls.lean",
                     "EIGHTEEN_QUERY_DAG.json"]).stdout, flush=True)
 
