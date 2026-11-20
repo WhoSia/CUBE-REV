@@ -13,7 +13,7 @@ structure Position where
   sign : Nat
   flip : Nat
   budget : Nat
-  deriving BEq, Hashable, Repr
+  deriving BEq, Hashable, Repr, DecidableEq
 
 abbrev Word := List Nat
 abbrev Pair := Word × Word

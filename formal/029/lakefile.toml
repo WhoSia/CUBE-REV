@@ -1,6 +1,6 @@
 name = "CubeRev029"
 version = "0.1.0"
-defaultTargets = ["AdaptiveLowerBound", "EighteenReadData", "NineteenReadData", "ResidualWord", "ResidualLift"]
+defaultTargets = ["AdaptiveLowerBound", "EighteenReadData", "NineteenReadData", "ResidualWord", "ResidualLift", "ResidualDecidable", "SemanticGraph", "SemanticInput"]
 
 [[lean_lib]]
 name = "AdaptiveLowerBound"
@@ -16,3 +16,12 @@ name = "ResidualWord"
 
 [[lean_lib]]
 name = "ResidualLift"
+
+[[lean_lib]]
+name = "ResidualDecidable"
+
+[[lean_lib]]
+name = "SemanticGraph"
+
+[[lean_lib]]
+name = "SemanticInput"
