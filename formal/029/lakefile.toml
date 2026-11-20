@@ -1,6 +1,6 @@
 name = "CubeRev029"
 version = "0.1.0"
-defaultTargets = ["AdaptiveLowerBound", "EighteenReadData", "NineteenReadData", "ResidualWord", "ResidualLift", "ResidualDecidable", "SemanticGraph", "SemanticInput", "RootCoordinates"]
+defaultTargets = ["AdaptiveLowerBound", "EighteenReadData", "NineteenReadData", "ResidualWord", "ResidualLift", "ResidualDecidable", "SemanticGraph", "SemanticInput", "RootCoordinates", "FaceTurns", "EdgeSorting"]
 
 [[lean_lib]]
 name = "AdaptiveLowerBound"
@@ -28,3 +28,9 @@ name = "SemanticInput"
 
 [[lean_lib]]
 name = "RootCoordinates"
+
+[[lean_lib]]
+name = "FaceTurns"
+
+[[lean_lib]]
+name = "EdgeSorting"
