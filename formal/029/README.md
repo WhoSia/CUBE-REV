@@ -24,6 +24,7 @@ The finite graph now constructs the semantic certificate directly. The two local
 | `EdgeOperations.lean`, `EdgeFlips.lean`, `SolvedCornerReachable.lean` | Endpoint checks for 121 ordered pairs of adjacent swaps and 144 ordered pairs of flips. These yield legal turn words for every even-sector edge assignment with all corner stickers fixed. |
 | `PhysicalObservation.lean`, `PhysicalEighteen.lean` | Adaptive composition of relative turns and a physical collision for any fixed edge and corner probe pair under every policy with budget at most 18. |
 | `JointProbeRouting.lean` | All 576 paired target addresses have legal routing words from a base probe pair. Composition and inverses extend the result to arbitrary fixed probes and prior poses. |
+| `NineteenSector.lean` | Every compatible oriented assignment is in the candidate list used at the start of the continuation. The proof applies to any first-color list with exactly one unread edge and to either flip bit. |
 
 The physical lower bound uses native evaluation for the pinned graph and the endpoint table. The universal transition, policy, and realization lemmas are proved in Lean. The 19-frame result still needs a universal proof linking the checked representative policy and the corner decoder to one geometric observation policy. The 21-frame non-adaptive optimum is outside these Lean theorems.
 
