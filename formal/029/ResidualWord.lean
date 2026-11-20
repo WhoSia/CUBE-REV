@@ -87,6 +87,18 @@ theorem insertIdx_as_split (xs : List α) (i : Nat) (x : α) (bound : i ≤ xs.l
             List.cons_append]
           rw [ih i (by simpa using bound)]
 
+theorem restore_erased (xs : List α) (i : Nat) (inside : i < xs.length) :
+    (xs.eraseIdx i).insertIdx i xs[i] = xs := by
+  induction xs generalizing i with
+  | nil => simp at inside
+  | cons a tail ih =>
+      cases i with
+      | zero => rfl
+      | succ i =>
+          have bound : i < tail.length := by simpa using inside
+          simp only [List.eraseIdx, List.getElem_cons_succ, List.insertIdx_succ_cons]
+          rw [ih i bound]
+
 theorem map_insertIdx (xs : List α) (i : Nat) (x : α) (f : α → β) :
     (xs.insertIdx i x).map f = (xs.map f).insertIdx i (f x) := by
   induction xs generalizing i with
@@ -144,5 +156,45 @@ theorem observe_insertIdx (w : Word) (i id : Nat) (bound : i ≤ w.length) (q : 
 theorem observe_invalid (w : Word) (q : Address) (outside : w.length ≤ q.1) :
     observeWord w q = sticker 0 q.2 := by
   simp [observeWord, List.getElem?_eq_none outside]
+
+theorem sticker_reverse (id : Nat) (side : Bool) :
+    sticker (reverseWord id) side = sticker id (!side) := by
+  have index : ((1 - id % 2) + side.toNat) % 2 = (id % 2 + (!side).toNat) % 2 := by
+    cases side <;> simp <;> omega
+  unfold sticker
+  rw [reverseWord_label, reverseWord_bit, index]
+
+theorem reverseWord_reverseWord (id : Nat) : reverseWord (reverseWord id) = id := by
+  calc
+    reverseWord (reverseWord id) = 2 * (id / 2) + (1 - (1 - id % 2)) := by
+      change 2 * (reverseWord id / 2) + (1 - reverseWord id % 2) = _
+      rw [reverseWord_label, reverseWord_bit]
+    _ = id := by omega
+
+def orient (side : Bool) (id : Nat) : Nat :=
+  if side then reverseWord id else id
+
+theorem orient_involution (side : Bool) (id : Nat) : orient side (orient side id) = id := by
+  cases side <;> simp [orient, reverseWord_reverseWord]
+
+theorem orient_label (side : Bool) (id : Nat) : orient side id / 2 = id / 2 := by
+  cases side <;> simp [orient, reverseWord_label]
+
+theorem orient_flip (side : Bool) (id : Nat) :
+    orient side id % 2 = (id % 2 + side.toNat) % 2 := by
+  cases side <;> simp [orient, reverseWord_bit] <;> omega
+
+theorem sticker_orient (turn read : Bool) (id : Nat) :
+    sticker (orient turn id) read = sticker id (read != turn) := by
+  cases turn <;> cases read <;> simp [orient, sticker_reverse]
+
+def eraseRoute (j : Nat) (q : Address) : Address :=
+  (if q.1 < j then q.1 else q.1 + 1, q.2)
+
+theorem observe_eraseIdx (w : Word) (j : Nat) (q : Address) :
+    observeWord (w.eraseIdx j) q = observeWord w (eraseRoute j q) := by
+  rcases q with ⟨i, side⟩
+  simp only [observeWord, eraseRoute, List.getElem?_eraseIdx]
+  split <;> rfl
 
 end CubeRev029.Eighteen
