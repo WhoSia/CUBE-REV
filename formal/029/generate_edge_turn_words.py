@@ -89,8 +89,34 @@ def swap_effect(a, b):
     return tuple(2 * swap(swap(s // 2, a), b) + s % 2 for s in range(24)) + tuple(range(24, 48))
 
 
-def main(turns, path):
-    swaps, flips = generate(json.loads(Path(turns).read_text()))
+def probe_routes(turns):
+    root = (0, 24)
+    routes = {root: ()}
+    queue = deque([root])
+    while queue:
+        a, b = queue.popleft()
+        for t, row in enumerate(turns):
+            child = row[a], row[b]
+            if child not in routes:
+                routes[child] = routes[a, b] + (t,)
+                queue.append(child)
+    assert len(routes) == 576
+    return [routes[a, b] for a, b in product(range(24), range(24, 48))]
+
+
+def write_probes(path, rows):
+    out = ["import FaceTurns", "", "namespace CubeRev029.Physical", "",
+           "-- Generated routes from raw edge slot 0 and raw corner slot 24.",
+           "def jointProbeTable : Array (List Turn) := #["]
+    out += ["  [" + ", ".join(map(str, row)) + "]" + ("," if i+1 < len(rows) else "")
+            for i, row in enumerate(rows)]
+    out += ["]", "", "end CubeRev029.Physical", ""]
+    Path(path).write_text("\n".join(out))
+
+
+def main(turns, path, probes=None):
+    moves = json.loads(Path(turns).read_text())
+    swaps, flips = generate(moves)
     out = ["import FaceTurns", "", "namespace CubeRev029.Physical", "",
            "-- Generated from geometric quarter-turn maps by generate_edge_turn_words.py.",
            "-- Every endpoint is checked in EdgeOperations.lean.", ""]
@@ -101,6 +127,8 @@ def main(turns, path):
         out += ["]", ""]
     out += ["end CubeRev029.Physical", ""]
     Path(path).write_text("\n".join(out))
+    if probes is not None:
+        write_probes(probes, probe_routes(moves))
 
 
 if __name__ == "__main__":
