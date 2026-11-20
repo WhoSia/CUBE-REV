@@ -1,0 +1,12 @@
+name = "CubeRev029"
+version = "0.1.0"
+defaultTargets = ["AdaptiveLowerBound", "EighteenReadData", "NineteenReadData"]
+
+[[lean_lib]]
+name = "AdaptiveLowerBound"
+
+[[lean_lib]]
+name = "EighteenReadData"
+
+[[lean_lib]]
+name = "NineteenReadData"
