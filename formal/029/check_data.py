@@ -54,6 +54,12 @@ def main():
         print(commands(["env", "lean", "--run", f"./Verify{word}.lean", data]).stdout, flush=True)
         print(commands(["env", "lean", f"./{word}DataReceipt.lean"]).stdout, flush=True)
 
+    print(commands(["env", "lean", "--run", "./VerifySemantic.lean",
+                    "EIGHTEEN_QUERY_DAG.json"]).stdout, flush=True)
+    print(commands(["env", "lean", "./EighteenCertified.lean"]).stdout, flush=True)
+    print(commands(["env", "lean", "--run", "./SemanticControls.lean",
+                    "EIGHTEEN_QUERY_DAG.json"]).stdout, flush=True)
+
     dag = json.loads(raw_dag)
     missing = dag.pop(ODD_ROOT)
     reject(dag, "missing_odd_root", "VerifyEighteen")
