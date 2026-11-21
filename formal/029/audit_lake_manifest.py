@@ -152,7 +152,10 @@ def check():
     assert all(s in workflow for s in steps)
     hall_script=(ROOT.parents[1]/'scripts/cuberev-observation/audit_r029_hall_burnside_graph_quotient.py').read_text()
     for claim in ('four_hall_families','independent_family_failures',
-                  'hall_fast','independent_dp','burnside_fix_sum'):
+                  'hall_fast','independent_dp','burnside_fix_sum',
+                  'odd_character_stabilizer_orbits','signed_histogram_orbits',
+                  'signed_character_burnside','even_fix==2256',
+                  'unsafe_orbits,unsafe_vectors'):
         assert claim in hall_script, f'Missing graph-Hall independent gate: {claim}'
     assert 'audit_r029_hall_burnside_graph_quotient.py' in workflow, (
         'Actual read-only CI must run the graph quotient and Hall mutations')
