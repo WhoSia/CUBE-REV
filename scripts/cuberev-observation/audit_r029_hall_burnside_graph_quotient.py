@@ -108,6 +108,35 @@ def pair_action(g):
 def edge_action(g):
     return tuple(EDGES.index(frozenset(g[c] for c in edge)) for edge in EDGES)
 
+
+def stable_sort_sign_correction(g,v):
+    """Parity of the actual frozen route_info sorting PLUS piece relabeling.
+
+    The already-observed prefix is the canonical sorted 11-color string for v.
+    The 12th index is fixed by sorting, so it contributes no inversions.
+    """
+    first=''.join(c*number for c,number in zip(COLORS,v))
+    assert len(first)==11
+    order=tuple(sorted(range(11),key=lambda i:COLORS.index(g[first[i]])))
+    return sign(order+(11,)) ^ sign(pair_action(g))
+
+
+def five_graph_generators():
+    """Three within-pair flips and two adjacent opposite-pair swaps."""
+    out=[]
+    for pair in PAIR_NAMES:
+        g={c:c for c in COLORS}
+        a,b=pair
+        g[a],g[b]=b,a
+        out.append(g)
+    for x,y in ((0,1),(1,2)):
+        g={c:c for c in COLORS}
+        for a,b in zip(PAIR_NAMES[x],PAIR_NAMES[y]):
+            g[a]=b;g[b]=a
+        out.append(g)
+    assert len(out)==5
+    return out
+
 def signed_cycle(g):
     pair=pair_action(g)
     swap=[int(g[p[0]]==PAIR_NAMES[pair[i]][1]) for i,p in enumerate(PAIR_NAMES)]
@@ -192,6 +221,50 @@ def verify():
     odd_fix=sum(sum(act(g,v)==v for v in supported)
                 for g in G if sign(pair_action(g))==1)
     assert even_fix==2256 and odd_fix==240 and 2*even_fix//48==94
+    # The real frozen normalizer includes both the 12-edge label character
+    # and the parity of the STABLE sorting of eleven observed colors.
+    # Thus the previous 94-orbit label-only action is only a diagnostic.
+    G_index={tuple(g[c] for c in COLORS):j for j,g in enumerate(G)}
+    eps={(j,v):stable_sort_sign_correction(g,v)
+         for j,g in enumerate(G) for v in supported}
+    generators=five_graph_generators()
+    assert all(tuple(h[c] for c in COLORS) in G_index for h in generators)
+    for j,g in enumerate(G):
+        for h in generators:
+            k=G_index[tuple(h[c] for c in COLORS)]
+            compose_id=G_index[tuple(h[g[c]] for c in COLORS)]
+            for v in supported:
+                assert eps[compose_id,v] == (eps[j,v] ^ eps[k,act(g,v)]), (
+                    'Cocycle failure',j,k,v)
+    # 1,362 histograms × 48 group elements × five generators.
+    assert len(supported)*len(G)*len(generators)==326880
+    combined_stabilizers=Counter()
+    for rep in reps:
+        H=[j for j,g in enumerate(G) if act(g,rep)==rep]
+        combined_stabilizers[(len(H),any(eps[j,rep] for j in H))]+=1
+    assert combined_stabilizers=={
+        (1,False):12,(2,False):14,(2,True):13,
+        (4,False):2,(4,True):8,(8,True):3}
+    full_gauge_unsafe_orbits=sum(amount for (order,odd),amount in
+                                  combined_stabilizers.items() if odd)
+    full_gauge_unsafe_vectors=sum(48//order*amount for (order,odd),amount in
+                                  combined_stabilizers.items() if odd)
+    assert (full_gauge_unsafe_orbits,full_gauge_unsafe_vectors)==(24,426)
+    signed_normalized_orbits={
+        min((act(g,v),p ^ eps[j,v]) for j,g in enumerate(G))
+        for v in supported for p in (0,1)}
+    assert len(signed_normalized_orbits)==80
+    normalized_sizes=Counter()
+    for rep,p in signed_normalized_orbits:
+        normalized_sizes[len({(act(g,rep),p ^ eps[j,rep])
+                               for j,g in enumerate(G)})]+=1
+    assert normalized_sizes=={12:7,24:36,48:37}
+    corrected_fixed_even=sum(1 for j,g in enumerate(G)
+        for v in supported if act(g,v)==v and eps[j,v]==0)
+    corrected_fixed_odd=sum(1 for j,g in enumerate(G)
+        for v in supported if act(g,v)==v and eps[j,v]==1)
+    assert (corrected_fixed_even,corrected_fixed_odd)==(1920,576)
+    assert 2*corrected_fixed_even//48==len(signed_normalized_orbits)
     # Mandatory negative controls: missing graph edge, impossible demand,
     # and a deliberately corrupted fixed-point class must be detected.
     try:
@@ -219,6 +292,16 @@ def verify():
         'signed_histogram_orbits':len(signed_reps),
         'signed_histogram_orbit_sizes':dict(sorted(signed_sizes.items())),
         'signed_character_burnside':{'even_sign_fix_sum':even_fix,'odd_sign_fix_sum':odd_fix},
+        'stable_sort_cocycle_checks':len(supported)*len(G)*len(generators),
+        'combined_stabilizer_parity':{f'order{order}_odd{int(odd)}':amount
+           for (order,odd),amount in sorted(combined_stabilizers.items())},
+        'combined_gauge_unsafe_orbits':full_gauge_unsafe_orbits,
+        'combined_gauge_unsafe_vectors':full_gauge_unsafe_vectors,
+        'full_correction_signed_histogram_orbits':len(signed_normalized_orbits),
+        'full_correction_signed_orbit_sizes':dict(sorted(normalized_sizes.items())),
+        'full_correction_burnside':{
+           'even_cocycle_fixed':corrected_fixed_even,
+           'odd_cocycle_fixed':corrected_fixed_odd},
         'class_fixed_counts':[{'signed_cycle_type':list(k),'size':len(classes[k]),
            'fixed':classes[k][0]} for k in sorted(classes)],
         'independent_DP':'PASS','mutations':'REJECTED',
