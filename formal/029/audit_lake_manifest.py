@@ -12,7 +12,7 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse'
 }
 
 
@@ -34,7 +34,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -101,6 +101,14 @@ def check():
                  'Policy.adapt_run', 'Policy.adapt_fits',
                  'symmetry_relabelEdgeValue_responses'):
         assert need in paired, f'Missing policy transport semantics or color bridge: {need}'
+    inverse = (ROOT/'SymmetryInverse.lean').read_text()
+    for theorem in ('inverse_color_table_is_symmetry',
+                    'inverse_color_table_restores_center_code',
+                    'inverse_color_table_restores_oriented_edge',
+                    'oriented_edge_inverse_table_restores_forward'):
+        assert f'theorem {theorem}' in inverse, f'Missing color inverse theorem: {theorem}'
+        assert f'#print axioms {theorem}' in inverse, f'Missing color inverse axiom audit: {theorem}'
+    assert inverse.count('decide +kernel') >= 4, 'Inverse table cannot rely on native_decide'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
