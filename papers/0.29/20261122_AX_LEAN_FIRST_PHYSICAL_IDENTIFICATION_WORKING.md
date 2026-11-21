@@ -133,6 +133,22 @@ fixed-probe physical 19-frame identification — OPEN
 
 **Referee-proof claim boundary:** the proposition is *not* that every arbitrary color string is physically feasible. It is that the normalization function and its sortedness proof are total on all strings, a stronger purely algorithmic statement. Feasibility and coverage of the 52 stored decision sectors are separate, cube-specific obligations.
 
+## AZ: a proof-carrying transcript-selected color gauge
+
+The next mechanical obligation is not to enumerate another search tree. It is to turn the color-automorphism choice, previously implicit in Python's histogram canonicalizer, into a *typed value whose legitimacy is checked by Lean* and whose input consists solely of the actual first eleven paired replies.
+
+In [`PrefixColorGauge.lean`](../../formal/029/PrefixColorGauge.lean), `prefixGaugeHistogram` computes the six-color multiplicities of a candidate relabeling. `choosePrefixGauge` folds over the 48 verified opposite-pair-preserving automorphisms, compares their candidate histogram score under the same `Nineteen.lexLess` relation used in the frozen-root quotient, and carries each candidate as the subtype `{sigma : List Nat // sigma ∈ Nineteen.symmetries}`. The identity table is the proven valid fallback. This ensures that every selected table belongs to the actual allowed family, even for arbitrary or non-reachable input replies. The selector is *causal*: its input is an already received `List FrameColor`; the generic `Policy.withPrefix` only calls a continuation after all eleven paired frames have returned.
+
+The theorems `chosen_prefix_color_map_legal`, `chosen_prefix_gauge_edge_equivariant`, and `chosen_prefix_gauge_even_flip_offset` specialize earlier kernel-checked finite symmetry results to the *particular* table chosen from the transcript. Thus the future representative query adapter may receive a legal response relabeling without treating it as an unverified user-provided parameter.
+
+**Remaining precise obligations:** this fold computes a deterministic best candidate under its executable comparator, but no new Lean theorem here yet states the global least-histogram property or proves all feasible histograms map into the **exact** 52 frozen representative certificate keys. It likewise does not yet prove that the selected symmetry and eleven-slot position order jointly reproduce the signed `route_info` correction for every ordered prefix; the selected symmetry must remain available to the representative-to-original output decoder. Finally the corner-derived terminal sign is not available as an extra reply bit.
+
+A future main-text theorem statement can be organized as:
+
+> *Prefix normal form, under proved coverage:* For each reachable first-eleven paired transcript, the deterministic slot-order witness and a selected valid color-table witness produce a frozen-root representative sector with a computable correction bit. A statewise transcript-preserving continuation compiled from the frozen root identifies every original legal cube using exactly eight additional paired reads.
+
+The italicized **coverage, correction, and statewise** clauses are still proof obligations, not results being asserted now. The source-change evidence for the legal-gauge bridge is [AZ implementation](https://github.com/WhoSia/CUBE-REV/commit/2df3741c0e2da141ffb166f94c9b5229f669bd6d) and [namespace qualification fix](https://github.com/WhoSia/CUBE-REV/commit/b8b7bef79f854b7b094670cc4a286f8b9e69c178). Cite the corresponding completed CI rather than these commits alone when describing the theorems as compiled.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
