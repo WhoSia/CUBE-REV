@@ -1,7 +1,7 @@
 import PhysicalPolicyCompiler
 import ElevenPrefix
 import EdgeSorting
-import NineteenSymmetry
+import ColorGraphCharacter
 
 namespace CubeRev029.Physical
 
@@ -155,6 +155,47 @@ theorem chosen_prefix_gauge_even_flip_offset (replies : List FrameColor) :
 #print axioms chosen_prefix_color_map_legal
 #print axioms chosen_prefix_gauge_edge_equivariant
 #print axioms chosen_prefix_gauge_even_flip_offset
+
+/-- The color gauge is computed from edge colors only. Even if the
+first eleven corner replies differ, an identical ordered edge transcript
+selects the same exact proof-carrying symmetry table. -/
+theorem chosen_prefix_gauge_ignores_corner_replies
+    (first second : List FrameColor)
+    (sameEdges : first.map Prod.fst = second.map Prod.fst) :
+    chosenPrefixColorMap first = chosenPrefixColorMap second := by
+  unfold chosenPrefixColorMap choosePrefixGauge
+  rw [sameEdges]
+
+/-- The 12-edge permutation sign induced by the SELECTED color map equals
+the sign of the three opposite-pair blocks. This specializes the existing
+48-symmetry character theorem to a deterministic actual-prefix gauge and
+does not silently replace it with the (different) stable-sort parity. -/
+theorem chosen_prefix_gauge_sign_character (replies : List FrameColor) :
+    parity (Nineteen.inducedTwelveEdgePermutation
+      (chosenPrefixColorMap replies)) =
+    parity (Nineteen.inducedThreePairPermutation
+      (chosenPrefixColorMap replies)) := by
+  exact Nineteen.induced_edge_sign_is_three_pair_sign
+    (chosenPrefixColorMap replies) (chosen_prefix_color_map_legal replies)
+
+/-- If two original cube states return exactly the same eleven initial
+edge colors at the paired addresses, they select identical color gauges,
+irrespective of the corner transcripts or subsequent queries. -/
+theorem same_actual_edge_prefix_selects_same_color_gauge
+    (first second : Coloring)
+    (sameEdges : observedFirstElevenEdgeColors first =
+      observedFirstElevenEdgeColors second) :
+    chosenPrefixColorMap
+      (firstElevenPairedAddresses.map (abstractPairRead first)) =
+    chosenPrefixColorMap
+      (firstElevenPairedAddresses.map (abstractPairRead second)) := by
+  apply chosen_prefix_gauge_ignores_corner_replies
+  simpa [observedFirstElevenEdgeColors, List.map_map] using sameEdges
+
+#print axioms chosen_prefix_gauge_ignores_corner_replies
+#print axioms chosen_prefix_gauge_sign_character
+#print axioms same_actual_edge_prefix_selects_same_color_gauge
+
 
 
 
