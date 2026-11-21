@@ -13,7 +13,7 @@ REQUIRED={
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
  'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance',
- 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker'
+ 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker'
 }
 
 
@@ -35,7 +35,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -285,6 +285,20 @@ def check():
                     'finiteReplyFiber', 'exactEightSectorPolicy',
                     'decide +kernel'):
         assert premise in reflected, f'Reflected checker proof gate missing: {premise}'
+    distinct=(ROOT/'DistinctReplyChecker.lean').read_text()
+    for theorem in ('own_reply_is_attainable',
+                    'checkDistinctSector_sound',
+                    'checked_distinct_eight_sector_recovers',
+                    'distinct_reply_split_accepts_two_same_sign_states',
+                    'unresolved_same_sign_leaf_is_rejected'):
+        assert f'theorem {theorem}' in distinct, (
+            f'Missing fast distinct-reply reflection: {theorem}')
+        assert f'#print axioms {theorem}' in distinct, (
+            f'Missing fast checker axiom inspection: {theorem}')
+    for feature in ('eraseDups','LawfulBEq', 'StatewiseSectorValid',
+                    'checkSignUnique', 'finiteReplyFiber', 'allFinite',
+                    'decide +kernel'):
+        assert feature in distinct, f'Missing exact finite reply semantics {feature}'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
