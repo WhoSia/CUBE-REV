@@ -277,11 +277,8 @@ theorem eleven_slot_colors_follow_position_witness
 
 #print axioms eleven_slot_colors_follow_position_witness
 
-/-- Total, deterministic stable order of the eleven *unique position IDs*.
-The comparison is lexicographic by observed color and then original position.
-Using positions as tie-breakers avoids treating repeated colors as distinct. -/
-/-- Lexicographic color then original-position comparison. In particular,
-equal observed colors remain separate because the slot IDs are unique. -/
+/-- Lexicographic color then original-position comparison.
+Equal observed colors remain separate because the eleven slot IDs are unique. -/
 def elevenSlotLexLE (colorAt : Nat → Nat) (i j : Nat) : Bool :=
   decide (colorAt i < colorAt j ∨
     (colorAt i = colorAt j ∧ i ≤ j))
