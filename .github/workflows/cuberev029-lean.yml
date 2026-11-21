@@ -69,6 +69,8 @@ jobs:
           lake env lean "$PWD/RepresentativeRoundTrip.lean"
           lake env lean "$PWD/ColorGraphCharacter.lean"
           lake env lean "$PWD/GraphPosteriorCovariance.lean"
+          lake env lean "$PWD/SignedRepresentativePolicy.lean"
+          lake env lean "$PWD/SignedPairedPosterior.lean"
           lake env lean "$PWD/NineteenSchedule.lean"
           lake env lean "$PWD/PhysicalEighteen.lean"
           lake env lean "$PWD/NineteenDataReceipt.lean"
