@@ -125,3 +125,50 @@ Lean 4.34.1 build log and axiom report before changing the paper's formal
 verification claim. The complete clean-room Z archive and its digest are
 preserved in [Drive](https://drive.google.com/file/d/1c5yPtOxSB4zpYnXQObqkiFQq2Tgkq7Pj/view);
 see [the Z formal closure ledger](../../docs/0.29/20261121_Z_CORNER_BRIDGE_AND_FORMAL_GATES.md).
+
+## 2026-11-21 AA–AB — corner conservation and scheduled-transcript bridge
+
+The historical Z section above records its *then-open* proof obligations. They
+must not be mistaken for the current status. The following later source modules
+are now in the mandatory Lake target list:
+
+- `CornerConservation.lean` proves piece-label sum and twist-sum preservation
+  for each basic geometric turn and, by induction, for arbitrary turn words.
+- `ReachableCornerIdentification.lean` proves the actual missing-position-5
+  **fourteen-color** uniqueness result for two `Reachable` cube states.
+- `CornerPermutation.lean` proves that reachable corners contain each of the
+  eight source cubie identities exactly once; this is stronger than the
+  numerical piece-label sum invariant.
+- `NineteenCornerTranscript.lean` proves a new *conditional bridge*: if two
+  reachable initial cubes give the same colors at the **actual nineteen
+  scheduled corner addresses**, then all their 24 corner sticker colors agree.
+  It accounts for the five repeated reads and final frame-19 new color.
+
+The last implication is a genuine proof obligation in the nineteen-frame
+upper-bound program, but it **does not by itself** exhibit or certify the
+19-frame adaptive edge policy. A complete upper-bound theorem still needs:
+
+1. a verified, executable Lean decision policy or a sound semantic
+   certificate interpreter for all 52 frozen representative trees;
+2. a *universal* reindexing/renaming theorem transporting each arbitrary
+   eleven-edge prefix to the appropriate representative, preserving
+   feasibility, orientation and permutation sign;
+3. a proof that each frame chooses both original-coordinate addresses
+   **before observing that frame's pair of colors**, and that the combined
+   terminal edge sign and actual nineteen-corner transcript determine the
+   unique initial legal coloring;
+4. an unconditional `Fits 19` witness and proof of
+   `∀ s, Reachable s → tree.run (abstractPairRead s) = s`, which can then be
+   passed to `physical_nineteen_of_abstract_bounded`.
+
+**Verification boundary:** a Lean source file and a static manifest check
+are not a successful kernel compile. The AB module has been committed and
+registered in the pinned Lake/CI builds, but no new successful AB job and
+axiom inspection are established in this note. Even a successful build of
+all current modules does not prove the as-yet-unconstructed *universal
+nineteen-frame policy theorem*. Keep this distinction explicit in papers.
+
+The historic eighteen-frame physical lower theorem remains the first
+contribution. Keep the T-version claim order, the U-version physical lower
+proof, and the independently corrected W-version worked example separate
+until the complete upper-bound composition is checked.
