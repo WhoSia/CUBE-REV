@@ -154,13 +154,16 @@ private def splitTwo : Array (FrozenInstruction Nat Nat Unit) :=
 
 private def allEven (_ : Nat) : Bool := false
 
+private def singleLeaf : Array (FrozenInstruction Nat Nat Unit) :=
+  #[.finish ()]
+
 theorem distinct_reply_split_accepts_two_same_sign_states :
     checkDistinctSector splitTwo (fun s (_ : Nat) => s)
       allEven 1 0 [0,1] = true := by
   decide +kernel
 
 theorem unresolved_same_sign_leaf_is_rejected :
-    checkDistinctSector testLeafGraph (fun s (_ : Nat) => s)
+    checkDistinctSector singleLeaf (fun s (_ : Nat) => s)
       allEven 0 0 [0,1] = false := by
   decide +kernel
 
