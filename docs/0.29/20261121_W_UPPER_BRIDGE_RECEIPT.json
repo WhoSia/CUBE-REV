@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "certificate_sha256": "80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227",
+  "policy_nodes": 141097,
+  "representatives": 52,
+  "candidate_assignments_representatives": 144736,
+  "transport": {
+    "opposite_pair_symmetries": 48,
+    "legal_flip_preserving_symmetries": 48,
+    "supported_first_color_count_vectors": 1362,
+    "canonical_representatives": 52,
+    "transformed_candidate_records": 3215616,
+    "candidate_records_before_transport": 3215616,
+    "sign_correction_vectors": {
+      "0": 726,
+      "1": 636
+    }
+  },
+  "corner_pair_decoder": {
+    "oriented_corner_pairs": 24,
+    "distinct_read_pairs": 24,
+    "possible_missing_positions_checked": 8,
+    "determination": "two cyclically ordered stickers at each of seven corners; final cubie and twist are fixed by exclusion and zero twist sum"
+  },
+  "physical_corner_regression": {
+    "status": "PASS",
+    "single_face_turns": 12,
+    "random_legal_turns": 3000,
+    "decoded_full_corner_states": 3012,
+    "basis": "two cyclically ordered colors at seven corner positions plus final twist constraint",
+    "scope": "independent geometry regression, not exhaustive over 8!·3^7 states"
+  },
+  "paired_physical_routes": {
+    "status": "PASS",
+    "checked_base_routes": 576,
+    "random_prior_pose_tests": 4000,
+    "result": "both fixed sector probes pull back to arbitrary requested initial stickers",
+    "scope": "finite geometric regression; universal Lean proof is JointProbeRouting.lean"
+  },
+  "negative_controls": {
+    "status": "PASS",
+    "rejected_mutations": 3,
+    "cases": [
+      "omit label/position sign correction",
+      "discard second corner read",
+      "corrupt joint probe route"
+    ]
+  },
+  "trust_scope": "independent finite audits; geometric 18 lower bound separately Lean-proven; universal 19 upper-bound Lean theorem remains open"
+}
