@@ -1,5 +1,6 @@
 import TaggedNineteenRootPolicy
 import NineteenSchedule
+import NineteenCornerTranscript
 
 namespace CubeRev029.Nineteen
 
@@ -175,6 +176,106 @@ theorem exact_nineteen_paired_recovers_matching_actual_root
   exact exact_nineteen_tagged_recovers_matching_actual_root
     roots parsed entry member word selected graph belief entryParsed candidate
 
+/-- Extract the actual CORNER COLOR, not merely the corner address,
+from each physically charged abstract paired observation. -/
+def observedCornerColors {O : Type}
+    (cornerSchedule : List (Fin 24))
+    (tree : Policy TaggedEdgeAddress Nat O)
+    (state : TaggedPairedState) : List Nat :=
+  ((withCornerClock cornerSchedule tree).transcript
+    taggedPairedObserve state).map (fun answered => answered.2.2)
+
+/-- Every returned corner color is exactly the color of its scheduled
+original-coordinate corner sticker, when the charged schedule has
+the same number of entries as the executed edge transcript. -/
+theorem observed_corner_colors_eq_schedule {O : Type}
+    (tree : Policy TaggedEdgeAddress Nat O)
+    (state : TaggedPairedState) :
+    ∀ cornerSchedule : List (Fin 24),
+      cornerSchedule.length =
+          (tree.transcript taggedEdgeObserve state.1).length →
+      observedCornerColors cornerSchedule tree state =
+        cornerSchedule.map state.2 := by
+  induction tree with
+  | stop output =>
+      intro cornerSchedule count
+      cases cornerSchedule with
+      | nil => rfl
+      | cons head tail => simp [Policy.transcript] at count
+  | read edgeAddress next ih =>
+      intro cornerSchedule count
+      cases cornerSchedule with
+      | nil => simp [Policy.transcript] at count
+      | cons first remaining =>
+          have countRest :
+              remaining.length =
+                ((next (taggedEdgeObserve state.1 edgeAddress)).transcript
+                  taggedEdgeObserve state.1).length := by
+            simpa [Policy.transcript] using count
+          have recursive :=
+            ih (taggedEdgeObserve state.1 edgeAddress)
+              remaining countRest
+          simpa [observedCornerColors, withCornerClock,
+            Policy.transcript, taggedPairedObserve] using
+            congrArg (List.cons (state.2 first)) recursive
+
+theorem exact_nineteen_paired_roots_corner_colors
+    (roots : Array Lean.Json) (state : TaggedPairedState) :
+    observedCornerColors cornerFrameAddresses
+      (exactNineteenTagged roots) state =
+        cornerFrameAddresses.map state.2 := by
+  apply observed_corner_colors_eq_schedule
+  rw [actual_corner_frame_budget,
+    exact_nineteen_tagged_transcript_length]
+
+/-- Direct bridge to the previously proved REAL scheduled-corner
+transcript of a 48-facelet coloring. We do not guess the corner colors:
+the paired controller has actually received them in frame order. -/
+theorem exact_nineteen_paired_corner_colors_match_colorings
+    (roots : Array Lean.Json) (word : Word)
+    (original : Coloring) :
+    observedCornerColors cornerFrameAddresses
+      (exactNineteenTagged roots)
+      (word, fun addr => original (cornerSlot addr)) =
+        scheduledCornerColors original := by
+  simpa [scheduledCornerColors] using
+    (exact_nineteen_paired_roots_corner_colors roots
+      (word, fun addr => original (cornerSlot addr)))
+
+/-- Two legal original cubes with identical executed nineteen paired
+corner-color records must agree on ALL 24 original corner stickers.
+Their edge words may differ. This is exactly the necessary conditional
+identifiability consequence of the fixed physical corner schedule;
+the final edge proof and actual move-route compiler remain separate. -/
+theorem same_paired_corner_colors_force_all_legal_corners
+    (roots : Array Lean.Json)
+    (word₁ word₂ : Word)
+    (original₁ original₂ : Coloring)
+    (legal₁ : Reachable original₁)
+    (legal₂ : Reachable original₂)
+    (same :
+      observedCornerColors cornerFrameAddresses
+          (exactNineteenTagged roots)
+          (word₁, fun addr => original₁ (cornerSlot addr)) =
+        observedCornerColors cornerFrameAddresses
+          (exactNineteenTagged roots)
+          (word₂, fun addr => original₂ (cornerSlot addr))) :
+    ∀ i : Fin 8, ∀ j : Fin 3,
+      original₁ (cornerRawSlot i j) =
+        original₂ (cornerRawSlot i j) := by
+  have leftEq :=
+    exact_nineteen_paired_corner_colors_match_colorings
+      roots word₁ original₁
+  have rightEq :=
+    exact_nineteen_paired_corner_colors_match_colorings
+      roots word₂ original₂
+  have sameScheduled :
+      scheduledCornerColors original₁ =
+        scheduledCornerColors original₂ :=
+    leftEq.symm.trans (same.trans rightEq)
+  exact same_nineteen_corner_answers_force_all_corner_colors
+    original₁ original₂ legal₁ legal₂ sameScheduled
+
 #print axioms withCornerClock_fits
 #print axioms withCornerClock_run
 #print axioms observed_corner_addresses_eq_schedule
@@ -183,5 +284,9 @@ theorem exact_nineteen_paired_recovers_matching_actual_root
 #print axioms exact_nineteen_paired_roots_run
 #print axioms final_corner_sticker_is_nineteenth_paired_read
 #print axioms exact_nineteen_paired_recovers_matching_actual_root
+#print axioms observed_corner_colors_eq_schedule
+#print axioms exact_nineteen_paired_roots_corner_colors
+#print axioms exact_nineteen_paired_corner_colors_match_colorings
+#print axioms same_paired_corner_colors_force_all_legal_corners
 
 end CubeRev029.Nineteen
