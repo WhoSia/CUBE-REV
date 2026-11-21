@@ -169,6 +169,28 @@ theorem adjTrace_map (f : α → β) (path : List Nat) (xs : List α) :
   | nil => rfl
   | cons hd tl ih => simp [adjTrace, ih, adjacent_map]
 
+
+/-- Applying the SAME legal adjacent-swap trace to any two distinct-label
+lists preserves their relative inversion parity, irrespective of the list
+length or the concrete labels. This is a generic transport lemma rather than
+a certificate for the cube-specific stable-sort normalization. -/
+theorem adjTrace_relative_parity_invariant
+    (path : List Nat) (xs ys : List Nat)
+    (hx : xs.Nodup) (hy : ys.Nodup)
+    (sameLength : xs.length = ys.length)
+    (bounds : ∀ i ∈ path, i + 1 < xs.length) :
+    (parity (adjTrace path xs) + parity (adjTrace path ys)) % 2 =
+      (parity xs + parity ys) % 2 := by
+  have boundsY : ∀ i ∈ path, i + 1 < ys.length := by
+    intro i hi
+    rw [← sameLength]
+    exact bounds i hi
+  have px := adjTrace_parity path xs hx bounds
+  have py := adjTrace_parity path ys hy boundsY
+  omega
+
+#print axioms adjTrace_relative_parity_invariant
+
 #print axioms root_even_swap_path
 
 end CubeRev029.Eighteen
