@@ -2,6 +2,7 @@ import PhysicalPolicyCompiler
 import ElevenPrefix
 import EdgeSorting
 import ColorGraphCharacter
+import PairedPolicyTransport
 
 namespace CubeRev029.Physical
 
@@ -195,6 +196,68 @@ theorem same_actual_edge_prefix_selects_same_color_gauge
 #print axioms chosen_prefix_gauge_ignores_corner_replies
 #print axioms chosen_prefix_gauge_sign_character
 #print axioms same_actual_edge_prefix_selects_same_color_gauge
+
+/-- The SAME transcript-selected legal gauge is a valid adapter for
+each current simultaneous edge-and-corner observation. The corner response
+is unchanged and no extra sign bit is exposed as a sensor reply. -/
+theorem chosen_gauge_paired_response_transport
+    (replies : List FrameColor)
+    (order : Fin 12 → Fin 12)
+    (state : Nineteen.CubieAndCornerState)
+    (query : Nineteen.PairedAddress12) :
+    Nineteen.relabeledPairRead
+      (Nineteen.representativePairState
+        (chosenPrefixColorMap replies) order state) query =
+    Nineteen.responseToRepresentative
+      (chosenPrefixColorMap replies) query
+      (Nineteen.realPairRead state
+        (Nineteen.queryToOriginal order query)) := by
+  exact Nineteen.paired_response_equivariant
+    (chosenPrefixColorMap replies)
+    (chosen_prefix_color_map_legal replies) order state query
+
+/-- Any continuation transferred with this already-received color gauge
+has exactly the same worst-case number of charged paired reads. This is a
+conditional theorem about an arbitrary provided continuation tree. -/
+theorem chosen_gauge_paired_transport_fits
+    {OutputRep OutputOriginal : Type}
+    (replies : List FrameColor) (order : Fin 12 → Fin 12)
+    (decode : OutputRep → OutputOriginal)
+    {budget : Nat}
+    {tree : Policy Nineteen.PairedAddress12
+      Nineteen.PairedReply12 OutputRep}
+    (fits : Fits budget tree) :
+    Fits budget
+      (Nineteen.transportPairedPolicy
+        (chosenPrefixColorMap replies) order decode tree) := by
+  exact Nineteen.transportPairedPolicy_fits
+    (chosenPrefixColorMap replies) order decode fits
+
+/-- The selected gauge is not only a relabeling of stored state arrays:
+every adaptive branch of any given representative paired policy is
+transported back to the real paired response game. Correctness of a
+concrete frozen representative tree remains an independent obligation. -/
+theorem chosen_gauge_paired_transport_run
+    {OutputRep OutputOriginal : Type}
+    (replies : List FrameColor) (order : Fin 12 → Fin 12)
+    (decode : OutputRep → OutputOriginal)
+    (tree : Policy Nineteen.PairedAddress12
+      Nineteen.PairedReply12 OutputRep)
+    (state : Nineteen.CubieAndCornerState) :
+    (Nineteen.transportPairedPolicy
+       (chosenPrefixColorMap replies) order decode tree).run
+         Nineteen.realPairRead state =
+      decode (tree.run Nineteen.relabeledPairRead
+        (Nineteen.representativePairState
+          (chosenPrefixColorMap replies) order state)) := by
+  exact Nineteen.transportPairedPolicy_run
+    (chosenPrefixColorMap replies)
+    (chosen_prefix_color_map_legal replies) order decode tree state
+
+#print axioms chosen_gauge_paired_response_transport
+#print axioms chosen_gauge_paired_transport_fits
+#print axioms chosen_gauge_paired_transport_run
+
 
 
 
