@@ -213,7 +213,7 @@ theorem frozen_prefix_stable_order_sorted (replies : List FrameColor) :
       (frozenPrefixStableOrder replies) := by
   exact eleven_stable_slot_order_sorted (frozenPrefixColorRank replies)
 
-/-- The normalized, rather than raw-color, slot order admits a bounded
+/-- The normalized, rather than raw-color, slot order has a bounded
 adjacent-swap trace, whose parity is precisely the sorting correction.
 The 12th unobserved edge is not assigned a new measured color here. -/
 theorem frozen_prefix_sort_parity_witness (replies : List FrameColor) :
