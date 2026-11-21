@@ -27,9 +27,17 @@ def adjacentTwelveIndex (i : Nat) (j : Fin 12) : Fin 12 :=
 theorem adjacent_twelve_index_involutive
     (i : Nat) (j : Fin 12) :
     adjacentTwelveIndex i (adjacentTwelveIndex i j) = j := by
-  apply Fin.ext
-  unfold adjacentTwelveIndex
-  split_ifs <;> omega
+  by_cases h : i + 1 < 12
+  · by_cases h₁ : j.val = i
+    · apply Fin.ext
+      simp [adjacentTwelveIndex, h, h₁]
+      omega
+    · by_cases h₂ : j.val = i + 1
+      · apply Fin.ext
+        simp [adjacentTwelveIndex, h, h₁, h₂]
+        omega
+      · simp [adjacentTwelveIndex, h, h₁, h₂]
+  · simp [adjacentTwelveIndex, h]
 
 /-- Both directions are the same adjacent transposition, with
 the inverse equations discharged by the involution proof above. -/
