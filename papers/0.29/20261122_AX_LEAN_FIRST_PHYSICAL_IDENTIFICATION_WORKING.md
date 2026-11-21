@@ -149,6 +149,20 @@ A future main-text theorem statement can be organized as:
 
 The italicized **coverage, correction, and statewise** clauses are still proof obligations, not results being asserted now. The source-change evidence for the legal-gauge bridge is [AZ implementation](https://github.com/WhoSia/CUBE-REV/commit/2df3741c0e2da141ffb166f94c9b5229f669bd6d) and [namespace qualification fix](https://github.com/WhoSia/CUBE-REV/commit/b8b7bef79f854b7b094670cc4a286f8b9e69c178). Cite the corresponding completed CI rather than these commits alone when describing the theorems as compiled.
 
+## AZ selected-gauge inversion theorem: evidence, scope and integration gate
+
+The representative decoder previously accepted a *chosen* legal color symmetry and an invertible permutation of twelve edge slots as parameters. The exact selected gauge is now computed from eleven already received paired replies and carries a proof that it belongs to the approved 48-element family. The following new source statements specialize the earlier general inversion results to **that exact selected gauge**:
+
+- `chosen_prefix_gauge_inverse_is_legal`: the table inverse lies in the same opposite-pair-preserving family.
+- `chosen_prefix_gauge_restores_oriented_edge`: applying the selected color map and then its inverse restores every oriented edge identity, including the sticker side, without assuming a particular scramble.
+- `chosen_gauge_original_state_round_trip`: after coupling the selected map with any verified `EdgeSlotOrder` bijection on twelve positions, encode→decode returns precisely the initial paired cubie-and-corner state.
+
+The proof uses the actual previous kernel statements `inverse_color_table_is_symmetry`, `inverse_color_table_restores_oriented_edge` and `representative_pair_state_round_trip`. It is not a restatement of certificate output counts or a newly assumed parity oracle. Source: [AZ inverse implementation](https://github.com/WhoSia/CUBE-REV/commit/238f653be9653e658b4664b2674a9b78eff4f1b5).
+
+**Important remaining dependency:** the `EdgeSlotOrder` hypothesis is a full 12-slot permutation, whereas the preceding observed stable sort covers eleven slots. Constructing the last-slot-fixed extension, proving its inverse, and proving agreement with the Python `route_info` choice for *all* feasible ordered histories must precede a total 52-root policy transport. Having a round-trip theorem for a **supplied** 12-slot bijection does not supply the bijection. Moreover, a bijective decoder cannot establish that the certificate's representative policy produces the correct normalized output or that the true terminal sign is derivable by the 19th paired corner reply.
+
+The manuscript should place this result under **correctness of coordinate adapters**, before the final policy theorem. The exact Lean workflow SHA and complete outcome, rather than an earlier passing run, are mandatory before claiming compilation acceptance.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
