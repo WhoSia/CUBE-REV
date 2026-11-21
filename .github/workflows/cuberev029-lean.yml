@@ -81,6 +81,7 @@ jobs:
           lake env lean "$PWD/ExactBudgetPadding.lean"
           lake env lean "$PWD/ExactEightSector.lean"
           lake env lean "$PWD/ReflectedSectorChecker.lean"
+          lake env lean "$PWD/DistinctReplyChecker.lean"
           lake env lean "$PWD/NineteenSchedule.lean"
           lake env lean "$PWD/PhysicalEighteen.lean"
           lake env lean "$PWD/NineteenDataReceipt.lean"
