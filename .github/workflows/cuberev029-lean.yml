@@ -22,6 +22,8 @@ jobs:
           persist-credentials: false
       - name: Restore and SHA-check immutable local certificates
         run: python3 formal/029/restore_pinned_data.py
+      - name: Cross-check the nineteen corner reads and mutation controls
+        run: python3 formal/029/validate_19_corner_schedule.py
       - name: Compile pinned Lean package
         uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64
         with:
