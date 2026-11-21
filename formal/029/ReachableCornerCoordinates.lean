@@ -84,6 +84,7 @@ def solvedCornerCoordinates : CornerCoordinates :=
   fun i => ⟨3 * i.val, by have h := i.isLt; omega⟩
 
 theorem solved_corner_agreement : CornersAgree solvedCornerCoordinates solved := by
+  unfold CornersAgree
   decide +kernel
 
 /-- Compose the physical corner action along the same lookup-order turn list
@@ -97,7 +98,9 @@ colors agree with the twenty-four corner stickers in the resulting state. -/
 theorem coordinatesAlong_agree (turns : List Turn) :
     CornersAgree (coordinatesAlong turns) (paint turns solved) := by
   induction turns with
-  | nil => simpa [coordinatesAlong, paint] using solved_corner_agreement
+  | nil =>
+      change CornersAgree solvedCornerCoordinates solved
+      exact solved_corner_agreement
   | cons t tail ih =>
       change CornersAgree (cornerAction t (coordinatesAlong tail))
         (turnColoring t (paint tail solved))
