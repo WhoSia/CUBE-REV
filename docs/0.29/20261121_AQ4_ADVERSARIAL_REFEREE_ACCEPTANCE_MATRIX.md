@@ -1,0 +1,45 @@
+# CUBE-REV 0.29 AQ4 — adversarial referee matrix and acceptance gates
+
+**2026-11-21 · independent critical review exercise, not endorsement.** We evaluate the full 18/19-frame paper as if referees approached it from finite group theory, algorithms/verification, graph symmetry, and physical Rubik geometry. The scorecard is deliberately asymmetric: evidence for the eighteen-frame lower theorem does not automatically upgrade a separate incomplete nineteen-frame upper theorem.
+
+| Referee perspective | Most dangerous objection | Existing exact evidence | Missing gate / possible falsifier | Current verdict |
+| --- | --- | --- | --- | --- |
+| A: Adaptive experiments | The lower DAG may cover an artificial edge sensor but not every simultaneous adaptive pair-color policy | `PhysicalEighteen.lean`, disclosed-corner policy adapter, residual DAG and original-state physical lift | Trace the real initial cube state and the fact that each frame selects both addresses before seeing replies; inspect `native_decide` dependency separately | Substantial evidence; avoid claiming primitive-kernel-only certificate |
+| B: Upper-bound construction | 52 representative histograms do not guarantee all ordered first-color words or all later responses are supported | 1,362 Hall-feasible count histograms; 52 exact orbits; `NineteenReadData.check` receipt; Python independent replay | **Unconditional Lean reification of the 52 policy trees** including every feasible branch; no such theorem currently exists | OPEN, highest upper-bound gate |
+| C: Group theory / canonicalization | A histogram has a stabilizer; two normalizers can differ in sign and position order | 40/52 nontrivial stabilizers; 48-element group; sign character `sgn α_g=sgn τ_g` | Correct *combined* sign correction must be retained: 24/52 reps, 426/1362 histograms have odd stable-sort cocycle in stabilizer; prove 1-cocycle and exact `route_info` in Lean | Material issue now precisely localized |
+| D: Algorithm efficiency | The paper is unilluminating brute force | Hall's theorem gives `K₂,₂,₂` matching support; four irredundant Hall inequality families replace 64 masks; Burnside 10 class types derive 52 orbits; five Cayley generators cover G | Explain mathematical proofs independently of numerical receipts, publish simple rejected-mutation tests | Substantially improved |
+| E: Sensor geometry | Abstract edge/corner queries may be physically unroutable, or rotations accidentally charged zero without disclosure | `JointProbeRouting`, `NineteenSchedule`, `PhysicalPolicyCompilerFast`, separately checked corner decoder; fixed physical probes | Final unconditional 19-frame policy must be composed with compiler using the precise original-address map; no look-ahead at frame19 corner response | OPEN |
+| F: Legality / cube group | Hall's matching creates an edge arrangement but possibly not a physically reachable cube | Matching saturates 11 edge types; 12th flip enforces even orientation; corner permutation can match edge parity and twists sum zero | Cite/prove standard cubie-coordinate reachability characterization; kernel bridge from abstract legal coordinates to face-turn Reachable remains separate | Conditional mathematical completion relies on standard group theorem |
+| G: Formal trust | `decide` and `native_decide` claims are conflated | Actual `#print axioms` for AL and AM reports only standard axioms; earlier 18DAG uses `native_decide.ax` | Publish per-theorem trust/certificate table; don't claim a native-decide DAG is entirely primitive-normalized | Needs clear paper disclosure |
+| H: Precedent / priority | Other work already studies Rubik sensing, metric dimension, automata experiments or solving | Owned Drive Diestel/Schrijver/Cameron/Seress/McKay/Leon/Jefferson/Lee–Yannakakis; distinct sensor model | Complete bibliographic edition reconciliation; formally state task differences and existing original-tag vs color-feedback results | No ungrounded novelty claim |
+| I: Numerical regression | A passing fixed-count receipt could hide sign or normalization bug | Hall equal-set cross-check, 64→4 family independence, Burnside fixed sums, 326,880 cocycle generator checks | Mutate selected gauge and show concrete legal edge-word sign mismatch; **must** be part of read-only CI | AQ negative control added |
+| J: Paper integrity | A stale example or later draft silently supersedes a corrected predecessor | W documented impossibility of V's corner example; Y corrected missing corner index5; T/U/V/W preserved | Point to original and corrected artifact, with theorem scope and source evidence | Version protection required |
+
+## Priority and proof-debt ordering
+
+The shortest defensible path to publication is not to produce more first-color counts or more hand-written conjectures.
+
+**Gate 1 — parity normalization theorem.** Formalize the stable block-sort inversion formula in Lean and the three-pair sign character under arbitrary twelve-piece permutation composition. Show the selected normalization, its inverse and the corner-sign correction agree for each ordered prefix. The 24 odd-cocycle stabilizer orbits are targeted regression witnesses, not merely a global count.
+
+**Gate 2 — posterior equivalence.** The `GraphPosteriorCovariance.lean` theorem transports exact query-response fibers, but one must instantiate it for the actual *paired physical observation* and *legal state posterior*, retaining both edge and corner components. Equivariance of candidate counts alone is insufficient.
+
+**Gate 3 — decision-tree semantics.** Each frozen 52 representative tree must become a total Lean `Policy` or an equivalent explicitly validated interpreter. A certificate of 141,097 nodes does not alone prove that every reply index is in bounds, that the query budget is respected along every feasible path and that each terminal candidate is exactly decoded.
+
+**Gate 4 — physical policy closing theorem.** Combine the first eleven reads, the adaptive continuation, the physically correct fourteen-corner colors, the corrected terminal edge/corner sign, the inverse original-state coordinate map, and the fixed-probe routing theorem into unconditional `Fits 19` and `run = initial state`. Separate this from the existing 18-frame adversary lower theorem.
+
+**Gate 5 — manuscript audit.** Cross-check every theorem statement against an actual compiled Lean source or a clearly marked paper-only proof, every numeric table against a reproducible receipt, and every primary reference against its verified edition. Distinguish historical missing entries from current Drive-owned PDFs.
+
+## Counterarguments to actively test
+
+- **Odd stabilizer versus full cocycle.** The ten odd-`χ` representative orbits are not the full set of 24 odd-`ε` representatives. A reviewer asking for the complete stable-sort correction must be shown the exact 80-orbit model; hiding it behind the 94-orbit preliminary result is misleading.
+- **Sign transport versus admissible physical automorphism.** The forty-eight center-color relabelings preserve the *edge-color graph* but are not all physical rotations of the fixed-center cube. The corner parity is not automatically equivariant. The sign correction exists precisely because this distinction matters.
+- **Signed histogram versus posterior game.** Eighty signed histogram orbits do not mean eighty policy roots are necessary or sufficient. The physical policy must retain ordered histories and feasible remaining candidates, not just counts.
+- **Legally consistent word versus face-turn-reachable proof.** Combinatorial cube-coordinate admissibility is standard; a formal Lean claim about `Reachable` needs the explicit bridge, not an asserted equivalence by analogy.
+- **Native-decide and kernel normalization.** A kernel-check of the theorem term using an axiom generated by native evaluation remains a different trust claim from computing a small finite group table by kernel reduction.
+- **Early-stop and padding.** Repeated corner observations and leaf-padding reads are legal only if the policy remains within the budget and no repeated response introduces invalid dependence. The exact physical schedule must be checked at every frame, not merely the number of distinct observed corner stickers.
+
+## Research director's recommendation
+
+Proceed with a **three-layer proof** rather than an ever-expanding brute-force certificate: (1) structural combinatorics and group orbit/sign algebra, (2) signed posterior game/bisimulation, and (3) a small verified interpreter linking pinned representative decision-tree bytes to the original physical observation semantics. The paper should lead with eighteen-frame impossibility and state the 19-frame upper-bound theorem only after Gate 4 is genuinely closed.
+
+A separate English manuscript and an additive cocycle appendix exist in `papers/0.29/`. Preserve all earlier drafts. Cite original owned books on matching and group theory; identify standard lemmas as standard, and claim novelty only for the exact observation model and the certified bound once established.
