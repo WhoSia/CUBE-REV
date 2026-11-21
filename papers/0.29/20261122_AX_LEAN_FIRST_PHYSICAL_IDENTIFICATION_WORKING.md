@@ -89,6 +89,14 @@ The group of color-graph automorphisms is not interchangeable with the subgroup 
 
 **Current acceptance verdict:** suitable as a Lean-first draft of the paper's theorem map and conditional upper-bound narrative. Not ready to title an unconditional nineteen-frame formal identification theorem. The next claimed contribution must report its exact kernel-compiled statement and full run commit before upgrading this text.
 
+## AX formal integration update — real charged eleven-frame transcript
+
+The follow-up Lean library `PrefixColorGauge.lean` (added as a mandatory 0.29 build target) instantiates the generic distinct-position stable-sort witness on **the actual edge component of** `abstractPairRead initial` at the eleven scheduled paired addresses. This is stronger than positing an arbitrary eleven-color input as an oracle, because the observation input is now definitionally tied to the frame addresses of the physical compilation model.
+
+In the same module, `observed_first_eleven_corner_clock_exact` identifies the companion corner component of those *same charged frames* with the first eleven entries of `cornerFrameAddresses`. Consequently, sorting edge-slot IDs does not create additional corner observations and cannot reorder when corner colors become available. The time-of-arrival of the final distinguishing corner reply remains a separate gate.
+
+The library establishes the correspondence between actual original-coordinate paired responses, the deterministic eleven-position normalizer and the exact corner-clock prefix. It does not establish the total 48-gauge selector, the 52-root statewise normalized-policy transport or the unconditional physical nineteen-frame upper theorem. Its precise statement and dependencies must be attached to the first successful **post-AX** pinned Lean CI rather than an earlier passing run.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).

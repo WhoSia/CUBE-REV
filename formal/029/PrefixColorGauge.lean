@@ -44,6 +44,26 @@ theorem observed_paired_prefix_stable_parity_witness (initial : Coloring) :
       swaps.length % 2 = parity (firstElevenObservedStableOrder initial) := by
   exact eleven_stable_slot_order_certified (observedFirstElevenColorAt initial)
 
+/-- The corner component of the *same eleven charged paired replies*
+is exactly the fixed first-eleven corner schedule. Sorting the edge
+position labels does not grant free or reordered corner observations. -/
+def observedFirstElevenCornerColors (initial : Coloring) : List Nat :=
+  firstElevenPairedAddresses.map (fun q => (abstractPairRead initial q).2)
+
+theorem observed_first_eleven_corner_clock_exact (initial : Coloring) :
+    observedFirstElevenCornerColors initial =
+      (cornerFrameAddresses.take 11).map (fun c => initial (cornerSlot c)) := by
+  calc
+    observedFirstElevenCornerColors initial =
+        (firstElevenPairedAddresses.map Prod.snd).map
+          (fun c => initial (cornerSlot c)) := by
+            simp [observedFirstElevenCornerColors, List.map_map, abstractPairRead]
+    _ = (cornerFrameAddresses.take 11).map
+          (fun c => initial (cornerSlot c)) := by
+            rw [first_eleven_matches_frozen_corner_schedule]
+
+#print axioms observed_first_eleven_corner_clock_exact
+
 #print axioms observed_first_eleven_edge_color_count
 #print axioms first_eleven_observed_stable_order_perm
 #print axioms observed_paired_prefix_stable_parity_witness
