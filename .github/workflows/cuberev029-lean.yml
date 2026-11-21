@@ -85,6 +85,7 @@ jobs:
           lake env lean "$PWD/FrozenRootReflection.lean"
           lake env lean "$PWD/FiftyTwoRootReceipt.lean"
           lake env lean "$PWD/TaggedNineteenRootPolicy.lean"
+          lake env lean "$PWD/PairedCornerClock.lean"
           lake env lean "$PWD/NineteenSchedule.lean"
           lake env lean "$PWD/PhysicalEighteen.lean"
           lake env lean "$PWD/NineteenDataReceipt.lean"
