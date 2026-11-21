@@ -16,7 +16,16 @@ from itertools import product
 
 ROOT = Path(__file__).resolve().parent
 import sys
-sys.path.insert(0, str(ROOT.parents[1] / 'reproduction'))
+# Prefer the tracked GitHub source layout. ZIP snapshots may have a reproduction/
+# copy, but that copy is not present in a clean repository checkout.
+REPO = ROOT.parents[1]
+SOURCE_ROOTS = (REPO / 'scripts' / 'cuberev-observation', REPO / 'reproduction')
+SOURCE = next((folder for folder in SOURCE_ROOTS
+               if (folder / 'audit_r029_w_corner_geometric_decoder.py').is_file()
+               and (folder / 'audit_r029_w_transport_all_prefixes.py').is_file()), None)
+if SOURCE is None:
+    raise FileNotFoundError('Missing tracked corner geometry and permutation audit helpers')
+sys.path.insert(0, str(SOURCE))
 from audit_r029_w_corner_geometric_decoder import geometry, CORNERS
 from audit_r029_w_transport_all_prefixes import permutation_parity
 
