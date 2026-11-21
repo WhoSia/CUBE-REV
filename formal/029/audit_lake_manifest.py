@@ -164,6 +164,15 @@ def check():
         assert claim in hall_script, f'Missing graph-Hall independent gate: {claim}'
     assert 'audit_r029_hall_burnside_graph_quotient.py' in workflow, (
         'Actual read-only CI must run the graph quotient and Hall mutations')
+    gauge_script=(ROOT.parents[1]/'scripts/cuberev-observation/audit_r029_gauge_counterexample.py').read_text()
+    for checkpoint in ('build_legal_edge_word','is_edge_flip_even',
+                       'normalized_sign_with_alternate_gauge',
+                       'incorrectly_recovered!=original_sign',
+                       'correctly_recovered==original_sign'):
+        assert checkpoint in gauge_script, (
+            f'Missing physical-edge gauge-loss negative control: {checkpoint}')
+    assert 'audit_r029_gauge_counterexample.py' in workflow, (
+        'Read-only CI must replay a legal-edge gauge-forgetting counterexample')
     return {'status':'PASS','lean_modules':len(names),
             'import_edges':sum(map(len,imports.values())),
             'primary_theorems_in_default_build':True,
