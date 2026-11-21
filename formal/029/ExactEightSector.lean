@@ -30,8 +30,9 @@ theorem exact_eight_sector_trace_length {S Q R : Type} [DecidableEq R]
     (graph : Array (FrozenInstruction Q R Unit))
     (observe : S → Q → R) (sign : S → Bool)
     (root : Nat) (belief : List S) (state : S) :
-    ((exactEightSectorPolicy fallback graph observe sign root belief)
-      .transcript observe state).length = 8 := by
+    (Policy.transcript observe state
+      (exactEightSectorPolicy fallback graph observe sign root belief)).length =
+        8 := by
   exact Policy.padToExact_transcript_length fallback observe state
     (compileSectorDecoder graph observe sign 8 root belief).property
 
