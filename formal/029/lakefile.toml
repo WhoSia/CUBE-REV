@@ -1,6 +1,6 @@
 name = "CubeRev029"
 version = "0.1.0"
-defaultTargets = ["AdaptiveLowerBound", "EighteenReadData", "NineteenReadData", "ResidualWord", "ResidualLift", "ResidualDecidable", "SemanticGraph", "SemanticInput", "RootCoordinates", "FaceTurns", "EdgeSorting", "PhysicalEdgeWords", "EdgeOperations", "EdgeFlips", "SolvedCornerReachable", "PhysicalObservation", "ProbeRouteWords", "JointProbeRouting", "NineteenSector", "PhysicalPolicyCompiler", "PhysicalPolicyCompilerFast", "CornerPairDecoder", "NineteenSchedule"]
+defaultTargets = ["AdaptiveLowerBound", "EighteenReadData", "NineteenReadData", "ResidualWord", "ResidualLift", "ResidualDecidable", "SemanticGraph", "SemanticInput", "RootCoordinates", "FaceTurns", "EdgeSorting", "PhysicalEdgeWords", "EdgeOperations", "EdgeFlips", "SolvedCornerReachable", "PhysicalObservation", "ProbeRouteWords", "JointProbeRouting", "NineteenSector", "PhysicalPolicyCompiler", "PhysicalPolicyCompilerFast", "CornerPairDecoder", "NineteenSchedule", "CornerTurnGenerators"]
 
 [[lean_lib]]
 name = "AdaptiveLowerBound"
@@ -70,3 +70,6 @@ name = "CornerPairDecoder"
 
 [[lean_lib]]
 name = "NineteenSchedule"
+
+[[lean_lib]]
+name = "CornerTurnGenerators"
