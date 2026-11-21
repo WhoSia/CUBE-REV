@@ -101,3 +101,31 @@ This calculation is **not** a complete kernel proof of the cocycle formula. An e
 - Full upper-bound closure still requires interpreting every representative's 8-read tree in Lean and proving physical nineteen-frame recovery. The strong eighteen-frame obstruction remains independently certified.
 
 **Original mathematical context:** [Cameron (1999), *Permutation Groups*](https://drive.google.com/file/d/14WWOUzTUy7PVuFcrvr5cnX0O2Fsfxqif/view) and [Seress (2003), *Permutation Group Algorithms*](https://drive.google.com/file/d/1kUj3ajt6Fq_O8S9omgyUEHnbTAazItne/view), alongside the present CUBE-REV AL sign-character theorem. Standard cocycle/homomorphism facts are not claimed as new discoveries; the exact sensor-specific 24-orbit gauge hazard is the new audit finding.
+
+## 7. AV extension: 9,984 real ordered-gauge covariance checks
+
+The previous one-witness gauge-forgetting negative control has been extended
+**without changing the frozen 52-root policy or certificate bytes**.
+`scripts/cuberev-observation/audit_r029_gauge_counterexample.py` now builds
+one legal oriented 12-edge array for each of the 52 canonical feasible
+first-color histograms, applies four distinct fixed permutations of its eleven
+initial edge positions, then applies each of the 48 allowed opposite-color-pair
+relabelings. For each of the `52 × 4 × 48 = 9,984` cases, it independently
+checks complete piece uniqueness, even total edge flips, and the exact
+combined position-sort/color-relabeling sign identity. An incorrect retained
+gauge still produces the existing concrete false-sign negative control.
+
+The check is intentionally **not** exhaustive over every original legal edge
+permutation or every possible ordered eleven-color string. It provides
+independent regression coverage of four first-eleven orderings per
+representative, with 48 gauge maps each; extending this to all permutations
+or proving it universally in Lean is a separate obligation. Edge arrays
+are physically compatible with some legal cube corner permutation of the
+corresponding parity, but the script does not construct and replay that
+complete corner arrangement.
+
+- [Source audit commit](https://github.com/WhoSia/CUBE-REV/commit/5a9f006658c11515f8626168b6a3d9b90e036f8c)
+- [Read-only CI integration](https://github.com/WhoSia/CUBE-REV/commit/2774976cba343f3a82680f470c07389025c6e163)
+- [Run #44912274902](https://github.com/WhoSia/CUBE-REV/actions/runs/44912274902): the dedicated 9,984-case audit step passed. Overall workflow completion must be read independently; step success alone is not a claim of overall success.
+
+**Next exact proof task:** derive the sign relation for *arbitrary* `EdgeSlotOrder` and 48-color automorphism (rather than only four concrete orders), then connect that retained witness to the actual eleven-color prefix routing and sign-dependent terminal decoder. An unconditional `Fits 19` physical theorem remains open.
