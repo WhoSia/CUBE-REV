@@ -12,7 +12,7 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter'
 }
 
 
@@ -34,7 +34,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -117,6 +117,16 @@ def check():
     for need in ('inverse_color_table_restores_oriented_edge',
                  'transportPairedPolicy_run', 'transportPairedPolicy_fits'):
         assert need in roundtrip, f'Incomplete exact inverse policy proof: {need}'
+    character = (ROOT/'ColorGraphCharacter.lean').read_text()
+    for theorem in ('every_symmetry_permutes_opposite_pairs',
+                    'induced_edge_sign_is_three_pair_sign',
+                    'color_generators_are_valid_symmetries',
+                    'cayley_six_steps_cover_all_color_symmetries'):
+        assert f'theorem {theorem}' in character, f'Missing group character theorem: {theorem}'
+        assert f'#print axioms {theorem}' in character, f'Missing group character axiom report: {theorem}'
+    assert character.count('decide +kernel') >= 4, (
+        'Graph character and Cayley certificates must use kernel computation')
+    assert 'native_decide' not in character, 'Graph character cannot rely on native_decide'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
