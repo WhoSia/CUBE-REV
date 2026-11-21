@@ -65,8 +65,8 @@ existence or a pair of externally supplied functions. -/
 def slotOrderFromAdjacentTrace : List Nat → EdgeSlotOrder
   | [] => identityEdgeSlotOrder
   | i :: rest =>
-      composeEdgeSlotOrders (slotOrderFromAdjacentTrace rest)
-        (adjacentTwelveSlotOrder i)
+      composeEdgeSlotOrders (adjacentTwelveSlotOrder i)
+        (slotOrderFromAdjacentTrace rest)
 
 theorem slot_order_from_adjacent_trace_round_trip
     (path : List Nat) (i : Fin 12) :
