@@ -12,7 +12,7 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry'
 }
 
 
@@ -34,7 +34,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -78,6 +78,19 @@ def check():
         assert f'#print axioms {theorem}' in word_transport, f'Missing axiom audit: {theorem}'
     for necessary in ('complete.map', 'symmetry_even_flip_offset', 'symmetry_preserves_oriented_edge_colors'):
         assert necessary in word_transport, f'Missing cubie legality or observation bridge: {necessary}'
+    legal_transport = (ROOT/'LegalEdgeSymmetry.lean').read_text()
+    for theorem in ('every_symmetry_is_an_edge_type_permutation',
+                    'symmetry_relabels_any_complete_edge_permutation',
+                    'complete_word_oriented_addresses_in_range',
+                    'symmetry_relabels_word_observation_vector',
+                    'symmetry_preserves_both_edge_legality_conditions',
+                    'symmetry_relabels_both_edge_sticker_vectors'):
+        assert f'theorem {theorem}' in legal_transport, (
+            f'Missing whole-cube transport lemma: {theorem}')
+        assert f'#print axioms {theorem}' in legal_transport, (
+            f'Missing whole-cube transport axiom report: {theorem}')
+    assert 'symmetry_preserves_flipBit_for_all_complete_words' in legal_transport
+    assert 'every_symmetry_is_an_edge_type_permutation' in legal_transport
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
