@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "source_sha256": "bc71bd2be198768f5ae560e3bd0ed4cf00b8ba2cc2f37fccf11021da16a8bdb5",
+  "finite_single_corner_actions": 2304,
+  "physical_legal_turn_scrambles": 1500,
+  "composed_corner_sticker_checks": 2225232,
+  "scope": "Finite semantics cross-check only; full Lean compiler pass pending"
+}
