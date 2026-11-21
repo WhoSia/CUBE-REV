@@ -13,7 +13,7 @@ REQUIRED={
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
  'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance',
- 'SignedRepresentativePolicy','SignedPairedPosterior'
+ 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification'
 }
 
 
@@ -35,7 +35,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -163,6 +163,19 @@ def check():
                        'signed_representative_encode_injective'):
         assert checkpoint in signed_posterior, (
             f'Missing ordered signed posterior semantic gate: {checkpoint}')
+    terminal = (ROOT/'SignedTerminalIdentification.lean').read_text()
+    for theorem in ('exactly_one_iff_transported_belief',
+                    'signed_terminal_singleton_iff_after_any_history',
+                    'unconstrained_parity_tag_is_unobservable',
+                    'cannot_recover_an_independent_parity_oracle'):
+        assert f'theorem {theorem}' in terminal, (
+            f'Missing signed terminal theorem: {theorem}')
+        assert f'#print axioms {theorem}' in terminal, (
+            f'Missing terminal axiom print: {theorem}')
+    for item in ('beliefExactlyOne', 'Bool',
+                 'signed_paired_posterior_all_histories',
+                 'Policy.run_fixed_reply_equiv'):
+        assert item in terminal, f'No-free-parity model gate omitted: {item}'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
