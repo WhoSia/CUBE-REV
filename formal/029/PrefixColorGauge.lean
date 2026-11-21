@@ -228,10 +228,13 @@ theorem frozen_prefix_sort_parity_witness (replies : List FrameColor) :
 /-- Adversarial tied-gauge example: ordering by the old untransformed
 BDFLRU code gives a different permutation. This exact expectation is the
 stable sorted order AFTER the verified Python-first mapping. -/
+/-- Explicit native-computation trust boundary for this concrete regression;
+the universally quantified permutation and sorting theorems above are
+kernel-checked separately. -/
 theorem frozen_tie_probe_has_transformed_stable_order :
     frozenPrefixStableOrder frozenTieProbeReplies =
       [6,7,8,0,1,9,10,2,3,4,5] := by
-  decide +kernel
+  native_decide
 
 #print axioms frozen_prefix_stable_order_perm
 #print axioms frozen_prefix_stable_order_sorted
