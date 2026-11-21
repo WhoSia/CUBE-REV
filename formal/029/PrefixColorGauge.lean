@@ -331,8 +331,8 @@ theorem frozen_prefix_sign_correction_full_twelve_trace
   obtain ⟨path, routed, bounds, prefixParity, traceParity⟩ :=
     eleven_slot_trace_full_twelve_parity (frozenPrefixColorRank replies)
   refine ⟨path, routed, bounds, ?_⟩
-  have h := frozen_prefix_sign_correction_three_pair replies
-  unfold frozenPrefixSignCorrection at h
+  rw [frozen_prefix_sign_correction_three_pair replies]
+  rw [← prefixParity, ← traceParity]
   omega
 
 #print axioms frozen_prefix_sign_correction_full_twelve_trace
