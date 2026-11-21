@@ -13,7 +13,7 @@ REQUIRED={
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
  'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance',
- 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt'
+ 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt','TaggedNineteenRootPolicy'
 }
 
 
@@ -35,7 +35,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt','TaggedNineteenRootPolicy'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -322,6 +322,22 @@ def check():
                    'certifiedFrozenRoots immutableUpperSource',
                    'native_decide', 'certified_source_each_root_recovers'):
         assert anchor in frozen_52, f'Missing immutable exact 52-root link: {anchor}'
+    tagged=(ROOT/'TaggedNineteenRootPolicy.lean').read_text()
+    for theorem in ('first_eleven_tagged_count', 'first_eleven_tagged_values',
+                    'taggedContinuation_fits', 'taggedContinuation_run',
+                    'continuation_from_frozen_roots_fits',
+                    'eleven_then_frozen_fits_nineteen',
+                    'exact_nineteen_tagged_fits',
+                    'exact_nineteen_tagged_transcript_length',
+                    'eleven_then_frozen_run',
+                    'exact_nineteen_tagged_recovers_matching_actual_root'):
+        assert f'theorem {theorem}' in tagged, f'Missing nineteen-frame tagged theorem {theorem}'
+        assert f'#print axioms {theorem}' in tagged, f'Missing tagged nineteen-frame axiom check {theorem}'
+    for premise in ('FiftyTwoRootReceipt','matchingFrozenRoot',
+                    'exactEightSectorPolicy','Policy.withPrefix_run',
+                    'Policy.padToExact_transcript_length',
+                    'every_actual_frozen_root_recovers'):
+        assert premise in tagged, f'Missing frozen-root tagged proof premise: {premise}'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
