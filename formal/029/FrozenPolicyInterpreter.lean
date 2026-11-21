@@ -57,8 +57,9 @@ remaining observation budget is zero. -/
 theorem exact_leaf_at_zero_budget {Q R O : Type}
     (answer : O) :
     (compileFrozenPolicy
-      (#[FrozenInstruction.finish answer]) 0 0).val =
-        Policy.stop (some answer) := by
+      (#[FrozenInstruction.finish answer] :
+        Array (FrozenInstruction Q R O)) 0 0).val =
+        (Policy.stop (some answer) : Policy Q R (Option O)) := by
   rfl
 
 /-- A graph with no certificate node cannot return a fabricated candidate,
