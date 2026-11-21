@@ -179,6 +179,36 @@ The theorem `frozen_prefix_sign_correction_three_pair` identifies the correction
 
 **Status and limitations:** Source changes [bec6079](https://github.com/WhoSia/CUBE-REV/commit/bec60795ccdada01b22d0f50adaf67f46521e225) and [ae7b05f](https://github.com/WhoSia/CUBE-REV/commit/ae7b05f5d1ea2a48b57add62f50cfa747fee93be) must pass their exact-commit Lean CI before formal acceptance. The list-based output still requires a verified extension to the complete twelve-edge `EdgeSlotOrder` and a proof that the actual 52 frozen branches are transported without loss for every feasible ordered transcript. We are repairing the normalization *definition* rather than announcing the entire 19-frame upper-bound proof.
 
+## BA — Twelve-slot trace parity and a constructive inverse coordinate adapter
+
+The crucial difference between the eleven colors acquired in the fixed prefix and the twelve *positions* of the physical edge array is no longer relegated to an informal “append the unread edge” remark. The [Lean position-sort library](../../formal/029/EdgeSorting.lean) now introduces `eleven_slot_trace_full_twelve_parity` for an arbitrary observation-color function. It asserts the existence of an in-bounds adjacent-transposition trace that takes the full twelve-slot identity order to the actual sorted eleven-position order **followed by the unchanged twelfth slot**, and establishes that the trace-length parity agrees with the full twelve-position inversion parity and the original eleven-position parity. The theorem is a universal swap/position statement: it does not assume that the input color history is physically realizable, nor that the unread edge color has been observed.
+
+The existing `frozenPrefixStableOrder` computes the eleven-slot order on **gauge-transformed** colors ranked by the frozen `URFDLB` collation, rather than directly on their internal `BDFLRU` codes. The additional `frozen_prefix_sign_correction_full_twelve_trace` is intended to strengthen the parity bridge by stating, for each actual received prefix transcript, that the frozen combined correction is exactly
+
+\[
+\epsilon(\mathrm{prefix}) =
+\Big(\lvert T\rvert + \operatorname{sgn}(\sigma_{\mathrm{pairs}})\Big)\bmod 2,
+\]
+
+where `T` is a bounded trace of **real permutations of the twelve positions**, with the twelfth unobserved position fixed, and `σ_pairs` is the induced permutation of the three opposite-color pairs. Neither term is an uncharged observation.
+
+A separate addition to [RepresentativeRoundTrip.lean](../../formal/029/RepresentativeRoundTrip.lean), `slotOrderFromAdjacentTrace`, composes actual bijective adjacent transpositions on `Fin 12` and takes its inverse from the resulting `Equiv`, thereby **constructing** the explicit `EdgeSlotOrder` fields and inverse proofs instead of accepting a pair of unverified functions. This is a concrete architectural advance toward replacing an abstract supplied order. However, a further compatibility theorem is still needed to prove that this `Fin 12` coordinate permutation is pointwise equal to the output-index pullback of the list-sorting trace, as well as the exact frozen `route_info` slot adapter. Constructing a bijection is not by itself proof of *which* bijection the frozen policy uses.
+
+**Proof acceptance and disclosure.** The new BA statements must be accepted only after the exact-source Lean CI run (including `#print axioms`) succeeds. The generic theorems are separate from the intentionally disclosed `native_decide` dependence in one concrete merge-sort tie fixture, and neither resolves the statewise reflection of all 52 frozen trees or the terminal corner sign.
+
+### BA reviewer-facing theorem hierarchy
+
+| Paper component | Lean interface | Remaining integration assumption |
+| --- | --- | --- |
+| Collision-safe canonicalization | `eleven_stable_slot_order_perm`, `eleven_stable_slot_order_sorted` | None about physical feasibility; applies to all color words |
+| Position sign on twelve slots | `eleven_slot_trace_full_twelve_parity` | Requires a verified full permutation-to-position-index correspondence before policy application |
+| Chosen frozen color gauge and sign character | `chosen_prefix_color_map_legal`, `chosen_prefix_gauge_sign_character` | Exact first-minimum tie rule and sector coverage, audited independently |
+| Signed correction | `frozen_prefix_sign_correction_full_twelve_trace` | Full original-state signed posterior bisimulation |
+| Inverse-capable position adapter | `slotOrderFromAdjacentTrace` | Show the adapter implements *this* stable trace and frozen source query translations |
+| Policy transport | `chosen_gauge_paired_transport_run` | Every 52-sector tree valid on all reachable posterior states, terminal sign obtained from observed corner clock |
+
+An eventual headline theorem must combine these with one `Fits 19` abstract policy before applying the already established physical-route compiler. These BA results narrow and clarify the handoff but are **not** an unconditional nineteen-frame identification theorem.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
