@@ -32,6 +32,8 @@ jobs:
         run: python3 formal/029/audit_lake_manifest.py
       - name: Independently check Hall–Burnside graph quotient and mutations
         run: python3 scripts/cuberev-observation/audit_r029_hall_burnside_graph_quotient.py
+      - name: Reject forgotten-gauge parity on an actual legal edge array
+        run: python3 scripts/cuberev-observation/audit_r029_gauge_counterexample.py
       - name: Compile pinned Lean package
         uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64
         with:
