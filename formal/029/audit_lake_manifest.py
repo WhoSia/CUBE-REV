@@ -11,7 +11,8 @@ REQUIRED={
  'PhysicalEighteen','EighteenCertified','EighteenDataReceipt',
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
- 'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation'
+ 'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
+ 'ReachableCornerIdentification'
 }
 
 
@@ -32,7 +33,8 @@ def check():
                        if line.startswith('import ')
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
-        if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation'):
+        if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
+                 'ReachableCornerIdentification'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     visiting=set();visited=set()
