@@ -1,5 +1,6 @@
 import PairedPolicyTransport
 import SymmetryInverse
+import EdgeSorting
 
 namespace CubeRev029.Nineteen
 
@@ -10,6 +11,44 @@ structure EdgeSlotOrder where
   left_inv : ∀ i, forward (backward i) = i
   right_inv : ∀ i, backward (forward i) = i
 
+
+/-- Each adjacent-position swap is a genuine bijection on all twelve
+edge slots. Out-of-range natural indices are mapped to the identity,
+so this remains total; certified normalization paths always stay within
+the first ten boundaries. -/
+def adjacentTwelveSlotEquiv (i : Nat) : Fin 12 ≃ Fin 12 :=
+  if hi : i + 1 < 12 then
+    Equiv.swap
+      (⟨i, by omega⟩ : Fin 12)
+      (⟨i + 1, hi⟩ : Fin 12)
+  else
+    Equiv.refl (Fin 12)
+
+/-- For a sequence of adjacent position swaps, compose the involutive
+index swaps in the same order as adjacent-list execution: when a new
+swap acts on the output list, its output-index pullback composes on
+the right. The result is a genuine invertible coordinate map. -/
+def twelveSlotEquivOfTrace : List Nat → Fin 12 ≃ Fin 12
+  | [] => Equiv.refl _
+  | i :: rest => (twelveSlotEquivOfTrace rest).trans
+      (adjacentTwelveSlotEquiv i)
+
+/-- No inverse mapping is postulated: both coordinate directions are
+obtained from the same executable permutation of twelve slot indices. -/
+def slotOrderFromAdjacentTrace (path : List Nat) : EdgeSlotOrder :=
+  let e := twelveSlotEquivOfTrace path
+  { forward := e
+    backward := e.symm
+    left_inv := e.right_inv
+    right_inv := e.left_inv }
+
+theorem slot_order_from_adjacent_trace_round_trip
+    (path : List Nat) (i : Fin 12) :
+    (slotOrderFromAdjacentTrace path).forward
+      ((slotOrderFromAdjacentTrace path).backward i) = i := by
+  exact (slotOrderFromAdjacentTrace path).left_inv i
+
+#print axioms slot_order_from_adjacent_trace_round_trip
 
 /-- A total decoder for representative-coordinate states. The modulo-24
 operation only supplies a default for arbitrary *invalid* representative
