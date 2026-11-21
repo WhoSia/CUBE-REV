@@ -114,18 +114,72 @@ def prefixGaugeHistogram (edgeReplies : List Nat)
     (sigma : List Nat) : List Nat :=
   Nineteen.counts (edgeReplies.map (fun c => sigma[c]!))
 
-/-- All candidates are proof-carrying members of the established 48-element
-color-symmetry family. Keeping the witness as a subtype prevents an
-unverified color relabeling from entering the continuation controller. -/
+/-- The frozen Python policy enumerates permutations of URFDLB,
+not permutations of the internal BDFLRU color-code indices. We map each
+image tuple back to an array indexed by the actual internal color code.
+This explicit enumeration order matters whenever multiple mappings tie
+for the lexicographically least representative histogram. -/
+def frozenRouteOrderedColorMaps : List (List Nat) :=
+  ((Nineteen.permutationsOf Nineteen.collation 6).map
+    (fun images => (List.range 6).map
+      (fun code => images[Nineteen.collation.idxOf code]!))).filter
+    (fun sigma => (List.range 6).all
+      (fun code =>
+        sigma[Nineteen.opposite code]! ==
+          Nineteen.opposite sigma[code]!))
+
+/-- Every reconstructed table is a member of the same finite 48-element
+opposite-pair-preserving color action already certified by Lean. -/
+theorem frozen_route_ordered_maps_legal :
+    ∀ sigma ∈ frozenRouteOrderedColorMaps,
+      sigma ∈ Nineteen.symmetries := by
+  decide +kernel
+
+theorem frozen_route_ordered_maps_have_48_members :
+    frozenRouteOrderedColorMaps.length = 48 := by
+  decide +kernel
+
+/-- Python's first enumeration candidate is the identity mapping. Hence
+starting the strict-improvement fold at identity reproduces the
+first-minimum tie rule of route_info, rather than preferring an
+arbitrarily positioned identity candidate at a later tie. -/
+theorem frozen_route_order_starts_with_identity :
+    frozenRouteOrderedColorMaps.head? = some (List.range 6) := by
+  decide +kernel
+
+/-- Each candidate carries a proof of membership in the allowed 48.
+The explicit URFDLB iteration order is essential to match the frozen
+route_info implementation on histograms with tied minimizers. -/
 def choosePrefixGauge (replies : List FrameColor) :
     {sigma : List Nat // sigma ∈ Nineteen.symmetries} :=
-  Nineteen.symmetries.attach.foldl
+  (frozenRouteOrderedColorMaps.attach.map
+    (fun candidate =>
+      (⟨candidate.val,
+        frozen_route_ordered_maps_legal candidate.val candidate.property⟩ :
+        {sigma : List Nat // sigma ∈ Nineteen.symmetries}))).foldl
     (fun best candidate =>
       if Nineteen.lexLess
           (prefixGaugeHistogram (replies.map Prod.fst) candidate.val)
           (prefixGaugeHistogram (replies.map Prod.fst) best.val)
       then candidate else best)
     ⟨List.range 6, by decide +kernel⟩
+
+/-- Concrete adversarial tie regression: color histogram
+(U,R,F,D,L,B) = (2,4,0,0,3,2). An internal-code ordered fold chooses a
+DIFFERENT legal mapping, whose combined parity can also change. The
+frozen-order selector must use the exact original route_info map. -/
+def frozenTieProbeReplies : List FrameColor :=
+  ([5,5,4,4,4,4,3,3,3,0,0] : List Nat).map (fun c => (c, 0))
+
+theorem frozen_tie_probe_selects_original_route_map :
+    (choosePrefixGauge frozenTieProbeReplies).val =
+      [3,5,4,2,0,1] := by
+  decide +kernel
+
+#print axioms frozen_route_ordered_maps_legal
+#print axioms frozen_route_ordered_maps_have_48_members
+#print axioms frozen_route_order_starts_with_identity
+#print axioms frozen_tie_probe_selects_original_route_map
 
 def chosenPrefixColorMap (replies : List FrameColor) : List Nat :=
   (choosePrefixGauge replies).val
