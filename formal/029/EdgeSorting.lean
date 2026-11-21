@@ -426,6 +426,44 @@ theorem eleven_slot_trace_fixes_unread_twelfth
 #print axioms eleven_slot_trace_fixes_unread_twelfth
 
 
+/-- The actual swap trace for a deterministic eleven-slot normalization
+is also a valid swap trace on all twelve edge positions, whose last position
+is fixed. Its inversion parity is the genuine FULL TWELVE-slot parity.
+This closes the potential discrepancy between 11-list parity bookkeeping
+and the 12-cubie sign convention of the frozen route_info algorithm. -/
+theorem eleven_slot_trace_full_twelve_parity (colorAt : Nat → Nat) :
+    ∃ path : List Nat,
+      adjTrace path (List.range 12) =
+        elevenStableSlotOrder colorAt ++ [11] ∧
+      (∀ i ∈ path, i < 10) ∧
+      parity (elevenStableSlotOrder colorAt ++ [11]) =
+        parity (elevenStableSlotOrder colorAt) ∧
+      path.length % 2 =
+        parity (elevenStableSlotOrder colorAt ++ [11]) := by
+  obtain ⟨path, routed, inRange, traceParity⟩ :=
+    eleven_slot_trace_fixes_unread_twelfth colorAt
+  have twelveRange : (List.range 11) ++ [11] = List.range 12 := by
+    decide +kernel
+  have fullRoute : adjTrace path (List.range 12) =
+      elevenStableSlotOrder colorAt ++ [11] := by
+    rw [← twelveRange]
+    exact routed
+  have bounds12 : ∀ i ∈ path, i + 1 < (List.range 12).length := by
+    intro i hi
+    have h := inRange i hi
+    simp only [List.length_range]
+    omega
+  have parityEq := adjTrace_parity path (List.range 12)
+    List.nodup_range bounds12
+  rw [fullRoute] at parityEq
+  have zero : parity (List.range 12) = 0 := by decide +kernel
+  rw [zero] at parityEq
+  refine ⟨path, fullRoute, inRange, ?_, ?_⟩ <;> omega
+
+#print axioms eleven_slot_trace_full_twelve_parity
+
+
+
 
 
 
