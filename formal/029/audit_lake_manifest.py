@@ -155,7 +155,12 @@ def check():
                   'hall_fast','independent_dp','burnside_fix_sum',
                   'odd_character_stabilizer_orbits','signed_histogram_orbits',
                   'signed_character_burnside','even_fix==2256',
-                  'unsafe_orbits,unsafe_vectors'):
+                  'unsafe_orbits,unsafe_vectors',
+                  'stable_sort_cocycle_checks','full_gauge_unsafe_orbits',
+                  'full_gauge_unsafe_vectors',
+                  'full_correction_signed_histogram_orbits',
+                  'full_correction_burnside','corrected_fixed_even',
+                  'signed_normalized_orbits'):
         assert claim in hall_script, f'Missing graph-Hall independent gate: {claim}'
     assert 'audit_r029_hall_burnside_graph_quotient.py' in workflow, (
         'Actual read-only CI must run the graph quotient and Hall mutations')
