@@ -225,12 +225,10 @@ theorem frozen_prefix_sort_parity_witness (replies : List FrameColor) :
       swaps.length % 2 = parity (frozenPrefixStableOrder replies) := by
   exact eleven_stable_slot_order_certified (frozenPrefixColorRank replies)
 
-/-- Adversarial tied-gauge example: ordering by the old untransformed
-BDFLRU code gives a different permutation. This exact expectation is the
-stable sorted order AFTER the verified Python-first mapping. -/
-/-- Explicit native-computation trust boundary for this concrete regression;
-the universally quantified permutation and sorting theorems above are
-kernel-checked separately. -/
+/-- Concrete tied-gauge fixture, after applying the Python-first
+URFDLB mapping rather than the raw internal BDFLRU order. The native
+computation receipt for this one fixed example is separated from the
+kernel-checked universal sorting and permutation theorems above. -/
 theorem frozen_tie_probe_has_transformed_stable_order :
     frozenPrefixStableOrder frozenTieProbeReplies =
       [6,7,8,0,1,9,10,2,3,4,5] := by
