@@ -47,9 +47,11 @@ theorem checkSignUnique_sound {S : Type} [DecidableEq S]
   have pair := allFinite_true_implies_every_member
     (fun b => decide (sign a ≠ sign b ∨ a = b))
     belief outer b hb
-  by_contra different
-  have notDiffSign : ¬sign a ≠ sign b := fun unequal => unequal same
-  simp [notDiffSign, different] at pair
+  by_cases equal : a = b
+  · exact equal
+  · have notDiffSign : ¬(sign a ≠ sign b) :=
+      fun unequal => unequal same
+    simp [notDiffSign, equal] at pair
 
 /-- A total, terminating, executable finite proof checker. It recurses
 on the actual remaining-read budget, not on arbitrary JSON graph
@@ -99,9 +101,11 @@ theorem checkFiniteSector_sound {S Q R : Type}
       | some instruction =>
           cases instruction with
           | finish value =>
-              change AtMostOnePerSign sign belief
-              apply checkSignUnique_sound
-              simpa [checkFiniteSector, found] using accepted
+              have leafCheck : checkSignUnique sign belief = true := by
+                simpa [checkFiniteSector, found] using accepted
+              have leafValid : AtMostOnePerSign sign belief :=
+                checkSignUnique_sound sign belief leafCheck
+              simpa only [StatewiseSectorValid, found] using leafValid
           | choose q child =>
               simp [checkFiniteSector, found] at accepted
           | padding q child =>
@@ -114,9 +118,11 @@ theorem checkFiniteSector_sound {S Q R : Type}
       | some instruction =>
           cases instruction with
           | finish value =>
-              change AtMostOnePerSign sign belief
-              apply checkSignUnique_sound
-              simpa [checkFiniteSector, found] using accepted
+              have leafCheck : checkSignUnique sign belief = true := by
+                simpa [checkFiniteSector, found] using accepted
+              have leafValid : AtMostOnePerSign sign belief :=
+                checkSignUnique_sound sign belief leafCheck
+              simpa only [StatewiseSectorValid, found] using leafValid
           | padding q child =>
               have nextValid : checkFiniteSector graph observe sign
                   n child belief = true := by
