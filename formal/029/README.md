@@ -172,3 +172,54 @@ The historic eighteen-frame physical lower theorem remains the first
 contribution. Keep the T-version claim order, the U-version physical lower
 proof, and the independently corrected W-version worked example separate
 until the complete upper-bound composition is checked.
+
+## 2026-11-21 AC–AE — pinned successful compilation and exact remaining bridge
+
+The older Z and AB notes above describe their historical verification state.
+Current evidence supersedes their *pending build* status:
+
+- **AB correction:** `NineteenCornerTranscript.lean` initially failed
+  in a purely syntactic/numeric normalization of `24 + (3*i+1)` versus
+  `(24+3*i)+1`. Commit `52d14805786782d1a4941066d1449b52c1def55b`
+  added `Nat.add_assoc`. The ensuing module and its kernel axiom printouts
+  passed in the pinned CI.
+- **AC:** `ObservationTransport.lean` proves a generic adaptive policy
+  transport under response equivariance, representative correctness and
+  round-trip inversion, preserving the worst-case query budget. Both its
+  main theorem and fixed-reply congruence theorem report **no axioms**.
+  No cube-specific universal 52-representative witness is supplied by this
+  theorem.
+- **AD:** `ElevenPrefix.lean` records the actual first eleven simultaneous
+  original-coordinate edge/corner addresses, proves ordered-history
+  semantics for a continuation chosen after the prefix, and proves
+  `11 + 8 = 19` at the `Fits` predicate level for an eight-frame
+  continuation valid on every possible reply vector.
+- **AE:** `NineteenSymmetry.lean` defines the map induced by all 48
+  opposite-color-preserving center relabelings on twelve edge types
+  and 24 oriented edge identities. Three **kernel-computed** finite theorems
+  establish in-range bijection on the twelve types, even total flip offset
+  and equivariance of both sticker-color responses. All three
+  have `#print axioms` dependencies limited to standard Lean axioms
+  `propext`, `Classical.choice`, `Quot.sound`; none contains
+  `sorryAx` or `native_decide.ax`.
+
+**Complete pinned CI run:** [#44888672661](https://github.com/WhoSia/CUBE-REV/actions/runs/44888672661),
+**SUCCESS**, including 4 preflight audits, Lake compilation, the pinned
+certificate replay with mutation controls, and individual Lean/axiom checks.
+Build steps are read-only: no GitHub Actions bot commits or authorship.
+
+The **still-open main result** is an unconditional `Fits 19` policy whose
+behavior on *every* reachable cube equals the initial state. The 52 frozen
+representatives need complete formal policy reification, every ordered
+eleven-color prefix needs a proven invertible canonical transport, parity
+correction needs to be connected to the terminal corner observations, and
+the entire construction must be combined with
+`physical_nineteen_of_abstract_bounded`. None of the AC–AE lemmas alone
+supplies these missing cube-specific witnesses.
+
+**Important trust distinction:** the earlier eighteen-read lower-bound
+certificate uses `native_decide` and displays corresponding native-decision
+axiom dependencies. The new transport theorem is axiom-free; the AE finite
+symmetry results use only kernel computation with standard logical axioms.
+Do not collapse these into a single unsupported phrase such as
+"fully kernel verified."
