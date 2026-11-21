@@ -1,6 +1,7 @@
 import PhysicalPolicyCompiler
 import ElevenPrefix
 import EdgeSorting
+import NineteenSymmetry
 
 namespace CubeRev029.Physical
 
@@ -104,6 +105,57 @@ theorem observed_paired_prefix_sorted (initial : Coloring) :
 #print axioms actual_prefix_transcript_determines_stable_order
 #print axioms paired_prefix_run_uses_only_received_eleven_replies
 #print axioms observed_paired_prefix_sorted
+
+/-- The histogram resulting from applying a legal color table to the
+actual first-eleven edge answers. Each candidate is one of the 48 allowed
+opposite-color-pair symmetries, not a physical cube rotation. -/
+def prefixGaugeHistogram (edgeReplies : List Nat)
+    (sigma : List Nat) : List Nat :=
+  Nineteen.counts (edgeReplies.map (fun c => sigma[c]!))
+
+/-- All candidates are proof-carrying members of the established 48-element
+color-symmetry family. Keeping the witness as a subtype prevents an
+unverified color relabeling from entering the continuation controller. -/
+def choosePrefixGauge (replies : List FrameColor) :
+    {sigma : List Nat // sigma ∈ Nineteen.symmetries} :=
+  Nineteen.symmetries.attach.foldl
+    (fun best candidate =>
+      if Nineteen.lexLess
+          (prefixGaugeHistogram (replies.map Prod.fst) candidate.val)
+          (prefixGaugeHistogram (replies.map Prod.fst) best.val)
+      then candidate else best)
+    ⟨List.range 6, by decide +kernel⟩
+
+def chosenPrefixColorMap (replies : List FrameColor) : List Nat :=
+  (choosePrefixGauge replies).val
+
+theorem chosen_prefix_color_map_legal (replies : List FrameColor) :
+    chosenPrefixColorMap replies ∈ Nineteen.symmetries :=
+  (choosePrefixGauge replies).property
+
+/-- The *observed* prefix fixes an allowed relabeling. In particular the
+candidate map preserves every oriented edge sticker response, and its
+orientation offsets sum to an even number. The exact signed sorting
+cocycle and representative-tree statewise correctness remain separate. -/
+theorem chosen_prefix_gauge_edge_equivariant (replies : List FrameColor) :
+    ∀ edge : Fin 24, ∀ side : Bool,
+      Nineteen.sticker
+          (Nineteen.relabeledOrientedEdge (chosenPrefixColorMap replies) edge)
+          side =
+        (chosenPrefixColorMap replies)[Nineteen.sticker edge.val side]! := by
+  exact Nineteen.symmetry_preserves_oriented_edge_colors
+    (chosenPrefixColorMap replies) (chosen_prefix_color_map_legal replies)
+
+theorem chosen_prefix_gauge_even_flip_offset (replies : List FrameColor) :
+    (((List.range 12).map
+      (Nineteen.relabeledEdgeSwap (chosenPrefixColorMap replies))).sum % 2) = 0 := by
+  exact Nineteen.symmetry_even_flip_offset
+    (chosenPrefixColorMap replies) (chosen_prefix_color_map_legal replies)
+
+#print axioms chosen_prefix_color_map_legal
+#print axioms chosen_prefix_gauge_edge_equivariant
+#print axioms chosen_prefix_gauge_even_flip_offset
+
 
 
 #print axioms observed_first_eleven_edge_color_count
