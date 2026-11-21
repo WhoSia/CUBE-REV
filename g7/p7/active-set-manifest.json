@@ -143,6 +143,7 @@
     ".github/workflows/cuberev-028-active-observation.yml",
     ".github/workflows/cuberev-028-exchange-color-audit.yml",
     ".github/workflows/cuberev-028-independent-p48-mitm.yml",
+    ".github/workflows/cuberev-legacy-code-custody-one-shot.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
     ".github/workflows/cuberev-r14-p5-observation-equivariance.yml",
     ".github/workflows/cuberev-r14-p51-p48-root-orbits.yml",
@@ -5836,5 +5837,11 @@
     ],
     "retired_history_zip_id": "1KNVij3D3DQDicKoJ_rNSBl5aKJMuPMVQ",
     "proof_scope": "Real paired-frame eleven-slot deterministic stable order and parity witness, no total physical 19-policy claim"
+  },
+  "active_set_reconciliation_20261122_legacy_code_preseal": {
+    "added": [
+      ".github/workflows/cuberev-legacy-code-custody-one-shot.yml"
+    ],
+    "policy": "Read-only, one-shot 42-source preseal; retire only after exact Drive readback"
   }
 }
