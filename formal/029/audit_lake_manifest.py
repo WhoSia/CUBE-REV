@@ -6,7 +6,7 @@ from pathlib import Path
 import tomllib
 
 ROOT=Path(__file__).resolve().parent
-EXTERNAL={'Lean','Std'}
+EXTERNAL={'Lean','Std','Init.Data.List.Sort.Lemmas'}
 REQUIRED={
  'PhysicalEighteen','EighteenCertified','EighteenDataReceipt',
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
