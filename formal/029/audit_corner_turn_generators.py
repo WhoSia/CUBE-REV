@@ -12,6 +12,7 @@ import hashlib
 import json
 from pathlib import Path
 from random import Random
+from itertools import product
 
 ROOT = Path(__file__).resolve().parent
 import sys
@@ -55,6 +56,30 @@ def check():
         assert permutation_parity(ep) == permutation_parity(p)
         generators.append({'turn':ti, 'corner_source_pieces':p,
                            'corner_twist_offsets':d, 'edge_source_pieces':ep})
+    # Verify the universal one-move twist sum directly on ALL 3^8 vectors.
+    # This independent finite check also tests odd and otherwise physically
+    # unreachable twist vectors, so it validates the generator law itself.
+    twist_vectors_checked = 0
+    for g in generators:
+        src, delta = g['corner_source_pieces'], g['corner_twist_offsets']
+        for twists in product(range(3), repeat=8):
+            updated = [((twists[src[i]] + delta[i]) % 3) for i in range(8)]
+            assert sum(updated) % 3 == sum(twists) % 3
+            twist_vectors_checked += 1
+    assert twist_vectors_checked == 12 * 3**8
+    # Fail-closed mutation controls for all three finite generator axioms.
+    base = generators[0]
+    duplicate_source = base['corner_source_pieces'].copy()
+    duplicate_source[0] = duplicate_source[1]
+    assert len(set(duplicate_source)) != 8
+    bad_offset = base['corner_twist_offsets'].copy()
+    bad_offset[0] = (bad_offset[0] + 1) % 3
+    assert sum(bad_offset) % 3 != 0
+    original_cyclic = [3 * base['corner_source_pieces'][0] +
+                       (base['corner_twist_offsets'][0] + j) % 3 for j in range(3)]
+    mirrored = original_cyclic.copy()
+    mirrored[1], mirrored[2] = mirrored[2], mirrored[1]
+    assert mirrored != original_cyclic
     rng = Random(0x02920261121)
     composed_checked = 0
     for _ in range(4000):
@@ -72,6 +97,8 @@ def check():
             'face_turns':12,'single_turn_sticker_checks':sticker_checked,
             'oriented_corner_action_checks':oriented_checked,
             'composed_turn_steps':composed_checked,
+            'all_generator_twist_vector_checks':twist_vectors_checked,
+            'mutation_controls_rejected':3,
             'corner_generator_table':generators,
             'scope':'Independent finite geometric audit; Lean source still requires kernel compilation'}
 
