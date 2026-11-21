@@ -163,6 +163,22 @@ The proof uses the actual previous kernel statements `inverse_color_table_is_sym
 
 The manuscript should place this result under **correctness of coordinate adapters**, before the final policy theorem. The exact Lean workflow SHA and complete outcome, rather than an earlier passing run, are mandatory before claiming compilation acceptance.
 
+## AZ route_info-order correction: the vital distinction between raw and normalized color ranks
+
+**Identified mismatch and repair.** The old `prefixTranscriptStableOrder` is a mathematically correct canonicalization of eleven *original-code* colors. It is **not** the position permutation used by the published certificate's Python `route_info`, which sorts the *gauge-transformed* replies in the frozen `URFDLB` collation order. The Lean internal color codes are ordered `BDFLRU`. Even an entirely valid `List.Pairwise` proof for the old comparator would not justify substituting its parity into the certificate's signed terminal decoder.
+
+The revised formal interface therefore distinguishes three objects:
+
+1. `chosenPrefixColorMap transcript`: one 48-family color automorphism selected deterministically from the received eleven paired responses, using the Python-compatible first-minimum tie rule;
+2. `frozenPrefixStableOrder transcript`: the stable permutation of eleven unique position IDs under the ranks `Nineteen.collation.idxOf ((chosen map)[observed color]!)`, which is the **transformed URFDLB** ordering used in `route_info`;
+3. `frozenPrefixSignCorrection transcript`: the sum modulo two of the *actual transformed eleven-position order's* inversion parity and the selected color automorphism's induced twelve-edge-label parity.
+
+Lean proves the new position order is a permutation and lexicographically sorted under the transformed comparator and admits a parity-correct adjacent-swap witness. A concrete tied-gauge adversarial transcript `[U,U,R,R,R,R,L,L,L,B,B]` is expected to give the selected table `[3,5,4,2,0,1]` (indexed by internal color code) and corrected position order `[6,7,8,0,1,9,10,2,3,4,5]`. The executable expectation is captured by `frozen_tie_probe_has_transformed_stable_order`; the earlier tie-map theorem remains a separate check.
+
+The theorem `frozen_prefix_sign_correction_three_pair` identifies the correction using either the induced permutation on all twelve edge types or the induced permutation on three opposite-color blocks, via the earlier `induced_edge_sign_is_three_pair_sign` character identity. The correction depends on **past observed colors and chosen gauge only**, not a free corner-parity oracle.
+
+**Status and limitations:** Source changes [bec6079](https://github.com/WhoSia/CUBE-REV/commit/bec60795ccdada01b22d0f50adaf67f46521e225) and [ae7b05f](https://github.com/WhoSia/CUBE-REV/commit/ae7b05f5d1ea2a48b57add62f50cfa747fee93be) must pass their exact-commit Lean CI before formal acceptance. The list-based output still requires a verified extension to the complete twelve-edge `EdgeSlotOrder` and a proof that the actual 52 frozen branches are transported without loss for every feasible ordered transcript. We are repairing the normalization *definition* rather than announcing the entire 19-frame upper-bound proof.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
