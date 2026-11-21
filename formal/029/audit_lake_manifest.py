@@ -344,7 +344,8 @@ def check():
                     'exact_nineteen_paired_roots_fits',
                     'exact_nineteen_paired_roots_corner_addresses',
                     'exact_nineteen_paired_roots_run',
-                    'final_corner_sticker_is_nineteenth_paired_read'):
+                    'final_corner_sticker_is_nineteenth_paired_read',
+                    'exact_nineteen_paired_recovers_matching_actual_root'):
         assert f'theorem {theorem}' in clock, f'Missing charged-corner clock theorem {theorem}'
         assert f'#print axioms {theorem}' in clock, f'Missing paired-clock axiom audit {theorem}'
     for anchor in ('cornerFrameAddresses', 'taggedPairedObserve',
