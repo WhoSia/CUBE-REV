@@ -228,7 +228,7 @@ theorem frozen_prefix_sort_parity_witness (replies : List FrameColor) :
 /-- Concrete tied-gauge regression: reuse the kernel-checked color map,
 then run one explicitly native-checked merge-sort evaluation. The
 underlying universal permutation, sorting and swap-parity lemmas use
-kernel proofs; this finite fixture's native axiom is disclosed by
+kernel proofs; this finite fixture's native trust dependency is disclosed by
 #print axioms and is not used as a universal premise. -/
 theorem frozen_tie_probe_has_transformed_stable_order :
     frozenPrefixStableOrder frozenTieProbeReplies =
