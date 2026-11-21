@@ -283,6 +283,30 @@ theorem chosen_prefix_gauge_sign_character (replies : List FrameColor) :
   exact Nineteen.induced_edge_sign_is_three_pair_sign
     (chosenPrefixColorMap replies) (chosen_prefix_color_map_legal replies)
 
+/-- The exact executable correction convention of the frozen route_info:
+the sign of the normalized eleven-slot order PLUS the induced 12-edge
+piece-label permutation parity. The input is the already received pair
+transcript, with neither a future observation nor a free corner sign. -/
+def frozenPrefixSignCorrection (replies : List FrameColor) : Nat :=
+  (parity (frozenPrefixStableOrder replies) +
+    parity (Nineteen.inducedTwelveEdgePermutation
+      (chosenPrefixColorMap replies))) % 2
+
+/-- The new executable correction can be computed equivalently from only
+the three opposite-color-pair blocks, using the previously verified
+48-symmetry sign character. The sorted order here is the TRANSFORMED
+URFDLB order, not a raw BDFLRU-code sort. -/
+theorem frozen_prefix_sign_correction_three_pair (replies : List FrameColor) :
+    frozenPrefixSignCorrection replies =
+      (parity (frozenPrefixStableOrder replies) +
+        parity (Nineteen.inducedThreePairPermutation
+          (chosenPrefixColorMap replies))) % 2 := by
+  unfold frozenPrefixSignCorrection
+  rw [chosen_prefix_gauge_sign_character replies]
+
+#print axioms frozen_prefix_sign_correction_three_pair
+
+
 /-- If two original cube states return exactly the same eleven initial
 edge colors at the paired addresses, they select identical color gauges,
 irrespective of the corner transcripts or subsequent queries. -/
