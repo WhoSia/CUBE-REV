@@ -59,7 +59,7 @@ theorem Policy.padToExact_transcript_length {S Q R O : Type}
     (fallback : Q) (observe : S → Q → R) (state : S)
     {n : Nat} {tree : Policy Q R O}
     (bounded : Fits n tree) :
-    (tree.padToExact fallback n).transcript observe state |>.length = n := by
+    ((tree.padToExact fallback n).transcript observe state).length = n := by
   induction bounded with
   | stop n output =>
       induction n with
