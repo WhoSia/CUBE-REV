@@ -237,3 +237,32 @@ Do not collapse these into a single unsupported phrase such as
 **Unclosed full upper theorem:** canonicalize *every ordered* eleven-color reply using a retained map and slot-order witness; prove stable-sort sign correction in generic Lean permutation algebra; reify 52 representative eight-read decision trees including all feasible replies and terminal corner parity; and instantiate `physical_nineteen_of_abstract_bounded` with an unconditional `Fits 19` policy recovering every reachable initial cube.
 
 **Custody:** the source-current [GitHub proof-debt and referee review](../../docs/0.29/20261121_AQ4_ADVERSARIAL_REFEREE_ACCEPTANCE_MATRIX.md), [Drive-owned mathematical books / missing-edition ledger](../../docs/0.29/20261121_AM1_DRIVE_SOURCES_MISSING_EDITION_LEDGER.md), and [Notion CUBE-REV 42](https://app.notion.com/p/41fef561cf92819abc3cf36da389d5e9) preserve the exact distinction between current proofs, executable certificates and still-open claims.
+
+## 2026-11-21 AS: all candidate-sector semantics, finite quantifier reduction and exact 8-read parity release
+
+**Pinned proof gate:** [GitHub Actions #44903796513 — FULL SUCCESS](https://github.com/WhoSia/CUBE-REV/actions/runs/44903796513), containing all **54 mandatory Lean libraries**. The report replays the independent lower/upper data checkers and prints each new theorem's actual axiom dependencies. It does **not** establish an unconditional nineteen-frame upper policy.
+
+New package modules and exactly verified scope:
+
+| New theorem source | Strongest proved implication | `#print axioms` and boundary |
+| --- | --- | --- |
+| `SignedSectorLeaf.lean` | AtMostOnePerSign for a finite sector ⇒ the correct-sign decoder returns exactly each candidate and never invents one | `propext`; sign itself is an external **terminal** argument |
+| `SectorSemanticCompiler.lean` | Correct reply-fiber filtering, fail-closed typed graph with `Fits budget`; `SemanticallyValidSector` ⇒ each feasible original candidate is recovered by the returned sign-indexed decoder | Main theorem `propext, Quot.sound`; actual 52 roots not yet instantiated |
+| `FrozenJsonSectorParser.lean` | `leaf/read/repeat` JSON grammar converts to typed instructions; malformed nodes rejected, missing replies map to an invalid node, valid typed graph always has bounded policy | Standard `propext, Classical.choice, Quot.sound`; parser correctness does not imply graph's semantic success |
+| `SectorStatewiseValidity.lean` | **For every finite belief and all budgets**, `SemanticallyValidSector ↔ StatewiseSectorValid`, replacing all-reply quantifiers by the replies that surviving candidate states can actually generate | `propext, Quot.sound`; no `native_decide.ax` |
+| `ExactBudgetPadding.lean` | Completing early leaf termination to exactly `n` real reads preserves original output, satisfies `Fits n` and produces **exactly n query/reply pairs** on every state | All three theorems **depend on no axioms** |
+| `ExactEightSector.lean` | **Exactly eight actual edge-continuation read frames**, total `Fits 8`, and sign-indexed decoder recovering each candidate **if** its finite statewise proof condition holds | `propext` for budget/length; `propext, Quot.sound` for terminal recovery |
+
+The `ExactBudgetPadding` construction specifically repairs a serious source-of-unsoundness risk: an adaptive edge policy that can stop early must **not** cut short the simultaneous corner measurements. The fourteenth distinct corner color may not be available until the nineteenth frame; padding each early stop by **actual** reads, ignoring only the irrelevant extra edge responses, leaves exactly eight physical continuation slots for the fixed corner schedule. A full physical end-to-end proof must still transport those corner colors and derive their sign at exactly the permitted time, not use a free parity bit while selecting queries.
+
+### Exact remaining proof gate (do not blur)
+
+The frozen `NineteenDataReceipt.lean` validates a large JSON checker result with `native_decide`. In contrast, the above **generic** Lean theorems have explicit premises `StatewiseSectorValid` / `SemanticallyValidSector`. The missing formal bridge is to **verify that premise for each and every actual pinned representative sector** using a mathematically sound executable checker and its proof of reflection `check = true → StatewiseSectorValid`. This can use the finite statewise quantifier reduction and the exact `NineteenReadData.sector` candidate generator; it should not recalculate all cube permutations from scratch.
+
+Then the only upper-specific obligations left are the actual deterministic normalization of every **ordered** first-eleven-color reply vector, the correct stable-sort **combined** color/position parity correction, the legal edge/corner sign coupling from **actually read** scheduled corners and the original-pose paired physical routing compiler. Until these are proved and assembled, the project must not call the full 19-frame attainable bound *unconditionally Lean-closed*.
+
+### Primary-literature and custody receipts
+
+Four correctly edited original-edition PDFs (Knuth 1991 Combinatorica, Babai 1981 Annals, Furst–Hopcroft–Luks 1980 IEEE FOCS, Tillquist et al. 2021 arXiv preprint) were ingested from Drive `00_INTAKE` into `10_PAPERS` after independent raw SHA-256 and page/edition verification; the folder was empty at post-move audit. [Original-byte custody](../../docs/0.29/20261121_AS0_00_INTAKE_FOUR_PRIMARY_SOURCE_CUSTODY.md). The **current missing-only count is five exact papers/editions**, not the prior eight; [current missing-only register](../../docs/0.29/20261121_AR0_MISSING_ONLY_DIRECT_DOWNLOAD_REGISTER.md).
+
+[AS24 exact causal timing and finite quantifier theorem](../../docs/0.29/20261121_AS24_STATEWISE_CHECK_AND_EXACT_PARITY_TIMING.md) · [AS English working-manuscript chapter](../../papers/0.29/20261121_AS_SIGN_DEFERRED_SECTOR_SEMANTICS_WORKING_CHAPTER.md) · [Notion CUBE-REV 44](https://app.notion.com/p/41fef561cf928180b2b2f4c66703f971).
