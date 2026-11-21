@@ -59,6 +59,7 @@ jobs:
           lake env lean "$PWD/ElevenPrefix.lean"
           lake env lean "$PWD/NineteenSymmetry.lean"
           lake env lean "$PWD/SymmetryWordTransport.lean"
+          lake env lean "$PWD/LegalEdgeSymmetry.lean"
           lake env lean "$PWD/NineteenSchedule.lean"
           lake env lean "$PWD/PhysicalEighteen.lean"
           lake env lean "$PWD/NineteenDataReceipt.lean"
