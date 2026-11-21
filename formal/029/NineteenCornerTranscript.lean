@@ -60,7 +60,7 @@ theorem same_scheduled_colors_implies_fourteen
     simpa [cornerSlot, cornerRawSlot] using eq
   · have eq := observed
         (⟨3 * i.val + 1, by have hi' := i.isLt; omega⟩ : Fin 24) members.2
-    simpa [cornerSlot, cornerRawSlot] using eq
+    simpa [cornerSlot, cornerRawSlot, Nat.add_assoc] using eq
 
 /-- For any two physically reachable cubes, equality of the actual nineteen
 corner replies alone already forces equality of *all* twenty-four corner
