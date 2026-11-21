@@ -12,7 +12,7 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport'
 }
 
 
@@ -34,7 +34,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -67,6 +67,17 @@ def check():
         assert f'#print axioms {theorem}' in symmetry, f'Missing axiom audit: {theorem}'
     assert symmetry.count('decide +kernel') >= 3, (
         'All finite symmetry proofs must be kernel-computed, not native_decide')
+    word_transport = (ROOT/'SymmetryWordTransport.lean').read_text()
+    for theorem in ('relabelEdgeValue_label',
+                    'relabelEdgeValue_flip',
+                    'relabelEdgeWord_labels',
+                    'relabelEdgeWord_flip_formula',
+                    'symmetry_preserves_flipBit_for_all_complete_words',
+                    'symmetry_relabelEdgeValue_responses'):
+        assert f'theorem {theorem}' in word_transport, f'Missing word-transport theorem: {theorem}'
+        assert f'#print axioms {theorem}' in word_transport, f'Missing axiom audit: {theorem}'
+    for necessary in ('complete.map', 'symmetry_even_flip_offset', 'symmetry_preserves_oriented_edge_colors'):
+        assert necessary in word_transport, f'Missing cubie legality or observation bridge: {necessary}'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
