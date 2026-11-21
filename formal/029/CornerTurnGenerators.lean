@@ -2,6 +2,9 @@ import NineteenSchedule
 
 namespace CubeRev029.Physical
 
+set_option maxRecDepth 16000
+set_option maxHeartbeats 0
+
 open Eighteen
 
 /-!
@@ -32,15 +35,11 @@ def cornerTurnTwist (t : Turn) (i : Fin 8) : Nat :=
   cornerTurnSource t i 0 % 3
 
 /-- Each of the eight destination corners gets one valid source corner. -/
-set_option maxRecDepth 16000 in
-set_option maxHeartbeats 0 in
 theorem corner_turn_source_bounded :
     ∀ t : Turn, ∀ i : Fin 8, cornerTurnPiece t i < 8 := by
   decide +kernel
 
 /-- No two destination corners can take the same original cubie. -/
-set_option maxRecDepth 16000 in
-set_option maxHeartbeats 0 in
 theorem corner_turn_source_injective :
     ∀ t : Turn, ∀ i j : Fin 8,
       cornerTurnPiece t i = cornerTurnPiece t j → i = j := by
@@ -48,8 +47,6 @@ theorem corner_turn_source_injective :
 
 /-- The three local stickers of a cubie stay in cyclic order. This rules out
 mirror-oriented triples, which cannot be encoded by an element of `Fin 24`. -/
-set_option maxRecDepth 16000 in
-set_option maxHeartbeats 0 in
 theorem corner_turn_cyclic :
     ∀ t : Turn, ∀ i : Fin 8, ∀ j : Fin 3,
       cornerTurnSource t i j =
@@ -64,8 +61,6 @@ def cornerTurnOffsetTotal (t : Turn) : Nat :=
     cornerTurnTwist t 4 + cornerTurnTwist t 5 +
     cornerTurnTwist t 6 + cornerTurnTwist t 7
 
-set_option maxRecDepth 16000 in
-set_option maxHeartbeats 0 in
 theorem corner_turn_zero_twist_offset :
     ∀ t : Turn, cornerTurnOffsetTotal t % 3 = 0 := by
   decide +kernel
@@ -91,8 +86,6 @@ def edgeTurnPieceList (t : Turn) : List Nat :=
 
 /-- Each geometric face turn changes the corner and edge permutation signs
 in precisely the same way. -/
-set_option maxRecDepth 16000 in
-set_option maxHeartbeats 0 in
 theorem edge_corner_turn_sign_agree :
     ∀ t : Turn, parity (cornerTurnPieceList t) =
       parity (edgeTurnPieceList t) := by
