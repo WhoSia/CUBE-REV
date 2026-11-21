@@ -51,7 +51,7 @@ theorem Policy.withPrefix_run {S Q R O : Type}
       (continuation (reversed.reverse ++ queries.map (observe state))).run
         observe state := by
   induction queries generalizing reversed with
-  | nil => rfl
+  | nil => simp [Policy.withPrefix]
   | cons query remaining ih =>
       change
         (Policy.withPrefix remaining
