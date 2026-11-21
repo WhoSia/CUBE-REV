@@ -189,6 +189,55 @@ theorem chosen_prefix_color_map_legal (replies : List FrameColor) :
     chosenPrefixColorMap replies ∈ Nineteen.symmetries :=
   (choosePrefixGauge replies).property
 
+/-- The executable rank used by the FROZEN Python route_info is the
+URFDLB collation rank of the color AFTER applying the selected gauge.
+It is not the original internal BDFLRU color code. -/
+def frozenPrefixColorRank (replies : List FrameColor) (i : Nat) : Nat :=
+  Nineteen.collation.idxOf
+    ((chosenPrefixColorMap replies)[(replies.map Prod.fst)[i]!]!)
+
+def frozenPrefixStableOrder (replies : List FrameColor) : List Nat :=
+  elevenStableSlotOrder (frozenPrefixColorRank replies)
+
+/-- The actual representative slot order for every eleven-pair reply
+vector is a genuine permutation of eleven distinct original positions. -/
+theorem frozen_prefix_stable_order_perm (replies : List FrameColor) :
+    (List.range 11).Perm (frozenPrefixStableOrder replies) := by
+  exact eleven_stable_slot_order_perm (frozenPrefixColorRank replies)
+
+/-- Sorting is by NORMALIZED color rank and original slot ID, exactly the
+two components required for the frozen route_info stable-sort parity. -/
+theorem frozen_prefix_stable_order_sorted (replies : List FrameColor) :
+    List.Pairwise
+      (fun i j => elevenSlotLexLE (frozenPrefixColorRank replies) i j = true)
+      (frozenPrefixStableOrder replies) := by
+  exact eleven_stable_slot_order_sorted (frozenPrefixColorRank replies)
+
+/-- The normalized, rather than raw-color, slot order admits a bounded
+adjacent-swap trace, whose parity is precisely the sorting correction.
+The 12th unobserved edge is not assigned a new measured color here. -/
+theorem frozen_prefix_sort_parity_witness (replies : List FrameColor) :
+    ∃ swaps : List Nat,
+      adjTrace swaps (List.range 11) = frozenPrefixStableOrder replies ∧
+      adjTrace swaps ((List.range 11).map (frozenPrefixColorRank replies)) =
+        (frozenPrefixStableOrder replies).map (frozenPrefixColorRank replies) ∧
+      (∀ i ∈ swaps, i < 10) ∧
+      swaps.length % 2 = parity (frozenPrefixStableOrder replies) := by
+  exact eleven_stable_slot_order_certified (frozenPrefixColorRank replies)
+
+/-- Adversarial tied-gauge example: ordering by the old untransformed
+BDFLRU code gives a different permutation. This exact expectation is the
+stable sorted order AFTER the verified Python-first mapping. -/
+theorem frozen_tie_probe_has_transformed_stable_order :
+    frozenPrefixStableOrder frozenTieProbeReplies =
+      [6,7,8,0,1,9,10,2,3,4,5] := by
+  decide +kernel
+
+#print axioms frozen_prefix_stable_order_perm
+#print axioms frozen_prefix_stable_order_sorted
+#print axioms frozen_prefix_sort_parity_witness
+#print axioms frozen_tie_probe_has_transformed_stable_order
+
 /-- The *observed* prefix fixes an allowed relabeling. In particular the
 candidate map preserves every oriented edge sticker response, and its
 orientation offsets sum to an even number. The exact signed sorting
