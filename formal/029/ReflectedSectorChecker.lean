@@ -124,28 +124,30 @@ theorem checkFiniteSector_sound {S Q R : Type}
               simpa [StatewiseSectorValid, found] using
                 ih child belief nextValid
           | choose q child =>
-              change ∀ state, state ∈ belief →
-                StatewiseSectorValid graph observe sign n
-                  (child (observe state q))
+              have validReplies : ∀ state, state ∈ belief →
+                  StatewiseSectorValid graph observe sign n
+                    (child (observe state q))
+                    (finiteReplyFiber observe belief q
+                      (observe state q)) := by
+                intro state present
+                have allChecked :
+                      allFinite (fun s =>
+                      checkFiniteSector graph observe sign n
+                        (child (observe s q))
+                        (finiteReplyFiber observe belief q (observe s q)))
+                      belief = true := by
+                  simpa [checkFiniteSector, found] using accepted
+                have thisChecked :=
+                  allFinite_true_implies_every_member
+                    (fun s =>
+                      checkFiniteSector graph observe sign n
+                        (child (observe s q))
+                        (finiteReplyFiber observe belief q (observe s q)))
+                    belief allChecked state present
+                exact ih (child (observe state q))
                   (finiteReplyFiber observe belief q (observe state q))
-              intro state present
-              have allChecked :
-                  allFinite (fun s =>
-                    checkFiniteSector graph observe sign n
-                      (child (observe s q))
-                      (finiteReplyFiber observe belief q (observe s q)))
-                    belief = true := by
-                simpa [checkFiniteSector, found] using accepted
-              have thisChecked :=
-                allFinite_true_implies_every_member
-                  (fun s =>
-                    checkFiniteSector graph observe sign n
-                      (child (observe s q))
-                      (finiteReplyFiber observe belief q (observe s q)))
-                  belief allChecked state present
-              exact ih (child (observe state q))
-                (finiteReplyFiber observe belief q (observe state q))
-                thisChecked
+                  thisChecked
+              simpa only [StatewiseSectorValid, found] using validReplies
 
 /-- The first executable, proof-reflected integration with the exact
 eight-read sign-deferred policy. A TRUE finite Boolean result is a
