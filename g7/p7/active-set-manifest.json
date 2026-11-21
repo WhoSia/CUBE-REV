@@ -143,7 +143,6 @@
     ".github/workflows/cuberev-028-active-observation.yml",
     ".github/workflows/cuberev-028-exchange-color-audit.yml",
     ".github/workflows/cuberev-028-independent-p48-mitm.yml",
-    ".github/workflows/cuberev-archive-one-shot.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
     ".github/workflows/cuberev-r14-p5-observation-equivariance.yml",
     ".github/workflows/cuberev-r14-p51-p48-root-orbits.yml",
@@ -263,16 +262,6 @@
     "Cargo.toml",
     "README.md",
     "REPOSITORY_POLICY.md",
-    "archive/readme/README_RESEARCH_CURRENT_BEFORE_P13_EXACT_EIGHT_20261010.md",
-    "archive/readme/README_RESEARCH_CURRENT_P13_BEFORE_EXACT_EIGHT_20261010.md",
-    "archive/readme/README_RESEARCH_CURRENT_PRE_019_20261010.md",
-    "archive/readme/README_RESEARCH_CURRENT_PRE_P13_20261010.md",
-    "archive/versions/0.11/README_HISTORY.md",
-    "archive/versions/0.12/README_HISTORY.md",
-    "archive/versions/0.13/README_HISTORY.md",
-    "archive/versions/0.14/README_HISTORY.md",
-    "archive/versions/0.15/README_HISTORY.md",
-    "archive/versions/G7/README_HISTORY.md",
     "archive_pointer.json",
     "core/instrument/contact-policy.json",
     "core/instrument/event-schema.json",
@@ -633,6 +622,7 @@
     "docs/0.29/20261121_Z_LAKE_IMPORT_RECEIPT.json",
     "docs/0.29/20261121_Z_REACHABLE_CORNER_RECEIPT.json",
     "docs/0.29/20261121_Z_REPRODUCIBILITY_RECEIPT.json",
+    "docs/0.29/20261122_AX_LEAN_FIRST_RETIREMENT_LEDGER.md",
     "docs/0.29/TEN_STATE_QUERY_COST.md",
     "docs/observation-generalization/ALGORITHM_REUSE_AND_BOUND_STATUS.md",
     "docs/observation-generalization/CUBEREV028_SHORT_SUPPORT_PHASE_DIAGRAM_20261031.md",
@@ -5814,11 +5804,26 @@
     "source_head": "c9ec3906c3d94a9f279cb0c0629f1ba8650e2315"
   },
   "active_set_reconciliation_20261122_archive_preseal": {
-    "source_commit": "5fe57052c427be35a3e749a52ae0a57d4f7cb55a",
-    "added": [
+    "source_commit": "f3cfa999c7f91c93f15066cb4fc5941f6e2c878b",
+    "removed_paths": [
+      "archive/readme/README_RESEARCH_CURRENT_BEFORE_P13_EXACT_EIGHT_20261010.md",
+      "archive/readme/README_RESEARCH_CURRENT_P13_BEFORE_EXACT_EIGHT_20261010.md",
+      "archive/readme/README_RESEARCH_CURRENT_PRE_019_20261010.md",
+      "archive/readme/README_RESEARCH_CURRENT_PRE_P13_20261010.md",
+      "archive/versions/0.11/README_HISTORY.md",
+      "archive/versions/0.12/README_HISTORY.md",
+      "archive/versions/0.13/README_HISTORY.md",
+      "archive/versions/0.14/README_HISTORY.md",
+      "archive/versions/0.15/README_HISTORY.md",
+      "archive/versions/G7/README_HISTORY.md",
       ".github/workflows/cuberev-archive-one-shot.yml"
     ],
-    "scope": "temporary read-only archive custody; remove workflow when archive is verified",
-    "no_deletions": true
+    "added_paths": [
+      "docs/0.29/20261122_AX_LEAN_FIRST_RETIREMENT_LEDGER.md"
+    ],
+    "archive_file_id": "1KNVij3D3DQDicKoJ_rNSBl5aKJMuPMVQ",
+    "outer_zip_sha256": "sha256:7c0ba12222a370263b77e60c46732bcbea91189d251fe2c00c2dcaf079d668cc",
+    "verified_source_files": 10,
+    "reason": "One-shot exact-byte Drive retirement, temporary workflow removed, no active proof components removed"
   }
 }

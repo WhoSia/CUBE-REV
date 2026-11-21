@@ -1,7 +1,15 @@
 # CUBE-REV — Physical Rubik's Cube: Reconstruction, Observation & Certified Search
 
+## 2026-11-22 AX — Lean-first theorem development, manuscript coupling and Drive-backed retirement
+
+**Current proof priority:** finish the unconditional nineteen-frame *physical paired-observation* theorem, rather than accumulating unconnected finite Python sweeps. [Formal 0.29 package](formal/029/README.md) has a deterministic first-eleven-position sorting construction, duplicate-color-safe position witness, generic swap-parity transport, 48-color symmetry results, 52 signed-root certificates, and the conditional physical compiler. The full original-coordinate policy with legal terminal corner parity is **not yet closed**. The historical 18-frame obstruction and executable 19-frame certificate must retain their distinct trust boundaries.
+
+**Research production rule:** for every substantial Lean advance, update the paper's claim ledger, hypotheses, theorem-to-algorithm mapping, and reviewer limitations in parallel; cite the pinned CI run only when completed. Python remains an independent verifier and negative-control language, not the default location of new mathematical claims. The 52-root `native_decide` receipt is disclosed separately from Lean's kernel-checked generic lemmas.
+
+**Verified retirement:** 10 superseded README/version-history files were SHA-256 sealed (individual source bytes and outer ZIP) and transferred to the [Drive 90_RESEARCH_CURRENT_ARCHIVE ZIP](https://drive.google.com/file/d/1KNVij3D3DQDicKoJ_rNSBl5aKJMuPMVQ/view) before their active-tree deletion; [retirement ledger](docs/0.29/20261122_AX_LEAN_FIRST_RETIREMENT_LEDGER.md). The one-shot artifact workflow was removed from active Git after archival. No historical code was removed without an independently checked custodial copy.
+
 **Active scientific stage:** 0.29 — *Exact Adaptive Identification of the Rubik's Cube* (formal-submission development; the universal 19-frame Lean theorem remains open)  
-**State reviewed:** 2026-11-21 · **Source of scientific meaning:** [Notion 0.29](https://app.notion.com/p/417ef561cf928151b972ffcfe1a42721) · [CUBE-REV 41 verification ledger](https://app.notion.com/p/41fef561cf9281f2bfcaf8ffc4e4f41d)  
+**State reviewed:** 2026-11-22 · **Source of scientific meaning:** [Notion 0.29](https://app.notion.com/p/417ef561cf928151b972ffcfe1a42721) · [CUBE-REV 41 verification ledger](https://app.notion.com/p/41fef561cf9281f2bfcaf8ffc4e4f41d)  
 **Single active research branch carrying 0.29:** `research/current` · **Long-term branch policy:** [REPOSITORY_POLICY.md](REPOSITORY_POLICY.md)
 
 > **Evidence warning:** A finite program's successful return, an independently checked certificate, a mathematical proof and a new general theorem are four different claims. Keep them separate. Do not infer human cognition from exact cube combinatorics, nor infer an HTM shortest path from a stabilizer's abstract group order.
