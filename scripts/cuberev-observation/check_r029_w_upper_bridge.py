@@ -14,6 +14,8 @@ from audit_r029_w_transport_all_prefixes import audit_transport, audit_corners
 from audit_r029_w_corner_geometric_decoder import check as geometric_corners
 from audit_r029_w_joint_routes import test as joint_routes
 from audit_r029_w_negative_controls import run as negative_controls
+from audit_r029_w_turn_invariants import run as turn_invariants
+from audit_r029_w_worked_route import run as worked_replay
 
 POLICY_SHA = '80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227'
 
@@ -33,6 +35,18 @@ def run(path):
     geom = geometric_corners()
     routes = joint_routes()
     negative = negative_controls()
+    generators = turn_invariants()
+    here=Path(__file__).resolve().parent
+    try:
+        worked_replay(here/'worked-physical-replay.json')
+    except AssertionError as exc:
+        if str(exc) != 'The example corner replies contradict twist legality.':
+            raise
+        original_rejected = True
+    else:
+        raise AssertionError('Original inconsistent V worked example was accepted')
+    corrected = worked_replay(here/'worked-physical-replay-corrected.json')
+    assert original_rejected and corrected['explicit_corner_schedule_checked']
     assert all(receipt.get('status') == 'PASS' for receipt in
                (policy_receipt, geom, routes, negative))
     return {'status':'PASS', 'certificate_sha256':digest,
@@ -44,6 +58,9 @@ def run(path):
             'physical_corner_regression':geom,
             'paired_physical_routes':routes,
             'negative_controls':negative,
+            'generator_legality':{key:value for key,value in generators.items() if key!='generator_table'},
+            'original_V_example_rejected':original_rejected,
+            'corrected_W_example':corrected,
             'trust_scope':'independent finite audits; geometric 18 lower bound separately Lean-proven; universal 19 upper-bound Lean theorem remains open'}
 
 if __name__=='__main__':
