@@ -3,6 +3,7 @@ import ElevenPrefix
 import EdgeSorting
 import ColorGraphCharacter
 import PairedPolicyTransport
+import RepresentativeRoundTrip
 
 namespace CubeRev029.Physical
 
@@ -311,6 +312,48 @@ theorem chosen_gauge_paired_transport_run
 #print axioms chosen_gauge_paired_response_transport
 #print axioms chosen_gauge_paired_transport_fits
 #print axioms chosen_gauge_paired_transport_run
+
+/-- The chosen prefix gauge has an actual inverse in the same
+48-element automorphism family, not an unverified inverse table. -/
+theorem chosen_prefix_gauge_inverse_is_legal (replies : List FrameColor) :
+    Nineteen.inverseColorTable (chosenPrefixColorMap replies) ∈
+      Nineteen.symmetries := by
+  exact Nineteen.inverse_color_table_is_symmetry
+    (chosenPrefixColorMap replies) (chosen_prefix_color_map_legal replies)
+
+/-- The inverse of the selected table restores each oriented edge
+identity, including its sticker-side orientation. This remains valid for
+every possible past reply list, including unreachable transcripts. -/
+theorem chosen_prefix_gauge_restores_oriented_edge
+    (replies : List FrameColor) (edge : Fin 24) :
+    Nineteen.relabelEdgeValue
+      (Nineteen.inverseColorTable (chosenPrefixColorMap replies))
+      (Nineteen.relabelEdgeValue
+        (chosenPrefixColorMap replies) edge.val) = edge.val := by
+  exact Nineteen.inverse_color_table_restores_oriented_edge
+    (chosenPrefixColorMap replies) (chosen_prefix_color_map_legal replies) edge
+
+/-- The concrete chosen gauge composes with ANY separately justified
+twelve-slot position permutation to round-trip the original paired
+edge/corner state. This guarantees original-coordinate recovery once a
+valid representative output has been obtained; it does NOT establish
+correctness of a frozen representative decision tree. -/
+theorem chosen_gauge_original_state_round_trip
+    (replies : List FrameColor)
+    (order : Nineteen.EdgeSlotOrder)
+    (state : Nineteen.CubieAndCornerState) :
+    Nineteen.decodeRepresentativePairState
+      (chosenPrefixColorMap replies) order
+      (Nineteen.representativePairState
+        (chosenPrefixColorMap replies) order.forward state) = state := by
+  exact Nineteen.representative_pair_state_round_trip
+    (chosenPrefixColorMap replies)
+    (chosen_prefix_color_map_legal replies) order state
+
+#print axioms chosen_prefix_gauge_inverse_is_legal
+#print axioms chosen_prefix_gauge_restores_oriented_edge
+#print axioms chosen_gauge_original_state_round_trip
+
 
 
 
