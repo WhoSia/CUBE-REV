@@ -12,7 +12,7 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport'
 }
 
 
@@ -34,7 +34,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -91,6 +91,16 @@ def check():
             f'Missing whole-cube transport axiom report: {theorem}')
     assert 'symmetry_preserves_flipBit_for_all_complete_words' in legal_transport
     assert 'every_symmetry_is_an_edge_type_permutation' in legal_transport
+    paired = (ROOT/'PairedPolicyTransport.lean').read_text()
+    for theorem in ('paired_response_equivariant',
+                    'transportPairedPolicy_fits',
+                    'transportPairedPolicy_run'):
+        assert f'theorem {theorem}' in paired, f'Missing paired policy theorem: {theorem}'
+        assert f'#print axioms {theorem}' in paired, f'Missing paired policy axiom audit: {theorem}'
+    for need in ('Policy.run_fixed_reply_equiv',
+                 'Policy.adapt_run', 'Policy.adapt_fits',
+                 'symmetry_relabelEdgeValue_responses'):
+        assert need in paired, f'Missing policy transport semantics or color bridge: {need}'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
