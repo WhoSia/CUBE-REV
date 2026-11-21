@@ -12,7 +12,8 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance',
+ 'SignedRepresentativePolicy','SignedPairedPosterior'
 }
 
 
@@ -34,7 +35,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -135,6 +136,33 @@ def check():
         assert f'#print axioms {theorem}' in graph_posterior, f'Missing graph axiom report: {theorem}'
     for necessary in ('replyInjective', 'everyTargetQuery', 'posterior sourceObserve'):
         assert necessary in graph_posterior, f'Missing causal game symmetry condition: {necessary}'
+    signed_policy = (ROOT/'SignedRepresentativePolicy.lean').read_text()
+    for theorem in ('signed_representative_round_trip',
+                    'signed_paired_reply_equivariant',
+                    'signed_original_policy_of_certified_representative'):
+        assert f'theorem {theorem}' in signed_policy, (
+            f'Missing signed gauge theorem: {theorem}')
+        assert f'#print axioms {theorem}' in signed_policy, (
+            f'Missing signed gauge axiom report: {theorem}')
+    for checkpoint in ('Bool.xor','transport_certified_policy',
+                       'signedRealPairRead','signedRepresentativePairRead'):
+        assert checkpoint in signed_policy, (
+            f'Missing signed policy semantic guard: {checkpoint}')
+    signed_posterior = (ROOT/'SignedPairedPosterior.lean').read_text()
+    for theorem in ('signed_representative_encode_injective',
+                    'signed_paired_posterior_one_step',
+                    'signed_paired_posterior_all_histories',
+                    'signed_ambiguity_survives_normalization'):
+        assert f'theorem {theorem}' in signed_posterior, (
+            f'Missing signed posterior theorem: {theorem}')
+        assert f'#print axioms {theorem}' in signed_posterior, (
+            f'Missing signed posterior axiom report: {theorem}')
+    for checkpoint in ('List (PairedAddress12 × PairedReply12)',
+                       'posterior signedRepresentativePairRead',
+                       'transported_posterior_covariance',
+                       'signed_representative_encode_injective'):
+        assert checkpoint in signed_posterior, (
+            f'Missing ordered signed posterior semantic gate: {checkpoint}')
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
