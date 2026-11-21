@@ -152,3 +152,41 @@ untracked plaintext file, or modification to `verify_one` is necessary.
 This repairs the clean-checkout test path only; it is **not** a new
 mathematical proof. The updated workflow's completed outcome must be
 checked separately before claiming the whole test suite passed.
+
+## 9. AV universal adjacent-swap and collision-free relabeling lemmas (2026-11-21)
+
+To reduce the gap between finite 48-color audits and a reusable theorem over
+arbitrary ordered observation histories, `formal/029/EdgeSorting.lean` now
+carries the following mathematically distinct statements:
+
+1. `adjTrace_relative_parity_invariant` (previously compiled):
+   a shared valid adjacent-swap trace changes parity identically on two
+   equally long distinct-label lists; their relative parity is unchanged.
+2. `adjTrace_relabel_parity_shift_invariant` ([source commit](https://github.com/WhoSia/CUBE-REV/commit/61ceed548760b3c32dd747454a7c3e273cdf8686)):
+   for **any** `f : Nat → Nat` and distinct list `xs` whose image under
+   `f` also remains distinct, applying a valid positional adjacent-swap
+   trace does not change the parity difference between the original and
+   relabeled list. This is a general relabeling lemma, not a color-specific
+   finite enumeration.
+3. `adjTrace_equal_outputs_force_same_swap_parity` ([source commit](https://github.com/WhoSia/CUBE-REV/commit/3e16ad07ea924eaade9e6e4a50b28a5a146cb458)):
+   two valid adjacent-swap traces on a distinct input list that produce
+   exactly the same final ordering must have equal swap-count parity.
+   Hence the parity contribution depends on the resulting position
+   permutation, not on its chosen adjacent-transposition decomposition.
+
+The additional hypotheses are essential: the lists must have no repeated
+labels, and for (2) the relabeling must not merge two labels that occur in
+`xs`. The actual first-eleven *colors* do have repeats, so this lemma
+must be instantiated on **position IDs or edge-piece IDs**, not blindly on
+the repeated color string. The 48 legal color maps themselves are
+permutations of six color IDs, but the stable-sort position witness acts
+on eleven distinct positions.
+
+**Exact remaining proof gap:** provide a total deterministic stable-sort
+permutation witness for every feasible *ordered* eleven-color prefix,
+prove that its effect on the twelve edge labels is the correction used by
+the frozen `route_info`, then compose it with
+`induced_edge_sign_is_three_pair_sign` and the certified 52-root
+decision-policy transport. No unconditional `Fits 19` policy is claimed
+here. The latest Lean CI result must be verified on the exact commit;
+source commits alone do not certify that these new lemmas compile.
