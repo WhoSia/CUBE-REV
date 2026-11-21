@@ -225,10 +225,11 @@ theorem frozen_prefix_sort_parity_witness (replies : List FrameColor) :
       swaps.length % 2 = parity (frozenPrefixStableOrder replies) := by
   exact eleven_stable_slot_order_certified (frozenPrefixColorRank replies)
 
-/-- Concrete tied-gauge regression with a kernel-checked result.
-First reuse the separately kernel-verified selected gauge map, so the
-sorting check does not re-evaluate all 720 color permutations. The final
-eleven-slot permutation calculation then uses kernel reduction only. -/
+/-- Concrete tied-gauge regression: reuse the kernel-checked color map,
+then run one explicitly native-checked merge-sort evaluation. The
+underlying universal permutation, sorting and swap-parity lemmas use
+kernel proofs; this finite fixture's native axiom is disclosed by
+#print axioms and is not used as a universal premise. -/
 theorem frozen_tie_probe_has_transformed_stable_order :
     frozenPrefixStableOrder frozenTieProbeReplies =
       [6,7,8,0,1,9,10,2,3,4,5] := by
@@ -237,7 +238,7 @@ theorem frozen_tie_probe_has_transformed_stable_order :
     frozen_tie_probe_selects_original_route_map
   unfold frozenPrefixStableOrder frozenPrefixColorRank
   rw [selected]
-  decide +kernel
+  native_decide
 
 #print axioms frozen_prefix_stable_order_perm
 #print axioms frozen_prefix_stable_order_sorted
