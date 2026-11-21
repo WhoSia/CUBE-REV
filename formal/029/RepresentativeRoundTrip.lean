@@ -83,6 +83,57 @@ theorem slot_order_from_adjacent_trace_round_trip
 #print axioms adjacent_twelve_index_involutive
 #print axioms slot_order_from_adjacent_trace_round_trip
 
+
+/-- A legal bounded swap of twelve positions is exactly the list-level
+adjacent-index pullback, not merely an arbitrary bijection. -/
+theorem adjacent_twelve_index_matches_list
+    (i : Nat) (j : Fin 12) (hi : i + 1 < 12) :
+    (adjacentTwelveIndex i j).val =
+      Eighteen.adjIndex i j.val := by
+  by_cases h₁ : j.val = i
+  · simp [adjacentTwelveIndex, Eighteen.adjIndex, hi, h₁]
+  · by_cases h₂ : j.val = i + 1
+    · simp [adjacentTwelveIndex, Eighteen.adjIndex, hi, h₁, h₂]
+    · simp [adjacentTwelveIndex, Eighteen.adjIndex, hi, h₁, h₂]
+
+/-- Every bounded adjacent-swap trace induces precisely its actual
+output-position → original-position pullback on EVERY length-twelve
+list, including lists whose elements are not unique. This is the
+missing semantic bridge between list sorting and EdgeSlotOrder. -/
+theorem slot_order_trace_getElem? (path : List Nat) :
+    ∀ (xs : List α),
+      xs.length = 12 →
+      (∀ i ∈ path, i + 1 < 12) →
+      ∀ j : Fin 12,
+        (Eighteen.adjTrace path xs)[j.val]? =
+          xs[((slotOrderFromAdjacentTrace path).forward j).val]? := by
+  induction path with
+  | nil =>
+      intro xs _ _ j
+      rfl
+  | cons i rest ih =>
+      intro xs len bounds j
+      have hi : i + 1 < 12 := bounds i (by simp)
+      have boundXs : i + 1 < xs.length := by omega
+      have remaining : ∀ k ∈ rest, k + 1 < 12 := by
+        intro k hk
+        exact bounds k (by simp [hk])
+      have nextLen : (Eighteen.adjacent i xs).length = 12 := by
+        rw [Eighteen.adjacent_length, len]
+      change
+        (Eighteen.adjTrace rest (Eighteen.adjacent i xs))[j.val]? =
+          xs[(adjacentTwelveIndex i
+            ((slotOrderFromAdjacentTrace rest).forward j)).val]?
+      rw [ih (Eighteen.adjacent i xs) nextLen remaining j]
+      rw [adjacent_twelve_index_matches_list i
+        ((slotOrderFromAdjacentTrace rest).forward j) hi]
+      exact Eighteen.get_adjacent xs i
+        ((slotOrderFromAdjacentTrace rest).forward j).val boundXs
+
+#print axioms adjacent_twelve_index_matches_list
+#print axioms slot_order_trace_getElem?
+
+
 /-- A total decoder for representative-coordinate states. The modulo-24
 operation only supplies a default for arbitrary *invalid* representative
 outputs; the round-trip theorem below proves it does not alter any valid
