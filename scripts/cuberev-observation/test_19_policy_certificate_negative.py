@@ -1,11 +1,25 @@
 #!/usr/bin/env python3
 """Negative tests: malformed or incomplete policy certificates must be rejected."""
+import base64
 import copy
+import gzip
+import hashlib
 import json
 from pathlib import Path
 from verify_19_policy_certificate import verify_one
 
-original=json.loads(Path(__file__).with_name('upper-policy-certificate.json').read_text())
+# The plaintext certificate is intentionally not tracked. Read the immutable
+# SHA-pinned blob in memory so unittest discovery also works on a fresh clone.
+BLOB = (Path(__file__).resolve().parents[2] / 'formal' / '029' /
+        'certificate_blobs' / 'upper-policy-certificate.json.gz.b64')
+EXPECTED_PACKED_SHA256 = 'd9dd5f9c283b9d79a86bcf00cefc51e013bc8d20a1c8c34077316a1c81e3f1d3'
+EXPECTED_RAW_SHA256 = '80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227'
+packed = base64.b64decode(BLOB.read_bytes().strip(), validate=True)
+assert hashlib.sha256(packed).hexdigest() == EXPECTED_PACKED_SHA256
+raw = gzip.decompress(packed)
+assert hashlib.sha256(raw).hexdigest() == EXPECTED_RAW_SHA256
+original = json.loads(raw)
+
 base=original['representatives'][0]
 assert base['nodes'][0][0]=='read'
 
