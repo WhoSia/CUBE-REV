@@ -15,7 +15,7 @@ the same ordered color convention, including corner orientation. -/
 theorem cornerCyclicPair_colors (x : Fin 24) :
     cornerCyclicPair x =
       (orientedCornerColor x 0, orientedCornerColor x 1) := by
-  rfl
+  simp [cornerCyclicPair, orientedCornerColor]
 
 /-- Fourteen corner observations determine every physical corner sticker for
 any two reachable physical cubes. The conservation premises are discharged by
