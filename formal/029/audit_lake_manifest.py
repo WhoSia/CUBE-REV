@@ -12,7 +12,7 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry'
 }
 
 
@@ -34,7 +34,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -59,6 +59,14 @@ def check():
         assert f'#print axioms {theorem}' in prefix or (
             f'#print axioms CubeRev029.{theorem}' in prefix), (
             f'Missing kernel-axiom inspection: {theorem}')
+    symmetry = (ROOT/'NineteenSymmetry.lean').read_text()
+    for theorem in ('symmetry_preserves_edge_type_bijection',
+                    'symmetry_even_flip_offset',
+                    'symmetry_preserves_oriented_edge_colors'):
+        assert f'theorem {theorem}' in symmetry, f'Missing color symmetry result: {theorem}'
+        assert f'#print axioms {theorem}' in symmetry, f'Missing axiom audit: {theorem}'
+    assert symmetry.count('decide +kernel') >= 3, (
+        'All finite symmetry proofs must be kernel-computed, not native_decide')
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
