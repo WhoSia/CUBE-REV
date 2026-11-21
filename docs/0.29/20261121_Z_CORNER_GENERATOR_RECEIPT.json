@@ -5,6 +5,8 @@
   "single_turn_sticker_checks": 288,
   "oriented_corner_action_checks": 2304,
   "composed_turn_steps": 163365,
+  "all_generator_twist_vector_checks": 78732,
+  "mutation_controls_rejected": 3,
   "corner_generator_table": [
     {
       "turn": 0,
