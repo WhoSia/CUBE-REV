@@ -97,6 +97,42 @@ In the same module, `observed_first_eleven_corner_clock_exact` identifies the co
 
 The library establishes the correspondence between actual original-coordinate paired responses, the deterministic eleven-position normalizer and the exact corner-clock prefix. It does not establish the total 48-gauge selector, the 52-root statewise normalized-policy transport or the unconditional physical nineteen-frame upper theorem. Its precise statement and dependencies must be attached to the first successful **post-AX** pinned Lean CI rather than an earlier passing run.
 
+## AY result: canonical order as a mathematical object (formal proof pending full-run seal)
+
+The first-eleven normalizer should not be described merely as a stable sorting *procedure*. It constructs a canonical permutation `σ(c)` of eleven distinct slot IDs from a response vector `c`, and two independent properties must be established:
+
+1. **Well-defined and permutation-preserving:** each original slot occurs exactly once, independently of repeated colors. This is `eleven_stable_slot_order_perm`.
+2. **Order-correct:** any two slot IDs `i`, `j` appearing in the output in that order satisfy the lexicographic relation `(cᵢ, i) ≤_lex (cⱼ, j)`. The new `eleven_stable_slot_order_sorted` is explicitly a `List.Pairwise` claim for every observation function `colorAt : Nat → Nat`, using a transitive, total boolean comparator `elevenSlotLexLE`; it invokes the Lean core `List.pairwise_mergeSort` theorem. This is stronger than a fixed 52-sector numerical test, but it does not imply any posterior or physical-policy correctness.
+
+The comparator is `elevenSlotLexLE c i j := decide (c i < c j ∨ (c i = c j ∧ i ≤ j))`. A separate source theorem `eleven_slot_lex_matches_prior_comparator` proves equality with the earlier branch-based comparator, avoiding an unreviewed change of canonicalization semantics. The new theorem is in [`formal/029/EdgeSorting.lean`](../../formal/029/EdgeSorting.lean), introduced in [AY source commit](https://github.com/WhoSia/CUBE-REV/commit/c57c29518c6f29816633c1d95a7faa5472ec80bc). It must not be reported as *verified by CI* until the exact-commit Lean run completes successfully.
+
+### Why this belongs in the main text, not only a machine appendix
+
+The 52-sector compression acts on *histograms*, while the adaptive controller receives an *ordered* eleven-color word. Passing from that word to a representative requires an order-sensitive, evidence-preserving map. Otherwise, two histories with the same histogram may be identified while carrying different permutation-parity corrections. We should therefore present the slot-ID canonicalization lemma before the signed policy transport theorem in the mathematics section. The proof implementation belongs in the Lean appendix, but the proposition and its role in maintaining the observation model should appear in the main text.
+
+The precise scientific dependency is:
+
+```text
+ordered 11 real paired responses
+    │ (first half of each charged pair)
+    ▼
+unique slot IDs + deterministic lex comparator
+    │  [Pairwise order, permutation, swap-trace parity]
+    ▼
+color automorphism gauge choice — NOT YET TOTALIZED
+    │  [signed gauge cocycle: proof still open]
+    ▼
+52 frozen representatives + statewise eight-read transport — OPEN
+    │  [terminal sign from actual corner transcript: OPEN]
+    ▼
+one total abstract Fits 19 paired-policy — OPEN
+    │  [physical compiler: conditionally proved]
+    ▼
+fixed-probe physical 19-frame identification — OPEN
+```
+
+**Referee-proof claim boundary:** the proposition is *not* that every arbitrary color string is physically feasible. It is that the normalization function and its sortedness proof are total on all strings, a stronger purely algorithmic statement. Feasibility and coverage of the 52 stored decision sectors are separate, cube-specific obligations.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
