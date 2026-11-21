@@ -15,10 +15,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Restore and SHA-check immutable local certificates
+        run: python3 formal/029/restore_pinned_data.py
       - name: Compile pinned Lean package
         uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64
         with:
@@ -28,6 +31,15 @@ jobs:
           test: 'false'
           lint: 'false'
           use-github-cache: 'true'
-      - name: Check bridge theorem and axioms
+      - name: Independently replay data certificates and negative controls
         working-directory: formal/029
-        run: lake env lean PhysicalPolicyCompiler.lean
+        run: |
+          python3 check_data.py EIGHTEEN_QUERY_DAG.json upper-policy-certificate.json
+      - name: Inspect new theorem dependencies and compilation
+        working-directory: formal/029
+        run: |
+          lake env lean PhysicalPolicyCompiler.lean
+          lake env lean PhysicalPolicyCompilerFast.lean
+          lake env lean CornerPairDecoder.lean
+          lake env lean PhysicalEighteen.lean
+          lake env lean NineteenDataReceipt.lean
