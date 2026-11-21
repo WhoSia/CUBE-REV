@@ -7,7 +7,7 @@ No frozen policy certificate, exporter, search engine or other module imported.
 """
 from __future__ import annotations
 from collections import Counter, defaultdict
-from itertools import permutations
+from itertools import permutations, combinations
 import json
 
 COLORS = 'URFDLB'
@@ -48,6 +48,28 @@ def hall(v,edges=EDGES):
         if sum(v[i] for i in range(6) if mask>>i&1)>sum(bool(e&subset) for e in edges):
             return False
     return True
+
+
+def four_hall_families(v):
+    """Four irredundant inequality families, using only K_{2,2,2} structure.
+
+    For eleven edge reads, all four-or-more-color Hall cuts are automatic,
+    and the same-opposite-pair doubleton cut follows from singleton cuts.
+    """
+    if len(v)!=6 or min(v)<0 or sum(v)!=11:
+        return (False, False, False, False)
+    n=dict(zip(COLORS,v))
+    singletons=all(n[x]<=4 for x in COLORS)
+    nonopposite_pairs=all(n[a]+n[b]<=7
+        for a,b in combinations(COLORS,2) if frozenset((a,b)) not in OPPOSITES)
+    opposite_pair_plus_one=all(n[a]+n[b]+n[c]<=10
+        for pair in PAIR_NAMES for a,b in [tuple(pair)] for c in COLORS if c not in pair)
+    one_from_each_pair=all(n[a]+n[b]+n[c]<=9
+        for a in PAIR_NAMES[0] for b in PAIR_NAMES[1] for c in PAIR_NAMES[2])
+    return (singletons,nonopposite_pairs,opposite_pair_plus_one,one_from_each_pair)
+
+def hall_fast(v):
+    return len(v)==6 and min(v)>=0 and sum(v)==11 and all(four_hall_families(v))
 
 def independent_dp():
     all_vectors=set()
@@ -101,8 +123,20 @@ def signed_cycle(g):
 
 def verify():
     graph_check()
-    supported={v for v in vectors(11,6) if hall(v)}
-    assert len(supported)==1362
+    universe=list(vectors(11,6))
+    assert len(universe)==4368
+    supported={v for v in universe if hall(v)}
+    reduced={v for v in universe if hall_fast(v)}
+    assert len(supported)==1362 and reduced==supported
+    # Each of the four cut families is logically necessary; removing it
+    # produces exactly these false positives among the 4,368 histograms.
+    independent_family_failures=Counter()
+    for v in universe:
+        checks=four_hall_families(v)
+        for idx in range(4):
+            if all(flag for j,flag in enumerate(checks) if j!=idx) and not checks[idx]:
+                independent_family_failures[idx]+=1
+    assert independent_family_failures=={0:468,1:120,2:12,3:72}
     assert independent_dp()==supported, 'Independent omitted-edge DP disagrees with Hall'
     G=list(group())
     assert len(G)==48 and all(all(act(g,v) in supported for v in supported) for g in G)
@@ -140,6 +174,9 @@ def verify():
         'status':'PASS','method':'Hall matching plus Burnside signed-cycle classes',
         'graph':'K_{2,2,2}','edges':12,'first_reads':11,
         'supported_count_vectors':len(supported),'color_symmetries':len(G),
+        'all_nonnegative_histograms':len(universe),
+        'reduced_hall_family_count':4,
+        'reduced_hall_family_independence':dict(sorted(independent_family_failures.items())),
         'signed_cycle_classes':len(classes),'burnside_fix_sum':fixed_sum,
         'orbits':len(reps),'orbit_size_histogram':dict(sorted(orbit.items())),
         'stabilizer_histogram':dict(sorted(stabilizer.items())),
