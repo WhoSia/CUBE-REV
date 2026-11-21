@@ -136,3 +136,37 @@ The exact 2023 SIAM Review edition of Tillquist–Frongillo–Lladser is also [o
 4. D. E. Knuth, *Efficient Representation of Perm Groups*, *Combinatorica* 11(1) (1991), 33–43. [Owned journal edition](https://drive.google.com/file/d/1mIhQ-9tchQp-quRSkFyFF5AY0m1HTdaZ/view).
 5. M. Furst, J. Hopcroft and E. Luks, *Polynomial-Time Algorithms for Permutation Groups*, 21st IEEE Symposium on Foundations of Computer Science (1980), 36–41. [Owned conference edition](https://drive.google.com/file/d/1AhZmbHGT_8RnIZ3D4OoSTdZK7aZLYvkF/view).
 6. R. C. Tillquist, R. M. Frongillo and M. E. Lladser, *Getting the Lay of the Land in Discrete Space: A Survey of Metric Dimension and Its Applications*, *SIAM Review* 65(4) (2023), 919–962, DOI 10.1137/21M1409512. [Owned original 2023 journal PDF](https://drive.google.com/file/d/1l4OPfnvgy7reraPJyOCRXupE9Rr0sjws/view).
+
+
+### Appendix A. A nineteen-slot *paired* observation clock without a hidden corner oracle
+
+The tagged construction of §4 has a useful further refinement. It originally runs against an abstract oriented-edge word and, taken in isolation, returns no corner readings. We can pair each edge read with one explicitly scheduled corner address without changing any edge policy decision. This is not the full face-turn implementation of a physical cube, but it formalizes the *information-timing* contract of a paired observation policy.
+
+Let the state be \((w,c)\), where \(w\) is a complete oriented edge word and \(c:\{0,\ldots,23\}\rightarrow\{0,\ldots,5\}\) is an arbitrary table of corner sticker colors. The paired query address is \(((b,i),j)\), consisting of a tagged edge address and an actual original corner address. Its response is
+\[
+ O_{\mathrm{pair}}((w,c),((b,i),j))
+   = (O_{\mathrm{tagged}}(w,(b,i)),c(j)).
+\tag{A.1}
+\]
+Write \(C=[0,1,6,7,9,10,18,19,21,22,12,13,3,21,21,21,21,21,4]\) for the *nineteen-element corner address schedule* used by the original X certificate. Every entry in this list is a real charged corner facelet observation; five repetitions at address 21 are allowed, but must not be omitted.
+
+The controller transformation \(\operatorname{withCornerClock}(C,P)\) recursively replaces the next edge query \(q\) by paired query \((q,C_t)\) at the next clock index \(t\), branches solely on the **first component** of the actual paired response, and advances to \(C_{t+1}\). The corner color is observed but is not used to decide the next edge query. This is a deliberately strong noninterference property: changing the entire corner table \(c\) while keeping \(w\) fixed must leave the edge policy output unchanged.
+
+**Proposition A.1 (paired noninterference).** For every tagged edge-feedback policy \(P\), every list of corner addresses \(C\), every oriented edge word \(w\), and every corner table \(c\),
+\[
+ \mathrm{run}(\operatorname{withCornerClock}(C,P),
+   O_{\mathrm{pair}},(w,c))
+ = \mathrm{run}(P,O_{\mathrm{tagged}},w).
+\tag{A.2}
+\]
+Moreover, if \(P\) has \(\mathrm{Fits}(n)\), the paired controller also has \(\mathrm{Fits}(n)\).
+
+*Proof.* Structural induction over the policy. At a terminal, both sides immediately return the same output. At each read, both policies select the identical tagged edge query; the paired query additionally includes the next predetermined corner address. Because the continuation receives only the first component of the reply, both recursive subpolicies see the same edge reply. The induction hypothesis therefore equates their outputs on every response branch. Budget preservation follows from induction on the \(\mathrm{Fits}\) derivation, charging one paired observation for every original edge observation. □
+
+**Proposition A.2 (exact corner-address history).** If the fixed schedule has the same length as the executed edge transcript, then the corner addresses appearing in the executed paired transcript, *in their actual occurrence order*, are exactly the schedule. In particular, applying the clock to the padded nineteen-read tagged policy gives all nineteen corner addresses in \(C\); the nineteenth address is 4, and that address does not occur among the first eighteen slots.
+
+*Proof.* Structural induction over the edge policy and case analysis on the schedule list. At a terminal, the edge transcript is empty, and equality of lengths forces the schedule to be empty as well. At a read, equality of the lengths of the complete transcripts implies that the schedule has a head and a tail of exactly the length of the child's transcript. The paired read contributes the schedule head, and the induction hypothesis supplies the tail. Apply the already checked length-19 theorem of the padded tagged policy and the independent finite `NineteenSchedule` facts `actual_corner_frame_budget` and `final_corner_color_not_early` to obtain the last assertion. □
+
+Both propositions are formalized in [`PairedCornerClock.lean`](https://github.com/WhoSia/CUBE-REV/blob/research/current/formal/029/PairedCornerClock.lean) as generic theorems over every edge policy and every possible corner table. They avoid the tempting but invalid practice of permitting the edge query controller to inspect the corner permutation sign at an earlier point in the trace.
+
+**Remaining refinement step.** The fixed paired address list in (A.1) is still an abstract original-coordinate read. A fully physical controller must use the previously proved move-routing compiler to transport each addressed original edge and corner sticker to the two permanent probes, including restoration of its historical pose. The final original-coloring state also must reconstruct *all* twenty-four corner stickers from their fourteen newly observed colors under physical legal-cube constraints and establish the parity identification in the same gauge as the selected oriented-edge candidate. Propositions A.1–A.2 prove the causal corner schedule and no-lookahead properties; they do not discharge these geometric and legal-state obligations.
