@@ -191,6 +191,28 @@ theorem adjTrace_relative_parity_invariant
 
 #print axioms adjTrace_relative_parity_invariant
 
+/-- Relabeling and a shared position-swap trace commute. Consequently,
+the parity *difference* introduced by a collision-free relabeling is
+unchanged by any valid adjacent position-swap trace. Unlike finite
+48-symmetry enumeration, this lemma quantifies over arbitrary relabeling
+functions and arbitrary distinct input lists. It is conditional on the
+relabeling staying injective over this particular list. -/
+theorem adjTrace_relabel_parity_shift_invariant
+    (path : List Nat) (f : Nat → Nat) (xs : List Nat)
+    (originalDistinct : xs.Nodup)
+    (relabeledDistinct : (xs.map f).Nodup)
+    (bounds : ∀ i ∈ path, i + 1 < xs.length) :
+    (parity ((adjTrace path xs).map f) +
+       parity (adjTrace path xs)) % 2 =
+      (parity (xs.map f) + parity xs) % 2 := by
+  rw [adjTrace_map]
+  exact adjTrace_relative_parity_invariant path (xs.map f) xs
+    relabeledDistinct originalDistinct (by simp)
+    (by simpa using bounds)
+
+#print axioms adjTrace_relabel_parity_shift_invariant
+
+
 #print axioms root_even_swap_path
 
 end CubeRev029.Eighteen
