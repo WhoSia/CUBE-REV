@@ -2,8 +2,86 @@
 """Fail-closed static package/CI preflight. Not a Lean kernel proof."""
 from __future__ import annotations
 import json
+import re
 from pathlib import Path
 import tomllib
+
+
+def lean_executable_text(source: str) -> str:
+    """Strip nested Lean block/line comments and string literals before
+    scanning for real proof placeholders. Comments can legitimately contain
+    words such as 'native axiom' or 'admits' without changing the proof.
+    Unterminated comments and strings fail closed.
+    """
+    out = []
+    state = 'code'
+    depth = 0
+    i = 0
+    while i < len(source):
+        pair = source[i:i + 2]
+        ch = source[i]
+        if state == 'code':
+            if pair == '/-':
+                state, depth = 'block', 1
+                out.extend('  ')
+                i += 2
+            elif pair == '--':
+                state = 'line'
+                out.extend('  ')
+                i += 2
+            elif ch == '"':
+                state = 'string'
+                out.append(' ')
+                i += 1
+            else:
+                out.append(ch)
+                i += 1
+        elif state == 'line':
+            out.append('\n' if ch == '\n' else ' ')
+            i += 1
+            if ch == '\n':
+                state = 'code'
+        elif state == 'block':
+            if pair == '/-':
+                depth += 1
+                out.extend('  ')
+                i += 2
+            elif pair == '-/':
+                depth -= 1
+                out.extend('  ')
+                i += 2
+                if depth == 0:
+                    state = 'code'
+            else:
+                out.append('\n' if ch == '\n' else ' ')
+                i += 1
+        else:
+            assert state == 'string'
+            if ch == '\\':
+                out.append(' ')
+                if i + 1 < len(source):
+                    out.append(' ')
+                i += 2
+            else:
+                out.append('\n' if ch == '\n' else ' ')
+                i += 1
+                if ch == '"':
+                    state = 'code'
+    assert state in ('code', 'line') and depth == 0, (
+        'Unterminated Lean comment/string in static proof audit')
+    return ''.join(out)
+
+
+def has_unjustified_lean_placeholder(source: str) -> bool:
+    return bool(re.search(r'\b(?:sorry|admit|axiom)\b',
+                          lean_executable_text(source)))
+
+
+assert not has_unjustified_lean_placeholder(
+    '/-- Native axiom in a docstring. /- nested sorry -/ -/\n'
+    'theorem harmless := by trivial')
+assert has_unjustified_lean_placeholder('theorem bad := by sorry')
+assert has_unjustified_lean_placeholder('axiom untrusted : True')
 
 ROOT=Path(__file__).resolve().parent
 EXTERNAL={'Lean','Std','Init.Data.List.Sort.Lemmas'}
@@ -37,7 +115,7 @@ def check():
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
                  'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt','TaggedNineteenRootPolicy','PairedCornerClock','PrefixColorGauge'):
             text=path.read_text()
-            assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
+            assert not has_unjustified_lean_placeholder(text), f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
     for theorem in ('nineteen_schedule_contains_required_corner_pairs',
                     'same_scheduled_colors_implies_fourteen',
