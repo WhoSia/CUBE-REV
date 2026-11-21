@@ -1,10 +1,20 @@
 # CUBE-REV — Physical Rubik's Cube: Reconstruction, Observation & Certified Search
 
-**Active scientific stage:** 0.28 — *Radius-Restricted Cubie Bases, Short-Support Geometry & Robust Active Observation*  
-**State reviewed:** 2026-11-13 · **Source of scientific meaning:** [Notion 0.28](https://app.notion.com/p/409ef561cf928193b3d1dc1165ad92ea)  
-**Single active research branch carrying 0.28:** `research/current` · **Long-term branch policy:** [REPOSITORY_POLICY.md](REPOSITORY_POLICY.md)
+**Active scientific stage:** 0.29 — *Exact Adaptive Identification of the Rubik's Cube* (formal-submission development; the universal 19-frame Lean theorem remains open)  
+**State reviewed:** 2026-11-21 · **Source of scientific meaning:** [Notion 0.29](https://app.notion.com/p/417ef561cf928151b972ffcfe1a42721) · [CUBE-REV 41 verification ledger](https://app.notion.com/p/41fef561cf9281f2bfcaf8ffc4e4f41d)  
+**Single active research branch carrying 0.29:** `research/current` · **Long-term branch policy:** [REPOSITORY_POLICY.md](REPOSITORY_POLICY.md)
 
 > **Evidence warning:** A finite program's successful return, an independently checked certificate, a mathematical proof and a new general theorem are four different claims. Keep them separate. Do not infer human cognition from exact cube combinatorics, nor infer an HTM shortest path from a stabilizer's abstract group order.
+
+## 2026-11-21 CUBE-REV 41: 0.29 theorem hierarchy and pinned formal gates
+
+**Scientific priority:** impossibility of identifying every legal cube in **18 paired color frames**, even with the entire initial corner arrangement disclosed, comes first; a **19-frame adaptive construction** attaining the bound comes second. The separate fixed-schedule optimum is 21 frames. All bounds use one edge-sticker color plus one corner-sticker color per frame, with known legal turns excluded from the *observation* cost. These results must not be conflated with original-cubie permanent-tag budgets or unrestricted physical rotation costs.
+
+**Proof status:** The physical 18-frame lower-bound Lean theorem is compiled, with explicit `native_decide` trust dependencies for finite certificate data. The 19-frame policy's 52 frozen representative trees, inverse transport, corrected corner example and physical replay have independent computational evidence, but **there is not yet one unconditional Lean theorem** establishing the entire 19-frame upper policy. New AB–AE proof modules establish the actual 19-corner transcript decoder, generic response-equivariant adaptive-policy transport, the eleven-fixed-plus-eight-adaptive budget, and finite invariants for all 48 legal color symmetries; these are **partial formal obligations**, not the final upper-bound proof.
+
+**Verified reproducibility:** [Pinned Lean 4.34.1 CI #44888672661 — all steps successful](https://github.com/WhoSia/CUBE-REV/actions/runs/44888672661), including the certificate replay and individual source/axiom checks. The new finite symmetry theorems use `decide +kernel`; their reported dependencies are `propext`, `Classical.choice`, and `Quot.sound`, not `native_decide.ax` or `sorryAx`. The generic policy-transport theorem reports no axioms. [Executable proof README](formal/029/README.md) · [Notion 41 scientific ledger](https://app.notion.com/p/41fef561cf9281f2bfcaf8ffc4e4f41d).
+
+**Open gate:** Construct the exact 52-representative continuation as a Lean decision policy, prove that every possible ordered eleven-color prefix transports with response equivariance, flip and permutation sign correction, and inverse decoding, and connect the resulting unconditional `Fits 19` policy to the physical fixed-probe compiler. Preserve T/U/V/W editorial lineage and the V impossible-corner-color example as a documented negative control; do not silently replace older drafts.
 
 ## 2026-11-13 R14-P8.42 — Exact stopping-time census
 
