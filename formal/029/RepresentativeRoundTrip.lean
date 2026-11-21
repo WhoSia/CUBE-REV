@@ -8,7 +8,7 @@ operation only supplies a default for arbitrary *invalid* representative
 outputs; the round-trip theorem below proves it does not alter any valid
 state obtained from a physical cubie coloring and an allowed symmetry. -/
 def decodeRepresentativePairState
-    (sigma : List Nat) (order : Fin 12 ≃ Fin 12)
+    (sigma : List Nat) (order : Equiv (Fin 12) (Fin 12))
     (s : RelabeledAndCornerState) : CubieAndCornerState :=
   ((fun i =>
       (⟨(relabelEdgeValue (inverseColorTable sigma)
@@ -20,7 +20,7 @@ position permutation and a valid one of the 48 center-color symmetries can
 be undone. This is stronger than verifying a set of particular scrambles. -/
 theorem representative_pair_state_round_trip
     (sigma : List Nat) (hsigma : sigma ∈ symmetries)
-    (order : Fin 12 ≃ Fin 12) (state : CubieAndCornerState) :
+    (order : Equiv (Fin 12) (Fin 12)) (state : CubieAndCornerState) :
     decodeRepresentativePairState sigma order
       (representativePairState sigma order state) = state := by
   rcases state with ⟨pieces, corners⟩
@@ -46,7 +46,7 @@ policy and discharge its correctness premise for *every* legal first-color
 history, including the terminal corner-permutation-sign decoder. -/
 theorem correct_original_policy_of_certified_representative
     (sigma : List Nat) (hsigma : sigma ∈ symmetries)
-    (order : Fin 12 ≃ Fin 12)
+    (order : Equiv (Fin 12) (Fin 12))
     (admissible : CubieAndCornerState → Prop)
     (tree : Policy PairedAddress12 PairedReply12 RelabeledAndCornerState)
     {budget : Nat}
