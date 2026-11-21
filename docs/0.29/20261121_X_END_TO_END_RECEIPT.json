@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "policy_sha256": "80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227",
+  "first_color_count_vectors": 1362,
+  "representatives": 52,
+  "exhaustive_original_edge_records": 3215616,
+  "frames": 19,
+  "corner_unique_addresses": 14,
+  "unique_adaptive_edge_address_count": {
+    "6": 205920,
+    "7": 1807896,
+    "8": 1201800
+  },
+  "sign_correction_per_count_vector": {
+    "0": 726,
+    "1": 636
+  },
+  "fixed_probe_replay": {
+    "status": "PASS",
+    "geometric_physical_scrambles": 1000,
+    "fixed_probes": [
+      "DL[1]",
+      "DLB[1] (raw slot 45)"
+    ],
+    "full_48_sticker_reconstructions": 1000,
+    "corner_parity_counts": {
+      "0": 469,
+      "1": 531
+    }
+  },
+  "part_sha256": {
+    "X-part-0.json": "b99c180ed46b00098f2201ce383ca991d6282c76f1efeef0dbc0fb652e8ab6b7",
+    "X-part-200.json": "f1aa34569eed9602a0829afa03eb0f726619ffb0ceda9e9f47cf514720373558",
+    "X-part-400.json": "ee29c8ec75086fdfa7941bfe0e106badc32d6a390f8e36d75f35ffac46d688e7",
+    "X-part-600.json": "e112906f05dd4645342e9ce67b024ab6363d1712e914f07c59f6ad1bd503c5c0",
+    "X-part-800.json": "43fad150890f9b6125d742f5beefa393c527058391af8eef0d203df5467fe11a",
+    "X-part-1000.json": "9f03190a4c43373052669b0c406c3f6e745f1da0fc9b810d79bebd2b58476ed3",
+    "X-part-1200.json": "c54b924fdaa8613c033f126174afeeac4946aa47a0500e510923b65e1d0c36e9"
+  },
+  "scope": "every oriented edge record for each sorted prefix count vector, with arbitrary-order transport handled algebraically; plus 1000 geometric random scrambles; no all-states Lean theorem claimed"
+}
