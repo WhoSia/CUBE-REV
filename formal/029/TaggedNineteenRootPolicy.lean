@@ -59,8 +59,8 @@ terminal; source acceptance will ensure all genuine representative
 prefixes are present. This selector does not normalize arbitrary
 original prefixes under the 48 color maps. -/
 def rootFirstColors (entry : Lean.Json) : Option (List Nat) := do
-  let prefix ← (entry.getObjVal? "prefix").toOption
-  let literal ← prefix.getStr?.toOption
+  let prefixJson ← (entry.getObjVal? "prefix").toOption
+  let literal ← prefixJson.getStr?.toOption
   some (literal.toList.map colorCode)
 
 def matchingFrozenRoot (roots : Array Lean.Json) (answers : List Nat) :
@@ -82,16 +82,20 @@ def continuationFromFrozenRoots (roots : Array Lean.Json)
 theorem continuation_from_frozen_roots_fits
     (roots : Array Lean.Json) (answers : List Nat) :
     Fits 8 (continuationFromFrozenRoots roots answers) := by
-  unfold continuationFromFrozenRoots
-  cases matchingFrozenRoot roots answers with
-  | none => exact Fits.stop 8 _
+  cases found : matchingFrozenRoot roots answers with
+  | none =>
+      simpa [continuationFromFrozenRoots, found] using
+        (Fits.stop 8 (fun _ : Bool => (none : Option Word)))
   | some entry =>
-      cases parseRepresentativeRoot entry with
-      | error _ => exact Fits.stop 8 _
+      cases parsed : parseRepresentativeRoot entry with
+      | error message =>
+          simpa [continuationFromFrozenRoots, found, parsed] using
+            (Fits.stop 8 (fun _ : Bool => (none : Option Word)))
       | ok payload =>
           rcases payload with ⟨graph, belief⟩
-          exact exact_eight_sector_fits 0 graph observation edgeWordSign
-            0 belief
+          simpa [continuationFromFrozenRoots, found, parsed] using
+            (exact_eight_sector_fits 0 graph observation
+              edgeWordSign 0 belief)
 
 /-- An eleven-first-read, response-adaptive eight-read continuation.
 All policy choices in the continuation are functions of the ACTUAL
@@ -175,8 +179,7 @@ theorem exact_nineteen_tagged_recovers_matching_actual_root
   have same : (graph, belief) = (g, b) := by
     have e : Except.ok (graph, belief) = Except.ok (g, b) :=
       entryParsed.symm.trans matchEntry
-    injection e with equal
-    exact equal
+    injection e
   rcases Prod.mk.inj same with ⟨sameGraph, sameBelief⟩
   subst g
   subst b
