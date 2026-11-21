@@ -12,7 +12,7 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix'
 }
 
 
@@ -34,7 +34,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -49,6 +49,16 @@ def check():
         assert f'#print axioms {theorem}' in transport, f'Missing transport axiom audit: {theorem}'
     assert 'Policy.adapt_fits' in transport and 'Policy.adapt_run' in transport, (
         'Transport must explicitly preserve budget and observation semantics')
+    prefix = (ROOT/'ElevenPrefix.lean').read_text()
+    for theorem in ('Policy.withPrefix_fits','Policy.withPrefix_run',
+                    'first_eleven_address_count',
+                    'first_eleven_matches_frozen_corner_schedule',
+                    'first_eleven_edge_addresses',
+                    'nineteen_budget_of_eight_read_continuations'):
+        assert f'theorem {theorem}' in prefix, f'Missing prefix theorem: {theorem}'
+        assert f'#print axioms {theorem}' in prefix or (
+            f'#print axioms CubeRev029.{theorem}' in prefix), (
+            f'Missing kernel-axiom inspection: {theorem}')
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
