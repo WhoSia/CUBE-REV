@@ -119,5 +119,57 @@ def prove_negative_control():
         'scope':'legal oriented edge array and both gauge encodings; no claim of a full 19-frame policy failure'
     }
 
+def audit_all_representative_gauges():
+    """Independent covariance test on every representative, allowed color
+    symmetry, and four deterministic first-eleven position permutations.
+
+    This does not certify the frozen policies or all ordered prefixes. It
+    tests the *parity identity* on 52 constructed legal edge arrays over
+    52 x 48 x 4 transformations; the retained gauge is part of the input.
+    """
+    G=list(group())
+    universe=[v for v in vectors(11,6) if hall_fast(v)]
+    reps=sorted({min(act(g,v) for g in G) for v in universe})
+    assert len(reps)==52 and len(G)==48
+    position_orders=(
+        tuple(range(11)),
+        tuple(reversed(range(11))),
+        tuple(range(2,11))+tuple(range(2)),
+        tuple(range(0,11,2))+tuple(range(1,11,2)),
+    )
+    assert len(set(position_orders))==4
+    checked=0
+    odd_corrections=0
+    for rep in reps:
+        first=''.join(c*n for c,n in zip(COLORS,rep))
+        base=build_legal_edge_word(first)
+        assert base is not None and is_edge_flip_even(base)
+        for indices in position_orders:
+            original=[base[i] for i in indices]+[base[11]]
+            assert is_edge_flip_even(original)
+            original_sign=piece_sign(original)
+            for g in G:
+                normalized,order=normalize_word(original,g)
+                # This is the actual position sort for the observed ORDER,
+                # not the histogram-only canonical order.
+                correction=sign(order+(11,)) ^ sign(pair_action(g))
+                assert is_edge_flip_even(normalized)
+                assert piece_sign(normalized)==(original_sign ^ correction)
+                assert (piece_sign(normalized)^correction)==original_sign
+                odd_corrections+=correction
+                checked+=1
+    assert checked==52*48*len(position_orders)
+    assert 0<odd_corrections<checked
+    return {
+        'status':'PASS',
+        'scope':'52 feasible representative histograms, 48 color symmetries, four ordered-prefix permutations',
+        'covariance_checks':checked,
+        'odd_combined_corrections':odd_corrections,
+        'limitation':'finite legal-edge gauge audit; not a formal proof over all ordered 11-color prefixes or a 19-frame policy',
+    }
+
+
 if __name__=='__main__':
-    print(json.dumps(prove_negative_control(),indent=2,ensure_ascii=False))
+    result=prove_negative_control()
+    result['all_representative_gauge_audit']=audit_all_representative_gauges()
+    print(json.dumps(result,indent=2,ensure_ascii=False))
