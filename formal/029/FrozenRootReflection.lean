@@ -21,10 +21,10 @@ def parseRepresentativeRoot (entry : Lean.Json) :
   let first ← (← entry.getObjVal? "prefix").getStr?
   let nodes ← (← entry.getObjVal? "nodes").getArr?
   let graph ← parseFrozenSectorNodes nodes
-  let prefix := first.toList.map colorCode
-  unless prefix.length == 11 do
+  let firstCodes := first.toList.map colorCode
+  unless firstCodes.length == 11 do
     throw "Representative prefix length is not eleven."
-  pure (graph, sector (List.range 12) 0 prefix)
+  pure (graph, sector (List.range 12) 0 firstCodes)
 
 /-- This exact root Boolean is structurally justified by
 checkDistinctSector_sound: if it is true, every surviving candidate is
@@ -99,7 +99,7 @@ theorem certified_source_each_root_has_exact_semantics
                 8 0 belief = true := by
             simpa [checkedRepresentativeRoot, parsedEntry] using
               acceptedEntry
-          exact ⟨graph, belief, parsedEntry,
+          exact ⟨graph, belief, rfl,
             checkDistinctSector_sound graph observation edgeWordSign
               8 0 belief checked⟩
 
