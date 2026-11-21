@@ -314,6 +314,31 @@ theorem frozen_prefix_sign_correction_three_pair (replies : List FrameColor) :
 #print axioms frozen_prefix_sign_correction_three_pair
 
 
+/-- The exact frozen route_info sign correction is realized by a bounded
+adjacent swap trace on ALL TWELVE edge positions. The last, unread,
+position remains fixed. The color-label character is the independent
+three-opposite-pair character, not an extra sensor response. -/
+theorem frozen_prefix_sign_correction_full_twelve_trace
+    (replies : List FrameColor) :
+    ∃ path : List Nat,
+      adjTrace path (List.range 12) =
+        frozenPrefixStableOrder replies ++ [11] ∧
+      (∀ i ∈ path, i < 10) ∧
+      frozenPrefixSignCorrection replies =
+        (path.length +
+          parity (Nineteen.inducedThreePairPermutation
+            (chosenPrefixColorMap replies))) % 2 := by
+  obtain ⟨path, routed, bounds, prefixParity, traceParity⟩ :=
+    eleven_slot_trace_full_twelve_parity (frozenPrefixColorRank replies)
+  refine ⟨path, routed, bounds, ?_⟩
+  have h := frozen_prefix_sign_correction_three_pair replies
+  unfold frozenPrefixSignCorrection at h
+  omega
+
+#print axioms frozen_prefix_sign_correction_full_twelve_trace
+
+
+
 /-- If two original cube states return exactly the same eleven initial
 edge colors at the paired addresses, they select identical color gauges,
 irrespective of the corner transcripts or subsequent queries. -/
