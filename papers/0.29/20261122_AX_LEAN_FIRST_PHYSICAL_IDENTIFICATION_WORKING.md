@@ -209,6 +209,24 @@ A separate addition to [RepresentativeRoundTrip.lean](../../formal/029/Represent
 
 An eventual headline theorem must combine these with one `Fits 19` abstract policy before applying the already established physical-route compiler. These BA results narrow and clarify the handoff but are **not** an unconditional nineteen-frame identification theorem.
 
+## BB — Pointwise semantics of the twelve-slot coordinate adapter
+
+A finite bijection of twelve slot indices is insufficient evidence for a correct adaptive probe translator: the policy must select the original slot containing the *representative slot's actual edge*. We therefore require an equality of two operations, not merely two abstract bijections. For every list `xs` of length twelve, every trace `T` in which each swap index is strictly below eleven, and each `j : Fin 12`, the required formula is
+
+\[
+\big(\operatorname{adjTrace}(T,xs)\big)[j]?
+ =
+ xs\big[\operatorname{slotOrderFromAdjacentTrace}(T).\mathrm{forward}(j)\big]?.
+\]
+
+The question mark denotes the Lean optional list lookup. Crucially, the statement **does not require the elements of `xs` to be distinct**. The original measured color string repeats, whereas its *position IDs* are unique. The proof may use the independently kernel-proved `get_adjacent` lemma for a single adjacent swap and induction over the bounded trace, with the index composition arranged in output-to-input order.
+
+The new [source commit](https://github.com/WhoSia/CUBE-REV/commit/e2b094c6f6bff781e791367519b6037eaa833d78) introduces two propositions in `RepresentativeRoundTrip.lean`: `adjacent_twelve_index_matches_list` identifies the concrete `Fin 12` index transposition with the list-level `adjIndex`, and `slot_order_trace_getElem?` states the universal pointwise transport formula above. These are **pending Lean CI acceptance** until the exact revision compiles and its `#print axioms` receipts are inspected.
+
+If accepted, the result closes the *index-semantics* gap exposed in BA: `EdgeSlotOrder` is not simply invertible; its forward direction is precisely the lookup pullback of the actual list rearrangement. With `eleven_slot_trace_fixes_unread_twelfth` and `eleven_slot_trace_full_twelve_parity`, the reader can then audit both the positional meaning and the sign of the same trace.
+
+**Remaining requirements even after pointwise acceptance:** connect the trace witness to the selected frozen source `route_info` ordering in a deterministic executable selector (rather than only an existential path), show full signed posterior commutation across all actual charged query/response branches, prove the fifty-two frozen root policies statewise on every reachable history, and infer the terminal sign from the actual nineteen corner responses. This section does not declare a total physical nineteen-frame theorem.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
