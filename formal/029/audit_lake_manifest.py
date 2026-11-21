@@ -307,7 +307,7 @@ def check():
         assert f'#print axioms {theorem}' in frozen_roots, (
             f'Missing frozen-root axiom inspection: {theorem}')
     for gate in ('parsedRepresentativeArray', 'parseRepresentativeRoot',
-                 'sector (List.range 12) 0 prefix', 'checkDistinctSector_sound',
+                 'sector (List.range 12) 0 firstCodes', 'checkDistinctSector_sound',
                  'allFinite checkedRepresentativeRoot',
                  'certifiedFrozenRoots', '144736', '141097', '70774'):
         assert gate in frozen_roots, f'Missing frozen 52-root exactness gate {gate}'
