@@ -73,3 +73,55 @@ clean Python environment. The *new* Lean sources require a successful pinned
 kernel-verified. The universal upper-bound policy has not yet been constructed
 as one verified Lean theorem; see `../../docs/0.29/20261121_Y_LEAN_PROOF_GATES.md`
 for the remaining obligations.
+
+## Z — physical corner-coordinate extraction and the remaining conservation theorem
+
+Z adds two source-level Lean modules that connect the **same geometric `turnSlot`**
+used in the physical eighteen-frame lower bound to the nineteen-frame corner
+decoder, without introducing an unverified cubie move table:
+
+- `CornerTurnGenerators.lean` defines the corner-source permutation and cyclic
+  twist offset for each of the twelve quarter turns and states five finite
+  properties (source range, injectivity, cyclic triples, zero total twist
+  offset, equal edge/corner parity increments).
+- `ReachableCornerCoordinates.lean` defines `CornersAgree`, a coordinate action
+  on all oriented cubies, and a structural turn-word induction yielding
+  `reachable_has_oriented_corners`: each geometrically reachable 48-sticker
+  state admits oriented corner coordinates reproducing every physical corner
+  sticker color.
+
+The following is executable **without Lean**, using only the pinned Python
+standard library and the existing geometric helper source:
+
+```sh
+python3 formal/029/restore_pinned_data.py
+python3 formal/029/validate_19_corner_schedule.py
+python3 formal/029/audit_corner_turn_generators.py
+python3 formal/029/audit_reachable_corner_bridge.py
+python3 formal/029/audit_lake_manifest.py
+```
+
+The independent audit checked every `12 × 3^8 = 78,732` generator/twist-vector
+combination, 2,304 local oriented corner actions, and 2,225,232 physical
+corner-sticker comparisons over reproducible legal turn histories, including
+negative controls. The full package contains 29 required Lake default targets,
+**including the physical eighteen-frame lower-bound theorem** and both input
+receipt modules, and 35 checked internal imports.
+
+**Crucial open theorem:** the produced corner coordinates for every reachable
+state must have distinct piece labels and total twist zero (and satisfy the
+proper permutation sign relation). For each generator, the finite facts already
+express a source permutation `σ` and offsets `δ` with total `δ ≡ 0 (mod 3)`.
+The missing Lean argument must prove that these properties preserve the piece
+permutation and twist sum under arbitrary composition, then discharge the
+`LegalCornerCoordinates` premise of `corner_fourteen_unique_missing_five`.
+Only after that can the frozen 52-sector trees and arbitrary-order first-color
+transport be assembled into one universal nineteen-read policy theorem.
+
+**Compilation status:** the Z execution environment lacked `lean` and `lake`.
+The new source files, their `decide +kernel` proof scripts, and printed axiom
+commands are **not** proof of a successful kernel compilation. Obtain a real
+Lean 4.34.1 build log and axiom report before changing the paper's formal
+verification claim. The complete clean-room Z archive and its digest are
+preserved in [Drive](https://drive.google.com/file/d/1c5yPtOxSB4zpYnXQObqkiFQq2Tgkq7Pj/view);
+see [the Z formal closure ledger](../../docs/0.29/20261121_Z_CORNER_BRIDGE_AND_FORMAL_GATES.md).
