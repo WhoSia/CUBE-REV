@@ -44,35 +44,32 @@ Use the upper-policy JSON from the [S editable bundle](https://drive.google.com/
 
 `check_data.py` verifies the input bytes, prepares ignored local copies for `include_str`, and builds the physical lower bound against the pinned data. It verifies malformed-data controls separately, including two corruptions of an arc that preserve the stored node witnesses.
 
+## Y — clean-build certificates and exact nineteen-frame corner schedule
 
-## W upper-bound bridge audit and V replay erratum (2026-11-21)
-
-The physical eighteen-frame lower-bound theorem is the principal result. Formalizing the complete nineteen-frame **upper** policy is still an open Lean task: compose the first-eleven-color orbit transport, the universal fourteen-corner-sticker decoder, the validated representative continuation tree, and `JointProbeRouting.joint_frame_after_pose` into one policy with both addresses selected before the replies.
-
-A new standalone Python suite audits this bridge without relying on the search algorithm:
+A **clean GitHub checkout** does not already have the two JSON inputs used by
+`include_str` in `EighteenCertified.lean` and `NineteenDataReceipt.lean`.
+Do not run `lake build` against an absent or an arbitrary substituted JSON.
+The authoritative compressed blobs and strict restorer are now committed:
 
 ```sh
-python3 scripts/cuberev-observation/check_r029_w_upper_bridge.py \
-  --certificate /path/to/upper-policy-certificate.json
+python3 restore_pinned_data.py
+python3 validate_19_corner_schedule.py
+lake build
 ```
 
-It verifies all 52 frozen representative policy trees (141,097 nodes), all 1,362 feasible first-color count vectors, 3,215,616 oriented assignment transports, all 48 color relabelings' parity behavior, all 576 joint physical target routes, the 24 oriented corner two-color pairs, the twelve move generators' cubie invariants, and negative controls. The policy input SHA-256 remains `80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227`.
+`restore_pinned_data.py` checks the pinned SHA-256 of both the deterministic
+compressed bytes and their original JSON, and fails rather than overwriting
+a conflicting existing proof input. It needs only the Python standard library.
+`NineteenSchedule.lean` states that the physical 19-frame X schedule reads
+**14 distinct cyclic corner stickers** on seven positions, leaving position 5
+unread, with the final new color arriving on frame 19. The new
+`corner_fourteen_unique_missing_five` conditional uniqueness theorem matches
+that precise schedule, unlike the earlier convenient omitted-position-7 case.
+The cross-language script rejects schedule drift and three corruptions.
 
-**Important erratum:** V's `worked-physical-replay.json` assigns the URB cubie to the URB position while claiming first two colors U,L there, which is physically impossible. The W suite **must reject** that raw witness. It also tests the distinct `worked-physical-replay-corrected.json`, whose corner labels and twists are physically consistent and whose fourteen reads are explicitly scheduled. Do not describe the corrected state as the same random sample as V.
-
-These are independently executable finite regression checks, **not a newly compiled Lean proof** of the nineteen-frame upper bound. See [W audit ledger](../../docs/0.29/20261121_W_UPPER_BRIDGE_AND_ERRATUM.md) and [W receipt](../../docs/0.29/20261121_W_UPPER_BRIDGE_RECEIPT.json). The current container used for the W audit did not have the Lean executable; the historical lower-bound Lean build evidence is preserved separately.
-
-
-## X: entire nineteen-frame controller, bounded physical compiler, and trust boundary
-
-The new [X end-to-end audit](../../docs/0.29/20261121_X_END_TO_END_CLOSURE.md) drives the exact frozen 52-tree decision policy all the way from canonicalizing the first eleven observed edge colors to the final corner-parity selection and inverse coordinate map. It passes for 3,215,616 count-vector-normalized edge records (one sorted eleven-color record for each of 1,362 feasible count vectors) and for 1,000 legal geometric face-turn scrambles at fixed probes `DL[1]`, `DLB[1]`, recovering every one of the 48 non-center stickers in at most 19 paired frames. Three malformed-decoder controls are rejected. This is a finite/computational proof audit, **not a new Lean certificate of the full upper theorem**.
-
-Three additional formal modules have been added:
-
-- `PhysicalPolicyCompiler.lean`: turns any abstract paired-read policy into a physical fixed-probe policy with the same frame budget;
-- `PhysicalPolicyCompilerFast.lean`: constructs a bounded-length legal setup at each frame by resetting from the previous canonical pose, instead of expanding a turn history exponentially;
-- `CornerPairDecoder.lean`: under the explicit corner piece-sum and twist-sum conservation hypotheses, gives uniqueness of all 8 oriented corners from 14 cyclically ordered stickers.
-
-**Build status:** the X execution container has no `lean`/`lake`. A read-only pinned GitHub Actions job was added in `.github/workflows/cuberev029-lean.yml`; a successful build and axiom report for these *new* modules has not yet been obtained by the agent. Do not represent their theorem statements as kernel-checked until the CI logs are inspected and the assumptions about Reachable states are discharged. The separate existing 18-frame geometric lower-bound theorem was compiled in the previous U verification.
-
-With the complete [X reproducibility ZIP](https://drive.google.com/file/d/1Ump-hWOEx7XBJ5C2b3UwmiFxemJO-ztu/view), run `lake build` from `formal/029` after unpacking; then execute the seven range commands from the X ledger to regenerate the finite receipts.
+**Trust boundary:** these input and preflight checks were actually run in a
+clean Python environment. The *new* Lean sources require a successful pinned
+4.34.1 `lake build` and full axiom inspection before they can be called
+kernel-verified. The universal upper-bound policy has not yet been constructed
+as one verified Lean theorem; see `../../docs/0.29/20261121_Y_LEAN_PROOF_GATES.md`
+for the remaining obligations.
