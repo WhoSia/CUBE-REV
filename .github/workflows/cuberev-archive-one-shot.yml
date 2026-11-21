@@ -1,0 +1,53 @@
+name: CUBE-REV archival source custody (one-shot, read-only)
+on:
+  push:
+    branches: ['research/current']
+    paths:
+      - '.github/workflows/cuberev-archive-one-shot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-custody:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Package exact historical prose sources and Git blob identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess, tarfile
+          from pathlib import Path
+          roots=('archive/readme/','archive/versions/')
+          paths=sorted(p for p in subprocess.check_output(['git','ls-files'],text=True).splitlines()
+                       if p.startswith(roots))
+          assert len(paths)==10, f'Expected 10 historical files, found {len(paths)}'
+          out=Path('/tmp/cuberev-custody');out.mkdir()
+          entries=[]
+          for path in paths:
+              raw=Path(path).read_bytes()
+              blob=subprocess.check_output(['git','hash-object','--',path],text=True).strip()
+              declared=subprocess.check_output(['git','rev-parse',f'HEAD:{path}'],text=True).strip()
+              assert blob==declared, path
+              entries.append({'path':path,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'git_blob_sha':blob})
+          stamp=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          manifest={'schema':'cuberev.retirement.preseal.v1','source_head':stamp,
+                    'files':entries,'deletion_authorized':False}
+          (out/'MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          with tarfile.open(out/'exact-historical-source.tar.gz','w:gz') as archive:
+              for path in paths:archive.add(path,arcname=path)
+          for name in ('MANIFEST.json','exact-historical-source.tar.gz'):
+              raw=(out/name).read_bytes()
+              print(f'CUSTODY_SHA256 {name} {hashlib.sha256(raw).hexdigest()} {len(raw)}')
+          print(f'CUSTODY_SOURCE_HEAD {stamp}')
+          print('CUSTODY_TEN_FILES_SEALED')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cuberev-historical-prose-preseal-${{ github.sha }}
+          path: /tmp/cuberev-custody/
+          if-no-files-found: error
+          retention-days: 90
