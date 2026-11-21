@@ -332,6 +332,7 @@ theorem frozen_prefix_sign_correction_full_twelve_trace
     eleven_slot_trace_full_twelve_parity (frozenPrefixColorRank replies)
   refine ⟨path, routed, bounds, ?_⟩
   rw [frozen_prefix_sign_correction_three_pair replies]
+  dsimp only [frozenPrefixStableOrder]
   rw [← prefixParity, ← traceParity]
   omega
 
