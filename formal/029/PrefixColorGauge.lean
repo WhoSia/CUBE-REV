@@ -64,6 +64,48 @@ theorem observed_first_eleven_corner_clock_exact (initial : Coloring) :
 
 #print axioms observed_first_eleven_corner_clock_exact
 
+/-- Normalization is a function of the transcript returned by the first
+eleven paired reads, without access to the unknown cube state. -/
+def prefixTranscriptStableOrder (replies : List FrameColor) : List Nat :=
+  elevenStableSlotOrder (fun i => (replies.map Prod.fst)[i]!)
+
+theorem actual_prefix_transcript_determines_stable_order
+    (initial : Coloring) :
+    prefixTranscriptStableOrder
+      (firstElevenPairedAddresses.map (abstractPairRead initial)) =
+      firstElevenObservedStableOrder initial := by
+  simp only [prefixTranscriptStableOrder, firstElevenObservedStableOrder,
+    observedFirstElevenColorAt, observedFirstElevenEdgeColors,
+    List.map_map]
+  rfl
+
+/-- This instantiated form of the general prefix-policy theorem rules out
+choosing an eight-read continuation from any later paired reply. -/
+theorem paired_prefix_run_uses_only_received_eleven_replies
+    (initial : Coloring)
+    (next : List FrameColor →
+      Policy (Fin 24 × Fin 24) FrameColor Coloring) :
+    (Policy.withPrefix firstElevenPairedAddresses [] next).run
+      abstractPairRead initial =
+      (next (firstElevenPairedAddresses.map (abstractPairRead initial))).run
+        abstractPairRead initial := by
+  simpa using (Policy.withPrefix_run abstractPairRead initial
+    firstElevenPairedAddresses ([] : List FrameColor) next)
+
+/-- The chosen order of the real eleven edge replies satisfies the total
+lexicographic comparison, including the original-slot tie break. -/
+theorem observed_paired_prefix_sorted (initial : Coloring) :
+    List.Pairwise
+      (fun i j =>
+        elevenSlotLexLE (observedFirstElevenColorAt initial) i j = true)
+      (firstElevenObservedStableOrder initial) := by
+  exact eleven_stable_slot_order_sorted (observedFirstElevenColorAt initial)
+
+#print axioms actual_prefix_transcript_determines_stable_order
+#print axioms paired_prefix_run_uses_only_received_eleven_replies
+#print axioms observed_paired_prefix_sorted
+
+
 #print axioms observed_first_eleven_edge_color_count
 #print axioms first_eleven_observed_stable_order_perm
 #print axioms observed_paired_prefix_stable_parity_witness
