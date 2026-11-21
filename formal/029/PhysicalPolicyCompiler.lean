@@ -21,7 +21,7 @@ noncomputable def stepTo (e : EdgeProbe) (c : Fin 24)
     (prior : List Turn) (q : Fin 24 × Fin 24) : List Turn :=
   Classical.choose (joint_frame_after_pose (rawEdgeProbe e) c q.1 q.2 prior)
 
-private theorem rawProbe_eq (e : EdgeProbe) :
+theorem rawProbe_eq (e : EdgeProbe) :
     edgeSlot e.1 e.2 = edgeNumber (rawEdgeProbe e) := by
   apply Fin.ext
   rfl
