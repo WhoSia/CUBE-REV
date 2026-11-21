@@ -1,0 +1,33 @@
+name: CUBE-REV 0.29 Lean (read-only)
+on:
+  push:
+    branches:
+      - research/current
+    paths:
+      - formal/029/**
+      - .github/workflows/cuberev029-lean.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cuberev029-lean-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compile pinned Lean package
+        uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64
+        with:
+          lake-package-directory: formal/029
+          auto-config: 'false'
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-github-cache: 'true'
+      - name: Check bridge theorem and axioms
+        working-directory: formal/029
+        run: lake env lean PhysicalPolicyCompiler.lean
