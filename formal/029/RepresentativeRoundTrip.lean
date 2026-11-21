@@ -16,7 +16,7 @@ structure EdgeSlotOrder where
 edge slots. Out-of-range natural indices are mapped to the identity,
 so this remains total; certified normalization paths always stay within
 the first ten boundaries. -/
-def adjacentTwelveSlotEquiv (i : Nat) : Fin 12 ≃ Fin 12 :=
+def adjacentTwelveSlotEquiv (i : Nat) : Equiv (Fin 12) (Fin 12) :=
   if hi : i + 1 < 12 then
     Equiv.swap
       (⟨i, by omega⟩ : Fin 12)
@@ -28,7 +28,7 @@ def adjacentTwelveSlotEquiv (i : Nat) : Fin 12 ≃ Fin 12 :=
 index swaps in the same order as adjacent-list execution: when a new
 swap acts on the output list, its output-index pullback composes on
 the right. The result is a genuine invertible coordinate map. -/
-def twelveSlotEquivOfTrace : List Nat → Fin 12 ≃ Fin 12
+def twelveSlotEquivOfTrace : List Nat → Equiv (Fin 12) (Fin 12)
   | [] => Equiv.refl _
   | i :: rest => (twelveSlotEquivOfTrace rest).trans
       (adjacentTwelveSlotEquiv i)
