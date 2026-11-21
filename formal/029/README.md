@@ -43,3 +43,21 @@ Use the upper-policy JSON from the [S editable bundle](https://drive.google.com/
 - Nineteen JSON: `80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227`.
 
 `check_data.py` verifies the input bytes, prepares ignored local copies for `include_str`, and builds the physical lower bound against the pinned data. It verifies malformed-data controls separately, including two corruptions of an arc that preserve the stored node witnesses.
+
+
+## W upper-bound bridge audit and V replay erratum (2026-11-21)
+
+The physical eighteen-frame lower-bound theorem is the principal result. Formalizing the complete nineteen-frame **upper** policy is still an open Lean task: compose the first-eleven-color orbit transport, the universal fourteen-corner-sticker decoder, the validated representative continuation tree, and `JointProbeRouting.joint_frame_after_pose` into one policy with both addresses selected before the replies.
+
+A new standalone Python suite audits this bridge without relying on the search algorithm:
+
+```sh
+python3 scripts/cuberev-observation/check_r029_w_upper_bridge.py \
+  --certificate /path/to/upper-policy-certificate.json
+```
+
+It verifies all 52 frozen representative policy trees (141,097 nodes), all 1,362 feasible first-color count vectors, 3,215,616 oriented assignment transports, all 48 color relabelings' parity behavior, all 576 joint physical target routes, the 24 oriented corner two-color pairs, the twelve move generators' cubie invariants, and negative controls. The policy input SHA-256 remains `80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227`.
+
+**Important erratum:** V's `worked-physical-replay.json` assigns the URB cubie to the URB position while claiming first two colors U,L there, which is physically impossible. The W suite **must reject** that raw witness. It also tests the distinct `worked-physical-replay-corrected.json`, whose corner labels and twists are physically consistent and whose fourteen reads are explicitly scheduled. Do not describe the corrected state as the same random sample as V.
+
+These are independently executable finite regression checks, **not a newly compiled Lean proof** of the nineteen-frame upper bound. See [W audit ledger](../../docs/0.29/20261121_W_UPPER_BRIDGE_AND_ERRATUM.md) and [W receipt](../../docs/0.29/20261121_W_UPPER_BRIDGE_RECEIPT.json). The current container used for the W audit did not have the Lean executable; the historical lower-bound Lean build evidence is preserved separately.
