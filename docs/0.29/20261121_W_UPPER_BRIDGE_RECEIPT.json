@@ -46,5 +46,65 @@
       "corrupt joint probe route"
     ]
   },
+  "generator_legality": {
+    "status": "PASS",
+    "face_quarter_turns": 12,
+    "edge_flip_offset_sum_mod2": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "corner_twist_offset_sum_mod3": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "edge_corner_signs_agree": true,
+    "consequence": "Every legal turn word preserves flip parity, twist sum and equality of the edge/corner permutation signs."
+  },
+  "original_V_example_rejected": true,
+  "corrected_W_example": {
+    "status": "PASS",
+    "worked_example_frames": 8,
+    "route_endpoint_checks": 16,
+    "edge_reply_checks": 8,
+    "selected_representative_word": "DBURLFUFULDRU",
+    "reconstructed_original_edges": [
+      "BL",
+      "UR",
+      "RD",
+      "FL",
+      "DL",
+      "BU",
+      "UF",
+      "FD",
+      "FR",
+      "DB",
+      "RB",
+      "UL"
+    ],
+    "compatible_legal_corner_twist_assignments": 81,
+    "explicit_corner_schedule_checked": true,
+    "query_order_convention": "stored move strings are lookup-order routes; physical execution reverses the list",
+    "scope": "the frozen worked example, not the universal policy"
+  },
   "trust_scope": "independent finite audits; geometric 18 lower bound separately Lean-proven; universal 19 upper-bound Lean theorem remains open"
 }
