@@ -77,6 +77,7 @@ jobs:
           lake env lean "$PWD/SignedSectorLeaf.lean"
           lake env lean "$PWD/SectorSemanticCompiler.lean"
           lake env lean "$PWD/FrozenJsonSectorParser.lean"
+          lake env lean "$PWD/SectorStatewiseValidity.lean"
           lake env lean "$PWD/NineteenSchedule.lean"
           lake env lean "$PWD/PhysicalEighteen.lean"
           lake env lean "$PWD/NineteenDataReceipt.lean"
