@@ -26,6 +26,10 @@ jobs:
         run: python3 formal/029/validate_19_corner_schedule.py
       - name: Audit corner-turn generator premises against full geometry
         run: python3 formal/029/audit_corner_turn_generators.py
+      - name: Audit reachable corner coordinates against turn geometry
+        run: python3 formal/029/audit_reachable_corner_bridge.py
+      - name: Fail-closed Lean library and CI manifest validation
+        run: python3 formal/029/audit_lake_manifest.py
       - name: Compile pinned Lean package
         uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64
         with:
@@ -46,6 +50,7 @@ jobs:
           lake env lean PhysicalPolicyCompilerFast.lean
           lake env lean CornerPairDecoder.lean
           lake env lean CornerTurnGenerators.lean
+          lake env lean ReachableCornerCoordinates.lean
           lake env lean NineteenSchedule.lean
           lake env lean PhysicalEighteen.lean
           lake env lean NineteenDataReceipt.lean
