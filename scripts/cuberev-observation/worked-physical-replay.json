@@ -1,0 +1,185 @@
+{
+  "sample_index": 7,
+  "prefix": "BURFDBUFFDR",
+  "representative_prefix": "RRFFDDLLBBB",
+  "colors": {
+    "U": "R",
+    "R": "D",
+    "F": "B",
+    "D": "L",
+    "L": "U",
+    "B": "F"
+  },
+  "representative_edge_order": [
+    "BL",
+    "UB",
+    "DL",
+    "DF",
+    "FL",
+    "FR",
+    "DB",
+    "BR",
+    "UL",
+    "UF",
+    "DR",
+    "UR"
+  ],
+  "fixed_probes": [
+    "DL[1]",
+    "DLB[1]"
+  ],
+  "trace": [
+    {
+      "frame": 12,
+      "representative_slot_zero_based": 11,
+      "edge": "UR[1]",
+      "corner": "DRF[2]",
+      "edge_color": "U",
+      "corner_color": "L",
+      "representative_color": "R",
+      "candidates_before_sign": 1152,
+      "forward_route_from_probes_to_addresses": [
+        "L'",
+        "D",
+        "L'",
+        "U2"
+      ]
+    },
+    {
+      "frame": 13,
+      "representative_slot_zero_based": 0,
+      "edge": "BL[2]",
+      "corner": "URB[1]",
+      "edge_color": "R",
+      "corner_color": "U",
+      "representative_color": "D",
+      "candidates_before_sign": 288,
+      "forward_route_from_probes_to_addresses": [
+        "B'",
+        "D'",
+        "B'"
+      ]
+    },
+    {
+      "frame": 14,
+      "representative_slot_zero_based": 8,
+      "edge": "UL[2]",
+      "corner": "DLB[1]",
+      "edge_color": "L",
+      "corner_color": "F",
+      "representative_color": "U",
+      "candidates_before_sign": 96,
+      "forward_route_from_probes_to_addresses": [
+        "D",
+        "F",
+        "U",
+        "L'"
+      ]
+    },
+    {
+      "frame": 15,
+      "representative_slot_zero_based": 9,
+      "edge": "UF[2]",
+      "corner": "DLB[1]",
+      "edge_color": "D",
+      "corner_color": "F",
+      "representative_color": "L",
+      "candidates_before_sign": 32,
+      "forward_route_from_probes_to_addresses": [
+        "L'",
+        "D",
+        "F",
+        "D'"
+      ]
+    },
+    {
+      "frame": 16,
+      "representative_slot_zero_based": 6,
+      "edge": "DB[2]",
+      "corner": "DLB[1]",
+      "edge_color": "L",
+      "corner_color": "F",
+      "representative_color": "U",
+      "candidates_before_sign": 16,
+      "forward_route_from_probes_to_addresses": [
+        "D2",
+        "R'",
+        "D2",
+        "B'",
+        "L"
+      ]
+    },
+    {
+      "frame": 17,
+      "representative_slot_zero_based": 10,
+      "edge": "DR[2]",
+      "corner": "DLB[1]",
+      "edge_color": "R",
+      "corner_color": "F",
+      "representative_color": "D",
+      "candidates_before_sign": 8,
+      "forward_route_from_probes_to_addresses": [
+        "D",
+        "F'",
+        "R'",
+        "B'"
+      ]
+    },
+    {
+      "frame": 18,
+      "representative_slot_zero_based": 1,
+      "edge": "UB[2]",
+      "corner": "DLB[1]",
+      "edge_color": "F",
+      "corner_color": "F",
+      "representative_color": "B",
+      "candidates_before_sign": 4,
+      "forward_route_from_probes_to_addresses": [
+        "B",
+        "L",
+        "B'"
+      ]
+    },
+    {
+      "frame": 19,
+      "representative_slot_zero_based": 2,
+      "edge": "DL[2]",
+      "corner": "URB[2]",
+      "edge_color": "L",
+      "corner_color": "L",
+      "representative_color": "U",
+      "candidates_before_sign": 2,
+      "forward_route_from_probes_to_addresses": [
+        "D",
+        "F",
+        "U2",
+        "L"
+      ]
+    }
+  ],
+  "terminal_words_and_signs": [
+    [
+      "DBURLFUFULDRU",
+      1
+    ],
+    [
+      "DBURFLUFULDRU",
+      0
+    ]
+  ],
+  "corner_permutation": [
+    "UFR",
+    "URB",
+    "UBL",
+    "DFL",
+    "DBR",
+    "DLB",
+    "ULF",
+    "DRF"
+  ],
+  "physical_corner_sign": 0,
+  "position_sign": 0,
+  "label_sign": 1,
+  "representative_sign": 1,
+  "recovered_moving_stickers": 48
+}
