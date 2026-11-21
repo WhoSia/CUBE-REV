@@ -229,6 +229,33 @@ theorem adjTrace_equal_outputs_force_same_swap_parity
 
 #print axioms adjTrace_equal_outputs_force_same_swap_parity
 
+/-- An arbitrary reordering of the ELEVEN distinct observation-slot IDs
+is witnessed by a bounded adjacent-swap trace, and its trace parity agrees
+with the inversion parity of the final slot order. This theorem deliberately
+uses unique position IDs, not the first colors (which may repeat). -/
+theorem eleven_slot_reordering_has_parity_witness
+    (order : List Nat) (valid : (List.range 11).Perm order) :
+    ∃ path : List Nat,
+      adjTrace path (List.range 11) = order ∧
+      (∀ i ∈ path, i < 10) ∧
+      path.length % 2 = parity order := by
+  obtain ⟨path, output, bounds⟩ :=
+    permutation_has_adjTrace valid
+  refine ⟨path, output, ?_, ?_⟩
+  · intro i hi
+    have bound := bounds i hi
+    simp only [List.length_range] at bound
+    omega
+  · have h := adjTrace_parity path (List.range 11)
+      List.nodup_range bounds
+    rw [output] at h
+    have zero : parity (List.range 11) = 0 := by decide +kernel
+    rw [zero] at h
+    omega
+
+#print axioms eleven_slot_reordering_has_parity_witness
+
+
 
 
 #print axioms root_even_swap_path
