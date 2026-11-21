@@ -24,6 +24,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Audit all 52 representative gauge choices and ordered-prefix parity controls
+        run: |
+          python scripts/cuberev-observation/audit_r029_gauge_counterexample.py > /tmp/cuberev029-gauge-covariance.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/cuberev029-gauge-covariance.json'))
+          a=d['all_representative_gauge_audit']
+          assert d['negative_control'].startswith('PASS:')
+          assert a['status']=='PASS' and a['covariance_checks']==9984
+          assert 0<a['odd_combined_corrections']<9984
+          print('CUBEREV_029_GAUGE_COVARIANCE_9984_PASS')
+          PY
       - name: Install pinned numerical test dependencies
         run: python -m pip install --disable-pip-version-check 'numpy==1.26.4' 'scipy==1.14.1' 'python-sat==1.9.dev15'
       - name: Verify physical geometry, inverses, and observational baselines
