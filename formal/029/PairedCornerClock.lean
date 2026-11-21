@@ -150,6 +150,31 @@ theorem final_corner_sticker_is_nineteenth_paired_read
   rw [exact_nineteen_paired_roots_corner_addresses]
   exact final_corner_color_not_early.2
 
+/-- Full certified-root integration on the genuine paired address/channel:
+for every original candidate of the SELECTED frozen representative,
+nineteen simultaneous edge/corner replies return the correct signed
+edge candidate. The chosen sign is evaluated only on the final
+returned decoder, not while selecting any edge read.
+This theorem remains about original-coordinate tagged pairs, not
+yet the physical face-turn route or all 1,362 noncanonical prefixes. -/
+theorem exact_nineteen_paired_recovers_matching_actual_root
+    (roots : Array Lean.Json)
+    (parsed : parsedRepresentativeArray
+      (include_str "upper-policy-certificate.json") = .ok roots)
+    (entry : Lean.Json) (member : entry ∈ roots.toList)
+    (word : Word) (corner : Fin 24 → Nat)
+    (selected : matchingFrozenRoot roots
+      (firstElevenTagged.map (taggedEdgeObserve word)) = some entry)
+    (graph : Array (FrozenInstruction Nat Nat Unit))
+    (belief : List Word)
+    (entryParsed : parseRepresentativeRoot entry = .ok (graph, belief))
+    (candidate : word ∈ belief) :
+    ((exactNineteenPairedRoots roots).run taggedPairedObserve
+        (word, corner)) (edgeWordSign word) = some word := by
+  rw [exact_nineteen_paired_roots_run]
+  exact exact_nineteen_tagged_recovers_matching_actual_root
+    roots parsed entry member word selected graph belief entryParsed candidate
+
 #print axioms withCornerClock_fits
 #print axioms withCornerClock_run
 #print axioms observed_corner_addresses_eq_schedule
@@ -157,5 +182,6 @@ theorem final_corner_sticker_is_nineteenth_paired_read
 #print axioms exact_nineteen_paired_roots_corner_addresses
 #print axioms exact_nineteen_paired_roots_run
 #print axioms final_corner_sticker_is_nineteenth_paired_read
+#print axioms exact_nineteen_paired_recovers_matching_actual_root
 
 end CubeRev029.Nineteen
