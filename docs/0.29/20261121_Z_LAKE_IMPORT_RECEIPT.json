@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "lean_modules": 29,
+  "import_edges": 35,
+  "primary_theorems_in_default_build": true,
+  "read_only_ci": true,
+  "scope": "Static dependency and workflow audit, not Lean compilation"
+}
