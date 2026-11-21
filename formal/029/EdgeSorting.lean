@@ -1,4 +1,5 @@
 import ResidualWord
+import Init.Data.List.Sort.Lemmas
 
 namespace CubeRev029.Eighteen
 
@@ -275,6 +276,41 @@ theorem eleven_slot_colors_follow_position_witness
   rw [output]
 
 #print axioms eleven_slot_colors_follow_position_witness
+
+/-- Total, deterministic stable order of the eleven *unique position IDs*.
+The comparison is lexicographic by observed color and then original position.
+Using positions as tie-breakers avoids treating repeated colors as distinct. -/
+def elevenStableSlotOrder (colorAt : Nat → Nat) : List Nat :=
+  (List.range 11).mergeSort (fun i j =>
+    if colorAt i == colorAt j then decide (i ≤ j)
+    else decide (colorAt i ≤ colorAt j))
+
+/-- This executable normalizer is genuinely a permutation of all eleven
+distinct slots for every possible observation function, including repeated
+color replies. No feasibility or posterior hypothesis is needed. -/
+theorem eleven_stable_slot_order_perm (colorAt : Nat → Nat) :
+    (List.range 11).Perm (elevenStableSlotOrder colorAt) := by
+  exact (List.mergeSort_perm (List.range 11) _).symm
+
+/-- Deterministic stable sorting has a real adjacent-swap witness; its
+parity is exactly the inversion parity of the chosen position order, and
+the *actual possibly repeated color vector* is transported by that same
+witness. This proves the slot-order part only, not the full cube gauge
+cocycle or the physical 19-frame policy. -/
+theorem eleven_stable_slot_order_certified (colorAt : Nat → Nat) :
+    ∃ path : List Nat,
+      adjTrace path (List.range 11) = elevenStableSlotOrder colorAt ∧
+      adjTrace path ((List.range 11).map colorAt) =
+        (elevenStableSlotOrder colorAt).map colorAt ∧
+      (∀ i ∈ path, i < 10) ∧
+      path.length % 2 = parity (elevenStableSlotOrder colorAt) := by
+  exact eleven_slot_colors_follow_position_witness
+    (elevenStableSlotOrder colorAt)
+    (eleven_stable_slot_order_perm colorAt) colorAt
+
+#print axioms eleven_stable_slot_order_perm
+#print axioms eleven_stable_slot_order_certified
+
 
 
 
