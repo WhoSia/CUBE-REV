@@ -160,6 +160,38 @@ def verify():
         orbit[o]+=1;stabilizer[s]+=1
     assert dict(orbit)=={6:3,12:10,24:27,48:12}
     assert dict(stabilizer)=={8:3,4:10,2:27,1:12}
+    # A stabilizer preserving a histogram need not preserve a parity label.
+    # The character is computed via the THREE opposite-pair blocks, not
+    # twelve-dimensional brute-force permutations.
+    stabilizer_character=Counter()
+    for rep in reps:
+        H=[g for g in G if act(g,rep)==rep]
+        has_odd=any(sign(pair_action(g))==1 for g in H)
+        stabilizer_character[(len(H),has_odd)]+=1
+    assert stabilizer_character=={
+        (1,False):12, (2,False):20, (2,True):7,
+        (4,False):10, (8,True):3}
+    unsafe_orbits=sum(count for (order,has_odd),count in
+                      stabilizer_character.items() if has_odd)
+    unsafe_vectors=sum(48//order*count for (order,has_odd),count in
+                       stabilizer_character.items() if has_odd)
+    assert (unsafe_orbits,unsafe_vectors)==(10,186)
+    # Abstract signed histogram action: (n,p) ↦ (g.n, p XOR sign(g)).
+    # This is NOT yet the signed, ORDERED-prefix policy game: the position
+    # stable-sort correction remains an independent causal datum.
+    signed_reps={min((act(g,v),p ^ sign(pair_action(g))) for g in G)
+                 for v in supported for p in (0,1)}
+    assert len(signed_reps)==94
+    signed_sizes=Counter()
+    for rep,parity in signed_reps:
+        signed_sizes[len({(act(g,rep),parity ^ sign(pair_action(g)))
+                          for g in G})]+=1
+    assert signed_sizes=={12:23,24:40,48:31}
+    even_fix=sum(sum(act(g,v)==v for v in supported)
+                 for g in G if sign(pair_action(g))==0)
+    odd_fix=sum(sum(act(g,v)==v for v in supported)
+                for g in G if sign(pair_action(g))==1)
+    assert even_fix==2256 and odd_fix==240 and 2*even_fix//48==94
     # Mandatory negative controls: missing graph edge, impossible demand,
     # and a deliberately corrupted fixed-point class must be detected.
     try:
@@ -180,6 +212,13 @@ def verify():
         'signed_cycle_classes':len(classes),'burnside_fix_sum':fixed_sum,
         'orbits':len(reps),'orbit_size_histogram':dict(sorted(orbit.items())),
         'stabilizer_histogram':dict(sorted(stabilizer.items())),
+        'stabilizer_parity_character':{f'order{order}_odd{int(odd)}':count
+            for (order,odd),count in sorted(stabilizer_character.items())},
+        'odd_character_stabilizer_orbits':unsafe_orbits,
+        'odd_character_stabilizer_vectors':unsafe_vectors,
+        'signed_histogram_orbits':len(signed_reps),
+        'signed_histogram_orbit_sizes':dict(sorted(signed_sizes.items())),
+        'signed_character_burnside':{'even_sign_fix_sum':even_fix,'odd_sign_fix_sum':odd_fix},
         'class_fixed_counts':[{'signed_cycle_type':list(k),'size':len(classes[k]),
            'fixed':classes[k][0]} for k in sorted(classes)],
         'independent_DP':'PASS','mutations':'REJECTED',
