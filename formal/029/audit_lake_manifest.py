@@ -12,7 +12,7 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript'
 }
 
 
@@ -34,9 +34,15 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
+    trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
+    for theorem in ('nineteen_schedule_contains_required_corner_pairs',
+                    'same_scheduled_colors_implies_fourteen',
+                    'same_nineteen_corner_answers_force_all_corner_colors'):
+        assert f'theorem {theorem}' in trace, f'Missing nineteen-frame bridge theorem: {theorem}'
+        assert f'#print axioms {theorem}' in trace, f'Missing axiom audit: {theorem}'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
