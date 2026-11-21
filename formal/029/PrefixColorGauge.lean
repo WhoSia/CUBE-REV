@@ -339,6 +339,41 @@ theorem frozen_prefix_sign_correction_full_twelve_trace
 #print axioms frozen_prefix_sign_correction_full_twelve_trace
 
 
+/-- The frozen transcript-derived normalization comes with ONE concrete
+invertible twelve-position adapter whose output-to-input address
+semantics agree pointwise with the actual stable-sort trace. The same
+witness simultaneously carries the exact signed parity correction.
+
+This is conditional on the already observed eleven-frame transcript
+only; it does not assume a free parity reply, a correct frozen policy,
+or a full nineteen-frame identifying controller. -/
+theorem frozen_prefix_has_semantic_twelve_slot_adapter
+    (replies : List FrameColor) :
+    ∃ (path : List Nat) (order : Nineteen.EdgeSlotOrder),
+      order = Nineteen.slotOrderFromAdjacentTrace path ∧
+      (∀ j : Fin 12,
+        (frozenPrefixStableOrder replies ++ [11])[j.val]? =
+          (List.range 12)[(order.forward j).val]?) ∧
+      frozenPrefixSignCorrection replies =
+        (path.length +
+          parity (Nineteen.inducedThreePairPermutation
+            (chosenPrefixColorMap replies))) % 2 := by
+  obtain ⟨path, routed, bounds, correction⟩ :=
+    frozen_prefix_sign_correction_full_twelve_trace replies
+  refine ⟨path, Nineteen.slotOrderFromAdjacentTrace path, rfl, ?_, correction⟩
+  intro j
+  have inTwelve : ∀ i ∈ path, i + 1 < 12 := by
+    intro i hi
+    have bound := bounds i hi
+    omega
+  rw [← routed]
+  exact Nineteen.slot_order_trace_getElem? path
+    (List.range 12) (by decide +kernel) inTwelve j
+
+#print axioms frozen_prefix_has_semantic_twelve_slot_adapter
+
+
+
 
 /-- If two original cube states return exactly the same eleven initial
 edge colors at the paired addresses, they select identical color gauges,
