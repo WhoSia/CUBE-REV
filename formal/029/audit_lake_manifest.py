@@ -13,7 +13,7 @@ REQUIRED={
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
  'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance',
- 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler'
+ 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser'
 }
 
 
@@ -35,7 +35,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -221,6 +221,20 @@ def check():
                        'compileSectorDecoder', 'Fits.read'):
         assert checkpoint in sector_compiler, (
             f'Missing sign-deferred certificate semantic guard: {checkpoint}')
+    frozen_json=(ROOT/'FrozenJsonSectorParser.lean').read_text()
+    for theorem in ('exact_frozen_leaf_parse',
+                    'malformed_singleton_is_rejected',
+                    'parsed_sector_has_bounded_policy'):
+        assert f'theorem {theorem}' in frozen_json, (
+            f'Missing exact frozen parser theorem {theorem}')
+        assert f'#print axioms {theorem}' in frozen_json, (
+            f'Missing frozen parser axiom report {theorem}')
+    for checkpoint in ('parseFrozenSectorNode', 'parseFrozenSectorNodes',
+                       'Invalid singleton node tag.', 'Unexpected color response label.',
+                       'Out-of-range sector address.', 'compileSectorDecoder',
+                       'invalidIndex'):
+        assert checkpoint in frozen_json, (
+            f'Missing fail-closed frozen schema gate: {checkpoint}')
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
