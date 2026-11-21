@@ -139,10 +139,10 @@ orientation offsets sum to an even number. The exact signed sorting
 cocycle and representative-tree statewise correctness remain separate. -/
 theorem chosen_prefix_gauge_edge_equivariant (replies : List FrameColor) :
     ∀ edge : Fin 24, ∀ side : Bool,
-      Nineteen.sticker
+      sticker
           (Nineteen.relabeledOrientedEdge (chosenPrefixColorMap replies) edge)
           side =
-        (chosenPrefixColorMap replies)[Nineteen.sticker edge.val side]! := by
+        (chosenPrefixColorMap replies)[sticker edge.val side]! := by
   exact Nineteen.symmetry_preserves_oriented_edge_colors
     (chosenPrefixColorMap replies) (chosen_prefix_color_map_legal replies)
 
