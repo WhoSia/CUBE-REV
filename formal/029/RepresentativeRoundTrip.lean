@@ -30,12 +30,10 @@ theorem adjacent_twelve_index_involutive
   by_cases h : i + 1 < 12
   · by_cases h₁ : j.val = i
     · apply Fin.ext
-      simp [adjacentTwelveIndex, h, h₁]
-      omega
+      simp [adjacentTwelveIndex, h, h₁] <;> omega
     · by_cases h₂ : j.val = i + 1
       · apply Fin.ext
-        simp [adjacentTwelveIndex, h, h₁, h₂]
-        omega
+        simp [adjacentTwelveIndex, h, h₁, h₂] <;> omega
       · simp [adjacentTwelveIndex, h, h₁, h₂]
   · simp [adjacentTwelveIndex, h]
 
