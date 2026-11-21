@@ -31,7 +31,7 @@ theorem first_eleven_observed_stable_order_perm (initial : Coloring) :
     (List.range 11).Perm (firstElevenObservedStableOrder initial) := by
   exact eleven_stable_slot_order_perm (observedFirstElevenColorAt initial)
 
-/-- Real paired-frame edge responses admit a concrete, sign-certified
+/-- Real paired-frame edge responses have a concrete, sign-certified
 adjacent-swap normalization. The same trace rearranges repeated *colors*
 and distinct *positions* without confusing them. The theorem is
 independent of reachability and has no future-read assumptions. -/
