@@ -280,10 +280,56 @@ theorem eleven_slot_colors_follow_position_witness
 /-- Total, deterministic stable order of the eleven *unique position IDs*.
 The comparison is lexicographic by observed color and then original position.
 Using positions as tie-breakers avoids treating repeated colors as distinct. -/
+/-- Lexicographic color then original-position comparison. In particular,
+equal observed colors remain separate because the slot IDs are unique. -/
+def elevenSlotLexLE (colorAt : Nat → Nat) (i j : Nat) : Bool :=
+  decide (colorAt i < colorAt j ∨
+    (colorAt i = colorAt j ∧ i ≤ j))
+
+theorem eleven_slot_lex_trans (colorAt : Nat → Nat) (i j k : Nat)
+    (hij : elevenSlotLexLE colorAt i j = true)
+    (hjk : elevenSlotLexLE colorAt j k = true) :
+    elevenSlotLexLE colorAt i k = true := by
+  simp only [elevenSlotLexLE, decide_eq_true_eq] at hij hjk ⊢
+  omega
+
+theorem eleven_slot_lex_total (colorAt : Nat → Nat) (i j : Nat) :
+    (elevenSlotLexLE colorAt i j ||
+      elevenSlotLexLE colorAt j i) = true := by
+  simp only [Bool.or_eq_true, elevenSlotLexLE, decide_eq_true_eq]
+  omega
+
+/-- This propositionally equivalent comparator makes the ordering law
+explicit: equal color replies retain increasing original slot indices. -/
+theorem eleven_slot_lex_matches_prior_comparator
+    (colorAt : Nat → Nat) (i j : Nat) :
+    elevenSlotLexLE colorAt i j =
+      (if colorAt i == colorAt j then decide (i ≤ j)
+       else decide (colorAt i ≤ colorAt j)) := by
+  by_cases h : colorAt i = colorAt j
+  · simp [elevenSlotLexLE, h]
+  · have heq : (colorAt i < colorAt j) ↔
+        (colorAt i ≤ colorAt j) := by omega
+    simp [elevenSlotLexLE, h, heq]
+
 def elevenStableSlotOrder (colorAt : Nat → Nat) : List Nat :=
-  (List.range 11).mergeSort (fun i j =>
-    if colorAt i == colorAt j then decide (i ≤ j)
-    else decide (colorAt i ≤ colorAt j))
+  (List.range 11).mergeSort (elevenSlotLexLE colorAt)
+
+/-- For *every* initial eleven-color transcript, not merely realizable
+histograms, the chosen order is pairwise lexicographically sorted. This
+completes the ordering-law premise of the deterministic prefix normalizer.
+The global color-gauge selector and signed sector transport remain open. -/
+theorem eleven_stable_slot_order_sorted (colorAt : Nat → Nat) :
+    List.Pairwise
+      (fun i j => elevenSlotLexLE colorAt i j = true)
+      (elevenStableSlotOrder colorAt) := by
+  simpa only [elevenStableSlotOrder] using
+    (List.pairwise_mergeSort
+      (eleven_slot_lex_trans colorAt)
+      (eleven_slot_lex_total colorAt) (List.range 11))
+
+#print axioms eleven_slot_lex_matches_prior_comparator
+#print axioms eleven_stable_slot_order_sorted
 
 /-- This executable normalizer is genuinely a permutation of all eleven
 distinct slots for every possible observation function, including repeated
