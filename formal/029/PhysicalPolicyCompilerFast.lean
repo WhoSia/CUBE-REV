@@ -120,7 +120,8 @@ theorem physical_nineteen_of_abstract_bounded (e : EdgeProbe) (c : Fin 24)
         runFrames e c s physical = s := by
   refine ⟨compileBounded e c [] tree, compileBounded_fits e c [] budget, ?_⟩
   intro s hs
-  simpa using (compileBounded_correct e c s tree []).trans (correct s hs)
+  change runFrames e c (paint [] s) (compileBounded e c [] tree) = s
+  exact (compileBounded_correct e c s tree []).trans (correct s hs)
 
 #print axioms baseSetup_addresses
 #print axioms compileBounded_correct
