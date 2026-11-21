@@ -150,6 +150,12 @@ def check():
            'audit_corner_turn_generators.py','audit_reachable_corner_bridge.py',
            'lake-package-directory: formal/029']
     assert all(s in workflow for s in steps)
+    hall_script=(ROOT.parents[1]/'scripts/cuberev-observation/audit_r029_hall_burnside_graph_quotient.py').read_text()
+    for claim in ('four_hall_families','independent_family_failures',
+                  'hall_fast','independent_dp','burnside_fix_sum'):
+        assert claim in hall_script, f'Missing graph-Hall independent gate: {claim}'
+    assert 'audit_r029_hall_burnside_graph_quotient.py' in workflow, (
+        'Actual read-only CI must run the graph quotient and Hall mutations')
     return {'status':'PASS','lean_modules':len(names),
             'import_edges':sum(map(len,imports.values())),
             'primary_theorems_in_default_build':True,
