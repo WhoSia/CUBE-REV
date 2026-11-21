@@ -12,35 +12,61 @@ structure EdgeSlotOrder where
   right_inv : ∀ i, backward (forward i) = i
 
 
-/-- Each adjacent-position swap is a genuine bijection on all twelve
-edge slots. Out-of-range natural indices are mapped to the identity,
-so this remains total; certified normalization paths always stay within
-the first ten boundaries. -/
-def adjacentTwelveSlotEquiv (i : Nat) : Equiv (Fin 12) (Fin 12) :=
-  if hi : i + 1 < 12 then
-    Equiv.swap
-      (⟨i, by omega⟩ : Fin 12)
-      (⟨i + 1, hi⟩ : Fin 12)
-  else
-    Equiv.refl (Fin 12)
+/-- A bounded adjacent swap of Fin 12 indices. On invalid swap
+positions this is the identity. The resulting finite-index map is
+involutive, so no external equivalence library is needed. -/
+def adjacentTwelveIndex (i : Nat) (j : Fin 12) : Fin 12 :=
+  if h : i + 1 < 12 then
+    if h₁ : j.val = i then
+      ⟨i + 1, h⟩
+    else if h₂ : j.val = i + 1 then
+      ⟨i, by omega⟩
+    else j
+  else j
 
-/-- For a sequence of adjacent position swaps, compose the involutive
-index swaps in the same order as adjacent-list execution: when a new
-swap acts on the output list, its output-index pullback composes on
-the right. The result is a genuine invertible coordinate map. -/
-def twelveSlotEquivOfTrace : List Nat → Equiv (Fin 12) (Fin 12)
-  | [] => Equiv.refl _
-  | i :: rest => (twelveSlotEquivOfTrace rest).trans
-      (adjacentTwelveSlotEquiv i)
+theorem adjacent_twelve_index_involutive
+    (i : Nat) (j : Fin 12) :
+    adjacentTwelveIndex i (adjacentTwelveIndex i j) = j := by
+  apply Fin.ext
+  unfold adjacentTwelveIndex
+  split_ifs <;> omega
 
-/-- No inverse mapping is postulated: both coordinate directions are
-obtained from the same executable permutation of twelve slot indices. -/
-def slotOrderFromAdjacentTrace (path : List Nat) : EdgeSlotOrder :=
-  let e := twelveSlotEquivOfTrace path
-  { forward := e
-    backward := e.symm
-    left_inv := e.right_inv
-    right_inv := e.left_inv }
+/-- Both directions are the same adjacent transposition, with
+the inverse equations discharged by the involution proof above. -/
+def adjacentTwelveSlotOrder (i : Nat) : EdgeSlotOrder where
+  forward := adjacentTwelveIndex i
+  backward := adjacentTwelveIndex i
+  left_inv := adjacent_twelve_index_involutive i
+  right_inv := adjacent_twelve_index_involutive i
+
+/-- Composition of two verified twelve-slot coordinate bijections.
+The first and second inverse maps are composed in reverse order. -/
+def composeEdgeSlotOrders (a b : EdgeSlotOrder) : EdgeSlotOrder where
+  forward := fun i => a.forward (b.forward i)
+  backward := fun i => b.backward (a.backward i)
+  left_inv := by
+    intro i
+    change a.forward (b.forward (b.backward (a.backward i))) = i
+    rw [b.left_inv, a.left_inv]
+  right_inv := by
+    intro i
+    change b.backward (a.backward (a.forward (b.forward i))) = i
+    rw [a.right_inv, b.right_inv]
+
+def identityEdgeSlotOrder : EdgeSlotOrder where
+  forward := id
+  backward := id
+  left_inv := by intro i; rfl
+  right_inv := by intro i; rfl
+
+/-- A full list of actual adjacent swaps now constructs a legitimate
+twelve-slot EdgeSlotOrder and a real inverse, not merely a proof of
+existence or a pair of externally supplied functions. -/
+def slotOrderFromAdjacentTrace : List Nat → EdgeSlotOrder
+  | [] => identityEdgeSlotOrder
+  | i :: rest =>
+      composeEdgeSlotOrders (slotOrderFromAdjacentTrace rest)
+        (adjacentTwelveSlotOrder i)
 
 theorem slot_order_from_adjacent_trace_round_trip
     (path : List Nat) (i : Fin 12) :
@@ -48,6 +74,7 @@ theorem slot_order_from_adjacent_trace_round_trip
       ((slotOrderFromAdjacentTrace path).backward i) = i := by
   exact (slotOrderFromAdjacentTrace path).left_inv i
 
+#print axioms adjacent_twelve_index_involutive
 #print axioms slot_order_from_adjacent_trace_round_trip
 
 /-- A total decoder for representative-coordinate states. The modulo-24
