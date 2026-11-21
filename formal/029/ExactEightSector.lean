@@ -52,10 +52,12 @@ theorem exact_eight_sector_recovers_given_terminal_sign
   have original :=
     statewise_checked_sector_recovers_each_candidate
       graph observe sign 8 root belief verified state member
-  have unchanged :=
-    Policy.padToExact_run fallback observe state
-      (compileSectorDecoder graph observe sign 8 root belief).property
-  exact congrArg (fun decoder => decoder (sign state)) unchanged |>.trans original
+  change
+    (((compileSectorDecoder graph observe sign 8 root belief).val.padToExact
+      fallback 8).run observe state) (sign state) = some state
+  rw [Policy.padToExact_run fallback observe state
+    (compileSectorDecoder graph observe sign 8 root belief).property]
+  exact original
 
 #print axioms exact_eight_sector_fits
 #print axioms exact_eight_sector_trace_length
