@@ -190,3 +190,54 @@ the frozen `route_info`, then compose it with
 decision-policy transport. No unconditional `Fits 19` policy is claimed
 here. The latest Lean CI result must be verified on the exact commit;
 source commits alone do not certify that these new lemmas compile.
+
+## 10. AW: deterministic eleven-slot normalization with a proof-carrying trace
+
+The previous proofs assumed an externally supplied permutation of eleven
+*distinct position IDs*. The new source code constructs that permutation
+directly from any ordered observation vector represented by
+`colorAt : Nat → Nat`:
+
+- `elevenStableSlotOrder colorAt`: merge-sort all IDs `0..10`,
+  comparing first by the observed color code, then by original position ID.
+  Thus repeated colors are retained as distinct observations, in
+  unambiguous original-position order.
+- `eleven_stable_slot_order_perm`: the result is a permutation of
+  `List.range 11`, not a multiset of colors.
+- `eleven_stable_slot_order_certified`: the chosen permutation admits
+  an actual in-range adjacent-swap trace; mapping the entire trace to
+  possibly repeated original colors yields exactly the ordered color
+  sequence; and the trace-length parity equals the position-order
+  inversion parity.
+
+These follow the earlier `eleven_slot_reordering_has_parity_witness`
+and `eleven_slot_colors_follow_position_witness` for any slot
+permutation. The comparator uses the original ID as the tie breaker,
+rather than interpreting a repeated observed color as an independent
+cubie ID.
+
+Commits:
+[distinct eleven-slot permutation witness](https://github.com/WhoSia/CUBE-REV/commit/816972fe2bef785d464c656e5a03e43532609113),
+[transport of repeated observations](https://github.com/WhoSia/CUBE-REV/commit/34ebae519a2554ed18e4c84bfb7e03f260593b9d),
+[executable deterministic stable normalizer](https://github.com/WhoSia/CUBE-REV/commit/60e14c40119f443f71846879c0006f2e30ad9ac8).
+
+**Trust-boundary incident:** the first new CI execution
+[#44925422532](https://github.com/WhoSia/CUBE-REV/actions/runs/44925422532)
+failed at the strict import scanner before compiling Lean. The
+new explicit Lean core import `Init.Data.List.Sort.Lemmas` was
+not on its external-module allowlist. The
+[precise allowlist amendment](https://github.com/WhoSia/CUBE-REV/commit/bae782d8323bc63507bddf654cda1e5f79f6398a)
+adds only this one pinned standard-library module. This
+failure is a source-package policy error, not a mathematical
+counterexample. The new Lean source's compilation success must be
+verified from the corrected workflow run
+[#44925506967](https://github.com/WhoSia/CUBE-REV/actions/runs/44925506967)
+before being claimed.
+
+The present construction establishes *permutation, real color
+transport, and parity*; it has not yet proved in Lean the
+`Pairwise` semantic sortedness of the comparator, a full
+gauge-composition cocycle, or a total state-identifying
+nineteen-frame physical policy. The sign-correction formula for
+the three opposite color pairs and the frozen 52-sector policy
+remain separate proof components.
