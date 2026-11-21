@@ -1,5 +1,8 @@
 # CUBE-REV 0.16 — P11 integrality obstruction, verified overlaps and the 75 unseparated bases
 
+> **Source-retirement provenance (2026-11-22):** Closed 0.16 execution sources and their tests are no longer in the active research tree. Original code remains at the [immutable pre-retirement source commit](https://github.com/WhoSia/CUBE-REV/tree/7904b9d2822aa58f61a5b4890f7f3cba7ea02184/scripts/cuberev-016) and in the [SHA-256-verified 42-file Drive archive](https://drive.google.com/file/d/1iWDpLIFOwFfm-qg3Z7lInhmChOotP1jm/view). Historical claims below refer to that source revision; they are not newly proved by current 0.29 Lean modules.
+
+
 **Version hierarchy:** P11 is an INTERNAL mathematical research division of the single formally titled CUBE-REV 0.16, not a separate titled version. 0.16 remains OPEN.
 
 ## I. Exact LP/integer integrality gap in the 28-target component
@@ -60,6 +63,6 @@ Even if the fractional certificate compiles, **the universal 7,004-quartet overl
 
 ## Evidence and paper role
 
-The standalone Python stdlib checker [test-p11-integrality-overlap.py](../../scripts/cuberev-016/test-p11-integrality-overlap.py) reads the PUBLIC P10 50×116 table and checks the exact rational cover and all7,004 disjoint four-mask overlaps, without SciPy or an external SAT solver. Separate original-cubie cycle code replays all25 words and classifies the 75. Neither empirical human psychology nor new human solve source material enters these results.
+The standalone Python stdlib checker [test-p11-integrality-overlap.py](https://github.com/WhoSia/CUBE-REV/blob/7904b9d2822aa58f61a5b4890f7f3cba7ea02184/scripts/cuberev-016/test-p11-integrality-overlap.py) reads the PUBLIC P10 50×116 table and checks the exact rational cover and all7,004 disjoint four-mask overlaps, without SciPy or an external SAT solver. Separate original-cubie cycle code replays all25 words and classifies the 75. Neither empirical human psychology nor new human solve source material enters these results.
 
 **Scientific opportunity:** the exact integrality gap5/4 and the quartet overlap ≥8 obstruction help explain why weighted duality does not itself prove six experiments. The next substantive pure mathematical problem is a non-enumerative proof of the universal overlap lemma and a valid 25-word reduction involving the 75 zero-dual-weight bases. Do not promote a finite incidence fact to a universal graph-theoretic law without an explicit new theorem and hypotheses.

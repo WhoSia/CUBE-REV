@@ -1,5 +1,8 @@
 # CUBE-REV 0.16 — Lean formalization gates and a reduced finite-cover contradiction
 
+> **Source-retirement provenance (2026-11-22):** Closed 0.16 execution sources and their tests are no longer in the active research tree. Original code remains at the [immutable pre-retirement source commit](https://github.com/WhoSia/CUBE-REV/tree/7904b9d2822aa58f61a5b4890f7f3cba7ea02184/scripts/cuberev-016) and in the [SHA-256-verified 42-file Drive archive](https://drive.google.com/file/d/1iWDpLIFOwFfm-qg3Z7lInhmChOotP1jm/view). Historical claims below refer to that source revision; they are not newly proved by current 0.29 Lean modules.
+
+
 **Internal P9 only.** The sole formal version remains CUBE-REV 0.16 (OPEN). Pure mathematical theorems and executable certificates are distinct from human psychological conclusions.
 
 ## A. Formal proof status (do not confuse four levels)
@@ -21,7 +24,7 @@ Define the frozen P5/P6 universe of 1,192 requisite initial edge-position sets (
 
 **Computer-verifiable reduced core.** Exact deduplication of the P7 168 candidate positive-cover masks gives 126 distinct masks. Ten are the heavy singleton classes, leaving **116 unique positive-coverage patterns** on the remaining **50 targets**, with max **14 words**. Both independent complete-cover engines use exact integer masks, choose an uncovered target and branch over all candidates covering it; a remaining-capacity condition `uncovered_weight≤20×remaining_words` only removes impossible states. Dominance memoization identifies identical covered subsets reached with equal/more already selected words. **Both Python and C++20 enumerate 165 exact memo states and 220 branches, returning UNSAT for the necessary 50×116, size≤14 problem.** This proves the original 24-word dictionary impossible in combination with the physical P6/P7 dual certificate; **does not prove that 25 words are possible**.
 
-Local mathematical proof bundle: `CUBE_REV_016_P9_FORMAL_LEAN_GATE_REDUCED_COVER_PRIVATE_20261009.zip` (22,399 bytes; 19 members), SHA-256 `b25c6cd46edcc007a717c203f50f4e09d35c7266ea0f1410f5e3ba40bac16c37`; ZIP CRC and fresh-source SHA exact checking and two independent search executables PASS. Private Library `/CUBE-REV/0.16/`, while human solve traces are absent. Source-level original mathematical input remains in separately sealed P7 artifact. Public verifier [verify-dual-forced-core.py](../../scripts/cuberev-016/verify-dual-forced-core.py) accepts the mathematical P7 near-dual candidate JSON as an explicit argument.
+Local mathematical proof bundle: `CUBE_REV_016_P9_FORMAL_LEAN_GATE_REDUCED_COVER_PRIVATE_20261009.zip` (22,399 bytes; 19 members), SHA-256 `b25c6cd46edcc007a717c203f50f4e09d35c7266ea0f1410f5e3ba40bac16c37`; ZIP CRC and fresh-source SHA exact checking and two independent search executables PASS. Private Library `/CUBE-REV/0.16/`, while human solve traces are absent. Source-level original mathematical input remains in separately sealed P7 artifact. Public verifier [verify-dual-forced-core.py](https://github.com/WhoSia/CUBE-REV/blob/7904b9d2822aa58f61a5b4890f7f3cba7ea02184/scripts/cuberev-016/verify-dual-forced-core.py) accepts the mathematical P7 near-dual candidate JSON as an explicit argument.
 
 **Exact optimum unresolved:** no newly verified 25/26/.../33-word construction, and no impossibility proof for length25 or greater. No solver timeout or restricted-candidate experiment is evidence of global infeasibility.
 

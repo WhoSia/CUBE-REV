@@ -1,5 +1,8 @@
 # CUBE-REV 0.16 — Manuscript position after the all-length spectral path theorem
 
+> **Source-retirement provenance (2026-11-22):** Closed 0.16 execution sources and their tests are no longer in the active research tree. Original code remains at the [immutable pre-retirement source commit](https://github.com/WhoSia/CUBE-REV/tree/7904b9d2822aa58f61a5b4890f7f3cba7ea02184/scripts/cuberev-016) and in the [SHA-256-verified 42-file Drive archive](https://drive.google.com/file/d/1iWDpLIFOwFfm-qg3Z7lInhmChOotP1jm/view). Historical claims below refer to that source revision; they are not newly proved by current 0.29 Lean modules.
+
+
 **Status:** internal manuscript triage, NOT a publication claim, a separately named P-stage, or a formal 0.17. The current research version 0.16 remains OPEN.
 
 ## Manuscript candidate I — best near-term pure-mathematics direction

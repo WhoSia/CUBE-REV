@@ -1,5 +1,8 @@
 # CUBE-REV 0.16 — source-backed mathematical research scope
 
+> **Source-retirement provenance (2026-11-22):** Closed 0.16 execution sources and their tests are no longer in the active research tree. Original code remains at the [immutable pre-retirement source commit](https://github.com/WhoSia/CUBE-REV/tree/7904b9d2822aa58f61a5b4890f7f3cba7ea02184/scripts/cuberev-016) and in the [SHA-256-verified 42-file Drive archive](https://drive.google.com/file/d/1iWDpLIFOwFfm-qg3Z7lInhmChOotP1jm/view). Historical claims below refer to that source revision; they are not newly proved by current 0.29 Lean modules.
+
+
 **This is a research note inside the ONE formally titled CUBE-REV 0.16 version.** Internal P0/P1/P2/P3/P4 numbers are Notion filing divisions, not separately proposed project names. The 0.15 predecessor remains CLOSED; its two-adversarial-bit 15-vs16 exact optimum gap remains mathematically OPEN.
 
 ## Frozen mathematical model

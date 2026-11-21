@@ -1,5 +1,8 @@
 # CUBE-REV 0.16 — exact split of the small universal-word covering obstruction
 
+> **Source-retirement provenance (2026-11-22):** Closed 0.16 execution sources and their tests are no longer in the active research tree. Original code remains at the [immutable pre-retirement source commit](https://github.com/WhoSia/CUBE-REV/tree/7904b9d2822aa58f61a5b4890f7f3cba7ea02184/scripts/cuberev-016) and in the [SHA-256-verified 42-file Drive archive](https://drive.google.com/file/d/1iWDpLIFOwFfm-qg3Z7lInhmChOotP1jm/view). Historical claims below refer to that source revision; they are not newly proved by current 0.29 Lean modules.
+
+
 **Internal P10; formal version CUBE-REV 0.16 stays OPEN.** This document is a mathematical theorem about the reduced P9 50×116 finite covering instance, not a solution of the original 1,192-basis universal dictionary minimum.
 
 ## Provenance and model boundary
@@ -29,7 +32,7 @@ and the precise integer M* remains OPEN. A new ≥26 lower bound would have to u
 
 ## Compact finite proof receipt and Lean plan
 
-The portable Python-standard-library checker [test-p10-small-core.py](../../scripts/cuberev-016/test-p10-small-core.py) loads the precise published 50×116 data, confirms the graph decomposition, checks all7,004 quadruples with zero possible fifth extension, and checks concrete 9+6 covers. A separately compiled strict C++20 certificate and original P7/P9 24-state physical action oracle are included in the private math-only bundle and linked via SHA256 manifest.
+The portable Python-standard-library checker [test-p10-small-core.py](https://github.com/WhoSia/CUBE-REV/blob/7904b9d2822aa58f61a5b4890f7f3cba7ea02184/scripts/cuberev-016/test-p10-small-core.py) loads the precise published 50×116 data, confirms the graph decomposition, checks all7,004 quadruples with zero possible fifth extension, and checks concrete 9+6 covers. A separately compiled strict C++20 certificate and original P7/P9 24-state physical action oracle are included in the private math-only bundle and linked via SHA256 manifest.
 
 **Lean kernel status** remains PENDING, not PASS. A natural staged formalization is (i) formalize the generic weighted-cover inequality for a family of finite subsets; (ii) prove the disjoint 22+28 component additivity lemma; (iii) import 74+6 finite 28-target masks and check the 7,004/zero-extension statement by a Lean reduction or proof-carrying LRAT refutation; (iv) link the 50×116 data back to the physical Rubik-edge 18-HTM orbit model. These are separate obligations. A Lean check of an abstract mask table without proving the physical semantic bridge is not a complete cube theorem.
 
