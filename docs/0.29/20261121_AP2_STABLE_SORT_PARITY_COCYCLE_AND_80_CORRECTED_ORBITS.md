@@ -129,3 +129,26 @@ complete corner arrangement.
 - [Run #44912274902](https://github.com/WhoSia/CUBE-REV/actions/runs/44912274902): the dedicated 9,984-case audit step passed. Overall workflow completion must be read independently; step success alone is not a claim of overall success.
 
 **Next exact proof task:** derive the sign relation for *arbitrary* `EdgeSlotOrder` and 48-color automorphism (rather than only four concrete orders), then connect that retained witness to the actual eleven-color prefix routing and sign-dependent terminal decoder. An unconditional `Fits 19` physical theorem remains open.
+
+## 8. Clean-clone certificate loader regression (2026-11-21)
+
+The 9,984-case gauge audit completed successfully inside the independent
+observation workflow, but the **overall** workflow
+[#44912274902](https://github.com/WhoSia/CUBE-REV/actions/runs/44912274902)
+failed during standard-library test discovery: the legacy
+`test_19_policy_certificate_negative.py` attempted to open
+`scripts/cuberev-observation/upper-policy-certificate.json`, a plaintext
+file deliberately omitted from the active Git checkout. This is an
+**input-path failure**, not a counterexample to the 19-frame certificate or
+to the gauge-covariance identity.
+
+The corrected negative test reads the committed immutable
+`formal/029/certificate_blobs/upper-policy-certificate.json.gz.b64` in
+memory; validates SHA-256 of both the compressed and decompressed content
+against the pinned digests; and then executes the same four independent
+malformed-tree mutations. No certificate regeneration, network download,
+untracked plaintext file, or modification to `verify_one` is necessary.
+[Exact fix](https://github.com/WhoSia/CUBE-REV/commit/ce802b57930ac151c84bcb1d466fa57e2c689672).
+This repairs the clean-checkout test path only; it is **not** a new
+mathematical proof. The updated workflow's completed outcome must be
+checked separately before claiming the whole test suite passed.
