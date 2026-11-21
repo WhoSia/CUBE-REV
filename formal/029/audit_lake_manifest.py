@@ -12,7 +12,7 @@ REQUIRED={
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
- 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse'
+ 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip'
 }
 
 
@@ -34,7 +34,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -109,6 +109,14 @@ def check():
         assert f'theorem {theorem}' in inverse, f'Missing color inverse theorem: {theorem}'
         assert f'#print axioms {theorem}' in inverse, f'Missing color inverse axiom audit: {theorem}'
     assert inverse.count('decide +kernel') >= 4, 'Inverse table cannot rely on native_decide'
+    roundtrip = (ROOT/'RepresentativeRoundTrip.lean').read_text()
+    for theorem in ('representative_pair_state_round_trip',
+                    'correct_original_policy_of_certified_representative'):
+        assert f'theorem {theorem}' in roundtrip, f'Missing exact inverse-policy theorem: {theorem}'
+        assert f'#print axioms {theorem}' in roundtrip, f'Missing inverse-policy axiom inspection: {theorem}'
+    for need in ('inverse_color_table_restores_oriented_edge',
+                 'transportPairedPolicy_run', 'transportPairedPolicy_fits'):
+        assert need in roundtrip, f'Incomplete exact inverse policy proof: {need}'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
