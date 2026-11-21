@@ -143,6 +143,7 @@
     ".github/workflows/cuberev-028-active-observation.yml",
     ".github/workflows/cuberev-028-exchange-color-audit.yml",
     ".github/workflows/cuberev-028-independent-p48-mitm.yml",
+    ".github/workflows/cuberev-archive-one-shot.yml",
     ".github/workflows/cuberev-observation-generalization.yml",
     ".github/workflows/cuberev-r14-p5-observation-equivariance.yml",
     ".github/workflows/cuberev-r14-p51-p48-root-orbits.yml",
@@ -5811,5 +5812,13 @@
     "tracked_count": 1533,
     "missing_preexisting_count": 0,
     "source_head": "c9ec3906c3d94a9f279cb0c0629f1ba8650e2315"
+  },
+  "active_set_reconciliation_20261122_archive_preseal": {
+    "source_commit": "5fe57052c427be35a3e749a52ae0a57d4f7cb55a",
+    "added": [
+      ".github/workflows/cuberev-archive-one-shot.yml"
+    ],
+    "scope": "temporary read-only archive custody; remove workflow when archive is verified",
+    "no_deletions": true
   }
 }
