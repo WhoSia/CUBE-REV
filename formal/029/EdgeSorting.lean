@@ -255,6 +255,28 @@ theorem eleven_slot_reordering_has_parity_witness
 
 #print axioms eleven_slot_reordering_has_parity_witness
 
+/-- Every eleven-slot position reordering can be performed on its
+actual repeated-color observations by the same adjacent swaps. Since the
+position IDs remain unique, the resulting parity is unambiguous even if
+the eleven observation colors contain repetitions. -/
+theorem eleven_slot_colors_follow_position_witness
+    (order : List Nat) (valid : (List.range 11).Perm order)
+    (colorAt : Nat → Nat) :
+    ∃ path : List Nat,
+      adjTrace path (List.range 11) = order ∧
+      adjTrace path ((List.range 11).map colorAt) =
+        order.map colorAt ∧
+      (∀ i ∈ path, i < 10) ∧
+      path.length % 2 = parity order := by
+  obtain ⟨path, output, bounds, parityWitness⟩ :=
+    eleven_slot_reordering_has_parity_witness order valid
+  refine ⟨path, output, ?_, bounds, parityWitness⟩
+  rw [← adjTrace_map]
+  rw [output]
+
+#print axioms eleven_slot_colors_follow_position_witness
+
+
 
 
 
