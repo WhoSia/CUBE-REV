@@ -8,7 +8,8 @@ open Eighteen
 def rawEdgeProbe (e : EdgeProbe) : Fin 24 :=
   ⟨2 * e.1.val + e.2.toNat, by
     have h := e.1.isLt
-    cases e.2 <;> omega⟩
+    have hb : e.2.toNat ≤ 1 := by cases e.2 <;> decide
+    omega⟩
 
 /-- Reading an original-state address pair, not the rotated frame. -/
 def abstractPairRead (state : Coloring) (q : Fin 24 × Fin 24) : FrameColor :=
@@ -90,7 +91,8 @@ theorem physical_nineteen_of_abstract (e : EdgeProbe) (c : Fin 24)
         runFrames e c s physical = s := by
   refine ⟨compilePaired e c [] tree, compilePaired_fits e c [] budget, ?_⟩
   intro s hs
-  simpa using (compilePaired_correct e c s tree []).trans (correct s hs)
+  change runFrames e c (paint [] s) (compilePaired e c [] tree) = s
+  exact (compilePaired_correct e c s tree []).trans (correct s hs)
 
 #print axioms stepTo_correct
 #print axioms compilePaired_correct
