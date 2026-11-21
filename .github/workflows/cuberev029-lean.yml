@@ -30,6 +30,8 @@ jobs:
         run: python3 formal/029/audit_reachable_corner_bridge.py
       - name: Fail-closed Lean library and CI manifest validation
         run: python3 formal/029/audit_lake_manifest.py
+      - name: Independently check Hall–Burnside graph quotient and mutations
+        run: python3 scripts/cuberev-observation/audit_r029_hall_burnside_graph_quotient.py
       - name: Compile pinned Lean package
         uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64
         with:
@@ -64,6 +66,7 @@ jobs:
           lake env lean "$PWD/SymmetryInverse.lean"
           lake env lean "$PWD/RepresentativeRoundTrip.lean"
           lake env lean "$PWD/ColorGraphCharacter.lean"
+          lake env lean "$PWD/GraphPosteriorCovariance.lean"
           lake env lean "$PWD/NineteenSchedule.lean"
           lake env lean "$PWD/PhysicalEighteen.lean"
           lake env lean "$PWD/NineteenDataReceipt.lean"
