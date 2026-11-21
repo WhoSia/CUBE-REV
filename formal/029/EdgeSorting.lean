@@ -354,6 +354,78 @@ theorem eleven_stable_slot_order_certified (colorAt : Nat → Nat) :
 #print axioms eleven_stable_slot_order_perm
 #print axioms eleven_stable_slot_order_certified
 
+/-- An in-range adjacent swap of the first eleven positions never
+touches the extra unread twelfth edge position. This is a structural
+list identity, independent of how the observed colors are encoded. -/
+theorem adjacent_append_unread
+    (i : Nat) (xs : List α) (unread : α)
+    (bound : i + 1 < xs.length) :
+    adjacent i (xs ++ [unread]) = adjacent i xs ++ [unread] := by
+  induction i generalizing xs with
+  | zero =>
+      cases xs with
+      | nil => simp at bound
+      | cons a tail =>
+          cases tail with
+          | nil => simp at bound
+          | cons b rest => rfl
+  | succ i ih =>
+      cases xs with
+      | nil => simp at bound
+      | cons a tail =>
+          have inner : i + 1 < tail.length := by
+            simp only [List.length_cons] at bound
+            omega
+          change a :: adjacent i (tail ++ [unread]) =
+            a :: (adjacent i tail ++ [unread])
+          exact congrArg (List.cons a) (ih tail inner)
+
+/-- An entire bounded eleven-slot swap trace has the same property.
+This is the required *list-level* extension to the previously unobserved
+twelfth position, prior to constructing a twelve-slot inverse Equiv. -/
+theorem adjTrace_append_unread
+    (path : List Nat) (xs : List α) (unread : α)
+    (bounds : ∀ i ∈ path, i + 1 < xs.length) :
+    adjTrace path (xs ++ [unread]) = adjTrace path xs ++ [unread] := by
+  induction path generalizing xs with
+  | nil => rfl
+  | cons i tail ih =>
+      have bi : i + 1 < xs.length := bounds i (by simp)
+      have bt : ∀ j ∈ tail, j + 1 < (adjacent i xs).length := by
+        intro j hj
+        rw [adjacent_length]
+        exact bounds j (by simp [hj])
+      simp only [adjTrace]
+      rw [adjacent_append_unread i xs unread bi]
+      exact ih (adjacent i xs) bt
+
+/-- The certified stable prefix ordering extends to all twelve distinct
+slot IDs with the unobserved last slot *fixed*, not swapped into the
+eleven measured positions. The parity contribution is precisely the
+eleven-slot sorting parity already certified in the original trace. -/
+theorem eleven_slot_trace_fixes_unread_twelfth
+    (colorAt : Nat → Nat) :
+    ∃ path : List Nat,
+      adjTrace path ((List.range 11) ++ [11]) =
+        elevenStableSlotOrder colorAt ++ [11] ∧
+      (∀ i ∈ path, i < 10) ∧
+      path.length % 2 = parity (elevenStableSlotOrder colorAt) := by
+  obtain ⟨path, ordered, _, bounds, parityWitness⟩ :=
+    eleven_stable_slot_order_certified colorAt
+  refine ⟨path, ?_, bounds, parityWitness⟩
+  have bound : ∀ i ∈ path, i + 1 < (List.range 11).length := by
+    intro i hi
+    have h := bounds i hi
+    simp only [List.length_range]
+    omega
+  rw [adjTrace_append_unread path (List.range 11) 11 bound]
+  rw [ordered]
+
+#print axioms adjacent_append_unread
+#print axioms adjTrace_append_unread
+#print axioms eleven_slot_trace_fixes_unread_twelfth
+
+
 
 
 
