@@ -13,7 +13,7 @@ REQUIRED={
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
  'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance',
- 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt','TaggedNineteenRootPolicy','PairedCornerClock'
+ 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt','TaggedNineteenRootPolicy','PairedCornerClock','PrefixColorGauge'
 }
 
 
@@ -35,7 +35,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt','TaggedNineteenRootPolicy','PairedCornerClock'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt','TaggedNineteenRootPolicy','PairedCornerClock','PrefixColorGauge'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
