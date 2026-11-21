@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "bundle_sha256": "01dae80a640c087373942bd6067ccbfef9d9132bffcd8a4653f9e166105e9893",
+  "bytes": 1056581,
+  "file_count": 77,
+  "archive_entry_integrity": "PASS",
+  "all_file_hashes_from_manifest": "PASS",
+  "fresh_restore_sha256": "PASS",
+  "fresh_checks": [
+    {
+      "command": "python3 formal/029/restore_pinned_data.py",
+      "status": "PASS",
+      "last_line": "]"
+    },
+    {
+      "command": "python3 formal/029/validate_19_corner_schedule.py",
+      "status": "PASS",
+      "last_line": "PASS 19 corner-frame addresses; 14 distinct; omitted corner 5; 3 mutations rejected"
+    },
+    {
+      "command": "python3 formal/029/audit_corner_turn_generators.py",
+      "status": "PASS",
+      "last_line": "}"
+    },
+    {
+      "command": "python3 formal/029/audit_reachable_corner_bridge.py",
+      "status": "PASS",
+      "last_line": "}"
+    },
+    {
+      "command": "python3 formal/029/audit_lake_manifest.py",
+      "status": "PASS",
+      "last_line": "}"
+    },
+    {
+      "command": "python3 reproduction/audit_r029_x_negative.py --certificate reproduction/upper-policy-certificate.json",
+      "status": "PASS",
+      "last_line": "}"
+    },
+    {
+      "command": "python3 reproduction/audit_r029_x_end_to_end.py --certificate reproduction/upper-policy-certificate.json --start-vector 0 --max-vectors 12 --physical-trials 60",
+      "status": "PASS",
+      "last_line": "}"
+    }
+  ],
+  "lean_kernel_compiled": false,
+  "reason": "Lean and lake binaries not available in session container"
+}
