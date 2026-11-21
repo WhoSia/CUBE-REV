@@ -225,14 +225,19 @@ theorem frozen_prefix_sort_parity_witness (replies : List FrameColor) :
       swaps.length % 2 = parity (frozenPrefixStableOrder replies) := by
   exact eleven_stable_slot_order_certified (frozenPrefixColorRank replies)
 
-/-- Concrete tied-gauge fixture, after applying the Python-first
-URFDLB mapping rather than the raw internal BDFLRU order. The native
-computation receipt for this one fixed example is separated from the
-kernel-checked universal sorting and permutation theorems above. -/
+/-- Concrete tied-gauge regression with a kernel-checked result.
+First reuse the separately kernel-verified selected gauge map, so the
+sorting check does not re-evaluate all 720 color permutations. The final
+eleven-slot permutation calculation then uses kernel reduction only. -/
 theorem frozen_tie_probe_has_transformed_stable_order :
     frozenPrefixStableOrder frozenTieProbeReplies =
       [6,7,8,0,1,9,10,2,3,4,5] := by
-  native_decide
+  have selected :
+      chosenPrefixColorMap frozenTieProbeReplies = [3,5,4,2,0,1] :=
+    frozen_tie_probe_selects_original_route_map
+  unfold frozenPrefixStableOrder frozenPrefixColorRank
+  rw [selected]
+  decide +kernel
 
 #print axioms frozen_prefix_stable_order_perm
 #print axioms frozen_prefix_stable_order_sorted
