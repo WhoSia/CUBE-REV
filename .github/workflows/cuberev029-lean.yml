@@ -73,6 +73,7 @@ jobs:
           lake env lean "$PWD/SignedPairedPosterior.lean"
           lake env lean "$PWD/SignedTerminalIdentification.lean"
           lake env lean "$PWD/SignedPolicyTranscript.lean"
+          lake env lean "$PWD/FrozenPolicyInterpreter.lean"
           lake env lean "$PWD/NineteenSchedule.lean"
           lake env lean "$PWD/PhysicalEighteen.lean"
           lake env lean "$PWD/NineteenDataReceipt.lean"
