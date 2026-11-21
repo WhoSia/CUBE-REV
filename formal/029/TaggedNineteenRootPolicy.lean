@@ -173,9 +173,13 @@ theorem exact_nineteen_tagged_recovers_matching_actual_root
     roots parsed entry member
   obtain ⟨g, b, matchEntry, allCorrect⟩ := rootsCorrect
   have same : (graph, belief) = (g, b) := by
-    have e := entryParsed.symm.trans matchEntry
-    exact Option.some.inj (by simpa using e)
-  cases same
+    have e : Except.ok (graph, belief) = Except.ok (g, b) :=
+      entryParsed.symm.trans matchEntry
+    injection e with equal
+    exact equal
+  rcases Prod.mk.inj same with ⟨sameGraph, sameBelief⟩
+  subst g
+  subst b
   have exactCorrect := allCorrect word candidate
   rw [show (exactNineteenTagged roots).run taggedEdgeObserve word =
     (elevenThenFrozen roots).run taggedEdgeObserve word from
