@@ -13,7 +13,7 @@ REQUIRED={
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
  'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance',
- 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter'
+ 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf'
 }
 
 
@@ -35,7 +35,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -201,6 +201,13 @@ def check():
                        'Option O', 'Policy.stop none'):
         assert checkpoint in interpreter, (
             f'Missing fail-closed certificate interpreter guard: {checkpoint}')
+    sector_leaf=(ROOT/'SignedSectorLeaf.lean').read_text()
+    for theorem in ('first_candidate_is_correct_of_sign_unique',
+                    'first_candidate_witness_belongs'):
+        assert f'theorem {theorem}' in sector_leaf, f'Missing exact sign-sector theorem {theorem}'
+        assert f'#print axioms {theorem}' in sector_leaf, f'Missing sign-sector axiom report {theorem}'
+    for checkpoint in ('AtMostOnePerSign', 'firstCandidateWithSign'):
+        assert checkpoint in sector_leaf, f'Missing sign-sector semantics {checkpoint}'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
