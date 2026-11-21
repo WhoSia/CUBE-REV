@@ -2,6 +2,9 @@ import CornerTurnGenerators
 
 namespace CubeRev029.Physical
 
+set_option maxRecDepth 16000
+set_option maxHeartbeats 0
+
 open Eighteen
 
 /-!
@@ -22,8 +25,6 @@ def cornerSourceLocalIndex (t : Turn) (i : Fin 8) (j : Fin 3) : Fin 3 :=
 
 /-- A face turn acts on the three stickers of a corner as one cyclic
 rotation of the same source cubie. -/
-set_option maxRecDepth 16000 in
-set_option maxHeartbeats 0 in
 theorem corner_turn_slot_factors :
     ∀ t : Turn, ∀ i : Fin 8, ∀ j : Fin 3,
       turnSlot t (cornerRawSlot i j) =
@@ -42,8 +43,6 @@ def shiftedCorner (x : Fin 24) (shift : Fin 3) : Fin 24 :=
 
 /-- Cyclic shifts compose for each of the twenty-four oriented corner
 identities, independent of the other seven corners. -/
-set_option maxRecDepth 16000 in
-set_option maxHeartbeats 0 in
 theorem oriented_color_shift :
     ∀ x : Fin 24, ∀ shift j : Fin 3,
       orientedCornerColor (shiftedCorner x shift) j =
@@ -84,8 +83,6 @@ theorem corner_agreement_after_turn (a : CornerCoordinates) (s : Coloring)
 def solvedCornerCoordinates : CornerCoordinates :=
   fun i => ⟨3 * i.val, by have h := i.isLt; omega⟩
 
-set_option maxRecDepth 16000 in
-set_option maxHeartbeats 0 in
 theorem solved_corner_agreement : CornersAgree solvedCornerCoordinates solved := by
   decide +kernel
 
