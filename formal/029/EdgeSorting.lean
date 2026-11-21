@@ -212,6 +212,24 @@ theorem adjTrace_relabel_parity_shift_invariant
 
 #print axioms adjTrace_relabel_parity_shift_invariant
 
+/-- Every valid adjacent-transposition representation of the same
+reordering has the same parity of swap count. This rules out a spurious
+dependence on which adjacent-swap decomposition a stable-sort witness uses. -/
+theorem adjTrace_equal_outputs_force_same_swap_parity
+    (first second : List Nat) (xs : List Nat)
+    (distinct : xs.Nodup)
+    (firstBound : ∀ i ∈ first, i + 1 < xs.length)
+    (secondBound : ∀ i ∈ second, i + 1 < xs.length)
+    (sameOutput : adjTrace first xs = adjTrace second xs) :
+    first.length % 2 = second.length % 2 := by
+  have firstParity := adjTrace_parity first xs distinct firstBound
+  have secondParity := adjTrace_parity second xs distinct secondBound
+  rw [sameOutput] at firstParity
+  omega
+
+#print axioms adjTrace_equal_outputs_force_same_swap_parity
+
+
 
 #print axioms root_even_swap_path
 
