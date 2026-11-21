@@ -227,6 +227,12 @@ If accepted, the result closes the *index-semantics* gap exposed in BA: `EdgeSlo
 
 **Remaining requirements even after pointwise acceptance:** connect the trace witness to the selected frozen source `route_info` ordering in a deterministic executable selector (rather than only an existential path), show full signed posterior commutation across all actual charged query/response branches, prove the fifty-two frozen root policies statewise on every reachable history, and infer the terminal sign from the actual nineteen corner responses. This section does not declare a total physical nineteen-frame theorem.
 
+### BB verified acceptance — full twelve-slot adapter
+
+The two separate Lean verification gates have now **completed successfully**. [Run #44933058857, attempt 2](https://github.com/WhoSia/CUBE-REV/actions/runs/44933058857) verified the generic, element-type-polymorphic pointwise pullback `slot_order_trace_getElem?` (source [e2b094c](https://github.com/WhoSia/CUBE-REV/commit/e2b094c6f6bff781e791367519b6037eaa833d78)). [Run #44933735143](https://github.com/WhoSia/CUBE-REV/actions/runs/44933735143) verified the next compiled source [b505afc](https://github.com/WhoSia/CUBE-REV/commit/b505afcfb2b0e715a03a030c2bfb8944527f75f1), which joins this pointwise equivalence to the actual response-dependent frozen normalization and the exact full twelve-position sign correction as `frozen_prefix_has_semantic_twelve_slot_adapter`. This second theorem returns a bounded `path` and a genuine `EdgeSlotOrder` with `order = slotOrderFromAdjacentTrace path`, verifies the list-index correspondence for **all** `Fin 12` output positions, and reports the inherited color-pair parity correction.
+
+The printed axioms for both `slot_order_trace_getElem?` and `frozen_prefix_has_semantic_twelve_slot_adapter` are exactly `[propext, Classical.choice, Quot.sound]`; neither includes `sorryAx` nor an added native computation dependency. This acceptance is **about these specific theorems**, not a proof that the frozen policy is a total state-identifying 19-frame controller. A concrete *executable* trace selector, an explicit statewise link from this chosen adapter to all frozen eight-read tree branches, and terminal corner-derived sign correctness remain the next principal proof targets.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
