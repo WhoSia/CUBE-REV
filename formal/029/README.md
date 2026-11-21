@@ -61,3 +61,18 @@ It verifies all 52 frozen representative policy trees (141,097 nodes), all 1,362
 **Important erratum:** V's `worked-physical-replay.json` assigns the URB cubie to the URB position while claiming first two colors U,L there, which is physically impossible. The W suite **must reject** that raw witness. It also tests the distinct `worked-physical-replay-corrected.json`, whose corner labels and twists are physically consistent and whose fourteen reads are explicitly scheduled. Do not describe the corrected state as the same random sample as V.
 
 These are independently executable finite regression checks, **not a newly compiled Lean proof** of the nineteen-frame upper bound. See [W audit ledger](../../docs/0.29/20261121_W_UPPER_BRIDGE_AND_ERRATUM.md) and [W receipt](../../docs/0.29/20261121_W_UPPER_BRIDGE_RECEIPT.json). The current container used for the W audit did not have the Lean executable; the historical lower-bound Lean build evidence is preserved separately.
+
+
+## X: entire nineteen-frame controller, bounded physical compiler, and trust boundary
+
+The new [X end-to-end audit](../../docs/0.29/20261121_X_END_TO_END_CLOSURE.md) drives the exact frozen 52-tree decision policy all the way from canonicalizing the first eleven observed edge colors to the final corner-parity selection and inverse coordinate map. It passes for 3,215,616 count-vector-normalized edge records (one sorted eleven-color record for each of 1,362 feasible count vectors) and for 1,000 legal geometric face-turn scrambles at fixed probes `DL[1]`, `DLB[1]`, recovering every one of the 48 non-center stickers in at most 19 paired frames. Three malformed-decoder controls are rejected. This is a finite/computational proof audit, **not a new Lean certificate of the full upper theorem**.
+
+Three additional formal modules have been added:
+
+- `PhysicalPolicyCompiler.lean`: turns any abstract paired-read policy into a physical fixed-probe policy with the same frame budget;
+- `PhysicalPolicyCompilerFast.lean`: constructs a bounded-length legal setup at each frame by resetting from the previous canonical pose, instead of expanding a turn history exponentially;
+- `CornerPairDecoder.lean`: under the explicit corner piece-sum and twist-sum conservation hypotheses, gives uniqueness of all 8 oriented corners from 14 cyclically ordered stickers.
+
+**Build status:** the X execution container has no `lean`/`lake`. A read-only pinned GitHub Actions job was added in `.github/workflows/cuberev029-lean.yml`; a successful build and axiom report for these *new* modules has not yet been obtained by the agent. Do not represent their theorem statements as kernel-checked until the CI logs are inspected and the assumptions about Reachable states are discharged. The separate existing 18-frame geometric lower-bound theorem was compiled in the previous U verification.
+
+With the complete [X reproducibility ZIP](https://drive.google.com/file/d/1Ump-hWOEx7XBJ5C2b3UwmiFxemJO-ztu/view), run `lake build` from `formal/029` after unpacking; then execute the seven range commands from the X ledger to regenerate the finite receipts.
