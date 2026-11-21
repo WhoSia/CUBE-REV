@@ -13,10 +13,11 @@ def cornerCyclicPair (x : Fin 24) : Nat × Nat :=
   let name := cornerNames[x.val / 3]!.toList
   (colorCode name[x.val % 3]!, colorCode name[(x.val % 3 + 1) % 3]!)
 
+set_option maxRecDepth 10000
+set_option maxHeartbeats 0
+
 /-- In the oriented 3x3x3-corner alphabet, the first two cyclically
 ordered colors uniquely determine the cubie identity and twist. -/
-set_option maxRecDepth 10000 in
-set_option maxHeartbeats 0 in
 theorem cornerCyclicPair_injective :
     ∀ x y : Fin 24, cornerCyclicPair x = cornerCyclicPair y → x = y := by
   decide +kernel
@@ -63,6 +64,8 @@ theorem corner_fourteen_unique (a b : CornerCoordinates)
     have y := hb.twist_total
     simp only [cornerTwistTotal, e0, e1, e2, e3, e4, e5, e6] at x
     simp only [cornerTwistTotal] at y
+    have hA : cornerTwist (a 7) < 3 := Nat.mod_lt _ (by decide)
+    have hB : cornerTwist (b 7) < 3 := Nat.mod_lt _ (by decide)
     omega
   have last : a 7 = b 7 := by
     apply Fin.ext
@@ -104,6 +107,8 @@ theorem corner_fourteen_unique_missing_five (a b : CornerCoordinates)
     have y := hb.twist_total
     simp only [cornerTwistTotal, e0, e1, e2, e3, e4, e6, e7] at x
     simp only [cornerTwistTotal] at y
+    have hA : cornerTwist (a 5) < 3 := Nat.mod_lt _ (by decide)
+    have hB : cornerTwist (b 5) < 3 := Nat.mod_lt _ (by decide)
     omega
   have missing : a 5 = b 5 := by
     apply Fin.ext
