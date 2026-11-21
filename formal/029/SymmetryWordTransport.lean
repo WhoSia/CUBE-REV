@@ -80,6 +80,8 @@ theorem symmetry_preserves_flipBit_for_all_complete_words
   have sumOffsets := permOffsets.sum_nat
   rw [relabelEdgeWord_flip_formula, sumOffsets]
   have evenOffsets := symmetry_even_flip_offset sigma hsigma
+  have wordFlipBound : flipBit word < 2 := Nat.mod_lt _ (by decide)
+  rw [Nat.add_mod, evenOffsets]
   omega
 
 /-- The original physical sticker's reported color is carried equivariantly
