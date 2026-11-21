@@ -157,6 +157,28 @@ def verify():
     supported={v for v in universe if hall(v)}
     reduced={v for v in universe if hall_fast(v)}
     assert len(supported)==1362 and reduced==supported
+    # A decisive cross-language regression: frozen route_info iterates the
+    # forty-eight tables in permutations('URFDLB') order, whereas the Lean
+    # internal-code symmetry list iterates permutations('BDFLRU'). Both
+    # find identical minimum HISTOGRAMS, but ties can pick different maps
+    # and hence different signed correction bits. The formal selector must
+    # reproduce the FROZEN enumeration order, not silently use the internal
+    # index order.
+    frozen_maps=list(group())
+    internal_maps=sorted(frozen_maps,
+        key=lambda g:tuple('BDFLRU'.index(g[c]) for c in 'BDFLRU'))
+    assert len(frozen_maps)==len(internal_maps)==48
+    different_maps=different_combined_sign=0
+    for vector in supported:
+        canonical=min(act(g,vector) for g in frozen_maps)
+        frozen=next(g for g in frozen_maps if act(g,vector)==canonical)
+        index_order=next(g for g in internal_maps if act(g,vector)==canonical)
+        if frozen!=index_order:
+            different_maps+=1
+            if stable_sort_sign_correction(frozen,vector)!=stable_sort_sign_correction(index_order,vector):
+                different_combined_sign+=1
+    assert (different_maps,different_combined_sign)==(80,36), (
+        'FROZEN_GAUGE_TIE_ORDER_DRIFT',different_maps,different_combined_sign)
     # Each of the four cut families is logically necessary; removing it
     # produces exactly these false positives among the 4,368 histograms.
     independent_family_failures=Counter()
@@ -279,6 +301,8 @@ def verify():
         'status':'PASS','method':'Hall matching plus Burnside signed-cycle classes',
         'graph':'K_{2,2,2}','edges':12,'first_reads':11,
         'supported_count_vectors':len(supported),'color_symmetries':len(G),
+        'frozen_vs_internal_gauge_tie_map_disagreements':different_maps,
+        'frozen_vs_internal_gauge_tie_sign_disagreements':different_combined_sign,
         'all_nonnegative_histograms':len(universe),
         'reduced_hall_family_count':4,
         'reduced_hall_family_independence':dict(sorted(independent_family_failures.items())),
