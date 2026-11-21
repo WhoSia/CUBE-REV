@@ -52,6 +52,7 @@ jobs:
           lake env lean "$PWD/CornerTurnGenerators.lean"
           lake env lean "$PWD/ReachableCornerCoordinates.lean"
           lake env lean "$PWD/CornerConservation.lean"
+          lake env lean "$PWD/ReachableCornerIdentification.lean"
           lake env lean "$PWD/NineteenSchedule.lean"
           lake env lean "$PWD/PhysicalEighteen.lean"
           lake env lean "$PWD/NineteenDataReceipt.lean"
