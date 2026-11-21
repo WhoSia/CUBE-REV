@@ -13,7 +13,7 @@ REQUIRED={
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
  'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance',
- 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker'
+ 'SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection'
 }
 
 
@@ -35,7 +35,7 @@ def check():
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
         if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
-                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker'):
+                 'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection'):
             text=path.read_text()
             assert not any(token in text for token in ('sorry','admit','axiom ')),f'Unjustified placeholder in {name}'
     trace = (ROOT/'NineteenCornerTranscript.lean').read_text()
@@ -299,6 +299,18 @@ def check():
                     'checkSignUnique', 'finiteReplyFiber', 'allFinite',
                     'decide +kernel'):
         assert feature in distinct, f'Missing exact finite reply semantics {feature}'
+    frozen_roots=(ROOT/'FrozenRootReflection.lean').read_text()
+    for theorem in ('certified_source_each_root_has_exact_semantics',
+                    'certified_source_each_root_recovers'):
+        assert f'theorem {theorem}' in frozen_roots, (
+            f'Missing original JSON root/semantic soundness: {theorem}')
+        assert f'#print axioms {theorem}' in frozen_roots, (
+            f'Missing frozen-root axiom inspection: {theorem}')
+    for gate in ('parsedRepresentativeArray', 'parseRepresentativeRoot',
+                 'sector (List.range 12) 0 prefix', 'checkDistinctSector_sound',
+                 'allFinite checkedRepresentativeRoot',
+                 'certifiedFrozenRoots', '144736', '141097', '70774'):
+        assert gate in frozen_roots, f'Missing frozen 52-root exactness gate {gate}'
     visiting=set();visited=set()
     def visit(x):
         if x in visiting:raise ValueError(f'Import cycle at {x}')
