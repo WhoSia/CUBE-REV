@@ -471,6 +471,24 @@ def elevenBubbleSchedule : List (Fin 10) :=
     (List.range 10).map (fun i =>
       (⟨i % 10, Nat.mod_lt i (by decide)⟩ : Fin 10)))
 
+/-- The executable comparison budget is exactly eleven complete sweeps
+of ten observed-slot boundaries. This is a statement about scheduled
+comparisons, not the number of swaps actually emitted. -/
+theorem eleven_bubble_schedule_length :
+    elevenBubbleSchedule.length = 110 := by
+  decide +kernel
+
+/-- Every boundary in the first eleven-slot prefix occurs eleven times
+in the fixed schedule. No comparison addresses the twelfth unread edge.
+The proof computes only the closed finite schedule, never a color input. -/
+theorem eleven_bubble_schedule_boundary_multiplicity :
+    ∀ i : Fin 10,
+      (elevenBubbleSchedule.filter (fun j => j == i)).length = 11 := by
+  decide +kernel
+
+#print axioms eleven_bubble_schedule_length
+#print axioms eleven_bubble_schedule_boundary_multiplicity
+
 /-- Build an executable *candidate* trace from the eleven observed colors.
 The current ordering is recomputed from its actual preceding swaps, so
 each comparison is adaptive to the current position permutation. This
