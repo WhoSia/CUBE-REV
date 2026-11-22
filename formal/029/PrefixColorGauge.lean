@@ -460,6 +460,37 @@ theorem verified_frozen_prefix_trace_preserves_unread
 #print axioms verified_frozen_prefix_trace_preserves_unread
 
 
+/-- A successful executable prefix-trace check also recovers the EXACT
+frozen signed correction, not merely the unsigned sorted histogram.
+The parity contribution of its real adjacent swaps and the chosen
+three-opposite-pair color character are both explicit. No terminal
+corner-sign bit is treated as a free sensor observation. -/
+theorem verified_frozen_prefix_trace_signed
+    (replies : List FrameColor) (path : List Nat)
+    (accepted : verifiedFrozenPrefixTrace? replies = some path) :
+    frozenPrefixSignCorrection replies =
+      (path.length +
+        parity (Nineteen.inducedThreePairPermutation
+          (chosenPrefixColorMap replies))) % 2 := by
+  obtain ⟨ordered, bounds⟩ :=
+    verified_frozen_prefix_trace_refines replies path accepted
+  have within : ∀ i ∈ path, i + 1 < (List.range 11).length := by
+    intro i hi
+    have h := bounds i hi
+    simp only [List.length_range]
+    omega
+  have traceParity := adjTrace_parity path (List.range 11)
+    List.nodup_range within
+  rw [ordered] at traceParity
+  have zero : parity (List.range 11) = 0 := by decide +kernel
+  rw [zero] at traceParity
+  rw [frozen_prefix_sign_correction_three_pair replies]
+  omega
+
+#print axioms verified_frozen_prefix_trace_signed
+
+
+
 
 
 
