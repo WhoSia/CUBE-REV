@@ -252,6 +252,26 @@ The initial BC implementation surfaced a faulty direction of equality rewriting 
 
 BB already gives a proof-carrying existential trace for each actual frozen prefix transcript. This provides formal existence, a bounded-path condition and precise pointwise query semantics, but it **does not yet supply a computable, deterministic trace-producing program**. A deployable continuation cannot execute an arbitrary noncomputable witness extracted from a proposition in Lean. The next constructive milestone is an executable sorter that records the concrete adjacent swaps as data, with a proof that (i) each recorded swap is bounded, (ii) replay produces the selected stable permutation, and (iii) the resulting `EdgeSlotOrder` gives the same adapter and parity. The signed 52-sector posterior and terminal corner-time obligations remain subsequent gates.
 
+### BC implementation milestone — an executable, type-bounded trace candidate
+
+The preceding existential proof contains a legitimate adjacent-swap witness but does not specify a program that *computes* it from first-color responses. We have begun separating that executable artifact from its still-open semantic verification. The new `elevenBubbleSchedule` comprises eleven passes of the ten adjacent boundaries among observed slots. Each scheduled boundary is a `Fin 10`, and `bubbleCandidateTrace11` records only those boundaries where the currently replayed position order contains an adjacent inversion in the `elevenSlotLexLE` comparator. `bubbleCandidatePath11` erases only the bounded index type, yielding a concrete `List Nat` that an implementer can replay without selecting a noncomputable witness.
+
+The first verified interface targets are **boundedness** of every emitted swap and **preservation of the unobserved twelfth position**. The coordinate transport layer then defines `bubbleCandidateSlotOrder` from this concrete trace, with forward/inverse unread-slot preservation and exact elementwise replay semantics. These interface results are intentionally weaker than sorting correctness: a legal in-bounds sequence of swaps could still sort the observations incorrectly.
+
+The next required theorem, not yet included as a proven claim, is the *functional refinement* assertion:
+
+```lean
+∀ colorAt : Nat → Nat,
+  adjTrace (bubbleCandidatePath11 colorAt) (List.range 11) =
+    elevenStableSlotOrder colorAt
+```
+
+For the actual original-coordinate policy, instantiate `colorAt := frozenPrefixColorRank replies` and reuse the already certified eleven-slot `mergeSort` normal form, exact 12-slot query pullback, and combined parity correction. Because each slot is a distinct ID, one viable proof strategy is to establish that the bubble output is a permutation of `List.range 11` and is pairwise lexicographically ordered; uniqueness of sorted permutations then identifies it with the canonical stable order. Finiteness alone or tests over the 1,362 possible histograms would not prove this universally for all ordered first-color words.
+
+**Causal and resource constraints:** the candidate receives only the color values from the already completed eleven paired frames. Its current implementation uses repeated trace replay inside the comparator, and should be optimized before a production policy implementation if performance becomes material; no complexity improvement is claimed here. There are exactly 110 scheduled comparisons; the emitted swaps are a subsequence of those typed positions. These computation facts do not amount to a proof of the global 19-frame identification theorem.
+
+The source is [`EdgeSorting.lean`](../../formal/029/EdgeSorting.lean) and the executable coordinate adapter is [`RepresentativeRoundTrip.lean`](../../formal/029/RepresentativeRoundTrip.lean). Both must be judged by the post-BC pinned Lean CI, and their formal status must not be conflated with the still-unproved functional refinement above.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
