@@ -134,6 +134,57 @@ theorem slot_order_trace_getElem? (path : List Nat) :
 #print axioms slot_order_trace_getElem?
 
 
+/-- A swap strictly inside the first ten adjacent boundaries cannot move
+the unread twelfth index, not even at the level of the actual Fin map. -/
+theorem adjacent_twelve_index_fixes_unread (i : Nat) (hi : i < 10) :
+    adjacentTwelveIndex i (⟨11, by decide⟩ : Fin 12) =
+      (⟨11, by decide⟩ : Fin 12) := by
+  have h : i + 1 < 12 := by omega
+  have h₁ : (11 : Nat) ≠ i := by omega
+  have h₂ : (11 : Nat) ≠ i + 1 := by omega
+  simp [adjacentTwelveIndex, h, h₁, h₂]
+
+/-- The exact coordinate permutation built from any first-eleven sorting
+trace fixes the unread 12th edge position, rather than merely preserving
+its color accidentally on one particular input list. -/
+theorem slot_order_bounded_trace_fixes_unread
+    (path : List Nat) (bounds : ∀ i ∈ path, i < 10) :
+    (slotOrderFromAdjacentTrace path).forward
+      (⟨11, by decide⟩ : Fin 12) =
+        (⟨11, by decide⟩ : Fin 12) := by
+  induction path with
+  | nil => rfl
+  | cons i rest ih =>
+      have hi : i < 10 := bounds i (by simp)
+      have hr : ∀ j ∈ rest, j < 10 := by
+        intro j hj
+        exact bounds j (by simp [hj])
+      change adjacentTwelveIndex i
+        ((slotOrderFromAdjacentTrace rest).forward
+          (⟨11, by decide⟩ : Fin 12)) =
+            (⟨11, by decide⟩ : Fin 12)
+      rw [ih hr]
+      exact adjacent_twelve_index_fixes_unread i hi
+
+/-- The inverse of that same permutation also fixes the unread index.
+No extra observation of the twelfth edge is used in either direction. -/
+theorem slot_order_bounded_trace_inverse_fixes_unread
+    (path : List Nat) (bounds : ∀ i ∈ path, i < 10) :
+    (slotOrderFromAdjacentTrace path).backward
+      (⟨11, by decide⟩ : Fin 12) =
+        (⟨11, by decide⟩ : Fin 12) := by
+  have forward := slot_order_bounded_trace_fixes_unread path bounds
+  have inverse := (slotOrderFromAdjacentTrace path).right_inv
+      (⟨11, by decide⟩ : Fin 12)
+  rw [← forward] at inverse
+  exact inverse
+
+#print axioms adjacent_twelve_index_fixes_unread
+#print axioms slot_order_bounded_trace_fixes_unread
+#print axioms slot_order_bounded_trace_inverse_fixes_unread
+
+
+
 /-- A total decoder for representative-coordinate states. The modulo-24
 operation only supplies a default for arbitrary *invalid* representative
 outputs; the round-trip theorem below proves it does not alter any valid
