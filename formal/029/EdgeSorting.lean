@@ -598,6 +598,33 @@ theorem bubble_order_step_length (colorAt : Nat → Nat)
 #print axioms bubble_order_step_perm
 #print axioms bubble_order_step_length
 
+/-- A direct fold preserves the complete multiset for *any* finite
+comparison schedule, including malformed or prematurely stopped
+schedules. The eventual sortedness theorem is a separate obligation. -/
+theorem bubble_direct_fold_perm (colorAt : Nat → Nat) :
+    ∀ (schedule : List (Fin 10)) (xs : List Nat),
+      (schedule.foldl (bubbleOrderStep colorAt) xs).Perm xs := by
+  intro schedule
+  induction schedule with
+  | nil =>
+      intro xs
+      exact List.Perm.refl xs
+  | cons i rest ih =>
+      intro xs
+      simp only [List.foldl_cons]
+      exact (ih (bubbleOrderStep colorAt xs i)).trans
+        (bubble_order_step_perm colorAt xs i)
+
+/-- The direct version of the complete candidate conserves exactly
+eleven original positions, independently of its eventual sortedness. -/
+theorem bubble_candidate_direct_fold_perm (colorAt : Nat → Nat) :
+    (elevenBubbleSchedule.foldl (bubbleOrderStep colorAt)
+      (List.range 11)).Perm (List.range 11) := by
+  exact bubble_direct_fold_perm colorAt elevenBubbleSchedule (List.range 11)
+
+#print axioms bubble_direct_fold_perm
+#print axioms bubble_candidate_direct_fold_perm
+
 /-- Unlike a raw list of arbitrary Nat positions, the executable trace
 has a proof that *every generated swap* stays in the first ten adjacent
 boundaries. This is a type-theoretic guarantee, not a finite test. -/
