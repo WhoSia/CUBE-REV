@@ -549,6 +549,22 @@ theorem eleven_slot_lex_antisymm (colorAt : Nat → Nat) (i j : Nat)
   simp only [elevenSlotLexLE, decide_eq_true_eq] at hij hji
   omega
 
+/-- For distinct original slot IDs, a reversed comparison that requests
+a swap is a strict inversion: the forward comparison is false. This is
+what makes identical observed colors safe, since the tie-breaker is the
+original slot ID rather than the observed color alone. -/
+theorem eleven_slot_lex_reverse_is_strict (colorAt : Nat → Nat)
+    (i j : Nat) (distinct : i ≠ j)
+    (reverse : elevenSlotLexLE colorAt j i = true) :
+    elevenSlotLexLE colorAt i j = false := by
+  cases forward : elevenSlotLexLE colorAt i j with
+  | false => rfl
+  | true =>
+      exact (distinct
+        (eleven_slot_lex_antisymm colorAt i j forward reverse)).elim
+
+#print axioms eleven_slot_lex_reverse_is_strict
+
 /-- The executable bubble trace always preserves all eleven original
 slot IDs. This is independent of its as-yet-unproved final sortedness. -/
 theorem bubble_candidate_order_perm (colorAt : Nat → Nat) :
