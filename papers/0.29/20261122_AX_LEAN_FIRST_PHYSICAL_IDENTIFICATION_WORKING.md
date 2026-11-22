@@ -272,6 +272,40 @@ For the actual original-coordinate policy, instantiate `colorAt := frozenPrefixC
 
 The source is [`EdgeSorting.lean`](../../formal/029/EdgeSorting.lean) and the executable coordinate adapter is [`RepresentativeRoundTrip.lean`](../../formal/029/RepresentativeRoundTrip.lean). Both must be judged by the post-BC pinned Lean CI, and their formal status must not be conflated with the still-unproved functional refinement above.
 
+## BD — A fail-closed executable certificate for frozen eleven-frame normalization
+
+The next formal-development milestone distinguishes **algorithmic completeness** from **conditional, independently verified soundness**. The original eleven-read canonicalizer is a merge sort on distinct position IDs using the `URFDLB` color gauge and the original slot number as a tie-breaker. A newly executable, eleven-pass bubble-swap routine also emits a bounded sequence of adjacent transpositions, but the proposition that this routine always sorts all possible first-color transcripts is not yet formally proved. Incorrectly using its output without a check would jeopardize the precise signed `route_info` normalizer, particularly on the 80 tied-gauge histograms and 36 divergent combined-sign cases already found.
+
+### Kernel-checked mathematical reduction
+
+In [`EdgeSorting.lean`](../../formal/029/EdgeSorting.lean), `adjTrace_perm` proves that any adjacent-swap trace preserves all slot IDs. `eleven_slot_lex_antisymm`, `eleven_slot_lex_refl`, and `eleven_sorted_permutations_unique` establish **internally in Lean** that two lists sorted by the color/slot-order comparator and containing the same positions with the same multiplicities must be identical. We do not import a lemma whose name is missing in the pinned Lean build. Therefore
+
+\[
+\operatorname{Pairwise}(\leq_{\mathrm{color,slot}},
+\operatorname{adjTrace}(T(c),[0,\ldots,10]))
+\quad\Longrightarrow\quad
+\operatorname{adjTrace}(T(c),[0,\ldots,10])
+=\operatorname{mergeSort}_{\leq_{\mathrm{color,slot}}}([0,\ldots,10]).
+\]
+
+The executable trace `T(c)` is `bubbleCandidatePath11 c`. The displayed implication is precisely the compiled `bubble_candidate_eq_stable_of_pairwise`; it does **not** assert its premise for all `c`. The first implementation attempted to invoke an unavailable pinned-library name `List.Perm.eq_of_sorted` and failed CI ([source attempt](https://github.com/WhoSia/CUBE-REV/commit/c3dd684ee2084847197ed1903d66061e86a8e2fd)); the repaired theorem is an explicit list induction ([repair](https://github.com/WhoSia/CUBE-REV/commit/26d1a5ea781d1ab4e63054e7c19f593f336fca9a)).
+
+### Executable soundness gate and exact physical-coordinate certificate
+
+The machine-computable predicate `bubbleCandidateSorted` replays the candidate swaps and checks the **actual** final `List.Pairwise` postcondition. `verifiedBubbleTrace?` returns `some path` only on acceptance and `none` otherwise. The theorem `verified_bubble_trace_sound` proves that any returned path is in bounds and reproduces the exact canonical stable order. [Source](https://github.com/WhoSia/CUBE-REV/commit/0c8d00f3010c64008115284ad61d7967dee4e657).
+
+The real sensor input is a transcript `replies : List FrameColor` of the first eleven charged paired observations. `verifiedFrozenPrefixTrace?` runs the same verifier on the actual **gauge-transformed** `URFDLB` color ranks; `verified_frozen_prefix_trace_refines` and `verified_frozen_prefix_trace_preserves_unread` establish that an accepted trace reproduces the canonical original-coordinate normalization without moving the unread twelfth edge. [Source](https://github.com/WhoSia/CUBE-REV/commit/15def5507134a49fbd846671243fe9ca29d53ed5).
+
+The signed theorem `verified_frozen_prefix_trace_signed` additionally proves that the same executable path's adjacent-swap parity, combined with the permutation parity of the three opposite-color pairs induced by the *selected* gauge, reproduces the frozen source's exact correction bit. [Source](https://github.com/WhoSia/CUBE-REV/commit/ec0420839301853f1bb5d182f38b89d5179c6f11). The combined result `verified_frozen_prefix_semantic_adapter` returns a legitimate inverse-capable `EdgeSlotOrder`, establishes lookup correctness at **every** of the twelve positions (not only a permutation sign), fixes the unread twelfth position under both coordinate directions, and carries the correction bit. This result is proved **under the explicit hypothesis that the executable validator returned the path**. [Source](https://github.com/WhoSia/CUBE-REV/commit/87a3f7aa2e8586882509880b4fb59ea8869e7912).
+
+### Verified acceptance and precisely remaining questions
+
+The exact final source [Lean CI #44971311263](https://github.com/WhoSia/CUBE-REV/actions/runs/44971311263) passed the pinned Lean package, independent data/certificate controls, and the final theorem-dependency replay. The printed axiom lists for `verified_bubble_trace_sound`, `verified_frozen_prefix_trace_signed`, and `verified_frozen_prefix_semantic_adapter` are each exactly `[propext, Classical.choice, Quot.sound]`, with no `sorryAx` or new native-calculation assumption. A successful checker invocation is consequently an inspectable certificate of an executable normalization path, not an unexplained heuristic.
+
+There are **two logically separate outstanding coverage questions**. First, prove that `verifiedBubbleTrace?` returns `some` for *every realizable ordered eleven-color transcript*, preferably by a universal bubble-sort invariant stronger than 1,362-histogram testing; otherwise some physically possible prefixes may fail closed rather than yield a controller. Second, prove that the resulting **signed** normalization selects and soundly transports one of the 52 frozen continuation policies on **every reachable original state** and every adaptive branch, with terminal sign determined solely from the nineteen actually received corner replies. Neither the complete checker nor the global `Fits 19` physical upper theorem is established by BD.
+
+The full paper should distinguish the now-accepted *conditional executable witness theorem*, the still-open *totality of the witness-producing algorithm*, and the separate *correctness of the frozen-root decoder after causal corner-sign release*. This is a strengthening of the theorem-to-algorithm correspondence, not an unconditional upper-bound proof.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
