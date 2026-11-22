@@ -373,6 +373,48 @@ theorem frozen_prefix_has_semantic_twelve_slot_adapter
 #print axioms frozen_prefix_has_semantic_twelve_slot_adapter
 
 
+/-- Fully executable position adapter obtained from the first eleven
+charged pair replies and the original frozen color-gauge ranking.
+This adapter is mechanically well-formed, even before we prove that the
+bubble trace yields the same order as mergeSort's canonical result. -/
+def executablePrefixSlotOrder (replies : List FrameColor) :
+    Nineteen.EdgeSlotOrder :=
+  Nineteen.bubbleCandidateSlotOrder (frozenPrefixColorRank replies)
+
+/-- Both directions of the executable coordinate transformation preserve
+the unread twelfth physical edge slot for every possible transcript. -/
+theorem executable_prefix_order_fixes_unread (replies : List FrameColor) :
+    (executablePrefixSlotOrder replies).forward
+        (⟨11, by decide⟩ : Fin 12) = (⟨11, by decide⟩ : Fin 12) ∧
+    (executablePrefixSlotOrder replies).backward
+        (⟨11, by decide⟩ : Fin 12) = (⟨11, by decide⟩ : Fin 12) := by
+  exact Nineteen.bubble_candidate_slot_order_fixes_unread
+    (frozenPrefixColorRank replies)
+
+/-- Corner replies recorded in the same eleven charged frames never
+affect the executable EDGE position adapter. The selected color gauge,
+normalized ranks and every bubble trace decision depend only on
+already-acquired edge colors, so no future corner sign is leaked. -/
+theorem executable_prefix_order_ignores_corner_replies
+    (first second : List FrameColor)
+    (sameEdges : first.map Prod.fst = second.map Prod.fst) :
+    executablePrefixSlotOrder first =
+      executablePrefixSlotOrder second := by
+  have hGauge := chosen_prefix_gauge_ignores_corner_replies
+    first second sameEdges
+  have hRank : frozenPrefixColorRank first =
+      frozenPrefixColorRank second := by
+    funext i
+    simp only [frozenPrefixColorRank]
+    rw [hGauge, sameEdges]
+  unfold executablePrefixSlotOrder
+  rw [hRank]
+
+#print axioms executable_prefix_order_fixes_unread
+#print axioms executable_prefix_order_ignores_corner_replies
+
+
+
 
 
 /-- If two original cube states return exactly the same eleven initial
