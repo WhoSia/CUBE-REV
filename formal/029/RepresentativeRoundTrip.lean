@@ -174,10 +174,14 @@ theorem slot_order_bounded_trace_inverse_fixes_unread
       (⟨11, by decide⟩ : Fin 12) =
         (⟨11, by decide⟩ : Fin 12) := by
   have forward := slot_order_bounded_trace_fixes_unread path bounds
-  have inverse := (slotOrderFromAdjacentTrace path).right_inv
-      (⟨11, by decide⟩ : Fin 12)
-  rw [← forward] at inverse
-  exact inverse
+  calc
+    (slotOrderFromAdjacentTrace path).backward
+        (⟨11, by decide⟩ : Fin 12) =
+      (slotOrderFromAdjacentTrace path).backward
+        ((slotOrderFromAdjacentTrace path).forward
+          (⟨11, by decide⟩ : Fin 12)) := by rw [forward]
+    _ = (⟨11, by decide⟩ : Fin 12) :=
+      (slotOrderFromAdjacentTrace path).right_inv _
 
 #print axioms adjacent_twelve_index_fixes_unread
 #print axioms slot_order_bounded_trace_fixes_unread
