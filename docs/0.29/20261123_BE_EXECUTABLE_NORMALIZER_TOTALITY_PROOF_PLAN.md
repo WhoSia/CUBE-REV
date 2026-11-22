@@ -55,6 +55,36 @@ The research branch now contains two separate human-attributed source commits:
 
 **Acceptance gate:** GitHub reported both commit author and committer as `WhoSia`, not an Actions bot. At inspection, the GitHub commit status endpoint exposed no CI statuses on these commits. Therefore these new Lean declarations are **source-authored, not independently compile-accepted**. They do not imply the unproved one-pass suffix invariant, `bubbleCandidateSorted = true`, or physical `Fits 19`. A pinned clean Lean build and axiom prints are still necessary.
 
+## BF — Concrete recorder/direct-execution refinement (source authored)
+
+A new proof layer replaces informal claims that the candidate is 'like bubble sort' with equations about the **actual recorded path**:
+
+- `bubbleOrderStep`: direct compare/exchange on the currently ordered slot IDs.
+- `bubblePathStep`: the original recorder transition, factored into a named function without changing the recorded semantics.
+- `bubble_path_step_replay`: exact one-step list equality between replay and direct execution.
+- `bubble_fold_replay`: arbitrary-schedule induction, explicitly parameterized by the preceding path.
+- `bubble_candidate_trace_is_fold` and `bubble_candidate_replay_eq_direct_fold`: specialize to the original executable `bubbleCandidateTrace11`; the bridge is *not* about a toy implementation.
+- `bubble_order_step_perm`, `bubble_order_step_length` and `bubble_direct_fold_perm`: multiset and length preservation for every step and every schedule. These results are independent of whether the order is sorted.
+
+Source commits on `research/current`:
+- `cfaae0a7b37113dd06db0b05122c2ec261400f10`
+- `d7928aa49fce6c9618b497599afe52386366fc42`
+- `8b2d9a238d5bea00bb182cc5378d1c2bd8b7a1a0`
+
+**Status: awaiting Lean compilation.** These commits are source-level proof proposals; their axioms and successful checking must not be reported without an exact pinned CI receipt. `bubbleCandidateSorted = true` remains open.
+
+### Precise remaining inductive step
+
+On the direct fold, prove the invariant after processing boundaries `0, …, j-1` within a single pass:
+
+1. The current entry at position `j` is a maximum (under `elevenSlotLexLE`) of the first `j+1` pre-pass entries.
+2. The processed entries to its left form a permutation of the other visited entries.
+3. When the step compares entries at `j` and `j+1`, totality places their maximum at `j+1`; the retained slot identities remain distinct by the already available permutation lemma.
+
+At the end of a pass the maximum occupies index 10. For the next pass, prove a stronger boundary claim: a sorted fixed suffix is not modified by comparisons that reach it, because the largest remaining prefix item cannot exceed the first fixed suffix item. Iterating this makes the fixed sorted suffix grow by one per pass. Ten passes suffice for eleven positions, and the extra eleventh is idempotent on a sorted list. Crucially, prove this on the **actual schedule** using the recorded/direct fold bridge; no standalone alternative sorter can silently replace the candidate.
+
+Use only finite, concrete `getElem?` index safety lemmas for sublists of length 11. Retain the color-rank/index total order, not an order on colors alone. All statements hold for arbitrary `colorAt : Nat → Nat`, so histogram enumeration is unnecessary.
+
 ## Independent counterexample gate
 
 Check the invariants on worst-case reverse-ordered colors, all-equal colors (where *original index* is the tie-breaker), and alternating color ranks. These are debugging witnesses only, never substitutes for BE3–BE5. Verify that `Fin 10` excludes slot 11 throughout and that signed parity remains the frozen combined position-plus-gauge correction.
