@@ -514,6 +514,56 @@ theorem bubble_candidate_path_preserves_unread
 #print axioms bubble_candidate_path_preserves_unread
 
 
+/-- Any sequence of adjacent swaps preserves the exact multiset of list
+elements. This lemma requires no assumption about its comparator. -/
+theorem adjTrace_perm (path : List Nat) (xs : List α) :
+    (adjTrace path xs).Perm xs := by
+  induction path generalizing xs with
+  | nil => exact List.Perm.refl _
+  | cons i rest ih =>
+      exact (ih (adjacent i xs)).trans (adjacent_perm i xs)
+
+/-- The comparison on DISTINCT slot indices is antisymmetric even when
+the two observed sticker colors are identical. -/
+theorem eleven_slot_lex_antisymm (colorAt : Nat → Nat) (i j : Nat)
+    (hij : elevenSlotLexLE colorAt i j = true)
+    (hji : elevenSlotLexLE colorAt j i = true) : i = j := by
+  simp only [elevenSlotLexLE, decide_eq_true_eq] at hij hji
+  omega
+
+/-- The executable bubble trace always preserves all eleven original
+slot IDs. This is independent of its as-yet-unproved final sortedness. -/
+theorem bubble_candidate_order_perm (colorAt : Nat → Nat) :
+    (adjTrace (bubbleCandidatePath11 colorAt) (List.range 11)).Perm
+      (List.range 11) := by
+  exact adjTrace_perm _ _
+
+/-- A precise, reusable verification gate for the executable algorithm:
+prove its output is pairwise lexically sorted, and the rest of the
+equality with the frozen mergeSort canonical order follows by ordinary
+permutation uniqueness. The sortedness premise itself is NOT yet proved. -/
+theorem bubble_candidate_eq_stable_of_pairwise
+    (colorAt : Nat → Nat)
+    (sorted : List.Pairwise
+      (fun i j => elevenSlotLexLE colorAt i j = true)
+      (adjTrace (bubbleCandidatePath11 colorAt) (List.range 11))) :
+    adjTrace (bubbleCandidatePath11 colorAt) (List.range 11) =
+      elevenStableSlotOrder colorAt := by
+  apply List.Perm.eq_of_sorted
+  · intro a b _ _ hab hba
+    exact eleven_slot_lex_antisymm colorAt a b hab hba
+  · exact sorted
+  · exact eleven_stable_slot_order_sorted colorAt
+  · exact (bubble_candidate_order_perm colorAt).trans
+      (eleven_stable_slot_order_perm colorAt)
+
+#print axioms adjTrace_perm
+#print axioms eleven_slot_lex_antisymm
+#print axioms bubble_candidate_order_perm
+#print axioms bubble_candidate_eq_stable_of_pairwise
+
+
+
 
 
 
