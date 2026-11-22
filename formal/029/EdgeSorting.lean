@@ -538,10 +538,63 @@ theorem bubble_candidate_order_perm (colorAt : Nat → Nat) :
       (List.range 11) := by
   exact adjTrace_perm _ _
 
-/-- A precise, reusable verification gate for the executable algorithm:
-prove its output is pairwise lexically sorted, and the rest of the
-equality with the frozen mergeSort canonical order follows by ordinary
-permutation uniqueness. The sortedness premise itself is NOT yet proved. -/
+/-- The slot comparator is reflexive, including when a color occurs more
+than once in the observed edge transcript. -/
+theorem eleven_slot_lex_refl (colorAt : Nat → Nat) (i : Nat) :
+    elevenSlotLexLE colorAt i i = true := by
+  simp [elevenSlotLexLE]
+
+/-- Local kernel proof of uniqueness of sorted permutations, avoiding
+unavailable external sorted-permutation lemma names. A sorted list with
+the same multiset is the same list under the antisymmetric slot order. -/
+theorem eleven_sorted_permutations_unique (colorAt : Nat → Nat) :
+    ∀ (xs ys : List Nat),
+      xs.Perm ys →
+      List.Pairwise (fun i j => elevenSlotLexLE colorAt i j = true) xs →
+      List.Pairwise (fun i j => elevenSlotLexLE colorAt i j = true) ys →
+      xs = ys := by
+  intro xs
+  induction xs with
+  | nil =>
+      intro ys hp _ _
+      cases ys with
+      | nil => rfl
+      | cons b bs =>
+          have lengthEq := hp.length_eq
+          simp at lengthEq
+  | cons a as ih =>
+      intro ys hp hx hy
+      cases ys with
+      | nil =>
+          have lengthEq := hp.length_eq
+          simp at lengthEq
+      | cons b bs =>
+          cases hx with
+          | cons hax hxTail =>
+              cases hy with
+              | cons hby hyTail =>
+                  have hA : a ∈ b :: bs := hp.mem_iff.mp (by simp)
+                  have hB : b ∈ a :: as := hp.mem_iff.mpr (by simp)
+                  have leAB : elevenSlotLexLE colorAt a b = true := by
+                    rcases List.mem_cons.mp hB with eq | mem
+                    · subst b
+                      exact eleven_slot_lex_refl colorAt a
+                    · exact hax b mem
+                  have leBA : elevenSlotLexLE colorAt b a = true := by
+                    rcases List.mem_cons.mp hA with eq | mem
+                    · subst a
+                      exact eleven_slot_lex_refl colorAt b
+                    · exact hby a mem
+                  have same := eleven_slot_lex_antisymm colorAt a b leAB leBA
+                  subst b
+                  have tailPerm : as.Perm bs := List.Perm.cons_inv hp
+                  have tailEq : as = bs := ih bs tailPerm hxTail hyTail
+                  simp [tailEq]
+
+/-- A precise verification gate for the executable algorithm: its
+pairwise sortedness alone implies equality with the frozen canonical
+mergeSort result, since full permutation preservation and antisymmetric
+uniqueness have already been established independently. -/
 theorem bubble_candidate_eq_stable_of_pairwise
     (colorAt : Nat → Nat)
     (sorted : List.Pairwise
@@ -549,13 +602,11 @@ theorem bubble_candidate_eq_stable_of_pairwise
       (adjTrace (bubbleCandidatePath11 colorAt) (List.range 11))) :
     adjTrace (bubbleCandidatePath11 colorAt) (List.range 11) =
       elevenStableSlotOrder colorAt := by
-  apply List.Perm.eq_of_sorted
-  · intro a b _ _ hab hba
-    exact eleven_slot_lex_antisymm colorAt a b hab hba
-  · exact sorted
-  · exact eleven_stable_slot_order_sorted colorAt
-  · exact (bubble_candidate_order_perm colorAt).trans
-      (eleven_stable_slot_order_perm colorAt)
+  exact eleven_sorted_permutations_unique colorAt _ _
+    ((bubble_candidate_order_perm colorAt).trans
+      (eleven_stable_slot_order_perm colorAt))
+    sorted
+    (eleven_stable_slot_order_sorted colorAt)
 
 #print axioms adjTrace_perm
 #print axioms eleven_slot_lex_antisymm
