@@ -505,6 +505,61 @@ def bubbleCandidateTrace11 (colorAt : Nat → Nat) : List (Fin 10) :=
 def bubbleCandidatePath11 (colorAt : Nat → Nat) : List Nat :=
   (bubbleCandidateTrace11 colorAt).map Fin.val
 
+/-- A single comparison of the *actual current order*; unlike the path
+recorder this function applies the optional swap immediately. -/
+def bubbleOrderStep (colorAt : Nat → Nat) (xs : List Nat)
+    (i : Fin 10) : List Nat :=
+  if elevenSlotLexLE colorAt xs[i.val + 1]! xs[i.val]! then
+    adjacent i.val xs
+  else xs
+
+/-- The exact path-recording transition used by the executable candidate,
+factored out to expose its list-level semantics. -/
+def bubblePathStep (colorAt : Nat → Nat)
+    (path : List (Fin 10)) (i : Fin 10) : List (Fin 10) :=
+  let current := adjTrace (path.map Fin.val) (List.range 11)
+  if elevenSlotLexLE colorAt current[i.val + 1]! current[i.val]! then
+    path ++ [i]
+  else path
+
+/-- One recorded comparison has *exactly* the same replay semantics as
+one immediate compare/exchange operation on the current eleven-slot list.
+This does not assume the sequence eventually sorts. -/
+theorem bubble_path_step_replay (colorAt : Nat → Nat)
+    (path : List (Fin 10)) (i : Fin 10) :
+    adjTrace ((bubblePathStep colorAt path i).map Fin.val)
+      (List.range 11) =
+    bubbleOrderStep colorAt
+      (adjTrace (path.map Fin.val) (List.range 11)) i := by
+  unfold bubblePathStep bubbleOrderStep
+  split_ifs with h
+  · simp only [List.map_append, List.map_cons, List.map_nil,
+      adjTrace_append, adjTrace]
+  · rfl
+
+/-- Replay of *every prefix* of the original trace is equivalent to
+folding the immediate compare/exchange operation in the same order.
+The invariant quantifies over arbitrary schedules and preceding paths. -/
+theorem bubble_fold_replay (colorAt : Nat → Nat) :
+    ∀ (schedule : List (Fin 10)) (path : List (Fin 10)),
+      adjTrace ((schedule.foldl (bubblePathStep colorAt) path).map Fin.val)
+        (List.range 11) =
+      schedule.foldl (bubbleOrderStep colorAt)
+        (adjTrace (path.map Fin.val) (List.range 11)) := by
+  intro schedule
+  induction schedule with
+  | nil =>
+      intro path
+      rfl
+  | cons i rest ih =>
+      intro path
+      simp only [List.foldl_cons]
+      rw [ih (bubblePathStep colorAt path i)]
+      rw [bubble_path_step_replay]
+
+#print axioms bubble_path_step_replay
+#print axioms bubble_fold_replay
+
 /-- Unlike a raw list of arbitrary Nat positions, the executable trace
 has a proof that *every generated swap* stays in the first ten adjacent
 boundaries. This is a type-theoretic guarantee, not a finite test. -/
