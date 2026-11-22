@@ -46,6 +46,15 @@ At k = 10, the remaining single element precedes the sorted ten-element suffix a
 
 **BE5 — close executable totality.** Derive `List.Pairwise (fun i j => elevenSlotLexLE colorAt i j = true) ...`, hence `bubbleCandidateSorted colorAt = true`, then `verifiedBubbleTrace?` always returns `some`, and finally reuse BD's `verified_bubble_trace_sound`. Keep `#print axioms` receipts and run the pinned complete Lean gate before marking accepted.
 
+## BE source implementation receipts — pending Lean CI
+
+The research branch now contains two separate human-attributed source commits:
+
+- `ea9d2735cb40db8a07a9f56d711e6207ddd9c830`: proposed closed finite-schedule certificates `eleven_bubble_schedule_length` and `eleven_bubble_schedule_boundary_multiplicity`. These pin 110 comparisons and eleven visits to each of the ten boundaries.
+- `478dd1c1d745651bb83c06fc716c05b6ff4fcaa4`: proposed `eleven_slot_lex_reverse_is_strict`, deriving strictness of an executed comparison from antisymmetry and distinct original slot IDs.
+
+**Acceptance gate:** GitHub reported both commit author and committer as `WhoSia`, not an Actions bot. At inspection, the GitHub commit status endpoint exposed no CI statuses on these commits. Therefore these new Lean declarations are **source-authored, not independently compile-accepted**. They do not imply the unproved one-pass suffix invariant, `bubbleCandidateSorted = true`, or physical `Fits 19`. A pinned clean Lean build and axiom prints are still necessary.
+
 ## Independent counterexample gate
 
 Check the invariants on worst-case reverse-ordered colors, all-equal colors (where *original index* is the tie-breaker), and alternating color ranks. These are debugging witnesses only, never substitutes for BE3–BE5. Verify that `Fin 10` excludes slot 11 throughout and that signed parity remains the frozen combined position-plus-gauge correction.
