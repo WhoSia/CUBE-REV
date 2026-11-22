@@ -2,6 +2,10 @@
 
 **Lean-first current research:** [AX theorem-centered working manuscript](papers/0.29/20261122_AX_LEAN_FIRST_PHYSICAL_IDENTIFICATION_WORKING.md), [real paired eleven-color prefix gauge module](formal/029/PrefixColorGauge.lean), and [AX provenance ledger](docs/0.29/20261122_AX_LEGACY_EXECUTION_CUSTODY_AND_DEPENDENCY_CUT.md) are the current direct routes for upper-bound proof development. The closed 0.11/0.13/0.14/0.16 execution cohorts were sealed as **42 exact-byte source files** to [Drive](https://drive.google.com/file/d/1iWDpLIFOwFfm-qg3Z7lInhmChOotP1jm/view) before retirement. The historical Python scripts have not been replaced by a theorem; this is evidence-preserving active-tree reduction, and the needed 0.15 / 0.19 validation interfaces remain live.
 
+## 2026-11-23 BF — Trace/replay refinement (source-level, awaiting Lean build)
+
+The [BE/BF proof ledger](docs/0.29/20261123_BE_EXECUTABLE_NORMALIZER_TOTALITY_PROOF_PLAN.md) now tracks direct compare/exchange semantics, an arbitrary-schedule recorder-to-direct-fold correspondence, and multiset/length conservation in [EdgeSorting.lean](formal/029/EdgeSorting.lean). Commits `cfaae0a`, `d7928aa`, and `8b2d9a2` introduce the proposed Lean declarations; their kernel acceptance is **not yet confirmed**. Their purpose is to let the universal pass-maximum and fixed-suffix invariant be proved on the exact production trace. Neither normalizer totality nor the full physical `Fits 19` is established.
+
 ## 2026-11-23 BE — Totality proof program (unproved)
 
 [43rd-session BE proof-obligation note](docs/0.29/20261123_BE_EXECUTABLE_NORMALIZER_TOTALITY_PROOF_PLAN.md) derives a concrete route from the actual eleven-pass `Fin 10` bubble trace to a universal `bubbleCandidateSorted = true` claim: comparator laws, single-swap replay, sweep-front maximum, fixed sorted suffix, and exact fold-to-trace refinement. **Research plan only:** no new Lean theorem has passed CI in BE. Successful BD certificates remain conditional; the 52-sector semantic transport, observed corner-sign release, and unconditional physical `Fits 19` remain open. No source retirement is claimed in this stage.
