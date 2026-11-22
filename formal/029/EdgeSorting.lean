@@ -463,6 +463,58 @@ theorem eleven_slot_trace_full_twelve_parity (colorAt : Nat → Nat) :
 #print axioms eleven_slot_trace_full_twelve_parity
 
 
+/-- An executable eleven-pass adjacent compare/swap schedule. Every index
+is constructed as a Fin 10, so it cannot address the unread twelfth
+edge, irrespective of the observed colors or earlier swaps. -/
+def elevenBubbleSchedule : List (Fin 10) :=
+  (List.range 11).flatMap (fun _ =>
+    (List.range 10).map (fun i =>
+      (⟨i % 10, Nat.mod_lt i (by decide)⟩ : Fin 10)))
+
+/-- Build an executable *candidate* trace from the eleven observed colors.
+The current ordering is recomputed from its actual preceding swaps, so
+each comparison is adaptive to the current position permutation. This
+algorithm has not yet been proved equivalent to mergeSort's stable order. -/
+def bubbleCandidateTrace11 (colorAt : Nat → Nat) : List (Fin 10) :=
+  elevenBubbleSchedule.foldl
+    (fun path i =>
+      let current := adjTrace (path.map Fin.val) (List.range 11)
+      if elevenSlotLexLE colorAt current[i.val + 1]! current[i.val]! then
+        path ++ [i]
+      else path)
+    ([] : List (Fin 10))
+
+def bubbleCandidatePath11 (colorAt : Nat → Nat) : List Nat :=
+  (bubbleCandidateTrace11 colorAt).map Fin.val
+
+/-- Unlike a raw list of arbitrary Nat positions, the executable trace
+has a proof that *every generated swap* stays in the first ten adjacent
+boundaries. This is a type-theoretic guarantee, not a finite test. -/
+theorem bubble_candidate_path_bounded (colorAt : Nat → Nat) :
+    ∀ i ∈ bubbleCandidatePath11 colorAt, i < 10 := by
+  intro i hi
+  obtain ⟨j, _, rfl⟩ := List.mem_map.mp hi
+  exact j.isLt
+
+/-- Regardless of the still-open stable-sort equality, replaying this
+concrete bounded path cannot move the unobserved twelfth list element. -/
+theorem bubble_candidate_path_preserves_unread
+    (colorAt : Nat → Nat) (unread : Nat) :
+    adjTrace (bubbleCandidatePath11 colorAt)
+      ((List.range 11) ++ [unread]) =
+    adjTrace (bubbleCandidatePath11 colorAt)
+      (List.range 11) ++ [unread] := by
+  apply adjTrace_append_unread
+  intro i hi
+  have h := bubble_candidate_path_bounded colorAt i hi
+  simp only [List.length_range]
+  omega
+
+#print axioms bubble_candidate_path_bounded
+#print axioms bubble_candidate_path_preserves_unread
+
+
+
 
 
 
