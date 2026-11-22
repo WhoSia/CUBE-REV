@@ -414,6 +414,53 @@ theorem executable_prefix_order_ignores_corner_replies
 #print axioms executable_prefix_order_ignores_corner_replies
 
 
+/-- A genuinely executable gate for the exact frozen normalizer.
+The candidate swap trace is returned only after checking the resulting
+position order, so failed sortedness cannot silently corrupt the 52-root
+representative query adapter. This intentionally returns an Option:
+total success is not yet established. -/
+def verifiedFrozenPrefixTrace? (replies : List FrameColor) :
+    Option (List Nat) :=
+  verifiedBubbleTrace? (frozenPrefixColorRank replies)
+
+/-- Whenever the executable check accepts a real eleven-frame transcript,
+the emitted swap trace reproduces the exact URFDLB-gauged stable order,
+and no exchange reaches the unread twelfth original edge slot. -/
+theorem verified_frozen_prefix_trace_refines
+    (replies : List FrameColor) (path : List Nat)
+    (accepted : verifiedFrozenPrefixTrace? replies = some path) :
+    adjTrace path (List.range 11) = frozenPrefixStableOrder replies ∧
+    (∀ i ∈ path, i < 10) := by
+  change verifiedBubbleTrace? (frozenPrefixColorRank replies) =
+    some path at accepted
+  exact verified_bubble_trace_sound
+    (frozenPrefixColorRank replies) path accepted
+
+/-- An accepted executable trace also transports all twelve physical
+edge positions: only the first eleven are reordered, and the twelfth
+original-position index is not looked up or moved. -/
+theorem verified_frozen_prefix_trace_preserves_unread
+    (replies : List FrameColor) (path : List Nat)
+    (accepted : verifiedFrozenPrefixTrace? replies = some path) :
+    adjTrace path (List.range 12) =
+      frozenPrefixStableOrder replies ++ [11] := by
+  obtain ⟨eleven, bounds⟩ :=
+    verified_frozen_prefix_trace_refines replies path accepted
+  have within : ∀ i ∈ path, i + 1 < (List.range 11).length := by
+    intro i hi
+    have h := bounds i hi
+    simp only [List.length_range]
+    omega
+  have range : (List.range 11) ++ [11] = List.range 12 := by
+    decide +kernel
+  rw [← range, adjTrace_append_unread path (List.range 11) 11 within]
+  rw [eleven]
+
+#print axioms verified_frozen_prefix_trace_refines
+#print axioms verified_frozen_prefix_trace_preserves_unread
+
+
+
 
 
 
