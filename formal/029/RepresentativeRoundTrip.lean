@@ -188,6 +188,40 @@ theorem slot_order_bounded_trace_inverse_fixes_unread
 #print axioms slot_order_bounded_trace_inverse_fixes_unread
 
 
+/-- The newly executable bubble trace (unlike the earlier existential
+stable-sort witness) already compiles into a genuine two-way coordinate
+adapter. Its remaining proof gate is equality of its FINAL ordering
+with the canonical mergeSort order, not the legality of its swaps. -/
+def bubbleCandidateSlotOrder (colorAt : Nat → Nat) : EdgeSlotOrder :=
+  slotOrderFromAdjacentTrace (Eighteen.bubbleCandidatePath11 colorAt)
+
+theorem bubble_candidate_slot_order_fixes_unread
+    (colorAt : Nat → Nat) :
+    (bubbleCandidateSlotOrder colorAt).forward
+        (⟨11, by decide⟩ : Fin 12) = (⟨11, by decide⟩ : Fin 12) ∧
+    (bubbleCandidateSlotOrder colorAt).backward
+        (⟨11, by decide⟩ : Fin 12) = (⟨11, by decide⟩ : Fin 12) := by
+  have bounds := Eighteen.bubble_candidate_path_bounded colorAt
+  exact ⟨slot_order_bounded_trace_fixes_unread _ bounds,
+    slot_order_bounded_trace_inverse_fixes_unread _ bounds⟩
+
+/-- Executable trace and coordinate adapter reproduce identical address
+pullback on any actual twelve-element list, even with repeated colors. -/
+theorem bubble_candidate_slot_order_matches_actual_replay
+    (colorAt : Nat → Nat) (xs : List α)
+    (len : xs.length = 12) (j : Fin 12) :
+    (Eighteen.adjTrace (Eighteen.bubbleCandidatePath11 colorAt) xs)[j.val]? =
+      xs[((bubbleCandidateSlotOrder colorAt).forward j).val]? := by
+  apply slot_order_trace_getElem? _ xs len
+  intro i hi
+  have bound := Eighteen.bubble_candidate_path_bounded colorAt i hi
+  omega
+
+#print axioms bubble_candidate_slot_order_fixes_unread
+#print axioms bubble_candidate_slot_order_matches_actual_replay
+
+
+
 
 /-- A total decoder for representative-coordinate states. The modulo-24
 operation only supplies a default for arbitrary *invalid* representative
