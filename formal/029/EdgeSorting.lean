@@ -614,6 +614,53 @@ theorem bubble_candidate_eq_stable_of_pairwise
 #print axioms bubble_candidate_eq_stable_of_pairwise
 
 
+/-- Executable fail-closed postcondition check: run the bounded candidate
+trace, then decide whether its actual output is pairwise lexicographically
+sorted by the same comparison used by the frozen mergeSort normalizer.
+A false value does NOT authorize use of that candidate trace. -/
+def bubbleCandidateSorted (colorAt : Nat → Nat) : Bool :=
+  decide (List.Pairwise
+    (fun i j => elevenSlotLexLE colorAt i j = true)
+    (adjTrace (bubbleCandidatePath11 colorAt) (List.range 11)))
+
+theorem bubble_candidate_sorted_of_check (colorAt : Nat → Nat)
+    (h : bubbleCandidateSorted colorAt = true) :
+    List.Pairwise
+      (fun i j => elevenSlotLexLE colorAt i j = true)
+      (adjTrace (bubbleCandidatePath11 colorAt) (List.range 11)) := by
+  simpa [bubbleCandidateSorted] using h
+
+/-- The exact sorting trace is returned only if its runtime postcondition
+was checked. Unlike the existential witness, this is executable data. -/
+def verifiedBubbleTrace? (colorAt : Nat → Nat) : Option (List Nat) :=
+  if bubbleCandidateSorted colorAt then
+    some (bubbleCandidatePath11 colorAt)
+  else none
+
+/-- No unchecked trace can escape the executable verifier. Every
+successfully returned path is a bounded original-coordinate trace which
+replays to the exact canonical stable order. This does NOT assert that
+verification always succeeds on all input transcripts. -/
+theorem verified_bubble_trace_sound
+    (colorAt : Nat → Nat) (path : List Nat)
+    (h : verifiedBubbleTrace? colorAt = some path) :
+    adjTrace path (List.range 11) = elevenStableSlotOrder colorAt ∧
+    (∀ i ∈ path, i < 10) := by
+  cases hv : bubbleCandidateSorted colorAt with
+  | false =>
+      simp [verifiedBubbleTrace?, hv] at h
+  | true =>
+      simp [verifiedBubbleTrace?, hv] at h
+      subst path
+      exact ⟨bubble_candidate_eq_stable_of_pairwise colorAt
+        (bubble_candidate_sorted_of_check colorAt hv),
+        bubble_candidate_path_bounded colorAt⟩
+
+#print axioms bubble_candidate_sorted_of_check
+#print axioms verified_bubble_trace_sound
+
+
+
 
 
 
