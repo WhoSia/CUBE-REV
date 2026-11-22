@@ -560,6 +560,44 @@ theorem bubble_fold_replay (colorAt : Nat → Nat) :
 #print axioms bubble_path_step_replay
 #print axioms bubble_fold_replay
 
+/-- The factored path step is definitionally the original recorder.
+This equality guards against accidentally proving a theorem about a
+different comparison routine than the production candidate. -/
+theorem bubble_candidate_trace_is_fold (colorAt : Nat → Nat) :
+    bubbleCandidateTrace11 colorAt =
+      elevenBubbleSchedule.foldl (bubblePathStep colorAt) [] := by
+  rfl
+
+/-- The actual eleven-pass candidate's emitted path replays to the
+result of an ordinary in-place comparison sweep. This is the intended
+bridge from executable history to a loop-invariant sorting proof. -/
+theorem bubble_candidate_replay_eq_direct_fold (colorAt : Nat → Nat) :
+    adjTrace (bubbleCandidatePath11 colorAt) (List.range 11) =
+      elevenBubbleSchedule.foldl (bubbleOrderStep colorAt) (List.range 11) := by
+  rw [bubbleCandidatePath11, bubble_candidate_trace_is_fold]
+  simpa only [List.map_nil, adjTrace] using
+    bubble_fold_replay colorAt elevenBubbleSchedule []
+
+/-- Each direct comparison preserves the multiset of original slot IDs. -/
+theorem bubble_order_step_perm (colorAt : Nat → Nat)
+    (xs : List Nat) (i : Fin 10) :
+    (bubbleOrderStep colorAt xs i).Perm xs := by
+  unfold bubbleOrderStep
+  split_ifs
+  · exact adjacent_perm i.val xs
+  · exact List.Perm.refl xs
+
+/-- Each direct comparison also preserves the number of slot IDs. -/
+theorem bubble_order_step_length (colorAt : Nat → Nat)
+    (xs : List Nat) (i : Fin 10) :
+    (bubbleOrderStep colorAt xs i).length = xs.length := by
+  exact (bubble_order_step_perm colorAt xs i).length_eq
+
+#print axioms bubble_candidate_trace_is_fold
+#print axioms bubble_candidate_replay_eq_direct_fold
+#print axioms bubble_order_step_perm
+#print axioms bubble_order_step_length
+
 /-- Unlike a raw list of arbitrary Nat positions, the executable trace
 has a proof that *every generated swap* stays in the first ten adjacent
 boundaries. This is a type-theoretic guarantee, not a finite test. -/
