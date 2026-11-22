@@ -233,6 +233,25 @@ The two separate Lean verification gates have now **completed successfully**. [R
 
 The printed axioms for both `slot_order_trace_getElem?` and `frozen_prefix_has_semantic_twelve_slot_adapter` are exactly `[propext, Classical.choice, Quot.sound]`; neither includes `sorryAx` nor an added native computation dependency. This acceptance is **about these specific theorems**, not a proof that the frozen policy is a total state-identifying 19-frame controller. A concrete *executable* trace selector, an explicit statewise link from this chosen adapter to all frozen eight-read tree branches, and terminal corner-derived sign correctness remain the next principal proof targets.
 
+## BC — The unread twelfth edge is fixed in both coordinate directions
+
+The first eleven edge-color observations do not measure the twelfth original edge slot. It is therefore not enough to prove that the sorting trace `T` rearranges eleven labels correctly and that its extension on twelve labels has even or odd parity as expected. The eventual query decoder must preserve the **unread twelfth address itself** under the forward original-to-representative pullback and under the inverse decoder.
+
+Let `O(T)` denote the concrete, invertible twelve-slot adapter `slotOrderFromAdjacentTrace T`. Whenever every adjacent-swap index in `T` is strictly less than ten, the precise additional claims are
+
+\[
+O(T).\mathrm{forward}(11)=11,\qquad
+O(T).\mathrm{backward}(11)=11.
+\]
+
+This is a statement about the *position maps*, not the colors at those positions. It holds independently of reachability and of any repeated stickers; it cannot make the unknown twelfth edge observable. The intended Lean theorems `adjacent_twelve_index_fixes_unread`, `slot_order_bounded_trace_fixes_unread`, and `slot_order_bounded_trace_inverse_fixes_unread` live in [`RepresentativeRoundTrip.lean`](../../formal/029/RepresentativeRoundTrip.lean). In particular, the inverse claim should be obtained via the verified `right_inv` property at position eleven, not by assuming a new permutation symmetry.
+
+The initial BC implementation surfaced a faulty direction of equality rewriting in the inverse proof. [Source correction](https://github.com/WhoSia/CUBE-REV/commit/e9ee320f9c7841cb566dbe83f155a4af9779a278) changes only the proof, using `right_inv` of the constructed adapter. The theorem acceptance label must follow an exact post-correction Lean run, not the earlier failing CI. Treat every new theorem as **unverified until its corresponding CI succeeds**, and keep the 19-frame upper theorem open independently.
+
+### BC follow-up: computational witness versus existential witness
+
+BB already gives a proof-carrying existential trace for each actual frozen prefix transcript. This provides formal existence, a bounded-path condition and precise pointwise query semantics, but it **does not yet supply a computable, deterministic trace-producing program**. A deployable continuation cannot execute an arbitrary noncomputable witness extracted from a proposition in Lean. The next constructive milestone is an executable sorter that records the concrete adjacent swaps as data, with a proof that (i) each recorded swap is bounded, (ii) replay produces the selected stable permutation, and (iii) the resulting `EdgeSlotOrder` gives the same adapter and parity. The signed 52-sector posterior and terminal corner-time obligations remain subsequent gates.
+
 ## Source and version anchors
 
 - [CUBE-REV 0.29 formal package](../../formal/029/README.md).
