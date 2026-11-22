@@ -490,6 +490,49 @@ theorem verified_frozen_prefix_trace_signed
 #print axioms verified_frozen_prefix_trace_signed
 
 
+/-- A successful executable eleven-frame certificate supplies ONE real
+invertible twelve-slot coordinate adapter, its exact lookup semantics,
+forward and inverse unread-slot preservation, AND the frozen correction
+bit. It is a usable conditional bridge from executable data to the
+existing paired-policy transport interface; no postulated order remains.
+The Option validator may still reject a transcript, so the unconditional
+nineteen-frame identification theorem remains open. -/
+theorem verified_frozen_prefix_semantic_adapter
+    (replies : List FrameColor) (path : List Nat)
+    (accepted : verifiedFrozenPrefixTrace? replies = some path) :
+    ∃ order : Nineteen.EdgeSlotOrder,
+      order = Nineteen.slotOrderFromAdjacentTrace path ∧
+      (∀ j : Fin 12,
+        (frozenPrefixStableOrder replies ++ [11])[j.val]? =
+          (List.range 12)[(order.forward j).val]?) ∧
+      order.forward (⟨11, by decide⟩ : Fin 12) =
+        (⟨11, by decide⟩ : Fin 12) ∧
+      order.backward (⟨11, by decide⟩ : Fin 12) =
+        (⟨11, by decide⟩ : Fin 12) ∧
+      frozenPrefixSignCorrection replies =
+        (path.length +
+          parity (Nineteen.inducedThreePairPermutation
+            (chosenPrefixColorMap replies))) % 2 := by
+  obtain ⟨_, bounds⟩ :=
+    verified_frozen_prefix_trace_refines replies path accepted
+  have bound12 : ∀ i ∈ path, i + 1 < 12 := by
+    intro i hi
+    have h := bounds i hi
+    omega
+  refine ⟨Nineteen.slotOrderFromAdjacentTrace path, rfl, ?_, ?_, ?_,
+    verified_frozen_prefix_trace_signed replies path accepted⟩
+  · intro j
+    rw [← verified_frozen_prefix_trace_preserves_unread
+      replies path accepted]
+    exact Nineteen.slot_order_trace_getElem? path
+      (List.range 12) (by decide +kernel) bound12 j
+  · exact Nineteen.slot_order_bounded_trace_fixes_unread path bounds
+  · exact Nineteen.slot_order_bounded_trace_inverse_fixes_unread path bounds
+
+#print axioms verified_frozen_prefix_semantic_adapter
+
+
+
 
 
 
