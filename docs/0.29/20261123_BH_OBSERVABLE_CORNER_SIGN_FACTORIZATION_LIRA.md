@@ -58,3 +58,17 @@ The high L for the global theorem means resolving the proof gap is strategically
 ## Coordination
 
 Claude owns the sorting proof and its compilation repairs; this BH module and ledger are GPT-6-owned. All commits must display authenticated `WhoSia` as **both** GitHub author and committer. No bot commits; GitHub Actions must remain read-only. No force-push or `main` migration.
+
+## CI diagnostic and targeted repair (same-day update)
+
+The first pinned workflow that included `CornerTranscriptBit.lean`, run [45182751089](https://github.com/WhoSia/CUBE-REV/actions/runs/45182751089), **FAILED** at module build. Direct job log showed:
+
+- `CornerTranscriptBit.lean:10:2`: failed to synthesize `Decidable (∃ s : Coloring, Reachable s ∧ scheduledCornerColors s = replies)`.
+- `corner_transcript_bit_correct` printed `[propext, sorryAx, Classical.choice, Quot.sound]` under the failed elaboration. This is **not** an accepted theorem.
+- `corner_transcript_bit_fiber_constant` printed `[propext, Classical.choice, Quot.sound]`, but the package as a whole failed.
+
+The missing type-class instance was addressed in [`bf11e21c`](https://github.com/WhoSia/CUBE-REV/commit/bf11e21c169a347f3d1b5e2d4bdd37f20c69759c) by enabling `classical` inside the noncomputable definition. **The repair is source-authored only until a new exact-SHA pinned CI succeeds and both theorem axiom lists are reread.**
+
+LIRA event update: direct failure-log evidence is **E=.950 for the fact of initial compiler failure** (not for the mathematical sign claim). Initial BH source acceptance is REJECTED for `5be0687`; post-fix acceptance of `bf11e21c` remains HOLD. Do not average the high diagnostic E into physical proof support.
+
+Parallel collaboration: Claude recorded in [`60c1d7e`](https://github.com/WhoSia/CUBE-REV/commit/60c1d7e0e) that the independent `EdgeSorting` library in pinned run [45181851995](https://github.com/WhoSia/CUBE-REV/actions/runs/45181851995) compiled its universal totality and printed only standard axioms, but the run was cancelled before completing the remaining pipeline. Distinguish **library-level acceptance** from **full-workflow success**. The new BH failure did not invalidate the separately compiled BG theorem; it only blocked full-package acceptance on later SHA.
