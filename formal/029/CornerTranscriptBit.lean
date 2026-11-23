@@ -6,8 +6,9 @@ namespace CubeRev029.Physical
 the actual nineteen charged corner replies. This uses classical choice
 on the reachable-state fiber, so it is NOT an executable decoder. -/
 noncomputable def cornerTranscriptBit (bit : Coloring → Bool)
-    (replies : List Nat) : Bool :=
-  if h : ∃ s : Coloring,
+    (replies : List Nat) : Bool := by
+  classical
+  exact if h : ∃ s : Coloring,
       Reachable s ∧ scheduledCornerColors s = replies then
     bit (Classical.choose h)
   else false
