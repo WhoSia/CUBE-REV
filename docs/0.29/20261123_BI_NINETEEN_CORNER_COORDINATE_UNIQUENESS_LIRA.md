@@ -85,3 +85,13 @@ Build registration `57ba52e81ade39921bb8b481d0a3c272fc8385f0`; read-only pinned 
 | Full physical `Fits 19` | .300 | .080 | .040 | .940 | Formal end-to-end policy and successful pinned CI |
 
 The numerical differences between the last three L scores are below plausible methodological uncertainty; treat them as a tied P0. Scores do not override compiler or causal-observation proof gates.
+
+## BK: Past-dependent correction retained rather than imagined as a corner observation
+
+A separate `formal/029/CornerSignedCorrection.lean` now introduces `correctedCornerParity a prefixCorrection := (cornerPermutationParity a + prefixCorrection) % 2` and the two explicit-hypothesis equalities `corrected_corner_parity_from_past_and_nineteen_replies` and `corrected_corner_parity_respects_equal_prefix_corrections`. Neither theorem treats the past-dependent correction as a free sensor; the first holds for **the same correction** and the second requires equality of corrections derived elsewhere from equal actual prefixes.
+
+**Source commits:** `f8f4f01c1526eecfe5a08f2d2c015e61da01fafd` (module), `f1f2f8d07554ca3b12a839a8ff9dd4e38de2cab2` (Lake), `30ae11c96774c17e9dab837f758f28ecceb38a78` (read-only CI). **Compilation remains unverified** until the new exact-HEAD workflow run is inspected.
+
+For the future specialization, the production helper `PrefixColorGauge.frozenPrefixSignCorrection` already defines the genuine combined position-sort and color-gauge parity. The BK module deliberately accepts a `Nat` correction rather than claiming the actual first-eleven `FrameColor` prefix was carried into the frozen terminal decoder. The missing composition theorem must instantiate `prefixCorrection := frozenPrefixSignCorrection actualFirstElevenPairedReplies`, prove the equality needed by the root's signed decoder, and show only past responses are consulted. Also prove physical edge/corner permutation parity coupling for all reachable original cubes.
+
+**LIRA noncompensatory gate:** even an accepted BK equality cannot upgrade the global signed-sector transport or `Fits 19`. Current assessment for the **fully integrated required leaf sign** remains C=.31, G=.23, L=.97 (analyst judgment; not a posterior probability). The immediate work order is inspect CI, fix errors, then prove the actual prefix-to-BK specialization with a typed runnable transcript decoder.
