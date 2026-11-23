@@ -48,6 +48,7 @@ theorem corner_permutation_odd_from_nineteen_replies
     (ha : CornersAgree a s) (hb : CornersAgree b t)
     (same : scheduledCornerColors s = scheduledCornerColors t) :
     cornerPermutationOdd a = cornerPermutationOdd b := by
+  unfold cornerPermutationOdd
   rw [corner_permutation_parity_from_nineteen_replies
     s t hs ht a b ha hb same]
 
