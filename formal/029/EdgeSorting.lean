@@ -532,10 +532,11 @@ theorem bubble_path_step_replay (colorAt : Nat → Nat)
     bubbleOrderStep colorAt
       (adjTrace (path.map Fin.val) (List.range 11)) i := by
   unfold bubblePathStep bubbleOrderStep
-  split_ifs with h
-  · simp only [List.map_append, List.map_cons, List.map_nil,
+  dsimp only
+  split
+  · simp_all [List.map_append, List.map_cons, List.map_nil,
       adjTrace_append, adjTrace]
-  · rfl
+  · simp_all
 
 /-- Replay of *every prefix* of the original trace is equivalent to
 folding the immediate compare/exchange operation in the same order.
@@ -583,7 +584,7 @@ theorem bubble_order_step_perm (colorAt : Nat → Nat)
     (xs : List Nat) (i : Fin 10) :
     (bubbleOrderStep colorAt xs i).Perm xs := by
   unfold bubbleOrderStep
-  split_ifs
+  split
   · exact adjacent_perm i.val xs
   · exact List.Perm.refl xs
 
@@ -982,12 +983,16 @@ theorem bubble_carry_append_suffix {le : Nat → Nat → Bool}
         intro y hy z hz
         apply hd y _ z hz
         simp only [List.mem_cons] at hy ⊢
-        tauto
+        rcases hy with h | h
+        · exact Or.inl h
+        · exact Or.inr (Or.inr h)
       have hd2 : ∀ y ∈ b :: t, ∀ z ∈ s, le y z = true := by
         intro y hy z hz
         apply hd y _ z hz
         simp only [List.mem_cons] at hy ⊢
-        tauto
+        rcases hy with h | h
+        · exact Or.inr (Or.inl h)
+        · exact Or.inr (Or.inr h)
       cases hb : le b x with
       | true =>
           have hih := ih x hd1
