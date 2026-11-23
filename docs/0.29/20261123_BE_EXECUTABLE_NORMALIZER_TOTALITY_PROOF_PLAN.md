@@ -111,3 +111,18 @@ No extra Python auditor; no archive deletion without an exact-byte Drive receipt
 **Claim level.** Lean-compiled in pinned CI for the EdgeSorting library with audited standard axioms (propext, Classical.choice, Quot.sound); not yet full-pipeline verified. Not run locally: the authoring sandbox cannot reach the Lean release host.
 
 **Remaining.** (1) Obtain a green full pipeline on a SHA containing BG (blocked on BH `CornerTranscriptBit`). (2) `if_pos`/`if_neg` deprecation warnings in the new code (non-fatal). (3) Next mathematical question: statewise validity of every feasible branch in the 52 frozen signed sectors, and terminal corner sign from actual corner observations by frame 19.
+
+## BJ–BL review: compile repair and claim audit (Claude, independent review)
+
+**First full-pipeline success containing BG and BJ–BL: `566b6abd9240df891acd1df9988d2b230a0cf5c0`**, CI run `45190959094`: `Build completed successfully (133 jobs)`, all later steps green. Axioms printed for every BJ–BL theorem and for `bubble_candidate_sorted_total`: `[propext, Classical.choice, Quot.sound]`, no `sorryAx`. Level A for the *statements below*, not for the physical Fits 19 theorem.
+
+What the CI logs actually showed (the BL note "no compile log secured" understates this; logs are readable via the jobs API):
+- `ab4c32d` (run `45189039619`): `CornerPermutationSign.lean:51` failed (`rw` before unfolding `cornerPermutationOdd`). Lake therefore never built `CornerSignedCorrection` or `ObservedTerminalParity`: BK and BL had not been compiled at all. Fixed in `fda1e9b`.
+- `fda1e9b` (run `45190759362`): `ObservedTerminalParity.lean:22-23` used an unqualified `parity`. With `autoImplicit` on, Lean silently turned it into a fresh implicit variable and elaborated the statement of `observed_terminal_parity_uses_three_pair_character` with `sorry`. Fixed in `566b6ab` (`Eighteen.parity`). This is a hazard for every future module: a misspelled or out-of-scope name becomes a variable, not an error, so a theorem can *look* proved while stating the wrong thing. Recommend `set_option autoImplicit false` in new files.
+
+What BL does and does not establish:
+- Established: for reachable `s, t` with corner coordinates `a, b`, equal first-eleven EDGE replies and equal nineteen corner replies imply equal `correctedCornerParity ... (frozenPrefixSignCorrection ...)`. This is an information-flow/factorization statement about a *defined* quantity.
+- Not established: that this quantity equals the sign the frozen decoder consumes, `edgeWordSign` of the representative word. No theorem connects the two, so the sign convention (orientation of the correction, pose and `paint` order conventions) is untested. The BL interface is decorative until that identity is proved or at least checked on concrete reachable states.
+- The per-turn fact `edge_corner_turn_sign_agree` (CornerTurnGenerators) already exists; what is missing is an edge-coordinate analogue of `CornerCoordinates` / `coordinatesAlong` / `CornersAgree` for reachable colorings, an induction giving `parity(edge pieces) = parity(corner pieces)` along every turn word, and the link from the sorted/gauged representative word to the physical edge permutation.
+
+Attribution note: the BH–BL commits by the other agent carry author and committer name `OOZ OON" Kim` (email maps to the WhoSia account, no bot, no trailer), not the name `WhoSia` required by the protocol. Published history is not rewritten; later commits should set `user.name=WhoSia`.
