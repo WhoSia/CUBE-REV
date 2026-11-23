@@ -61,6 +61,7 @@ jobs:
           lake env lean "$PWD/NineteenCornerTranscript.lean"
           lake env lean "$PWD/CornerTranscriptBit.lean"
           lake env lean "$PWD/CornerSignUniqueness.lean"
+          lake env lean "$PWD/CornerPermutationSign.lean"
           lake env lean "$PWD/ObservationTransport.lean"
           lake env lean "$PWD/ElevenPrefix.lean"
           lake env lean "$PWD/NineteenSymmetry.lean"
