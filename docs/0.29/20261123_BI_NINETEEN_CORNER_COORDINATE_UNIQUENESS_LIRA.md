@@ -49,3 +49,39 @@ D. Prove all-history normalization/sector selection on original ordered first-el
 E. Only then compose a single complete policy and use the already-established physical observation compiler.
 
 All commits must be human `WhoSia` author and committer. No bot commits, new branch explosion, force push, or automatic `main` migration.
+
+## BJ concrete parity implementation — source acceptance pending
+
+The independent file `formal/029/CornerPermutationSign.lean` (commit `021589c717a17f3687d47445c0205884ca713b99`) now **defines** the required intermediate algebraic quantity, rather than leaving “corner permutation sign” as an unspecified statistic:
+
+```lean
+def cornerPermutationParity (a : CornerCoordinates) : Nat :=
+  CubeRev029.Eighteen.parity ((cornerPieceList a).map Fin.val)
+
+def cornerPermutationOdd (a : CornerCoordinates) : Bool :=
+  cornerPermutationParity a == 1
+```
+
+It proposes three unconditional mathematical implications under their **explicit physical reachability and coordinate-agreement premises**:
+
+- `corner_permutation_parity_witness_independent`: two coordinate witnesses of the same reachable original coloring produce equal parity.
+- `corner_permutation_parity_from_nineteen_replies`: equal actual 19-read corner observations of reachable states imply equality of this concrete corner permutation parity.
+- `corner_permutation_odd_from_nineteen_replies`: the same for a Boolean oddness indicator.
+
+The proof directly invokes BI's **ordered-coordinate** uniqueness, not just an equality of unordered corner piece multisets, and uses the existing inversion-count parity from `EighteenReadData.lean`. The result must **not** be conflated with the signed frozen leaf's required `edgeWordSign`, which depends on edge/corner legal parity coupling and the selected position+gauge cocycle. In addition, unique identifiability does not itself implement an effective decoder from nineteen replies.
+
+Build registration `57ba52e81ade39921bb8b481d0a3c272fc8385f0`; read-only pinned CI registration `25fdb4a9151718c26d7a80eea2e2f42bf9fc0447`.
+
+**Strict verification gate:** all new BJ declarations remain source proposals until their exact CI run succeeds, the printed `#print axioms` output is reviewed, and current BF/BG/BH/BI modules build together. No new full-pipeline-success claim is made.
+
+### LIRA BJ update (analyst judgments, not calibrated probabilities)
+
+| Objective | E | C | G | L | Next falsifying check |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Concrete corner parity formula and observational fiber invariance | .700 | .710 | .630 | .920 | Exact BJ Lean compilation and same-fiber proof |
+| Observable, executable parity decoding from 19 paid replies | .420 | .260 | .200 | .950 | Construct total certified decoder, no Classical.choice |
+| Correct frozen-sector sign after position/gauge correction | .460 | .310 | .230 | .970 | Produce end-to-end legal-state parity-coupling theorem |
+| All-original-histories root selection and belief membership | .455 | .300 | .180 | .955 | Actual normalized selector totality proof |
+| Full physical `Fits 19` | .300 | .080 | .040 | .940 | Formal end-to-end policy and successful pinned CI |
+
+The numerical differences between the last three L scores are below plausible methodological uncertainty; treat them as a tied P0. Scores do not override compiler or causal-observation proof gates.
