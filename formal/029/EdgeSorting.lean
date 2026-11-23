@@ -768,6 +768,411 @@ theorem bubble_candidate_eq_stable_of_pairwise
 #print axioms bubble_candidate_eq_stable_of_pairwise
 
 
+/-! ### BG: universal correctness of the eleven-pass compare/exchange schedule
+
+The proof below is generic in an abstract comparator `le` satisfying
+`BubbleOrder`, and is then instantiated at `elevenSlotLexLE colorAt` for an
+ARBITRARY `colorAt : Nat → Nat` (repeated colors included, because the
+comparator breaks ties by original slot index). No finite enumeration of
+`colorAt` is used. -/
+
+/-- Index-based compare/exchange with an arbitrary comparator; for
+`le := elevenSlotLexLE colorAt` this is `bubbleOrderStep` (see
+`bubble_order_step_eq_step_n`). -/
+def bubbleStepN (le : Nat → Nat → Bool) (xs : List Nat) (i : Nat) :
+    List Nat :=
+  if le xs[i + 1]! xs[i]! then adjacent i xs else xs
+
+theorem bubble_order_step_eq_step_n (colorAt : Nat → Nat) (xs : List Nat)
+    (i : Fin 10) :
+    bubbleOrderStep colorAt xs i =
+      bubbleStepN (elevenSlotLexLE colorAt) xs i.val := rfl
+
+/-- One structural bubble pass: the running candidate `x` is carried to the
+right; at each boundary the smaller element stays behind. -/
+def bubbleCarry (le : Nat → Nat → Bool) (x : Nat) : List Nat → List Nat
+  | [] => [x]
+  | b :: t =>
+      if le b x then b :: bubbleCarry le x t
+      else x :: bubbleCarry le b t
+
+def bubblePass (le : Nat → Nat → Bool) : List Nat → List Nat
+  | [] => []
+  | x :: t => bubbleCarry le x t
+
+/-- `BubbleOrder le` collects exactly the comparator laws used below. -/
+structure BubbleOrder (le : Nat → Nat → Bool) : Prop where
+  refl : ∀ a, le a a = true
+  trans : ∀ a b c, le a b = true → le b c = true → le a c = true
+  total : ∀ a b, (le a b || le b a) = true
+  antisymm : ∀ a b, le a b = true → le b a = true → a = b
+
+/-- Apply a pass function `k` times (first application innermost). -/
+def bubbleIter (f : List Nat → List Nat) : Nat → List Nat → List Nat
+  | 0, xs => xs
+  | k + 1, xs => bubbleIter f k (f xs)
+
+theorem bubble_iter_succ_last (f : List Nat → List Nat) :
+    ∀ (k : Nat) (xs : List Nat),
+      bubbleIter f (k + 1) xs = f (bubbleIter f k xs) := by
+  intro k
+  induction k with
+  | zero => intro xs; rfl
+  | succ k ih =>
+      intro xs
+      exact ih (f xs)
+
+theorem bubble_step_n_succ (le : Nat → Nat → Bool) (h : Nat)
+    (ys : List Nat) (i : Nat) :
+    bubbleStepN le (h :: ys) (i + 1) = h :: bubbleStepN le ys i := by
+  have e1 : (h :: ys)[i + 1 + 1]! = ys[i + 1]! := by first | rfl | simp
+  have e2 : (h :: ys)[i + 1]! = ys[i]! := by first | rfl | simp
+  unfold bubbleStepN
+  rw [e1, e2]
+  by_cases hc : le ys[i + 1]! ys[i]! = true
+  · rw [if_pos hc, if_pos hc] <;> first | rfl | simp [adjacent]
+  · rw [if_neg hc, if_neg hc] <;> first | rfl | simp
+
+theorem bubble_foldl_succ (le : Nat → Nat → Bool) (h : Nat) :
+    ∀ (l : List Nat) (ys : List Nat),
+      (l.map Nat.succ).foldl (bubbleStepN le) (h :: ys) =
+        h :: l.foldl (bubbleStepN le) ys := by
+  intro l
+  induction l with
+  | nil => intro ys; rfl
+  | cons i rest ih =>
+      intro ys
+      have e : bubbleStepN le (h :: ys) (Nat.succ i) =
+          h :: bubbleStepN le ys i := bubble_step_n_succ le h ys i
+      simp only [List.map_cons, List.foldl_cons]
+      rw [e]
+      exact ih _
+
+/-- The index sweep over `0, …, n-1` of a list of length `n+1` is exactly the
+structural carry pass. This is the loop-to-recursion bridge. -/
+theorem bubble_range_fold_eq_carry (le : Nat → Nat → Bool) :
+    ∀ (n : Nat) (x : Nat) (t : List Nat), t.length = n →
+      (List.range n).foldl (bubbleStepN le) (x :: t) = bubbleCarry le x t := by
+  intro n
+  induction n with
+  | zero =>
+      intro x t ht
+      cases t with
+      | nil => rfl
+      | cons _ _ => simp at ht
+  | succ n ih =>
+      intro x t ht
+      cases t with
+      | nil => simp at ht
+      | cons b t' =>
+          have ht' : t'.length = n := by simpa using ht
+          have e1 : (x :: b :: t')[0 + 1]! = b := by first | rfl | simp
+          have e2 : (x :: b :: t')[0]! = x := by first | rfl | simp
+          rw [List.range_succ_eq_map, List.foldl_cons]
+          cases hb : le b x with
+          | true =>
+              have step : bubbleStepN le (x :: b :: t') 0 = b :: x :: t' := by
+                unfold bubbleStepN
+                rw [e1, e2, hb] <;> first | rfl | simp [adjacent]
+              rw [step, bubble_foldl_succ, ih x t' ht']
+              simp [bubbleCarry, hb]
+          | false =>
+              have step : bubbleStepN le (x :: b :: t') 0 = x :: b :: t' := by
+                unfold bubbleStepN
+                rw [e1, e2, hb] <;> first | rfl | simp
+              rw [step, bubble_foldl_succ, ih b t' ht']
+              simp [bubbleCarry, hb]
+
+/-- One carry pass places a maximum last, and is a permutation. -/
+theorem bubble_carry_max {le : Nat → Nat → Bool} (ho : BubbleOrder le) :
+    ∀ (t : List Nat) (x : Nat),
+      ∃ (ys : List Nat) (m : Nat),
+        bubbleCarry le x t = ys ++ [m] ∧
+        (ys ++ [m]).Perm (x :: t) ∧
+        ∀ y ∈ ys, le y m = true := by
+  intro t
+  induction t with
+  | nil =>
+      intro x
+      exact ⟨[], x, rfl, List.Perm.refl _, by simp⟩
+  | cons b t ih =>
+      intro x
+      have dom_of : ∀ (ys : List Nat) (m : Nat) (l : List Nat),
+          (ys ++ [m]).Perm l → (∀ y ∈ ys, le y m = true) →
+          ∀ z ∈ l, le z m = true := by
+        intro ys m l hp hd z hz
+        have hz' := hp.mem_iff.mpr hz
+        rcases List.mem_append.mp hz' with h | h
+        · exact hd z h
+        · have hzm : z = m := by simpa using h
+          rw [hzm]
+          exact ho.refl m
+      cases hb : le b x with
+      | true =>
+          obtain ⟨ys, m, heq, hp, hd⟩ := ih x
+          refine ⟨b :: ys, m, ?_, ?_, ?_⟩
+          · simp [bubbleCarry, hb, heq]
+          · exact (hp.cons b).trans (List.Perm.swap x b t)
+          · intro y hy
+            rcases List.mem_cons.mp hy with h | hy'
+            · rw [h]
+              exact ho.trans b x m hb (dom_of ys m _ hp hd x (by simp))
+            · exact hd y hy'
+      | false =>
+          obtain ⟨ys, m, heq, hp, hd⟩ := ih b
+          refine ⟨x :: ys, m, ?_, ?_, ?_⟩
+          · simp [bubbleCarry, hb, heq]
+          · exact hp.cons x
+          · intro y hy
+            rcases List.mem_cons.mp hy with h | hy'
+            · rw [h]
+              have hxb : le x b = true := by
+                have ht := ho.total b x
+                rw [hb] at ht
+                simpa using ht
+              exact ho.trans x b m hxb (dom_of ys m _ hp hd b (by simp))
+            · exact hd y hy'
+
+/-- A pairwise-sorted list is a fixed point of a pass. -/
+theorem bubble_carry_of_pairwise {le : Nat → Nat → Bool}
+    (ho : BubbleOrder le) :
+    ∀ (t : List Nat) (x : Nat),
+      List.Pairwise (fun a b => le a b = true) (x :: t) →
+      bubbleCarry le x t = x :: t := by
+  intro t
+  induction t with
+  | nil => intro x _; rfl
+  | cons b t ih =>
+      intro x hs
+      rw [List.pairwise_cons] at hs
+      obtain ⟨hx, hrest⟩ := hs
+      have hxb : le x b = true := hx b (by simp)
+      have hxt : List.Pairwise (fun a b => le a b = true) (x :: t) := by
+        rw [List.pairwise_cons]
+        exact ⟨fun a ha => hx a (List.mem_cons_of_mem _ ha),
+          (List.pairwise_cons.mp hrest).2⟩
+      cases hb : le b x with
+      | true =>
+          have e : x = b := ho.antisymm x b hxb hb
+          have hih := ih x hxt
+          subst e
+          simp [bubbleCarry, hb, hih]
+      | false =>
+          simp [bubbleCarry, hb, ih b hrest]
+
+/-- A pass leaves a sorted, dominating suffix untouched. -/
+theorem bubble_carry_append_suffix {le : Nat → Nat → Bool}
+    (ho : BubbleOrder le) (s : List Nat)
+    (hs : List.Pairwise (fun a b => le a b = true) s) :
+    ∀ (t : List Nat) (x : Nat),
+      (∀ y ∈ x :: t, ∀ z ∈ s, le y z = true) →
+      bubbleCarry le x (t ++ s) = bubbleCarry le x t ++ s := by
+  intro t
+  induction t with
+  | nil =>
+      intro x hd
+      have hxs : List.Pairwise (fun a b => le a b = true) (x :: s) := by
+        rw [List.pairwise_cons]
+        exact ⟨fun z hz => hd x (by simp) z hz, hs⟩
+      have hfix := bubble_carry_of_pairwise ho s x hxs
+      simpa [bubbleCarry] using hfix
+  | cons b t ih =>
+      intro x hd
+      have hd1 : ∀ y ∈ x :: t, ∀ z ∈ s, le y z = true := by
+        intro y hy z hz
+        apply hd y _ z hz
+        simp only [List.mem_cons] at hy ⊢
+        tauto
+      have hd2 : ∀ y ∈ b :: t, ∀ z ∈ s, le y z = true := by
+        intro y hy z hz
+        apply hd y _ z hz
+        simp only [List.mem_cons] at hy ⊢
+        tauto
+      cases hb : le b x with
+      | true =>
+          have hih := ih x hd1
+          simp [bubbleCarry, hb, hih]
+      | false =>
+          have hih := ih b hd2
+          simp [bubbleCarry, hb, hih]
+
+theorem bubble_pass_perm {le : Nat → Nat → Bool} (ho : BubbleOrder le)
+    (xs : List Nat) : (bubblePass le xs).Perm xs := by
+  cases xs with
+  | nil => exact List.Perm.refl _
+  | cons x t =>
+      obtain ⟨ys, m, heq, hp, _⟩ := bubble_carry_max ho t x
+      show (bubbleCarry le x t).Perm (x :: t)
+      rw [heq]
+      exact hp
+
+theorem bubble_pass_of_pairwise {le : Nat → Nat → Bool}
+    (ho : BubbleOrder le) (xs : List Nat)
+    (h : List.Pairwise (fun a b => le a b = true) xs) :
+    bubblePass le xs = xs := by
+  cases xs with
+  | nil => rfl
+  | cons x t => exact bubble_carry_of_pairwise ho t x h
+
+/-- Sorted-suffix invariant: after `k` passes the last elements form a sorted
+block dominating everything before them, and the unsorted prefix has
+shrunk by at least `k`. -/
+theorem bubble_iter_invariant {le : Nat → Nat → Bool}
+    (ho : BubbleOrder le) (xs : List Nat) :
+    ∀ k, ∃ pre suf : List Nat,
+      bubbleIter (bubblePass le) k xs = pre ++ suf ∧
+      List.Pairwise (fun a b => le a b = true) suf ∧
+      (∀ p ∈ pre, ∀ s ∈ suf, le p s = true) ∧
+      pre.length ≤ xs.length - k := by
+  intro k
+  induction k with
+  | zero =>
+      exact ⟨xs, [], by simp [bubbleIter], List.Pairwise.nil, by simp,
+        by simp⟩
+  | succ k ih =>
+      obtain ⟨pre, suf, heq, hs, hd, hl⟩ := ih
+      rw [bubble_iter_succ_last, heq]
+      cases pre with
+      | nil =>
+          refine ⟨[], suf, ?_, hs, by simp, by simp⟩
+          rw [List.nil_append]
+          exact bubble_pass_of_pairwise ho suf hs
+      | cons x t =>
+          have hG := bubble_carry_append_suffix ho suf hs t x hd
+          obtain ⟨ys, m, hm, hp, hdom⟩ := bubble_carry_max ho t x
+          have hmem : ∀ z, z ∈ ys ++ [m] ↔ z ∈ x :: t :=
+            fun z => hp.mem_iff
+          have h1 : ys.length + 1 = t.length + 1 := by
+            simpa using hp.length_eq
+          have h2 : t.length + 1 ≤ xs.length - k := by simpa using hl
+          refine ⟨ys, m :: suf, ?_, ?_, ?_, ?_⟩
+          · show bubbleCarry le x (t ++ suf) = ys ++ m :: suf
+            rw [hG, hm]
+            simp
+          · rw [List.pairwise_cons]
+            refine ⟨fun s hs' => ?_, hs⟩
+            exact hd m ((hmem m).mp (by simp)) s hs'
+          · intro p hp' s hs'
+            rcases List.mem_cons.mp hs' with h | h
+            · rw [h]
+              exact hdom p hp'
+            · exact hd p ((hmem p).mp (by simp [hp'])) s h
+          · omega
+
+/-- After `xs.length` passes the whole list is sorted. -/
+theorem bubble_iter_sorted {le : Nat → Nat → Bool} (ho : BubbleOrder le)
+    (xs : List Nat) :
+    List.Pairwise (fun a b => le a b = true)
+      (bubbleIter (bubblePass le) xs.length xs) := by
+  obtain ⟨pre, suf, heq, hs, _, hl⟩ := bubble_iter_invariant ho xs xs.length
+  have hpre : pre = [] := by
+    cases pre with
+    | nil => rfl
+    | cons a b => simp at hl
+  rw [heq, hpre, List.nil_append]
+  exact hs
+
+theorem elevenSlotLexLE_order (colorAt : Nat → Nat) :
+    BubbleOrder (elevenSlotLexLE colorAt) where
+  refl := eleven_slot_lex_refl colorAt
+  trans := fun a b c => eleven_slot_lex_trans colorAt a b c
+  total := eleven_slot_lex_total colorAt
+  antisymm := fun a b => eleven_slot_lex_antisymm colorAt a b
+
+/-- One complete sweep of the executable schedule (same term as the body of
+`elevenBubbleSchedule`). -/
+def elevenBubblePass : List (Fin 10) :=
+  (List.range 10).map (fun i =>
+    (⟨i % 10, Nat.mod_lt i (by decide)⟩ : Fin 10))
+
+theorem eleven_bubble_schedule_eq_passes :
+    elevenBubbleSchedule =
+      (List.range 11).flatMap (fun _ => elevenBubblePass) := rfl
+
+theorem eleven_bubble_pass_vals :
+    elevenBubblePass.map Fin.val = List.range 10 := by
+  decide +kernel
+
+theorem bubble_foldl_fin (colorAt : Nat → Nat) :
+    ∀ (l : List (Fin 10)) (xs : List Nat),
+      l.foldl (bubbleOrderStep colorAt) xs =
+        (l.map Fin.val).foldl (bubbleStepN (elevenSlotLexLE colorAt)) xs := by
+  intro l
+  induction l with
+  | nil => intro xs; rfl
+  | cons i rest ih =>
+      intro xs
+      simp only [List.foldl_cons, List.map_cons]
+      exact ih _
+
+theorem bubble_foldl_flatMap_const {β : Type}
+    (g : List Nat → β → List Nat) (P : List β) :
+    ∀ (l : List Nat) (a : List Nat),
+      (l.flatMap (fun _ => P)).foldl g a =
+        bubbleIter (fun a => P.foldl g a) l.length a := by
+  intro l
+  induction l with
+  | nil => intro a; rfl
+  | cons x rest ih =>
+      intro a
+      rw [List.flatMap_cons, List.foldl_append, ih] <;> rfl
+
+theorem bubble_pass_eq_fold (c : Nat → Nat → Bool) (xs : List Nat)
+    (h : xs.length = 11) :
+    (List.range 10).foldl (bubbleStepN c) xs = bubblePass c xs := by
+  cases xs with
+  | nil => simp at h
+  | cons x t =>
+      have ht : t.length = 10 := by simpa using h
+      exact bubble_range_fold_eq_carry c 10 x t ht
+
+theorem bubble_iter_congr (f g : List Nat → List Nat)
+    (hfg : ∀ xs : List Nat, xs.length = 11 → f xs = g xs)
+    (hg : ∀ xs : List Nat, xs.length = 11 → (g xs).length = 11) :
+    ∀ (k : Nat) (xs : List Nat), xs.length = 11 →
+      bubbleIter f k xs = bubbleIter g k xs := by
+  intro k
+  induction k with
+  | zero => intro xs _; rfl
+  | succ k ih =>
+      intro xs hx
+      show bubbleIter f k (f xs) = bubbleIter g k (g xs)
+      rw [hfg xs hx]
+      exact ih (g xs) (hg xs hx)
+
+/-- The *direct* eleven-pass compare/exchange fold sorts the eleven slots,
+for every `colorAt`. -/
+theorem bubble_candidate_direct_fold_sorted (colorAt : Nat → Nat) :
+    List.Pairwise (fun i j => elevenSlotLexLE colorAt i j = true)
+      (elevenBubbleSchedule.foldl (bubbleOrderStep colorAt)
+        (List.range 11)) := by
+  have ho := elevenSlotLexLE_order colorAt
+  have hlen : (List.range 11).length = 11 := by simp
+  have hpass : ∀ xs : List Nat, xs.length = 11 →
+      elevenBubblePass.foldl (bubbleOrderStep colorAt) xs =
+        bubblePass (elevenSlotLexLE colorAt) xs := by
+    intro xs hx
+    rw [bubble_foldl_fin, eleven_bubble_pass_vals]
+    exact bubble_pass_eq_fold _ xs hx
+  have hcongr := bubble_iter_congr
+    (fun a => elevenBubblePass.foldl (bubbleOrderStep colorAt) a)
+    (bubblePass (elevenSlotLexLE colorAt)) hpass
+    (fun xs hx => (bubble_pass_perm ho xs).length_eq.trans hx)
+    11 (List.range 11) hlen
+  rw [eleven_bubble_schedule_eq_passes, bubble_foldl_flatMap_const,
+    List.length_range, hcongr]
+  have key := bubble_iter_sorted ho (List.range 11)
+  rw [List.length_range] at key
+  exact key
+
+#print axioms bubble_carry_max
+#print axioms bubble_carry_of_pairwise
+#print axioms bubble_carry_append_suffix
+#print axioms bubble_iter_invariant
+#print axioms bubble_iter_sorted
+#print axioms bubble_range_fold_eq_carry
+#print axioms bubble_candidate_direct_fold_sorted
+
 /-- Executable fail-closed postcondition check: run the bounded candidate
 trace, then decide whether its actual output is pairwise lexicographically
 sorted by the same comparison used by the frozen mergeSort normalizer.
@@ -812,6 +1217,37 @@ theorem verified_bubble_trace_sound
 
 #print axioms bubble_candidate_sorted_of_check
 #print axioms verified_bubble_trace_sound
+
+/-- UNIVERSAL TOTALITY (BG): for every `colorAt : Nat → Nat`, including
+repeated colors, the executable eleven-pass candidate passes its own
+acceptance check. -/
+theorem bubble_candidate_sorted_total (colorAt : Nat → Nat) :
+    bubbleCandidateSorted colorAt = true := by
+  have hsorted : List.Pairwise
+      (fun i j => elevenSlotLexLE colorAt i j = true)
+      (adjTrace (bubbleCandidatePath11 colorAt) (List.range 11)) := by
+    rw [bubble_candidate_replay_eq_direct_fold]
+    exact bubble_candidate_direct_fold_sorted colorAt
+  unfold bubbleCandidateSorted
+  exact decide_eq_true hsorted
+
+/-- The fail-closed interface never returns `none`. -/
+theorem verified_bubble_trace_total (colorAt : Nat → Nat) :
+    verifiedBubbleTrace? colorAt = some (bubbleCandidatePath11 colorAt) := by
+  unfold verifiedBubbleTrace?
+  rw [if_pos (bubble_candidate_sorted_total colorAt)]
+
+/-- Unconditional normalization refinement: the executable bubble trace is a
+bounded path replaying to the frozen canonical stable order. -/
+theorem bubble_candidate_normalizes (colorAt : Nat → Nat) :
+    adjTrace (bubbleCandidatePath11 colorAt) (List.range 11) =
+        elevenStableSlotOrder colorAt ∧
+      (∀ i ∈ bubbleCandidatePath11 colorAt, i < 10) :=
+  verified_bubble_trace_sound colorAt _ (verified_bubble_trace_total colorAt)
+
+#print axioms bubble_candidate_sorted_total
+#print axioms verified_bubble_trace_total
+#print axioms bubble_candidate_normalizes
 
 
 
