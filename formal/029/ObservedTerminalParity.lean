@@ -19,8 +19,8 @@ theorem observed_terminal_parity_uses_three_pair_character
     (replies : List FrameColor) (corners : CornerCoordinates) :
     observedTerminalCorrectedParity replies corners =
       (cornerPermutationParity corners +
-        (parity (frozenPrefixStableOrder replies) +
-          parity (Nineteen.inducedThreePairPermutation
+        (Eighteen.parity (frozenPrefixStableOrder replies) +
+          Eighteen.parity (Nineteen.inducedThreePairPermutation
             (chosenPrefixColorMap replies))) % 2) % 2 := by
   unfold observedTerminalCorrectedParity correctedCornerParity
   rw [frozen_prefix_sign_correction_three_pair]
