@@ -95,3 +95,40 @@ A separate `formal/029/CornerSignedCorrection.lean` now introduces `correctedCor
 For the future specialization, the production helper `PrefixColorGauge.frozenPrefixSignCorrection` already defines the genuine combined position-sort and color-gauge parity. The BK module deliberately accepts a `Nat` correction rather than claiming the actual first-eleven `FrameColor` prefix was carried into the frozen terminal decoder. The missing composition theorem must instantiate `prefixCorrection := frozenPrefixSignCorrection actualFirstElevenPairedReplies`, prove the equality needed by the root's signed decoder, and show only past responses are consulted. Also prove physical edge/corner permutation parity coupling for all reachable original cubes.
 
 **LIRA noncompensatory gate:** even an accepted BK equality cannot upgrade the global signed-sector transport or `Fits 19`. Current assessment for the **fully integrated required leaf sign** remains C=.31, G=.23, L=.97 (analyst judgment; not a posterior probability). The immediate work order is inspect CI, fix errors, then prove the actual prefix-to-BK specialization with a typed runnable transcript decoder.
+
+## BL: Exact production-prefix cocycle meets nineteen-frame corner parity
+
+**New source:** `formal/029/ObservedTerminalParity.lean`, committed in `9a2b2c3c0084eb4594942247e1493b77b373a62e`, registered with Lake at `5b35d5f7a04e2e3bde2e5bf94edb9299387f63c6` and with read-only CI at `ef12b03cf9b5449fdabfa55f9589517e7a0c0d33`. A further source change `ab4c32d4118958ff9468bd81e0ba00ec58612c0c` strengthens the interface to be independent of the first-eleven corner replies.
+
+BL defines `observedTerminalCorrectedParity firstElevenReplies corners`, which is **exactly** `correctedCornerParity corners (frozenPrefixSignCorrection firstElevenReplies)`, using the production `PrefixColorGauge.frozenPrefixSignCorrection` rather than an independently chosen representative or guessed color-gauge rule.
+
+BL declares four mathematical implications:
+
+1. `observed_terminal_parity_uses_three_pair_character`: the corrected parity uses the existing proved three-opposite-pair symmetry character, not the earlier label-only parity approximation.
+2. `observed_terminal_corrected_parity_fiber_constant`: equality of complete first-eleven paired replies plus equality of nineteen actual corner observations suffices for equality of the corrected parity.
+3. `frozen_prefix_sign_correction_ignores_corner_replies`: the actual frozen prefix correction is a function only of the **first-eleven edge colors**, using the already established gauge independence and a congruence of stable-sort orders.
+4. `observed_terminal_parity_from_edge_and_corner_histories`: a strictly stronger causal statement: equality of *just* eleven first edge colors **and** nineteen real corner colors suffices to equalize the corrected terminal parity on corresponding reachable corner coordinates.
+
+This resolves a structural *information-flow independence* obligation: the terminal correction has a known deterministic dependency on past paid edge colors and completed corner colors. It **does not** prove that the frozen decoder's `edgeWordSign` equals this corrected quantity, because the actual legal-state edge/corner parity coupling and all-state representative transport have not been composed. The corner coordinate agreement premises remain explicit, although existing `reachable_has_permutation_corners` supplies witnesses for reachable states.
+
+**Compilation status:** the BL Lean declarations are *submitted for pinned CI*, not yet accepted or axiom-audited on this exact revision. Inspect the exact log before promoting the claim. A previously compiled BG normalizer does not automatically certify these new modules.
+
+### BL LIRA reassessment (judgment values, not empirical probabilities)
+
+| Proposition / action | E | C | G | L | Decision |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Exact actual-prefix cocycle integration as a source theorem | .680 | .740 | .580 | .860 | HOLD for pinned Lean build |
+| Edge-only prefix / corner-only completion dependency | .710 | .770 | .630 | .900 | HOLD for pinned Lean build |
+| Equality with frozen leaf's required sign for all legal states | .460 | .330 | .240 | .970 | P0, not established |
+| Normalized 52-sector root totality / belief membership | .455 | .300 | .180 | .950 | P0, not established |
+| Single physical `Fits 19` | .300 | .080 | .040 | .940 | HOLD: hard proof gates |
+
+**Uncertainty rule:** L differences within 0.05 are treated as a tie; no numeric score overrides absent compilation, decoder implementability, or exact all-state premises.
+
+### Potential falsifiers and acceptance tests
+
+- Test normalized histories with equal edge responses and different corner replies; the BL correction must remain identical. Otherwise the prefix gauge illicitly uses corner data.
+- Test two legal states with matching 19 corner replies but different first-eleven edge replies; their **raw physical corner parity** must be equal, but their *corrected* parity may differ. Do not erase the past-gauge distinction.
+- Test repeated edge colors and tied color-gauge histograms: `frozenPrefixSignCorrection` must retain the exact strict-improvement fold and URFDLB color collation.
+- Test an early frozen-tree leaf: sign can be used only after the final corner observation; padding must still constitute actual charged reads.
+- Confirm no theorem assumes that a merely matched 52-root JSON entry contains every physical-state normalized representative.
