@@ -62,6 +62,57 @@ theorem observed_terminal_corrected_parity_given_history
     s t hs ht a b ha hb sameCorners
     (frozenPrefixSignCorrection replies)
 
+/-- Neither the chosen color-gauge sign nor the stable-sort correction
+reads the first-eleven corner colors. Equality of the eleven EDGE
+answers alone fixes the complete actual frozen prefix correction. -/
+theorem frozen_prefix_sign_correction_ignores_corner_replies
+    (first second : List FrameColor)
+    (sameEdges : first.map Prod.fst = second.map Prod.fst) :
+    frozenPrefixSignCorrection first =
+      frozenPrefixSignCorrection second := by
+  have gauge := chosen_prefix_gauge_ignores_corner_replies
+    first second sameEdges
+  have rank : frozenPrefixColorRank first =
+      frozenPrefixColorRank second := by
+    funext i
+    simp only [frozenPrefixColorRank, gauge, sameEdges]
+  have order : frozenPrefixStableOrder first =
+      frozenPrefixStableOrder second := by
+    simp only [frozenPrefixStableOrder, rank]
+  unfold frozenPrefixSignCorrection
+  rw [order, gauge]
+
+/-- This full-state terminal parity factors through two *independently
+paid* information channels: the eleven first edge colors determine the
+past-selected gauge/position correction, while the nineteen scheduled
+corner colors determine the physical corner permutation parity. Thus
+equality of eleven EDGE replies suffices; the first-eleven corner replies
+need not be separately assumed equal beyond the nineteen-corner record. -/
+theorem observed_terminal_parity_from_edge_and_corner_histories
+    (s t : Coloring) (hs : Reachable s) (ht : Reachable t)
+    (a b : CornerCoordinates)
+    (ha : CornersAgree a s) (hb : CornersAgree b t)
+    (sameEdgePrefix :
+      (firstElevenPairedAddresses.map (abstractPairRead s)).map Prod.fst =
+      (firstElevenPairedAddresses.map (abstractPairRead t)).map Prod.fst)
+    (sameCorners : scheduledCornerColors s = scheduledCornerColors t) :
+    observedTerminalCorrectedParity
+        (firstElevenPairedAddresses.map (abstractPairRead s)) a =
+      observedTerminalCorrectedParity
+        (firstElevenPairedAddresses.map (abstractPairRead t)) b := by
+  unfold observedTerminalCorrectedParity
+  exact corrected_corner_parity_respects_equal_prefix_corrections
+    s t hs ht a b ha hb sameCorners
+    (frozenPrefixSignCorrection
+      (firstElevenPairedAddresses.map (abstractPairRead s)))
+    (frozenPrefixSignCorrection
+      (firstElevenPairedAddresses.map (abstractPairRead t)))
+    (frozen_prefix_sign_correction_ignores_corner_replies
+      _ _ sameEdgePrefix)
+
+#print axioms frozen_prefix_sign_correction_ignores_corner_replies
+#print axioms observed_terminal_parity_from_edge_and_corner_histories
+
 #print axioms observed_terminal_parity_uses_three_pair_character
 #print axioms observed_terminal_corrected_parity_fiber_constant
 #print axioms observed_terminal_corrected_parity_given_history
