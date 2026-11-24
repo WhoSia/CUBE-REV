@@ -80,6 +80,7 @@ jobs:
           lake env lean "$PWD/FrozenNormalizationParityTransport.lean"
           lake env lean "$PWD/PhysicalCertifiedSignHandoff.lean"
           lake env lean "$PWD/ExecutablePhysicalSignHandoff.lean"
+          lake env lean "$PWD/RepresentativeCoverage.lean"
           lake env lean "$PWD/ObservationTransport.lean"
           lake env lean "$PWD/ElevenPrefix.lean"
           lake env lean "$PWD/NineteenSymmetry.lean"
