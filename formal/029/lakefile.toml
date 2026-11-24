@@ -1,6 +1,6 @@
 name = "CubeRev029"
 version = "0.1.0"
-defaultTargets = ["AdaptiveLowerBound", "EighteenReadData", "NineteenReadData", "ResidualWord", "ResidualLift", "ResidualDecidable", "SemanticGraph", "SemanticInput", "RootCoordinates", "FaceTurns", "EdgeSorting", "PhysicalEdgeWords", "EdgeOperations", "EdgeFlips", "SolvedCornerReachable", "PhysicalObservation", "ProbeRouteWords", "JointProbeRouting", "NineteenSector", "PhysicalPolicyCompiler", "PhysicalPolicyCompilerFast", "CornerPairDecoder", "NineteenSchedule", "CornerTurnGenerators", "ReachableCornerCoordinates", "EighteenCertified", "PhysicalEighteen", "EighteenDataReceipt", "NineteenDataReceipt", "CornerConservation", "ReachableCornerIdentification", "CornerPermutation", "NineteenCornerTranscript", "CornerTranscriptBit", "CornerSignUniqueness", "CornerPermutationSign", "CornerSignedCorrection", "ObservedTerminalParity", "FrozenTerminalSignBridge", "ObservationTransport", "ElevenPrefix", "NineteenSymmetry", "SymmetryWordTransport", "LegalEdgeSymmetry", "PairedPolicyTransport", "SymmetryInverse", "RepresentativeRoundTrip", "ColorGraphCharacter", "GraphPosteriorCovariance", "SignedRepresentativePolicy", "SignedPairedPosterior", "SignedTerminalIdentification", "SignedPolicyTranscript", "FrozenPolicyInterpreter", "SignedSectorLeaf", "SectorSemanticCompiler", "FrozenJsonSectorParser", "SectorStatewiseValidity", "ExactBudgetPadding", "ExactEightSector", "ReflectedSectorChecker", "DistinctReplyChecker", "FrozenRootReflection", "FiftyTwoRootReceipt", "TaggedNineteenRootPolicy", "PairedCornerClock", "PrefixColorGauge"]
+defaultTargets = ["AdaptiveLowerBound", "EighteenReadData", "NineteenReadData", "ResidualWord", "ResidualLift", "ResidualDecidable", "SemanticGraph", "SemanticInput", "RootCoordinates", "FaceTurns", "EdgeSorting", "PhysicalEdgeWords", "EdgeOperations", "EdgeFlips", "SolvedCornerReachable", "PhysicalObservation", "ProbeRouteWords", "JointProbeRouting", "NineteenSector", "PhysicalPolicyCompiler", "PhysicalPolicyCompilerFast", "CornerPairDecoder", "NineteenSchedule", "CornerTurnGenerators", "ReachableCornerCoordinates", "EighteenCertified", "PhysicalEighteen", "EighteenDataReceipt", "NineteenDataReceipt", "CornerConservation", "ReachableCornerIdentification", "CornerPermutation", "NineteenCornerTranscript", "CornerTranscriptBit", "CornerSignUniqueness", "CornerPermutationSign", "CornerSignedCorrection", "ObservedTerminalParity", "FrozenTerminalSignBridge", "ObservationTransport", "ElevenPrefix", "NineteenSymmetry", "SymmetryWordTransport", "LegalEdgeSymmetry", "PairedPolicyTransport", "SymmetryInverse", "RepresentativeRoundTrip", "ColorGraphCharacter", "GraphPosteriorCovariance", "SignedRepresentativePolicy", "SignedPairedPosterior", "SignedTerminalIdentification", "SignedPolicyTranscript", "FrozenPolicyInterpreter", "SignedSectorLeaf", "SectorSemanticCompiler", "FrozenJsonSectorParser", "SectorStatewiseValidity", "ExactBudgetPadding", "ExactEightSector", "ReflectedSectorChecker", "DistinctReplyChecker", "FrozenRootReflection", "FiftyTwoRootReceipt", "TaggedNineteenRootPolicy", "PairedCornerClock", "PrefixColorGauge", "ReachableEdgeCoordinates", "EdgeCornerParityInduction", "ParityReindexBridge", "PhysicalFrozenSignIntegration", "FrozenNormalizationParityTransport", "PhysicalCertifiedSignHandoff", "ExecutablePhysicalSignHandoff"]
 
 [[lean_lib]]
 name = "AdaptiveLowerBound"
@@ -202,3 +202,24 @@ name = "ObservedTerminalParity"
 
 [[lean_lib]]
 name = "FrozenTerminalSignBridge"
+
+[[lean_lib]]
+name = "ReachableEdgeCoordinates"
+
+[[lean_lib]]
+name = "EdgeCornerParityInduction"
+
+[[lean_lib]]
+name = "ParityReindexBridge"
+
+[[lean_lib]]
+name = "PhysicalFrozenSignIntegration"
+
+[[lean_lib]]
+name = "FrozenNormalizationParityTransport"
+
+[[lean_lib]]
+name = "PhysicalCertifiedSignHandoff"
+
+[[lean_lib]]
+name = "ExecutablePhysicalSignHandoff"

@@ -26,6 +26,14 @@ jobs:
         run: python3 formal/029/validate_19_corner_schedule.py
       - name: Audit corner-turn generator premises against full geometry
         run: python3 formal/029/audit_corner_turn_generators.py
+      - name: Independently audit edge/corner sign under legal turns
+        run: python3 scripts/cuberev-observation/audit_r029_cross_turn_parity.py
+      - name: Audit executable prefix bubble sign across color gauges
+        run: python3 scripts/cuberev-observation/audit_r029_executable_bubble_sign.py
+      - name: Exhaustively test corner reindex parity on 8 factorial permutations
+        run: python3 scripts/cuberev-observation/audit_r029_corner_reindex_exhaustive.py
+      - name: Independently verify 52 color and 80 signed prefix orbits
+        run: python3 scripts/cuberev-observation/audit_r029_prefix_orbit_coverage.py
       - name: Audit reachable corner coordinates against turn geometry
         run: python3 formal/029/audit_reachable_corner_bridge.py
       - name: Fail-closed Lean library and CI manifest validation
@@ -65,6 +73,13 @@ jobs:
           lake env lean "$PWD/CornerSignedCorrection.lean"
           lake env lean "$PWD/ObservedTerminalParity.lean"
           lake env lean "$PWD/FrozenTerminalSignBridge.lean"
+          lake env lean "$PWD/ReachableEdgeCoordinates.lean"
+          lake env lean "$PWD/EdgeCornerParityInduction.lean"
+          lake env lean "$PWD/ParityReindexBridge.lean"
+          lake env lean "$PWD/PhysicalFrozenSignIntegration.lean"
+          lake env lean "$PWD/FrozenNormalizationParityTransport.lean"
+          lake env lean "$PWD/PhysicalCertifiedSignHandoff.lean"
+          lake env lean "$PWD/ExecutablePhysicalSignHandoff.lean"
           lake env lean "$PWD/ObservationTransport.lean"
           lake env lean "$PWD/ElevenPrefix.lean"
           lake env lean "$PWD/NineteenSymmetry.lean"
