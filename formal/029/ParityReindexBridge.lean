@@ -114,7 +114,7 @@ theorem corner_parity_reindex_proved : CornerParityReindexLaw := by
       (canonicalCornerSources.map
         (fun i => (cornerPieceFin (a i)).val)).Nodup := by
     have p := (legal.map Fin.val).symm.nodup (by decide +kernel)
-    simpa [cornerPieceList, List.map_map] using p
+    simpa [cornerPieceList, List.map_map, Function.comp_def] using p
   have hcanonical : (canonicalCornerSources.map Fin.val).Nodup := by
     decide +kernel
   have hzero : parity (canonicalCornerSources.map Fin.val) = 0 := by
