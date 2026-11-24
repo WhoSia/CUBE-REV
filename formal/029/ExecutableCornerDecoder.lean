@@ -24,9 +24,9 @@ def decodeScheduledCorners (replies : List Nat) : Option CornerCoordinates := do
               some (fun i => full[i.val]!)
             else none
 
-def decodeScheduledTerminalParity (prefix : List FrameColor)
+def decodeScheduledTerminalParity (pre : List FrameColor)
     (replies : List Nat) : Option Nat :=
-  (decodeScheduledCorners replies).map (observedTerminalCorrectedParity prefix)
+  (decodeScheduledCorners replies).map (observedTerminalCorrectedParity pre)
 
 -- Source candidate: correctness and pinned Lean compilation are pending.
 end CubeRev029.Physical
