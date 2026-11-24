@@ -43,7 +43,7 @@ theorem relabeled_complete_word_parity
     decide +kernel
   have h := parity_reindex_of_even_reference complete.symm
     (relabeledEdgeType sigma) (fun i => i)
-    distinct List.nodup_range even
+    distinct (by decide +kernel) even
   have shifted :
       parity ((wordLabels word).map (relabeledEdgeType sigma)) =
       (parity (inducedTwelveEdgePermutation sigma) +
