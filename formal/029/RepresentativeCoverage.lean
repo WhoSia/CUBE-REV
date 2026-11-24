@@ -194,8 +194,7 @@ theorem foldl_lex_min {α : Type} (f : α → List Nat)
         · rcases List.mem_cons.1 hd' with rfl | hd''
           · intro hlt
             rcases lexLess_trichotomy (f b) (f d) (hlen _ _) with h | h | h
-            · rw [h] at h2
-              exact h2 b (List.mem_cons_self ..) hlt
+            · exact h2 b (List.mem_cons_self ..) (by rw [h]; exact hlt)
             · exact h2 b (List.mem_cons_self ..) (lexLess_trans _ _ _ h hlt)
             · exact hc h
           · exact h2 d (List.mem_cons_of_mem _ hd'')
