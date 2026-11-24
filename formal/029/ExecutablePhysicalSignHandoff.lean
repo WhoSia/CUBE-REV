@@ -100,6 +100,8 @@ theorem executable_bubble_normalized_word_parity
     word complete path validBounds
   have gauge := chosen_prefix_gauge_sign_character replies
   have correction := frozen_prefix_sign_correction_three_pair replies
+  have hpath : path.length =
+      (bubbleCandidatePath11 (frozenPrefixColorRank replies)).length := rfl
   rw [transported, gauge, correction]
   omega
 
