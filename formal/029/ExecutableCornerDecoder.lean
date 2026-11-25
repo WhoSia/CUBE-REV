@@ -239,7 +239,7 @@ theorem decodeScheduledCorners_correct
   rw [hrecord]
   simp only [decodeScheduledCorners, hlen, hrange, hrepeat, hread]
   simp [hdedup, hbound, hmb]
-  exact hfull
+  simpa [missing] using hfull
 
 /-- The actual physical turn history is used only in the correctness
 statement; the executable decoder receives no hidden state. -/
