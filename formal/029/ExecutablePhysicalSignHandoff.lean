@@ -169,4 +169,41 @@ theorem frozen_root_recovers_executable_physical_bubble_candidate
 #print axioms executable_physical_normalized_sign_correct
 #print axioms frozen_root_recovers_executable_physical_bubble_candidate
 
+/-- The actually charged first eleven edge colors agree with the
+original physical edge word. No corner decoder, flip parity or
+certificate assumption is needed for this observation bridge. -/
+theorem physical_first_eleven_replies_match_word (turns : List Turn) :
+    (firstElevenPairedAddresses.map
+      (abstractPairRead (paint turns solved))).map Prod.fst =
+      ((originalPhysicalEdgeWord turns).take 11).map
+        (fun e => sticker e false) := by
+  have h := edge_coordinates_along_agree turns
+  change
+    [paint turns solved (edgeSlot 0 false),
+     paint turns solved (edgeSlot 1 false),
+     paint turns solved (edgeSlot 2 false),
+     paint turns solved (edgeSlot 3 false),
+     paint turns solved (edgeSlot 4 false),
+     paint turns solved (edgeSlot 5 false),
+     paint turns solved (edgeSlot 6 false),
+     paint turns solved (edgeSlot 7 false),
+     paint turns solved (edgeSlot 8 false),
+     paint turns solved (edgeSlot 9 false),
+     paint turns solved (edgeSlot 10 false)] =
+    [sticker (edgeCoordinatesAlong turns 0) false,
+     sticker (edgeCoordinatesAlong turns 1) false,
+     sticker (edgeCoordinatesAlong turns 2) false,
+     sticker (edgeCoordinatesAlong turns 3) false,
+     sticker (edgeCoordinatesAlong turns 4) false,
+     sticker (edgeCoordinatesAlong turns 5) false,
+     sticker (edgeCoordinatesAlong turns 6) false,
+     sticker (edgeCoordinatesAlong turns 7) false,
+     sticker (edgeCoordinatesAlong turns 8) false,
+     sticker (edgeCoordinatesAlong turns 9) false,
+     sticker (edgeCoordinatesAlong turns 10) false]
+  rw [h 0 false, h 1 false, h 2 false, h 3 false, h 4 false,
+      h 5 false, h 6 false, h 7 false, h 8 false, h 9 false, h 10 false]
+
+#print axioms physical_first_eleven_replies_match_word
+
 end CubeRev029.Nineteen
