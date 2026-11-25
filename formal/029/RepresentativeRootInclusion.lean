@@ -37,8 +37,10 @@ def rowReplies (row : List Nat) : List FrameColor := row.map fun c => (c, 0)
 
 def coverageCheck (source : String) : Bool :=
   match parsedRepresentativeArray source with
-  | .ok roots => rawRows.all fun row => roots.toList.any fun entry =>
-      rootFirstColors entry == some (normalizedPrefix (rowReplies row))
+  | .ok roots => rawRows.all fun row =>
+      -- hoisted: otherwise the interpreter recomputes it for each of 52 roots
+      let target := some (normalizedPrefix (rowReplies row))
+      roots.toList.any fun entry => rootFirstColors entry == target
   | .error _ => false
 
 theorem symmetry_color_mem :

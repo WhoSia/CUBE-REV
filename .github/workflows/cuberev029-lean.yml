@@ -86,6 +86,7 @@ jobs:
           lake env lean "$PWD/RepresentativeCoverage.lean"
           lake env lean "$PWD/RepresentativeRootInclusion.lean"
           lake env lean "$PWD/NormalizedRootMembership.lean"
+          lake env lean "$PWD/RepresentativeCoverageNative.lean"
           lake env lean "$PWD/ObservationTransport.lean"
           lake env lean "$PWD/ElevenPrefix.lean"
           lake env lean "$PWD/NineteenSymmetry.lean"
