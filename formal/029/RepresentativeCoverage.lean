@@ -76,11 +76,11 @@ theorem counts_perm {xs ys : List Nat} (h : xs.Perm ys) : counts xs = counts ys 
 histogram of the first eleven first-stickers equals the histogram of a row
 of `rawWords` over the twelve labels with the last label omitted. This is
 exactly the family inserted into `representativeVectors`. -/
-theorem first_eleven_histogram_represented (ws : List Nat) (x : Nat)
+theorem first_eleven_row_perm (ws : List Nat) (x : Nat)
     (complete : (wordLabels (ws ++ [x])).Perm (List.range 12)) :
     ∃ omitted ∈ List.range 12,
       ∃ row ∈ rawWords ((List.range 12).erase omitted),
-        counts (ws.map (fun e => sticker e false)) = counts row := by
+        (ws.map (fun e => sticker e false)).Perm row := by
   have hp : (wordLabels ws ++ [x / 2]).Perm (List.range 12) := by
     simpa [wordLabels] using complete
   have h1 : (x / 2 :: wordLabels ws).Perm (List.range 12) :=
@@ -92,7 +92,15 @@ theorem first_eleven_histogram_represented (ws : List Nat) (x : Nat)
   have enum : ws.map (fun e => sticker e false) ∈ rawWords (wordLabels ws) :=
     first_sticker_row_enumerated ws
   obtain ⟨r', hr', hperm⟩ := rawWords_perm h2 _ enum
-  exact ⟨x / 2, hmem, r', hr', counts_perm hperm⟩
+  exact ⟨x / 2, hmem, r', hr', hperm⟩
+
+theorem first_eleven_histogram_represented (ws : List Nat) (x : Nat)
+    (complete : (wordLabels (ws ++ [x])).Perm (List.range 12)) :
+    ∃ omitted ∈ List.range 12,
+      ∃ row ∈ rawWords ((List.range 12).erase omitted),
+        counts (ws.map (fun e => sticker e false)) = counts row := by
+  obtain ⟨o, ho, row, hrow, hp⟩ := first_eleven_row_perm ws x complete
+  exact ⟨o, ho, row, hrow, counts_perm hp⟩
 
 #print axioms first_eleven_histogram_represented
 
