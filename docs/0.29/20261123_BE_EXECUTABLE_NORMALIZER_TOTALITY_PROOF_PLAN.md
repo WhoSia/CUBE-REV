@@ -126,3 +126,12 @@ What BL does and does not establish:
 - The per-turn fact `edge_corner_turn_sign_agree` (CornerTurnGenerators) already exists; what is missing is an edge-coordinate analogue of `CornerCoordinates` / `coordinatesAlong` / `CornersAgree` for reachable colorings, an induction giving `parity(edge pieces) = parity(corner pieces)` along every turn word, and the link from the sorted/gauged representative word to the physical edge permutation.
 
 Attribution note: the BH–BL commits by the other agent carry author and committer name `OOZ OON" Kim` (email maps to the WhoSia account, no bot, no trailer), not the name `WhoSia` required by the protocol. Published history is not rewritten; later commits should set `user.name=WhoSia`.
+
+## BS — representative coverage and certified-root inclusion
+
+- BS-1 `first_eleven_row_perm` / `first_eleven_histogram_represented` (RepresentativeCoverage): first-eleven first-stickers of every complete legal word are a permutation of a `rawWords` row. Kernel-only.
+- BS-2 `lexLess` strict total order, `foldl_lex_min`, `chosen_gauge_histogram_minimal`, `minimal_gauge_histogram_unique`: executable gauge attains the minimum histogram; ties may select different maps with the same histogram. Kernel-only.
+- BS-3 (RepresentativeRootInclusion, RepresentativeCoverageNative): method = finite inclusion check on production code (`coverageCheck`), NOT HashSet/forIn semantics. One NEW `native_decide` on the same SHA-256-pinned JSON. Universal reasoning (`chosen_map_perm_invariant`, `normalized_prefix_perm_invariant`, `normalized_prefix_has_certified_root`) is kernel-only. The selected map itself is invariant under permutation of the first colors, so tie handling is deterministic.
+- BS-4 (NormalizedRootMembership): `normalized_word_first_colors`, `normalized_word_in_prefix_sector` (via `sector_complete`), `parse_root_belief`, `normalized_word_recovered_by_certified_root`.
+- Explicit premises still owed: `hflip : flipBit (originalPhysicalEdgeWord turns) = 0`; `hfst`: observed first-eleven reply colors = first-eleven first-stickers of the original word.
+- Trust boundary: native_decide axioms now = `fifty_two_frozen_roots_semantically_accepted` + `representative_prefixes_covered_source` (same immutable data).
