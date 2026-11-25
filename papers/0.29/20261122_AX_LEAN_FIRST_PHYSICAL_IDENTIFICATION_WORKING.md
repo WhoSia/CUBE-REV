@@ -316,3 +316,41 @@ The full paper should distinguish the now-accepted *conditional executable witne
 - [Signed sector decoding](../../formal/029/SignedTerminalIdentification.lean).
 - [AX exact-byte retirement custody ledger](../../docs/0.29/20261122_AX_LEAN_FIRST_RETIREMENT_LEDGER.md).
 - [Latest full Lean verification before AX](https://github.com/WhoSia/CUBE-REV/actions/runs/44925506967).
+
+
+## CE — 2026-11-25 publication gate (additive status audit)
+
+This update supersedes the *status judgments*, not the historical evidence, above. It is not an acceptance of the final upper theorem.
+
+**Evidence anchor.** At commit a9d43848800d22306fd281e5eb08413215e8d803, the read-only Lean workflow [45528626206](https://github.com/WhoSia/CUBE-REV/actions/runs/45528626206) completed successfully (159 Lake build jobs, zero sorryAx occurrences in the retrieved job log). BS-3/4 now prove production-prefix coverage and normalized candidate membership subject to explicit physical premises. The original native finite receipt is supplemented by coverageCheck over 24,576 raw rows. The first eleven real edge replies are linked to the physical word by physical_first_eleven_replies_match_word (compiled in otherwise failing [CB run 45529899783](https://github.com/WhoSia/CUBE-REV/actions/runs/45529899783)). CC's full package compilation succeeded. CD's general corner decoder source failed at its last coordinate function equality; [573b7cb](https://github.com/WhoSia/CUBE-REV/commit/573b7cbadd87a9b3f570e7423769cea7001ec695) separates guard simplification from exact application of the existing equality witness. New CI acceptance pending.
+
+### Quantitative context, not a proof of 19
+
+Under the standard fixed-center cubie reachability characterization, there are 43252003274489856000 states. With corners disclosed and their permutation parity fixed, the edge sector has 490497638400 states. A depth-d paired decision tree with at most 36 outcomes per node has at most 36^d leaves, so raw counting implies d >= 13. In a fixed disclosed-corner sector, at most six outcomes per edge query give d >= 16 (6^15 = 470184984576 < 490497638400). These bounds are necessary, not sufficient: the restricted address queries do not realize arbitrary balanced partitions. The certified eighteen-frame obstruction is substantially stronger than the counting argument. This comparison uses the standard cubie group characterization; do not present it as a new Lean cardinality theorem.
+
+### Explicit trust ledger (from successful a9d4384 job 138918090857)
+
+| Theorem | Additional native evaluation dependencies beyond propext, Classical.choice, Quot.sound |
+| --- | --- |
+| physical_eighteen_impossible | pair_actions_match; Eighteen.checked |
+| fifty_two_frozen_roots_semantically_accepted | its own native acceptance axiom |
+| physical_normalized_recovered_certified | fifty_two_frozen_roots_semantically_accepted; representative_prefixes_covered_source |
+| physical_nineteen_of_abstract_bounded | joint_routes_checked |
+| Final physical upper theorem | Not yet assembled; must print actual transitive dependencies |
+
+The fixed-probe lower theorem quantifies over arbitrary output type and yields two different reachable initial colorings with solved corners and equal frame transcripts. Do not confuse a certificate-backed result with a wholly native-free kernel proof, or say that a SHA digest itself proves correctness.
+
+### Prior work and novelty discipline
+
+Gill (1961), DOI 10.1016/S0019-9958(61)80003-X, and Lee–Yannakakis (1994), DOI 10.1109/12.272431, establish the general preset/adaptive state-identification tradition. The 2019 public answer https://math.stackexchange.com/questions/3297610/how-many-colors-of-a-rubiks-cube-must-be-known-to-locate-all explicitly gives the 14-corner/21-edge fixed construction, with a parity argument. The earlier 2015 discussion https://puzzling.stackexchange.com/questions/22848/minimum-number-of-stickers-to-inspect-in-a-rubik-cube-to-define-a-scrambled-posi already asks the robotic sticker-minimization question; its 2016 comment notes 14 corner observations. These are public precedents, not refereed optimality theorems. Credit them; do not claim that corner omission, using parity, or the idea of adaptive identification is new. Candidate contribution is the exact worst-case paired-frame optimum under the stated sensor constraints, a universal adaptive obstruction, and the structural Hall/orbit/sign reduction supporting independently checkable certificates. No exhaustive literature-priority claim has been established. Eigler's face-photograph work requires final primary-version reconciliation; move-optimal solving (e.g. Demaine et al., 2011, arXiv:1106.5736) is a different cost and task.
+
+### Referee acceptance gates
+
+- Fatal: missing single correct abstract policy with Fits 19, actual physical address translation, logged corner replies, terminal-only sign, inverse gauge and full original-color reconstruction. Do not report Q*=19 as a formally closed theorem before this gate passes.
+- Fatal: ambiguous observation model, especially conflating paired frames, individual sticker reads and turns; both addresses must be chosen before either response. Report legal-turn cost as unoptimized/free in the theorem.
+- High: verify the scope of preset 21 optimality and classification separately. Existing construction alone is prior art.
+- High: exact-commit reproducibility, raw certificate bytes and SHA, build instructions, independent verifier/mutation results, explicit native dependency table, no sorryAx, stable artifact links. P7 exact active-set audit is still failing due to unregistered paths; fix the manifest by explicit review, not weakening enforcement.
+- High: write one coherent theorem-driven manuscript rather than an archive of development stages. A reviewer should understand the mathematics and certificate validation without reading the commit history.
+- High: seek independent human review of the model and contribution; AI-assisted proof development does not replace authors' responsibility or independent referee scrutiny. Disclose assistance according to the chosen venue policy.
+
+**Submission verdict:** hold the exact-optimum paper until the full correctness/causality theorem, artifact audit and novelty/claim review pass. A limited lower-bound-only paper is a separate editorial decision, not permission to imply the upper result. Do not delay the main theorem for complete removal of native evaluation unless required by the target venue or the stated trust claim.
