@@ -238,7 +238,8 @@ theorem decodeScheduledCorners_correct
     rcases cases8 i with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> rfl
   rw [hrecord]
   simp only [decodeScheduledCorners, hlen, hrange, hrepeat, hread]
-  simp [hdedup, hbound, hmb, hfull]
+  simp [hdedup, hbound, hmb]
+  exact hfull
 
 /-- The actual physical turn history is used only in the correctness
 statement; the executable decoder receives no hidden state. -/
