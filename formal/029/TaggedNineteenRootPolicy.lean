@@ -67,6 +67,41 @@ def matchingFrozenRoot (roots : Array Lean.Json) (answers : List Nat) :
     Option Lean.Json :=
   roots.toList.find? (fun entry => rootFirstColors entry == some answers)
 
+/-- Existence of any matching frozen entry implies that the executable
+first-match selector returns an actual entry with the required prefix.
+No uniqueness of entries or equality of unrelated gauge choices is needed. -/
+theorem matching_frozen_root_total
+    (roots : Array Lean.Json) (answers : List Nat)
+    (covered : ∃ entry ∈ roots.toList,
+      rootFirstColors entry = some answers) :
+    ∃ entry ∈ roots.toList,
+      matchingFrozenRoot roots answers = some entry ∧
+      rootFirstColors entry = some answers := by
+  have aux : ∀ entries : List Lean.Json,
+      (∃ entry ∈ entries, rootFirstColors entry = some answers) →
+      ∃ entry ∈ entries,
+        entries.find? (fun e => rootFirstColors e == some answers) = some entry ∧
+        rootFirstColors entry = some answers := by
+    intro entries
+    induction entries with
+    | nil => simp
+    | cons head tail ih =>
+      intro present
+      by_cases hh : rootFirstColors head = some answers
+      · exact ⟨head, by simp, by simp [List.find?, hh], hh⟩
+      · obtain ⟨entry, hm, he⟩ := present
+        have ht : entry ∈ tail := by
+          rcases List.mem_cons.mp hm with heq | hm'
+          · subst entry
+            exact (hh he).elim
+          · exact hm'
+        obtain ⟨found, hf, hs, hr⟩ := ih ⟨entry, ht, he⟩
+        exact ⟨found, List.mem_cons_of_mem _ hf,
+          by simpa [List.find?, beq_iff_eq, hh] using hs, hr⟩
+  exact aux roots.toList covered
+
+#print axioms matching_frozen_root_total
+
 /-- Exact 8-frame continuation when a matching 52-root representative
 exists and is parseable; otherwise fail closed with no fabricated word. -/
 def continuationFromFrozenRoots (roots : Array Lean.Json)
