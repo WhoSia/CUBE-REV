@@ -28,5 +28,24 @@ def decodeScheduledTerminalParity (pre : List FrameColor)
     (replies : List Nat) : Option Nat :=
   (decodeScheduledCorners replies).map (observedTerminalCorrectedParity pre)
 
--- Source candidate: correctness and pinned Lean compilation are pending.
+/-- Finite left inverse of the existing oriented-corner alphabet. -/
+theorem scheduled_corner_pair_search_correct :
+    ∀ x : Fin 24,
+      (List.finRange 24).find? (fun y =>
+        cornerCyclicPair y == cornerCyclicPair x) = some x := by
+  decide +kernel
+
+#print axioms scheduled_corner_pair_search_correct
+
+/-- The arithmetic completion of the missing corner uses only conservation.
+No search over full cube states is required. -/
+theorem scheduled_corner_missing_arithmetic
+    (p t sp st : Nat) (hp : p + sp = 28)
+    (ht : (t + st) % 3 = 0) (bound : t < 3) :
+    28 - sp = p ∧ (3 - st % 3) % 3 = t := by
+  omega
+
+#print axioms scheduled_corner_missing_arithmetic
+
+-- Full transcript correctness and pinned Lean compilation are pending.
 end CubeRev029.Physical
