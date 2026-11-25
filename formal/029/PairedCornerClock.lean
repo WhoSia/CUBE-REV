@@ -434,4 +434,46 @@ theorem physical_nineteen_recorded_fits (roots : Array Lean.Json) :
 #print axioms physical_recorded_continuation_fits
 #print axioms physical_nineteen_recorded_fits
 
+/-- The real transported run returns the same terminal decoder as the
+normalized sector and the exact charged corner record. No sign is
+evaluated and no inverse is applied until after this run. -/
+theorem physical_recorded_continuation_run
+    (roots : Array Lean.Json) (pre : List FrameColor) (turns : List Turn) :
+    let norm := adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank pre))
+      (relabelEdgeWord (chosenPrefixColorMap pre) (originalPhysicalEdgeWord turns))
+    (physicalRecordedContinuation roots pre).run abstractPairRead (paint turns solved) =
+      (pre, ( (continuationFromFrozenRoots roots (normalizedPrefix pre)).run observation norm,
+        pre.map Prod.snd ++ (cornerFrameAddresses.drop 11).map
+          (fun addr => paint turns solved (cornerSlot addr)))) := by
+  dsimp only
+  let tree := continuationFromFrozenRoots roots (normalizedPrefix pre)
+  let edge : Coloring → Nat → Nat := fun s q =>
+    (chosenPrefixColorMap pre)[s (edgeNumber (physicalSectorAddress pre q))]!
+  let corner : Coloring → Fin 24 → Nat := fun s c => s (cornerSlot c)
+  let s := paint turns solved
+  let norm := adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank pre))
+    (relabelEdgeWord (chosenPrefixColorMap pre) (originalPhysicalEdgeWord turns))
+  have fit : Fits 8 tree := continuation_from_frozen_roots_fits roots _
+  have count : (cornerFrameAddresses.drop 11).length =
+      ((tree.padToExact 0 8).transcript edge s).length := by
+    rw [Policy.padToExact_transcript_length 0 edge s fit]
+    decide +kernel
+  have clock := withRecordedCornerClock_run edge corner s
+    (tree.padToExact 0 8) (cornerFrameAddresses.drop 11)
+    (pre.map Prod.snd).reverse count
+  have same : tree.run edge s = tree.run observation norm := by
+    apply Policy.run_fixed_reply_equiv
+    intro q
+    exact (physical_normalized_sector_observation turns pre q).symm
+  have pad := Policy.padToExact_run 0 edge s fit
+  unfold physicalRecordedContinuation
+  rw [Policy.adapt_run]
+  change (pre, (withRecordedCornerClock (cornerFrameAddresses.drop 11)
+    (pre.map Prod.snd).reverse (tree.padToExact 0 8)).run
+      (fun state q => (edge state q.1, corner state q.2)) s) = _
+  rw [clock, pad, same, List.reverse_reverse]
+  rfl
+
+#print axioms physical_recorded_continuation_run
+
 end CubeRev029.Nineteen
