@@ -1,4 +1,5 @@
 import RepresentativeRootInclusion
+import NineteenSector
 
 namespace CubeRev029.Nineteen
 
@@ -131,12 +132,13 @@ theorem parse_root_belief (entry : Lean.Json)
   unfold rootFirstColors at hr
   unfold parseRepresentativeRoot at hp
   cases hv : entry.getObjVal? "prefix" with
-  | error e => simp [hv] at hr
+  | error e => simp [hv, Except.toOption] at hr
   | ok pj =>
     cases hs : pj.getStr? with
-    | error e => simp [hv, hs] at hr
+    | error e => simp [hv, hs, Except.toOption] at hr
     | ok str =>
-      simp [hv, hs] at hr
+      simp [hv, hs, Except.toOption] at hr
+      subst hr
       cases hn : entry.getObjVal? "nodes" with
       | error e => simp [hv, hs, hn, bind, Except.bind] at hp
       | ok nj =>
@@ -146,11 +148,14 @@ theorem parse_root_belief (entry : Lean.Json)
           cases hg : parseFrozenSectorNodes nodes with
           | error e => simp [hv, hs, hn, ha, hg, bind, Except.bind] at hp
           | ok g =>
-            simp [hv, hs, hn, ha, hg, bind, Except.bind, pure, Except.pure, ← hr] at hp
-            first
-              | exact hp.2.symm
-              | exact hp.symm
-              | (obtain ⟨_, _, h⟩ := hp; exact h.symm)
+            by_cases hl : str.toList.length = 11
+            · simp [hv, hs, hn, ha, hg, hl, bind, Except.bind, pure, Except.pure,
+                Prod.mk.injEq] at hp
+              first
+                | exact hp.2.symm
+                | exact hp.symm
+                | (obtain ⟨_, h⟩ := hp; exact h.symm)
+            · simp [hv, hs, hn, ha, hg, hl, bind, Except.bind, pure, Except.pure] at hp
 
 /-- BS-3 + BS-4: for ANY complete word with even flip parity, any reply
 vector of the right length whose first colors are the word's first-eleven
@@ -182,7 +187,7 @@ theorem normalized_word_recovered_by_certified_root
   obtain ⟨ws, x, hw⟩ : ∃ ws x, word = ws ++ [x] := by
     rcases List.eq_nil_or_concat word with h | ⟨L, b, h⟩
     · subst h; simp [wordLabels] at complete
-    · exact ⟨L, b, h⟩
+    · exact ⟨L, b, by rw [h, List.concat_eq_append]⟩
   have wlen : word.length = 12 := by simpa [wordLabels] using complete.length_eq
   have wslen : ws.length = 11 := by subst hw; simp at wlen; omega
   have htake : word.take 11 = ws := by
