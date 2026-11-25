@@ -1,4 +1,5 @@
 import TaggedNineteenRootPolicy
+import RepresentativeCoverageNative
 import NineteenSchedule
 import NineteenCornerTranscript
 
@@ -343,5 +344,54 @@ theorem withRecordedCornerClock_run {S Q O : Type}
 
 #print axioms withRecordedCornerClock_fits
 #print axioms withRecordedCornerClock_run
+
+/-- The root found by the executable selector, not an arbitrary existential
+witness, recovers the normalized complete word. -/
+theorem selected_normalized_continuation_recovers
+    (roots : Array Lean.Json)
+    (parsed : parsedRepresentativeArray
+      (include_str "upper-policy-certificate.json") = .ok roots)
+    (word : Word) (complete : (wordLabels word).Perm (List.range 12))
+    (hflip : flipBit word = 0)
+    (replies : List FrameColor) (hlen : replies.length = 11)
+    (hfst : replies.map Prod.fst = (word.take 11).map (fun e => sticker e false)) :
+    let normalized := adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank replies))
+      (relabelEdgeWord (chosenPrefixColorMap replies) word)
+    ((continuationFromFrozenRoots roots (normalizedPrefix replies)).run
+      observation normalized) (edgeWordSign normalized) = some normalized := by
+  dsimp only
+  obtain ⟨ws, x, hw⟩ : ∃ ws x, word = ws ++ [x] := by
+    rcases List.eq_nil_or_concat word with h | ⟨L, b, h⟩
+    · subst h; simp [wordLabels] at complete
+    · exact ⟨L, b, by rw [h, List.concat_eq_append]⟩
+  have wlen : word.length = 12 := by simpa [wordLabels] using complete.length_eq
+  have wslen : ws.length = 11 := by subst hw; simp at wlen; omega
+  have htake : word.take 11 = ws := by
+    subst hw; exact List.take_left' wslen
+  obtain ⟨o, ho, row, hrow, hp⟩ := first_eleven_row_perm ws x (hw ▸ complete)
+  have hcol : ∀ c ∈ replies.map Prod.fst, c ∈ collation := by
+    intro c hc
+    rw [hfst, htake] at hc
+    obtain ⟨e, he, rfl⟩ := List.mem_map.1 hc
+    have hm : e / 2 ∈ List.range 12 :=
+      complete.subset (by
+        unfold wordLabels
+        exact List.mem_map.2 ⟨e, by rw [hw]; exact List.mem_append_left _ he, rfl⟩)
+    have := List.mem_range.1 hm
+    exact sticker_mem_collation e (by omega)
+  have covered := normalized_prefix_has_certified_root roots parsed
+    representative_prefixes_covered_source replies hlen hcol row
+    (List.mem_flatMap.2 ⟨o, ho, hrow⟩) (by rw [hfst, htake]; exact hp)
+  obtain ⟨entry, hentry, hselected, hroot⟩ :=
+    matching_frozen_root_total roots (normalizedPrefix replies) covered
+  obtain ⟨graph, belief, hparse, hrec⟩ :=
+    every_actual_frozen_root_recovers roots parsed entry hentry
+  have hbelief := parse_root_belief entry graph belief _ hparse hroot
+  have hsector := normalized_word_in_prefix_sector word complete hflip replies hlen hfst
+  rw [← hbelief] at hsector
+  simp only [continuationFromFrozenRoots, hselected, hparse]
+  exact hrec _ hsector
+
+#print axioms selected_normalized_continuation_recovers
 
 end CubeRev029.Nineteen
