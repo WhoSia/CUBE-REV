@@ -289,4 +289,59 @@ theorem same_paired_corner_colors_force_all_legal_corners
 #print axioms exact_nineteen_paired_corner_colors_match_colorings
 #print axioms same_paired_corner_colors_force_all_legal_corners
 
+/-- Keep the edge policy's terminal output AND the charged corner replies.
+The next edge branch depends only on the edge reply. The accumulated
+corner record is returned at the leaf, never supplied to that branch. -/
+def withRecordedCornerClock {Q O : Type}
+    (schedule : List (Fin 24)) (rev : List Nat) :
+    Policy Q Nat O → Policy (Q × Fin 24) FrameColor (O × List Nat)
+  | .stop output => .stop (output, rev.reverse)
+  | .read address next =>
+      .read (address, schedule.headD 0) (fun reply =>
+        withRecordedCornerClock schedule.tail (reply.2 :: rev) (next reply.1))
+
+theorem withRecordedCornerClock_fits {Q O : Type}
+    (schedule : List (Fin 24)) (rev : List Nat)
+    {n : Nat} {tree : Policy Q Nat O} (fit : Fits n tree) :
+    Fits n (withRecordedCornerClock schedule rev tree) := by
+  induction fit generalizing schedule rev with
+  | stop n output => exact .stop n _
+  | read n address next branches ih =>
+      exact .read n (address, schedule.headD 0) _
+        (fun reply => ih reply.1 schedule.tail (reply.2 :: rev))
+
+/-- On a path with exactly the scheduled length, the returned decoder
+and corner record are the actual edge run and the actual charged colors.
+The state appears only in this semantic theorem, not in the controller. -/
+theorem withRecordedCornerClock_run {S Q O : Type}
+    (edge : S → Q → Nat) (corner : S → Fin 24 → Nat)
+    (s : S) (tree : Policy Q Nat O)
+    (schedule : List (Fin 24)) (rev : List Nat)
+    (count : schedule.length = (tree.transcript edge s).length) :
+    (withRecordedCornerClock schedule rev tree).run
+        (fun state q => (edge state q.1, corner state q.2)) s =
+      (tree.run edge s, rev.reverse ++ schedule.map (corner s)) := by
+  induction tree generalizing schedule rev with
+  | stop output =>
+      cases schedule with
+      | nil => simp [withRecordedCornerClock, Policy.run]
+      | cons head tail => simp [Policy.transcript] at count
+  | read address next ih =>
+      cases schedule with
+      | nil => simp [Policy.transcript] at count
+      | cons first rest =>
+          have hrest : rest.length =
+              ((next (edge s address)).transcript edge s).length := by
+            simpa [Policy.transcript] using count
+          change (withRecordedCornerClock rest (corner s first :: rev)
+            (next (edge s address))).run
+              (fun state q => (edge state q.1, corner state q.2)) s =
+            ((next (edge s address)).run edge s,
+              rev.reverse ++ (first :: rest).map (corner s))
+          rw [ih (edge s address) rest (corner s first :: rev) hrest]
+          simp [List.reverse_cons, List.append_assoc]
+
+#print axioms withRecordedCornerClock_fits
+#print axioms withRecordedCornerClock_run
+
 end CubeRev029.Nineteen
