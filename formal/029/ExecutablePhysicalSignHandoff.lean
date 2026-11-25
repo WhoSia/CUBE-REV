@@ -215,7 +215,7 @@ def sectorReadAddress (q : Nat) : Fin 12 × Bool :=
 theorem sector_observation_address (w : Word) (q : Nat) :
     observation w q =
       sticker w[(sectorReadAddress q).1.val]! (sectorReadAddress q).2 := by
-  by_cases h : q < 11 <;> simp [observation, sectorReadAddress, h]
+  by_cases h : q < 11 <;> simp [observation, sectorReadAddress, h] <;> rfl
 
 /-- Address pullback under the EXACT executable sorting trace and color
 gauge. Every physical reply is read at its original sticker address;
