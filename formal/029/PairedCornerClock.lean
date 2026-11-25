@@ -394,4 +394,44 @@ theorem selected_normalized_continuation_recovers
 
 #print axioms selected_normalized_continuation_recovers
 
+/-- The production continuation receives only the real eleven replies.
+It transports the sector queries and records the eight remaining corner
+colors, with real padding on every branch (including malformed histories). -/
+def physicalRecordedContinuation (roots : Array Lean.Json) (pre : List FrameColor) :
+    Policy (Fin 24 × Fin 24) FrameColor
+      (List FrameColor × ((Bool → Option Word) × List Nat)) :=
+  (withRecordedCornerClock (cornerFrameAddresses.drop 11)
+    (pre.map Prod.snd).reverse
+    ((continuationFromFrozenRoots roots (normalizedPrefix pre)).padToExact 0 8)).adapt
+      (fun q => (physicalSectorAddress pre q.1, q.2))
+      (fun _ r => ((chosenPrefixColorMap pre)[r.1]!, r.2))
+      (fun result => (pre, result))
+
+theorem physical_recorded_continuation_fits
+    (roots : Array Lean.Json) (pre : List FrameColor) :
+    Fits 8 (physicalRecordedContinuation roots pre) := by
+  unfold physicalRecordedContinuation
+  apply Policy.adapt_fits
+  apply withRecordedCornerClock_fits
+  exact Policy.padToExact_fits 0
+    (continuation_from_frozen_roots_fits roots (normalizedPrefix pre))
+
+/-- One actual paired-address controller, not a family selected by an
+unobserved state. Its leaf retains the gauge input and charged corner
+record for the terminal inverse decoder. -/
+def physicalNineteenRecorded (roots : Array Lean.Json) :
+    Policy (Fin 24 × Fin 24) FrameColor
+      (List FrameColor × ((Bool → Option Word) × List Nat)) :=
+  Policy.withPrefix firstElevenPairedAddresses []
+    (physicalRecordedContinuation roots)
+
+theorem physical_nineteen_recorded_fits (roots : Array Lean.Json) :
+    Fits 19 (physicalNineteenRecorded roots) := by
+  have h := Policy.withPrefix_fits firstElevenPairedAddresses []
+    (physicalRecordedContinuation roots) (physical_recorded_continuation_fits roots)
+  simpa [physicalNineteenRecorded, first_eleven_address_count] using h
+
+#print axioms physical_recorded_continuation_fits
+#print axioms physical_nineteen_recorded_fits
+
 end CubeRev029.Nineteen
