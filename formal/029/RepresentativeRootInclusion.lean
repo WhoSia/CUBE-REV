@@ -1,6 +1,7 @@
 import RepresentativeCoverage
 import ExecutablePhysicalSignHandoff
 import FiftyTwoRootReceipt
+import TaggedNineteenRootPolicy
 
 namespace CubeRev029.Nineteen
 
@@ -97,7 +98,8 @@ theorem normalized_prefix_sorted (replies : List FrameColor) :
       (fun a b => collation.idxOf a ≤ collation.idxOf b) := by
   unfold normalizedPrefix
   refine (frozen_prefix_stable_order_sorted replies).map _ (fun i j h => ?_)
-  simp only [elevenSlotLexLE, decide_eq_true_eq, frozenPrefixColorRank] at h
+  have h' := of_decide_eq_true h
+  simp only [frozenPrefixColorRank] at h'
   show collation.idxOf _ ≤ collation.idxOf _
   omega
 
@@ -142,7 +144,7 @@ theorem normalized_prefix_has_certified_root
   simp only [List.all_eq_true, List.any_eq_true, beq_iff_eq] at covered
   obtain ⟨entry, hentry, heq⟩ := covered row hrow
   have hfst : (rowReplies row).map Prod.fst = row := by
-    simp [rowReplies, List.map_map]
+    simp [rowReplies, List.map_map, Function.comp_def]
   have hlen' : (rowReplies row).length = 11 := by
     have := hp.length_eq
     simp [rowReplies] at this ⊢
