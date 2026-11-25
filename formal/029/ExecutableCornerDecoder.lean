@@ -156,5 +156,109 @@ theorem scheduled_corner_missing_value
 #print axioms scheduled_corner_observed_pieces_nodup
 #print axioms scheduled_corner_missing_value
 
--- Full transcript correctness and pinned Lean compilation are pending.
+/-- Keep the existing fail-closed duplicate check: a distinct list is
+unchanged by the executable deduplication operation. -/
+private theorem corner_decoder_eraseDups_of_nodup
+    (l : List Nat) (h : l.Nodup) : l.eraseDups = l := by
+  induction l with
+  | nil => rfl
+  | cons x xs ih =>
+      obtain ⟨hn, ht⟩ := List.nodup_cons.mp h
+      have hf : xs.filter (fun y => !(y == x)) = xs := by
+        apply List.filter_eq_self.mpr
+        intro y hy
+        have hne : y ≠ x := by
+          intro he
+          subst y
+          exact hn hy
+        simp [hne]
+      rw [List.eraseDups_cons, hf, ih ht]
+
+/-- Total recovery on every agreeing, permutation-legal corner array,
+using exactly the charged nineteen-reply record. -/
+theorem decodeScheduledCorners_correct
+    (a : CornerCoordinates) (s : Coloring)
+    (agree : CornersAgree a s) (legal : LegalCornerCoordinates a)
+    (perm : (cornerPieceList a).Perm canonicalCornerSources) :
+    decodeScheduledCorners (scheduledCornerColors s) = some a := by
+  let r : List Nat :=
+    [orientedCornerColor (a 0) 0, orientedCornerColor (a 0) 1,
+     orientedCornerColor (a 2) 0, orientedCornerColor (a 2) 1,
+     orientedCornerColor (a 3) 0, orientedCornerColor (a 3) 1,
+     orientedCornerColor (a 6) 0, orientedCornerColor (a 6) 1,
+     orientedCornerColor (a 7) 0, orientedCornerColor (a 7) 1,
+     orientedCornerColor (a 4) 0, orientedCornerColor (a 4) 1,
+     orientedCornerColor (a 1) 0,
+     orientedCornerColor (a 7) 0, orientedCornerColor (a 7) 0,
+     orientedCornerColor (a 7) 0, orientedCornerColor (a 7) 0,
+     orientedCornerColor (a 7) 0, orientedCornerColor (a 1) 1]
+  let seen : List (Fin 24) := [a 0, a 1, a 2, a 3, a 4, a 6, a 7]
+  have hrecord : scheduledCornerColors s = r :=
+    scheduled_corner_colors_of_agreement a s agree
+  have hlen : r.length = 19 := rfl
+  have hrange : r.all (· < 6) = true := by
+    simp [r, scheduled_corner_color_range]
+  have hrepeat : (((r.drop 13).take 5).all (· == r[8]!)) = true := by
+    simp [r, List.getElem!_cons_zero, List.getElem!_cons_succ]
+  have hread :
+      ([(0,1),(12,18),(2,3),(4,5),(10,11),(6,7),(8,9)] :
+          List (Nat × Nat)).mapM (fun (i,j) =>
+        (List.finRange 24).find? (fun x =>
+          cornerCyclicPair x == (r[i]!, r[j]!))) = some seen := by
+    simp only [List.mapM_cons, List.mapM_nil, r,
+      List.getElem!_cons_zero, List.getElem!_cons_succ,
+      ← scheduled_corner_pair_matches_oriented,
+      scheduled_corner_pair_search_correct] <;> rfl
+  have hn : (seen.map cornerPiece).Nodup :=
+    scheduled_corner_observed_pieces_nodup a perm
+  have hdedup : (seen.map cornerPiece).eraseDups.length = 7 := by
+    rw [corner_decoder_eraseDups_of_nodup _ hn]
+    rfl
+  have hbound : (seen.map cornerPiece).sum ≤ 28 := by
+    have hp := legal.piece_total
+    unfold cornerPieceTotal at hp
+    simp only [seen, List.map_cons, List.map_nil, List.sum_cons, List.sum_nil]
+    omega
+  have hvalue : 3 * (28 - (seen.map cornerPiece).sum) +
+      (3 - (seen.map cornerTwist).sum % 3) % 3 = (a 5).val :=
+    scheduled_corner_missing_value a legal
+  have hmb : 3 * (28 - (seen.map cornerPiece).sum) +
+      (3 - (seen.map cornerTwist).sum % 3) % 3 < 24 := by
+    rw [hvalue]
+    exact (a 5).isLt
+  let missing : Fin 24 := ⟨3 * (28 - (seen.map cornerPiece).sum) +
+      (3 - (seen.map cornerTwist).sum % 3) % 3, hmb⟩
+  have hm : missing = a 5 := Fin.ext hvalue
+  have hfull : (fun i : Fin 8 =>
+      (seen.take 5 ++ [missing] ++ seen.drop 5)[i.val]!) = a := by
+    rw [hm]
+    funext i
+    have cases8 : ∀ j : Fin 8, j = 0 ∨ j = 1 ∨ j = 2 ∨ j = 3 ∨
+        j = 4 ∨ j = 5 ∨ j = 6 ∨ j = 7 := by decide +kernel
+    rcases cases8 i with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> rfl
+  rw [hrecord]
+  simp only [decodeScheduledCorners, hlen, hrange, hrepeat, hread]
+  simp [hdedup, hbound, hmb, hfull]
+
+/-- The actual physical turn history is used only in the correctness
+statement; the executable decoder receives no hidden state. -/
+theorem decodeScheduledCorners_reachable (turns : List Turn) :
+    decodeScheduledCorners (scheduledCornerColors (paint turns solved)) =
+      some (coordinatesAlong turns) :=
+  decodeScheduledCorners_correct _ _ (coordinatesAlong_agree turns)
+    (coordinatesAlong_legal turns) (coordinatesAlong_piece_perm turns)
+
+theorem decodeScheduledTerminalParity_reachable
+    (pre : List FrameColor) (turns : List Turn) :
+    decodeScheduledTerminalParity pre
+      (scheduledCornerColors (paint turns solved)) =
+        some (observedTerminalCorrectedParity pre (coordinatesAlong turns)) := by
+  simp [decodeScheduledTerminalParity, decodeScheduledCorners_reachable]
+
+#print axioms decodeScheduledCorners_correct
+#print axioms decodeScheduledCorners_reachable
+#print axioms decodeScheduledTerminalParity_reachable
+
+-- CD: general correctness source candidate; pinned CI acceptance pending.
+
 end CubeRev029.Physical
