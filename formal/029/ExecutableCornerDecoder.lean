@@ -100,5 +100,61 @@ theorem scheduled_corner_color_range :
 #print axioms scheduled_corner_pair_matches_oriented
 #print axioms scheduled_corner_color_range
 
+/-- The seven observed positions retain distinct identities after omitting
+position five from the full physical permutation. -/
+theorem scheduled_corner_observed_pieces_nodup
+    (a : CornerCoordinates)
+    (hp : (cornerPieceList a).Perm canonicalCornerSources) :
+    ([cornerPiece (a 0), cornerPiece (a 1), cornerPiece (a 2),
+      cornerPiece (a 3), cornerPiece (a 4), cornerPiece (a 6),
+      cornerPiece (a 7)] : List Nat).Nodup := by
+  have h := hp.map Fin.val
+  have hd := h.symm.nodup (by decide +kernel)
+  have full :
+      ([cornerPiece (a 0), cornerPiece (a 1), cornerPiece (a 2),
+        cornerPiece (a 3), cornerPiece (a 4), cornerPiece (a 5),
+        cornerPiece (a 6), cornerPiece (a 7)] : List Nat).Nodup := by
+    simpa [cornerPieceList, canonicalCornerSources, cornerPieceFin,
+      List.map_map, Function.comp_def] using hd
+  have sub :
+      ([cornerPiece (a 0), cornerPiece (a 1), cornerPiece (a 2),
+        cornerPiece (a 3), cornerPiece (a 4), cornerPiece (a 6),
+        cornerPiece (a 7)] : List Nat).Sublist
+      [cornerPiece (a 0), cornerPiece (a 1), cornerPiece (a 2),
+        cornerPiece (a 3), cornerPiece (a 4), cornerPiece (a 5),
+        cornerPiece (a 6), cornerPiece (a 7)] := by
+    exact .cons₂ _ (.cons₂ _ (.cons₂ _ (.cons₂ _ (.cons₂ _
+      (.cons _ (.cons₂ _ (.cons₂ _ .slnil)))))))
+  exact sub.nodup full
+
+/-- The missing oriented identity is precisely the arithmetic complement
+of the other seven identities, on any array satisfying conservation. -/
+theorem scheduled_corner_missing_value
+    (a : CornerCoordinates) (ha : LegalCornerCoordinates a) :
+    let seen := [a 0, a 1, a 2, a 3, a 4, a 6, a 7]
+    3 * (28 - (seen.map cornerPiece).sum) +
+      (3 - (seen.map cornerTwist).sum % 3) % 3 = (a 5).val := by
+  dsimp only
+  have hp := ha.piece_total
+  have ht := ha.twist_total
+  unfold cornerPieceTotal at hp
+  unfold cornerTwistTotal at ht
+  have hb : cornerTwist (a 5) < 3 := Nat.mod_lt _ (by decide)
+  have hp' : cornerPiece (a 5) +
+      ([a 0, a 1, a 2, a 3, a 4, a 6, a 7].map cornerPiece).sum = 28 := by
+    simp only [List.map_cons, List.map_nil, List.sum_cons, List.sum_nil]
+    omega
+  have ht' : (cornerTwist (a 5) +
+      ([a 0, a 1, a 2, a 3, a 4, a 6, a 7].map cornerTwist).sum) % 3 = 0 := by
+    simp only [List.map_cons, List.map_nil, List.sum_cons, List.sum_nil]
+    omega
+  obtain ⟨p, t⟩ := scheduled_corner_missing_arithmetic _ _ _ _ hp' ht' hb
+  rw [p, t]
+  unfold cornerPiece cornerTwist
+  omega
+
+#print axioms scheduled_corner_observed_pieces_nodup
+#print axioms scheduled_corner_missing_value
+
 -- Full transcript correctness and pinned Lean compilation are pending.
 end CubeRev029.Physical
