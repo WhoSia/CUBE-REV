@@ -206,4 +206,91 @@ theorem physical_first_eleven_replies_match_word (turns : List Turn) :
 
 #print axioms physical_first_eleven_replies_match_word
 
+/-- The sector's thirteen-query vocabulary, including the exact existing
+fallback semantics for arbitrary Nat queries. The first eleven queries
+read second stickers; 11 and 12 read the two stickers of the unread edge. -/
+def sectorReadAddress (q : Nat) : Fin 12 × Bool :=
+  if h : q < 11 then (⟨q, by omega⟩, true) else (11, q == 12)
+
+theorem sector_observation_address (w : Word) (q : Nat) :
+    observation w q =
+      sticker w[(sectorReadAddress q).1.val]! (sectorReadAddress q).2 := by
+  by_cases h : q < 11 <;> simp [observation, sectorReadAddress, h]
+
+/-- Address pullback under the EXACT executable sorting trace and color
+gauge. Every physical reply is read at its original sticker address;
+only the reported color is relabeled. -/
+theorem normalized_physical_edge_reply
+    (turns : List Turn) (replies : List FrameColor)
+    (j : Fin 12) (side : Bool) :
+    sticker
+      (adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank replies))
+        (relabelEdgeWord (chosenPrefixColorMap replies)
+          (originalPhysicalEdgeWord turns)))[j.val]! side =
+      (chosenPrefixColorMap replies)[
+        paint turns solved (edgeSlot
+          ((bubbleCandidateSlotOrder (frozenPrefixColorRank replies)).forward j)
+          side)]! := by
+  let i := (bubbleCandidateSlotOrder (frozenPrefixColorRank replies)).forward j
+  let sigma := chosenPrefixColorMap replies
+  have hcan : ∀ k : Fin 12, canonicalEdgeSources[k.val]? = some k := by
+    decide +kernel
+  have hall : ∀ k : Fin 12, k ∈ canonicalEdgeSources := by
+    decide +kernel
+  have hmem : edgeCoordinatesAlong turns i / 2 ∈
+      canonicalEdgeSources.map Fin.val := by
+    apply (edge_coordinates_along_piece_perm turns).subset
+    exact List.mem_map.mpr ⟨i, hall i, rfl⟩
+  obtain ⟨k, _, hk⟩ := List.mem_map.mp hmem
+  have hlt : edgeCoordinatesAlong turns i / 2 < 12 := by
+    rw [← hk]
+    exact k.isLt
+  have hword : edgeCoordinatesAlong turns i < 24 := by omega
+  have hlen : (relabelEdgeWord sigma (originalPhysicalEdgeWord turns)).length = 12 := by
+    simp [relabelEdgeWord, originalPhysicalEdgeWord, canonicalEdgeSources]
+  have hget :
+      (adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank replies))
+        (relabelEdgeWord sigma (originalPhysicalEdgeWord turns)))[j.val]? =
+        some (relabelEdgeValue sigma (edgeCoordinatesAlong turns i)) := by
+    rw [bubble_candidate_slot_order_matches_actual_replay
+      (frozenPrefixColorRank replies) _ hlen j]
+    change (relabelEdgeWord sigma (originalPhysicalEdgeWord turns))[i.val]? = _
+    rw [relabelEdgeWord, List.getElem?_map, originalPhysicalEdgeWord,
+      List.getElem?_map, hcan i]
+    rfl
+  change sticker
+    (adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank replies))
+      (relabelEdgeWord sigma (originalPhysicalEdgeWord turns)))[j.val]! side =
+      sigma[paint turns solved (edgeSlot i side)]!
+  rw [List.getElem!_of_getElem? hget]
+  rw [symmetry_relabelEdgeValue_responses sigma
+    (chosen_prefix_color_map_legal replies) _ hword side]
+  rw [edge_coordinates_along_agree turns i side]
+
+/-- The address passed to the physical paired compiler is fixed by the
+initial replies and the representative query, before either new color. -/
+def physicalSectorAddress (replies : List FrameColor) (q : Nat) : Fin 24 :=
+  let a := sectorReadAddress q
+  let i := (bubbleCandidateSlotOrder (frozenPrefixColorRank replies)).forward a.1
+  ⟨2*i.val + a.2.toNat, by
+    have := i.isLt
+    have := Bool.toNat_le a.2
+    omega⟩
+
+theorem physical_normalized_sector_observation
+    (turns : List Turn) (replies : List FrameColor) (q : Nat) :
+    observation
+      (adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank replies))
+        (relabelEdgeWord (chosenPrefixColorMap replies)
+          (originalPhysicalEdgeWord turns))) q =
+      (chosenPrefixColorMap replies)[
+        paint turns solved (edgeNumber (physicalSectorAddress replies q))]! := by
+  rw [sector_observation_address]
+  exact normalized_physical_edge_reply turns replies
+    (sectorReadAddress q).1 (sectorReadAddress q).2
+
+#print axioms sector_observation_address
+#print axioms normalized_physical_edge_reply
+#print axioms physical_normalized_sector_observation
+
 end CubeRev029.Nineteen
