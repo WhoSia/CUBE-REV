@@ -87,17 +87,21 @@ theorem matching_frozen_root_total
     | nil => simp
     | cons head tail ih =>
       intro present
-      by_cases hh : rootFirstColors head = some answers
-      · exact ⟨head, by simp, by simp [List.find?, hh], hh⟩
-      · obtain ⟨entry, hm, he⟩ := present
-        have ht : entry ∈ tail := by
-          rcases List.mem_cons.mp hm with heq | hm'
-          · subst entry
-            exact (hh he).elim
-          · exact hm'
-        obtain ⟨found, hf, hs, hr⟩ := ih ⟨entry, ht, he⟩
-        exact ⟨found, List.mem_cons_of_mem _ hf,
-          by simpa [List.find?, beq_iff_eq, hh] using hs, hr⟩
+      cases hb : (rootFirstColors head == some answers) with
+      | true =>
+          have hh : rootFirstColors head = some answers := by
+            simpa only [beq_iff_eq] using hb
+          exact ⟨head, by simp, by simp only [List.find?, hb], hh⟩
+      | false =>
+          obtain ⟨entry, hm, he⟩ := present
+          have ht : entry ∈ tail := by
+            rcases List.mem_cons.mp hm with heq | hm'
+            · subst entry
+              simp [he] at hb
+            · exact hm'
+          obtain ⟨found, hf, hs, hr⟩ := ih ⟨entry, ht, he⟩
+          exact ⟨found, List.mem_cons_of_mem _ hf,
+            by simpa only [List.find?, hb] using hs, hr⟩
   exact aux roots.toList covered
 
 #print axioms matching_frozen_root_total
