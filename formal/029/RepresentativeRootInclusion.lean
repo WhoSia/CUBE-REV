@@ -35,11 +35,23 @@ def normalizedPrefix (replies : List FrameColor) : List Nat :=
 
 def rowReplies (row : List Nat) : List FrameColor := row.map fun c => (c, 0)
 
+/-- Definitionally the same prefix, but the 48-map gauge is selected ONCE
+(`frozenPrefixColorRank` re-selects it on every rank query, ~250x slower in
+the compiled check). `normalizedPrefixFast_eq` is `rfl`. -/
+def normalizedPrefixFast (replies : List FrameColor) : List Nat :=
+  let sigma := chosenPrefixColorMap replies
+  let e := replies.map Prod.fst
+  (elevenStableSlotOrder (fun i => collation.idxOf sigma[e[i]!]!)).map
+    fun i => sigma[e[i]!]!
+
+theorem normalizedPrefixFast_eq (replies : List FrameColor) :
+    normalizedPrefixFast replies = normalizedPrefix replies := rfl
+
 def coverageCheck (source : String) : Bool :=
   match parsedRepresentativeArray source with
   | .ok roots => rawRows.all fun row =>
       -- hoisted: otherwise the interpreter recomputes it for each of 52 roots
-      let target := some (normalizedPrefix (rowReplies row))
+      let target := some (normalizedPrefixFast (rowReplies row))
       roots.toList.any fun entry => rootFirstColors entry == target
   | .error _ => false
 
@@ -137,7 +149,8 @@ theorem normalized_prefix_has_certified_root
       rootFirstColors entry = some (normalizedPrefix replies) := by
   unfold coverageCheck at covered
   simp only [parsed] at covered
-  simp only [List.all_eq_true, List.any_eq_true, beq_iff_eq] at covered
+  simp only [List.all_eq_true, List.any_eq_true, beq_iff_eq,
+    normalizedPrefixFast_eq] at covered
   obtain ⟨entry, hentry, heq⟩ := covered row hrow
   have hfst : (rowReplies row).map Prod.fst = row := by
     simp [rowReplies, List.map_map, Function.comp_def]
