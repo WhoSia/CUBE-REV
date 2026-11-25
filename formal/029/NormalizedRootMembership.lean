@@ -161,6 +161,7 @@ theorem normalized_word_recovered_by_certified_root
     (roots : Array Lean.Json)
     (parsed : parsedRepresentativeArray
       (include_str "upper-policy-certificate.json") = .ok roots)
+    (covered : coverageCheck (include_str "upper-policy-certificate.json") = true)
     (word : Word) (complete : (wordLabels word).Perm (List.range 12))
     (hflip : flipBit word = 0)
     (replies : List FrameColor) (hlen : replies.length = 11)
@@ -198,7 +199,7 @@ theorem normalized_word_recovered_by_certified_root
         exact List.mem_map.2 ⟨e, by rw [hw]; exact List.mem_append_left _ he, rfl⟩)
     have := List.mem_range.1 hm
     exact sticker_mem_collation e (by omega)
-  obtain ⟨entry, hentry, hroot⟩ := normalized_prefix_has_certified_root roots parsed
+  obtain ⟨entry, hentry, hroot⟩ := normalized_prefix_has_certified_root roots parsed covered
     replies hlen hcol row (List.mem_flatMap.2 ⟨o, ho, hrow⟩) (by rw [hfst]; exact hp)
   obtain ⟨graph, belief, hparse, hrec⟩ :=
     every_actual_frozen_root_recovers roots parsed entry hentry
@@ -215,6 +216,7 @@ theorem physical_normalized_word_recovered_by_certified_root
     (roots : Array Lean.Json)
     (parsed : parsedRepresentativeArray
       (include_str "upper-policy-certificate.json") = .ok roots)
+    (covered : coverageCheck (include_str "upper-policy-certificate.json") = true)
     (turns : List Turn) (replies : List FrameColor)
     (hflip : flipBit (originalPhysicalEdgeWord turns) = 0)
     (hlen : replies.length = 11)
@@ -235,7 +237,7 @@ theorem physical_normalized_word_recovered_by_certified_root
   have complete : (wordLabels (originalPhysicalEdgeWord turns)).Perm (List.range 12) :=
     edge_coordinates_along_piece_perm turns
   obtain ⟨entry, hentry, graph, belief, hparse, _, hrun⟩ :=
-    normalized_word_recovered_by_certified_root roots parsed
+    normalized_word_recovered_by_certified_root roots parsed covered
       (originalPhysicalEdgeWord turns) complete hflip replies hlen hfst
   have sign := executable_physical_normalized_sign_correct turns replies
   rw [sign] at hrun

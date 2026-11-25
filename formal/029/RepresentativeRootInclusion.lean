@@ -41,12 +41,6 @@ def coverageCheck (source : String) : Bool :=
       rootFirstColors entry == some (normalizedPrefix (rowReplies row))
   | .error _ => false
 
-/-- NEW native_decide (trust boundary: same immutable JSON as the existing
-52-root receipt; evaluates only the Boolean above). -/
-theorem representative_prefixes_covered_source :
-    coverageCheck (include_str "upper-policy-certificate.json") = true := by
-  native_decide
-
 theorem symmetry_color_mem :
     ∀ sigma ∈ symmetries, ∀ c ∈ collation, sigma[c]! ∈ collation := by
   decide +kernel
@@ -132,13 +126,13 @@ theorem normalized_prefix_has_certified_root
     (roots : Array Lean.Json)
     (parsed : parsedRepresentativeArray
       (include_str "upper-policy-certificate.json") = .ok roots)
+    (covered : coverageCheck (include_str "upper-policy-certificate.json") = true)
     (replies : List FrameColor) (hlen : replies.length = 11)
     (hcol : ∀ c ∈ replies.map Prod.fst, c ∈ collation)
     (row : List Nat) (hrow : row ∈ rawRows)
     (hp : (replies.map Prod.fst).Perm row) :
     ∃ entry ∈ roots.toList,
       rootFirstColors entry = some (normalizedPrefix replies) := by
-  have covered := representative_prefixes_covered_source
   unfold coverageCheck at covered
   simp only [parsed] at covered
   simp only [List.all_eq_true, List.any_eq_true, beq_iff_eq] at covered
