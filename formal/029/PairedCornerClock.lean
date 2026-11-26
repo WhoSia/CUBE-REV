@@ -472,7 +472,6 @@ theorem physical_recorded_continuation_run
     (pre.map Prod.snd).reverse (tree.padToExact 0 8)).run
       (fun state q => (edge state q.1, corner state q.2)) s) = _
   rw [clock, pad, same, List.reverse_reverse]
-  rfl
 
 #print axioms physical_recorded_continuation_run
 
