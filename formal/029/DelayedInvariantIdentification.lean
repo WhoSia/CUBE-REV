@@ -207,7 +207,9 @@ theorem collect_fiber_policies_fits [DecidableEq K]
     (fit : ∀ k, Fits d (trees k)) :
     Fits (ks.length * d) (collectFiberPolicies trees ks) := by
   induction ks with
-  | nil => exact .stop 0 _
+  | nil => simpa only [List.length_nil, Nat.zero_mul, collectFiberPolicies] using
+      (Fits.stop 0 (fun _ : K => (none : Option S)) :
+        Fits 0 (Policy.stop (fun _ : K => (none : Option S)) : Policy Q R (K → Option S)))
   | cons k ks ih =>
       have h : Fits (d + ks.length * d)
           (appendPolicy (fun result =>
