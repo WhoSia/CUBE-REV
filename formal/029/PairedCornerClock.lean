@@ -605,8 +605,7 @@ theorem physical_nineteen_recorded_run (roots : Array Lean.Json) (turns : List T
           (fun c => paint turns solved (cornerSlot c)) := by
     rw [← first_eleven_matches_frozen_corner_schedule, List.map_map, List.map_map]
     rfl
-  rw [hpre, ← List.map_append, List.take_append_drop]
-  rfl
+  rw [hpre, ← List.map_append, List.take_append_drop] <;> rfl
 
 /-- Conditional whole-controller correctness. The remaining explicit
 physical premise is even edge-flip parity; no hidden corner coordinates
@@ -662,5 +661,52 @@ theorem physical_nineteen_decoded_run
 #print axioms physical_nineteen_decoded_fits
 #print axioms physical_nineteen_recorded_run
 #print axioms physical_nineteen_decoded_run
+
+/-- Parse the very same immutable source whose coverage check succeeded.
+The fallback is unreachable; no additional native computation is needed. -/
+def physicalFrozenRoots : Array Lean.Json :=
+  (parsedRepresentativeArray (include_str "upper-policy-certificate.json")).toOption.getD #[]
+
+theorem physical_frozen_roots_parsed :
+    parsedRepresentativeArray (include_str "upper-policy-certificate.json") =
+      .ok physicalFrozenRoots := by
+  have checked := representative_prefixes_covered_source
+  cases hp : parsedRepresentativeArray (include_str "upper-policy-certificate.json") with
+  | error msg => simp [coverageCheck, hp] at checked
+  | ok roots => simp [physicalFrozenRoots, hp]
+
+/-- A single total 19-frame original-address controller. Invalid histories
+have an arbitrary default only at the final leaf, never as an oracle. -/
+def physicalNineteenPolicy : Policy (Fin 24 × Fin 24) FrameColor Coloring :=
+  (physicalNineteenDecoded physicalFrozenRoots).adapt id (fun _ r => r)
+    (fun result => result.getD solved)
+
+theorem physical_nineteen_policy_fits : Fits 19 physicalNineteenPolicy :=
+  Policy.adapt_fits id (fun _ r => r) (fun result => result.getD solved)
+    (physical_nineteen_decoded_fits physicalFrozenRoots)
+
+theorem physical_nineteen_policy_correct (s : Coloring) (hs : Reachable s) :
+    physicalNineteenPolicy.run abstractPairRead s = s := by
+  obtain ⟨turns, rfl⟩ := hs
+  unfold physicalNineteenPolicy
+  rw [Policy.adapt_run]
+  change ((physicalNineteenDecoded physicalFrozenRoots).run
+    abstractPairRead (paint turns solved)).getD solved = paint turns solved
+  rw [physical_nineteen_decoded_run physicalFrozenRoots physical_frozen_roots_parsed
+    turns (edge_coordinates_along_flip_zero turns)] <;> rfl
+
+/-- The end-to-end upper bound for arbitrary fixed edge/corner probes.
+The charged policy chooses a legal turn word before the paired reply. -/
+theorem physical_nineteen_identifies (e : EdgeProbe) (c : Fin 24) :
+    ∃ physical : Policy (List Turn) FrameColor Coloring,
+      Fits 19 physical ∧
+      ∀ s : Coloring, Reachable s → runFrames e c s physical = s :=
+  physical_nineteen_of_abstract_bounded e c physicalNineteenPolicy
+    physical_nineteen_policy_fits physical_nineteen_policy_correct
+
+#print axioms physical_frozen_roots_parsed
+#print axioms physical_nineteen_policy_fits
+#print axioms physical_nineteen_policy_correct
+#print axioms physical_nineteen_identifies
 
 end CubeRev029.Nineteen
