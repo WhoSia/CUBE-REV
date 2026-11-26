@@ -50,8 +50,9 @@ theorem physical_transcript_determines_output {O : Type u}
   induction tree generalizing s t with
   | stop output => rfl
   | read path next ih =>
-      simp only [frameTranscript, List.cons.injEq, Prod.mk.injEq, true_and] at same
+      simp only [frameTranscript, List.cons.injEq, Prod.mk.injEq, eq_self, true_and] at same
       obtain ⟨reply, rest⟩ := same
+      rw [reply] at rest
       simp only [runFrames, reply]
       exact ih _ _ _ rest
 
