@@ -1,5 +1,6 @@
 import TaggedNineteenRootPolicy
 import RepresentativeCoverageNative
+import ExecutableCornerDecoder
 import NineteenSchedule
 import NineteenCornerTranscript
 
@@ -563,5 +564,103 @@ theorem rebuild_coloring_correct (edges : EdgeCoordinates)
     exact (hc i j).symm
 
 #print axioms rebuild_coloring_correct
+
+/-- Terminal computation: only after the final charged reply, recover
+corners, release the corrected sign, recover the edge word and undo
+normalization. A failed decoding remains explicit. -/
+def decodeRecordedColoring
+    (record : List FrameColor × ((Bool → Option Word) × List Nat)) :
+    Option Coloring := do
+  let corners ← decodeScheduledCorners record.2.2
+  let word ← record.2.1 (observedTerminalCorrectedParity record.1 corners == 1)
+  some (rebuildColoring (restoredEdgeCoordinates record.1 word) corners)
+
+def physicalNineteenDecoded (roots : Array Lean.Json) :
+    Policy (Fin 24 × Fin 24) FrameColor (Option Coloring) :=
+  (physicalNineteenRecorded roots).adapt id (fun _ r => r) decodeRecordedColoring
+
+theorem physical_nineteen_decoded_fits (roots : Array Lean.Json) :
+    Fits 19 (physicalNineteenDecoded roots) :=
+  Policy.adapt_fits id (fun _ r => r) decodeRecordedColoring
+    (physical_nineteen_recorded_fits roots)
+
+/-- The actual eleven-prefix plus eight recorded replies yields the full
+charged corner record and normalized terminal decoder on each turn word. -/
+theorem physical_nineteen_recorded_run (roots : Array Lean.Json) (turns : List Turn) :
+    let s := paint turns solved
+    let pre := firstElevenPairedAddresses.map (abstractPairRead s)
+    let norm := adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank pre))
+      (relabelEdgeWord (chosenPrefixColorMap pre) (originalPhysicalEdgeWord turns))
+    (physicalNineteenRecorded roots).run abstractPairRead s =
+      (pre, ((continuationFromFrozenRoots roots (normalizedPrefix pre)).run
+        observation norm, scheduledCornerColors s)) := by
+  dsimp only
+  unfold physicalNineteenRecorded
+  rw [Policy.withPrefix_run]
+  simp only [List.reverse_nil, List.nil_append]
+  rw [physical_recorded_continuation_run]
+  have hpre :
+      (firstElevenPairedAddresses.map (abstractPairRead (paint turns solved))).map Prod.snd =
+        (cornerFrameAddresses.take 11).map
+          (fun c => paint turns solved (cornerSlot c)) := by
+    rw [← first_eleven_matches_frozen_corner_schedule, List.map_map, List.map_map]
+    rfl
+  rw [hpre, ← List.map_append, List.take_append_drop]
+  rfl
+
+/-- Conditional whole-controller correctness. The remaining explicit
+physical premise is even edge-flip parity; no hidden corner coordinates
+or state-dependent choice of policy is supplied to the decoder. -/
+theorem physical_nineteen_decoded_run
+    (roots : Array Lean.Json)
+    (parsed : parsedRepresentativeArray
+      (include_str "upper-policy-certificate.json") = .ok roots)
+    (turns : List Turn)
+    (hflip : flipBit (originalPhysicalEdgeWord turns) = 0) :
+    (physicalNineteenDecoded roots).run abstractPairRead (paint turns solved) =
+      some (paint turns solved) := by
+  let s := paint turns solved
+  let pre := firstElevenPairedAddresses.map (abstractPairRead s)
+  let norm := adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank pre))
+    (relabelEdgeWord (chosenPrefixColorMap pre) (originalPhysicalEdgeWord turns))
+  have hlen : pre.length = 11 := by simp [pre, first_eleven_address_count]
+  have complete : (wordLabels (originalPhysicalEdgeWord turns)).Perm (List.range 12) :=
+    edge_coordinates_along_piece_perm turns
+  have hrec := selected_normalized_continuation_recovers roots parsed
+    (originalPhysicalEdgeWord turns) complete hflip pre hlen
+    (physical_first_eleven_replies_match_word turns)
+  change ((continuationFromFrozenRoots roots (normalizedPrefix pre)).run
+    observation norm) (edgeWordSign norm) = some norm at hrec
+  have hsign : edgeWordSign norm =
+      (observedTerminalCorrectedParity pre (coordinatesAlong turns) == 1) :=
+    executable_physical_normalized_sign_correct turns pre
+  rw [hsign] at hrec
+  unfold physicalNineteenDecoded
+  rw [Policy.adapt_run]
+  have same : (physicalNineteenRecorded roots).run
+      (fun state q => abstractPairRead state q) s =
+      (physicalNineteenRecorded roots).run abstractPairRead s := rfl
+  change decodeRecordedColoring ((physicalNineteenRecorded roots).run abstractPairRead s) =
+    some s
+  rw [physical_nineteen_recorded_run]
+  change decodeRecordedColoring
+    (pre, ((continuationFromFrozenRoots roots (normalizedPrefix pre)).run
+      observation norm, scheduledCornerColors s)) = some s
+  simp only [decodeRecordedColoring, s, decodeScheduledCorners_reachable]
+  change (do
+    let word ← ((continuationFromFrozenRoots roots (normalizedPrefix pre)).run
+      observation norm) (observedTerminalCorrectedParity pre (coordinatesAlong turns) == 1)
+    some (rebuildColoring (restoredEdgeCoordinates pre word) (coordinatesAlong turns))) =
+    some (paint turns solved)
+  rw [hrec]
+  change some (rebuildColoring (restoredEdgeCoordinates pre norm) (coordinatesAlong turns)) = _
+  rw [show restoredEdgeCoordinates pre norm = edgeCoordinatesAlong turns from
+    restored_edge_coordinates_correct pre turns]
+  rw [rebuild_coloring_correct _ _ _ (edge_coordinates_along_agree turns)
+    (coordinatesAlong_agree turns)]
+
+#print axioms physical_nineteen_decoded_fits
+#print axioms physical_nineteen_recorded_run
+#print axioms physical_nineteen_decoded_run
 
 end CubeRev029.Nineteen
