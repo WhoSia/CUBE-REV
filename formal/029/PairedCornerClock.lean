@@ -475,4 +475,52 @@ theorem physical_recorded_continuation_run
 
 #print axioms physical_recorded_continuation_run
 
+/-- Undo the actual observed-prefix gauge and position permutation.
+Only the returned representative word and the charged prefix are inputs. -/
+def restoredEdgeCoordinates (pre : List FrameColor) (word : Word) : EdgeCoordinates :=
+  fun i => relabelEdgeValue (inverseColorTable (chosenPrefixColorMap pre))
+    word[((bubbleCandidateSlotOrder (frozenPrefixColorRank pre)).backward i).val]!
+
+theorem restored_edge_coordinates_correct (pre : List FrameColor) (turns : List Turn) :
+    restoredEdgeCoordinates pre
+      (adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank pre))
+        (relabelEdgeWord (chosenPrefixColorMap pre) (originalPhysicalEdgeWord turns))) =
+      edgeCoordinatesAlong turns := by
+  funext i
+  let order := bubbleCandidateSlotOrder (frozenPrefixColorRank pre)
+  let sigma := chosenPrefixColorMap pre
+  have hcan : ∀ k : Fin 12, canonicalEdgeSources[k.val]? = some k := by
+    decide +kernel
+  have hall : ∀ k : Fin 12, k ∈ canonicalEdgeSources := by
+    decide +kernel
+  have hmem : edgeCoordinatesAlong turns i / 2 ∈ canonicalEdgeSources.map Fin.val := by
+    apply (edge_coordinates_along_piece_perm turns).subset
+    exact List.mem_map.mpr ⟨i, hall i, rfl⟩
+  obtain ⟨k, _, hk⟩ := List.mem_map.mp hmem
+  have hlt : edgeCoordinatesAlong turns i / 2 < 12 := by
+    rw [← hk]
+    exact k.isLt
+  have hword : edgeCoordinatesAlong turns i < 24 := by omega
+  have hlen : (relabelEdgeWord sigma (originalPhysicalEdgeWord turns)).length = 12 := by
+    simp [relabelEdgeWord, originalPhysicalEdgeWord, canonicalEdgeSources]
+  have hget :
+      (adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank pre))
+        (relabelEdgeWord sigma (originalPhysicalEdgeWord turns)))[(order.backward i).val]? =
+        some (relabelEdgeValue sigma (edgeCoordinatesAlong turns i)) := by
+    rw [bubble_candidate_slot_order_matches_actual_replay
+      (frozenPrefixColorRank pre) _ hlen (order.backward i)]
+    change (relabelEdgeWord sigma (originalPhysicalEdgeWord turns))
+      [(order.forward (order.backward i)).val]? = _
+    rw [order.left_inv, relabelEdgeWord, List.getElem?_map,
+      originalPhysicalEdgeWord, List.getElem?_map, hcan i]
+    rfl
+  change relabelEdgeValue (inverseColorTable sigma)
+    (adjTrace (bubbleCandidatePath11 (frozenPrefixColorRank pre))
+      (relabelEdgeWord sigma (originalPhysicalEdgeWord turns)))[(order.backward i).val]! = _
+  rw [List.getElem!_of_getElem? hget]
+  exact inverse_color_table_restores_oriented_edge sigma
+    (chosen_prefix_color_map_legal pre) ⟨edgeCoordinatesAlong turns i, hword⟩
+
+#print axioms restored_edge_coordinates_correct
+
 end CubeRev029.Nineteen
