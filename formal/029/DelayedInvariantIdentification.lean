@@ -158,4 +158,129 @@ theorem delayed_loses_iff_no_policy (observe : S → Q → R) (label : S → K)
 #print axioms delayed_loses_iff_not_wins
 #print axioms delayed_loses_iff_no_policy
 
+/-- Execute a second policy after the first has terminated, without
+changing the hidden state or exposing a terminal label to either query. -/
+def appendPolicy {A B : Type} (next : A → Policy Q R B) :
+    Policy Q R A → Policy Q R B
+  | .stop output => next output
+  | .read q k => .read q (fun r => appendPolicy next (k r))
+
+theorem appendPolicy_run {A B : Type} (next : A → Policy Q R B)
+    (observe : S → Q → R) (s : S) (tree : Policy Q R A) :
+    (appendPolicy next tree).run observe s =
+      (next (tree.run observe s)).run observe s := by
+  induction tree with
+  | stop output => rfl
+  | read q k ih => exact ih (observe s q)
+
+private theorem fits_add_left {A : Type} {m : Nat} {tree : Policy Q R A}
+    (fit : Fits m tree) (n : Nat) : Fits (n + m) tree := by
+  induction n with
+  | zero => simpa using fit
+  | succ n ih => simpa only [Nat.succ_add] using ih.succ
+
+theorem appendPolicy_fits {A B : Type} (next : A → Policy Q R B)
+    {n m : Nat} {tree : Policy Q R A} (fit : Fits n tree)
+    (nextFit : ∀ a, Fits m (next a)) :
+    Fits (n + m) (appendPolicy next tree) := by
+  induction fit with
+  | stop n output => exact fits_add_left (nextFit output) n
+  | read n q k branches ih =>
+      simpa only [appendPolicy, Nat.succ_add] using
+        (Fits.read (n+m) q (fun r => appendPolicy next (k r)) ih)
+
+/-- Run every early-label policy on the actual replies. Keep its output
+but do not choose a branch by the undisclosed label. The eventual label
+selects only which completed result is returned. -/
+def collectFiberPolicies [DecidableEq K]
+    (trees : K → Policy Q R (Option S)) :
+    List K → Policy Q R (K → Option S)
+  | [] => .stop (fun _ => none)
+  | k :: ks => appendPolicy
+      (fun result => (collectFiberPolicies trees ks).adapt id
+        (fun _ r => r)
+        (fun rest key => if key = k then result else rest key))
+      (trees k)
+
+theorem collect_fiber_policies_fits [DecidableEq K]
+    (trees : K → Policy Q R (Option S)) (ks : List K) (d : Nat)
+    (fit : ∀ k, Fits d (trees k)) :
+    Fits (ks.length * d) (collectFiberPolicies trees ks) := by
+  induction ks with
+  | nil => exact .stop 0 _
+  | cons k ks ih =>
+      have h : Fits (d + ks.length * d)
+          (appendPolicy (fun result =>
+            (collectFiberPolicies trees ks).adapt id (fun _ r => r)
+              (fun rest key => if key = k then result else rest key))
+            (trees k)) := by
+        apply appendPolicy_fits _ (fit k)
+        intro result
+        exact Policy.adapt_fits id (fun _ r => r)
+          (fun rest key => if key = k then result else rest key) ih
+      simpa only [collectFiberPolicies, List.length_cons, Nat.succ_mul,
+        Nat.add_comm] using h
+
+theorem collect_fiber_policies_run [DecidableEq K]
+    (trees : K → Policy Q R (Option S)) (ks : List K)
+    (observe : S → Q → R) (s : S) (key : K) (member : key ∈ ks) :
+    ((collectFiberPolicies trees ks).run observe s) key =
+      (trees key).run observe s := by
+  induction ks with
+  | nil => simp at member
+  | cons k ks ih =>
+      simp only [collectFiberPolicies, appendPolicy_run, Policy.adapt_run]
+      change (if key = k then (trees k).run observe s
+        else ((collectFiberPolicies trees ks).run observe s) key) = _
+      rcases List.mem_cons.mp member with equal | inside
+      · subst key
+        simp
+      · by_cases equal : key = k
+        · subst key
+          simp
+        · rw [if_neg equal]
+          exact ih inside
+
+/-- Finite timing-overhead upper bound. Early label knowledge may select
+one tree of depth d for each fiber. With delayed label knowledge a single
+controller can instead execute all those trees in at most |ks|*d queries.
+The bound is conditional on every tree fitting d even on impossible
+replies, and on the label list covering the belief. -/
+theorem delayed_policy_of_early_family [DecidableEq K]
+    (observe : S → Q → R) (label : S → K) (belief : S → Prop)
+    (ks : List K) (d : Nat) (trees : K → Policy Q R (Option S))
+    (covers : ∀ s, belief s → label s ∈ ks)
+    (fit : ∀ k, Fits d (trees k))
+    (correct : ∀ k s, belief s → label s = k →
+      (trees k).run observe s = some s) :
+    DelayedWins observe label (ks.length * d) belief := by
+  apply (delayed_wins_iff_policy observe label _ belief).mpr
+  refine ⟨collectFiberPolicies trees ks, collect_fiber_policies_fits trees ks d fit, ?_⟩
+  intro s hs
+  rw [collect_fiber_policies_run trees ks observe s (label s) (covers s hs)]
+  exact correct (label s) s hs rfl
+
+/-- In the other direction, knowing the label before querying can never
+make the required worst-case budget larger. -/
+theorem early_family_of_delayed
+    (observe : S → Q → R) (label : S → K) (belief : S → Prop) (d : Nat)
+    (win : DelayedWins observe label d belief) :
+    ∀ k, ∃ tree : Policy Q R (Option S),
+      Fits d tree ∧ ∀ s, belief s → label s = k →
+        tree.run observe s = some s := by
+  obtain ⟨tree, fit, correct⟩ := (delayed_wins_iff_policy observe label d belief).mp win
+  intro k
+  refine ⟨tree.adapt id (fun _ r => r) (fun decode => decode k),
+    Policy.adapt_fits id (fun _ r => r) (fun decode => decode k) fit, ?_⟩
+  intro s hs equal
+  rw [Policy.adapt_run]
+  change (tree.run observe s) k = some s
+  rw [← equal]
+  exact correct s hs
+
+#print axioms appendPolicy_fits
+#print axioms collect_fiber_policies_run
+#print axioms delayed_policy_of_early_family
+#print axioms early_family_of_delayed
+
 end CubeRev030
