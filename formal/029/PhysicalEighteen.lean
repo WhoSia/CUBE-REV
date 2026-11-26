@@ -40,4 +40,31 @@ theorem physical_eighteen_impossible {O : Type u} (e : EdgeProbe) (c : Fin 24)
 
 #print axioms physical_eighteen_impossible
 
+/-- Equal complete charged transcripts of a single deterministic physical
+controller imply equal terminal outputs, including for adaptive turns. -/
+theorem physical_transcript_determines_output {O : Type u}
+    (e : EdgeProbe) (c : Fin 24)
+    (tree : Policy (List Turn) FrameColor O) (s t : Coloring)
+    (same : frameTranscript e c s tree = frameTranscript e c t tree) :
+    runFrames e c s tree = runFrames e c t tree := by
+  induction tree generalizing s t with
+  | stop output => rfl
+  | read path next ih =>
+      simp only [frameTranscript, List.cons.injEq, Prod.mk.injEq, true_and] at same
+      obtain ⟨reply, rest⟩ := same
+      simp only [runFrames, reply]
+      exact ih _ _ _ rest
+
+theorem physical_eighteen_cannot_identify (e : EdgeProbe) (c : Fin 24)
+    (tree : Policy (List Turn) FrameColor Coloring) (fit : Fits 18 tree) :
+    ¬ (∀ s : Coloring, Reachable s → runFrames e c s tree = s) := by
+  intro correct
+  obtain ⟨s, t, hs, ht, distinct, _, same⟩ :=
+    physical_eighteen_impossible e c fit
+  have eq := physical_transcript_determines_output e c tree s t same
+  exact distinct ((correct s hs).symm.trans (eq.trans (correct t ht)))
+
+#print axioms physical_transcript_determines_output
+#print axioms physical_eighteen_cannot_identify
+
 end CubeRev029.Physical
