@@ -354,3 +354,36 @@ Gill (1961), DOI 10.1016/S0019-9958(61)80003-X, and Lee–Yannakakis (1994), DOI
 - High: seek independent human review of the model and contribution; AI-assisted proof development does not replace authors' responsibility or independent referee scrutiny. Disclose assistance according to the chosen venue policy.
 
 **Submission verdict:** hold the exact-optimum paper until the full correctness/causality theorem, artifact audit and novelty/claim review pass. A limited lower-bound-only paper is a separate editorial decision, not permission to imply the upper result. Do not delay the main theorem for complete removal of native evaluation unless required by the target venue or the stated trust claim.
+
+
+## CI — 2026-11-26 theorem-to-artifact scope and research direction
+
+Status: the exact paired minimax statement is written, but not yet accepted at the final pinned build. CH run 45803009002 (job 139850857770) accepted edge flip conservation, complete coloring reconstruction, and the recorded-controller budget/run lemmas. It failed on inverse-word index notation, successful parser reduction, and output-adapter elaboration. Three fixes: 58e1689, a537ee6, 1a720ad. The final axiom report from the failing run is not acceptance evidence.
+
+### Independent statement contract (publication-facing)
+
+| Claim | Formal declaration | Scope / acceptance |
+| --- | --- | --- |
+| Universal physical lower bound | Physical.physical_eighteen_impossible | arbitrary fixed probes, arbitrary deterministic policy output type, Fits 18; distinct reachable states with identical transcript, solved corners; prior accepted |
+| Physical upper bound | Nineteen.physical_nineteen_identifies | one policy per fixed probe pair, all reachable initial colorings, Fits 19; final build pending |
+| Exact optimum | Nineteen.physical_paired_optimum_nineteen | conjunction of upper bound and impossibility of any Fits 18 identifying controller; final build pending |
+| Executable decoder | Physical.decodeScheduledCorners_reachable | charged 19 corner replies only, arbitrary legal turn history; prior compiled |
+| Actual controller | Nineteen.physicalNineteenPolicy | fixed frozen certificate, 11 prefix reads + 8 adaptive padded reads; final build pending |
+
+Model: deterministic noiseless simultaneous edge/corner color replies; both addresses fixed before the frame; free legal face turns between frames; fixed centers. No claim about move count, expected query complexity, noise, or larger cubes. The total policy's solved fallback is only an extension to malformed histories; prove it is unreachable on legal runs. Native certificate evaluation remains in the trust boundary; inspect actual transitive axiom output rather than counting only local declarations.
+
+### External methodological comparators (not evidence for our theorem)
+
+- OpenAI, *The matrix multiplication exponent is nine fourths*, 2026-11-24, [preprint](https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf), [scope](https://github.com/openai/math/blob/main/lean/docs/107.md), [Lean entry point](https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/SpectralBooks/ExactExponent.lean). The README, LaTeX introduction, scope and entry source were inspected. The paper claims equality for formal arithmetic circuits with division; the scope states division-free formal polynomial identities, and separately gives a dual/rectangular exponent formula. Do not silently identify those models or infer external acceptance of the November lower bound. The scope/comparator separation is the useful publication design.
+- Rafael Pass, *Matrix Multiplication from Polynomial Packings*, arXiv:2610.28627 (https://arxiv.org/abs/2610.28627). The accessible introduction describes an explicit block-recursive construction for the October upper bound, with huge constants. Method transfer: extract a readable constructive policy, not just an existence theorem.
+- Doğan, Lysikov, Sakabe, Walter, *Tensor value and the 9/4 bound for matrix multiplication*, arXiv:2611.09716 (https://arxiv.org/abs/2611.09716). Abstract inspected: a different invariant and partial-direct-sum inequality establish the October upper bound over every field. Method transfer: independent structural explanation and proof simplification rather than reproducing the same verifier.
+- OpenAI, *Euclidean geometry in the asymptotic spectrum of tensors*, 2026-11-24, [companion](https://github.com/openai/math/tree/main/preprints/Euclidean-geometry-in-the-asymptotic-spectrum-of-tensors-November-24-2026). README inspected. Separate reusable mathematical framework from application-specific result; no claim that tensor geometry itself transfers to cubes.
+
+### Post-closure research hypotheses, ordered
+
+1. Gate: clean exact-commit compilation, final axiom audit, P7 manifest and reproducibility. No final claim until pass.
+2. Explain the 18/19 separation through a reusable constrained identification model: a finite hidden sector, restricted query family, conserved label, delayed auxiliary observation. A terminal posterior is admissible exactly when its conserved-label map is injective; a lower bound may disclose an independent auxiliary state to strengthen the adversary. Prove the scope and limitations, including the necessity of observation-only label recovery and simultaneous address choice. Existing lower and upper proofs are candidate instances, not a new theorem yet.
+3. Compare the 52-root certificate with a compact independently derived structural strategy or lower-bound witness. Measure tree nodes, maximum depth, posterior size and exact checked coverage; do not infer the absence of a simpler strategy from current search. Keep original certificate immutable.
+4. Explore parameterized finite graph/cubie families only after a nontrivial general theorem or counterexample is found. Do not advertise n-by-n cube extrapolation from the 3-by-3 result.
+
+Decision: foreground the precise complexity problem, structural reduction and independent proof artifact, not AI usage or volume of Lean files. A successful computer-assisted result can be publishable without erasing all finite native checks, but the stated scope and trust ledger must be exact. Prior-art and independent human review remain open.
