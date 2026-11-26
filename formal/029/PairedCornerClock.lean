@@ -673,7 +673,7 @@ theorem physical_frozen_roots_parsed :
   have checked := representative_prefixes_covered_source
   cases hp : parsedRepresentativeArray (include_str "upper-policy-certificate.json") with
   | error msg => simp [coverageCheck, hp] at checked
-  | ok roots => simp [physicalFrozenRoots, hp]
+  | ok roots => simp only [physicalFrozenRoots, hp]; rfl
 
 /-- A single total 19-frame original-address controller. Invalid histories
 have an arbitrary default only at the final leaf, never as an oracle. -/
