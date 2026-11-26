@@ -511,8 +511,7 @@ theorem restored_edge_coordinates_correct (pre : List FrameColor) (turns : List 
         some (relabelEdgeValue sigma (edgeCoordinatesAlong turns i)) := by
     rw [bubble_candidate_slot_order_matches_actual_replay
       (frozenPrefixColorRank pre) _ hlen (order.backward i)]
-    change (relabelEdgeWord sigma (originalPhysicalEdgeWord turns))
-      [(order.forward (order.backward i)).val]? = _
+    change (relabelEdgeWord sigma (originalPhysicalEdgeWord turns))[(order.forward (order.backward i)).val]? = _
     rw [order.left_inv, relabelEdgeWord, List.getElem?_map,
       originalPhysicalEdgeWord, List.getElem?_map, hcan i]
     rfl
