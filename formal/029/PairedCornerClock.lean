@@ -681,8 +681,9 @@ def physicalNineteenPolicy : Policy (Fin 24 × Fin 24) FrameColor Coloring :=
   (physicalNineteenDecoded physicalFrozenRoots).adapt id (fun _ r => r)
     (fun result => result.getD solved)
 
-theorem physical_nineteen_policy_fits : Fits 19 physicalNineteenPolicy :=
-  Policy.adapt_fits id (fun _ r => r) (fun result => result.getD solved)
+theorem physical_nineteen_policy_fits : Fits 19 physicalNineteenPolicy := by
+  unfold physicalNineteenPolicy
+  exact Policy.adapt_fits id (fun _ r => r) (fun (result : Option Coloring) => result.getD solved)
     (physical_nineteen_decoded_fits physicalFrozenRoots)
 
 theorem physical_nineteen_policy_correct (s : Coloring) (hs : Reachable s) :
