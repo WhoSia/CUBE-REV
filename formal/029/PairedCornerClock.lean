@@ -523,4 +523,45 @@ theorem restored_edge_coordinates_correct (pre : List FrameColor) (turns : List 
 
 #print axioms restored_edge_coordinates_correct
 
+/-- Rebuild all 48 original moving stickers from the two recovered
+coordinate arrays. No physical state or move-history witness is an input. -/
+def rebuildColoring (edges : EdgeCoordinates) (corners : CornerCoordinates) : Coloring :=
+  fun slot =>
+    if slot.val < 24 then
+      sticker (edges ⟨slot.val / 2 % 12, Nat.mod_lt _ (by decide)⟩)
+        (slot.val % 2 == 1)
+    else
+      orientedCornerColor
+        (corners ⟨(slot.val - 24) / 3 % 8, Nat.mod_lt _ (by decide)⟩)
+        ⟨(slot.val - 24) % 3, Nat.mod_lt _ (by decide)⟩
+
+theorem rebuild_coloring_correct (edges : EdgeCoordinates)
+    (corners : CornerCoordinates) (s : Coloring)
+    (he : EdgesAgree edges s) (hc : CornersAgree corners s) :
+    rebuildColoring edges corners = s := by
+  have cover : ∀ slot : Slot,
+      (∃ i : Fin 12, ∃ b : Bool, slot = edgeSlot i b) ∨
+      (∃ i : Fin 8, ∃ j : Fin 3, slot = cornerRawSlot i j) := by
+    decide +kernel
+  have edgeIndex : ∀ i : Fin 12, ∀ b : Bool,
+      (edgeSlot i b).val < 24 ∧
+      (⟨(edgeSlot i b).val / 2 % 12, Nat.mod_lt _ (by decide)⟩ : Fin 12) = i ∧
+      ((edgeSlot i b).val % 2 == 1) = b := by
+    decide +kernel
+  have cornerIndex : ∀ i : Fin 8, ∀ j : Fin 3,
+      ¬ (cornerRawSlot i j).val < 24 ∧
+      (⟨((cornerRawSlot i j).val - 24) / 3 % 8, Nat.mod_lt _ (by decide)⟩ : Fin 8) = i ∧
+      (⟨((cornerRawSlot i j).val - 24) % 3, Nat.mod_lt _ (by decide)⟩ : Fin 3) = j := by
+    decide +kernel
+  funext slot
+  rcases cover slot with ⟨i, b, rfl⟩ | ⟨i, j, rfl⟩
+  · obtain ⟨h, hi, hb⟩ := edgeIndex i b
+    simp only [rebuildColoring, if_pos h, hi, hb]
+    exact (he i b).symm
+  · obtain ⟨h, hi, hj⟩ := cornerIndex i j
+    simp only [rebuildColoring, if_neg h, hi, hj]
+    exact (hc i j).symm
+
+#print axioms rebuild_coloring_correct
+
 end CubeRev029.Nineteen
