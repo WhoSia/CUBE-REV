@@ -86,7 +86,7 @@ assert has_unjustified_lean_placeholder('axiom untrusted : True')
 ROOT=Path(__file__).resolve().parent
 EXTERNAL={'Lean','Std','Init.Data.List.Sort.Lemmas'}
 REQUIRED={
- 'PhysicalEighteen','EighteenCertified','EighteenDataReceipt',
+ 'DelayedInvariantIdentification','PhysicalEighteen','EighteenCertified','EighteenDataReceipt',
  'NineteenDataReceipt','NineteenReadData','NineteenSector',
  'PhysicalPolicyCompilerFast','CornerPairDecoder','NineteenSchedule',
  'CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
@@ -112,7 +112,7 @@ def check():
                        if line.startswith('import ')
                        for imp in line[7:].split() if imp not in EXTERNAL]
         assert all(dep in names for dep in imports[name]),f'Missing import for {name}'
-        if name in ('CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
+        if name in ('DelayedInvariantIdentification','CornerTurnGenerators','ReachableCornerCoordinates','CornerConservation',
                  'ReachableCornerIdentification','CornerPermutation','NineteenCornerTranscript','ObservationTransport','ElevenPrefix','NineteenSymmetry','SymmetryWordTransport','LegalEdgeSymmetry','PairedPolicyTransport','SymmetryInverse','RepresentativeRoundTrip','ColorGraphCharacter','GraphPosteriorCovariance','SignedRepresentativePolicy','SignedPairedPosterior','SignedTerminalIdentification','SignedPolicyTranscript','FrozenPolicyInterpreter','SignedSectorLeaf','SectorSemanticCompiler','FrozenJsonSectorParser','SectorStatewiseValidity','ExactBudgetPadding','ExactEightSector','ReflectedSectorChecker','DistinctReplyChecker','FrozenRootReflection','FiftyTwoRootReceipt','TaggedNineteenRootPolicy','PairedCornerClock','PrefixColorGauge'):
             text=path.read_text()
             assert not has_unjustified_lean_placeholder(text), f'Unjustified placeholder in {name}'

@@ -680,6 +680,7 @@
     "formal/029/CornerSignedCorrection.lean",
     "formal/029/CornerTranscriptBit.lean",
     "formal/029/CornerTurnGenerators.lean",
+    "formal/029/DelayedInvariantIdentification.lean",
     "formal/029/DistinctReplyChecker.lean",
     "formal/029/EdgeCornerParityInduction.lean",
     "formal/029/EdgeFlips.lean",
@@ -5934,5 +5935,11 @@
       "workflow_incoming_references": 0
     },
     "note": "Register current 0.29 proofs, audits and research ledger paths. Retire only 11 historical 0.18 workflow entry points, retain their scripts/docs pending dependency review; remove one-shot custody workflow. Exact audit rules unchanged."
+  },
+  "active_set_reconciliation_20261126_r030_delayed_invariant": {
+    "added": [
+      "formal/029/DelayedInvariantIdentification.lean"
+    ],
+    "scope": "0.30 abstract terminal-label model, reusing 0.29 Policy and Fits; no modification of frozen certificates or final theorem dependencies"
   }
 }
