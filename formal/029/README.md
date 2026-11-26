@@ -1,3 +1,13 @@
+# CUBE-REV 0.29 verified baseline / 0.30 structural research
+
+**Accepted exact theorem.** At commit [`1a720ad`](https://github.com/WhoSia/CUBE-REV/commit/1a720ad9937db08274874b33ea049e473613eae7), the read-only [CI #45803745408](https://github.com/WhoSia/CUBE-REV/actions/runs/45803745408) completed successfully, including `physical_paired_optimum_nineteen` in [PairedCornerClock.lean](PairedCornerClock.lean). The exact worst-case paired-frame optimum is 19 in the stated deterministic noiseless, fixed-center, free-legal-turn model. Final axiom output contains the three standard logical axioms and five disclosed native-evaluation dependencies. No `sorryAx` appeared in the retrieved successful log.
+
+**0.30 extension.** [DelayedInvariantIdentification.lean](DelayedInvariantIdentification.lean), namespace `CubeRev030`, reuses `Policy`, `Fits`, and posterior semantics without importing the cube certificates. Its abstract model discloses a label at the terminal leaf; physical label availability must be separately proved. The new winning/losing characterization and timing-overhead proof are tracked independently of the frozen 0.29 result. Consult exact-commit CI before claiming their acceptance.
+
+The earlier entries below are historical proof-development records, not current status. In particular, statements that the unconditional 19-frame theorem was still open are superseded by the accepted baseline above.
+
+---
+
 # CUBE-REV 0.29 — Adaptive lower bound and pinned data checks
 
 The main contribution is the impossibility of identifying a fixed-center Rubik's Cube in at most eighteen paired observations. The physical Lean theorem gives a collision even when both starting cubes have the same solved corners. The nineteen-frame construction has a checked finite policy and a separately verified physical routing lemma.
