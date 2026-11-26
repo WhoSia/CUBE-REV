@@ -183,4 +183,51 @@ theorem reachable_has_permutation_edges (s : Coloring) (h : Reachable s) :
 #print axioms solved_edge_agreement
 #print axioms solved_edge_piece_list
 
+/-- Every geometric quarter-turn reverses an even number of local
+edge orientations, independently of the current cube state. -/
+theorem edge_source_flip_even :
+    ∀ t : Turn,
+      ((canonicalEdgeSources.map (fun i => (edgeSourceFlip t i).toNat)).sum) % 2 = 0 := by
+  decide +kernel
+
+private theorem edge_orient_sum_mod (t : Turn) (a : EdgeCoordinates)
+    (xs : List (Fin 12)) :
+    ((xs.map (fun i => orient (edgeSourceFlip t i) (a (edgeSourceIndex t i)) % 2)).sum) % 2 =
+      (((xs.map (fun i => a (edgeSourceIndex t i) % 2)).sum) +
+       ((xs.map (fun i => (edgeSourceFlip t i).toNat)).sum)) % 2 := by
+  induction xs with
+  | nil => rfl
+  | cons i xs ih =>
+      simp only [List.map_cons, List.sum_cons]
+      rw [orient_flip]
+      omega
+
+/-- Orientation parity is conserved for arbitrary input arrays, using
+the actual source permutation and generator offsets. -/
+theorem edge_action_flip_mod (t : Turn) (a : EdgeCoordinates) :
+    flipBit (canonicalEdgeSources.map (edgeAction t a)) =
+      flipBit (canonicalEdgeSources.map a) := by
+  have hp := (edge_source_indices_perm t).map (fun i => a i % 2)
+  have hsum :
+      (canonicalEdgeSources.map (fun i => a (edgeSourceIndex t i) % 2)).sum =
+        (canonicalEdgeSources.map (fun i => a i % 2)).sum := by
+    simpa [edgeSourceIndices, List.map_map, Function.comp_def] using hp.sum_nat
+  have hzero := edge_source_flip_even t
+  simp only [flipBit, List.map_map, Function.comp_def, edgeAction]
+  rw [edge_orient_sum_mod, hsum]
+  omega
+
+/-- All actual turn histories have even total edge orientation. -/
+theorem edge_coordinates_along_flip_zero (turns : List Turn) :
+    flipBit (canonicalEdgeSources.map (edgeCoordinatesAlong turns)) = 0 := by
+  induction turns with
+  | nil => decide +kernel
+  | cons t tail ih =>
+      change flipBit (canonicalEdgeSources.map (edgeAction t (edgeCoordinatesAlong tail))) = 0
+      rw [edge_action_flip_mod, ih]
+
+#print axioms edge_source_flip_even
+#print axioms edge_action_flip_mod
+#print axioms edge_coordinates_along_flip_zero
+
 end CubeRev029.Physical
