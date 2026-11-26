@@ -285,4 +285,64 @@ theorem early_family_of_delayed
 #print axioms delayed_policy_of_early_family
 #print axioms early_family_of_delayed
 
+
+/-- Query sequence on the hypothetical constant-reply branch. The branch
+need not be realized by every state. -/
+def constantTrace (r : R) : Policy Q R O → List Q
+  | .stop _ => []
+  | .read q next => q :: constantTrace r (next r)
+
+theorem constantTrace_length_le (r : R) {n : Nat}
+    {tree : Policy Q R O} (fit : Fits n tree) :
+    (constantTrace r tree).length ≤ n := by
+  induction fit with
+  | stop n output => exact Nat.zero_le n
+  | read n q next branches ih =>
+      exact Nat.succ_le_succ (ih r)
+
+theorem constantTrace_run_eq (observe : S → Q → R) (r : R)
+    (s : S) (tree : Policy Q R O)
+    (agrees : ∀ q, q ∈ constantTrace r tree → observe s q = r) :
+    tree.run observe s = tree.run (fun _ _ => r) s := by
+  induction tree with
+  | stop output => rfl
+  | read q next ih =>
+      have hq : observe s q = r := agrees q (by simp [constantTrace])
+      simp only [Policy.run, hq]
+      apply ih r
+      intro a ha
+      exact agrees a (by simp [constantTrace, ha])
+
+/-- On a constant-reply branch, a correct delayed decoder must separate
+every same-label pair by at least one of the queries on that branch.
+This is a hitting-set certificate, not a bound on arbitrary branches. -/
+theorem constantTrace_separates (observe : S → Q → R) (label : S → K)
+    (belief : S → Prop) (r : R) (tree : Policy Q R (K → Option S))
+    (correct : ∀ s, belief s → (tree.run observe s) (label s) = some s)
+    (s t : S) (hs : belief s) (ht : belief t) (hk : label s = label t)
+    (hne : s ≠ t) (base : ∀ q, observe s q = r) :
+    ∃ q, q ∈ constantTrace r tree ∧ observe t q ≠ r := by
+  classical
+  apply Classical.byContradiction
+  intro absent
+  have agree : ∀ q, q ∈ constantTrace r tree → observe t q = r := by
+    intro q hq
+    apply Classical.byContradiction
+    intro h
+    exact absent ⟨q, hq, h⟩
+  have sameConst (p : Policy Q R (K → Option S)) :
+      p.run (fun _ _ => r) s = p.run (fun _ _ => r) t := by
+    induction p with
+    | stop output => rfl
+    | read q next ih => exact ih r
+  have a := correct s hs
+  have b := correct t ht
+  rw [constantTrace_run_eq observe r s tree (fun q _ => base q),
+      sameConst tree, ← constantTrace_run_eq observe r t tree agree, hk, b] at a
+  exact hne (Option.some.inj a).symm
+
+#print axioms constantTrace_length_le
+#print axioms constantTrace_run_eq
+#print axioms constantTrace_separates
+
 end CubeRev030
