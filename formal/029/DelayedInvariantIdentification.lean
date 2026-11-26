@@ -345,4 +345,69 @@ theorem constantTrace_separates (observe : S → Q → R) (label : S → K)
 #print axioms constantTrace_run_eq
 #print axioms constantTrace_separates
 
+
+/-- The actual query path on a reference state, allowing nonconstant replies. -/
+def referenceTrace (observe : S → Q → R) (s : S) : Policy Q R O → List Q
+  | .stop _ => []
+  | .read q next => q :: referenceTrace observe s (next (observe s q))
+
+theorem referenceTrace_length_le (observe : S → Q → R) (s : S)
+    {n : Nat} {tree : Policy Q R O} (fit : Fits n tree) :
+    (referenceTrace observe s tree).length ≤ n := by
+  induction fit with
+  | stop n output => exact Nat.zero_le n
+  | read n q next branches ih => exact Nat.succ_le_succ (ih (observe s q))
+
+theorem referenceTrace_run_eq (observe : S → Q → R) (s t : S)
+    (tree : Policy Q R O)
+    (agrees : ∀ q, q ∈ referenceTrace observe s tree → observe s q = observe t q) :
+    tree.run observe s = tree.run observe t := by
+  induction tree with
+  | stop output => rfl
+  | read q next ih =>
+      have hq : observe s q = observe t q := agrees q (by simp [referenceTrace])
+      simp only [Policy.run]
+      rw [← hq]
+      apply ih (observe s q)
+      intro a ha
+      exact agrees a (by simp [referenceTrace, ha])
+
+/-- Every realized path is a local certificate against all competing
+states with the same terminal label. No assumption of constant replies. -/
+theorem referenceTrace_separates (observe : S → Q → R) (label : S → K)
+    (belief : S → Prop) (tree : Policy Q R (K → Option S))
+    (correct : ∀ s, belief s → (tree.run observe s) (label s) = some s)
+    (s t : S) (hs : belief s) (ht : belief t) (hk : label s = label t)
+    (hne : s ≠ t) :
+    ∃ q, q ∈ referenceTrace observe s tree ∧ observe s q ≠ observe t q := by
+  classical
+  apply Classical.byContradiction
+  intro absent
+  have agrees : ∀ q, q ∈ referenceTrace observe s tree → observe s q = observe t q := by
+    intro q hq
+    apply Classical.byContradiction
+    intro h
+    exact absent ⟨q, hq, h⟩
+  have a := correct s hs
+  have b := correct t ht
+  rw [referenceTrace_run_eq observe s t tree agrees, hk, b] at a
+  exact hne (Option.some.inj a).symm
+
+/-- A winning budget supplies a bounded local separating list for each state.
+The converse need not hold: the list may depend on the unknown state. -/
+theorem delayed_wins_local_certificate (observe : S → Q → R) (label : S → K)
+    (belief : S → Prop) (n : Nat) (win : DelayedWins observe label n belief)
+    (s : S) (hs : belief s) :
+    ∃ qs : List Q, qs.length ≤ n ∧
+      ∀ t, belief t → label s = label t → s ≠ t →
+        ∃ q, q ∈ qs ∧ observe s q ≠ observe t q := by
+  obtain ⟨tree, fit, correct⟩ := (delayed_wins_iff_policy observe label n belief).mp win
+  exact ⟨referenceTrace observe s tree, referenceTrace_length_le observe s fit,
+    fun t ht hk hne => referenceTrace_separates observe label belief tree correct s t hs ht hk hne⟩
+
+#print axioms referenceTrace_length_le
+#print axioms referenceTrace_run_eq
+#print axioms referenceTrace_separates
+#print axioms delayed_wins_local_certificate
+
 end CubeRev030
