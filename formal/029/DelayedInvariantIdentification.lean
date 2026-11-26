@@ -42,10 +42,12 @@ theorem not_fiber_separated_iff_collision (label : S → K) (belief : S → Prop
   classical
   constructor
   · intro h
-    by_contra hc
+    apply Classical.byContradiction
+    intro hc
     apply h
     intro s t hs ht heq
-    by_contra hne
+    apply Classical.byContradiction
+    intro hne
     exact hc ⟨s, t, hs, ht, heq, hne⟩
   · rintro ⟨s, t, hs, ht, heq, hne⟩ sep
     exact hne (sep s t hs ht heq)
@@ -133,11 +135,13 @@ theorem delayed_loses_iff_not_wins (observe : S → Q → R) (label : S → K)
         refine ⟨(not_fiber_separated_iff_collision label belief).mp
           (fun sep => h (.inl sep)), ?_⟩
         intro q
-        by_contra noReply
+        apply Classical.byContradiction
+        intro noReply
         apply h
         refine .inr ⟨q, ?_⟩
         intro r
-        by_contra loses
+        apply Classical.byContradiction
+        intro loses
         exact noReply ⟨r, (ih (posterior observe belief q r)).mpr loses⟩
 
 /-- A lower-bound recurrence is both sound and complete for this abstract
