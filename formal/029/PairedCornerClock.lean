@@ -1,6 +1,7 @@
 import TaggedNineteenRootPolicy
 import RepresentativeCoverageNative
 import ExecutableCornerDecoder
+import PhysicalEighteen
 import NineteenSchedule
 import NineteenCornerTranscript
 
@@ -708,5 +709,20 @@ theorem physical_nineteen_identifies (e : EdgeProbe) (c : Fin 24) :
 #print axioms physical_nineteen_policy_fits
 #print axioms physical_nineteen_policy_correct
 #print axioms physical_nineteen_identifies
+
+/-- Exact minimax paired-frame cost: every fixed edge/corner probe pair
+admits identification within nineteen charged frames, but no policy
+bounded by eighteen frames identifies every reachable initial coloring.
+Legal face turns between reads are free in this model. -/
+theorem physical_paired_optimum_nineteen (e : EdgeProbe) (c : Fin 24) :
+    (∃ p : Policy (List Turn) FrameColor Coloring,
+      Fits 19 p ∧ ∀ s : Coloring, Reachable s → runFrames e c s p = s) ∧
+    ¬ (∃ p : Policy (List Turn) FrameColor Coloring,
+      Fits 18 p ∧ ∀ s : Coloring, Reachable s → runFrames e c s p = s) := by
+  refine ⟨physical_nineteen_identifies e c, ?_⟩
+  rintro ⟨p, fit, correct⟩
+  exact physical_eighteen_cannot_identify e c p fit correct
+
+#print axioms physical_paired_optimum_nineteen
 
 end CubeRev029.Nineteen
