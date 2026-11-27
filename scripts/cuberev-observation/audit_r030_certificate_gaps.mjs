@@ -288,4 +288,14 @@ function auditRankBlindness(){
  if(scores[1]!==best.score||scores[0]>=scores[1])throw Error("weighted objective not separated");
  return {vertices,weightedWitness:best,sectorMaxima:scores}
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditParitySupportFunction(){
+ const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",edges=labels.map(l=>[colors.indexOf(l[0]),colors.indexOf(l[1])]),p=Array.from({length:6},(_,i)=>5**i);
+ const masks=Array.from({length:4096},(_,m)=>{let h=0,b=0,adj=Array.from({length:6},()=>[]),deg=Array(6).fill(0);for(let i=0;i<12;i++){const f=m>>i&1,u=edges[i][f],v=edges[i][1-f];h+=p[u];b^=f;adj[v].push(u);deg[u]++}let q=deg.flatMap((v,i)=>v===0?[i]:[]);for(let i=0;i<q.length;i++)for(const j of adj[q[i]])if(--deg[j]===0)q.push(j);return {h,b,acyclic:q.length===6}});
+ const fibers=new Map();for(const {h,b,acyclic} of masks){const a=fibers.get(h)||{count:[0,0],vertex:false};a.count[b]++;a.vertex||=acyclic;fibers.set(h,a)}
+ let exclusiveNonvertex=[0,0],vertices=[0,0];for(const {count,vertex} of fibers.values()){if(vertex&&count[0]+count[1]!==1)throw Error("vertex fiber");if(vertex)vertices[count[1]?1:0]++;if(!vertex&&!(count[0]&&count[1]))exclusiveNonvertex[count[1]?1:0]++}
+ let checks=0;
+ for(let code=0;code<3**6;code++){let w=Array.from({length:6},(_,i)=>Math.floor(code/3**i)%3-1);let best=0,b=0,gap=Infinity;for(const [u,v] of edges){best+=Math.max(w[u],w[v]);b^=+(w[v]>w[u]);gap=Math.min(gap,Math.abs(w[u]-w[v]))}const expected=[best-(b===0?0:gap),best-(b===1?0:gap)],actual=[-Infinity,-Infinity];for(const {h,b:k} of masks){let score=0;for(let i=0;i<6;i++)score+=w[i]*(Math.floor(h/p[i])%5);actual[k]=Math.max(actual[k],score)}if(expected.some((x,i)=>x!==actual[i]))throw Error("support function mismatch");checks++}
+ if(vertices[0]!==210||vertices[1]!==216||exclusiveNonvertex[0]!==12||exclusiveNonvertex[1]!==0)throw Error("vertex classification");
+ return {vertices,exclusiveNonvertex,weightVectors:checks};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
