@@ -1099,7 +1099,72 @@ function auditRepresentativeMass(){
  if(roots.size!==52||feasible!==1362||total!==144736||weighted!==fact(12)*2048||even!==odd||even+odd!==weighted||rawWords!==297297000)throw Error("mass conservation");
  return {roots:roots.size,feasible,rawOrderedPrefixes:rawWords,unweightedRepresentativeCandidates:total,weighted,even,odd,min:vals[0],max:vals.at(-1),median:(vals[25]+vals[26])/2,byRepresentative:[...roots]};
 }
-if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
+
+function solveGraphClockMean(E,v,cap,release){
+ const n=E.length,N=1<<n,all=N-1,pop=new Uint8Array(N),cm=new Int32Array(v),side=Array.from({length:v},()=>new Uint8Array(n)),deg=new Uint8Array(v);
+ for(let i=0;i<n;i++)for(let s=0;s<2;s++){const c=E[i][s];cm[c]|=1<<i;side[c][i]=s;deg[c]++}
+ const gp=new Int32Array(v);let H=1;for(let c=0;c<v;c++){gp[c]=H;H*=deg[c]+1}
+ const digits=new Uint8Array(H*v),sum=new Uint8Array(H),less=new Uint8Array(H*v),greater=new Uint8Array(H*v),dup=new Uint8Array(H);
+ for(let h=0;h<H;h++){for(let c=0;c<v;c++){let q=Math.floor(h/gp[c])%(deg[c]+1);digits[h*v+c]=q;less[h*v+c]=sum[h];sum[h]+=q;if(q>=2)dup[h]=1}for(let c=0;c<v;c++)greater[h*v+c]=sum[h]-less[h*v+c]-digits[h*v+c]}
+ const strides=new Int32Array(N*v),caps=new Uint8Array(N*v),off=new Int32Array(N+1);
+ for(let m=0;m<N;m++){pop[m]=m?pop[m&(m-1)]+1:0;let p=1;for(let c=0;c<v;c++){let d=pop[m&cm[c]];caps[m*v+c]=d;strides[m*v+c]=p;p*=d+1}off[m+1]=off[m]+p}
+ const M=new Float64Array(4*off[N]),C=new Float64Array(4*off[N]),U=release?new Float64Array(2*off[N]):null;
+ const fact=n=>n<2?1:n*fact(n-1);let mc=0,cc=0,uc=0,losers=0;
+ function key(h,m,r,p){let z=off[m];for(let c=0;c<v;c++){let d=digits[h*v+c];if(d>caps[m*v+c])return -1;z+=d*strides[m*v+c]}return 4*z+2*r+p}
+ function mass(h,m,r,p){let b=pop[m]-sum[h];if(b<0)return 0;if(b>0)r=0;if(b>=2||dup[h])p=0;let k=key(h,m,r,p);if(k<0)return 0;if(M[k])return M[k]-1;mc++;let z=0;
+  if(!h){if(b>=2)z=fact(b)*2**(b-2);else if(!p&&(b===1||!r))z=1}
+  else{let c=0;while(!digits[h*v+c])c++;for(let q=m&cm[c];q;){let bit=q&-q;q^=bit;let l=31-Math.clz32(bit);z+=mass(h-gp[c],m^bit,r^side[c][l],p^(pop[m&(bit-1)]&1))}}
+  M[k]=z+1;return z}
+ function actions(h,m,r,known,visit){
+  const b=pop[m]-sum[h];
+  // Even permutations preserve the sector, odd permutations exchange sectors.
+  // If two identical rows are available, distinguish their index parities.
+  if(b>0)for(let j=0;j<(known&&b>=2?2:1);j++)for(let s=0;s<(b===1?2:1);s++){let ch=[];for(let c=0;c<v;c++)if(digits[h*v+c]<caps[m*v+c])ch.push([h+gp[c],m,r^s,(greater[h*v+c]+j)&1]);visit(ch)}
+  for(let c=0;c<v;c++)if(digits[h*v+c])for(let j=0;j<(known&&digits[h*v+c]>=2?2:1);j++){let ch=[];for(let q=m&cm[c];q;){let bit=q&-q;q^=bit;let l=31-Math.clz32(bit);ch.push([h-gp[c],m^bit,r^side[c][l],(less[h*v+c]+j+pop[m&(bit-1)])&1])}visit(ch)}
+ }
+ function cost(h,m,r,p){let b=pop[m]-sum[h];if(b>0)r=0;if(b>=2||dup[h])p=0;let z=mass(h,m,r,p);if(z<=1)return 0;let d=cap-(2*n-2*pop[m]+sum[h]);if(d<=0)return Infinity;let k=key(h,m,r,p);if(C[k])return C[k]-1;cc++;let best=Infinity;
+  actions(h,m,r,true,ch=>{let tot=z,ms=0;for(const [x,l,t,s] of ch){let w=mass(x,l,t,p^s);ms+=w;if(w)tot+=cost(x,l,t,p^s)}if(ms!==z)throw Error("known mass "+[h,m,r,p,z,ms]);best=Math.min(best,tot)});
+  if(!Number.isFinite(best))losers++;C[k]=best+1;return best}
+ function unknown(h,m,r){if(pop[m]>sum[h])r=0;let z0=mass(h,m,r,0),z1=mass(h,m,r,1),z=z0+z1;if(z<=1)return 0;
+  let t=2*n-2*pop[m]+sum[h];if(t>=release||!z0||!z1)return cost(h,m,r,0)+cost(h,m,r,1);
+  if(t>=cap)return Infinity;let k=key(h,m,r,0)/2;if(U[k])return U[k]-1;uc++;let best=Infinity;
+  actions(h,m,r,false,ch=>{let tot=z,ms=0;for(const [x,l,t] of ch){let w=mass(x,l,t,0)+mass(x,l,t,1);ms+=w;if(w)tot+=unknown(x,l,t)}if(ms!==z)throw Error("unknown mass");best=Math.min(best,tot)});
+  U[k]=best+1;return best}
+ let z=[mass(0,all,0,0),mass(0,all,0,1)],costs=[cost(0,all,0,0),cost(0,all,0,1)],clock=release?unknown(0,all,0):costs[0]+costs[1];
+ if(z[0]+z[1]!==fact(n)*2**(n-1)||n>=2&&(z[0]!==z[1]||costs[0]!==costs[1]))throw Error("root sign symmetry");
+ return {n,v,cap,release,z,costs,means:costs.map((c,i)=>z[i]?c/z[i]:null),clock,clockMean:clock/(z[0]+z[1]),mc,cc,uc,losers,tableBytes:M.byteLength+C.byteLength+(U?.byteLength||0)}
+}
+function auditRawGraphClock(E,cap,release){
+ const n=E.length,states=[],p=[];
+ function gen(m){if(!m){let s=0;for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)s^=+(p[i]>p[j]);for(let t=0;t<1<<n;t++){let r=0;for(let i=0;i<n;i++)r^=t>>i&1;if(!r)states.push({s,a:p.flatMap((l,i)=>[E[l][t>>i&1],E[l][1^(t>>i&1)]])})}return}
+  for(let q=m;q;){let bit=q&-q;q^=bit;p.push(31-Math.clz32(bit));gen(m^bit);p.pop()}}
+ gen((1<<n)-1);const memo=new Map(),all=states.map((_,i)=>i);
+ function cost(B,used,known){if(B.length<=1)return 0;let t=used.toString(2).replace(/0/g,"").length;if(!known&&t>=release)return cost(B.filter(i=>!states[i].s),used,true)+cost(B.filter(i=>states[i].s),used,true);if(t>=cap)return Infinity;
+  const k=B.join(",")+":"+used+":"+known;if(memo.has(k))return memo.get(k);let best=Infinity;
+  for(let q=0;q<2*n;q++)if(!(used>>q&1)){let g=new Map();for(const i of B){let a=states[i].a[q];if(!g.has(a))g.set(a,[]);g.get(a).push(i)}let c=B.length;for(const b of g.values())c+=cost(b,used|1<<q,known);best=Math.min(best,c)}
+  memo.set(k,best);return best}
+ const costs=[0,1].map(s=>cost(all.filter(i=>states[i].s===s),0,true));return {costs,clock:cost(all,0,false),states:states.length,memo:memo.size}
+}
+function auditGraphClockControls(){
+ let controls=0;
+ for(const E of [[[0,1]],[[0,1],[0,2]],[[0,1],[0,2],[1,2]],[[0,1],[1,2],[2,3]],[[0,1],[1,2],[2,3],[3,0]]]){
+  const n=E.length,v=1+Math.max(...E.flat());
+  for(let cap=0;cap<=2*n;cap++)for(const r of new Set([0,Math.min(2,cap),cap])){
+   const q=solveGraphClockMean(E,v,cap,r),raw=auditRawGraphClock(E,cap,r);
+   if(q.costs.join(",")!==raw.costs.join(",")||q.clock!==raw.clock)throw Error("raw clock mismatch "+JSON.stringify({E,q,raw}));
+   controls++
+  }
+ }
+ return {rawControls:controls}
+}
+function auditGraphClockMean(release=14){
+ const E=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"].map(l=>[...l].map(c=>"URFDLB".indexOf(c)));
+ return solveGraphClockMean(E,6,19,release)
+}
+
+if (process.argv.includes('--graph-clock-controls')) console.log(JSON.stringify(auditGraphClockControls(), null, 2));
+else if (process.argv.includes('--graph-clock-mean')) console.log(JSON.stringify(auditGraphClockMean(Number(process.argv[process.argv.indexOf('--graph-clock-mean')+1]??14)), null, 2));
+else if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
 else if (process.argv.includes('--regenerate-k5-lower')) console.log(JSON.stringify(generateK5LowerCertificate()));
 else if (process.argv.includes('--corner-hall')) console.log(JSON.stringify(auditCornerHallPlans(), null, 2));
