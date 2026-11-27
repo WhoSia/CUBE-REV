@@ -35,7 +35,7 @@ The later read-only [CI #45997189889](https://github.com/WhoSia/CUBE-REV/actions
 
 ### Abstract
 
-How many color observations determine an unknown Rubik's Cube when the observer may turn the cube freely but can read only one edge sticker and one corner sticker at a time? We prove that nineteen simultaneous observation frames are necessary and sufficient for deterministic, noiseless identification of the initial coloring of a reachable fixed-center cube. The lower bound follows from an adversary on the edge-color graph that deliberately constructs a reference permutation of the opposite sign to the permitted hidden states. Two different observation-preserving transpositions then produce indistinguishable legal states. For the upper bound we exploit the shared permutation parity of the edge and corner coordinates. Eleven initial edge reads reduce, under color and position symmetries, to fifty-two representative observation problems. Certified continuations of at most eight further reads leave at most one edge state of each parity. The parity required for decoding is obtained from the concurrently collected corner colors, not supplied as a free observation. A finite joint-routing certificate transfers the address-level controller to any fixed pair of edge and corner probes. We provide a combinatorial interpretation of the terminal condition and a Lean verification of the original complete computer-assisted theorem, with its native evaluation dependencies explicitly disclosed.
+How many color observations determine an unknown Rubik's Cube when the observer may turn the cube freely but can read only one edge sticker and one corner sticker at a time? We prove that nineteen simultaneous observation frames are necessary and sufficient for deterministic, noiseless identification of the initial coloring of a reachable fixed-center cube. The lower bound follows from an adversary on the edge-color graph that deliberately constructs a reference permutation of the opposite sign to the permitted hidden states. When at most one position is untouched, two different observation-preserving transpositions produce indistinguishable legal states; with more untouched positions, orientation ambiguity suffices. For the upper bound we exploit the shared permutation parity of the edge and corner coordinates. Eleven initial edge reads reduce, under color and position symmetries, to fifty-two representative observation problems. Certified continuations of at most eight further reads leave at most one edge state of each parity. The parity required for decoding is obtained from the concurrently collected corner colors, not supplied as a free observation. A finite joint-routing certificate transfers the address-level controller to any fixed pair of edge and corner probes. We provide a combinatorial interpretation of the terminal condition and a Lean verification of the original complete computer-assisted theorem, with its native evaluation dependencies explicitly disclosed.
 
 ### 1. Introduction
 
@@ -140,11 +140,59 @@ All correction terms are determined by the first eleven replies. The orientation
 
 #### 5.2. Certified continuations
 
-For each representative root, the immutable certificate specifies an adaptive continuation of at most eight further edge reads. The query alphabet comprises the unread sides of the first eleven positions and both sides of the blank position. A continuation may stop early or be padded with known-color reads. Its decision rules use edge colors only.
+For each representative root, the immutable certificate specifies an adaptive continuation of at most eight further edge reads. Its instructions are a leaf, a color-independent charged padding read, or a query with response-indexed destinations. The thirteen continuation addresses are numbered 0 through 10 for the unobserved sides of the first eleven positions, and 11 and 12 for sides zero and one of the blank position. The decision rules use only edge colors. The canonical root is the lexicographically least count vector in color order U,R,F,D,L,B, expanded in that same color order; minimizing the expanded color string instead is not in general the same convention.
 
-The semantic verifier checks every feasible branch against the candidate set determined by its root and previous replies. For each feasible reply the corresponding child must retain exactly the compatible candidates. Each terminal set must contain at most one edge word of either permutation parity. This is a sufficient condition because once the correct parity is known there is exactly one candidate in its fiber. The certificate does not assume that the parity was available when queries were chosen.
+**Root enumeration.** For a fixed ordered prefix a=(a_0,...,a_10), assign eleven distinct labels recursively. At row i, choose any unused label containing a_i; its orientation is forced by that color. At the last row place the unique remaining label and choose its orientation to cancel the sum of the first eleven flips. This constructs every compatible legal oriented word exactly once: a legal word determines its own sequence of chosen labels and therefore a unique enumeration path. The unused sticker colors and the sign of the full label permutation are stored with each word.
 
-For the pinned representative trees, the checked receipt covers all 52 roots, 141,097 tree nodes and 73,962 terminal nodes. These counts describe that representation of the certificate, rather than a count of physical cube states. The soundness implication from checker acceptance to correct terminal-parity decoding is proved separately in Lean; the concrete receipt is evaluated on the immutable data. Section 8 states the computation boundary.
+A second way to count the root candidates without constructing their sticker words is the following subset recurrence. Number the labels in the fixed order given in the artifact, and let M be the remaining set of labels. Let C_s(i,M) count assignments of rows i through 11 whose relative inversion parity, in the increasing order on M, is s. For i=11 and |M|=1, the counts are C_0=1 and C_1=0. At an earlier row,
+
+    C_s(i,M) = sum over j in M containing a_i of
+                 C_(s XOR rank_M(j) mod 2)(i+1,M-{j}).
+
+Here rank_M(j) is the number of smaller labels in M. Placing j first contributes exactly that number of inversions with subsequent labels. No orientation factor is missing: each of the eleven observed orientations is forced and the blank absorbs the remaining flip. This recurrence independently reproduces the count of 144,736 candidates across the 52 representative roots. Each feasible root has equal even and odd counts, also directly explained by swapping two singleton positions showing the same color (eleven positions and six colors).
+
+**Semantic verification.** For a candidate set B, address q and color c, write B(q,c) for the subset whose color at q is c. A verifier receives an instruction index v, a remaining budget d and B. The following pseudocode specifies the mathematical checks of the standalone tree verifier (not the implementation language of the Lean interpreter).
+
+    Verify(v, d, B):
+        require v is an existing, not previously visited tree node
+        mark v visited
+        if instruction(v) is leaf:
+            require |{x in B : sign(x)=0}| <= 1
+            require |{x in B : sign(x)=1}| <= 1
+            return
+        require d > 0
+        if instruction(v) is padding(next):
+            Verify(next, d-1, B)
+        otherwise instruction(v) is read(q, children):
+            require q in {0,...,12}
+            require keys(children) = {c : B(q,c) is nonempty}
+            for each c in keys(children):
+                Verify(children[c], d-1, B(q,c))
+
+The standalone verifier starts at node zero with budget eight and the complete root enumeration. It additionally checks that every stored tree node is visited and that the terminal candidate counts sum to the root candidate count. A padding instruction consumes a frame but does not filter B because the response is ignored; it need not return a constant color. An ordinary read need not split B into more than one nonempty child. Both cases are charged. Empty or impossible replies do not need successful decoders; the bounded Lean interpreter represents failure on an invalid path by an option type rather than a fabricated word.
+
+The correctness invariant is that B is exactly the set of root words agreeing with the responses used by the controller. It holds initially by root enumeration. It is preserved under padding and under the partition B(q,c). Induction on d proves that any root word follows a feasible checked path to a leaf within eight reads. There it remains in B and its true sign selects it uniquely. This is a sufficient certificate condition; the verifier does not search for an optimal policy. In Lean the corresponding generic implication is proved by checkDistinctSector_sound and exact_eight_sector_recovers_given_terminal_sign, then instantiated with the immutable source using certified_source_each_root_recovers. The standalone Python checks and the typed Lean checker are separate implementations; the pseudocode describes the former, and the generic implication describes the latter.
+
+The frozen tree receipt is as follows.
+
+| Quantity | Exact count |
+|---|---:|
+| Representative roots | 52 |
+| Representative candidate words | 144,736 |
+| Tree nodes | 141,097 |
+| Leaves containing one candidate | 3,188 |
+| Leaves containing two candidates of opposite signs | 70,774 |
+| Total leaves | 73,962 |
+
+The identity 3,188 + 2(70,774)=144,736 is a conservation check, not by itself a proof of correct branching or signed uniqueness. These counts describe the representative certificate, not the distribution of physical cube states.
+
+**Lifting the census to the full state space.** For a representative histogram h, let o(h) be its orbit size under the 48 color automorphisms, m(h)=11! / product_c h_c! the number of ordered prefixes with that histogram, and N(h) the candidate count of one ordered prefix. Every ordered prefix belongs to exactly one histogram orbit. The invertible coordinate maps show that the size of its candidate set is N(h), independent of which prefix in the orbit is selected. Consequently the identity
+
+    sum_h o(h) m(h) N(h) = 12! 2^11
+
+holds, where the sum is over the 52 representatives. The right-hand side counts all permutations of twelve labels and all zero-sum orientation vectors. An independent subset-count audit gives 297,297,000 feasible ordered prefixes, and exactly 980,995,276,800 edge words in the weighted sum, with 490,497,638,400 of each sign. The unweighted representative counts range from 576 to 6,400. The audit uses neither the exported tree nor its optimizer; it is an additional consistency check on root enumeration and symmetry multiplicities. In particular the ratio of two-candidate leaves to all leaves must not be reported as a uniform-state probability.
+
+Section 8 states the computation boundary and reproduction commands.
 
 #### 5.3. Recovering parity from the other channel
 
@@ -216,7 +264,22 @@ The cube-group constraints, Hall's matching theorem and matching decompositions 
 
 ### 8. Verification and reproducibility
 
-The original complete theorem is compiled at commit 1a720ad9937db08274874b33ea049e473613eae7, successful CI run 45803745408, under Lean 4.34.1. Its declaration is physical_paired_optimum_nineteen in formal/029/PairedCornerClock.lean. Reproduction restores the pinned data, validates the corner schedule and runs lake build as specified in the repository README.
+The original complete theorem is compiled at commit 1a720ad9937db08274874b33ea049e473613eae7, successful CI run 45803745408, under Lean 4.34.1. Its declaration is physical_paired_optimum_nineteen in formal/029/PairedCornerClock.lean. Reproduction restores the pinned data, validates the corner schedule and runs lake build as specified in the repository README. From the pinned checkout the core commands are:
+
+    cd formal/029
+    python3 restore_pinned_data.py
+    python3 validate_19_corner_schedule.py
+    lake build
+
+The uncompressed upper-policy JSON has SHA-256 80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227. From the repository root the standalone checker is invoked with the restored file as its explicit argument:
+
+    python3 scripts/cuberev-observation/verify_19_policy_certificate.py formal/029/upper-policy-certificate.json
+
+Run Python without optimization flags because this checker uses assertions. The newer supplementary audit at the current research revision can be invoked with:
+
+    node scripts/cuberev-observation/audit_r030_certificate_gaps.mjs --representative-mass
+
+It does not require the exported tree to count the roots. The current manuscript revision is not itself a new successful Lean build; the immutable theorem receipt and the newer mathematical audit are distinct evidence.
 
 The following map separates the claims and their evidence.
 
@@ -227,7 +290,9 @@ The following map separates the claims and their evidence.
 | New fixed-parity analytic lower | Theorem 3 above; not yet encoded in Lean |
 | Original certified eighteen-frame obstruction | EighteenCertified.lean: certified_eighteen_edge_collision |
 | Feasible prefixes select a covered representative | RepresentativeCoverageNative.lean |
-| All frozen continuations decode given terminal parity | FiftyTwoRootReceipt.lean |
+| All frozen continuations decode given terminal parity | DistinctReplyChecker.lean; FrozenRootReflection.lean; FiftyTwoRootReceipt.lean |
+| Independent root enumeration and branch checks | verify_19_policy_certificate.py |
+| Independent weighted root census | audit_r030_certificate_gaps.mjs --representative-mass |
 | Signed coordinate normalization | FrozenNormalizationParityTransport.lean; ObservedTerminalParity.lean |
 | Corner schedule and transcript-only decoder | NineteenSchedule.lean; ExecutableCornerDecoder.lean |
 | Simultaneous address routing | JointProbeRouting.lean |
