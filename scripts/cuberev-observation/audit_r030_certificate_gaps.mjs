@@ -767,8 +767,26 @@ actualSecondReadHistogram[q]=(actualSecondReadHistogram[q]||0)+1;break;
  let rejected=false;try{verifyPlan("0001125","0001")}catch{rejected=true}if(!rejected)throw Error("negative control");
  return {...receipt,negativeControl:rejected};
 }
+function auditHallBlockPacking(){
+ const labels=["UFR","URB","ULF","UBL","DRF","DBR","DFL","DLB"],colors="URFDLB";
+ const masks=Array.from(colors,c=>labels.reduce((m,l,i)=>m|(l.includes(c)?1<<i:0),0)),pop=Array.from({length:256},(_,x)=>x.toString(2).replace(/0/g,"").length);
+ let checked=0,hist={},examples={};const memo=new Map();
+ function inspect(a,m){
+  const n=a.length;if(pop[m]!==n+1)return;
+  let tight=[];for(let s=1;s<1<<n;s++){let N=0;for(let i=0;i<n;i++)if(s>>i&1)N|=m&masks[+a[i]];if(pop[N]<pop[s])return;if(pop[N]===pop[s])tight.push(s)}
+  let match=[],blank=-1;function assign(i,left){if(i===n){blank=31-Math.clz32(left);return true}for(let q=left&masks[+a[i]];q;){let b=q&-q;q^=b;match.push(31-Math.clz32(b));if(assign(i+1,left^b))return true;match.pop()}return false}
+  if(!assign(0,m))throw Error("Hall mismatch");
+  const reach=Array.from({length:n+1},(_,i)=>1<<i);for(let i=0;i<n;i++){for(let j=0;j<n;j++)if(masks[+a[i]]>>match[j]&1)reach[i]|=1<<j;if(masks[+a[i]]>>blank&1)reach[i]|=1<<n}
+  for(let j=0;j<=n;j++)for(let i=0;i<=n;i++)if(reach[i]>>j&1)reach[i]|=reach[j];
+  let sinks=0,seen=0;for(let i=0;i<n;i++)if(!(seen>>i&1)){let component=0;for(let j=0;j<=n;j++)if((reach[i]>>j&1)&&(reach[j]>>i&1))component|=1<<j;seen|=component;if(reach[i]===component)sinks++}
+  let pack=Array(1<<n).fill(0);for(let s=1;s<1<<n;s++)for(const t of tight)if((s&t)===t)pack[s]=Math.max(pack[s],1+pack[s^t]);if(sinks!==pack[(1<<n)-1])throw Error("packing mismatch");
+  checked++;hist[sinks]=(hist[sinks]||0)+1;examples[sinks]??={a,m,matching:match,blank};
+ }
+ for(let m=1;m<256;m++){let n=pop[m]-1;function gen(a,c){if(a.length===n){inspect(a,m);return}for(let j=c;j<6;j++)gen(a+j,j)}gen("",0)}
+ return {checked,hist,examples};
+}
 if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
 else if (process.argv.includes('--regenerate-k5-lower')) console.log(JSON.stringify(generateK5LowerCertificate()));
 else if (process.argv.includes('--corner-hall')) console.log(JSON.stringify(auditCornerHallPlans(), null, 2));
-else console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),k5Orbit:auditK5Orbit(),k5LowerReceipt:auditK5LowerReceipt(),cornerHallPlans:auditCornerHallPlans(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+else console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),k5Orbit:auditK5Orbit(),k5LowerReceipt:auditK5LowerReceipt(),cornerHallPlans:auditCornerHallPlans(),hallBlockPacking:auditHallBlockPacking(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
