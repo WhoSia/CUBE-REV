@@ -979,6 +979,47 @@ function buildStructuralEdgePolicy(checkTransport=false){
  const transport=checkTransport?auditEdgeCoordinateTransport(states,syms,E,roots):null;
  return {roots:roots.size,rootMass,searchCalls,status:status.size,dagNodes:states.size,arcs,leaves,hist,treeNodes,checkedArcs,checkedLeaves,negativeControl:rejected,countStates:C.size,decisionTableChars:JSON.stringify([...states]).length,transport};
 }
+function auditOppositeSignCoverWitness(){
+ const E0=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"].map(l=>[...l].map(c=>"URFDLB".indexOf(c)));
+ let records=0,graphs=0,cube=0,minimum=Infinity,coverCases=0,types={};
+ function check(E,v,isCube=false){
+  const n=E.length;if(n<3)return;graphs++;
+  for(let S=1;S<1<<v;S++){
+   const internal=E.map((e,i)=>e.every(c=>S>>c&1)?i:-1).filter(i=>i>=0);
+   if(!internal.length||E.some(e=>e.every(c=>!(S>>c&1))))continue;
+   const k=S.toString(2).replace(/0/g,"").length;
+   if(isCube&&k!==4)continue;coverCases++;
+   for(const blank of [-1,...internal]){
+    const count=k+(blank<0?2:0);if(count>n-(blank>=0?1:0))continue;
+    const rows=[],sides=[];
+    function verify(){
+     let witnesses=0;
+     function swap(i,j){
+      // Reference identity, zero orientation. Compute orientations after exchanging two labels.
+      const newFlip=[];
+      for(const [row,l] of [[i,j],[j,i]]){
+       const t=rows.indexOf(row);if(t<0){newFlip.push(null);continue;}
+       const side=sides[t],c=E[row][side],p=E[l].indexOf(c);if(p<0)return;
+       newFlip.push(p^side);
+      }
+      if(newFlip.includes(null))newFlip[newFlip.indexOf(null)]=newFlip.find(x=>x!==null);
+      if(newFlip[0]!==newFlip[1])return;
+      for(let z=0;z<2;z++){let row=[i,j][z],l=[j,i][z],t=rows.indexOf(row);if(t>=0&&E[l][sides[t]^newFlip[z]]!==E[row][sides[t]])throw Error("swap witness");}
+      witnesses++;
+     }
+     for(let i=0;i<rows.length;i++){for(let j=i+1;j<rows.length;j++)swap(rows[i],rows[j]);if(blank>=0)swap(rows[i],blank);}
+     if(witnesses<2)throw Error(JSON.stringify({E,S,blank,rows,sides,witnesses}));
+     minimum=Math.min(minimum,witnesses);records++;if(isCube)cube++;const key=(isCube?"cube":"small")+":"+(blank<0?"noBlank":"oneBlank");types[key]=(types[key]||0)+1;
+    }
+    function gen(i){if(rows.length===count){verify();return}if(i===n||n-i<count-rows.length)return;if(i===blank){gen(i+1);return}gen(i+1);for(let s=0;s<2;s++)if(S>>E[i][s]&1){rows.push(i);sides.push(s);gen(i+1);sides.pop();rows.pop()}}
+    gen(0);
+   }
+  }
+ }
+ for(let v=2;v<=4;v++){let E=[];for(let i=0;i<v;i++)for(let j=i+1;j<v;j++)E.push([i,j]);for(let m=1;m<1<<E.length;m++)check(E.filter((_,i)=>m>>i&1),v)}
+ check(E0,6,true);
+ return {graphs,coverCases,records,cube,minimum,types};
+}
 if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
 else if (process.argv.includes('--regenerate-k5-lower')) console.log(JSON.stringify(generateK5LowerCertificate()));
@@ -987,4 +1028,5 @@ else if (process.argv.includes('--edge-terminal-structure')) console.log(JSON.st
 else if (process.argv.includes('--pinned-structural-terminals')) console.log(JSON.stringify(auditPinnedStructuralTerminals(loadPinnedCertificate()), null, 2));
 else if (process.argv.includes('--structural-edge-policy')) console.log(JSON.stringify(buildStructuralEdgePolicy(), null, 2));
 else if (process.argv.includes('--edge-coordinate-transport')) console.log(JSON.stringify(buildStructuralEdgePolicy(true), null, 2));
+else if (process.argv.includes('--opposite-sign-cover')) console.log(JSON.stringify(auditOppositeSignCoverWitness(), null, 2));
 else console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),k5Orbit:auditK5Orbit(),k5LowerReceipt:auditK5LowerReceipt(),cornerHallPlans:auditCornerHallPlans(),hallBlockPacking:auditHallBlockPacking(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
