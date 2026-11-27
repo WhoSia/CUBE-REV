@@ -1161,6 +1161,7 @@
     "scripts/cuberev-observation/audit_r029_w_worked_route.py",
     "scripts/cuberev-observation/audit_r029_x_end_to_end.py",
     "scripts/cuberev-observation/audit_r029_x_negative.py",
+    "scripts/cuberev-observation/audit_r030_certificate_gaps.mjs",
     "scripts/cuberev-observation/audit_r10_physical_feedback_lift.py",
     "scripts/cuberev-observation/audit_r11_corner13_collision_witness.py",
     "scripts/cuberev-observation/audit_r11_corner13_with_parity.py",
