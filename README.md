@@ -47,6 +47,23 @@ For cube residual edges, if each observed cubie has at least one color and exact
 
 The registered audit checks all 4,165 loopless digraphs on 1..4 labeled vertices with diagonal matching and all 106,920 four-edge residual matrices (choose 4 of the 12 edges of K(2,2,2), three ordered singleton colors, one blank row): 45,126 feasible, 34,344 sign-injective, direct enumeration/cycle/SCC discrepancies zero. These are matrix counts, not frequencies of frozen policy leaves or uniform physical states. No new 19-frame proof is claimed. Classical matching/cycle theory; compare Robertson, Seymour & Thomas (1999), *Permanents, Pfaffian orientations, and even directed circuits*, Annals 150:929-975, https://annals.math.princeton.edu/1999/150-3/p05 (not a claim of identical theorem).
 
+### Four-character counting and the actual frozen leaves
+
+Let A0,A1 be the compatibility matrices for edge orientation 0 and 1, with rows in original position order and columns in increasing label rank. The number N(p,f) of completions with inversion parity p and flip residue f equals
+
+    [per(A0+A1) + (-1)^f per(A0-A1)
+     + (-1)^p det(A0+A1) + (-1)^(p+f) det(A0-A1)] / 4.
+
+This follows by expanding products over assignments and applying character orthogonality on C2 x C2. The implemented counter uses the equivalent four-sector subset DP, not direct determinant evaluation. For an already used label set U, appending label j contributes inversion parity |{i in U : i>j}| mod 2 and the selected orientation bit. No frozen search engine is imported.
+
+The audit reads the compressed frozen upper-policy artifact, checks both pinned SHA-256 values, traverses all 52 representative trees, and counts completions from each complete leaf observation record. Observed 141097 nodes, 73962 leaves, 144736 flip-zero completions; 70774 two-candidate leaves (opposite signs), 3188 singleton leaves. Last edge read counts 0/1/2: 17048/54690/2224. In 13535 leaves with no blank slot, ignoring flip parity gives multiple matchings in at least one permutation-sign sector. These are counterfactual counts on the same records, not a verification of the altered game's policy or uniform physical probabilities. The four-sector leaf check and mass conservation are complementary to the existing exhaustive response verifier, not its replacement. Tested also 23760 synthetic three-edge records by explicit enumeration. The prior SCC result directly applies to the 17048 one-blank leaves, not all leaves.
+
+### Prefix polytopes and forest enumeration
+
+For a graph H of distinct two-color edge types, let r(S) count edges touching color subset S. This coverage function is integer, monotone and submodular. By Hall, a color histogram x from k distinct edges is feasible precisely when x is a nonnegative integer vector, sum x=k and x(S)<=r(S) for all S. For k<|E| in the cube model at least one blank edge allows the flip residue to be corrected. For k=|E| the support below is the orientation-unrestricted combinatorial histogram support; fixed flip constraints may remove some histograms.
+
+Equivalently the unrestricted prefix layers are lattice points of the Minkowski sum of coordinate triangles conv(0,e_u,e_v), sliced at sum x=k. Hall ensures the integer-point equivalence: assign each color token to a distinct incident edge; conversely all points in the Minkowski sum obey the cuts. In the top layer this is the graphical zonotope sum [e_u,e_v]. The classical forest formula (Postnikov, *Permutohedra, Associahedra, and Beyond*, Proposition 2.4, https://math.mit.edu/~apost/papers/permutohedron_full.pdf) gives 1083 top-layer points for K(2,2,2). Direct forest coefficients by edge count are 1,12,66,212,408,384, giving Ehrhart polynomial 1+12t+66t^2+212t^3+408t^4+384t^5. All 13 unrestricted layers: 1,6,21,56,126,246,426,666,939,1198,1362,1362,1083; 7492 total. The audit compares all 15625 bounded lattice candidates with endpoint-selection DP, all 4096 submodular inequalities, and forest enumeration. This extends the previous 11-color histogram view to the entire prefix polytope; it is not a new 19-frame optimality proof or a novelty claim.
+
 ## Reproduce
 
 Use Lean 4.34.1 (pinned by the package) and Python 3:
