@@ -39,6 +39,14 @@ The structural program now compares exact hidden-state recovery, behavioral iden
 
 The source audit is the `structure` section of `scripts/cuberev-observation/audit_r030_certificate_gaps.mjs` (n=1..3, every degree, all query subsets). The scientific next gate is whether a target/constraint distinction supplies an independent structural explanation of the existing physical cube result; do not indefinitely expand elementary toy formalizations.
 
+### Signed matching rigidity: an explanatory structural gate
+
+For a feasible bipartite compatibility matrix with reference perfect matching M, contract the matched edges and direct an arc i -> j whenever row i can take M(j), omitting loops. Every other perfect matching corresponds exactly to a vertex-disjoint collection of simple directed cycles; a cycle of length l changes relative permutation sign by (-1)^(l-1). Thus the sign class of M has exactly one matching iff there is no odd directed cycle and no pair of vertex-disjoint even directed cycles. Both sign classes have at most one matching iff there is no directed cycle, or exactly one simple directed cycle and its length is even. Equivalently, there is at most one non-singleton strongly connected component, which must be a directed even cycle. Given one matching, the latter test is linear in graph size with standard SCC algorithms (the audit uses transitive closure).
+
+For cube residual edges, if each observed cubie has at least one color and exactly one residual slot is entirely unread, each matching has one orientation completion after imposing the global flip constraint. Therefore this test characterizes the sign-indexed terminal leaf condition in that submodel. Two or more unread edge slots instead admit orientation ambiguity even for fixed matching and sign. Zero unread slots need explicit flip filtering; do not apply the raw matching criterion as an equivalence in that case.
+
+The registered audit checks all 4,165 loopless digraphs on 1..4 labeled vertices with diagonal matching and all 106,920 four-edge residual matrices (choose 4 of the 12 edges of K(2,2,2), three ordered singleton colors, one blank row): 45,126 feasible, 34,344 sign-injective, direct enumeration/cycle/SCC discrepancies zero. These are matrix counts, not frequencies of frozen policy leaves or uniform physical states. No new 19-frame proof is claimed. Classical matching/cycle theory; compare Robertson, Seymour & Thomas (1999), *Permanents, Pfaffian orientations, and even directed circuits*, Annals 150:929-975, https://annals.math.princeton.edu/1999/150-3/p05 (not a claim of identical theorem).
+
 ## Reproduce
 
 Use Lean 4.34.1 (pinned by the package) and Python 3:
