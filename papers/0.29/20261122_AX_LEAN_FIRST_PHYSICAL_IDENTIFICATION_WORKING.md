@@ -1,5 +1,31 @@
 # AX Working Manuscript — From a Certified 18/19 Observation Gap to a Lean-First Physical Identification Theorem
 
+## Current theorem status — supersedes the historical draft (2026-11-27)
+
+The fixed-center, deterministic, noiseless **nineteen paired-frame minimax theorem is compiled and accepted within its disclosed computational trust boundary**, at [1a720ad](https://github.com/WhoSia/CUBE-REV/commit/1a720ad9937db08274874b33ea049e473613eae7), [CI #45803745408](https://github.com/WhoSia/CUBE-REV/actions/runs/45803745408). This is not publication acceptance. The chronological draft below is preserved as historical evidence: its provisional abstract, open-upper-bound statements, old trust tables and P7-failure references describe superseded stages, not current conclusions.
+
+The actual declaration in [PairedCornerClock.lean](../../formal/029/PairedCornerClock.lean) is:
+
+```lean
+theorem physical_paired_optimum_nineteen (e : EdgeProbe) (c : Fin 24) :
+    (∃ p : Policy (List Turn) FrameColor Coloring,
+      Fits 19 p ∧ ∀ s : Coloring, Reachable s → runFrames e c s p = s) ∧
+    ¬ (∃ p : Policy (List Turn) FrameColor Coloring,
+      Fits 18 p ∧ ∀ s : Coloring, Reachable s → runFrames e c s p = s)
+```
+
+For arbitrary fixed edge and corner sticker probes, each charged frame contains their simultaneous colors after a legal face-turn word selected from earlier replies. Turns are free and their word lengths unrestricted. The output is the initial coloring, not a shortest solution. The lower bound remains valid even when corners are fixed solved. The transitive trust boundary is `propext`, `Classical.choice`, `Quot.sound` and the five finite native evaluations below. The independent implementations are supporting cross-checks; they do not remove the native evaluation dependencies.
+
+| Native dependency | Independent supporting audit |
+| --- | --- |
+| `Eighteen.checked` | `verify_18_lifted_dag.py`, `test_18_lifted_dag_mutations.py` |
+| `fifty_two_frozen_roots_semantically_accepted` | `verify_19_policy_certificate.py`, `test_19_policy_certificate_negative.py` |
+| `representative_prefixes_covered_source` | `audit_r029_certificate_prefix_coverage.py` (same pinned bytes; independent prefix normalization) |
+| `joint_routes_checked` | `audit_r029_w_joint_routes.py`, `audit_r029_w_negative_controls.py` |
+| `pair_actions_match` | `audit_r029_pair_action_tables.py` (independent rotation-matrix construction) |
+
+The later read-only [CI #45997189889](https://github.com/WhoSia/CUBE-REV/actions/runs/45997189889) at 905df27 independently reports success for the standalone verification and negative-control step and Lean compilation. The subsequent 0.30 parity-polymatroid audits are optional research and do not belong to the final 0.29 theorem's dependency cone. Human mathematical review, exact prior-art comparison and venue-specific AI disclosure remain open. This banner supersedes the historical abstract and status language without deleting earlier records.
+
 **CUBE-REV 0.29 | research draft | 2026-11-22 | theorem-to-paper alignment.** This working chapter is a publication-writing artifact, not an accepted result or an unconditional upper-bound proof. Keep prior T–AU manuscripts intact; the final paper may synthesize rather than stack every historical appendix.
 
 ## Provisional abstract (claim calibrated)
