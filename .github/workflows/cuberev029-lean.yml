@@ -71,6 +71,11 @@ jobs:
         working-directory: formal/029
         run: |
           python3 check_data.py EIGHTEEN_QUERY_DAG.json upper-policy-certificate.json
+      - name: Compare the real Lean quarter-turn table with independent geometry
+        working-directory: formal/029
+        run: |
+          lake env lean --run ./DumpTurnTable.lean > "$RUNNER_TEMP/lean_turns.txt"
+          python3 ../../scripts/cuberev-observation/audit_r029_lean_turn_table.py "$RUNNER_TEMP/lean_turns.txt"
       - name: Inspect new theorem dependencies and compilation
         working-directory: formal/029
         run: |
