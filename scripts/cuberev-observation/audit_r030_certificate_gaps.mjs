@@ -236,4 +236,17 @@ function auditFrozenLeaves(cert){
   must(nodes===141097&&leaves===73962&&assignments===144736,"pinned totals");
   return {nodes,leaves,assignments,signEssential,orientationEssential,rawMatchingAmbiguity,byLastEdgeReads:byBlank,sectorHistogram:hist};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditPrefixPolymatroid(){
+  const edges=[];for(let i=0;i<6;i++)for(let j=i+1;j<6;j++)if((i>>1)!==(j>>1))edges.push([i,j]);
+  const pow=Array.from({length:6},(_,i)=>5**i),vec=x=>pow.map(p=>Math.floor(x/p)%5);
+  let s=new Set([0]);
+  for(const [u,v] of edges){const next=new Set(s);for(const x of s){next.add(x+pow[u]);next.add(x+pow[v]);}s=next;}
+  const rank=Array.from({length:64},(_,mask)=>edges.filter(([u,v])=>((mask>>u)|(mask>>v))&1).length);
+  let checks=0;for(let a=0;a<64;a++)for(let b=0;b<64;b++){if(rank[a]+rank[b]<rank[a|b]+rank[a&b])throw Error("submodular");checks++;}
+  let h=Array(13).fill(0),dp=Array(13).fill(0);
+  for(let x=0;x<5**6;x++){let v=vec(x),k=v.reduce((a,b)=>a+b,0);const ok=Array.from({length:64},(_,m)=>v.reduce((t,a,i)=>t+(m>>i&1?a:0),0)).every((a,m)=>a<=rank[m]);if(ok!==s.has(x))throw Error("Hall support mismatch");if(ok)h[k]++;if(s.has(x))dp[k]++;}
+  let forest=Array(6).fill(0);for(let mask=0;mask<1<<12;mask++){let p=Array.from({length:6},(_,i)=>i),root=i=>p[i]===i?i:root(p[i]),k=0,valid=true;for(let j=0;j<12;j++)if(mask>>j&1){const [u,v]=edges[j],a=root(u),b=root(v);if(a===b){valid=false;break}p[a]=b;k++;}if(valid)forest[k]++;}
+  if(forest.reduce((a,b)=>a+b,0)!==h[12]||h[11]!==1362)throw Error("forest count");
+  return {submodularChecks:checks,latticeCandidates:5**6,allPrefixSupport:h,forestCoefficients:forest,total:s.size};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
