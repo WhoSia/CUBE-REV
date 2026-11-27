@@ -10,12 +10,15 @@ the 52 distinct representative prefixes. Reads the same bytes that the
 SHA-256-checked Lean `include_str` evaluates (decoded from the blob).
 Caveat: replays the specification, not the compiled Lean code path.
 """
-import base64, gzip, json, pathlib
+import base64, gzip, hashlib, json, pathlib
 from itertools import permutations, product
 
 root = pathlib.Path(__file__).resolve().parents[2] / 'formal' / '029'
 blob = root / 'certificate_blobs' / 'upper-policy-certificate.json.gz.b64'
-cert = json.loads(gzip.decompress(base64.b64decode(blob.read_text())))
+raw = gzip.decompress(base64.b64decode(blob.read_text()))
+# same bytes that Lean include_str reads (POLICY_SHA in formal/029/check_data.py)
+assert hashlib.sha256(raw).hexdigest() == '80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227'
+cert = json.loads(raw)
 prefixes = [r['prefix'] for r in cert['representatives']]
 assert len(prefixes) == 52 and len(set(prefixes)) == 52, 'certificate prefixes'
 
