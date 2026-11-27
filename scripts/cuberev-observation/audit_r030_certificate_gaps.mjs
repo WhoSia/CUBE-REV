@@ -607,4 +607,41 @@ function auditFullGraphCertificates(){
  if(graphs!==1094||patterns!==312453)throw Error("census");
  return {graphs,patterns,certs,gaps};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function solveGraphObservation(E,v){
+ const n=E.length,N=1<<n,all=N-1,pop=new Uint8Array(N),cm=new Int32Array(v),side=Array.from({length:v},()=>new Uint8Array(n)),deg=new Uint8Array(v);
+ if(n<1||n>12||v<2||v>7)throw Error("audit domain");
+ for(let i=0;i<n;i++)for(let s=0;s<2;s++){const c=E[i][s];cm[c]|=1<<i;side[c][i]=s;deg[c]++}
+ const gp=new Int32Array(v);let H=1;for(let c=0;c<v;c++){gp[c]=H;H*=deg[c]+1}
+ const digits=new Uint8Array(H*v),sum=new Uint8Array(H);for(let h=0;h<H;h++)for(let c=0;c<v;c++){const q=Math.floor(h/gp[c])%(deg[c]+1);digits[h*v+c]=q;sum[h]+=q}
+ const strides=new Int32Array(N*v),caps=new Uint8Array(N*v),off=new Int32Array(N+1);for(let m=0;m<N;m++){pop[m]=m?pop[m&(m-1)]+1:0;let p=1;for(let c=0;c<v;c++){let d=pop[m&cm[c]];caps[m*v+c]=d;strides[m*v+c]=p;p*=d+1;}off[m+1]=off[m]+p;}
+ const C=new Uint8Array(2*off[N]),D=new Uint16Array(2*off[N]);let countStates=0,depthStates=0;
+ function key(h,m,r){let z=off[m];for(let c=0;c<v;c++){let d=digits[h*v+c];if(d>caps[m*v+c])return -1;z+=d*strides[m*v+c]}return z*2+r;}
+ function count(h,m,r){
+  const b=pop[m]-sum[h];if(b<0)return 0;if(b>0)r=0;const k=key(h,m,r);if(k<0)return 0;if(C[k])return C[k]-1;
+  countStates++;let a=0,d=0;
+  if(!h){if(b>=2)a=d=2;else if(b===1||r===0)a=1;}
+  else{let c=0;while(!digits[h*v+c])c++;for(let j=m&cm[c];j;){const bit=j&-j;j^=bit;const l=31-Math.clz32(bit),z=count(h-gp[c],m^bit,r^side[c][l]),p=pop[m&(bit-1)]&1;let x=z%3,y=Math.floor(z/3);if(p)[x,y]=[y,x];a=Math.min(2,a+x);d=Math.min(2,d+y);if(a===2&&d===2)break;}}
+  C[k]=1+a+3*d;return a+3*d;
+ }
+ function depth(h,m,r){
+  const b=pop[m]-sum[h];if(b>0)r=0;const z=count(h,m,r),a=z%3,d=Math.floor(z/3);if(a+d<=1)return 0;
+  const k=key(h,m,r);if(D[k])return D[k]-1;depthStates++;const best=[a&&d?31:0,31,Math.max(a,d)<=1?0:31];
+  function consider(ch){const w=[0,0,0];for(const [x,l,t] of ch)if(count(x,l,t)){const q=depth(x,l,t);for(let i=0;i<3;i++)w[i]=Math.max(w[i],1+((q>>(5*i))&31));}for(let i=0;i<3;i++)best[i]=Math.min(best[i],w[i]);}
+  if(b>0)for(let s=0;s<(b===1?2:1);s++){const ch=[];for(let c=0;c<v;c++)if(digits[h*v+c]<caps[m*v+c])ch.push([h+gp[c],m,r^s]);consider(ch)}
+  for(let c=0;c<v;c++)if(digits[h*v+c]){const ch=[];for(let j=m&cm[c];j;){let bit=j&-j;j^=bit;ch.push([h-gp[c],m^bit,r^side[c][31-Math.clz32(bit)]]);}consider(ch)}
+  if(best.some(x=>x>=31))throw Error("unresolved");const q=best[0]|best[1]<<5|best[2]<<10;D[k]=q+1;return q;
+ }
+ const q=depth(0,all,0),depths=[q&31,(q>>5)&31,(q>>10)&31];
+ let cover=99,strong=99;for(let s=0;s<1<<v;s++)if(E.every(([i,j])=>(s>>i&1)||(s>>j&1))){const k=s.toString(2).replace(/0/g,"").length;cover=Math.min(cover,k);if(E.some(([i,j])=>(s>>i&1)&&(s>>j&1)))strong=Math.min(strong,k)}
+ const lower=Math.max(0,2*n-cover-1,2*n-strong);if(depths[0]<lower||depths[1]<depths[0])throw Error("cover lower violated");
+ return {depths,cover,strong,lower,countStates,depthStates,tableBytes:C.byteLength+D.byteLength};
+}
+function auditGraphAdaptiveObjectives(){
+ let graphs=0,gaps={};for(let v=2;v<=4;v++){const all=[];for(let i=0;i<v;i++)for(let j=i+1;j<v;j++)all.push([i,j]);for(let m=1;m<1<<all.length;m++){const E=all.filter((_,i)=>m>>i&1),r=solveGraphObservation(E,v),g=r.depths[0]-r.lower;gaps[g]=(gaps[g]||0)+1;graphs++;}}
+ const families=[["star6",[[0,1],[0,2],[0,3],[0,4],[0,5],[0,6]]],["cycle6",[[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]]],["path6",[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]]],["twoTriangles",[[0,1],[1,2],[2,0],[3,4],[4,5],[5,3]]],["matching3",[[0,1],[2,3],[4,5]]],["K23",[[0,2],[0,3],[0,4],[1,2],[1,3],[1,4]]]];
+ const controls=families.map(([name,E])=>({name,...solveGraphObservation(E,1+Math.max(...E.flat()))}));
+ const colors="URFDLB",labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],cube=solveGraphObservation(labels.map(l=>[...l].map(c=>colors.indexOf(c))),6);
+ if(graphs!==71||gaps[0]!==71||cube.depths.join(",")!=="20,20,19")throw Error("adaptive census");
+ return {graphs,gaps,controls,cube};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
