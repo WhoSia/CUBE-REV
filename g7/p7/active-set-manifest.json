@@ -1146,6 +1146,7 @@
     "scripts/cuberev-observation/audit_color_p48_r4_b2_costed_beliefs.py",
     "scripts/cuberev-observation/audit_color_p48_r5_exact_b2_pareto.py",
     "scripts/cuberev-observation/audit_color_probe_information_bounds.py",
+    "scripts/cuberev-observation/audit_r029_certificate_prefix_coverage.py",
     "scripts/cuberev-observation/audit_r029_corner_reindex_exhaustive.py",
     "scripts/cuberev-observation/audit_r029_corner_transcript_decoder.py",
     "scripts/cuberev-observation/audit_r029_cross_turn_parity.py",
