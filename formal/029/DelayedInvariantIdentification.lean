@@ -470,6 +470,7 @@ private theorem nodup_cover_length [BEq Q] [LawfulBEq Q]
         exact (List.mem_erase_of_ne ne).mpr (cover q (by simp [hq]))
       have bound := ih (ys.erase a) h.2 sub
       have len := List.length_erase_of_mem ha
+      have pos := List.length_pos_of_mem ha
       simp only [List.length_cons]
       omega
 
