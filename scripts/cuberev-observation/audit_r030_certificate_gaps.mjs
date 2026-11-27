@@ -503,4 +503,45 @@ function auditEarlyCornerSign(){
  if(root.some(d=>d!==12))throw Error("early sign regression");
  return {root,countStates:counts.size,depthStates:memo.size};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditChargedCycleCertificates(){
+ const types=[["edge",["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],2],["corner",["UFR","URB","ULF","UBL","DRF","DBR","DFL","DLB"],3]],out=[];
+ for(const [name,labels,m] of types){
+  const n=labels.length, hist={},cyclesUsed={},witnesses={};let checked=0,min=2*n;
+  for(let blank=-1;blank<n;blank++){
+   const colors=new Set(blank<0?[]:labels[blank]),singles=[];
+   function test(){
+    const rows=[...singles.map(x=>x[0]),...(blank<0?[]:[blank])].sort((a,b)=>a-b),k=rows.length,req=new Map(singles),edges=rows.map((i)=>rows.map(j=>Array.from({length:m},(_,t)=>t).filter(t=>!req.has(i)||labels[j][(req.get(i)+t)%m]===labels[i][req.get(i)])));
+    const byStart=Array.from({length:k},()=>[]); 
+    for(let s=0;s<k;s++){
+     const found=new Map();
+     function walk(v,mask,len,r){
+      for(let j=s;j<k;j++)for(const t of edges[v][j]){
+       const nr=(r+t)%m;
+       if(j===s){if(len===1&&nr===0)continue;const p=(len-1)%2,charge=p*m+nr,id=mask*2*m+charge;if(charge!==0&&!found.has(id))found.set(id,{mask,p,r:nr});}
+       else if(!(mask>>j&1))walk(j,mask|1<<j,len+1,nr);
+      }
+     }walk(s,1<<s,1,0);byStart[s]=[...found.values()];
+    }
+    const memo=new Map();
+    function target(mask,p,r){
+     if(p===0&&r===0)return 0;
+     if(!mask)return Infinity;
+     const key=mask*2*m+p*m+r;if(memo.has(key))return memo.get(key);
+     const bit=mask&-mask,s=31-Math.clz32(bit);let best=target(mask^bit,p,r);
+     for(const c of byStart[s])if((mask&c.mask)===c.mask)best=Math.min(best,1+target(mask^c.mask,p^c.p,(r-c.r+m)%m));
+     memo.set(key,best);return best;
+    }
+    const d=target((1<<k)-1,1,0);
+    function brute(i,used,p,r){if(i===k)return p===1&&r===0;for(let j=0;j<k;j++)if(!(used>>j&1)){let q=0;for(let l=j+1;l<k;l++)q^=used>>l&1;for(const t of edges[i][j])if(brute(i+1,used|1<<j,p^q,(r+t)%m))return true;}return false}
+    if(Number.isFinite(d)!==brute(0,0,0,0))throw Error("cycle mismatch");
+    checked++;const cost=2*n-singles.length-(blank>=0?2:0),v=hist[cost]??[0,0];v[Number(!Number.isFinite(d))]++;hist[cost]=v;
+    if(Number.isFinite(d)){cyclesUsed[d]=(cyclesUsed[d]||0)+1;witnesses[d]??={blank,singles:singles.map(([i,s])=>[labels[i],s,labels[i][s]])};}else min=Math.min(min,cost);
+   }
+   function gen(i){if(i===n){test();return;}if(i===blank){gen(i+1);return;}gen(i+1);for(let s=0;s<m;s++){let c=labels[i][s];if(colors.has(c))continue;colors.add(c);singles.push([i,s]);gen(i+1);singles.pop();colors.delete(c);}}gen(0);
+  }
+  out.push({name,checked,min,hist,cyclesUsed,witnesses});
+ }
+ if(out[0].checked!==14891||out[1].checked!==5873||out[0].cyclesUsed[1]!==782||out[1].cyclesUsed[2]!==312)throw Error("charged cycle regression");
+ return out;
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
