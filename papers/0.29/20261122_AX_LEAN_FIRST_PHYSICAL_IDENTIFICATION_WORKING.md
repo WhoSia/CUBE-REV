@@ -63,6 +63,14 @@ For the edge factor alone, write a configuration as (pi,t), where pi is a permut
 
 There are two versions of the auxiliary parity problem. In the early-parity model the required parity is given before any query. In the terminal-parity model queries must be chosen without parity, and the bit is supplied only to the final decoder. A terminal edge posterior B is decodable for either bit precisely when each of its parity fibers contains at most one state. The early model can simulate the terminal model, but the converse need not hold.
 
+**Parallel composition principle.** Let A and B be finite state spaces linked by label maps into the same finite set, and let the admissible pairs be precisely those having equal labels. Assume each label under consideration has a nonempty fiber in both factors. A simultaneous query chooses one local address in each factor before seeing either response. If L_A is the worst-case early-label complexity of A (maximum over label fibers), T_A its terminal-label complexity, and F_B the ordinary full-recovery complexity of B, then the paired cost D satisfies
+
+    max(L_A,L_B) <= D <= min(max(T_A,F_B),max(F_A,T_B)).
+
+For the lower bound, fix a compatible state of the other factor and simulate its responses for free; every input in the chosen label fiber then remains admissible. For the upper bound, run a terminal-label policy in one factor and a full-recovery policy in the other, padding the shorter execution with known or repeated queries. Decode the first factor using the label of the recovered second factor. Queries in either policy depend only on previously received answers, so the parallel construction is causal. This elementary principle identifies the condition under which delayed information costs nothing relative to early information. It does not assert equality for arbitrary factors.
+
+For the cube, the classical coordinate characterization (Mereb and Vendramin, Section 2.2, arXiv:2411.11566v3) identifies the reachable configurations with pairs of edge and corner assignments having zero orientation sums modulo two and three, respectively, and equal permutation parities. In group language this is the fiber product of the two orientation-zero wreath-product subgroups over their sign homomorphisms. The two coordinates are otherwise independent. Thus fixing solved corners genuinely leaves the entire even edge sector available, and the parallel composition principle applies once joint-address realization has been established.
+
 ### 3. An opposite-reference adversary
 
 We first give a lower bound for a general edge-color graph. Its vertices are colors, its edges are distinct two-color labels, and an orientation bit specifies which endpoint is displayed at a given local side. The graph is simple, so a label is uniquely specified by its unordered color pair. The hidden state is an arbitrary permutation of all labels with orientation sum zero and a prescribed permutation parity p.
@@ -111,13 +119,24 @@ Read side zero of the first eleven of the twelve original edge positions, leavin
 
 A histogram h is feasible precisely when eleven distinct edge labels can be matched to the eleven color occurrences, each matched label containing that occurrence's color. Once these assignments are made, the eleven orientations are forced, and the orientation of the remaining label can enforce zero total flip. The matching criterion is Hall's theorem: for every color subset T, sum_(c in T) h_c is at most the number of labels incident with T, with sum_c h_c=11.
 
-There are 1,362 feasible histograms. Permuting the three opposite-color pairs and independently exchanging the two colors within each pair gives a group of order 48 on the color graph. The feasible histograms have 52 orbits under this action. These finite counts are verified by prefix enumeration, not estimated by sampling. Select a color automorphism from the actual received colors, and stably sort the eleven positions after relabeling. Keep the blank position fixed. The resulting representative record belongs to one of the 52 frozen roots.
+There are 1,362 feasible histograms among the binomial(16,5)=4,368 nonnegative six-component vectors summing to eleven. Permuting the three opposite-color pairs and independently exchanging the two colors within each pair gives a group of order 48 on the color graph. The orbit count is obtained by testing Hall's inequality for all 64 color subsets, then counting fixed feasible histograms for each group element. The following finite census gives the Burnside sum.
+
+| Fixed feasible histograms | Number of group elements |
+|---:|---:|
+| 0 | 29 |
+| 6 | 6 |
+| 34 | 6 |
+| 46 | 3 |
+| 252 | 3 |
+| 1,362 | 1 |
+
+The sum of fixed-point counts is 2,496; division by 48 gives 52 orbits. These counts are independently reproduced by explicit enumeration of weak compositions and color permutations, not estimated by sampling. The census is distinct from verifying that the actual immutable certificate covers those orbits. Select a color automorphism from the actual received colors, and stably sort the eleven positions after relabeling. Keep the blank position fixed. The resulting representative record belongs to one of the 52 frozen roots.
 
 The normalization is an invertible change of coordinates, not an extra physical action. In particular the original position of every subsequent normalized query is obtained from the recorded row permutation. Let rho be the induced permutation of the twelve edge labels and sigma the chosen permutation of positions (extended by fixing the blank). Then the parity of the normalized word is
 
 p_norm = p_edge + p(rho) + p(sigma) (mod 2).
 
-All correction terms are determined by the first eleven replies. Relabeling the endpoints also has an orientation correction; the actual formal normalization preserves the admissible edge-word condition and restores the original coordinates at decoding. The exact implementations of these transformations and their inverses are part of the verified upper construction; we do not infer them merely from orbit counting.
+All correction terms are determined by the first eleven replies. The orientation constraint is preserved as well. To see this without a state enumeration, provisionally order the three opposite-color classes and orient every label from its earlier class to its later class. A color automorphism permutes the classes and swaps colors within classes. For each inverted pair of classes, all four connecting labels reverse endpoint order; the total number of reversals is therefore even. Changing the provisional endpoint order on label j by a bit delta_j alters the reversal indicator for j under an automorphism rho by delta_j+delta_rho(j) modulo two. Summing over all labels cancels these extra terms. Thus the conclusion holds in any fixed endpoint convention. Row permutations also preserve the sum of orientation bits. The relabeling and stable sorting are bijections of the admissible word space, with the sign correction above. In the formal implementation this corresponds to symmetry_preserves_flipBit_for_all_complete_words and frozen_prefix_normalized_word_has_exact_parity. The actual query and inverse-coordinate adapters are separately verified; orbit counting alone would not establish their correctness.
 
 #### 5.2. Certified continuations
 
@@ -125,7 +144,7 @@ For each representative root, the immutable certificate specifies an adaptive co
 
 The semantic verifier checks every feasible branch against the candidate set determined by its root and previous replies. For each feasible reply the corresponding child must retain exactly the compatible candidates. Each terminal set must contain at most one edge word of either permutation parity. This is a sufficient condition because once the correct parity is known there is exactly one candidate in its fiber. The certificate does not assume that the parity was available when queries were chosen.
 
-For the pinned representative trees, the checked receipt covers all 52 roots, 141,097 tree nodes and 73,962 terminal nodes. These counts describe that representation of the certificate, rather than a count of physical cube states. The soundness implication from checker acceptance to correct terminal-parity decoding is proved separately in Lean; the concrete receipt is evaluated on the immutable data. Section 7 states the computation boundary.
+For the pinned representative trees, the checked receipt covers all 52 roots, 141,097 tree nodes and 73,962 terminal nodes. These counts describe that representation of the certificate, rather than a count of physical cube states. The soundness implication from checker acceptance to correct terminal-parity decoding is proved separately in Lean; the concrete receipt is evaluated on the immutable data. Section 8 states the computation boundary.
 
 #### 5.3. Recovering parity from the other channel
 
@@ -142,7 +161,9 @@ Recover the normalized edge word using the terminal parity, invert its normaliza
 
 #### 5.4. From original addresses to physical probes
 
-For completeness, the physical controller must realize the requested edge and corner addresses simultaneously. The face-turn action on the product of the 24 edge and 24 corner sticker-address sets has 576 possible pairs. The routing table contains a legal turn word taking a fixed reference pair to each target pair, under the formal pullback convention for sticker colors. These 576 words are checked against the geometric turn action.
+For completeness, the physical controller must realize the requested edge and corner addresses simultaneously. The face-turn action on the product of the 24 edge and 24 corner sticker-address sets has 576 possible pairs. Joint transitivity also follows directly from the classical coordinate characterization: map the designated reference edge and corner pieces to their requested positions and choose the two local orientations to carry the designated stickers to the desired sides. Complete both label permutations arbitrarily on the remaining pieces. If their parities differ, exchange two nondesignated pieces in one factor. Independently choose the orientation of one nondesignated edge and one nondesignated corner to cancel the respective orientation sums. These changes leave the two prescribed sticker images intact. The resulting coordinate assignment is reachable by the cube-group characterization. Hence every pair of original addresses can be transported to any fixed pair of probes, with inverse words if required by the pullback convention.
+
+This is a group-theoretic existence argument, not a claim about the length of a routing word. The compiled upper uses an explicit routing table of 576 legal words from a fixed reference pair to every target pair; the table is checked against the geometric turn action.
 
 Inverting the route from the reference pair to a given probe pair, then composing with the route to the desired original-address pair, gives a word for arbitrary fixed probes. Composition with the inverse of the accumulated pose implements the same requested pair after any previously executed turns. The choice uses only the previous pose and the two requested addresses, not the current replies. This proves that one original-address query can be implemented in one physical frame.
 
@@ -163,11 +184,37 @@ When there is no blank, two endpoint patterns with the same histogram differ by 
 
 For F=2, every additional admissible endpoint pattern creates an additional candidate in both parity fibers. A residue-preserving nonempty balanced reversal exists exactly when an even cycle or a pair of edge-disjoint odd cycles can be reversed. For F=1, a nonempty subset of disjoint cycles preserves both invariants precisely when the numbers of reversed even and odd cycles are each even. The stated criterion is therefore equivalent to the absence of such a subset. This proves the proposition.
 
-With one blank, its orientation absorbs the flip change of a cycle, and exchanging its label with a singleton produces an additional kind of ambiguity. The full one-blank criterion is stated and proved in the repository's structural terminal section; it will be incorporated as a separate lemma in the expanded manuscript rather than asserted without its case analysis here.
+**Proposition 5 (one-blank terminal criterion).** Assume there is exactly one blank, carrying reference label e with two distinct endpoint colors. Let h be the number of its endpoints that occur among singleton colors, and let G be the directed graph of the singleton labels. If F>2 the record fails simultaneous per-parity uniqueness. If F=2 it succeeds exactly when h=0 and G has no directed cycle. If F=1 it succeeds in precisely the following cases:
+
+| h | Necessary and sufficient condition |
+|---:|---|
+| 0 | No directed cycle, or exactly one directed cycle of even length |
+| 1 | The singleton edge at the shared color ends at a color not observed by any singleton, and G has no directed cycle |
+| 2 | Never |
+
+*Proof.* For each admissible choice of displayed endpoints and blank label, the blank absorbs the required orientation residue. Thus there is no restriction on that choice arising from the total flip. If F=2, each endpoint pattern supplies one completion of each parity. A shared endpoint gives a different pattern by exchanging the blank with a singleton, and a directed cycle gives one by reversing its edges. Conversely, if h=0, the reference blank label cannot occupy any observed row and is forced to remain blank. Differences between endpoint choices are then balanced edge reversals. Absence of directed cycles excludes every nonempty such reversal. This proves the F=2 criterion.
+
+Suppose F=1. Every observed color labels exactly one row. A compatible reassignment is a permutation of the reference labels on the remaining positions. Decompose this permutation into disjoint cycles. A cycle not involving the blank moves each participating label from its own observed color to its other endpoint, and is exactly a directed color cycle, with the reassignment uniquely determined by that cycle. A nontrivial cycle involving the blank can instead be written as an alternating chain of labels: the reference blank label enters a row whose color it contains; the reference label of that row enters another row whose color is its other endpoint; and so on, until the last displaced label enters the blank. In particular, the chain can start only at a shared endpoint, and a chain of length one is a singleton-blank transposition.
+
+If h=0 there are no such chains; the only alternatives are subsets of the vertex-disjoint directed color cycles. Because the blank absorbs every orientation change, any odd-length directed cycle gives a same-parity alternative, and two even-length cycles together do the same. With no cycle there is one completion; with exactly one even-length cycle there are two of opposite parity.
+
+If h=2 there are already two distinct single swaps of the blank, in addition to the reference, so at least three candidates exist. If h=1 and the first displaced label has its other endpoint among the observed colors, a chain of length two is possible. Its two rows are distinct because the graph has no loops. The reference, the length-one chain and the length-two chain are three distinct assignments. Any directed cycle also gives a third assignment distinct from the reference and the length-one chain. If neither obstruction occurs, the sole nontrivial cycle involving the blank is the length-one chain, and no other permutation cycle is possible. The reference and its single transposition have opposite parities. This proves the table. □
+
+Together, Propositions 4 and 5 classify simultaneous terminal parity separation for every feasible edge record: two or more blanks always fail. The criteria are relative to any compatible reference, and their truth is independent of its choice because they characterize the same parity-fiber property. They do not characterize uniqueness in only one prescribed early-parity sector. A direct enumeration of 353,972 normalized residual cube records with up to six unresolved labels agrees with the predicates in every case; this is a finite cross-check of the mathematical proof, not its basis.
 
 A direct structural replay of all 73,962 frozen leaves found that 67,606 have exactly one repeated-color pair. Such a leaf is not an unsuccessful attempt to distinguish two states: the remaining ambiguity is precisely of a form resolvable by the parity obtained from the other channel. This count concerns certificate leaves, not the distribution of uniformly random cube states. The replay is supplementary evidence for the structural interpretation, not a replacement for the branch-coverage and coordinate-transport checks in Section 5.
 
-### 7. Verification and reproducibility
+### 7. Related work and scope of the contribution
+
+The identification of an unknown initial state of a known finite-state machine is a classical problem. Hennie's 1964 work develops experiments for testing sequential-circuit conformity; Lee and Yannakakis (1994) distinguish state identification from state verification, analyze preset and adaptive distinguishing sequences, and establish polynomial-time existence and construction results for adaptive distinguishing sequences. Our model belongs to this broad identification setting, but the transition system is known, reversible turns are uncharged, and the cost counts only the restricted paired color responses. Consequently general distinguishing-sequence existence or length bounds do not supply the exact nineteen-frame result. We do not claim to introduce adaptive state identification.
+
+A different family of identification invariants arises in permutation groups and graph theory. Bailey and Cameron (2011) compare base size, metric dimension and related separating parameters. A group base determines a group element by its images of chosen points; a metric resolving set uses distances to landmarks. Our sensor reports a color, not an individual sticker identity or graph distance. Many distinct stickers share a color, and a sequence of observations must respect that ambiguity. These invariants motivate the identification question but are not interchangeable with the color-query minimax cost.
+
+The closest engineering comparison inspected here is Swiezy and Knopf's 2017 MIT report. Its two sensors observe edge and corner pieces through programmed rotations; its state-determination module records sticker colors and includes repeated measurements to mitigate unreliable sensing. Its objective is to acquire a state and solve the puzzle with physical hardware. Our objective counts ideal simultaneous frames in a noiseless worst-case model. The engineering precedent does not establish the proposed observation optimum, and our theorem does not establish a practical speed or reliability advantage for their robot.
+
+The cube-group constraints, Hall's matching theorem and matching decompositions are established results. The graph adversary and parity-sensitive termination criteria in this paper use these tools for restricted color observations. The question of priority must be evaluated at the level of exact models and theorem statements, not the use of these ingredients alone. This comparison is limited to inspected sources and does not constitute a comprehensive novelty search.
+
+### 8. Verification and reproducibility
 
 The original complete theorem is compiled at commit 1a720ad9937db08274874b33ea049e473613eae7, successful CI run 45803745408, under Lean 4.34.1. Its declaration is physical_paired_optimum_nineteen in formal/029/PairedCornerClock.lean. Reproduction restores the pinned data, validates the corner schedule and runs lake build as specified in the repository README.
 
@@ -188,7 +235,7 @@ The following map separates the claims and their evidence.
 
 The compiled theorem depends on the standard logical axioms propext, Classical.choice and Quot.sound, together with five finite native evaluations: Eighteen.checked, fifty_two_frozen_roots_semantically_accepted, representative_prefixes_covered_source, joint_routes_checked and pair_actions_match. Independent Python/JavaScript audits, including negative controls, support these computations; they do not change the axiom output of the compiled theorem. The analytic proof in Section 3 is intended to remove the need for the finite lower certificate in a future formal declaration, but that change has not been made. No assertion of native-free verification is made.
 
-### 8. Scope and conclusion
+### 9. Conclusion and limitations
 
 The result is a minimax observation theorem for deterministic noiseless fixed-center identification with free turns. It neither bounds the shortest solution length nor asserts optimal acquisition under sensor noise, mechanical costs or randomized expected cost. The use of two sensor channels is not itself novel; classical matching, symmetry and permutation-parity tools are also established. The contribution to be evaluated against related work is the exact restricted minimax problem, the opposite-reference lower proof and the terminal-parity construction. The present manuscript does not claim an exhaustive priority search.
 
@@ -196,12 +243,16 @@ The equality of the two permutation parities is not merely a constraint used to 
 
 ### References for the current reading draft
 
+- P. Hall (1935), On Representatives of Subsets, Journal of the London Mathematical Society s1-10, 26–30. DOI: 10.1112/jlms/s1-10.37.26.
+- D. Lee and M. Yannakakis (1994), Testing Finite-State Machines: State Identification and Verification, IEEE Transactions on Computers 43(3), 306–320. DOI: 10.1109/12.272431.
+- R. F. Bailey and P. J. Cameron (2011), Base size, metric dimension and other invariants of groups and graphs, Bulletin of the London Mathematical Society 43, 209–242. DOI: 10.1112/blms/bdq096.
+- M. Mereb and L. Vendramin (2024 preprint, version 3), Rubik's as Galois': the inverse Galois problem for the Rubik's Cube group, arXiv:2411.11566v3, Section 2.2.
 - F. C. Hennie (1964), Fault Detecting Experiments for Sequential Circuits, pp. 95–110. DOI: 10.1109/SWCT.1964.8. Background on distinguishing experiments and circuit conformity, not a proof of the cube theorem.
 - A. L. Dulmage and N. S. Mendelsohn (1958), Coverings of Bipartite Graphs, Canadian Journal of Mathematics 10, 517–534. DOI: 10.4153/CJM-1958-052-0. Classical matching decomposition background.
 - J. Swiezy and N. Knopf (2017), Rubik's Cube Solving Robot, MIT 6.111 Fall project report. https://web.mit.edu/6.111/www/f2017/projects/jeswiezy_Project_Final_Report.pdf. Engineering precedent for edge and corner sensing.
 - CUBE-REV formal artifact: https://github.com/WhoSia/CUBE-REV/tree/1a720ad9937db08274874b33ea049e473613eae7/formal/029
 
-*Editorial items still open: incorporate the complete one-blank terminal lemma, add full bibliographic comparison of distinguishing experiments and cube-specific observation work, independently review the new lower proof, and prepare an explicit venue-appropriate disclosure of AI assistance and human author verification. This is a reading draft, not an assertion of submission readiness.*
+*Editorial items still open: further cube-specific priority comparison, independent human review of the mathematical proofs, complete executable reproduction on the chosen submission commit, and a venue-appropriate disclosure of AI assistance and human author verification. The new analytical routing and orientation arguments have not replaced native evaluations in the pinned Lean declaration. This is a reading draft, not an assertion of submission readiness.*
 <!-- END CURRENT READING DRAFT -->
 
 ## 0.30 — Direction audit and analytic fixed-sign lower (2026-11-28)
