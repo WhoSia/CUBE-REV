@@ -404,4 +404,43 @@ function auditSignCertificates(){
  if(out[0].min!==18||out[1].min!==11||out[1].hist[10][1]!==0)throw Error("certificate minima");
  return out;
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditCornerSignMinimax(){
+ const labels=["UFR","URB","ULF","UBL","DRF","DBR","DFL","DLB"],colors="URFDLB";
+ const pos=labels.map(l=>Array.from(colors,c=>l.indexOf(c))),cm=Array.from(colors,(_,c)=>labels.reduce((a,l,i)=>a|(pos[i][c]>=0?1<<i:0),0));
+ const pop=Array.from({length:256},(_,x)=>{let n=0;while(x){x&=x-1;n++}return n});
+ const signCache=new Map(),depthCache=new Map();
+ const key=(rows,mask,r)=>`${rows.join("")}:${mask}:${r}`;
+ const swap=s=>((s&1)<<1)|((s&2)>>1);
+ function signs(rows,mask,r){
+  const k=key(rows,mask,r);if(signCache.has(k))return signCache.get(k);
+  let s=0;
+  if(!rows.length){const b=pop[mask];s=b>=2?3:b===1||r===0?1:0;}
+  else{let j=mask&cm[rows[0]];while(j){const bit=j&-j;j^=bit;const l=31-Math.clz32(bit),child=signs(rows.slice(1),mask^bit,(r-pos[l][rows[0]]+3)%3);s|=pop[mask&(bit-1)]%2?swap(child):child;if(s===3)break;}}
+  signCache.set(k,s);return s;
+ }
+ let calls=0;
+ function depth(rows,mask,r){
+  const k=key(rows,mask,r);if(depthCache.has(k))return depthCache.get(k);
+  const s=signs(rows,mask,r);if(s!==3)return 0;
+  calls++;
+  let best=Infinity; const blanks=pop[mask]-rows.length;
+  if(blanks){for(let j=0;j<3;j++){let worst=0;for(let c=0;c<6;c++){const next=[...rows,c].sort((a,b)=>a-b),nr=(r+j)%3;if(signs(next,mask,nr))worst=Math.max(worst,depth(next,mask,nr));if(worst+1>=best)break;}best=Math.min(best,worst+1);}}
+  for(let i=0;i<rows.length;i++){
+   if(i&&rows[i]===rows[i-1])continue;
+   let j=mask&cm[rows[i]],worst=0;const rest=rows.slice(0,i).concat(rows.slice(i+1));
+   while(j){const bit=j&-j;j^=bit;const l=31-Math.clz32(bit),nr=(r-pos[l][rows[i]]+3)%3;if(signs(rest,mask^bit,nr))worst=Math.max(worst,depth(rest,mask^bit,nr));if(worst+1>=best)break;}
+   best=Math.min(best,worst+1);
+  }
+  if(!Number.isFinite(best))throw Error("no distinguishing action");depthCache.set(k,best);return best;
+ }
+ const result=depth([],255,0);
+ const rootChoices=Array.from({length:3},(_,j)=>({side:j,cost:1+Math.max(...Array.from({length:6},(_,c)=>depth([c],255,j)))}));
+ const scanMemo=new Map();
+ function scan(rows,mask){const k=key(rows,mask,0);if(scanMemo.has(k))return scanMemo.get(k);if(signs(rows,mask,0)!==3)return 0;
+  let best=Infinity;for(let i=0;i<rows.length;i++){if(i&&rows[i]===rows[i-1])continue;const rest=rows.slice(0,i).concat(rows.slice(i+1));let j=mask&cm[rows[i]],worst=0;while(j){const bit=j&-j;j^=bit;if(signs(rest,mask^bit,0))worst=Math.max(worst,scan(rest,mask^bit));}best=Math.min(best,1+worst);}scanMemo.set(k,best);return best;
+ }
+ let hist={},roots=0;function prefix(rows,min){if(rows.length===7){if(signs(rows,255,0)){let d=scan(rows,255);hist[d]=(hist[d]||0)+1;roots++;}return;}for(let c=min;c<6;c++)prefix([...rows,c],c);}prefix([],0);
+ if(result!==13||rootChoices.some(x=>x.cost!==13)||roots!==642||hist[6]!==462)throw Error("sign minimax regression");
+ return {result,rootChoices,calls,signCache:signCache.size,depthCache:depthCache.size,sevenPrefix:{roots,hist},scanCache:scanMemo.size};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
