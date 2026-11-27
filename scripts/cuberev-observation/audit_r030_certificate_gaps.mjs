@@ -263,4 +263,20 @@ function auditParityPolytope(){
  if(h.evenOnly!==222||h.oddOnly!==216||h.both!==645||result.unrestricted.failures!==0||!result.even.failures||!result.odd.failures)throw Error("parity/exchange regression");
  return result
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditParityHoles(){
+ const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",p=Array.from({length:6},(_,i)=>5**i),vec=x=>p.map(q=>Math.floor(x/q)%5),enc=a=>a.reduce((s,x,i)=>s+x*p[i],0),fibers=new Map();
+ for(let m=0;m<4096;m++){let x=0,b=0;for(let i=0;i<12;i++){let f=m>>i&1;x+=p[colors.indexOf(labels[i][f])];b^=f}let h=fibers.get(x)||[0,0];h[b]++;fibers.set(x,h)}
+ const results=[];
+ for(let b=0;b<2;b++){
+   const keys=[...fibers].filter(([x,c])=>c[b]).map(([x])=>x),set=new Set(keys),rows=keys.map(x=>[x,vec(x)]),holes=new Set();let witness=null;
+   for(let i=0;i<rows.length;i++)for(let j=i+1;j<rows.length;j++){const [x,a]=rows[i],[y,z]=rows[j];if(!a.every((v,k)=>(v+z[k])%2===0))continue;const m=(x+y)/2;if(!set.has(m)){if(!fibers.has(m))throw Error("unrestricted convex hole");holes.add(m);if(!witness)witness={a,c:z,midpoint:vec(m),counts:[fibers.get(x),fibers.get(y),fibers.get(m)]}}}
+   results.push({parity:b,midpointHoles:holes.size,witness});
+ }
+ // Rank inequalities cannot distinguish the legal even support from full zonotope
+ // if all rank maxima coincide (checked, not assumed).
+ const max=(set,mask)=>Math.max(...set.map(x=>vec(x).reduce((s,n,i)=>s+((mask>>i&1)?n:0),0)));
+ const all=[...fibers.keys()],rankGaps=[];
+ for(let b=0;b<2;b++){const sector=all.filter(x=>fibers.get(x)[b]);let gaps=[];for(let m=0;m<64;m++){const a=max(all,m),v=max(sector,m);if(a!==v)gaps.push({mask:m,unrestricted:a,sector:v})}rankGaps.push(gaps)}
+ return {results,rankGaps};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
