@@ -544,4 +544,37 @@ function auditChargedCycleCertificates(){
  if(out[0].checked!==14891||out[1].checked!==5873||out[0].cyclesUsed[1]!==782||out[1].cyclesUsed[2]!==312)throw Error("charged cycle regression");
  return out;
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditGraphSignCertificateFormula(){
+ let graphs=0,patterns=0,certificates=0,examples={};
+ for(let v=2;v<=5;v++){
+  const possible=[];for(let u=0;u<v;u++)for(let w=u+1;w<v;w++)possible.push([u,w]);
+  for(let mask=1;mask<1<<possible.length;mask++){
+   const E=possible.filter((_,i)=>mask>>i&1),n=E.length;
+   const adj=Array.from({length:v},()=>[]);E.forEach(([u,w])=>{adj[u].push(w);adj[w].push(u)});
+   const active=adj.filter(a=>a.length).length,side=Array(v).fill(-1);let bip=0;
+   for(let u=0;u<v;u++)if(adj[u].length&&side[u]<0){let ok=true,q=[u];side[u]=0;for(let i=0;i<q.length;i++)for(const w of adj[q[i]]){if(side[w]<0){side[w]=side[q[i]]^1;q.push(w)}else if(side[w]===side[q[i]])ok=false;}if(ok)bip++;}
+   const expected=2*n-active+Math.max(0,bip-1);let min=2*n;
+   for(let blank=-1;blank<n;blank++){
+    const used=new Set(blank<0?[]:E[blank]),singles=[];
+    function inspect(){
+     patterns++;
+     const rows=[...singles.map(x=>x[0]),...(blank<0?[]:[blank])].sort((a,b)=>a-b),req=new Map(singles),k=rows.length;
+     function odd(i,mask,p,r){if(i===k)return p===1&&r===0;for(let j=0;j<k;j++)if(!(mask>>j&1)){let q=0;for(let l=j+1;l<k;l++)q^=mask>>l&1;for(let t=0;t<2;t++)if(!req.has(rows[i])||E[rows[j]][(req.get(rows[i])+t)%2]===E[rows[i]][req.get(rows[i])])if(odd(i+1,mask|1<<j,p^q,r^t))return true;}return false}
+     const next=Array(v).fill(-1);
+     for(const [i,s] of singles)next[E[i][s]]=E[i][s^1];
+     let evenCycle=false;
+     for(let u=0;u<v;u++){let seen=new Map(),w=u,t=0;while(w>=0&&next[w]>=0&&!seen.has(w)){seen.set(w,t++);w=next[w]}if(seen.has(w)&&(t-seen.get(w))%2===0)evenCycle=true;}
+     const ambiguous=odd(0,0,0,0);
+     if(ambiguous!==evenCycle)throw Error(JSON.stringify({E,blank,singles,ambiguous,evenCycle}));
+     if(!ambiguous){certificates++;min=Math.min(min,2*n-singles.length-(blank<0?0:2));}
+    }
+    function gen(i){if(i===n){inspect();return}if(i===blank){gen(i+1);return}gen(i+1);for(let s=0;s<2;s++){const c=E[i][s];if(used.has(c))continue;used.add(c);singles.push([i,s]);gen(i+1);singles.pop();used.delete(c)}}gen(0);
+   }
+   if(min!==expected)throw Error(JSON.stringify({E,expected,min,bip,active}));
+   graphs++;examples[bip]??={E,n,active,bip,min};
+  }
+ }
+ if(graphs!==1094||patterns!==312453||certificates!==306669)throw Error("graph census");
+ return {graphs,patterns,certificates,examples};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
