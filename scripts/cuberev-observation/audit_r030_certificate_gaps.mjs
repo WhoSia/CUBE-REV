@@ -279,4 +279,13 @@ function auditParityHoles(){
  for(let b=0;b<2;b++){const sector=all.filter(x=>fibers.get(x)[b]);let gaps=[];for(let m=0;m<64;m++){const a=max(all,m),v=max(sector,m);if(a!==v)gaps.push({mask:m,unrestricted:a,sector:v})}rankGaps.push(gaps)}
  return {results,rankGaps};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditRankBlindness(){
+ const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",p=Array.from({length:6},(_,i)=>5**i),vec=x=>p.map(q=>Math.floor(x/q)%5);
+ let vertices=[0,0],best=null;
+ for(let m=0;m<4096;m++){let x=0,b=0;const adj=Array.from({length:6},()=>[]),deg=Array(6).fill(0);for(let i=0;i<12;i++){const f=m>>i&1,u=colors.indexOf(labels[i][f]),v=colors.indexOf(labels[i][1-f]);x+=p[u];b^=f;adj[v].push(u);deg[u]++}const queue=deg.flatMap((d,i)=>d===0?[i]:[]),order=[];for(let i=0;i<queue.length;i++){let v=queue[i];order.push(v);for(const u of adj[v])if(--deg[u]===0)queue.push(u)}
+ if(order.length!==6)continue;vertices[b]++;if(b===1&&!best){const w=Array(6);order.forEach((v,i)=>w[v]=i);best={histogram:vec(x),weights:w,orientationMask:m,score:vec(x).reduce((s,v,i)=>s+v*w[i],0)}}}
+ const scores=[-1,-1];for(let m=0;m<4096;m++){let x=0,b=0;for(let i=0;i<12;i++){const f=m>>i&1;x+=p[colors.indexOf(labels[i][f])];b^=f}scores[b]=Math.max(scores[b],vec(x).reduce((s,v,i)=>s+v*best.weights[i],0))}
+ if(scores[1]!==best.score||scores[0]>=scores[1])throw Error("weighted objective not separated");
+ return {vertices,weightedWitness:best,sectorMaxima:scores}
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
