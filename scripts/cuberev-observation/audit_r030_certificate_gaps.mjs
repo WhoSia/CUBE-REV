@@ -906,7 +906,7 @@ function auditEdgeCoordinateTransport(states,syms,E,roots){
  if(feasible!==1362||seenRoots.size!==52||seenHist.size!==1362||runs!==13362||!nonzeroBlank||!signs.every(Boolean))throw Error("transport coverage");
  return {runs,feasibleHistograms:feasible,representatives:seenRoots.size,visitedDagStates:seenStates.size,transitions,blankReads,nonzeroBlank,sideOneSingletons,mutantRejected,signs,readHistogram:hist};
 }
-function buildStructuralEdgePolicy(checkTransport=false){
+function buildStructuralEdgePolicy(checkTransport=false,checkExpected=false){
  const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",E=labels.map(l=>[...l].map(c=>colors.indexOf(c))),N=4096,all=N-1,pop=Array.from({length:N},(_,m)=>m.toString(2).replace(/0/g,"").length),cm=Array.from({length:6},(_,c)=>E.reduce((a,l,i)=>a|(l.includes(c)?1<<i:0),0));
  const groups=[[0,3],[1,4],[2,5]],syms=[];for(let i=0;i<3;i++)for(let j=0;j<3;j++)if(i!==j)for(let f=0;f<8;f++){let p=[];for(let k=0;k<3;k++)for(let t=0;t<2;t++)p[groups[k][t]]=groups[[i,j,3-i-j][k]][t^(f>>k&1)];syms.push(p)}
  function terminal(edges,blank){
@@ -976,8 +976,75 @@ function buildStructuralEdgePolicy(checkTransport=false){
  function checkRoots(a,c){if(a.length===11){let feasible=counts(a,all,0).some(Boolean);if(feasible!==Boolean(classify(a,all,0)))throw Error("root feasibility");if(feasible){rootMass++;let b=syms.map(p=>[...a].map(x=>p[+x]).sort().join("")).sort()[0];if(!roots.has(b))throw Error("root coverage");}return}for(let j=c;j<6;j++)checkRoots(a+j,j)}checkRoots("",0);
  const rootKey=key([...roots][0],all,0)+":8",saved=states.get(rootKey);states.set(rootKey,"leaf");let rejected=false;try{verify()}catch{rejected=true}states.set(rootKey,saved);
  if(!rejected||rootMass!==1362||checkedArcs!==arcs||checkedLeaves!==leaves)throw Error("verification regression");
+
+ // Optional exact uniform-state expectation under the fixed eleven-first,
+ // at-most-eight continuation grammar. No sampling or floating probabilities.
+ const expectedCost=checkExpected?(()=>{
+  const M=new Map(),V=new Map(),B=new Map(),chosen=new Map();
+  function mass(a,m,r){
+   r=norm(a,m,r);const k=key(a,m,r);if(M.has(k))return M.get(k);let z=0;
+   if(!a.length)z=pop[m]===1||!m&&!r?1:0;
+   else{const c=+a[0];for(let q=m&cm[c];q;){const bit=q&-q;q^=bit;z+=mass(a.slice(1),m^bit,r^E[31-Math.clz32(bit)].indexOf(c))}}
+   M.set(k,z);return z;
+  }
+  function dist(a,m,r,d,opt){
+   r=norm(a,m,r);const k=key(a,m,r)+":"+d,cache=opt?V:B;
+   if(cache.has(k))return cache.get(k);const z=mass(a,m,r),s=classify(a,m,r);
+   if(!z||!s)throw Error("mass feasibility");
+   if(s===2){if(z>2||counts(a,m,r).some(x=>x>1))throw Error("terminal sign mass");const out=[z];cache.set(k,out);if(opt)chosen.set(k,"leaf");return out}
+   if(!d)throw Error("budget");
+   let best=null,bestCost=Infinity,bestQ=null;
+   for(const act of actions(a,m,r)){
+    if(opt?!act.ch.every(([,b,mm,rr])=>win(b,mm,rr,d-1)):act.q!==memo.get(k))continue;
+    const out=Array(d+1).fill(0);
+    for(const [,b,mm,rr] of act.ch){const ch=dist(b,mm,rr,d-1,opt);for(let i=0;i<ch.length;i++)out[i+1]+=ch[i]}
+    if(out.reduce((a,b)=>a+b,0)!==z)throw Error("branch mass");
+    const cost=out.reduce((s,n,i)=>s+n*i,0);
+    if(cost<bestCost){best=out;bestCost=cost;bestQ=act.q}
+   }
+   if(!best)throw Error("missing policy");
+   cache.set(k,best);if(opt)chosen.set(k,bestQ);return best;
+  }
+  const fact=n=>n<2?1:n*fact(n-1);
+  const base=Array(20).fill(0),optimal=Array(20).fill(0);
+  let rootMassExact=0,representativeMass=0,improvedRoots=0;
+  for(const a of roots){
+   const h=Array(6).fill(0);for(const c of a)h[+c]++;
+   const orbit=new Set(syms.map(p=>[...a].map(c=>p[+c]).sort().join(""))).size;
+   const w=orbit*fact(11)/h.reduce((s,n)=>s*fact(n),1);
+   const b=dist(a,all,0,8,false),v=dist(a,all,0,8,true),z=mass(a,all,0);
+   if(b.reduce((s,n,i)=>s+n*i,0)>v.reduce((s,n,i)=>s+n*i,0))improvedRoots++;
+   rootMassExact+=w*z;representativeMass+=z;
+   for(let i=0;i<b.length;i++)base[11+i]+=w*b[i];
+   for(let i=0;i<v.length;i++)optimal[11+i]+=w*v[i];
+  }
+  const total=fact(12)*2048;
+  if(rootMassExact!==total||representativeMass!==144736||base.reduce((a,b)=>a+b,0)!==total||optimal.reduce((a,b)=>a+b,0)!==total)throw Error("weighted mass");
+  // Replay the selected policy using the independent capped sign counter
+  // to generate all feasible replies, not the structural search predicate.
+  const replay=new Map();let replayArcs=0;
+  function visit(a,m,r,d){
+   r=norm(a,m,r);const k=key(a,m,r)+":"+d;if(replay.has(k))return replay.get(k);
+   const q=chosen.get(k),z=mass(a,m,r),s=counts(a,m,r);let out;
+   if(!z||!s.some(Boolean)||q===undefined)throw Error("optimized replay state");
+   if(q==="leaf"){if(s.some(x=>x>1))throw Error("optimized replay leaf");out=[z]}
+   else{
+    if(!d)throw Error("optimized replay budget");const ch=[];
+    if(q[0]==="b"){if(pop[m]!==a.length+1||!["b0","b1"].includes(q))throw Error("blank");for(let c=0;c<6;c++){let aa=[...a,String(c)].sort().join(""),rr=r^+q[1];if(counts(aa,m,rr).some(Boolean))ch.push([aa,m,rr])}}
+    else if(q[0]==="s"){const c=+q[1],i=a.indexOf(String(c));if(i<0)throw Error("singleton");const aa=a.slice(0,i)+a.slice(i+1);for(let l=0;l<12;l++)if((m>>l&1)&&E[l].includes(c)){let mm=m^(1<<l),rr=r^E[l].indexOf(c);if(counts(aa,mm,rr).some(Boolean))ch.push([aa,mm,rr])}}
+    else throw Error("action");
+    out=Array(d+1).fill(0);for(const [aa,mm,rr] of ch){replayArcs++;const v=visit(aa,mm,rr,d-1);for(let i=0;i<v.length;i++)out[i+1]+=v[i]}
+   }
+   if(out.reduce((a,b)=>a+b,0)!==z||out.join(",")!==V.get(k).join(","))throw Error("optimized replay mass");
+   replay.set(k,out);return out;
+  }
+  for(const a of roots)visit(a,all,0,8);
+  const summarize=h=>({hist:Object.fromEntries(h.map((n,i)=>[i,n]).filter(x=>x[1])),totalCost:h.reduce((s,n,i)=>s+n*i,0),mean:h.reduce((s,n,i)=>s+n*i,0)/total});
+  return {total,representativeMass,improvedRoots,baseline:summarize(base),optimal:summarize(optimal),massStates:M.size,baselineStates:B.size,optimalStates:V.size,replayStates:replay.size,replayArcs};
+ })():null;
+
  const transport=checkTransport?auditEdgeCoordinateTransport(states,syms,E,roots):null;
- return {roots:roots.size,rootMass,searchCalls,status:status.size,dagNodes:states.size,arcs,leaves,hist,treeNodes,checkedArcs,checkedLeaves,negativeControl:rejected,countStates:C.size,decisionTableChars:JSON.stringify([...states]).length,transport};
+ return {roots:roots.size,rootMass,searchCalls,status:status.size,dagNodes:states.size,arcs,leaves,hist,treeNodes,checkedArcs,checkedLeaves,negativeControl:rejected,countStates:C.size,decisionTableChars:JSON.stringify([...states]).length,transport,expectedCost};
 }
 function auditOppositeSignCoverWitness(){
  const E0=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"].map(l=>[...l].map(c=>"URFDLB".indexOf(c)));
@@ -1039,6 +1106,7 @@ else if (process.argv.includes('--corner-hall')) console.log(JSON.stringify(audi
 else if (process.argv.includes('--edge-terminal-structure')) console.log(JSON.stringify(auditEdgeTerminalStructure(), null, 2));
 else if (process.argv.includes('--pinned-structural-terminals')) console.log(JSON.stringify(auditPinnedStructuralTerminals(loadPinnedCertificate()), null, 2));
 else if (process.argv.includes('--structural-edge-policy')) console.log(JSON.stringify(buildStructuralEdgePolicy(), null, 2));
+else if (process.argv.includes('--edge-expected-cost')) console.log(JSON.stringify(buildStructuralEdgePolicy(false,true), null, 2));
 else if (process.argv.includes('--edge-coordinate-transport')) console.log(JSON.stringify(buildStructuralEdgePolicy(true), null, 2));
 else if (process.argv.includes('--opposite-sign-cover')) console.log(JSON.stringify(auditOppositeSignCoverWitness(), null, 2));
 else if (process.argv.includes('--representative-mass')) console.log(JSON.stringify(auditRepresentativeMass(), null, 2));
