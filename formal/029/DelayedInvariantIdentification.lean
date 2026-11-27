@@ -410,4 +410,43 @@ theorem delayed_wins_local_certificate (observe : S → Q → R) (label : S → 
 #print axioms referenceTrace_separates
 #print axioms delayed_wins_local_certificate
 
+
+/-- If each query has an exclusive same-label witness against the constant
+reply branch, that one branch must contain every query. The reference
+state may differ between witnesses; no global reference state is needed. -/
+theorem constantTrace_covers_exclusive_witnesses
+    (observe : S → Q → R) (label : S → K) (belief : S → Prop)
+    (r : R) (tree : Policy Q R (K → Option S))
+    (correct : ∀ s, belief s → (tree.run observe s) (label s) = some s)
+    (witness : ∀ q : Q, ∃ s t : S, belief s ∧ belief t ∧
+      label s = label t ∧ s ≠ t ∧ (∀ a, observe s a = r) ∧
+      (∀ a, observe t a ≠ r → a = q)) :
+    ∀ q : Q, q ∈ constantTrace r tree := by
+  intro q
+  obtain ⟨s, t, hs, ht, hk, hne, base, exclusive⟩ := witness q
+  obtain ⟨a, ha, diff⟩ :=
+    constantTrace_separates observe label belief r tree correct s t hs ht hk hne base
+  have eq : a = q := exclusive a diff
+  simpa only [eq] using ha
+
+/-- The all-constant branch reduces the lower bound to a covering-list
+cardinality statement. This separates the adversary argument from the
+finite-domain representation and applies also to heterogeneous fibers. -/
+theorem delayed_budget_of_exclusive_witnesses
+    (observe : S → Q → R) (label : S → K) (belief : S → Prop)
+    (r : R) (n m : Nat) (win : DelayedWins observe label n belief)
+    (witness : ∀ q : Q, ∃ s t : S, belief s ∧ belief t ∧
+      label s = label t ∧ s ≠ t ∧ (∀ a, observe s a = r) ∧
+      (∀ a, observe t a ≠ r → a = q))
+    (coverBound : ∀ qs : List Q, (∀ q : Q, q ∈ qs) → m ≤ qs.length) :
+    m ≤ n := by
+  obtain ⟨tree, fit, correct⟩ := (delayed_wins_iff_policy observe label n belief).mp win
+  exact Nat.le_trans
+    (coverBound (constantTrace r tree)
+      (constantTrace_covers_exclusive_witnesses observe label belief r tree correct witness))
+    (constantTrace_length_le r fit)
+
+#print axioms constantTrace_covers_exclusive_witnesses
+#print axioms delayed_budget_of_exclusive_witnesses
+
 end CubeRev030
