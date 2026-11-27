@@ -109,4 +109,48 @@ function auditStructure() {
   if(x.slice(0,3).some(Boolean)||x[3]!==1)throw Error("interaction mutation missed");
   return {subsets,targetChecks,results,interactionControl:x};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure()}, null, 2));
+function auditParityCycles(){
+  const assert=(x,msg)=>{if(!x)throw Error(msg)};
+  function permutations(n){let out=[];function go(a,mask){if(a.length===n){let p=0;for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)p^=+(a[i]>a[j]);out.push({a,p});return;}for(let j=0;j<n;j++)if(!(mask>>j&1))go([...a,j],mask|1<<j);}go([],0);return out;}
+  function cycles(rows,reference){
+    const n=rows.length,adj=rows.map((row,i)=>reference.map((j,k)=>i!==k&&!!(row>>j&1)));
+    const found=[];for(let start=0;start<n;start++){
+      function visit(path,mask){const v=path[path.length-1];if(path.length>=2&&adj[v][start])found.push({len:path.length,mask});for(let w=start+1;w<n;w++)if(adj[v][w]&&!(mask>>w&1))visit([...path,w],mask|1<<w);}
+      visit([start],1<<start);
+    }
+    const even=found.filter(c=>!(c.len&1)),odd=found.some(c=>c.len&1);
+    const bothUnique=!odd&&even.length<=1;
+    const refUnique=!odd&&!even.some((a,i)=>even.slice(i+1).some(b=>!(a.mask&b.mask)));
+    // Independent SCC criterion, using transitive closure on small test graphs.
+    const reach=adj.map((r,i)=>r.map((v,j)=>v||i===j));
+    for(let k=0;k<n;k++)for(let i=0;i<n;i++)for(let j=0;j<n;j++)reach[i][j]||=reach[i][k]&&reach[k][j];
+    const components=[];let seen=0;for(let i=0;i<n;i++)if(!(seen>>i&1)){const c=Array.from({length:n},(_,j)=>j).filter(j=>reach[i][j]&&reach[j][i]);for(const j of c)seen|=1<<j;if(c.length>1)components.push(c);}
+    const sccUnique=components.length===0||(components.length===1&&components[0].length%2===0&&components[0].every(i=>components[0].filter(j=>adj[i][j]).length===1));
+    assert(sccUnique===bothUnique,"SCC mismatch");
+    return {bothUnique,refUnique};
+  }
+  function check(rows,perms){
+    const matches=perms.filter(p=>p.a.every((j,i)=>rows[i]>>j&1));
+    const counts=[0,0];for(const p of matches)counts[p.p]++;
+    if(!matches.length)return "empty";
+    const r=matches[0],pred=cycles(rows,r.a);
+    assert(pred.bothUnique===(counts[0]<=1&&counts[1]<=1),"two-sector mismatch");
+    assert(pred.refUnique===(counts[r.p]===1),"reference sector mismatch");
+    return `${counts[0]},${counts[1]}`;
+  }
+  let graphs=0,graphHist={};for(let n=1;n<=4;n++){
+    const perms=permutations(n),arcs=[];for(let i=0;i<n;i++)for(let j=0;j<n;j++)if(i!==j)arcs.push([i,j]);
+    for(let mask=0;mask<2**arcs.length;mask++){const rows=Array.from({length:n},(_,i)=>1<<i);arcs.forEach(([i,j],k)=>{if(mask>>k&1)rows[i]|=1<<j;});const key=check(rows,perms);graphHist[key]=(graphHist[key]||0)+1;graphs++;}
+  }
+  const edges=[];for(let i=0;i<6;i++)for(let j=i+1;j<6;j++)if((i>>1)!==(j>>1))edges.push([i,j]);
+  const perms=permutations(4);let residuals=0,empty=0,signedUnique=0,matchCounts={};
+  for(let a=0;a<12;a++)for(let b=a+1;b<12;b++)for(let c=b+1;c<12;c++)for(let d=c+1;d<12;d++){
+    const es=[edges[a],edges[b],edges[c],edges[d]],masks=Array.from({length:6},(_,v)=>es.reduce((acc,e,j)=>acc|(e.includes(v)?1<<j:0),0));
+    for(let u=0;u<6;u++)for(let v=0;v<6;v++)for(let w=0;w<6;w++){
+      const key=check([masks[u],masks[v],masks[w],15],perms);residuals++;if(key==="empty")empty++;else{const [x,y]=key.split(",").map(Number);if(x<=1&&y<=1)signedUnique++;const total=x+y;matchCounts[total]=(matchCounts[total]||0)+1;}
+    }
+  }
+  assert(graphs===4165&&residuals===106920&&empty===61794&&signedUnique===34344,"domain mismatch");
+  return {graphs,graphHist,residuals,empty,feasible:residuals-empty,signedUnique,matchCounts};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles()}, null, 2));
