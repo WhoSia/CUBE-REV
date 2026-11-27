@@ -46,6 +46,8 @@ jobs:
           python3 scripts/cuberev-observation/audit_r029_w_joint_routes.py
           python3 scripts/cuberev-observation/audit_r029_w_negative_controls.py
           python3 scripts/cuberev-observation/audit_r029_pair_action_tables.py
+      - name: Replay frozen upper-policy leaf counts independently in Node
+        run: node scripts/cuberev-observation/audit_r030_certificate_gaps.mjs
       - name: Independently audit executable corner transcript decoder
         run: python3 scripts/cuberev-observation/audit_r029_corner_transcript_decoder.py
       - name: Audit reachable corner coordinates against turn geometry
