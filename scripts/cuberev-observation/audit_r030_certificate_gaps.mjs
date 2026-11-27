@@ -153,4 +153,40 @@ function auditParityCycles(){
   assert(graphs===4165&&residuals===106920&&empty===61794&&signedUnique===34344,"domain mismatch");
   return {graphs,graphHist,residuals,empty,feasible:residuals-empty,signedUnique,matchCounts};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles()}, null, 2));
+function countSignedCompletions(records, labels){
+  const n=labels.length;
+  const allowed=records.map(([a,b])=>labels.map(([u,v])=>[+( (!a||a===u)&&(!b||b===v) ),+( (!a||a===v)&&(!b||b===u) )]));
+  const pop=x=>{let n=0;while(x){x&=x-1;n++}return n};
+  const memo=new Map();
+  function dp(mask){
+    const i=pop(mask);if(i===n)return [1,0,0,0];if(memo.has(mask))return memo.get(mask);
+    const out=[0,0,0,0];
+    for(let j=0;j<n;j++)if(!(mask>>j&1)){
+      const opts=allowed[i][j];if(!opts[0]&&!opts[1])continue;
+      const sign=pop(mask>>(j+1))%2;
+      const child=dp(mask|1<<j);
+      for(let b=0;b<2;b++)if(opts[b])for(let k=0;k<4;k++)out[k^(2*sign+b)]+=child[k];
+    }memo.set(mask,out);return out;
+  }
+  return dp(0);
+}
+function auditOrientedCharacters(){
+  const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB";
+  const assert=(x,m)=>{if(!x)throw Error(m)};
+  // Independently enumerate permutations and orientations, then compare all four Fourier sectors.
+  let cases=0;
+  for(let a=0;a<12;a++)for(let b=a+1;b<12;b++)for(let c=b+1;c<12;c++){
+    const es=[labels[a],labels[b],labels[c]];
+    for(const u of colors)for(const v of colors)for(const mode of [0,1,2]){
+      const rec=[[u,null],[null,v],mode===0?[null,null]:mode===1?[u,null]:[u,v]];
+      const brute=[0,0,0,0];function go(i,used,sign,flip){if(i===3){brute[2*sign+flip]++;return;}for(let j=0;j<3;j++)if(!used.includes(j))for(let o=0;o<2;o++){const e=o?es[j][1]+es[j][0]:es[j];if(rec[i].every((x,k)=>!x||x===e[k]))go(i+1,[...used,j],sign^(used.filter(x=>x>j).length%2),flip^o);}}
+      go(0,[],0,0);
+      const got=countSignedCompletions(rec,es);
+      assert(got.every((x,i)=>x===brute[i]),"oriented mismatch");cases++;
+    }
+  }
+  const all=countSignedCompletions(Array.from({length:12},()=>[null,null]),labels);
+  assert(all.every(x=>x===490497638400),"full edge count");
+  return {cases,fullSectors:all};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters()}, null, 2));
