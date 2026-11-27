@@ -25,6 +25,14 @@ This is a computer-assisted exact theorem with disclosed evaluation dependencies
 
 The 0.30 general theory is a research program, not yet a claimed general optimality theorem.
 
+### Structural bounds and separating examples
+
+The terminal-label model distinguishes four costs: maximum state-specific separating certificate, early-label adaptive depth, delayed-label adaptive depth, and fixed separating query-set size. In that order the costs are nondecreasing (unit-cost deterministic static queries).
+
+The abstract [Lean module](formal/029/DelayedInvariantIdentification.lean) now contains candidate realized-path certificate and exclusive-witness lower-bound lemmas. Exact compiler acceptance for these new statements is pending; the previously accepted Bellman and timing-composition baseline is unchanged.
+
+Run `node scripts/cuberev-observation/audit_r030_certificate_gaps.mjs` for the exhaustive 4-state/2-binary-query/2-label census and three extremal family checks. One-hot identification gives (1, n-1, n-1, n-1); block indexing gives (d, d, kd, kd); binary-tree routing gives (d, d, d, 2^d-1). These are abstract examples with unrestricted finite observation tables, not additional physical cube results or a novelty claim.
+
 ## Reproduce
 
 Use Lean 4.34.1 (pinned by the package) and Python 3:
