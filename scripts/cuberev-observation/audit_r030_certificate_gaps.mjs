@@ -334,4 +334,39 @@ function auditGraphParityClassification(){
  }
  return {graphCount,sectorCount,tally,examples};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditBoundedExchange(){
+  const colors="URFDLB",pow=Array.from({length:6},(_,i)=>5**i),vec=x=>pow.map(p=>Math.floor(x/p)%5);
+  const families=[{name:"edge",pieces:["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],mod:2},{name:"corner",pieces:["UFR","URB","ULF","UBL","DRF","DBR","DFL","DLB"],mod:3}];
+  const results=[];
+  for(const {name,pieces,mod} of families){
+    const counts=new Map();
+    function gen(i,key,charge){if(i===pieces.length){let a=counts.get(key)||Array(mod).fill(0);a[charge]++;counts.set(key,a);return;}
+      for(let j=0;j<mod;j++)gen(i+1,key+pow[colors.indexOf(pieces[i][j])],(charge+j)%mod);}
+    gen(0,0,0);
+    const sectors=[];
+    for(let b=0;b<mod;b++){
+      const keys=[...counts].filter(([,a])=>a[b]).map(([k])=>k),set=new Set(keys),rows=keys.map(k=>({k,v:vec(k)})),steps=Array(mod+1).fill(0),witnesses={};
+      let obligations=0;
+      for(const {k:x,v:a} of rows)for(const {k:y,v:c} of rows){
+        if(x===y)continue;
+        let plus=[],minus=[],delta=a.map((v,i)=>v-c[i]);for(let i=0;i<6;i++){if(delta[i]>0)plus.push(i);if(delta[i]<0)minus.push(i)}
+        for(const i of plus){
+          obligations++;
+          function rec(depth,limit,d,initial){
+            if(depth>0&&set.has(x+d)&&set.has(y-d))return d;
+            if(depth===limit)return null;
+            for(const u of initial?[i]:plus)if(delta[u]>0)for(const v of minus)if(delta[v]<0){
+              delta[u]--;delta[v]++;const ans=rec(depth+1,limit,d-pow[u]+pow[v],false);delta[u]++;delta[v]--;if(ans!==null)return ans;
+            }return null;
+          }
+          let found=false;
+          for(let lim=1;lim<=mod;lim++){const d=rec(0,lim,0,true);if(d!==null){steps[lim]++;witnesses[lim]??={x:a,y:c,excess:colors[i],xNext:vec(x+d),yNext:vec(y-d)};found=true;break}}
+          if(!found)throw Error(`bounded exchange failed ${name} ${b} ${x} ${y} ${i}`);
+        }
+      }sectors.push({parity:b,support:keys.length,obligations,minTransfers:steps.slice(1),witnesses});
+    }let hist={};for(const a of counts.values()){const k=a.map(n=>+(n>0)).join("");hist[k]=(hist[k]||0)+1}
+    results.push({name,unrestricted:counts.size,sectorSupport:hist,sectors});
+  }
+  return results;
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
