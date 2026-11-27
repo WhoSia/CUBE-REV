@@ -644,4 +644,32 @@ function auditGraphAdaptiveObjectives(){
  if(graphs!==71||gaps[0]!==71||cube.depths.join(",")!=="20,20,19")throw Error("adaptive census");
  return {graphs,gaps,controls,cube};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditK5Orbit(){
+ const v=5,E=[];for(let i=0;i<v;i++)for(let j=i+1;j<v;j++)E.push([i,j]);const n=E.length,N=1<<n,all=N-1;
+ const pop=Array.from({length:N},(_,x)=>{let p=0;while(x){x&=x-1;p++}return p});
+ const cm=Array.from({length:v},(_,c)=>E.reduce((a,e,i)=>a|(e.includes(c)?1<<i:0),0)),pairs=new Map(E.map((e,i)=>[e.join(""),i]));
+ const perms=[];function gen(a){if(a.length===v){let to=E.map(([u,w])=>pairs.get([a[u],a[w]].sort().join(""))),rev=E.map(([u,w])=>+(a[u]>a[w])),masks=new Int16Array(N),par=new Uint8Array(N);for(let m=1;m<N;m++){let b=m&-m,i=31-Math.clz32(b);masks[m]=masks[m^b]|1<<to[i];par[m]=par[m^b]^rev[i]}perms.push({a,masks,par});return}for(let c=0;c<v;c++)if(!a.includes(c))gen([...a,c])}gen([]);
+ const key=(a,m,r)=>`${a}:${m}:${r}`,M=new Map(),C=new Map();let evaluated=0,oracleCalls=0;
+ function counts(a,m,r){
+  const b=pop[m]-a.length;if(b<0)return [0,0];if(b)r=0;const k=key(a,m,r);if(C.has(k))return C.get(k);oracleCalls++;let out=[0,0];
+  function rec(i,left,p,t){if(out[0]===2&&out[1]===2)return;if(i===a.length){if(b>=2){out=[2,2];return}if(b===1||t===0)out[p]=Math.min(2,out[p]+1);return}
+   for(let j=left&cm[+a[i]];j;){let bit=j&-j;j^=bit;let l=31-Math.clz32(bit);rec(i+1,left^bit,p^(pop[left&(bit-1)]&1),t^E[l].indexOf(+a[i]));}
+  }rec(0,m,0,r);C.set(k,out);return out;
+ }
+ function depth(a,m,r){
+  const b=pop[m]-a.length;if(b)r=0;const k=key(a,m,r);if(M.has(k))return M.get(k);const c=counts(a,m,r);if(c[0]+c[1]<=1)return [0,0,0];evaluated++;let best=[c.every(Boolean)?99:0,99,c.every(x=>x<=1)?0:99];
+  function consider(children){const w=[0,0,0];for(const [aa,mm,rr] of children)if(counts(aa,mm,rr).some(Boolean)){const d=depth(aa,mm,rr);for(let i=0;i<3;i++)w[i]=Math.max(w[i],d[i]+1)}for(let i=0;i<3;i++)best[i]=Math.min(best[i],w[i]);}
+  if(b)for(let s=0;s<(b===1?2:1);s++)consider(Array.from({length:v},(_,c)=>[[...a,String(c)].sort().join(""),m,r^s]));
+  for(let i=0;i<a.length;i++)if(!i||a[i]!==a[i-1]){let ch=[];for(let j=m&cm[+a[i]];j;){let bit=j&-j;j^=bit;let l=31-Math.clz32(bit);ch.push([a.slice(0,i)+a.slice(i+1),m^bit,r^E[l].indexOf(+a[i])]);}consider(ch);}
+  if(best.some(x=>x>=99))throw Error("unresolved");
+  for(const {a:p,masks,par} of perms){const aa=[...a].map(x=>p[+x]).sort().join(""),kk=key(aa,masks[m],b?0:r^par[m]);if(M.has(kk)&&M.get(kk).join()!==best.join())throw Error("orbit mismatch");M.set(kk,best);}
+  return best;
+ }
+ const result=depth("",all,0);if(result.join()!=="17,17,16"||evaluated!==2162||M.size!==175226)throw Error("K5 regression");return {result,evaluated,orbitStates:M.size,oracleCalls,automorphisms:perms.length};
+}
+function auditFiveVertexCover(){
+ let hist={},counterexamples=[];for(let m=1;m<1024;m++){let E=[],k=0;for(let i=0;i<5;i++)for(let j=i+1;j<5;j++,k++)if(m>>k&1)E.push([i,j]);const r=solveGraphObservation(E,5),d=r.depths[0]-r.lower,g=r.depths[1]-r.depths[0],key=d+","+g;hist[key]=(hist[key]||0)+1;if(d||g)counterexamples.push({E,...r});}
+ if(hist["0,0"]!==1022||hist["1,0"]!==1||counterexamples[0].E.length!==10||counterexamples[0].depths.join()!=="17,17,16")throw Error("five-vertex census");return {hist,counterexamples};
+}
+if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
+else console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),k5Orbit:auditK5Orbit(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
