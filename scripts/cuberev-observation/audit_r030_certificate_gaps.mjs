@@ -1,3 +1,12 @@
+import { readFileSync } from 'node:fs';
+import { gunzipSync } from 'node:zlib';
+import { createHash } from 'node:crypto';
+function loadPinnedCertificate(){
+  const packed=Buffer.from(readFileSync(new URL('../../formal/029/certificate_blobs/upper-policy-certificate.json.gz.b64',import.meta.url),'utf8').trim(),'base64');
+  const plain=gunzipSync(packed),sha=b=>createHash('sha256').update(b).digest('hex');
+  if(sha(packed)!=='d9dd5f9c283b9d79a86bcf00cefc51e013bc8d20a1c8c34077316a1c81e3f1d3'||sha(plain)!=='80f334520d288b09d0ad2398b596e8910515d312b342cf07ceeb5e4107922227')throw Error('pinned certificate hash mismatch');
+  return JSON.parse(plain.toString('utf8'));
+}
 // Deterministic finite-model audit; no dependencies. Run with node.
 function audit() {
   const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -189,4 +198,42 @@ function auditOrientedCharacters(){
   assert(all.every(x=>x===490497638400),"full edge count");
   return {cases,fullSectors:all};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters()}, null, 2));
+function auditFrozenLeaves(cert){
+  const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"];
+  const must=(x,msg)=>{if(!x)throw Error(msg)};
+  let nodes=0,leaves=0,assignments=0,orientationEssential=0,signEssential=0,rawMatchingAmbiguity=0;
+  const hist={},byBlank={};
+  must(cert.representatives.length===52,"root count");
+  for(const e of cert.representatives){
+    const record=[...e.prefix].map(c=>[c,null]);record.push([null,null]);
+    const seen=new Set();let rootMass=0;
+    function visit(i,depth){
+      must(Number.isInteger(i)&&i>=0&&i<e.nodes.length&&!seen.has(i)&&depth<=8,"tree");seen.add(i);nodes++;
+      const node=e.nodes[i];
+      if(node[0]==="leaf"){
+        leaves++;
+        const [ee,eo,oe,oo]=countSignedCompletions(record,labels);
+        const actual=ee+oe;must(actual>=1&&ee<=1&&oe<=1,"terminal parity");
+        const blank=record.filter(([a,b])=>!a&&!b).length;
+        const key=`${blank},${ee},${eo},${oe},${oo}`;
+        hist[key]=(hist[key]||0)+1;
+        const lastReads=record[11].filter(Boolean).length;
+        byBlank[lastReads]=(byBlank[lastReads]||0)+1;
+        if(actual===2)signEssential++;
+        if(blank===0&&(ee+eo>1||oe+oo>1)){orientationEssential++;rawMatchingAmbiguity++;}
+        rootMass+=actual;assignments+=actual;return;
+      }
+      must(depth<8,"budget");
+      if(node[0]==="repeat"){visit(node[1],depth+1);return}
+      must(node[0]==="read"&&Number.isInteger(node[1])&&node[1]>=0&&node[1]<13,"read");
+      const q=node[1],r=q<11?q:11,col=q===11?0:1,old=record[r][col];
+      for(const [c,j] of Object.entries(node[2])){must(!old||old===c,"conflicting repeat");record[r][col]=c;visit(j,depth+1);}
+      record[r][col]=old;
+    }
+    const expected=countSignedCompletions(record,labels);visit(0,0);
+    must(seen.size===e.nodes.length&&rootMass===expected[0]+expected[2],"root mass");
+  }
+  must(nodes===141097&&leaves===73962&&assignments===144736,"pinned totals");
+  return {nodes,leaves,assignments,signEssential,orientationEssential,rawMatchingAmbiguity,byLastEdgeReads:byBlank,sectorHistogram:hist};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
