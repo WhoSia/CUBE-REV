@@ -1100,7 +1100,7 @@ function auditRepresentativeMass(){
  return {roots:roots.size,feasible,rawOrderedPrefixes:rawWords,unweightedRepresentativeCandidates:total,weighted,even,odd,min:vals[0],max:vals.at(-1),median:(vals[25]+vals[26])/2,byRepresentative:[...roots]};
 }
 
-function solveGraphClockMean(E,v,cap,release){
+function solveGraphClockMean(E,v,cap,release,trace=false){
  const n=E.length,N=1<<n,all=N-1,pop=new Uint8Array(N),cm=new Int32Array(v),side=Array.from({length:v},()=>new Uint8Array(n)),deg=new Uint8Array(v);
  for(let i=0;i<n;i++)for(let s=0;s<2;s++){const c=E[i][s];cm[c]|=1<<i;side[c][i]=s;deg[c]++}
  const gp=new Int32Array(v);let H=1;for(let c=0;c<v;c++){gp[c]=H;H*=deg[c]+1}
@@ -1131,8 +1131,43 @@ function solveGraphClockMean(E,v,cap,release){
   actions(h,m,r,false,ch=>{let tot=z,ms=0;for(const [x,l,t] of ch){let w=mass(x,l,t,0)+mass(x,l,t,1);ms+=w;if(w)tot+=unknown(x,l,t)}if(ms!==z)throw Error("unknown mass");best=Math.min(best,tot)});
   U[k]=best+1;return best}
  let z=[mass(0,all,0,0),mass(0,all,0,1)],costs=[cost(0,all,0,0),cost(0,all,0,1)],clock=release?unknown(0,all,0):costs[0]+costs[1];
+
+ const regretTrace=trace&&release&&Number.isFinite(clock)?(()=>{
+  const knownSum=(h,m,r)=>cost(h,m,r,0)+cost(h,m,r,1);
+  const canonical=(h,m,r)=>[h,m,pop[m]>sum[h]?0:r];
+  let layer=new Map([["0:"+all+":0",{s:[0,all,0],multiplicity:1}]]),totalRegret=0;
+  const layers=[],examples=[];
+  for(let t=0;t<release;t++){
+   const next=new Map();let regret=0,positiveMass=0,positiveNodes=0,forcedNodes=0,visited=0;
+   for(const {s:[h,m,r],multiplicity:k} of layer.values()){
+    const z0=mass(h,m,r,0),z1=mass(h,m,r,1),z=z0+z1;
+    if(!z0||!z1||z<=1)continue;
+    visited++;
+    const early=knownSum(h,m,r),target=unknown(h,m,r);
+    let best=null,minDelta=Infinity,options=[],idx=0;
+    actions(h,m,r,false,ch=>{
+     let c=z,e=z,branches=[];
+     for(const [x,l,t] of ch)if(mass(x,l,t,0)+mass(x,l,t,1)){
+      c+=unknown(x,l,t);e+=knownSum(x,l,t);branches.push(canonical(x,l,t))
+     }
+     const delta=e-early;if(delta<0)throw Error("negative local regret");
+     minDelta=Math.min(minDelta,delta);options.push({idx:idx++,delta,clock:c});
+     if(c===target&&(!best||delta<best.delta))best={delta,branches};
+    });
+    if(!best||!Number.isFinite(best.delta))throw Error("no optimal clock action");
+    if(best.delta){positiveNodes++;positiveMass+=k*z;regret+=k*best.delta;if(minDelta>0)forcedNodes++;
+     if(examples.length<12)examples.push({t,colors:Array.from({length:v},(_,c)=>digits[h*v+c]),remainingLabels:E.filter((_,i)=>m>>i&1),flip:r,sectorMass:[z0,z1],early,chosenDelta:best.delta,minDelta,options,multiplicity:k})}
+    for(const s of best.branches){const q=s.join(":");if(!next.has(q))next.set(q,{s,multiplicity:0});next.get(q).multiplicity+=k;}
+   }
+   if(visited)layers.push({t,visited,positiveNodes,forcedNodes,positiveMass,regret});
+   totalRegret+=regret;layer=next;
+  }
+  if(totalRegret!==clock-costs[0]-costs[1])throw Error("regret telescoping");
+  return {totalRegret,layers,examples};
+ })():null;
+
  if(z[0]+z[1]!==fact(n)*2**(n-1)||n>=2&&(z[0]!==z[1]||costs[0]!==costs[1]))throw Error("root sign symmetry");
- return {n,v,cap,release,z,costs,means:costs.map((c,i)=>z[i]?c/z[i]:null),clock,clockMean:clock/(z[0]+z[1]),mc,cc,uc,losers,tableBytes:M.byteLength+C.byteLength+(U?.byteLength||0)}
+ return {n,v,cap,release,z,costs,means:costs.map((c,i)=>z[i]?c/z[i]:null),clock,clockMean:clock/(z[0]+z[1]),regretTrace,mc,cc,uc,losers,tableBytes:M.byteLength+C.byteLength+(U?.byteLength||0)}
 }
 function auditRawGraphClock(E,cap,release){
  const n=E.length,states=[],p=[];
@@ -1157,12 +1192,13 @@ function auditGraphClockControls(){
  }
  return {rawControls:controls}
 }
-function auditGraphClockMean(release=14){
+function auditGraphClockMean(release=14,trace=false){
  const E=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"].map(l=>[...l].map(c=>"URFDLB".indexOf(c)));
- return solveGraphClockMean(E,6,19,release)
+ return solveGraphClockMean(E,6,19,release,trace)
 }
 
 if (process.argv.includes('--graph-clock-controls')) console.log(JSON.stringify(auditGraphClockControls(), null, 2));
+else if (process.argv.includes('--graph-clock-regret')) console.log(JSON.stringify(auditGraphClockMean(Number(process.argv[process.argv.indexOf('--graph-clock-regret')+1]??17),true), null, 2));
 else if (process.argv.includes('--graph-clock-mean')) console.log(JSON.stringify(auditGraphClockMean(Number(process.argv[process.argv.indexOf('--graph-clock-mean')+1]??14)), null, 2));
 else if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
