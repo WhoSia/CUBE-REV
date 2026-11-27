@@ -884,7 +884,35 @@ function buildStructuralEdgePolicy(){
  for(const a of roots)collect(a,all,0,8);
  function tree(a,m,r,d){r=norm(a,m,r);let s=classify(a,m,r);if(s===2)return 1;let k=key(a,m,r)+":"+d,act=actions(a,m,r).find(x=>x.q===memo.get(k));return 1+act.ch.reduce((s,[,b,mm,rr])=>s+tree(b,mm,rr,d-1),0)}
  for(const a of roots)treeNodes+=tree(a,all,0,8);
- return {roots:roots.size,searchCalls,status:status.size,dagNodes:states.size,arcs,leaves,hist,treeNodes};
+ // Independent capped sign-count recurrence; no graph terminal predicate.
+ const C=new Map();
+ function counts(a,m,r){r=norm(a,m,r);const k=key(a,m,r);if(C.has(k))return C.get(k);const blank=pop[m]-a.length;let out=[0,0];
+  if(blank<0||blank>1)return out;
+  if(!a.length){if(blank===1||!m&&r===0)out=[1,0]}
+  else{const c=+a[0];for(let q=m&cm[c];q;){const bit=q&-q;q^=bit;const l=31-Math.clz32(bit),ch=counts(a.slice(1),m^bit,r^E[l].indexOf(c)),p=pop[m&(bit-1)]&1;for(let s=0;s<2;s++)out[s]=Math.min(2,out[s]+ch[s^p]);}}
+  C.set(k,out);return out;
+ }
+ const keys=[...states.keys()];let checkedArcs=0,checkedLeaves=0,rootMass=0;
+ function verify(){
+  const seen=new Set();let vArcs=0,vLeaves=0;
+  function visit(k){if(seen.has(k))return;seen.add(k);const [a,ms,rs,ds]=k.split(":"),m=+ms,r=+rs,d=+ds,q=states.get(k),z=counts(a,m,r);
+   if(!z.some(Boolean)||q===undefined)throw Error("uncovered/infeasible");
+   if(q==="leaf"){if(z.some(x=>x>1))throw Error("wrong terminal");vLeaves++;return}
+   if(d<=0)throw Error("budget");let expected=[];
+   if(q[0]==="b"){if(pop[m]!==a.length+1||!["b0","b1"].includes(q))throw Error("blank action");for(let c=0;c<6;c++){let aa=[...a,String(c)].sort().join(""),rr=r^+q[1];if(counts(aa,m,rr).some(Boolean))expected.push(key(aa,m,rr)+":"+(d-1));}}
+   else if(q[0]==="s"){const c=+q[1],i=a.indexOf(String(c));if(i<0)throw Error("singleton action");const aa=a.slice(0,i)+a.slice(i+1);for(let l=0;l<12;l++)if((m>>l&1)&&E[l].includes(c)){const mm=m^(1<<l),rr=r^E[l].indexOf(c);if(counts(aa,mm,rr).some(Boolean))expected.push(key(aa,mm,rr)+":"+(d-1));}}
+   else throw Error("action type");
+   const actual=actions(a,m,r).find(x=>x.q===q).ch.map(([,aa,mm,rr])=>key(aa,mm,rr)+":"+(d-1));
+   if(!expected.length||expected.sort().join("|")!==actual.sort().join("|"))throw Error("reply coverage");
+   for(const child of expected){vArcs++;visit(child)}
+  }
+  for(const a of roots)visit(key(a,all,0)+":8");if(seen.size!==states.size)throw Error("unreachable records");return [vArcs,vLeaves];
+ }
+ [checkedArcs,checkedLeaves]=verify();
+ function checkRoots(a,c){if(a.length===11){let feasible=counts(a,all,0).some(Boolean);if(feasible!==Boolean(classify(a,all,0)))throw Error("root feasibility");if(feasible){rootMass++;let b=syms.map(p=>[...a].map(x=>p[+x]).sort().join("")).sort()[0];if(!roots.has(b))throw Error("root coverage");}return}for(let j=c;j<6;j++)checkRoots(a+j,j)}checkRoots("",0);
+ const rootKey=key([...roots][0],all,0)+":8",saved=states.get(rootKey);states.set(rootKey,"leaf");let rejected=false;try{verify()}catch{rejected=true}states.set(rootKey,saved);
+ if(!rejected||rootMass!==1362||checkedArcs!==arcs||checkedLeaves!==leaves)throw Error("verification regression");
+ return {roots:roots.size,rootMass,searchCalls,status:status.size,dagNodes:states.size,arcs,leaves,hist,treeNodes,checkedArcs,checkedLeaves,negativeControl:rejected,countStates:C.size,decisionTableChars:JSON.stringify([...states]).length};
 }
 if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
