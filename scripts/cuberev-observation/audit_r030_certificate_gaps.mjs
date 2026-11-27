@@ -1020,6 +1020,18 @@ function auditOppositeSignCoverWitness(){
  check(E0,6,true);
  return {graphs,coverCases,records,cube,minimum,types};
 }
+function auditRepresentativeMass(){
+ const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",pairs=[[0,3],[1,4],[2,5]],syms=[];
+ for(let i=0;i<3;i++)for(let j=0;j<3;j++)if(i!==j)for(let f=0;f<8;f++){let p=[];for(let k=0;k<3;k++)for(let t=0;t<2;t++)p[pairs[k][t]]=pairs[[i,j,3-i-j][k]][t^(f>>k&1)];syms.push(p)}
+ const pop=Array.from({length:4096},(_,i)=>i.toString(2).replace(/0/g,"").length),M=[...colors].map(c=>labels.reduce((m,l,i)=>m|(l.includes(c)?1<<i:0),0));
+ const fact=n=>{let r=1;for(let i=2;i<=n;i++)r*=i;return r};
+ function count(a){const memo=new Map();function go(i,m){if(i===11)return [1,0];if(memo.has(m))return memo.get(m);let out=[0,0];for(let q=m&M[a[i]];q;){const b=q&-q;q^=b;const p=pop[m&(b-1)]&1,z=go(i+1,m^b);out[0]+=z[p];out[1]+=z[p^1]}memo.set(m,out);return out}return go(0,4095)}
+ const roots=new Map();let total=0,even=0,odd=0,feasible=0,rawWords=0;
+ function gen(h,k){if(h.length===5){h=[...h,k];const a=h.flatMap((n,i)=>Array(n).fill(i)),z=count(a);if(!z[0]&&!z[1])return;feasible++;if(z[0]!==z[1])throw Error("unbalanced");const mult=fact(11)/h.reduce((p,n)=>p*fact(n),1);rawWords+=mult;even+=mult*z[0];odd+=mult*z[1];const orbit=new Set(syms.map(p=>p.map(i=>h[i]).join(","))),key=[...orbit].sort()[0];if(h.join(",")===key){roots.set(key,{size:orbit.size,weight:mult,candidates:z[0]+z[1],perSign:z[0]});total+=z[0]+z[1]}return}for(let i=0;i<=k;i++)gen([...h,i],k-i)}
+ gen([],11);const weighted=[...roots.values()].reduce((s,r)=>s+r.size*r.weight*r.candidates,0),vals=[...roots.values()].map(r=>r.candidates).sort((a,b)=>a-b);
+ if(roots.size!==52||feasible!==1362||total!==144736||weighted!==fact(12)*2048||even!==odd||even+odd!==weighted||rawWords!==297297000)throw Error("mass conservation");
+ return {roots:roots.size,feasible,rawOrderedPrefixes:rawWords,unweightedRepresentativeCandidates:total,weighted,even,odd,min:vals[0],max:vals.at(-1),median:(vals[25]+vals[26])/2,byRepresentative:[...roots]};
+}
 if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
 else if (process.argv.includes('--regenerate-k5-lower')) console.log(JSON.stringify(generateK5LowerCertificate()));
@@ -1029,4 +1041,5 @@ else if (process.argv.includes('--pinned-structural-terminals')) console.log(JSO
 else if (process.argv.includes('--structural-edge-policy')) console.log(JSON.stringify(buildStructuralEdgePolicy(), null, 2));
 else if (process.argv.includes('--edge-coordinate-transport')) console.log(JSON.stringify(buildStructuralEdgePolicy(true), null, 2));
 else if (process.argv.includes('--opposite-sign-cover')) console.log(JSON.stringify(auditOppositeSignCoverWitness(), null, 2));
+else if (process.argv.includes('--representative-mass')) console.log(JSON.stringify(auditRepresentativeMass(), null, 2));
 else console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),k5Orbit:auditK5Orbit(),k5LowerReceipt:auditK5LowerReceipt(),cornerHallPlans:auditCornerHallPlans(),hallBlockPacking:auditHallBlockPacking(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
