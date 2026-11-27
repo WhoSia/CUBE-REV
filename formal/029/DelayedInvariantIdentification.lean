@@ -499,4 +499,61 @@ theorem delayed_fin_budget_of_exclusive_witnesses
 #print axioms fin_query_cover_length
 #print axioms delayed_fin_budget_of_exclusive_witnesses
 
+
+/-- One-bit indexing: the terminal label selects which query can
+distinguish its two possible states. -/
+def indexedObserve {m : Nat} (s : Fin m × Bool) (q : Fin m) : Bool :=
+  if s.1 = q then s.2 else false
+
+def indexedLabel {m : Nat} (s : Fin m × Bool) : Fin m := s.1
+
+theorem indexed_delayed_lower (m n : Nat)
+    (win : DelayedWins (indexedObserve (m := m)) indexedLabel n (fun _ => True)) :
+    m ≤ n := by
+  apply delayed_fin_budget_of_exclusive_witnesses m n indexedObserve indexedLabel
+    (fun _ => True) false win
+  intro q
+  refine ⟨(q, false), (q, true), trivial, trivial, rfl, ?_, ?_, ?_⟩
+  · intro h
+    have bad : false = true := congrArg Prod.snd h
+    cases bad
+  · intro a
+    simp [indexedObserve]
+  · intro a diff
+    by_cases eq : q = a
+    · exact eq.symm
+    · exact False.elim (diff (by simp [indexedObserve, eq]))
+
+def indexedEarlyTree {m : Nat} (q : Fin m) :
+    Policy (Fin m) Bool (Option (Fin m × Bool)) :=
+  .read q (fun b => .stop (some (q, b)))
+
+theorem indexed_early_fits (m : Nat) (q : Fin m) :
+    Fits 1 (indexedEarlyTree q) := by
+  exact Fits.read 0 q _ (fun b => Fits.stop 0 (some (q, b)))
+
+theorem indexed_early_correct (m : Nat) (q : Fin m) (s : Fin m × Bool)
+    (h : indexedLabel s = q) :
+    (indexedEarlyTree q).run indexedObserve s = some s := by
+  rcases s with ⟨i, b⟩
+  change i = q at h
+  subst q
+  simp [indexedEarlyTree, Policy.run, indexedObserve]
+
+theorem indexed_delayed_upper (m : Nat) :
+    DelayedWins (indexedObserve (m := m)) indexedLabel m (fun _ => True) := by
+  have h := delayed_policy_of_early_family (indexedObserve (m := m)) indexedLabel
+    (fun _ => True) (List.finRange m) 1 indexedEarlyTree
+    (fun s _ => List.mem_finRange (indexedLabel s))
+    (indexed_early_fits m)
+    (fun k s _ equal => indexed_early_correct m k s equal)
+  simpa only [List.length_finRange, Nat.mul_one] using h
+
+theorem indexed_delayed_exact (m : Nat) :
+    DelayedWins (indexedObserve (m := m)) indexedLabel m (fun _ => True) ∧
+      ∀ n, DelayedWins (indexedObserve (m := m)) indexedLabel n (fun _ => True) → m ≤ n :=
+  ⟨indexed_delayed_upper m, indexed_delayed_lower m⟩
+
+#print axioms indexed_delayed_exact
+
 end CubeRev030
