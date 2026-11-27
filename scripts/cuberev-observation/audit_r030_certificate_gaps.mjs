@@ -738,13 +738,24 @@ function auditCornerHallPlans(){
  // Direct injections, deliberately not Hall subset enumeration or minimax.
  function assignments(a,l,visit){const pick=[];function walk(i,left){if(i===a.length){visit(pick,left[0]);return}for(const j of left)if(labels[j].includes(colors[+a[i]])){pick.push(j);walk(i+1,left.filter(x=>x!==j));pick.pop()}}walk(0,l)}
  function support(a,l){const blanks=new Set();let total=0;assignments(a,l,(_,b)=>{blanks.add(b);total++});return {total,blanks}}
- let roots=0,injections=0,branchChecks=0,maxPlan=0,planHistogram={},actualSecondReadHistogram={};
+ let roots=0,injections=0,branchChecks=0,maxPlan=0,planHistogram={},actualSecondReadHistogram={},terminalSignChecks=0,terminalCounts={};
  function verifyPlan(a,p){let witnesses=0;assignments(a,all,(matching,blank)=>{witnesses++;let rows=[...a],remaining=[...all],assigned=[...matching],q=0;
   while(true){let s=support(rows,remaining);branchChecks++;if(!s.total)throw Error("actual matching lost");if(s.blanks.size<remaining.length){
    // Find a tight set independently, then simulate resolving all but one in that set.
    let tight=null;for(let k=1;k<(1<<rows.length)&&!tight;k++){let ii=rows.map((_,i)=>i).filter(i=>k>>i&1),neighbors=remaining.filter(j=>ii.some(i=>labels[j].includes(colors[+rows[i]])));if(ii.length===neighbors.length)tight={ii,neighbors};}
    if(!tight)throw Error("coloop without tight set");
-   const skip=tight.ii[0];if(!tight.neighbors.includes(assigned[skip]))throw Error("tight witness");const left=tight.neighbors.filter(x=>!tight.ii.slice(1).some(i=>assigned[i]===x));if(left.length!==1||left[0]!==assigned[skip])throw Error("saved read");const cost=q+rows.length-1;if(cost!==6)throw Error("budget");actualSecondReadHistogram[q]=(actualSecondReadHistogram[q]||0)+1;break;
+   const skip=tight.ii[0];if(!tight.neighbors.includes(assigned[skip]))throw Error("tight witness");const left=tight.neighbors.filter(x=>!tight.ii.slice(1).some(i=>assigned[i]===x));if(left.length!==1||left[0]!==assigned[skip])throw Error("saved read");const cost=q+rows.length-1;if(cost!==6)throw Error("budget");
+   // Two omissions are safe with a terminal sign oracle: either both in a tight
+   // set of size >=2, or one forced tight singleton and one arbitrary other row.
+   if(rows.length<2)throw Error("too late for terminal oracle");
+   const omit=tight.ii.length>=2?tight.ii.slice(0,2):[skip,rows.findIndex((_,i)=>i!==skip)];
+   const kept=rows.map((_,i)=>i).filter(i=>!omit.includes(i));
+   const unknown=remaining.filter(l=>!kept.some(i=>assigned[i]===l));
+   const target=[...assigned,blank],parity=x=>{let b=0;for(let i=0;i<x.length;i++)for(let j=i+1;j<x.length;j++)b^=+(x[i]>x[j]);return b;};
+   const signs=[0,0];assignments(omit.map(i=>rows[i]),unknown,(pair,last)=>{const candidate=[...target];for(let j=0;j<2;j++)candidate[omit[j]]=pair[j];candidate[candidate.length-1]=last;signs[parity(candidate)]++;});
+   if(signs.some(x=>x>1)||signs[parity(target)]!==1||q+rows.length-2!==5)throw Error("terminal oracle");
+   terminalSignChecks++;const key=signs[0]+signs[1];terminalCounts[key]=(terminalCounts[key]||0)+1;
+actualSecondReadHistogram[q]=(actualSecondReadHistogram[q]||0)+1;break;
   }
   if(q>=p.length)throw Error("plan exhausted "+a);const i=rows.indexOf(p[q]);if(i<0)throw Error("bad schedule");remaining=remaining.filter(x=>x!==assigned[i]);rows.splice(i,1);assigned.splice(i,1);q++;
  }});injections+=witnesses;if(!witnesses)throw Error("infeasible rep");return witnesses}
@@ -752,8 +763,9 @@ function auditCornerHallPlans(){
  function gen(a,c){if(a.length===7){if(!support(a,all).total)return;roots++;const k=sym.map(p=>[...a].map(c=>p[+c]).sort().join("")).sort()[0],row=planMap.get(k);if(!row)throw Error("uncovered root");row.count++;return}for(let i=c;i<6;i++)gen(a+i,i)}gen("",0);
  if(roots!==642||plans.length!==29||maxPlan!==5||[...planMap.values()].some(r=>r.count!==r.n))throw Error("coverage");
  // Mutation must fail: shorten one of the hardest schedules.
+ const receipt={roots,orbitCount:plans.length,maxPlan,planHistogram,injections,branchChecks,actualSecondReadHistogram:{...actualSecondReadHistogram},terminalSignChecks,terminalCounts:{...terminalCounts}};
  let rejected=false;try{verifyPlan("0001125","0001")}catch{rejected=true}if(!rejected)throw Error("negative control");
- return {roots,orbitCount:plans.length,maxPlan,planHistogram,injections,branchChecks,actualSecondReadHistogram,negativeControl:rejected};
+ return {...receipt,negativeControl:rejected};
 }
 if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
