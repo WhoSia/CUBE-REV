@@ -577,4 +577,34 @@ function auditGraphSignCertificateFormula(){
  if(graphs!==1094||patterns!==312453||certificates!==306669)throw Error("graph census");
  return {graphs,patterns,certificates,examples};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditFullGraphCertificates(){
+ let graphs=0,patterns=0,certs=0,gaps={};
+ for(let v=2;v<=5;v++){
+  const all=[];for(let u=0;u<v;u++)for(let w=u+1;w<v;w++)all.push([u,w]);
+  for(let m=1;m<1<<all.length;m++){
+   const E=all.filter((_,i)=>m>>i&1),n=E.length,adj=Array.from({length:v},()=>[]);
+   for(const [u,w] of E){adj[u].push(w);adj[w].push(u)}
+   let c=0,b=0,active=adj.filter(x=>x.length).length,side=Array(v).fill(-1);
+   for(let u=0;u<v;u++)if(adj[u].length&&side[u]<0){c++;let q=[u],ok=true;side[u]=0;for(let i=0;i<q.length;i++)for(let w of adj[q[i]]){if(side[w]<0){side[w]=side[q[i]]^1;q.push(w)}else if(side[w]===side[q[i]])ok=false;}b+=+ok}
+   let best=2*n;
+   for(let blank=-1;blank<n;blank++){
+    let used=new Set(blank<0?[]:E[blank]),single=[];
+    function inspect(){
+     patterns++;
+     const next=Array(v).fill(-1);for(const [i,s] of single)next[E[i][s]]=E[i][s^1];
+     let done=new Set(),even=0,odd=0;for(let u=0;u<v;u++){if(done.has(u))continue;let seen=new Map(),w=u,t=0;while(w>=0&&next[w]>=0&&!done.has(w)&&!seen.has(w)){seen.set(w,t++);w=next[w]}if(seen.has(w)){if((t-seen.get(w))%2)odd++;else even++}for(const x of seen.keys())done.add(x)}
+     const pred=even===0&&odd<=(blank<0?1:0);
+     let rows=[...single.map(x=>x[0]),...(blank<0?[]:[blank])].sort((a,b)=>a-b),req=new Map(single),k=rows.length,count=0;
+     function direct(i,mask,r){if(count>=2)return;if(i===k){if(r===0)count++;return}for(let j=0;j<k;j++)if(!(mask>>j&1))for(let t=0;t<2;t++)if(!req.has(rows[i])||E[rows[j]][(req.get(rows[i])+t)%2]===E[rows[i]][req.get(rows[i])])direct(i+1,mask|1<<j,r^t)}
+     direct(0,0,0);if(pred!==(count===1))throw Error("full cycle criterion");
+     if(pred){certs++;best=Math.min(best,2*n-single.length-(blank<0?0:2))}
+    }
+    function gen(i){if(i===n){inspect();return}if(i===blank){gen(i+1);return}gen(i+1);for(let s=0;s<2;s++){let u=E[i][s];if(used.has(u))continue;used.add(u);single.push([i,s]);gen(i+1);single.pop();used.delete(u)}}gen(0)
+   }
+   const expected=2*n-active+c-1,sign=2*n-active+Math.max(0,b-1);if(best!==expected)throw Error(JSON.stringify({E,best,expected}));gaps[best-sign]=(gaps[best-sign]||0)+1;graphs++;
+  }
+ }
+ if(graphs!==1094||patterns!==312453)throw Error("census");
+ return {graphs,patterns,certs,gaps};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
