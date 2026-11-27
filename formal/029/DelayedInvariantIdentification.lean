@@ -449,4 +449,53 @@ theorem delayed_budget_of_exclusive_witnesses
 #print axioms constantTrace_covers_exclusive_witnesses
 #print axioms delayed_budget_of_exclusive_witnesses
 
+
+/-- Cardinality of a distinct list is at most the length of any list that
+covers it. Erasing one occurrence prevents duplicated reads from
+artificially strengthening the lower bound. -/
+private theorem nodup_cover_length [BEq Q] [LawfulBEq Q]
+    (xs ys : List Q) (nd : xs.Nodup)
+    (cover : ∀ q, q ∈ xs → q ∈ ys) : xs.length ≤ ys.length := by
+  induction xs generalizing ys with
+  | nil => exact Nat.zero_le _
+  | cons a xs ih =>
+      have h := List.nodup_cons.mp nd
+      have ha : a ∈ ys := cover a (by simp)
+      have sub : ∀ q, q ∈ xs → q ∈ ys.erase a := by
+        intro q hq
+        have ne : q ≠ a := by
+          intro e
+          apply h.1
+          simpa only [← e] using hq
+        exact (List.mem_erase_of_ne ne).mpr (cover q (by simp [hq]))
+      have bound := ih (ys.erase a) h.2 sub
+      have len := List.length_erase_of_mem ha
+      simp only [List.length_cons]
+      omega
+
+theorem fin_query_cover_length (m : Nat) (qs : List (Fin m))
+    (covers : ∀ q : Fin m, q ∈ qs) : m ≤ qs.length := by
+  have nd : (List.finRange m).Nodup := by
+    apply List.nodup_iff_eq_of_getElem_eq.mpr
+    intro i j hi hj h
+    simpa using congrArg Fin.val h
+  have h := nodup_cover_length (List.finRange m) qs nd (fun q _ => covers q)
+  simpa only [List.length_finRange] using h
+
+/-- Fin-indexed specialization: the witness condition alone forces one
+paid read for every query in the finite domain. -/
+theorem delayed_fin_budget_of_exclusive_witnesses
+    (m n : Nat) (observe : S → Fin m → R) (label : S → K)
+    (belief : S → Prop) (r : R)
+    (win : DelayedWins observe label n belief)
+    (witness : ∀ q : Fin m, ∃ s t : S, belief s ∧ belief t ∧
+      label s = label t ∧ s ≠ t ∧ (∀ a, observe s a = r) ∧
+      (∀ a, observe t a ≠ r → a = q)) :
+    m ≤ n := by
+  exact delayed_budget_of_exclusive_witnesses observe label belief r n m win
+    witness (fin_query_cover_length m)
+
+#print axioms fin_query_cover_length
+#print axioms delayed_fin_budget_of_exclusive_witnesses
+
 end CubeRev030
