@@ -71,4 +71,42 @@ function auditClock() {
   if(primaryDistinct!==2||jointDistinct!==4)throw Error("auxiliary leakage control failed");
   return {checked:results.length,results,auxiliaryLeakage:{earlyPrimary:2,paired:1,constantLabel:true}};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock()}, null, 2));
+function auditStructure() {
+  const pop=x=>{let n=0;while(x){x&=x-1;n++;}return n;};
+  function rank(rows){const piv=new Map();for(let x of rows){while(x){const p=31-Math.clz32(x);if(!piv.has(p)){piv.set(p,x);break;}x^=piv.get(p);}}return piv.size;}
+  const results=[];let subsets=0, targetChecks=0;
+  for(let n=1;n<=3;n++)for(let d=0;d<=n;d++){
+    const inputs=Array.from({length:2**n},(_,i)=>i);
+    const mon=inputs.filter(x=>pop(x)<=d),m=mon.length;
+    const rows=inputs.map(x=>mon.reduce((a,u,j)=>(u&x)===u?a|(1<<j):a,0));
+    const output=(coeff,row)=>pop(coeff&row)%2;
+    let minFull=Infinity, targetMin=Array(m).fill(Infinity);
+    for(let set=0;set<2**inputs.length;set++){
+      const selected=rows.filter((_,i)=>set>>i&1),r=rank(selected),seen=new Map();
+      for(let c=0;c<2**m;c++){
+        const sig=selected.reduce((a,row,i)=>a|(output(c,row)<<i),0);
+        const old=seen.get(sig);
+        if(old===undefined)seen.set(sig,{first:c,ambiguous:0});
+        else old.ambiguous|=old.first^c;
+      }
+      if(seen.size!==2**r)throw Error("rank/signature discrepancy");
+      if(seen.size===2**m)minFull=Math.min(minFull,pop(set));
+      let ambiguous=0;for(const item of seen.values())ambiguous|=item.ambiguous;
+      for(let j=0;j<m;j++){
+        const fixed=(ambiguous&(1<<j))===0, predicted=rank([...selected,1<<j])===r;
+        if(fixed!==predicted)throw Error("target-span discrepancy");
+        if(fixed)targetMin[j]=Math.min(targetMin[j],pop(set));
+        targetChecks++;
+      }subsets++;
+    }
+    const baseline=rows.filter((_,i)=>pop(i)<=1);
+    const design=rows.filter((_,i)=>pop(i)<=d);
+    if(minFull!==m||rank(design)!==m||targetMin.some((v,j)=>v!==2**pop(mon[j])))throw Error("exact cost mismatch");
+    results.push({n,d,parameters:m,fullMinimum:minFull,oneFactorRank:rank(baseline),targetMinimum:targetMin});
+  }
+  // Interaction absent in all baseline and single-coordinate interventions.
+  const x=[0,1,2,3].map(i=>Number(i===3));
+  if(x.slice(0,3).some(Boolean)||x[3]!==1)throw Error("interaction mutation missed");
+  return {subsets,targetChecks,results,interactionControl:x};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure()}, null, 2));
