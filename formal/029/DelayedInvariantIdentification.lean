@@ -590,4 +590,30 @@ theorem early_primary_of_label_only_paired
 
 #print axioms early_primary_of_label_only_paired
 
+
+/-- A paid first frame directly reveals the label and one primary reply.
+Discarding that primary reply gives a conservative d+1 upper bound.
+Every primary query must be pairable with the auxiliary read. -/
+theorem paired_direct_label_upper
+    (observe : S → Q → R) (label : S → K) (belief : S → Prop)
+    (first : Q) (d : Nat) (trees : K → Policy Q R (Option S))
+    (fit : ∀ k, Fits d (trees k))
+    (correct : ∀ k s, belief s → label s = k →
+      (trees k).run observe s = some s) :
+    ∃ tree : Policy Q (R × K) (Option S),
+      Fits (d + 1) tree ∧ ∀ s, belief s →
+        tree.run (fun s q => (observe s q, label s)) s = some s := by
+  let lift (p : Policy Q R (Option S)) : Policy Q (R × K) (Option S) :=
+    p.adapt id (fun _ r => r.1) id
+  refine ⟨.read first (fun reply => lift (trees reply.2)),
+    Fits.read d first _ (fun reply => Policy.adapt_fits id
+      (fun _ (r : R × K) => r.1) id (fit reply.2)), ?_⟩
+  intro s hs
+  change (lift (trees (label s))).run (fun s q => (observe s q, label s)) s = some s
+  unfold lift
+  rw [Policy.adapt_run]
+  exact correct (label s) s hs rfl
+
+#print axioms paired_direct_label_upper
+
 end CubeRev030
