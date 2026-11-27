@@ -1040,7 +1040,7 @@ function buildStructuralEdgePolicy(checkTransport=false,checkExpected=false){
   }
   for(const a of roots)visit(a,all,0,8);
   const summarize=h=>({hist:Object.fromEntries(h.map((n,i)=>[i,n]).filter(x=>x[1])),totalCost:h.reduce((s,n,i)=>s+n*i,0),mean:h.reduce((s,n,i)=>s+n*i,0)/total});
-  return {total,representativeMass,improvedRoots,baseline:summarize(base),optimal:summarize(optimal),massStates:M.size,baselineStates:B.size,optimalStates:V.size,replayStates:replay.size,replayArcs};
+  return {total,representativeMass,improvedRoots,baseline:summarize(base),optimal:summarize(optimal),massStates:M.size,baselineStates:B.size,optimalStates:V.size,replayStates:replay.size,replayArcs,rawTransport:auditEdgeCoordinateTransport(chosen,syms,E,roots)};
  })():null;
 
  const transport=checkTransport?auditEdgeCoordinateTransport(states,syms,E,roots):null;
