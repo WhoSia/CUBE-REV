@@ -842,10 +842,55 @@ function auditPinnedStructuralTerminals(cert){
  for(const e of cert.representatives){const rec=[...e.prefix].map(c=>[c,null]);rec.push([null,null]);function visit(i){nodes++;const node=e.nodes[i];if(node[0]==="leaf"){leaves++;const [ok,reason]=edgeTerminalReference(rec,labels);if(!ok)throw Error("structural leaf "+i);hist[reason]=(hist[reason]||0)+1;return}if(node[0]==="repeat"){visit(node[1]);return}const q=node[1],r=q<11?q:11,c=q===11?0:1,old=rec[r][c];for(const [v,j] of Object.entries(node[2])){rec[r][c]=v;visit(j)}rec[r][c]=old}visit(0)}
  if(leaves!==73962||nodes!==141097)throw Error("pinned counts");return {leaves,nodes,hist};
 }
+function buildStructuralEdgePolicy(){
+ const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",E=labels.map(l=>[...l].map(c=>colors.indexOf(c))),N=4096,all=N-1,pop=Array.from({length:N},(_,m)=>m.toString(2).replace(/0/g,"").length),cm=Array.from({length:6},(_,c)=>E.reduce((a,l,i)=>a|(l.includes(c)?1<<i:0),0));
+ const groups=[[0,3],[1,4],[2,5]],syms=[];for(let i=0;i<3;i++)for(let j=0;j<3;j++)if(i!==j)for(let f=0;f<8;f++){let p=[];for(let k=0;k<3;k++)for(let t=0;t<2;t++)p[groups[k][t]]=groups[[i,j,3-i-j][k]][t^(f>>k&1)];syms.push(p)}
+ function terminal(edges,blank){
+  let f=Array(6).fill(0);for(const [u] of edges)f[u]++;
+  let dup=f.filter(x=>x===2).length;if(dup>1||f.some(x=>x>=3))return false;
+  const cycles=new Map();for(let s=0;s<6;s++){function walk(v,seen,mask,len){for(let j=0;j<edges.length;j++)if(edges[j][0]===v){let w=edges[j][1];if(w===s&&len+1>=2)cycles.set(mask|1<<j,len+1);else if(!(seen>>w&1))walk(w,seen|1<<w,mask|1<<j,len+1)}}walk(s,1<<s,0,0)}
+  let even=[...cycles].filter(([_,l])=>l%2===0),odd=[...cycles].filter(([_,l])=>l%2===1);
+  if(!blank)return dup?even.length===0&&!odd.some(([a],i)=>odd.slice(i+1).some(([b])=>!(a&b))):even.length<=1&&odd.length<=1;
+  let hits=blank.filter(c=>f[c]);if(dup)return !hits.length&&!cycles.size;
+  if(!hits.length)return !cycles.size||cycles.size===1&&even.length===1;
+  if(hits.length===1)return !f[edges.find(e=>e[0]===hits[0])[1]]&&!cycles.size;
+  return false;
+ }
+ const status=new Map(),memo=new Map();let searchCalls=0;
+ const norm=(a,m,r)=>pop[m]>a.length?0:r;
+ const key=(a,m,r)=>a+":"+m+":"+norm(a,m,r);
+ function classify(a,m,r){
+  r=norm(a,m,r);const k=key(a,m,r);if(status.has(k))return status.get(k);const blank=pop[m]-a.length;let edges=[],b=null;
+  function ref(i,left,t){if(i===a.length){if(blank){if(pop[left]!==1)return false;b=E[31-Math.clz32(left)];return true;}return !left&&t===r}
+   let c=+a[i];for(let q=left&cm[c];q;){let bit=q&-q;q^=bit;let l=31-Math.clz32(bit),s=E[l].indexOf(c);edges.push([c,E[l][s^1]]);if(ref(i+1,left^bit,t^s))return true;edges.pop()}return false
+  }
+  let out=ref(0,m,0)?terminal(edges,b)?2:1:0;status.set(k,out);return out;
+ }
+ function actions(a,m,r){r=norm(a,m,r);let arr=[],blank=pop[m]>a.length;
+  for(let i=0;i<a.length;i++)if(!i||a[i]!==a[i-1]){let c=+a[i],ch=[],b=a.slice(0,i)+a.slice(i+1);for(let q=m&cm[c];q;){let bit=q&-q;q^=bit;let l=31-Math.clz32(bit),rr=norm(b,m^bit,r^E[l].indexOf(c));if(classify(b,m^bit,rr))ch.push([l,b,m^bit,rr]);}
+   arr.push({q:"s"+c,ch,priority:10*[...a].filter(x=>+x===c).length-ch.length})}
+  if(blank)for(let s=0;s<2;s++){let ch=[];for(let c=0;c<6;c++){let b=[...a,String(c)].sort().join(""),rr=r^s;if(classify(b,m,rr))ch.push([c,b,m,rr])}arr.push({q:"b"+s,ch,priority:15-ch.length})}
+  return arr.sort((x,y)=>y.priority-x.priority||x.q.localeCompare(y.q))
+ }
+ function win(a,m,r,d){
+  r=norm(a,m,r);let s=classify(a,m,r);if(!s)return true;if(s===2)return true;if(!d)return false;let k=key(a,m,r)+":"+d;if(memo.has(k))return memo.get(k)!==null;
+  searchCalls++;let acts=actions(a,m,r);for(const act of acts)if(act.ch.every(([,b,mm,rr])=>win(b,mm,rr,d-1))){memo.set(k,act.q);return true}memo.set(k,null);return false
+ }
+ const roots=new Set();function gen(a,c){if(a.length===11){if(classify(a,all,0)){let b=syms.map(p=>[...a].map(x=>p[+x]).sort().join("")).sort()[0];roots.add(b)}return}for(let j=c;j<6;j++)gen(a+j,j)}gen("",0);
+ let lost=[];for(const a of roots)if(!win(a,all,0,8))lost.push(a);
+ if(lost.length)return {roots:roots.size,lost,searchCalls,status:status.size};
+ let states=new Map(),arcs=0,leaves=0,hist={},treeNodes=0;
+ function collect(a,m,r,d){r=norm(a,m,r);let k=key(a,m,r)+":"+d;if(states.has(k))return;let s=classify(a,m,r);hist[d]=(hist[d]||0)+1;if(s===2){states.set(k,"leaf");leaves++;return}const q=memo.get(k),act=actions(a,m,r).find(x=>x.q===q);if(!act)throw Error("policy "+k+" "+q);states.set(k,q);arcs+=act.ch.length;for(const [,b,mm,rr] of act.ch)collect(b,mm,rr,d-1)}
+ for(const a of roots)collect(a,all,0,8);
+ function tree(a,m,r,d){r=norm(a,m,r);let s=classify(a,m,r);if(s===2)return 1;let k=key(a,m,r)+":"+d,act=actions(a,m,r).find(x=>x.q===memo.get(k));return 1+act.ch.reduce((s,[,b,mm,rr])=>s+tree(b,mm,rr,d-1),0)}
+ for(const a of roots)treeNodes+=tree(a,all,0,8);
+ return {roots:roots.size,searchCalls,status:status.size,dagNodes:states.size,arcs,leaves,hist,treeNodes};
+}
 if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
 else if (process.argv.includes('--regenerate-k5-lower')) console.log(JSON.stringify(generateK5LowerCertificate()));
 else if (process.argv.includes('--corner-hall')) console.log(JSON.stringify(auditCornerHallPlans(), null, 2));
 else if (process.argv.includes('--edge-terminal-structure')) console.log(JSON.stringify(auditEdgeTerminalStructure(), null, 2));
 else if (process.argv.includes('--pinned-structural-terminals')) console.log(JSON.stringify(auditPinnedStructuralTerminals(loadPinnedCertificate()), null, 2));
+else if (process.argv.includes('--structural-edge-policy')) console.log(JSON.stringify(buildStructuralEdgePolicy(), null, 2));
 else console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),k5Orbit:auditK5Orbit(),k5LowerReceipt:auditK5LowerReceipt(),cornerHallPlans:auditCornerHallPlans(),hallBlockPacking:auditHallBlockPacking(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
