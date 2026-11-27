@@ -318,4 +318,20 @@ function auditParityExchanges(){
  if(tests!==108384||exactPositive!==93156||!liftFP||!liftFN)throw Error("exchange census");
  return {tests,exactPositive,liftFP,liftFN,evenPathFN,liftFPWitness,liftFNWitness,pathFNWitness};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditGraphParityClassification(){
+ const tally={},examples={};let graphCount=0,sectorCount=0;
+ for(let n=2;n<=5;n++){
+  const edges=[];for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)edges.push([i,j]);const base=n,p=Array.from({length:n},(_,i)=>base**i);
+  for(let mask=1;mask<2**edges.length;mask++){
+   const es=edges.filter((_,i)=>mask>>i&1),m=es.length,sets=[new Set(),new Set()];
+   for(let o=0;o<2**m;o++){let x=0,b=0;for(let i=0;i<m;i++){let k=o>>i&1;x+=p[es[i][k]];b^=k}sets[b].add(x)}
+   function exchange(set){let rows=[...set].map(x=>[x,p.map(q=>Math.floor(x/q)%base)]);for(const [x,a] of rows)for(const [,b] of rows)for(let i=0;i<n;i++)if(a[i]>b[i]&&!a.some((v,j)=>v<b[j]&&set.has(x-p[i]+p[j])))return false;return true}
+   let valid=sets.map(exchange),num=valid.filter(Boolean).length;
+   const touching=m===2&&es[0].some(v=>es[1].includes(v));const expected=m===1?2:touching?1:0;
+   if(num!==expected)throw Error(JSON.stringify({n,es,valid,expected}));
+   const key=m===1?"oneEdge":m===2?(touching?"twoAdjacent":"twoDisjoint"):"threeOrMore";tally[key]=(tally[key]||0)+1;examples[key]??={n,es,valid};graphCount++;sectorCount+=2;
+  }
+ }
+ return {graphCount,sectorCount,tally,examples};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
