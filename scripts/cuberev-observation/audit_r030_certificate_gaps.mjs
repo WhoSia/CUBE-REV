@@ -842,7 +842,71 @@ function auditPinnedStructuralTerminals(cert){
  for(const e of cert.representatives){const rec=[...e.prefix].map(c=>[c,null]);rec.push([null,null]);function visit(i){nodes++;const node=e.nodes[i];if(node[0]==="leaf"){leaves++;const [ok,reason]=edgeTerminalReference(rec,labels);if(!ok)throw Error("structural leaf "+i);hist[reason]=(hist[reason]||0)+1;return}if(node[0]==="repeat"){visit(node[1]);return}const q=node[1],r=q<11?q:11,c=q===11?0:1,old=rec[r][c];for(const [v,j] of Object.entries(node[2])){rec[r][c]=v;visit(j)}rec[r][c]=old}visit(0)}
  if(leaves!==73962||nodes!==141097)throw Error("pinned counts");return {leaves,nodes,hist};
 }
-function buildStructuralEdgePolicy(){
+function auditEdgeCoordinateTransport(states,syms,E,roots){
+ const parity=a=>{let p=0;for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++)p^=+(a[i]>a[j]);return p;};
+ const index=(a,b)=>E.findIndex(e=>e.includes(a)&&e.includes(b));
+ const all=4095;
+ function gauge(pi){
+  let r=0;for(const e of E){let u=pi[e[0]],v=pi[e[1]],l=index(u,v);if(l<0)throw Error("color automorphism");r^=E[l].indexOf(u);}
+  return r;
+ }
+ function normalize(rec,pi){
+  let r=gauge(pi),m=all,rows=[],blank=-1;
+  for(let i=0;i<12;i++){
+   const [a,b]=rec[i],u=a<0?-1:pi[a],v=b<0?-1:pi[b];
+   if(u>=0&&v>=0){const l=index(u,v);if(l<0||!(m>>l&1))throw Error("resolved label");m^=1<<l;r^=E[l].indexOf(u);}
+   else if(u>=0||v>=0){rows.push({c:u>=0?u:v,i,side:u>=0?0:1});r^=+(u<0);}
+   else {if(blank>=0)throw Error("multiple blanks");blank=i;}
+  }
+  rows.sort((a,b)=>a.c-b.c||a.i-b.i);
+  return {a:rows.map(x=>x.c).join(""),m,r:blank>=0?0:r,rawR:r,rows,blank};
+ }
+ function decode(rec,sign){
+  let matches=[],p=[],t=[];
+  function visit(i,mask,flip){
+   if(i===12){if(!flip&&parity(p)===sign)matches.push([p.join(","),t.join("")]);return;}
+   for(let l=0;l<12;l++)if(!(mask>>l&1))for(let s=0;s<2;s++){
+    if(rec[i].some((c,j)=>c>=0&&c!==E[l][s^j]))continue;
+    p.push(l);t.push(s);visit(i+1,mask|1<<l,flip^s);p.pop();t.pop();
+   }
+  }visit(0,0,0);return matches;
+ }
+ let runs=0,transitions=0,blankReads=0,nonzeroBlank=0,sideOneSingletons=0,mutantRejected=0,signs=[0,0],hist={},seenRoots=new Set(),seenHist=new Set(),seenStates=new Set();
+ function run(p,t){
+  const rec=Array.from({length:12},(_,i)=>[i<11?E[p[i]][t[i]]:-1,-1]);
+  const raw=rec.slice(0,11).map(x=>x[0]).sort((a,b)=>a-b).join("");
+  const variants=syms.map(pi=>({pi,a:rec.slice(0,11).map(x=>pi[x[0]]).sort((a,b)=>a-b).join("")})).sort((a,b)=>a.a.localeCompare(b.a));
+  const {pi,a}=variants[0];if(!roots.has(a))throw Error("root");
+  seenRoots.add(a);seenHist.add(raw);let d=8;
+  while(true){
+   const s=normalize(rec,pi),k=s.a+":"+s.m+":"+s.r+":"+d,q=states.get(k);seenStates.add(k);
+   if(!q)throw Error("policy lookup "+k);
+   if(q==="leaf"){
+    const sign=parity(p),matches=decode(rec,sign);if(matches.length!==1||matches[0][0]!==p.join(",")||matches[0][1]!==t.join(""))throw Error("raw decode");
+    signs[sign]++;hist[19-d]=(hist[19-d]||0)+1;runs++;return;
+   }
+   if(d<=0)throw Error("budget");
+   let i,side,expectedA,expectedM=s.m,expectedR;
+   if(q[0]==="b"){
+    i=s.blank;if(i<0)throw Error("no blank");side=+q[1]^s.rawR;const c=pi[E[p[i]][t[i]^side]];
+    expectedA=[...s.a,String(c)].sort().join("");expectedR=+q[1];
+    blankReads++;if(s.rawR){nonzeroBlank++;const other=pi[E[p[i]][t[i]^+q[1]]];if(other===c)throw Error("distinct endpoints");mutantRejected++;}
+   }else{
+    const row=s.rows.find(x=>x.c===+q[1]);if(!row)throw Error("singleton");i=row.i;side=row.side^1;sideOneSingletons+=row.side;
+    const l=index(pi[E[p[i]][0]],pi[E[p[i]][1]]);expectedM^=1<<l;const j=s.a.indexOf(String(row.c));expectedA=s.a.slice(0,j)+s.a.slice(j+1);expectedR=s.blank>=0?0:s.r^E[l].indexOf(row.c);
+   }
+   if(rec[i][side]>=0)throw Error("repeat");rec[i][side]=E[p[i]][t[i]^side];d--;transitions++;
+   const u=normalize(rec,pi);if(u.a!==expectedA||u.m!==expectedM||u.r!==expectedR)throw Error("transport transition "+JSON.stringify({s,q,u,expectedA,expectedM,expectedR}));
+  }
+ }
+ // Construct a real raw arrangement for every feasible first-color histogram.
+ let feasible=0;function gen(a,c){if(a.length===11){let p=[],t=[];function assign(i,mask,r){if(i===11){let l=31-Math.clz32(all^mask);p.push(l);t.push(r);return true;}for(let l=0;l<12;l++)if(!(mask>>l&1)&&E[l].includes(+a[i])){let s=E[l].indexOf(+a[i]);p.push(l);t.push(s);if(assign(i+1,mask|1<<l,r^s))return true;p.pop();t.pop();}return false;}if(assign(0,0,0)){feasible++;run(p,t);}return;}for(let j=c;j<6;j++)gen(a+j,j);}gen("",0);
+ let seed=0x6a09e667;function next(n){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%n;}
+ for(let k=0;k<12000;k++){let p=E.map((_,i)=>i);for(let i=11;i>0;i--){let j=next(i+1);[p[i],p[j]]=[p[j],p[i]];}let t=Array.from({length:11},()=>next(2));t.push(t.reduce((a,b)=>a^b,0));run(p,t);}
+ if(feasible!==1362||seenRoots.size!==52||seenHist.size!==1362||runs!==13362||!nonzeroBlank||!signs.every(Boolean))throw Error("transport coverage");
+ return {runs,feasibleHistograms:feasible,representatives:seenRoots.size,visitedDagStates:seenStates.size,transitions,blankReads,nonzeroBlank,sideOneSingletons,mutantRejected,signs,readHistogram:hist};
+}
+function buildStructuralEdgePolicy(checkTransport=false){
  const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",E=labels.map(l=>[...l].map(c=>colors.indexOf(c))),N=4096,all=N-1,pop=Array.from({length:N},(_,m)=>m.toString(2).replace(/0/g,"").length),cm=Array.from({length:6},(_,c)=>E.reduce((a,l,i)=>a|(l.includes(c)?1<<i:0),0));
  const groups=[[0,3],[1,4],[2,5]],syms=[];for(let i=0;i<3;i++)for(let j=0;j<3;j++)if(i!==j)for(let f=0;f<8;f++){let p=[];for(let k=0;k<3;k++)for(let t=0;t<2;t++)p[groups[k][t]]=groups[[i,j,3-i-j][k]][t^(f>>k&1)];syms.push(p)}
  function terminal(edges,blank){
@@ -912,7 +976,8 @@ function buildStructuralEdgePolicy(){
  function checkRoots(a,c){if(a.length===11){let feasible=counts(a,all,0).some(Boolean);if(feasible!==Boolean(classify(a,all,0)))throw Error("root feasibility");if(feasible){rootMass++;let b=syms.map(p=>[...a].map(x=>p[+x]).sort().join("")).sort()[0];if(!roots.has(b))throw Error("root coverage");}return}for(let j=c;j<6;j++)checkRoots(a+j,j)}checkRoots("",0);
  const rootKey=key([...roots][0],all,0)+":8",saved=states.get(rootKey);states.set(rootKey,"leaf");let rejected=false;try{verify()}catch{rejected=true}states.set(rootKey,saved);
  if(!rejected||rootMass!==1362||checkedArcs!==arcs||checkedLeaves!==leaves)throw Error("verification regression");
- return {roots:roots.size,rootMass,searchCalls,status:status.size,dagNodes:states.size,arcs,leaves,hist,treeNodes,checkedArcs,checkedLeaves,negativeControl:rejected,countStates:C.size,decisionTableChars:JSON.stringify([...states]).length};
+ const transport=checkTransport?auditEdgeCoordinateTransport(states,syms,E,roots):null;
+ return {roots:roots.size,rootMass,searchCalls,status:status.size,dagNodes:states.size,arcs,leaves,hist,treeNodes,checkedArcs,checkedLeaves,negativeControl:rejected,countStates:C.size,decisionTableChars:JSON.stringify([...states]).length,transport};
 }
 if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
@@ -921,4 +986,5 @@ else if (process.argv.includes('--corner-hall')) console.log(JSON.stringify(audi
 else if (process.argv.includes('--edge-terminal-structure')) console.log(JSON.stringify(auditEdgeTerminalStructure(), null, 2));
 else if (process.argv.includes('--pinned-structural-terminals')) console.log(JSON.stringify(auditPinnedStructuralTerminals(loadPinnedCertificate()), null, 2));
 else if (process.argv.includes('--structural-edge-policy')) console.log(JSON.stringify(buildStructuralEdgePolicy(), null, 2));
+else if (process.argv.includes('--edge-coordinate-transport')) console.log(JSON.stringify(buildStructuralEdgePolicy(true), null, 2));
 else console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),k5Orbit:auditK5Orbit(),k5LowerReceipt:auditK5LowerReceipt(),cornerHallPlans:auditCornerHallPlans(),hallBlockPacking:auditHallBlockPacking(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
