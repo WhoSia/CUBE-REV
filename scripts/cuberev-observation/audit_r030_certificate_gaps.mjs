@@ -443,4 +443,50 @@ function auditCornerSignMinimax(){
  if(result!==13||rootChoices.some(x=>x.cost!==13)||roots!==642||hist[6]!==462)throw Error("sign minimax regression");
  return {result,rootChoices,calls,signCache:signCache.size,depthCache:depthCache.size,sevenPrefix:{roots,hist},scanCache:scanMemo.size};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditCornerGoals(){
+ const labels=["UFR","URB","ULF","UBL","DRF","DBR","DFL","DLB"],colors="URFDLB";
+ const index=labels.map(s=>Array.from(colors,c=>s.indexOf(c)));
+ const pop=Array.from({length:256},(_,x)=>{let n=0;while(x){x&=x-1;n++}return n});
+ const counts=new Map(),memo=new Map(),key=(a,m,r)=>`${a.join("")}:${m}:${r}`, cap=x=>Math.min(x,2);
+ function count(a,m,r){
+   const k=key(a,m,r);if(counts.has(k))return counts.get(k);let out=[0,0];
+   if(!a.length){const b=pop[m];out=b>=2?[2,2]:b===1||r===0?[1,0]:[0,0];}
+   else{for(let l=0;l<8;l++)if((m>>l&1)&&index[l][a[0]]>=0){
+     const c=count(a.slice(1),m^(1<<l),(r-index[l][a[0]]+3)%3),p=pop[m&((1<<l)-1)]%2;
+     out[0]=cap(out[0]+c[p]);out[1]=cap(out[1]+c[p^1]);}}
+   counts.set(k,out);return out;
+ }
+ function actions(a,m,r){
+   let out=[];
+   if(pop[m]>a.length)for(let j=0;j<3;j++){const children=[];for(let c=0;c<6;c++){let b=[...a,c].sort((x,y)=>x-y),s=(r+j)%3;if(count(b,m,s).some(Boolean))children.push([b,m,s]);}out.push(children)}
+   for(let i=0;i<a.length;i++)if(i===0||a[i]!==a[i-1]){const children=[],b=a.slice(0,i).concat(a.slice(i+1));for(let l=0;l<8;l++)if((m>>l&1)&&index[l][a[i]]>=0){let n=m^(1<<l),s=(r-index[l][a[i]]+3)%3;if(count(b,n,s).some(Boolean))children.push([b,n,s]);}out.push(children)}
+   return out;
+ }
+ function depths(a,m,r){
+   const k=key(a,m,r);if(memo.has(k))return memo.get(k);
+   const c=count(a,m,r);if(c[0]+c[1]<=1)return [0,0,0];
+   // sign, complete, complete with terminal (not early) sign
+   let best=[c.every(Boolean)?Infinity:0,Infinity,c.every(x=>x<=1)?0:Infinity];
+   for(const ch of actions(a,m,r)){
+     const worst=[0,0,0];for(const s of ch){const d=depths(...s);for(let i=0;i<3;i++)worst[i]=Math.max(worst[i],d[i]+1);}
+     for(let i=0;i<3;i++)best[i]=Math.min(best[i],worst[i]);
+   }
+   if(best.some(x=>!Number.isFinite(x)))throw Error("unresolved");
+   memo.set(k,best);return best;
+ }
+ const root=depths([],255,0),hist={},examples={};
+ for(const [k,d] of memo){const h=`${d[1]-d[0]},${d[1]-d[2]}`;hist[h]=(hist[h]||0)+1;examples[h]??={state:k,depths:d};}
+ const feasibility=new Map();
+ function feasible(a,m,r,h,t){
+   const c=count(a,m,r),d=depths(a,m,r);
+   if(c[0]+c[1]<=1)return true;
+   if(d[0]>Math.max(h,0)||d[1]>t)return false;
+   if(!c.every(Boolean))return d[1]<=t;
+   const k=`${key(a,m,r)}:${h}:${t}`;if(feasibility.has(k))return feasibility.get(k);
+   const ans=actions(a,m,r).some(ch=>ch.every(s=>feasible(...s,h-1,t-1)));feasibility.set(k,ans);return ans;
+ }
+ const deadlines=[];for(let h=root[0];h<=root[1];h++){let t=root[1];while(t<=16&&!feasible([],255,0,h,t))t++;deadlines.push({signBy:h,fullBy:t});}
+ if(root.join(",")!=="13,13,12"||deadlines[0].fullBy!==13)throw Error("corner goal regression");
+ return {root,deadlines,counts:counts.size,depths:memo.size,feasibility:feasibility.size,depthGapHistogram:hist,examples};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
