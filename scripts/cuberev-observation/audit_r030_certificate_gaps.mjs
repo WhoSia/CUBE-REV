@@ -489,4 +489,18 @@ function auditCornerGoals(){
  if(root.join(",")!=="13,13,12"||deadlines[0].fullBy!==13)throw Error("corner goal regression");
  return {root,deadlines,counts:counts.size,depths:memo.size,feasibility:feasibility.size,depthGapHistogram:hist,examples};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditEarlyCornerSign(){
+ const labels=["UFR","URB","ULF","UBL","DRF","DBR","DFL","DLB"],colors="URFDLB",index=labels.map(s=>Array.from(colors,c=>s.indexOf(c)));
+ const pop=Array.from({length:256},(_,x)=>{let n=0;while(x){x&=x-1;n++}return n});
+ const counts=new Map(),memo=new Map(),key=(a,m,r)=>`${a.join("")}:${m}:${r}`;
+ function count(a,m,r){const k=key(a,m,r);if(counts.has(k))return counts.get(k);let o=[0,0];if(!a.length){const b=pop[m];o=b>=2?[2,2]:b===1||r===0?[1,0]:[0,0]}else for(let l=0;l<8;l++)if(m>>l&1&&index[l][a[0]]>=0){const v=count(a.slice(1),m^(1<<l),(r-index[l][a[0]]+3)%3),p=pop[m&((1<<l)-1)]%2;for(let s=0;s<2;s++)o[s]=Math.min(2,o[s]+v[s^p])}counts.set(k,o);return o}
+ function depth(a,m,r,s){if(count(a,m,r)[s]<=1)return 0;const k=key(a,m,r)+":"+s;if(memo.has(k))return memo.get(k);let best=Infinity;
+  if(pop[m]>a.length)for(let j=0;j<3;j++){let worst=0;for(let c=0;c<6;c++){const b=[...a,c].sort((x,y)=>x-y),t=s^(a.filter(x=>x>c).length%2),nr=(r+j)%3;if(count(b,m,nr)[t])worst=Math.max(worst,1+depth(b,m,nr,t));}best=Math.min(best,worst)}
+  for(let i=0;i<a.length;i++){if(i&&a[i]===a[i-1])continue;let worst=0,b=a.slice(0,i).concat(a.slice(i+1));for(let l=0;l<8;l++)if(m>>l&1&&index[l][a[i]]>=0){const nm=m^(1<<l),nr=(r-index[l][a[i]]+3)%3,t=s^((i+pop[m&((1<<l)-1)])%2);if(count(b,nm,nr)[t])worst=Math.max(worst,1+depth(b,nm,nr,t));}best=Math.min(best,worst)}
+  if(!Number.isFinite(best))throw Error("unresolved");memo.set(k,best);return best;
+ }
+ const root=[depth([],255,0,0),depth([],255,0,1)];
+ if(root.some(d=>d!==12))throw Error("early sign regression");
+ return {root,countStates:counts.size,depthStates:memo.size};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
