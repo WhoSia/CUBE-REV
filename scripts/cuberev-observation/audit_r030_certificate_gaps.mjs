@@ -785,8 +785,42 @@ function auditHallBlockPacking(){
  for(let m=1;m<256;m++){let n=pop[m]-1;function gen(a,c){if(a.length===n){inspect(a,m);return}for(let j=c;j<6;j++)gen(a+j,j)}gen("",0)}
  return {checked,hist,examples};
 }
+function auditEdgeTerminalStructure(){
+ const L=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",n=L.length;
+ let hist={},checks=0,examples={};const reasons={};
+ function inspect(ids,blank,sides){
+  const singles=ids.filter(i=>i!==blank),obs=singles.map((i,j)=>colors.indexOf(L[i][sides[j]])),f=Array(6).fill(0);for(const c of obs)f[c]++;
+  const F=f.reduce((p,k)=>p*(k>=3?6:k===2?2:1),1);
+  const edges=singles.map((i,j)=>[obs[j],colors.indexOf(L[i][sides[j]^1])]);
+  const cycles=new Map();for(let start=0;start<6;start++){
+   function walk(v,seen,mask,len){for(let j=0;j<edges.length;j++)if(edges[j][0]===v){const w=edges[j][1];if(w===start&&len+1>=2)cycles.set(mask|1<<j,len+1);else if(!(seen>>w&1))walk(w,seen|1<<w,mask|1<<j,len+1);}}
+   walk(start,1<<start,0,0)
+  }
+  const even=[...cycles].filter(([_,l])=>l%2===0),odd=[...cycles].filter(([_,l])=>l%2===1);
+  let predicted=false,reason="";
+  if(F>2)reason="multiplicity";
+  else if(blank<0){
+   if(F===2){predicted=even.length===0&&!odd.some(([a],i)=>odd.slice(i+1).some(([b])=>!(a&b)));reason=predicted?"duplicate-unique-flip":"duplicate-flip-cycle";}
+   else{predicted=even.length<=1&&odd.length<=1;reason=predicted?"distinct-cycle-limit":"distinct-cycle-excess";}
+  }else{
+   const hits=[...L[blank]].map(c=>colors.indexOf(c)).filter(c=>f[c]>0);
+   if(F===2){predicted=hits.length===0&&cycles.size===0;reason=predicted?"duplicate-unique-blank":"duplicate-blank-or-cycle";}
+   else if(hits.length===0){predicted=cycles.size===0||(cycles.size===1&&even.length===1);reason=predicted?"blank-isolated":"blank-isolated-cycles";}
+   else if(hits.length===1){const j=edges.findIndex(e=>e[0]===hits[0]);predicted=f[edges[j][1]]===0&&cycles.size===0;reason=predicted?"one-blank-swap":"blank-path-or-cycle";}
+   else reason="two-blank-swaps";
+  }
+  let c=[0,0];const req=new Map(singles.map((i,j)=>[i,sides[j]]));
+  function rec(i,used,p,r){if(c[0]>=2&&c[1]>=2)return;if(i===ids.length){if(r===0)c[p]=Math.min(2,c[p]+1);return}const row=ids[i];for(let j=0;j<ids.length;j++)if(!(used>>j&1)){let q=0;for(let k=j+1;k<ids.length;k++)q^=used>>k&1;for(let t=0;t<2;t++)if(!req.has(row)||L[ids[j]][req.get(row)^t]===L[row][req.get(row)])rec(i+1,used|1<<j,p^q,r^t)}}
+  rec(0,0,0,0);if(predicted!==c.every(x=>x<=1))throw Error(JSON.stringify({ids,blank,sides,c,predicted,reason,edges,cycles:[...cycles]}));
+  const key=(blank<0?"noBlank":"oneBlank")+":"+ids.length;hist[key]??=[0,0];hist[key][+predicted]++;checks++;reasons[reason]=(reasons[reason]||0)+1;examples[reason]??={ids:ids.map(i=>L[i]),blank:blank<0?null:L[blank],sides,c};
+ }
+ for(let mask=1;mask<1<<n;mask++){const ids=L.map((_,i)=>i).filter(i=>mask>>i&1);if(ids.length>6)continue;for(const b of [-1,...ids]){let k=ids.length-(b<0?0:1);for(let s=0;s<1<<k;s++)inspect(ids,b,Array.from({length:k},(_,j)=>s>>j&1));}}
+ if(checks!==353972||hist["noBlank:5"][1]!==16536||hist["oneBlank:4"][1]!==8904)throw Error("terminal structure regression");
+ return {checks,hist,reasons,examples};
+}
 if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
 else if (process.argv.includes('--regenerate-k5-lower')) console.log(JSON.stringify(generateK5LowerCertificate()));
 else if (process.argv.includes('--corner-hall')) console.log(JSON.stringify(auditCornerHallPlans(), null, 2));
+else if (process.argv.includes('--edge-terminal-structure')) console.log(JSON.stringify(auditEdgeTerminalStructure(), null, 2));
 else console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),k5Orbit:auditK5Orbit(),k5LowerReceipt:auditK5LowerReceipt(),cornerHallPlans:auditCornerHallPlans(),hallBlockPacking:auditHallBlockPacking(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
