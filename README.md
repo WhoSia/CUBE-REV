@@ -33,6 +33,12 @@ The abstract [Lean module](formal/029/DelayedInvariantIdentification.lean) now c
 
 Run `node scripts/cuberev-observation/audit_r030_certificate_gaps.mjs` for the exhaustive 4-state/2-binary-query/2-label census and three extremal family checks. One-hot identification gives (1, n-1, n-1, n-1); block indexing gives (d, d, kd, kd); binary-tree routing gives (d, d, d, 2^d-1). These are abstract examples with unrestricted finite observation tables, not additional physical cube results or a novelty claim.
 
+### Cross-domain identification: targets and controlled interventions
+
+The structural program now compares exact hidden-state recovery, behavioral identification, partial identification and decision sufficiency. The transferred perspective is grounded in classical query learning, rival-model experimental design, partial identification and structural identifiability, not a claim of new general epistemology. A finite Boolean-polynomial audit separates interaction degree from query count: over GF(2), degree at most d in n variables has M=sum_{j<=d} binom(n,j) coefficients, exactly M binary evaluations suffice and are necessary for complete recovery; a single coefficient indexed by S requires exactly 2^|S| evaluations. One-factor-at-a-time tests at the all-zero baseline cannot identify general interactions. These are classical interpolation/rank facts and deliberately synthetic controls, not evidence of real admissions or arbitrary software identifiability.
+
+The source audit is the `structure` section of `scripts/cuberev-observation/audit_r030_certificate_gaps.mjs` (n=1..3, every degree, all query subsets). The scientific next gate is whether a target/constraint distinction supplies an independent structural explanation of the existing physical cube result; do not indefinitely expand elementary toy formalizations.
+
 ## Reproduce
 
 Use Lean 4.34.1 (pinned by the package) and Python 3:
