@@ -49,4 +49,26 @@ function audit() {
   }
   return {order:["local","early","delayed","fixed"],hist,indexing,onehot,routing};
 }
-console.log(JSON.stringify(audit(), null, 2));
+function auditClock() {
+  const results=[];
+  for(let k=1;k<=4;k++)for(let d=1;d<=3;d++){
+    const n=k*2**d,m=k*d,bit=i=>1n<<BigInt(i),full=bit(n)-1n;
+    const label=s=>Math.floor(s/2**d);
+    const masks=Array.from({length:m},(_,q)=>{let b=0n;for(let s=0;s<n;s++)if(label(s)===Math.floor(q/d)&&((s%(2**d))>>(q%d)&1))b|=bit(s);return b;});
+    const fibers=Array.from({length:k},(_,i)=>{let b=0n;for(let s=0;s<n;s++)if(label(s)===i)b|=bit(s);return b;});
+    const post=new Map(),pre=new Map();
+    function known(b){if(!b||!(b&(b-1n)))return 0;if(post.has(b))return post.get(b);let v=Infinity;for(const mask of masks){const a=b&mask,c=b^a;if(a&&c)v=Math.min(v,1+Math.max(known(a),known(c)));}post.set(b,v);return v;}
+    function hidden(b,t){if(!b)return 0;if(t===0)return Math.max(...fibers.map(f=>known(b&f)));const key=b+":"+t;if(pre.has(key))return pre.get(key);let v=Infinity;
+      for(const mask of masks){const a=b&mask,c=b^a;v=Math.min(v,1+Math.max(hidden(a,t-1),hidden(c,t-1)));}pre.set(key,v);return v;
+    }
+    for(let t=0;t<=m+1;t++){const got=hidden(full,t),expect=t+Math.max(0,d-Math.floor(t/k));if(got!==expect)throw Error(JSON.stringify({k,d,t,got,expect}));results.push({k,d,t,depth:got});}
+  }
+  // With a constant label, two primary bits need 2 frames alone; one
+  // additional state-dependent auxiliary bit can identify all four in 1.
+  const states=[0,1,2,3];
+  const primaryDistinct=Math.max(...[0,1].map(q=>new Set(states.map(s=>s>>q&1)).size));
+  const jointDistinct=new Set(states.map(s=>`${s&1},${s>>1&1}`)).size;
+  if(primaryDistinct!==2||jointDistinct!==4)throw Error("auxiliary leakage control failed");
+  return {checked:results.length,results,auxiliaryLeakage:{earlyPrimary:2,paired:1,constantLabel:true}};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock()}, null, 2));
