@@ -1153,6 +1153,7 @@
     "scripts/cuberev-observation/audit_r029_executable_bubble_sign.py",
     "scripts/cuberev-observation/audit_r029_gauge_counterexample.py",
     "scripts/cuberev-observation/audit_r029_hall_burnside_graph_quotient.py",
+    "scripts/cuberev-observation/audit_r029_pair_action_tables.py",
     "scripts/cuberev-observation/audit_r029_prefix_orbit_coverage.py",
     "scripts/cuberev-observation/audit_r029_w_corner_geometric_decoder.py",
     "scripts/cuberev-observation/audit_r029_w_joint_routes.py",

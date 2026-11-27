@@ -36,6 +36,16 @@ jobs:
         run: python3 scripts/cuberev-observation/audit_r029_prefix_orbit_coverage.py
       - name: Replay certificate prefix coverage against the frozen JSON
         run: python3 scripts/cuberev-observation/audit_r029_certificate_prefix_coverage.py
+      - name: Run standalone certificate and route verifiers with negative controls
+        run: |
+          python3 scripts/cuberev-observation/verify_19_policy_certificate.py formal/029/upper-policy-certificate.json
+          python3 scripts/cuberev-observation/test_19_policy_certificate_negative.py
+          python3 scripts/cuberev-observation/verify_18_lifted_dag.py formal/029/EIGHTEEN_QUERY_DAG.json
+          python3 scripts/cuberev-observation/test_18_lifted_dag_mutations.py formal/029/EIGHTEEN_QUERY_DAG.json
+          python3 scripts/cuberev-observation/audit_r29_eighteen_query_dag.py check formal/029/EIGHTEEN_QUERY_DAG.json
+          python3 scripts/cuberev-observation/audit_r029_w_joint_routes.py
+          python3 scripts/cuberev-observation/audit_r029_w_negative_controls.py
+          python3 scripts/cuberev-observation/audit_r029_pair_action_tables.py
       - name: Independently audit executable corner transcript decoder
         run: python3 scripts/cuberev-observation/audit_r029_corner_transcript_decoder.py
       - name: Audit reachable corner coordinates against turn geometry
