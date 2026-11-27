@@ -369,4 +369,39 @@ function auditBoundedExchange(){
   }
   return results;
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditSignCertificates(){
+ const types=[["edge",["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],2],["corner",["UFR","URB","ULF","UBL","DRF","DBR","DFL","DLB"],3]];
+ const out=[];
+ for(const [name,labels,m] of types){
+   const n=labels.length;for(let d=1;d<m;d++){const unique=new Set();for(const l of labels)for(let j=0;j<m;j++){const key=l[j]+l[(j+d)%m];if(unique.has(key))throw Error("two colors not unique");unique.add(key);}}
+   let hist={},min=2*n,example=null,checked=0,certCount=0;
+   for(let blank=-1;blank<n;blank++){
+     const used=new Set(blank<0?[]:labels[blank]);const singles=[];
+     function run(i){
+       if(i===n){
+         const cost=2*n-singles.length-(blank>=0?2:0);
+         const remaining=[...singles.map(([p])=>p),...(blank<0?[]:[blank])].sort((a,b)=>a-b);
+         const req=new Map(singles);
+         function oddCompletion(k,used,parity,twist){
+           if(k===remaining.length)return parity===1&&twist===0;
+           const pos=remaining[k];for(let j=0;j<remaining.length;j++)if(!(used>>j&1)){let lab=remaining[j],side=req.get(pos);
+             for(let t=0;t<m;t++)if(side===undefined||labels[lab][(side+t)%m]===labels[pos][side]){
+               let q=0;for(let z=j+1;z<remaining.length;z++)q^=used>>z&1;
+               if(oddCompletion(k+1,used|1<<j,parity^q,(twist+t)%m))return true;
+             }
+           }return false;
+         }
+         checked++;let a=hist[cost]??[0,0];if(!oddCompletion(0,0,0,0)){a[1]++;certCount++;if(cost<min||!example){min=cost;example={blank,singles:singles.map(([i,s])=>({piece:labels[i],side:s,color:labels[i][s]})),full:labels.filter((_,i)=>i!==blank&&!req.has(i))}}}else a[0]++;hist[cost]=a;
+         return;
+       }
+       if(i===blank){run(i+1);return;}
+       run(i+1);
+       for(let j=0;j<m;j++){const c=labels[i][j];if(used.has(c))continue;used.add(c);singles.push([i,j]);run(i+1);singles.pop();used.delete(c);}
+     }run(0)
+   }
+   out.push({name,min,example,checked,certCount,hist});
+ }
+ if(out[0].min!==18||out[1].min!==11||out[1].hist[10][1]!==0)throw Error("certificate minima");
+ return out;
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
