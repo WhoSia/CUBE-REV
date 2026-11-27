@@ -298,4 +298,24 @@ function auditParitySupportFunction(){
  if(vertices[0]!==210||vertices[1]!==216||exclusiveNonvertex[0]!==12||exclusiveNonvertex[1]!==0)throw Error("vertex classification");
  return {vertices,exclusiveNonvertex,weightVectors:checks};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditParityExchanges(){
+ const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",p=Array.from({length:6},(_,i)=>5**i),vec=x=>p.map(q=>Math.floor(x/q)%5),orient=[],sets=[new Set(),new Set()];
+ for(let m=0;m<4096;m++){let x=0,b=0,adj=Array.from({length:6},()=>[]);for(let i=0;i<12;i++){const f=m>>i&1,u=colors.indexOf(labels[i][f]),v=colors.indexOf(labels[i][1-f]);x+=p[u];b^=f;adj[v].push([u,1<<i])}sets[b].add(x);orient.push({m,x,b,adj})}
+ let tests=0,exactPositive=0,liftFP=0,liftFN=0,evenPathFN=0,liftFPWitness=null,liftFNWitness=null,pathFNWitness=null;
+ for(const {m,x,b,adj} of orient){
+   const counts=vec(x),oddCycles=new Set();
+   for(let s=0;s<6;s++){function visit(v,seen,used,len){for(const [u,edge] of adj[v]){if(u===s&&len>=2&&(len+1)%2===1)oddCycles.add(used|edge);else if(!(seen>>u&1))visit(u,seen|1<<u,used|edge,len+1)}}visit(s,1<<s,0,0)}
+   for(let j=0;j<6;j++)for(let i=0;i<6;i++)if(i!==j&&counts[i]>0&&counts[j]<4){
+      let hasEvenPath=false,hasCorrectedPath=false;
+      function path(v,seen,used,len){if(v===i){if(len%2===0)hasEvenPath=true;else if([...oddCycles].some(c=>!(c&used)))hasCorrectedPath=true;return}for(const [u,e] of adj[v])if(!(seen>>u&1))path(u,seen|1<<u,used|e,len+1)}
+      path(j,1<<j,0,0);
+      const reach=new Set([2*j]),queue=[2*j];for(let k=0;k<queue.length;k++){const s=queue[k];for(const [u] of adj[s>>1]){let t=2*u+((s&1)^1);if(!reach.has(t)){reach.add(t);queue.push(t)}}}
+      const lift=reach.has(2*i),actual=sets[b].has(x-p[i]+p[j]),pred=hasEvenPath||hasCorrectedPath;tests++;if(actual)exactPositive++;if(pred!==actual)throw Error(JSON.stringify({m,i,j,b,actual,pred}));
+      const witness={orientationMask:m,parity:b,from:colors[i],to:colors[j],histogram:counts,target:vec(x-p[i]+p[j]),adj:adj.map(a=>a.map(([u,e])=>[colors[u],Math.log2(e)]))};
+      if(lift&&!actual){liftFP++;liftFPWitness??=witness}if(!lift&&actual){liftFN++;liftFNWitness??=witness}if(!hasEvenPath&&actual){evenPathFN++;pathFNWitness??=witness}
+   }
+ }
+ if(tests!==108384||exactPositive!==93156||!liftFP||!liftFN)throw Error("exchange census");
+ return {tests,exactPositive,liftFP,liftFN,evenPathFN,liftFPWitness,liftFNWitness,pathFNWitness};
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
