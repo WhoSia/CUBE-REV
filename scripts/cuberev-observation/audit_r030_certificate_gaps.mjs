@@ -818,9 +818,34 @@ function auditEdgeTerminalStructure(){
  if(checks!==353972||hist["noBlank:5"][1]!==16536||hist["oneBlank:4"][1]!==8904)throw Error("terminal structure regression");
  return {checks,hist,reasons,examples};
 }
+function edgeTerminalStructure(edges,blank){
+ const colors=[...new Set([...edges.flat(),...blank??[]])],f=new Map();for(const [u] of edges)f.set(u,(f.get(u)||0)+1);
+ const dup=[...f.values()].filter(x=>x===2).length;if(dup>1||[...f.values()].some(x=>x>=3))return [false,"multiplicity"];
+ const cycles=new Map();for(const start of colors){function walk(v,seen,mask,len){for(let j=0;j<edges.length;j++)if(edges[j][0]===v){const w=edges[j][1];if(w===start&&len+1>=2)cycles.set(mask|1<<j,len+1);else if(!seen.includes(w))walk(w,[...seen,w],mask|1<<j,len+1)}}walk(start,[start],0,0)}
+ const even=[...cycles].filter(([_,l])=>l%2===0),odd=[...cycles].filter(([_,l])=>l%2===1);
+ if(!blank){if(dup)return [even.length===0&&!odd.some(([a],i)=>odd.slice(i+1).some(([b])=>!(a&b))),"duplicate/no-blank"];return [even.length<=1&&odd.length<=1,"distinct/no-blank"]}
+ const hits=blank.filter(c=>f.has(c));if(dup)return [hits.length===0&&cycles.size===0,"duplicate/blank"];
+ if(!hits.length)return [cycles.size===0||cycles.size===1&&even.length===1,"distinct/isolated-blank"];
+ if(hits.length===1)return [!f.has(edges.find(e=>e[0]===hits[0])[1])&&cycles.size===0,"distinct/one-swap"];
+ return [false,"distinct/two-swaps"];
+}
+function edgeTerminalReference(record,labels){
+ const remain=[],used=new Set();let flip=0;
+ for(const [i,[a,b]] of record.entries())if(a&&b){const j=labels.findIndex(l=>l===a+b||l===b+a);if(j<0||used.has(j))throw Error("invalid full record");used.add(j);flip^=+(labels[j]!==a+b)}else remain.push(i);
+ let edges=[],blank=null;
+ function search(k,r){if(k===remain.length)return r===0;const [a,b]=record[remain[k]];for(let j=0;j<labels.length;j++)if(!used.has(j))for(let t=0;t<2;t++){const l=labels[j],u=l[t],v=l[t^1];if(a&&a!==u||b&&b!==v)continue;used.add(j);if(!a&&!b){if(blank)throw Error("two blanks");blank=[u,v]}else edges.push(a?[u,v]:[v,u]);if(search(k+1,r^t))return true;if(!a&&!b)blank=null;else edges.pop();used.delete(j)}return false}
+ if(!search(0,flip))throw Error("infeasible leaf");
+ return edgeTerminalStructure(edges,blank);
+}
+function auditPinnedStructuralTerminals(cert){
+ const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"];let leaves=0,nodes=0,hist={};
+ for(const e of cert.representatives){const rec=[...e.prefix].map(c=>[c,null]);rec.push([null,null]);function visit(i){nodes++;const node=e.nodes[i];if(node[0]==="leaf"){leaves++;const [ok,reason]=edgeTerminalReference(rec,labels);if(!ok)throw Error("structural leaf "+i);hist[reason]=(hist[reason]||0)+1;return}if(node[0]==="repeat"){visit(node[1]);return}const q=node[1],r=q<11?q:11,c=q===11?0:1,old=rec[r][c];for(const [v,j] of Object.entries(node[2])){rec[r][c]=v;visit(j)}rec[r][c]=old}visit(0)}
+ if(leaves!==73962||nodes!==141097)throw Error("pinned counts");return {leaves,nodes,hist};
+}
 if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
 else if (process.argv.includes('--k5-lower')) console.log(JSON.stringify(auditK5LowerReceipt(), null, 2));
 else if (process.argv.includes('--regenerate-k5-lower')) console.log(JSON.stringify(generateK5LowerCertificate()));
 else if (process.argv.includes('--corner-hall')) console.log(JSON.stringify(auditCornerHallPlans(), null, 2));
 else if (process.argv.includes('--edge-terminal-structure')) console.log(JSON.stringify(auditEdgeTerminalStructure(), null, 2));
+else if (process.argv.includes('--pinned-structural-terminals')) console.log(JSON.stringify(auditPinnedStructuralTerminals(loadPinnedCertificate()), null, 2));
 else console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),parityHoles:auditParityHoles(),rankBlindness:auditRankBlindness(),paritySupportFunction:auditParitySupportFunction(),parityExchanges:auditParityExchanges(),graphParityClassification:auditGraphParityClassification(),boundedExchange:auditBoundedExchange(),signCertificates:auditSignCertificates(),cornerSignMinimax:auditCornerSignMinimax(),cornerGoals:auditCornerGoals(),earlyCornerSign:auditEarlyCornerSign(),chargedCycleCertificates:auditChargedCycleCertificates(),graphSignCertificates:auditGraphSignCertificateFormula(),fullGraphCertificates:auditFullGraphCertificates(),graphAdaptiveObjectives:auditGraphAdaptiveObjectives(),k5Orbit:auditK5Orbit(),k5LowerReceipt:auditK5LowerReceipt(),cornerHallPlans:auditCornerHallPlans(),hallBlockPacking:auditHallBlockPacking(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
