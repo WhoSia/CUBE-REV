@@ -249,4 +249,18 @@ function auditPrefixPolymatroid(){
   if(forest.reduce((a,b)=>a+b,0)!==h[12]||h[11]!==1362)throw Error("forest count");
   return {submodularChecks:checks,latticeCandidates:5**6,allPrefixSupport:h,forestCoefficients:forest,total:s.size};
 }
-console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
+function auditParityPolytope(){
+ const labels=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"],colors="URFDLB",p=Array.from({length:6},(_,i)=>5**i),vec=x=>p.map(q=>Math.floor(x/q)%5),encode=a=>a.reduce((s,x,i)=>s+x*p[i],0);
+ const fibers=new Map(), orientations=[];
+ for(let m=0;m<4096;m++){let x=0,b=0;let adj=Array.from({length:6},()=>[]);for(let i=0;i<12;i++){const f=m>>i&1,u=colors.indexOf(labels[i][f]),v=colors.indexOf(labels[i][1-f]);x+=p[u];b^=f;adj[v].push(u)}let c=fibers.get(x)||[0,0];c[b]++;fibers.set(x,c);orientations.push({x,b,adj});}
+ function oddCycle(adj){for(let i=0;i<6;i++){function walk(v,seen,n){for(const w of adj[v]){if(w===i&&n>=3&&n%2===1)return true;if(!(seen>>w&1)&&walk(w,seen|1<<w,n+1))return true}return false}if(walk(i,1<<i,1))return true}return false}
+ let h={evenOnly:0,oddOnly:0,both:0},oddCycleCount=0;for(const [x,c] of fibers){h[c[0]&&c[1]?"both":c[0]?"evenOnly":"oddOnly"]++}
+ for(const {x,adj} of orientations){const odd=oddCycle(adj);if(odd)oddCycleCount++;if(odd!==fibers.get(x).every(Boolean))throw Error("odd cycle criterion")}
+ function exchange(set){const rows=[...set].map(x=>[x,vec(x)]);let failures=0,witness=null,checks=0;for(const [x,a] of rows)for(const [y,b] of rows)for(let i=0;i<6;i++)if(a[i]>b[i]){checks++;let options=[];for(let j=0;j<6;j++)if(a[j]<b[j])options.push({j,x:vec(x-p[i]+p[j]),y:vec(y+p[i]-p[j]),inX:set.has(x-p[i]+p[j]),inY:set.has(y+p[i]-p[j])});if(!options.some(o=>o.inX)){failures++;if(!witness)witness={x:a,y:b,i,options};}}return {checks,failures,witness}}
+ const even=new Set([...fibers].filter(([x,c])=>c[0]).map(([x])=>x)),odd=new Set([...fibers].filter(([x,c])=>c[1]).map(([x])=>x));
+ const result={h,oddCycleCount,even:exchange(even),odd:exchange(odd),unrestricted:exchange(new Set(fibers.keys()))};
+ for(const t of [result.even,result.odd]){const w=t.witness;w.counts={x:fibers.get(encode(w.x)),y:fibers.get(encode(w.y)),alternatives:w.options.map(o=>fibers.get(encode(o.x))||[0,0])}}
+ if(h.evenOnly!==222||h.oddOnly!==216||h.both!==645||result.unrestricted.failures!==0||!result.even.failures||!result.odd.failures)throw Error("parity/exchange regression");
+ return result
+}
+console.log(JSON.stringify({...audit(),clock:auditClock(),structure:auditStructure(),parityCycles:auditParityCycles(),orientedCharacters:auditOrientedCharacters(),prefixPolymatroid:auditPrefixPolymatroid(),parityPolytope:auditParityPolytope(),frozenLeaves:auditFrozenLeaves(loadPinnedCertificate())}, null, 2));
