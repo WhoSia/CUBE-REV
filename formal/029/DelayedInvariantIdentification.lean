@@ -556,4 +556,38 @@ theorem indexed_delayed_exact (m : Nat) :
 
 #print axioms indexed_delayed_exact
 
+
+/-- If the auxiliary reply factors through the terminal label, knowing that
+label initially allows one primary query to simulate each paired frame.
+This is NOT sound for auxiliary observations that separate states within
+the same label fiber. -/
+theorem early_primary_of_label_only_paired
+    {A B : Type} (observe : S → Q → R) (label : S → K)
+    (aux : K → A → B) (belief : S → Prop) (n : Nat)
+    (tree : Policy (Q × A) (R × B) (Option S)) (fit : Fits n tree)
+    (correct : ∀ s, belief s →
+      tree.run (fun s q => (observe s q.1, aux (label s) q.2)) s = some s) :
+    ∀ k : K, ∃ primary : Policy Q R (Option S),
+      Fits n primary ∧ ∀ s, belief s → label s = k →
+        primary.run observe s = some s := by
+  intro k
+  let response : (Q × A) → R → (R × B) := fun q r => (r, aux k q.2)
+  refine ⟨tree.adapt Prod.fst response id,
+    Policy.adapt_fits Prod.fst response id fit, ?_⟩
+  intro s hs hk
+  rw [Policy.adapt_run]
+  change tree.run (fun s' q => (observe s' q.1, aux k q.2)) s = some s
+  -- Policy.run uses only the actual hidden state, not all states.
+  have transport (p : Policy (Q × A) (R × B) (Option S)) :
+      p.run (fun s' q => (observe s' q.1, aux k q.2)) s =
+      p.run (fun s' q => (observe s' q.1, aux (label s') q.2)) s := by
+    induction p with
+    | stop output => rfl
+    | read q next ih =>
+        simpa only [Policy.run, hk] using ih (observe s q.1, aux k q.2)
+  rw [transport tree]
+  exact correct s hs
+
+#print axioms early_primary_of_label_only_paired
+
 end CubeRev030
