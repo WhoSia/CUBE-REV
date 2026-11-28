@@ -1100,7 +1100,7 @@ function auditRepresentativeMass(){
  return {roots:roots.size,feasible,rawOrderedPrefixes:rawWords,unweightedRepresentativeCandidates:total,weighted,even,odd,min:vals[0],max:vals.at(-1),median:(vals[25]+vals[26])/2,byRepresentative:[...roots]};
 }
 
-function solveGraphClockMean(E,v,cap,release,trace=false){
+function solveGraphClockMean(E,v,cap,release,trace=false,firstTouch=false){
  const n=E.length,N=1<<n,all=N-1,pop=new Uint8Array(N),cm=new Int32Array(v),side=Array.from({length:v},()=>new Uint8Array(n)),deg=new Uint8Array(v);
  for(let i=0;i<n;i++)for(let s=0;s<2;s++){const c=E[i][s];cm[c]|=1<<i;side[c][i]=s;deg[c]++}
  const gp=new Int32Array(v);let H=1;for(let c=0;c<v;c++){gp[c]=H;H*=deg[c]+1}
@@ -1120,7 +1120,7 @@ function solveGraphClockMean(E,v,cap,release,trace=false){
   // Even permutations preserve the sector, odd permutations exchange sectors.
   // If two identical rows are available, distinguish their index parities.
   if(b>0)for(let j=0;j<(known&&b>=2?2:1);j++)for(let s=0;s<(b===1?2:1);s++){let ch=[];for(let c=0;c<v;c++)if(digits[h*v+c]<caps[m*v+c])ch.push([h+gp[c],m,r^s,(greater[h*v+c]+j)&1]);visit(ch)}
-  for(let c=0;c<v;c++)if(digits[h*v+c])for(let j=0;j<(known&&digits[h*v+c]>=2?2:1);j++){let ch=[];for(let q=m&cm[c];q;){let bit=q&-q;q^=bit;let l=31-Math.clz32(bit);ch.push([h-gp[c],m^bit,r^side[c][l],(less[h*v+c]+j+pop[m&(bit-1)])&1])}visit(ch)}
+  if(!firstTouch||b<=1)for(let c=0;c<v;c++)if(digits[h*v+c])for(let j=0;j<(known&&digits[h*v+c]>=2?2:1);j++){let ch=[];for(let q=m&cm[c];q;){let bit=q&-q;q^=bit;let l=31-Math.clz32(bit);ch.push([h-gp[c],m^bit,r^side[c][l],(less[h*v+c]+j+pop[m&(bit-1)])&1])}visit(ch)}
  }
  function cost(h,m,r,p){let b=pop[m]-sum[h];if(b>0)r=0;if(b>=2||dup[h])p=0;let z=mass(h,m,r,p);if(z<=1)return 0;let d=cap-(2*n-2*pop[m]+sum[h]);if(d<=0)return Infinity;let k=key(h,m,r,p);if(C[k])return C[k]-1;cc++;let best=Infinity;
   actions(h,m,r,true,ch=>{let tot=z,ms=0;for(const [x,l,t,s] of ch){let w=mass(x,l,t,p^s);ms+=w;if(w)tot+=cost(x,l,t,p^s)}if(ms!==z)throw Error("known mass "+[h,m,r,p,z,ms]);best=Math.min(best,tot)});
@@ -1133,7 +1133,7 @@ function solveGraphClockMean(E,v,cap,release,trace=false){
  let z=[mass(0,all,0,0),mass(0,all,0,1)],costs=[cost(0,all,0,0),cost(0,all,0,1)],clock=release?unknown(0,all,0):costs[0]+costs[1];
 
 
- const symmetryAudit=trace==="symmetry"?(()=>{
+ const symmetryAudit=(trace==="symmetry"||trace==="prefix")?(()=>{
   // Every ordered prefix with the same histogram has the same known-sign
   // continuation cost (sum over signs); multiply by its multinomial weight.
   let total=0,prefixCost=0,feasible=0,failed=0,balanced=0;
@@ -1148,7 +1148,7 @@ function solveGraphClockMean(E,v,cap,release,trace=false){
   }
   if(total!==z[0]+z[1])throw Error("prefix mass");
   const stats={},witnesses=[];
-  for(const t of [14,15,16])for(let blanks=0;blanks<=2;blanks++){
+  for(const t of trace==="prefix"?[]:[14,15,16])for(let blanks=0;blanks<=2;blanks++){
    const singles=2*n-t-2*blanks,k=singles+blanks;if(singles<0||k>n)continue;
    const st=stats[t+":"+blanks]={feasible:0,protected:0,finite:0,exception:0,forced:0,forcedMass:0,bothTerminal:0,oneTerminal:0};
    for(let m=0;m<N;m++)if(pop[m]===k){
@@ -1296,7 +1296,71 @@ function auditStarClockFormula(){
  return {cases,finite,summary}
 }
 
-if (process.argv.includes('--star-clock')) console.log(JSON.stringify(auditStarClockFormula(), null, 2));
+
+function auditRawPrefixModes(E,cap,mode,release=0){
+ const n=E.length,states=[],p=[];
+ function gen(m){
+  if(!m){let sign=0;for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)sign^=+(p[i]>p[j]);for(let k=0;k<1<<n;k++){let r=0;for(let i=0;i<n;i++)r^=k>>i&1;if(!r)states.push({sign,a:p.flatMap((l,i)=>[E[l][k>>i&1],E[l][1^(k>>i&1)]])})}return}
+  for(let j=0;j<n;j++)if(m>>j&1){p.push(j);gen(m^1<<j);p.pop()}
+ }
+ gen((1<<n)-1);const memo=new Map();
+ function cost(B,used,known){
+  if(B.length<=1)return 0;let t=0,b=0;for(let j=0;j<2*n;j++)t+=used>>j&1;for(let j=0;j<n;j++)if(!(used>>(2*j)&3))b++;
+  if(!known&&t>=release)return cost(B.filter(i=>states[i].sign===0),used,true)+cost(B.filter(i=>states[i].sign===1),used,true);
+  if(t>=cap)return Infinity;let key=B.join(",")+":"+used+":"+known;if(memo.has(key))return memo.get(key);let best=Infinity;
+  for(let q=0;q<2*n;q++)if(!(used>>q&1)){
+   if(b>=2&&mode==="touch"&&(used>>(2*(q>>1))&3))continue;
+   if(t<n-1&&mode==="fixed"&&q!==2*t)continue;
+   let groups=new Map();for(let i of B){let x=states[i].a[q];if(!groups.has(x))groups.set(x,[]);groups.get(x).push(i)}let z=B.length;
+   for(let g of groups.values())z+=cost(g,used|1<<q,known);best=Math.min(best,z)
+  }
+  memo.set(key,best);return best
+ }
+ const total=cost(states.map((_,i)=>i),0,false);
+ return {n,cap,mode,release,states:states.length,total,mean:total/states.length,memo:memo.size}
+}
+function auditPrefixSeparation(){
+ const cases=[["path3",[[0,1],[0,3],[1,2]],[2,3],[[48,48,Infinity],[48,48,52]]],["paw",[[0,1],[0,2],[0,3],[1,2]],[5],[[736,738,744]]],["fork",[[0,1],[0,3],[0,4],[1,2]],[4,5],[[656,Infinity,Infinity],[656,656,672]]]];
+ const out=[];
+ for(const [name,E,caps,expect] of cases){
+  let rows=[];
+  for(let j=0;j<caps.length;j++){
+   let cap=caps[j],v=1+Math.max(...E.flat()),q=solveGraphClockMean(E,v,cap,0,"prefix"),b=solveGraphClockMean(E,v,cap,0,false,true);
+   let totals=[q.clock,b.clock,q.symmetryAudit.prefix.prefixCost];
+   let raw=["free","touch","fixed"].map(mode=>auditRawPrefixModes(E,cap,mode));
+   if(totals.some((x,i)=>x!==expect[j][i]||x!==raw[i].total))throw Error("prefix separation "+name+":"+cap);
+   rows.push({cap,totals,raw})
+  }
+  out.push({name,E,rows})
+ }
+ return out
+}
+function auditPrefixCensus(){
+ const graphs=[],seen=new Set();let comparisons=0,fixedFailures=0,adaptiveFailures=0,infeasibleFixed=0,infeasibleAdaptive=0;
+ function perms(v){let out=[];function gen(a){if(a.length===v)out.push(a);else for(let j=0;j<v;j++)if(!a.includes(j))gen([...a,j])}gen([]);return out}
+ for(let v=2;v<=5;v++){
+  const all=[];for(let i=0;i<v;i++)for(let j=i+1;j<v;j++)all.push([i,j]);const P=perms(v);
+  for(let m=1;m<1<<all.length;m++){
+   const E=all.filter((_,i)=>m>>i&1),n=E.length;if(n<2||n>7||new Set(E.flat()).size!==v)continue;
+   const id=P.map(p=>E.map(([i,j])=>[p[i],p[j]].sort((a,b)=>a-b).join("")).sort().join(",")).sort()[0];
+   if(seen.has(v+":"+id))continue;seen.add(v+":"+id);
+   let caps=[];for(let cap=0;cap<=2*n-2;cap++){
+    let q=solveGraphClockMean(E,v,cap,0,"prefix");if(!Number.isFinite(q.clock))continue;
+    let p=q.symmetryAudit.prefix,b=solveGraphClockMean(E,v,cap,0,false,true);
+    if(q.clock>b.clock||b.clock>p.prefixCost)throw Error("nesting");
+    comparisons++;if(p.prefixCost>q.clock)fixedFailures++;if(b.clock>q.clock)adaptiveFailures++;if(!Number.isFinite(p.prefixCost))infeasibleFixed++;if(!Number.isFinite(b.clock))infeasibleAdaptive++;
+    caps.push({cap,mean:q.clockMean,adaptive:b.clockMean,fixed:p.mean,dA:b.clock-q.clock,dF:p.prefixCost-q.clock});
+   }
+   graphs.push({v,n,E,caps});
+  }
+ }
+ if(graphs.length!==28||comparisons!==73||fixedFailures!==49||adaptiveFailures!==38||infeasibleFixed!==2||infeasibleAdaptive!==1)throw Error("prefix census regression");
+ return {graphs:graphs.length,comparisons,fixedFailures,adaptiveFailures,infeasibleFixed,infeasibleAdaptive,details:graphs}
+}
+
+if (process.argv.includes('--prefix-separation')) console.log(JSON.stringify(auditPrefixSeparation(), null, 2));
+else if (process.argv.includes('--prefix-census')) console.log(JSON.stringify(auditPrefixCensus(), null, 2));
+else if (process.argv.includes('--star-clock')) console.log(JSON.stringify(auditStarClockFormula(), null, 2));
 else if (process.argv.includes('--graph-clock-controls')) console.log(JSON.stringify(auditGraphClockControls(), null, 2));
 else if (process.argv.includes('--graph-clock-conflict')) console.log(JSON.stringify(auditRawClockConflict(), null, 2));
 else if (process.argv.includes('--graph-clock-symmetry')) console.log(JSON.stringify(auditGraphClockMean(0,"symmetry"), null, 2));
