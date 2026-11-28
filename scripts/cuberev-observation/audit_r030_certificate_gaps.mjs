@@ -1270,7 +1270,34 @@ function auditGraphClockMean(release=14,trace=false){
  return solveGraphClockMean(E,6,19,release,trace)
 }
 
-if (process.argv.includes('--graph-clock-controls')) console.log(JSON.stringify(auditGraphClockControls(), null, 2));
+
+function starClockFormula(n,cap,r){
+ const fact=n=>n<2?1:n*fact(n-1),binom=(n,k)=>fact(n)/(fact(k)*fact(n-k));
+ const total=fact(n)*2**(n-1),base=fact(n);
+ let cost=0,worst=0;
+ for(let x=0;x<n;x++){
+  let d=n-1+Math.max(0,x-1);if(x>0&&d<r)d++;
+  cost+=base*binom(n-1,x)*d;worst=Math.max(worst,d)
+ }
+ return {cost:worst<=cap?cost:Infinity,worst,total,mean:worst<=cap?cost/total:null}
+}
+function auditStarClockFormula(){
+ let cases=0,finite=0,summary=[];
+ for(let n=2;n<=7;n++){
+  const E=Array.from({length:n},(_,i)=>[0,i+1]);
+  for(let cap=2*n-4;cap<=2*n-1;cap++)for(let r=0;r<=2*n;r++){
+   const a=starClockFormula(n,cap,r),b=solveGraphClockMean(E,n+1,cap,r);
+   if(a.cost!==b.clock)throw Error("star formula mismatch "+JSON.stringify({n,cap,r,a,b}));
+   cases++;if(Number.isFinite(a.cost))finite++
+  }
+  summary.push({n,early:starClockFormula(n,2*n-2,0).mean,latestLossless:n-1,unknown:starClockFormula(n,2*n-2,2*n).mean,profile:Array.from({length:2*n+1},(_,r)=>starClockFormula(n,2*n-2,r).mean)})
+ }
+ if(cases!==240||finite!==162)throw Error("star census");
+ return {cases,finite,summary}
+}
+
+if (process.argv.includes('--star-clock')) console.log(JSON.stringify(auditStarClockFormula(), null, 2));
+else if (process.argv.includes('--graph-clock-controls')) console.log(JSON.stringify(auditGraphClockControls(), null, 2));
 else if (process.argv.includes('--graph-clock-conflict')) console.log(JSON.stringify(auditRawClockConflict(), null, 2));
 else if (process.argv.includes('--graph-clock-symmetry')) console.log(JSON.stringify(auditGraphClockMean(0,"symmetry"), null, 2));
 else if (process.argv.includes('--graph-clock-regret')) console.log(JSON.stringify(auditGraphClockMean(Number(process.argv[process.argv.indexOf('--graph-clock-regret')+1]??17),true), null, 2));
