@@ -1265,9 +1265,9 @@ function auditGraphClockControls(){
  }
  return {rawControls:controls}
 }
-function auditGraphClockMean(release=14,trace=false){
+function auditGraphClockMean(release=14,trace=false,cap=19){
  const E=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"].map(l=>[...l].map(c=>"URFDLB".indexOf(c)));
- return solveGraphClockMean(E,6,19,release,trace)
+ return solveGraphClockMean(E,6,cap,release,trace)
 }
 
 
@@ -1406,7 +1406,14 @@ function auditSectorFrontier(){
  return out
 }
 
-if (process.argv.includes('--sector-frontier')) console.log(JSON.stringify(auditSectorFrontier(), null, 2));
+function auditUncappedEdgeMean(){
+ const r=auditGraphClockMean(0,false,24);
+ if(r.clock!==17253524534400||r.costs.some(x=>x!==8626762267200)||r.z.some(x=>x!==490497638400)||r.losers!==0)throw Error("uncapped edge mean regression");
+ return r
+}
+
+if (process.argv.includes('--uncapped-edge-mean')) console.log(JSON.stringify(auditUncappedEdgeMean(),null,2));
+else if (process.argv.includes('--sector-frontier')) console.log(JSON.stringify(auditSectorFrontier(), null, 2));
 else if (process.argv.includes('--prefix-separation')) console.log(JSON.stringify(auditPrefixSeparation(), null, 2));
 else if (process.argv.includes('--prefix-census')) console.log(JSON.stringify(auditPrefixCensus(), null, 2));
 else if (process.argv.includes('--star-clock')) console.log(JSON.stringify(auditStarClockFormula(), null, 2));
