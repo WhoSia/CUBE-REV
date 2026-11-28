@@ -1412,7 +1412,60 @@ function auditUncappedEdgeMean(){
  return r
 }
 
-if (process.argv.includes('--uncapped-edge-mean')) console.log(JSON.stringify(auditUncappedEdgeMean(),null,2));
+
+ // Independent integer-coordinate geometry, HTM (quarter turns and half
+ // turns each cost one). Permutations map ORIGINAL slot to CURRENT slot.
+function auditRouteMemory(){
+ const vec=[-1,0,1],slots=[];
+ for(let a of vec)for(let b of vec)for(let c of vec){
+  let x=[a,b,c],count=x.filter(Boolean).length;if(count<2)continue;
+  for(let i=0;i<3;i++)if(x[i])slots.push({x,n:[0,1,2].map(j=>i===j?x[i]:0),type:count===2?"edge":"corner"})
+ }
+ const key=(x,n)=>x.join(",")+";"+n.join(","),ids=new Map(slots.map((s,i)=>[key(s.x,s.n),i]));
+ const turns=[];
+ for(let axis=0;axis<3;axis++)for(let face of [-1,1])for(let k of [1,2,3]){
+  function rot(v){let z=[...v],i=(axis+1)%3,j=(axis+2)%3;for(let t=0;t<k;t++){let y=z[i];z[i]=-z[j];z[j]=y}return z}
+  let p=slots.map(s=>s.x[axis]===face?ids.get(key(rot(s.x),rot(s.n))):ids.get(key(s.x,s.n)));
+  let name=[["L","R"],["D","U"],["B","F"]][axis][face===1?1:0]+(k===2?"2":k===3?"-":"+");turns.push({name,p})
+ }
+ if(slots.length!==48||turns.some(t=>new Set(t.p).size!==48))throw Error("geometry");
+ const probe=[ids.get(key([0,1,1],[0,1,0])),ids.get(key([1,1,1],[0,1,0]))],enc=a=>a.join(",");
+ const apply=(p,q)=>q.map(i=>p[i]),compose=(p,g)=>g.map(i=>p[i]),inverse=g=>{let h=[];g.forEach((j,i)=>h[j]=i);return h};
+ let map=new Map([[enc(probe),0]]),queue=[probe];
+ for(let i=0;i<queue.length;i++)for(let t of turns){let q=apply(t.p,queue[i]),k=enc(q);if(!map.has(k)){map.set(k,map.get(enc(queue[i]))+1);queue.push(q)}}
+ if(map.size!==576)throw Error("pair orbit");
+ const hist={};for(let d of map.values())hist[d]=(hist[d]||0)+1;
+ const index=new Map(queue.map((a,i)=>[enc(a),i])),adj=queue.map(a=>turns.map(t=>index.get(enc(apply(t.p,a)))));
+ const eccentricities={};let allDiameter=0;
+ for(let i=0;i<queue.length;i++){
+  let dist=new Int8Array(queue.length);dist.fill(-1);dist[i]=0;let q=[i];
+  for(let j=0;j<q.length;j++)for(let k of adj[q[j]])if(dist[k]<0){dist[k]=dist[q[j]]+1;q.push(k)}
+  if(q.length!==576)throw Error("pair connectivity");
+  let ecc=Math.max(...dist);eccentricities[ecc]=(eccentricities[ecc]||0)+1;allDiameter=Math.max(allDiameter,ecc)
+ }
+ let h=turns.find(t=>t.name==="D+"),f=turns.find(t=>t.name==="F+"),q=apply(inverse(f.p),probe);
+ if(enc(apply(h.p,probe))!==enc(probe))throw Error("stabilizer");
+ const d0=map.get(enc(q)),d1=map.get(enc(apply(h.p,q)));
+ // Frozen witness discovered by comparing all one-turn first routes to
+ // a two-turn first route. Verify all shortest first routes explicitly.
+ const a=[probe[0],ids.get(key([1,1,-1],[0,0,-1]))],b=[ids.get(key([0,1,-1],[0,1,0])),ids.get(key([1,-1,-1],[1,0,0]))];
+ const short=turns.filter(t=>enc(apply(t.p,a))===enc(probe)).map(t=>({path:[t.name],next:map.get(enc(apply(t.p,b)))}));
+ const long=["D-","R+"].map(name=>turns.find(t=>t.name===name)),g=compose(long[1].p,long[0].p);
+ if(enc(a)===enc(probe)||enc(apply(g,a))!==enc(probe)||short.length!==1||d0!==1||d1!==2)throw Error("route witness");
+ const greedy=Math.min(...short.map(x=>1+x.next)),longNext=map.get(enc(apply(g,b))),alt=2+longNext;
+ if(greedy!==5||alt!==4)throw Error("greedy route witness");
+ // The true two-query optimum is four: enumerate all first paths of
+ // length 0..3 and check whether a total of <=3 is possible.
+ let permutations=[slots.map((_,i)=>i)],checked=0;
+ for(let depth=0;depth<=3;depth++){
+  for(let p of permutations)if(enc(apply(p,a))===enc(probe)){checked++;if(depth+map.get(enc(apply(p,b)))<=3)throw Error("shorter joint route")}
+  if(depth<3)permutations=permutations.flatMap(p=>turns.map(t=>compose(t.p,p)))
+ }
+ return {slots:slots.length,turns:turns.length,orbit:map.size,hist,probeEccentricity:Math.max(...map.values()),eccentricities,allDiameter,probe:probe.map(i=>slots[i]),sameLastPair:{prior:["identity",h.name],next:q.map(i=>slots[i]),cost:[d0,d1]},witness:{a:a.map(i=>slots[i]),b:b.map(i=>slots[i]),greedy,optimal:alt,short,long:long.map(t=>t.name),longNext,checkedFirstPaths:checked}}
+}
+
+if (process.argv.includes('--route-memory')) console.log(JSON.stringify(auditRouteMemory(),null,2));
+else if (process.argv.includes('--uncapped-edge-mean')) console.log(JSON.stringify(auditUncappedEdgeMean(),null,2));
 else if (process.argv.includes('--sector-frontier')) console.log(JSON.stringify(auditSectorFrontier(), null, 2));
 else if (process.argv.includes('--prefix-separation')) console.log(JSON.stringify(auditPrefixSeparation(), null, 2));
 else if (process.argv.includes('--prefix-census')) console.log(JSON.stringify(auditPrefixCensus(), null, 2));
