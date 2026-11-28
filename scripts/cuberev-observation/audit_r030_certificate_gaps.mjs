@@ -1132,7 +1132,52 @@ function solveGraphClockMean(E,v,cap,release,trace=false){
   U[k]=best+1;return best}
  let z=[mass(0,all,0,0),mass(0,all,0,1)],costs=[cost(0,all,0,0),cost(0,all,0,1)],clock=release?unknown(0,all,0):costs[0]+costs[1];
 
- const regretTrace=trace&&release&&Number.isFinite(clock)?(()=>{
+
+ const symmetryAudit=trace==="symmetry"?(()=>{
+  // Every ordered prefix with the same histogram has the same known-sign
+  // continuation cost (sum over signs); multiply by its multinomial weight.
+  let total=0,prefixCost=0,feasible=0,failed=0,balanced=0;
+  for(let h=0;h<H;h++)if(sum[h]===n-1){
+   let z0=mass(h,all,0,0),z1=mass(h,all,0,1),z=z0+z1;if(!z)continue;feasible++;
+   if(z0===z1)balanced++;
+   let w=fact(n-1);for(let c=0;c<v;c++)w/=fact(digits[h*v+c]);
+   if(!Number.isInteger(w))throw Error("prefix weight");
+   total+=w*z;let k=cost(h,all,0,0)+cost(h,all,0,1);
+   if(!Number.isFinite(k))failed++;
+   prefixCost+=w*(z*(n-1)+k);
+  }
+  if(total!==z[0]+z[1])throw Error("prefix mass");
+  const stats={},witnesses=[];
+  for(const t of [14,15,16])for(let blanks=0;blanks<=2;blanks++){
+   const singles=2*n-t-2*blanks,k=singles+blanks;if(singles<0||k>n)continue;
+   const st=stats[t+":"+blanks]={feasible:0,protected:0,finite:0,exception:0,forced:0,forcedMass:0,bothTerminal:0,oneTerminal:0};
+   for(let m=0;m<N;m++)if(pop[m]===k){
+    function gen(c,h,rem,groups){
+     if(c===v){if(rem)return;let z0=mass(h,m,0,0),z1=mass(h,m,0,1);if(!z0||!z1)return;st.feasible++;
+      // The known-sign group has an odd element fixing every single-row
+      // action if a class has size >=3 or two classes have size >=2.
+      let sizes=[blanks,...groups].sort((a,b)=>b-a),safe=sizes[0]>=3||sizes[1]>=2;
+      if(safe)st.protected++;
+      let early=cost(h,m,0,0)+cost(h,m,0,1);if(!Number.isFinite(early))return;st.finite++;
+      if(safe){if(z0<=1||z1<=1)throw Error("protected terminal");return}
+      st.exception++;if(z0===1&&z1===1)st.bothTerminal++;else if(z0===1||z1===1)st.oneTerminal++;
+      let best=Infinity,opts=[],i=0;actions(h,m,0,false,ch=>{
+       let c=z0+z1;for(const [x,l,t,s] of ch)c+=cost(x,l,t,0)+cost(x,l,t,1);
+       best=Math.min(best,c);opts.push([i++,Number.isFinite(c)?c:null]);
+      });
+      if(best<early)throw Error("negative delta");
+      if(best>early){st.forced++;st.forcedMass+=z0+z1;if(witnesses.length<6)witnesses.push({t,blanks,groups,remaining:E.filter((_,i)=>m>>i&1),mass:[z0,z1],early,best,opts})}
+      return;
+     }
+     for(let d=0;d<=Math.min(rem,caps[m*v+c]);d++)gen(c+1,h+d*gp[c],rem-d,[...groups,d])
+    }
+    gen(0,0,singles,[]);
+   }
+  }
+  return {prefix:{total,prefixCost,feasible,failed,balanced,mean:prefixCost/total,equalsUnrestricted:prefixCost===costs[0]+costs[1]},stats,witnesses};
+ })():null;
+
+ const regretTrace=trace===true&&release&&Number.isFinite(clock)?(()=>{
   const knownSum=(h,m,r)=>cost(h,m,r,0)+cost(h,m,r,1);
   const canonical=(h,m,r)=>[h,m,pop[m]>sum[h]?0:r];
   let layer=new Map([["0:"+all+":0",{s:[0,all,0],multiplicity:1}]]),totalRegret=0;
@@ -1167,8 +1212,36 @@ function solveGraphClockMean(E,v,cap,release,trace=false){
  })():null;
 
  if(z[0]+z[1]!==fact(n)*2**(n-1)||n>=2&&(z[0]!==z[1]||costs[0]!==costs[1]))throw Error("root sign symmetry");
- return {n,v,cap,release,z,costs,means:costs.map((c,i)=>z[i]?c/z[i]:null),clock,clockMean:clock/(z[0]+z[1]),regretTrace,mc,cc,uc,losers,tableBytes:M.byteLength+C.byteLength+(U?.byteLength||0)}
+ return {n,v,cap,release,z,costs,means:costs.map((c,i)=>z[i]?c/z[i]:null),clock,clockMean:clock/(z[0]+z[1]),regretTrace,symmetryAudit,mc,cc,uc,losers,tableBytes:M.byteLength+C.byteLength+(U?.byteLength||0)}
 }
+
+ // Independent raw-coordinate check of the first genuine local conflict:
+ // 18 explicitly enumerated residual arrangements, no quotient/gauge cache.
+function auditRawClockConflict(){
+ const E=[[3,4],[5,4],[2,4],[0,4],[3,2],[0,5],[3,1]],a=[1,2,3,4,4,5],n=E.length,states=[],p=[],tw=[];
+ function gen(i,m,flip,parity){
+  if(i===n){if(!flip)states.push({parity,stickers:p.flatMap((l,j)=>[E[l][tw[j]],E[l][tw[j]^1]])});return;}
+  for(let l=0;l<n;l++)if(!(m>>l&1))for(let s=0;s<2;s++)if(i===a.length||E[l][s]===a[i]){
+   let sign=0;for(let j=l+1;j<n;j++)sign^=m>>j&1;
+   p.push(l);tw.push(s);gen(i+1,m|1<<l,flip^s,parity^sign);p.pop();tw.pop()
+  }
+ }
+ gen(0,0,0,0);
+ const init=a.reduce((m,_,i)=>m|1<<(2*i),0),memo=new Map();
+ function evaluate(B,used,d){
+  if(B.length<=1)return 0;if(!d)return Infinity;let k=B.join(",")+":"+used+":"+d;if(memo.has(k))return memo.get(k);
+  let best=Infinity;for(let q=0;q<2*n;q++)if(!(used>>q&1))best=Math.min(best,first(B,used,d,q));memo.set(k,best);return best
+ }
+ function first(B,used,d,q){
+  let g=new Map();for(const i of B){let v=states[i].stickers[q];if(!g.has(v))g.set(v,[]);g.get(v).push(i)}
+  let z=B.length;for(const b of g.values())z+=evaluate(b,used|1<<q,d-1);return z
+ }
+ let B=[0,1].map(s=>states.map((x,i)=>x.parity===s?i:-1).filter(i=>i>=0)),cost=B.map(b=>evaluate(b,init,3)),actions=[];
+ for(let q=0;q<2*n;q++)if(!(init>>q&1)){let c=B.map(b=>first(b,init,3,q));actions.push({row:q>>1,side:q&1,color:a[q>>1]??null,costs:c,combined:c[0]+c[1]})}
+ let minimum=Math.min(...actions.map(x=>x.combined));if(B.some(b=>b.length!==9)||cost.join(",")!=="16,16"||minimum!==34)throw Error("raw conflict");
+ return {counts:B.map(b=>b.length),cost,actions,minimum,memoStates:memo.size}
+}
+
 function auditRawGraphClock(E,cap,release){
  const n=E.length,states=[],p=[];
  function gen(m){if(!m){let s=0;for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)s^=+(p[i]>p[j]);for(let t=0;t<1<<n;t++){let r=0;for(let i=0;i<n;i++)r^=t>>i&1;if(!r)states.push({s,a:p.flatMap((l,i)=>[E[l][t>>i&1],E[l][1^(t>>i&1)]])})}return}
@@ -1198,6 +1271,8 @@ function auditGraphClockMean(release=14,trace=false){
 }
 
 if (process.argv.includes('--graph-clock-controls')) console.log(JSON.stringify(auditGraphClockControls(), null, 2));
+else if (process.argv.includes('--graph-clock-conflict')) console.log(JSON.stringify(auditRawClockConflict(), null, 2));
+else if (process.argv.includes('--graph-clock-symmetry')) console.log(JSON.stringify(auditGraphClockMean(0,"symmetry"), null, 2));
 else if (process.argv.includes('--graph-clock-regret')) console.log(JSON.stringify(auditGraphClockMean(Number(process.argv[process.argv.indexOf('--graph-clock-regret')+1]??17),true), null, 2));
 else if (process.argv.includes('--graph-clock-mean')) console.log(JSON.stringify(auditGraphClockMean(Number(process.argv[process.argv.indexOf('--graph-clock-mean')+1]??14)), null, 2));
 else if (process.argv.includes('--five-vertex-cover')) console.log(JSON.stringify(auditFiveVertexCover(), null, 2));
