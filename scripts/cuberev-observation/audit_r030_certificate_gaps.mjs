@@ -1100,7 +1100,7 @@ function auditRepresentativeMass(){
  return {roots:roots.size,feasible,rawOrderedPrefixes:rawWords,unweightedRepresentativeCandidates:total,weighted,even,odd,min:vals[0],max:vals.at(-1),median:(vals[25]+vals[26])/2,byRepresentative:[...roots]};
 }
 
-function solveGraphClockMean(E,v,cap,release,trace=false,firstTouch=false){
+function solveGraphClockMean(E,v,cap,release,trace=false,firstTouch=false,massMode="row"){
  const n=E.length,N=1<<n,all=N-1,pop=new Uint8Array(N),cm=new Int32Array(v),side=Array.from({length:v},()=>new Uint8Array(n)),deg=new Uint8Array(v);
  for(let i=0;i<n;i++)for(let s=0;s<2;s++){const c=E[i][s];cm[c]|=1<<i;side[c][i]=s;deg[c]++}
  const gp=new Int32Array(v);let H=1;for(let c=0;c<v;c++){gp[c]=H;H*=deg[c]+1}
@@ -1111,7 +1111,66 @@ function solveGraphClockMean(E,v,cap,release,trace=false,firstTouch=false){
  const M=new Float64Array(4*off[N]),C=new Float64Array(4*off[N]),U=release?new Float64Array(2*off[N]):null;
  const fact=n=>n<2?1:n*fact(n-1);let mc=0,cc=0,uc=0,losers=0;
  function key(h,m,r,p){let z=off[m];for(let c=0;c<v;c++){let d=digits[h*v+c];if(d>caps[m*v+c])return -1;z+=d*strides[m*v+c]}return 4*z+2*r+p}
- function mass(h,m,r,p){let b=pop[m]-sum[h];if(b<0)return 0;if(b>0)r=0;if(b>=2||dup[h])p=0;let k=key(h,m,r,p);if(k<0)return 0;if(M[k])return M[k]-1;mc++;let z=0;
+
+ // Alternative counting oracle. Multiply edge factors label-by-label;
+ // determinant correction uses the actual ordered residual row matrix.
+ const P=massMode==="character"?new Float64Array(off[N]):null;
+ const F=P?new Float64Array(off[N]):null,Fseen=P?new Uint8Array(off[N]):null;
+ let polyCount=0,detCount=0;
+ function coeff(h,m){
+  let k=key(h,m,0,0);if(k<0||sum[h]>pop[m])return 0;
+  let j=k/4;if(P[j])return P[j]-1;
+  let z;if(!m)z=+(!h);else{let bit=m&-m,l=31-Math.clz32(bit);z=coeff(h,m^bit);
+   for(let c of E[l])if(digits[h*v+c])z+=coeff(h-gp[c],m^bit);
+  }P[j]=z+1;polyCount++;return z
+ }
+ function flipCoeff(h,m){
+  if(sum[h]!==pop[m])return 0;
+  let k=key(h,m,0,0);if(k<0)return 0;let j=k/4;if(Fseen[j])return F[j];
+  let z;if(!m)z=+(!h);else{let bit=m&-m,l=31-Math.clz32(bit),[u,w]=E[l];z=0;
+   if(digits[h*v+u])z+=flipCoeff(h-gp[u],m^bit);
+   if(digits[h*v+w])z-=flipCoeff(h-gp[w],m^bit);
+  }Fseen[j]=1;F[j]=z;return z
+ }
+ function determinant(A){
+  const n=A.length;if(!n)return 1;A=A.map(a=>a.slice());let old=1,sgn=1;
+  for(let i=0;i<n-1;i++){
+   let j=i;while(j<n&&!A[j][i])j++;if(j===n)return 0;
+   if(j!==i){[A[i],A[j]]=[A[j],A[i]];sgn=-sgn}
+   let p=A[i][i];
+   for(let k=i+1;k<n;k++)for(let l=i+1;l<n;l++){
+    let q=(A[k][l]*p-A[k][i]*A[i][l])/old;if(!Number.isInteger(q))throw Error("det exact");A[k][l]=q
+   }
+   for(let k=i+1;k<n;k++)A[k][i]=0;old=p
+  }
+  return sgn*A[n-1][n-1]
+ }
+ function characterMass(h,m,r,p){
+  let b=pop[m]-sum[h];if(b<0)return 0;
+  if(b>0)r=0;if(b>=2||dup[h])p=0;
+  let k=key(h,m,r,p);if(k<0)return 0;if(M[k])return M[k]-1;mc++;
+  let multiplicity=1;for(let c=0;c<v;c++)multiplicity*=fact(digits[h*v+c]);
+  let a=coeff(h,m)*multiplicity,total;
+  if(b>0)total=a*fact(b)*2**(b-1);
+  else total=(a+(r?-1:1)*flipCoeff(h,m)*multiplicity)/2;
+  let imbalance=0;
+  if(total&&b<=1&&!dup[h]){
+   let rows=[];for(let c=0;c<v;c++)if(digits[h*v+c])rows.push(c);
+   if(b)rows.push(-1);
+   let cols=[];for(let j=0;j<n;j++)if(m>>j&1)cols.push(j);
+   const A=rows.map(c=>cols.map(j=>c<0||E[j].includes(c)?1:0));
+   imbalance=determinant(A);detCount++;
+   if(!b){
+    let B=rows.map(c=>cols.map(j=>E[j][0]===c?1:E[j][1]===c?-1:0));
+    imbalance=(imbalance+(r?-1:1)*determinant(B))/2;
+   }
+  }
+  let z=(total+(p?-1:1)*imbalance)/2;
+  if(!Number.isSafeInteger(z)||z<0)throw Error("character mass "+[h,m,r,p,total,imbalance,z]);
+  M[k]=z+1;return z
+ }
+ function mass(h,m,r,p){
+  if(massMode==="character")return characterMass(h,m,r,p);let b=pop[m]-sum[h];if(b<0)return 0;if(b>0)r=0;if(b>=2||dup[h])p=0;let k=key(h,m,r,p);if(k<0)return 0;if(M[k])return M[k]-1;mc++;let z=0;
   if(!h){if(b>=2)z=fact(b)*2**(b-2);else if(!p&&(b===1||!r))z=1}
   else{let c=0;while(!digits[h*v+c])c++;for(let q=m&cm[c];q;){let bit=q&-q;q^=bit;let l=31-Math.clz32(bit);z+=mass(h-gp[c],m^bit,r^side[c][l],p^(pop[m&(bit-1)]&1))}}
   M[k]=z+1;return z}
@@ -1212,7 +1271,7 @@ function solveGraphClockMean(E,v,cap,release,trace=false,firstTouch=false){
  })():null;
 
  if(z[0]+z[1]!==fact(n)*2**(n-1)||n>=2&&(z[0]!==z[1]||costs[0]!==costs[1]))throw Error("root sign symmetry");
- return {n,v,cap,release,z,costs,means:costs.map((c,i)=>z[i]?c/z[i]:null),clock,clockMean:clock/(z[0]+z[1]),regretTrace,symmetryAudit,mc,cc,uc,losers,tableBytes:M.byteLength+C.byteLength+(U?.byteLength||0)}
+ return {n,v,cap,release,z,costs,means:costs.map((c,i)=>z[i]?c/z[i]:null),clock,clockMean:clock/(z[0]+z[1]),regretTrace,symmetryAudit,mc,cc,uc,losers,massMode,polyCount,detCount,tableBytes:M.byteLength+C.byteLength+(U?.byteLength||0)+(P?.byteLength||0)+(F?.byteLength||0)+(Fseen?.byteLength||0)}
 }
 
  // Independent raw-coordinate check of the first genuine local conflict:
@@ -1253,21 +1312,21 @@ function auditRawGraphClock(E,cap,release){
   memo.set(k,best);return best}
  const costs=[0,1].map(s=>cost(all.filter(i=>states[i].s===s),0,true));return {costs,clock:cost(all,0,false),states:states.length,memo:memo.size}
 }
-function auditGraphClockControls(){
+function auditGraphClockControls(massMode="row"){
  let controls=0;
  for(const E of [[[0,1]],[[0,1],[0,2]],[[0,1],[0,2],[1,2]],[[0,1],[1,2],[2,3]],[[0,1],[1,2],[2,3],[3,0]]]){
   const n=E.length,v=1+Math.max(...E.flat());
   for(let cap=0;cap<=2*n;cap++)for(const r of new Set([0,Math.min(2,cap),cap])){
-   const q=solveGraphClockMean(E,v,cap,r),raw=auditRawGraphClock(E,cap,r);
+   const q=solveGraphClockMean(E,v,cap,r,false,false,massMode),raw=auditRawGraphClock(E,cap,r);
    if(q.costs.join(",")!==raw.costs.join(",")||q.clock!==raw.clock)throw Error("raw clock mismatch "+JSON.stringify({E,q,raw}));
    controls++
   }
  }
  return {rawControls:controls}
 }
-function auditGraphClockMean(release=14,trace=false,cap=19){
+function auditGraphClockMean(release=14,trace=false,cap=19,massMode="row"){
  const E=["DL","BL","FL","UL","DB","DF","UB","UF","DR","BR","FR","UR"].map(l=>[...l].map(c=>"URFDLB".indexOf(c)));
- return solveGraphClockMean(E,6,cap,release,trace)
+ return solveGraphClockMean(E,6,cap,release,trace,false,massMode)
 }
 
 
@@ -1464,7 +1523,9 @@ function auditRouteMemory(){
  return {slots:slots.length,turns:turns.length,orbit:map.size,hist,probeEccentricity:Math.max(...map.values()),eccentricities,allDiameter,probe:probe.map(i=>slots[i]),sameLastPair:{prior:["identity",h.name],next:q.map(i=>slots[i]),cost:[d0,d1]},witness:{a:a.map(i=>slots[i]),b:b.map(i=>slots[i]),greedy,optimal:alt,short,long:long.map(t=>t.name),longNext,checkedFirstPaths:checked}}
 }
 
-if (process.argv.includes('--route-memory')) console.log(JSON.stringify(auditRouteMemory(),null,2));
+if (process.argv.includes('--character-controls')) console.log(JSON.stringify(auditGraphClockControls('character'),null,2));
+else if (process.argv.includes('--character-mean')) console.log(JSON.stringify(auditGraphClockMean(Number(process.argv[process.argv.indexOf('--character-mean')+1]??0),false,Number(process.argv[process.argv.indexOf('--character-mean')+2]??19),'character'),null,2));
+else if (process.argv.includes('--route-memory')) console.log(JSON.stringify(auditRouteMemory(),null,2));
 else if (process.argv.includes('--uncapped-edge-mean')) console.log(JSON.stringify(auditUncappedEdgeMean(),null,2));
 else if (process.argv.includes('--sector-frontier')) console.log(JSON.stringify(auditSectorFrontier(), null, 2));
 else if (process.argv.includes('--prefix-separation')) console.log(JSON.stringify(auditPrefixSeparation(), null, 2));
