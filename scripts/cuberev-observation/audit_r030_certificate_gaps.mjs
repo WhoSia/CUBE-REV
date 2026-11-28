@@ -1358,7 +1358,56 @@ function auditPrefixCensus(){
  return {graphs:graphs.length,comparisons,fixedFailures,adaptiveFailures,infeasibleFixed,infeasibleAdaptive,details:graphs}
 }
 
-if (process.argv.includes('--prefix-separation')) console.log(JSON.stringify(auditPrefixSeparation(), null, 2));
+
+ // Exact set-valued Bellman recurrence on raw history fibers.
+ // The components are total observation counts within the two original
+ // sign sectors; branches are independent histories, not merged Markov states.
+function rawSectorFrontier(E,cap,r){
+ const n=E.length,states=[],p=[];
+ function gen(m){
+  if(!m){let sign=0;for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)sign^=+(p[i]>p[j]);for(let k=0;k<1<<n;k++){let x=0;for(let i=0;i<n;i++)x^=k>>i&1;if(!x)states.push({sign,a:p.flatMap((l,i)=>[E[l][k>>i&1],E[l][1^(k>>i&1)]])})}return}
+  for(let j=0;j<n;j++)if(m>>j&1){p.push(j);gen(m^1<<j);p.pop()}
+ }
+ gen((1<<n)-1);const memo=new Map(),knownMemo=new Map();
+ function groups(B,q){let m=new Map();for(let i of B){let a=states[i].a[q];if(!m.has(a))m.set(a,[]);m.get(a).push(i)}return m.values()}
+ const pop=x=>{let z=0;while(x){x&=x-1;z++}return z};
+ function known(B,used){
+  if(B.length<=1)return 0;if(pop(used)>=cap)return Infinity;let k=B.join(",")+":"+used;if(knownMemo.has(k))return knownMemo.get(k);let best=Infinity;
+  for(let q=0;q<2*n;q++)if(!(used>>q&1)){let z=B.length;for(let g of groups(B,q))z+=known(g,used|1<<q);best=Math.min(best,z)}
+  knownMemo.set(k,best);return best
+ }
+ function pareto(A){let seen=new Map();for(let [x,y] of A)if(!seen.has(x)||seen.get(x)>y)seen.set(x,y);let best=Infinity,out=[];for(let [x,y] of [...seen].sort((a,b)=>a[0]-b[0]))if(y<best){out.push([x,y]);best=y}return out}
+ function solve(B,used){
+  if(B.length<=1)return [[0,0]];
+  let t=pop(used),b0=B.filter(i=>!states[i].sign),b1=B.filter(i=>states[i].sign);
+  if(t>=r||!b0.length||!b1.length){let x=known(b0,used),y=known(b1,used);return Number.isFinite(x+y)?[[x,y]]:[]}
+  if(t>=cap)return [];
+  let k=B.join(",")+":"+used;if(memo.has(k))return memo.get(k);let out=[];
+  for(let q=0;q<2*n;q++)if(!(used>>q&1)){
+   let V=[[b0.length,b1.length]];
+   for(let G of groups(B,q)){let W=solve(G,used|1<<q);V=pareto(V.flatMap(([x,y])=>W.map(([u,v])=>[x+u,y+v])));if(!V.length)break}
+   out=pareto(out.concat(V))
+  }
+  memo.set(k,out);return out
+ }
+ let B=states.map((_,i)=>i),P=solve(B,0),mass=states.length/2,base=[0,1].map(s=>known(B.filter(i=>states[i].sign===s),0));
+ return {n,cap,r,mass,base,P,uniform:Math.min(...P.map(([x,y])=>(x+y)/2/mass)),memo:memo.size,knownMemo:knownMemo.size}
+}
+function auditSectorFrontier(){
+ const out=[];
+ for(const [name,E,cap] of [["triangle",[[0,1],[0,2],[1,2]],4],["paw",[[0,1],[0,2],[0,3],[1,2]],5],["fork",[[0,1],[0,3],[0,4],[1,2]],4]]){
+  for(let r=0;r<=cap;r++){
+   let F=rawSectorFrontier(E,cap,r),q=solveGraphClockMean(E,1+Math.max(...E.flat()),cap,r);
+   if(F.uniform!==q.clockMean||F.P.some(([x,y])=>!F.P.some(([u,v])=>u===y&&v===x)))throw Error("sector frontier");
+   if(F.P.some(([x,y])=>x<F.base[0]||y<F.base[1]))throw Error("sector lower");
+   out.push({name,...F})
+  }
+ }
+ return out
+}
+
+if (process.argv.includes('--sector-frontier')) console.log(JSON.stringify(auditSectorFrontier(), null, 2));
+else if (process.argv.includes('--prefix-separation')) console.log(JSON.stringify(auditPrefixSeparation(), null, 2));
 else if (process.argv.includes('--prefix-census')) console.log(JSON.stringify(auditPrefixCensus(), null, 2));
 else if (process.argv.includes('--star-clock')) console.log(JSON.stringify(auditStarClockFormula(), null, 2));
 else if (process.argv.includes('--graph-clock-controls')) console.log(JSON.stringify(auditGraphClockControls(), null, 2));
